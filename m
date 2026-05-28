@@ -1,51 +1,58 @@
-Return-Path: <devicetree+bounces-303687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303690-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eFUJBpr0F2rNXQgAu9opvQ
-	(envelope-from <devicetree+bounces-303687-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:54:02 +0200
+	id yDTrOsX0F2rNXQgAu9opvQ
+	(envelope-from <devicetree+bounces-303690-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:54:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 864FA5EE0B3
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F32A5EE106
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 09:54:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 65BA6319984C
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 07:48:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 73DC531B944B
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 07:48:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7ED334E746;
-	Thu, 28 May 2026 07:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB63D352007;
+	Thu, 28 May 2026 07:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AN5gooQ6"
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="1P43YydG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from canpmsgout08.his.huawei.com (canpmsgout08.his.huawei.com [113.46.200.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0CD031195C;
-	Thu, 28 May 2026 07:47:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43942351C02;
+	Thu, 28 May 2026 07:48:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779954480; cv=none; b=DM50JPRNp7x0C53z/JFHs2LgGWMOKuEEC6r/LRRIciK/8ETTrwc79hgnBjdj7SWpKZ4Ib4OC/zlwSJ9YalA2LZMuZDXB5VDm/9sXJ89WpRuX4Us7buNlBKAYaHpQtOc3k+WWKkOzK6OCTt8hBbjM4r2QRMOjlA8OEB5ZY5Fjq78=
+	t=1779954513; cv=none; b=sz1nprdqFYtBb9E6jj9BR7cSQY3ReQtbtCkn3vpQ4tmbrxoYMLoAAW++F3qkhG7L4gsuYwVvkYmon68Ugf3xy+rq7JWhYP+4QAwkXi7BK5/zKD4kCHwyFVVF/7tPqsUKqZHuw1o2iGrOMsE+nxJ+7OIJjXlZsTjK6N8JQouUe98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779954480; c=relaxed/simple;
-	bh=Tk1EKbdX32+rquhpn9LMamJLlvBU0geYiOxYF0gHtMc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kZzLkjqthR/WesTcrpOh6rwMA4EJRBtqLmGDZwAQqOhAy/VnIxi7olACxqgA9teFqhKB1HBdUGj1ZGtjsWKvCvB2ROQ9o8qHwDA3pisiWDo5QpHWwyjR+jGND1Jo/P6Uk6WqFaLPwD3dHXDk9zh+dcccxyTB+iYz2vd+eHrT5v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AN5gooQ6; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E916D1F000E9;
-	Thu, 28 May 2026 07:47:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1779954479;
-	bh=kKJOy3F9lQEw5RyMIHk/aWmx2PRhR7PizELq38nstQo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=AN5gooQ6356wxBxfp3uaSdj0ck2/CS/xQJgHh3RoY/JN+L6j9415+fCyYh7RmSIkl
-	 QEZGakM/XvgW9gPqvVbVliMgPQdXB1/VeljX/r+r9lpTudgz44zLrqofsBU/5l0iw+
-	 X7v4l713a675Izqg4/zjUGX18XNGJNNYpUWB7pAqTf6n0BSFfE2KyF+TS+yxBnW6sF
-	 ettaYiHFiPl9OdiSfOLkjmSt1sT3l4tCQRgmggTnDQoilOlOlaTLM2wMa8mSpMzfb+
-	 dTP5ahshsHMDG5uZbcBChAPuu/HOdBHFQKRRIQIGnRcp65MiIYejgWG8yFWOo9NWz2
-	 b2vDpeEs3wrDA==
-Message-ID: <5e68aa84-7ce8-4405-9575-173e0a5834ca@kernel.org>
-Date: Thu, 28 May 2026 09:47:53 +0200
+	s=arc-20240116; t=1779954513; c=relaxed/simple;
+	bh=nMN8OwxhDdLf9YlQ22VoLYVfKGZLM/ci0aISZWDApD4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=AGNhOQMpQWMilq10+OmBahHXc/8LJUbs/gYnTbGcuU5oAckxJbvUmnV4lsj++66BVJ5TIe8POBybQMRxZXN7JF3FAXDsRsKKUi/uEQoeoj1t4bc+bhgqsrkTamxUMPQ11sUaaCW1yYc0wf3WOk6mPXk4Hc07YFIY2ptuwmivWyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=1P43YydG; arc=none smtp.client-ip=113.46.200.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=dpnGK6j+kvjnma6YHvrd5wwrLUxTfDRQvHYx5YGFkW8=;
+	b=1P43YydGlenQu7gtjAUK3WkAvoYefi1zaef3ts/PCFV8z8jXMftJzmpGqo5LjAapMRdRXr6/a
+	N1fDE/FHFxcXRLBxskpsButEzn/mkgSXUmZGYLvw2ukswIM6zPl+B8AGyjYLYkBV/NlrO3ruwSZ
+	nO8/hOI1gcFH8PiH3P2wFRQ=
+Received: from mail.maildlp.com (unknown [172.19.163.127])
+	by canpmsgout08.his.huawei.com (SkyGuard) with ESMTPS id 4gQz1H3L7czmV7M;
+	Thu, 28 May 2026 15:40:35 +0800 (CST)
+Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
+	by mail.maildlp.com (Postfix) with ESMTPS id 95504402AB;
+	Thu, 28 May 2026 15:48:22 +0800 (CST)
+Received: from [10.67.109.254] (10.67.109.254) by
+ dggpemf500011.china.huawei.com (7.185.36.131) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Thu, 28 May 2026 15:48:16 +0800
+Message-ID: <08ab6756-091c-4bee-9d49-cb84d0be027c@huawei.com>
+Date: Thu, 28 May 2026 15:48:15 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,125 +60,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIHYyIDEvM10gZHQtYmluZGluZ3M6IGky?=
- =?UTF-8?Q?c=3A_Add_StarFive_JHB100_I2C?=
-To: Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20260527085039.44435-1-lianfeng.ouyang@starfivetech.com>
- <20260527085039.44435-2-lianfeng.ouyang@starfivetech.com>
- <0e3bae26-3bc3-43ff-8d66-aba84a6f6677@kernel.org>
- <ZQ0PR01MB12696D9B1AB14D4A3BEAEC2982092@ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <ZQ0PR01MB12696D9B1AB14D4A3BEAEC2982092@ZQ0PR01MB1269.CHNPR01.prod.partner.outlook.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-2.16 / 15.00];
+Subject: Re: [PATCH v14 00/17] arm64/riscv: Add support for crashkernel CMA
+ reservation
+To: Huacai Chen <chenhuacai@kernel.org>, Mike Rapoport <rppt@kernel.org>
+CC: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <kernel@xen0n.name>, <maddy@linux.ibm.com>,
+	<mpe@ellerman.id.au>, <npiggin@gmail.com>, <chleroy@kernel.org>,
+	<pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+	<alex@ghiti.fr>, <tglx@kernel.org>, <mingo@redhat.com>, <bp@alien8.de>,
+	<dave.hansen@linux.intel.com>, <hpa@zytor.com>, <robh@kernel.org>,
+	<saravanak@kernel.org>, <akpm@linux-foundation.org>, <bhe@redhat.com>,
+	<pasha.tatashin@soleen.com>, <pratyush@kernel.org>, <ruirui.yang@linux.dev>,
+	<rdunlap@infradead.org>, <pmladek@suse.com>, <feng.tang@linux.alibaba.com>,
+	<dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <elver@google.com>,
+	<kuba@kernel.org>, <lirongqing@baidu.com>, <ebiggers@kernel.org>,
+	<paulmck@kernel.org>, <thuth@redhat.com>, <ardb@kernel.org>,
+	<masahiroy@kernel.org>, <mark.rutland@arm.com>, <maz@kernel.org>,
+	<james.morse@arm.com>, <leitao@debian.org>, <sourabhjain@linux.ibm.com>,
+	<yeoreum.yun@arm.com>, <coxu@redhat.com>, <jbohac@suse.cz>,
+	<ryan.roberts@arm.com>, <cfsworks@gmail.com>, <tangyouling@kylinos.cn>,
+	<ritesh.list@gmail.com>, <songshuaishuai@tinylab.org>,
+	<junhui.liu@pigmoral.tech>, <vishal.moola@gmail.com>, <kas@kernel.org>,
+	<debug@rivosinc.com>, <namcao@linutronix.de>, <liaoyuanhong@vivo.com>,
+	<fuqiang.wang@easystack.cn>, <seanjc@google.com>, <guoren@kernel.org>,
+	<chenjiahao16@huawei.com>, <hbathini@linux.ibm.com>, <bgwin@google.com>,
+	<takahiro.akashi@linaro.org>, <lizhengyu3@huawei.com>, <x86@kernel.org>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <loongarch@lists.linux.dev>,
+	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <kexec@lists.infradead.org>
+References: <20260525084932.934910-1-ruanjinjie@huawei.com>
+ <CAAhV-H4NA7vgyxKnK+N_3C6pWBnwXc2URUyLh_h1m-MO=MnsGQ@mail.gmail.com>
+ <ahQ0WRiMsB011tym@kernel.org>
+ <CAAhV-H5x3m08=acrUr2VOAQ8-r2PhN1xTdr3NihHocoPM5=3hQ@mail.gmail.com>
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+In-Reply-To: <CAAhV-H5x3m08=acrUr2VOAQ8-r2PhN1xTdr3NihHocoPM5=3hQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
+ dggpemf500011.china.huawei.com (7.185.36.131)
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-303687-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,soleen.com,linux.dev,infradead.org,suse.com,linux.alibaba.com,google.com,baidu.com,debian.org,suse.cz,kylinos.cn,tinylab.org,pigmoral.tech,rivosinc.com,linutronix.de,vivo.com,easystack.cn,huawei.com,linaro.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
+	DKIM_TRACE(0.00)[huawei.com:+];
+	TAGGED_FROM(0.00)[bounces-303690-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_GT_50(0.00)[76];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 864FA5EE0B3
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:email,huawei.com:mid,huawei.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 6F32A5EE106
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 28/05/2026 08:57, Lianfeng Ouyang wrote:
->>> +    default: 400000
->>> +
->>> +  i2c-sda-hold-time-ns:
+
+
+On 5/25/2026 9:17 PM, Huacai Chen wrote:
+> On Mon, May 25, 2026 at 7:37 PM Mike Rapoport <rppt@kernel.org> wrote:
 >>
->> So you added a generic property - where is it documented? Generic
->> properties must be in common schema or dtschema.
+>> Hi Huacai,
 >>
->> And please prove that none of the generic properties are suitable.
+>> On Mon, May 25, 2026 at 06:14:52PM +0800, Huacai Chen wrote:
+>>> On Mon, May 25, 2026 at 4:50 PM Jinjie Ruan <ruanjinjie@huawei.com> wrote:
+>>>>
+>>>> Jinjie Ruan (16):
+>>>>   riscv: kexec_file: Fix crashk_low_res not exclude bug
+>>>>   powerpc/crash: Fix possible memory leak in update_crash_elfcorehdr()
+>>>>   arm64: kexec: Fix image->elf_headers memory leak during retry loop
+>>>>   x86/kexec: Fix potential buffer overflow in prepare_elf_headers()
+>>>>   arm64: kexec_file: Fix potential buffer overflow in
+>>>>     prepare_elf_headers()
+>>>>   riscv: kexec_file: Fix potential buffer overflow in
+>>>>     prepare_elf_headers()
+>>>>   LoongArch: kexec: Fix potential buffer overflow in
+>>>>     prepare_elf_headers()
+>>>>   crash: Add crash_prepare_headers() to exclude crash kernel memory
+>>>>   arm64: kexec_file: Use crash_prepare_headers() helper to simplify code
+>>>>   x86/kexec: Use crash_prepare_headers() helper to simplify code
+>>>>   riscv: kexec_file: Use crash_prepare_headers() helper to simplify code
+>>>>   LoongArch: kexec: Use crash_prepare_headers() helper to simplify code
+>>>>   crash: Use crash_exclude_core_ranges() on powerpc
+>>>>   arm64: kexec: Add support for crashkernel CMA reservation
+>>>>   riscv: kexec: Add support for crashkernel CMA reservation
+>>>>   arm64/crash: Add crash hotplug support
+>>> I have some bikesheedings about the subjects. Can we unify the prefix formats?
+>>> x86/kexec, arm64: kexec_file, riscv: kexec_file, LoongArch: kexec .....
 >>
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>
->> I don't think you tested it. And this concludes my review. I finished
->> here. Please do not send untested bindings.
->>
->>
->> Best regards,
->> Krzysztof
+>> It might look weird in the series, but powerpc and x86 use '/' and arm64 and
+>> riscv use ':' so in the logs in arch/ this would be actually fine.
+> OK, but at least we can unify kexec and kexec_file.
+
+That looks fine.
+
+Jinjie
+
 > 
-> Sorry, I didn't know I needed to run dt-binding_check before, but now I have 
+> Huacai
+> 
+>>
+>> With the only exception of arm64/crash that should have been arm64: crash:
+>>
+>>> Huacai
+>>
+>> --
+>> Sincerely yours,
+>> Mike.
+> 
 
-Every doc asks that. DTS101 slides or my earlier talks as well... Other
-people talks as well... and you received that request last time at v1.
-Please do not repeat the same mistakes because then we feel like our
-feedback is wasted.
-
-Best regards,
-Krzysztof
 
