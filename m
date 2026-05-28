@@ -1,194 +1,217 @@
-Return-Path: <devicetree+bounces-303708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303710-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OIQqKDj6F2oWXwgAu9opvQ
-	(envelope-from <devicetree+bounces-303708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 10:18:00 +0200
+	id UDN1L1f7F2oWXwgAu9opvQ
+	(envelope-from <devicetree+bounces-303710-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 10:22:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D7CD5EE6B2
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 10:17:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E875EE7C5
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 10:22:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3B38C3054641
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 08:10:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E3F633007F73
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 08:15:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE6C367B94;
-	Thu, 28 May 2026 08:10:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698D3317142;
+	Thu, 28 May 2026 08:15:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="BS3iRBXG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A+RXatKZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11022106.outbound.protection.outlook.com [52.101.53.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5A3365A11;
-	Thu, 28 May 2026 08:10:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.106
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779955844; cv=fail; b=rPiC/sVTLEZRC0lGEe9naXevVDEA84I5iz5gx54LqHW3Ky5krt7m9GU/5+1nZ/HVuWRYTEJ714bTGhWj8sczUY37fLezgj9JISVQfPBCgEclJqo92JxhiDaeYUzBrRiY9mCSn3UFi0WSVntiBveRad6komGBLrGYSayAUkqaliA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779955844; c=relaxed/simple;
-	bh=oZwj54S6GeraynTPRl4io6K6NOnDyFKE9UPr3K1KbpA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Y7e3jjZS2wxVRHAh01ULnyKJcYzt/T9gGx4A6Vas4VvJAgQSqeaFVLNYrKWgMXdsfwT84F+iFk711i/yFFQnCC1nEkpIT7TuILtvPgH9X0PrtkYDHcqMHz1HI3w0+hmUpxNIU3Lvpbag5eW6V0gbNStUZyAgFW7zqCGN10z5bzY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=BS3iRBXG; arc=fail smtp.client-ip=52.101.53.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XgkLFf+62ymp47gvi3QLOm2iDu4jMqTX5wRgX7xNknGQQVw/wrbZFg9wicojUEAdcnKsl6tznyKMs+csw4l4hCFrNrx9B08DCEUxVLIIgDfXAYY+LsN318n1JDzQTzSC1nE1KuxzNZIfp4q4H9hFj8x32uTb0PZNEuPlMrWsyIdpJOHcwxJQGI1W7dqSOA+TtCZ2r+aX6MJ1n4j/pQgpD+I2jYPyyfQPqs5nXEUGsgrPCaEX/BwrIGE7M4SZrbQsEOYzRYN6Bom1sTMJOsJjD/CI1+64W16Nvr7m+aYtwjI59Ci+Q04iOGIrPAX0ZMhc1jO9CF1AYbEpf0sKouJhOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LDWiYE7iv0Vl0Z+0FFW2Y3Tt5O2G+oj4Udx0CoQ+kXM=;
- b=KzowELom5XcCJ9gu6iM8ZfV1y2i58/xK2M8V6z67PfyOgegp427lu23fPyL918v9Q7YyPsgtGFjIiHFmG27gKe2nSd0iemMaEabQiSwiQwIUcgujTeCdGDYYSaLefIixUDM7/ervfGBcQk5lcBU6QLUf1XXBBH41GDfa7R4l0BtwuEpL8o46gQ/jlFKABhVmdn/zNKaAzkXOuNfpHH/NeV5I1KVOPoosbINKCz2rqUEtZxemaPFPKs8ZCnq0SG3A6XE8ehdFm6S3uFKn4S5tTmDzDuHW8fjLt6svxV5JAdlSQtI1IG/MxwUfHTohr2WGs7Dfz8Psw9mc0me136S++Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 64.62.143.114) smtp.rcpttodomain=analog.com smtp.mailfrom=axiado.com;
- dmarc=none action=none header.from=axiado.com; dkim=none (message not
- signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LDWiYE7iv0Vl0Z+0FFW2Y3Tt5O2G+oj4Udx0CoQ+kXM=;
- b=BS3iRBXGsOtGP+NCPr4IYGTUtCekxFvhUkG+yQzkN6rAxZ1JIrF1giq5tW+Sd+qWMq3W3y57yk4EaOd6SHggb+iDKWKKfiHgpm+LcfCoxmDuy2VM+9BKpGezFU1WYeS4KkuKWhMaL4Gp1rT/bRUJkxdSihwpLU71QZVDDyvY1kMxYq3av+CWQXlh32LC6dPXu1w1v79b1DTmOQaXlNvmbSqQmIeLyZXqhK9gjei43Pu+cTVvODmm2ZSgeyMBHdf6bsmBUVRIYQ7X9PMiNk8keFTEvSfC4mJF+1qFMmozmBY7vIJzJkGyXy4gH/d3LXzsvpyU7SuERf8RSyd5NdD6yQ==
-Received: from CY5PR19CA0130.namprd19.prod.outlook.com (2603:10b6:930:64::17)
- by LV3PR18MB6283.namprd18.prod.outlook.com (2603:10b6:408:26a::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.14; Thu, 28 May
- 2026 08:10:38 +0000
-Received: from CY4PEPF0000E9CD.namprd03.prod.outlook.com
- (2603:10b6:930:64:cafe::a9) by CY5PR19CA0130.outlook.office365.com
- (2603:10b6:930:64::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.13 via Frontend Transport; Thu, 28
- May 2026 08:10:37 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 64.62.143.114)
- smtp.mailfrom=axiado.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
- designate 64.62.143.114 as permitted sender) receiver=protection.outlook.com;
- client-ip=64.62.143.114; helo=smtp.corp.axiado.com;
-Received: from smtp.corp.axiado.com (64.62.143.114) by
- CY4PEPF0000E9CD.mail.protection.outlook.com (10.167.241.132) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.7 via
- Frontend Transport; Thu, 28 May 2026 08:10:37 +0000
-Received: from axz-uw1-build-vm02.corp.axiado.com (unknown [10.14.1.22])
-	by smtp.corp.axiado.com (Postfix) with ESMTP id 8DA714186B5D;
-	Thu, 28 May 2026 01:08:17 -0700 (PDT)
-From: Petar Stepanovic <pstepanovic@axiado.com>
-Date: Thu, 28 May 2026 01:10:25 -0700
-Subject: [PATCH 3/3] MAINTAINERS: add Axiado SARADC driver entry
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3041D36C0CE
+	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 08:15:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779956147; cv=none; b=d8YEbQd0qKF8zqDCJ6SKVRJ/u9Im054qeUqm+IaQA2+t7UJ1dxnKFtYinTxHLiffDKZ1sRirRlrPmnSdOynYitWmdvI6RQPPZR8tCyg7yGu8zLC9A26ro2uLSHUokHItixfKq349X3+xNaTP0sRMrJzicvxrSamaCPbV0jYsKfM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779956147; c=relaxed/simple;
+	bh=1daAnqLthFDykxVw6VMYhwiRU/fRwVpnxGCbCjDC26k=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=hIgR71PPL3t83g1MlnvqGhG9A3kjesB7yX4jV3O0mnmBBwEyP7WL6xxEDBloK+0E0vpU0rhrihINA1T/WLhtgrGcUk6GtQw51JIJqqkvvjwBuxvK82+4y2ip2dAizSwO0NgkfGdo9ke7AOA9CfJo9WwEmqEd4tqV9fAVRE/O73Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A+RXatKZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51ABC1F000E9;
+	Thu, 28 May 2026 08:15:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779956145;
+	bh=4e2dhUG239AKunU1wFvdVzwxmMD0g5OSsUVIMzv5PgQ=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=A+RXatKZSkBAeWyL27+fT6iT3xvrmty0u2XVPitJTylKI536fO4EAdCoZYDKoUTFz
+	 o44m77Gvzoczj+oGT1jdu05CFmEW+voRVkxu5j/YWPk/RsMB5HXngDgyMGM8QnVpJY
+	 pH/zLNBxCrHF9fj57RTORJRMXL36oMEE8NppU3KMxbbq028czeEDPgQaHoF7IB4/HV
+	 ackkiPRVrOE4OgSEKEjbdCOtGZWg6eDIUIzE/l4bKuF+FMwWGYVjNHOWMzuSJ37OEM
+	 +MZhPVZQlQmenGLrEuSKEf9frUgmd3Cw8bL6Y2qfABJKZApL02qYeK96PK+1DrpxvE
+	 WW0EmyRXzdtZg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v30 2/5] i2c: aspeed: Read clock-frequency via
+ i2c_parse_fw_timings()
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Ryan Chen" <ryan_chen@aspeedtech.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260528-upstream_i2c-v30-2-5d4f9adc3530@aspeedtech.com>
+References: <20260528-upstream_i2c-v30-2-5d4f9adc3530@aspeedtech.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 28 May 2026 08:15:44 +0000
+Message-Id: <20260528081545.51ABC1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260528-axiado-ax3000-ax3005-saradc-v1-3-345dd5f6608a@axiado.com>
-References: <20260528-axiado-ax3000-ax3005-saradc-v1-0-345dd5f6608a@axiado.com>
-In-Reply-To: <20260528-axiado-ax3000-ax3005-saradc-v1-0-345dd5f6608a@axiado.com>
-To: Akhila Kavi <akavi@axiado.com>, 
- Prasad Bolisetty <pbolisetty@axiado.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Petar Stepanovic <pstepanovic@axiado.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1779955836; l=860;
- i=pstepanovic@axiado.com; s=20250916; h=from:subject:message-id;
- bh=oZwj54S6GeraynTPRl4io6K6NOnDyFKE9UPr3K1KbpA=;
- b=dwqFPzfDb10JdzbgWzXg5QufKGeKVe4R/GfCkoCxi6b06XxIwiecMQYf17xxNGL/d7VTsny4E
- Wzwt/xV+LEiDy0ednYu/VISW8PPt7m/ZSe8lMpcniA6hKS/7QAJEuI+
-X-Developer-Key: i=pstepanovic@axiado.com; a=ed25519;
- pk=70f1UJOGT9U11ZK6o+ENXtv0I5wBE3e+Y9YWODzRsdI=
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CD:EE_|LV3PR18MB6283:EE_
-X-MS-Office365-Filtering-Correlation-Id: deefa784-519b-4068-edbf-08debc9099be
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700016|7416014|376014|1800799024|921020|18002099003|22082099003|56012099006;
-X-Microsoft-Antispam-Message-Info:
-	vrM7CmRpbQP4oA16uW+L1XYWYVxf8fypt+JXahMgn7aJNwS0ufdl6bHmy1ECJ1eFiJta+CxZaith6v//n/42pyzxdEPC7hzOKojnSwba56L0Y3Ie3GN2Ki8J1vmZpAq0CQYDR5d/wDL3C+dLOk+WHBOggpj3ywIVqcwszZkKGXfEUQPTNTR/Kr+vsJFAQt5fq5bYPWYrzx3a81tvyYSwcxZo2si4BpmnAWoecJ3/PuelOot06jxaUjIoq752blmedV8RgWwoA1hTTzfOi62x4sUzBRYRojv+l0g466PB8z3aADfVOmEL787FWW41BjYp6JtrqBnu7s8DX/8K45YAXF3wjnRGFxlBJa3MB9k2szx1UJ5ps/RdrO7zUsS11FDj9QYOHcFIN9jlt4l306lKeXww3fxs4EfUAtyoNP6eToYlAvYaecuw/yJPbJ694pNTl9+WKUMg8fcM/VmOakE2IlCKptcM5yCMeea/k2BiGZAj7DsqzRC422knHrume7ew41WOLlWl1L8qPCWOjnI7DVkVXVhdgCSGJ2Fc7oDy9rBzzY1VzPWLptbS/1ZukGEr7Mb7Pja4FTEZNV4tyoQk3vJpMP5yWyx2p/0ZCHkdZMBDLbU94KulUuaLBAn5osSyDbrAwI8tZg7m/mBHYtfTfBfWqKsM/dcY9xvYuusHqLQrvARzNLtByq34rnJchRlYVo61mf8P5+vTvGFURvNOVs/IDVOM98B71M405HJW7GZO2lecUBlLdZvnPcm1LJWEXXOLqF1QTvy0n/xYwe4TOg==
-X-Forefront-Antispam-Report:
-	CIP:64.62.143.114;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtp.corp.axiado.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(7416014)(376014)(1800799024)(921020)(18002099003)(22082099003)(56012099006);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	a8B9H1ByW3KEagZ0lGZhQ8IdRPN2DrIn8khNTGf0Y1ouitfzDRyTdnh/7xSn4KoZy9x8+hZQA9UAZJjRA48JiH8HpKXCFdsit6bqKKJFNyjJ9bc1Kdu45PlXhxBrH2QRw1L2q83em624O2bDZKpZlDCFt6+2IN1hpnEXhis5GHeMl1EHhimLQbRP9qk+rJO6lsFVQ/S7L73ajG2CU1mafRSKg1Jl2MM95fPdAQV0cOXy5eHr50etljHDl0guP0H6AueNc3xHTYlqOefzLWLY5OzHBhPwuIXF+YKdlQ1TABI9PxIVKKCnVRmBwkDdVwNXeYfa1RAVfpjM+zOY/g1R2yMiZaDl1c7VdcbciVGLo2SYpgOggBTk3xpD3tfY4C+cOstv3mP6qEQrt6Lw2LAw3rabt0Fkc0SAZ1GkWQ7JQ/ak4TBGSWWNHyokRM4/GZMA
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 08:10:37.2992
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: deefa784-519b-4068-edbf-08debc9099be
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[64.62.143.114];Helo=[smtp.corp.axiado.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9CD.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR18MB6283
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_DKIM_ALLOW(-0.20)[axiado.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-303708-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303710-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[axiado.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,axis.com:email,axiado.com:email,axiado.com:mid,axiado.com:dkim];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pstepanovic@axiado.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[axiado.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 9D7CD5EE6B2
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: 25E875EE7C5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a MAINTAINERS entry for the Axiado SARADC binding and driver.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-Signed-off-by: Petar Stepanovic <pstepanovic@axiado.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+New issues:
+- [High] The `struct i2c_timings timings` variable is declared on the stack=
+ without initialization. If the `clock-frequency` device tree property is m=
+issing, `timings.bus_freq_hz` remains uninitialized, leading to undefined b=
+ehavior and incorrectly bypassing the fallback logic.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b2040011a386..e6dadfa65ee0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4312,6 +4312,14 @@ S:	Orphan
- F:	Documentation/devicetree/bindings/sound/axentia,*
- F:	sound/soc/atmel/tse850-pcm5142.c
- 
-+AXIADO SARADC DRIVER
-+M:	Petar Stepanovic <pstepanovic@axiado.com>
-+M:	Akhila Kavi <akavi@axiado.com>
-+M:	Prasad Bolisetty <pbolisetty@axiado.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/adc/axiado,ax3000-saradc.yaml
-+F:	drivers/iio/adc/axiado_saradc.c
-+
- AXIS ARTPEC ARM64 SoC SUPPORT
- M:	Jesper Nilsson <jesper.nilsson@axis.com>
- M:	Lars Persson <lars.persson@axis.com>
+Pre-existing issues:
+- [High] The driver disables the I2C controller and asserts hardware reset =
+before unregistering the I2C adapter, leading to hanging I2C transfers duri=
+ng teardown.
+--
 
--- 
-2.34.1
+commit 295034b0d28e53ac8b8ea47c906ff258ad2c83f6
+Author: Ryan Chen <ryan_chen@aspeedtech.com>
+Subject: i2c: aspeed: Read clock-frequency via i2c_parse_fw_timings()
 
+This commit updates the Aspeed I2C driver to read the standard
+clock-frequency property using i2c_parse_fw_timings(). It falls back to
+the legacy bus-frequency property only if the standard property is absent.
+
+> diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-asp=
+eed.c
+> index a26b74c712061..137889e57ddc6 100644
+> --- a/drivers/i2c/busses/i2c-aspeed.c
+> +++ b/drivers/i2c/busses/i2c-aspeed.c
+> @@ -1000,6 +1000,7 @@ static int aspeed_i2c_probe_bus(struct platform_dev=
+ice *pdev)
+>  	const struct of_device_id *match;
+>  	struct aspeed_i2c_bus *bus;
+>  	struct clk *parent_clk;
+> +	struct i2c_timings timings;
+
+[Severity: High]
+Does the timings structure need to be zero-initialized here?
+
+>  	int irq, ret;
+> =20
+>  	bus =3D devm_kzalloc(&pdev->dev, sizeof(*bus), GFP_KERNEL);
+
+[ ... ]
+
+> @@ -1025,12 +1026,18 @@ static int aspeed_i2c_probe_bus(struct platform_d=
+evice *pdev)
+>  	}
+>  	reset_control_deassert(bus->rst);
+> =20
+> -	ret =3D of_property_read_u32(pdev->dev.of_node,
+> -				   "bus-frequency", &bus->bus_frequency);
+> -	if (ret < 0) {
+> -		dev_err(&pdev->dev,
+> -			"Could not read bus-frequency property\n");
+> -		bus->bus_frequency =3D I2C_MAX_STANDARD_MODE_FREQ;
+> +	i2c_parse_fw_timings(&pdev->dev, &timings, false);
+> +	if (timings.bus_freq_hz) {
+
+[Severity: High]
+Since use_defaults is passed as false to i2c_parse_fw_timings(), if the
+clock-frequency device tree property is missing, i2c_parse_timing() will
+not modify timings.bus_freq_hz.
+
+Could this leave timings.bus_freq_hz with uninitialized stack memory,
+which might evaluate to true and bypass the fallback to the bus-frequency
+property?
+
+> +		bus->bus_frequency =3D timings.bus_freq_hz;
+> +	} else {
+> +		ret =3D of_property_read_u32(pdev->dev.of_node,
+> +					   "bus-frequency",
+> +					   &bus->bus_frequency);
+> +		if (ret < 0) {
+> +			dev_err(&pdev->dev,
+> +				"Could not read clock-frequency or bus-frequency property\n");
+> +			bus->bus_frequency =3D I2C_MAX_STANDARD_MODE_FREQ;
+> +		}
+>  	}
+
+[ ... ]
+
+>  static void aspeed_i2c_remove_bus(struct platform_device *pdev)
+>  {
+>  	struct aspeed_i2c_bus *bus =3D platform_get_drvdata(pdev);
+>  	unsigned long flags;
+> =20
+>  	spin_lock_irqsave(&bus->lock, flags);
+> =20
+>  	/* Disable everything. */
+>  	writel(0, bus->base + ASPEED_I2C_FUN_CTRL_REG);
+>  	writel(0, bus->base + ASPEED_I2C_INTR_CTRL_REG);
+> =20
+>  	spin_unlock_irqrestore(&bus->lock, flags);
+> =20
+>  	reset_control_assert(bus->rst);
+> =20
+>  	i2c_del_adapter(&bus->adap);
+
+[Severity: High]
+This is a pre-existing issue, but does the I2C controller get disabled
+before child devices are unregistered?
+
+In aspeed_i2c_remove_bus(), the driver disables the I2C controller and
+asserts the hardware reset before calling i2c_del_adapter().
+
+Since i2c_del_adapter() coordinates the removal of registered I2C child
+devices, their remove() callbacks might issue final I2C transfers to
+gracefully shut down. Because the controller is already disabled and held
+in reset, could these transfers hang and expire the timeout, leading to
+teardown delays and inconsistent hardware state?
+
+>  }
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260528-upstream_i=
+2c-v30-0-5d4f9adc3530@aspeedtech.com?part=3D2
 
