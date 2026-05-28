@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-303924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303926-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gEafCAR1GGo8kQgAu9opvQ
-	(envelope-from <devicetree+bounces-303924-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 19:01:56 +0200
+	id sD30J1xtGGrcjggAu9opvQ
+	(envelope-from <devicetree+bounces-303926-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 18:29:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ED055F5575
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 19:01:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16E1F5F4FF5
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 18:29:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5B5713151A5B
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:18:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A439F31AA94F
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:18:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32823F0745;
-	Thu, 28 May 2026 16:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0463F44EC;
+	Thu, 28 May 2026 16:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b="JESNpXRa"
+	dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b="N4aSSXvY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from srv01.abscue.de (abscue.de [89.58.28.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A033783C0;
-	Thu, 28 May 2026 16:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91302384CFF;
+	Thu, 28 May 2026 16:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.28.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779985121; cv=none; b=mxEIA7RN1JzIjQDYNhw4J344U2n6OBPO7DhLEu37dX3EHSIX+0YRf6pxRJ5gwQKAksPaH6vLgE0csCzdb1LBCblvpOaaO37rPAdTea10ToBDPel/lOP45hmhAJz8gffOhzT26X8mtGr9kVvdNUxjeciX3emDPQ4jR5JrZGNw2jo=
+	t=1779985122; cv=none; b=Ql37mVNxCbVNHqTzb/2ziZAxMSZhqUxNkAJKeXElYLVblfSfCvSWlBgFLIO7YjU5hOjjpz2xIJU5/y1gh9agHBwMGVMkP2VHknIm/9mdRlOBXY8j59nwVaOIGPzlVth/7wbozu7f5arj07kK2tAn6BgH08gNuEFiHBhGCZWJrV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779985121; c=relaxed/simple;
-	bh=pi32dSd8TSx+SNWSMpom2JT7gL0RFRI7pQDQIaLDrq8=;
+	s=arc-20240116; t=1779985122; c=relaxed/simple;
+	bh=iDKvaeDvnMyZNEDCO+iH5La4SPaeOS8gVVZsISM+/78=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=p1Imh5hFbu1TtL/5EpydA2gtRq+XySxfxrMSTfjUAnBMPZNdsgo5twX8GJFGSq86C7Aa92p2vaER194kSYpeOCuhghuPO9zX4rufoTc6iOFm2JVqkjI0OWVhD6AJhegMrII6ptxZepzug7ViQSNlB74LBhxHnBMfFKePR3hKNqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b=JESNpXRa; arc=none smtp.client-ip=89.58.28.240
+	 In-Reply-To:To:Cc; b=UqtxTMHWdjbuiUDght0qQzi/43nO8pm1w88dvjVex+rPE1RFxGTQChFP4ehGpXpJiMOIhaOYedLdNjYRHwXItlLuyqfegY3LIlQ3Tsjykredml3G7XxKhwr9nl7AVYJVTdffpPzF8hRnBJ1K9mGrVR2fCctjJ+UxJRPYYqTYb5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b=N4aSSXvY; arc=none smtp.client-ip=89.58.28.240
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=abscue.de
 Received: from fluffy-mammal.metal.fwg-cag.de (unknown [IPv6:2001:9e8:cde6:a200:bc59:4aed:9f3b:ec21])
-	by srv01.abscue.de (Postfix) with ESMTPSA id 3ADBF1C6B98;
-	Thu, 28 May 2026 18:18:31 +0200 (CEST)
+	by srv01.abscue.de (Postfix) with ESMTPSA id 420A51C6B99;
+	Thu, 28 May 2026 18:18:32 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=abscue.de; s=dkim;
-	t=1779985111;
+	t=1779985112;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=RHqLGlaDozhvgx5NZzsru55VUPorc1eitoMtmO4DGA0=;
-	b=JESNpXRa3cm6PFAPSlqJBfPIlmjReSOg6uMvgWZy2Qq6joHokadBb7aSKadJV2jDzkKcrt
-	IeiLsTFhIaRfgzR1069L++6+G52xPI+2Vxfw7buDF1kNruGt6nE0jUf7oh3x9xzs31NUXi
-	rElS0NEqVblZrBe6xt0mlolD1gNt9rOVB/927MU7PYEWSV/6+ACHwYOzFA3ypcBTwjkpHj
-	ogpTzMPh46IpUCEVXM/oDRX7zVuYzvTSj//83563LudeAFandaVAKo0+n1yZKZKsLwPmoH
-	U+4EeSAPhk7Jd12QPohlN2dbZQ06Np/vsuHSHq5jT+Q3gTRg+kcwUjsJso+JeQ==
+	bh=4Vvz9BBCdCjmAKX3x6b5LHDmFkQb7BZeGItD0dshHTs=;
+	b=N4aSSXvY+YCObEJwmn2HDFBfkTpNYXttAo/sWsphbTAx9/6gFiZ2ygdCBwO34ca4CjNBUE
+	Lj2r5MAaoNe+OXo6/XrOta6t0qCxORptlhIm56mPaxNLyaeJ/W9QnhjOttp0xbP69ClIZL
+	i03vmt76S729k+Bl5B/GD5v+VPOte+Lkt9d6QReDDSlkc5HOOOfRegxgsyMLxpR1+CeMX7
+	Vlppvem0fYwgboIpSzbn+orY1gzD25oY89yhNBk9D8xCGPLDaS3ARQkeD/S+Mq5enHUizp
+	HZbtiNEJeTgmIPUC/f7tJJNkpy4WHekeuPVuN83Evv04SQviXIc/5uKTDRrR8w==
 From: =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Date: Thu, 28 May 2026 18:18:24 +0200
-Subject: [PATCH PARTIAL-RESEND v3 2/3] power: reset: sc27xx: Add
+Date: Thu, 28 May 2026 18:18:25 +0200
+Subject: [PATCH PARTIAL-RESEND v3 3/3] regulator: sc2731: Add
  platform_device_id table
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -61,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260528-sc27xx-mfd-cells-v3-2-25cd685d2743@abscue.de>
+Message-Id: <20260528-sc27xx-mfd-cells-v3-3-25cd685d2743@abscue.de>
 References: <20260528-sc27xx-mfd-cells-v3-0-25cd685d2743@abscue.de>
 In-Reply-To: <20260528-sc27xx-mfd-cells-v3-0-25cd685d2743@abscue.de>
 To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -72,22 +72,21 @@ To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
  Mark Brown <broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-pm@vger.kernel.org, 
- =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
 X-Mailer: b4 0.14.3
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_ALLOW(-0.20)[abscue.de:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linux.alibaba.com];
-	TAGGED_FROM(0.00)[bounces-303924-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-303926-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	DMARC_NA(0.00)[abscue.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -101,59 +100,71 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,abscue.de:email,abscue.de:mid,abscue.de:dkim,collabora.com:email]
-X-Rspamd-Queue-Id: 3ED055F5575
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,config.dev:url]
+X-Rspamd-Queue-Id: 16E1F5F4FF5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Make the poweroff driver for SC27xx-series PMICs probe automatically.
-Since the device representing the poweroff functionality of the SC27xx
-PMIC is not supposed to have a dedicated device tree node without any
-corresponding DT resources [1], an of_device_id table cannot be used
-here. Instead, use a platform_device_id table to match the poweroff
-sub-device instantiated by the parent MFD driver.
+Make the regulator driver for the SC2731 PMIC probe automatically. Using
+a platform_device_id table instead of DT compatible matching avoids the
+need for a separate compatible property in the "regulators" node, which
+simplifies the DT bindings and makes the parent MFD device responsible
+for selecting the correct regulator driver for the PMIC.
 
+However, this means that the regulator device is not automatically
+associated with the "regulators" node. Tell the regulator core to
+perform device tree lookups using the parent MFD device instead of
+the regulator sub-device and set the .regulators_node member in all
+regulator definitions so that the "regulators" sub-node is used.
+
+Acked-by: Mark Brown <broonie@kernel.org>
 Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
-
-[1]: https://lore.kernel.org/all/20251002025344.GA2958334-robh@kernel.org/
-
-Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- drivers/power/reset/sc27xx-poweroff.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/regulator/sc2731-regulator.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/power/reset/sc27xx-poweroff.c b/drivers/power/reset/sc27xx-poweroff.c
-index 393bd1c33b73..6376706bf561 100644
---- a/drivers/power/reset/sc27xx-poweroff.c
-+++ b/drivers/power/reset/sc27xx-poweroff.c
-@@ -6,6 +6,7 @@
+diff --git a/drivers/regulator/sc2731-regulator.c b/drivers/regulator/sc2731-regulator.c
+index 5447e1a47d15..93c8156c5110 100644
+--- a/drivers/regulator/sc2731-regulator.c
++++ b/drivers/regulator/sc2731-regulator.c
+@@ -131,6 +131,7 @@ static const struct regulator_ops sc2731_regu_linear_ops = {
+ 			  vstep, vmin, vmax) {			\
+ 	.name			= #_id,				\
+ 	.of_match		= of_match_ptr(#_id),		\
++	.regulators_node	= of_match_ptr("regulators"),	\
+ 	.ops			= &sc2731_regu_linear_ops,	\
+ 	.type			= REGULATOR_VOLTAGE,		\
+ 	.id			= SC2731_##_id,			\
+@@ -226,7 +227,7 @@ static int sc2731_regulator_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
  
- #include <linux/cpu.h>
- #include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
- #include <linux/module.h>
- #include <linux/platform_device.h>
- #include <linux/pm.h>
-@@ -70,11 +71,18 @@ static int sc27xx_poweroff_probe(struct platform_device *pdev)
+-	config.dev = &pdev->dev;
++	config.dev = pdev->dev.parent;
+ 	config.regmap = regmap;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(regulators); i++) {
+@@ -242,12 +243,19 @@ static int sc2731_regulator_probe(struct platform_device *pdev)
  	return 0;
  }
  
-+static const struct platform_device_id sc27xx_poweroff_id_table[] = {
-+	{ "sc2731-poweroff" },
++static const struct platform_device_id sc2731_regulator_id_table[] = {
++	{ "sc2731-regulator" },
 +	{ }
 +};
-+MODULE_DEVICE_TABLE(platform, sc27xx_poweroff_id_table);
++MODULE_DEVICE_TABLE(platform, sc2731_regulator_id_table);
 +
- static struct platform_driver sc27xx_poweroff_driver = {
- 	.probe = sc27xx_poweroff_probe,
+ static struct platform_driver sc2731_regulator_driver = {
  	.driver = {
- 		.name = "sc27xx-poweroff",
+ 		.name = "sc27xx-regulator",
+ 		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
  	},
-+	.id_table = sc27xx_poweroff_id_table,
+ 	.probe = sc2731_regulator_probe,
++	.id_table = sc2731_regulator_id_table,
  };
- module_platform_driver(sc27xx_poweroff_driver);
  
+ module_platform_driver(sc2731_regulator_driver);
 
 -- 
 2.51.0
