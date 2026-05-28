@@ -1,124 +1,209 @@
-Return-Path: <devicetree+bounces-303619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303620-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOX3N7muF2qiNAgAu9opvQ
-	(envelope-from <devicetree+bounces-303619-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 04:55:53 +0200
+	id GPYcJQWwF2qiNAgAu9opvQ
+	(envelope-from <devicetree+bounces-303620-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 05:01:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB4C5EC015
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 04:55:52 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91CBC5EC07A
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 05:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F10B53024106
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 02:50:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 90FBF300692D
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 03:01:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 710F425782A;
-	Thu, 28 May 2026 02:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5173093B2;
+	Thu, 28 May 2026 03:01:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fG5jYt0K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BSOK1m1q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246511C5D7D;
-	Thu, 28 May 2026 02:50:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53349305047;
+	Thu, 28 May 2026 03:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779936621; cv=none; b=eTqezi6fjhxH2SRh5AR72KypnxeKLpLJQPR7GVRb/GQs2wXWzsW7vbyF/afy+CY65peSB3yTxTXpAUQaNuuiixuY0FQza2M3Kf1NoywGY2cEWY6cqv3JFvpvwjtlNsK1NR/H3zcFofJjA0yJzKqnwStUIE5KLpzDC7x5XLj0n0s=
+	t=1779937278; cv=none; b=TsrzESlgjkufs/i073VVAOdtv3nD/zy9jmXpKMGE2xpf2iRicfzkSv1XY+hhj6cDJYqED6QVtO5pDLlprJdH/B0v7e/eCaU3KbJ6S9RMUz/36afFxlSAXizuBiHRzScQQDSzjtDL16yFJIprH8y246eomSO4AeErCUqKnVVflp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779936621; c=relaxed/simple;
-	bh=FPclTH03l9Yt7L1jGq5YcyMGTA4Tq90bDxn8yn0jsn4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R04Cc1v5fI0LI3Obpf2sZ4fMeICwqgX7n/BdX4Zpm9zH1OoMBJINlGvOinSvsjsvd9ixViC5NiDshPBrNlRq5Yj0l8kuh+UMso9zWYSkDW9rs7XrqaYSEBeZPjBiBrgNydUrZZ69sU96sBW/e/hrEfjQrpbdUqC/f8V/NVzNqE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fG5jYt0K; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=DsWVnO/eXmqtGauPYqIZ0hLahnQl89rtKzFLexhCFHk=; b=fG5jYt0K0UhDjn1cjT2LERST9d
-	6IiVoPaMdeX57dlq3JvW30HiPTKeCEbv4JtTl28nrXEWYvHV92l3sLl+j9VMSn8MMRbOQlgY5FIVd
-	IxoExANcplImlnf50trs4mHdUcIl0+bkRZgKoUdJ/478WLPJGl4TMQRUDXnPk9i6L4kw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1wSQow-004qXj-Nl; Thu, 28 May 2026 04:50:06 +0200
-Date: Thu, 28 May 2026 04:50:06 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: ciprian.regus@analog.com
-Cc: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 09/10] net: phy: Add support for the ADIN1140
- PHY
-Message-ID: <74a44fe8-52a3-4d06-94d3-be32a2e39c4c@lunn.ch>
-References: <20260527-adin1140-driver-v2-0-37e5c8d4e0a0@analog.com>
- <20260527-adin1140-driver-v2-9-37e5c8d4e0a0@analog.com>
+	s=arc-20240116; t=1779937278; c=relaxed/simple;
+	bh=f37B4ha2lVZ/zAdX9tU8LH+hLTM/aMteW9Yia6uCh1A=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Ogkp5jBEkN+7+mH1GJF81oi02PJKyY9+hGrt08pyGaQsq0GeqxVcpGvbqRp/kw6ImYu6AkkILvZHETusEnz+GK3HGIoTFgiGvWDAZL8Qb1vk6RTbk0nEP9paXttI9S2rHTQE2NKyPfo6YM4Ah3NqprGXG8Kk1GSZymhnsCh4QfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BSOK1m1q; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 661AC1F000E9;
+	Thu, 28 May 2026 03:01:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779937276;
+	bh=AziiLhnmYQCEMhVYdBkbk1Z98Dueth5dAF3cZEbw7EU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=BSOK1m1qg/XkrYTndb8QFNM/eNvrGFVognEdLMmpAwmShEU7plyIgzQDwAEpk9Grf
+	 aTt0xeCo+EgKGC6TIAa3er15IRi1tcfktcONRARlxEcPmeHNjXAB+u0CjF8SEfP3wF
+	 14k47LwEkO8DCtR3Jge8qeZLEsUZkln4imo7oP+MQ2Nt6Fgg4VD7Kdx9przBVXoqNX
+	 n0jThGCwpEGsnA9L/dOVFVBJpbBiUl6dsLCqZzVAXl9kusZ51ulfbMq03oSn4tBaLb
+	 8akfkzc8mFA52Gm/tGSF36QrJkRvOwLGdsmjGY9aSgg0YxYjFSOj3dSQ0QVoPb5xFK
+	 JIOL4CclWxQTA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/3] ASoC: imx-rpmsg: Support headphone jack
+ detection
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Chancel Liu" <chancel.liu@nxp.com>
+Cc: Frank.Li@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260528020725.2265321-3-chancel.liu@nxp.com>
+References: <20260528020725.2265321-3-chancel.liu@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 28 May 2026 03:01:16 +0000
+Message-Id: <20260528030116.661AC1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260527-adin1140-driver-v2-9-37e5c8d4e0a0@analog.com>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-303620-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303619-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lists.linux.dev:replyto,nxp.com:email,sashiko.dev:url];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:email,lunn.ch:mid,lunn.ch:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 3FB4C5EC015
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+X-Rspamd-Queue-Id: 91CBC5EC07A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> +static int adin1140_config_aneg(struct phy_device *phydev)
-> +{
-> +	/* phylib tries to clear BIT(12) in MDIO_CTRL1, since AN is disabled.
-> +	 * However, on the ADIN1140, that field is non-standard, being used
-> +	 * to control the reset status of the PHY (thus it needs to remain set).
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
 
-More brokenness. 802.3 defines PMA/PMD control 1 bit 12 as reserved
-and always 0.
+New issues:
+- [High] Headphone jack initialization silently fails on deferred ASoC comp=
+onent binding due to a cleared of_node.
+- [Low] Redundant property check prevents fallback to singular '-gpio' bind=
+ing.
 
-How did this chip get passed QA with so many issues?
+Pre-existing issues:
+- [High] Global state corruption by modifying a shared `device_driver`'s PM=
+ operations.
+--
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+commit 67115545a4cc25e24605dd54dbe245a56360b94c
+Author: Chancel Liu <chancel.liu@nxp.com>
 
-    Andrew
+ASoC: imx-rpmsg: Support headphone jack detection
+
+This patch adds headphone jack detection support for i.MX RPMSG audio cards.
+It uses simple_util_init_jack() to register a headphone jack with GPIO-based
+insertion detection when the "hp-det-gpios" property is present.
+
+[ ... ]
+
+> diff --git a/sound/soc/fsl/imx-rpmsg.c b/sound/soc/fsl/imx-rpmsg.c
+> index fd4624786b627..48fe471499bac 100644
+> --- a/sound/soc/fsl/imx-rpmsg.c
+> +++ b/sound/soc/fsl/imx-rpmsg.c
+
+[ ... ]
+
+> @@ -86,6 +88,15 @@ static int imx_rpmsg_late_probe(struct snd_soc_card *c=
+ard)
+>  	struct device *dev =3D card->dev;
+>  	int ret;
+> =20
+> +	if (of_property_present(card->dev->of_node, "hp-det-gpios")) {
+
+[Severity: Low]
+Is this of_property_present() check necessary?
+
+Since simple_util_init_jack() calls gpiod_get_optional(), it already safely
+returns 0 without side effects if no GPIO is found. By explicitly checking
+for "hp-det-gpios", this prevents initialization if the device tree uses the
+singular "hp-det-gpio" property instead, breaking standard gpiolib fallback
+semantics.
+
+[Severity: High]
+Does this headphone jack initialization fail if ASoC component binding is
+deferred?
+
+During probe, the platform device's of_node is temporarily set to the CPU
+DAI's of_node. When devm_snd_soc_register_card() is called, if a component
+is missing, the ASoC core queues the card for deferred binding. The probe
+function then falls through to the failure path and clears pdev->dev.of_node
+to NULL.
+
+Later, when the missing component appears and imx_rpmsg_late_probe() is
+executed asynchronously, card->dev->of_node will be NULL. Consequently,
+this of_property_present() check evaluates to false, and the initialization
+is silently skipped.
+
+> +		ret =3D simple_util_init_jack(card, &data->hp_jack,
+> +					    1, NULL, "Headphone Jack");
+> +		if (ret) {
+> +			dev_err(dev, "failed to init hp jack\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+>  	if (data->lpa) {
+>  		struct device_node *codec_np;
+>  		struct device_driver *codec_drv;
+>  		struct device *codec_dev =3D NULL;
+
+[ ... ]
+
+>  		if (codec_dev) {
+>  			codec_drv =3D codec_dev->driver;
+>  			if (codec_drv->pm) {
+>  				memcpy(&lpa_pm, codec_drv->pm, sizeof(lpa_pm));
+>  				lpa_pm.suspend =3D NULL;
+>  				lpa_pm.resume =3D NULL;
+>  				lpa_pm.freeze =3D NULL;
+>  				lpa_pm.thaw =3D NULL;
+>  				lpa_pm.poweroff =3D NULL;
+>  				lpa_pm.restore =3D NULL;
+>  				codec_drv->pm =3D &lpa_pm;
+
+[Severity: High]
+This is a pre-existing issue, but does overwriting codec_drv->pm corrupt the
+power management operations for all instances of the codec?
+
+The struct device_driver is a shared global structure registered by the cod=
+ec
+module. By modifying its pm pointer to point to the static global lpa_pm, it
+corrupts the power management operations for all instances of that codec ac=
+ross
+the entire system.
+
+Furthermore, using a single global lpa_pm structure could cause race condit=
+ions
+if multiple i.MX RPMSG cards are probed concurrently.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260528020725.2265=
+321-1-chancel.liu@nxp.com?part=3D2
 
