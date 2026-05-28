@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-303923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303925-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0GMSMgd1GGo8kQgAu9opvQ
-	(envelope-from <devicetree+bounces-303923-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 19:01:59 +0200
+	id UMtXFP90GGo8kQgAu9opvQ
+	(envelope-from <devicetree+bounces-303925-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 19:01:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D7DB5F5584
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 19:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 099735F556D
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 19:01:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 52EDF30620C1
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:18:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ED20B3182F4E
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:18:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80BD73E714C;
-	Thu, 28 May 2026 16:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 351F03F39C2;
+	Thu, 28 May 2026 16:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b="LFU5R4g7"
+	dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b="edpOYz1n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from srv01.abscue.de (abscue.de [89.58.28.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C233112A5;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13CB9352023;
 	Thu, 28 May 2026 16:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.28.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779985121; cv=none; b=PF7iwMlRd+sj6e8MnaDItjxlbimyrTfmj7MKf7x4c18NYRcOIn/8rIY5EWXj6+5JgBomE1qvNzlICWieZVPWW+bHGZ1dN+1w918jBR6413UnJQKA3OgtQqjsLiFaOgfEO4sPsXjrBCJdeLj6+tZf6cl2ClKY3Ncxg15FqgAwK2I=
+	t=1779985122; cv=none; b=XDhE2wxWRdJx8QvCSD1F8W6iNTS3/mwbdp38tetsjTK4U9DY6BnVmQkekBFbShwOYzxvs5UlnLlJYDB2nt8OnNa7j7ju+vuSZos4jVeomLdXUnB2gBEOtAH2GAhAgVEKUWP7vPgBIb5ZRdpCdMuDmdkNoeRFKVCjG86I3S6Ps4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779985121; c=relaxed/simple;
-	bh=cpm3Z2tfRLVxZihV48Imcp7RlgiZSK2jYGWPhKojK+Q=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lNE/thzC0r37XZy3CpxRpcNN58SOZEjATwn5Eg+8M5K4jWC4pu3i/xTacs8Uv/NPGlk4Hxtk6sl+1QW5SZFL1oV8FDVOgHxEgPN2+GVBdt/9QI9GASZl40cRBDvwWKqVlHSRdHXXUKsIZ01aUtUATWtxskgLQPwgZF+Q6S/Tjzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b=LFU5R4g7; arc=none smtp.client-ip=89.58.28.240
+	s=arc-20240116; t=1779985122; c=relaxed/simple;
+	bh=MHHt2ANc8Qe7TWRx8Im5NLPa2izmN2X0SM9HOq6qFMs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=uMOI76nz6t69NWIu7r4y0OY6NdLbV07H+O8FaoZPGcto+0y7mWNkVpnRCTtpanJVfv2ZFboR/0Efxv66wO7F8qIVJMG+5J57Qi9m9adRmPL1xZAyyztnKxjesRIQhEf8jyI7CfEQn+q8CVRK6Rw+wkpJfKvTUxVnfkX+rymHv2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; dkim=pass (2048-bit key) header.d=abscue.de header.i=@abscue.de header.b=edpOYz1n; arc=none smtp.client-ip=89.58.28.240
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=abscue.de
 Received: from fluffy-mammal.metal.fwg-cag.de (unknown [IPv6:2001:9e8:cde6:a200:bc59:4aed:9f3b:ec21])
-	by srv01.abscue.de (Postfix) with ESMTPSA id 1EAA21C6B96;
-	Thu, 28 May 2026 18:18:28 +0200 (CEST)
+	by srv01.abscue.de (Postfix) with ESMTPSA id 9A7EC1C6B97;
+	Thu, 28 May 2026 18:18:30 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=abscue.de; s=dkim;
 	t=1779985110;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=UODtJT4ZA+3fBK+TzSRQYV8/sUVhLQBAPI7oDO+6LHw=;
-	b=LFU5R4g7cLUIKotSU6IByAmCLFoGkw6QEXZERdoHyKgpo+XF/zz2YXp3soQfzymOib/HmX
-	UjO6+bY+Ci17T2mwhgalGwygZm5I3wGv0QDDbqgk8/T0iUtwellueJpufv4H8HjMurzn0C
-	jGihs8eD6LYLWiUjaUnkz9rZ9RVVAJ8lQvN8yYz9ZBJlKiBXoKtHGqP519NMgJoqn7yBQh
-	wbEFoHXX2Hm9jYjvr4FrHw15FcMp0DBA/bhlgzNXWb1xDi9nM/+kKsxcETKwsiRjF9aF+q
-	A/utEJPQI8N4+cAIL1/vgTPU1PvueBTiZKammMiDstYDbPy3FWvRJIZLUMfGpA==
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BHiWGAaKNrxwaOndt6yaXs1hWGrtAVLI4xI13GIu7Wg=;
+	b=edpOYz1njSYShku4xStilkWdRrFn2RxP+J+ki7CiBqY/ojKQ7s636YwZaKbsEHzJAFrPaQ
+	I/ViREFEJCut9jqNQaGUXirznsU+ANw5lLEI/5C6X+7wpTm5bESmamXiYg/JGBZuixrOAn
+	j/ScTETMdoXARl3EmhyGQS7g4yzLKUJLJ7yawOkcdhZiEUc19bUJZB0pDmRU3vXGH06H6g
+	o5n6638uGucaA5h2rcNp91g63yKCrMS/3RHudAekO4OhOwzZg+NoCXzvbdxYqIuYwd8V3I
+	B2f0mFekCjH2xOq3XxG37Vdz6t2w0jGAGtBRHZPF7mtmGG9oicOvHriCsTxfqQ==
 From: =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Subject: [PATCH PARTIAL-RESEND v3 0/3] mfd: sc27xx: Use MFD cells and
- devm_mfd_add_devices()
-Date: Thu, 28 May 2026 18:18:22 +0200
-Message-Id: <20260528-sc27xx-mfd-cells-v3-0-25cd685d2743@abscue.de>
+Date: Thu, 28 May 2026 18:18:23 +0200
+Subject: [PATCH PARTIAL-RESEND v3 1/3] regulator: dt-bindings: sc2731:
+ Deprecate compatible property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,12 +61,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAM5qGGoC/23NzQrCMBAE4FcpORtJNm1jPVnQgyAi6k08pMlGA
- /7RaKmUvruhCBbqcdjZbxrisXToyTRqSImV8+5+C0GMIqLP6nZC6kzIBBikDIBTr0HWNb1aQzV
- eLp4aVciMJVYohSS8PUq0ru7IA9nk2/0yX9HtYrdYz8kx3M/OP+/lu1useNf64jDEK04ZTbMEU
- osy1lLOVOH1C8cGO6yCHyAg+QNAAAzDokiZUrEaAKIPZH8AEYCMJxODGHMr4z7Qtu0HimuDSEI
- BAAA=
-X-Change-ID: 20260221-sc27xx-mfd-cells-dab7905f3aae
+Message-Id: <20260528-sc27xx-mfd-cells-v3-1-25cd685d2743@abscue.de>
+References: <20260528-sc27xx-mfd-cells-v3-0-25cd685d2743@abscue.de>
+In-Reply-To: <20260528-sc27xx-mfd-cells-v3-0-25cd685d2743@abscue.de>
 To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
@@ -74,8 +72,7 @@ To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
  Mark Brown <broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-pm@vger.kernel.org, 
- =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
 X-Mailer: b4 0.14.3
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -88,8 +85,8 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linux.alibaba.com];
-	TAGGED_FROM(0.00)[bounces-303923-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-303925-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	DMARC_NA(0.00)[abscue.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -105,34 +102,60 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[abscue.de:email,abscue.de:mid,abscue.de:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 8D7DB5F5584
+X-Rspamd-Queue-Id: 099735F556D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is a resend of the remaining patches in a partially applied series
-switching the SC27xx series of PMICs to use MFD cells instead of purely
-OF-based device probing. There are no dependencies between the patches
-in this series, but they are part of a single logical change.
+The node containing the regulators is always a child of the main PMIC
+node, which already has a compatible property identifying the type of
+PMIC. This makes the compatible in the child node redundant. Mark it
+as deprecated and remove it from the required property list and the
+examples.
 
-Link to original series (v3): https://lore.kernel.org/r/20260329-sc27xx-mfd-cells-v3-0-9158dee41f74@abscue.de
-
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Mark Brown <broonie@kernel.org>
+Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
 ---
-Otto Pflüger (3):
-      regulator: dt-bindings: sc2731: Deprecate compatible property
-      power: reset: sc27xx: Add platform_device_id table
-      regulator: sc2731: Add platform_device_id table
+ Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml                | 2 --
+ .../devicetree/bindings/regulator/sprd,sc2731-regulator.yaml          | 4 +---
+ 2 files changed, 1 insertion(+), 5 deletions(-)
 
- Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml         |  2 --
- .../devicetree/bindings/regulator/sprd,sc2731-regulator.yaml   |  4 +---
- drivers/power/reset/sc27xx-poweroff.c                          |  8 ++++++++
- drivers/regulator/sc2731-regulator.c                           | 10 +++++++++-
- 4 files changed, 18 insertions(+), 6 deletions(-)
----
-base-commit: e7d700e14934e68f86338c5610cf2ae76798b663
-change-id: 20260221-sc27xx-mfd-cells-dab7905f3aae
+diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+index b023e1ef8d3c..12b3258daef5 100644
+--- a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
++++ b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+@@ -222,8 +222,6 @@ examples:
+         };
+ 
+         regulators {
+-          compatible = "sprd,sc2731-regulator";
+-
+           BUCK_CPU0 {
+             regulator-name = "vddarm0";
+             regulator-min-microvolt = <400000>;
+diff --git a/Documentation/devicetree/bindings/regulator/sprd,sc2731-regulator.yaml b/Documentation/devicetree/bindings/regulator/sprd,sc2731-regulator.yaml
+index 9bd752bab68e..7af20a4781b7 100644
+--- a/Documentation/devicetree/bindings/regulator/sprd,sc2731-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/sprd,sc2731-regulator.yaml
+@@ -26,6 +26,7 @@ description: |
+ 
+ properties:
+   compatible:
++    deprecated: true
+     const: sprd,sc2731-regulator
+ 
+ patternProperties:
+@@ -39,8 +40,5 @@ patternProperties:
+     $ref: regulator.yaml#
+     unevaluatedProperties: false
+ 
+-required:
+-  - compatible
+-
+ additionalProperties: false
+ ...
 
-Best regards,
 -- 
-Otto Pflüger <otto.pflueger@abscue.de>
+2.51.0
 
 
