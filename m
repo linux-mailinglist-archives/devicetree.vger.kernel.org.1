@@ -1,249 +1,173 @@
-Return-Path: <devicetree+bounces-303914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303913-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6K2sK0BqGGrcjggAu9opvQ
-	(envelope-from <devicetree+bounces-303914-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 18:16:00 +0200
+	id MAC7LcdrGGrcjggAu9opvQ
+	(envelope-from <devicetree+bounces-303913-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 18:22:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 425F45F4D98
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 18:16:00 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1D0E5F4EB7
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 18:22:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1109E3111411
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:02:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4C13C3069151
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 16:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A783F9F30;
-	Thu, 28 May 2026 15:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2535940911E;
+	Thu, 28 May 2026 15:46:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="R0mlm6TV"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="t8m3C54g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC4B3F4DE6;
-	Thu, 28 May 2026 15:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779983231; cv=pass; b=eCn5M+VLtAOYy8ZkPcHYCCfTM98DmUCLNRyjAQCFOFd9OhHrZCIxIAZmouXdSsmMY89gnAO6IUJUrJagx8TuL117K691ONa8eZBO8ZJre4ZMdOveHcVx8QkzUkwFUB/yPjxa0lJBltRZeR2oK2PJtI7w9+AtpdOZKzHibBQKQko=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779983231; c=relaxed/simple;
-	bh=YrIFYnNwK75hqr+l1VVedPTBsTSrKgJulBagzMf3kdQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iA3A1YTZ5tMG5P/xkiEGCH4fhtrj8jcm59uY8eEeRu5+TuyzznppNzZppa9/DVmcrQxG9Z12kn+Ayuxr64KlXCf2X5VUf/oUGpQCF1scDnOO5ArMlzOsqYMVNLJSG+3ITTfynglswKMjp3mnK8Lsy1CG4hmxVvDltcPuvD3jRAs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=R0mlm6TV; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1779983187; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=GHWMHdoWNcU15l0hvRveP46RyYdqPgCNIeJOJbgJI9JBobYiofMCMQDP9tkyRw47bS6196r8P9gujSO6cNJ9Ac5kv/bPGASHU7fkljblkRp5xGqhzxVFEPJvBplRIblIb4HnGhMU1zkIXRKyOlTy8syLsNSciYqlZYJrNnrZGdg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1779983187; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=TdX9/bZga6Qg6ao7lAnopeSLFZmhgNqsCFRMGQo40M0=; 
-	b=hnRAzfqXviyjhZIjxpBSmwxqGkCfShiXtPnNYqedxGvcMfnf2fvfm9L00qulOPvmRbankDXGxKrmhNds05DPIqHJVOPhitigUxdoObfdeZRi2AXap80Tcxqq4s4Jgja7nsUTW8KIao9gayS/yaqATsbLz2nRRej1dIwvOkRhUcc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779983187;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=TdX9/bZga6Qg6ao7lAnopeSLFZmhgNqsCFRMGQo40M0=;
-	b=R0mlm6TVO+9eUKq9MnKnKU3dLEa/hEkLVmVw68chR+YqDd8tvgRJEpMlFBM5I/5b
-	c6+TcHKMz7YIBp1eqtoYItnX8cbubTExtEOZ+GY+weuPi7GZAMLommCqfp7gb4Fd1hy
-	09jBTk09vbl4tp4nh1BvU45oHlAvHghEBJXyExbE=
-Received: by mx.zohomail.com with SMTPS id 1779983186292414.93444418879574;
-	Thu, 28 May 2026 08:46:26 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Peter Chen <hzpeterchen@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
- Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, Hugh Cole-Baker <sigmaris@gmail.com>,
- dri-devel@lists.freedesktop.org, Chaoyi Chen <kernel@airkyi.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- dri-devel@lists.freedesktop.org, Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Subject:
- Re: [PATCH v15 2/9] drm/bridge: aux: Add drm_aux_bridge_register_from_node()
-Date: Thu, 28 May 2026 17:46:15 +0200
-Message-ID: <zQEH3WYtRMCn07SWaZMzgQ@collabora.com>
-In-Reply-To: <20260304094152.92-3-kernel@airkyi.com>
-References:
- <20260304094152.92-1-kernel@airkyi.com>
- <20260304094152.92-3-kernel@airkyi.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 809D8481249
+	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 15:46:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1779983191; cv=none; b=YMOhmCKGwjRc1AlX8SrN9e5JSgaa4mZjX0034wIjD1ojaTdhKqMSahwogItVyFjgbAsjs0BYsQ5HS/VnFW04GzNlBrmUWTO2Rm7pEFKUb5iIH6sBxklG369rHbmBwQ4NwO5OPhM7vp2WQWVYiy0CxiaFX9W/sBGnEnNJFBji30Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1779983191; c=relaxed/simple;
+	bh=ZcxEwXE1OB6A4lNBsg0j+Ck+Wn3pDWCw2b/gZ2ylMXM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dV5qWqtgV7ThymRVTiKvl1trQ4fcIXD7/sMGlkCKpxfvWCRWr6c1AfhPqW9iZtN2uhQwoCy8gU+1AI8TRLA8sNF/sM616g1Ehekbd8cCLNlQqbQVjsJHaPjwYqAItg5nI2XiejwwoplhclpIgjWejRInWuqquVXoY6PAy8wfU+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=pass smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=t8m3C54g; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2E7174B9409;
+	Thu, 28 May 2026 17:46:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1779983187; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=Lig/Y3jjno2s3ssT2q87EUHF7rWx9/04UKQMvVpIUBw=;
+	b=t8m3C54gKW9W7JpxCSv30JiXzivv60u8SoMRRMCicGUYQkedL7v7+1m9FVelyXL3E7WCTo
+	XnfMpht0eFKrB1WzHaZTe6WDbcDl3/mGmaHrHt/l9Thr5QBtScMAoucGLxKiIKvmYlEjAA
+	KP9LFmAg4rTLk74yLNjXsRAxVwzz4JE62GFCFIpoUENdEnTwy1NT9+KnyNIZaizLjxDKp8
+	aoplKkmrJ0RENTc/SlStN70si/BlDPUzIM5MJ1iEiF7joWwLXQgwo79/c7UtOS8EL28rRD
+	tHGuSPMWaRkFPjkgG6sc4n8zGapnpRXfwaPli0MeTLZTs5OIOIamow8JyZ5Tfw==
+Message-ID: <8542ce1e-4e6b-4393-87f7-b4270f43be65@cjdns.fr>
+Date: Thu, 28 May 2026 17:46:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v6 3/5] clocksource/timer-econet-en751221: Init teardown
+ on error if possible
+To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+References: <20260528140046.2897674-4-cjd@cjdns.fr>
+ <20260528152337.DD6D41F000E9@smtp.kernel.org>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <20260528152337.DD6D41F000E9@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	CTE_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-303914-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,linuxfoundation.org,oss.qualcomm.com,gmail.com,bootlin.com,kernel.org,sntech.de,rock-chips.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,suse.de,ffwll.ch,google.com,manjaro.org,cknow.org,lists.freedesktop.org,airkyi.com];
-	RCPT_COUNT_TWELVE(0.00)[42];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[bounces-303913-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 425F45F4D98
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,cjdns.fr:email,cjdns.fr:mid,cjdns.fr:dkim]
+X-Rspamd-Queue-Id: C1D0E5F4EB7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wednesday, 4 March 2026 10:41:45 Central European Summer Time Chaoyi Chen wrote:
-> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> 
-> The drm_aux_bridge_register() uses the device->of_node as the
-> bridge->of_node.
-> 
-> This patch adds drm_aux_bridge_register_from_node() to allow
-> specifying the of_node corresponding to the bridge.
-> 
-> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-> 
-> (no changes since v11)
-> ---
-> 
->  drivers/gpu/drm/bridge/aux-bridge.c | 24 ++++++++++++++++++++++--
->  include/drm/bridge/aux-bridge.h     |  6 ++++++
->  2 files changed, 28 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/aux-bridge.c b/drivers/gpu/drm/bridge/aux-bridge.c
-> index b3e4cdff61d6..52dff4601c2d 100644
-> --- a/drivers/gpu/drm/bridge/aux-bridge.c
-> +++ b/drivers/gpu/drm/bridge/aux-bridge.c
-> @@ -35,6 +35,7 @@ static void drm_aux_bridge_unregister_adev(void *_adev)
->  /**
->   * drm_aux_bridge_register - Create a simple bridge device to link the chain
 
-Function name needs to be changed here as well. You can validate
-kernel doc strings for a single file with:
+On 28/05/2026 17:23, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Critical] The newly added error path for `cpuhp_setup_state()` failure creates a fatal use-after-unmap vulnerability by freeing IRQs and unmapping I/O memory without unregistering the active clockevent devices.
 
-  ./tools/docs/kernel-doc -v -none drivers/gpu/drm/bridge/aux-bridge.c
+I'm considering this not-a-bug because at the time the timer comes 
+online, there is only one CPU, and if cevt_init_cpu errors out it 
+requires no tear-down. I can silence this warning by not erroring on 
+failed cpuhp_setup_state call, but I didn't consider "make Sashiko 
+happy" a good enough reason to do it.
 
-With that fixed:
+Thanks,
 
-Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Caleb
 
-Kind regards,
-Nicolas Frattaroli
-
->   * @parent: device instance providing this bridge
-> + * @np: device node pointer corresponding to this bridge instance
->   *
->   * Creates a simple DRM bridge that doesn't implement any drm_bridge
->   * operations. Such bridges merely fill a place in the bridge chain linking
-> @@ -42,7 +43,7 @@ static void drm_aux_bridge_unregister_adev(void *_adev)
->   *
->   * Return: zero on success, negative error code on failure
->   */
-> -int drm_aux_bridge_register(struct device *parent)
-> +int drm_aux_bridge_register_from_node(struct device *parent, struct device_node *np)
->  {
->  	struct auxiliary_device *adev;
->  	int ret;
-> @@ -62,7 +63,10 @@ int drm_aux_bridge_register(struct device *parent)
->  	adev->dev.parent = parent;
->  	adev->dev.release = drm_aux_bridge_release;
->  
-> -	device_set_of_node_from_dev(&adev->dev, parent);
-> +	if (np)
-> +		device_set_node(&adev->dev, of_fwnode_handle(np));
-> +	else
-> +		device_set_of_node_from_dev(&adev->dev, parent);
->  
->  	ret = auxiliary_device_init(adev);
->  	if (ret) {
-> @@ -80,6 +84,22 @@ int drm_aux_bridge_register(struct device *parent)
->  
->  	return devm_add_action_or_reset(parent, drm_aux_bridge_unregister_adev, adev);
->  }
-> +EXPORT_SYMBOL_GPL(drm_aux_bridge_register_from_node);
-> +
-> +/**
-> + * drm_aux_bridge_register - Create a simple bridge device to link the chain
-> + * @parent: device instance providing this bridge
-> + *
-> + * Creates a simple DRM bridge that doesn't implement any drm_bridge
-> + * operations. Such bridges merely fill a place in the bridge chain linking
-> + * surrounding DRM bridges.
-> + *
-> + * Return: zero on success, negative error code on failure
-> + */
-> +int drm_aux_bridge_register(struct device *parent)
-> +{
-> +	return drm_aux_bridge_register_from_node(parent, NULL);
-> +}
->  EXPORT_SYMBOL_GPL(drm_aux_bridge_register);
->  
->  struct drm_aux_bridge_data {
-> diff --git a/include/drm/bridge/aux-bridge.h b/include/drm/bridge/aux-bridge.h
-> index c2f5a855512f..7dd1f17a1354 100644
-> --- a/include/drm/bridge/aux-bridge.h
-> +++ b/include/drm/bridge/aux-bridge.h
-> @@ -13,11 +13,17 @@ struct auxiliary_device;
->  
->  #if IS_ENABLED(CONFIG_DRM_AUX_BRIDGE)
->  int drm_aux_bridge_register(struct device *parent);
-> +int drm_aux_bridge_register_from_node(struct device *parent, struct device_node *np);
->  #else
->  static inline int drm_aux_bridge_register(struct device *parent)
->  {
->  	return 0;
->  }
-> +
-> +static inline int drm_aux_bridge_register_from_node(struct device *parent, struct device_node *np)
-> +{
-> +	return 0;
-> +}
->  #endif
->  
->  #if IS_ENABLED(CONFIG_DRM_AUX_HPD_BRIDGE)
-> 
-
-
-
-
+> --
+>
+> commit e1e0b36b8164978eb079f38d9547d743cebd0a97
+> Author: Caleb James DeLisle <cjd@cjdns.fr>
+>
+> clocksource/timer-econet-en751221: Init teardown on error if possible
+>
+> This commit reorganizes the initialization process of the econet timer by
+> separating it into two phases. It adds teardown logic to safely roll back
+> resource allocations like memory mappings and IRQ requests if an error occurs
+> before the point of no return.
+>
+>> diff --git a/drivers/clocksource/timer-econet-en751221.c b/drivers/clocksource/timer-econet-en751221.c
+>> --- a/drivers/clocksource/timer-econet-en751221.c
+>> +++ b/drivers/clocksource/timer-econet-en751221.c
+> [ ... ]
+>> @@ -187,22 +166,45 @@ static int __init timer_init(struct device_node *np)
+> [ ... ]
+>> +	ret = cpuhp_setup_state(CPUHP_AP_ONLINE_DYN,
+>> +				"clockevents/econet/timer:starting",
+>> +				cevt_init_cpu, NULL);
+>> +	if (ret < 0) {
+>> +		pr_err("%pOFn: cpuhp setup failed (%d)\n", np, ret);
+>> +		goto out_irq_free;
+>> +	}
+> [Severity: Critical]
+> When cpuhp_setup_state() executes the startup callback across online CPUs,
+> it registers the clockevent devices. If this fails on a subsequent CPU,
+> cpuhp_setup_state() aborts. Because a NULL teardown callback was provided,
+> the CPU hotplug core skips rollback and leaves the successfully registered
+> clockevent devices active on the earlier CPUs.
+>
+> The error path here then frees the IRQs and unmaps the I/O memory. If the
+> timekeeping core attempts to handle a timer interrupt or program the next
+> event on the still-registered clockevent devices, will it dereference the
+> unmapped memory?
+>
+> Should the active clockevent devices be unregistered, or a teardown callback
+> provided to cpuhp_setup_state(), before freeing these resources?
+>
+>> +
+>> +	/* Point of no return, do not attempt to tear down after this. */
+> [ ... ]
+>> +out_irq_free:
+>> +	free_percpu_irq(econet_timer.irq, &econet_timer_pcpu);
+>> +out_irq_mapping:
+>> +	irq_dispose_mapping(econet_timer.irq);
+>> +out_membase:
+>> +	for (int i = 0; i < ARRAY_SIZE(econet_timer.membase); i++) {
+>> +		if (econet_timer.membase[i]) {
+>> +			iounmap(econet_timer.membase[i]);
+>> +			econet_timer.membase[i] = NULL;
+>> +		}
+>> +	}
+>> +
+>> +	return ret;
+>>   }
 
