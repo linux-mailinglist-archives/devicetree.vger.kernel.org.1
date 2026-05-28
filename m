@@ -1,235 +1,209 @@
-Return-Path: <devicetree+bounces-303895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-303897-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ACIvE35aGGrVjQgAu9opvQ
-	(envelope-from <devicetree+bounces-303895-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 17:08:46 +0200
+	id IAPNFJpbGGrVjQgAu9opvQ
+	(envelope-from <devicetree+bounces-303897-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 17:13:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D874A5F4324
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 17:08:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C35DE5F43C0
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 17:13:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D700631ABEEB
-	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 15:01:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EF7BF31189C1
+	for <lists+devicetree@lfdr.de>; Thu, 28 May 2026 15:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9376C34389D;
-	Thu, 28 May 2026 15:01:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE4734389D;
+	Thu, 28 May 2026 15:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j9zBzMtp";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EpCneZn+"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="G1KAUwJp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A022978F26
-	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 15:01:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1092BEC45;
+	Thu, 28 May 2026 15:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1779980503; cv=none; b=SIDXtR0HIsi5CwSKaCv+8kaownl6Mrcnn15kABX3lj8pIJ+stv4APQ69NTm0qWu+FoICkdFSKs3pDxp1krc2I+x4HdCgGVPOhWs/01FnMLlmRkqe1QVTpQ9w60Dx77YiS4qocwcNUWHEeJrrKoR/sRORQPaxpOvH/8Q7kQCkReM=
+	t=1779980609; cv=none; b=BTj2tlQ6bhSziHD8agDE0F3iOpOkC07jPyxmrXkaALwLbt6PlhUEzohMLxdQdW/H/valDiKr8PGQm26qvUM1WviBDmYQyb3paRH/OjU3cBb/VOxNhJPduSjmgi9tKzgWOJHPVSCkdvMrAo4nC/Acnoxe197R/JHtjhC3l0u5zjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1779980503; c=relaxed/simple;
-	bh=4GnQVk4uJA7GqOVb6u3PPbujRwmpQUG2pQItHH9GCpI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fZ+Wmdycg0w4T38TRVP8Gvsc54J+5HaKd9w/rVMPF1XmgUKQ3/yKvPLN1NY6kPRPNKFl2i1xReeZW/w9FA8c+GsPv/McVOrWr/iJ8y1b/7KyMh53SC9aPTbf4myDyoDLmwKShYgc0pg7rL+HqwEF/3miwMeddehaKh/dZtDSCcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j9zBzMtp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EpCneZn+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64S8vZSj1697195
-	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 15:01:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=HaNfui2FG1mDwh5+yjz39dTw
-	V8xEs4HnIe4IRTWrOCk=; b=j9zBzMtpg2a0zAo1dbjkUAhgcaqPvS3C88TpbmzA
-	uVUAYH0iMmGQ2YPZKcK6NJkkZIjOVbedeR6gEZZSwwjlHkq1ghl1aSNlvdRsItcv
-	Z2a6ZupDf3940txV56UAhdQDw6duoQNb/cZ0Kke4SaJuG8SVogdSIL+ZAO54JyWi
-	7mnGRPt9tize3mouTI+CaCN68ukd/YooOaG8fO+f8chao1xA2WLD/a9ZeB0bHJET
-	QmzxRMXmVDVIP3Wp3xJppAfQaM0slC+POgxtkeFkHJGBnt9V42Us9U61IUqLaEMO
-	+tZm3Yj5PXxNQpbqphnX1dOsJ6C7eSd3NIVCCGO9Lpd7PA==
-Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ee7yak89n-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 28 May 2026 15:01:36 +0000 (GMT)
-Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-95cf2f6a8d6so16510419241.1
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2026 08:01:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1779980495; x=1780585295; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HaNfui2FG1mDwh5+yjz39dTwV8xEs4HnIe4IRTWrOCk=;
-        b=EpCneZn+Qeia6C8temy4Yh9j1Xmuaxzi/2itOlFfmUtPfsO6F2vVLU0o4XnvBlifEC
-         T9nQwPBSVYhZvpm/uIPeRdi3Lu/iUrdiWQ4o5Hy5bd7iTfAfG58ow6w407R5CTPWHXcE
-         ou54kXe5zAEiE19sGk1DTWYib3ZkWDenYOalqyP/ntNNhWKiLVgM7M1Pq8Yj+lbmL+Uu
-         TsUdCxRSYUm+qgUbAmvzPZJpk1c2LyeunBmCyPwERtBwDiCEgaSS1GkD2Ax3XDK/aHhC
-         ppVcJAcz7IJXC9/z7aU6Ec0rSIPjbTTAvBet1gypnao7YDADYco9WtZRgeXxh0A0dXhE
-         b/rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1779980495; x=1780585295;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HaNfui2FG1mDwh5+yjz39dTwV8xEs4HnIe4IRTWrOCk=;
-        b=aDdcwN9aYdndiYpOpEM9niWRjrN6BsKhzLnjvDkywy3tmOiWbsXrSsQxhb4MvToZqo
-         HQryNitvm6e1oqTtHYxqjDBsQzYGMKAncnH8zHODkGnbWs3TSOTyQnSYjnwUqnXjx/qD
-         As9bxVXgRDzBSaxdwsoVv+plO37TWN1sFUlO71ocXoNEYeEntVY50s8qx5l42Hf1dOe9
-         ooFkccHK7v/DA/KdA12utImM+CHuKi6CXULYXRu4OM7z5OVH9sEoQel08WRarF9Dkbyf
-         tzvpVJWdlX9cyAqCbJFN887vQi2FEvJ9trn/t4PGFsvhsyvJOtSbQXG/ANXChW/GFC+Z
-         Uzkw==
-X-Forwarded-Encrypted: i=1; AFNElJ/FWuJyPq2tyByisrpylJv/Ptbj5MrCX9QnNXGvpEqRko752SkdJxvn77qpN9AMumGLaloQ2+vD46nH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpYBYtpP8YUxjKRYb5o8eqfVP9ToGxmAJ4Rzw7HRDjHPacNYJD
-	gnoOWG/9GLtz+RDVoEX0+nQTCfG1RbGPoIzw6jmJizXRAs3fihd1FttuoaQQzTthuJhdJB5fNrs
-	9F0t/n1S6NRIjWIZt66JqpDxcLSJA/vlAT19hoBXAgpGZ2eY7Dm4R586pLG1P53aR
-X-Gm-Gg: Acq92OH4azJhrMumECOi6hKd3DCjnSA6ouffcl5rXZbmANfT/SqoYUPTWtmCltshAqT
-	pfIHSnP/ivhHSx4L3QBdyfCFVaqpmzyFADizRffDPE5Kkc+sLYsDQbTXrTmpSvlDldfEkn5Qos5
-	fpXV8SB+hCQHtA7pvfNme1dJ6WRSJGSr4/kUD8r33vN/gKpY68SEcrrzl+IHb9ZslhjlcD/Gj1t
-	isxJTgDm6S3EB7s2PQpRPv1vq448sXyoo2Ldwd0W6X+ffY4Dv6YcwJ5O2SqiPN3y8bSMxH5nlQ6
-	wB0XtRJspiTQgqVJWc7LOAb/KbZ/sH+2vZgH+bjM65X4hWHlUZ/n3GR92hFw81ZqAjn5C933T5L
-	b8/xWV9MzXhqae985Jv2dMzABqsMysZFtjV7QeHyTb4XeydcB0c1fBSgFt00Klj9yrcd2dQssij
-	MSPTtOeK/gxTEcgJ5KEGbE0/IKdaV5NYfnGu8QD9E9+i4mMg==
-X-Received: by 2002:a05:6102:6489:20b0:631:6e70:b905 with SMTP id ada2fe7eead31-6b8b027285dmr551992137.12.1779980495057;
-        Thu, 28 May 2026 08:01:35 -0700 (PDT)
-X-Received: by 2002:a05:6102:6489:20b0:631:6e70:b905 with SMTP id ada2fe7eead31-6b8b027285dmr551891137.12.1779980494380;
-        Thu, 28 May 2026 08:01:34 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-395dcc2f502sm39258551fa.35.2026.05.28.08.01.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 May 2026 08:01:33 -0700 (PDT)
-Date: Thu, 28 May 2026 18:01:31 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Jie Gan <jie.gan@oss.qualcomm.com>
-Cc: Qiang Yu <qiang.yu@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, krishna.chundru@oss.qualcomm.com
-Subject: Re: [PATCH v4 2/7] clk: qcom: Add generic clkref_en support
-Message-ID: <ci6qjemmmcrtva2o33mkcv5hu2o3woj7eg5563sursf455mygc@fuigqdocarsz>
-References: <20260527-tcsr_qref_0527-v4-0-ded83866c9d9@oss.qualcomm.com>
- <20260527-tcsr_qref_0527-v4-2-ded83866c9d9@oss.qualcomm.com>
- <332c5b1e-8b70-4902-99f3-536dfe8e32bf@oss.qualcomm.com>
- <ahg9uFs1LqthstWi@hu-qianyu-lv.qualcomm.com>
- <791b1b88-d2d1-41f3-8902-d63dbd524bd7@oss.qualcomm.com>
+	s=arc-20240116; t=1779980609; c=relaxed/simple;
+	bh=EKH5tRliOIUnhNHTa3wjt4zmAUPWdfPXtt6vsBMWZqs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=X68JBS2dMfSQy0Mvcmw0x30Cth6cl7mx1brAg+YN0yq0bF5Yg/bhNdxDe2TGUPmPxr03sSemLVDHZqBH/siMHKe73TJGhP27DOIAgApSVEW/vlUmONtHan1Uv+aSCwwn1WufHCzLkJ388SvhNWFNjh8hV7TzO0iPEDGkAkupzEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=G1KAUwJp; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64SF2FZa2442503;
+	Thu, 28 May 2026 11:03:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=/WsUyHVxwJI+qNaYsdCBDJ45zuU
+	5xQSvkmFVF5cEyNU=; b=G1KAUwJpq4xTlimHhnC4E1YuTviN57sftCoGgYmsZTd
+	N3p/3eFW2l2bEv1LoIdnhpSrAnuLPDUMsFLboSm212TI+LT/qNUTdaaQ3RoGdODA
+	I7yTNTKBu1vJgyfi/WNDBrl5VQgPQ7+Wdug7s0MNnbbi31dnm99CzfKYM0XqLwIK
+	dVTSFqeX5fEsXTlfXWs4dGnHYmenWrZbx353l0cuuiifIcAvyKxai2gJpuvw+64R
+	wwUKbV97wGZzj1o2z5gnkD4W+ZcCbUsuFm1W+oZSP4IWZRu8D2fmvfUOhbaKVJ/t
+	obSIuQKddPrFe79Moyz9t0G/q6peG4F4HExJJ+8WBdQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4ee7x3398s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 May 2026 11:03:11 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 64SF3AHG008659
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 28 May 2026 11:03:10 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Thu, 28 May
+ 2026 11:03:09 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Thu, 28 May 2026 11:03:09 -0400
+Received: from work.maxim-ic.internal ([10.66.6.190])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 64SF2wJN021380;
+	Thu, 28 May 2026 11:03:01 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <jic23@kernel.org>, <nuno.sa@analog.com>, <Michael.Hennerich@analog.com>,
+        <dlechner@baylibre.com>, <andy@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <pop.ioan-daniel@analog.com>, <marcelo.schmitt1@gmail.com>
+Subject: [PATCH v2 0/4] iio: adc: Add support for LTC2378 and similar ADCs
+Date: Thu, 28 May 2026 12:02:53 -0300
+Message-ID: <cover.1779976379.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <791b1b88-d2d1-41f3-8902-d63dbd524bd7@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: SBkU2IDjBg4INree7aSRtzv6k3vqFF0i
-X-Proofpoint-GUID: SBkU2IDjBg4INree7aSRtzv6k3vqFF0i
-X-Authority-Analysis: v=2.4 cv=E/r9Y6dl c=1 sm=1 tr=0 ts=6a1858d0 cx=c_pps
- a=UbhLPJ621ZpgOD2l3yZY1w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=2Qrb-dWxc7tvpDbJBDUA:9
- a=CjuIK1q_8ugA:10 a=TOPH6uDL9cOC6tEoww4z:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI4MDE1MiBTYWx0ZWRfX4HfoouEDfH3n
- 0ArccVPx6c4KEgBA9RI1eFZg9zwgaHyPTtP6X7WNIyybCBhtlIYrobFkwbLADC6CkYfjFzJJUTb
- tHyltR7g57abGee0ZWvOLK5WhVgu4VU75u3Q5uGHvGDW+7qOiyhE0OXPIjsn6of6rnZhHI5w4yX
- Cpjsdq0gKTHmpz7nkt1BnUHbbwWO88Mo/JI9JHa8BLk2IY1KHVeGQRd4rtYaJyHmCduVRFagu02
- mDzSGJmhUSYgff3iNRUMc1iE1OfoP5ntk7URZhKQcNoC/RYWRSngKlm4dwl4rcadOKs2OoIZZL0
- 3HleigdC/f/pR9tBqWXivFbchuaLlMn/r/yiD+3ygwYSmjqjySjoa8/mJjdezT62/1/U2j6JwHV
- YKOZWS41+pJhI8CR2YcpGOhX0FImZjnhlfbWISXBCB2Wbll2UxN4AbBba4HXmfBPa82ZBDtBA+t
- hiQSxq3q8nh2sqqTwhQ==
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: Qa0gNm1Os8o-tkl-HEVspyCm4MOtr5SN
+X-Authority-Analysis: v=2.4 cv=KIlqylFo c=1 sm=1 tr=0 ts=6a18592f cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=NGcC8JguVDcA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
+ a=uXIjobp8t2wMuQ0fPvqm:22 a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8
+ a=6ZiBocp07lY1XB3jTSgA:9
+X-Proofpoint-ORIG-GUID: Qa0gNm1Os8o-tkl-HEVspyCm4MOtr5SN
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI4MDE1MiBTYWx0ZWRfX/9PddXCepJCa
+ 36Vghb+2dltTn7EmJhRpBS+g3/7Do2gVcyvLtbw6FK6ihJENAR1xKEnl7bcb/MJ7KH0MAT38djf
+ h1dx5ExxR19gmkuHls1SfC1+SCXTHc7Q/c+x0v8UBLmqImYdnUvUMxiEpGKplZr4egg+zPA4yPv
+ 40tDedQh1OHSAPzfS9jhr6L/7LGortkV5JRIbVJ0q/BJtsNnu+wWu0kJpfydwpc2bnM2ClrxSE8
+ 6qLUmj+aMFu+IueCSauH/QohIpm752yufHNj7dTmHZqF036LnBgA6PsUPl9w39/4dq4S3pdwbNI
+ wky89++MnkPLYo2/K67CFuRusPchRcUsMKN7mBwtb5Nj9gWVdCjnFJWdKvI8Qst2AKVyLb/ZG9d
+ DD+MAhqH5Am/nvgrJNWeolO1cXmRMK581XQNwHG4A7cItf6qjhSNOyvX+in9w6ZxCCeEBriPxaW
+ 4FAZglDgELepxaCiIAQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-05-28_04,2026-05-28_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 lowpriorityscore=0 adultscore=0 priorityscore=1501 phishscore=0
- impostorscore=0 bulkscore=0 malwarescore=0 suspectscore=0 spamscore=0
+ malwarescore=0 phishscore=0 impostorscore=0 adultscore=0 suspectscore=0
+ priorityscore=1501 clxscore=1011 bulkscore=0 lowpriorityscore=0 spamscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2605280152
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-303895-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,oss.qualcomm.com:dkim];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-303897-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,gmail.com];
+	TO_DN_NONE(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[marcelo.schmitt@analog.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:mid,analog.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
+	DKIM_TRACE(0.00)[analog.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: D874A5F4324
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: C35DE5F43C0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, May 28, 2026 at 09:46:51PM +0800, Jie Gan wrote:
-> 
-> 
-> On 5/28/2026 9:06 PM, Qiang Yu wrote:
-> > On Thu, May 28, 2026 at 11:03:45AM +0800, Jie Gan wrote:
-> > > 
-> > > 
-> > > On 5/28/2026 10:29 AM, Qiang Yu wrote:
-> > > > Before XO refclk is distributed to PCIe/USB/eDP PHYs, it passes through
-> > > > a QREF block. QREF is powered by dedicated LDO rails, and the clkref_en
-> > > > register controls whether refclk is gated through to the PHY side.
-> > > > 
-> > > > These clkref controls are different from typical GCC branch clocks:
-> > > > - only a single enable bit is present, without branch-style config bits
-> > > > - regulators must be voted before enable and unvoted after disable
-> > > > 
-> > > > Model this as a dedicated clk_ref clock type with custom clk_ops instead
-> > > > of reusing struct clk_branch semantics.
-> > > > 
-> > > > Also provide a common registration/probe API so the same clkref model
-> > > > can be reused regardless of where clkref_en registers are placed, e.g.
-> > > > TCSR on glymur and TLMM on SM8750.
-> > > > 
-> 
-> [...]
-> 
-> > > > +
-> > > > +static int qcom_clk_ref_is_enabled(struct clk_hw *hw)
-> > > > +{
-> > > > +	struct qcom_clk_ref *rclk = to_qcom_clk_ref(hw);
-> > > > +	u32 val;
-> > > > +	int ret;
-> > > > +
-> > > > +	ret = regmap_read(rclk->regmap, rclk->desc.offset, &val);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > 
-> > > regmap_read returns a negative error code on failure, but the
-> > > clk_ops.is_enabled() treats the non-zero value as enabled.
-> > > 
-> > 
-> > A regmap_read failure doesn't mean the clock is disabled.
-> 
-> Do we have special reason to treat the error number as "true"? Its worthy to
-> add a comment to explain why.
+This patch series adds support for LTC2378 and similar low noise, low power,
+high speed, successive approximation register (SAR) ADCs. These ADCs are similar
+among each other, varying mainly on the amount of precision bits, maximum sample
+rate, and input configuration (either fully differential or pseudo-differential).
 
-to be 'false', the error number must be 0.
+The initial support patch enables single-shot sample read with a GPIO connected
+to the CNV pin.
+
+The second support patch enables high-speed data captures with SPI offloading.
+The setup is similar to AD4030, with a specialized PWM generator being used both
+for SPI offload triggering and conversion start signaling.
+
+The last support patch enables running buffered data captures without SPI offloading.
+
+Some structures and variables are introduced earlier to reduce diff in latter patches.
+
+The initial version of the LTC2378 driver was developed by Ioan-Daniel. Though,
+despite of the many changes I made to the code, I've kept him as module author
+to provide credit for his work.
+
+Link to v1: https://lore.kernel.org/linux-iio/cover.1779117444.git.marcelo.schmitt1@gmail.com/
+
+Change log v1 -> v2:
+[DT]
+- Use unevaluatedProperties:false with spi-peripheral-props.yaml reference/include.
+- Use unique compatibles (no fallbacks).
+[IIO]
+- Added missing includes for LTC2378 driver.
+- Added waiting time required before reading back LTC2378 conversion data.
+- Fixed voltage regulator read error path.
+- Properly right-aligned sample data.
+- Set loop count to prevent CPU stall when calculating PWM parameters.
+- Hardcode set specific offload supported amount of data element bits.
+- Fixed devm_spi_offload_get() error path.
+- Dropped device ID table and simplified chip specific information keeping.
+- Using named device_id data initializers.
+- Use bool for output code type distinction.
+- Initialize init scan_type according to buffer selection.
+- Added scope for IIO_DEV_ACQUIRE_DIRECT_MODE usage.
+- Offload attributes now are channel based instead of device based.
+- Use IIO_CHAN_SOFT_TIMESTAMP directly on right hand of assignment.
+- Wrapped comments close to 80 columns.
+- Organized includes.
 
 
+Marcelo Schmitt (4):
+  dt-bindings: iio: adc: Add ltc2378
+  iio: adc: ltc2378: Add support for LTC2378-20 and similar ADCs
+  iio: adc: ltc2378: Enable high-speed data capture
+  iio: adc: ltc2378: Enable triggered buffer data capture
+
+ .../bindings/iio/adc/adi,ltc2378.yaml         | 118 +++++
+ MAINTAINERS                                   |   8 +
+ drivers/iio/adc/Kconfig                       |  22 +
+ drivers/iio/adc/Makefile                      |   2 +
+ drivers/iio/adc/ltc2378-offload-buffer.c      | 296 ++++++++++++
+ drivers/iio/adc/ltc2378.c                     | 454 ++++++++++++++++++
+ drivers/iio/adc/ltc2378.h                     | 113 +++++
+ 7 files changed, 1013 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ltc2378.yaml
+ create mode 100644 drivers/iio/adc/ltc2378-offload-buffer.c
+ create mode 100644 drivers/iio/adc/ltc2378.c
+ create mode 100644 drivers/iio/adc/ltc2378.h
+
+
+base-commit: 6f15decff24dac42895c0f01f0c2143f9b8961a6
 -- 
-With best wishes
-Dmitry
+2.53.0
+
 
