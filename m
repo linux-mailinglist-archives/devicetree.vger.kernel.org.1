@@ -1,160 +1,181 @@
-Return-Path: <devicetree+bounces-304410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304413-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qPhPAGi7GWqoyggAu9opvQ
-	(envelope-from <devicetree+bounces-304410-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:14:32 +0200
+	id yCziGeLHGWoIzAgAu9opvQ
+	(envelope-from <devicetree+bounces-304413-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 19:07:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F13F9605603
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:14:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E34F606218
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 19:07:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 741E9301A2F6
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:58:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ACA0837AFD33
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 16:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73FEE3F4DD3;
-	Fri, 29 May 2026 15:56:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F823EA95A;
+	Fri, 29 May 2026 15:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="Iye5K/0D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P3d54xtL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF5EC3F4DF1
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551FD3E8333
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:58:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780070176; cv=none; b=hE5CFPJ+jZj+Ysc45BTE6FOgohFfCAeqqHqiRNS7syRnqDJyU9UTIrFI7eFTkxjo/DNG5pFnVzXVXD8y3iKmZYPFHgFkPggv2Jb65lqmxJPASFcKOBcgOaQku8bO9ubSWIrCQXJUTJFNWGDaKvldanY7cFp5K2v93mHwYSLCUvg=
+	t=1780070309; cv=none; b=LQRuO2Xqb6ButfK6dernuqDJQ1+Z329L0nN7GjlMwGRlqSuh8VurKwfBvg/omLWvyJtQoLp0/HOsqqBFrhAfU8Pv0yMDQ21sOsAsDL7iTzgcwf4WJOiCJIiaf3XX0brQRh7Ao3hdXbUbd+m1hPWgMgdK4M9rn01PdlqGrxtlX1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780070176; c=relaxed/simple;
-	bh=PqJTyAM76dPh91rM1EBFSRkgJv7U1lhIPE64WmIlskI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KDfEGWljvnb8773AUv7VPY/OOhZILW9knPCYHna052Ygehi+Q6ML3C29arGDhAK5CdoNS3IBKk4UFWyiG/a8jck5C1lEuDhjBUcN1TTtc4FvxfsHD6U5TGnXJdW7fgZ5s+ZXavT4Kfz0eS550LJW9UIUdPUebR1+R2z44p+MWSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=Iye5K/0D; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-49042aeeb75so95482475e9.1
-        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 08:56:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1780070172; x=1780674972; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LnHNg9n0JGZsDydxLfv4khIj43e63eeZtcUcMwaZSDY=;
-        b=Iye5K/0DJdGn9pt+rECmPXEZEjsfJgNWt0WntmfGm0r+GEdBk9CWJt2cdVEjaXbMT4
-         jH0OZPi7WiiN5Q+WFH30jJkqUbx2S/f211639pfJU8DkmV0YbUiyjZtV9PReMPinCitz
-         ImfIXOGVQ6UxqpmyKx4GnBYIIYW1LQ4OZOS0g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780070172; x=1780674972;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LnHNg9n0JGZsDydxLfv4khIj43e63eeZtcUcMwaZSDY=;
-        b=aSy2tyrcLWPmplkeTySHp9dtUEa/a0fZvabsGUMjzvwulJ/3cgmbkZWjL/sMJVSb0H
-         5mXhKt7ZKdqULimdwMPFIRf0tMI5MqXXrztsKHv+HHm+kE9AJoGlrApSqBJ6HLfYrH9+
-         j2OAUZJtOMUri6FcGBCQRGcpYyJ3VE6AHcn6Za9PAjH4YQkP1qHVFPIO+RWCCqPA0MgH
-         0IOK176hQzYRZ9b2RpIaYnVvyMgav0lLHvwlUoFnw/KN1saBbcc/oKQEoU6aC7tSbC7h
-         yPaSlevP4mXxZgALGba0j2Zp1nr5GX7B/vxvmRqHpNnGUTcQcc+KJYM9oizv/czpKgGG
-         0Few==
-X-Forwarded-Encrypted: i=1; AFNElJ+L3HJuf9kbqwhrOM5N0COEOjRr0tVjy2XvkcSE6U8X9TYb2S5zIpa+elSH5jKT5snQmCwOeMvpSUpN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzn6+nsvzpEzQfBjZWe26MzL+LLExtpNtmm6/4N55fzZN/an1pZ
-	iLmRneIZpde2odMbOFrsmmer2xq2oHWxxrE2l+/y+oJ+w/VFZkatbsyHSJI420fx6ZY=
-X-Gm-Gg: Acq92OHMZZ0Zv782RtpOcQxLKyzwArIFIngNPgugNtCptWiDdH6Q4WaJe7skdqMtFba
-	YtmVz1N7R+J9iHf0Acy9gQs8G8zRAU32v1cdv8Z7uR5M5ZRB+d8BtuVPA9xAkpLfX775YJdhoFP
-	bIeKaKFljPnPlBCXkOAwKVg7etKe17RM0DTr9517cfmvx3eY7suy+IwQka7lvBrYyVlM8Wg2Lwg
-	gGitNzReYgthaOHmC4BgSlAp8nbuNJnjSUWVQNA861Ggs8AOEUz+DLM2mkk7I1+ihdCxXtvb+bv
-	phbtKh1pz+5mkVG7tchGwy/nn3lZ8JcamChjjyE+ehfvQF9nN1qwK8iLlDvEJk0YcAuqD1C9sRZ
-	P8TOyS5oTvgP9FrVnfuTa3iQw5AxOD4fYGkUlUMWJTJ9mKvMRpstotKUkP3e07TlvJ4//6YOIjh
-	oTGJXy06KhMyaBuEIrX46X+dTqnvUMJjLyvSQl7CxjK3JDo+Cl8lFNGdXj5Md2m0XDwzxDfLcor
-	htNzTCv5CWY2UJyXLgA1FU7OgMcItrAEl3D6JpjkDt43lMoarpvLDQzopB38WAtv1zg8Q==
-X-Received: by 2002:a05:600c:8a0d:20b0:48a:906b:14ca with SMTP id 5b1f17b1804b1-490a293dcaamr2867795e9.20.1780070172253;
-        Fri, 29 May 2026 08:56:12 -0700 (PDT)
-Received: from dario-ThinkPad-P14s-Gen-5.amarulasolutions.com ([2.196.43.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45ef354c682sm4114680f8f.23.2026.05.29.08.56.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 May 2026 08:56:11 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	michael@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] arm64: dts: st: add power-domains to sdmmc1 on stm32mp251
-Date: Fri, 29 May 2026 17:55:50 +0200
-Message-ID: <20260529155607.3948045-1-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1780070309; c=relaxed/simple;
+	bh=9BCS56pVRryY7pWjuzmcS8K36R35NfR88+/6XLLhN6U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tgqMt8aCNNHcGzKGXpmQ32XX2AqUOqtjibtWXiAkHfs2UiPZAUQAN+PO/vWrOWoXxgLBohM6lTHSAMWvbKCYCHt8ZwMtlkoFZkOfJOxIANAg5PQD+zoITnWGoWw6EHTcLr1X7U/n6EGhhAf1EtzQgzgc3ZsH9tU6FQcn5apJv/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P3d54xtL; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09B6D1F00A05
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:58:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780070308;
+	bh=9q8bnA8Cybs5JYtZeRk2lM9ckb6ZQxrxMyz/lWzwvTQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=P3d54xtLn7Ia7Nk5lngi8u5E3xjbRP6p/xAKljQBbrNrug1jMH/sDsM9xCIdtYLHb
+	 T1ns8r6FvNwhZaO18DtrHjb4baqPSWJ/3YiGqWL9p5L1rIRP87PhMXNAQu9TGp8EzF
+	 f5W2S4zL62KwX6VO0XF/ZlBat0Fzkjis4YdcNAvQ4HUNeEQNEh2GB/rq4RVJMZqMTH
+	 Q1aOE2+MUi5lVzOVCxno9KCFyI87w9vM/cYntbVKAZzt5kUm014zfOzF8kD7GHOAvy
+	 qnrQFwbYhVf5JsBHS9Uztif27v2rwCXRcGyGIpAimDGDoVk7748Z2q8y5A3OvtgY1S
+	 hBi7szKWxWhNw==
+Received: by mail-dl1-f47.google.com with SMTP id a92af1059eb24-1353c2f35cfso7458158c88.1
+        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 08:58:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/sqvCC4auSLQywTylohKw1S+pg3fYHbeIbhMABQ2jn9wHwu7jrItP883cosOJu4bIIPp9JO7dHsURG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzt5L87XnLQgF2jijIvAzL6Q7WxXAHtS6i+V5MWdRIXcZR+l2E4
+	rX/t9vNsxVqpnYbXkInK0dNN9eYq7O3Gmz+89/yxHGjyVuQ8PdF9GxKg2E2hTUovZeSTb/w7CuN
+	Bye13aRHn9HMThJ6SOnl+esi6hMqK6/PSxAToITVcBA==
+X-Received: by 2002:a05:7022:6299:b0:135:dc3d:ab50 with SMTP id
+ a92af1059eb24-137d4242f26mr125225c88.29.1780070307047; Fri, 29 May 2026
+ 08:58:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+References: <20260515-shikra_qcrypto-v1-0-80f07b345c29@oss.qualcomm.com>
+ <20260514194735.GA1939213@google.com> <d4d35e17-84fa-4c95-9bfb-abfd25ea7f4a@oss.qualcomm.com>
+ <20260522024912.GC5937@quark> <c1697372-54ec-4f57-85d9-ad375ff1a44d@oss.qualcomm.com>
+ <20260525142843.GA2018@quark> <e49c4a45-6455-47f3-a91f-c32c1a0b99be@oss.qualcomm.com>
+ <CAMRc=MfC6CEwOXYttsav3mwqyJ2F4sburBj+zNJ25qMoweyL-Q@mail.gmail.com>
+ <lj7geczhthury476ilkjym2k5fblo5pqroefsbdfgh5jcf7zy2@qrss5xc7umn3>
+ <CAMRc=Me6cqasdBknbAjUZ5BqcpERYwV+NvseRJp4P0aTSYAMUw@mail.gmail.com> <20260528175214.GA3936298@google.com>
+In-Reply-To: <20260528175214.GA3936298@google.com>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Fri, 29 May 2026 17:58:12 +0200
+X-Gmail-Original-Message-ID: <CAMRc=MfY-tmMCdw9FVBgfkX-FvB5Nx2X06S023GhASenSCQSNA@mail.gmail.com>
+X-Gm-Features: AVHnY4LP_t91eok9MEp4yvSeZMeVRFiXKE_WmFYVgc-of5NzGm-5x7t-ox5gugo
+Message-ID: <CAMRc=MfY-tmMCdw9FVBgfkX-FvB5Nx2X06S023GhASenSCQSNA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] Add support for qcrypto on shikra
+To: Eric Biggers <ebiggers@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>, Thara Gopinath <thara.gopinath@gmail.com>, 
+	Herbert Xu <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, Andy Gross <agross@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dmaengine@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>, 
+	Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amarulasolutions.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[amarulasolutions.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[amarulasolutions.com,foss.st.com,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org,st-md-mailman.stormreply.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-304410-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304413-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,gmail.com,gondor.apana.org.au,davemloft.net,kernel.org,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dario.binacchi@amarulasolutions.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amarulasolutions.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[2.223.199.96:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,amarulasolutions.com:email,amarulasolutions.com:mid,amarulasolutions.com:dkim]
-X-Rspamd-Queue-Id: F13F9605603
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 0E34F606218
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The sdmmc1 node was introduced early in the SoC bring-up before power
-domains were systematically mapped. Add the missing power-domains
-property to align it with the rest of the peripheral nodes.
+On Thu, May 28, 2026 at 7:52=E2=80=AFPM Eric Biggers <ebiggers@kernel.org> =
+wrote:
+>
+> On Thu, May 28, 2026 at 11:13:47AM -0400, Bartosz Golaszewski wrote:
+> > On Thu, 28 May 2026 15:50:10 +0200, Dmitry Baryshkov
+> > <dmitry.baryshkov@oss.qualcomm.com> said:
+> > > On Thu, May 28, 2026 at 09:13:23AM -0400, Bartosz Golaszewski wrote:
+> > >> On Thu, 28 May 2026 13:54:51 +0200, Kuldeep Singh
+> > >> <kuldeep.singh@oss.qualcomm.com> said:
+> > >> >>> +Bartosz, Gaurav, Neeraj
+> > >>
+> > >> I know about the self-tests etc., I will address them next.
+> > >
+> > > My 2c, the self-tests would be more important, as they are fixes. Doi=
+ng
+> > > the crypto in a wrong way is a bad idea...
+> > >
+> >
+> > Then let that be "in parallel". :)
+>
+> The race conditions between Linux and other environments (modem, TEE,
+> etc) are of course about correctness as well, even though the self-tests
+> don't expose race condition bugs.  The self-tests have always just done
+> a few serialized tests.  That's sufficient for CPU-based code, but not
+> for offload drivers, which need to be stress-tested to find the
+> concurrency bugs that occur during actual use.
+>
+> Is there a plan to improve the tests to do stress testing as well?
+>
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+I'm not sure if we can easily implement linux-only tests using
+multiple execution environments. I will look into it and come back
+with an answer.
 
----
+> It's kind of odd that they don't do that yet.  But it makes sense: the
+> CPU-based code doesn't need it, while the offload driver authors have
+> never cared enough about correctness and test coverage to add it.
+>
+> I still don't really see a path forward here, given the track record and
+> poor performance numbers.  This approach just doesn't work.
+>
 
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Sorry but I'm not sure what your point is. What this series does is:
+it documents the compatible for the crypto engine that very much *does
+exist* on the SoC and describes how it's wired up as a real HW
+component in devicetree. Whatever the state of the driver is, it's not
+grounds for NAKing HW description. The IP *is* there, we're allowed to
+describe it in DTS.
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 673fbc5632e6..b3416c928c08 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -1664,6 +1664,7 @@ sdmmc1: mmc@48220000 {
- 				cap-mmc-highspeed;
- 				max-frequency = <120000000>;
- 				access-controllers = <&rifsc 76>;
-+				power-domains = <&CLUSTER_PD>;
- 				status = "disabled";
- 			};
- 
--- 
-2.43.0
+Qualcomm wants to use this IP and I will keep on improving it. I think
+that - given the BAM locking series is at v19 now and has been
+initially posted in 2023 - I've a proven track record of not
+abandoning it. :)
 
-base-commit: 8fde5d1d47f69db6082dfa34500c27f8485389a5
-branch: stm32mp251-sdmmc1-power-domains
+I'm away next week but will look into self-tests the week after. This
+series - once fixed - should go upstream independently.
+
+Bart
 
