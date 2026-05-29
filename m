@@ -1,287 +1,298 @@
-Return-Path: <devicetree+bounces-304383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304385-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SPJFJaetGWpyyQgAu9opvQ
-	(envelope-from <devicetree+bounces-304383-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:15:51 +0200
+	id 8AnRAvWyGWrsyQgAu9opvQ
+	(envelope-from <devicetree+bounces-304385-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:38:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95C66046AF
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:15:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B63604E3E
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:38:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EC78E3640560
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:04:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 18E68355F6BF
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11F136654F;
-	Fri, 29 May 2026 14:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BC53EA94A;
+	Fri, 29 May 2026 15:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rq4iW622"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Xvtg33A3";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iMXSLN4m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66698366DB4
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 14:59:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466073EDAD5
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:01:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780066751; cv=none; b=duULU+ViRTiw61xK5H0+rp+k+YWeRoSfHpuA1ZKkWrJ2vFShS8Idqb2L6H5an18MC9H06NoI0G582EHihAh+AuxwIx0R78p7MPCoHK1T887LnTa0JG9zahIU7NET2BzQL4sZ1lVjnJRRC+zWjA0Vph9ns8FBa/HTWsu5mJVb0Vs=
+	t=1780066871; cv=none; b=L0B7Kh+PISxWZMQp+XKd0KjGZsPWrxlfNGo5dQ/iNGoG54ONod+PIM5IwnMzYSEMb3MEV+LCZ1i5ySiWPVgrcOfbDOwL4bFc/9/1dEJ02As6OEBmVFhAfi9MxZqXGT1PcP45hP8TYDDZqjBx3nejDAkrQ0s/iu2sBthdZKeIJbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780066751; c=relaxed/simple;
-	bh=P5zhO9i+2OJiBk9hcHZftkjk49FMNVG1+13spVIdT1E=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=IJzJY9gfvEF4FE9BPuhQCXN8S7L8W+2XR3xNYJZpZzEkqY+U7zopAWID1jy2ZB3G7WErRkprMr64bAYzTrYyWADTiRMh/UZFBkVwWFMYCM7qFczY8Evc+WnbzLGw9kzGlOsbdQ3GaxZSJPvRJD9zNngF6f/8m8GtJNWz4LkPBvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rq4iW622; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDA681F00893;
-	Fri, 29 May 2026 14:59:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780066750;
-	bh=2MNdCNZjjpzBCFFTIgJ7Y7BdpUO1WMOh18yjcVSFT+8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Rq4iW622OWHiE850iny+S5g7UY439H3LsUFwbI60oTr6rNr2PuF0EPvSkOPq7CPKP
-	 okASQKsQsJo0ZKMhnRh4YFcoSfY2UdlvfawA8T2ujvTkWt8CUeUSxxjT094tXb7gl/
-	 MHDdDJ/hZuYDKMB4oF/H1Ifnq6NFDL8KcUBWn7JLAd9v29Z9FnxNhnxOmpOndtSbJu
-	 McdU5mn5b3/nsUHWV2eASkJhsBZZWV+DRz+Cc55HkRm38zLtxp78l7cjcfTGM3RHuo
-	 pk9ZEGXNwooIoRUjEb6iWdorCyVB0070jmJ1vT0C2WBKjLnEAcUdeUJyURbK6uIAL8
-	 BgE212GMmoXRQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: zynqmp: Switch Versal NET to firmware
- clock interface
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Michal Simek" <michal.simek@amd.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <60222042a1c46d28b9c00a8128d270937f97d997.1780063921.git.michal.simek@amd.com>
-References: <60222042a1c46d28b9c00a8128d270937f97d997.1780063921.git.michal.simek@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 29 May 2026 14:59:09 +0000
-Message-Id: <20260529145909.BDA681F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780066871; c=relaxed/simple;
+	bh=ekH8jL5GTEUDGVAvOS2ZIaVQwCZnxE8ZwtzE7+yiA7s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JpHgmv8V4RKWtC8nk3XLLGOWH2jCVy0mv5Be2uMG9DEa0RNM0si49lvNp6UAd9LjuQa2iMge/s1C97UjPaM42qajV3eMWK52gSqncqleU3VaX43mlPSbMQuLbrwxz4/jZ47vesYkPxywd6is6Wr/hZrcsCJzC23AL2lgdqmkLgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Xvtg33A3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iMXSLN4m; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64TDKojE1202026
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:01:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0DBIjTIgaaXjiGvnFuMwPeT2jOYan/1jCVFnVrf0W20=; b=Xvtg33A3ig+6aYFG
+	oL8rJMr/IQKZvLMoyLnn0zZXciu8R5PCNt+FJ4h8h7q+e19LGgNKQfYe289MgRmy
+	DFggJITACwYZqw/KacpmhoJ1jy15LK/X3G/BXim6nF8FddZA/9eJP/N/oINCoVyM
+	oeWxrLL9qpCKke5Od+xGjJDKap2oeqZ4vFCteFxZA8XayB5vCSA9LMVGUL1G+seo
+	4g3+3faCQM44ek8O7ZxNGGKSEgdz7TQRflOJpbfZD2zSGBd8c63tbps7IlwGQwNk
+	w6V5S4timf1fGU7BMDTIyA5BVwsbIX/Kuv0vREq2sT4fas/QvGdopxIBX/CnBYVF
+	FN1dIA==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ef3te2gp2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:01:08 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-841127f960fso5659290b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 08:01:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1780066868; x=1780671668; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0DBIjTIgaaXjiGvnFuMwPeT2jOYan/1jCVFnVrf0W20=;
+        b=iMXSLN4mzYaO3olUhJ9wk/KQWwPzt4xhlENn3BzCfbcyknZwu+V+tfFBrGMUq8ihqD
+         lEUpoe0zByVojMURq3yTEMpHpuloZenCyycF7HZKJaHraL0v8hw/jHUj0lbSVVw2iYSK
+         7QKw421j/hT8eg1snaMHmZDL3rmeJzDNH4Ld6e5r9oZcfhmV+/mq2VsFZZT+yZtmBEJw
+         Oh9wJWyzeX5Iu/x0c5OxKPOHhp8s3Xl6+CxKb/5nxZpSK9ohHOUw3yOwH5ujEJ38Du/R
+         YTf3ohbtYh0s73hcg9ufpYYx4WYzPoDd3dHbXRAmv4N0dJaqKPKFVcRTxAlWCAYNNDCk
+         M7kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780066868; x=1780671668;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0DBIjTIgaaXjiGvnFuMwPeT2jOYan/1jCVFnVrf0W20=;
+        b=TZfv+pnzkTrjKuXM5EFSXtZ+kxonqflHI+Ep35A0yuKA+uM1QWOiTy4vOUkRrDnlFH
+         odMsQ2NPBOiRoqjcUk/hrYQ5PCWC2yOzHV3TAYjhv1xZZaV3eHgPMn+CKDmnsyoZVDeR
+         A1/RkQaF2jpyBEfJvRDH+Z5XujGF95xhiv/9K6+CnBYqsbnZBYxJsbGSAwEW9pz/aBcP
+         0TdotwiogFDO0zQyZJvO/NUWNULJoouUKAc055zmT0jXSKbRUCwhHnix1fPqXRFLHw65
+         6vhrnjd6JwCOj1THzBoizZEEJLvF2CllcejyTCnWpfACZJcIsPa4Q03EWNovc5Tq8Cxh
+         8kMQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/dCZslWHU8MnRUOwMdloEfKJFPqzmmQ8fqd/FnlT3YqPnLh5Bq8+Bjhpl/25Bu464S7XxZHjCL9EHr@vger.kernel.org
+X-Gm-Message-State: AOJu0YynTHoCOD7rfaod0JEkhnRkzlwvTo3+ZLfNRxe2Ew0eD8u2uZ0r
+	xBnFWC2ih8xRhl21rubSKk8+GB7LVlS8EeFmzd4wgpL10CwoQN/r4vt9nahs8hTlGE8OLuA1I+5
+	+LV5JMZI19KsTQoZDhZ0nbbgarzjhALzNuHwacLvGWMHh0xKjmZ6KCo4tPZ3QCAPl
+X-Gm-Gg: Acq92OFIReQmb9As6uefI3ZsLT6+fdFaXOh2h3ix7h9dRXmcajPIpyKzVn1GXB7Ow+u
+	U+oRIJR2FuXrncowYIsZdzP0x1BqMrXlp/GoGUXfPYDZYb9Gtjo3GAG+LfHEkghDpJJJjkfLwUB
+	1FoLP/6F/CQXyWixu4sWCUGtChKwJzMUDKt+uX994OUzS5alaTClU12bDtgzK6Bus47KTggxdie
+	j6oZH0K/75gnXMQqUDT1SOlHVmMs/ayslG3NXj5qsxDwd4w+PKEWcQlX5eY8UibwHAOST6n63sJ
+	wSyZYYRS04PDLf1wsr1qSamE5Q58Bv92buRJm62t9g+7SFzSSFH099V7J92Bcquzi8yslDDEzxc
+	WeR4xmM7aGei7wpu0UjGXFvhFO14krAQkz8OYq8I6hU/sCvRHLiBCoRVvoqsr4QU=
+X-Received: by 2002:a05:6a00:440e:b0:82c:daa4:ce29 with SMTP id d2e1a72fcca58-84212c2fd94mr3681672b3a.47.1780066867457;
+        Fri, 29 May 2026 08:01:07 -0700 (PDT)
+X-Received: by 2002:a05:6a00:440e:b0:82c:daa4:ce29 with SMTP id d2e1a72fcca58-84212c2fd94mr3681595b3a.47.1780066866769;
+        Fri, 29 May 2026 08:01:06 -0700 (PDT)
+Received: from [10.204.67.150] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84214b6797esm2739983b3a.26.2026.05.29.08.00.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 May 2026 08:01:06 -0700 (PDT)
+Message-ID: <21c17cac-2a1e-4b19-ab6d-ddca9132d725@oss.qualcomm.com>
+Date: Fri, 29 May 2026 20:30:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/8] media: qcom: camss: add support for QCM2390 camss
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Nihal Kumar Gupta <nihal.gupta@oss.qualcomm.com>
+Cc: Bryan O'Donoghue <bod@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, linux-arm-msm@vger.kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        Suresh Vankadara <quic_svankada@quicinc.com>,
+        Prashant Shrotriya <pshrotri@qti.qualcomm.com>
+References: <20260526-shikra-camss-review-v1-0-645d2c8c75a7@qti.qualcomm.com>
+ <20260526-shikra-camss-review-v1-3-645d2c8c75a7@qti.qualcomm.com>
+ <CAFEp6-1VAW-S2d3q3uN2n1weMOoSPXtX_k_6msQ-K_5A5mZVLQ@mail.gmail.com>
+Content-Language: en-US
+From: Vikram Sharma <vikram.sharma@oss.qualcomm.com>
+In-Reply-To: <CAFEp6-1VAW-S2d3q3uN2n1weMOoSPXtX_k_6msQ-K_5A5mZVLQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: H7g7OT2junspQ43z1N_bCs5Smdfmb1kR
+X-Proofpoint-GUID: H7g7OT2junspQ43z1N_bCs5Smdfmb1kR
+X-Authority-Analysis: v=2.4 cv=daSwG3Xe c=1 sm=1 tr=0 ts=6a19aa34 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=EUspDBNiAAAA:8 a=iLf03rxdIeEfhWbO6WcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI5MDE0OSBTYWx0ZWRfX18PJx+9NJz8D
+ CM9R0YulqX4+tELCkBIHJuKgV5c5qjVrRNStzIS81LvTnC+ALQG/qsGCtkv9d57kJZ4Whtp3rVB
+ 6QNblkNL5ZwqyUlTOP47OEdBKTJu3fFmF17Cr8HLQwyibcZsOYM8SVbwdwNsSCUpu/4x40NyhWE
+ 13Gl4HHYtSFP8RosmmCPW/k6PRdpvFl2dOrb5HKaKr0rh/KL5dp44kXvOLZgvcIWi8wjNFATKqF
+ NVbDy2gICjNasTCWUK6sLC39iu59Q+KS1tUBgUrokT3mBvejZoVDFTYJi4/imJ2Fdj7byPaloPE
+ vtNbNF6536rpkFkSwacxErp3yba4rg7ixD2D4pUfYQVwlxv/Q5aXtJ79QwIjD5l+9vTzpuT6E6M
+ w28LTBGGnh7iwb0GYVAWiGyMcN4fXFbt0XcekzKsoUL+YuPLWO83LEgTXMSpsjMIBd0fiOtwaxe
+ 0tt1ltRjub+CcgpAXFQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-05-29_04,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 bulkscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
+ clxscore=1015 spamscore=0 phishscore=0 lowpriorityscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2605290149
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304383-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,quicinc.com,qti.qualcomm.com];
+	TAGGED_FROM(0.00)[bounces-304385-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[vikram.sharma@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,amd.com:email,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: A95C66046AF
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 56B63604E3E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] Incorrect clock identifier assignments for GEM (Ethernet) controll=
-ers due to using legacy Versal IDs instead of the new Versal NET macros.
-- [High] Untested power-management node introduces a fatal hardware interru=
-pt collision.
-- [Medium] Missing `resets` properties for standard peripherals despite add=
-ing full reset controller bindings.
---
 
-commit 0cc079ca7fe5612fdd8dc6e417a47204046c354d
-Author: Michal Simek <michal.simek@amd.com>
+On 5/28/2026 5:55 PM, Loic Poulain wrote:
+> On Tue, May 26, 2026 at 7:13 PM Nihal Kumar Gupta
+> <nihal.gupta@oss.qualcomm.com> wrote:
+>> From: Prashant Shrotriya <pshrotri@qti.qualcomm.com>
+>>
+>> Add CAMSS driver support for Shikra SoC. Add high level
+>> resource definitions for 2 CSIPHY, 2 CSID and 2 VFE instances along
+>> with the interconnect bandwidth votes for AHB, HF and SF MNOC paths.
+>>
+>> Signed-off-by: Prashant Shrotriya <pshrotri@qti.qualcomm.com>
+>> Signed-off-by: Nihal Kumar Gupta <nihal.gupta@oss.qualcomm.com>
+>> ---
+>>  drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c |  2 ++
+>>  drivers/media/platform/qcom/camss/camss-vfe.c            |  1 +
+>>  drivers/media/platform/qcom/camss/camss.c                | 13 +++++++++++++
+>>  drivers/media/platform/qcom/camss/camss.h                |  1 +
+>>  4 files changed, 17 insertions(+)
+>>
+>> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+>> index dac8d2ecf79957dc05c5524dc439791ce097c785..62208f5c4f17bd6c9a8fe5613649920e6ee1a1f2 100644
+>> --- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+>> +++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
+>> @@ -1130,6 +1130,7 @@ static bool csiphy_is_gen2(u32 version)
+>>
+>>         switch (version) {
+>>         case CAMSS_2290:
+>> +       case CAMSS_2390:
+>>         case CAMSS_6150:
+>>         case CAMSS_6350:
+>>         case CAMSS_7280:
+>> @@ -1222,6 +1223,7 @@ static int csiphy_init(struct csiphy_device *csiphy)
+>>                 regs->lane_array_size = ARRAY_SIZE(lane_regs_sdm845);
+>>                 break;
+>>         case CAMSS_2290:
+>> +       case CAMSS_2390:
+>>         case CAMSS_6150:
+>>                 regs->lane_regs = &lane_regs_qcm2290[0];
+>>                 regs->lane_array_size = ARRAY_SIZE(lane_regs_qcm2290);
+>> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
+>> index 319d191589884777bced456867e5a2a4211a2770..b152f8d48e003d8eeb0cf19ad57419b25cdec087 100644
+>> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
+>> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
+>> @@ -342,6 +342,7 @@ static u32 vfe_src_pad_code(struct vfe_line *line, u32 sink_code,
+>>                 break;
+>>         case CAMSS_660:
+>>         case CAMSS_2290:
+>> +       case CAMSS_2390:
+>>         case CAMSS_6150:
+>>         case CAMSS_6350:
+>>         case CAMSS_7280:
+>> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+>> index 2123f6388e3d7eafe669efd6b033e22d8eb5cf79..f67ecff53f15bd213dc7736d4e5fe880007d1ee7 100644
+>> --- a/drivers/media/platform/qcom/camss/camss.c
+>> +++ b/drivers/media/platform/qcom/camss/camss.c
+>> @@ -5565,6 +5565,18 @@ static const struct camss_resources qcm2290_resources = {
+>>         .vfe_num = ARRAY_SIZE(vfe_res_2290),
+>>  };
+>>
+>> +static const struct camss_resources qcm2390_resources = {
+>> +       .version = CAMSS_2390,
+>> +       .csiphy_res = csiphy_res_2290,
+>> +       .csid_res = csid_res_2290,
+>> +       .vfe_res = vfe_res_2290,
+>> +       .icc_res = icc_res_2290,
+>> +       .icc_path_num = ARRAY_SIZE(icc_res_2290),
+>> +       .csiphy_num = ARRAY_SIZE(csiphy_res_2290),
+>> +       .csid_num = ARRAY_SIZE(csid_res_2290),
+>> +       .vfe_num = ARRAY_SIZE(vfe_res_2290),
+> So isn't it exactly the same as 2290? wouldn't it be easier to have
+> the shikra simply fallback to qcm220 (via compatible string)?
 
-arm64: zynqmp: Switch Versal NET to firmware clock interface
+ACK, We will simply add fallback to 2290 in dts.
 
-This commit switches Versal NET from using fixed clocks to the firmware-bas=
-ed
-CCF clock interface. It also adds device tree macro headers for Versal NET
-and base Versal clocks, power domains, and resets that are required by the
-CCF clock dtsi.
-
-> diff --git a/arch/arm64/boot/dts/xilinx/versal-net-clk.dtsi b/arch/arm64/=
-boot/dts/xilinx/versal-net-clk.dtsi
-> index b7a8a1a512cbd..dead487539cde 100644
-> --- a/arch/arm64/boot/dts/xilinx/versal-net-clk.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/versal-net-clk.dtsi
-
-[ ... ]
-
-> +	firmware {
-> +		versal_net_firmware: versal-net-firmware {
-> +			compatible =3D "xlnx,versal-net-firmware", "xlnx,versal-firmware";
-> +			bootph-all;
-> +			method =3D "smc";
-> +			#power-domain-cells =3D <1>;
-> +
-> +			versal_net_reset: reset-controller {
-> +				compatible =3D "xlnx,versal-net-reset";
-> +				#reset-cells =3D <1>;
-> +			};
-> +
-> +			versal_net_clk: clock-controller {
-> +				bootph-all;
-> +				#clock-cells =3D <1>;
-> +				compatible =3D "xlnx,versal-net-clk", "xlnx,versal-clk";
-> +				clocks =3D <&ref_clk>, <&ref_clk>, <&ref_clk>;
-> +				clock-names =3D "ref", "pl_alt_ref", "alt_ref";
-> +			};
-> +
-> +			versal_net_power: power-management { /* untested */
-> +				compatible =3D "xlnx,zynqmp-power";
-> +				interrupt-parent =3D <&gic>;
-> +				interrupts =3D <0 57 4>;
-
-[Severity: High]
-Will this interrupt assignment cause a probe failure?
-
-The interrupts property here is identically claimed by the zynqmp-ipi node
-below.
-
-Looking at the power driver (drivers/soc/xilinx/zynqmp_power.c), it
-requests this interrupt via devm_request_threaded_irq() without the
-IRQF_SHARED flag, while the IPI mailbox driver uses IRQF_SHARED.
-
-Because the flags mismatch and IRQF_SHARED is missing from the power driver,
-the second driver to initialize will fail, which could break either system
-power management or critical IPI communication.
-
-> +				mboxes =3D <&ipi_mailbox_pmu1 0>,
-> +					 <&ipi_mailbox_pmu1 1>;
-> +				mbox-names =3D "tx", "rx";
-> +			};
-> +		};
->  	};
-> =20
-> -	clk200: clk200 {
-
-[ ... ]
-
-> +	zynqmp-ipi {
-> +		compatible =3D "xlnx,zynqmp-ipi-mailbox";
-> +		interrupt-parent =3D <&gic>;
-> +		interrupts =3D <0 57 4>;
-
-[ ... ]
-
->  &can0 {
-> -	clocks =3D <&clk160>, <&clk160>;
-> +	clocks =3D <&can0_clk>, <&versal_net_clk LPD_LSBUS>;
-> +	power-domains =3D <&versal_net_firmware PM_DEV_CAN_FD_0>;
->  };
-> =20
->  &can1 {
-> -	clocks =3D <&clk160>, <&clk160>;
-> +	clocks =3D <&can1_clk>, <&versal_net_clk LPD_LSBUS>;
-> +	power-domains =3D <&versal_net_firmware PM_DEV_CAN_FD_1>;
->  };
-
-[Severity: Medium]
-Should these peripheral nodes include their corresponding reset properties?
-
-The commit introduces comprehensive reset IDs (e.g., VERSAL_RST_GEM_0,
-VERSAL_RST_CAN_FD_0) and instantiates the versal_net_reset controller, but
-the resets property is only added to the usb0 and usb1 nodes.
-
-Standard peripheral drivers like the GEM ethernet driver (macb) actively qu=
-ery
-and trigger optional device resets via reset_control_get_optional() during
-probe or error recovery. Omitting these reset links might prevent the drive=
-rs
-from fully resetting the hardware, leading to reliability issues across warm
-reboots.
-
-> =20
->  &gem0 {
-> -	clocks =3D <&clk125>, <&clk125>, <&clk125>, <&clk125>, <&clk250>;
-> +	clocks =3D <&versal_net_clk LPD_LSBUS>,
-> +		 <&versal_net_clk GEM0_REF>, <&versal_net_clk GEM0_TX>,
-> +		 <&versal_net_clk GEM0_RX>, <&versal_net_clk GEM_TSU>;
-
-[Severity: High]
-Are these the correct clock identifiers for the GEM ethernet controllers?
-
-The xlnx-versal-net-clk.h file introduces new clock IDs for Versal NET, such
-as GEM0_REF_TX (0xA8) and GEM0_REF_RX (0xA9). However, it appears the legacy
-Versal clock macros GEM0_TX (49) and GEM0_RX (48) are not undefined, so this
-node compiles using the legacy IDs.=20
-
-When the GEM Ethernet driver attempts to enable its clocks, the dynamically
-queried clock driver will request ID 49 instead of 0xA8 from the firmware.
-Will this fail to enable the correct clocks and break network connectivity?
-
-> +	power-domains =3D <&versal_net_firmware PM_DEV_GEM_0>;
->  };
-> =20
->  &gem1 {
-> -	clocks =3D <&clk125>, <&clk125>, <&clk125>, <&clk125>, <&clk250>;
-> +	clocks =3D <&versal_net_clk LPD_LSBUS>,
-> +		 <&versal_net_clk GEM1_REF>, <&versal_net_clk GEM1_TX>,
-> +		 <&versal_net_clk GEM1_RX>, <&versal_net_clk GEM_TSU>;
-> +	power-domains =3D <&versal_net_firmware PM_DEV_GEM_1>;
->  };
-
-[ ... ]
-
-> diff --git a/arch/arm64/boot/dts/xilinx/xlnx-versal-net-clk.h b/arch/arm6=
-4/boot/dts/xilinx/xlnx-versal-net-clk.h
-> new file mode 100644
-> index 0000000000000..f894d044c6f94
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/xilinx/xlnx-versal-net-clk.h
-> @@ -0,0 +1,78 @@
-
-[ ... ]
-
-> +#define GEM0_REF_RX	0xA9
-> +#define GEM0_REF_TX	0xA8
-> +#define GEM1_REF_RX	0xA2
-> +#define GEM1_REF_TX	0xA1
-
-[ ... ]
-
-> +/* Remove Versal specific node IDs */
-> +#undef APU_PLL
-> +#undef RPU_PLL
-
-[ ... ]
-
-> +#undef MIO_50_OR_51
-> +#undef MIO_24_OR_25
-> +
-> +#endif
-
-[Severity: High]
-Should the legacy GEM0_TX, GEM0_RX, GEM1_TX, and GEM1_RX macros be undefined
-here?
-
-Since they are not removed along with the other Versal specific node IDs, t=
-he
-dtsi file silently falls back to the old identifiers instead of the new
-GEM0_REF_TX style IDs, leading to the incorrect clock request discussed abo=
-ve.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1780063921.gi=
-t.michal.simek@amd.com?part=3D3
+>> +};
+>> +
+>>  static const struct camss_resources qcs8300_resources = {
+>>         .version = CAMSS_8300,
+>>         .pd_name = "top",
+>> @@ -5752,6 +5764,7 @@ static const struct of_device_id camss_dt_match[] = {
+>>         { .compatible = "qcom,sdm660-camss", .data = &sdm660_resources },
+>>         { .compatible = "qcom,sdm670-camss", .data = &sdm670_resources },
+>>         { .compatible = "qcom,sdm845-camss", .data = &sdm845_resources },
+>> +       { .compatible = "qcom,shikra-camss", .data = &qcm2390_resources },
+>>         { .compatible = "qcom,sm6150-camss", .data = &sm6150_resources },
+>>         { .compatible = "qcom,sm6350-camss", .data = &sm6350_resources },
+>>         { .compatible = "qcom,sm8250-camss", .data = &sm8250_resources },
+>> diff --git a/drivers/media/platform/qcom/camss/camss.h b/drivers/media/platform/qcom/camss/camss.h
+>> index 93d691c8ac63b2a47dbb234856b627d8911a1851..8ba8a38113dfc15849fa333d05b2c3853f3a7714 100644
+>> --- a/drivers/media/platform/qcom/camss/camss.h
+>> +++ b/drivers/media/platform/qcom/camss/camss.h
+>> @@ -82,6 +82,7 @@ enum pm_domain {
+>>  enum camss_version {
+>>         CAMSS_660,
+>>         CAMSS_2290,
+>> +       CAMSS_2390,
+>>         CAMSS_6150,
+>>         CAMSS_6350,
+>>         CAMSS_7280,
+>>
+>> --
+>> 2.34.1
+>>
 
