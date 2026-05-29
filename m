@@ -1,98 +1,95 @@
-Return-Path: <devicetree+bounces-304276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304278-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IGgZCWiDGWobxQgAu9opvQ
-	(envelope-from <devicetree+bounces-304276-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 14:15:36 +0200
+	id 4DCkMQaDGWobxQgAu9opvQ
+	(envelope-from <devicetree+bounces-304278-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 14:13:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 928546021F2
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 14:15:34 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42336602163
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 14:13:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 37CD931C2558
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 12:09:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5C10F305B99E
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 12:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275293D8900;
-	Fri, 29 May 2026 12:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98CB3DFC71;
+	Fri, 29 May 2026 12:10:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="sGt3tzSG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NtQ0kcLV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58FC23E1230
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 12:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 627EE3C5525
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 12:10:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780056579; cv=none; b=jcy2yV70w46t8QkOfCxYPsMDRVd3/65wXl3874sLmlBGNXL8Aul8qJWSA1cg5WywriOZbQKQyynnO78it5p9PbLxMWgPSyomiqCP7zZPyBn3uR0djrNK0yFglKm/dGU5xF6aIelBE1Gqyv4zGkeruX3cn92dRmNt5f4kNtw9X0o=
+	t=1780056647; cv=none; b=XRqQ2SWtNfUbMk1jcoposTAkuT8leOpzkjRmbwHYPe17jRI/98r2BMdvFAcs3xYxGp8KutUQGzyjQ/TqbVLD9XTJJIGKDJSpNWIJ0df50ePpUARX5wZ1BZ4PhsPO48/xGgut1Rwp6ll4crU2CaUr7/BDHMcvK6EWEmbZI7VLCBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780056579; c=relaxed/simple;
-	bh=lfd7h6jow24hXxMp5MG1a5yE/ic1EJpm4slGtQzMliY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DwJkUWsxy5CnBGCB60We6Ru1B0KEgpuhFX0K5oJz5p1ywb8e5SstU78y6w7HH62FP4FP6Zyrfy4avCAkAYe4bWcTdno2R3gTnAULA6StoH2LbqwUSaCEHepMHXKCxpI2SVd3xQ7lv0MT8gEWRNbH99hiHcyJb8GLBw7p363ULSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sGt3tzSG; arc=none smtp.client-ip=209.85.221.44
+	s=arc-20240116; t=1780056647; c=relaxed/simple;
+	bh=TVCBkSH0t0I/QdJHG/97TcLdJ/J00jwLfv2FVpplnfI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ov2Z7clGOibPkicA+4ythDh5FBf4EXpOT8cKfkztZrjgHx3cWZAyJAy01oHB9Ztvr2kPwTD6pNWBv9E2jpdEMHBneDpZLaOJA/Iam51js5AgRdrC6QPWSstsEg8qjMiMaJejTc7KdRBmn74Y0edEMxbYkIU6T2X/5cq2wiyQB3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NtQ0kcLV; arc=none smtp.client-ip=209.85.216.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-45ef5146b56so193934f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 05:09:37 -0700 (PDT)
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-36b0c968fe8so3400866a91.3
+        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 05:10:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780056576; x=1780661376; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FR0GOKqUKK69xFGpw8JrWZnRSOWzPjh/TNYLZAuisSA=;
-        b=sGt3tzSGdO856mmFqZX4CdixjilZ5wjWRuBstkblnxlhYJ0SoN+qkw3AGrVE1uxDI3
-         hDcDvKMCB5vMUtgnqYpQ2VSGhT6O9fER72WcpLh4nPQ286dhU9aBYKcceMS2Hy9Tb/O6
-         RbXSPhpPTLrcTA6x24cIdz+crGbefJ/BZPXv2hZ9pMEGwwibOwQja5XCjLhRwrmCkHsn
-         oxFRsuCqLa0ctHfK1q+B+/o//d3DKnf0UfwkwCUJSHVNWfZiGcDXGjvx9JoiMMzFacyX
-         93JlD4pIGp98ACI+jNVrpZuO6wtLrgqz1hkdxt5aWCrfj6pl5uwUb/1D0dzkRCheoTn9
-         BdZQ==
+        d=gmail.com; s=20251104; t=1780056646; x=1780661446; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I+lw2/6g+NhHdfY1R5gSsEUHoCuNL+aJO/wx8JDQeY4=;
+        b=NtQ0kcLVN8uTa0Nf0GZirVkpjtZ0o0eImxU/4mIUgwJRW7pKu4DBBdSc2blny3zM2q
+         rCUJZvSURWNCIhYXMucHfr5d2708h6RHOfSVqk/P0ynxDb1sWnJ65/2hN4WbAZxcyUfZ
+         +G9LTWECihF3hbmutFXx2AGzmd+vcTTumCZ8F9yA1yF2oHQ/U+Rwx0cW49tRF0l4GI1f
+         3rGo/0BGP7+6u4V8gBhF8OMCzH6Lpj69xocneaiSm/5KuobxXrhpfqUKwHA+kTfRdUxr
+         jlzpBiBO90F46HD7v6mwrkoUrSCHPsojqv65EZuLFc0iNuzEme3R7bIrxtGbM3zXb6Gt
+         JE9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780056576; x=1780661376;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=FR0GOKqUKK69xFGpw8JrWZnRSOWzPjh/TNYLZAuisSA=;
-        b=i2uQ0rcXafYQ49b9J9cRckC8uqSxE1NCIz3ytgsPsv0HkDAij9OopFW+zrBNIpGUhy
-         CLqERbhyU5JtMLBI6vmP0jAfCCAR4StvvDfM2oprunwitGN0k/tKHt5P0cBD3sd1oq9Z
-         Nu42ctBnW0nkziH69k3cEfZZXMZy/yxKsxuLIZXtpvSFdkI65RToKpg7LHM2gVFBf+1s
-         dXmJJGAO6QJpw5TkfHefyQ8dVFvXUanFVeH4l0BHNno9je8UQCUfwmKmXQur1L+HC82d
-         k/xNoMK/fZnLowdbMbiRXqSLfU0Bddrrrldpsp9rHV/gW1iTNPIB6ciXgbCWEyGimx0l
-         3HTQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9DeeZf88gyFI5CWjsowYqwmYqqcfOjWzQipJqNN0cc8iePg47QFHKF+ciKe+FftFcCOd4o2yOyADkz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNjDnuKPukOM6TfKHji7SRfBGIDV5f1SK+RCoTf7gUZuz6rmwN
-	d11SAepIJcyuurLfyauM7uuf481mdeaMa0D/jHt6cKryxPq0eu8y/aliUw/n1A==
-X-Gm-Gg: Acq92OFsm1/UZgJTUuKaJUo338/BdMR6dVyTagbGjSwKo+CEckP8Lq1mcI2szovsUoU
-	1w/f+pwg5ti4RkNinhkNzgoaFzF9HcqN8u1uAzC9YaN+oYKUPqgW38yYG7s1NFrnKc1Dhh3AwcB
-	XtUKzu8cBOn3f01c4s/BgpZVF4Z5+8AHrOjsi1MdCmhd3Oiur6/FXC0YSCIBhpBmOzAC8p9dXeN
-	ipbJev2cbHVC+/iSsDD4xdt+ZKliD/Q6foQImbV7KHNptMiOJu+3wzhAsjEQUswXJcvnWifHqiz
-	gUVJhl680eznXz0FZyt/pGgzx2mttuPKxCNUsd/JtClfjxmnZNow40WTGosw4c97xLWc084ftD1
-	DVgJ8bvn6MOja8XO5ZBrByrXt3U/LMULnO+1zefN/3kFedmdco44Or5iMLZYj4CGYbPGnBFqbpt
-	OYe0x6zemF7gLnR4F+jqImjBpa
-X-Received: by 2002:a05:600c:3110:b0:490:f7c:b19 with SMTP id 5b1f17b1804b1-4909c2af1bbmr34673195e9.0.1780056575683;
-        Fri, 29 May 2026 05:09:35 -0700 (PDT)
-Received: from vitor-nb ([89.214.125.253])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4909c0b8a11sm13586595e9.16.2026.05.29.05.09.32
+        d=1e100.net; s=20251104; t=1780056646; x=1780661446;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I+lw2/6g+NhHdfY1R5gSsEUHoCuNL+aJO/wx8JDQeY4=;
+        b=qcm3wSyJFdEvHubWvRENzxizL6S8QgAlY8vdzaulPcbTSXkme6uuoUaq7taItHF0fF
+         SUFKONR/CvtRJnRMH22siJdfYP92Yi3iEEbUg2d5B/mb1G4j/7KtRFdR3wYGIn81XDzE
+         zdIanjGpRsod0+ovkH8PHenhXRSRXR5uQMmDHYxyLVphXYaRu2bD75QRkScdUkjwMs5h
+         lEIuYzp/fMEhflezGk65RnjG/xz+slYxskdOPqxF2D6/VUJcA3G8MXYr0VDJj/utxzcf
+         rbu3dt+++ocnWUimw/mUtx52A1mi5j8gq01c7zRLTy0mzLuo9Ks9YOp5fDsoTi1QXD4V
+         0AeA==
+X-Forwarded-Encrypted: i=1; AFNElJ+gB78jhWkwNDHgsOSsg1d9M5UEYlse92/spghTbVIFCiFwxoSLx9Zyu90yrYMXDaUg4cqhOsPGEWwh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9tn8KrUOMBVwAnxIDHbkNzcPOWNyuPhJsNSy1mOZ73QPV6e4q
+	yZ524CWIlZiiLocwkT/yNfaJ9KOADyEmxUCwK+HyxJ6505p57zoDwU27N4i6nUgLnfk=
+X-Gm-Gg: Acq92OELn+T9OXUxA3l++WF9hJoO5PdpfhHwSZF32p/ztDx/cbRGv4USBEXG/4J11Rw
+	X+203zyDvikrXFqav+3EJU+wAzGMgopaeqN5vRT8RossKtcNIs86LwVovis/Ubgxs+kQyW1xL+Q
+	fbtNBqLQwgrfpq5cb85P5etcVUx6Ke+hJ6EIlITbvn1elry/XE1veHN8H0RUbtpo32XpDTliYcD
+	XK6hj2JwTj2OzWrwVg3dCD1j63IV87P1D8t8OjLUwpXXghIJzwqz9UHnnU1IdGes8nOQxV0lWb/
+	ExGkqVolOdldq5v0AK2sLHudMKZY1lPIC3cYD0vubMs1rSk67yhAhWS18LkGmIITYVMbHJqzwPb
+	tc14eLsRmlKI5s7epEt+PEnCU1wy4zphO051wJJlh4m3Q/YfTjpBOdayYrtUvP7csT5aWPk90sx
+	s08f0MsZXz7XzzIfUnaAIROFaQZ3iQ1f8XiCz9EjtIfD7QdvkElKXCYcMyD01aUuD5RBD+qhtWm
+	h5ArsybPQ+/kiy78Pbz1cXfLL1PmyuSmQZAb04O0u4RUCaE
+X-Received: by 2002:a17:90a:e7c9:b0:368:1088:bb1d with SMTP id 98e67ed59e1d1-36bbcfd9807mr2907182a91.15.1780056645424;
+        Fri, 29 May 2026 05:10:45 -0700 (PDT)
+Received: from DESKTOP-G3E0OSP.localdomain ([112.172.255.242])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36bbdf3afc6sm942820a91.7.2026.05.29.05.10.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 May 2026 05:09:35 -0700 (PDT)
-From: Vitor Soares <ivitro@gmail.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
+        Fri, 29 May 2026 05:10:45 -0700 (PDT)
+From: Jinseob Kim <kimjinseob88@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	linux-iio@vger.kernel.org
+Cc: David Lechner <dlechner@baylibre.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Vitor Soares <vitor.soares@toradex.com>,
-	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 7/7] arm64: dts: ti: k3-am69-aquila: Add Toradex OV5640 CSI cameras
-Date: Fri, 29 May 2026 13:08:59 +0100
-Message-ID: <20260529120853.636015-16-ivitro@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260529120853.636015-9-ivitro@gmail.com>
-References: <20260529120853.636015-9-ivitro@gmail.com>
+Subject: [PATCH RFC v3 0/6] iio: add Open Sensor Fusion OSF0 UART driver
+Date: Fri, 29 May 2026 21:09:59 +0900
+Message-ID: <20260529121005.1470-1-kimjinseob88@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,17 +103,17 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304276-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304278-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ivitro@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[kimjinseob88@gmail.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
@@ -127,343 +124,107 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,toradex.com:url,toradex.com:email,3c:email]
-X-Rspamd-Queue-Id: 928546021F2
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,opensensorfusion.org:url]
+X-Rspamd-Queue-Id: 42336602163
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Vitor Soares <vitor.soares@toradex.com>
+This RFC series adds an Industrial I/O driver for Open Sensor Fusion
+OSF0 UART devices.
 
-Add device tree overlays for the Toradex OV5640 CSI cameras on Aquila
-CSI_1 and CSI_2. Two variants are supported for each interface: the
-current CSI Camera Set 5MP OV5640 with a 27 MHz oscillator and the legacy
-CSI Module 5MP OV5640 with a 24 MHz oscillator.
+Open Sensor Fusion is an open hardware project for sensor aggregation
+devices and Linux IIO host support. OSF0 is not a general standard; it is
+the current wire format used by this project and by the RFC driver in this
+series. The first concrete hardware target is OSF GREEN, an STM32F405-based
+sensor aggregation board that streams sensor samples to a Linux host.
 
-On the Aquila AM69 Development Board, CSI_1 is exposed on connector J70
-and CSI_2 is exposed on connector J71.
+Project links:
+https://www.opensensorfusion.org/
+https://github.com/opensensorfusion
+https://github.com/opensensorfusion/opensensorfusion-linux
 
-Link: https://developer.toradex.com/hardware/accessories/cameras/csi-camera-module-5mp-ov5640-arducam
-Link: https://developer.toradex.com/hardware/legacy-products/other/csi-camera-module-5mp-ov5640/
-Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
----
- arch/arm64/boot/dts/ti/Makefile               | 14 ++++
- .../ti/k3-am69-aquila-csi1-ov5640-24mhz.dtso  | 18 +++++
- .../dts/ti/k3-am69-aquila-csi1-ov5640.dtsi    | 76 +++++++++++++++++++
- .../dts/ti/k3-am69-aquila-csi1-ov5640.dtso    | 19 +++++
- .../ti/k3-am69-aquila-csi2-ov5640-24mhz.dtso  | 18 +++++
- .../dts/ti/k3-am69-aquila-csi2-ov5640.dtsi    | 76 +++++++++++++++++++
- .../dts/ti/k3-am69-aquila-csi2-ov5640.dtso    | 19 +++++
- 7 files changed, 240 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640-24mhz.dtso
- create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640.dtsi
- create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640.dtso
- create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640-24mhz.dtso
- create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtsi
- create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtso
+The driver receives OSF0 frames over a serdev UART, validates the stream,
+decodes capability and sample frames, and registers IIO devices for the
+supported sensor types. The current RFC driver covers the device-to-host
+path used for accelerometer, gyroscope, magnetometer, and temperature
+samples.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index db205afeb7a0..428b1d2e817a 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -181,6 +181,10 @@ dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-adapter-panel-cap-touch-10inch-dsi.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-adapter-panel-cap-touch-7inch-dsi.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-clover-panel-cap-touch-10inch-dsi.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-clover.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-csi1-ov5640-24mhz.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-csi1-ov5640.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-csi2-ov5640-24mhz.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-csi2-ov5640.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-dev.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-dev-dsi-to-hdmi.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-dsi-to-hdmi.dtbo
-@@ -288,6 +292,14 @@ k3-am69-aquila-dev-adapter-panel-cap-touch-10inch-dsi-dtbs := \
- k3-am69-aquila-dev-adapter-panel-cap-touch-7inch-dsi-dtbs := \
- 	k3-am69-aquila-dev.dtb \
- 	k3-am69-aquila-adapter-panel-cap-touch-7inch-dsi.dtbo
-+k3-am69-aquila-dev-csi-ov5640-24mhz-dtbs := \
-+	k3-am69-aquila-dev.dtb \
-+	k3-am69-aquila-csi1-ov5640-24mhz.dtbo \
-+	k3-am69-aquila-csi2-ov5640-24mhz.dtbo
-+k3-am69-aquila-dev-csi-ov5640-dtbs := \
-+	k3-am69-aquila-dev.dtb \
-+	k3-am69-aquila-csi1-ov5640.dtbo \
-+	k3-am69-aquila-csi2-ov5640.dtbo
- k3-am69-aquila-dev-dsi-to-lvds-panel-cap-touch-10inch-dtbs := \
- 	k3-am69-aquila-dev.dtb \
- 	k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.dtbo
-@@ -368,6 +380,8 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am69-aquila-clover-panel-cap-touch-7inch-dsi.dtb \
- 	k3-am69-aquila-dev-adapter-panel-cap-touch-10inch-dsi.dtb \
- 	k3-am69-aquila-dev-adapter-panel-cap-touch-7inch-dsi.dtb \
-+	k3-am69-aquila-dev-csi-ov5640-24mhz.dtb \
-+	k3-am69-aquila-dev-csi-ov5640.dtb \
- 	k3-am69-aquila-dev-dsi-to-lvds-panel-cap-touch-10inch.dtb \
- 	k3-am69-sk-csi2-dual-imx219.dtb \
- 	k3-am69-sk-pcie0-ep.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640-24mhz.dtso b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640-24mhz.dtso
-new file mode 100644
-index 000000000000..3ef3d793c288
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640-24mhz.dtso
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Toradex CSI Camera Module 5MP OV5640 on Aquila CSI_1.
-+ * Used on Development Board (J70). Uses a 24 MHz oscillator.
-+ *
-+ * https://developer.toradex.com/hardware/legacy-products/other/csi-camera-module-5mp-ov5640/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include "k3-am69-aquila-csi1-ov5640.dtsi"
-+
-+&clk_csi1_ov5640 {
-+	clock-frequency = <24000000>;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640.dtsi b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640.dtsi
-new file mode 100644
-index 000000000000..931bc5c9f21c
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640.dtsi
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Common device tree include for Toradex OV5640 CSI Camera on Aquila CSI_1.
-+ * Used on Development Board (J70).
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&{/} {
-+	clk_csi1_ov5640: ov5640-csi1-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+	};
-+
-+	regulator_camera_csi_1: regulator-camera-csi-1 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_12_csi_1>;
-+		/* Aquila GPIO_12_CSI_1 - Camera Connector 24 */
-+		gpio = <&main_gpio0 48 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-name = "V_CSI_1";
-+		startup-delay-us = <5000>;
-+	};
-+};
-+
-+&csi0_port0 {
-+	status = "okay";
-+
-+	csi0_port0_in: endpoint {
-+		remote-endpoint = <&csi0_port0_cam_out>;
-+		bus-type = <4>; /* CSI2 DPHY. */
-+		clock-lanes = <0>;
-+		data-lanes = <1 2>;
-+	};
-+};
-+
-+&dphy0 {
-+	status = "okay";
-+};
-+
-+/* Aquila I2C_4_CSI1 */
-+&main_i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	camera@3c {
-+		compatible = "ovti,ov5640";
-+		reg = <0x3c>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_09_csi_1>, <&pinctrl_gpio_10_csi_1>;
-+		clocks = <&clk_csi1_ov5640>;
-+		clock-names = "xclk";
-+		AVDD-supply = <&regulator_camera_csi_1>;
-+		DVDD-supply = <&regulator_camera_csi_1>;
-+		DOVDD-supply = <&regulator_camera_csi_1>;
-+		/* Aquila GPIO_10_CSI_1 - Camera Connector 22 */
-+		powerdown-gpios = <&main_gpio0 2 GPIO_ACTIVE_HIGH>;
-+		/* Aquila GPIO_09_CSI_1 - Camera Connector 11 */
-+		reset-gpios = <&main_gpio0 1 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			csi0_port0_cam_out: endpoint {
-+				remote-endpoint = <&csi0_port0_in>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+&ti_csi2rx0 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640.dtso b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640.dtso
-new file mode 100644
-index 000000000000..40a8ad575dc5
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640.dtso
-@@ -0,0 +1,19 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Toradex CSI Camera Set 5MP OV5640 on Aquila CSI_1.
-+ * Used on Development Board (J70). Uses a 27 MHz oscillator.
-+ *
-+ * https://developer.toradex.com/hardware/accessories/cameras/csi-camera-module-5mp-ov5640-arducam
-+ * https://www.toradex.com/accessories/csi-camera-ov5640
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include "k3-am69-aquila-csi1-ov5640.dtsi"
-+
-+&clk_csi1_ov5640 {
-+	clock-frequency = <27000000>;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640-24mhz.dtso b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640-24mhz.dtso
-new file mode 100644
-index 000000000000..8ee50adb7896
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640-24mhz.dtso
-@@ -0,0 +1,18 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Toradex CSI Camera Module 5MP OV5640 on Aquila CSI_2.
-+ * Used on Development Board (J71). Uses a 24 MHz oscillator.
-+ *
-+ * https://developer.toradex.com/hardware/legacy-products/other/csi-camera-module-5mp-ov5640/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include "k3-am69-aquila-csi2-ov5640.dtsi"
-+
-+&clk_csi2_ov5640 {
-+	clock-frequency = <24000000>;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtsi b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtsi
-new file mode 100644
-index 000000000000..589666c2c043
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtsi
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Common device tree include for Toradex OV5640 CSI Camera on Aquila CSI_2.
-+ * Used on Development Board (J71).
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&{/} {
-+	clk_csi2_ov5640: ov5640-csi2-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+	};
-+
-+	regulator_camera_csi_2: regulator-camera-csi-2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_16_csi_2>;
-+		/* Aquila GPIO_16_CSI_2 - Camera Connector 24 */
-+		gpio = <&wkup_gpio0 39 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-name = "V_CSI_2";
-+		startup-delay-us = <5000>;
-+	};
-+};
-+
-+&csi1_port0 {
-+	status = "okay";
-+
-+	csi1_port0_in: endpoint {
-+		remote-endpoint = <&csi1_port0_cam_out>;
-+		bus-type = <4>; /* CSI2 DPHY. */
-+		clock-lanes = <0>;
-+		data-lanes = <1 2>;
-+	};
-+};
-+
-+&dphy1 {
-+	status = "okay";
-+};
-+
-+/* Aquila I2C_5_CSI2 */
-+&main_i2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	camera@3c {
-+		compatible = "ovti,ov5640";
-+		reg = <0x3c>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_13_csi_2>, <&pinctrl_gpio_14_csi_2>;
-+		clocks = <&clk_csi2_ov5640>;
-+		clock-names = "xclk";
-+		AVDD-supply = <&regulator_camera_csi_2>;
-+		DVDD-supply = <&regulator_camera_csi_2>;
-+		DOVDD-supply = <&regulator_camera_csi_2>;
-+		/* Aquila GPIO_14_CSI_2 - Camera Connector 22 */
-+		powerdown-gpios = <&wkup_gpio0 33 GPIO_ACTIVE_HIGH>;
-+		/* Aquila GPIO_13_CSI_2 - Camera Connector 11 */
-+		reset-gpios = <&wkup_gpio0 32 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			csi1_port0_cam_out: endpoint {
-+				remote-endpoint = <&csi1_port0_in>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+};
-+
-+&ti_csi2rx1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtso b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtso
-new file mode 100644
-index 000000000000..bcf597e9c5a4
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtso
-@@ -0,0 +1,19 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Toradex CSI Camera Set 5MP OV5640 on Aquila CSI_2.
-+ * Used on Development Board (J71). Uses a 27 MHz oscillator.
-+ *
-+ * https://developer.toradex.com/hardware/accessories/cameras/csi-camera-module-5mp-ov5640-arducam
-+ * https://www.toradex.com/accessories/csi-camera-ov5640
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include "k3-am69-aquila-csi2-ov5640.dtsi"
-+
-+&clk_csi2_ov5640 {
-+	clock-frequency = <27000000>;
-+};
+Changes since v2:
+
+* Reworked the binding around the concrete OSF GREEN hardware target.
+* Changed the compatible from opensensorfusion,osf-uart to
+  opensensorfusion,osf-green.
+* Renamed the binding file to opensensorfusion,osf-green.yaml.
+* Updated the example node name to generic sensor.
+* Added serial-peripheral-props.yaml and unevaluatedProperties: false.
+* Added public project links and clarified that OSF0 is not a general
+  standard.
+* Separated the OSF0 wire format from the subset currently supported by
+  this RFC driver.
+* Clarified SENSOR_SAMPLE as a 16-byte payload header followed by
+  4 * channel_count bytes of s32 channel data.
+* Clarified device-side timestamp limitations.
+* Spelled out Attitude and Heading Reference System (AHRS).
+* Added sensor_type, sample_format, channel_count, reserved-field, and
+  payload length overflow validation.
+* Changed reserved fields to validate-only handling.
+* Fixed IIO_BUFFER / IIO_KFIFO_BUF dependency handling.
+* Added channel_count checks before pushing samples to IIO buffers.
+* Added locking for cached latest samples.
+* Removed explicit linux-iio and devicetree list entries from
+  MAINTAINERS.
+* Folded MAINTAINERS updates into the patches that add the corresponding
+  files.
+* Addressed Sashiko feedback from v2.
+
+The runtime smoke test used for the previous revision was performed with an
+OSF GREEN prototype connected to a Raspberry Pi 4 over UART/serdev. This v3
+series was also checked with dt_binding_check, checkpatch, and a W=1 target
+build in the local full-tree environment.
+
+
+Jinseob Kim (6):
+  dt-bindings: iio: add OSF GREEN sensor aggregation device
+  Documentation: iio: add Open Sensor Fusion protocol v0 reference
+  iio: osf: add protocol v0 decoding
+  iio: osf: add stream parser
+  iio: osf: add UART serdev transport
+  iio: osf: register IIO devices from capabilities
+
+ .../iio/imu/opensensorfusion,osf-green.yaml   |  43 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ .../iio/open-sensor-fusion-protocol-v0.rst    | 308 ++++++++++++++++++
+ MAINTAINERS                                   |  13 +
+ drivers/iio/Kconfig                           |   1 +
+ drivers/iio/Makefile                          |   1 +
+ drivers/iio/opensensorfusion/Kconfig          |  14 +
+ drivers/iio/opensensorfusion/Makefile         |   6 +
+ drivers/iio/opensensorfusion/osf_core.c       | 305 +++++++++++++++++
+ drivers/iio/opensensorfusion/osf_core.h       |  70 ++++
+ drivers/iio/opensensorfusion/osf_iio.c        | 285 ++++++++++++++++
+ drivers/iio/opensensorfusion/osf_iio.h        |  22 ++
+ drivers/iio/opensensorfusion/osf_protocol.c   | 247 ++++++++++++++
+ drivers/iio/opensensorfusion/osf_protocol.h   |  95 ++++++
+ drivers/iio/opensensorfusion/osf_serdev.c     | 111 +++++++
+ drivers/iio/opensensorfusion/osf_stream.c     | 207 ++++++++++++
+ drivers/iio/opensensorfusion/osf_stream.h     |  31 ++
+ 17 files changed, 1761 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/opensensorfusion,osf-green.yaml
+ create mode 100644 Documentation/iio/open-sensor-fusion-protocol-v0.rst
+ create mode 100644 drivers/iio/opensensorfusion/Kconfig
+ create mode 100644 drivers/iio/opensensorfusion/Makefile
+ create mode 100644 drivers/iio/opensensorfusion/osf_core.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_core.h
+ create mode 100644 drivers/iio/opensensorfusion/osf_iio.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_iio.h
+ create mode 100644 drivers/iio/opensensorfusion/osf_protocol.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_protocol.h
+ create mode 100644 drivers/iio/opensensorfusion/osf_serdev.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_stream.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_stream.h
+
 -- 
-2.54.0
+2.43.0
 
 
