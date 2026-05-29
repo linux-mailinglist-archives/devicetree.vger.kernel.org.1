@@ -1,175 +1,151 @@
-Return-Path: <devicetree+bounces-304412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304414-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KG2rGXDGGWoIzAgAu9opvQ
-	(envelope-from <devicetree+bounces-304412-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 19:01:36 +0200
+	id qJp6M7zAGWo1ywgAu9opvQ
+	(envelope-from <devicetree+bounces-304414-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:37:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB63F6060D9
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 19:01:35 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A4FB605BE7
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:37:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F1D8436E4F57
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:58:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 61765318EC08
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 16:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55203F5BE4;
-	Fri, 29 May 2026 15:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865CA3F9268;
+	Fri, 29 May 2026 16:02:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C/C7S9I7"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="MfjVvoT2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81CFD3F5BD4
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:56:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3E93F8EB5;
+	Fri, 29 May 2026 16:02:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780070180; cv=none; b=IPQqshAFMKyaqTHRCxfXE6lhZ+t8AGo6TEGuZX1YXr98PPkpH0thRfWgIhUrYTnCNw7ZRGbhZj1qBBPU6u6xeGXW6hndwjgl+5oeqbjBqcSdEHrzdrKkLvOUfqTS5JB+8uOqlLWxJx+ZfNY2JmY5icLXRBbYcYLTygXlUpTJeBk=
+	t=1780070560; cv=none; b=V/vy4cdrAaCRHFc2YoykUmZcwODKnsyF0xhbtEv3URKfEDgUiqTHjsUYp0d34gVf5QqwbfQMno8OLw3/+SlHioKxwC4FLQ610zbEtVyQ3SUMZk22zINpMHopdrxLul1miidq7t2ScPVTobZxcmlkl53TUbdHE0tBWH4mBqOK2Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780070180; c=relaxed/simple;
-	bh=Fs48g0nH+1gF3T0e42VFBE+ZBOay6LJvZnSTg+IQIdM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=liSy7eCVBH1XC9JD6xmDxQJzO9GwOm25mGItfisBOnzwuGCUIiODZXDkezMe8lVNS8So9QLVjgxNGB+xSgpOq2sDEgwHrweEqREzjDMUCNWwQYk1GbXaEzG5vJdaxfhfGgHtUohDJ8N+3uoTWTuVgF6L3uMA0zLW3uzb/WspwY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C/C7S9I7; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4903f7a90d1so69714325e9.2
-        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 08:56:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780070178; x=1780674978; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DXtmoRa4P06Ph2LHtyp4xqyCcrT4FMd0i5231H6kh7A=;
-        b=C/C7S9I7kAh+kauxBIGin+XjLBhbu764VZksyY0y5HuiT4qKv/AcH1o8Ps4XR/eKat
-         XwQNPHQa3xNJgeotcjVPc+d8XqAuuxvYRwZHWduwl01emR9cdj3B3Yd9reAwToXT1l1F
-         ofN6EK4mv6Y/LaO6kiGMhfzAjwJ9ayh8aTOGPCSRV2cJ4H2QSPoRPinpkTpR0449y23V
-         KctnozOWS6TyV07tor0vdb6xAacdSVR2wZtTiHim6R9UYJv4vd2DaEWIY8mkDS21Lmh0
-         +mdbN2d1KGGQ2QApmcBi/lDq1YwlSqWN3ZK12MyNzfVY+WDAtq38F4sFXoDHFD3VfXAD
-         jGdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780070178; x=1780674978;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=DXtmoRa4P06Ph2LHtyp4xqyCcrT4FMd0i5231H6kh7A=;
-        b=amEljBWqCRvUyjNopdznlc54xbIY8kKfpoRfSP9kSsQ7eBwFNpnhy4As95Cm04jx4n
-         taPGzL/DyqcgZ4QnNxTf/6ICyd1nOK+bqHe2DUZPGBLYKy8j7eNneI6j1V91+JmpPwsC
-         NoIeKk7HCjdnXSxyBu/pVFOuJwm/O65UqPr7aHdIe/ohghbCrL7eOWAFdHrWLMrm9GYK
-         3F3fb/RS3AclN8nlnhfHoADBjvWh3JijzomgoZwVn3dctO4SSr94FOWndFSA886GpcCW
-         C7XnhrcaRnFsjRX6humMn3jtrGRuhywIRjzHSRwmILHH3y/qSzKeWOQ5mrfQeojXCff/
-         38RA==
-X-Forwarded-Encrypted: i=1; AFNElJ9OSnblzuy8bZ34jaeH0S8A91XLQhouJtg5pRTCBTU85QYkzxrdTA96NOPZ2xwLxbD4Kh6s5cPhoMuh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcRYJ+GFBIUOHfz1gUDrmeg3L5RULK394A4a1a+QV5WVg9MMEj
-	wKfu46cwEWkp8Aa47LsXvcdf0+lkSdlozB93FJO9+99yz/SLkoJUtgeN
-X-Gm-Gg: Acq92OF29SKfR9oJGY2jEvFtxpAo66+5Arct2ZKchEVz6dzLg5DD5JOm0V9F6QJQcdI
-	3DwWBJOW8XHqoUUGeO22JdIzfNiEnm2JdDgqQPJd9PMoYjtQ4raFhDlKniCtwF1RloJFT/jy7RB
-	sKAIAA+RMfzDN1hcVid/KhRVjELMIVxX6l3rotU40D5BOn+6UCyM3+l0XnS1zUDCZgvYbjKSioy
-	PexyI7eCc4vfmBpEcJ/Df+iOBXc3uxcmLS9jyBm44HcHCB5Q5D//7oLp/pcQT68RRi7BmTRfXpN
-	paf75Yn69NHAbTlRdiidt+7Ln4vFK8WIqexa3mniZVUnN823HqvW0yyIO7tJDukpaeC8UQm5H9l
-	rdCN3g7b9qzYOzlWLS/v+k7OdRyRs7vbvFwc8Xw0/rAm2px9R2V7/zT4OR0prMBRuhtvctc+zxj
-	Qilc345PzC/JBnBfWnF6MJlN3D9lCXUfqATMp95DMgm7xdt1S7GV6iEQyICpEa/EMfNkzH3B4bE
-	DScW5AcoGIf1fdcex3ej4WhXq8S9iGFrkjODzvi
-X-Received: by 2002:a05:600c:1382:b0:48f:e3e7:3d39 with SMTP id 5b1f17b1804b1-490a29e4449mr1171935e9.11.1780070177866;
-        Fri, 29 May 2026 08:56:17 -0700 (PDT)
-Received: from debian.tailb81abf.ts.net (2a01cb09e0354cc878d00097536575e1.ipv6.abo.wanadoo.fr. [2a01:cb09:e035:4cc8:78d0:97:5365:75e1])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4909cabfd6esm55150315e9.15.2026.05.29.08.56.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 May 2026 08:56:17 -0700 (PDT)
-From: MidG971 <midgy971@gmail.com>
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>,
-	Oded Gabbay <ogabbay@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1780070560; c=relaxed/simple;
+	bh=B/v6ZAN77QlWj2UWfj3wzqhg81twFrvJGliUSR6dCIc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hqr6g8+u+x6uvECeITs7ZxVAbhMGCQ+3rVu0sYsyvXk1rkGpbp7mCKnN2vnaAaNFrbPMgdEIlfYTWKM5VrbOpyjjPyg9Wlv8MiYD8SCdAKlVkkXO28rFD80IRaSwOaTY3YTfGwyYfvJLV29ppkIxuYEV6zaLfbPITvlWy6V3dXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=MfjVvoT2; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-33-39-96.ip42.fastwebnet.it [93.33.39.96])
+	by mail11.truemail.it (Postfix) with ESMTPA id 0DE4A1FCFB;
+	Fri, 29 May 2026 18:02:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1780070555;
+	bh=vev3uWK3nb5vm7RDNrdb/+RhFlWVQB2NrTqyd6V5BOk=; h=From:To:Subject;
+	b=MfjVvoT2mqcofwmK1RIh/yf5VUeSVxZwEqfG6FEDSpVQEJH6XUcjw5qWnnCsVyNgi
+	 FApejYKeYSsZe0yRZwh5++hxKGfYEWj5yqhLDsU0GvGV1BrZzT+MPq+enviTJ3V2i6
+	 VIM5Ds3YDLzDvDcpvXO2GSjQSxji8T+ELdX+sZqJ6CXYESDrz+i0vLt7ZdRDWR5GuF
+	 uYfuzatGvRxQ3+qnmG+Snx2sxlu0OI7BLXxUC/HTs+NYqQ2d68u6hAsVh6f6wPPSYh
+	 pHoslPekcopkkYkbyljmX05CADm/jC7ET/RCVgPi1QatzDc9b8uXG2RV5elXUyTVSp
+	 8dl1h14bStsIw==
+Date: Fri, 29 May 2026 18:02:27 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Nishanth Menon <nm@ti.com>
+Cc: Vitor Soares <ivitro@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Midgy BALON <midgy971@gmail.com>
-Subject: [PATCH v2 4/4] arm64: dts: rockchip: rk3568-rock-3b: Enable NPU
-Date: Fri, 29 May 2026 17:58:24 +0200
-Message-Id: <20260529155824.3099831-5-midgy971@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20260529155824.3099831-1-midgy971@gmail.com>
-References: <20260529155824.3099831-1-midgy971@gmail.com>
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Vitor Soares <vitor.soares@toradex.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 06/11] arm64: dts: ti: k3-am62-verdin: Add Toradex
+ Capacitive Touch Display 7" DSI
+Message-ID: <20260529160227.GA6917@francesco-nb>
+References: <20260522161105.277519-13-ivitro@gmail.com>
+ <20260522161105.277519-19-ivitro@gmail.com>
+ <20260529155345.z6ht5adzhwafdvx5@voting>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260529155345.z6ht5adzhwafdvx5@voting>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
+	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,sntech.de,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-304414-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-304412-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,ideasonboard.com,linaro.org,ffwll.ch,linux.intel.com,kernel.org,suse.de,ti.com,bp.renesas.com,toradex.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[dolcini.it:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: BB63F6060D9
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.41:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,dolcini.it:dkim]
+X-Rspamd-Queue-Id: 4A4FB605BE7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Midgy BALON <midgy971@gmail.com>
+On Fri, May 29, 2026 at 10:53:45AM -0500, Nishanth Menon wrote:
+> On 17:11-20260522, Vitor Soares wrote:
+> > +	touchscreen@41 {
+> > +		compatible = "ilitek,ili2132";
+> > +		reg = <0x41>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_dsi1_int>, <&pinctrl_i2s_2_bclk_gpio>;
+> > +		/* Verdin GPIO_9_DSI (SODIMM 17) - TOUCH_INT# */
+> > +		interrupt-parent = <&main_gpio1>;
+> > +		interrupts = <49 IRQ_TYPE_EDGE_RISING>;
+> 
+> https://lore.kernel.org/r/20260521152550.A928B1F000E9@smtp.kernel.org
+> https://lore.kernel.org/r/20260522140245.472651F000E9@smtp.kernel.org
+> Sashiko comment would probably be good to explain - I see the same in
+> v3.
 
-Enable the RKNN core 0 and its IOMMU on the Radxa ROCK 3B by
-overriding their status. The Rocket accel driver binds via the
-rockchip,rk3568-rknn-core compatible.
+The interrupt pin of the ilitek,ili2132 touch controller is a very short
+pulse, the net name TOUCH_INT# is on the board side and it is generic,
+not specific on the touch controller used.
 
-The NPU is powered from vdd_npu (regulator already defined for OPP
-table). The IOMMU node is also enabled so the rocket driver can manage
-its own paging domain for user-mode submissions.
+Both falling and edge would work fine.
 
-Signed-off-by: Midgy BALON <midgy971@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+The reason for using rising is that for the way the HW is designed the
+interrupt signal is not that "clean", and triggering on the falling edge
+produce some spurious interrupt. Those spurious interrupts are handled
+nicely by the driver, but they pollute the kernel logs for no reason.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-index 3d0c1ccfa..d54229123 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
-@@ -779,3 +779,12 @@ vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
- 		remote-endpoint = <&hdmi_in_vp0>;
- 	};
- };
-+
-+&rknn_core_0 {
-+	npu-supply = <&vdd_npu>;
-+	status = "okay";
-+};
-+
-+&rknn_mmu_0 {
-+	status = "okay";
-+};
--- 
-2.39.5
+
+Nishanth: in general do you want an explicit answer to every comment made my
+sashiko?
+
+Francesco
 
 
