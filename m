@@ -1,181 +1,269 @@
-Return-Path: <devicetree+bounces-304413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304407-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yCziGeLHGWoIzAgAu9opvQ
-	(envelope-from <devicetree+bounces-304413-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 19:07:46 +0200
+	id x8AXEyK7GWqoyggAu9opvQ
+	(envelope-from <devicetree+bounces-304407-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:13:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E34F606218
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 19:07:46 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D23246055B9
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:13:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ACA0837AFD33
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 16:05:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 311BB3289FFF
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F823EA95A;
-	Fri, 29 May 2026 15:58:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A9863F1AB9;
+	Fri, 29 May 2026 15:55:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P3d54xtL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="azxsCYiV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551FD3E8333
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:58:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F873E8C70
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:55:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780070309; cv=none; b=LQRuO2Xqb6ButfK6dernuqDJQ1+Z329L0nN7GjlMwGRlqSuh8VurKwfBvg/omLWvyJtQoLp0/HOsqqBFrhAfU8Pv0yMDQ21sOsAsDL7iTzgcwf4WJOiCJIiaf3XX0brQRh7Ao3hdXbUbd+m1hPWgMgdK4M9rn01PdlqGrxtlX1o=
+	t=1780070155; cv=none; b=D/dWJxiprHRuBJp9joCyhPAoSJB+L8+l+XjiHW2zVQVE8hq4CW+alob3Wzb5H8ZcrbvR11InR0gkQydsX8dcicvbBVIqfs3wVW15sn4y3x+3z8MF+kEWLAVRcnL4VeIAvuLr70l87YKDt4+8y8lHn8UOZiEUhWoQ8iet5h7WytQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780070309; c=relaxed/simple;
-	bh=9BCS56pVRryY7pWjuzmcS8K36R35NfR88+/6XLLhN6U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tgqMt8aCNNHcGzKGXpmQ32XX2AqUOqtjibtWXiAkHfs2UiPZAUQAN+PO/vWrOWoXxgLBohM6lTHSAMWvbKCYCHt8ZwMtlkoFZkOfJOxIANAg5PQD+zoITnWGoWw6EHTcLr1X7U/n6EGhhAf1EtzQgzgc3ZsH9tU6FQcn5apJv/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P3d54xtL; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09B6D1F00A05
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:58:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780070308;
-	bh=9q8bnA8Cybs5JYtZeRk2lM9ckb6ZQxrxMyz/lWzwvTQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=P3d54xtLn7Ia7Nk5lngi8u5E3xjbRP6p/xAKljQBbrNrug1jMH/sDsM9xCIdtYLHb
-	 T1ns8r6FvNwhZaO18DtrHjb4baqPSWJ/3YiGqWL9p5L1rIRP87PhMXNAQu9TGp8EzF
-	 f5W2S4zL62KwX6VO0XF/ZlBat0Fzkjis4YdcNAvQ4HUNeEQNEh2GB/rq4RVJMZqMTH
-	 Q1aOE2+MUi5lVzOVCxno9KCFyI87w9vM/cYntbVKAZzt5kUm014zfOzF8kD7GHOAvy
-	 qnrQFwbYhVf5JsBHS9Uztif27v2rwCXRcGyGIpAimDGDoVk7748Z2q8y5A3OvtgY1S
-	 hBi7szKWxWhNw==
-Received: by mail-dl1-f47.google.com with SMTP id a92af1059eb24-1353c2f35cfso7458158c88.1
-        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 08:58:28 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/sqvCC4auSLQywTylohKw1S+pg3fYHbeIbhMABQ2jn9wHwu7jrItP883cosOJu4bIIPp9JO7dHsURG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzt5L87XnLQgF2jijIvAzL6Q7WxXAHtS6i+V5MWdRIXcZR+l2E4
-	rX/t9vNsxVqpnYbXkInK0dNN9eYq7O3Gmz+89/yxHGjyVuQ8PdF9GxKg2E2hTUovZeSTb/w7CuN
-	Bye13aRHn9HMThJ6SOnl+esi6hMqK6/PSxAToITVcBA==
-X-Received: by 2002:a05:7022:6299:b0:135:dc3d:ab50 with SMTP id
- a92af1059eb24-137d4242f26mr125225c88.29.1780070307047; Fri, 29 May 2026
- 08:58:27 -0700 (PDT)
+	s=arc-20240116; t=1780070155; c=relaxed/simple;
+	bh=nB9HaeDrWuITyS8URCdNo1fLNmn/dD4gNLXmV9lf6is=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Z1RtAvpBvO4UmdxFhfgU36fFY5YKSAygZtBkxqFRtj1zjvvEADDA0x998XgGiIePg6ryAU1w8fVbVh0sKTtax2lGoCD8PUdoBubFjDMtmtxZvHwJZTyAXNss0pXdMVgzxKIchIA4fqrnXi1H3d7TvARZyfidYQngfYW/RIOofRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=azxsCYiV; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4903f7a90d1so69709855e9.2
+        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 08:55:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780070152; x=1780674952; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pm1egj7rvNz6E3Ee54JdqUG6bAMQYsYWlFR8JwRKRcg=;
+        b=azxsCYiVjScy9jUaVTaaN8viDfL2n0mra1Im6rOG4tOQj32qPCxv6YP8DbvAVnDJCG
+         YStuVwL7Dyce3FiFPvmyT8Ry0v6xx/QllQfQG4RzDmxWQggrzKMU5udrFaq1iNsQ/+4z
+         k6H14YX5N9p92V6GNJOZK+oC/hlO67EMF0ozPu7ueyZ7Zpy6RKmP4N7TpN0DZbN6GgYy
+         FP9/ooZh6sxk0OBGZeyFWdfOd4K7b+MSROE270aFb5l8Bphm/Xn3vTMLMGGodnBPM4uc
+         GRfvqRkl+udjFrnorPIqxu4olJu5qkdkQJpvyqY2DEF30XBaZmgvzUmJi/pLsKGWlx3R
+         en3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780070152; x=1780674952;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pm1egj7rvNz6E3Ee54JdqUG6bAMQYsYWlFR8JwRKRcg=;
+        b=gRuQroatHdQKY6ZsPf8EtN7bXOdH9s1SxMRJYLjdK+o6UeePmJHueSWXCAJm+4AX0a
+         AuPuIJU7CTChXnz8YRY6jYNgBAT5WEFIiP0ZIOxSKCScgZr0jbA06l5xPOfhbs949ruG
+         aYj7ichJNbUFlCCiwhKDzZjSu6fS7uwsD/OjpsYU9D0tJgf/HEtHM/Bp2c27XL61MfNP
+         xdlUYc1m6/H2Oba+LOsE+rbB19vN8JHKCzCuUJ9QsE5c0YD1Z4TufeVgFTUp2IP0Vp/2
+         IoDb/5vhmmA4Gnk6ks6XbTBb2I6XpIRTQl+mrpjEr3X3FqESa6nP6mOJZ/LBCdUA4xG5
+         UsaA==
+X-Forwarded-Encrypted: i=1; AFNElJ/LHTLhX8s7/zlOK60D6QDszFcT1nKREu06ko6fSVcCQnDMsjkcW50/hIaTrLsxbkFK71cpzF5kfsQN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtvsaBx6KkcR73w6EZ9CP1t/EZIJ+TwFWVp3jQWDHt1ECkwrZg
+	KTM47ixR3kfWc5/+aoKtayausUSv1T71msmQeas9Udois1mRbgo6AUhh
+X-Gm-Gg: Acq92OG0rtIVokdbz8/Ij4y7Jcnpp4OROz8z6SmmG31A3A1UzYozln1bGej/L/x6Rlf
+	iP5o+pLMcztqo5r1Bn4Flv+/xPTvr/+lthsiJrq7pDnOoo3fgsPo796mgo7xVvnHl9WDPQVxuID
+	kGsABp5DxpqHjDBfAVhVfgFEnMtU62ZgcasfLfm9A1DMgrx3DOHk6/y2M1w+L+CNDt8q24gY47+
+	kSDYKpWB2jc/woV2d3ptdNnHV5LRY2oYMbZknh3kRdghWR+7wiErxQNOgezcSJ8kyoj8mU5hzQw
+	I7OWw2dilpIznM8zZoR/gAW7HOwexl/+Xf7vecVONhKXOwJrfrASzwGKs2aDaCPFugQk9Hy8Rqg
+	UcDrgAzDUne7D81ocoCz1z5AFAFHzKopbbnrLYUr00KCuLHa+Zgc/Mc8FBx0rRJjztGEsnCXmj8
+	eQ1JGP2by2VqK6bR9cH12MW8Cf9MnQLwuli/LWOMWjlkj+rgIuZdHcM2uFXLJaBPLrFDCNgHSNB
+	dRCMCib7DKGVhHcyhJi+cyTR6EEm5nu0wSzgzfw
+X-Received: by 2002:a05:600c:5254:b0:490:9e5b:9e31 with SMTP id 5b1f17b1804b1-490a28c4156mr5150045e9.0.1780070151955;
+        Fri, 29 May 2026 08:55:51 -0700 (PDT)
+Received: from debian.tailb81abf.ts.net (2a01cb09e0354cc878d00097536575e1.ipv6.abo.wanadoo.fr. [2a01:cb09:e035:4cc8:78d0:97:5365:75e1])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4909cabfd6esm55150315e9.15.2026.05.29.08.55.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 May 2026 08:55:51 -0700 (PDT)
+From: MidG971 <midgy971@gmail.com>
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+	Oded Gabbay <ogabbay@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Midgy BALON <midgy971@gmail.com>
+Subject: [PATCH v2 0/4] accel: rocket: Add RK3568 NPU support
+Date: Fri, 29 May 2026 17:58:20 +0200
+Message-Id: <20260529155824.3099831-1-midgy971@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260515-shikra_qcrypto-v1-0-80f07b345c29@oss.qualcomm.com>
- <20260514194735.GA1939213@google.com> <d4d35e17-84fa-4c95-9bfb-abfd25ea7f4a@oss.qualcomm.com>
- <20260522024912.GC5937@quark> <c1697372-54ec-4f57-85d9-ad375ff1a44d@oss.qualcomm.com>
- <20260525142843.GA2018@quark> <e49c4a45-6455-47f3-a91f-c32c1a0b99be@oss.qualcomm.com>
- <CAMRc=MfC6CEwOXYttsav3mwqyJ2F4sburBj+zNJ25qMoweyL-Q@mail.gmail.com>
- <lj7geczhthury476ilkjym2k5fblo5pqroefsbdfgh5jcf7zy2@qrss5xc7umn3>
- <CAMRc=Me6cqasdBknbAjUZ5BqcpERYwV+NvseRJp4P0aTSYAMUw@mail.gmail.com> <20260528175214.GA3936298@google.com>
-In-Reply-To: <20260528175214.GA3936298@google.com>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Fri, 29 May 2026 17:58:12 +0200
-X-Gmail-Original-Message-ID: <CAMRc=MfY-tmMCdw9FVBgfkX-FvB5Nx2X06S023GhASenSCQSNA@mail.gmail.com>
-X-Gm-Features: AVHnY4LP_t91eok9MEp4yvSeZMeVRFiXKE_WmFYVgc-of5NzGm-5x7t-ox5gugo
-Message-ID: <CAMRc=MfY-tmMCdw9FVBgfkX-FvB5Nx2X06S023GhASenSCQSNA@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Add support for qcrypto on shikra
-To: Eric Biggers <ebiggers@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>, Thara Gopinath <thara.gopinath@gmail.com>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, Andy Gross <agross@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dmaengine@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
-	Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>, 
-	Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304413-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,gmail.com,gondor.apana.org.au,davemloft.net,kernel.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[kernel.org,sntech.de,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-304407-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 0E34F606218
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: D23246055B9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, May 28, 2026 at 7:52=E2=80=AFPM Eric Biggers <ebiggers@kernel.org> =
-wrote:
->
-> On Thu, May 28, 2026 at 11:13:47AM -0400, Bartosz Golaszewski wrote:
-> > On Thu, 28 May 2026 15:50:10 +0200, Dmitry Baryshkov
-> > <dmitry.baryshkov@oss.qualcomm.com> said:
-> > > On Thu, May 28, 2026 at 09:13:23AM -0400, Bartosz Golaszewski wrote:
-> > >> On Thu, 28 May 2026 13:54:51 +0200, Kuldeep Singh
-> > >> <kuldeep.singh@oss.qualcomm.com> said:
-> > >> >>> +Bartosz, Gaurav, Neeraj
-> > >>
-> > >> I know about the self-tests etc., I will address them next.
-> > >
-> > > My 2c, the self-tests would be more important, as they are fixes. Doi=
-ng
-> > > the crypto in a wrong way is a bad idea...
-> > >
-> >
-> > Then let that be "in parallel". :)
->
-> The race conditions between Linux and other environments (modem, TEE,
-> etc) are of course about correctness as well, even though the self-tests
-> don't expose race condition bugs.  The self-tests have always just done
-> a few serialized tests.  That's sufficient for CPU-based code, but not
-> for offload drivers, which need to be stress-tested to find the
-> concurrency bugs that occur during actual use.
->
-> Is there a plan to improve the tests to do stress testing as well?
->
+From: Midgy BALON <midgy971@gmail.com>
 
-I'm not sure if we can easily implement linux-only tests using
-multiple execution environments. I will look into it and come back
-with an answer.
+This series adds Rockchip RK3568 support to the upstream Rocket accel
+driver (drivers/accel/rocket/), tested on a Radxa ROCK 3B board running
+Linux 6.19-rc5.
 
-> It's kind of odd that they don't do that yet.  But it makes sense: the
-> CPU-based code doesn't need it, while the offload driver authors have
-> never cared enough about correctness and test coverage to add it.
->
-> I still don't really see a path forward here, given the track record and
-> poor performance numbers.  This approach just doesn't work.
->
+The RK3568 carries a single NVDLA-derived NPU core (0.8 TOPS), the same
+IP family as the three-core RK3588 NPU already supported by the driver.
+The hardware register layout (pc/cna/core regions, interrupt, IOMMU) is
+identical; the differences are:
 
-Sorry but I'm not sure what your point is. What this series does is:
-it documents the compatible for the crypto engine that very much *does
-exist* on the SoC and describes how it's wired up as a real HW
-component in devicetree. Whatever the state of the driver is, it's not
-grounds for NAKing HW description. The IP *is* there, we're allowed to
-describe it in DTS.
+  - 32-bit DMA address limit (NPU AXI bus and IOMMU page walker are 32-bit)
+  - Requires explicit PVTPLL initialisation via two TF-A SCMI calls before
+    the NPU NOC bus can be de-idled
+  - Requires explicit PMU writes to power on the NPU domain (because the
+    RK3568 power domain RK3568_PD_NPU is always_on so the generic
+    pm-domains callback is a no-op) and de-idle the NPU NOC bus
 
-Qualcomm wants to use this IP and I will keep on improving it. I think
-that - given the BAM locking series is at v19 now and has been
-initially posted in 2023 - I've a proven track record of not
-abandoning it. :)
+Patch 1 introduces a per-SoC rocket_soc_data abstraction (dma_bits and
+optional noc_init callback) plumbed via of_device_get_match_data(), and
+adds RK3568 SoC support on top of it.  The DMA mask for the parent
+DRM facade device is chosen based on the narrowest core present
+(32-bit if any RK3568 core is in the system).
 
-I'm away next week but will look into self-tests the week after. This
-series - once fixed - should go upstream independently.
+Patch 2 documents the new rk3568-rknn-core compatible and the
+rockchip,pmu phandle that RK3568 requires; the sram-supply property
+becomes conditional (RK3588-only).
 
-Bart
+Patches 3-4 add the RK3568 NPU and IOMMU nodes to rk356x-base.dtsi and
+enable them on the Radxa ROCK 3B.
+
+Verified on Radxa ROCK 3B (RK3568, 8 GB RAM):
+  - /dev/accel/accel0 created at boot
+  - dmesg: "Rockchip NPU core 0 version: 0"
+  - IOMMU domain attached per open()
+  - Job submission path complete: regcmd reaches the NPU's program
+    controller, PC processes all 135 regcmd entries, broadcasts to
+    sub-units, and advances to BSP-equivalent completion state
+    (PC_TASKST=0x11000)
+
+Status of end-to-end inference: NOT YET WORKING.  After 12 days of
+investigation comparing rocket's behaviour against the vendor BSP RKNPU
+driver, the NPU's MMIO state at submission time matches BSP byte-for-byte
+(CNA configs, sub-unit OP_ENABLE registers, CBUF_CON0, etc.) but no
+sub-unit transitions to its EXECUTER state and the completion IRQ never
+fires.  The kernel driver and DT infrastructure in this series stand on
+their own — the driver loads, IOMMU domain is attached, regcmd reaches
+the NPU, PC state machine matches BSP — but a mesa-side regcmd issue
+(or another piece we have not yet found) blocks the final conv firing.
+
+I am sending this series now because the kernel and DT pieces are
+self-contained, verifiable, and ready for review.  A separate RFC on
+mesa-dev will follow with the userspace findings.  Detailed investigation
+notes are available on request; relevant highlights for the maintainer:
+
+1. Mesa rocket userspace (src/gallium/drivers/rocket/) targets RK3588.
+   For RK3568, several encoded values need adjustment.  Most notably,
+   sub-unit OP_ENABLE register offset on RK3568 is 0x_00c, not 0x_008.
+   Mesa emits writes at 0x1008/0x2008/0x3008/0x4008/0x5008 — BSP regcmd
+   captures show no writes at these offsets across two distinct conv
+   shapes (YOLOv5s 6x6/s2 and MobileNet 3x3/s2).  BSP writes OP_ENABLE
+   at offset 0x_00c with multi-bit values (CMAC=0x1, ACCU=0x0, DPU=0x108,
+   DPU_RDMA=0x13f), not bit-0 booleans.  This and a handful of other
+   shape-independent value differences will be filed as a mesa RFC.
+
+2. The vendor BSP RKNPU driver writes the userspace task_base_addr to
+   PC_DMA_BASE_ADDR (PC offset 0x34); the rocket driver did not.  PC's
+   TASK_DMA engine reads struct rknpu_task descriptors from there.  With
+   task_pp_en=1 in TASK_CON and a kernel-allocated descriptor BO,
+   PC's task counter state machine advances from "stuck at 0xf000" to
+   the BSP completion state.  This is the most invasive piece of the
+   investigation and is held back for a follow-on patch (not in this
+   series); the current series gets the driver to a working /dev/accel/
+   node and an attached IOMMU domain, which is the right shape for v2.
+
+3. The NPU's master AXI port is 32-bit, but dma_alloc_coherent() through
+   the dma-iommu framework silently ignores GFP_DMA32 even with a 32-bit
+   dma_mask set on the device.  When BOs for the NPU are allocated kernel-
+   side, __get_free_pages(GFP_DMA32 | __GFP_ZERO, order) + dma_map_single()
+   is the working pattern.  Not in this series, but might be a useful
+   documentation note for other 32-bit AXI accelerators using dma-iommu.
+
+This series builds against current v6.19-rc5 with no checkpatch warnings,
+the dtb builds, and dtbs_check passes.  The April v1 series included a
+fifth patch ("Use of_find_matching_node() instead of for_each_of_allnodes")
+which is no longer required — upstream rocket already uses
+for_each_compatible_node() since v6.19-rc5.
+
+Changes since v1 (April 2026, never sent on-list):
+  - Rebased to v6.19-rc5
+  - Patch 1 absorbed v1 patch 1 (obsolete) and now includes the
+    rocket_soc_data abstraction needed to support both RK3568 and
+    RK3588 cores in the same driver
+  - Cover letter expanded with current investigation status
+
+Assisted by Claude Sonnet/Opus 4.x throughout the investigation.  All
+findings empirically verified via BSP register captures and side-by-side
+rocket execution traces on the same board.
+
+Midgy BALON (4):
+  accel: rocket: Add support for Rockchip RK3568
+  dt-bindings: npu: rockchip,rk3588-rknn-core: Add RK3568 support
+  arm64: dts: rockchip: rk356x: Add NPU and its IOMMU
+  arm64: dts: rockchip: rk3568-rock-3b: Enable NPU
+
+ Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.yaml | 18 ++++++++++++++--
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi                        | 31 +++++++++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts                      |  9 ++++++++
+ drivers/accel/rocket/rocket_core.c                                   | 21 +++++++++++++++++-
+ drivers/accel/rocket/rocket_core.h                                   | 18 ++++++++++++++--
+ drivers/accel/rocket/rocket_device.c                                 | 23 +++++++++++++++++--
+ drivers/accel/rocket/rocket_drv.c                                    | 79 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 7 files changed, 192 insertions(+), 7 deletions(-)
+
+
+Midgy BALON (4):
+  accel: rocket: Add support for Rockchip RK3568
+  dt-bindings: npu: rockchip,rk3588-rknn-core: Add RK3568 support
+  arm64: dts: rockchip: rk356x: Add NPU and its IOMMU
+  arm64: dts: rockchip: rk3568-rock-3b: Enable NPU
+
+ .../npu/rockchip,rk3588-rknn-core.yaml        | 18 ++++-
+ .../boot/dts/rockchip/rk3568-rock-3b.dts      |  9 +++
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 31 ++++++++
+ drivers/accel/rocket/rocket_core.c            | 18 ++++-
+ drivers/accel/rocket/rocket_core.h            | 16 +++++
+ drivers/accel/rocket/rocket_device.c          | 25 ++++++-
+ drivers/accel/rocket/rocket_drv.c             | 71 ++++++++++++++++++-
+ 7 files changed, 182 insertions(+), 6 deletions(-)
+
+-- 
+2.39.5
+
 
