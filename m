@@ -1,172 +1,169 @@
-Return-Path: <devicetree+bounces-304399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304400-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2PYYCf+1GWovyggAu9opvQ
-	(envelope-from <devicetree+bounces-304399-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:51:27 +0200
+	id wBoqKNO9GWq0yggAu9opvQ
+	(envelope-from <devicetree+bounces-304400-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:24:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DC2060510B
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:51:25 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0618605870
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:24:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 96A5530AD05D
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:35:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D84E3635938
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EAF23F0A84;
-	Fri, 29 May 2026 15:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9835366052;
+	Fri, 29 May 2026 15:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pWWpdmpQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D2Q12tkt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A6093EFFB8;
-	Fri, 29 May 2026 15:31:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948243E5EFE
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:33:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780068692; cv=none; b=fmbSaxgHtdbwBrkPlQs3h3zv7EYws/htofa7cUFs3fWkOCplyK3L14EUh3DvUcjwknUDPcMLn8wQMifwnRL4ZfnBG1xmbljqkULUCwNWqSkwZcr6uC11b9O3LlBg+R+1GEy6DpSE+GFpACfPFMuOknAqtMUC4gTCHCqml2C2vrw=
+	t=1780068800; cv=none; b=fjwfc/7bUEmK7n8ggE5CDTzY7N8qZRmWOE5kNXZeubaxL/moeFl9eF2Yyiz9gSQOa3oLXaogcRtHCLuynJs9y15trRjiZW+oXz19cOLBc1/jcuP2l48s0LkVnFmGr2pvWdkDxlvFvIlxosWDWZJgAIEJ0jdaPpyeO63m4zEQJ8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780068692; c=relaxed/simple;
-	bh=c9I9mrSZss9ipoBnXCmsbn04ME4OcIddnFHzKREDh4g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hdceUfFKiMWOHOKPC6BUl7cygBhzdYLfd2QT1ePUvQL4pc5OWQlSvBdk+JnPa5tYoxja/P7d6rGJWYuuJLoQWQOzGTJ9/5v+93IbKIczAmvOTHWKGh6Yyf+RKPqwoKPTwfd4IB903Z5JiftCGq0B59MP8PLhj1ls29gZmoBOLwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pWWpdmpQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1FBD5C2BCF5;
-	Fri, 29 May 2026 15:31:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1780068692;
-	bh=c9I9mrSZss9ipoBnXCmsbn04ME4OcIddnFHzKREDh4g=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=pWWpdmpQi1abzetdwtgJvS3URvDDWGCKPwfy4DeTNby7Pcjc8dxlhDvojqs3jv4pM
-	 rLoQk9wwSwQkmAsDidPJd1/RJfqqNTv1msrzGX+jNK9gvaPsdQ5baMVCOOfI23gEd8
-	 V5vOyZuxaM8Y4jVMUun2Dkxt8Luz0ti7IphmRkY1dcKEGzcgi55RXhNWVg2ufFHujj
-	 /jYdY2PJNZaV6y7aC7sxmzkUEO88NYa6fzclj3Wazaz5zRuWKSFRIC9w9+H8vYxyKd
-	 Kb9z6FZyXLUoLKNV2RWfZfl4Stf4XDD8xrKVUQr4d5o7z5zApHm2E1gx5o4y3VvgEB
-	 ECvXRqCSO8W2Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1870BCD6E51;
-	Fri, 29 May 2026 15:31:32 +0000 (UTC)
-From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
-Date: Fri, 29 May 2026 17:31:25 +0200
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: fix PCIe regulator name on
- NanoPC-T6
+	s=arc-20240116; t=1780068800; c=relaxed/simple;
+	bh=DOH+3g7w+KmlfDTsjLjiuMu/Fxk6iqxGULdvT+bBH5g=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=XUqy4Sbvqzy0DDsggWoogkDLvJrPvD6VDhqthzeWZEcSbVUaz+j3knYziPyOS7beH7k//NwnJ2d/S2E9YtRNh2s5PWY5wEZt0BiZccGto80fMlUvtFWu4v+p2ZeJWJRib0mMpLOzqunxZx/Wjtfs2iW4zsnI3KK6GMlztWsJTDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D2Q12tkt; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 114FF1F00893;
+	Fri, 29 May 2026 15:33:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780068799;
+	bh=sCTB6lhHJrDoYEUN4ycP4vcjGGxoWiAPdnW/TIo6ytc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=D2Q12tktcFP7g5aayzYSoM6cZeTfm3hIHTyc5BYtidtmUBqhbwfvLVABqKFP69I1i
+	 6mw7q50yUDoFGpGsyIP8jbs4ojikwFnfGNlAP59Kq+nMJELd1S3i2YjaEeDOxkyz3n
+	 i15y4xn3wa31FwkKMRVJ9uLhoq/93ozbWhrWq2hBPaJm2LEMhIzTX/fPgJmOueBIcf
+	 NPifzQRwl0rv9l2f8YhSklVbK+flmpLAQaYO6BilGb0DAFyMqaUjZ+Mntqxq7ghQ4S
+	 zN0SBiVrx+gApZad4OC/fn0GnTDO5aTTsDARZ5RJw8EMf+vPRYcEEzgaa4uiuUuLVH
+	 N4M5RrLxGrCtQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 3/6] media: qcom: camss: Add Glymur compatible
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Vikram Sharma" <vikram.sharma@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260529-glymur_camss-v1-3-bee535396d22@oss.qualcomm.com>
+References: <20260529-glymur_camss-v1-3-bee535396d22@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 29 May 2026 15:33:18 +0000
+Message-Id: <20260529153319.114FF1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260529-rk3588-dts-rtl-eth-describe-dt-alias-v2-2-49700248143f@pardini.net>
-References: <20260529-rk3588-dts-rtl-eth-describe-dt-alias-v2-0-49700248143f@pardini.net>
-In-Reply-To: <20260529-rk3588-dts-rtl-eth-describe-dt-alias-v2-0-49700248143f@pardini.net>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Ricardo Pardini <ricardo@pardini.net>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1834;
- i=ricardo@pardini.net; h=from:subject:message-id;
- bh=0u1U7cadCrfZljLfYE+rIEFeBThAN/F4SqtY240X3PA=;
- b=owGbwMvMwMFoHWf/eN7xty8ZT6slMWRJbgyaWGffcDNPdKV6xeNHq87baQTt8Z/yeEvA9IXlD
- 90VkgIDOhn9WRgYORgsxRRZ1kgo83xb/+rUHY+OyTCDWJlApkiLNDAAAQsDX25iXqmRjpGeqbah
- nqGRjoGOMQMXpwBMdZ4TB8Ma5zeHZx+QylB6rWYYfenQtcPRWmabN52a9u/N/9+HllsZHfKRiy4
- MSBWJzHvleiYlyftBeyp/2r9VutPUGP32b5u4IpFTz32NW8OdyprGhV/PeJgIy6z9v6/Q8s+28D
- ahj9eK54iGnylnufdbx+/ln9/CUmtmpn9h4Z5zjtFv/X82cTuRpmdsOr+7Jxzy5Xpw9wer0dLPD
- gaRa95x6vaJlX53bFm5ylEw2claP+SzRfFSA/bTL9zl3gTyPZikZK9rU7aIfeqFOb6r+WP1+5UT
- ympXzjXac+7X9/T7p1rzH+knTLthHZC9N/aOWXK9SKWyCNOl+Ju2SkEhNXEJcqI7pe0yPnqLLlO
- 5cCE3GAA=
-X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
- fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
-X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
- auth_id=588
-X-Original-From: Ricardo Pardini <ricardo@pardini.net>
-Reply-To: ricardo@pardini.net
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304399-lists,devicetree=lfdr.de,ricardo.pardini.net];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304400-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[ricardo@pardini.net];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,0.0.0.0:email]
-X-Rspamd-Queue-Id: 1DC2060510B
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,sashiko.dev:url,smtp.kernel.org:mid]
+X-Rspamd-Queue-Id: F0618605870
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ricardo Pardini <ricardo@pardini.net>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-The GPIO-switched 3v3 regulator on the NanoPC-T6 is labeled
-vcc3v3_pcie2x1l0, but it is wired to and consumed by &pcie2x1l1, and
-its enable is the pcie_m2_1_pwren pin - i.e. it powers the M.2 slot on
-pcie2x1l1, not pcie2x1l0. The two soldered RTL8125 NICs on pcie2x1l0
-and pcie2x1l2 instead share the always-on vcc_3v3_pcie20 rail, so
-nothing actually uses an "l0" switched supply.
+Pre-existing issues:
+- [High] Missing bounds check for device tree endpoint port number against =
+`camss->res->csiphy_num` leads to out-of-bounds array access and memory cor=
+ruption.
+--
 
-Rename the label, node name and regulator-name to vcc3v3_pcie2x1l1 so
-they match the controller the rail actually supplies.
+commit f84037afd7728553fdb93e0bd472a151b8696e13
+Author: Prashant Shrotriya <pshrotri@qti.qualcomm.com>
+   =20
+media: qcom: camss: Add Glymur compatible
+   =20
+This commit adds the CAMSS_GLYMUR enum, the Glymur compatible string, and
+the initial private data structure for the Glymur camss driver. The
+resources will be populated in subsequent commits.
+   =20
+> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/pl=
+atform/qcom/camss/camss.c
+> --- a/drivers/media/platform/qcom/camss/camss.c
+> +++ b/drivers/media/platform/qcom/camss/camss.c
+> @@ -5507,6 +5507,11 @@ static void camss_remove(struct platform_device *p=
+dev)
+>  	camss_genpd_cleanup(camss);
+>  }
+> =20
+> +static const struct camss_resources glymur_resources =3D {
+> +	.version =3D CAMSS_GLYMUR,
+> +	.pd_name =3D "top",
+> +};
 
-Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
----
- arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+[Severity: High]
+This isn't a bug introduced by this patch, but is a pre-existing issue
+affecting all supported SoCs.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-index 04c4479f08170..7d314df3f947b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
-@@ -203,13 +203,13 @@ vbus5v0_usb: regulator-vbus5v0-usb {
- 		vin-supply = <&vcc5v0_sys>;
- 	};
- 
--	vcc3v3_pcie2x1l0: regulator-vcc3v3-pcie2x1l0 {
-+	vcc3v3_pcie2x1l1: regulator-vcc3v3-pcie2x1l1 {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
- 		gpio = <&gpio4 RK_PC2 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pcie_m2_1_pwren>;
--		regulator-name = "vcc3v3_pcie2x1l0";
-+		regulator-name = "vcc3v3_pcie2x1l1";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 		vin-supply = <&vcc5v0_sys>;
-@@ -655,7 +655,7 @@ rtl_eth0: ethernet@0,0 {
- 
- &pcie2x1l1 {
- 	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
--	vpcie3v3-supply = <&vcc3v3_pcie2x1l0>;
-+	vpcie3v3-supply = <&vcc3v3_pcie2x1l1>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie2_1_rst>;
- 	status = "okay";
+In camss_parse_endpoint_node(), the device tree endpoint port number
+(vep.base.port) is assigned to csd->interface.csiphy_id without verifying
+if it is strictly less than camss->res->csiphy_num.
 
--- 
-2.54.0
+Later, when the external subdevice is bound, camss_subdev_notifier_bound()
+uses this unchecked id to directly index the dynamically allocated
+camss->csiphy array:
 
+camss_subdev_notifier_bound() {
+    ...
+    struct camss_csiphy_device *csiphy =3D &camss->csiphy[id];
+    ...
+    csiphy->cfg.csi2 =3D &csd->interface.csi2;
+    ...
+}
 
+If a device tree (including runtime DT overlays) defines an endpoint with an
+abnormally high port number, could this unconditionally result in an
+out-of-bounds write past the allocated block, leading to memory corruption?
+
+While the specific 0-resource crash for the newly added Glymur driver in
+this intermediate commit is resolved later in the patch series, the
+underlying lack of bounds checking remains unfixed.
+
+> +
+>  static const struct camss_resources msm8916_resources =3D {
+>  	.version =3D CAMSS_8x16,
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260529-glymur_cam=
+ss-v1-0-bee535396d22@oss.qualcomm.com?part=3D3
 
