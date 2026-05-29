@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-304456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304458-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GGUlK23YGWqjzQgAu9opvQ
-	(envelope-from <devicetree+bounces-304456-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 20:18:21 +0200
+	id WM9BBVzbGWojzggAu9opvQ
+	(envelope-from <devicetree+bounces-304458-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 20:30:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18ECD6072C1
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 20:18:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62E5B6073DC
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 20:30:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 57BB0306031F
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:04:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E3DF3029752
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:19:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1AA39B958;
-	Fri, 29 May 2026 18:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78801401495;
+	Fri, 29 May 2026 18:19:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="iKvGZWeA"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="iudeHZxJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121453F23B6;
-	Fri, 29 May 2026 18:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6ED374736;
+	Fri, 29 May 2026 18:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780077865; cv=none; b=t2gOZ8A4sUBaINMH/DsiGbf/QfaZl6mJqFodh8sIgz+jxDf3xvSEFRsXJneAMFfS2PckIxROcuauXemO2q/8YtCXz/W4LYa9IFL3uCS8WU9r6WISwjqsnq/00+RL03vx+O2h9Wn/9xT1oyDSNduTlAAAyK1/TiwFEkBjcd6KzE4=
+	t=1780078798; cv=none; b=fSQObt87aAH0CVoptChSxizZ8bA/5k6BspmomM582V4Bdie9hT1mVMin54UwGnN8BbMtrISVKc/K2Fmkn8k65pAcmBHaoWhqYsMn2v8wrXD94CbpcWj0c74wdNZQVkbYFQnMLi6L1C5XRXCltK/OqLuxuqUvKEEcgZRLM+kzgAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780077865; c=relaxed/simple;
-	bh=DLW/mk3Iq85lMOoJqTYjgKamJk8Z1uhqZWCI7uasVLc=;
+	s=arc-20240116; t=1780078798; c=relaxed/simple;
+	bh=lQQ9UKkCCo4X00g358hsjsmmFFDIODp5TofSrcvJerQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=L8PR+4l+0j5zVlbJBE7HGu8TAZV4Mj9qORV49iJXcxug7zDJ0pgtv1rqopImqZ+29o0CnjmGNXFOQplGkVz16QeQmSjkjl/YCRudwXUffGdbFZJEvwNMOXzrL6yxyeFN5Ka/rsl8cIP/N5vpX5kTzxba+pofmUuQJ38qwpLSN4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=iKvGZWeA; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=moyhnmQThxaFfdH8wt19lajPdMzqto/M5xD1GM/yFO+IqDBMm19IgwcRgdW5iETv1oXQM158Qe4vNQPBA6zJ6C+fQZ9BOSApU43vZc8jSAPMC/uhfPcAvT2mdGOKzTFz74dhoQhx65pt5oRyrlqTDJlhx7OsYmaKJlyi6YkbP3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=iudeHZxJ; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=JqoWqM560NgOyBoJArt872roHXO7vVZ5JRvRtTr4UX4=; b=iKvGZWeASddt48GOlMPuIIeRMZ
-	pfRwHJhRCcNkLDl4TjmaSF9g/aqPjeOQfTwHYyBHseFaK0nhg5yZZHqmguq8+MziFtOkOBgEv/ymk
-	ibVly8UMhek/4Sgti3OKZaJeHAD44KEzRA73Rc6qjODs71Vw6VBDj5Rs24WjyJ+zBCzdc7APjRGQf
-	Y6IDAMppRYBry5Ak6UJfvA/CgRJfuy8fuIo3WBM2z5w5hQh0+JPllz99Q37n/6ZFMm0ICd1WSHec7
-	V6UkD99MOfO3g6Al/p6FSrl9cdWxZWYClOyhnrUDPQBJDD2lxmNsyEkXfp8VRJjD+WizBk8dZFxls
-	VN+eTiaw==;
+	bh=MezAljbMtu/a/IWnbTDAtFD/p1r8DFJmzsXD7QfO5sE=; b=iudeHZxJStlryOmQAUHhsleY6G
+	6XU21yner9VdSVJz2LnIP66KoBRM3GZ3FMalVNbytmY4chArURs0O4Um31YsLhxSP9UTyIuvArUnr
+	pBGSlvQyxFlIV9a7MRAPChCJ6sewkACEUUtK80hGptBuDlq5bOXMgBph63rx5Y/70Pg9cClKVjBbe
+	alBOV5l6R8Yivt0+ULO6bzAQiwKRScSZ1Po2AjcaSpWhJKxpkZV6B974c8sCnfmy1R5ppPEgk+xjg
+	2/2M59Qq6ylmGuu8I5GcIDs/cUXizKa+cYPYXKQ+yGa3OJYrwUYgV9u0OuW8Q/aC+PgkFYeKPlDNb
+	H3E2FJjw==;
 From: Heiko Stuebner <heiko@sntech.de>
 To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Oded Gabbay <ogabbay@kernel.org>,
  MidG971 <midgy971@gmail.com>
@@ -51,11 +51,13 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
  Midgy BALON <midgy971@gmail.com>
-Subject: Re: [PATCH v2 0/4] accel: rocket: Add RK3568 NPU support
-Date: Fri, 29 May 2026 20:04:17 +0200
-Message-ID: <9739310.nlapOpYt14@phil>
-In-Reply-To: <20260529155824.3099831-1-midgy971@gmail.com>
-References: <20260529155824.3099831-1-midgy971@gmail.com>
+Subject: Re: [PATCH v2 1/4] accel: rocket: Add support for Rockchip RK3568
+Date: Fri, 29 May 2026 20:19:50 +0200
+Message-ID: <5132269.NnENhoQgcM@phil>
+In-Reply-To: <20260529155824.3099831-2-midgy971@gmail.com>
+References:
+ <20260529155824.3099831-1-midgy971@gmail.com>
+ <20260529155824.3099831-2-midgy971@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,7 +72,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
 	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -78,196 +80,135 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304456-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304458-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
 	FREEMAIL_TO(0.00)[tomeuvizoso.net,kernel.org,gmail.com];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[sntech.de:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[kernel.org,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,gmail.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sntech.de:dkim]
-X-Rspamd-Queue-Id: 18ECD6072C1
+X-Rspamd-Queue-Id: 62E5B6073DC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Hi,
 
-Am Freitag, 29. Mai 2026, 17:58:20 Mitteleurop=C3=A4ische Sommerzeit schrie=
+Am Freitag, 29. Mai 2026, 17:58:21 Mitteleurop=C3=A4ische Sommerzeit schrie=
 b MidG971:
 > From: Midgy BALON <midgy971@gmail.com>
 >=20
-> This series adds Rockchip RK3568 support to the upstream Rocket accel
-> driver (drivers/accel/rocket/), tested on a Radxa ROCK 3B board running
-> Linux 6.19-rc5.
+> The RK3568 has a single NVDLA-derived NPU core (0.8 TOPS), the same IP
+> family as the three-core RK3588 NPU already supported by the Rocket
+> driver. To accommodate both SoCs:
 >=20
-> The RK3568 carries a single NVDLA-derived NPU core (0.8 TOPS), the same
-> IP family as the three-core RK3588 NPU already supported by the driver.
-> The hardware register layout (pc/cna/core regions, interrupt, IOMMU) is
-> identical; the differences are:
->=20
->   - 32-bit DMA address limit (NPU AXI bus and IOMMU page walker are 32-bi=
-t)
->   - Requires explicit PVTPLL initialisation via two TF-A SCMI calls before
->     the NPU NOC bus can be de-idled
->   - Requires explicit PMU writes to power on the NPU domain (because the
->     RK3568 power domain RK3568_PD_NPU is always_on so the generic
->     pm-domains callback is a no-op) and de-idle the NPU NOC bus
->=20
-> Patch 1 introduces a per-SoC rocket_soc_data abstraction (dma_bits and
-> optional noc_init callback) plumbed via of_device_get_match_data(), and
-> adds RK3568 SoC support on top of it.  The DMA mask for the parent
-> DRM facade device is chosen based on the narrowest core present
-> (32-bit if any RK3568 core is in the system).
->=20
-> Patch 2 documents the new rk3568-rknn-core compatible and the
-> rockchip,pmu phandle that RK3568 requires; the sram-supply property
-> becomes conditional (RK3588-only).
->=20
-> Patches 3-4 add the RK3568 NPU and IOMMU nodes to rk356x-base.dtsi and
-> enable them on the Radxa ROCK 3B.
->=20
-> Verified on Radxa ROCK 3B (RK3568, 8 GB RAM):
->   - /dev/accel/accel0 created at boot
->   - dmesg: "Rockchip NPU core 0 version: 0"
->   - IOMMU domain attached per open()
->   - Job submission path complete: regcmd reaches the NPU's program
->     controller, PC processes all 135 regcmd entries, broadcasts to
->     sub-units, and advances to BSP-equivalent completion state
->     (PC_TASKST=3D0x11000)
->=20
-> Status of end-to-end inference: NOT YET WORKING.  After 12 days of
+>   - Introduce a per-SoC rocket_soc_data structure carrying dma_bits and
+> an optional noc_init callback, plumbed through of_device_get_match_data().
+>   - rocket_device_init() now scans for both rk3568 and rk3588 RKNN cores
+> and picks the narrower DMA width (32-bit) when an RK3568 core is present.
+>   - Add rk3568_soc_data and rk3568_noc_init() handling the three RK3568-
+> specific initialisation steps that must run after the power domain is
+> on and clocks are enabled:
 
-what about the iommu side, aka the parts mentioned in
-https://lore.kernel.org/linux-rockchip/5663593b-2c53-4632-ad2c-db9efa8e9ab2=
-@rock-chips.com/
-
-does that is in some way responsible for the not-yet-working state?
+if you need bullet points to describe your patch, that strongly indicates
+these need to be multple patches.
+I.e. the move of the relevant parts to a per-soc data is one patch
+(and only having the rk3588 soc-data in that one).
 
 
-Also in general, we don't want to merge partially working code.
-Either things work, or they don't, especially as right now you wouldn't
-even know if it's your code that is wrong, or some other part that needs
-changes.
 
-Also please reduce those novel-sized (generated) texts.
-=46or the cover-letter alone I'd need a fireplace, an armchair and a
-hot cocoa to fully parse it.
+>=20
+> 1. PVTPLL initialisation: The NPU uses a PVTPLL ring oscillator
+>    managed by TF-A via SCMI for rates above 400 MHz. A two-step
+>    clk_set_rate() sequence (600 MHz then 1 GHz) forces two SCMI calls
+>    to TF-A even if the kernel clock framework would skip an unchanged
+>    rate. The PVTPLL must be running before the NPU NOC bus will
+>    acknowledge a de-idle request.
+>=20
+> 2. Explicit NPU power-on (PWR_GATE_SFTCON): The RK3568_PD_NPU power
+>    domain is marked always_on in pm-domains.c, so the generic power
+>    domain framework power_on() callback is a no-op. The NPU hardware
+>    can remain power-gated at boot. Writing bit 1 =3D 0 to PWR_GATE_SFTCON
+>    (PMU offset 0xa0) explicitly powers on the NPU hardware before the
+>    de-idle request is issued.
+>=20
+> 3. NOC bus de-idle: Disable NPU NOC auto-idle (NOC_AUTO_CON0 bit 2),
+>    request de-idle (BUS_IDLE_SFTCON0 bit 2 =3D 0), then poll
+>    BUS_IDLE_ST (PMU offset 0x60) until bit 2 clears (bus active).
+>=20
+> The RK3568 DMA address space is limited to 32 bits, as the NPU AXI bus
+> and IOMMU page walker cannot address memory above 4 GB.
+>=20
+> All PMU accesses follow the RK3568 write-mask protocol: upper 16 bits are
+> the write-enable mask for the lower 16 bits.
+>=20
+> Signed-off-by: Midgy BALON <midgy971@gmail.com>
+
+[...]
+
+> diff --git a/drivers/accel/rocket/rocket_device.c b/drivers/accel/rocket/=
+rocket_device.c
+> index 46e6ee1e7..0ed8251c8 100644
+> --- a/drivers/accel/rocket/rocket_device.c
+> +++ b/drivers/accel/rocket/rocket_device.c
+> @@ -27,6 +27,9 @@ struct rocket_device *rocket_device_init(struct platfor=
+m_device *pdev,
+>  	ddev =3D &rdev->ddev;
+>  	dev_set_drvdata(dev, rdev);
+> =20
+> +	for_each_compatible_node(core_node, NULL, "rockchip,rk3568-rknn-core")
+> +		if (of_device_is_available(core_node))
+> +			num_cores++;
+>  	for_each_compatible_node(core_node, NULL, "rockchip,rk3588-rknn-core")
+>  		if (of_device_is_available(core_node))
+>  			num_cores++;
+> @@ -37,9 +40,25 @@ struct rocket_device *rocket_device_init(struct platfo=
+rm_device *pdev,
+> =20
+>  	dma_set_max_seg_size(dev, UINT_MAX);
+> =20
+> -	err =3D dma_set_mask_and_coherent(dev, DMA_BIT_MASK(40));
+> -	if (err)
+> -		return ERR_PTR(err);
+
+for both changes in rocket_device_init():
+
+rocket_device_init() gets called from the main probe function, so before
+calling rocket_device_init() you can already access the specific soc data
+from the compatible and can derive both that for_each above, and the dma-
+width, directly from that.
+
+No need for that loop below.
+
+> +	/* Use the DMA width of the first available RKNN core.  RK3568 cores
+> +	 * are 32-bit; RK3588 are 40-bit.  If both are present we pick the
+> +	 * narrower mask.
+> +	 */
+> +	{
+> +		struct device_node *n;
+> +		unsigned int dma_bits =3D 40;
+> +
+> +		for_each_compatible_node(n, NULL, "rockchip,rk3568-rknn-core")
+> +			if (of_device_is_available(n)) {
+> +				dma_bits =3D 32;
+> +				of_node_put(n);
+> +				break;
+> +			}
+> +
+> +		err =3D dma_set_mask_and_coherent(dev, DMA_BIT_MASK(dma_bits));
+> +		if (err)
+> +			return ERR_PTR(err);
+> +	}
 
 
 Heiko
-
-> investigation comparing rocket's behaviour against the vendor BSP RKNPU
-> driver, the NPU's MMIO state at submission time matches BSP byte-for-byte
-> (CNA configs, sub-unit OP_ENABLE registers, CBUF_CON0, etc.) but no
-> sub-unit transitions to its EXECUTER state and the completion IRQ never
-> fires.  The kernel driver and DT infrastructure in this series stand on
-> their own =E2=80=94 the driver loads, IOMMU domain is attached, regcmd re=
-aches
-> the NPU, PC state machine matches BSP =E2=80=94 but a mesa-side regcmd is=
-sue
-> (or another piece we have not yet found) blocks the final conv firing.
->=20
-> I am sending this series now because the kernel and DT pieces are
-> self-contained, verifiable, and ready for review.  A separate RFC on
-> mesa-dev will follow with the userspace findings.  Detailed investigation
-> notes are available on request; relevant highlights for the maintainer:
->=20
-> 1. Mesa rocket userspace (src/gallium/drivers/rocket/) targets RK3588.
->    For RK3568, several encoded values need adjustment.  Most notably,
->    sub-unit OP_ENABLE register offset on RK3568 is 0x_00c, not 0x_008.
->    Mesa emits writes at 0x1008/0x2008/0x3008/0x4008/0x5008 =E2=80=94 BSP =
-regcmd
->    captures show no writes at these offsets across two distinct conv
->    shapes (YOLOv5s 6x6/s2 and MobileNet 3x3/s2).  BSP writes OP_ENABLE
->    at offset 0x_00c with multi-bit values (CMAC=3D0x1, ACCU=3D0x0, DPU=3D=
-0x108,
->    DPU_RDMA=3D0x13f), not bit-0 booleans.  This and a handful of other
->    shape-independent value differences will be filed as a mesa RFC.
->=20
-> 2. The vendor BSP RKNPU driver writes the userspace task_base_addr to
->    PC_DMA_BASE_ADDR (PC offset 0x34); the rocket driver did not.  PC's
->    TASK_DMA engine reads struct rknpu_task descriptors from there.  With
->    task_pp_en=3D1 in TASK_CON and a kernel-allocated descriptor BO,
->    PC's task counter state machine advances from "stuck at 0xf000" to
->    the BSP completion state.  This is the most invasive piece of the
->    investigation and is held back for a follow-on patch (not in this
->    series); the current series gets the driver to a working /dev/accel/
->    node and an attached IOMMU domain, which is the right shape for v2.
->=20
-> 3. The NPU's master AXI port is 32-bit, but dma_alloc_coherent() through
->    the dma-iommu framework silently ignores GFP_DMA32 even with a 32-bit
->    dma_mask set on the device.  When BOs for the NPU are allocated kernel-
->    side, __get_free_pages(GFP_DMA32 | __GFP_ZERO, order) + dma_map_single=
-()
->    is the working pattern.  Not in this series, but might be a useful
->    documentation note for other 32-bit AXI accelerators using dma-iommu.
->
-> This series builds against current v6.19-rc5 with no checkpatch warnings,
-> the dtb builds, and dtbs_check passes.  The April v1 series included a
-> fifth patch ("Use of_find_matching_node() instead of for_each_of_allnodes=
-")
-> which is no longer required =E2=80=94 upstream rocket already uses
-> for_each_compatible_node() since v6.19-rc5.
->=20
-> Changes since v1 (April 2026, never sent on-list):
->   - Rebased to v6.19-rc5
->   - Patch 1 absorbed v1 patch 1 (obsolete) and now includes the
->     rocket_soc_data abstraction needed to support both RK3568 and
->     RK3588 cores in the same driver
->   - Cover letter expanded with current investigation status
->=20
-> Assisted by Claude Sonnet/Opus 4.x throughout the investigation.  All
-> findings empirically verified via BSP register captures and side-by-side
-> rocket execution traces on the same board.
->=20
-> Midgy BALON (4):
->   accel: rocket: Add support for Rockchip RK3568
->   dt-bindings: npu: rockchip,rk3588-rknn-core: Add RK3568 support
->   arm64: dts: rockchip: rk356x: Add NPU and its IOMMU
->   arm64: dts: rockchip: rk3568-rock-3b: Enable NPU
->=20
->  Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.yaml | 1=
-8 ++++++++++++++--
->  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi                        | 3=
-1 +++++++++++++++++++++++++++
->  arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts                      |  =
-9 ++++++++
->  drivers/accel/rocket/rocket_core.c                                   | 2=
-1 +++++++++++++++++-
->  drivers/accel/rocket/rocket_core.h                                   | 1=
-8 ++++++++++++++--
->  drivers/accel/rocket/rocket_device.c                                 | 2=
-3 +++++++++++++++++--
->  drivers/accel/rocket/rocket_drv.c                                    | 7=
-9 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
->  7 files changed, 192 insertions(+), 7 deletions(-)
->=20
->=20
-> Midgy BALON (4):
->   accel: rocket: Add support for Rockchip RK3568
->   dt-bindings: npu: rockchip,rk3588-rknn-core: Add RK3568 support
->   arm64: dts: rockchip: rk356x: Add NPU and its IOMMU
->   arm64: dts: rockchip: rk3568-rock-3b: Enable NPU
->=20
->  .../npu/rockchip,rk3588-rknn-core.yaml        | 18 ++++-
->  .../boot/dts/rockchip/rk3568-rock-3b.dts      |  9 +++
->  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 31 ++++++++
->  drivers/accel/rocket/rocket_core.c            | 18 ++++-
->  drivers/accel/rocket/rocket_core.h            | 16 +++++
->  drivers/accel/rocket/rocket_device.c          | 25 ++++++-
->  drivers/accel/rocket/rocket_drv.c             | 71 ++++++++++++++++++-
->  7 files changed, 182 insertions(+), 6 deletions(-)
->=20
->=20
-
-
 
 
 
