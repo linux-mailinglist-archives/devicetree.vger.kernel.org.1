@@ -1,182 +1,176 @@
-Return-Path: <devicetree+bounces-304059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304061-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EFc9M4EQGWrxpwgAu9opvQ
-	(envelope-from <devicetree+bounces-304059-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 06:05:21 +0200
+	id AMUbONURGWpKqAgAu9opvQ
+	(envelope-from <devicetree+bounces-304061-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 06:11:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 480A55FCE00
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 06:05:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 810B95FCEB8
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 06:11:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7B9893025A6F
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 04:05:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4E3BB300F748
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 04:11:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359F32FB969;
-	Fri, 29 May 2026 04:05:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288A6371046;
+	Fri, 29 May 2026 04:10:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ro1Fcayp"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="EX0fV5U2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-m15578.qiye.163.com (mail-m15578.qiye.163.com [101.71.155.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21FEA18DB1A
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 04:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7109370D4D;
+	Fri, 29 May 2026 04:10:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780027517; cv=none; b=m+jsViqnpkjb3tVHGcgN9YN7HyGZ71v7oFc+5e3o2KBxgLxrPSeF2cr8iuCI9/oCzgb1wXkOEv1RoOdb95Kp85/lDwsC7rD4jz4AX6wIFDNqx3aIlIOftVmvvF+LJimpBD2BkTIVEPF1OOMUFU7DqRVaBW0zv7Bxn0SRvky1B8c=
+	t=1780027857; cv=none; b=cEQqSXI5Kg6leLMZ4FJW0Rznqs+2adbNR8i94YwGoJjRRJHKTi2ckKzVAMjXg0tw3bRG9HtUu5boeWwwUPomnXnUGhkZNttelg7ep6hqynaKbuvjHEECtCVwPOneXvG6U7JyWdOR5YsAqBtWnHJx5vSTj12i1hVfyvwVbPbZkr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780027517; c=relaxed/simple;
-	bh=x1VS4UR/JdpWVYiWhTtigCNb6MWWAmacrG/WPeg5tK4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=nydCs60AYacCMC+h7k9KhSJvnlE5wS8aC4/vZdL/Gf1+LC7U9QSEsCHEDQpa7mPfgvJ4vgRMe55jIa+DK6iDLLeVynh0n9DBzQ5iQf/l0HXv+GQxraChNEg5PtIaFHLfZM6hkAxsM5UukfzrtaCC5T4w6KHnwp9z/Udjk3RVcm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ro1Fcayp; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FD111F00893;
-	Fri, 29 May 2026 04:05:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780027515;
-	bh=mena1tK4AnU+anxNQ8NciiOtob8BwjiJE8otWsr9wSs=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Ro1FcaypV591s31vnQGuzo07o3HeTwye3TVttRmEeqtRb1VyTg0L/kxg4EA3sbRD8
-	 kzuLg0eVQl1CKyWz/ojGYjkgHE+G9/z62UdEJL2JWpmOU83pvKCriQJRTWZSUqND/Q
-	 Q9WE5OlLUyvWywtwEGbwNMwOEJ1pDTWt3kSeLd+pWlMqn2x2neAhPtZLjZpMVeOZvE
-	 cvqCYM4zDOJKe+pHm+52kXUIN/coLC0kQiHpuxD95afwwqKHfDuYxJpikwFPpHd6ZR
-	 TvzUhX7TPDB8WPsACbTduPsHKIOG37iwHnWRDJqLJE806DCGT0OoucPe+w2Jj7Kt5v
-	 bgYpHp9ymhr9Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 5/7] pwm: tegra: Parametrize duty and scale field
- widths
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Mikko Perttunen" <mperttunen@nvidia.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260529-t264-pwm-v5-5-7bf9e405a96a@nvidia.com>
-References: <20260529-t264-pwm-v5-5-7bf9e405a96a@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 29 May 2026 04:05:14 +0000
-Message-Id: <20260529040515.3FD111F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780027857; c=relaxed/simple;
+	bh=M3tE1WPIzsoyL9eYIh3PS64dNcEV29PFlja64XmBbzM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=d5V+Nh3i+CcUc6hY38U3GiSe53t+645C8sKmfdyMmoX0pOS3uh+Qh692bwcu6MyGXrNwz54oIu5S26Z1m/kSzBb5FVQvE4y28B3PTbSvrUDsCgmvVBCiWTdpwWFXINxbeowhd2+5Mh1CRXTjFJO54guzIkSByp77YwAvOD7mQus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=EX0fV5U2; arc=none smtp.client-ip=101.71.155.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 404653b80;
+	Fri, 29 May 2026 12:05:34 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: hjc@rock-chips.com,
+	heiko@sntech.de,
+	andy.yan@rock-chips.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	nicolas.frattaroli@collabora.com,
+	cristian.ciocaltea@collabora.com,
+	sebastian.reichel@collabora.com,
+	dmitry.baryshkov@oss.qualcomm.com,
+	luca.ceresoli@bootlin.com,
+	dianders@chromium.org,
+	m.szyprowski@samsung.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v4 0/3] Add eDP lane mapping support
+Date: Fri, 29 May 2026 12:05:27 +0800
+Message-Id: <20260529040530.741336-1-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9e71e8ae0a03a8kunmaf9a1d48e6b97
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCThpKVh8eGU8fH0xPS09JSlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=EX0fV5U2VSGpba33TzMsCFZZW90mZSSHH2S/G4d3l2NMISqNkFlsVJOuH8HkfQqpMKWAAmZ9Oe861qGr9Deg9tFDMekzaRg7urkUwEz4G05im20HydE2iOK5J+OwHEJo04uwIxO2aYoxnhi3864z4fe+IhDx1dTvucVyfBximAE=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=DWebs7+LB3ebsJnzaXVAOm3CvPMJPGCS3AcXWbRqA24=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304059-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304061-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,rock-chips.com];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,nvidia.com:email]
-X-Rspamd-Queue-Id: 480A55FCE00
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.1:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:mid,rock-chips.com:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 810B95FCEB8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+This series adds configurable eDP physical lane mapping support via
+device tree data-lanes property.
 
-Pre-existing issues:
-- [High] Division by zero kernel panic in `tegra_pwm_probe` if the retrieve=
-d clock rate is less than `TEGRA_PWM_DEPTH` (256).
-- [High] Integer truncation of 64-bit PWM state values to 32-bit signed int=
-egers in `tegra_pwm_config` leading to a division by zero kernel panic.
---
+Lane mapping is mainly used for below scenarios:
+1. Correct PCB lane swap and differential line routing crossover
+   without hardware changes;
+2. Adapt mismatched lane pin definitions between SoC and eDP panel;
+3. Support multiple panel hardware variants on the same board
+   by configuring data-lanes in device tree only.
 
-commit 0c0ba991124cb1c177969041379fb6a95cd2a4c9
-Author: Mikko Perttunen <mperttunen@nvidia.com>
+The series includes driver implementation and device tree binding
+updates to support custom lane mapping configuration from endpoint
+node, and keeps default linear lane order if no configuration is given.
 
-pwm: tegra: Parametrize duty and scale field widths
+Patch 1: Add endpoint data-lanes property to analogix-dp binding
+Patch 2: Add validation for samsung,lane-count property as preparation
+Patch 3: Implement lane mapping in analogix_dp driver
 
-This patch parametrizes the scale field width for the Tegra PWM driver to
-accommodate wider fields in Tegra264. It separates the depth value from the
-duty field width and removes the duty field width definition.
+Damon Ding (3):
+  dt-bindings: display: bridge: analogix-dp: Add data-lanes support for
+    endpoint
+  drm/bridge: analogix_dp: Add validation for samsung,lane-count
+    property
+  drm/bridge: analogix_dp: Add support for optional data-lanes mapping
 
-> diff --git a/drivers/pwm/pwm-tegra.c b/drivers/pwm/pwm-tegra.c
-> index c82d537436a0f..7c7b884d44363 100644
-> --- a/drivers/pwm/pwm-tegra.c
-> +++ b/drivers/pwm/pwm-tegra.c
+ .../bindings/display/bridge/analogix,dp.yaml  | 19 +++--
+ .../rockchip/rockchip,analogix-dp.yaml        |  1 +
+ .../drm/bridge/analogix/analogix_dp_core.c    | 69 ++++++++++++++++++-
+ .../drm/bridge/analogix/analogix_dp_core.h    |  4 +-
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.c | 15 ++--
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.h |  4 ++
+ 6 files changed, 96 insertions(+), 16 deletions(-)
 
-[ ... ]
+---
 
-> @@ -105,22 +107,22 @@ static int tegra_pwm_config(struct pwm_chip *chip, =
-struct pwm_device *pwm,
-> =20
->  	/*
->  	 * Convert from duty_ns / period_ns to a fixed number of duty ticks
-> -	 * per (1 << TEGRA_PWM_DUTY_WIDTH) cycles and make sure to round to the
-> +	 * per TEGRA_PWM_DEPTH cycles and make sure to round to the
->  	 * nearest integer during division.
->  	 */
-> -	c *=3D (1 << TEGRA_PWM_DUTY_WIDTH);
-> +	c *=3D TEGRA_PWM_DEPTH;
->  	c =3D DIV_ROUND_CLOSEST_ULL(c, period_ns);
+Changes in v2:
+- Add lane mapping application scenarios in commit message.
+- Remove redundant deprecated property 'data-lanes' for eDP node.
+- Update port@1 $ref to /schemas/graph.yaml#/$defs/port-base.
 
-[Severity: High]
-This is a pre-existing issue, but could this division result in a kernel
-panic if period_ns becomes zero?
+Changes in v3:
+- Squash [PATCH v2 2/3] into [PATCH v2 1/3].
+- Add unevaluatedProperties: false to both the port@1 and endpoint
+  nodes.
 
-The core PWM framework provides 64-bit unsigned integers for the duty cycle
-and period. When tegra_pwm_apply() passes these to tegra_pwm_config(), they
-are cast to 32-bit signed integers (int duty_ns, int period_ns).
+Changes in v4:
+- Add validation for samsung,lane-count property as preparation.
 
-If a user sets a period of 4294967296 ns (2^32 ns, roughly 4.29 seconds) via
-sysfs, the 64-bit value gets truncated to period_ns =3D 0.=20
+-- 
+2.34.1
 
-Since the DIV_ROUND_CLOSEST_ULL() division occurs before any bounds checking
-against min_period_ns, does this allow an unprivileged user with sysfs acce=
-ss
-to trigger a division by zero exception and panic the kernel?
-
-[ ... ]
-
-> @@ -319,7 +321,7 @@ static int tegra_pwm_probe(struct platform_device *pd=
-ev)
-> =20
->  	/* Set minimum limit of PWM period for the IP */
->  	pc->min_period_ns =3D
-> -	    (NSEC_PER_SEC / (pc->clk_rate >> TEGRA_PWM_DUTY_WIDTH)) + 1;
-> +	    (NSEC_PER_SEC / (pc->clk_rate / TEGRA_PWM_DEPTH)) + 1;
-
-[Severity: High]
-This isn't a bug introduced by this patch, but can this lead to a division
-by zero exception during probe?
-
-If clk_get_rate() returns a rate less than TEGRA_PWM_DEPTH (256) or fails
-and returns 0, the denominator (pc->clk_rate / TEGRA_PWM_DEPTH) evaluates
-to 0.
-
-Will the subsequent NSEC_PER_SEC / 0 operation cause an immediate kernel pa=
-nic
-during boot? Should the driver validate pc->clk_rate and return an error if
-it is too low?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260529-t264-pwm-v=
-5-0-7bf9e405a96a@nvidia.com?part=3D5
 
