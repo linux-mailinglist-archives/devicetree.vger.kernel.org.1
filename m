@@ -1,53 +1,52 @@
-Return-Path: <devicetree+bounces-304129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304131-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kPQgD2VUGWphvQgAu9opvQ
-	(envelope-from <devicetree+bounces-304129-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 10:55:01 +0200
+	id 0BqIDzlVGWqYvAgAu9opvQ
+	(envelope-from <devicetree+bounces-304131-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 10:58:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C8505FF91C
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 10:55:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 965505FF9FC
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 10:58:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1AC1631B585B
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 08:48:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 14B2F31CE5FC
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 08:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33FE3BED01;
-	Fri, 29 May 2026 08:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E43C3C0619;
+	Fri, 29 May 2026 08:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="k2c0tiLM"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="O8s48cSf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6F63B47CD;
-	Fri, 29 May 2026 08:47:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E1DA3BAD89;
+	Fri, 29 May 2026 08:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780044466; cv=none; b=Le8oLBLkrIWRF6XT4asabZ7Y1hbCwCt72Fw3B+DQa2lngKZd+FEcfu/MpeEgho4JNs6OAYkmX79qLQTxe7cHpx6KDxtA7yumiCB3q31kMnpxJ6fsnBFUWAlDR3LgfP46HiT+FDfYK6AD9XZmiGo/ympPJmR7EZ/zjn+2HC2h6vI=
+	t=1780044469; cv=none; b=gD4xx61A6pDEDaVWDtZ6lLzLNJaKfsYI1kSVmUn/13uX+h60FFoqCjQaFjSDJQiPslJkNaGFNg5UtIVZHDZ8YV7K3ir1BOjkj90pvLA4u19sKLY3jH4aZL5Iv/5aDUrBhLSPlc2E+73g/+ula3kYRMn/JKe7wYkAb2PGxXtBrUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780044466; c=relaxed/simple;
-	bh=u7ub0LTq/LG3vy2G9rU1xYBZYiavDBGmr5fWkQDAfvw=;
+	s=arc-20240116; t=1780044469; c=relaxed/simple;
+	bh=DHuOXKyQxpcTOy5x53Zexfuh3BWQvmfeYJKfQK1Z26s=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZbW1ZjfQLZNPfJMaMKRob5Fj1iZmaPdusfIo7WMhtVbD34uOCLujHnjfiBrhcMdoxf+xjPO9E3D/dPNJQEVvRyTB+Q18O+7wZDfrlMLonCs0vzisUk74Cf7b6/56YrRNsK4jUYucWVMyJ36BNAxzunznt8yQJQdSfanmOb8+1i8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=k2c0tiLM; arc=none smtp.client-ip=213.167.242.64
+	 In-Reply-To:To:Cc; b=RO55ziMqIkEC0PcgcDBd+p3bxwkMlrUEib7RL1L7rbKhb5tXsZlK/4kxgCI/xWQR97rUNiHEYV0M1Z+JSEKF14kf6thpBJT/ik+77p/Sgvh9jeNZg9y3uZLRbz/h1PkZzpyEEk1PyU55Drt/tVIrfdrG6E5HT/fCV5hYjD+72zY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=O8s48cSf; arc=none smtp.client-ip=213.167.242.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
 Received: from [127.0.1.1] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 56BC57B41;
-	Fri, 29 May 2026 10:47:04 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 95C727B4D;
+	Fri, 29 May 2026 10:47:05 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1780044425;
-	bh=u7ub0LTq/LG3vy2G9rU1xYBZYiavDBGmr5fWkQDAfvw=;
+	s=mail; t=1780044426;
+	bh=DHuOXKyQxpcTOy5x53Zexfuh3BWQvmfeYJKfQK1Z26s=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=k2c0tiLMtbj9x3ruTO1G5u+mQPy872fvMwsRLRPoWQbSOTziBYBmvosni7z6iaHxL
-	 VddCKR2s5RGHSnuj89m0LkmRplEkuUCS6zVfeNnroWT5klMtPdI334zBxmtXxhX1vX
-	 3sJ0M9LdTgZJaSLOw4OKSmCWdeCR9Zw91HhWG5qo=
+	b=O8s48cSfjhNkiIx/wnKhC+xMIyi3+m3KeSB/uvv3vDNyai+pKDHiAKPYzRXOxLf69
+	 SIdadf8OleiVZsP+2j2fZXfsSFpSvVBB/VKmTj9zAIPnX1mQh3HeNcsY5zdnleA1la
+	 VHVGPUpbN4KLou1kltJe+tSPFKn0Njv/gkGP0Hhk=
 From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Date: Fri, 29 May 2026 11:45:39 +0300
-Subject: [PATCH v3 09/15] drm/tidss: Add external data and sync signal edge
- configuration
+Date: Fri, 29 May 2026 11:45:40 +0300
+Subject: [PATCH v3 10/15] drm/tidss: Add support for DPIENABLE bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,7 +55,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260529-beagley-ai-display-v3-9-7fefdc5d1adf@ideasonboard.com>
+Message-Id: <20260529-beagley-ai-display-v3-10-7fefdc5d1adf@ideasonboard.com>
 References: <20260529-beagley-ai-display-v3-0-7fefdc5d1adf@ideasonboard.com>
 In-Reply-To: <20260529-beagley-ai-display-v3-0-7fefdc5d1adf@ideasonboard.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -72,21 +71,21 @@ Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3376;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4278;
  i=tomi.valkeinen@ideasonboard.com; h=from:subject:message-id;
- bh=u7ub0LTq/LG3vy2G9rU1xYBZYiavDBGmr5fWkQDAfvw=;
- b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBqGVKOpGTOrBpu7DnAvMn2vUXlqc+3UkJIlVwgh
- TJrA2Odpg6JAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCahlSjgAKCRD6PaqMvJYe
- 9WiPEACqKzBs/FHRnaiJRIHKrPMjTlqh9eERaooXqiPUii4kISHReqEVLizSgI6QLgAsjAWBXLh
- esVVvhFkp2beNEKidE84COGKtvOR6UtuloOQlwjNBXIVfs2OavSORoKohn4YDTfqmw+6PB+q98z
- 51TVpqUevuiUdSBM6V/A59/xbIPMYcP2AZbOr5mDooSVQR4zCrU54v8Ef2ZYQFF9DwiZhJ0hR6N
- X0NPxaoaBQyrCHHHyxC79+vCo5vAMGioyc90Qd7Cpdt7ZVru8V8aTyqobRNmhK1XXg/HPyG599F
- oz1Kfl+S853lKrt1f2BPj03/Edt/Jd7yFWJdF3i4RSgwp/KhZhVY7Y0cax0SX2UfOhOJJFJg2G4
- ySKNcsj6D2rvxNKGKntW0/8eukDgFlBxqdWgc4Kt30qMCzOT6BZHwv8myZAO2mClsjusQBhsmgS
- BEBt/l2Y1vi67CIx1/4vYjSA80/rsq+46z1gJ4LQi1EPg68qzWqkIMKaRnQDl5nc9Tb0ewrK5+k
- 2gZO45XsF+d7+DpFayY84D4t8wrSF6vkp2Q5mCGtc7vnA4+KzLBpn5kK4hcdzkKBHfCoov8d3dU
- sDe+xu4VT79NiNCUKwle6aMb4YM5YX4a6YLENAUtdapaT+r4IHWEhwGKoUxmel4OvyNj8yju2Wp
- BIPur3rlO/Ptodg==
+ bh=DHuOXKyQxpcTOy5x53Zexfuh3BWQvmfeYJKfQK1Z26s=;
+ b=owEBbQKS/ZANAwAIAfo9qoy8lh71AcsmYgBqGVKOPFfKPW4Yjy901NZa/0LRqzdDa3Z2EXPLn
+ 3wJhLujCxyJAjMEAAEIAB0WIQTEOAw+ll79gQef86f6PaqMvJYe9QUCahlSjgAKCRD6PaqMvJYe
+ 9dtiD/4hFxJJ5VPq7f7l7p1JGOByDqT4a87uJwq8rvzI5ZHLIQ8B7t7PKnu+e3kt6PcNhjfstEm
+ Bt/h+F+x14Bv2eSowjm5Z33IYY0s1xZkjSAz2bQvFLWok++etmjqAszHh4jgRGkpI4hZfVsDHux
+ 7GR+08A276Ipo+2oQyYE3oqBZjdkqPuBsOkqpPcnoaRihChuCAABAMCdQHXdD0SAHcPNXCkThUY
+ rDgtrdrMuCGwMKYE3HkcvLol7aPLM7SkD7JMiWiv18tnI4yg17lOEHWj3Kj0g42dcgrWrv55hvC
+ fYTUo/P3yaN0fq+p2M0ckyiklU1SiYNaEQzgQG5GwueiXe4oUu5yEuOsUhcbBngRqdDloAI33Ez
+ WC9GmanZK4YeIuMRXJNspGro9qSjcJC6Zg9U9hG7+Vv2FTxt0DxfHvBK84kH0rCs/VgliYFM+4t
+ eXD5nu/vmUcztiXiF90qnkSZDxTQyrs4wqFDEHR4+oI1VtORVbkvbt6N7t3namKKDXexEMVC1Fn
+ /Q++VOcfNaOQ/5AW+PgPnyKmAB48IRUtBO9T2uDI+61HYdYX8QlJxWE0xwO7DjCNRPW2FBVSVJV
+ ApbIH2UuuKMkZVp6hAVE6EdP5T55fbU9ZJNTpcKQhHLGCmmVoSovbZCaf8F0F1xNjkTBZtqpvqE
+ jHuLcV3d/dWScWw==
 X-Developer-Key: i=tomi.valkeinen@ideasonboard.com; a=openpgp;
  fpr=C4380C3E965EFD81079FF3A7FA3DAA8CBC961EF5
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -94,12 +93,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
 	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304129-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304131-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linux.dev,ti.com,bootlin.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -115,99 +114,117 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ideasonboard.com:email,ideasonboard.com:mid,ideasonboard.com:dkim,bootlin.com:email]
-X-Rspamd-Queue-Id: 8C8505FF91C
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ti.com:email,ideasonboard.com:email,ideasonboard.com:mid,ideasonboard.com:dkim]
+X-Rspamd-Queue-Id: 965505FF9FC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The DPI output pipeline in K3 SoCs contains the display subsystem (DSS)
-which produces the in-SoC parallel video signal, and a DPI block which
-adjusts the signal to the external MIPI DPI output.
+Many (or even all?) K3 SoCs have DSS VP_CONTROL.DPIENABLE bit described
+in their documentation. This bit controls whether the DPI block is
+enabled, and is set to 1 by default (i.e. DPI is enabled at HW reset).
 
-The DSS IP has registers to configure whether the data and sync signals
-are driven on rising or falling clock edge, and on some SoCs these are
-automatically conveyed to the DPI block which needs that configuration
-to properly output the MIPI DPI signal.
+However, in almost all SoCs the setting does not actually do anything,
+and at the moment the bit is not managed by the driver.
 
-However, on some SoCs the DPI block configuration has to be done
-manually, using an extra register outside the DSS, DPI0_CLK_CTRL from
-MAIN_CTRL_MMR_CFG0 block, which controls the DPI block's behavior.
+The exception is AM62L, which does have DPIENABLE connected, and
+disabling the DPI block when it is not in use provides power savings.
 
-Add the support to get the regmap to the register via syscon, and
-configure the bits before enabling the video output.
+Let's add a new feature flag for this, 'has_vp_control_dpienable', and
+implement the support.  Disable DPIENABLE for all videoports at resume
+time, so that it is 0 by default. Specifically enable and disable it in
+dispc_vp_enable() and dispc_vp_disable() for DPI output.
 
-Original patch from Louis Chauvet <louis.chauvet@bootlin.com>
-
+Tested-by: Swamil Jain <s-jain1@ti.com>
 Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 ---
- drivers/gpu/drm/tidss/tidss_dispc.c      | 25 +++++++++++++++++++++++++
- drivers/gpu/drm/tidss/tidss_dispc_regs.h |  4 ++++
- 2 files changed, 29 insertions(+)
+ drivers/gpu/drm/tidss/tidss_dispc.c      | 23 +++++++++++++++++++++--
+ drivers/gpu/drm/tidss/tidss_dispc.h      |  2 ++
+ drivers/gpu/drm/tidss/tidss_dispc_regs.h |  1 +
+ 3 files changed, 24 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
-index c21ac3f51720..08342a9a5e8c 100644
+index 08342a9a5e8c..1b8d52f10673 100644
 --- a/drivers/gpu/drm/tidss/tidss_dispc.c
 +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
-@@ -467,6 +467,8 @@ struct dispc_device {
- 	const struct dispc_features *feat;
+@@ -442,6 +442,8 @@ const struct dispc_features dispc_am62l_feats = {
+ 	},
  
- 	struct clk *fclk;
-+	struct regmap *syscon_dpi_io_ctrl;
-+	unsigned int syscon_dpi_io_ctrl_offset;
- 
- 	bool is_enabled;
- 
-@@ -1201,6 +1203,13 @@ void dispc_vp_prepare(struct dispc_device *dispc, u32 hw_videoport,
- 				  mode->crtc_hdisplay - 1) |
- 		       FIELD_PREP(DISPC_VP_SIZE_SCREEN_VDISPLAY_MASK,
- 				  mode->crtc_vdisplay - 1));
+ 	.vid_order = {0},
 +
-+	if (dispc->vp_data[hw_videoport].dpi_output && dispc->syscon_dpi_io_ctrl) {
-+		regmap_write(dispc->syscon_dpi_io_ctrl,
-+			     dispc->syscon_dpi_io_ctrl_offset + 0x0,
-+			     (!ipc ? DPI0_CLK_CTRL_DATA_CLK_INVDIS : 0) |
-+			     (rf ? DPI0_CLK_CTRL_SYNC_CLK_INVDIS : 0));
-+	}
++	.has_vp_control_dpienable = true,
+ };
+ 
+ static const u16 *dispc_common_regmap;
+@@ -1210,6 +1212,11 @@ void dispc_vp_prepare(struct dispc_device *dispc, u32 hw_videoport,
+ 			     (!ipc ? DPI0_CLK_CTRL_DATA_CLK_INVDIS : 0) |
+ 			     (rf ? DPI0_CLK_CTRL_SYNC_CLK_INVDIS : 0));
+ 	}
++
++	if (dispc->feat->has_vp_control_dpienable &&
++	    dispc->vp_data[hw_videoport].dpi_output)
++		VP_REG_FLD_MOD(dispc, hw_videoport, DISPC_VP_CONTROL, 1,
++			       DISPC_VP_CONTROL_DPIENABLE_MASK);
  }
  
  void dispc_vp_enable(struct dispc_device *dispc, u32 hw_videoport)
-@@ -2989,6 +2998,22 @@ int dispc_init(struct tidss_device *tidss)
+@@ -1226,6 +1233,11 @@ void dispc_vp_disable(struct dispc_device *dispc, u32 hw_videoport)
  
- 	dispc_init_errata(dispc);
+ void dispc_vp_unprepare(struct dispc_device *dispc, u32 hw_videoport)
+ {
++	if (dispc->feat->has_vp_control_dpienable &&
++	    dispc->vp_data[hw_videoport].dpi_output)
++		VP_REG_FLD_MOD(dispc, hw_videoport, DISPC_VP_CONTROL, 0,
++			       DISPC_VP_CONTROL_DPIENABLE_MASK);
++
+ 	if (dispc->feat->vp_bus_type[hw_videoport] == DISPC_VP_OLDI_AM65X) {
+ 		dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 0);
  
-+	dispc->syscon_dpi_io_ctrl =
-+		syscon_regmap_lookup_by_phandle_args(tidss->dev->of_node,
-+						     "ti,dpi-io-ctrl", 1,
-+						     &dispc->syscon_dpi_io_ctrl_offset);
+@@ -2445,10 +2457,17 @@ static void dispc_vp_init(struct dispc_device *dispc)
+ 
+ 	dev_dbg(dispc->dev, "%s()\n", __func__);
+ 
+-	/* Enable the gamma Shadow bit-field for all VPs*/
+-	for (i = 0; i < dispc->feat->num_vps; i++)
++	for (i = 0; i < dispc->feat->num_vps; i++) {
++		/* Enable the gamma Shadow bit-field for all VPs*/
+ 		VP_REG_FLD_MOD(dispc, i, DISPC_VP_CONFIG, 1,
+ 			       DISPC_VP_CONFIG_GAMMAENABLE_MASK);
 +
-+	if (IS_ERR(dispc->syscon_dpi_io_ctrl)) {
-+		r = PTR_ERR(dispc->syscon_dpi_io_ctrl);
-+
-+		if (r == -ENOENT) {
-+			dispc->syscon_dpi_io_ctrl = NULL;
-+		} else {
-+			return dev_err_probe(dispc->dev, r,
-+					     "failed to get 'ti,dpi-io-ctrl'\n");
++		if (dispc->feat->has_vp_control_dpienable) {
++			/* Disable DPIENABLE for all VPs */
++			VP_REG_FLD_MOD(dispc, i, DISPC_VP_CONTROL, 0,
++				       DISPC_VP_CONTROL_DPIENABLE_MASK);
 +		}
 +	}
-+
- 	dispc->fourccs = devm_kcalloc(dev, ARRAY_SIZE(dispc_color_formats),
- 				      sizeof(*dispc->fourccs), GFP_KERNEL);
- 	if (!dispc->fourccs)
+ }
+ 
+ static void dispc_initial_config(struct dispc_device *dispc)
+diff --git a/drivers/gpu/drm/tidss/tidss_dispc.h b/drivers/gpu/drm/tidss/tidss_dispc.h
+index 6f53d554259c..0fbfb86adfbf 100644
+--- a/drivers/gpu/drm/tidss/tidss_dispc.h
++++ b/drivers/gpu/drm/tidss/tidss_dispc.h
+@@ -92,6 +92,8 @@ struct dispc_features {
+ 	u32 num_vids;
+ 	struct dispc_vid_info vid_info[TIDSS_MAX_PLANES];
+ 	u32 vid_order[TIDSS_MAX_PLANES];
++	/* The DSS has VP_CONTROL.DPIENABLE bit */
++	bool has_vp_control_dpienable;
+ };
+ 
+ extern const struct dispc_features dispc_k2g_feats;
 diff --git a/drivers/gpu/drm/tidss/tidss_dispc_regs.h b/drivers/gpu/drm/tidss/tidss_dispc_regs.h
-index 382027dddce8..4cdde24d8372 100644
+index 4cdde24d8372..4246c72efdd5 100644
 --- a/drivers/gpu/drm/tidss/tidss_dispc_regs.h
 +++ b/drivers/gpu/drm/tidss/tidss_dispc_regs.h
-@@ -333,4 +333,8 @@ enum oldi_mode_reg_val { SPWG_18 = 0, JEIDA_24 = 1, SPWG_24 = 2 };
+@@ -230,6 +230,7 @@ enum dispc_common_regs {
  
- #define AM65X_OLDI_PWRDN_TX		BIT(8)
+ #define DISPC_VP_CONTROL			0x4
+ #define DISPC_VP_CONTROL_DATALINES_MASK			GENMASK(10, 8)
++#define DISPC_VP_CONTROL_DPIENABLE_MASK			GENMASK(6, 6)
+ #define DISPC_VP_CONTROL_GOBIT_MASK			GENMASK(5, 5)
+ #define DISPC_VP_CONTROL_ENABLE_MASK			GENMASK(0, 0)
  
-+/* Bits in the MAIN_CTRL_MMR_CFG0_DPI0_CLK_CTRL register */
-+#define DPI0_CLK_CTRL_DATA_CLK_INVDIS BIT(8)
-+#define DPI0_CLK_CTRL_SYNC_CLK_INVDIS BIT(9)
-+
- #endif /* __TIDSS_DISPC_REGS_H */
 
 -- 
 2.43.0
