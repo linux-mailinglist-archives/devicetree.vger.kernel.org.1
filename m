@@ -1,104 +1,83 @@
-Return-Path: <devicetree+bounces-304028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304030-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJZNIZfnGGruoggAu9opvQ
-	(envelope-from <devicetree+bounces-304028-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 03:10:47 +0200
+	id WD1LOBjoGGruoggAu9opvQ
+	(envelope-from <devicetree+bounces-304030-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 03:12:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F8CA5FBDA8
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 03:10:46 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 720325FBE3B
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 03:12:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0FD66303E0BB
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 01:10:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6DE8830C29A2
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 01:11:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A35C53546E5;
-	Fri, 29 May 2026 01:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA7E355F47;
+	Fri, 29 May 2026 01:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k2U6yIqs";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KUk8rV8q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kyd/RcmH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D500351C2A
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 01:10:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C686E355F36
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 01:10:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780017038; cv=none; b=gmu4+e86OmvZVJR3Bxti/7ipDJ40z+bUOjulBOPKL+IsHwggIWtPmARXb30HqzfL76mZ5f2nQ1w7ndUj181gl1/jOvHBOoKlyj6685+l8rx75auezl0TD5SCeHOhtHH99Cp7uZAG4bgrG6udBBeGACNxED9+/3oRQ2pwyj9+PoA=
+	t=1780017049; cv=none; b=MrMjO7N+YIyWip2TqxRTAYHjgEdtzBzDqnc8/tjJdIak5AKJJLx99tYzL4wH2KmdSVuFZtbfH403lxsxvBmom0o/DiD34GQh7hE18Rj/YOA7C8nNe45HNhjdP/xdIkZ3kbxBmQBHP08xBUgI0tfJvHU559tWgTG90e3g9KZ/axE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780017038; c=relaxed/simple;
-	bh=SqRYyWGxDpggIYoY312hZiHBKDzS7/Y1bj/4uMnD8EA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=b2K6geOPLCjSn4dWGt1mgiF/WXJo0Ja5ZyWGHAPRRo/cjMnclfHaPTXg/qom36AbckFGlEsAbVtPD7qmyteshFCaVVd96j0JmBmmL0iTMQZU8sUf5aj6CCBFSOy0vMal0PjA5pGm3vwayHnQj8A/wCCW2Ps3m/IQvU9HkJeun2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k2U6yIqs; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KUk8rV8q; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64SKkddT1931979
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 01:10:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3m15oxw937hnCUF7HC9R6PrqWp2ss+eoVplrm1OGcVw=; b=k2U6yIqsbXGzlfv9
-	Jkz8GPwIROxGvmYMXqyCLYLTfEzhcT2hfU62gKWG9yu3gPwFgIBn3CEH+1Wl1Z+M
-	+51S11FRPKOH9Jt7ieKGFHwLXqoNgq3yQqFqUYE/kygOZ0nedyyQmhObq1lEZFtV
-	XU+N+fc6OebMrbwH7NwhIcXGRmlXaqIELHPIUs3YP/1ztsnFEWTofXcAWWVXKqlV
-	++h3ZY6O6dy3qa0t0h/7w3ac+sMrGllcleNwUiVpaIfSU8Dj+7ytJWq+IASKELMv
-	nBgJMWZikQ0wrBvT9njDdFnAiSgOWkc67SR0PLN2FAOruVl9PBzmS1WIWDYRI0Dj
-	wLlcgg==
-Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eesxa9wj2-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 01:10:36 +0000 (GMT)
-Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-304e7fbfaf5so1707512eec.1
-        for <devicetree@vger.kernel.org>; Thu, 28 May 2026 18:10:36 -0700 (PDT)
+	s=arc-20240116; t=1780017049; c=relaxed/simple;
+	bh=3HgbklMkFFcdOufEzpAr23OlOouec0egYoQeV8Kj2ew=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gd2jj1uA3bzTQB2K6U/tdyvX7ZXn47ILmGHhpwyOYyiwfKZn1s1nkKOn5hQdei02BMj9RJHfi/g97GrMu6b00toux7tzNCDHK3JLERa61/fZ7+tKqmGZJPxxxqhTA5dORZ5TtIOnGNNDUZxOw/NC+0L/f+biB7Jhlp9OWAOvtZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kyd/RcmH; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-575320e6f2aso10640433e0c.0
+        for <devicetree@vger.kernel.org>; Thu, 28 May 2026 18:10:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780017036; x=1780621836; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3m15oxw937hnCUF7HC9R6PrqWp2ss+eoVplrm1OGcVw=;
-        b=KUk8rV8qsejG9eczKExSh4KZ0MZqZSFi3grNHx6m+yqxZhw+T6C6/8BwEy5shQx3iS
-         04E24UMeiWVvCdLkNLMhMuxvbXyNRZnP0GmIprt4Zt1xy5RkfjzvXC2czhU7rPSqdAkV
-         +gtu7+RvYQJz8O+YQ4UrZUs3w77Ee+0b2zB06+NCMHkW+N4YRA4vcgVCjaf3uDlx9GVu
-         E8cxVMmmdukEfZfxkHlEWCsXZa8fOLHEyIm6AKNHvJI7u6+SOVrE6fDqWQPRMIkObFmN
-         4AKg/YgZUaiSZw52P5yWPvTjInw5t6VL5f+BBHQcIBK4qvsyp2lFztN9QSj70MBcnz+7
-         uF7g==
+        d=gmail.com; s=20251104; t=1780017047; x=1780621847; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+9rCaR21M/nc3/i6qSSe04SnKU+FWJmA2yPT3FUP/WY=;
+        b=kyd/RcmHOQbYxnITQIEkQLytunQB7VbtsO9TVTBobkiygs1k66jGmsjhsEdx5CX7sN
+         YMx9jaBL7dgb/D0bltk9l+flHmaNWSCIBffcvvqDhbaRgJFrhrUwZQAzuM/bCOo12v+2
+         Kyq8x53jkGNgVpYAlUgsaZaf/eRHi7nbSSNswyUb9OGZXvvvwveaVI5VWTUCgfpzJp6J
+         bFP2Yua5XbFi3A2RAnUbqBg50ZryHXUWZW5/gJ0v7AAeor1tlkGT1uDNc7Y6igOOUI9g
+         GQ/b9Naxc4MP9OGkL2UfW/T9y16RETvnBasfPLlZtZRbRj9dLCNIS84z+z5Sk1IpEEES
+         gZ6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780017036; x=1780621836;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3m15oxw937hnCUF7HC9R6PrqWp2ss+eoVplrm1OGcVw=;
-        b=prowSwZXXi1uFv06RoJa1AdVB6FZGJ5s4GAwOW4t0kvNLvH0qBqi+8z51oUQA0Jb2S
-         /nlxHI0IMgjp2rR5jYHfLbEEulO1Vf443I9V1ZL9ewuL2hQLyJi5mR/7kkeuqOwFN+VK
-         jNJCf5HdDELmqouovW333ljrQe/Z7Ai8FjL3ULyS3dmZ4FMqyEzsG9xqoFVpYurvmA2S
-         skEFmEoJheE9LujzZQy6FuE2NKbbnVIrT9FQPK5zIrxrCSkDWbZBnHLosg3vevQBQu1E
-         qyT70VW6YmGU241Px/begKGUVfrYC/14Cok5dq07wHCY5WxAndcx+Ovl7ez7vqtgfjlX
-         owYw==
-X-Forwarded-Encrypted: i=1; AFNElJ9T46AR7VBrWwd1TjnQ/vecl7iHP4nb6yCBa5yd3EcqeyKhQO96qH9xkj761xTTByDdhXKMZxKvzS0+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0BoqwhGbOU4SI0+BrNJloLLrU8516HORyHCUrq1EouXlKyARB
-	rkVIQDG4DwiOViMdW6xDwX59QTCY0Y4xO/Zi/+1K9y66PEzmVl1GC9JfkdWDoWCXTc+PJ51L+Ot
-	XfUkZ5F8bWmI4s8PB0hWzIQsFDvoK9Bn1SiYHZEhV6E0Wx4q6oE50ZxOJEbPOmlrx
-X-Gm-Gg: Acq92OFwExcQOks1zQPrPdxriHv1/jFCWMEAZB0tlf41bTjdTyJgdEySxSrmlhcWYHA
-	jmcZbTgQtaWzEqvbPJdqtrmB0BR8EX6IXaORMHrZAteCHATqNXKd2EZfP5vdiYS6YUFcHxg23I1
-	//AAk+x2bxS4+Hy5XDOsF8kBDjmX3eFOUMQ1tWI8Yn7BkS+HxR07Vl1dBjGeHzARD38r+2suLjq
-	NyAYt5SEeNwAFzNypn5DbzaKKiuYYuLfkqNRqWlPhqlhGTqx1kgSfFbJPNrq7atHDxQuQiyAXen
-	eN2aP6pSVzpk9fa70yI/49sN//5Uht3XgQfceax4eI+ZhJmx1T82r3YFzUGsipatuJMcqot+sXs
-	MbMBmGcGXVxyqEBZWS0P9wjsWAofwlkGGPjHyg4lBuRBxfgGsBZ2p5/2vBclZwbL1dlPeqQ==
-X-Received: by 2002:a05:7300:7313:b0:2ed:e15:c922 with SMTP id 5a478bee46e88-304eb161d3fmr378814eec.30.1780017036075;
-        Thu, 28 May 2026 18:10:36 -0700 (PDT)
-X-Received: by 2002:a05:7300:7313:b0:2ed:e15:c922 with SMTP id 5a478bee46e88-304eb161d3fmr378787eec.30.1780017035380;
-        Thu, 28 May 2026 18:10:35 -0700 (PDT)
-Received: from [169.254.0.3] (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-304ed5a114dsm173785eec.24.2026.05.28.18.10.34
+        d=1e100.net; s=20251104; t=1780017047; x=1780621847;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+9rCaR21M/nc3/i6qSSe04SnKU+FWJmA2yPT3FUP/WY=;
+        b=eOG6JXmvWIXexCPZN/5vK0MZp+6ophkF9uAc1PIrZHl09Qpq1uzXokoH+gTD8jDnaG
+         8Flc08sa1NpVd39wG9FBqJFMgdISg70WyZHI8uvsxNGPHvx763vpnNGzOFZZKbkPiK0P
+         /yt0mScA660MoNYrCxKx6W5dN9lRzTyCU988J1IK8e6JmPpZyPBHmzBjBBUdw7Bp7u8f
+         zxWpZ8FppqgzEpxa3HXUhKubMeCNuYW+NXDAneArMFRQCc62GD+2n31YLiErbzCP7dx9
+         ovCvSgsnDka22JSvRBq6XYqBF/jvEzu6fwoOiS0Pp8hI9vXJIRuWJY3Nfzwq7gG2zYOt
+         JIhQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8VorBJ3yN3Ard2JpkLEmY6e2SNoOWy+7b1+8zsoZT2nIW9UPHoEPLl0yioFB1MpRm+x+b8v9c01sCq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxNL8Zt1b8XA2RYR1uqDEgLvt4Ygdtbr0iR9E8iRpmt1vB6JkV3
+	8cF6tjrWfA2Ew3+dMUI6CKxOIfvuBGvbKLX+BWGm4lQuarwbHP2hFfv3
+X-Gm-Gg: Acq92OGexzUSQWmrUtXynNcW3BmjbkWKxaGTcEeDzLxO4FehRfNurSLDo0CKutrUaVa
+	xMM4Qub/h7beGJzl54JLbEcwpWJlXiej6sUArShuQXU0AnQ96oj7blDEdJGnEN4BIFIW8uu6lgu
+	LdsQOd6KJuHsdUEhgjsouAKOEKe9zyOKpfCQ/ZdyF7wkq6+zrXxPYyteFr/TsKEqenbnj2Ti2w+
+	SM8K+ULBNJOEv0fhPiPVEm6QXh+a+hRrKidBDyhnw7UM2pc+AE3BvT1QHizmLvFDCu2xpLT0XCr
+	+um0fbpE+vIiMIwbT4MWsQfsJ9tgucVEAHL1RdYmCWI+YeSrKdWMbwevYX4jlFquCNONkkcmVKa
+	k0xrJTAPbo0rf+fjuXcZuFbXT8tPHg2+Wu9XihRNaS4NA/sOYdtoajhqvOLYn8ZZhqDQ6HSIVFB
+	fCs6LXo0sN40X1MJCU+DwLx1k=
+X-Received: by 2002:a05:6122:3401:b0:56c:3a57:aee2 with SMTP id 71dfb90a1353d-599f67cea76mr184555e0c.6.1780017046650;
+        Thu, 28 May 2026 18:10:46 -0700 (PDT)
+Received: from [127.0.0.1] ([2a02:6ea0:5505:7199::29])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-599d3c9662esm311912e0c.3.2026.05.28.18.10.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 May 2026 18:10:34 -0700 (PDT)
-From: Matthew Leung <matthew.leung@oss.qualcomm.com>
-Date: Fri, 29 May 2026 01:10:09 +0000
-Subject: [PATCH v2 2/2] PCI: qcom: Add support for Hawi
+        Thu, 28 May 2026 18:10:46 -0700 (PDT)
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
+Date: Thu, 28 May 2026 20:10:39 -0500
+Subject: [PATCH] clk: samsung: exynos990: Fix PERIS gate clock parents and
+ add TMU_SUB
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,104 +86,161 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260529-hawi-pcie-v2-2-de87c6cc230c@oss.qualcomm.com>
-References: <20260529-hawi-pcie-v2-0-de87c6cc230c@oss.qualcomm.com>
-In-Reply-To: <20260529-hawi-pcie-v2-0-de87c6cc230c@oss.qualcomm.com>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthew Leung <matthew.leung@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780017033; l=919;
- i=matthew.leung@oss.qualcomm.com; s=20260428; h=from:subject:message-id;
- bh=SqRYyWGxDpggIYoY312hZiHBKDzS7/Y1bj/4uMnD8EA=;
- b=x2Mhs1h6QGe3C4hNRrzrpoZoETXQ2icHktNcZc//QGUXgaYDXCh2J0HryCQSgSeaG6TwVcjag
- AjHlnzlbhLMBN167zvse9emeWKy4lZdA/Veg3xo7Ms8JJvicb1ZMpOB
-X-Developer-Key: i=matthew.leung@oss.qualcomm.com; a=ed25519;
- pk=aT25ggJo5PMHLN9N+TsZ3s/BVU++kEYuiFebPWe21+o=
-X-Proofpoint-GUID: 6kCKGkcw1zH5U9y82QtgSgnWOwcsr3w0
-X-Proofpoint-ORIG-GUID: 6kCKGkcw1zH5U9y82QtgSgnWOwcsr3w0
-X-Authority-Analysis: v=2.4 cv=ZdIt8MVA c=1 sm=1 tr=0 ts=6a18e78c cx=c_pps
- a=Uww141gWH0fZj/3QKPojxA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=EUspDBNiAAAA:8 a=KdxOZhL9OB_EpBcCT-QA:9 a=QEXdDO2ut3YA:10
- a=PxkB5W3o20Ba91AHUih5:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI5MDAwOCBTYWx0ZWRfX1TedUO1EhOLt
- F5xwlIY+aqZ6xdjMEBNvdWP7cwc1WG2BAcUC7/WgE2uqnoRxCj7coR82GR4Gnu/TsMPKmd2d6Y/
- j3MoCUAP5cHFwtpfFNoA3rPUXZfj14u22l5aKL/1MBbVq2qUuxrE/Ct0/f83Whzg72/N9J8wE+s
- DhKokLbv1+o0YweMQ8UXe/5f2qJn6zYF958AwcUyTvfxBKQcngOH+6JANFrxGXzc9kP6u0URoeo
- kg4g8/WnfWWVQ6b8j8M4jo3BoLFCJd+8Eu02yRefJZvMkigTmSqnH7PQ4OefPY82I0vwE4uUrQI
- F158Y70or1oenvlYwaL6vXaMFpSwg+hi2lZ4IWsP3ay0iMXxXVY+0AgAufq3ukJO49yjVrFcHYA
- uezO37uGoCUGDqu7NAIBRkC8+Bczcdx9oe6WOSTEIOzwJ3xUs+j9HCY/X8O8GLwgpnE/bPl5zXk
- JmTUEHZWKvgSwHtCoKQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-05-28_07,2026-05-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 impostorscore=0 bulkscore=0 clxscore=1015
- priorityscore=1501 suspectscore=0 lowpriorityscore=0 adultscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2605290008
+Message-Id: <20260528-exynos990-peris-fix-v1-1-5b65aa7def2d@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAI7nGGoC/yWMwQrCQAwFf6XkbGAN3dL1V8SDXV81HrZlo1Ip/
+ XejHmdgZiVDVRgdmpUqXmo6FYf9rqF8O5crWC/OJEG6EKVnLO8yWUqBZy+NR11YokSkrm9HZPJ
+ yrnD9ux5Pf7bncEd+fFe0bR8Py/AydwAAAA==
+X-Change-ID: 20260528-exynos990-peris-fix-2525e9684fec
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Denzeel Oliva <wachiturroxd150@gmail.com>
+X-Mailer: b4 0.15.1
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304028-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_FROM(0.00)[bounces-304030-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[matthew.leung@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wachiturroxd150@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 2F8CA5FBDA8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 720325FBE3B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add support for the Hawi platform which has two PCIe controllers: one
-capable of Gen3 x2 operation and one capable of Gen4 x1 operation.
+Correct eight PERIS gate clock parents to match the hardware clock
+tree, reorder the GIC mux parents, and add the missing TMU_SUB_PCLK
+gate.
 
-Signed-off-by: Matthew Leung <matthew.leung@oss.qualcomm.com>
+Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
 ---
- drivers/pci/controller/dwc/pcie-qcom.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/clk/samsung/clk-exynos990.c           | 24 ++++++++++++++----------
+ include/dt-bindings/clock/samsung,exynos990.h |  1 +
+ 2 files changed, 15 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 11fc60489892..5fe8667fdb8f 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -2280,6 +2280,7 @@ static int qcom_pcie_resume_noirq(struct device *dev)
- }
+diff --git a/drivers/clk/samsung/clk-exynos990.c b/drivers/clk/samsung/clk-exynos990.c
+index 6277dd557..f1f5297f5 100644
+--- a/drivers/clk/samsung/clk-exynos990.c
++++ b/drivers/clk/samsung/clk-exynos990.c
+@@ -21,7 +21,7 @@
+ #define CLKS_NR_HSI0 (CLK_GOUT_HSI0_LHS_ACEL_D_HSI0_CLK + 1)
+ #define CLKS_NR_PERIC0 (CLK_GOUT_PERIC0_SYSREG_PCLK + 1)
+ #define CLKS_NR_PERIC1 (CLK_GOUT_PERIC1_XIU_P_ACLK + 1)
+-#define CLKS_NR_PERIS (CLK_GOUT_PERIS_OTP_CON_TOP_OSCCLK + 1)
++#define CLKS_NR_PERIS (CLK_GOUT_PERIS_TMU_SUB_PCLK + 1)
  
- static const struct of_device_id qcom_pcie_match[] = {
-+	{ .compatible = "qcom,hawi-pcie", .data = &cfg_1_9_0 },
- 	{ .compatible = "qcom,pcie-apq8064", .data = &cfg_2_1_0 },
- 	{ .compatible = "qcom,pcie-apq8084", .data = &cfg_1_0_0 },
- 	{ .compatible = "qcom,pcie-ipq4019", .data = &cfg_2_4_0 },
+ /* ---- CMU_TOP ------------------------------------------------------------- */
+ 
+@@ -2572,7 +2572,7 @@ static const unsigned long peris_clk_regs[] __initconst = {
+ 
+ /* Parent clock list for CMU_PERIS muxes */
+ PNAME(mout_peris_bus_user_p)		= { "oscclk", "mout_cmu_peris_bus" };
+-PNAME(mout_peris_clk_peris_gic_p)	= { "oscclk", "mout_peris_bus_user" };
++PNAME(mout_peris_clk_peris_gic_p)	= { "mout_peris_bus_user", "oscclk" };
+ 
+ static const struct samsung_mux_clock peris_mux_clks[] __initconst = {
+ 	MUX(CLK_MOUT_PERIS_BUS_USER, "mout_peris_bus_user",
+@@ -2605,15 +2605,15 @@ static const struct samsung_gate_clock peris_gate_clks[] __initconst = {
+ 	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_RSTNSYNC_CLK_PERIS_BUSP_IPCLKPORT_CLK,
+ 	     21, 0, 0),
+ 	GATE(CLK_GOUT_PERIS_CLK_PERIS_OSCCLK_CLK,
+-	     "gout_peris_clk_peris_oscclk_clk", "mout_peris_bus_user",
++	     "gout_peris_clk_peris_oscclk_clk", "oscclk",
+ 	     CLK_CON_GAT_CLK_BLK_PERIS_UID_RSTNSYNC_CLK_PERIS_OSCCLK_IPCLKPORT_CLK,
+ 	     21, 0, 0),
+ 	GATE(CLK_GOUT_PERIS_CLK_PERIS_GIC_CLK,
+-	     "gout_peris_clk_peris_gic_clk", "mout_peris_bus_user",
++	     "gout_peris_clk_peris_gic_clk", "mout_peris_clk_peris_gic",
+ 	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_RSTNSYNC_CLK_PERIS_GIC_IPCLKPORT_CLK,
+ 	     21, 0, 0),
+ 	GATE(CLK_GOUT_PERIS_AD_AXI_P_PERIS_ACLKM,
+-	     "gout_peris_ad_axi_p_peris_aclkm", "mout_peris_bus_user",
++	     "gout_peris_ad_axi_p_peris_aclkm", "mout_peris_clk_peris_gic",
+ 	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_AD_AXI_P_PERIS_IPCLKPORT_ACLKM,
+ 	     21, CLK_IGNORE_UNUSED, 0),
+ 	GATE(CLK_GOUT_PERIS_OTP_CON_BIRA_PCLK,
+@@ -2621,27 +2621,31 @@ static const struct samsung_gate_clock peris_gate_clks[] __initconst = {
+ 	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_OTP_CON_BIRA_IPCLKPORT_PCLK,
+ 	     21, 0, 0),
+ 	GATE(CLK_GOUT_PERIS_GIC_CLK,
+-	     "gout_peris_gic_clk", "mout_peris_bus_user",
++	     "gout_peris_gic_clk", "mout_peris_clk_peris_gic",
+ 	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_GIC_IPCLKPORT_CLK,
+ 	     21, CLK_IS_CRITICAL, 0),
+ 	GATE(CLK_GOUT_PERIS_LHM_AXI_P_PERIS_CLK,
+-	     "gout_peris_lhm_axi_p_peris_clk", "oscclk",
++	     "gout_peris_lhm_axi_p_peris_clk", "mout_peris_bus_user",
+ 	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_LHM_AXI_P_PERIS_IPCLKPORT_I_CLK,
+ 	     21, CLK_IGNORE_UNUSED, 0),
+ 	GATE(CLK_GOUT_PERIS_MCT_PCLK,
+-	     "gout_peris_mct_pclk", "mout_peris_clk_peris_gic",
++	     "gout_peris_mct_pclk", "mout_peris_bus_user",
+ 	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_MCT_IPCLKPORT_PCLK,
+ 	     21, 0, 0),
+ 	GATE(CLK_GOUT_PERIS_OTP_CON_TOP_PCLK,
+-	     "gout_peris_otp_con_top_pclk", "mout_peris_clk_peris_gic",
++	     "gout_peris_otp_con_top_pclk", "mout_peris_bus_user",
+ 	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_OTP_CON_TOP_IPCLKPORT_PCLK,
+ 	     21, 0, 0),
+ 	GATE(CLK_GOUT_PERIS_D_TZPC_PERIS_PCLK,
+ 	     "gout_peris_d_tzpc_peris_pclk", "mout_peris_bus_user",
+ 	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_D_TZPC_PERIS_IPCLKPORT_PCLK,
+ 	     21, 0, 0),
++	GATE(CLK_GOUT_PERIS_TMU_SUB_PCLK,
++	     "gout_peris_tmu_sub_pclk", "mout_peris_bus_user",
++	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_TMU_SUB_IPCLKPORT_PCLK,
++	     21, 0, 0),
+ 	GATE(CLK_GOUT_PERIS_TMU_TOP_PCLK,
+-	     "gout_peris_tmu_top_pclk", "mout_peris_clk_peris_gic",
++	     "gout_peris_tmu_top_pclk", "mout_peris_bus_user",
+ 	     CLK_CON_GAT_GOUT_BLK_PERIS_UID_TMU_TOP_IPCLKPORT_PCLK,
+ 	     21, 0, 0),
+ 	GATE(CLK_GOUT_PERIS_OTP_CON_BIRA_OSCCLK,
+diff --git a/include/dt-bindings/clock/samsung,exynos990.h b/include/dt-bindings/clock/samsung,exynos990.h
+index 47540307c..c06f591d9 100644
+--- a/include/dt-bindings/clock/samsung,exynos990.h
++++ b/include/dt-bindings/clock/samsung,exynos990.h
+@@ -434,5 +434,6 @@
+ #define CLK_GOUT_PERIS_TMU_TOP_PCLK		17
+ #define CLK_GOUT_PERIS_OTP_CON_BIRA_OSCCLK	18
+ #define CLK_GOUT_PERIS_OTP_CON_TOP_OSCCLK	19
++#define CLK_GOUT_PERIS_TMU_SUB_PCLK		20
+ 
+ #endif
 
--- 
-2.34.1
+---
+base-commit: e7d700e14934e68f86338c5610cf2ae76798b663
+change-id: 20260528-exynos990-peris-fix-2525e9684fec
+
+Best regards,
+--  
+Denzeel Oliva <wachiturroxd150@gmail.com>
 
 
