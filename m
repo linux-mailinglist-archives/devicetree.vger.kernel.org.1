@@ -1,128 +1,136 @@
-Return-Path: <devicetree+bounces-304470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304471-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KACbNxj0GWp/0AgAu9opvQ
-	(envelope-from <devicetree+bounces-304470-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 22:16:24 +0200
+	id WDZ1C5L4GWqN0QgAu9opvQ
+	(envelope-from <devicetree+bounces-304471-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 22:35:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD2E6085EB
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 22:16:23 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E439B608955
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 22:35:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 184BD3014A24
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 20:14:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4A3D4304CF43
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 20:25:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ADAB33D6F7;
-	Fri, 29 May 2026 20:14:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B25F401A29;
+	Fri, 29 May 2026 20:25:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QtQLjXzd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lwvx5FXJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101D13C2D
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 20:14:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926263F58EA
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 20:25:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780085663; cv=none; b=q/zACVMueR/b3dlNssSXm7ZShRK1ilNmjidj/63c6NTt7BDm/v82xZ6aB+x/rxNPknZtF+K6v6OJbCzAGeWH/3tSklu26Tghw/hSHFYhA4Eloik4JNjdwIl3XvlFQmAG20l8GHSvomiKGqWY07TAxXoLmda5xzlBzzDEzjCLMDU=
+	t=1780086325; cv=none; b=Ek+paTcBsi/LwIIL+RfAxGnXSii/kyiNdZ+0W+MeTxOJTkSQN7M/vkynkTp0msqskNJ3xqWaueWj+nZndfO3z+mTS532lwyyn2vNETHKga+BTr2xAKaWziZQseh7XGadisrhrKrwclTiU+gRxwopQk33GZFoSLlKYL6VqEU3Hws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780085663; c=relaxed/simple;
-	bh=R/Ayt2YjYGyvKJqdwZ8WG0Kewd/vVft4YUzx8s8EKIo=;
+	s=arc-20240116; t=1780086325; c=relaxed/simple;
+	bh=0WDNHiD+BZ65Ar6D6wNntHf7njQpuEgEybxUL3DMUEo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iiuogGntm/hKLQsfcUYW350wZCrCaKNphp8NzXtZe8mpZNhMkja9a+fKDAbZMkMDvPVgQwrlxoDcv7WNnvo4ra/fPPUzyReg2a6luwKgzfomopLgb44fG5RJYQGiRxv48WfTlOAg5BDt7Sw9xP35laDzzw9Avl5gl1Z4EzWOOtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QtQLjXzd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECBC41F0089A
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 20:14:22 +0000 (UTC)
+	 To:Cc:Content-Type; b=M6BAqoo2DTDMCfjukTdDynzUUvJiHJz0sFGHK6+LRUpyinsY0tRN9qnelWzyG9AEe8aYgzCuzMC12shDii6cS+fNh+bD+85KPq2tXhNjpng9s5LaLaW8x+ogM8baieD/VXgS+YT7aUwxXPodwBdRbBN8uHODQ9BYrw3QF0m/MVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lwvx5FXJ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A9811F008A1
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 20:25:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780085663;
-	bh=R/Ayt2YjYGyvKJqdwZ8WG0Kewd/vVft4YUzx8s8EKIo=;
+	s=k20260515; t=1780086322;
+	bh=0WDNHiD+BZ65Ar6D6wNntHf7njQpuEgEybxUL3DMUEo=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=QtQLjXzd16elH/s7HSY0kSs9x2ssgBOOlqXfq476z3gDWVS0k9fQdi0HfIw+3V1Xf
-	 Pa0Y0qHpXgW+W8g8EuJKjFeGN9wuX4TRgiqCKkqEd3Kk2y+jPhNjdP3KmLWuTDxMJc
-	 6Ql+hNZL5WJlh7RNTYf/AupkRAY+Bp19acE7vQf0C8DltAGMGcxjFLxY0IQNw2cfGx
-	 JnOaPhSwFtn7wLXqquO+vwUPeCa6JezC6db10XmHAiOxmHUBAkg26fkE2j5Zm+iS9H
-	 3v373wNY8SgSnkK/bsSWKDQlAXggxhNvGWmzH0FySmbZ0Ve9sU6px3SkO4uX0riNfD
-	 I8kXS379aMK+Q==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5a8ee4b703fso13062112e87.0
-        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 13:14:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+l87Q8pE/sJYPkC1WmBQn9/yZl74Q4tbZs9FQfkkFxawUgZEkCxeANU74rNsoxot2m32Jcz6F3p8fp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxpaa5wSLWwzkW0Rh4+gm/L+hc937uD+icOQdy3fLUXpzZxEp8K
-	bjR8T/l+yJyTGAgwuMIfQ7CW/fM22+vCGZ/fzHZJVOL6ZPcMzB9jbEmlV5T1m3NiFItXW3zORmW
-	+PmxjaRZ5DylEFaJ1tRyphH3PljLP3lk=
-X-Received: by 2002:a05:6512:104b:b0:5a8:73c3:f27b with SMTP id
- 2adb3069b0e04-5aa607e3500mr444278e87.15.1780085661767; Fri, 29 May 2026
- 13:14:21 -0700 (PDT)
+	b=lwvx5FXJilSw9OVDTMZ6br+yvBAtqOJd2dAeeZPzX4bZ5mlNfdaP2sTxkdVr/U6sd
+	 X6owIdU/uFR8Hq99iC6hLEVZKrdhIPLCUI2W9rGsAH306lriaMdxqMpHGmy9X5h7zP
+	 Vdo+1o8uCNQ5wrnsoz/rRsUUog0fttb8GcecAGnTwzF4qhXMMa/mhF8JrAJNNf5kCu
+	 vRfpKf5I6ByqvgLR99r+W4eNg2/zUHrx1vjJUo9e0fERD4SV9S7nHZXVhUGV+oVev0
+	 lTFH3ZJXzfXIXJKa6ALYow7g4r1WADa/2nSElb+oUum9gLrnRmRf8zy6LUgNbCROum
+	 6WLX4Ewn3VwoQ==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5aa5ce4904eso868123e87.3
+        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 13:25:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9WjIcB40+GwfpYR72OOP0xqS6VUW+B5M9bue//71638Dpi32VFjnNv95y37ewD2uNHOGuXW7h77oxG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCbQB7S6jPnzz/SEBiokwmRXmM1om3lMR2AZxbVsVADTA1BOS8
+	elJ/T5PTnQxr/4baaqvH2H/JK7UgJsXlL0gIInZYuht0RUc2K3+stHMOJwVdl1eZl2lfQD2Zs60
+	WquaXtLDbI2+EUeNvw+PmLr7I1uH8tiM=
+X-Received: by 2002:ac2:4e14:0:b0:5a8:f6fd:f201 with SMTP id
+ 2adb3069b0e04-5aa607adf72mr422699e87.15.1780086320986; Fri, 29 May 2026
+ 13:25:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260525144629.498630-4-jerrysteve1101@gmail.com> <20260525154251.A0E151F000E9@smtp.kernel.org>
-In-Reply-To: <20260525154251.A0E151F000E9@smtp.kernel.org>
+References: <20260528-pinctrl-level-shifter-v2-0-3a6a025392bf@oss.qualcomm.com>
+In-Reply-To: <20260528-pinctrl-level-shifter-v2-0-3a6a025392bf@oss.qualcomm.com>
 From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 29 May 2026 22:14:08 +0200
-X-Gmail-Original-Message-ID: <CAD++jLns_jTJT_QK0DdKj3qBdWcRcgxumC8jWb18KaYGqd+3jQ@mail.gmail.com>
-X-Gm-Features: AVHnY4LJG3_0bKFII-IM6L9e27CQ0eVZFCWIzYdaZa5bm04r346MYQHUu0H9Ed0
-Message-ID: <CAD++jLns_jTJT_QK0DdKj3qBdWcRcgxumC8jWb18KaYGqd+3jQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] gpiolib: of: add quirk for IS31FL319X shutdown line
-To: sashiko-reviews@lists.linux.dev
-Cc: Jun Yan <jerrysteve1101@gmail.com>, devicetree@vger.kernel.org, 
-	conor+dt@kernel.org, robh@kernel.org
+Date: Fri, 29 May 2026 22:25:07 +0200
+X-Gmail-Original-Message-ID: <CAD++jLnK1PwLcjeFuv1sCYhe9WQLi6MN6S8UHO_poh28iEFKVg@mail.gmail.com>
+X-Gm-Features: AVHnY4LXAJrI8t_ItYg7fZ1mD4eacY2tMVyI4OJFiM4v9KHCpnnptx1nZjWucbw
+Message-ID: <CAD++jLnK1PwLcjeFuv1sCYhe9WQLi6MN6S8UHO_poh28iEFKVg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] pinctrl: qcom: spmi-gpio: Add bidirectional
+ level-shifter function support
+To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>, Andy Shevchenko <andy@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, David Collins <david.collins@oss.qualcomm.com>, 
+	Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, 
+	Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>, Maulik Shah <maulik.shah@oss.qualcomm.com>, 
+	kernel@oss.qualcomm.com, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304470-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org];
+	TAGGED_FROM(0.00)[bounces-304471-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: DDD2E6085EB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: E439B608955
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, May 25, 2026 at 5:42=E2=80=AFPM <sashiko-bot@kernel.org> wrote:
+On Fri, May 29, 2026 at 3:05=E2=80=AFAM Fenglin Wu <fenglin.wu@oss.qualcomm=
+.com> wrote:
 
-> Thank you for your contribution! Sashiko AI review found 2 potential issu=
-e(s) to consider:
-> - [Medium] Incomplete backward compatibility quirk for IS31FL319X shutdow=
-n GPIO polarity, risking breakage for out-of-tree platforms.
+> The PMH0101 PMIC introduces BIDIR_LVL_SHIFTER modules that provide
+> bidirectional voltage translation between 1.2 V and 1.8 V power
+> domains, targeting open-drain signal buses such as I2C. Each level
+> shifter shares its two physical pins with a corresponding pair of GPIO
+> modules, and its enable state is centrally managed by AOP firmware as
+> a shared RPMh "XOB" resource.
+(...)
 
-Wrong: you did not look at the whole patch series, just this one in
-isolation.
+This cover letter has a *very* long text mass, something Andy
+Shevchenko strikingly dubbed "Dostoyevsky commitlogs".
 
-> - [Low] Use of non-ASCII characters (non-breaking hyphens) in source code=
- comments.
+It adds completely obvious descriptions of what every
+patch does breaking the rule of "don't comment the obvious".
 
-I wonder if that is because the commit message was created
-using AI...
+This is usually a sign of LLM AI-assisted commit message.
+It also contains emdashes and other obvious signs of AI.
 
-Jun, please use Assisted-by tags, because these help to evolve
-the LLM kernel reviews if the commit message was assisted
-by AI.
+In that case, please use the Assisted-by tag, because the
+LLM can then read this comment of mine and learn from it.
 https://github.com/torvalds/linux/blob/master/Documentation/process/coding-=
 assistants.rst
 
