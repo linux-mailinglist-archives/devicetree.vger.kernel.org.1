@@ -1,260 +1,163 @@
-Return-Path: <devicetree+bounces-305537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306450-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
-	by lfdr with LMTP
-	id 0H3NINScHmq5CgAAu9opvQ
-	(envelope-from <devicetree+bounces-305537-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 11:05:24 +0200
+	by mail.lfdr.de with LMTP
+	id uEinGgtvIGqn3QAAu9opvQ
+	(envelope-from <devicetree+bounces-306450-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 20:14:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D476362B0AC
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 11:05:23 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB72063A74B
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 20:14:34 +0200 (CEST)
+Authentication-Results: mail.lfdr.de;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=IHE7iPnH;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306450-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306450-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 161B4302EED3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 09:04:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0B9D3310609C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 18:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B023C3C9EE6;
-	Tue,  2 Jun 2026 09:04:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="D1S+TgNb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C23DB3E00A9;
+	Wed,  3 Jun 2026 18:07:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013012.outbound.protection.outlook.com [40.107.162.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1D83C8738;
-	Tue,  2 Jun 2026 09:04:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780391048; cv=fail; b=iWRUoieegdRqQVDaq+zvdkTC06/Ni7G6UR7D0vU5f4JRFX+wl2aFSm20III5V9mrFWNaQHs7VbxZzS9vR+/IRDYjSICZrFYNa0Ww8GAGazEtpZ9IUZJPUlug4Bshb7T4yq4NeHHDb0YpfOkQ8do3xi6fNs1Zwpfjx/B+askQOzQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780391048; c=relaxed/simple;
-	bh=wumyimx+dAYm+4NHzVoEcaccfnmjgFE9wD4whWV1CBA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=YVF4b7yWPkLDwRXhigww/5OwYhhCwSAaBgjPIi9xyzecDR9IQA3w75AiCRhw8+k5OwZhdMz56w0uxv8HXsERhi8jKJCTFY9ojXErmZuyGDjrqfdRN3zppev5WoW0soH31NcXqYIGq80sl9pJSQGEtoablSaKqs/m99fp0UiF+3o=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=D1S+TgNb; arc=fail smtp.client-ip=40.107.162.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xErxnS2zcb17l4RLb27h+1Q/TVeNBl+TlDc7cehMZYk+k0lBCbEm93ndYtsW0o+VkAyttTsW0yCxUaH1QXOO16bYcSbI3hMQCnSUdurhCWFxAyF/p59cRBqT85hKCFjS8njThFO0ky9VdJui73NTyEFLolFpyZLLAZmFrFkfcuaDP2GRByDAxm6/AyDd7VrXYX+NZSmLDtyj+WOdON078jrnL78rJ4b1eBdL5CX/CLM02VuLv5Ui/LD219tLG52TVpWMJMJdauXVC9PMlUOUCEqMGaGK28l1mmIkxJt2J3l2DIPruHPYQfI3JLUBrAdnhdYcmZ9CCfXkBrltCq548g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VDSL3JkgKj74/U9cPYTxB7VGPyzIpZ7dAlcADlJGcZw=;
- b=h/Jjr88MM8U9TktBXoN+CqJiRoIKLQLRgnXgg+oECPetbl/tfmC1iL/B+78YMXxxMLGgdLct5RZmtqX1O1QUzBJAO1RkF1q4bzEYqCxWJxTmk78G2Jb0yI8FAWldA8UCh38HaO6uCOSKBdPP5e+DLrok1HXg8bGAd58jlMoUzvR0GKIY6ZgUTy4wxeP/gnbW1QfxlPkDz8O24lp7/I6Ky219ZKwpcpgP77ay2tWeP6s4u6JxBSxSm47rm+1qtZtvtpA75chLCoIy37Z758oAu3MOXe8FbxoJLy5b2anlW9rakLojzsaXxTOunsL88we+tWRW9h5TAahtxPEiJdd+gw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VDSL3JkgKj74/U9cPYTxB7VGPyzIpZ7dAlcADlJGcZw=;
- b=D1S+TgNb4BwOD4vAF/2IwQW8JLXn/xUYyxApEzdGMOy3gcFKLckOzNvv7HxGH8+PmUibcrUFJ62eeNeWxJg0vVTN1gNBBGooHMkpccI1TWEIbtMPrMHc6JZWSfkzAJTzjzFPhn+NqnGYDHSiWnywZywzFG4SuqpYRYGpZHYH2FhQYeGRPb0gJhJFMMgd6ICXKF2wdTPkvowkGup2Hg+INZkQhYDzMA8PjbR/ZRiS2LMxybRM/kUfWraBZnEbge8AQbbMU9pr6hJPGtT1bjREC+UVr6mVh26VK2z5w1hu4XSOlQSjDfPM6vGwD4lL9gl2m0nLDHu//SVfayhLMju1Aw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10)
- by DU4PR04MB10766.eurprd04.prod.outlook.com (2603:10a6:10:587::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.17; Tue, 2 Jun 2026
- 09:04:01 +0000
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023]) by AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023%5]) with mapi id 15.21.0071.015; Tue, 2 Jun 2026
- 09:04:01 +0000
-Date: Tue, 2 Jun 2026 12:03:56 +0300
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: linux-phy@lists.infradead.org, Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Tanjeff Moos <tanjeff.moos@westermo.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 phy-next 13/15] dt-bindings: phy: lynx-10g: initial
- document
-Message-ID: <20260602090356.ewl5bezjxyqys6ee@skbuf>
-References: <20260529171509.1163787-1-vladimir.oltean@nxp.com>
- <20260529171509.1163787-14-vladimir.oltean@nxp.com>
- <2842502.mvXUDI8C0e@steina-w>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2842502.mvXUDI8C0e@steina-w>
-X-ClientProxiedBy: WA0P291CA0020.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1::17) To AM0PR04MB6900.eurprd04.prod.outlook.com
- (2603:10a6:208:17d::10)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBC7D3DD51F;
+	Wed,  3 Jun 2026 18:07:10 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780510032; cv=none; b=dYtKZQzA/5wOCOAcgXr11aeQMyVag+o9E4ugE8sf3zJ9RJfw2bYPPnK/swJcZGunZ0Cvcygp7PDto04hmSIVsSV2STFZ+uPjcBr1L+zWDO33Ca9G4bHoUACTB4GToenhQ+y8vNdGkFO4lucpQUpuVWoVkhy9fWjVL0JxrzcfIUo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780510032; c=relaxed/simple;
+	bh=dfvd3+GTrarMPPUGrgttsrrfFPcOJYJ/c/UNZFYWs5M=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Cwr95ezYwoberMW0vO2kvO2drp7Zkce5Et1lFyf/OHTn7NOGZJXIRJPXbzv0irFQGp/PdSfVUuQtOycaVAt9Ru/NwEfPN/WV55XSaLbTjZ0qOdyNJy0Yu+4z3EYp8FWU94iulhVpB9dRLc7+GIwdo2jiBhxCbGCKVHCioDZ9ncs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IHE7iPnH; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 078581F00893;
+	Wed,  3 Jun 2026 18:07:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780510030;
+	bh=XqUguunJRpbZ9x2gW/CJnKhlSiBuX+wd5rq8fxPIDHE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=IHE7iPnHvsj/Mr7hP4idvJkavIovh+4eorNO87k32q2t5lL3T8z0FCYLHflmnpvyE
+	 sVyFl3pozePsSS+kl2Oyq/+MUw/dTWo9zxRdQbKn3+OOpAHixCwbimVJP4C/xa2Be0
+	 U2A7FJ//CcHQytpD+obJKH126OndQkqIg5rBZt6dSFhUfKgXad1EgoU81DPNr03ORd
+	 8CI1XbxCNMdlwr278dR52iQmp4nNC5mwi5H4ME274BYXi/B/YKiuxigggucAZVcwks
+	 +oUrqcL3zA3JTsB4dFkhkWZFlZFxcyVn8CjENC9mvQlrEyCuRlSViJ/eIPAp8hZRW5
+	 khH483hVeHB4g==
+Date: Fri, 29 May 2026 10:03:36 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: "Erim, Salih" <salih.erim@amd.com>
+Cc: Andy Shevchenko <andy@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Conall O'Griofa <conall.ogriofa@amd.com>,
+ Michal Simek <michal.simek@amd.com>, Guenter Roeck <linux@roeck-us.net>,
+ Salih Erim <erimsalih@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/5] iio: adc: add AMD/Xilinx Versal SysMon driver
+Message-ID: <20260529100336.3f18d93c@jic23-huawei>
+In-Reply-To: <d579623e-b799-4caa-aeec-7d070a972aae@amd.com>
+References: <20260527114211.174288-1-salih.erim@amd.com>
+	<20260528130600.25e401a7@jic23-huawei>
+	<d579623e-b799-4caa-aeec-7d070a972aae@amd.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6900:EE_|DU4PR04MB10766:EE_
-X-MS-Office365-Filtering-Correlation-Id: d0dad192-6b80-4d64-6774-08dec085e341
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|10070799003|19092799006|376014|7416014|3023799007|56012099006|18002099003|22082099003|4143699003|11063799006|6133799003;
-X-Microsoft-Antispam-Message-Info:
-	WsdacUbytmNT5yrZZepv+lKyZwKDPF4bNpy+2AbpQW85Zr1BPP3MIjp8dSy9jxiVBrkX+bse/SMTExx2VWprBz7N7lg4A7ltrHup9qj6QLzyKd1InsFZ4V2SCiULG1nj2q7GRuzQ3sc5Cr4iBcekK1vCiZUxmerLn2UeVfk4df6RQnB4YBvvIm0nVaH4yo6WgXN5/2YQCWUgBI2t21zb+Suf/TsxyamcrRBK1w0TF1e7jzb0fiAHwE2jvORY9VAdhteZCFzJdsG7eCvRMUnIr4rZGns7FmPOt9DVQIV8ImdQpLrFo8FevURIFyEb2PSwD1gPjRHmaG7e0hgsnxiajcBE9WZStRA6T5wxgcvSUy/8SyMd6mDwdzWshmia+3Bt0l7cxQmubstPFydqEOCpCdqA158R7NXKj3aOeOcYMZLPBzfsIl8ij2qNfaIP0gScH8rAAQSmzECproursRN3EvVOEwIGd+24MQFMLLmfoXHEWEemGQPrttoCYsv3IeFN16KFZyKoxdkiHcGlQlbDEsl4ufsgPPtzXNMYce8Aq8KXOtasXQWW+p+2RKEZQUiFK+sgZfqtU5afWMZnz2G+DkszkiqsBbCoBuEHxE9iCehjnXQc/xg2T08LrhcqU7OnifyTllnC5RvayNUOkT+b2Q==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6900.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(10070799003)(19092799006)(376014)(7416014)(3023799007)(56012099006)(18002099003)(22082099003)(4143699003)(11063799006)(6133799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?6NhAxbHHjt9B8gFtlo7PG4++QTyKFmLYOe0/QqPH5bXy+h5jlSm/EdLcH6GO?=
- =?us-ascii?Q?pg6H46k6j8Y8DG/XSifVNeeHmem3bDzSeQvV88CvRxZYKAFLRCFsRvHrfVTB?=
- =?us-ascii?Q?3gTd5vzgpLu2As/HDAQADg9UvEYMUbdFoTqApFx0cBNs+fuW5mjrACkywu3d?=
- =?us-ascii?Q?hEMmF9AsJFH5U8AB4xKfX3e9xfL+ijc1fyYfo4Jkq8EBiST4L4AYuP5k2Y6y?=
- =?us-ascii?Q?i/YQP0Q6xHlJ8/5/4PaPzwOeQwSIUF2StSZECcAUEsFstdk7VD9DfowDdBd8?=
- =?us-ascii?Q?tHHmZimSumEz1sofdoQy5Dj6ejXed+0B982abg+0e0VPKJhfhT2EfXEBImbw?=
- =?us-ascii?Q?B4vSOC6IyYn4egEzfGXQBc2rOmwKrFYhyIUkf7sSIPf4RQNFVjQaaMaAKYK9?=
- =?us-ascii?Q?lBGt+CimmBgwz0ywpd6/fTjhsxVkw/93C/oYMjpidExB3T8h3jA0Ospc/sMB?=
- =?us-ascii?Q?YL1lmv7nIumZkg0r/6XXNxJw7ZabOvZffJffe+SvvQqxlPql0a1vk3XoHZyi?=
- =?us-ascii?Q?qcejIUbrffqLxs1zk5dxQjhQN1OgzGYiqWdkGDQ6yoFr+nIYiw3hvbp/me4J?=
- =?us-ascii?Q?w/i93IxnWp8LLEScNXdsDtQEC+GLPBlFuYL5qnVABvoB8c85t0W77/0e8XJc?=
- =?us-ascii?Q?NwfG3dxgTuu0E2fLYEz27+C7vmrxMDh3Cu4a3tzvwjDZ2Ad2VYr0AINgSw+s?=
- =?us-ascii?Q?V/A3ryTFiKO0u/G2MEbALN8+JMhrUjmHq5JvYtECzP0vRYeqLhA0IbfBW/RB?=
- =?us-ascii?Q?19iq3lGxE0h9rC9Zck6Kgf+RUCuLtQEPyUg/s2oxwqyqLa/efCek/XJy19DD?=
- =?us-ascii?Q?iBSFu3a7f2xqLww8F5R1+mOAhjVEERSn4G+H2cjcVg/0vJb8wKE43aHi/ONo?=
- =?us-ascii?Q?O7FdXfc7mfjlIaPRiPxKnnORmJNTxfROSiu0/scX5+1KZrpgCmyoB7MrZW4U?=
- =?us-ascii?Q?5laHTWXpN+gErh42y6xMT3x4OeDiPV5xo9YQOXqNOK2nET3g+efbb9ZLzs88?=
- =?us-ascii?Q?117YMuaVWnJ7ZVAT736uhVKIt4HxRzgvVofHaxZg+IFJ5djhVGUHX4vPNFIB?=
- =?us-ascii?Q?XdH1Sm2ZmiZO9xbfOGzNmLi4fjykjASYeYLTEA54z0puKj+i9vjjQf8hpYAX?=
- =?us-ascii?Q?Q+vwfwUlyMCCQ1J5+ZSJ/6Wk3GUrrv1gk3HEvt7RrevwAevbs/zqPbqndkI6?=
- =?us-ascii?Q?4mdOhQKk1DOsBlVpgQpt1cyJAvwGtSnro2/GU2uRNqJd1Ij9klu8YuHz7jNE?=
- =?us-ascii?Q?nvJbRsg1HIrHbp8kzWYVfL1qXHNbgbWIoRPlykCp3AyOAPEwm6gyQs289DJ5?=
- =?us-ascii?Q?j/7b5jmGqBr3Pp2H6kPLnPev4f7Y4buUfTcZpQ2uPqMtPMxa1UBQLJPZvxaV?=
- =?us-ascii?Q?jdEEnxzLasVjhgj+YnhODKtWr2HCxiUtNrBVBO9o2xQnbUEKyxzFUZ8LawHJ?=
- =?us-ascii?Q?tqGRJts7RKI3QV3F/sCX7Sgo2KKfxaWEr91eeHA6iUe68pS+rb2Od7+didYI?=
- =?us-ascii?Q?BaGhnoKD+hFlxv1HteRbzPmLKUfJHxZTti8WZupmE0gQWel2Up2PodSH5M+x?=
- =?us-ascii?Q?4fbvq+TTO7A28PmPiuO5XFNIacYUseY053E300ak4i5TkssjIurfzKUkT1hB?=
- =?us-ascii?Q?BhVqQGo1Sns34t/GmfW0iykdgjxxE5vVmiER4rwn50c2qOZ6ot5YuwDHwyA2?=
- =?us-ascii?Q?nbVbUlqdDPlm1hkqdrPQBvfGMvQ1tzYcvd/2t9BIHqXLLRcYsr6zdODSJ10y?=
- =?us-ascii?Q?gTdHWVosvfffG/rlWqWkVEpZuAQlbNSE9duj7oZ6fyrkmBwZGEa89fGeiWF6?=
-X-MS-Exchange-AntiSpam-MessageData-1: ycsPsDYaIg+uZHtLTlZ/fZGM+yGNx69iZEc=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0dad192-6b80-4d64-6774-08dec085e341
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6900.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2026 09:04:01.1045
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tN0otrgzBTiQch4LzTEgDFBBBAwDDmPBli/0uY9eGYyQ9LgEuIG64U9sYyhEaqBvkMpBsGTyKwwf+rtS4ariDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10766
-X-Rspamd-Queue-Id: D476362B0AC
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DATE_IN_PAST(1.00)[129];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-305537-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-306450-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:salih.erim@amd.com,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vladimir.oltean@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email,devicetree.org:url]
-X-Rspamd-Action: no action
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[jic23-huawei:mid,sashiko.dev:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amd.com:email]
+X-Rspamd-Server: lfdr
+X-Rspamd-Queue-Id: BB72063A74B
 
-Hi Alexander,
+On Thu, 28 May 2026 22:46:58 +0100
+"Erim, Salih" <salih.erim@amd.com> wrote:
 
-On Mon, Jun 01, 2026 at 08:34:25AM +0200, Alexander Stein wrote:
-> Hi,
+> Hi Jonathan,
 > 
-> Am Freitag, 29. Mai 2026, 19:15:07 CEST schrieb Vladimir Oltean:
-> > Add a schema for the 10G Lynx SerDes. This is very similar to the modern
-> > form of the 28G Lynx SerDes, which is very much the intention.
+> On 28/05/2026 13:06, Jonathan Cameron wrote:
 > > 
-> > We allow both forms of #phy-cells = <1> in the top-level provider
-> > and #phy-cells = <0> in the per-lane provider for more flexibility to
-> > consumers, and because the kernel code is shared with the 28G Lynx which
-> > already has that support for compatibility reasons.
 > > 
-> > Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> > ---
-> > Cc: devicetree@vger.kernel.org
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > Cc: Rob Herring <robh@kernel.org>
-> > 
-> > v1->v2:
-> > - move patch later in series, right before driver
-> > - deliberately ignoring this Sashiko feedback:
-> >   https://lore.kernel.org/linux-phy/20260529125017.ifqunh52gdzhthdg@skbuf/
-> > ---
-> >  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 131 ++++++++++++++++++
-> >  1 file changed, 131 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> > new file mode 100644
-> > index 000000000000..993f076bba4e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> > @@ -0,0 +1,131 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/phy/fsl,lynx-10g.yaml
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml
-> > +
-> > +title: Freescale Lynx 10G SerDes PHY
-> > +
-> > +maintainers:
-> > +  - Vladimir Oltean <vladimir.oltean@nxp.com>
-> > +
-> > +description:
-> > +  The 10G Lynx is a multi-protocol SerDes block which handles networking, PCIe,
-> > +  SATA and other high-speed interfaces. It is present on most QorIQ and
-> > +  Layerscape SoCs. The register map is common, but the integration is
-> > +  SoC-specific, with the differences consisting in register endianness, the
-> > +  number of lanes, protocol converters available per lane and their location in
-> > +  the PCCR registers. Some SoCs have multiple SerDes blocks and those differ in
-> > +  their protocol capabilities per lane.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    description:
-> > +      There is intentionally no generic fsl,lynx-10g compatible string due to
-> > +      the hardware inability to report its capabilities, despite having a
-> > +      common register map.
-> > +    enum:
-> > +      - fsl,ls1028a-serdes
-> > +      - fsl,ls1046a-serdes1
-> > +      - fsl,ls1046a-serdes2
-> > +      - fsl,ls1088a-serdes1
-> > +      - fsl,ls1088a-serdes2
-> > +      - fsl,ls2088a-serdes1
-> > +      - fsl,ls2088a-serdes2
+> > On Wed, 27 May 2026 12:42:06 +0100
+> > Salih Erim <salih.erim@amd.com> wrote:
+> >   
+> >> This series adds a new IIO driver for the AMD/Xilinx Versal System
+> >> Monitor (SysMon), providing on-chip voltage and temperature monitoring.
+> >>
+> >> The Versal SysMon measures up to 160 supply voltages and reads up to
+> >> 64 temperature satellites distributed across the SoC. The hardware
+> >> also provides aggregated device temperature registers: the current
+> >> max and min across all active satellites, and peak/trough values
+> >> recorded since last hardware reset. The device can be accessed via
+> >> memory-mapped I/O or via an I2C interface.
+> >>
+> >> The driver is split into a bus-agnostic core module using the regmap
+> >> API, an MMIO platform driver, and an I2C driver. This allows the
+> >> same IIO logic to be shared across different bus transports.
+> >>
+> >> Previous submissions:
+> >>    v2: https://lore.kernel.org/all/cover.1746182670.git.salih.erim@amd.com/
+> >>    v1: https://lore.kernel.org/all/cover.1757061697.git.michal.simek@amd.com/
+> >>  
+> > https://sashiko.dev/#/patchset/20260527114211.174288-1-salih.erim%40amd.com
+> > Quite a bit of feedback.  Some of which is clearly garbage, like the
+> > ARCH_VERSAL suggestion, but take a close look as it does tend to pick up on
+> > stuff that humans miss.  
 > 
-> Silly question: What about LS1043A? AFAIK it has a single serdes block.
+> Thanks Jonathan. I've gone through all the Sashiko findings.
+Thanks,
 > 
-> Best regards
-> Alexander
+> Reviewed but keeping as-is:
+> - Left-shift of negative in millicelsius_to_q8p7: GCC defines
+>    this behavior and it's consistent with the read direction
+>    (right-shift); Andy asked for this symmetry in v2
+> - Oversampling read without mutex: reading a single int is
+>    atomic on arm64; adding contention for no practical benefit
 
-My understanding is that hardware validation for LS1043A was not
-budgeted for the main two features why the lynx-10g driver is necessary:
-RCW override for 1G <-> 10G dynamic protocol switching and KR link
-training. As such, this SoC isn't supported by the SerDes driver in the
-NXP BSP either. With the exception of 1G <-> 2.5G minor protocol
-switching, having a lynx-10g driver would not be very useful for the
-LS1043A as is, without a procedure from h/w validation to do RCW
-override.
+This is potentially a bit messier if the compiler gets creative
+(see Will Deacon's various talks on this for instance).  Still
+we neglect this for most IIO drivers today.  One day maybe we'll
+fix all that up - lots of careful READ_ONCE()/WRITE_ONCE() markings.
+
+
+
 
