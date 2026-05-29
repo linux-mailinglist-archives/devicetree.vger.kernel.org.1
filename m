@@ -1,164 +1,203 @@
-Return-Path: <devicetree+bounces-304391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304393-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yNMQJqG0GWoRyggAu9opvQ
-	(envelope-from <devicetree+bounces-304391-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:45:37 +0200
+	id eJ+tNea3GWpWyggAu9opvQ
+	(envelope-from <devicetree+bounces-304393-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:59:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A408604FB5
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:45:37 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 769F9605334
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:59:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A574F315E812
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:14:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 06D9D32E8978
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8500636605D;
-	Fri, 29 May 2026 15:14:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D79BD4266A4;
+	Fri, 29 May 2026 15:24:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="svoTaiG1"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="d7RPQzyz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010033.outbound.protection.outlook.com [52.101.56.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9E1133A032
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:14:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780067668; cv=none; b=P1VGW+0hpPLE6TOly0zrGC9h8BaG+LiSk/Np01u6HXY/uW1SByQWA8UIyKlWEdIhDauUiIfuczEO4P/TYErA7S/5Xk0ms3XbO9ew/NJDc+4yiG5cwil70dZbgVuHGLZ9EKmJu6sXWiCrlpxT1cU1BBdGxGcPjgww8Vz7Vi/yDX0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780067668; c=relaxed/simple;
-	bh=JgHz+6t+/lLVkabEsSU683KM7P90wDLARi+pbBBrukI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nWFIdiIMMFXNgZ6dYaHgWgxs30rcgs7K0XXCwiiLFYlk0y6UFtO5F26+Qaxu0/UtI70ca1l+0oZPOJh28xoxkwtI+XXd8sP+F8Ulw8BV+583gicbxia+rVu5Ij0ysissqI0hFKcnRbm0QG204AHk0OghzP0WOPvDrO15+mpXlao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=svoTaiG1; arc=none smtp.client-ip=209.85.215.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-c85725ce182so397016a12.3
-        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 08:14:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1780067665; x=1780672465; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CjGV1ydNT4vhjd08DNoiUIAjJm6vDoz197TfHBqCPyQ=;
-        b=svoTaiG1kUykeMA6SaROpDrCS9Rv/ISQQLUOzYdtwXT6u80lFH70qZHu/Je3yQMUy7
-         jSuXlzzqN9qVmh81HJfQpVYOZ12SBXlyQt7/WF+PMOmZRaqCW1Nrjp0vfDk5kJ9r0+AH
-         8Kk1Iz4nTeiX3l/HJ6OjgJN3PmePjyTnvt9uwf7TH/3JD5QKftcD1LETMV+X3XcAeIxO
-         pgmQ9pPw9kNVRUvxJKsD6sqa4RWwxsoYYn+blNrx4b+g8IgbTr4DYEOI3XN2LTjWoX4G
-         q2IGlGsFxzowitBVbFCiCxsfjMdV6/Sv/OsyLgcg1qxWOXj+VJ5ovZwEvG7ZCf+wccPx
-         gi2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780067665; x=1780672465;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CjGV1ydNT4vhjd08DNoiUIAjJm6vDoz197TfHBqCPyQ=;
-        b=he4aF2syylkFiBCbJYndW3+8LkaFKSYSVeEoBeOfoZ9qL9vqWo7GdsrKDco0tNaf6v
-         4Tfbz0tpeAiR/fxbtKsepfc5f+Zladf2eJxnBu/S8GxBBUPdOTaYaz2XaSNhWywXLWgL
-         xHac8KeqsL9i4/N8Frme8GGVOSkBXcFGWTb+ycxgu21A4tTm2NWPY4h14o0UWOZIcD0T
-         5OtWTUH4s80iUva+QTx4IDBe/PkM4EACMX+LxCXzL+1Vz4MRdcjzEzbtuokLaUrMW7mS
-         qFKjR4C11vM6UAP8RAE7G4eIiYTj7OjteOx8oOpNbZpziMYTovJZV5+m1IMcxUrQE/vy
-         slIA==
-X-Forwarded-Encrypted: i=1; AFNElJ94nEfR0e49ST88fbLN2tAaotrAn9iDUFCl0oMA8bwqzjfRMmgk16agmlHYcEVdk6+MV2O/AGxeB0N2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLZ84OFtoxEUftVb+fo7KH3DYzz+hspQ0AS4WPlh30zvgDOn2j
-	isI9V+AKkZiL45rVnTpGNko3Reo2btwP5hHW39dRYedkUiOvfb7DEiZtXzQaiO6+oSQ=
-X-Gm-Gg: Acq92OHIYatEOpmDKqCxyeNkvRP1wX3FTIJ5S6NFF+/YX+X/kKcD689UKmE8tR5ty35
-	ePTYf1th7l2MHIGD+x9QA09px5fBXxVss2ho6tkocyFVa7j5tjd9VX+ccts8EDZUv6sn2syuAs2
-	ZU3EymHXW4skf6HYS9QBXlBIgz5ZOFCjXBBrFt/u5y0DtY51tLe1B/XZ8y1cq2d25hO1u6u5HMB
-	BqDNxl3XtZ97uOviBk5ykcRMM+QGm9ZWg+e3tvG1srEZb/YyxmqTV3I3KNa1B1/kz4tYCfkY/6/
-	PHx2qZpCNp08d2jgKGAFI7EMM7kwD0GKISt0g+aPqvthHg7OdxYglJQld5BLE2yufI2/yvn7azs
-	AmTw2itTTmx6CiUVOjtj3ktIMEV8g9cGLGZDYFCgjE33YA55L62br3bUn/zR42gAPoZTta2qguR
-	hba6+p0dCgDgtjO/9ZrE62g3c42GFpothCpPdqSw==
-X-Received: by 2002:a17:902:fc8e:b0:2ba:839e:15cb with SMTP id d9443c01a7336-2bf368463e6mr2923465ad.27.1780067664889;
-        Fri, 29 May 2026 08:14:24 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:fe93:5096:4a36:4399])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bf239e5d83sm24992375ad.8.2026.05.29.08.14.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 May 2026 08:14:24 -0700 (PDT)
-Date: Fri, 29 May 2026 09:14:21 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Tanmay Shah <tanmay.shah@amd.com>
-Cc: andersson@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, michal.simek@amd.com, ben.levinsky@amd.com,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] remoteproc: xlnx: add auto-boot support
-Message-ID: <ahmtTVp9Kv2ZH-Ds@p14s>
-References: <20260527051611.194844-1-tanmay.shah@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D71ED426690;
+	Fri, 29 May 2026 15:24:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.33
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780068277; cv=fail; b=d/G3ZKSB4mP1VAl46fhbZWpjTc9hYoYfQONdPdS7rbm4xaL48rvf9acXnNdQD2J3j58Rps8XGETeFwwRKSQVf0pxacPzzaZe23JAyjrLlRGb/wz5FLC9YNeQxTqfuoms1jRwSm4z1Pq+w3jMjl6aOmTbU99SLRrsuI/hZ8bh5rQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780068277; c=relaxed/simple;
+	bh=f9V2CLdbp2xOTdCNvlXTDXNpdnYFYKT7vfG0QAECBf4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YxYk6EvWas3W/XgHdlwhqd93oQsBcdXIDEvkBliDVBq1vpQzSYpjb4k2w+uuMPeK7khE7xUgCxEVUJCbqCSmmusp00/kb1Yrfk4eIt53Q68vROAWgDKQRQq7V0IqyqVpTZ9i0wQCxjiyrbW89d1mnjl5w6co6hgpT91tFMuq+cA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=d7RPQzyz; arc=fail smtp.client-ip=52.101.56.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BB0UubKkdka+v00vVTlTbKkgTYW6q1pG1bdFRrYiUCZzgBS3mazuqZjwMyGx+jksDmwZpzp17UfVp2IABPkD84zfGpriM8uAsNpOatg9sBAFynMbWNnVhOujf+hGNgcltOy5CKXUZN7T/hUF42Mhw/oTVfUAkIAy0T8/w8xNZkTo87bB4bPrrO0iySu/CV5fbewMe+Ts3Hy+PeHRMMf+JSbBx8jBSF1gXzx9zn5A+CPPMqSw53vaIfivAt3t+kB9NpSZTjyD7eEvEhg/abUVSYgm6ddwOVJoONzIcxS3roH8OwpmtxU51slN/sRyzovsIqRRrfZ0zqJENkco66pNNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WlvcSp/rrpHFLtIpSLyFhaGHVz7gzgTDiD7PFPIB3Es=;
+ b=eyCbcX8ii7KNNBpev09bBPSH/9WDuhE87yn2tcy6vkMC8ZJ3sG9Zj3Xl+ItJfNZxpbvd1VBjcUb2C9QB5avQznMBS9deS2Y3CtWdO/lDWsbqlh4p6cK7sKqgtLPD2jNM0ZXFkXwW4cbwnHB+0l6S+Rt+ysYiEHmQAPkwSnm9NQtX9mX+VQxFtRhuv/GiJspzFvfYu2pYC4qMlDHhuZFASEqvEV3+4CTGlju/+wx2d52OVM0fWStm3aNOCBQHkjbUVz2FnqL4N13hAEpRkvPLLIoLARmoHEoc0U04tY6yEaSh6tPNtNKkLVacT4z1RuTd5NzPuNc1uIrB2Oodld3m8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WlvcSp/rrpHFLtIpSLyFhaGHVz7gzgTDiD7PFPIB3Es=;
+ b=d7RPQzyz5Lf6sgC79qVEHAdvspNMJ5TLgF9Fk8yfqouCsy6ve7FkCdGprpl5DgBpKMB+RASDBngVDx/jRrvsAZhsk/n66/E5SmSPAH6KxmhOV7cFt7MwQy0PT7Wyf7c1YpPcbOvmdbOEm+Ts+mzOgXE7uaYvTfm4PyvmFedmxMw=
+Received: from SJ0P220CA0029.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:41b::13)
+ by IA4PR10MB8472.namprd10.prod.outlook.com (2603:10b6:208:56f::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.12; Fri, 29 May
+ 2026 15:22:30 +0000
+Received: from MWH0EPF000C6192.namprd02.prod.outlook.com
+ (2603:10b6:a03:41b:cafe::79) by SJ0P220CA0029.outlook.office365.com
+ (2603:10b6:a03:41b::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.13 via Frontend Transport; Fri, 29
+ May 2026 15:22:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ MWH0EPF000C6192.mail.protection.outlook.com (10.167.249.102) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Fri, 29 May 2026 15:22:30 +0000
+Received: from DLEE211.ent.ti.com (157.170.170.113) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Fri, 29 May
+ 2026 10:22:16 -0500
+Received: from DLEE210.ent.ti.com (157.170.170.112) by DLEE211.ent.ti.com
+ (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Fri, 29 May
+ 2026 10:22:16 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE210.ent.ti.com
+ (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Fri, 29 May 2026 10:22:16 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 64TFMGaq218904;
+	Fri, 29 May 2026 10:22:16 -0500
+Date: Fri, 29 May 2026 10:22:16 -0500
+From: Nishanth Menon <nm@ti.com>
+To: "Wang, Sen" <sen@ti.com>
+CC: Moteen Shah <m-shah@ti.com>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+	<conor+dt@kernel.org>, <vigneshr@ti.com>, <kristo@kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <gehariprasath@ti.com>,
+	<y-abhilashchandra@ti.com>
+Subject: Re: [PATCH v5 2/2] arm64: dts: ti: Add audio overlay for
+ k3-j721s2-evm
+Message-ID: <20260529152216.nfsyt7rf7jtfgvi2@agreeably>
+References: <20260520115603.2662930-1-m-shah@ti.com>
+ <20260520115603.2662930-3-m-shah@ti.com>
+ <3d958ba0-30b1-461b-aea7-c0bf758a490c@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260527051611.194844-1-tanmay.shah@amd.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+In-Reply-To: <3d958ba0-30b1-461b-aea7-c0bf758a490c@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C6192:EE_|IA4PR10MB8472:EE_
+X-MS-Office365-Filtering-Correlation-Id: 935d16f7-da9d-47c8-83f8-08debd961983
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|82310400026|36860700016|376014|1800799024|4143699003|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+ 2Q7KnfmnJlZZFcc09Gq74jd5wCYL8dkBJJDTpm3EvjFluZB9/4GLkWcnLSGAQ7nYMudxI1M6Y66Jn5Vf2skk/ST34De6xV7IPRktlHkYGOAZ1lS2plaPMr7/bV3kaxlIjfyuxBIXE6AqqJPnzbLDWCfrakMXD4tP1w0Ux7C0wnqxK4R344YjRAnbE1eb3/9by9qfyLBIqyykTDBOzEDXmHdi0avgFG5NknpSFtEeRSHU5NhOIINaK/20M0jzdGxwVHlhVZXYS8BZkEEjlIyBscSyy1C5d8k0WSg927JlI3qz5ffGaWrUQpNjW4HmzzGBD3Dk7kc6cT5nBV69or+yzM32r3814YhPVJ2C/iuDpDkLStcyqWin894XrU4a8X4oBs+R7sJpPH9afZW1LAbY7QwAtgUcXAoCYjonYvHC71ZAqvIQSADHAZpgb54JWFy7K1YCih384fO4YBuTthfw1BxZoa2XQPwtum7ZrOTjxr0SjQodxsPlr5hmzbkppVGRzeMOZscSNLtfFZ1HI/+Rd5cjGqoJTejVH/OhrkuJ6p1G+6EMNrGu82PR/APVIod3Kx1isGbG8naSIuRpv6RL6a7RnNgOxvOD0hfud3XVQwh3oPS4TSMFIUwtUpzLlR1z/xGxM4eWCb6TjLwtTnxZRglp9vpNrH30rn1wSf2GT9UptIJ2cG3p8pSJLqMc4uvbUQv+MwNIznA7kbv/fzdCPdGPJLg6JAJctVpLkOh7ziE=
+X-Forefront-Antispam-Report:
+ CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(4143699003)(56012099006)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ Iao6NFCxpKWp5GCKI6naDMJDKao07/mcFnesbtRGJWdtYjDxF9JgmShJkRYuFl7m7ZsXump73iUkAw+pOMqbL59go/ReDMeUx2YKL02+ERSC422DcEKVlKYTMlNKw2mdu6UR47lQ4F1QjHCfL6W0MIHhx2nIIScSRJj9WXCbhTo8IwIw/saQ7ONnUbfUaPDmMj6HtQ+Y/tRKdH3hlbE3poKI8Ed2ocEqbcKga5htKRyWToFtvAuf0ZAM53cdg3Wsns/hYDIFutEC2AE2sDL68hqLHspTJks2c8YlPSrpdvIgblupkiIajS/nkmsm4TEG8z9hcaH8Lfk16up1gLYmmf53pzYzgWcY2tmVpGjmsPQXWwlnVO/edgwfiw2ADm199dbyDbYKnklEASWgiHR3v+NfYK0R9h5gRhRi5Em3+9eyL7l4MltfNG33Ki7CBB5+
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2026 15:22:30.2678
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 935d16f7-da9d-47c8-83f8-08debd961983
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+ MWH0EPF000C6192.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR10MB8472
+X-Spamd-Result: default: False [0.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304393-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304391-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:url,ti.com:email,ti.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mathieu.poirier@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[nm@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 5A408604FB5
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[10]
+X-Rspamd-Queue-Id: 769F9605334
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, May 26, 2026 at 10:16:09PM -0700, Tanmay Shah wrote:
-> The Linux kernel remoteproc framework provides auto boot feature. When
-> enabled, the remote processor framework attempts to start the remote
-> processor based on the firmware-name provided in the device-tree or
-> attach to the remote processor if bootloader has already started the
-> remote processor. Enable this auto boot feature for all AMD-xilinx
-> platforms.
+On 22:09-20260528, Wang, Sen wrote:
+> On 5/20/2026 6:56 AM, Moteen Shah wrote:
+> > From: Jayesh Choudhary <j-choudhary@ti.com>
+> > 
+> > Add device tree overlay to enable analog audio support on J721S2-EVM
+> > using PCM3168A codec connected to McASP4 serializers.
+> (snip)> +&scm_conf {
+> > +	#address-cells = <1>;
+> > +	#size-cells = <1>;
+> > +
+> > +	audio_refclk1: clock-controller@42e4 {
+> > +		compatible = "ti,j721s2-audio-refclk", "ti,am62-audio-refclk";
+> > +		reg = <0x42e4 0x4>;
+> > +		clocks = <&k3_clks 157 299>;
+> > +		assigned-clocks = <&k3_clks 157 299>;
+> > +		assigned-clock-parents = <&k3_clks 157 328>;
+> > +		#clock-cells = <0>;
+> > +	};
+> > +};
 > 
-> Changes in v3:
->   - add more descriptive commit message in the patch 2/2.
+> Hi Moteen,
 > 
-> Changes in v2:
->   - remove the auto-boot property from bindings patch (1/2)
->   - rebase on latest remoteproc for-next branch
->   - refactor the driver patch (2/2) and detect the auto-boot runtime
-> 
-> 
-> Tanmay Shah (2):
->   dt-bindings: remoteproc: xlnx: add firmware-name property
->   remoteproc: xlnx: enable auto boot feature
-> 
->  .../remoteproc/xlnx,zynqmp-r5fss.yaml         |  4 ++
->  drivers/remoteproc/xlnx_r5_remoteproc.c       | 48 +++++++++++++------
->  2 files changed, 38 insertions(+), 14 deletions(-)
-> 
+> Should the bulk of this scm_conf block go to the SoC-dtsi instead? It looks
+> like it could be a part of J721 SoC dtsi, which currently doesn't seem to
+> have any audio refclks defined.
 
-Applied.
+See 6111ac92f9341 as an example? audio refclk is the primary function,
+why make it as board dependent function?
 
-Thanks,
-Mathieu
 
-> 
-> base-commit: 90de217305800ff32df4c0308e240925c8deb385
-> -- 
-> 2.34.1
-> 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
