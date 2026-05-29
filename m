@@ -1,169 +1,143 @@
-Return-Path: <devicetree+bounces-304400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304401-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wBoqKNO9GWq0yggAu9opvQ
-	(envelope-from <devicetree+bounces-304400-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:24:51 +0200
+	id KBh7Epu3GWpByggAu9opvQ
+	(envelope-from <devicetree+bounces-304401-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:58:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0618605870
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:24:50 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4415E6052B9
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 17:58:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6D84E3635938
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:36:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AB884300D4D7
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:45:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9835366052;
-	Fri, 29 May 2026 15:33:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483C43CEBA7;
+	Fri, 29 May 2026 15:45:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D2Q12tkt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AbOO1yPy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948243E5EFE
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3751B3C3442;
+	Fri, 29 May 2026 15:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780068800; cv=none; b=fjwfc/7bUEmK7n8ggE5CDTzY7N8qZRmWOE5kNXZeubaxL/moeFl9eF2Yyiz9gSQOa3oLXaogcRtHCLuynJs9y15trRjiZW+oXz19cOLBc1/jcuP2l48s0LkVnFmGr2pvWdkDxlvFvIlxosWDWZJgAIEJ0jdaPpyeO63m4zEQJ8U=
+	t=1780069552; cv=none; b=DVwrsRIxggZKzkRQFcCqcxIlLgSX3DQ9E5gUqxpEJ/CKZQh6bXtZIsvrlkOJIKupDI0kXpbIuYPe/8JNtLwisfO06RribNVRW+EkYZD1kEZhTrw2bptlj2mrt4gSKIcg8wIP/u08imEi5GoZ6JY+JQrRQILlt1IjLuQMPrqzi9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780068800; c=relaxed/simple;
-	bh=DOH+3g7w+KmlfDTsjLjiuMu/Fxk6iqxGULdvT+bBH5g=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=XUqy4Sbvqzy0DDsggWoogkDLvJrPvD6VDhqthzeWZEcSbVUaz+j3knYziPyOS7beH7k//NwnJ2d/S2E9YtRNh2s5PWY5wEZt0BiZccGto80fMlUvtFWu4v+p2ZeJWJRib0mMpLOzqunxZx/Wjtfs2iW4zsnI3KK6GMlztWsJTDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D2Q12tkt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 114FF1F00893;
-	Fri, 29 May 2026 15:33:19 +0000 (UTC)
+	s=arc-20240116; t=1780069552; c=relaxed/simple;
+	bh=G2KF5voAhHsXsFwlvX9pJg2SGcr3a0Ny8bMXcZEE9zk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bL79SwWm+qWpzEBU8TLwHfYBZUl+3fjX2BtRi3ENfIbg8w7vN9iw4pgcLllW4PC7S6dN3t46N1rU9FUftNRufvAdBGbXZ+XctdteZX8fOlmojBAc/PB4i/UfyYfO+09Lk59lG9eWzpUL/Tkm7wChngWva7cz+fFj1M4HAKyWVdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AbOO1yPy; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55D491F00893;
+	Fri, 29 May 2026 15:45:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780068799;
-	bh=sCTB6lhHJrDoYEUN4ycP4vcjGGxoWiAPdnW/TIo6ytc=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=D2Q12tktcFP7g5aayzYSoM6cZeTfm3hIHTyc5BYtidtmUBqhbwfvLVABqKFP69I1i
-	 6mw7q50yUDoFGpGsyIP8jbs4ojikwFnfGNlAP59Kq+nMJELd1S3i2YjaEeDOxkyz3n
-	 i15y4xn3wa31FwkKMRVJ9uLhoq/93ozbWhrWq2hBPaJm2LEMhIzTX/fPgJmOueBIcf
-	 NPifzQRwl0rv9l2f8YhSklVbK+flmpLAQaYO6BilGb0DAFyMqaUjZ+Mntqxq7ghQ4S
-	 zN0SBiVrx+gApZad4OC/fn0GnTDO5aTTsDARZ5RJw8EMf+vPRYcEEzgaa4uiuUuLVH
-	 N4M5RrLxGrCtQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/6] media: qcom: camss: Add Glymur compatible
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Vikram Sharma" <vikram.sharma@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260529-glymur_camss-v1-3-bee535396d22@oss.qualcomm.com>
-References: <20260529-glymur_camss-v1-3-bee535396d22@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 29 May 2026 15:33:18 +0000
-Message-Id: <20260529153319.114FF1F00893@smtp.kernel.org>
+	s=k20260515; t=1780069550;
+	bh=eb8nb8fScTBwcXSgw+9Ix5UCDWfyVmuJGL2kWpyLZjY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=AbOO1yPycW9O3NJSH2EN0ltj3+bAVSFepl38eCrMztR7HEPcDhMdHnk9RF3JMRt2Q
+	 CcptiCk7B9RnAMPrxYLsGVS7lQ2TnNjQieYhfu3EsGjBiqR8gNHkFifOZwgybVES9O
+	 WtlWUwP8cbvXqTkV3LTqBFOyeI1qQ4RSOQfqAY7txpWrWD5A4Z1FtpJkiaXzrN0sMV
+	 XWpJB4AbhiTi0bJzCFQVGn04HOuFFgMvfujIQEbRdweGWJh97JpBn0cR9Le+c8s296
+	 RKzAG/gnfEE/dKtM3ceHxIerCdOPdl1yr/sdLyRJCyfZTM4ldxmaZ5KCMGQPTTQ/DV
+	 H0Zj2qBkCT1Xg==
+Date: Fri, 29 May 2026 17:45:48 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, Ying Liu <victor.liu@nxp.com>
+Subject: Re: [PATCH v23 3/8] dt-bindings: phy: Add Freescale iMX8MQ DP and
+ HDMI PHY
+Message-ID: <20260529-aquatic-industrious-lorikeet-b81aaf@quoll>
+References: <20260519-dcss-hdmi-upstreaming-v23-0-5615524a9c63@oss.nxp.com>
+ <20260519-dcss-hdmi-upstreaming-v23-3-5615524a9c63@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260519-dcss-hdmi-upstreaming-v23-3-5615524a9c63@oss.nxp.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304400-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304401-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,ew.tq-group.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,sashiko.dev:url,smtp.kernel.org:mid]
-X-Rspamd-Queue-Id: F0618605870
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,devicetree.org:url]
+X-Rspamd-Queue-Id: 4415E6052B9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-
-Pre-existing issues:
-- [High] Missing bounds check for device tree endpoint port number against =
-`camss->res->csiphy_num` leads to out-of-bounds array access and memory cor=
-ruption.
---
-
-commit f84037afd7728553fdb93e0bd472a151b8696e13
-Author: Prashant Shrotriya <pshrotri@qti.qualcomm.com>
-   =20
-media: qcom: camss: Add Glymur compatible
-   =20
-This commit adds the CAMSS_GLYMUR enum, the Glymur compatible string, and
-the initial private data structure for the Glymur camss driver. The
-resources will be populated in subsequent commits.
-   =20
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/pl=
-atform/qcom/camss/camss.c
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -5507,6 +5507,11 @@ static void camss_remove(struct platform_device *p=
-dev)
->  	camss_genpd_cleanup(camss);
->  }
-> =20
-> +static const struct camss_resources glymur_resources =3D {
-> +	.version =3D CAMSS_GLYMUR,
-> +	.pd_name =3D "top",
-> +};
-
-[Severity: High]
-This isn't a bug introduced by this patch, but is a pre-existing issue
-affecting all supported SoCs.
-
-In camss_parse_endpoint_node(), the device tree endpoint port number
-(vep.base.port) is assigned to csd->interface.csiphy_id without verifying
-if it is strictly less than camss->res->csiphy_num.
-
-Later, when the external subdevice is bound, camss_subdev_notifier_bound()
-uses this unchecked id to directly index the dynamically allocated
-camss->csiphy array:
-
-camss_subdev_notifier_bound() {
-    ...
-    struct camss_csiphy_device *csiphy =3D &camss->csiphy[id];
-    ...
-    csiphy->cfg.csi2 =3D &csd->interface.csi2;
-    ...
-}
-
-If a device tree (including runtime DT overlays) defines an endpoint with an
-abnormally high port number, could this unconditionally result in an
-out-of-bounds write past the allocated block, leading to memory corruption?
-
-While the specific 0-resource crash for the newly added Glymur driver in
-this intermediate commit is resolved later in the patch series, the
-underlying lack of bounds checking remains unfixed.
-
+On Tue, May 19, 2026 at 02:42:26PM +0000, Laurentiu Palcu wrote:
+> From: Sandor Yu <Sandor.yu@nxp.com>
+> 
+> Add bindings for Freescale iMX8MQ DP and HDMI PHY.
+> 
+> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+> ---
+>  .../bindings/phy/fsl,imx8mq-hdptx-phy.yaml         | 52 ++++++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-hdptx-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-hdptx-phy.yaml
+> new file mode 100644
+> index 0000000000000..b544c260aa073
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-hdptx-phy.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,imx8mq-hdptx-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  static const struct camss_resources msm8916_resources =3D {
->  	.version =3D CAMSS_8x16,
+> +title: Cadence HDP-TX DP/HDMI PHY for Freescale i.MX8MQ SoC
+> +
+> +maintainers:
+> +  - Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+> +
+> +description:
+> +  The Cadence HDP-TX DP/HDMI PHY is a child node of the MHDP8501 bridge,
+> +  sharing the same MMIO region as the parent bridge node.
 
-[ ... ]
+As commented in bridge bindings, I have doubts in such case it is a
+separate component.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260529-glymur_cam=
-ss-v1-0-bee535396d22@oss.qualcomm.com?part=3D3
+Best regards,
+Krzysztof
+
 
