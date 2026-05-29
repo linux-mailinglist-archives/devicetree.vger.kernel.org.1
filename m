@@ -1,456 +1,281 @@
-Return-Path: <devicetree+bounces-304014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304017-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJWTIDfZGGpDoAgAu9opvQ
-	(envelope-from <devicetree+bounces-304014-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 02:09:27 +0200
+	id oJyABtXbGGpIoQgAu9opvQ
+	(envelope-from <devicetree+bounces-304017-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 02:20:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA56F5FB99F
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 02:09:26 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4A045FBAED
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 02:20:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CE7B03004682
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 00:09:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BB7613057D6B
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 00:19:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 396DB72603;
-	Fri, 29 May 2026 00:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F200630C149;
+	Fri, 29 May 2026 00:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mythread.it header.i=@mythread.it header.b="Dz+3z4rS"
+	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="LB9GplNv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpcmd0757.aruba.it (smtpcmd0757.aruba.it [62.149.156.57])
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C17E479CD
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 00:09:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.156.57
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780013356; cv=none; b=maB1W8WJcP34R/HYqa71WfEFpNN7O8Blth5k0gjhqPTs7D6DlAfkvwwtpK8QeWEZJ51oGQutmsJrYSsPJhbj7R0+t3fGLOTvgdFSPekXDqaoMHpHIeXKcAMoE4rmV7oZlKyIPIbpgQ86QACMuvnZZG9wgaPomkLT0I0YdsbkInA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780013356; c=relaxed/simple;
-	bh=GZI4QoJ6lE3r080oo9ZHRjwJch2yGlHmCfgqw0RPEqk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=V6xTq3JsRxFr/iC4MK2/d+AUhwRD7zcE2AP81E0y7Tp6myjjaVfDZiXlm6Abl9ehHul6pGJCwQinnf2wmDqsLZzyYPf/vEm3MiXu3D0sXKH3F5If08Cg+T5dYshq+N1N3Tc/EM/cbkCQbt7gAKhyjkFsM9zE8x/Vbasw+IiwS7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mythread.it; spf=pass smtp.mailfrom=mythread.it; dkim=pass (2048-bit key) header.d=mythread.it header.i=@mythread.it header.b=Dz+3z4rS; arc=none smtp.client-ip=62.149.156.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mythread.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mythread.it
-Received: from [192.168.1.237] ([94.34.125.0])
-	by Aruba SMTP with ESMTPSA
-	id Skjiwb0oZtpTfSkjjw9YQF; Fri, 29 May 2026 02:06:03 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mythread.it; s=a1;
-	t=1780013163; bh=GZI4QoJ6lE3r080oo9ZHRjwJch2yGlHmCfgqw0RPEqk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:To;
-	b=Dz+3z4rSpvekBOFNIyIwXifSvNeCHsNfPBXOBNhF+v6qhBowEU6zZJ+qXebIU3scd
-	 ECzz9gLo9RrFwRBE2bzGfXIj6Pg6fSSwh0kGLlbyQ+kGVjoh4CpTLs5gDVTyVm5D0D
-	 Ls/0p8G2bZ0D6j3R0C9NNd55oJo5I71ME6kw7HRUhFXrbAdioNWg/38cpJTkMLGNsu
-	 6kOGnmikOg7CYalUEMZQd7z1/HiS3byLTtLnTmj3OLNuD4DcHOaEsF2XpiKw5pluO6
-	 WEuzn/mmyJ7jSdlDmdQYRa7M3W3d43oRgWCbS11k2AjzGreleFsUpgfpSGbcY9R8Yp
-	 eX2kZiQtiI28A==
-From: Alessio Ferri <alessio.ferri@mythread.it>
-Date: Fri, 29 May 2026 02:06:02 +0200
-Subject: [PATCH 4/4] bus: add BCM6362 on-chip WLAN SHIM bridge driver
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F6CF308F32;
+	Fri, 29 May 2026 00:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.147.86
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780013985; cv=fail; b=qDsMkni2tVzC0bQWgTB93SshYwO/tmFDuiZ1ShCmNwTBh4oI+0IVvUB6Yy9nZnhtfmC2L2K8qdVpuqTkDtn4a2ReyIOBc+83x/DliS2ai9K+U4xXi+HetBZlZ7llEHOzvuYQJaA00yYeMNI3/1duPf7efPK0wk8V8l/WsoaetNQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780013985; c=relaxed/simple;
+	bh=X1+pxlfCG2zSUhhWizZumc9kCB1JfHORzIVJ02WtGzA=;
+	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=GFjP4nnAGfcjc2OiCFRpWLxXj7h7oO8QMVRXFBU1bJyya6w2+yeWenNpwbKnO9s9yO7bhwSaUWobQaJ9aGmDegFGR7YPyDCOzALbc5Y7Ds1p6hyJ6Nk6h2MYRVEwM7Eob47wta73l+jr1RQdWhJfVob9NMg0gSsW87ZM2U2857g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com; spf=pass smtp.mailfrom=hpe.com; dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b=LB9GplNv; arc=fail smtp.client-ip=148.163.147.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hpe.com
+Received: from pps.filterd (m0134420.ppops.net [127.0.0.1])
+	by mx0b-002e3701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64T0AHlq169544;
+	Fri, 29 May 2026 00:19:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pps0720; bh=Qbrt+JKXr19lgSv55kg19BVM
+	CO2amN8Wvto70MBVIC4=; b=LB9GplNvSz0L/yX9Mi15xeGfJbMxr4AywDdQm7iA
+	CSU/+Ph9yOeo/t5PqkaDeN7v9MPQxCJNM94CLks1jFZhrsedusB9EzDZrWSSr7EX
+	4to7Ho2PVvAVvS/P1aPhKU3N3hkmuo2TNzYu8yFYYjtKdN4gbz3f9U2eMBKNxPsb
+	Dql6+wT6bTgyTTwVLG1zdYM4T+56l2p/z+8DWMs1YL8MvT5hRgY3dwVGEI0O4XRx
+	dr+6k2jCGErBIdarTo3gBOeDXq6S5Jw+mivLd1rFS9GveyYq+sUc79CO4/W9DX+s
+	DARSW2Jnf2KUHFI4MhB7DUIrKmO7EebiZj/Gk5iZIR48oQ==
+Received: from p1lg14881.it.hpe.com (p1lg14881.it.hpe.com [16.230.97.202])
+	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 4eerwad5dn-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 29 May 2026 00:19:28 +0000 (GMT)
+Received: from p1wg14925.americas.hpqcorp.net (unknown [10.119.18.114])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by p1lg14881.it.hpe.com (Postfix) with ESMTPS id 0DD04805E7A;
+	Fri, 29 May 2026 00:19:28 +0000 (UTC)
+Received: from p1wg14927.americas.hpqcorp.net (10.119.18.117) by
+ p1wg14925.americas.hpqcorp.net (10.119.18.114) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 28 May 2026 12:19:15 -1200
+Received: from P1WG14918.americas.hpqcorp.net (16.230.19.121) by
+ p1wg14927.americas.hpqcorp.net (10.119.18.117) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17 via Frontend Transport; Thu, 28 May 2026 12:19:15 -1200
+Received: from DM5PR08CU004.outbound.protection.outlook.com (192.58.206.35) by
+ edge.it.hpe.com (16.230.19.121) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 29 May
+ 2026 00:19:15 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jQ5Q0aUqFZ6us5N8DzvLLD9cTcxxwfYI/dirbdnhcBs2lPc25yZaJnO7D3FHnGlFxm+UK08GsiEJUQ+xn4aTV58ve6NSOKQT8qAbnLJWzEEqQ0OEZ3dmRObRgBnYNpphGzuEiLj81T2LpxcL+jLC/hI7IvHPJtpwEA333+U47rVNXrdznWFzOE6K13aO/U4IoCJ5f9JwngWbT5ghdFKDDfwCcfdFP+ZGM2bxyJelVpdXh/1Tf74ee7oaWZTKw95rbQcSmINS+9Q0FlEIBfocl6HSvos60x5DkmcTTLvxYb+DrbrdaOgOlu6FoDDztJLlGmnZJ8iq70CRCxJH5rZQqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Qbrt+JKXr19lgSv55kg19BVMCO2amN8Wvto70MBVIC4=;
+ b=rb6RCVRq6FdQcxEaAoaY3i8btkF1115YC2m9ih6YfmLtqRhYUoWgF7LWTbmeEr949FPEgrq1KNcCoJ/ybOXeIuDNObyWimAxHXRZvFvqYAMCVOhPAnEgHbzS1X/TauyZ3QD8K+0+EjjPGMtjmPuNRJIbnr1s2skrVDdyq+PHH3toL0RMU7JNz3ElN5MIRAxg1amdUrSS34d4DMFSVjA1FSkEAEu/3JHh1Jhgwtj38F+tfTRfRXt3TOBV26RuQsCtInZntn4nzvGo0FypVrw5zSQBhiGBC3xD6Cue1CQ9qv/KMQsbb/CSVicwoQoPFJSNmYyKzugHwcmHFiOBD0LLRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
+ header.d=hpe.com; arc=none
+Received: from CH3PR84MB3523.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:610:1cc::7)
+ by DS7PR84MB3086.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:9d::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.5; Fri, 29 May 2026
+ 00:19:12 +0000
+Received: from CH3PR84MB3523.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::2c54:3534:122f:e74f]) by CH3PR84MB3523.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::2c54:3534:122f:e74f%4]) with mapi id 15.21.0071.011; Fri, 29 May 2026
+ 00:19:12 +0000
+From: "Pradhan, Sanman" <sanman.pradhan@hpe.com>
+To: "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
+CC: "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh@kernel.org"
+	<robh@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "corbet@lwn.net"
+	<corbet@lwn.net>,
+        "skhan@linuxfoundation.org" <skhan@linuxfoundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Syed, Arif"
+	<arif.syed@hpe.com>,
+        Sanman Pradhan <psanman@juniper.net>
+Subject: [PATCH v3 0/2] hwmon: (pmbus/max20860a) Add driver for Analog Devices
+ MAX20860A
+Thread-Topic: [PATCH v3 0/2] hwmon: (pmbus/max20860a) Add driver for Analog
+ Devices MAX20860A
+Thread-Index: AQHc7wDGn6MQoZCL9kONUVO38sKVOA==
+Date: Fri, 29 May 2026 00:19:11 +0000
+Message-ID: <20260529001903.625737-1-sanman.pradhan@hpe.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH3PR84MB3523:EE_|DS7PR84MB3086:EE_
+x-ms-office365-filtering-correlation-id: 5333b3eb-fa82-49b2-2dc5-08debd17e8c3
+x-ld-processed: 105b2061-b669-4b31-92ac-24d304d195dc,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700021|3023799007|18002099003|56012099006;
+x-microsoft-antispam-message-info: pm5U9ILP8Gj9lUlo2GWgc7u7J3TLVCd/K/hlG7FNW8zWjSBQq8Pq5Frnx53TYA8SkOVZE95VT4sK7Lu5u4zaohMUW42GKLZiv15+/1E3zzcU/ZwkHfnauukHzNGjH7RXIQt/vMOPlbDUpDB8HR3MDm1IAq1RS+7nuc/wT7CZ7otUorNiIyklN2thHKNS7ez2s46LjksaAchBZ2f9MF3Q8mKSyybzv2xhu2/d0sBbH+8yp37yTvEw1k3rTudRJfSLDVz6CmQBJ8iaZdJlOnlxTOwwFvpaSX+Bnp/44+h+6ilc4XlN1rV3ply5Zxie6PO7aRqhqozuFAznSPsoXreefXBjepgZsoKfqEOmlwmpiIOaN6Jh7BdM7Y2ped6iTrgM35HJmbXmj5euYrwLTj7R5t3SYNTQUsXKXXbatZzC5Ka0bq85H4g6mzYtHnozl+TMpSR8WIpt92LBbcWAP6CA4hGma9EmMb6AS/HTfgcNV/WNRGKAmdy3jZicHSyGpEGbImYaq0J4T8+3Zatt6SKEQH7JyQJx+5pQwLUfk1W3HQDoUC69P6CJPNwp33VLyZhjbquQTWc5hF3wLh6qZTCvl4PRP/L7nt6dDcDalvBgHMv40/UZ9kDn8yjwlJYKqD+IMRVhqdoKsyaehPD5e0HyN9oZpP0sQ7AIBAtcPTsUHaji9okPqVBnD+vBHj0Gn2uHfHgle9qlP2sEycQ75ljrLjSiuFhyvDuetN8lk6sK3UqTITAZrtIp4L3M2TqmsEGc
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR84MB3523.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700021)(3023799007)(18002099003)(56012099006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?avftcKpe2p4g8lY0rrWDo3ARfV5O9fi7Ky5puxluewqFKRwI1bjlbxu6PV?=
+ =?iso-8859-1?Q?TWzcMH/lorfhgV9wVUeWGPF956Dhz8WVaLLF0dess5ezOhp4S+ybYa8vwV?=
+ =?iso-8859-1?Q?HNzIzarBav45pJ2cEIPpACjk4MF7VX+/PTD0pvf+6tKwGLojsvq1ZUvArB?=
+ =?iso-8859-1?Q?zjmcDxhAdIIDUQ8Sg6mCQZp/gIUHEmvxgSdKSkCbnT1ATKwRsZpAuCneHt?=
+ =?iso-8859-1?Q?Xzj7wBDdcoc2fOAt9A/NzNysitkjee1n9OHKHE0iiiP0YzVUyJby8qWXsA?=
+ =?iso-8859-1?Q?RK5vUZE0PFwzPewoPM8YkAQW5vTxQR4oKPerOxDaFliCJU6VN36Gs0vYZm?=
+ =?iso-8859-1?Q?nWgJf/emmqcmjg4FsWVw1W6yn+2FOL9hHD8j7Q0HQ1dMCTwgb1pWmP956F?=
+ =?iso-8859-1?Q?wV3DCwTVRrJjZbpT+WITKFpyV1la4jdZCM7LNNTrsHcnZcRyJGswcIDD0v?=
+ =?iso-8859-1?Q?Kfe++V7Fbe8m2lQ74/P9TKpolG8x7DC1tJCb8uLmJEgekvFEVU0JpjoDtK?=
+ =?iso-8859-1?Q?Optl2UwhS8HDWzVinEuvy+dJ3MNJJuUOkjaoBlWkZI0782DQzpb4SbZsvt?=
+ =?iso-8859-1?Q?VjgYc+4dJRTipL4PZEYWE4llmB0nYqMyli01I0v1AhocXI6mWMx+3EajFT?=
+ =?iso-8859-1?Q?iV7D80PRzmgwh3jtFIngoCYaBZqp4p84gKI95FMZRQMmCSdiX/tW43sF6H?=
+ =?iso-8859-1?Q?SYWSrGhkA5Tyd/LMFtwSFedQ/x7u+CJ0zwJRlS3m7wV+CLc9mr2rvslOt2?=
+ =?iso-8859-1?Q?8dsNN8VaijvQgWE+lVd7/5Sja2aMcWQVkoJOQLAPgVrDnnKN6GE98m+LAR?=
+ =?iso-8859-1?Q?3TZqhmAnah2doN4h93+nYKAodf9D4Tu7kpLVG/zagggDJSg/+RE1GqGOXs?=
+ =?iso-8859-1?Q?col36ITf2W/pxl9iFgxpdmD2QReTkRoI7ctkku+1e9WaueYQp2DIMp5N2s?=
+ =?iso-8859-1?Q?yUHiUpYj1bnkDK18OlnJyd+6xEcalgh7JGh8WNlrmlCvIjOjM4/Is2BLBp?=
+ =?iso-8859-1?Q?n0+kq62D7x+TlAPz8K3rz/tzT0QxQk5vl7h1VUikkuXoOhN2QLuyJf+xzU?=
+ =?iso-8859-1?Q?b02sr3u7ODqNV/cp1EWy3WlNpKisxrBjrYI2J4NTCCB8S1vpAOffTPtWhr?=
+ =?iso-8859-1?Q?6fhjjljsg7psALvQ9luzZesAeL49XkE9aVBft5zDvV6GnTNMBBhVpoESia?=
+ =?iso-8859-1?Q?7HZIOEQN/y4iU9hR32HJgRuYEDf5uvYXatROHf7V0reGSumsQg1opGyhDv?=
+ =?iso-8859-1?Q?Yl+NxLgXpE08oE4QH5sP9u+wYIROHkaZCcE3KbcgiVCmJZr0ftMUsUb10c?=
+ =?iso-8859-1?Q?JtXcaFdkolA/BnV0FR2U7O7aHQBzisxVTzKFEW+d4UBnf1nqVhPXMRnfxg?=
+ =?iso-8859-1?Q?covJCq8qb8qlgQz/0bO1VcQjBnuExDdv6h9CrDU1XC7mE7YQ6/6ZKpX/KN?=
+ =?iso-8859-1?Q?DpWTRKcaa5nYY+8QNQsJ5iSTtbftaIrrA/M0YDtKlEjfcdl3qcaWtUq673?=
+ =?iso-8859-1?Q?dDzfoeoUu1LxbYOGU8jpxblCTadZ/Hdr6COJJU/rJjSbBwpeWRDhATWidl?=
+ =?iso-8859-1?Q?lhYa4feebpUG0g97xHLY7fBM+fVg1EHTP7O9MoIHy6PCeW336gS+ciGSRT?=
+ =?iso-8859-1?Q?tPNddm7+iiIVFjazovnmzoTWaqFReyeOY9pchbQKkKBdb1q/nFGCz730D0?=
+ =?iso-8859-1?Q?WwcdlYPS2dSREMaXU1wXKyXvP/epWhph7cwjwyuSnS04/x7KWycRoKV3xT?=
+ =?iso-8859-1?Q?C29cRhN35N0W15eG3WnLXZ76f7JOHubGRgt97K+VtEak0D9O7u5XfzuNTW?=
+ =?iso-8859-1?Q?eVnTzQHSiw=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260529-add-bcm6362-wlan-v1-4-722242777f58@gmail.com>
-References: <20260529-add-bcm6362-wlan-v1-0-722242777f58@gmail.com>
-In-Reply-To: <20260529-add-bcm6362-wlan-v1-0-722242777f58@gmail.com>
-To: =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>, 
- Alessio Ferri <alessio.ferri@mythread.it>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
- devicetree@vger.kernel.org
-X-Mailer: b4 0.14.3
-X-CMAE-Envelope: MS4xfBcr/DglRpxN7rw6gJy2iDE09fw681n/E0jjnusTr+YBzo0LvhdgKX9REQgLsE+08MNT4wD7AwS0wWzXJJxSryGamNMzjPD3JAECY5TxJEBqpCpvQZjQ
- jtNQyPnP/Nedax3aMJKayvYunmGdpvpOeIXNFL6EW4gfX8gyUyJXg2A73FbfvY+Nfd9QlEoYW+daAjCliaJOEvgIzRis69RY7OYX+Qd+UmK3U7vvV1PLoB0u
- 2C5QtwVSKfpRZ8a1k3PeQOkP68M00EKZ05Fg6g68FNKvHo376SjaoXNZQg7alQLznV9EwQME4znJHzZapoiWomx4bxEIibWgzIInH7QxO0fD4YBjUTo4yc2T
- 0xIQnInC8zUdo/YlUaNwEl6viUSG71eGNuKwBk7peD6QfG2lLYVvpjWgjTbeizGQrizxGLY09PdyXOw2KrER7EhgCGWbbvJhfVc/iXAkEhmn6vNNabCCQvlH
- GZn6vNEF9cuq+TFWK98ZdraTT736/WIjykftNuFjKJ90kTacCr6eOcT7lPM=
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Exchange-RoutingPolicyChecked: XhR/ErMxOjndI3nhlHFtnLe2L+3JEhT0C21zmdyGxyeXb0r/pJzKaim65zhMrwoqmrPvWTR+jsk3U+py1TW3QpXsQY8z6clvLNYb2BKTDHvETvB/pHuOzIRrX0SoOdoTjl34InGyojzChFqyDKFeSd4N5Td6XBqKJPHwLo3gbFcE4OmvZ5J3o32DQ14g9eVUgxGbh4Ww+1KlCZRAVLID8vY8+xQEmRLTYCL9CNDAR7zPYLKLPbpU6lK2r2W5HZYSD/Q16Hz2YAWS/ZgDpFKlnprz0JC8fcfMUkmXup0ypHdFy0vqY6YMHuBx2xabuVqXljVMCqNQsm4/KwWvyv+ozw==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR84MB3523.NAMPRD84.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5333b3eb-fa82-49b2-2dc5-08debd17e8c3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 May 2026 00:19:11.9278
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Z09UPkm7phVAW7du441nMpm/SLtF+VNgVUsbVnaVipyJm7bTUA4ktHkbiiQIgOqV1EDGsZg+6qK2RUwuI3ExAw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR84MB3086
+X-OriginatorOrg: hpe.com
+X-Authority-Analysis: v=2.4 cv=A6Zc+aWG c=1 sm=1 tr=0 ts=6a18db90 cx=c_pps
+ a=FAnPgvRYq/vnBSvlTDCQOQ==:117 a=FAnPgvRYq/vnBSvlTDCQOQ==:17
+ a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10 a=NGcC8JguVDcA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=gQcMVamqm3wCPoSYhaRC:22 a=RtSn8ETxjE2H05FtM2s8:22
+ a=OUXY8nFuAAAA:8 a=0bwX27tMA4ljDho7v6AA:9 a=wPNLvfGTeEIA:10
+ a=cAcMbU7R10T-QSRYIcO_:22
+X-Proofpoint-GUID: mLnEpHl1Gu9OIULhDY5xClFCybNJTM-4
+X-Proofpoint-ORIG-GUID: mLnEpHl1Gu9OIULhDY5xClFCybNJTM-4
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI5MDAwMSBTYWx0ZWRfX5OpbG/BsnPHS
+ yQeyx1raGLDT+Qwa+PjctQD/7hpuzB1VlsiXJtwCmd7w+KrA4GSv9M4iD8Ut5FAj6YGa+FMhcnr
+ lAG8Trg6enYtPJSNAKC7+mgLqv6GJKhmewaz2UNPGwgAhouQTj5kaYekenR/c/nG+HgITy2HSqf
+ +EipwlHJG/tQFTozE0inq3U3z/WNIuywChhg8HiIQKg4e8Wh0R8LenPbzPOthCV4t5DWpSvj5v4
+ JeOHzbI28OLek0/SJME82GZGaG49+N3+L91HYSOt4io+0qBEbuISTDfNOZQ728EKuz4K9zmTk8U
+ vAelNsV3azxkMBBcyKO/363PyhHZgWonZIq9sGS8OHQscBH2iW3qzDljrWny3nYorNn2irmJsVE
+ uBFY6s8wRsh8yjHZzI+AQH1Wn1EpwMr0qvMjtAHXyEipytnZFr9fvdoHwZqxY8sYnoSqtcyO0Bf
+ qpGMejjGmsJEmqS0PAA==
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-05-28_07,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 bulkscore=0 adultscore=0 clxscore=1015
+ spamscore=0 impostorscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2605290001
+X-Spamd-Result: default: False [2.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_MATCH_TO(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mythread.it,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[mythread.it:s=a1];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[hpe.com,reject];
+	R_DKIM_ALLOW(-0.20)[hpe.com:s=pps0720];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304014-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,mythread.it,kernel.org,pengutronix.de,broadcom.com];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[mythread.it:+];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alessio.ferri@mythread.it,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304017-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[juniper.net:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,hpe.com:mid,hpe.com:dkim];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sanman.pradhan@hpe.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[hpe.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: BA56F5FB99F
+	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[11]
+X-Rspamd-Queue-Id: B4A045FBAED
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the bridge driver that brings up the BCM6362 on-chip WLAN SHIM
-and then populates a brcm,bus-axi child whose backplane is
-enumerated by drivers/bcma/host_soc.c.
-
-Add myself as MANTAINER for this shim.
-
-After mapping the SHIM peephole, preparing the clock, and toggling
-the SHIM and ubus resets, the driver runs the macro-enable sequence
-taken from the OEM BCM6362 SDK setup.c. It then constructs a struct
-bcma_host_soc_pdata - with big_endian and shim_attached set, and
-shim_iomem pointing at the already-mapped SHIM peephole - and hands
-it to the brcm,bus-axi child by registering an of_dev_auxdata entry
-keyed on the "brcm,bus-axi" compatible. of_platform_populate() then
-creates the child platform_device with the pdata attached, and
-bcma-host-soc consumes it during its probe.
-
-The auxdata-based handoff was chosen over a second per-SoC
-bcma-host-soc DT compatible to keep the SoC-specific knowledge in
-the SHIM driver, where the SHIM register layout already lives, and
-to avoid duplicating the SHIM base address between the DT and the
-bcma driver. Using of_platform_populate() rather than a synthesized
-platform_device preserves the DT IRQ machinery: the bcma child's
-of_node carries the standard interrupt-map that bcma_of_get_irq()
-walks to resolve per-core IRQs.
-
-Assisted-by: Claude:claude-4.8-opus
-Signed-off-by: Alessio Ferri <alessio.ferri@mythread.it>
----
- MAINTAINERS                     |   7 ++
- drivers/bus/Kconfig             |  13 +++
- drivers/bus/Makefile            |   1 +
- drivers/bus/bcm6362-wlan-shim.c | 252 ++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 273 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 461a3eed6129..4032bd6b9cfa 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5109,6 +5109,13 @@ L:	linux-usb@vger.kernel.org
- S:	Maintained
- F:	drivers/usb/gadget/udc/bcm63xx_udc.*
- 
-+BROADCOM BCM6362 WLAN SHIM BRIDGE DRIVER
-+M:	Alessio Ferri <alessio.ferri@mythread.it>
-+L:	linux-wireless@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/bus/brcm,bcm6362-wlan.yaml
-+F:	drivers/bus/bcm6362-wlan-shim.c
-+
- BROADCOM BCM7XXX ARM ARCHITECTURE
- M:	Florian Fainelli <florian.fainelli@broadcom.com>
- R:	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-diff --git a/drivers/bus/Kconfig b/drivers/bus/Kconfig
-index 3181d8aa32a3..e992a34c5230 100644
---- a/drivers/bus/Kconfig
-+++ b/drivers/bus/Kconfig
-@@ -29,6 +29,19 @@ config ARM_INTEGRATOR_LM
- 	  Say y here to enable support for the ARM Logic Module bus
- 	  found on the ARM Integrator AP (Application Platform)
- 
-+config BCM6362_WLAN_SHIM
-+	tristate "BCM6362 on-chip WLAN SHIM bridge"
-+	depends on BMIPS_GENERIC || COMPILE_TEST
-+	depends on OF
-+	select BCMA
-+	select BCMA_HOST_SOC
-+	help
-+	  Bring-up driver for the SHIM bridge that gates the integrated
-+	  2.4 GHz WLAN block of the BCM6362 SoC. The driver releases the
-+	  SHIM from reset, configures clocks, and then instantiates a
-+	  bcma-host-soc child platform device whose bcma backplane is
-+	  enumerated by the bcma driver.
-+
- config BRCMSTB_GISB_ARB
- 	tristate "Broadcom STB GISB bus arbiter"
- 	depends on ARCH_BRCMSTB || BMIPS_GENERIC
-diff --git a/drivers/bus/Makefile b/drivers/bus/Makefile
-index a01f97fef3e8..4b24ce0137fc 100644
---- a/drivers/bus/Makefile
-+++ b/drivers/bus/Makefile
-@@ -8,6 +8,7 @@ obj-$(CONFIG_ARM_CCI)		+= arm-cci.o
- obj-$(CONFIG_ARM_INTEGRATOR_LM)	+= arm-integrator-lm.o
- obj-$(CONFIG_HISILICON_LPC)	+= hisi_lpc.o
- obj-$(CONFIG_BRCMSTB_GISB_ARB)	+= brcmstb_gisb.o
-+obj-$(CONFIG_BCM6362_WLAN_SHIM)	+= bcm6362-wlan-shim.o
- obj-$(CONFIG_MOXTET)		+= moxtet.o
- 
- # DPAA2 fsl-mc bus
-diff --git a/drivers/bus/bcm6362-wlan-shim.c b/drivers/bus/bcm6362-wlan-shim.c
-new file mode 100644
-index 000000000000..a2de03cf8ff7
---- /dev/null
-+++ b/drivers/bus/bcm6362-wlan-shim.c
-@@ -0,0 +1,252 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * BCM6362 on-chip WLAN SHIM bridge driver.
-+ *
-+ * The BCM6362 integrates a Broadcom 2.4 GHz WLAN block whose register
-+ * backplane is a Broadcom AMBA (AXI/OCP) - what the bcma driver calls
-+ * "brcm,bus-axi". The backplane sits on the SoC ubus, behind a small
-+ * "SHIM" bridge that gates clocks and holds the WLAN macro in reset
-+ * until released by software. CFE does not bring this block up.
-+ *
-+ *   ubus  ─┬─►  WLAN SHIM  ─►  AXI backplane  ┬─► ChipCommon
-+ *          │    @ 0x10007000  @ 0x10004000    ├─► d11 MAC core
-+ *          │                                  └─► (PMU, GPIO live in
-+ *          │                                       ChipCommon)
-+ *          └─►  rest of the SoC
-+ *
-+ * This driver brings the SHIM up (clocks, resets, the OEM enable
-+ * sequence) and then calls of_platform_populate() on its DT node. The
-+ * "brcm,bus-axi" child is bound by drivers/bcma/host_soc.c, and the
-+ * SoC-specific configuration that bcma needs (big-endian backplane,
-+ * SHIM-attached topology, and an already-mapped pointer to the SHIM
-+ * Control register peephole) is delivered to it via of_dev_auxdata
-+ * platform_data injected at populate time.
-+ *
-+ * Bring-up sequence and SHIM register layout match the OEM source
-+ * arch/mips/bcm963xx/setup.c and the WlanShimRegs struct in
-+ * shared/opensource/include/bcm963xx/6362_map_part.h. The fake-PCI
-+ * dance the OEM kernel does after bring-up is intentionally absent
-+ * here: bcma host_soc.c speaks to the backplane natively, in
-+ * big-endian, via the pdata-supplied configuration.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_data/bcma_host_soc.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset.h>
-+
-+/* SHIM register layout (struct WlanShimRegs in 6362_map_part.h). */
-+#define SHIM_MISC		0x00
-+#define   SHIM_FORCE_CLK_ON	BIT(2)
-+#define   SHIM_MACRO_DISABLE	BIT(1)
-+#define   SHIM_MACRO_SOFT_RESET	BIT(0)
-+#define SHIM_STATUS		0x04
-+#define SHIM_CC_CONTROL		0x08
-+#define SHIM_CC_STATUS		0x0c
-+#define SHIM_MAC_CONTROL	0x10
-+#define   SICF_FGC		BIT(1)	/* force gated clock */
-+#define   SICF_CLOCK_EN		BIT(0)
-+#define SHIM_MAC_STATUS		0x14
-+#define SHIM_CC_ID_A		0x18
-+#define SHIM_MAC_ID_A		0x24
-+
-+struct bcm6362_wlan {
-+	struct device		*dev;
-+	void __iomem		*shim;
-+	struct clk		*clk;
-+	struct reset_control	*rst_shim;
-+	struct reset_control	*rst_shim_ubus;
-+
-+	/* Storage for the pdata pointer handed to bcma via of_dev_auxdata.
-+	 * of_platform_device_create_pdata() stores a pointer to this
-+	 * struct on the bcma child device's platform_data field, so it
-+	 * must outlive the child. devm_kzalloc on priv guarantees this:
-+	 * the child is depopulated in remove() before devres frees priv.
-+	 */
-+	struct bcma_host_soc_pdata pdata;
-+};
-+
-+static int bcm6362_wlan_bringup(struct bcm6362_wlan *priv)
-+{
-+	int ret;
-+
-+	dev_info(priv->dev, "bring-up: start\n");
-+
-+	ret = clk_prepare_enable(priv->clk);
-+	if (ret) {
-+		dev_err(priv->dev, "clk_prepare_enable failed: %d\n", ret);
-+		return ret;
-+	}
-+	dev_info(priv->dev, "bring-up: clock enabled, rate=%lu Hz\n",
-+		 clk_get_rate(priv->clk));
-+	mdelay(10);
-+
-+	/* Reset toggle (brcm,bcm6345-reset hides the active-low softResetB
-+	 * encoding, so assert/deassert read naturally here).
-+	 */
-+	reset_control_assert(priv->rst_shim_ubus);
-+	reset_control_assert(priv->rst_shim);
-+	mdelay(1);
-+	reset_control_deassert(priv->rst_shim_ubus);
-+	reset_control_deassert(priv->rst_shim);
-+	mdelay(1);
-+	dev_info(priv->dev, "bring-up: reset toggled\n");
-+
-+	/* The SHIM and the AXI backplane behind it are big-endian
-+	 * peripherals on a big-endian MIPS CPU. The asymmetric-endian
-+	 * writel() in this configuration byte-swaps the value (it
-+	 * assumes a little-endian bus, typical for PCI), landing each
-+	 * bit in the wrong position. iowrite32be() is a no-op transform
-+	 * here (BE-to-BE) and writes the value the bring-up sequence
-+	 * intends. Same story for the read-back diagnostics: readl()
-+	 * would byte-swap on the way back.
-+	 *
-+	 * Force clocks on + hold WLAN macro in soft reset.
-+	 */
-+	iowrite32be(SHIM_FORCE_CLK_ON | SHIM_MACRO_SOFT_RESET,
-+		    priv->shim + SHIM_MISC);
-+	mdelay(1);
-+
-+	/* MAC core: force gated clock + clock enable (with reset held). */
-+	iowrite32be(SICF_FGC | SICF_CLOCK_EN, priv->shim + SHIM_MAC_CONTROL);
-+
-+	/* Release macro soft reset, keep clocks forced. */
-+	iowrite32be(SHIM_FORCE_CLK_ON, priv->shim + SHIM_MISC);
-+
-+	/* Drop the force, let normal gating take over. */
-+	iowrite32be(0, priv->shim + SHIM_MISC);
-+	iowrite32be(SICF_CLOCK_EN, priv->shim + SHIM_MAC_CONTROL);
-+
-+	/* Read-back diagnostics: if the backplane is alive these reflect
-+	 * the values we just wrote (MISC=0, MAC_CONTROL=SICF_CLOCK_EN) and
-+	 * the STATUS regs report sane non-zero core ids.
-+	 */
-+	dev_info(priv->dev,
-+		 "bring-up: post-shim MISC=%08x STATUS=%08x CC_CTRL=%08x CC_STAT=%08x MAC_CTRL=%08x MAC_STAT=%08x\n",
-+		 ioread32be(priv->shim + SHIM_MISC),
-+		 ioread32be(priv->shim + SHIM_STATUS),
-+		 ioread32be(priv->shim + SHIM_CC_CONTROL),
-+		 ioread32be(priv->shim + SHIM_CC_STATUS),
-+		 ioread32be(priv->shim + SHIM_MAC_CONTROL),
-+		 ioread32be(priv->shim + SHIM_MAC_STATUS));
-+	dev_info(priv->dev,
-+		 "bring-up: CcIdA=%08x MacIdA=%08x (non-zero = backplane responsive)\n",
-+		 ioread32be(priv->shim + SHIM_CC_ID_A),
-+		 ioread32be(priv->shim + SHIM_MAC_ID_A));
-+
-+	return 0;
-+}
-+
-+static void bcm6362_wlan_teardown(struct bcm6362_wlan *priv)
-+{
-+	iowrite32be(0, priv->shim + SHIM_MAC_CONTROL);
-+	iowrite32be(SHIM_MACRO_DISABLE | SHIM_MACRO_SOFT_RESET,
-+		    priv->shim + SHIM_MISC);
-+	reset_control_assert(priv->rst_shim);
-+	reset_control_assert(priv->rst_shim_ubus);
-+	clk_disable_unprepare(priv->clk);
-+}
-+
-+static int bcm6362_wlan_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct of_dev_auxdata auxdata[2];
-+	struct bcm6362_wlan *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	priv->dev = dev;
-+
-+	priv->shim = devm_platform_ioremap_resource_byname(pdev, "shim");
-+	if (IS_ERR(priv->shim))
-+		return PTR_ERR(priv->shim);
-+
-+	priv->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(priv->clk))
-+		return PTR_ERR(priv->clk);
-+
-+	priv->rst_shim = devm_reset_control_get_exclusive(dev, "shim");
-+	if (IS_ERR(priv->rst_shim))
-+		return PTR_ERR(priv->rst_shim);
-+
-+	priv->rst_shim_ubus = devm_reset_control_get_exclusive(dev,
-+							       "shim-ubus");
-+	if (IS_ERR(priv->rst_shim_ubus))
-+		return PTR_ERR(priv->rst_shim_ubus);
-+
-+	ret = bcm6362_wlan_bringup(priv);
-+	if (ret) {
-+		dev_err(dev, "WLAN bring-up failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	/* Configure pdata in storage owned by priv. Used by
-+	 * of_platform_populate() below and dereferenced by bcma at
-+	 * runtime via dev_get_platdata().
-+	 */
-+	priv->pdata.big_endian	  = true;
-+	priv->pdata.shim_attached = true;
-+	priv->pdata.shim_iomem	  = priv->shim;
-+
-+	/* Inject pdata into the brcm,bus-axi child at populate time.
-+	 * phys_addr 0 matches by compatible only; there is exactly one
-+	 * brcm,bus-axi child under this node. of_platform_populate()
-+	 * triggers the bcma probe synchronously - if bcma is built-in
-+	 * (or already loaded as a module - see MODULE_SOFTDEP below)
-+	 * it has matched and configured itself before we return here.
-+	 */
-+	auxdata[0] = (struct of_dev_auxdata)
-+		OF_DEV_AUXDATA("brcm,bus-axi", 0, NULL, &priv->pdata);
-+	memset(&auxdata[1], 0, sizeof(auxdata[1]));
-+
-+	ret = of_platform_populate(dev->of_node, NULL, auxdata, dev);
-+	if (ret) {
-+		dev_err(dev, "failed to populate bcma child: %d\n", ret);
-+		bcm6362_wlan_teardown(priv);
-+		return ret;
-+	}
-+
-+	platform_set_drvdata(pdev, priv);
-+	return 0;
-+}
-+
-+static void bcm6362_wlan_remove(struct platform_device *pdev)
-+{
-+	struct bcm6362_wlan *priv = platform_get_drvdata(pdev);
-+
-+	/* Tear bcma down first: the bcma child uses priv->shim through
-+	 * pdata->shim_iomem and its lifetime is owned here.
-+	 * of_platform_depopulate() is synchronous - by the time it
-+	 * returns, bcma has released the SHIM mapping.
-+	 */
-+	of_platform_depopulate(&pdev->dev);
-+	bcm6362_wlan_teardown(priv);
-+}
-+
-+static const struct of_device_id bcm6362_wlan_match[] = {
-+	{ .compatible = "brcm,bcm6362-wlan", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, bcm6362_wlan_match);
-+
-+static struct platform_driver bcm6362_wlan_driver = {
-+	.probe	= bcm6362_wlan_probe,
-+	.remove	= bcm6362_wlan_remove,
-+	.driver	= {
-+		.name		= "bcm6362-wlan",
-+		.of_match_table	= bcm6362_wlan_match,
-+	},
-+};
-+module_platform_driver(bcm6362_wlan_driver);
-+
-+MODULE_SOFTDEP("pre: bcma");
-+MODULE_AUTHOR("Alessio Ferri <alessio.ferri@mythread.it>");
-+MODULE_DESCRIPTION("BCM6362 on-chip WLAN SHIM bridge driver");
-+MODULE_LICENSE("GPL");
-
--- 
-2.54.0
-
+From: Sanman Pradhan <psanman@juniper.net>=0A=
+=0A=
+Add PMBus hwmon driver and DT binding for the Analog Devices MAX20860A=0A=
+step-down DC-DC switching regulator. The driver provides monitoring of=0A=
+input/output voltage, output current, and temperature using linear data=0A=
+format.=0A=
+=0A=
+The driver does not modify device write-protection state during probe and=
+=0A=
+relies on the PMBus core to handle write-protect detection and sysfs=0A=
+attribute permissions.=0A=
+=0A=
+Tested on PTX platform with MAX20860A at i2c-195/0x23:=0A=
+  - All sensors (vin, vout, iout, temp1, temp2) read correctly=0A=
+  - Limit attributes correctly read-only (HW write-protect honored)=0A=
+  - Clean dmesg (no probe errors)=0A=
+=0A=
+Changes since v2:=0A=
+  - DT binding: Drop "maxim,max20860a" and keep only "adi,max20860a"=0A=
+  - Driver: Drop matching "maxim,max20860a" OF match entry=0A=
+=0A=
+Changes since v1:=0A=
+  - DT binding: Added allOf regulator.yaml reference and unevaluatedPropert=
+ies=0A=
+  - Driver: Removed WRITE_PROTECT write from probe=0A=
+=0A=
+Sanman Pradhan (1):=0A=
+  dt-bindings: hwmon: pmbus: Add Analog Devices MAX20860A=0A=
+=0A=
+Syed Arif (1):=0A=
+  hwmon: (pmbus/max20860a) Add driver for Analog Devices MAX20860A=0A=
+=0A=
+ .../bindings/hwmon/pmbus/adi,max20860a.yaml   | 45 +++++++++++++++=0A=
+ Documentation/hwmon/index.rst                 |  1 +=0A=
+ Documentation/hwmon/max20860a.rst             | 57 +++++++++++++++++++=0A=
+ MAINTAINERS                                   |  8 +++=0A=
+ drivers/hwmon/pmbus/Kconfig                   |  9 +++=0A=
+ drivers/hwmon/pmbus/Makefile                  |  1 +=0A=
+ drivers/hwmon/pmbus/max20860a.c               | 57 +++++++++++++++++++=0A=
+ 7 files changed, 178 insertions(+)=0A=
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/adi,max20=
+860a.yaml=0A=
+ create mode 100644 Documentation/hwmon/max20860a.rst=0A=
+ create mode 100644 drivers/hwmon/pmbus/max20860a.c=0A=
+=0A=
+-- =0A=
+2.34.1=0A=
 
