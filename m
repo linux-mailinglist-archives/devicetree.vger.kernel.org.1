@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-304161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304163-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eG91FkRdGWpevwgAu9opvQ
-	(envelope-from <devicetree+bounces-304161-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 11:32:52 +0200
+	id GAWECUldGWpevwgAu9opvQ
+	(envelope-from <devicetree+bounces-304163-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 11:32:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC8045FFFC1
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 11:32:51 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 233E25FFFC8
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 11:32:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2B078301FD48
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 09:28:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BAC5F3002501
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 09:30:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEDA13BAD94;
-	Fri, 29 May 2026 09:28:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB063C278F;
+	Fri, 29 May 2026 09:30:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nz8bhU0y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BuaX59IY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D37B93446DE
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 09:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF7A1ABED9
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 09:30:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780046899; cv=none; b=sAjAp8jsrAM+1ryw6ZVJJXXekiUqkLwZXfvIWFxj4yooFN7pzLu5xQnjTzPla2aTmfkdPtJqpkIw7shAtdjrbHMFT2i0iC3Rux1o0HAXwxHm/Ky1jXPUiEbDAznSCC/sGNooxbx77FppBrVgIAkeQQ6cW7r9at5OpvpSPxHGH0M=
+	t=1780047046; cv=none; b=ddWvn1/sEHnaZSuVs0RAubvqOrDLYVuRTU/qhD1Jz6/moi46WIK/L5D8ZmN27vpLdoBcGed9BKL5Klr1aA+TmGVSNgnxdUaDzPJnCdHmDw5XAL5lxtTcdn9jTRkVj4nqehAbZglgT0CHFLrPosapiQSxrio/h2XkI3ywDjpiRvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780046899; c=relaxed/simple;
-	bh=iWhPYgTdfFffYhnHI0zoRH7CbNn3F7LEqkwk8Yonugg=;
+	s=arc-20240116; t=1780047046; c=relaxed/simple;
+	bh=ElRI4n8aLcmNEXHtK8hkpxBbmKCeNh/qtKL9tf4sz2c=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=AuFvraism5KifES41ZvQ9AUK4/BcoOSZfClPf1pIUsibpJLUaeC3OMVRogQO19d5RmphuHewtDRIyb24GIBS7ifwOzljFstOrwsLKIX3QU18hL1Y9Tt7KisU8lSkObPjaAyN/CMaUU/gzJOk2hvQ5dgolR2IIagUxQpYpELy8Zg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nz8bhU0y; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42D7F1F00893;
-	Fri, 29 May 2026 09:28:18 +0000 (UTC)
+	 Message-Id; b=WsnHnKh/YEgjOyE4PAQRtrdhezDVNaQSr21/zcZFL6SiQHykWo9TO4E5ivY7n2ORB8LPRWeTDlz5L+N4A4cxqD4q+TIK7/NACub6xK6NCefg4dE+E7AdzPVbZJnYvKTz/ywPegG0n1K3vNuy2SdPTTwMbdOaCNHI/VUbF2tewEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BuaX59IY; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7CC11F00893;
+	Fri, 29 May 2026 09:30:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780046898;
-	bh=HeTPvBmUOKWtyif2nDVQcsLjaSpPf/WA2Dx95uFfpxE=;
+	s=k20260515; t=1780047045;
+	bh=d5MAZtVTisSGFGAD5CxHncH6lbC9FtlQynGJsg36V54=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Nz8bhU0yZr4u2euYv/v2eudyShlVK0ahakCgnGMg2MGmusfkPIcb3PxHbhOAsB1js
-	 fEfqUX+JPBkcNEa6ALI3CfnZPDkEiWQ5/PHtQitExRWwXoBSZckLBIJTicmqHolOhI
-	 yHMz2VlW2WFHkkQLAIgixVvOWm3/XNe/LFwhIYZ04kgp0kFqyTf+IcPOH6YxV2NM0D
-	 7GqSKu33/zRH2k8m/Ziq4jxK+qI/j+QJlfqn3m/p7FHJsWigKRRK88I8hkjxneCFVw
-	 OSF79Ndlr4N1DU2c4CyZpsnBP3wUsZ+r88j8x/HddWyxRW8i3vxWJOr7x5geLfvfSL
-	 VCEBwBPmzLiJw==
+	b=BuaX59IYIk0rqSULkpdj1h3S0NMY7awpWocHy87OpfisEw+tnE8YBuG/RiYBrCxbi
+	 DtZl9RLqfFLCUGbiCEMOwM1pzK/Jk/u7Hh6MmFFo09r3fmWINREQdhHspo2A+NnpDO
+	 1vhDLNZIoP1aBKog+vlHLA/MyBQYPlPTc7nfP0nS1Tq6oA6930BNiivl807/MiYagZ
+	 Vvug20PuwXp2rnn8HhP7vypt3exnVTsdy0h0uUapAFiu3NmZYr00ZEy7aztyZULRhL
+	 JI48TkAtlfUTFMX4uflTsLkm61pCRMHY66CO6UTFSJRIUzFeoy/LyYscTBs4ooET6J
+	 lv6Q+jwgAoDEA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 08/15] drm/tidss: Add mechanism to detect DPI output
+Subject: Re: [PATCH v3 10/15] drm/tidss: Add support for DPIENABLE bit
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Tomi Valkeinen" <tomi.valkeinen@ideasonboard.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260529-beagley-ai-display-v3-8-7fefdc5d1adf@ideasonboard.com>
-References: <20260529-beagley-ai-display-v3-8-7fefdc5d1adf@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260529-beagley-ai-display-v3-10-7fefdc5d1adf@ideasonboard.com>
+References: <20260529-beagley-ai-display-v3-10-7fefdc5d1adf@ideasonboard.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 29 May 2026 09:28:17 +0000
-Message-Id: <20260529092818.42D7F1F00893@smtp.kernel.org>
+Date: Fri, 29 May 2026 09:30:44 +0000
+Message-Id: <20260529093044.C7CC11F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,12 +66,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304161-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304163-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -89,107 +89,50 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ideasonboard.com:email]
-X-Rspamd-Queue-Id: AC8045FFFC1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url,ideasonboard.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 233E25FFFC8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] DPI output detection misidentifies AM65x OLDI ports as DPI, causin=
-g corruption of DPI clock configuration.
-- [Low] Manual parsing of device tree 'compatible' property instead of usin=
-g the standard `of_device_is_compatible()` API.
+- [Medium] The commit message claims to modify the DPIENABLE bit in `dispc_=
+vp_enable()` and `dispc_vp_disable()`, but the code actually implements thi=
+s in `dispc_vp_prepare()` and `dispc_vp_unprepare()`.
 --
 
-commit b4b73a906f813456b4eaed059b154ca4c691e76b
+commit 5f892829b86a9d1dabfa16f8442393394955354e
 Author: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-drm/tidss: Add mechanism to detect DPI output
+drm/tidss: Add support for DPIENABLE bit
 
-This commit adds a mechanism to determine if an output is going to a DPI
-output or not, by checking if it is not DSI or OLDI. It uses a helper to
-check bridge compatible strings and parent nodes to make this determination.
+This commit adds support for the DPIENABLE bit in the VP_CONTROL register,
+which provides power savings on the AM62L SoC when disabled. It introduces a
+new feature flag to track this capability and updates the initialization
+paths to disable it by default. The driver then turns the bit on and off
+when DPI output is active.
 
-> diff --git a/drivers/gpu/drm/tidss/tidss_kms.c b/drivers/gpu/drm/tidss/ti=
-dss_kms.c
-> index 8bb93194e5ac6..bc8b10af9a48e 100644
-> --- a/drivers/gpu/drm/tidss/tidss_kms.c
-> +++ b/drivers/gpu/drm/tidss/tidss_kms.c
+> Let's add a new feature flag for this, 'has_vp_control_dpienable', and
+> implement the support.  Disable DPIENABLE for all videoports at resume
+> time, so that it is 0 by default. Specifically enable and disable it in
+> dispc_vp_enable() and dispc_vp_disable() for DPI output.
 
-[ ... ]
+[Severity: Medium]
+Is the commit message accurate about where the bit is enabled and disabled?
 
-> +static bool tidss_is_bridge_internal(struct tidss_device *tidss,
-> +				     struct drm_bridge *bridge)
-> +{
-> +	struct device_node *parent, *grand_parent;
-> +	struct property *prop;
-> +	bool is_internal;
-> +
-> +	if (WARN_ON(!bridge->of_node))
-> +		return false;
-> +
-> +	prop =3D of_find_property(bridge->of_node, "compatible", NULL);
-> +	for (const char *cp =3D of_prop_next_string(prop, NULL); cp;
-> +	     cp =3D of_prop_next_string(prop, cp)) {
-> +		for (unsigned int i =3D 0;
-> +		     i < ARRAY_SIZE(tidss_internal_bridge_compatibles); ++i) {
-> +			if (strcmp(cp, tidss_internal_bridge_compatibles[i]) =3D=3D 0)
-> +				return true;
-> +		}
-> +	}
+The commit message states that the DPIENABLE bit is managed in
+dispc_vp_enable() and dispc_vp_disable().
 
-[Severity: Low]
-Is it necessary to manually parse the compatible property string here?
-Using the standard of_device_is_compatible() API would be safer and
-avoid reinventing the wheel for property iteration.
+However, the patch actually applies these register modifications in
+dispc_vp_prepare() and dispc_vp_unprepare().
 
-> +	parent =3D of_get_parent(bridge->of_node);
-> +	grand_parent =3D of_get_parent(parent);
-> +
-> +	is_internal =3D parent && grand_parent &&
-> +		      tidss->dev->of_node =3D=3D grand_parent &&
-> +		      of_node_name_eq(parent, "oldi-transmitters");
-> +
-> +	of_node_put(grand_parent);
-> +	of_node_put(parent);
-> +
-> +	return is_internal;
-> +}
-
-[ ... ]
-
-> @@ -160,6 +206,11 @@ static int tidss_dispc_modeset_init(struct tidss_dev=
-ice *tidss)
->  			return dev_err_probe(dev, ret, "port %d probe failed\n", i);
->  		}
-> =20
-> +		if (bridge)
-> +			dpi_output =3D !tidss_is_bridge_internal(tidss, bridge);
-> +		else
-> +			dpi_output =3D true;
-> +
-
-[Severity: High]
-Could this logic misidentify AM65x OLDI ports as DPI?
-
-On the AM65x SoC, the OLDI transmitter is integrated directly into the DSS
-without a separate oldi-transmitters node in the device tree.
-
-If a panel is directly connected to the AM65x OLDI port, bridge will be NUL=
-L.
-If an external LVDS bridge is connected, it will not be recognized as an
-internal bridge. In both cases, the OLDI port seems like it would be
-unconditionally marked as dpi_output =3D true.
-
-Since dpi_output is used to configure the shared DPI clock control register,
-would preparing the OLDI port incorrectly write its own polarity
-configuration and corrupt the actual DPI port's configuration?
+Could the commit message be updated to correctly reflect the functions
+modified in the implementation?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260529-beagley-ai=
--display-v3-0-7fefdc5d1adf@ideasonboard.com?part=3D8
+-display-v3-0-7fefdc5d1adf@ideasonboard.com?part=3D10
 
