@@ -1,303 +1,162 @@
-Return-Path: <devicetree+bounces-304119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304063-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gH8lOhhSGWrzuQgAu9opvQ
-	(envelope-from <devicetree+bounces-304119-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 10:45:12 +0200
+	id wF8dCVMXGWoMqQgAu9opvQ
+	(envelope-from <devicetree+bounces-304063-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 06:34:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB8085FF633
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 10:45:11 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 243105FD04C
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 06:34:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 944C13050F36
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 08:42:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2A71B3064640
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 04:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA0B0351C20;
-	Fri, 29 May 2026 08:42:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DF82370D56;
+	Fri, 29 May 2026 04:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="MMgPJ4+V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h1D48ruc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49239.qiye.163.com (mail-m49239.qiye.163.com [45.254.49.239])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6E5348C56;
-	Fri, 29 May 2026 08:42:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.239
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E21F130CD82
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 04:30:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780044136; cv=none; b=K0jOIIKQ5ffp9nfN6cdaJlZNV9CfkuV0SmfypB30UGOIWSw0lWNNTCDR6Aofaql2kZ4DQ28FS9YtWgpPn2Zq/68LRQmfwBWAnuWfRAyZAb953/ePzOxIXvjhiJPJMqmDfRgXzjfOb+7Yq5SiH39HwyT9HLHSEeZVFMAcwZnpWJM=
+	t=1780029060; cv=none; b=Y3jq5HVC5FtvpolcDRePAw/AjxwlzGQjP1etLWQyqEPxZVadS6CBA278Eaejrhpow5t1gPhpngQzAniPVkprjalwheaGRBjvvoWxq4TS9DnDAftV2630V2FBPkJ1/xBw9ROc8lYtyCtyyzkkCl1a61N2lba4zHlorpD2bk3JLkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780044136; c=relaxed/simple;
-	bh=/BJsYPGn/RFtHCSEEOPN98Mc80Hg9zG10CuUCShKzFY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=AYNz6qF9j8xenViijq9Q1Y0/8bdtBfZhyKGwZHl7WyqHnxhdjLHBNxa2i/ZAgNx8kKPe7rX3h9B7MRFDAyCjPGUMErLFfj73X50OHgxwWluh+0/LYhIg0jLdRCPd+j4dTz6zR1yiElORPMuFUKJiwv4EzcQER/8qDRZd1eXtX0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=MMgPJ4+V; arc=none smtp.client-ip=45.254.49.239
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 404653bd3;
-	Fri, 29 May 2026 12:05:52 +0800 (GMT+08:00)
-From: Damon Ding <damon.ding@rock-chips.com>
-To: hjc@rock-chips.com,
-	heiko@sntech.de,
-	andy.yan@rock-chips.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	nicolas.frattaroli@collabora.com,
-	cristian.ciocaltea@collabora.com,
-	sebastian.reichel@collabora.com,
-	dmitry.baryshkov@oss.qualcomm.com,
-	luca.ceresoli@bootlin.com,
-	dianders@chromium.org,
-	m.szyprowski@samsung.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v4 3/3] drm/bridge: analogix_dp: Add support for optional data-lanes mapping
-Date: Fri, 29 May 2026 12:05:30 +0800
-Message-Id: <20260529040530.741336-4-damon.ding@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260529040530.741336-1-damon.ding@rock-chips.com>
-References: <20260529040530.741336-1-damon.ding@rock-chips.com>
+	s=arc-20240116; t=1780029060; c=relaxed/simple;
+	bh=RTu624FOaFYsSVqzRNcr94QrkGuIwKPpDR/vsnae1sY=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=u3h/+BH+VVeuAoDbzriwIxWeraqkljWGcDMpl2NqIrAyU3TMnUoUE4uSihxNE9b1g1tdw0azvv7wSmNFusR2KkcczMvMxKu6r35aGAmZAdfqkTbh9qvAME+9DXIF1D/p6BpZcOyFrBJ+E07oTwRw+A+iw76thMAKkwJtqWCuHok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h1D48ruc; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 845D71F00893;
+	Fri, 29 May 2026 04:30:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780029059;
+	bh=X7FPX1IaTFbUqUIvOIe03z5wU1RLGWPHY8UrwiNFqzc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=h1D48ruch97nUnOymybKIz75tmHTTw8ZGXhe3AvjR1cSjZQzRKE8i3o4jPyMuR3Rk
+	 Uwq8Fun21YeQ1W0YeYttLIP0gpz9hQKcJZjbmZo2/FHDkbzxleBKJbaj8AjDdSLX1c
+	 cxabqvOEzg9uQ4LbiJDKSIvt/XaG6o8c/qe1Ilncr0pg+WFBydYKp9EydOywYtsn0X
+	 y+ewZaSuBKgMr7wL4r3TRX7xG5rIDSctp/+u4CFMWYnkxADS7cokS9jN7LWXgjCxyp
+	 MDDS3f7aFcuW3F6ubO1cCddiFVYd1QZ8CySd9647UwCfjRNr2Dkw7ei/uI3p/xXXwd
+	 UR7AJET/agh9A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 6/7] pwm: tegra: Add support for Tegra264
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Mikko Perttunen" <mperttunen@nvidia.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260529-t264-pwm-v5-6-7bf9e405a96a@nvidia.com>
+References: <20260529-t264-pwm-v5-6-7bf9e405a96a@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 29 May 2026 04:30:58 +0000
+Message-Id: <20260529043059.845D71F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e71e8f47d03a8kunmaf9a1d48e6c34
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaQhpKVh9MSx9PH0kZGRgYGVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQk1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=MMgPJ4+Vi0CVvauDkSv080LStu9S72lp32lWV3eqT2I887soBz3RTHzQcp+w8NIkOcFQeQVOca0lrzbGx8v9ezXsuZ6SK4PDqyZx1kTccv4uaYvdMiM++roHJEUEde25ffrzPZEcOqQ+Hahhi8yHTCf11rqTRHahwiSztB6skaM=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=73qAOTIleH0MDsOqvfvdJo3Hbwa6tE3kEhHdlHdGqdk=;
-	h=date:mime-version:subject:message-id:from;
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304119-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304063-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,rock-chips.com];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim]
-X-Rspamd-Queue-Id: BB8085FF633
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,nvidia.com:email]
+X-Rspamd-Queue-Id: 243105FD04C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Parse the optional 'data-lanes' device tree property to support
-custom physical lane mapping configuration.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] The driver assumes a fixed PWM depth of 256 but fails to initializ=
+e the new configurable DEPTH register field on Tegra264, risking incorrect =
+PWM frequency and duty cycle.
+--
 
-If no valid configuration is found, fall back to the default
-lane map (0, 1, 2, 3) automatically and keep the driver running.
+commit a215267521de0fbfc0019ea87d4d0d3a5d3250ea
+Author: Mikko Perttunen <mperttunen@nvidia.com>
 
-Lane mapping is mainly used for below scenarios:
-1. Correct PCB lane swap and differential line routing crossover
-   without hardware changes;
-2. Adapt mismatched lane pin definitions between SoC and eDP panel;
-3. Support multiple panel hardware variants on the same board
-   by configuring data-lanes in device tree only.
+pwm: tegra: Add support for Tegra264
 
-Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+This patch adds support for the Tegra264 PWM controller. It introduces
+an enable_reg field to handle the relocated PWM_ENABLE bit in the new
+CSR_1 register for Tegra264 devices.
 
----
+> diff --git a/drivers/pwm/pwm-tegra.c b/drivers/pwm/pwm-tegra.c
+> index 7c7b884d44363..50e72139cbc34 100644
+> --- a/drivers/pwm/pwm-tegra.c
+> +++ b/drivers/pwm/pwm-tegra.c
+[ ... ]
+> @@ -215,6 +257,7 @@ static int tegra_pwm_config(struct pwm_chip *chip, st=
+ruct pwm_device *pwm,
+> =20
+>  static int tegra_pwm_enable(struct pwm_chip *chip, struct pwm_device *pw=
+m)
+>  {
+> +	struct tegra_pwm_chip *pc =3D to_tegra_pwm_chip(chip);
+>  	int rc =3D 0;
+>  	u32 val;
+> =20
+> @@ -222,20 +265,21 @@ static int tegra_pwm_enable(struct pwm_chip *chip, =
+struct pwm_device *pwm)
+>  	if (rc)
+>  		return rc;
+> =20
+> -	val =3D tegra_pwm_readl(pwm, TEGRA_PWM_CSR_0);
+> +	val =3D tegra_pwm_readl(pwm, pc->soc->enable_reg);
+>  	val |=3D TEGRA_PWM_ENABLE;
+> -	tegra_pwm_writel(pwm, TEGRA_PWM_CSR_0, val);
+> +	tegra_pwm_writel(pwm, pc->soc->enable_reg, val);
 
-Changes in v2:
-- Add lane mapping application scenarios in commit message.
----
- .../drm/bridge/analogix/analogix_dp_core.c    | 56 +++++++++++++++++++
- .../drm/bridge/analogix/analogix_dp_core.h    |  4 +-
- .../gpu/drm/bridge/analogix/analogix_dp_reg.c | 15 +++--
- .../gpu/drm/bridge/analogix/analogix_dp_reg.h |  4 ++
- 4 files changed, 70 insertions(+), 9 deletions(-)
+[Severity: High]
+Could this cause a regression where the PWM output is left in a broken state
+if the hardware resets the DEPTH field to 0?
 
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-index 699a7f380c56..b2e729850391 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-@@ -1234,6 +1234,59 @@ static const struct drm_bridge_funcs analogix_dp_bridge_funcs = {
- 	.detect = analogix_dp_bridge_detect,
- };
- 
-+static int analogix_dp_dt_parse_lanes_map(struct analogix_dp_device *dp)
-+{
-+	struct video_info *video_info = &dp->video_info;
-+	struct device_node *endpoint;
-+	u32 tmp[LANE_COUNT4];
-+	u32 map[LANE_COUNT4] = {0, 1, 2, 3};
-+	bool used[LANE_COUNT4] = {false};
-+	int num_lanes;
-+	int ret, i;
-+
-+	memcpy(video_info->lane_map, map, sizeof(map));
-+
-+	num_lanes = drm_of_get_data_lanes_count_ep(dp->dev->of_node, 1, 0, 1,
-+						   video_info->max_lane_count);
-+	if (num_lanes < 0)
-+		return -EINVAL;
-+
-+	endpoint = of_graph_get_endpoint_by_regs(dp->dev->of_node, 1, -1);
-+	if (!endpoint)
-+		return -EINVAL;
-+
-+	ret = of_property_read_u32_array(endpoint, "data-lanes", tmp, num_lanes);
-+	of_node_put(endpoint);
-+	if (ret)
-+		return -EINVAL;
-+
-+	for (i = 0; i < num_lanes; i++) {
-+		if (tmp[i] >= LANE_COUNT4) {
-+			dev_dbg(dp->dev, "data-lanes[%d] = %u is out of range\n", i, tmp[i]);
-+			return -EINVAL;
-+		}
-+
-+		if (used[tmp[i]]) {
-+			dev_dbg(dp->dev, "data-lanes[%d] = %u is duplicate\n", i, tmp[i]);
-+			return -EINVAL;
-+		}
-+
-+		used[tmp[i]] = true;
-+		map[i] = tmp[i];
-+	}
-+
-+	for (i = 0; i < LANE_COUNT4 && num_lanes < LANE_COUNT4; i++) {
-+		if (!used[i])
-+			map[num_lanes++] = i;
-+	}
-+
-+	dev_dbg(dp->dev, "Using parsed lane map: <%u %u %u %u>\n", map[0], map[1], map[2], map[3]);
-+
-+	memcpy(video_info->lane_map, map, sizeof(map));
-+
-+	return 0;
-+}
-+
- static int analogix_dp_dt_parse_pdata(struct analogix_dp_device *dp)
- {
- 	struct device_node *dp_node = dp->dev->of_node;
-@@ -1274,6 +1327,9 @@ static int analogix_dp_dt_parse_pdata(struct analogix_dp_device *dp)
- 		break;
- 	}
- 
-+	if (analogix_dp_dt_parse_lanes_map(dp))
-+		dev_dbg(dp->dev, "No valid data-lanes found, using default lane map\n");
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
-index 17347448c6b0..634fad241e69 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
-@@ -137,6 +137,8 @@ struct video_info {
- 
- 	int max_link_rate;
- 	enum link_lane_count_type max_lane_count;
-+
-+	u32 lane_map[LANE_COUNT4];
- };
- 
- struct link_train {
-@@ -175,7 +177,7 @@ struct analogix_dp_device {
- /* analogix_dp_reg.c */
- void analogix_dp_enable_video_mute(struct analogix_dp_device *dp, bool enable);
- void analogix_dp_stop_video(struct analogix_dp_device *dp);
--void analogix_dp_lane_swap(struct analogix_dp_device *dp, bool enable);
-+void analogix_dp_lane_mapping(struct analogix_dp_device *dp);
- void analogix_dp_init_analog_param(struct analogix_dp_device *dp);
- void analogix_dp_init_interrupt(struct analogix_dp_device *dp);
- void analogix_dp_reset(struct analogix_dp_device *dp);
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
-index 38fd8d5014d2..45c7652645a1 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
-@@ -48,16 +48,15 @@ void analogix_dp_stop_video(struct analogix_dp_device *dp)
- 	writel(reg, dp->reg_base + ANALOGIX_DP_VIDEO_CTL_1);
- }
- 
--void analogix_dp_lane_swap(struct analogix_dp_device *dp, bool enable)
-+void analogix_dp_lane_mapping(struct analogix_dp_device *dp)
- {
-+	u32 *lane_map = dp->video_info.lane_map;
- 	u32 reg;
- 
--	if (enable)
--		reg = LANE3_MAP_LOGIC_LANE_0 | LANE2_MAP_LOGIC_LANE_1 |
--		      LANE1_MAP_LOGIC_LANE_2 | LANE0_MAP_LOGIC_LANE_3;
--	else
--		reg = LANE3_MAP_LOGIC_LANE_3 | LANE2_MAP_LOGIC_LANE_2 |
--		      LANE1_MAP_LOGIC_LANE_1 | LANE0_MAP_LOGIC_LANE_0;
-+	reg = lane_map[0] << LANE0_MAP_SHIFT;
-+	reg |= lane_map[1] << LANE1_MAP_SHIFT;
-+	reg |= lane_map[2] << LANE2_MAP_SHIFT;
-+	reg |= lane_map[3] << LANE3_MAP_SHIFT;
- 
- 	writel(reg, dp->reg_base + ANALOGIX_DP_LANE_MAP);
- }
-@@ -140,7 +139,7 @@ void analogix_dp_reset(struct analogix_dp_device *dp)
- 
- 	usleep_range(20, 30);
- 
--	analogix_dp_lane_swap(dp, 0);
-+	analogix_dp_lane_mapping(dp);
- 
- 	writel(0x0, dp->reg_base + ANALOGIX_DP_SYS_CTL_1);
- 	writel(0x40, dp->reg_base + ANALOGIX_DP_SYS_CTL_2);
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.h b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.h
-index 12735139046c..ac914e37089b 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.h
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.h
-@@ -209,6 +209,10 @@
- #define LANE0_MAP_LOGIC_LANE_1			(0x1 << 0)
- #define LANE0_MAP_LOGIC_LANE_2			(0x2 << 0)
- #define LANE0_MAP_LOGIC_LANE_3			(0x3 << 0)
-+#define LANE3_MAP_SHIFT				(6)
-+#define LANE2_MAP_SHIFT				(4)
-+#define LANE1_MAP_SHIFT				(2)
-+#define LANE0_MAP_SHIFT				(0)
- 
- /* ANALOGIX_DP_ANALOG_CTL_1 */
- #define TX_TERMINAL_CTRL_50_OHM			(0x1 << 4)
--- 
-2.34.1
+The commit message notes that configurable depth will be supported in a
+later patch, and tegra_pwm_config() continues to use a hardcoded
+TEGRA_PWM_DEPTH of 256 for duty cycle and clock rate calculations.
 
+Since this read-modify-write only updates the ENB bit, if the CSR_1.DEPTH
+field defaults to 0 after a device reset, wouldn't the hardware divide by 1
+instead of 256?
+
+This seems like it would cause the PWM to operate at 256x the intended
+frequency, and any calculated duty cycle value would exceed the hardware's
+maximum depth. Should CSR_1.DEPTH be explicitly initialized to 255 here to
+safely match the software's TEGRA_PWM_DEPTH assumption?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260529-t264-pwm-v=
+5-0-7bf9e405a96a@nvidia.com?part=3D6
 
