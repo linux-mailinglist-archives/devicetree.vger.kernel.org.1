@@ -1,158 +1,223 @@
-Return-Path: <devicetree+bounces-304313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304309-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aIB8NiGVGWrVxggAu9opvQ
-	(envelope-from <devicetree+bounces-304313-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:31:13 +0200
+	id wKgTGnyUGWrVxggAu9opvQ
+	(envelope-from <devicetree+bounces-304309-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:28:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2B3602E38
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:31:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1832602DAD
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:28:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E27B23048154
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 13:23:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A235D316C4A6
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 13:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58CE7331A56;
-	Fri, 29 May 2026 13:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E05D33262B;
+	Fri, 29 May 2026 13:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MZ/ILdee"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Oid1LvcA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010069.outbound.protection.outlook.com [52.101.84.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D018331A4C
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 13:23:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780060988; cv=none; b=ieVeDk/qjNWkStwA+H2MDY+RFX2YVdlKdJUJ2ObYDGsW9aH1YCW/OaxUG2ArkQw8qhR6r5ZL8GQyOvre/g7SM0lZ5dK8yN/HBcKHCyCBLS6R3rhCltDG6zGTzeS7MP1giavlZ6lL0I60A/Cm24YkHX7diF98useVdC4cwpVTKoM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780060988; c=relaxed/simple;
-	bh=iBsZj4HJLOWhIFx7WeSf35ikMqGtADIt+EFmP5YELh4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Ns3vaQUl1c1qvguCIHd9iPdnXW/iKeM097ws0Ws9hwHCL3LnJSGjQHaEeCibuwzXTjB5UuNUJXGpmmdLXyccJdIoAj0mfKIfdIrhVsoEMuvLwwh9CJDacrmGdGxdM/ajYiwdnIfJBU0bo/cmG+2I+4Jr+XHwzOGn0dO0mdm4rRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MZ/ILdee; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD1791F00893;
-	Fri, 29 May 2026 13:23:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780060986;
-	bh=Y25lZZxrM1Ns9GkfkpB5COW9e5zzT8vST8cuCsKQUlA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=MZ/ILdee5yhpWOCp8HRf9CAtbsPsGctUdizRiOfVEacmwYiiDXB1E+JLe+1/BE6B3
-	 VkXLW3dwnmFTJL58XKFhqTrcZYGqkvsHLtDTYFNwnlttMzA14ff3MNfDD9+Ye3S45g
-	 TWpYVA9yd4Je+MiaYa1RW+ZtlUBBjKVajWNkZudJ7nt4Y95KMgZqx/dX8Efeut3sOg
-	 XO0zIKCK72VbsbfsJEv8cRN1uaYUE4CbAkP+1bTPPspQv8kAsX+JglV51omvofkDAX
-	 vYvqn+d91WYb2wKC9jWLcrJblIIKrWfvy4K6ZRl704JJeC39jDfuTLLlSekkPJdVX2
-	 NpwjSxc0hwt2Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 5/6] iio: adc: ad4691: add oversampling support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Radu Sabau via B4 Relay" <devnull+radu.sabau.analog.com@kernel.org>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260529-ad4692-multichannel-sar-adc-driver-v14-5-e93c2747dc1f@analog.com>
-References: <20260529-ad4692-multichannel-sar-adc-driver-v14-5-e93c2747dc1f@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 29 May 2026 13:23:06 +0000
-Message-Id: <20260529132306.BD1791F00893@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD33D330D3B;
+	Fri, 29 May 2026 13:21:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780060908; cv=fail; b=Kx+8FoclW5bpbln+fhCOT7RpToJoGju1g3ErkhkvyIXKvmJ3LkfD1qbjuEwWiSVQqPfgHCetzzdcaCHFGebr2ZYyo7M8r3frtsWiOFof5HSY9VIm3WH+VJHp2p4nLql4asSyBTdIAbGW8bWD2b6Rum14CzFS1D+7VcXne1UcBH4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780060908; c=relaxed/simple;
+	bh=sHRmyCXCBpimXHH7XI9942d1v06LTYHfh/Yfk82pzzo=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=NHhy8bPlIuDAHGjEStmRfl4nHbERIzu5idEpRBiH/KpDjaq+dtgYo/V8cKXCFLmxCwvpP1YiK/7XzfIqjYR7AiweuVBgOi+vxhlgdyEYkWI07szQCighxqZG7SfN9NtmeK/xEPdNRFHQ/xx95pyW451R4E/o8H9w2C6ee5czLeI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Oid1LvcA; arc=fail smtp.client-ip=52.101.84.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mN6UbWIVy9JPJA0UXi0JPT4sSzDRa9Jt+ZmpKL/hur1YgApuOez0g4u2bBhS3CkS6lG0t22uMayqzmAql8dnrexOG39M0zUJIub1fkUYUvjuQpP+55bZS1DYil0UTNx0c28FlyExRxNvgxMiXb6MnyIsDqdXsD7/xMcVmpUuad6I/HYoTQoCcJoTvLSplCcUY1Bil4Zp+ZGpfp19jU6IkGGEHkc2dRWZl4o33C9LN4ZczyM36Mev7WIqB9+/k5QW0nzJpOJDpYkGeOtHl/ElU7bckuLbq6f/Bd1f8Izs5tOUISjDayZg0/MErbGKU5AxZ1PcyxMu1AcvOfetRikvrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NY3L3q7gruT660vFdBY3or5+/wH1PEK1chGAq42kJ9w=;
+ b=CnoyiC+KgTqH9d6eVTfFPkHRnyttwiCih+l4CItVwtT99iXfQi/jQ3nylgXn3fkz50tyo14qLJU/krN2Mb8OPwSSNO84jzbT5AmAAFpH6O8rYPMQCCOlv1i//cSaYLOzain/XlP9Tm4NrDrB68zlwjl9pp03nWqjyb2LmNhyxMPAGVbOqEQ4Q/d1wCjHiM5pFRoqR80nUUv1A1gNmxd9SAga1HGWaInZJobD3HD9rVXq0SRumFpbk3b+7Yu3kOP9r5JsZWTW5sxXKAbCit8qXG6B4hZcDJQ1M7f/Xh+CZ4G0zSqJtvkdhOTIe5YTAstxRlhHqOrJ74B/Jc5s9ba3ow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NY3L3q7gruT660vFdBY3or5+/wH1PEK1chGAq42kJ9w=;
+ b=Oid1LvcAKdRP0PA/bYBkcJZcFHxUHPPQpJwA+nw+xeknkmTKbzIRBzUjNIOEBbgsiO3EwseS1wr1sWG3EI+ebQ0GHogdQfkEt+mFlYmv6gblLGBOIKFA6T4bPxakbDB9xHGyQ1YYKOgdaYhZSdgsidKaYhXbxxjrr7YKhskCAx5KHDzlLIT2QaVZd6VSCuOHr8T6ilThs8FKmhUAWCzfADEu+6cbtasH5Ndq25Dsv37gQYgNVBV5JN56fgRWCevTWOgjgZe1OaEHT6wcraXKk7GVzGTzRv3myJ8YdstMtLCfQNtdNYGt2V1nSzCgdJWo0kvPCwRLS1PhvQoGBsODUQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB7821.eurprd04.prod.outlook.com (2603:10a6:102:c5::5)
+ by PAWPR04MB11552.eurprd04.prod.outlook.com (2603:10a6:102:50f::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.15; Fri, 29 May
+ 2026 13:21:44 +0000
+Received: from PA4PR04MB7821.eurprd04.prod.outlook.com
+ ([fe80::67dc:4bd2:8552:9b50]) by PA4PR04MB7821.eurprd04.prod.outlook.com
+ ([fe80::67dc:4bd2:8552:9b50%6]) with mapi id 15.21.0071.014; Fri, 29 May 2026
+ 13:21:43 +0000
+From: Robby Cai <robby.cai@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com,
+	sebastian.krzyszkowiak@puri.sm,
+	slongerbeam@gmail.com,
+	sakari.ailus@linux.intel.com,
+	mchehab@kernel.org,
+	p.zabel@pengutronix.de
+Cc: kernel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] i.MX8MQ EVK: Enable dual OV5640 cameras
+Date: Fri, 29 May 2026 21:23:32 +0800
+Message-ID: <20260529132334.3333294-1-robby.cai@nxp.com>
+X-Mailer: git-send-email 2.50.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MA5P287CA0008.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:176::7) To PA4PR04MB7821.eurprd04.prod.outlook.com
+ (2603:10a6:102:c5::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB7821:EE_|PAWPR04MB11552:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9411036a-b0ca-410a-c4ef-08debd853a2a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|19092799006|18002099003|38350700014|921020|56012099006|6133799003|11063799006;
+X-Microsoft-Antispam-Message-Info:
+	6j4+sxyNSm5vL/TnS3uYgDBIG4/oVrWKiKmdjW3LZIZEi9LvcUfCtgmWi5/q1ZlAhnkHKclhUPgQqfOTDUoEr8Ihtykp2wrd24HiHq06nnzQi5g/38dXI/fCIlodjPFNHhSvzRHYLh1tZ0mD4kPig3ZlI6dvmxUjXMg6N3H61COcmdBR51663kdzLM+N3OsT0i4tdjPj+e943jZ7CL5m/ZCvjBZ6xegU1v/sVWhq7F6/lgDypGJ424pe2TOcGyoICPs9DQm0SYKinTtFATYj06Rerz8cy8iHq85jR4atVLLgyyw1QwpVP0MVacaOWzrKSERG9hu0In0ls00lE+v2zYu6nQUunlhq9fbt5jm7zByMGLtwqNMmCta1iQDZDq8UmSzQAkdDaCNEcCI/Ktdh65CFv9Ci/PfKVJ8a7M3w+FtaiqrKF84P2ld3B6R2efvVGP789TEl7DHFDx9tYJKLdC+/jicxiLMhmQ3CjPjODaFAw4dtNtEqqmYMqZKhpb9xTJVOWGw8WIcaGZbCLXXiOmXS3VUIBvVoz9HaMMOlAgRuWczYD8oM4on9Z680nklceN4XIkS2HxSUZEgZkPxEIz/RvqGIle3ebhPhUBsTRHuP0LFPH2XpAsq2TgW2JFnn12+VMEs7XuK+2DdWGCpmTkhUvSeCgyMP8CzYh+bOm2hC/XjB4kzSYBvWU88ZDlaUGA14sJQEj57qLQvnYNOIghmwsRH/qI4OBYPrFD5lQtaoRkGZ+Ej4o1Xp894wm+NlUWNp0ESlNNvvJHTg72+bvA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB7821.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(19092799006)(18002099003)(38350700014)(921020)(56012099006)(6133799003)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?BZ9gjKkBgch2jh7ycTmbtwFGXx6wMi6N82K4UH0MTZvxFyJNsZMcW9cAjraM?=
+ =?us-ascii?Q?rRNWO3hX5iHgUkiqyvfoZ2K3vw6LK9nwDo1wbEjhBazXpPSRQ2krwyugbMyZ?=
+ =?us-ascii?Q?Ne+Kdrt//fAhP12YaFp/PO0NRvSbdQ3InyNg7EGz7NWsnQZlNllBM9XI+M+B?=
+ =?us-ascii?Q?wuZRgu+Ck26TujWHVvdaLOr5Eg2mzmMv8msOAfa+M67YT5HYxArQdDRvXWgy?=
+ =?us-ascii?Q?7NVjU6x+7nq1S5GM1MkdR7uOb/RivccHdhFgoDoDsp02oYKnR5eNCK6wYf33?=
+ =?us-ascii?Q?RBHtMYruPSODu/3T5zfhBvCrpTwZuKbnXJ6rvKhgXQAhZXUtts2zh40WGGUR?=
+ =?us-ascii?Q?cT8Wdq4iX3pkYzMI9TFtwAVxq3+YatBxsSZ8bAT8spqFSutZZe2mP98ovFaR?=
+ =?us-ascii?Q?2ls2W4TpeO9aqSXcj7eIZagkNICjpjAE+ZlujYG3VIQioLLyUSiVuHpVwSDh?=
+ =?us-ascii?Q?c904mmxpovqb5yvRxIG0XnYW22zPip9Mqq5M/QzNgemDeBmOz7ubZt8hTMXz?=
+ =?us-ascii?Q?HDIxrhZ8Qzi2XBgrin/CESh2i/IP7MnzPz4VhzMIYG9f7K0Ed4ReY+n/vv8i?=
+ =?us-ascii?Q?hzzMQw2YU83TWoCZRmhP/aHsmOOHLtpG0GtcrkOqoWfB5h4YglXZp0WNsYh3?=
+ =?us-ascii?Q?G1Ce3UIITv7rjnH7pSc14TZMt1ca1dhYV5SHG33CR1e95wkQy79nZ0ceAo82?=
+ =?us-ascii?Q?3/DdJphYvJJwKwlPW4xoG8ELNsgX3n7r2IK2DA+RPkeB7AOJoSChDaYyWCAB?=
+ =?us-ascii?Q?41jn7zTHY30Ej35VHBB3GLbWOcMG6YWNdkV7q4RUcHAvkCRl9UvNuLwyQaHs?=
+ =?us-ascii?Q?6HO8DKffhV8pFnFUfz+7U/ZkzaOywyRR+ETPU1B+itNka0vNWucTs38NhCeC?=
+ =?us-ascii?Q?DDCfBpepXqCodAfPAmtbzfLSalgNOMy8Hlo5YUaxo90e1VNRJwK9VbKfv7dl?=
+ =?us-ascii?Q?q87sOvI1QQpvN3vtJG3sik6+6Mi6zT5uZzmk11C8n1Z3usLnP+AtHyW5OmeQ?=
+ =?us-ascii?Q?9ZN+2ktl9Va67zXL51QvmfX46dJX9pDyswvmYHCXhtCMo4gtxi8+vhinNouU?=
+ =?us-ascii?Q?dqOIoZPv/kx6eWYkBAMILjBO/df/UucsYFCAhw1eWsb28/gqxtq4ccOFZ3SV?=
+ =?us-ascii?Q?CtRhLtYZZ2npqoXA3T52pwE9nSC/jFDRzDUmIKXzIXWyYkK94XKJwsvGqJ+2?=
+ =?us-ascii?Q?Ggz0b+nGFK7qg6PsrIgzhhwcQHl3p302iTU4SnLCMXbGI8wgzjiwr/eRU1PS?=
+ =?us-ascii?Q?MOYYRQKRSr7Jb56McwiJg3JGiHBaIM0Kh+Z0K4qcMu998KN87RIMh+IpHc/w?=
+ =?us-ascii?Q?XgZXZgp/ltZ3amDSPruAnJL/wZRL/8UE70z20W5islq3D1vqkrEzJ1T1oxDR?=
+ =?us-ascii?Q?hbibyDz7eaV2P/BkcrhADAzCi2VjXdNHDjmZuPFq4smYVEaFF3h/9dP5FOGP?=
+ =?us-ascii?Q?CXd53KIv49/5OcHkrkhbf67i5wYudtVY71fDDRRWppC7raAP19iwvwwfYgrN?=
+ =?us-ascii?Q?6SC+PN7KZjWlNw5Vm2teCp3unTDAqdTBIFUUD3DfHB7fM9QN/aaBuIrOKtTI?=
+ =?us-ascii?Q?oWUoNLSNrkTx68erIgMNWatfZoj+VMh7dWtwM1xArVQSQ/HnFGDB6s0Buczm?=
+ =?us-ascii?Q?yDsF7CNVMbANcAny4Oi+pF3Do8XIn3bGIjeKnQPfrpMJ2rUCmbqQeK22cFw7?=
+ =?us-ascii?Q?k2o2o46bd2VJYru1O1VWUW8wOdgf3rqIgI6uovUeysvp5+rrUbaZK3orX9YF?=
+ =?us-ascii?Q?emZd5AnrMQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9411036a-b0ca-410a-c4ef-08debd853a2a
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB7821.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2026 13:21:43.9493
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XwUOJK+E9cY1Ffv12GpHudKz7JwNktH7NZu6q9kTg3QsQ08MuZ1hHj1XmUcKwkh2pDAlPTGGa4uwNaH9KeXBEg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB11552
+X-Spamd-Result: default: False [2.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304313-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,radu.sabau.analog.com,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,puri.sm,linux.intel.com];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304309-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robby.cai@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_NONE(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid]
-X-Rspamd-Queue-Id: 3F2B3602E38
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:email,nxp.com:mid,nxp.com:dkim]
+X-Rspamd-Queue-Id: D1832602DAD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Out-of-bounds array access in SPI transfer setup when the soft tim=
-estamp channel is enabled.
---
+This series enables dual OV5640 camera support on the i.MX8MQ EVK.
 
-commit 432eefa94b45dd8bef36e14221d32f97f7de44ee
-Author: Radu Sabau <radu.sabau@analog.com>
-Subject: iio: adc: ad4691: add oversampling support
+The DT describes two sensors connected to different MIPI CSI-2
+interfaces, while both sensors share a common reset GPIO.
 
-This commit adds oversampling ratio (OSR) support for CNV burst mode and
-introduces manual mode channels that omit the OSR attribute. It also manages
-shared internal oscillator frequencies based on OSR.
+To properly handle the shared reset line, the OV5640 driver is updated
+to use the reset control framework instead of directly controlling the
+GPIO.
 
-> diff --git a/drivers/iio/adc/ad4691.c b/drivers/iio/adc/ad4691.c
-> index b1d1b42f724e7..043143ae95608 100644
-> --- a/drivers/iio/adc/ad4691.c
-> +++ b/drivers/iio/adc/ad4691.c
-[ ... ]
-> @@ -241,23 +294,91 @@ static const struct iio_chan_spec ad4693_offload_ch=
-annels[] =3D {
->  	AD4691_OFFLOAD_CHANNEL(7),
->  };
-> =20
-> +static const struct iio_chan_spec ad4691_manual_channels[] =3D {
-> +	AD4691_MANUAL_CHANNEL(0),
-[ ... ]
-> +	AD4691_MANUAL_CHANNEL(14),
-> +	AD4691_MANUAL_CHANNEL(15),
-> +	IIO_CHAN_SOFT_TIMESTAMP(16),
-> +};
+Changes in v3:
+- Add OV5640 driver changes to use reset control framework for shared reset
+- Drop GPIO hog for reset in DTS
 
-[Severity: High]
-When the timestamp channel is enabled via sysfs, will this result in 17 act=
-ive
-channels in the scan mask?
+Link to v2: https://lore.kernel.org/imx/20260515111143.2980956-1-robby.cai@nxp.com/
 
-If so, when iterating over the active channels in functions like
-ad4691_cnv_burst_buffer_preenable() and
-ad4691_cnv_burst_offload_buffer_postenable():
+Changes in v2:
+- Address comments on MIPI clock configuration (Frank, Sebastian):
+  drop the first patch and consolidate the correct clock configuration
+  into the second patch
+- Address comments from sashiko:
+  * Use MEDIA_BUS_TYPE_CSI2_DPHY instead of a literal value
+  * Fix a probe-order dependency related to reset handling. Switch to
+    software reset, as the shared hardware reset line prevents
+    independent reset when both cameras are enabled due to a board
+    design limitation
+  * Fix incorrect voltage value in the reg_2v8 node
 
-	k =3D 0;
-	iio_for_each_active_channel(indio_dev, i) {
-		put_unaligned_be16(0x8000 | AD4691_AVG_IN(i), &st->scan_tx[k]);
-		...
-		k++;
-	}
-	...
-	st->scan_xfers[2 * k].tx_buf =3D st->scan_tx_reset;
+Link to v1: https://lore.kernel.org/imx/20260417110200.753678-1-robby.cai@nxp.com/
 
-Does k reach 17 after the loop, causing an out-of-bounds access to
-st->scan_xfers[34] when setting up the reset transfer, and a similar
-out-of-bounds access to st->scan_tx[17] in the manual mode path? The
-st->scan_xfers array is sized at 34 and st->scan_tx at 17, making indices 34
-and 17 out of bounds.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260529-ad4692-mul=
-tichannel-sar-adc-driver-v14-0-e93c2747dc1f@analog.com?part=3D5
+Signed-off-by: Robby Cai <robby.cai@nxp.com>
+
+Robby Cai (2):
+  arm64: dts: imx8mq-evk: Enable MIPI CSI and dual OV5640 cameras
+  media: i2c: ov5640: Use reset control framework to support shared
+    reset
+
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 150 +++++++++++++++++++
+ drivers/media/i2c/ov5640.c                   |  18 +--
+ 2 files changed, 159 insertions(+), 9 deletions(-)
+
+-- 
+2.50.1
+
 
