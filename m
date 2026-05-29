@@ -1,416 +1,223 @@
-Return-Path: <devicetree+bounces-304091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304093-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +HmoCOU6GWoftggAu9opvQ
-	(envelope-from <devicetree+bounces-304091-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 09:06:13 +0200
+	id MLrXOCs7GWpVtAgAu9opvQ
+	(envelope-from <devicetree+bounces-304093-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 09:07:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943BB5FE4E5
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 09:06:12 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D155D5FE511
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 09:07:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E1B0430D2B43
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 07:05:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0CDF3304D590
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 07:06:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE7F3AE19C;
-	Fri, 29 May 2026 07:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA71F3AB286;
+	Fri, 29 May 2026 07:06:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="SLM8zTRH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KnDSv3kV";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Jk6XU5I0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013024.outbound.protection.outlook.com [52.101.83.24])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022933A9D9D;
-	Fri, 29 May 2026 07:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.24
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780038313; cv=fail; b=SAVzTL0Xxc6QtmWhU+xAo71DfjZDu5FI4hZu+LOscMoG/+EtgK+qgmCBtYGGiJBbJ0S/yScUFFQ68h7SH3k3Hirn/rgxQeaS3v8AxZkU3aU8BC4BkXpsfyFnZhw6z0gIHgeAFDnFURfszO/COG1e9dwNvI9Fbd+YpGJabEbXkyU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780038313; c=relaxed/simple;
-	bh=lBieqFkVCMSAOFhzAeopUpiRDviUxvERii6ADP0SKFo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=YsvCa5lGFDHDN+rDaoO47zK/QoyQMBSlo9IBdt8S/jpyIGifdSirCcjL2+v0uIfE73v1t060MhZu/RLMsGNZ9t0vpHGj2SghefEsv9D8K81Jli5w9w7NmZJZdP+c9+dz0ghC4bquh6rpfmK5q6mXS4ExncpohYbUmi4ZdK/5jjo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=SLM8zTRH; arc=fail smtp.client-ip=52.101.83.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aUxgw2t6yPYGtgrpMStBo8+J9jxhussdlGdAEOwWg1er+hGrevnj7zVoBeDvZjHH/YGJT1EZNZKD//TiB/hhlETvKFP7C4j6VSUMeubmZYbNE2SXFtWAhj4gbX3ntbZMyd1JpEkaeQVUVQ/CqfcpSD7i6VC1NKSye8P1ENQb9jOke72u4OgFp66CNyRutCrwis6nuc3l1XS7LWROPf7NgKb3KPDNHKZ/7CEw4I2ZCLTtqfimmEzg0UUkqfh0/5Pui9BCaXAjqAZ4Op9jZ3sRXu1aoq8M9IKe7h/ePk9291dxGT6YQiNm6pFMVgQsV3UgZ4mZ8dL1TMmJzzYCaZiXnA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oZ53oHggRmUVPyZG2ja7/m7/NwLYrggp8r0ZNObz8Bo=;
- b=aAiXXxQQUDUcgaotmaF+wtkKYL0PO/u+3TV4vAto7FtWgqpzjZpK837m5voJ57NHn3QO8orAaDUJfiFXCDiB7/a3AyJ4YY1m1ub/CL2WND+DjMbrDWofUSkQwQmKsUaAGOUXdlSa5W+8D0aBQgWxFMK8azrKbQ0zArPLpFK2881jiwpzpgGG4mc5uOhJYREMtD0hbVHNvwsYxcheEVN/vwuB/NIGx9aynCG+FIC28/47tYrihT2TR2bob9PjIfkAWKD3GSWMDSdI3MrZsfj3sPsxtKQRCkVFlMqGe9H7KLnGt1tvjAxx4bOqrwlIXif0wKiizL0wV1uGy0PPQ2WAVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oZ53oHggRmUVPyZG2ja7/m7/NwLYrggp8r0ZNObz8Bo=;
- b=SLM8zTRHRN+AZ3Mzjj+ait0QY2kAXlfqnrEolPh0Ptqd3gaTw3u8y5yFKy1EkJUWO/yPNuBZ6M/YZH6jOEmAe8w9uAUo9jCNadgkJuSwiX1CbbtHP+PW2fxN0CH/gPzPKryUrFjPFZpBrJJ7Qmt1bO4WWc3wSScMGjmUAyX14Q1QltNrslI9dFgHLEvLR5mbpdDPsz31FQUk3EOrSrip6Ep4y0WXynQX0oTmR5uYroa5yZyUGXZtrLd8HYQHAJqM2w7mmQ9XTXHrqP6j837OcbsdNABPzkGTFXsOXmDWjXU9tvL128+InHZ7PCRxurnfYfvqQXLcbuuSG0XSBSK4Jw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AM9PR04MB8179.eurprd04.prod.outlook.com (2603:10a6:20b:3b5::20)
- by PAWPR04MB9839.eurprd04.prod.outlook.com (2603:10a6:102:38b::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.15; Fri, 29 May
- 2026 07:05:07 +0000
-Received: from AM9PR04MB8179.eurprd04.prod.outlook.com
- ([fe80::a551:cde0:6730:1d85]) by AM9PR04MB8179.eurprd04.prod.outlook.com
- ([fe80::a551:cde0:6730:1d85%6]) with mapi id 15.21.0071.014; Fri, 29 May 2026
- 07:05:07 +0000
-From: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>
-To: Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	NXP S32 Linux <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>
-Subject: [PATCH v3 1/1] arm64: dts: s32g: add PWM support for s32g2 and s32g3
-Date: Fri, 29 May 2026 09:05:02 +0200
-Message-Id: <20260529070502.1749632-2-khristineandreea.barbulescu@oss.nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260529070502.1749632-1-khristineandreea.barbulescu@oss.nxp.com>
-References: <20260529070502.1749632-1-khristineandreea.barbulescu@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM0PR02CA0128.eurprd02.prod.outlook.com
- (2603:10a6:20b:28c::25) To AM9PR04MB8179.eurprd04.prod.outlook.com
- (2603:10a6:20b:3b5::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FBCC3AA4F3
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 07:05:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780038360; cv=none; b=dAPjP0bgRxHT5OxCqm6lEInUZXkTOD/qDmErZ5yxiE6xpi+pqatsCfcTnIB9rQiPfTEm3CJV9icSC7uSTDOYrdf6P5dh4Hs0Qv648AN1H4yCz0F5dlwBOa8TbOJ5bwlvTGudhlA1n671r+djHIi2hLFXk3FQMn/ga/sJprlBGR8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780038360; c=relaxed/simple;
+	bh=2PAalM6kKnFYU06xQ410VdOXAbMQi4bwcAFMRjokBhg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vFeexb2271QJAEkX5EZ6L9bC/ABwr/Fozv6xQN6h10RNxG6xag+mQV56rsENEi93lAGzK6DVCzKfvXWKo1aoftRjivRBL0wx4WmpDyjvhfMqZoi2pKhesOTrp/HXzzxUnkD9QXIK6Xs+A4yjDBs/NSusr12mKJR4B6A8Kdg6vsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KnDSv3kV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Jk6XU5I0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 64T6MUIw1931862
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 07:05:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=uggOyLdQd0AYcPA6LkUyUkRX
+	QuNDy/j4iSP3iw0FYuY=; b=KnDSv3kVDKGz+GjdoSGlAYotV3tjaBLTK3MzYMLn
+	kdp026GxURdxXe89mw60cWHYa2lQYJyY5N6Qq6ulJ1+vrf4F1cK3sR13jvf/h1Pn
+	O5xf6eZbMzUE+yInZpDuAUyvAuyJFCzmhDgZq5mi9fIQ7EDYXjaqrdaNsXUlNava
+	7uLINZAKzuL5uYBDYoXPlFEZgPV+3dQ71Q1+Ekeqjebewt8zZHZfIrTEBG7Ruwxq
+	NGZfoUHZaDDzyIkjdbISEh/C4Zj6ISwKkIni3k+Dqz0IRTTi6ASInuM2yw8T4w1g
+	9P0xlHEIsdguTxiUw7+MBuioZA3oauMxtIleSRQoZMLoeA==
+Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eesxab516-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 07:05:56 +0000 (GMT)
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-2fe1cf409a1so3638345eec.1
+        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 00:05:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1780038356; x=1780643156; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uggOyLdQd0AYcPA6LkUyUkRXQuNDy/j4iSP3iw0FYuY=;
+        b=Jk6XU5I06hKOzEaJU7HG8GcXWaPxji/t2D5FGa29xWE6JU+frqEZTFqHzsVjZLFvwx
+         l9FI+IKITTI/seO3g/mk57y40nzI64udwJlc0e2X6RICM+rfdcmzFen7CezqvJOtg0ub
+         qSGp//JlAmabCbjkmjrVG429fRWsBoCoEEvSo+KYkmoUmuPhnBP7HySGKKIcTpYsam31
+         LRpnwn072uy8XO/BEWXPpv8/TuyElksqfQoL8oRftQVWmyG0V+pCIzdF6Ws3Jh18fLuu
+         lq9OGmJ6cp+0kgYnSG/zIzctTJMeKTzQ5JX1oEOCHeAslcF4hKkpsFJt1scO6pSoFCqG
+         7KSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780038356; x=1780643156;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uggOyLdQd0AYcPA6LkUyUkRXQuNDy/j4iSP3iw0FYuY=;
+        b=TRC5eahC+FCpXMXHkwsO8Jdjc+2tlxSMkTRiiV/HAha2ztdpep2bIH16MCN4O/kpOI
+         R+z6Z1s2ktZKJJVb0taUibu/oPBno2SiNkZgDnf96FXShw0XiVPYW57+YptCd0vHusFW
+         tpeefb/pmkymwkc06zISgsIF+pfWBqE2uCuwEeuq/m1r9Q7r1D4B7nCaMspT0mN3mQga
+         GbDzoWk5E1RuanUL+s19Ud1bfhAuxf6mCa8HMdgSfTrtRPDbl/KCmxtm4cFYAgE/LmNb
+         JqooVBJB21leMNeI3tUlokLGmwo1EU0FNfvPm2R1EqdUrkLgcXucLVxhA6Q6VqOQIW6y
+         x3lw==
+X-Forwarded-Encrypted: i=1; AFNElJ8LIOSDRJt3R/Ma3eZdQ3zdH505rXpxxyspnLY9MhI9PCuAugg7jUEg6CoB9Bp2RtuDMu3P9I0eOZqo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIDO4InLi+LCEqWSKiiX07QTOy0f6tHiwmqoQ3ktHkB5o+5VgZ
+	EMlCFRigmtsCTMj2LWzkwKlTfIzOptyzpuCVFFlFhYLAQDhuEvHTwQ96RIsnEq8OpPynOJvIgrF
+	JqH+ztSwt6wTowXgrDLGV2Wawd2otyqjNlg/r/HJZF9VHY0ValYE6DF1XvpFtoTm0
+X-Gm-Gg: Acq92OFe2rwrFOLNHZl2REig+5pEbO22zA7Xlxhm/XZduj+9Tnqg9fhM+vHWhZcijbK
+	PX2qACn85weo/Ls+23GffII6OUfYhuitlCe6JxdOZGeIjWXQ9mAJGOqOf8cM4Q6SUqfFF6Y0HNM
+	oSsxjJuq6ZuXJ0G7Y3FBh4OatetC0UNXAsVLjEj8EJP+xrAxKwlkKuAM2Gn3y/BnARFXoRZzi9V
+	x1iqtSjGwhwProXnY2v0t5aU2a4bSRMHR0A6iuky6mSSv6yDdhpz3s5Nex6OY3LxhvXHb6b5hrw
+	SHekz0Lq9wrtHFMLzDGlBHoKbkRJqD3uM/DcnfOd6ZCK8Kj7Qne4HrOTdD0MxibYRMGsjxBS55y
+	4zaSlfuEOoyb+X0C9c2QZSCCsmNzMMxuKJR2zZmo1X6cciVnQeMgzM70CqafMP8NqZA04/BoBVb
+	aTO58=
+X-Received: by 2002:a05:7301:fa04:b0:2e2:4979:eb5 with SMTP id 5a478bee46e88-304eb0c567cmr819261eec.10.1780038355904;
+        Fri, 29 May 2026 00:05:55 -0700 (PDT)
+X-Received: by 2002:a05:7301:fa04:b0:2e2:4979:eb5 with SMTP id 5a478bee46e88-304eb0c567cmr819240eec.10.1780038355258;
+        Fri, 29 May 2026 00:05:55 -0700 (PDT)
+Received: from hu-qianyu-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-304ed30fffesm746891eec.11.2026.05.29.00.05.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 May 2026 00:05:54 -0700 (PDT)
+Date: Fri, 29 May 2026 00:05:52 -0700
+From: Qiang Yu <qiang.yu@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, krishna.chundru@oss.qualcomm.com
+Subject: Re: [PATCH v4 1/7] dt-bindings: clock: qcom,sm8550-tcsr: Add
+ QREF/REFGEN supply properties for glymur and mahua
+Message-ID: <ahk60MkNDYOgU55F@hu-qianyu-lv.qualcomm.com>
+References: <20260527-tcsr_qref_0527-v4-0-ded83866c9d9@oss.qualcomm.com>
+ <20260527-tcsr_qref_0527-v4-1-ded83866c9d9@oss.qualcomm.com>
+ <20260528-adamant-termite-of-drizzle-0c39de@quoll>
+ <ahg04dmgSWPuA4Tk@hu-qianyu-lv.qualcomm.com>
+ <79515bd5-a1c8-4317-bd15-71569f43e522@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB8179:EE_|PAWPR04MB9839:EE_
-X-MS-Office365-Filtering-Correlation-Id: 507b66ca-b8d2-4429-646e-08debd509d8a
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|19092799006|366016|22082099003|3023799007|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info:
- MLiv94J03n1vw1oUa7uGGtz91TNoewD99spHYHuOLGKBj54vbLQHbr18o5UzXUiTLsZ6gcIU6n9usM4AlN2lX4S1x7/eWQWCXvB8OV0Wa8IgnZ4WFsXYph/3Yh11cTXbzWp61SGi9sAWEbCdRigf87UOubbzf5XKpoJXyxzYKUuyTje3vXyne9PmjG7jAQAgTPsEnqrxb4gArIvYdRfyxNeo7fm8FocGIz9Rj+xJTAW5PVBnLUjWinp+h4hpqhkY4qapjFoWckYTlAnjq9JSC6rCjMD2JovpyDw+wnrrxbs7BKnkjnSsfvir3scIfC8mM3DB5kdPDGUUqF10kPC20NkfODbLf0mSmFZUwZBakqSIA31auS5YvvBTPSwx56prJ9F3DTVfeVxDtwmOpDVNGXgIpKQ41rL5EylMh8rHKezCDmfN570ODnqNsS3s/EtHhy5+vsA0Paf7MSrBqBS6xffklnZh2M3KQgSxJx3xbAtrA+D3pO9aJCOEGI7EeQiPIGSO1vGSBucLGcga2vrm/N52EFgOMGPa8oMrVI//kKR3diTk9p9qKCh5d4iv7uw6KRWUgpoN6A1Q3X6u5Y0h9vVSEaWzZQq0M6HtaNcYQaKFJjQ7HD14oTz8KdUXH8gE32gdLQjLfJF6ACmadoGN4IghTycXu1mJLI9Rgvryd4XlRe/Yiq7dtIksoImZYENZ
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8179.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(19092799006)(366016)(22082099003)(3023799007)(18002099003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?TGVMdENWU3l4WWdtM3pRZlF0d0hOK0RYNGoyS2NUbUl0OUZZb2pnQWlSRStn?=
- =?utf-8?B?b0EvVFVJL0NUdzljakIxdk5TT1YwOGJzeHRuSUFHYU54UzJ0cnhHNHpDdm9L?=
- =?utf-8?B?VGV1QnVoWWRQV0tYcjJFU0VuWkZKMDRZdUd2aldxM3EzVzNNcXVjQmFqVWpX?=
- =?utf-8?B?SzZLdjI0bUxVcDgyTHA0eDlMYUtkNXI0a3U3NG5LUDg2b0FLMTgyd21RVTlu?=
- =?utf-8?B?TU1pS25xanpXclV6K3NzUUFJOXJqZ1YxVHZxbVFLbGNCcTBVK05DU2d2VDhB?=
- =?utf-8?B?a1JWS0FqUmVQMDRDNGVXUUpIMHVqVjQ3QUJSRGpyQ3ErRmRRRG92MVNSandz?=
- =?utf-8?B?SXJ5aSsydlJaT0w5MW40NU5MaXpMeStNa2wzRVdnVGloMEFKdFpIbHpaNE9C?=
- =?utf-8?B?NXUxOWh2WkwvbmQrVis5SmdzL1pUaDJva3lrSXJIOXpLVzhlZkRMeC9BbG4x?=
- =?utf-8?B?UFJoVWV1MU9WaW1sVDFMVnp3NURjZ2pvbk12dkI4dThSQnBZbnFaOWhuTHZa?=
- =?utf-8?B?OGdDM3d5Z3BRVTFPMGY3TE1NT3VPNW5QUGNjVUJaSzhpMFR4WGRJVStsOHdO?=
- =?utf-8?B?K3hweU56Smg5aFp0aThzdFA0QklPb2YvNFRRZlY3Wmp5dlUyRkxwWWw3MHBi?=
- =?utf-8?B?OS9TMUdSQ1h5MTIwcmVFZjMrekNoUjdRcVRGL2hjbFM3V3lkSkI1K1dxQkEv?=
- =?utf-8?B?Q092SUpVNUdaWlV5R3VaL1BhUjlqY3VjRUJzd0pkQjBUYURPM1VWblhsQ0wr?=
- =?utf-8?B?eFRsSzJrQjlPWjlKc3I4N1ZOQzhzZGk5aUcyZXVidGJ1dkJpc056OVRMMitI?=
- =?utf-8?B?aWt2djUvdUhEcStaNU5EZjI5alJQaXo1KzhEUENPSmRXVmNBQ084TjFOQ21j?=
- =?utf-8?B?d29mUS9XT3lZZ2pjaXJETDNPRExnc3J3YUZqUldWL2FJVmkzdFhYaUc0OXE4?=
- =?utf-8?B?S1BHa1dhRTVVeC80SEduM091WExxVHlhYWdNeGNoVVIvRGI2ZWd5UDNGT252?=
- =?utf-8?B?amlHdjUxZTVKTDZpbmZuTWR4OUVKR3pFTEgveDZhWEQrQlVnR2FhSnhSN0oz?=
- =?utf-8?B?NDJMY0FxUG1jVzI5ZGxINDYzMERrampuVlFOTkZ3dHkzY2wwWDV2aGVEb1pv?=
- =?utf-8?B?SUN4TEg0WFR5Y0M2ZWd2VG00TEVIY2xNM2N0c2d5c2o0clVISGpDM0RvaFdz?=
- =?utf-8?B?c2FFMkFWcEE1MlJyNmdHSkR2VHRpTUlsWTFFQmt5OSs2NmFva1FlNXZ5U2Fa?=
- =?utf-8?B?OVpaYlpCSld3SVFTL1hUTk16YjJuL0QrZ0ExeEJBZHpkSmFFSjJhZnhmdVQ4?=
- =?utf-8?B?bW9JeU5CRU5VVFVSMXYwWjQ0cWl1T1NkSGo5QncvWE1JS29CN21lK0JGYVll?=
- =?utf-8?B?RWlpdVlEaVA3VzEwaEd1aFROelpISkM2QU9VWC9lQ3FZdlgzdGxsd2laMlZ0?=
- =?utf-8?B?YTg1bkI3eldsRllLQStIYStTMmZ5SEc0bUFid1N0am9CV1ZWVjl1UWhEd0li?=
- =?utf-8?B?UlZESG5TcTVnMHhTU0h6eVVvYllhUytQQWtTeG85cTc3VCttbjlHTlZUWDhJ?=
- =?utf-8?B?QTV5NURod1NPVFdxRktHeWl3MFBkcVdsOHNqMnZROWloaGU3TXNiY2Q0QTZu?=
- =?utf-8?B?N3dITkwvWTVDUnRUUW5OTFhkWTNIQVZxWU5ycG13K3U0Nk1HUXEvSE83L3o1?=
- =?utf-8?B?aEp3QkNxNVJaYktyVlNHUndnQXNaenFCRTV4OVRsSVNaZWNNRGJLZzEwUysr?=
- =?utf-8?B?enZKQ1NqZDlWdmlxQmcxcG5KaUNMN1hZclY0amN3ZFNxM1RaTXpWR0psQXZC?=
- =?utf-8?B?eEpEekZzKzFabC92Y2NtcVp5ajhUeHFqby9QYU81UkJ2SExBUWptVVRnMTZT?=
- =?utf-8?B?RTdZdCtYbXJoQ1FtZ0xvRXV5Vi83MUp1eEo2R3IwWEd6U3ZoelBOS09Fa2pC?=
- =?utf-8?B?c0VSYzRPeGdMRytpdlB2SlRab0dEUjBZU1p0WFczeXZGQVFYczRWVk5vY1Zq?=
- =?utf-8?B?OFlmd1ozOEwyWWNac3ZzNzV4NkorelJBVWZ3MFJOdkdZTThnZ0FzMDk5SE5M?=
- =?utf-8?B?cWRlY29Hc3hNdW1qRnBLVmJGYnJQNDljYmZCZjNHZW1EWTlONjFHMXI2R2lK?=
- =?utf-8?B?Z01OMm1LRlpUb052ZFUzckg4Z2tnalJGYnpMeUkvSWFMS2c2d0RrUmtmVm96?=
- =?utf-8?B?TStXU24vbjRIL2ZnUHprYlhqSkRrQjVrd25JOFoxSU02MWEwOGw2a3JSQkh2?=
- =?utf-8?B?N0Zscm1CVnp1c1QxWTlMb0FJZmtkd25UWmZRbXJxYVRyWjBibzBnSkhmZzR0?=
- =?utf-8?B?QTkrVjRxbmloZjQzY3g3ZEFjT2gzazBab1NObzBhUHZDTUZiZ1NSNnFwdmtE?=
- =?utf-8?Q?osRXT8ZdJ87LhqIFxylh2LsD5c8ayoaumR5Gh?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 507b66ca-b8d2-4429-646e-08debd509d8a
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8179.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2026 07:05:07.2733
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RE0vw0l8LnogHf1wpsx/8v3TI8Vxyx0bYfZVHIN6y3KWYQ+Cm5nZPKBUxetj5YWnWLu3TRpR2L320VtC2PgkA0F54JWTJmCGBIt+abJNfiyiJ//CYFCnvyXrmmFz6i+Y
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB9839
-X-Spamd-Result: default: False [2.94 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <79515bd5-a1c8-4317-bd15-71569f43e522@kernel.org>
+X-Proofpoint-GUID: MvSBpSXVyqtYmp_Lg6rN2j2r2RaAAKbv
+X-Proofpoint-ORIG-GUID: MvSBpSXVyqtYmp_Lg6rN2j2r2RaAAKbv
+X-Authority-Analysis: v=2.4 cv=ZdIt8MVA c=1 sm=1 tr=0 ts=6a193ad4 cx=c_pps
+ a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=kj9zAlcOel0A:10 a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=55C5z8EV8FhS1RBCIaIA:9 a=CjuIK1q_8ugA:10 a=6Ab_bkdmUrQuMsNx7PHu:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI5MDA2NiBTYWx0ZWRfXxFwzdBwGHuiA
+ XjLDunFCGUNcBMnJqjvV36LZSGcegir56f9y4XWfbXAVtvI/ztAME4phRiXb5viy9bTyVVY4uLj
+ liS2w2rg+eXrsP1k3VQ6g6zXm1M2eIxwlUzqUIMJkrScOjFvNJk8/psy4G8FP1CFtK0W+FjEulV
+ d0R/xQYo3zyRq5CNCqXTPD6NMjm1eGVrYgprDuCF9recegwXj4tl8JrcLugZCb5Y/pdOoEnr93Q
+ EW+rdO/tww41PY7uFNHXi8ESjoCiBwwu+6iV3qPLM3C8X3ieCjB5/Z0q8SVezct/PUj+s989Dq2
+ aOUOEjwgVKWkuzszX5IVteH5bx4tHTxUrk2CmDK0qns779L6YWblEscCen4wpSnBnrhk7OHfVVr
+ moIMg/0TyJUqWBm3NE23vXi6CXxea7jJ8DIlw5gQQCRvp+N2qgFgJJYIm/RL1U+d5PunGpVj57R
+ d6ddwz53EL1RuRuEv3Q==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-05-29_02,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 impostorscore=0 bulkscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 lowpriorityscore=0 adultscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2605290066
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304091-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304093-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,oss.qualcomm.com:dkim,hu-qianyu-lv.qualcomm.com:mid,qualcomm.com:dkim];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[khristineandreea.barbulescu@oss.nxp.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[qiang.yu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[NXP1.onmicrosoft.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,402dc000:email]
-X-Rspamd-Queue-Id: 943BB5FE4E5
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: D155D5FE511
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add PWM0 and PWM1 for S32G2 and S32G3 SoCs
+On Thu, May 28, 2026 at 02:34:14PM +0200, Krzysztof Kozlowski wrote:
+> On 28/05/2026 14:28, Qiang Yu wrote:
+> > On Thu, May 28, 2026 at 09:57:10AM +0200, Krzysztof Kozlowski wrote:
+> >> On Wed, May 27, 2026 at 07:29:12PM -0700, Qiang Yu wrote:
+> >>> The QREF block supplies reference clocks to PCIe PHYs and requires
+> >>> dedicated LDO supplies to operate. The digital control interface for
+> >>> QREF (clkref_en registers) resides in TCSR on glymur and mahua. Since
+> >>> QREF has no dedicated DT node of its own, these supply properties are
+> >>> placed in the TCSR node which acts as the control interface for QREF.
+> >>>
+> >>> Document the supply properties for qcom,glymur-tcsr and qcom,mahua-tcsr.
+> >>> Both SoCs share the same QREF TX/RPT/RX component naming, but differ in
+> >>> topology:
+> >>>
+> >>> Glymur has two independent QREF blocks fed by REFGEN3 and REFGEN4. Mahua
+> >>> has a single QREF block fed by REFGEN3 only.
+> >>>
+> >>> Mark the relevant supplies as required per compatible using allOf/if/then
+> >>> conditionals.
+> >>
+> >> I don't think you implemented my last comments. You need own binding
+> >> file.
+> >>
+> > 
+> > Thanks. Do you mean qcom,glymur-tcsr and qcom,mahua-tcsr should be moved
+> > out of qcom,sm8550-tcsr.yaml into their own binding file, e.g.
+> 
+> Yes.
+> 
+> > qcom,glymur-tcsr.yaml? Can I use a single file for Glymur and Mahua?
+> 
+> Single file should be fine.
+>
 
-Reviewed-by: Enric Balletbo i Serra <eballetb@redhat.com>
-Signed-off-by: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>
----
- arch/arm64/boot/dts/freescale/s32g2.dtsi      | 28 ++++++-
- arch/arm64/boot/dts/freescale/s32g3.dtsi      | 30 ++++++-
- .../boot/dts/freescale/s32gxxxa-evb.dtsi      | 78 ++++++++++++++++++-
- 3 files changed, 133 insertions(+), 3 deletions(-)
+Okay, will create a binding file for glymur and mahua in next version.
 
-diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-index 51d00dac12de..9f5f18d54118 100644
---- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-@@ -3,7 +3,7 @@
-  * NXP S32G2 SoC family
-  *
-  * Copyright (c) 2021 SUSE LLC
-- * Copyright 2017-2021, 2024-2025 NXP
-+ * Copyright 2017-2021, 2024-2026 NXP
-  */
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -554,6 +554,19 @@ i2c2: i2c@401ec000 {
- 			status = "disabled";
- 		};
- 
-+		pwm0: pwm@401f4000 {
-+			compatible = "nxp,s32g2-ftm-pwm";
-+			reg = <0x401f4000 0x1000>;
-+			#pwm-cells = <3>;
-+			clocks = <&clks 5>,
-+				 <&clks 6>,
-+				 <&clks 5>,
-+				 <&clks 5>;
-+			clock-names = "ftm_sys", "ftm_ext",
-+					  "ftm_fix", "ftm_cnt_clk_en";
-+			status = "disabled";
-+		};
-+
- 		swt4: watchdog@40200000 {
- 			compatible = "nxp,s32g2-swt";
- 			reg = <0x40200000 0x1000>;
-@@ -717,6 +730,19 @@ i2c4: i2c@402dc000 {
- 			status = "disabled";
- 		};
- 
-+		pwm1: pwm@402e4000 {
-+			compatible = "nxp,s32g2-ftm-pwm";
-+			reg = <0x402e4000 0x1000>;
-+			#pwm-cells = <3>;
-+			clocks = <&clks 7>,
-+				 <&clks 8>,
-+				 <&clks 7>,
-+				 <&clks 7>;
-+			clock-names = "ftm_sys", "ftm_ext",
-+				      "ftm_fix", "ftm_cnt_clk_en";
-+			status = "disabled";
-+		};
-+
- 		usdhc0: mmc@402f0000 {
- 			compatible = "nxp,s32g2-usdhc";
- 			reg = <0x402f0000 0x1000>;
-diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-index e314f3c7d61d..408bf0b40734 100644
---- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
- /*
-- * Copyright 2021-2025 NXP
-+ * Copyright 2021-2026 NXP
-  *
-  * Authors: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-  *          Ciprian Costea <ciprianmarian.costea@nxp.com>
-@@ -617,6 +617,20 @@ i2c2: i2c@401ec000 {
- 			status = "disabled";
- 		};
- 
-+		pwm0: pwm@401f4000 {
-+			compatible = "nxp,s32g3-ftm-pwm",
-+					 "nxp,s32g2-ftm-pwm";
-+			reg = <0x401f4000 0x1000>;
-+			#pwm-cells = <3>;
-+			clocks = <&clks 5>,
-+				 <&clks 6>,
-+				 <&clks 5>,
-+				 <&clks 5>;
-+			clock-names = "ftm_sys", "ftm_ext",
-+					  "ftm_fix", "ftm_cnt_clk_en";
-+			status = "disabled";
-+		};
-+
- 		swt4: watchdog@40200000 {
- 			compatible = "nxp,s32g3-swt", "nxp,s32g2-swt";
- 			reg = <0x40200000 0x1000>;
-@@ -792,6 +806,20 @@ i2c4: i2c@402dc000 {
- 			status = "disabled";
- 		};
- 
-+		pwm1: pwm@402e4000 {
-+			compatible = "nxp,s32g3-ftm-pwm",
-+					 "nxp,s32g2-ftm-pwm";
-+			reg = <0x402e4000 0x1000>;
-+			#pwm-cells = <3>;
-+			clocks = <&clks 7>,
-+				 <&clks 8>,
-+				 <&clks 7>,
-+				 <&clks 7>;
-+			clock-names = "ftm_sys", "ftm_ext",
-+				      "ftm_fix", "ftm_cnt_clk_en";
-+			status = "disabled";
-+		};
-+
- 		usdhc0: mmc@402f0000 {
- 			compatible = "nxp,s32g3-usdhc",
- 				     "nxp,s32g2-usdhc";
-diff --git a/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi b/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-index 803ff4531077..844d2c4fabf7 100644
---- a/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
- /*
-- * Copyright 2024 NXP
-+ * Copyright 2024, 2026 NXP
-  *
-  * Authors: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-  *          Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
-@@ -245,6 +245,70 @@ dspi5-grp4 {
- 			bias-pull-up;
- 		};
- 	};
-+
-+	ftm0_pins: ftm0_pins {
-+		ftm0_grp0 {
-+			pinmux = <0x2912>;
-+		};
-+
-+		ftm0_grp1 {
-+			pinmux = <0x122>,
-+				 <0xb42>;
-+			output-enable;
-+			input-enable;
-+		};
-+
-+		ftm0_grp2 {
-+			pinmux = <0xb13>,
-+				 <0xb53>;
-+			output-enable;
-+			input-enable;
-+		};
-+
-+		ftm0_grp3 {
-+			pinmux = <0x2904>;
-+		};
-+
-+		ftm0_grp4 {
-+			pinmux = <0x2925>;
-+		};
-+
-+		ftm0_grp5 {
-+			pinmux = <0x2936>;
-+		};
-+	};
-+
-+	ftm1_pins: ftm1_pins {
-+		ftm1_grp0 {
-+			pinmux = <0x1d3>;
-+			output-enable;
-+			input-enable;
-+		};
-+
-+		ftm1_grp1 {
-+			pinmux = <0x29b4>;
-+		};
-+
-+		ftm1_grp2 {
-+			pinmux = <0x29c3>;
-+		};
-+
-+		ftm1_grp3 {
-+			pinmux = <0x1f4>;
-+			output-enable;
-+			input-enable;
-+		};
-+
-+		ftm1_grp4 {
-+			pinmux = <0x202>;
-+			output-enable;
-+			input-enable;
-+		};
-+
-+		ftm1_grp5 {
-+			pinmux = <0x29d2>;
-+		};
-+	};
- };
- 
- &can0 {
-@@ -304,3 +368,15 @@ &spi5 {
- 	pinctrl-names = "default";
- 	status = "okay";
- };
-+
-+&pwm0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ftm0_pins>;
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ftm1_pins>;
-+	status = "okay";
-+};
--- 
-2.34.1
-
+- Qiang Yu
+> 
+> Best regards,
+> Krzysztof
 
