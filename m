@@ -1,156 +1,191 @@
-Return-Path: <devicetree+bounces-304396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304397-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qIRVHmK9GWrayggAu9opvQ
-	(envelope-from <devicetree+bounces-304396-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:22:58 +0200
+	id MHCSDpW9GWq0yggAu9opvQ
+	(envelope-from <devicetree+bounces-304397-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:23:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C32CD60580D
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:22:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 880BF605852
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 18:23:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D931E3262C4F
-	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:34:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8A5A931B2431
+	for <lists+devicetree@lfdr.de>; Fri, 29 May 2026 15:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB13C3FF890;
-	Fri, 29 May 2026 15:28:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6E83F0A81;
+	Fri, 29 May 2026 15:31:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V6o5HhuT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="boPVeON2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C55893EE1E2
-	for <devicetree@vger.kernel.org>; Fri, 29 May 2026 15:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A69C3EFFDB;
+	Fri, 29 May 2026 15:31:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780068521; cv=none; b=hK8A4wAM+Tn9ml78I3KcmliR3MQvFVVnm8U7YBfTtXyyp+8bQcNt6Ub1aP01M3qz9EjcpvRkSYGi9wO088Q/BxZOVKtUwKzxPdrMvTCeAeC8RwAPNqlnsebtuLneFNpsxpsAJ4Vvv10VGNowUcakRl3xxp34aA07AN/xFU5xarg=
+	t=1780068692; cv=none; b=EYcJ0rYQVVYcWWOD3Biu0DopmIeV+gN8GklHsdZ2Czp1iGg73NF6LI9mcgdzWbsdpeAGHpW6NfSAVDj9Cf7PSEd4pARAj4yl7PIS8hqGlPNo/zZmY77Iow4PJ7Cjr60La6FIYqzqAtrGhVIbVbfPcfkkXZdstHonH92LlGiKZ3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780068521; c=relaxed/simple;
-	bh=TpET9KkAYhzmtWBlkhjKD2sgxBONHmkvpdkbIGbnwRk=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ntdtwR8QHkmB7R+WFBpj5hyh099pXUvknq8zOZqfMrdhYXcdeBt/yKOw5mmBplCsT/slUp2JGxTwwIKGoiry8wnmMkOnx5aqw1JPvvhP6gyjRXHFKRH+wLdkv1Nwf6WHz9KbON0Pdzk+SfNroMWHtdBxJP9ZjpaXj3/7WMfbcxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V6o5HhuT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 792FB1F00898;
-	Fri, 29 May 2026 15:28:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780068520;
-	bh=Eg6FSI4BrnHKj/udEmywtPEQy6BgVRrf2Js21MHe0s4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=V6o5HhuTZEDZE3L5ddK91JvaQnXBpZBqvvWuGMEn59Qls37bMDlz3ROZYR20AptWQ
-	 oxTOW5dldV1re26RX01IOGfxBPTbJKn3Vd74cW4GP4DjI4uypiXKMVSZW9UW4j9bxt
-	 As86+bzJoPG5ZKVk9fB4Jj3yO4Wl+C2MAAV0c4QdJlFuVszjJoBfEWTbt/resSAMJZ
-	 3nVaYdu1myJGi9qy1PI0/m1iHY/Pl4unFKBFzFbDJxOKw5uajUbTnbhhq7yzem0Yh3
-	 PTwePNSlwi4Wz9utQVLNqhmJj9W58iLXeu4X50Fd3ga+WZ4LLBgdv747dn7i+jSJff
-	 QA6xHMpsHViMQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 02/15] arm64: dts: st: add SDMMC2 support on
- stm32mp25
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Dario Binacchi" <dario.binacchi@amarulasolutions.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260529144707.3931919-3-dario.binacchi@amarulasolutions.com>
-References: <20260529144707.3931919-3-dario.binacchi@amarulasolutions.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 29 May 2026 15:28:40 +0000
-Message-Id: <20260529152840.792FB1F00898@smtp.kernel.org>
+	s=arc-20240116; t=1780068692; c=relaxed/simple;
+	bh=Wc7i4dF9ygiTQTaQ/gCEQkz1kc+L4fUW6J/05ngPp7E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hB+UIW1btZ0sstoaE+mT6vTwQTtitbb3D2+4F0h3qY4vaU72XH1DlSNxfY1zVED1g96Ou3BqGaYJT3E33h0po91UujJfex5LktE8ieeZ7B0SlUv8i4zpNWunRyEas+UWRG+kSDSi9b9NySxcSUnm94NOCGcrbOE6Uq0furixzGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=boPVeON2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EB91DC2BCB3;
+	Fri, 29 May 2026 15:31:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780068692;
+	bh=Wc7i4dF9ygiTQTaQ/gCEQkz1kc+L4fUW6J/05ngPp7E=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=boPVeON2KW3rK93sT25Ly4iFGSKdlqTWm+ENdICl1VZIZECcCNk+w04jdJo+WT2JE
+	 VHE4zAcbHxfUUXjBDKj7ldrmAVMGyNT725OjVO/BzhT46kCgyEundpAlcG8R4wg0k2
+	 dLznGWGI3SfRoKLfvcUcDeFpzmjs++MgYHkKLCoC8x4dj9hC3ijkE5Lf10LaFi4SAJ
+	 PFW5PbqodBas3HGxToHcEeUprZFRevoTYRCAmMqoQc/Vcze7LHPOslW5jAG0GRL6lh
+	 G9MyiYK+egdLwWCGt3vVdqa0GZzaTtw6+90GKxCXgPKeIe72KOIx7JpIURgY9VLcnb
+	 XitH9p1ATQkAA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E182ECD4F54;
+	Fri, 29 May 2026 15:31:31 +0000 (UTC)
+From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
+Subject: [PATCH v2 0/2] describe PCIe ethernet interfaces and alias
+ ethernet0/1 on NanoPC-T6
+Date: Fri, 29 May 2026 17:31:23 +0200
+Message-Id: <20260529-rk3588-dts-rtl-eth-describe-dt-alias-v2-0-49700248143f@pardini.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/42OwQ6CMBBEf4X07BpaLBBP/ofhUNpFVkkh20o0h
+ H+3YLx7fJPJvFlEQCYM4pwtgnGmQKNPoA6ZsL3xNwRyiYXKVZlrdQJ+FLquwcUAHAfA2IPDYJl
+ aTCGYgUwAK9HJumorq3ORpibGjl675tp8OTzbO9q4bW+NnkIc+b3/mOXW+yn1f8pZggRTdtYZX
+ RbGVpfJsCNPR49RNOu6fgA3sv5v7AAAAA==
+X-Change-ID: 20260524-rk3588-dts-rtl-eth-describe-dt-alias-c1ed187b7c50
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Ricardo Pardini <ricardo@pardini.net>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2868;
+ i=ricardo@pardini.net; h=from:subject:message-id;
+ bh=Wc7i4dF9ygiTQTaQ/gCEQkz1kc+L4fUW6J/05ngPp7E=;
+ b=owEBiQF2/pANAwAIATteP+Oex+3pAcsmYgBqGbFSPnLISoKIp2YOdD3mlPG61DJUOBfi9o1sC
+ thxlsVlILWJAU8EAAEIADkWIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCahmxUhsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMiwwLDMACgkQO14/457H7emM8Af+I/ztaHtuESg8K7PXiX+dQ+qkRAk6nPQ
+ btd0McxQmrWGrJ57QoTBbgthgPt7E7fbINDputVTOkME8dq4b+6MsSN+VrtbR3HDjbDe6VC2daD
+ w7zGtsEVV5yXRmLZllu6R+mLVvoilpLL534zYGM4N/QEGH2sIShyq+HI8vgS7V3fCx5fz6yFMzF
+ aymwSBhN6/t1EV0UfTGisW/WOIbvxSIimh2vlNLvI/F7rXvgzG874uRx25yDtWylzIY3JpQoGpn
+ +620KC3UsuZNwQ/HTlUQ+QxRI5Mqb+iM2PBGEN7RSM1M/SF18cPjMuv2fUG/0SRjoi0/J2/DUm0
+ EkyPm173ZMA==
+X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
+ fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
+X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
+ auth_id=588
+X-Original-From: Ricardo Pardini <ricardo@pardini.net>
+Reply-To: ricardo@pardini.net
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304396-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-304397-lists,devicetree=lfdr.de,ricardo.pardini.net];
+	FROM_HAS_DN(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,2.223.199.96:email,smtp.kernel.org:mid,2.223.238.112:email]
-X-Rspamd-Queue-Id: C32CD60580D
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[ricardo@pardini.net];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,infradead.org:email]
+X-Rspamd-Queue-Id: 880BF605852
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The `power-domains` property is missing from the `sdmmc2` node.
---
+This describes the two on-board Realtek RTL8125BG PCIe Ethernet
+controllers on the FriendlyElec NanoPC-T6 (RK3588) board and aliases
+them to ethernet0/ethernet1.
 
-commit 4ee314c8f9ee08a9bd17b8a43369159b8e1356d6
-Author: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Many Rockchip boards have on-board RTL8125 PCIe NICs, wired to
+pcie2x1l0 and pcie2x1l2. The controllers were already enabled in the
+board DT, but the Ethernet function nodes themselves are not
+described, so the kernel (and u-boot) has no DT handle on the NICs.
 
-arm64: dts: st: add SDMMC2 support on stm32mp25
+Adding the function nodes lets us:
+- expose stable ethernet0/ethernet1 aliases for the two NICs, the
+  same way other rk3588 boards alias their GMAC interfaces; and
+- let U-Boot's fdt_fixup_ethernet() patch mac-address properties in
+  at boot time from its ethaddr/eth1addr environment - useful on
+  boards (like this one) whose on-NIC EEPROM is not pre-programmed
+  with a unique MAC. The kernel and U-Boot then agree on the MAC,
+  which matters for network-boot setups.
 
-The SDMMC2 controller supports SD cards, eMMC memories and SDIO devices.
+Checkpatch warnings:
+-  WARNING: DT compatible string "pci10ec,8125" appears un-documented
+-  WARNING: DT compatible string vendor "pci10ec" appears un-documented
+Both are expected. "pciVVVV,DDDD" is the Open Firmware PCI Bus
+Binding spelling, where VVVV/DDDD are the PCI vendor and device IDs
+allocated by the PCI-SIG (10ec = Realtek, 8125 = RTL8125). It is not a
+DT vendor prefix.
 
-> diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts=
-/st/stm32mp251.dtsi
-> index 673fbc5632e69..5e46024d22152 100644
-> --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-> +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-> @@ -1667,6 +1667,21 @@ sdmmc1: mmc@48220000 {
->  				status =3D "disabled";
->  			};
-> =20
-> +			sdmmc2: mmc@48230000 {
-> +				compatible =3D "st,stm32mp25-sdmmc2", "arm,pl18x", "arm,primecell";
-> +				arm,primecell-periphid =3D <0x00353180>;
-> +				reg =3D <0x48230000 0x400>, <0x44230800 0x8>;
-> +				interrupts =3D <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks =3D <&rcc CK_KER_SDMMC2>;
-> +				clock-names =3D "apb_pclk";
-> +				resets =3D <&rcc SDMMC2_R>;
-> +				cap-sd-highspeed;
-> +				cap-mmc-highspeed;
-> +				max-frequency =3D <120000000>;
-> +				access-controllers =3D <&rifsc 77>;
+If this is seen as a good thing, it would apply very similarly to
+the Radxa Rock 5 series and others.
 
-[Severity: Medium]
-Should this node include a power-domains property?
+While at it, rename regulator vcc3v3_pcie2x1l0 to l1, since that is
+what is actually powers; since only cosmetic, I did not include
+a Fixes tag.
 
-On the STM32MP25 SoC, peripheral IP blocks are linked to the cluster power
-domain. For example, other nodes in the same file use:
+---
+Changes in v2:
+- fix: pcie2x1l0, not pcie2x1l1; indirectly caught by Sashiko's review [1]
+- while-at-it: rename regulator vcc3v3_pcie2x1l0 to l1
+- Link to v1: https://patch.msgid.link/20260525-rk3588-dts-rtl-eth-describe-dt-alias-v1-1-a6fcda563ac7@pardini.net
 
-    power-domains =3D <&CLUSTER_PD>;
+[1] https://sashiko.dev/#/patchset/20260525-rk3588-dts-rtl-eth-describe-dt-alias-v1-1-a6fcda563ac7%40pardini.net
 
-Looking at the git history, the sdmmc1 node was added early in SoC bringup
-before power domains were systematically added to other peripherals.
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-rockchip@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
 
-While the sdmmc1 node is currently missing this property as well, does the
-absence of it here cause a regression with runtime power management and
-sleep state transitions for the new sdmmc2 controller?
+---
+Ricardo Pardini (2):
+      arm64: dts: rockchip: describe PCIe Ethernet controllers on NanoPC-T6
+      arm64: dts: rockchip: fix PCIe regulator name on NanoPC-T6
 
-> +				status =3D "disabled";
-> +			};
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 36 ++++++++++++++++++++--
+ 1 file changed, 33 insertions(+), 3 deletions(-)
+---
+base-commit: e7ae89a0c97ce2b68b0983cd01eda67cf373517d
+change-id: 20260524-rk3588-dts-rtl-eth-describe-dt-alias-c1ed187b7c50
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260529144707.3931=
-919-1-dario.binacchi@amarulasolutions.com?part=3D2
+Best regards,
+--  
+Ricardo Pardini <ricardo@pardini.net>
+
+
 
