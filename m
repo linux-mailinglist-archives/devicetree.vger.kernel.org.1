@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-304545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304546-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OMHvAgRTGmpE3AgAu9opvQ
-	(envelope-from <devicetree+bounces-304545-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 05:01:24 +0200
+	id OJMODdJTGmpE3AgAu9opvQ
+	(envelope-from <devicetree+bounces-304546-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 05:04:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBF460B04C
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 05:01:23 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86C1160B083
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 05:04:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1EB4F301D008
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 03:01:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8B89F30210F7
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 03:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8C731690E;
-	Sat, 30 May 2026 03:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB2A31690E;
+	Sat, 30 May 2026 03:03:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mzXuzZ6t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oFeFMKOU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D248175A66;
-	Sat, 30 May 2026 03:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6741175A66;
+	Sat, 30 May 2026 03:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780110080; cv=none; b=UOG5WCE1o2H+kwIbA7CjFuRHEOhUZG0PZ6z22tOdcUQV/eiHtAo/B5VscK41F0VIOW5hzfEmDFliVrCtdiaULXa+wnM+NebCjbHtvd0o5bfKMnTTT2waAhnZT6UUlBOVvhgc7rwxdnYcUcSntXM60avOeY1zfMKd+4LVMIXG9bs=
+	t=1780110202; cv=none; b=b1V3CHYK1HlOJ8eyYYskjoPqLitOF2jZkFbU4gCsMvKYAbpY84Gf/GnygKpqxQiu9RTilk4OfNugmCw9jrM7EnpePnNxs0j03333Dv/+h3V8/9rfnwmK2+xuDHmhSB3gyIVWdJY1RAD5qUpG5KwxPrAuRxVfGgv1OqqCBWcxrE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780110080; c=relaxed/simple;
-	bh=N2mbvpTjxtMUi5qCtiEBcDM9f1G+u7J48/3ZUvw3M0s=;
+	s=arc-20240116; t=1780110202; c=relaxed/simple;
+	bh=9O2tdNxdzKqtSSFxKwCQqUXPKygGm77hCPN/2gyL7UI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=twNYJBC998BtC8gqP0kx4MyN3IPl2/weW7lElbNWEAiEk/O4ZgP8DkezTS1gefA/Hvsm45IMS5Gbr/cJBhztZfDuN/SrcWj0YB1xmBDdI0IMkabg2LqnycFcOkdpfmmUa+G8dFanK+lHBneGNpuaYhw8dWijn35IdGjfltB0JSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mzXuzZ6t; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCB681F00893;
-	Sat, 30 May 2026 03:01:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UnoG+WN+aGiyhNzAQpQS3N5z18i/g7sCwcAWze6vECJyqDX4m0IVzmCEgNQkFdfOmK3CUrd4p94Ej+PMUOSx3/gtA8LGeUI9mpSrMJ1iH+bWkeF7J7AIqm6rnKef0CjriXzXfUq+eK2CRxyFKWkZA2unT+pLjUSXKBKoK24/AC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oFeFMKOU; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9F831F00893;
+	Sat, 30 May 2026 03:03:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780110079;
-	bh=56mC+ARUUx2aYOmcTLesen9tO/BpwtjQ6jTLU/506+k=;
+	s=k20260515; t=1780110201;
+	bh=lV76AH1HBmgcxLbMccze3T0BHd4sPS3mDORlT8NSVC8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=mzXuzZ6tb8Gh852fD+LHOO94PoVBppboU/C2ewhWqRuhvbDF2/WTpTHKtPKupaWUN
-	 ISdKZqN0JaPZjCGcC4KWOKL7E2+lIs4Yr3EpeFh3tY+0ln9ft8KgDv/LAdY79ylE1Z
-	 HmkqPgK6fjDmVvdVv1/g9v5vYhe4Pe51R0as7NN5rgNIglbbpY/itM13XRpMlWvZ09
-	 +8cDleg9KlBmCf9hcX1me54lmxqGO+c+p/cPXcLueGHemDk93JRtC1OuUuGK9xOAb+
-	 kXhhtCr5ltq9H7KnFYQI+90WeDd68GtmE8r70oku8pAdD/NJz2ncKEQsfx0THbW9/K
-	 Q+eZ2ASlISsxw==
-Date: Sat, 30 May 2026 03:01:17 +0000
+	b=oFeFMKOUmBDgQJ/Ers8G0P8ui1p3EETlX5hPRVKl4gC71fHeFzNm8vb3L043SmcnB
+	 ZVVGpL6Whb92ngsvTjlxMUg8GAceD/BSN5NqaUaIvktbKWa4T8mhsh3kkSIik51sN9
+	 WSyK4SG6HYO2V7cfdvioFDeU95fc4kgDk3gmDWfA1EzJ8wJ3kUxO9FPVi8oLGZowMW
+	 TZg2bXVWxRJh0Mnp+PXzVohL7MgQ237ydtk/549EJLhn3MfvfpUh9b3oHW33YmCi4z
+	 z2ErPhNqkBBBxv93YMWq27/Oy7p4YY2xrLKEWbqNWume/HhjLAu9DKUvM84SkYf9fQ
+	 D6x+Qf21+wV1w==
+Date: Sat, 30 May 2026 03:03:19 +0000
 From: Yixun Lan <dlan@kernel.org>
 To: Guodong Xu <guodong@riscstar.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -56,11 +56,8 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Guodong Xu <docularxu@outlook.com>
 Subject: Re: [PATCH] riscv: dts: spacemit: k3: Add Ziccrse extension for X100
  cores
-Message-ID: <20260530030117-GKF3748271@kernel.org>
+Message-ID: <20260530030319-GKG3748271@kernel.org>
 References: <20260526-k3-ziccrse-v1-1-c759792ca3a3@riscstar.com>
- <CAH1PCMa_RJ0NVNyxkqsXPfrF4tz_69ZbWeqkh8xRCu7bLDkr-A@mail.gmail.com>
- <20260529062159-GKE3748271@kernel.org>
- <CAH1PCMbNv3pGNvjhr02fiibRS3mt929+C3jwreWePN-3O5eLOw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,17 +66,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAH1PCMbNv3pGNvjhr02fiibRS3mt929+C3jwreWePN-3O5eLOw@mail.gmail.com>
+In-Reply-To: <20260526-k3-ziccrse-v1-1-c759792ca3a3@riscstar.com>
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304545-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304546-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -97,25 +94,28 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 9BBF460B04C
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,riscstar.com:email]
+X-Rspamd-Queue-Id: 86C1160B083
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Hi Guodong,
 
-On 21:22 Fri 29 May     , Guodong Xu wrote:
-> Hi, Yixun
-.. 
+On 15:22 Tue 26 May     , Guodong Xu wrote:
+> Add the Ziccrse ISA extension to all eight X100 cores. Ziccrse
+> provides a forward progress guarantee on LR/SC sequences in main
+> memory regions with cacheability and coherence PMAs.
 > 
-> Correct. Thanks for double-checking.
+> The SpacemiT X100 core supports it per the SpacemiT K3 hardware
+> specification.
 > 
-> In the above test, CONFIG_RISCV_TICKET_SPINLOCKS was not enabled.
-> And since X100 has neither Zabha nor Zacas, the runtime selection in
-> riscv_spinlock_init() falls through to the Ziccrse branch.
-> 
-great, that's what I'd like to check , thanks for confirmation
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+
+Looks good, I will queue it, thanks
+
+Reviewed-by: Yixun lan <dlan@kernel.org>
+
 -- 
 Yixun Lan (dlan)
 
