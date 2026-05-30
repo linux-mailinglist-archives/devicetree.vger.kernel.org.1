@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-304510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304512-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKCPOXU0Gmp+2AgAu9opvQ
-	(envelope-from <devicetree+bounces-304510-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:51:01 +0200
+	id ALCfLdczGmp+2AgAu9opvQ
+	(envelope-from <devicetree+bounces-304512-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:48:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D61A60A6E7
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:51:00 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE2E60A56C
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:48:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 00D113060C2D
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:46:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7D65F3052940
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:47:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9785E2F8E99;
-	Sat, 30 May 2026 00:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B6329B78B;
+	Sat, 30 May 2026 00:46:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EVM2X+re"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LTFaW3fJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B4028030E;
-	Sat, 30 May 2026 00:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 501061D54FA
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 00:46:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780102004; cv=none; b=CM2tBEAkx9NHKkAzq/Wax+WkVkl2j6zqaNqFj8zapiABg/9xt24wEAZWDizwIu0mMGr6gbhzfRJyoZJd7iTHWS/6nH4BUnLYwC+hCG2LAHx4ihh7kOaJ+v3D/D71nVmaPja1RN/hsSXFCrEk4NBjn6o/wILjsHz1nwxMBrnDanM=
+	t=1780102012; cv=none; b=sXyf0kcSlt/HUECyRR6W8Q1v4Xqb0KE4IEYuQhR55npqt9Wh5UbSoFcpfns8ShlaO32FedC8CPiNhU1DYBFzahL7Ky3AKQXhMPBYs59PbbBJ/7kDrYrb+IE1l5Fm7ioRjBVyu7MfA9RDHYRuCVnj5ynieibZpa5jBErZZhCmfFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780102004; c=relaxed/simple;
-	bh=MHAy218KYY1xFeDAmZlKSwTkhMBB5mDfi4pTdswegNI=;
+	s=arc-20240116; t=1780102012; c=relaxed/simple;
+	bh=n+lkM6BEEDdqPnzt9jr2La7gdBQsq7IcXEtpmxbEpdE=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=UuMRbU0DoJtsjbHiJkpVpVKjNXAf2B9WmMcQfv0YrXcd27VbDpLW1C4QvyCdGV72pvaBJdv4w6+qvYyaLqxtCJBWTXyd9KmkJS0V28rk9H3BOJ0ipubo5TQd3/0DT90JIJZwzhne/A/+UkfiLAcPL9+DAmIWSxl9vtvnP/PlkDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EVM2X+re; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22C2C1F0089A;
-	Sat, 30 May 2026 00:46:43 +0000 (UTC)
+	 Message-Id; b=TCHhAScJVNjssFvSEgnR3HV6Sm2eGUYyn4Y6mDc2jxtOcUHIdQ4O1J57AIoocsOKhfyCETbNrXsGgFONpa9vRoei8BxyebSv4sFOZITj4QGtiPVzttERglNi5OTG9uWMpyfv/+eUDoIa86b8LJRrUegOzuvdBb5B2BlmJ65hw6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LTFaW3fJ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 062F51F00898;
+	Sat, 30 May 2026 00:46:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780102003;
-	bh=nwicYLBNPh4MWCeI+778P0LRGON9onK+Elzl01L335M=;
+	s=k20260515; t=1780102011;
+	bh=EwgmZ6j5C5Z4kHBxWJxs4+mB17sTqfcqOSrQ82ImEEM=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=EVM2X+redFA5m1KOXNB4Z4ZU0YbHAK9mQs39ah6XeXB5KX7W9WiD7IYzO0L4+zalg
-	 WL59mNOvKKbLCDZh8Z0i41wHloymfJ4Z4/qt4OJExBWpU0Tjo9BmPrEPDTetaGvu6X
-	 dWdrYGVAAs6kaFg+z65RHPNdHu0kiW7qUhtHPRdmCUquk1ItzlX9Wndku7wAIphaer
-	 1HAXCRItm3QBaKXp29y8Qt/jzO1EEkQYJfsclK6gmJsMAioEkthaAwZtio0SCxIPTh
-	 webSsWTiUyjX9+4EpM/FCdZdRfU9WJ40Z265GqXHrMzSuT6muhoDq/+cZmoegJIS+g
-	 HZku0d7gzZLiA==
+	b=LTFaW3fJ2hjBgviV7J9ceW3AbSU+wLM3FIECW6KlRJxZIhAPj00kgg0Hj4m7qD4Uf
+	 MRqcrLF7xWOy8ksvPl6iyXWuAOOj5JqbGP3BEGcStTKFGsuRNeQH1ITOgRIwk9RJJA
+	 SDzOmCingeHhAyM2/o3r42ThFSzovC2GOr/YixHAuD4HnRren8aRxyd+tUBxdkQiqm
+	 MOTRNgh9I0OXunDdJn/X3ORT084Q1uIcYEr50MRw35dtLmvrHFazR+F0OrgY6dpxIX
+	 7fAlD92goQn7+NCvUcR1z2cBKKlgpive+qlVII/iQrJAMXrqNrFDne+/ZVW+PhXSLL
+	 JXFBWAgYuH+bA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 13/15] wifi: ath12k: Switch to generic PAS TZ APIs
+Subject: Re: [PATCH net-next v2 3/5] net: dsa: tag_ks8995: Add the KS8995
+ tag handling
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sumit Garg" <sumit.garg@kernel.org>
-Cc: linux-media@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260522115936.201208-14-sumit.garg@kernel.org>
-References: <20260522115936.201208-14-sumit.garg@kernel.org>
+To: "Linus Walleij" <linusw@kernel.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260522-ks8995-to-ksz8-v2-3-5712c0dc9e75@kernel.org>
+References: <20260522-ks8995-to-ksz8-v2-3-5712c0dc9e75@kernel.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 30 May 2026 00:46:42 +0000
-Message-Id: <20260530004643.22C2C1F0089A@smtp.kernel.org>
+Date: Sat, 30 May 2026 00:46:50 +0000
+Message-Id: <20260530004651.062F51F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,141 +66,175 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid,qualcomm.com:email,sashiko.dev:url,lists.linux.dev:replyto];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304510-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304512-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 1D61A60A6E7
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url]
+X-Rspamd-Queue-Id: 5BE2E60A56C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-
-New issues:
-- [High] Unsynchronized access and Time-of-Check to Time-of-Use (TOCTOU) ra=
-ce condition in the generic `qcom_pas` API.
-
-Pre-existing issues:
-- [High] Missing PAS shutdown and state cleanup on error and timeout paths =
-in firmware power-up and power-down routines.
-- [High] Repeated calls to devm_memremap() in ath12k_ahb_power_up() cause m=
-emory leaks across restart cycles.
+- [High] Double free of SKB in transmit error path.
+- [High] Double free of SKB in receive error path due to `skb_vlan_untag()`=
+ consuming the buffer.
+- [High] Hardware-accelerated non-802.1Q VLAN tags (like 802.1AD) are not c=
+leared, breaking switch forwarding.
+- [Medium] Undefined behavior and logic error when processing standard 802.=
+1Q VLAN frames in `ks8995_rcv()`.
 --
 
-commit 21630c84c6a019ca458500ab79888e7e4014edc8
-Author: Sumit Garg <sumit.garg@oss.qualcomm.com>
+commit 5de31df103bfc2d05c675fc89bf1eeca8953c84d
+Author: Linus Walleij <linusw@kernel.org>
 
-wifi: ath12k: Switch to generic PAS TZ APIs
+net: dsa: tag_ks8995: Add the KS8995 tag handling
 
-Switch ath12k client driver over to generic PAS TZ APIs. Generic PAS TZ
-service allows to support multiple TZ implementation backends like QTEE
-based SCM PAS service, OP-TEE based PAS service and any further future TZ
-backend service.
+The KS8995 100Mbit switch can do proper DSA per-port tagging
+with the proper set-up. This adds the code to handle ingress
+and egress KS8995 tags.
 
-> diff --git a/drivers/net/wireless/ath/ath12k/ahb.c b/drivers/net/wireless=
-/ath/ath12k/ahb.c
-> index 2dcf0a52e4c15..dff7fa7027c53 100644
-> --- a/drivers/net/wireless/ath/ath12k/ahb.c
-> +++ b/drivers/net/wireless/ath/ath12k/ahb.c
+> diff --git a/net/dsa/tag_ks8995.c b/net/dsa/tag_ks8995.c
+> new file mode 100644
+> index 0000000000000..b3ffbd5e63935
+> --- /dev/null
+> +++ b/net/dsa/tag_ks8995.c
+
 [ ... ]
-> @@ -420,7 +420,7 @@ static int ath12k_ahb_power_up(struct ath12k_base *ab)
-> =20
->  	if (ab_ahb->scm_auth_enabled) {
->  		/* Authenticate FW image using peripheral ID */
-> -		ret =3D qcom_scm_pas_auth_and_reset(pasid);
-> +		ret =3D qcom_pas_auth_and_reset(pasid);
+
+> +static struct sk_buff *ks8995_xmit(struct sk_buff *skb, struct net_devic=
+e *dev)
+> +{
+> +	struct vlan_ethhdr *hdr =3D vlan_eth_hdr(skb);
+> +	bool have_hwaccel_tag =3D false;
+> +	u16 tci =3D 0, portmask;
+> +
+> +	/* Prepare the special KS8995 tags */
+> +	portmask =3D dsa_xmit_port_mask(skb, dev);
+> +
+> +	if (skb_vlan_tag_present(skb) && skb->vlan_proto =3D=3D htons(ETH_P_802=
+1Q)) {
+> +		tci =3D skb_vlan_tag_get(skb);
+> +		__vlan_hwaccel_clear_tag(skb);
+> +		have_hwaccel_tag =3D true;
+> +	}
 
 [Severity: High]
-This is a pre-existing issue, but does this function leak devres
-structures and virtual address space on device restarts?=20
+Does this code handle hardware-accelerated non-802.1Q VLAN tags (like 802.1=
+AD)?
 
-The devm_memremap() function is called earlier in ath12k_ahb_power_up()
-without a corresponding cleanup in ath12k_ahb_power_down(). Since
-power_up/power_down can be called multiple times during driver recovery
-(e.g., via ath12k_core_restart()), each power_up adds a new managed
-resource, exhausting memory over time.
+It appears that if the user has configured an 802.1AD VLAN and the conduit
+device supports hardware offload, the SKB will have
+skb->vlan_proto =3D=3D htons(ETH_P_8021AD). This hardware tag wouldn't be c=
+leared,
+and the KS8995 STPID tag would be inserted directly into the payload.
+
+Would this cause the conduit device to insert the 802.1AD tag outside the
+STPID tag, potentially causing the switch to drop or misroute the packet
+since it expects the STPID tag first?
+
+> +
+> +	if (have_hwaccel_tag || hdr->h_vlan_proto !=3D htons(ETH_P_8021Q)) {
+> +		skb =3D vlan_insert_tag(skb, KS8995M_STPID(portmask), tci);
+> +		if (!skb)
+> +			return NULL;
 
 [Severity: High]
-This is a pre-existing issue, but does this leave the PAS backend in an
-inconsistent state if subsequent steps fail?
+Could returning NULL here cause a double free of the SKB?
 
-If qcom_pas_auth_and_reset() succeeds, but a later step like=20
-qcom_smem_state_update_bits() fails, the code jumps to err_fw2 without
-calling qcom_pas_shutdown(). This leaves the peripheral running while
-the host gives up, leading to resource leaks.
+If vlan_insert_tag() fails (for example, due to a memory allocation failure=
+),
+it internally frees the SKB before returning NULL. If we return NULL to the
+DSA core here, dsa_user_xmit() assumes the tagger didn't free the SKB and
+calls kfree_skb() on the already-freed pointer.
 
-[Severity: High]
-Does switching to the generic PAS API introduce a Time-of-Check to
-Time-of-Use (TOCTOU) race condition?
+> +		hdr =3D vlan_eth_hdr(skb);
 
-The generic qcom_pas_auth_and_reset() API checks ops_ptr and
-dereferences it without locks, RCU, or module references:
-
-drivers/firmware/qcom/qcom_pas.c:qcom_pas_auth_and_reset() {
-	if (!ops_ptr)
-		return -ENODEV;
-
-	return ops_ptr->auth_and_reset(ops_ptr->dev, pas_id);
-}
-
-If the backend module is unloaded concurrently, setting ops_ptr to NULL
-after the check but before the dereference, could this cause a
-Use-After-Free or NULL pointer dereference?
-
->  		if (ret) {
->  			ath12k_err(ab, "failed to boot the remote processor %d\n", ret);
->  			goto err_fw2;
 [ ... ]
-> @@ -485,10 +485,10 @@ static void ath12k_ahb_power_down(struct ath12k_bas=
-e *ab, bool is_suspend)
->  		pasid =3D (u32_encode_bits(ab_ahb->userpd_id, ATH12K_USERPD_ID_MASK)) |
->  			 ATH12K_AHB_UPD_SWID;
->  		/* Release the firmware */
-> -		ret =3D qcom_scm_pas_shutdown(pasid);
+
+> +static struct sk_buff *ks8995_rcv(struct sk_buff *skb, struct net_device=
+ *dev)
+> +{
+> +	int portmask;
+> +	u16 etype;
+> +
+> +	/* We are expecting all received packets to have a mangled VLAN
+> +	 * TPID, so drop anything else. Because of the non-standard TPID,
+> +	 * don't even bother looking for a tag in the hwaccel area.
+> +	 *
+> +	 * We have to inspect the ethertype directly because skb->protocol
+> +	 * will contain garbage.
+> +	 */
+> +	etype =3D ntohs(*(__be16 *)dsa_etype_header_pos_rx(skb));
+> +	if ((etype & KS8995M_STPID_STD) !=3D ETH_P_8021Q) {
+> +		netdev_info(dev, "%s: dropped ethertype 0x%04x\n",
+> +			    __func__, etype);
+> +		return NULL;
+> +	}
+> +	netdev_dbg(dev, "%s: received ethertype %04x\n",
+> +		   __func__, etype);
+> +
+> +	/* Move the custom DSA+VLAN tag into the hwaccel area and strip
+> +	 * it from the skb head
+> +	 */
+> +	skb =3D skb_vlan_untag(skb);
+> +	if (!skb) {
+> +		netdev_err(dev, "%s: unable to untag skb\n", __func__);
+> +		return NULL;
 
 [Severity: High]
-This is a pre-existing issue, but does a timeout earlier in this
-function leak resources?
+Does returning NULL here result in a double free?
 
-If wait_for_completion_timeout() times out waiting for userpd_stopped,=20
-ath12k_ahb_power_down() returns immediately without clearing the stop
-bit and without calling qcom_pas_shutdown(), abandoning the remote
-processor state.
+If skb_vlan_untag() fails, it explicitly frees the SKB and returns NULL.
+When we return NULL here, the DSA core in dsa_switch_rcv() checks if the
+tagger returned NULL and will call kfree_skb() on the original SKB pointer,
+which has already been freed.
 
-> +		ret =3D qcom_pas_shutdown(pasid);
->  		if (ret)
-> -			ath12k_err(ab, "scm pas shutdown failed for userPD%d\n",
-> -				   ab_ahb->userpd_id);
-> +			ath12k_err(ab, "pas shutdown failed for userPD%d: %d\n",
-> +				   ab_ahb->userpd_id, ret);
->  	}
->  }
+> +	}
+> +
+> +	portmask =3D FIELD_GET(KS8995M_STPID_PORTMASK, etype);
+> +	netdev_dbg(dev, "%s: etype %04x portmask %04x (%d)\n",
+> +		   __func__, etype, portmask, ilog2(portmask));
+
+[Severity: Medium]
+Will standard 802.1Q frames bypass the drop check and cause undefined
+behavior here?
+
+A standard 802.1Q frame has an ethertype of 0x8100. The bitwise AND with
+0xFFF0 (KS8995M_STPID_STD) results in 0x8100, which matches ETH_P_8021Q, so
+the frame bypasses the drop check earlier in this function.
+
+Since the lower 4 bits of 0x8100 are 0, the portmask will be 0. Calling
+ilog2(0) can trigger undefined behavior on some architectures or evaluate
+to -1, leading to an invalid port lookup in the subsequent
+dsa_conduit_find_user() call.
+
+> +	skb->dev =3D dsa_conduit_find_user(dev, 0, ilog2(portmask));
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522115936.2012=
-08-1-sumit.garg@kernel.org?part=3D13
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522-ks8995-to-=
+ksz8-v2-0-5712c0dc9e75@kernel.org?part=3D3
 
