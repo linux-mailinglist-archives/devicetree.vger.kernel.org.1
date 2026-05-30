@@ -1,149 +1,237 @@
-Return-Path: <devicetree+bounces-304650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304601-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EBoCLIDjGmqK9ggAu9opvQ
-	(envelope-from <devicetree+bounces-304650-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 15:17:52 +0200
+	id ZrbSMtC/Gmp88AgAu9opvQ
+	(envelope-from <devicetree+bounces-304601-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:45:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2577260CEB8
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 15:17:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EFEB60C384
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:45:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BA85C301C6FD
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 13:17:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 29D30301F498
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:37:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF6E225775;
-	Sat, 30 May 2026 13:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C104E29BD95;
+	Sat, 30 May 2026 10:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AuX3B8qp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XBRnBaiN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54432C187
-	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 13:17:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C7D366DA3
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 10:37:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780147068; cv=none; b=l4pVDXTwp2zwPaE5azUZ4L+XmrHOZT5KIuK/VcdTOxDLWZ+YQhiOhUG03T3IxO4S+m5WzgZsG/vbEM1m+QD4M2sZfeiIOYNKPzob6L6HbK2lE/XfOIxJXqte6/LfcmiGJ3z+jRlTG5oWvk3uiuBx9snLY/I8XmoC67CKbCIPBXQ=
+	t=1780137431; cv=none; b=Ef/PYvcdyDGQQ2ftxVeV5OLu4PFmqSC6UGDoOKstkEUzvG9C/5//Zm6xIp3081ardoMXt8/ELG/D0AF9o3mJM6is1aBlU+MUmHTktACtBvG/1NL+koHMOVYTC2tXdr5aBnwGpn4eYwDJKkQaSWn/Cqx0EQ7TjeRyXLdiMId6/58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780147068; c=relaxed/simple;
-	bh=6lhgdaPHynf395aIFWky3glvQKAaQVBrok8WLSUt6r4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q27gd3qK5ZjcoWFIYGNx4ltxOzEegd8RgKTGmukEry6EjjG7azeecMr9uSbZRvI/GiLefvuZrxZ1e8hVmTdmMRC2uihx1/pugxpw3s6DaQ3oeXfhZsWjfImKlKM82V6V2nxbk4+QO1FYsrCmrk11UzI7YJojm2F7Hf6Xb9PPsjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AuX3B8qp; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2F661F00893;
-	Sat, 30 May 2026 13:17:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780147067;
-	bh=t2oLA32n49fw6YC2BTNEdxQuVC72zm9QzG8dufL6sQY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=AuX3B8qp2vK2JzGouTZHgXfIYXJvMcaIRuKiLFgBb+7iicYWZgc0cjdWjQD+sEVpV
-	 ltAftx06JlgaOc4xhYQXcHjlPVKEd5vn+gQWd/Nj8ahx0T8r1Gx5PhDtDJRnjW4foC
-	 GzYEGmJxg5oxQIiYuxpBnwaeEQLYJblpPKqAqFaxok8kDGfdw5azZdqiLfe3pJ8PU/
-	 rcF3kOd9cOUMe+GJsR463yCJjgIw+lS0jptKSlVT8USufJgzHVUJ9I1kDIV7Cn/a/F
-	 Oe4FJhplsohnWrpLK4ub+z5DRImEs/UMd74KD1VkK2aMOUVzQCzY3pmKjL0gDBkbTb
-	 Srw2OwBZMX4Kw==
-Date: Sat, 30 May 2026 20:58:35 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1780137431; c=relaxed/simple;
+	bh=q6AP/YsSB67RKFNzB+JOGdIx8KZjL239X/sjIyTEFz0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d0dCLZYa2sUxwJEVksrdIIpHLBVSV5C18EvUaW6ey+3xXYmm7hMqIMcLI4vSUF6FBgjZT1qj7CUwuqlWFeWX85veSCTlAZ7/TxcDHwFZu0JjlPprHbMnrF6kmBnOYDWBWFXo2xrTDsrxG9XLRe364+IOMTJbunRVmScJ8C/9Duw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XBRnBaiN; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5aa65757ef4so10428e87.2
+        for <devicetree@vger.kernel.org>; Sat, 30 May 2026 03:37:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780137424; x=1780742224; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AXi4/WHWZV2Am5IoWUT5fE2KIh0QxaqAle3LaIVXAnY=;
+        b=XBRnBaiNSq00EZZDAhmMcJXn4/H68bcY059lRezWu7Rqpfz31BigecBmg6my6yti+/
+         Y0NfMFGGpbc9I4/PYo2vykUYpKYKPg14pV+/MFqyti8qHeXnXI4jGwx6yAXK2AdC8RRt
+         MvkSw6EttKaygHVdLj01tKnifLbGPlnJ+RVSuV/NRkBEyqOt3laMVrVFagEpngXUWvPb
+         jTYLQy/lteRW0bKbRnaSmtIilyxw7LXCzIrryFfpLv4ke05i/mLsu4qb09cfM2G8QHQD
+         vzcF9Ak33+3sqIohRPZgNxws6tRq2kvAYdEoGH9NOUFar+dW1fbUzFfArCQSlovvWe2K
+         CQGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780137424; x=1780742224;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AXi4/WHWZV2Am5IoWUT5fE2KIh0QxaqAle3LaIVXAnY=;
+        b=dLjhlD4Hutc62ieuOjOc89zefXd3IFyouSZzX3yNO2WiEOYgG0pq8M0imJwVOXvdLX
+         ngbi9ozM0qvtFLIHrQV498WbEid9DA8KJP7GG81WCFuOCKFojlXPlAMnXTDPM2J3AlFA
+         f7w4qIKlqsMNhz8dm7XLqE0r2Ew/o6v3PVvfJ/HYXK/BowVXdTrGYRE8oCeU8hmopC/j
+         c61Zw6FytSlNR8CNDTbKk2A5h2HqsdkfZiKqtOEUy65cMP65GcIUl/wJRwTzoBdvweP3
+         cnH6wTSoPAxrVxq4yHYLUVLw2fSDoZ7VuCs9EcSuut5b62W5GA94zs5TfsKsDmR1xxOu
+         oBaA==
+X-Forwarded-Encrypted: i=1; AFNElJ9ZgN/iJPplAqcV38UThkruutaB+LINu96S95VMUuXxrtzcme0ImZGKRKXvg/iqGbDZpWYO9JG54Qa9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/dWdpDL+BqkVOBXQeJ9YWZHf8ATxT2P1jp/qgVwBFLXX+eQdL
+	r/XM20KXrC5Wd8hKsxaZ6dRxTnlXopaMPiIj24sJD341hcQ4s6SLVGBU
+X-Gm-Gg: Acq92OE0ftVzjscHVqs8l8+HhEcKRmM/BJKT7pTf5sj29hr/7k/cWvqH1XHYmQq/Ki4
+	qfWT6HiJfDMYitnHXu1Mlo8NZQIzg4P+b2B/O28i7wqY+FNIeg47w8JNw39TAVmZqi0vrIX4wK/
+	EibEueRqaqmSSP3B8cWsd/TYLVaUy/4zOkMSGwpafFFQxQzJzhQJdCK5BOmbQ9BOiqpZntCK+5D
+	LoqczbD7YY9oFs5rEMEE3hFluj2s3Syv3q/jKt4V0vMpvHOfJFlW7OtMMMq0bAtmav25YOgMwjx
+	nVAih2XCQzx8cwDfc41hk5cgUOuzA8rQMFA4hey7ez685w12l2QHlEMsyVJ9aoWFLwgGnZh4d1T
+	wKqtvh6cC5tQX/PlDhqfSLEzy6DihZds8SbCDFf2QJ8adnLP5aV4wC4DKBbN0cm5u59jxF5KA7Q
+	B2Plo8PzR3r/VKM1TJs3zCDY4XMIBOAXvfCBmk0zH6EYpwkw==
+X-Received: by 2002:a05:6512:33ce:b0:5aa:635f:7c08 with SMTP id 2adb3069b0e04-5aa635f7d4cmr211707e87.7.1780137424193;
+        Sat, 30 May 2026 03:37:04 -0700 (PDT)
+Received: from localhost ([5.123.41.120])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa5b787b7bsm909472e87.57.2026.05.30.03.37.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 May 2026 03:37:03 -0700 (PDT)
+From: Taha Narimani <tahanarimani3443@gmail.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] dt-bindings: i3c: dw: Add apb reset
-Message-ID: <ahre-7YdlcOZkwS1@xhacker>
-References: <20260525140018.19598-1-jszhang@kernel.org>
- <20260525140018.19598-3-jszhang@kernel.org>
- <f8efa4ae-76e8-4082-a445-ca5f6d230bf3@kernel.org>
- <ahZwl3uXjyOZRvGW@xhacker>
- <4a8539d3-704b-4433-b4d6-e5acfe22d512@kernel.org>
+	Taha Narimani <tahanarimani3443@gmail.com>,
+	linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] dt-bindings: iio: adc: Add schema for AD7816/7/8 digital temperature sensor
+Date: Sat, 30 May 2026 13:31:24 +0000
+Message-ID: <20260530133126.54460-1-tahanarimani3443@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <4a8539d3-704b-4433-b4d6-e5acfe22d512@kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [4.84 / 15.00];
+	DATE_IN_FUTURE(4.00)[2];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304650-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-304601-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jszhang@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	GREYLIST(0.00)[pass,body];
+	FREEMAIL_TO(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tahanarimani3443@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 2577260CEB8
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[checkpatch.pl:url,0.0.0.0:email,devicetree.org:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 5EFEB60C384
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, May 27, 2026 at 09:53:16AM +0200, Krzysztof Kozlowski wrote:
-> On 27/05/2026 06:18, Jisheng Zhang wrote:
-> > On Mon, May 25, 2026 at 05:25:45PM +0200, Krzysztof Kozlowski wrote:
-> >> On 25/05/2026 16:00, Jisheng Zhang wrote:
-> >>> Add dt-binding for support of apb reset which is to reset the APB
-> >>> interface.
-> >>
-> >> And this is ABI break, so you must explain WHY breaking ABI is worth
-> > 
-> > This just adds an optional apb reset, it doesn't break any exisiting
-> > ABI. Kindly let me know whether adding new optional binding is also
-> > an ABI break.
-> 
-> It does. One reset was before. Now all devices must have two resets.
-> Clear ABI impact.
+Document the Analog Devices AD7816, AD7817, and AD7818 digital
+temperature sensor and ADC bindings in YAML format.
 
-I checked the dts with only one reset by manual dt_binding_check
-and dtbs_check, it still work, so I'm not sure why those dts "must have
-two resets". Kindly let me know what's wrong.
+This resolves the checkpatch.pl warnings regarding undocumented DT
+compatible strings for 'adi,ad7816', 'adi,ad7817', and 'adi,ad7818'.
 
-> 
-> > 
-> >> doing that or what is the impact. Additionally you should explain which
-> >> devices have it. Does Altera have it? You really lack explanation WHY
-> >> you are doing it and which hardware you exactly describe.
-> > 
-> > I'm preparing one of synaptics SoCs support to uptream, it needs this
-> > apb reset signal for i3c. So you mean I delay this series until the SoC
-> > upstream series come, right?
-> 
-> No. You just sent patch which basically says that Altera has two resets,
-> without any explanation of that.
+Signed-off-by: Taha Narimani <tahanarimani3443@gmail.com>
+---
+ .../bindings/iio/adc/adi,ad7816.yaml          | 74 +++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
 
-I guess you mixed other series/patches with mine here, no? I didn't
-mention Altera at all ;) What my series mentioned is adding apb reset
-which is to reset the APB interface.
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
+new file mode 100644
+index 0000000..7f6a3e5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/adi,ad7816.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD7816/7/8 digital temperature sensor and ADC
++
++maintainers:
++  - Taha Narimani <tahanarimani3443@gmail.com>
++
++description: |
++  Analog Devices AD7816, AD7817, and AD7818 10-Bit temperature sensor and ADC.
++  The device communicates via an SPI interface.
++
++properties:
++  compatible:
++    enum:
++      - adi,ad7816
++      - adi,ad7817
++      - adi,ad7818
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency: true
++
++  rdwr-gpios:
++    maxItems: 1
++    description: GPIO connected to the RD/WR pin.
++
++  convert-gpios:
++    maxItems: 1
++    description: GPIO connected to the CONVST (Convert Start) pin.
++
++  busy-gpios:
++    maxItems: 1
++    description: GPIO connected to the BUSY pin. Only applicable for AD7816 and AD7817.
++
++  interrupts:
++    maxItems: 1
++    description: OTI (Over Temperature Indicator) interrupt.
++
++required:
++  - compatible
++  - reg
++  - rdwr-gpios
++  - convert-gpios
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@0 {
++            compatible = "adi,ad7816";
++            reg = <0>;
++            spi-max-frequency = <1000000>;
++            rdwr-gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
++            convert-gpios = <&gpio 6 GPIO_ACTIVE_HIGH>;
++            busy-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
++            interrupts = <20 IRQ_TYPE_LEVEL_LOW>;
++            interrupt-parent = <&gpio>;
++        };
++    };
+-- 
+2.53.0
 
-
-> 
-> Write explicit patches with answers WHY you re doing and WHY its impact
-> is correct.
-> 
-> 
-> Best regards,
-> Krzysztof
 
