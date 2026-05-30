@@ -1,62 +1,66 @@
-Return-Path: <devicetree+bounces-304640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304641-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6LOVBbvVGmox9QgAu9opvQ
-	(envelope-from <devicetree+bounces-304640-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 14:19:07 +0200
+	id cGlLDdzWGmox9QgAu9opvQ
+	(envelope-from <devicetree+bounces-304641-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 14:23:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 689F560CBAF
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 14:19:06 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB72E60CC06
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 14:23:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D75643029ACD
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:19:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9F304301B26D
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791B13A545B;
-	Sat, 30 May 2026 12:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C043C3AE1B1;
+	Sat, 30 May 2026 12:23:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OiwRNXUt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kgzswIjM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1712FD7D3;
-	Sat, 30 May 2026 12:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F42227EA4;
+	Sat, 30 May 2026 12:23:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780143542; cv=none; b=utcVF//4LYORVuzAGFzKW0kal8E7XN2PsHMvEy5Oy37Qowx8lEk/Qq+da2c3V/d3RgVA9A6wSPthVQdtIuLmTMRUY8x8Y28vMw3scz8R8DyftleCtyrevglm/08mlBfNXvfv5KX1BK+7CFcJi+Kws01X7o0dCU6dP9K9AnO9/q0=
+	t=1780143831; cv=none; b=VWCDD9Oq3raO/e7egTpOZFb7IR/ZjloCHREJL3JxJdgNgpBjwMfAZmoCrOUl4MtA0EQDg1i9jtndPp053Uuy89rzKtWPzZITlhKclInjE5XuNobYH40oGW/6xRHkJlqn/UCIOSFStQk99mqh6Us3puL2urRtnmu938LsBgZ2vWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780143542; c=relaxed/simple;
-	bh=Ba4+DJc34+I6NOKgDDK+9MINHGOX+dzE+TTEAOjMkUE=;
+	s=arc-20240116; t=1780143831; c=relaxed/simple;
+	bh=Sh1hZbv7rlOdIKeJPwsYOqJMOwHIR9Au1SlJ5c6CtYw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jX+aNFGGfz9Pfpj1r8z6Nzjmi9zoIt6aobGQymvoxpTVm/xAQ9r1GYC3ss7UPZguuPgISzBdtSyB/XEJBDqPQNbAiK23dfPGQJuyJUqsggfUZQxuEIxQ+V/Zrie5WcVHMbMQv6asQ7nmawgsUvBKf/IQudUQSKwmxwFRWJSrS/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OiwRNXUt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A06241F00893;
-	Sat, 30 May 2026 12:19:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=N/mESLcumfqY3U+sH0ANqLYgtMlZTNv+TIUg2pP2pfXrJnl7Wdvdqu5XhGtZMYjC9EQ6WLxQwjxD9IsTpAXk76EPBuHCouiyIz+uSNmIynw8vIq33NRyAZlOkeLCn/8Q04GoyuSZOpTMyeeinCsSrtBjWLCYKW8iL5IngocVVK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kgzswIjM; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E21BC1F00893;
+	Sat, 30 May 2026 12:23:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780143541;
-	bh=jcAb7kozyts+b1h0rXGYQK+xZkw2WmbmCBb1u9nQJlA=;
+	s=k20260515; t=1780143830;
+	bh=r5DAp+Htga/xf6ftl1MzBgu4VAWMH0v34pGHCIlFIH0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=OiwRNXUtgv8vu2GE3Vs7nfzsSEaqco8BB+scWl7dzI+x7NeQYl4F8HYrG9z0BTVta
-	 KrBivUXm9uMwA844Ewbdtppn8XntdVqltW+tBqyfMIsPesuMC9NDw3zWjRDVistI6M
-	 TPT4xlexzY78TBfV3blg/t1YoU/ZtFU5d/MZe9eHodzCCB36UIlndQh3z7xVPhkkYC
-	 HkOZyUpIhmKXNHHX3akIHM8daUdhXGiOzjg/zRnbBOUoIbgTUUGfVs8DPUT6PYM7kJ
-	 N5v+vTVlnazwUiNQdZ4cz9ffs8EQE12L8uyVXxH0TuWBAwOXtZAfTi42N4vUj768RX
-	 YhhtKv/RwNA+g==
-Date: Sat, 30 May 2026 14:18:58 +0200
+	b=kgzswIjMgQxBu1PfaqLxeAGGWhXQEuzhsJ627S9xREYpi1Puqr8aDsUZKw4KLmDkz
+	 1CjUJnhLTYEfsB9BIVcAj8WJw6fBAjIu2E12jCmVPKFd/+jyQ2A/wir4agrG5iMdkZ
+	 zJE8KP/2825BMhIjdeOo426NyWWmLcTICuRwbTBAzTJmWI1UQ6QqzxAHLPKVGKjfK6
+	 V+FhD/xJEeyjgR9VrSfEVsFvaXAVGEEmAsAF4/5cwy64lP+n2F89sVC5r5uJ3s9eje
+	 2IjTQN4Rh/rP7ONqhX46JwY1Fe6I3jJdgQlD3Cx0Wfp94O3RE90Ny04Aeoqjxj/JNJ
+	 MX+yLK/KJ/NHw==
+Date: Sat, 30 May 2026 14:23:48 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Denzeel Oliva <wachiturroxd150@gmail.com>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] clk: samsung: exynos990: Fix PERIS gate clock parents
- and add TMU_SUB
-Message-ID: <20260530-fuzzy-rapid-corgi-f9eb86@quoll>
-References: <20260528-exynos990-peris-fix-v1-1-5b65aa7def2d@gmail.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Vikram Sharma <vikram.sharma@oss.qualcomm.com>, 
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Loic Poulain <loic.poulain@oss.qualcomm.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Nihal Kumar Gupta <nihal.gupta@oss.qualcomm.com>, Robert Foss <rfoss@kernel.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	Suresh Vankadara <svankada@qti.qualcomm.com>, Prashant Shrotriya <pshrotri@qti.qualcomm.com>
+Subject: Re: [PATCH 1/6] dt-bindings: media: Add bindings for
+ qcom,glymur-camss
+Message-ID: <20260530-striped-tuna-of-stamina-e2cbc6@quoll>
+References: <20260529-glymur_camss-v1-0-bee535396d22@oss.qualcomm.com>
+ <20260529-glymur_camss-v1-1-bee535396d22@oss.qualcomm.com>
+ <8618255e-ecbf-4f55-877d-09cb2faa6f50@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,55 +69,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260528-exynos990-peris-fix-v1-1-5b65aa7def2d@gmail.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+In-Reply-To: <8618255e-ecbf-4f55-877d-09cb2faa6f50@linaro.org>
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304640-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304641-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 689F560CBAF
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: CB72E60CC06
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, May 28, 2026 at 08:10:39PM -0500, Denzeel Oliva wrote:
-> Correct eight PERIS gate clock parents to match the hardware clock
-> tree, reorder the GIC mux parents, and add the missing TMU_SUB_PCLK
-> gate.
+On Fri, May 29, 2026 at 04:07:38PM +0100, Bryan O'Donoghue wrote:
+> On 29/05/2026 15:37, Vikram Sharma wrote:
+> > +
+> > +  vdd-csiphy-0p8-supply:
+> > +    description:
+> > +      Phandle to 0.8V regulator supply to CSI PHYs.
+> > +
+> > +  vdd-csiphy-1p2-supply:
+> > +    description:
+> > +      Phandle to a 1.2V regulator supply to CSI PHYs pll block.
+> > +
 > 
-> Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
-> ---
->  drivers/clk/samsung/clk-exynos990.c           | 24 ++++++++++++++----------
->  include/dt-bindings/clock/samsung,exynos990.h |  1 +
+> To be brutally honest, I'd rather see effort and buy-in from qcom engineers
+> in converting to CSIPHY as a distinct sub-node.
+> 
+> Pushing patches to hit your own internal deadlines to the detriment of
+> upstream quality is not OK.
+> 
+> This binding should be predicated on separate CSIPHY nodes. I've
+> published... three perhaps four versions of that patch to radio silence on
+> your side.
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+I'll drop this and other camss patches from Patchwork.
 
 Best regards,
 Krzysztof
