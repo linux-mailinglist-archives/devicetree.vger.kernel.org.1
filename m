@@ -1,192 +1,213 @@
-Return-Path: <devicetree+bounces-304559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304561-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNtfN7BZGmqN3wgAu9opvQ
-	(envelope-from <devicetree+bounces-304559-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 05:29:52 +0200
+	id V9EfFQNdGmrJ3wgAu9opvQ
+	(envelope-from <devicetree+bounces-304561-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 05:44:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C27060B2A3
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 05:29:52 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E35460B33D
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 05:44:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0B5AD30AF3DA
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 03:20:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 852A63045EEC
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 03:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2040534846A;
-	Sat, 30 May 2026 03:20:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C83733262F;
+	Sat, 30 May 2026 03:43:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="COpJaSWY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="njs1xJiI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D56AA349B0A
-	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 03:20:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72CE5405F7
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 03:43:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780111230; cv=none; b=aHxaq6vFMtpsUUkZB9SP4YQyfQkpeG+TtOO6kic3krPPPjvCQqdKAUi6JWxTjBTuDOdc5KunZ6lKvgzt/RixcTBpecNE+VrcU/9CfrjzVadwwH1FnYHh8BqZ/iFDNPkNM2z9AyhQLXGUw3WxRLOcO7WwnmOSqRki7CbDPU4SRng=
+	t=1780112639; cv=none; b=JPFbIZKyyLnG0MFWOu5LfKKqsaPzKQVgGcWanKOVk5H7XF0Z+lJLEhQ6j1aebLa1u46zf7dzZtf00chHj99/Rjg5isUp9Ptjv/7EOov54SZjsMP7OO8x4nxPBViOck0T5yyfnCMzGCryXDmgqpPyHtVPeoEcCvuL9Mq3SPnSE0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780111230; c=relaxed/simple;
-	bh=7P166A8vdKpbCTvjwJ0c7DTCaR8r6ukvy1kUs71vwQ0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bOHYpETevaJYWsNnfBiRXZV9zG4dcbw7ze3/Po/CN96Usuk8/n3ohIwr/26LhyUNAq0YQc0ExpJyH9NuzJDvUjyW1sknOpMHvBHnlRfBTtsMMSrna+XUXiks/6qBdjf3/0Y5/Sf4obDfSYcuxW7ZXhVKve/ygVlejpiQ5OjA508=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=COpJaSWY; arc=none smtp.client-ip=209.85.167.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-47c7b282e21so5723588b6e.1
-        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 20:20:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780111228; x=1780716028; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wNoA18UrHfHWWifSIaqhsuJYv6mLpyyKyk6HN99Blw8=;
-        b=COpJaSWYThFCgatJeUagIoi+kHFi6kx8b+uVqpAoNkdqCzl+7G4M3NhHJYpMvfDb78
-         vW+xyzdXJFm+hohztkr1PrBnljsU6U8lP6dDXJ+8V19DJeiH1m6TEwMyjnYpYGrfIJmD
-         rNZ1B4lQ8blcsdzkUDzsu50cqTOVg6vFe1evBHXZFxKyEgj7WMa9yvXq8BBI2Q2Lgt7j
-         9pYRHun4A8tDKPvYKNP7gO1NJzINqHVxFEbJatSgeP7vum1eDalwt+AAmZ9v5VK8a4L2
-         iXUnAB/UoIPpB/XYf/bIApRYu6BQTdlTuo8rUxWPGxdaTfmh95/FQp3OBbYao5TwNzed
-         sEcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780111228; x=1780716028;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=wNoA18UrHfHWWifSIaqhsuJYv6mLpyyKyk6HN99Blw8=;
-        b=GnKouy+i/VrAuwyLdt73hQlPCUJjKK/XzE8GhRpUBZ0VhuckA+LlGo1ej5Q5XbY/Pg
-         AxJTrOLFtXA2VL6Fy7ILbwb2MGQs/x69H85D+Ig8OTUOhD86SacQJGg+slSF5y8DSXU9
-         qLm+n0yCAu4cJLyhsqVFYQcSWTPqrz0wGGV7baRt8dHI+nlM0ywhzahDjaoDNjqZ5JX6
-         EpR0vZ4ux2NoQkX+q7TvrRtdrmkJnTLRBfYABGKpODgH9tdQjP1MZnfnGorxk1Wtf0qB
-         3gbiolLD1Rv8ygerJOsoIEYIyfQOfQsrDoHMocHoB5V8z//lVqIKFVBYb1U5m1Ze26Iw
-         xX4g==
-X-Forwarded-Encrypted: i=1; AFNElJ/tY9l6wJxVhcGQsRcTMho/gN/MlO/j6yk6uAVIk2PX3FxLCpBd+1XhlVlFw2JihKo7/rFOucGLdf/+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUJW+8lr7bFGvGOBpwxBwZkY8jm60b1lDvE1xV59CWOhMJHvpF
-	F+hwTlSxRMAcPFBUElEb8lzzAw0WBP7uTZmcEqGjWLNpauxk+onJVowV
-X-Gm-Gg: Acq92OFsINfuF5kVs+EPcm8dDgmifZrcm7WeTljTphPMbfJgZryiAFW0JFDvRFqkwd4
-	VJGseSjGlcMQZzZXRx1hyvkeug3vXAkIkLLhXxLAHyBF9UhYVW11J65bG4a61OruqyWBpreZfqC
-	LcKFXssl098rKC+lAVFnvb2PDNK7pdObpM/8D2lfYKm9jFh/wH5AczuoDGGawhSABJtSVneMS9e
-	Ysy8WbqWe2VQcVsNYXW4w88PAIb+9N0igITnLDjOcKosBtpEJ8YSg9/KZ/miR4OfrUE+g14QiBb
-	lTcKdH2mg7iPNBb52B/jHVQSYUZW01gSXG0cZqKVQ8mZYLRz3OVGWM81XnzCjC6IlCz1lnGIEQH
-	68YQNjdnZpKEOTjrqPZMbgUZBisJSwlwlldR3MRlZb9Q7Gw7uGX0sIaMjU8c0btCPykecMaEnJc
-	047q+do9pN8ySpknnlhaFuTsuKoJ1EAGQ=
-X-Received: by 2002:a05:6820:210:b0:69d:5be9:d073 with SMTP id 006d021491bc7-69e105f7132mr1038228eaf.53.1780111227877;
-        Fri, 29 May 2026 20:20:27 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-69e067e911csm2130737eaf.5.2026.05.29.20.20.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 May 2026 20:20:27 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-iio@vger.kernel.org
-Cc: andy@kernel.org,
-	nuno.sa@analog.com,
-	dlechner@baylibre.com,
-	jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	andriy.shevchenko@intel.com,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH V9 11/11] arm64: dts: rockchip: Add icm42607p IMU for RG-DS
-Date: Fri, 29 May 2026 22:17:38 -0500
-Message-ID: <20260530031739.109063-12-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260530031739.109063-1-macroalpha82@gmail.com>
-References: <20260530031739.109063-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1780112639; c=relaxed/simple;
+	bh=+xL9AKTRgVLkK40lpm/XXuNXze75ELerjiOCcCP7Cx8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=VEU6H2HiR+O6wpx5xpLpjUXjUhu5bE6eYAug5PCGekJ8/NzI9dbGGEEF+VHBRGQKlA44GregHMR2lckMXzgEE7XLmz+VAgCmCZJ5mtUJevRefh22qes/eU1KMF4z1iDvfnbTtJGO96LM2IWXr+J8Hru7PYzp/S961aOHObdOGXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=njs1xJiI; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E98E71F00893;
+	Sat, 30 May 2026 03:43:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780112638;
+	bh=Bynp/7jvDBDY+rtLk074z44t6vCfEprGbXRZjnvXmS0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=njs1xJiIqdXSSIErt6Otw4Vs4vevU+3rISoRN5z3/F0QIJTfSvmQzCFThwe/figYG
+	 LeLTqDJT609wSeGtgfaf/W3HaVulqZ1kINq1TKsvon3njToUT7mCntcLjdXHNMhAim
+	 5Z0cwMAjhMwWzk053cZj4eQ8t4t2B/BntBmaXvow6vD/OUAzVZuGW8TM5dIXvJ06aE
+	 yCBRQlVnWhN1YIWXOw+IBOZ1LVH6QBdUwNSvQBYunJzDPnL/1+Gjw75MPh04R3eRrE
+	 LlfxpbH9g/QNJKDPFigqu8VC8hYGCsF4pzF3oS0+F89HfBnICBallzAF+QwDOqA2ze
+	 g9jSm/6JqzOvQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V9 03/11] iio: imu: inv_icm42607: Add inv_icm42607 Core
+ Driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Chris Morgan" <macroalpha82@gmail.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260530031739.109063-4-macroalpha82@gmail.com>
+References: <20260530031739.109063-4-macroalpha82@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 30 May 2026 03:43:57 +0000
+Message-Id: <20260530034357.E98E71F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-304559-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304561-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,5b:email,0.0.0.68:email]
-X-Rspamd-Queue-Id: 3C27060B2A3
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: 9E35460B33D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] Using regmap_write() instead of regmap_update_bits() in configurat=
+ion functions unintentionally clobbers reserved or unhandled register field=
+s.
+- [Medium] Strict requirement for 'INT1' named interrupt breaks ACPI suppor=
+t and simple Device Trees.
+- [Low] regcache_sync() is a no-op because regcache_mark_dirty() is not cal=
+led after the hardware soft reset.
+--
 
-Add the Invensense ICM42607P IMU for the Anbernic RG-DS. Mount-matrix
-was tested with iio-sensor-proxy and reports correct orientation.
+commit fb241e98a0e4c74d0ee1e8a5eb96fc324eaf8bee
+Author: Chris Morgan <macromorgan@hotmail.com>
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- .../dts/rockchip/rk3568-anbernic-rg-ds.dts    | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+iio: imu: inv_icm42607: Add inv_icm42607 Core Driver
+   =20
+Add the core component of a new inv_icm42607 driver. This includes
+a few setup functions and the full register definition in the
+header file.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts b/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-index 8d906ab02c5f..875ca884deca 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-anbernic-rg-ds.dts
-@@ -871,7 +871,18 @@ aw87391_pa_r: audio-codec@5b {
- 		sound-name-prefix = "Right Amp";
- 	};
- 
--	/* invensense,icm42607p at 0x68 */
-+	icm42607p: imu@68 {
-+		compatible = "invensense,icm42607p";
-+		reg = <0x68>;
-+		interrupt-names = "INT1";
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PD6 IRQ_TYPE_EDGE_FALLING>;
-+		mount-matrix = "-1", "0", "0",
-+			       "0", "1", "0",
-+			       "0", "0", "-1";
-+		pinctrl-0 = <&accel_irq>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &i2c3 {
-@@ -932,6 +943,13 @@ &i2s1_8ch {
- };
- 
- &pinctrl {
-+	accel {
-+		accel_irq: accel-irq {
-+			rockchip,pins =
-+				<0 RK_PD6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
- 	gpio-keys {
- 		vol_keys_l: vol-keys_l {
- 			rockchip,pins =
--- 
-2.43.0
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c b/drivers/i=
+io/imu/inv_icm42607/inv_icm42607_core.c
+> new file mode 100644
+> index 0000000000000..4801ece280589
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+[ ... ]
+> +static int inv_icm42607_set_conf(struct inv_icm42607_state *st,
+> +				 const struct inv_icm42607_conf *conf)
+> +{
+[ ... ]
+> +	val =3D FIELD_PREP(INV_ICM42607_GYRO_CONFIG1_FILTER_MASK, conf->gyro.fi=
+lter);
+> +	ret =3D regmap_write(st->map, INV_ICM42607_REG_GYRO_CONFIG1, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val =3D FIELD_PREP(INV_ICM42607_ACCEL_CONFIG1_FILTER_MASK, conf->accel.=
+filter);
+> +	ret =3D regmap_write(st->map, INV_ICM42607_REG_ACCEL_CONFIG1, val);
 
+[Severity: High]
+Does this regmap_write() unintentionally clobber the averaging
+configuration bits (INV_ICM42607_ACCEL_CONFIG1_AVG_MASK)?
+
+By writing the entire 8-bit register, any bits outside of the filter mask
+are cleared to zero. This clobbers the averaging configuration (bits 6:4),
+discarding the hardware default. Should this use regmap_update_bits()
+instead to safely modify only the filter bits?
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->conf =3D *conf;
+> +
+> +	return 0;
+> +}
+[ ... ]
+> +static int inv_icm42607_setup(struct inv_icm42607_state *st,
+> +			      inv_icm42607_bus_setup bus_setup)
+> +{
+[ ... ]
+> +	ret =3D regmap_read_poll_timeout(st->map, INV_ICM42607_REG_INT_STATUS,
+> +				       val, val & INV_ICM42607_INT_STATUS_RESET_DONE,
+> +				       INV_ICM42607_RESET_TIME_MS * 100,
+> +				       INV_ICM42607_RESET_TIME_MS * 10000);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "reset error, reset done bit not set\n");
+> +
+> +	/* Sync the regcache again after a reset. */
+> +	ret =3D regcache_sync(st->map);
+
+[Severity: Low]
+Is this regcache_sync() a no-op?
+
+It is called immediately after a software reset, but regcache_sync()
+returns immediately if the map's cache_dirty flag is false. Since
+regcache_mark_dirty() was never called after the hardware reset, the
+cache is still considered clean.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D bus_setup(st);
+[ ... ]
+> +int inv_icm42607_core_probe(struct regmap *regmap,
+> +			    const struct inv_icm42607_hw *hw,
+> +			    inv_icm42607_bus_setup bus_setup)
+> +{
+> +	struct device *dev =3D regmap_get_device(regmap);
+> +	struct inv_icm42607_state *st;
+> +	int irq;
+> +	int ret;
+> +
+> +	irq =3D fwnode_irq_get_byname(dev_fwnode(dev), "INT1");
+> +	if (irq < 0)
+> +		return dev_err_probe(dev, irq, "Unable to get INT1 interrupt\n");
+
+[Severity: Medium]
+Will this strict requirement for an "INT1" named interrupt break probing on
+systems with ACPI or simple single-interrupt Device Trees?
+
+When an interrupt is provided without an "interrupt-names" property,
+fwnode_irq_get_byname() fails. Would it be more compatible to fall back to
+fwnode_irq_get(dev_fwnode(dev), 0) or use the irq provided by the I2C/SPI
+client core before unconditionally aborting the probe?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260530031739.1090=
+63-1-macroalpha82@gmail.com?part=3D3
 
