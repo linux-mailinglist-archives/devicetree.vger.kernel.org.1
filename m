@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-304505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304508-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AEHyA3E0Gmp+2AgAu9opvQ
-	(envelope-from <devicetree+bounces-304505-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:50:57 +0200
+	id 2EF1Aoo0Gmp+2AgAu9opvQ
+	(envelope-from <devicetree+bounces-304508-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:51:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDE860A6D6
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:50:56 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E7B60A713
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:51:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 15C03303670B
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:46:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7528130E7D3B
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FEE52E6CA8;
-	Sat, 30 May 2026 00:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67A52F1FDF;
+	Sat, 30 May 2026 00:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HrZSw9un"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfRVBaW0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E1B02DCF61;
-	Sat, 30 May 2026 00:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865302E8B81;
+	Sat, 30 May 2026 00:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780102001; cv=none; b=HB4vjJ5ssltt7R6JpQdNOKUJsY35uHWOLcIpjYtx/tOft6le0J80sMfcOeT/x8xb3+wc9w0HUBqqvQQgIoXL+9qXn9iVNM0K4fo/PJQ4+Pq4HWiHwJJJpfEhx4hCsC0Lw0UYgjEk2yPPGuRvslusHh9rS/lYtbEaFH//OcQhqKU=
+	t=1780102003; cv=none; b=Qals25SLyr3XsNckqDlGz+SR8AMPTpuNgshWRO9FBNeOwfvLFhi70ZPAePgNGnuiPE2t4TAkPQUqYpMNDHLQomYIlaTVi9LkbZpIjaIZ9+bqGAmaJrMZMZ2jfirfoLUhjZHS9pcGHf8fmYV9LA+veAL+YNlWYJY5/KCZErcKeWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780102001; c=relaxed/simple;
-	bh=hfpTaZvn33+yOPmtHvggD0+5z1rfJM8hHDMan5Q0vEg=;
+	s=arc-20240116; t=1780102003; c=relaxed/simple;
+	bh=FxWXLMC0hgWGI1n/2rhHTofNZkUhMCX0A6uUZLKc2eU=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=AEN02yK6wRy9On8c1s9IJHHqAa9HAvlX2E4THJp6I4xpeOu6d1hdeTto6UvYfcnREB8AsR7uH425bJ2KC8OjqNTGyCKuM+ALzkrGnuchg27c4n2S/iKbOaToEpZ0rUeM4xUM4JNpnYsl7yyFfQC06sG1HoHJbBuTc6w91pIp+Uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HrZSw9un; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E46731F00893;
-	Sat, 30 May 2026 00:46:39 +0000 (UTC)
+	 Message-Id; b=RYR/aOhpk7jwL5r6VboZnFu8vFC55wKT/hfqvur1SJot2cbweYFLRL6CcnJtk8Qplp1vdJQOftDoPwjbp4TTfs8kTmKCxPYgwuL5uiBFw02moopLmclCOOA+cz0ySKrthE3AigVkkmExWPiE0LKcoRQ9SVuhpbVe8ExYpPK6mWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfRVBaW0; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 426441F00898;
+	Sat, 30 May 2026 00:46:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780102000;
-	bh=BbnvkCCISx3ipoou36RCqkeykQw6BK37gvZE7eE5aus=;
+	s=k20260515; t=1780102001;
+	bh=0uknB490YeUqEj5Klxk46OMiLB2YQii7itDUPxra3IA=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=HrZSw9unuhrvtE4sE9mNsJWzpl3csxd7uC+KKtIR7pQJNTw2UNg/k06H40/15p4o1
-	 rwUuHhEDgezY7NnMPNZjOX4sg9w/jFpUSX+5D0oOsxdM1UHC6zcdJYhSwhpukUNjEC
-	 hvuXUKVynOn+Xvrbfeq1a5hCJPoKxNuztCYqPmZLF8aibF2cNMuEss1fskMOGHvsQz
-	 8KlpGO2o6n4x0JFY5SRMNzMvpEP22K0Oo/ctXNuMaMGEmfYWPiO32LSOokg485Z2QN
-	 MvaMfwRSNdEBeJqIZUGkmQYr+Rk/yy/vO68t+rTyh/KI7mRLZPrFw2ZFaYNeK4mjW9
-	 PpCbifpR1W0xQ==
+	b=LfRVBaW0HeGQDW6KMRJuGqkURMSfGy6lSHhoJeYdWrozTispj5UILa4Sfzg3Qcux1
+	 B9lAchMyhlJZh1XH38RlKDzri9IG+arJDu+EMqYeA2l5hStHGjIBnVuA+SMkeBp9E4
+	 J2D/kJtgSj2FiKZg/DWtkQ+AOtimslB9Je4gTlRztcGXC32m15pL7oUJNJI02/u7kM
+	 FgkQHnQ9uhBqfJqwal94WtJqM1SHUzRScH7zHjmKc+T5Biv1wL52vtJngskpJrHS0D
+	 bQCBxrc2FZkebVDtJbV5GlzmEKfxsXybDmxfj92I+oEVeiydRhWh/u33L/gNcZufZ1
+	 nop6IuN4MCh5w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 10/15] media: qcom: Switch to generic PAS TZ APIs
+Subject: Re: [PATCH v7 05/15] remoteproc: qcom_q6v5_pas: Switch over to
+ generic PAS TZ APIs
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Sumit Garg" <sumit.garg@kernel.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, linux-media@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260522115936.201208-11-sumit.garg@kernel.org>
-References: <20260522115936.201208-11-sumit.garg@kernel.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-media@vger.kernel.org
+In-Reply-To: <20260522115936.201208-6-sumit.garg@kernel.org>
+References: <20260522115936.201208-6-sumit.garg@kernel.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 30 May 2026 00:46:39 +0000
-Message-Id: <20260530004639.E46731F00893@smtp.kernel.org>
+Date: Sat, 30 May 2026 00:46:40 +0000
+Message-Id: <20260530004641.426441F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,13 +66,13 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,qualcomm.com:email];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304505-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304508-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -87,84 +88,133 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	FROM_NO_DN(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5]
-X-Rspamd-Queue-Id: AEDE860A6D6
+X-Rspamd-Queue-Id: 74E7B60A713
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [High] Unconditional call to `qcom_scm_mem_protect_video_var()` after rel=
-axing probe deferral checks to `qcom_pas_is_available()` leads to a NULL po=
-inter dereference on systems using non-SCM PAS backends.
+
+New issues:
+- [High] Replacing `qcom_scm_is_available()` with `qcom_pas_is_available()`=
+ breaks probe ordering with the SCM driver, leading to a potential NULL poi=
+nter dereference in `qcom_scm_assign_mem()`.
+- [High] Lockless access to the global `ops_ptr` combined with missing modu=
+le reference counting allows the PAS backend module to be unloaded while in=
+ use, leading to a NULL pointer dereference or Use-After-Free.
+
+Pre-existing issues:
+- [High] The dtb firmware object requested via request_firmware() is never =
+released on the success path of qcom_pas_load().
 --
 
-commit c279727d5017499db9e28d15aedc68710604c9b9
+commit 3637c6003564ac65554a8805148bf9af6b138d86
 Author: Sumit Garg <sumit.garg@oss.qualcomm.com>
+Date:   Fri May 22 11:59:26 2026 +0000
 
-media: qcom: Switch to generic PAS TZ APIs
+    remoteproc: qcom_q6v5_pas: Switch over to generic PAS TZ APIs
+   =20
+    Switch qcom_q6v5_pas client driver over to generic PAS TZ APIs. Generic=
+ PAS
+    TZ service allows to support multiple TZ implementation backends like Q=
+TEE
+    based SCM PAS service, OP-TEE based PAS service and any further future =
+TZ
+    backend service.
+   =20
+    Since qcom_q6v5_pas depends on MDT loader for PAS firmware loading, it
+    has to be switched over to generic PAS APIs in this commit to avoid any
+    build issues.
 
-This commit updates the Qualcomm media client drivers to use the generic
-PAS TZ APIs instead of the SCM-specific ones. This allows supporting
-multiple TrustZone implementation backends like OP-TEE in addition to the
-QTEE-based SCM PAS service.
-
-> diff --git a/drivers/media/platform/qcom/venus/firmware.c b/drivers/media=
-/platform/qcom/venus/firmware.c
-> index 1de7436713ed9..3a38ff985822f 100644
-> --- a/drivers/media/platform/qcom/venus/firmware.c
-> +++ b/drivers/media/platform/qcom/venus/firmware.c
-
+> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom=
+_q6v5_pas.c
+> index da27d1d3c9da6..847249c28c1be 100644
+> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
 [ ... ]
-
-> @@ -218,7 +219,7 @@ int venus_boot(struct venus_core *core)
->  	int ret;
+> @@ -228,9 +229,9 @@ static int qcom_pas_load(struct rproc *rproc, const s=
+truct firmware *fw)
+>  	pas->firmware =3D fw;
 > =20
->  	if (!IS_ENABLED(CONFIG_QCOM_MDT_LOADER) ||
-> -	    (core->use_tz && !qcom_scm_is_available()))
-> +	    (core->use_tz && !qcom_pas_is_available()))
->  		return -EPROBE_DEFER;
+>  	if (pas->lite_pas_id)
+> -		qcom_scm_pas_shutdown(pas->lite_pas_id);
+> +		qcom_pas_shutdown(pas->lite_pas_id);
 
 [Severity: High]
-Can this lead to a NULL pointer dereference if SCM is not available?
+Can the new generic PAS TZ APIs lead to a use-after-free or null pointer
+dereference?
 
-By switching the availability check from qcom_scm_is_available() to
-qcom_pas_is_available(), the driver can now proceed if an alternative PAS
-backend (like OP-TEE) is used.
+The backend implementation for qcom_pas_shutdown() and other generic APIs
+seems to perform a lockless check of a global ops_ptr without any module
+reference counting (e.g., try_module_get()) or synchronization.
 
-However, if content protection is configured, venus_boot() still calls
-qcom_scm_mem_protect_video_var() further down in the function:
+If a user unloads the PAS backend module concurrently while a remoteproc
+operation is in flight, could the pointer become null right after the check,
+or the backing code be unmapped from memory?
 
-venus_boot() {
-    ...
-    ret =3D qcom_scm_mem_protect_video_var(res->cp_start,
-                                         res->cp_size,
-                                         res->cp_nonpixel_start,
-                                         res->cp_nonpixel_size);
-    ...
-}
+>  	if (pas->lite_dtb_pas_id)
+> -		qcom_scm_pas_shutdown(pas->lite_dtb_pas_id);
+> +		qcom_pas_shutdown(pas->lite_dtb_pas_id);
+> =20
+>  	if (pas->dtb_pas_id) {
+>  		ret =3D request_firmware(&pas->dtb_firmware, pas->dtb_firmware_name, p=
+as->dev);
+> @@ -250,7 +251,7 @@ static int qcom_pas_load(struct rproc *rproc, const s=
+truct firmware *fw)
+>  	return 0;
 
-Looking at qcom_scm_mem_protect_video_var() in qcom_scm.c, it
-unconditionally accesses the global __scm pointer:
+[Severity: High]
+This is a pre-existing issue, but does this function leak pas->dtb_firmware?
 
-qcom_scm_mem_protect_video_var() {
-    ...
-    ret =3D qcom_scm_call(__scm->dev, &desc, &res);
-    ...
-}
+When request_firmware() succeeds for the DTB firmware, this function returns
+0 without calling release_firmware(). There doesn't appear to be any
+corresponding cleanup for this firmware object elsewhere in the driver's
+lifecycle (e.g., in qcom_pas_unprepare() or qcom_pas_stop()).
 
-If SCM has not probed or is absent on the system, wouldn't __scm be NULL,
-causing a crash when qcom_scm_mem_protect_video_var() is called? A similar
-pattern also appears to exist in iris_fw_load().
+Could this lead to gradual memory exhaustion every time the remoteproc is
+loaded or restarted?
 
 > =20
->  	ret =3D of_property_read_string_index(dev->of_node, "firmware-name", 0,
+>  release_dtb_metadata:
+> -	qcom_scm_pas_metadata_release(pas->dtb_pas_ctx);
+> +	qcom_pas_metadata_release(pas->dtb_pas_ctx);
+>  	release_firmware(pas->dtb_firmware);
+> =20
+>  	return ret;
+[ ... ]
+> @@ -746,7 +747,7 @@ static int qcom_pas_probe(struct platform_device *pde=
+v)
+>  	if (!desc)
+>  		return -EINVAL;
+> =20
+> -	if (!qcom_scm_is_available())
+> +	if (!qcom_pas_is_available())
+
+[Severity: High]
+Does this change break probe ordering with the SCM driver?
+
+If an alternative PAS backend (such as OP-TEE) probes before the SCM driver,
+qcom_pas_probe() will now proceed instead of deferring.
+
+However, for platforms that specify memory region assignments
+(region_assign_idx), qcom_pas_assign_memory_region() is still called
+during probe, which unconditionally invokes qcom_scm_assign_mem().
+
+Since qcom_scm_assign_mem() dereferences SCM state without initialization
+checks, could calling it before the SCM driver has fully probed lead to a n=
+ull
+pointer dereference?
+
+>  		return -EPROBE_DEFER;
+> =20
+>  	fw_name =3D desc->firmware_name;
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260522115936.2012=
-08-1-sumit.garg@kernel.org?part=3D10
+08-1-sumit.garg@kernel.org?part=3D5
 
