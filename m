@@ -1,65 +1,68 @@
-Return-Path: <devicetree+bounces-304647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304649-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uIDhNUTZGmqE9QgAu9opvQ
-	(envelope-from <devicetree+bounces-304647-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 14:34:12 +0200
+	id CD2xNTreGmrv9QgAu9opvQ
+	(envelope-from <devicetree+bounces-304649-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 14:55:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5979460CD4D
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 14:34:12 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E2E60CE1F
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 14:55:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3F53030234DB
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:34:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B7ECF30234F6
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:55:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840613AB5DC;
-	Sat, 30 May 2026 12:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBC6E3AE18D;
+	Sat, 30 May 2026 12:55:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhdovVW1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YdQ/0S4b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75FF8369D6E;
-	Sat, 30 May 2026 12:34:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA48C39B960;
+	Sat, 30 May 2026 12:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780144450; cv=none; b=HvSrYsuy3/Uy4bx7jHAOflfJ1uItvOIRtopjE/GPPgjfENoiiDfr5WESeDMqrM8zNEfULqsVw0FV6/T1cQYX2e87KeS7fYEx0k1vztbwJLskoIzzqREA6GBDDNup5JDjbjyuuNJCx/8az1wdTpKOEDzVT2IuRNE0uvC6NrGjz30=
+	t=1780145718; cv=none; b=XBFdPqyuNIl5YPgem0l0kBCwM4CLxFn4LfnrcfYdbSdLvzsq0tan/PX54Bp0suxpeYq57toVAfor2BtgP0E+y5zU0LbIK5ZoyKRLjYC98+C1iOT4eKHaAf4uhFY54WJ7m4sT+18BfD0Wuvz3aDlNwvZJDOWw97Nq3qW0+jyWn9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780144450; c=relaxed/simple;
-	bh=wOJmFdNftqS+GQHtzstTgN9VYhidAKXLhVYbHxC5jRc=;
+	s=arc-20240116; t=1780145718; c=relaxed/simple;
+	bh=A0bOMn9XB26TRha8UtUaEiGCVtsTRl1l1r7jw3ysqhw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IcVn2YBEzS5sgw8twxF5P71ojb2aYeREVEazkztfycf9cUhJADohopEYG8x28ij/w6SIH+ch2lGEZDipnTWYC/MQQ8YMwB7j4j2OPGEnRMBhDcF8aMXNw72myGmr790H1WloSublmJ/v13aaGo7PvTk7l6l81qSrRHARAmHUuy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhdovVW1; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C3701F00893;
-	Sat, 30 May 2026 12:34:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TqiIRuKCL5tva6/YvTQ+WSG5ls+CTkRib0YgL52p5mOk7EwhjrzMY58VzAhMlZKkRUbaWyV0R0DqZn3e1orUpdhWJIA5vIPZhUSu7xpA1pHJ+zo9I+a/kJZKsdV5IKIgV4D9zHUxCLnedi7/145TCylAYXZPN2Lob2SY/IdkJ2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YdQ/0S4b; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F25C11F00893;
+	Sat, 30 May 2026 12:55:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780144449;
-	bh=tUUwWoV95jfPZcfMUOFNCFZmKQsy3guUqU++k2IZgZo=;
+	s=k20260515; t=1780145717;
+	bh=h0HrL+x9wbOX7ew2UHxPYItHL8ESuqXXvHECcppFC1Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=OhdovVW1yii1GYnkHVpVXXOSTK4vEiQz7tLegvBXUeTPAhoD8tH2Ui/lz6yRG4F8/
-	 TzI43xBY2ZuPC8KjK6533naMB+LG+zLyX8ZKWbjQWr/w362fZoOsWAlOaRtW1lQGPu
-	 gUBpxX5bYrH8U2+GfQW5URan9uqo1+B4j5Cwo9GtQCD7icehXDRvWevcRn5tambs5/
-	 XYz7qlOTmDI08F4AaA4MxBk9KHB0WrEPiKDqZZSej5OyHVglpb1SjTv3iB9VhNSC+m
-	 vVMOzSkzDkOD9XLYEBirjUYkQ6DH2+31Y4Tl8H+C4ptvM0nNnNQmMNZNHapKDV3ap6
-	 /L59AIO4uEx8A==
-Date: Sat, 30 May 2026 14:34:06 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yepuri Siddu <yepuri.siddu@oss.qualcomm.com>
-Cc: Bartosz Golaszewski <brgl@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
-	Rocky Liao <quic_rjliao@quicinc.com>, quic_mohamull@quicinc.com, quic_hbandi@quicinc.com, 
-	rahul.samana@oss.qualcomm.com, harshitha.reddy@oss.qualcomm.com, dishank.garg@oss.qualcomm.com, 
-	linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: bluetooth: qcom,qcc2072-bt: add
- bindings for QCC2072
-Message-ID: <20260530-funky-mackerel-of-current-878e2a@quoll>
-References: <20260529175342.3363935-1-yepuri.siddu@oss.qualcomm.com>
+	b=YdQ/0S4bN6X76XVQKdyOOvx56+rEcuRBhTmGrl1+iJlfFsfTvBxv41dwVEbHojGpD
+	 FKgf0+4Jp27+iEHbHadlvhX9fzLS71GHSU3lLuKD9TekHFt1uZQ0fGcrmCcSsH60DX
+	 6KdS7eyuDziBWrxtM3CNLNTz25c0zGJqmpDBSNNTSekRCO6xxoI9ROUMThVwR1FZWz
+	 Tsk8OHye6K+Q7zIkJibwv3f3y6njiY40loLSfoq54lUvIdVxMt4vfh5eqn3A78sO2L
+	 Bg26NM18fTmXhKgrqgzQGYl0gqAJJvrmaGp1texT6/teNIeR73QqvoDkqKruA4izh0
+	 00xC9zcAreJCA==
+Date: Sat, 30 May 2026 20:36:07 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] spi: dt-bindings: cdns,xspi: add sdma-io-width
+Message-ID: <ahrZt5BI46oFXCBO@xhacker>
+References: <20260511031732.3199-2-jszhang@kernel.org>
+ <20260515-expert-devious-cricket-faff56@quoll>
+ <agz0kDsQBaeQPPQ4@xhacker>
+ <21d30826-bfe6-44cd-8c89-c1986f539e48@kernel.org>
+ <ag2fjCX0DuSVxubv@xhacker>
+ <14719378-7bf5-4688-81e9-bccedf618d18@kernel.org>
+ <de325dba-0b82-4808-910b-68f0f6426c5f@sirena.org.uk>
+ <37a3e9dd-88c2-4d8d-8ae4-6037a1eeedcc@kernel.org>
+ <ag20q5CuB2XsqKS_@xhacker>
+ <3eaa70e0-4284-4c35-a5d5-42afa3087eea@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,112 +71,108 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260529175342.3363935-1-yepuri.siddu@oss.qualcomm.com>
+In-Reply-To: <3eaa70e0-4284-4c35-a5d5-42afa3087eea@kernel.org>
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304647-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,holtmann.org,gmail.com,quicinc.com,oss.qualcomm.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-304649-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jszhang@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email,devicetree.org:url,bootlin.com:url,quicinc.com:email]
-X-Rspamd-Queue-Id: 5979460CD4D
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 66E2E60CE1F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, May 29, 2026 at 11:23:42PM +0530, Yepuri Siddu wrote:
-> Document the YAML binding schema for the Qualcomm QCC2072 UART-based
-> Bluetooth controller.
+On Wed, May 20, 2026 at 04:21:05PM +0200, Krzysztof Kozlowski wrote:
+> On 20/05/2026 15:18, Jisheng Zhang wrote:
+> > On Wed, May 20, 2026 at 03:22:07PM +0200, Krzysztof Kozlowski wrote:
+> >> On 20/05/2026 14:30, Mark Brown wrote:
+> >>> On Wed, May 20, 2026 at 02:16:21PM +0200, Krzysztof Kozlowski wrote:
+> >>>> On 20/05/2026 13:48, Jisheng Zhang wrote:
+> >>>
+> >>>>> If you mean "Why this cannot be deduced from the compatible?", I think
+> >>>>> the slave dma port is part of the cdns xspi, so its io width belongs
+> >>>>> to xSPI device property.
+> >>>>> From another side, we have seen such property in other drivers such as
+> >>>>> the reg-io-width for the dw spi DW_SPI_DR port io width.
+> >>>
+> >>>> So you mean it depends on SPI device? Then why spi-peripheral-props is
+> >>>> not applicable here?
+> >>>
+> >>> That will be controller side, not device side.
+> >>>
+> >>>> If this is not bus width, but DMA-something, is not really then SPI
+> >>>> device dependent, but rather DMA controller limitation, so either
+> >>>> deducible from compatible or something else is missing here.
+> >>>
+> >>> My understanding is that this is a connection between the SPI and DMA
+> >>> controllers so it's not as obvious as it could be which side of that
+> >>> link should have the property, eg:
+> >>>
+> >>>   https://www.cadence.com/content/dam/cadence-www/global/en_US/documents/tools/silicon-solutions/design-ip/controller-ip-qspi.pdf
+> >>>
+> >>> shows a separate direct connection between the DMA controller and the
+> >>> xSPI controller, the DMA controller isn't interacting with registers on
+> >>> the CPU visible buses.  The width is probably a design time configurable
+> >>> option on both sides of the link.
+> >>
+> >> Yes and that sounds a lot specific to particular controller, thus should
+> >> be implied by / deducible from the compatible.
+> > 
+> > This is IP feature, so if we couple the IP's feature with platform
+> > compatible, I would see some unnecessary LoCs. For example,
+> > Let's assume the IP has 10 users, they all support 4 bytes io width,
+> > other features are the same. 
+> > 
+> > If implied by the compatible string, we need to add 10 compatible
+> > string support both in code and dt-bindings.
+> 
+> You always need 10 compatible strings in bindings.
+> 
+> But driver would need only one, since devices are compatible as you
+> described.
 
-Where is the rest?
+Hi all,
 
-Also:
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Update: after carefully reading the registers' document, I found the
+slave dma data width can be known by checking CTRL_FEATURES_REG's
+DMA_DATA_WIDTH bit, we can don't need the DT property any more. I'm
+cooking v2.
+
+Thanks for all the review comments
 
 > 
-> Unlike other Qualcomm Bluetooth chips, QCC2072 requires no external
-> voltage regulators. The schema inherits common Qualcomm Bluetooth
-> properties via qcom,bluetooth-common.yaml and serial peripheral
-> interface properties for the UART link.
+> > 
+> > vs
+> > 
+> > If supported by "sdma-io-width", nothing is needed after this patch
+> > 
+> > IMHO, the 2nd sounds better, what do you think?
 > 
-> Signed-off-by: Yepuri Siddu <yepuri.siddu@oss.qualcomm.com>
-> ---
->  .../net/bluetooth/qcom,qcc2072-bt.yaml        | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/qcom,qcc2072-bt.yaml
+> We answered this in writing bindings. Properties are not replacement for
+> specific compatible. I don't know how to write that sentence in bindings
+> clearer - it's exactly this case.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qcom,qcc2072-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/qcom,qcc2072-bt.yaml
-> new file mode 100644
-> index 000000000000..8e2f15a75d62
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/qcom,qcc2072-bt.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/bluetooth/qcom,qcc2072-bt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm QCC2072 Bluetooth
-> +
-> +maintainers:
-> +  - Balakrishna Godavarthi <quic_bgodavar@quicinc.com>
-> +  - Rocky Liao <quic_rjliao@quicinc.com>
-> +
-> +description:
-> +  Qualcomm QCC2072 is a UART-based Bluetooth controller.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,qcc2072-bt
-> +
-> +required:
-> +  - compatible
-> +
-
-Looks heavily incomplete. Devices do not work without power for example.
-
-> +allOf:
-> +  - $ref: bluetooth-controller.yaml#
-> +  - $ref: qcom,bluetooth-common.yaml#
-> +  - $ref: /schemas/serial/serial-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    serial {
-> +        bluetooth {
-> +            compatible = "qcom,qcc2072-bt";
-> +            max-speed = <3200000>;
-
-Also incomplete.
-
-Best regards,
-Krzysztof
-
+> Best regards,
+> Krzysztof
 
