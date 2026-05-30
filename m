@@ -1,110 +1,158 @@
-Return-Path: <devicetree+bounces-304606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304607-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 22f/OAq/Gmpk8AgAu9opvQ
-	(envelope-from <devicetree+bounces-304606-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:42:18 +0200
+	id MBpBEFm/Gmpk8AgAu9opvQ
+	(envelope-from <devicetree+bounces-304607-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:43:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82F3960C319
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:42:17 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF99160C34E
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:43:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6100C3001007
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:42:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1E9833056DE2
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:43:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72B5236920F;
-	Sat, 30 May 2026 10:42:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6F636998F;
+	Sat, 30 May 2026 10:43:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fmGKvnQx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k+75tSK0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867313546C3;
-	Sat, 30 May 2026 10:42:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15E64367295
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 10:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780137736; cv=none; b=m7PyswVvpXsCyK0VPwp2KcEKIF5Gh82AWqbjCqLSBJIo6V0ihLr9PBXF7dUcCt8S8ATaJy4wZe2V2OjXlRA0sEwCW+fAC94El/hZRGzIoWuTrKQX8lWFeSVBQ5j93v4GVRdoNfJ1eKIWcuagSRRbcfsi4VCK3W0qPcJuyRsDJSA=
+	t=1780137789; cv=none; b=fpE5CDpTjgxMWyXuLebvU8IMWvQYyHPyeWYi2VZbtimN7hQ9gpuSlNzzfi70gv4jgLg84hMdFF+CIjyi/a7gCbmwV7JWz4JFyHvur9ROIDOitzAGun0TIML0zCea2/zINfgKqrsX1RwPv0FHlQ2EWIFI3pKxn1HPwCW71QyfFu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780137736; c=relaxed/simple;
-	bh=dIktKfC3Bz+b/KB7wKS3KO8B8OK4sNjn3n2kF9bRjAI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ed2OE3tcgh6GbKtZBa3Sd+bkLiH7wsmHTTcRE9Tx4UQGWf6GiRvogFEz7kBRyFdCboG212rZvH5f8y0Po3ZdeqK73FvuK9jsne+Xut5EBNLLWQHerqKqdU7e9z208AtvJ0xOCdaaItCBFY5Jff/uz3LQ1YJbar8suspB/3J9DPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fmGKvnQx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD7781F00893;
-	Sat, 30 May 2026 10:42:14 +0000 (UTC)
+	s=arc-20240116; t=1780137789; c=relaxed/simple;
+	bh=raxk1zhnnHVZZOfR2/cWrr7Nt/AGk79ZAxxM2xJOEEQ=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=NDTu0pQVyVa+TFGhw3ze0Ba4JlmaDj2wnHWsj3ePD7qSJ8NxE2/cjltFW16rdZdCA6NUREJiv84Ir3AUjxgLdP2aNU5wybssfi/DdHYjlQB8dl2gCrO0vxGkt2k4ouhDY4iXKUeh9sPTs3O4VJnnxeB4iqoRQrThraaoZUJ4yNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k+75tSK0; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1683F1F00893;
+	Sat, 30 May 2026 10:43:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780137735;
-	bh=dIktKfC3Bz+b/KB7wKS3KO8B8OK4sNjn3n2kF9bRjAI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=fmGKvnQxO6ds2lTqeEQBoUMCoKIUkYVVGc4NcNcf/rtbqQBKiQhMXvXM8Tjn/Wr7W
-	 /w9AwSvuEwdnZHYbM5QWCELuK0vc3HNDc/vKqfGmi3UJz0mDmzdOpTkf2h6M+Y6PLJ
-	 g7nk+3c4D6ssEh8IPIHIxr0yayRHV0NlN5QX8xpaTzJu60aQoCk25sjsuzHVtoElB4
-	 /yuXB0LWLEaLOfNiSe2T4iR/O+1gE/FPYZ1ZRNrS0TwXunf8M64aOGnFX9M2N/ZHVy
-	 Fn2OD9FYzoubY7/uYJOeJKwQNpKCowpuMLzYEIKKsapScrPE4pIDb/wacLT/GJ2ciz
-	 lDoGIZVPy8PYw==
-Date: Sat, 30 May 2026 12:42:12 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com, 
-	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
-	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH 0/2] pinctrl: qcom: Introduce Pinctrl for the upcoming
- Maili SoC
-Message-ID: <20260530-primitive-encouraging-quail-ee8af1@quoll>
-References: <20260522-maili-pinctrl-v1-0-0a6636f5c277@oss.qualcomm.com>
+	s=k20260515; t=1780137787;
+	bh=nf1glVvzi+5G6C20cZuJW4zIOcsUjJlV4SVWWnFDaEk=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=k+75tSK01+BznK3VJBBK1xH5gQRYu1J9c91mG+slSFvWJlCqBR4fcovNmHOTGA8X4
+	 Tq5o+eYFU21Vki1t3IzA2n92r7CH2wV1gTM6IdUx6gW+YfHohw+MTXduOLQrqtTV/n
+	 yK/tm7Ae7lQT0pZEotcDA/AmIDGKqKGGCg1Te6TnYMcD3jRrAGIvRwBkR+THxXiSEW
+	 bUdVqj3TA7CMLVXv61C5fBs23zEahL1NuJ7ikKIIokk9atFEwsMg0MciIpj6TIbcRK
+	 20/kN8WcFolh3DZuCzWjjGgingdE1IgANO2R6Z4vNAH2VclNLZdxv9qxqDVHDAXvBP
+	 jj3BAhINYv/Ew==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: adc: Add schema for AD7816/7/8
+ digital temperature sensor
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Taha Narimani" <tahanarimani3443@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260530133126.54460-1-tahanarimani3443@gmail.com>
+References: <20260530133126.54460-1-tahanarimani3443@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 30 May 2026 10:43:06 +0000
+Message-Id: <20260530104307.1683F1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260522-maili-pinctrl-v1-0-0a6636f5c277@oss.qualcomm.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304607-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304606-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 82F3960C319
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid]
+X-Rspamd-Queue-Id: AF99160C34E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, May 22, 2026 at 12:42:07AM -0700, Jingyi Wang wrote:
-> Introduce Top Level Mode Multiplexer dt-binding and driver for the
-> upcoming Qualcomm Maili SoC.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Missing conditional device tree schema constraints for `busy-gpios`
+--
 
-This is the first patch where such name appears, so same comments as
-before for other cases - describe what is Maili somewhere.
+commit b1de64cf7a950c655f529289b45b50bb4b5224f5
+Author: Taha Narimani <tahanarimani3443@gmail.com>
 
-Best regards,
-Krzysztof
+dt-bindings: iio: adc: Add schema for AD7816/7/8 digital temperature sensor
 
+This commit adds the YAML device tree binding schema for the Analog Devices
+AD7816, AD7817, and AD7818 temperature sensors. It defines the required
+properties and resolves checkpatch warnings for undocumented bindings.
+
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
+> new file mode 100644
+> index 0000000000000..7f6a3e5dfcf40
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
+[ ... ]
+> +  busy-gpios:
+> +    maxItems: 1
+> +    description: GPIO connected to the BUSY pin. Only applicable for AD7=
+816 and AD7817.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: OTI (Over Temperature Indicator) interrupt.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - rdwr-gpios
+> +  - convert-gpios
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+
+[Severity: Low]
+Does this binding need conditional rules to enforce the busy-gpios
+requirement?
+
+The property description states that busy-gpios is only applicable for
+AD7816 and AD7817. Because it lacks structural enforcement, an adi,ad7818
+node could incorrectly include a busy-gpios property and pass schema
+validation, while an adi,ad7816 node could incorrectly omit it.
+
+Could an if-then conditional block be added here to restrict busy-gpios
+usage based on the compatible string? The ad7816 driver strictly requires
+this GPIO for the AD7816 and AD7817 variants and will fail to probe with
+-ENOENT if it is missing.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260530133126.5446=
+0-1-tahanarimani3443@gmail.com?part=3D1
 
