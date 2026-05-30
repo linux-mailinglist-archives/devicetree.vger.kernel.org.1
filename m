@@ -1,273 +1,185 @@
-Return-Path: <devicetree+bounces-304687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304689-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4GKoKIv7Gmok+QgAu9opvQ
-	(envelope-from <devicetree+bounces-304687-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 17:00:27 +0200
+	id sI4TK2L9GmpX+QgAu9opvQ
+	(envelope-from <devicetree+bounces-304689-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 17:08:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1592960DA21
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 17:00:27 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3647160DA8B
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 17:08:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 42B3F307DE01
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 14:58:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CFFE0301CCF2
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 15:08:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FD8F31352A;
-	Sat, 30 May 2026 14:58:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cPstMd+Q"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A4930E0FD;
+	Sat, 30 May 2026 15:08:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B85313277;
-	Sat, 30 May 2026 14:58:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E923043DC;
+	Sat, 30 May 2026 15:08:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.18.0.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780153108; cv=none; b=lWA28d7kqgMsIOSM1oP3ujhw1gRPxijSCDdM2jVyOdF0bDdsrinlpM1sFdmAJyyRnCgjoG4O1SkfpMYW4ImsxacGr2PHSzGa+ErJELgalyovvEZk3zApsJmRAZWJLnl5FvAB7Mu4o7jxNSM9fEAi813uLgL/05jQRMqJf8fRcTE=
+	t=1780153696; cv=none; b=kuzmGxBS0mIXSpWZoai7grAEO2KW6lGurOhuJzlhyUU8T0G4y2/HsEcwuDOpr72TpSaLpUo3mgPld4ue5zcHkjDC11zg1WysAD6YutpeeXqjMh3pkixBc7sSaMLQOXCcuaxPGq4XLXxXqExTszQ27EOM/bZzfjgngTRs1wU8iHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780153108; c=relaxed/simple;
-	bh=a4+KQja6htIDXYLfA2BgFq5/aaJC/Cnpvk0kRZkR6Ig=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H+1GbmYo4rPBT3xuSv51tOcRCm0tVuG/cu2vJ4w6PacbuJZfLrLe3ZerMiqRFVcQvAkXBP3+/0sKtbvEGfhJkuxJcfV5AdRpVT0Dv26gS0Kvw9kcDDXjEcLbg1tgtIStQ+LjyTROiHyIZhzAKBHa5+57Qkr0WYfZfzIWwlrQR+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cPstMd+Q; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AD531F0089C;
-	Sat, 30 May 2026 14:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780153106;
-	bh=4MPClRdjPOFGm5/B0RDHvccClpe5HdvjZSPy5CO5YY4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=cPstMd+QN3T3NqDIDKz4qq/8nNMF8POI5XSwclZsXKknZM/R1CuoK+1QH3G0ZlNIk
-	 zIgbVSH0P5OKtpr4OqMdyFfGtarW1m7aQ/5UV3Oi+v6qPEB1yk2nQeK3raHIO3GjU2
-	 ZEVKZOYkwgIyy3W9PjrDkXp0a+xQj5a6XnqvF9lfCBRGLMrGMwSthcJJP4bAQ7/RYC
-	 vGSREHmWVrvXEb3cG8LzRlQH4bZP/qBy7XnNSOcAr4PCtgyynIieEGjOhfdgwjBjo0
-	 0O103n+ZHid+paNzUn5l24v4Qygc9wvMk1eq6fd5S+nsIkysI2Us5IXNCJXrDEP24f
-	 GIkfVKjTlB5Wg==
-Date: Sat, 30 May 2026 15:58:17 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Taha Narimani <tahanarimani3443@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org (open
- list:IIO SUBSYSTEM AND DRIVERS), devicetree@vger.kernel.org (open list:OPEN
- FIRMWARE AND FLATTENED DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org
- (open list)
-Subject: Re: [PATCH] dt-bindings: iio: adc: Add schema for AD7816/7/8
- digital temperature sensor
-Message-ID: <20260530155817.6169e5e2@jic23-huawei>
-In-Reply-To: <20260530135302.54688-1-tahanarimani3443@gmail.com>
-References: <20260530133126.54460-1-tahanarimani3443@gmail.com>
-	<20260530135302.54688-1-tahanarimani3443@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1780153696; c=relaxed/simple;
+	bh=NMNWczVwr3plg6WJsDRmVwXLlmnCz1ua0v2/tG4Yv2Y=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=C70Y0oPh8hnbo/jv3azjJBkNWBPA3ntuq8V7yKGpB9Fv9Ht7+J9rF0D3AvOWh1S4+FSl/8g24u8Ho50TaCpG6p6vHt68RCx8+YAf1XVl6eHXyQHyrqnudIsAEPl3t4bU1qn5sdt4Z+6AFiKDHrS8yZyY7U01xj1T+bIxs0p8XKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=nefkom.net; arc=none smtp.client-ip=212.18.0.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nefkom.net
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by mail-out.m-online.net (Postfix) with ESMTP id 4gSNkQ6jYsz1sGWp;
+	Sat, 30 May 2026 17:02:38 +0200 (CEST)
+Received: from frontend03.mail.m-online.net (unknown [192.168.6.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 4gSNkQ1QYbz1sGWg;
+	Sat, 30 May 2026 17:02:38 +0200 (CEST)
+Received: from localhost (dynscan3.mnet-online.de [192.168.6.87])
+	by mail.m-online.net (Postfix) with ESMTP id 4gSNkN5DcGz1qqlS;
+	Sat, 30 May 2026 17:02:36 +0200 (CEST)
+X-Virus-Scanned: amavis at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.6.182])
+ by localhost (dynscan3.mail.m-online.net [192.168.6.87]) (amavis, port 10024)
+ with ESMTP id E2-sp1ZgOELx; Sat, 30 May 2026 17:02:35 +0200 (CEST)
+X-Auth-Info: seVX8pClgJ+A7Up8GdLsTTricyC7V41/AnuhQ+0oY9yeyNcy+IKvt/IaX2Iz3oot
+Received: from igel.home (aftr-82-135-83-65.dynamic.mnet-online.de [82.135.83.65])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPSA;
+	Sat, 30 May 2026 17:02:35 +0200 (CEST)
+Received: by igel.home (Postfix, from userid 1000)
+	id 8848F2C16CE; Sat, 30 May 2026 17:02:35 +0200 (CEST)
+From: Andreas Schwab <schwab@linux-m68k.org>
+To: Deepak Gupta via B4 Relay <devnull+debug.rivosinc.com@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,  Ingo Molnar <mingo@redhat.com>,
+  Borislav Petkov <bp@alien8.de>,  Dave Hansen
+ <dave.hansen@linux.intel.com>,  x86@kernel.org,  "H. Peter Anvin"
+ <hpa@zytor.com>,  Andrew Morton <akpm@linux-foundation.org>,  "Liam R.
+ Howlett" <Liam.Howlett@oracle.com>,  Vlastimil Babka <vbabka@suse.cz>,
+  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,  Paul Walmsley
+ <paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>,  Albert
+ Ou <aou@eecs.berkeley.edu>,  Conor Dooley <conor@kernel.org>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Arnd
+ Bergmann <arnd@arndb.de>,  Christian Brauner <brauner@kernel.org>,  Peter
+ Zijlstra <peterz@infradead.org>,  Oleg Nesterov <oleg@redhat.com>,  Eric
+ Biederman <ebiederm@xmission.com>,  Kees Cook <kees@kernel.org>,  Jonathan
+ Corbet <corbet@lwn.net>,  Shuah Khan <shuah@kernel.org>,  Jann Horn
+ <jannh@google.com>,  Conor Dooley <conor+dt@kernel.org>,  Miguel Ojeda
+ <ojeda@kernel.org>,  Alex Gaynor <alex.gaynor@gmail.com>,  Boqun Feng
+ <boqun.feng@gmail.com>,  Gary Guo <gary@garyguo.net>,  =?utf-8?Q?Bj=C3=B6?=
+ =?utf-8?Q?rn?= Roy Baron
+ <bjorn3_gh@protonmail.com>,  Andreas Hindborg <a.hindborg@kernel.org>,
+  Alice Ryhl <aliceryhl@google.com>,  Trevor Gross <tmgross@umich.edu>,
+  Benno Lossin <lossin@kernel.org>,  debug@rivosinc.com,
+  linux-kernel@vger.kernel.org,  linux-fsdevel@vger.kernel.org,
+  linux-mm@kvack.org,  linux-riscv@lists.infradead.org,
+  devicetree@vger.kernel.org,  linux-arch@vger.kernel.org,
+  linux-doc@vger.kernel.org,  linux-kselftest@vger.kernel.org,
+  alistair.francis@wdc.com,  richard.henderson@linaro.org,
+  jim.shu@sifive.com,  andybnac@gmail.com,  kito.cheng@sifive.com,
+  charlie@rivosinc.com,  atishp@rivosinc.com,  evan@rivosinc.com,
+  cleger@rivosinc.com,  alexghiti@rivosinc.com,  samitolvanen@google.com,
+  broonie@kernel.org,  rick.p.edgecombe@intel.com,
+  rust-for-linux@vger.kernel.org,  Zong Li <zong.li@sifive.com>
+Subject: Re: [PATCH v23 06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ
+ | VM_WRITE
+In-Reply-To: <20251112-v5_user_cfi_series-v23-6-b55691eacf4f@rivosinc.com>
+	(Deepak Gupta via's message of "Wed, 12 Nov 2025 16:43:04 -0800")
+References: <20251112-v5_user_cfi_series-v23-0-b55691eacf4f@rivosinc.com>
+	<20251112-v5_user_cfi_series-v23-6-b55691eacf4f@rivosinc.com>
+Date: Sat, 30 May 2026 17:02:35 +0200
+Message-ID: <87jyslndo4.fsf@igel.home>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linutronix.de,redhat.com,alien8.de,linux.intel.com,kernel.org,zytor.com,linux-foundation.org,oracle.com,suse.cz,sifive.com,dabbelt.com,eecs.berkeley.edu,arndb.de,infradead.org,xmission.com,lwn.net,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,rivosinc.com,vger.kernel.org,kvack.org,lists.infradead.org,wdc.com,linaro.org,intel.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304687-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-304689-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[checkpatch.pl:url,0.0.0.0:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,devicetree.org:url]
-X-Rspamd-Queue-Id: 1592960DA21
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[schwab@linux-m68k.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_GT_50(0.00)[60];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.937];
+	TAGGED_RCPT(0.00)[devicetree,debug.rivosinc.com,dt];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 3647160DA8B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat, 30 May 2026 13:53:00 +0000
-Taha Narimani <tahanarimani3443@gmail.com> wrote:
+On Nov 12 2025, Deepak Gupta via B4 Relay wrote:
 
-> Document the Analog Devices AD7816, AD7817, and AD7818 digital
-> temperature sensor and ADC bindings in YAML format.
-> 
-> This resolves the checkpatch.pl warnings regarding undocumented DT
-> compatible strings for 'adi,ad7816', 'adi,ad7817', and 'adi,ad7818'.
-> 
-> Signed-off-by: Taha Narimani <tahanarimani3443@gmail.com>
-Hi Taha,
+> From: Deepak Gupta <debug@rivosinc.com>
+>
+> `arch_calc_vm_prot_bits` is implemented on risc-v to return VM_READ |
+> VM_WRITE if PROT_WRITE is specified. Similarly `riscv_sys_mmap` is
+> updated to convert all incoming PROT_WRITE to (PROT_WRITE | PROT_READ).
+> This is to make sure that any existing apps using PROT_WRITE still work.
+>
+> Earlier `protection_map[VM_WRITE]` used to pick read-write PTE encodings.
+> Now `protection_map[VM_WRITE]` will always pick PAGE_SHADOWSTACK PTE
+> encodings for shadow stack. Above changes ensure that existing apps
+> continue to work because underneath kernel will be picking
+> `protection_map[VM_WRITE|VM_READ]` PTE encodings.
 
-Please read the documentation for submitting patches. Also look at similar
-dt-binding patches for title style
+This breaks LTP mmap04:
 
-[PATCH v2] dt-bindings: iio: adc: add ad7816/7/8 digital temperature sensor / ADC.
+$ ./mmap04
+tst_test.c:2042: TINFO: LTP version: 20260529.5ccf816f
+tst_test.c:2045: TINFO: Tested kernel: 7.0.10-5-default #1 SMP PREEMPT_DYNAMIC Sat May 23 12:09:09 UTC 2026 (bb95589) riscv64
+tst_kconfig.c:90: TINFO: Parsing kernel config '/proc/config.gz'
+tst_kconfig.c:753: TINFO: CONFIG_FAULT_INJECTION kernel option detected which might slow the execution
+tst_test.c:1870: TINFO: Overall timeout per run is 0h 04m 00s
+mmap04.c:66: TPASS: mapping permissions in /proc matched: ---p
+mmap04.c:66: TPASS: mapping permissions in /proc matched: ---s
+mmap04.c:66: TPASS: mapping permissions in /proc matched: r--p
+mmap04.c:66: TPASS: mapping permissions in /proc matched: r--s
+mmap04.c:68: TFAIL: mapping permissions in /proc mismatched, expected: -w-p, found: rw-p
+mmap04.c:68: TFAIL: mapping permissions in /proc mismatched, expected: -w-s, found: rw-s
+mmap04.c:66: TPASS: mapping permissions in /proc matched: rw-p
+mmap04.c:66: TPASS: mapping permissions in /proc matched: rw-s
+mmap04.c:66: TPASS: mapping permissions in /proc matched: r-xp
+mmap04.c:66: TPASS: mapping permissions in /proc matched: r-xs
+mmap04.c:68: TFAIL: mapping permissions in /proc mismatched, expected: -wxp, found: rwxp
+mmap04.c:68: TFAIL: mapping permissions in /proc mismatched, expected: -wxs, found: rwxs
+mmap04.c:66: TPASS: mapping permissions in /proc matched: rwxp
+mmap04.c:66: TPASS: mapping permissions in /proc matched: rwxs
 
-The ADC bit is to make the point this is a general purpose ADC rather than simply
-temp monitoring.
+Summary:
+passed   10
+failed   4
+broken   0
+skipped  0
+warnings 0
 
-Also, never send a new version in with reply-to set to the previous version.
-That just makes for very confusing emails. Even more so when they both have
-the same email title!  New thread for every version.
-
-The driver is in staging currently.  Normally we only submit a dt-binding as part
-of the patch series that includes the patch moving the driver out of staging.
-
-I don't mind reviewing it anyway, but for now I'm not considering this for
-merging.  Various comments inline.  If you do send a new version make sure
-the patch description calls out that the driver is in staging and not yet
-ready to move out.  Maybe better to keep this as an RFC given that constraint.
-The only exception we might make is if another project (i.e. not the kernel)
-needs the dt-binding.
-
-Jonathan
-
-> 
-> ---
-> v2: Added conditional schema constraints for busy-gpios as suggested by Sashiko AI.
-> ---
->  .../bindings/iio/adc/adi,ad7816.yaml          | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
-> new file mode 100644
-> index 0000000..74008c1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7816.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7816/7/8 digital temperature sensor and ADC
-> +
-> +maintainers:
-> +  - Taha Narimani <tahanarimani3443@gmail.com>
-> +
-> +description: |
-> +  Analog Devices AD7816, AD7817, and AD7818 10-Bit temperature sensor and ADC.
-> +  The device communicates via an SPI interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7816
-> +      - adi,ad7817
-> +      - adi,ad7818
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency: true
-We normally provide a maximum for this based on what this chip supports.
-Obviously the board or the spi controller might have lower limits but
-we can at least ensure we don't set it too high for the device.
-
-> +
-> +  rdwr-gpios:
-> +    maxItems: 1
-> +    description: GPIO connected to the RD/WR pin.
-> +
-> +  convert-gpios:
-> +    maxItems: 1
-> +    description: GPIO connected to the CONVST (Convert Start) pin.
-> +
-> +  busy-gpios:
-> +    maxItems: 1
-> +    description: GPIO connected to the BUSY pin.
-
-Interestingly the datasheet for the ad7817 suggests using this as an interrupt.
-The driver seems to currently be busy looping on this which is a rather ugly
-solution and likely something we would want to look at before moving the
-driver out of staging.  This is an example of why we don't tend to do bindings
-ahead of that move!
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: OTI (Over Temperature Indicator) interrupt.
-> +
-
-Power supplies are missing.  They should be required if they need to be
-there for the device to function. It doesn't matter if the driver actually
-uses them or not as the binding should still be complete.  Note that some
-of the parts definitely have an internal reference option, so vref-supply
-will be optional.  The lack of it being provided means use the internal
-reference instead.
-
-Also looks like at least some parts have an !OTI pin which should be an
-interrupt.
-
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - rdwr-gpios
-> +  - convert-gpios
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - adi,ad7816
-> +              - adi,ad7817
-> +    then:
-> +      required:
-> +        - busy-gpios
-> +    else:
-> +      properties:
-> +        busy-gpios: false
-
-Looks like you'll need to handle vref-supply in a similar fashion.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@0 {
-> +            compatible = "adi,ad7816";
-> +            reg = <0>;
-> +            spi-max-frequency = <1000000>;
-> +            rdwr-gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
-> +            convert-gpios = <&gpio 6 GPIO_ACTIVE_HIGH>;
-> +            busy-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
-> +            interrupts = <20 IRQ_TYPE_LEVEL_LOW>;
-> +            interrupt-parent = <&gpio>;
-
-You don't have any interrupts in the binding. So this shouldn't
-pass testing.
-
-> +        };
-> +    };
-
+-- 
+Andreas Schwab, schwab@linux-m68k.org
+GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
+"And now for something completely different."
 
