@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-304527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304529-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IEGeKFg1Gmp+2AgAu9opvQ
-	(envelope-from <devicetree+bounces-304527-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:54:48 +0200
+	id UL6QOM81GmoQ2QgAu9opvQ
+	(envelope-from <devicetree+bounces-304529-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:56:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4005B60A7CE
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:54:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82DFC60A845
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:56:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 83EB43091316
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:49:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 38097304ED6E
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:50:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 904CB2D0603;
-	Sat, 30 May 2026 00:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C93892DF13A;
+	Sat, 30 May 2026 00:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5SxNlvr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T1qdeJSe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8607C29B78B
-	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 00:49:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D372DCF61
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 00:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780102190; cv=none; b=JxOJVSMPuXck0kleA6wCcq6rzPjhrkSKRsrIDOk2iwoLpjIltLGkDTMzwd+uPdXBZSzHElzSd6gSaueD1RVNyLl+wFjeQnIjrPJVW3Gvw9fid7QzGnJQ0W8KrQB+MUoZRqhNUBeM9hC2k9vPqgfmqUIfVokYnQ4MGmP/g11WGvM=
+	t=1780102214; cv=none; b=Vu3qruKk0+gc8fBkoj+zBgBtbLNexjcogkV62h1pimWOfXYMmZxAr6GEPqXc4ecOd5kAMS436qXFpOJ8yJB8h/iXqaxgRyzk2H6ihSCu3+ocBYma++4yxyzGPKMQ+CxkacdjXy9lqHAD0VepSU4wjFBiy5YBw7qdYNW3zz5mabY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780102190; c=relaxed/simple;
-	bh=erGcHFRfGfCfRW/oxrlsFwU+AsEK2B3Sm+iXWStpIK4=;
+	s=arc-20240116; t=1780102214; c=relaxed/simple;
+	bh=FuWgd26lXyp3OMibhPJMZ5pN1pW4WakQPH9VE95NJuI=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ukjrkS6KuTzuskUJOu6Vd0UCMsmb1OlLdUvMlJFYb0JM0TEMFPnhMFXm+efoSJyQJPG7W2mxeRNoZmMotl7xHmpJVJ+FamAqq0DmlqI6y1/gr3DIlvXY3ClY9OXicN4r3U9qV+Qvi/Qoyt4LutTaROF/vgvxnzSgxN9zBbwGqd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5SxNlvr; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8E531F00898;
-	Sat, 30 May 2026 00:49:48 +0000 (UTC)
+	 Message-Id; b=ocGTWGhDzsRuZwENengbYIkP6Bzq/mrCVUeSeZXylZ0ptXmlldqtLbxhnY35DoVi3r1Dh912nlcyGHRfRfHKhbwcFkj3VLdRJNPJrHdUZytXwZRLJDTbPelaL/indxHILvJzgqx3QpPHWF6lB5Szc1cnQeEI2yxjwvwRQQ4miyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T1qdeJSe; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 373D51F00893;
+	Sat, 30 May 2026 00:50:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780102189;
-	bh=6veM4/+T81xaEwo/WdCoZkG0g7LKMMXi8MXCm0abK10=;
+	s=k20260515; t=1780102212;
+	bh=PzrmKSBxNh7Wv/imvKh7FxNAQNlFuBn7DR5qJF2DQK8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=U5SxNlvrahxlg2fOUIt8KTwy8W5QIheMLVnrFbm0kon2pwe7tAsVCXCpM9mHk9Ase
-	 dX2ivkZL6UIfPiAATtlmvEKtqxQmx61BzGf9UNELzYH9uXZ0aPZTrRXuQkZrQ9fcHE
-	 9EEXZZyN92g4Vl8w90TQ2nOUkq0fz9j+FsvBd9PWErh2LtnBvMGH/OiCudLYOgA9GO
-	 mu0jCKWJN8ajTnoABP049Ox4xFhELdRJubfjKuiXuWIcpY/cFN7974s5Soq65yjgl3
-	 llaAfWuaDJK+/QIhMy5gxwrP0hjb7qt+T/wfo0Kn2ACmIK3kJ/81WYyJC/eDNSkQmJ
-	 +VUAzIxXTSeug==
+	b=T1qdeJSeoYc54MEgua+HyepKiCjZp7pBZgDJtoUJmkz0EH6qlEHOULziQNKnw1I8O
+	 c3k1rPeiptCUM9Vk8E4X6iRFJEyflW+b3FvLIdxuWiZ2MHXzhp+FEuUTByA5UgxqFV
+	 fspPT1T0J8+Xj46R8dnu0fE3uMMlNjBWR07RMH7olrEmdKrvU4ayGZvXkSNRUxpsw2
+	 1bsSOqqhHJi/n70kL9hdadlZywDOaF0mhR/6GBGAtZI14nYbKPktjrcnBsoKeYDQod
+	 z7pYzSMLWt+qKdZ7MEIflJGRWsAZs4gSuW5yuMw7cxfnkKsRVCu94hRLC8r7xru4XB
+	 RgLuKs42SGHoA==
 From: sashiko-bot@kernel.org
-Subject: Re: [net-next v5 2/4] dt-bindings: net: starfive,jh7110-dwmac: Add
- jhb100 support
+Subject: Re: [PATCH net-next v6 1/9] net: dsa: add tag driver for LAN9645X
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Minda Chen" <minda.chen@starfivetech.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260527084108.121416-3-minda.chen@starfivetech.com>
-References: <20260527084108.121416-3-minda.chen@starfivetech.com>
+To: =?utf-8?b?SmVucyBFbWlsIFNjaHVseiDDmHN0ZXJnYWFyZA==?= <jensemil.schulzostergaard@microchip.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260527-dsa_lan9645x_switch_driver_base-v6-1-4d409ae64f3c@microchip.com>
+References: <20260527-dsa_lan9645x_switch_driver_base-v6-1-4d409ae64f3c@microchip.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 30 May 2026 00:49:48 +0000
-Message-Id: <20260530004948.E8E531F00898@smtp.kernel.org>
+Date: Sat, 30 May 2026 00:50:11 +0000
+Message-Id: <20260530005012.373D51F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,12 +66,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304527-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304529-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -82,75 +81,131 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[starfivetech.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url]
-X-Rspamd-Queue-Id: 4005B60A7CE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,microchip.com:email,lists.linux.dev:replyto,sashiko.dev:url]
+X-Rspamd-Queue-Id: 82DFC60A845
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [Medium] Missing conditional constraints for `clocks` and `clock-names` a=
-llows invalid clock configurations to silently pass schema validation.
+- [High] The driver fails to handle hardware-accelerated VLAN tags on trans=
+mit, leading to dropped VLAN tags.
+- [High] The driver ignores the return values of bridge VLAN functions, lea=
+ding to the use of uninitialized stack variables.
+- [High] The tag driver leaks the socket buffer (`skb`) when frame padding =
+fails.
 --
 
-commit 20465cf4546f85d0e237ceacdadbcf9c0b47c74b
-Author: Minda Chen <minda.chen@starfivetech.com>
+commit 2c0a796d85ea905a1a209fed6a3f2589d5f8409a
+Author: Jens Emil Schulz =C3=98stergaard <jensemil.schulzostergaard@microch=
+ip.com>
 
-dt-bindings: net: starfive,jh7110-dwmac: Add jhb100 support
+net: dsa: add tag driver for LAN9645X
 
-This commit adds support for the jhb100 GMAC, introducing a new compatible
-string and corresponding single reset and interrupt properties. It also add=
-s a
-new SGMII RX clock to the global clocks list to support the jhb100 hardware.
+Add tag driver for LAN9645x using a front port as CPU port. This mode
+is called an NPI port in the datasheet.
 
-> diff --git a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.=
-yaml b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> index 0d1962980f57f..fdcc61c65f87d 100644
-> --- a/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
+> diff --git a/net/dsa/tag_lan9645x.c b/net/dsa/tag_lan9645x.c
+> new file mode 100644
+> index 0000000000000..0b639228215e3
+> --- /dev/null
+> +++ b/net/dsa/tag_lan9645x.c
+
 [ ... ]
->    clocks:
-> +    minItems: 5
->      items:
->        - description: GMAC main clock
->        - description: GMAC AHB clock
->        - description: PTP clock
->        - description: TX clock
->        - description: GTX clock
-> +      - description: SGMII RX clock
-> =20
->    clock-names:
-> +    minItems: 5
->      items:
->        - const: stmmaceth
->        - const: pclk
->        - const: ptp_ref
->        - const: tx
->        - const: gtx
-> +      - const: sgmii_rx
 
-[Severity: Medium]
-Since the global definition of clocks and clock-names now implicitly allows
-6 items for the new sgmii_rx clock, do the conditionals for older generatio=
-ns
-need updates?
+> +static void lan9645x_xmit_get_vlan_info(struct sk_buff *skb,
+> +					struct net_device *br,
+> +					u32 *vlan_tci, u32 *tag_type)
+> +{
+> +	struct vlan_ethhdr *hdr;
+> +	u16 proto, tci;
+> +
+> +	if (!br || !br_vlan_enabled(br)) {
+> +		*vlan_tci =3D 0;
+> +		*tag_type =3D LAN9645X_IFH_TAG_TYPE_C;
+> +		return;
+> +	}
+> +
+> +	hdr =3D (struct vlan_ethhdr *)skb_mac_header(skb);
+> +	br_vlan_get_proto(br, &proto);
+> +
+> +	if (skb_headlen(skb) >=3D VLAN_ETH_HLEN &&
+> +	    ntohs(hdr->h_vlan_proto) =3D=3D proto) {
+> +		vlan_remove_tag(skb, &tci);
+> +		*vlan_tci =3D tci;
 
-Without explicitly adding maxItems: 5 to the existing if-then blocks for
-starfive,jh7110-dwmac and starfive,jh7100-dwmac, it appears device trees
-for older hardware can now specify 6 clocks and silently pass validation.
+[Severity: High]
+Does this code handle hardware-accelerated VLAN tags on transmit?
+
+If the networking stack passes the VLAN tag out-of-band via skb->vlan_tci,
+the payload ethertype will be the inner protocol (e.g., IPv4) and the check
+above evaluates to false. This ignores the intended VLAN tag.
+
+Could this be changed to use skb_vlan_tag_present(skb) and
+skb_vlan_tag_get(skb)?
+
+> +	} else {
+> +		rcu_read_lock();
+> +		br_vlan_get_pvid_rcu(br, &tci);
+
+[Severity: High]
+Does this ignore the return value of br_vlan_get_pvid_rcu()?
+
+If the port has no default PVID configured, it can return an error code,
+leaving tci uninitialized. The uninitialized tci is then used to populate
+the hardware frame header, potentially injecting stack garbage into the
+packet's VLAN TCI.
+
+> +		rcu_read_unlock();
+> +		*vlan_tci =3D tci;
+> +	}
+> +
+> +	*tag_type =3D (proto !=3D ETH_P_8021Q) ? LAN9645X_IFH_TAG_TYPE_S :
+> +					     LAN9645X_IFH_TAG_TYPE_C;
+> +}
+> +
+> +static struct sk_buff *lan9645x_xmit(struct sk_buff *skb,
+> +				     struct net_device *ndev)
+> +{
+> +	struct dsa_port *dp =3D dsa_user_to_port(ndev);
+> +	struct dsa_switch *ds =3D dp->ds;
+> +	u32 cpu_port =3D ds->num_ports;
+> +	u32 vlan_tci, tag_type;
+> +	u32 qos_class;
+> +	void *ifh;
+> +
+> +	lan9645x_xmit_get_vlan_info(skb, dsa_port_bridge_dev_get(dp), &vlan_tci,
+> +				    &tag_type);
+> +
+> +	/* We need to make sure frame has the proper size after IFH is stripped
+> +	 * by hw.
+> +	 */
+> +	if (__skb_put_padto(skb, ETH_ZLEN, false))
+> +		return NULL;
+
+[Severity: High]
+Will this leak the socket buffer when padding fails?
+
+__skb_put_padto() is called with free_on_error set to false. If padding
+fails, this returns NULL. The DSA core transmit routine assumes a NULL retu=
+rn
+from a tagger's transmit function means the tagger has freed or consumed
+the skb, so the core won't free it. This permanently leaks the skb.
+
+Should this use true for free_on_error instead?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527084108.1214=
-16-1-minda.chen@starfivetech.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527-dsa_lan964=
+5x_switch_driver_base-v6-0-4d409ae64f3c@microchip.com?part=3D1
 
