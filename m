@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-304589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304590-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GJpcD+6rGmqa7AgAu9opvQ
-	(envelope-from <devicetree+bounces-304589-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 11:20:46 +0200
+	id haUPBVGsGmrU7AgAu9opvQ
+	(envelope-from <devicetree+bounces-304590-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 11:22:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4ED860BD55
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 11:20:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 614D760BD65
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 11:22:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D6CD73007F4E
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 09:20:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 97654300CBFE
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 09:21:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567233932C0;
-	Sat, 30 May 2026 09:20:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E424D39A7FE;
+	Sat, 30 May 2026 09:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z3MLw628"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ElnVJt0X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D89B7263B;
-	Sat, 30 May 2026 09:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDBB83955D7;
+	Sat, 30 May 2026 09:21:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780132819; cv=none; b=DjdUbjLToKRLEZEB6w1U0dqsr+LEYwHh9/q2nQTfmM4gQ38ra8o51X0JgfFXVixwmJzK9NM9x4abI2um2fHYpdYbGO9NJ8bob4s2SCd2d+O13fZ0MvvZ9jODxmEJpfRlBAKmxgWN+1ky8+6L9x/niqjGq5GUVJct6YRoDnryvxg=
+	t=1780132879; cv=none; b=I8/6rZIyE3tbM0zh8JP4a0zNx1WRo26ON42l43g3zSGZTAs2ww9RGhSYsLLlYx1OFEr7T+JFx0ZENbUggxLlGC5+AHEnvJ60OKq5FXfw5HetYm8Hk9cAngPIuqomJzSjdcffL6OPPt3opFT5i+aYzxRL+i5hEFWjlntiMakaep4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780132819; c=relaxed/simple;
-	bh=bP5vJ2u5AEbDHdZ8r0dmFXOAocHomMUCiE5vNav573k=;
+	s=arc-20240116; t=1780132879; c=relaxed/simple;
+	bh=KJJy8fCCxQUCBunKChnNtYcmm5Z5zxlYaMVQc9cekGY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fjPgeWOW49ai2A07Vl2D3njz5KBqP0jdWTbTXjoEyl1as9h1DSbJjwS0HpRUT2VsaXmjowF3tF/Jf8984B7KZ0N3NDuNCtq9NwPJm6jZ1HZLVQKzYPjmzVxgt1M+NDWXYqTyGjYt3x4GY5tVZlr70MOhd0FvyufRPaojxKn1YbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z3MLw628; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 393951F00893;
-	Sat, 30 May 2026 09:20:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dUTAuYi5srbF4ozJSI9Lj1ADDJY5ps1J76jwgolUeGVZ+hEGnur4xeYxFxLVUf6KFB9ov1xeVqiLnucFb0HNG/SXVFxBIbXKJtq5mde1H1Qd9wbFwhd1BElagKToeurY51sAWdq6EFwIsdObJ6otC3B+nGyYyfaawqz2rS18RW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ElnVJt0X; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5169B1F00893;
+	Sat, 30 May 2026 09:21:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780132818;
-	bh=Vk/0CJJJGRogiX9amt5r+/shVb/2evbPqryg55FyrkU=;
+	s=k20260515; t=1780132878;
+	bh=kmuMHznHtw6pRe9ywpJY6Q9q01e0uWeC6iXX66p5Ny4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=Z3MLw6286pAZHXisvAX6mcc3n8SwhgLI2lkh8wkg2D4WEYvLlyaDQnDwsmOO9fgkX
-	 NkfQc3aRbxPyzYzbxLTOIjyitexuuhzEowcWGNDsXf7V15vYt1YPq3QzpgxfsnYBM5
-	 HxYIJci55WznOm01TlPpzGKmIEzH0qYzkhcF+O7LrEJLu2k4vOqmR3sqtsymGuamvK
-	 3Pm75l9b3B4nv/XqP1xcUOtzARmsd1Kl7u3RSXJlJ4eYuA1QCrpkFbKVDKXoYznL50
-	 sKPkL/NC+ej92VGJnwydTcRhodcWkSa9T1d2EaNaC16/xUNlXmjgQA6nYX7THqd3vv
-	 P9u97A5SELywQ==
-Message-ID: <c8209301-774e-4ec5-8685-c8453a84ae61@kernel.org>
-Date: Sat, 30 May 2026 11:20:13 +0200
+	b=ElnVJt0XURBZ0m/USqPL0GArNPhmBo1pbwceLuLATU1ojEpR3BZOuiKH+ec2QZ2BU
+	 IakJO+jnmiTnbS42/LR2owu80PxvqDqCiSN6HkFEubhRvZUbazxfSiRMkXfQXWO25I
+	 698yPk3r1fFOmDdu8VmOgDyE59y8ZSRS++l+JpF4f4WdKfeYZ+z8SZxMxOJV//OkAF
+	 5/E8HbfanU84cvAh0VSxoEG/mOwWVZHHrBdZBnaCVEcMo6y+OgIGvupD9cPyiMg6ZV
+	 ug91i4wSPwfvY0A9P2SsaciKhZwS3vhr3fJmlMHbkRWfI2Y3MxlMDrLHyDEgks3c55
+	 w/DcIdPYikQXA==
+Message-ID: <28bc33ab-54b4-42f6-8e05-d27973415585@kernel.org>
+Date: Sat, 30 May 2026 11:21:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,15 +53,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] ASoC: dt-bindings: sound: atmel_ac97c: Convert to DT
- schema
-To: Manish Baing <manishbaing2789@gmail.com>, claudiu.beznea@tuxon.dev,
- lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com
+Subject: Re: [PATCH v2] ASoC: dt-bindings: sound: asahi-kasei,ak5386: Convert
+ DT schema
+To: Manish Baing <manishbaing2789@gmail.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, zonque@gmail.com
 Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260530052812.115994-1-manishbaing2789@gmail.com>
+ linux-kernel@vger.kernel.org
+References: <20260524172933.110768-1-manishbaing2789@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,67 +106,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260530052812.115994-1-manishbaing2789@gmail.com>
+In-Reply-To: <20260524172933.110768-1-manishbaing2789@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-304590-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304589-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,tuxon.dev,kernel.org,microchip.com,bootlin.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: A4ED860BD55
+X-Rspamd-Queue-Id: 614D760BD65
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 30/05/2026 07:28, Manish Baing wrote:
-> Convert the Atmel AC97 controller binding from text
-> format to YAML schema.
-> 
-> The binding constraints were updated during conversion to align with
-> actual driver behavior:
-> - Added previously undocumented 'clocks' and 'clock-names' properties.
->   These are made required, as the driver unconditionally requests them.
-> - Removed 'ac97-gpios' from the required list, as the driver
->   treats the reset pin as optional, and requiring it breaks existing
->   .dtsi validation.
-> - Fixed the ac97-gpios array in the example to use standard
->   comma-separated formatting.
+On 24/05/2026 19:29, Manish Baing wrote:
+> Convert the Asahi Kasei AK5386 ADC binding from text format
+> to YAML schema.
 > 
 > Signed-off-by: Manish Baing <manishbaing2789@gmail.com>
 > ---
-> Changes in v3:
-> - Updated the commit message to include the reasoning behind the property changes, 
->   addressing Sashiko bot feedback.
 > Changes in v2:
-> - Added undocumented 'clocks' and 'clock-names' properties which are
->   unconditionally required by the driver.
-> - Removed 'ac97-gpios' from the required list, as the driver treats
+> - Added dai-common.yaml reference and #sound-dai-cells to support
+>   generic sound card DAI links.
+> - Changed additionalProperties to unevaluatedProperties: false.
+> - Restored legacy reset-gpio property as deprecated to maintain DT ABI
 
+No, why... Who exactly needs it? What DT ABI compatibibility?
 
-Srsly, stop. I don't even know where to reply...
+>   backward compatibility.
+
+Same comments as for other aptches.
 
 Best regards,
 Krzysztof
