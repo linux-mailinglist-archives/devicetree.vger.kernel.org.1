@@ -1,194 +1,257 @@
-Return-Path: <devicetree+bounces-304652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304613-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kBcYE47oGmrm9ggAu9opvQ
-	(envelope-from <devicetree+bounces-304652-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 15:39:26 +0200
+	id kMcqGaXEGmpw8QgAu9opvQ
+	(envelope-from <devicetree+bounces-304613-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 13:06:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D5F760D00F
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 15:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7A1360C579
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 13:06:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9C1E2304808E
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 13:38:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0D0AA3021EA9
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5CB83C345D;
-	Sat, 30 May 2026 13:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC40B3A901F;
+	Sat, 30 May 2026 10:58:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="0Ec7yLjH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ua2Jby85"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A7039F193;
-	Sat, 30 May 2026 13:38:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5825D3A9601
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 10:58:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780148303; cv=none; b=YXjqTgklHxhLGVS4sIYBQu/3tj5KjZJcvRxCBVYjOiet5juNAh5DdTL+hbl6h8+zXpjyevOiF6QhqjodS8fFisSGDt7tHP2fK/c/EwOPIVQOvt22l7yDcxXiEEG/WrChM7n3DeOh3lBmyJ+5jpVmmfp0DBtxzQWcGg6aih48hzc=
+	t=1780138725; cv=none; b=qbJQ62hKFq/cVHgLZxbHYzlEH/aPxcRT+wq6oa3FxxM+yLuSsN9KnIMKH6HMa0p59S96Fz1P6YEMUX6cmtUebEz0QjUo32+LB8PDGV1DtRB/8frC9Tx59w7mK+ZrbJ+TdONQoCXiOgFlzJXlaqRO37M5tDCvVThL8bK6Rpsc2GY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780148303; c=relaxed/simple;
-	bh=wMOHpweu08FPAJHq4AE/oNWvwNOAd0wQwSZ/JG6jpNE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
-	 References:In-Reply-To; b=Oe6nfc83eaUM/f6tj1Cim3gsWD2gofunVWak7+M1pFZWAYaED0Qcap9VHgYeVgTU/95XNvG8HyE2lBnLGh99pFPUO3cgYiFGZMMxzpHj6MZS1/IGRIXUVvQCnwyGqCgoU2l51ND4+MjeyX9sVFYwNi0b3G1eVXQU+nDfpuBRmdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=0Ec7yLjH; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 95B0EC6246B;
-	Sat, 30 May 2026 13:38:21 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 490586073B;
-	Sat, 30 May 2026 13:38:20 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C663610888CC8;
-	Sat, 30 May 2026 15:38:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1780148298; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=HKrIBJHZD91OGHEHVz5icU8jb2dXEwclJl95UpuDS+U=;
-	b=0Ec7yLjHV7F3GfRWpGS/Jh45rOIY/RCXZ6DwjKTCVXMkdaD1xzjp6Y9XyRUkjyFtFZfuOF
-	3P9QhCvry/SyDVW4RyYe/KaOzIrbL6MJgGDQ/YmLYcItXJI0fH33gfSrAON6P+dq6a/m3r
-	JZRwfZNaYNZNdiyb5cMRN007pFtXOz6LowX1oNqXurum5rFfxcHPTmmIvDzdTI8XOanlfZ
-	cTlS4RLyJ1pv0NiT+gTpGvH4u+J6JRbm5ElJ++gnZLG/8jfkzAjakCKu/hZBH91W3Ga5nu
-	ybQ4NtweDzYbPMWJAs2u08gXQlqMmVNoiygSG7yri/prWlXLGR5JTurKvIYDRw==
+	s=arc-20240116; t=1780138725; c=relaxed/simple;
+	bh=YT8mvnkk2uYolxFaRtXhF8hze7MQ+eLcZ13FI2O6eB8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=kKGd8zxmZY91u/O/eYgO2b6Aw3MXLeGnxDK49TOyJGnTziQ9JkQv3OQgIbYqu++tl4BTBywMtDpmKQ5nC+OlUeOWQ7xFINNvmRmhFnN6LeEMtD1jTg8tn6OmRW3NLWeRnQAWNPSpafGOaCuQ0aomqcIib4i97r+kEE5pA2hx0Y4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ua2Jby85; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-396745b9abfso7361fa.1
+        for <devicetree@vger.kernel.org>; Sat, 30 May 2026 03:58:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780138720; x=1780743520; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E5pD8Xbzo0jMdeHguX3rWZL0ZKKQW0EJedb+G014+CI=;
+        b=Ua2Jby85HEoNHmAPsi65E6K5l/HpI1tp1fgKuWle6UfkP+KhDeEt9TIrtqCMBXl6VH
+         7y4eXrgRFjrEO2aB1Qi6Q3u0cW8jBdmZYMkiK4idK/epXyXPz+p5WjZPdKe6D7HBvNdh
+         SgvorultNIjSorK/GY9rPA35mvXv+mr2HYQllDsK0ALLbVbKDL5juLhmu6ulcApBCxXi
+         8i+3MW9fmxSLe9gjIN/WtGyiF//oJD44jtWEpdL/2GSQO8Mh02o3JRpeH5jsANhHuil2
+         OyZpz8t2IF0gcblX07NKdKdVa1e2nmY7bE5HKrrIBO7ZLUXsqUMXDtAY7KsTt0tDwyC5
+         29mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780138720; x=1780743520;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=E5pD8Xbzo0jMdeHguX3rWZL0ZKKQW0EJedb+G014+CI=;
+        b=aBARVzpjMJ3IGPFXXXl6zEanwXMnpkXoeOgBjYICLSzPyMmMhh87N850MrY8HVsudf
+         3NQRChHGKTn0g4P9pZBhb1Ghbn8mwuGnyYqAd8q6yabvOHldCBELBxFcc7Vh3ww0PNk6
+         99DBXHZIQOa0i+TcqoBGOi0f9quUN5ypFL0L1ql21JfeJPi9wxg0VJfvLu1rnF2oR2/m
+         MHT3X3Zg/TbhBf+24e9xJhvsvDLQYatgqvPupMeatNjWFvU9/ocrlcL7vLzV2eKo6nHb
+         iUdjOxyJT6YevPJF1Vfs/P/5cMQXQjhMfmnmMPnJ28uPfPC45HYjKI1x/xztH/ztOKu+
+         HyQA==
+X-Forwarded-Encrypted: i=1; AFNElJ/7tKyZupag9at8WfSalqitlV3fGJnHMuvvIoofpHXgXRhV+Sg5iICBQHR2PkzyVdJFlCjR0y4NFjLA@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkEDVdBs8vUsIeiUvXPeYHvYhanwd7QxlZjnrKlJg4aJlt0hn8
+	Pmo9M1auOR5qoG46/3PFsY5iNbLU20XkWPeBZmf3BvA2UKt3Mxs5BYKx
+X-Gm-Gg: Acq92OFURw3h6rK09EGjR3c+aSKcvwN8zofA8XK0h53rRkvZT/zoiVCTHD/lASZUoyV
+	ZN+KtcohBhaW6LcHVyJwzhBTbQdro5ZHmkcn4RHYThxJ72YT9JwQhXTILT7NcPenh9MQukIPMCQ
+	RB6HNFOl+ib1Wvs8TFfeVBL0yHVePrz6GjcWtbPuLJU/IvM7oeLsvPSwqymYbDN1xq38mOxYFgZ
+	wSZ5SuVfRPs2xqbU6tYEaXyXPuZH7joQmnIJ5jzyxGXq+wMN6rnwWM9suHYseWo4kdlVHUk4Cux
+	z7XiC9l629EU2Vvt0SJ05C8EGWRFJvH7Vt+EjmBBU1En9dBpb/MI7VVgZbv7Wm2JfrMmFCeDSlm
+	asdxfENPdONjGVg+KWW22PQq74vSkaJBzTFo2r8/voOos/oyAfKY2heSDQz3jcmyW7WQ/52b/Wd
+	yeOM4KX5y0d5wtXAw9JXWf/3tigeCvSsywdL+AzL4x5TxoNVegv1ikF8/1
+X-Received: by 2002:a05:6512:400c:b0:5a8:fbe0:bc61 with SMTP id 2adb3069b0e04-5aa5fe81b29mr569956e87.0.1780138720231;
+        Sat, 30 May 2026 03:58:40 -0700 (PDT)
+Received: from localhost ([5.123.22.254])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa5b596d5asm919454e87.40.2026.05.30.03.58.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 May 2026 03:58:39 -0700 (PDT)
+From: Taha Narimani <tahanarimani3443@gmail.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Taha Narimani <tahanarimani3443@gmail.com>,
+	linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] dt-bindings: iio: adc: Add schema for AD7816/7/8 digital temperature sensor
+Date: Sat, 30 May 2026 13:53:00 +0000
+Message-ID: <20260530135302.54688-1-tahanarimani3443@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260530133126.54460-1-tahanarimani3443@gmail.com>
+References: <20260530133126.54460-1-tahanarimani3443@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sat, 30 May 2026 15:38:05 +0200
-Message-Id: <DIW1WGLL0GW5.1BGU194UXN0HO@bootlin.com>
-To: "Luca Ceresoli" <luca.ceresoli@bootlin.com>, "Damon Ding"
- <damon.ding@rock-chips.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH v4 2/3] drm/bridge: analogix_dp: Add validation for
- samsung,lane-count property
-Cc: <hjc@rock-chips.com>, <heiko@sntech.de>, <andy.yan@rock-chips.com>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
- <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
- <jernej.skrabec@gmail.com>, <nicolas.frattaroli@collabora.com>,
- <cristian.ciocaltea@collabora.com>, <sebastian.reichel@collabora.com>,
- <dmitry.baryshkov@oss.qualcomm.com>, <dianders@chromium.org>,
- <m.szyprowski@samsung.com>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.21.0
-References: <20260529040530.741336-1-damon.ding@rock-chips.com>
- <20260529040530.741336-3-damon.ding@rock-chips.com>
- <178014803941.21632.16225608049285101452.b4-review@b4>
-In-Reply-To: <178014803941.21632.16225608049285101452.b4-review@b4>
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.16 / 15.00];
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [4.84 / 15.00];
+	DATE_IN_FUTURE(4.00)[2];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MV_CASE(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304652-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-304613-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[30];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	GREYLIST(0.00)[pass,body];
+	FREEMAIL_TO(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[tahanarimani3443@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,rock-chips.com:email]
-X-Rspamd-Queue-Id: 9D5F760D00F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,0.0.0.0:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,checkpatch.pl:url]
+X-Rspamd-Queue-Id: B7A1360C579
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat May 30, 2026 at 3:33 PM CEST, Luca Ceresoli wrote:
-> On Fri, 29 May 2026 12:05:29 +0800, Damon Ding <damon.ding@rock-chips.com=
-> wrote:
->
-> Hello Damon,
->
->>
->> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/driver=
-s/gpu/drm/bridge/analogix/analogix_dp_core.c
->> index 8cf6b73bceac..699a7f380c56 100644
->> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> @@ -1260,8 +1261,16 @@ static int analogix_dp_dt_parse_pdata(struct anal=
-ogix_dp_device *dp)
->>  		 */
->>  		of_property_read_u32(dp_node, "samsung,link-rate",
->>  				     &video_info->max_link_rate);
->> -		of_property_read_u32(dp_node, "samsung,lane-count",
->> -				     &video_info->max_lane_count);
->> +		ret =3D of_property_read_u32(dp_node, "samsung,lane-count",
->> +					   &video_info->max_lane_count);
->> +		if (!ret) {
->> +			if (video_info->max_lane_count =3D=3D 0 ||
->> +			    video_info->max_lane_count > LANE_COUNT4) {
->
-> This sashiko report seems to me valid.
+Document the Analog Devices AD7816, AD7817, and AD7818 digital
+temperature sensor and ADC bindings in YAML format.
 
-Meh, messed up with 'b4 review' :-/ Apologies
+This resolves the checkpatch.pl warnings regarding undocumented DT
+compatible strings for 'adi,ad7816', 'adi,ad7817', and 'adi,ad7818'.
 
-"This sashiko report" [0] was about an enum being signed, so '=3D=3D 0' cou=
-ld miss
-negative numbers coming from bogus DT values higher than 1^31.
+Signed-off-by: Taha Narimani <tahanarimani3443@gmail.com>
 
->
-> But I'n no DP expert, I have no idea whether this ther one is valid.
+---
+v2: Added conditional schema constraints for busy-gpios as suggested by Sashiko AI.
+---
+ .../bindings/iio/adc/adi,ad7816.yaml          | 87 +++++++++++++++++++
+ 1 file changed, 87 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
 
-And this was about "Additionally, does this check inadvertently allow 3,
-which is an invalid DisplayPort lane count?"
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
+new file mode 100644
+index 0000000..74008c1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/adi,ad7816.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AD7816/7/8 digital temperature sensor and ADC
++
++maintainers:
++  - Taha Narimani <tahanarimani3443@gmail.com>
++
++description: |
++  Analog Devices AD7816, AD7817, and AD7818 10-Bit temperature sensor and ADC.
++  The device communicates via an SPI interface.
++
++properties:
++  compatible:
++    enum:
++      - adi,ad7816
++      - adi,ad7817
++      - adi,ad7818
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency: true
++
++  rdwr-gpios:
++    maxItems: 1
++    description: GPIO connected to the RD/WR pin.
++
++  convert-gpios:
++    maxItems: 1
++    description: GPIO connected to the CONVST (Convert Start) pin.
++
++  busy-gpios:
++    maxItems: 1
++    description: GPIO connected to the BUSY pin.
++
++  interrupts:
++    maxItems: 1
++    description: OTI (Over Temperature Indicator) interrupt.
++
++required:
++  - compatible
++  - reg
++  - rdwr-gpios
++  - convert-gpios
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - adi,ad7816
++              - adi,ad7817
++    then:
++      required:
++        - busy-gpios
++    else:
++      properties:
++        busy-gpios: false
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@0 {
++            compatible = "adi,ad7816";
++            reg = <0>;
++            spi-max-frequency = <1000000>;
++            rdwr-gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
++            convert-gpios = <&gpio 6 GPIO_ACTIVE_HIGH>;
++            busy-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
++            interrupts = <20 IRQ_TYPE_LEVEL_LOW>;
++            interrupt-parent = <&gpio>;
++        };
++    };
+-- 
+2.53.0
 
->> +				dev_err(dp->dev, "samsung,lane-count =3D %d is out of range\n",
->> +					video_info->max_lane_count);
->> +				return -EINVAL;
->> +			}
->> +		}
->
-> As reported by sashiko, 'count =3D=3D 0' should be 'count <=3D 0', being =
-an enum.
->
-> Additionally I'd avoid the nested if, and I think using dev_err_probe() i=
-s
-> correct here (we are only called by probe functions), so it all could
-> become:
->
->    if (ret || count <=3D 0 || count > LANE_COUNT0)
->         return dev_err_probe(...);
->
-> There are other sashiko reports to patch 3, and at least one seems valid =
-to
-> me. Can you either fix them in the next iteration or elaborate on why the
-> code is correct there?
->
-> Thanks!
-
-
-[0] https://sashiko.dev/#/patchset/20260529040530.741336-1-damon.ding%40roc=
-k-chips.com
-
-Luca
-
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
