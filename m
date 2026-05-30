@@ -1,199 +1,385 @@
-Return-Path: <devicetree+bounces-304542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304544-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sIDCKg5IGmrP2ggAu9opvQ
-	(envelope-from <devicetree+bounces-304542-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 04:14:38 +0200
+	id YFknAeBLGmpH2wgAu9opvQ
+	(envelope-from <devicetree+bounces-304544-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 04:30:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5036A60AEA0
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 04:14:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 580F760AF47
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 04:30:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2783A303FEC3
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:14:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C06723062978
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC11A313545;
-	Sat, 30 May 2026 02:14:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A35083358DA;
+	Sat, 30 May 2026 02:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ltVbGei2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b4GPjY96"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D871C31282F
-	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 02:14:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45DA3334C27
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 02:30:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780107274; cv=none; b=tna7CdO/ONVAZq3ybHRVYMJcX2GCV895ks65v0QtLhKIecJhXi+yUNRucFN+N/FO294P+3EqA+D9XxdylxfEzFLxB3iIvjdZvqqjOIdI7kKaJ7lpZgilMWXyFs08Bxv6VSX2OLhGjPfPw4KnH0bOxfPLEYB6+jw0fSIY8EbavwI=
+	t=1780108240; cv=none; b=b0CkWrwQONHwxqDox5hROSQqYWU7Wc+XiI+ZkbqzIG0D9zU+yAdADfzHTjFOHmgh2ZIVK4+N4lPY3pxypp1jKeT/+gAN1LMclqLdz5vvsj4gPTxqRBaiERSRVhXDxuCXGYg1KjHcw12g/MUgqdeSkEPNdcZ5cojUQ9IY46t5OoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780107274; c=relaxed/simple;
-	bh=6RD6w6nMPWm8uMNOS7GTYbwMTpaDZ7SXbDkkzCoIBOo=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=CKPRdBWj0ecbYgtXKxGIlHQ1XmdEoV0ET6E7MjB688PygIgpVQewtftsFqnW7VYRypXASUnaA8oxirw9sVkd7lbiAeEQcwarD83hgAdmN3GwLrevcGIWx7RYNoGVyB+CLTsq6XQ7frLgkvVgltXid6WnkPZZ8wTvmqsk9cOhDNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ltVbGei2; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F40921F00893;
-	Sat, 30 May 2026 02:14:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780107273;
-	bh=UIFn3arw4mZi9lo49f+fbacg10gwBBw0gApTF6fz6/o=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=ltVbGei23P7YYg1Tul/NGdjR/rPEuw3RutUlxzhD6t/w6LJO7itmDwunma70WpoEH
-	 N4eO5KewPep9r6AavhjEWNrqHlOVPrsFN2zTTHHtclxoXXyG7MvRYts5LOLJKH6Has
-	 7Ypta/HFUis0gYuFKf48LKYe+rkXjlrE9aFxvYU7ZbqrrXiv1QKPuhDJ9jBb+mFeDf
-	 W7YXOs04YInyCETGPWanTLIWl+3iXQKSLIq/ptuD3XrwzQnVqLe+1z7bgkQqKbregg
-	 9WvCiZ9nKIrgFCgLBDHQADMwN+qdr9njjbH19Va/6tsuXC5fClh/SfeL5GH3QD/WZR
-	 0aIp03n7NQN5Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v13 1/2] dt-bindings: embedded-controller: Add synology
- microp devices
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Markus Probst via B4 Relay" <devnull+markus.probst.posteo.de@kernel.org>
-Cc: ojeda@kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260530-synology_microp_initial-v13-1-aa2bb9c56efc@posteo.de>
-References: <20260530-synology_microp_initial-v13-1-aa2bb9c56efc@posteo.de>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sat, 30 May 2026 02:14:31 +0000
-Message-Id: <20260530021432.F40921F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780108240; c=relaxed/simple;
+	bh=dOo2TbnH1D1B28HE6DUJh2Xh4SEXuam/lKxk6r3ylno=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=s5oaGb3waLZgAVXrqo3pbok1EehwwUffIrvlzexMe+2IyVVgjYrbqh9rzaIB6sb9ZCvUwkEUafpUVoLWWXUO5lTuRfoT8BTYB1QEnD1eEZeDlxeRgV7c6dJ3qVnWQYD9hngUp5JEwMh25OPgeIl3AUVviu6jIWXO6IMPX32inL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b4GPjY96; arc=none smtp.client-ip=74.125.82.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-304e58292d3so3416052eec.0
+        for <devicetree@vger.kernel.org>; Fri, 29 May 2026 19:30:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780108238; x=1780713038; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5TsYb+3sNL5FDjAy76HDFa2ZViKun8LLgEbVEq1nltc=;
+        b=b4GPjY96mBMoDTKhKq8eM1LFz56ii5F6EYvwZRLuxJmfMRfXQH0fIZmYfMgUA9aKUS
+         i0PuSzpAiSCc/WrvEAyd+UwDHd0KWUztC+XOfIbTKQzNvV/d+fKMSTNIjwvF5VEMN7cC
+         nKrIt7IzNAfHNAU60r5R3mD4lSDpJHdPBnPLrRsaiE1+J8NyWJiCOBX/rPkD0A+TmPrI
+         RzH3yvpQj4LdfuhbbMWr/gwLgXrlXdrL5lo/v6o8WwRAz5Li1UrCbnpKsvwC/Etys4u9
+         +uXHoiftBLb/2/XAFOSbvP4ErosX4i9wOjxLrVFUOyAxLzhI2hM/0SNjTzXIB8WQDeL7
+         OLgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780108238; x=1780713038;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=5TsYb+3sNL5FDjAy76HDFa2ZViKun8LLgEbVEq1nltc=;
+        b=LuL+mh5mg4TZxCD3gDB7ispgAmb+qEqle+AhkZdzxWvUwjk0lzU1GipyqypjSBAdqG
+         RiaMfpWXjmG8d2IgA9SUbkE7FDYRjwcLpUeZFM27Rks7gIif2CawVWSJjCbQZt8xkAOa
+         dAMxiWZst9RyYhGFHbXCSDpr01yGo2cVsd7ux+37C5ARaAQc2yOAPnB4P5uQ0NUIFwGd
+         Rwu2c4Fq2D7NDakD133s8vSdo1guNzdaBS22znHsNgK2+IIKIgKL4cC3sdnNxKsTN0/n
+         y7d19yfChYEU+WZYHEmOtrNsrQLwsV3+A5I6sLF6arsz951ge6OFBD5CjNXKLRqOKNbg
+         vmEA==
+X-Forwarded-Encrypted: i=1; AFNElJ/I/3wujFp0utlqe7YgNjCHPKbqju9yiNLtFkiNqVpk9fiswMeYryEicVvKensyF55/dAfDETnDo2Tn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhCNZrXnwvmVCLO4B3Cs5X2S15263Mt+9eFeq2nQjn3qWsBCm8
+	x1kdVCId94YMllf1xEw8GzFQCWi2EJUHK+biMCzbgUMG5TBrLT6tS9cWuH2sluAkodU=
+X-Gm-Gg: Acq92OGOyByob0qGrHxvvpwT1kUcTUvq8C6jSQxnFlWz7EnqkuIxuEW+rbzMpHULB9P
+	ZDW/MFa7H+5Y7IOr2Fh1C0jstbTU3I2CqzyBsZbez+5mLtuLM4jl8ljOT9ZLSFk/3GANsOjC8P5
+	5tkWay3vIbxZY+dRo6iYoF/Dvdehq2O+K4vtngxC2hHnGXSXth0Krcv6rxQB6nBL80JnKwzPw6h
+	pxz/OV9Ygc9URD2kWyPe+n00/VABsQuBSLK5NFZ3YJ14pXkGnN3rQZ/hy7/mk1va/UQQBAj9bf+
+	0doZBMikaze8skam94hLhrPOFbLF6XAHJ+Q/aJjc62aKm04t7q8vfmbFHYB2I/yMAYX4vfrfeBe
+	/ibAdCdGZZZLqxmhQzFOGglQabXW2kPr1BqtKcu+c5cQWxUIggtrHKpaxtqmOPmSgp+Sc6qVFsl
+	5IQ1dcwbdunU4/vKqzAmhTOpjBXEdUZaKFI6ib8/dRW5qg0mz1CY5Uxe/8tQ==
+X-Received: by 2002:a05:7300:2201:b0:304:d8cb:8424 with SMTP id 5a478bee46e88-304fa546886mr1124489eec.9.1780108238255;
+        Fri, 29 May 2026 19:30:38 -0700 (PDT)
+Received: from localhost.localdomain ([76.173.186.92])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-304ed2efb4esm2976829eec.8.2026.05.29.19.30.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 May 2026 19:30:37 -0700 (PDT)
+From: Jeremiah Bishop <jbishop.dev@gmail.com>
+To: gregkh@linuxfoundation.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	stern@rowland.harvard.edu,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jeremiah Bishop <jbishop.dev@gmail.com>
+Subject: [PATCH v2] dt-bindings: usb: convert PXA USB bindings to YAML
+Date: Fri, 29 May 2026 16:29:55 -1000
+Message-ID: <20260530022955.32728-1-jbishop.dev@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260529213506.37462-1-jbishop.dev@gmail.com>
+References: <20260529213506.37462-1-jbishop.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304542-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304544-lists,devicetree=lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,rowland.harvard.edu,vger.kernel.org,gmail.com];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jbishopdev@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,markus.probst.posteo.de,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 5036A60AEA0
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,harvard.edu:email,2.107.129.192:email]
+X-Rspamd-Queue-Id: 580F760AF47
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] Chronological fallback inversions for older models in DT bindings
-- [Medium] Model prefix typo (DS vs RS) for `synology,ds1221rpp-microp`
---
+Convert the legacy pxa-usb.txt binding documentation to YAML schemas.
 
-commit 420a38b2f09dfb652dcda0d1d821575521540bff
-Author: Markus Probst <markus.probst@posteo.de>
+The original text binding documented two distinct devices: the PXA OHCI
+USB host controller and the PXA270 USB device controller. Split the
+documentation into separate schemas, marvell,pxa-ohci.yaml and
+marvell,pxa270-udc.yaml, and remove the obsolete text binding.
 
-dt-bindings: embedded-controller: Add synology microp devices
+The schemas preserve the existing compatible strings and properties used
+by current in-tree users while adding machine-readable validation and
+examples.
 
-This commit adds device tree bindings for Synology Microcontrollers (Microp=
-).
-These devices manage LEDs, fans, beepers, and handle power events via a
-serial connection on Synology NAS devices.
+Signed-off-by: Jeremiah Bishop <jbishop.dev@gmail.com>
+---
+Changes in v2:
+- Add vbus1-supply, vbus2-supply, and vbus3-supply properties to the
+  PXA OHCI schema.
 
-> diff --git a/Documentation/devicetree/bindings/embedded-controller/synolo=
-gy,ds918p-microp.yaml b/Documentation/devicetree/bindings/embedded-controll=
-er/synology,ds918p-microp.yaml
-> new file mode 100644
-> index 0000000000000..eb1c9d3fac074
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/embedded-controller/synology,ds91=
-8p-microp.yaml
+ .../bindings/usb/marvell,pxa-ohci.yaml        | 100 ++++++++++++++++++
+ .../bindings/usb/marvell,pxa270-udc.yaml      |  50 +++++++++
+ .../devicetree/bindings/usb/pxa-usb.txt       |  53 ----------
+ 3 files changed, 150 insertions(+), 53 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/marvell,pxa-ohci.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/marvell,pxa270-udc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/usb/pxa-usb.txt
 
-[ ... ]
+diff --git a/Documentation/devicetree/bindings/usb/marvell,pxa-ohci.yaml b/Documentation/devicetree/bindings/usb/marvell,pxa-ohci.yaml
+new file mode 100644
+index 000000000000..5d660b92d3cb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/marvell,pxa-ohci.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/marvell,pxa-ohci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell PXA OHCI USB Host Controller
++
++maintainers:
++  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
++  - Alan Stern <stern@rowland.harvard.edu>
++
++allOf:
++  - $ref: usb-hcd.yaml#
++
++properties:
++  compatible:
++    const: marvell,pxa-ohci
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  marvell,enable-port1:
++    type: boolean
++    description: Enable USB port 1 if present.
++
++  marvell,enable-port2:
++    type: boolean
++    description: Enable USB port 2 if present.
++
++  marvell,enable-port3:
++    type: boolean
++    description: Enable USB port 3 if present.
++
++  marvell,port-sense-low:
++    type: boolean
++    description: Port sense pin in low-active.
++
++  marvell,power-control-low:
++    type: boolean
++    description: Power control pin is low-active.
++
++  marvell,no-oc-protection:
++    type: boolean
++    description: Disable over-current protection.
++
++  marvell,oc-mode-perport:
++    type: boolean
++    description: Enable per-port over-current protection.
++
++  marvell,power-on-delay:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Power On to Power Good time in milliseconds.
++
++  marvell,port-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2, 3]
++    description: |
++      Selects the mode of the ports.
++        1 = PMM_NPS_MODE
++        2 = PMM_GLOBAL_MODE
++        3 = PMM_PERPORT_MODE
++
++  marvell,power-budget:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: USB power budget.
++
++  vbus1-supply:
++    description: Regulator supplying VBUS for port 1.
++
++  vbus2-supply:
++    description: Regulator supplying VBUS for port 2.
++
++  vbus3-supply:
++    description: Regulator supplying VBUS for port 3.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    usb@4c000000 {
++        compatible = "marvell,pxa-ohci";
++        reg = <0x4c000000 0x100000>;
++        interrupts = <3>;
++        clocks = <&clks 11>;
++        marvell,enable-port1;
++        marvell,port-mode = <2>; /* PMM_GLOBAL_MODE */
++    };
+diff --git a/Documentation/devicetree/bindings/usb/marvell,pxa270-udc.yaml b/Documentation/devicetree/bindings/usb/marvell,pxa270-udc.yaml
+new file mode 100644
+index 000000000000..0be51e0db80b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/marvell,pxa270-udc.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/marvell,pxa270-udc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell PXA27x USB Device Controller (UDC)
++
++maintainers:
++  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
++
++properties:
++  compatible:
++    const: marvell,pxa270-udc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  gpios:
++    maxItems: 1
++    description: GPIO to control the USB D+ pullup.
++
++  phys:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    udc@40600000 {
++        compatible = "marvell,pxa270-udc";
++        reg = <0x40600000 0x10000>;
++        interrupts = <11>;
++        clocks = <&clks 11>;
++        gpios = <&gpio 22 GPIO_ACTIVE_LOW>;
++    };
+diff --git a/Documentation/devicetree/bindings/usb/pxa-usb.txt b/Documentation/devicetree/bindings/usb/pxa-usb.txt
+deleted file mode 100644
+index 53fdae4fa6f6..000000000000
+--- a/Documentation/devicetree/bindings/usb/pxa-usb.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-PXA USB controllers
+-
+-OHCI
+-
+-Required properties:
+- - compatible: Should be "marvell,pxa-ohci" for USB controllers
+-   used in host mode.
+-
+-Optional properties:
+- - "marvell,enable-port1", "marvell,enable-port2", "marvell,enable-port3"
+-   If present, enables the appropriate USB port of the controller.
+- - "marvell,port-mode" selects the mode of the ports:
+-	1 = PMM_NPS_MODE
+-	2 = PMM_GLOBAL_MODE
+-	3 = PMM_PERPORT_MODE
+- - "marvell,power-sense-low" - power sense pin is low-active.
+- - "marvell,power-control-low" - power control pin is low-active.
+- - "marvell,no-oc-protection" - disable over-current protection.
+- - "marvell,oc-mode-perport" - enable per-port over-current protection.
+- - "marvell,power_on_delay" Power On to Power Good time - in ms.
+-
+-Example:
+-
+-	usb0: ohci@4c000000 {
+-		compatible = "marvell,pxa-ohci";
+-		reg = <0x4c000000 0x100000>;
+-		interrupts = <18>;
+-		marvell,enable-port1;
+-		marvell,port-mode = <2>; /* PMM_GLOBAL_MODE */
+-	};
+-
+-UDC
+-
+-Required properties:
+- - compatible: Should be "marvell,pxa270-udc" for USB controllers
+-   used in device mode.
+- - reg: usb device MMIO address space
+- - interrupts: single interrupt generated by the UDC IP
+- - clocks: input clock of the UDC IP (see clock-bindings.txt)
+-
+-Optional properties:
+- - gpios:
+-   - gpio activated to control the USB D+ pullup (see gpio.txt)
+-
+-Example:
+-
+-		pxa27x_udc: udc@40600000 {
+-			compatible = "marvell,pxa270-udc";
+-			reg = <0x40600000 0x10000>;
+-			interrupts = <11>;
+-			clocks = <&pxa2xx_clks 11>;
+-			gpios = <&gpio 22 GPIO_ACTIVE_LOW>;
+-		};
+-- 
+2.43.0
 
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - synology,ds1221rpp-microp
-
-[Severity: Medium]
-Is synology,ds1221rpp-microp a typo? Synology models with redundant power
-supplies are typically RackStations (RS) rather than DiskStations (DS), and
-this falls back to synology,rs1221p-microp.
-
-Should this be synology,rs1221rpp-microp instead to avoid establishing a ty=
-po
-in the permanent device tree ABI?
-
-> +              - synology,rs822p-microp
-> +              - synology,rs422p-microp
-> +          - const: synology,rs1221p-microp
-> +
-> +      - items:
-> +          - const: synology,ds1825p-microp
-> +          - const: synology,ds1823xsp-microp
-> +
-> +      - items:
-> +          - enum:
-> +              - synology,ds725p-microp
-> +              - synology,ds225p-microp
-> +              - synology,ds723p-microp
-> +              - synology,ds710p-microp
-> +          - const: synology,ds214play-microp
-
-[Severity: Medium]
-Is it correct for the older 2010 model synology,ds710p-microp to fall back =
-to
-the newer 2014 model synology,ds214play-microp?
-
-In Device Tree schemas, newer hardware variants typically fall back to older
-established base models if they are backward compatible, rather than the
-other way around.
-
-> +
-> +      - items:
-> +          - enum:
-> +              - synology,ds425p-microp
-> +              - synology,ds1525p-microp
-> +              - synology,ds925p-microp
-> +              - synology,ds923p-microp
-> +              - synology,ds1522p-microp
-> +              - synology,ds1010p-microp
-> +              - synology,ds411p-microp
-> +          - const: synology,ds918p-microp
-
-[Severity: Medium]
-Does this correctly map the hardware relationships? The 2010 and 2011 models
-(synology,ds1010p-microp and synology,ds411p-microp) are configured to fall
-back to the 2018 model synology,ds918p-microp.
-
-Since synology,ds918p-microp enforces fan-failure-gpios as a required
-property in the conditional block further down in the file, this inverted
-fallback forces the older hardware to satisfy constraints defined for newer
-hardware. This will cause validation failures for correct older device tree=
-s.
-
-Should these older models be listed as their own base models or fall back to
-an older base instead?
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260530-synology_m=
-icrop_initial-v13-0-aa2bb9c56efc@posteo.de?part=3D1
 
