@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-304608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304609-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4InJF16/Gmpk8AgAu9opvQ
-	(envelope-from <devicetree+bounces-304608-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:43:42 +0200
+	id cGM/JLq/Gmpk8AgAu9opvQ
+	(envelope-from <devicetree+bounces-304609-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:45:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB82560C355
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:43:41 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9450060C37C
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:45:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7EB953022F77
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:43:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0D1C7300683A
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:45:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46AF2395AD8;
-	Sat, 30 May 2026 10:43:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77BAC3A16AB;
+	Sat, 30 May 2026 10:44:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H2Y7BMd8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/Mwva5H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 506FA253B42;
-	Sat, 30 May 2026 10:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C2F253B42;
+	Sat, 30 May 2026 10:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780137796; cv=none; b=qaFFKR5H57rl4OZueWLSCBq2wI4eN9gvvu869d6lfR3zKOQ2qFcV7Huas39T/iQt6po0KVmm6SuTkY+XOcOImBL2pfaPVKlkDztb36huS4lFO2OK72bZqzsyYtnzaEVp+XycYTWkqeAEUthb9ZPnJ2u0UGryUFHIppZSBMrrySk=
+	t=1780137890; cv=none; b=gePV8vudcOeo6WgQtrRIVOcd2F4q/la74pKk6ugLf6vDL/JPEn+qU7HN1uAAAWT9e3K+1Uoi6NCDO7gvAu8qrNkEoIJ6SmRYdTjtR0TpkZ/PWxtwUIKU5dYCjdsduTZGWEaaxMzmFi1I2N1yoEKVTpnAuwTfgpV1xUe76Bx45h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780137796; c=relaxed/simple;
-	bh=m9kBZjsTOHpj4wqR8N8NT5nlovrYILypc5DDRIAdyFg=;
+	s=arc-20240116; t=1780137890; c=relaxed/simple;
+	bh=dOzgHxYakMLOd4CI8dc0KRhCNUyE4WgrPhWXiV83kg4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i2yGCLS7oC1EUizJAVE5LqgxSFWbcj0aci8aON1V9SlKwgGqvUu0cIJqFrLtnHnTZBATYecq/CbzjiZiHB4YTtZ+OtSMr5dhlADXo0iE2qRGzXL0V46rREkBy9Of6+Vq2xE0o7zawAAAzA2GvawgC0vJri9l7o9IydS8MFSUYn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H2Y7BMd8; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F5251F00893;
-	Sat, 30 May 2026 10:43:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SSpcUjOvtasE4jy3B27OV9XpAtZ9YKYj5SmiyYFyz8TQRdVIMxua5u70W+dskO8WDyhYHqt4pzu5A1u0sgNIfbP3ZUlufv9dVH0PKz0IMFGVhsKkC7VfXFsHrLSxYzpLWw3tHPCOfEnCJJZ3rbmgAi1P9Ksg5GLv1CK/SOkOt2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/Mwva5H; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81BC41F00893;
+	Sat, 30 May 2026 10:44:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780137795;
-	bh=VyaCmi1S4qv3v4K/lqnb+sAaLFPH1HmfeGUvApAylZo=;
+	s=k20260515; t=1780137889;
+	bh=Ah0BAmd+lwHuZO6zRBiL0+MEQYrEVAKIQyjvoixgNRI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=H2Y7BMd8FghtG2ezsC3HOXu8WhWUSJZLr2afxCpjijvRRXmSJfTdkt0+zigTCRA2w
-	 CL8HCtWq5yVqCuuuVPZzrz76VBtQanUY8muigw8terCH3JRMivTVA/okFFRoOQIqqg
-	 Z3lw2Q2hyWR0g+eg0km/tHSZCTYaGK7iNcITY3/muLQ/ibe7Tt39D4GDfbGvnXaKTo
-	 wpgSJX04OwEPBhkhtagUuvgr23TSq41HOPYN881VowC+elADm4EKzGrOklRDD8xpMY
-	 d4EqA8S7jHcyD/5A4J2lKM7pDn/5JCrLu7crmNS9RfoRAbhrZpf1rdRudG2PDhY/UA
-	 FmZtJfNpYXTbQ==
-Date: Sat, 30 May 2026 12:43:12 +0200
+	b=c/Mwva5Hzm5FVkloKcxpDPjbejs7gN/gCXj04ZWIkg4crNYrhY5SkWrpmG1XHjKLH
+	 qvCFZq10iibjzf7jSgKqQFJCWC1k55O4CVETgqY0IEYrFg5+gvmh8T0YrOQPsfkYyy
+	 kyIGnovk2EbYY4BZZTiUhEL7gYUFYVlIW7r3C2xYDXfK4L9GrUXVMPDMj6YYe8rYcR
+	 wyz8uTDD16ZMGu6f+QkNa+N94p8+egLsOVdqcWWEyoDLo17hKQI1qyVFbfUj1zXhJj
+	 NVzqWz8o6VTYjadhwKUzBTrep3hP1QLVy0Lris/dT790L+Qz4KIFiCL7gTNHteglom
+	 X0ZTBGk6NIMdA==
+Date: Sat, 30 May 2026 12:44:46 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com, 
-	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
-	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Describe Maili TLMM block
-Message-ID: <20260530-relaxed-refreshing-squirrel-d5c814@quoll>
-References: <20260522-maili-pinctrl-v1-0-0a6636f5c277@oss.qualcomm.com>
- <20260522-maili-pinctrl-v1-1-0a6636f5c277@oss.qualcomm.com>
+To: phucduc.bui@gmail.com
+Cc: broonie@kernel.org, lgirdwood@gmail.com, perex@perex.cz, 
+	tiwai@suse.com, heiko@sntech.de, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: rockchip-spdif: Correct SPDIF
+ clock descriptions
+Message-ID: <20260530-adventurous-basilisk-of-happiness-def6fa@quoll>
+References: <20260522100318.73474-1-phucduc.bui@gmail.com>
+ <20260522100318.73474-2-phucduc.bui@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,56 +65,80 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260522-maili-pinctrl-v1-1-0a6636f5c277@oss.qualcomm.com>
-X-Spamd-Result: default: False [-1.66 / 15.00];
+In-Reply-To: <20260522100318.73474-2-phucduc.bui@gmail.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304608-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304609-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,sntech.de,lists.infradead.org,vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: EB82560C355
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,bootlin.com:url]
+X-Rspamd-Queue-Id: 9450060C37C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, May 22, 2026 at 12:42:08AM -0700, Jingyi Wang wrote:
-> The Top Level Mode Multiplexer (TLMM) in the Qualcomm Maili SoC provides
-> GPIO and pinctrl functionality for UFS, SDC and 226 GPIO pins.
+On Fri, May 22, 2026 at 05:03:16PM +0700, phucduc.bui@gmail.com wrote:
+> From: bui duc phuc <phucduc.bui@gmail.com>
 > 
-> Add a DeviceTree binding to describe the TLMM block on Qualcomm's Maili
-> SoC.
+> The clock descriptions are currently swapped relative to the
+> clock names used by the driver.
+
+Why would order of clock names in the driver matter here? I do not
+understand that explanation.
+
 > 
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> Update the binding descriptions to match the actual clock
+> usage, where 'mclk' is the controller clock and 'hclk' is
+> the bus clock.
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+> 
+> Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 > ---
->  .../bindings/pinctrl/qcom,maili-tlmm.yaml          | 120 +++++++++++++++++++++
->  1 file changed, 120 insertions(+)
+>  Documentation/devicetree/bindings/sound/rockchip-spdif.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml b/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml
+> index 502907dd28b3..b174d7498029 100644
+> --- a/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml
+> +++ b/Documentation/devicetree/bindings/sound/rockchip-spdif.yaml
+> @@ -45,8 +45,8 @@ properties:
+>  
+>    clocks:
+>      items:
+> -      - description: clock for SPDIF bus
+>        - description: clock for SPDIF controller
+> +      - description: clock for SPDIF bus
 
-Assuming you will provide explanation of Maili:
+So example is wrong?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-(but I will not give more review tags if I see next patch also without
-that explanation because I requested this multiple times already)
+What about all the users?
 
 Best regards,
 Krzysztof
