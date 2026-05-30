@@ -1,118 +1,208 @@
-Return-Path: <devicetree+bounces-304612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cP4RFsbAGmp88AgAu9opvQ
-	(envelope-from <devicetree+bounces-304612-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:49:42 +0200
+	id WHYtMdnEGmpw8QgAu9opvQ
+	(envelope-from <devicetree+bounces-304614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 13:07:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28DE860C3F6
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 12:49:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C41F860C592
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 13:07:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 09827301AA7A
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:49:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 36B883008C89
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 11:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81DC739E175;
-	Sat, 30 May 2026 10:49:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1859D3A7189;
+	Sat, 30 May 2026 11:07:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="huX4gKlU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jXoXlR8k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97AF837AA83;
-	Sat, 30 May 2026 10:49:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04CB519067C
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 11:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780138168; cv=none; b=iRaskkdb8ShlYg3Bw7p1hGhGOmbr4DPjzB2eNlcVdYbWeUyJ3ODEWF8eyXzCNeD5TfRr0PrCmE/idYg6QGTyV++40upntnw6elPi+DxYElb4oOnTvBu1nqy+1kDr3dJ/vARzZEhg4cySdNCg+jWiSE7+of/LzrdkBlsFph86+2A=
+	t=1780139220; cv=none; b=Mzou/zzg0XylkIiZ6EjLp1gUW0DlqZjSgiGwXR440lNNHy8KzOSdVLTwLuhBE3uqPaXEsKIEJCiFTgCJlSXM7njAipYcKjSK82X+IcJflt+7H3etgUqE8XL45/2mP0boVQfLvkhyuU0hFX1RvA2c5ZQpbRhAC1zDRnI7/zdwk/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780138168; c=relaxed/simple;
-	bh=X4F8MSJqz6FQxeXw4Sy6ntzkc40NdvEGJk7OS+A6tmo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iTFdHSJ2iagB6iMfM4zeiVWOqVp9jmUSe6aeMpedQZN71361jGxGkDPrCxPcxzQ/NPLRhsN0RTfzDyJ7hcw40JCrYqplzUZ2oJaVDxYOA1UdreRsZOVmFkZh1BsdM2wG1+zc3CSvemo8y7mqnIlyl7sQARm0eGX4g4WA8B0Nzn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=huX4gKlU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3F611F00893;
-	Sat, 30 May 2026 10:49:26 +0000 (UTC)
+	s=arc-20240116; t=1780139220; c=relaxed/simple;
+	bh=Qk6ws+2gRiRv80msip+31Qeeu0wjbvRVe1TY8KA8ltI=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=mk73U8LRZR6RyZ64Grs74xseIaNTkZziLVaTD0KpYeqTXscMd05O2dPK+rzGByYNJE70JfmekfJ8YG4WYT4SFvDAhQGi3SEl9j0swh7tDYQ/nrqK/FRbHoKYTTI+iqQiUNZ9j0VVvvksCsu8Ugl/usIBiNrK3gPja1r9VM3N8j0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jXoXlR8k; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30EB11F00893;
+	Sat, 30 May 2026 11:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780138167;
-	bh=0ffSVxbGdAcaWLNMSqr2Lipz5ESbowsuXTzvAfqZyZw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=huX4gKlUYZKFQFN5Pzr29SSOKWcH9Wqfxe5RGlIGGNpADeu4m/qQafXusSljCbihQ
-	 wy1sRvloZzepQZkTPZPN74cZJD4BXDrPeQBqmP1W81HqymsS2qhpX8hynyf9oSf+R8
-	 v/Y3gw3GboODKAa/vaf67PeApvsgHMERUSIcXGRhSMn9PFrqhpJThwp2l5cKjDwDMX
-	 J8dxISmq9r85OZKBWmdMbtF8nT2WYEum2ve74S3/ukJ6xnqa2EEXep8eDILDe9yOek
-	 zrjdAmECC/BgN8nYU6NmBkU1Dp/4awCpni8kjyY/yoIVrQ3tG9aV35GfssH8QVzH5N
-	 Q5eIz3weOICJw==
-Date: Sat, 30 May 2026 12:49:24 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Udaya Kiran Challa <challauday369@gmail.com>
-Cc: linux@prisktech.co.nz, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, skhan@linuxfoundation.org, me@brighamcampbell.com, 
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: vt8500: via,vt8500-pmc: Convert to DT
- Schema
-Message-ID: <20260530-devious-magnificent-jackdaw-cc48c1@quoll>
-References: <20260524110047.37590-1-challauday369@gmail.com>
+	s=k20260515; t=1780139218;
+	bh=eN8LCCPpVYft6NeaVeDYYIMSna0MYsSd81hWjj8pJSo=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=jXoXlR8kPiv1PKgQ9v3MzOjBDUtWYcOPqGXq2ks0Y0eQV5l1wKXKBWemLWgjK1UUp
+	 A+bDmLYpFvNqkJ3ZHwYRbM3Ct7vJxwM2FYU84DjmQQr1YzdIUT+GR5uzv6n6hysCu9
+	 JIlHXBDoVgn1lBPK/XJyDzYXZXikK5c82Zl0+kQd4BwGZtEWU+45azGibc1QP77/6K
+	 HnWtWkT6kHAKOeIgRzKjkJrxgJQmjYGAcH33xsyUV6Bh1I9gBLwTpxhPwFGBNpI7ZW
+	 WG+x7MzHJvMfQ4OlRiITxaEUDrG2MLE1StTTil20+bcH5JoT9HwjrnDQeodvxAfsId
+	 LMDRwMHhLK5DQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: adc: Add schema for AD7816/7/8
+ digital temperature sensor
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Taha Narimani" <tahanarimani3443@gmail.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260530135302.54688-1-tahanarimani3443@gmail.com>
+References: <20260530135302.54688-1-tahanarimani3443@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 30 May 2026 11:06:57 +0000
+Message-Id: <20260530110658.30EB11F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260524110047.37590-1-challauday369@gmail.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304612-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304614-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 28DE860C3F6
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,smtp.kernel.org:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: C41F860C592
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sun, May 24, 2026 at 04:30:09PM +0530, Udaya Kiran Challa wrote:
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+
+Pre-existing issues:
+- [High] Missing concurrency protection during sysfs accesses.
+- [High] Stack-allocated buffers are passed directly to `spi_read()` and `s=
+pi_write()`, violating DMA mapping rules.
+- [High] Unbounded polling loop for the BUSY pin can cause a hard CPU locku=
+p.
+--
+
+commit cb7e57cc9cdde2668abda84c0f0d3e60ebb9a962
+Author: Taha Narimani <tahanarimani3443@gmail.com>
+
+dt-bindings: iio: adc: Add schema for AD7816/7/8 digital temperature sensor
+
+This commit adds a new YAML device tree binding schema for the Analog
+Devices AD7816, AD7817, and AD7818 digital temperature sensors. It
+documents the compatible strings, SPI configuration, interrupts, and
+required GPIO pins.
+
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
+> new file mode 100644
+> index 0000000000000..74008c14d40c6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7816.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7816.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+[ ... ]
+
 > +properties:
 > +  compatible:
-> +    const: via,vt8500-pmc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    type: object
-> +    additionalProperties: true
+> +    enum:
+> +      - adi,ad7816
+> +      - adi,ad7817
+> +      - adi,ad7818
 
-No, binding must be constrained. See writing-bindings or any other
-binding. If you are unsure how to do something - open other existing
-bindings. Do you see anywhere such syntax?
+[Severity: High]
+This isn't a bug introduced by this patch, but is there a missing lock to
+protect concurrent sysfs accesses?
 
-Best regards,
-Krzysztof
+Looking at ad7816_show_value() in drivers/staging/iio/adc/ad7816.c:
 
+drivers/staging/iio/adc/ad7816.c:ad7816_show_value() {
+    ...
+    ret =3D ad7816_spi_read(chip, &data);
+    ...
+}
+
+Since this is called for world-readable sysfs attributes, can multiple
+userspace processes trigger this concurrently?
+
+If so, could concurrent execution of ad7816_spi_read() interleave GPIO pin
+toggling and SPI transfers, corrupting the hardware state?
+
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does this code pass
+stack-allocated buffers to SPI transfers?
+
+Looking at drivers/staging/iio/adc/ad7816.c:
+
+drivers/staging/iio/adc/ad7816.c:ad7816_spi_read() {
+    ...
+    ret =3D spi_read(spi_dev, &buf, sizeof(*data));
+    ...
+}
+
+And also in ad7816_spi_write():
+
+drivers/staging/iio/adc/ad7816.c:ad7816_spi_write() {
+    ...
+    ret =3D spi_write(spi_dev, &data, sizeof(data));
+    ...
+}
+
+Since the SPI subsystem often maps these buffers for DMA, will passing
+variables from the stack cause mapping failures or crashes on architectures
+with virtually mapped kernel stacks?
+
+
+[Severity: High]
+This isn't a bug introduced by this patch, but can this unbounded polling
+loop cause a CPU lockup?
+
+Looking at ad7816_spi_read() in drivers/staging/iio/adc/ad7816.c:
+
+drivers/staging/iio/adc/ad7816.c:ad7816_spi_read() {
+    ...
+    while (gpiod_get_value(chip->busy_pin))
+        cpu_relax();
+    ...
+}
+
+If the external device malfunctions or the GPIO line gets permanently stuck
+high, will this loop block indefinitely and cause a hard lockup?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260530135302.5468=
+8-1-tahanarimani3443@gmail.com?part=3D1
 
