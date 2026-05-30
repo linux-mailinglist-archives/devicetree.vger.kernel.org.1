@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-304528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304530-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oDEMBM41GmoQ2QgAu9opvQ
-	(envelope-from <devicetree+bounces-304528-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:56:46 +0200
+	id yPCFKmE1Gmp+2AgAu9opvQ
+	(envelope-from <devicetree+bounces-304530-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:54:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920B460A83E
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:56:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4404C60A7DE
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:54:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F1D8E304046A
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:50:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7E9BE30932A8
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:50:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63AA62DB7AE;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDDA42DF719;
 	Sat, 30 May 2026 00:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iZ6WrBOt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="esGKV0fQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32AC02DF13A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB8F26ED59
 	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 00:50:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780102214; cv=none; b=PG3RklleWeyYZjBnJgk9zzkzlGoY4pCWvsQ6F3ppGHwxQ/tI4x8NwNNjNIrXzU6WPh6j/VwwCHkJUDF0p1HU39q5AwgWRiMf1nYaSQ4d9bzQRuI5+UdNeE9nY3A8ihhWi/vBdA9dUyiDAM7M9N4UwCvtuxGmropRFR5zVpNWHkg=
+	t=1780102214; cv=none; b=ARgo5yIIDqrKxAP3wvBFKRyYTTbn0nswsW2sVq2QDgsjAQ6+aJ+VhiKxj2f/0OofGMQaaBZJKGuMntHYkoEqC2g2gdlQLEx4jWdaflTJDzqx8L/nFDYTJOzdUCDuLxlNDO3tSw3VyvFOQjHcYayOt5Hzb47QWtU5zqp7HkaCg6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1780102214; c=relaxed/simple;
-	bh=CWbGZ06so3UwxbbbJlj4DRP+WBHDaWF2szksiL2y9fY=;
+	bh=ULZnykkdO/ZFXgqLi52VatwZuFZfFKgPfgettPbNSK8=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=RnBspncdodVcF3jioiTyErR9U2ZC2wJ0n7AGoFidUwCZYhL0V6Ly7xgtsFiJeefH91Q/21Ja+HHPezEucZTQ6rtgjw/0t2uPeQr/Uo+MjQY2toYH6HH8FPcPScrVpip7iB0NWqEZo2Y9cdoReFYxQ33s1DL/75BfmZtOnAghnvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iZ6WrBOt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E02381F00898;
-	Sat, 30 May 2026 00:50:12 +0000 (UTC)
+	 Message-Id; b=HItw87x/CqIoQ1mlUChpMzOSl2/OPgeUfeAEXTu1glwFowwg/GgYDAUMgUZSvUT++cZ2QbkAhAy/pjDVyt9rnOTtZIQXNQaaNcsKfVbvfvV33wC0tKyT9bM/Z94C52/j1DI/+iwMNly73VbbqpASSE4vyddd8yv/6dkALfqxNoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=esGKV0fQ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B9531F00899;
+	Sat, 30 May 2026 00:50:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1780102213;
-	bh=5G3J1+nuXe98/1p23+DK2hLNArApK0ZUNWARZ2wPgLo=;
+	bh=dOywTM+CC01nkuzdcDMaKGONTL3I0BcwxaDDnmcPXDQ=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=iZ6WrBOt+mt/CRS/tavRP4qBcsxCofZHSBR76Sqlgs4IMZN8a8MysCsE2V6h2E3T9
-	 XZ+izYJMSYvR2WvhQo2CoDCziLFVDzsLMbGoOl6MFGvCPNEUI+VPisaDn1w/bg7n4Q
-	 AOL5XTFCLfU0NP1tDUVNfhybv8lhmNc0ZtDFzs80+hUKPs0tgt9MgqAodI+ZGQ49cM
-	 HzTMuT86of9Z8OFtnkfXC7DAmPySma8ujICJVPae3mlqA1lZC2cquIajMCIx+ehYeJ
-	 WJteieGoB3rsyFIH0cIXtHAkA80rjKgheaqwkj8fl5LbO9iP6qpmjSFlih8nXVPUH3
-	 FGMsZPcpVH8CQ==
+	b=esGKV0fQmqljCPyQ4v+NkH9W6GQmqOitpoVLF8GxpevcGTtXY55avDJrvgFahFe8T
+	 DcP8HZL6JBkvpsesyuu2NLUcQzdisCZ+5VD6qmCAUJAn+QrtZvNKAkrw4RZPgCbfvZ
+	 8RMdsvDK5nf3LRbdvMroLtHjmb4wevD9nAZo/Azk6Jm+jQwKYpJDI86H17YbMwtEU8
+	 HdFJnigblUoNMj8eh1ycD2pfSNUDJgy/7+TSopZ9lG7whtX8mKMW/A46zfe8inui2Z
+	 UdVZNmEHYwRufblwknsBqeYx8F2ld2HI+Rd6t/mR+BngzpC8jDg83fBDjTR2OsslbB
+	 1qFMP+92GSS7A==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v6 4/9] net: dsa: lan9645x: add basic dsa
- driver for LAN9645X
+Subject: Re: [PATCH net-next v6 5/9] net: dsa: lan9645x: add bridge support
 Reply-To: sashiko-reviews@lists.linux.dev
 To: =?utf-8?b?SmVucyBFbWlsIFNjaHVseiDDmHN0ZXJnYWFyZA==?= <jensemil.schulzostergaard@microchip.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260527-dsa_lan9645x_switch_driver_base-v6-4-4d409ae64f3c@microchip.com>
-References: <20260527-dsa_lan9645x_switch_driver_base-v6-4-4d409ae64f3c@microchip.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260527-dsa_lan9645x_switch_driver_base-v6-5-4d409ae64f3c@microchip.com>
+References: <20260527-dsa_lan9645x_switch_driver_base-v6-5-4d409ae64f3c@microchip.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 30 May 2026 00:50:12 +0000
-Message-Id: <20260530005012.E02381F00898@smtp.kernel.org>
+Date: Sat, 30 May 2026 00:50:13 +0000
+Message-Id: <20260530005013.8B9531F00899@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,12 +66,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304528-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304530-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -82,151 +81,91 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,microchip.com:email,lists.linux.dev:replyto,sashiko.dev:url]
-X-Rspamd-Queue-Id: 920B460A83E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url]
+X-Rspamd-Queue-Id: 4404C60A7DE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] The CPU port is excluded from multicast flooding groups, breaking =
-IPv6 Neighbor Discovery.
-- [Medium] The ingress tail drop watermark (SYS_ATOP) for the internal CPU =
-port is left uninitialized, causing CPU-injected frames to be dropped.
-- [Medium] A Time-of-Check to Time-of-Use (TOCTOU) race condition in RGMII =
-collision handling allows mutually exclusive ports to be enabled simultaneo=
-usly.
+- [High] Failure to clear `bridge_fwd_mask` and `stp_state` when a port lea=
+ves a bridge allows a stale forwarding state to persist, creating a race co=
+ndition that can lead to temporary Layer 2 loops.
 --
 
-commit 663f05e1c5287dac7978b55faa5152a3c2ee95f8
+commit 31a25a746a8f28de119e2a7f8f9439f1cb05b67f
 Author: Jens Emil Schulz =C3=98stergaard <jensemil.schulzostergaard@microch=
 ip.com>
 
-net: dsa: lan9645x: add basic dsa driver for LAN9645X
+net: dsa: lan9645x: add bridge support
 
-This commit adds the LAN9645X basic DSA driver with initialization, parent
-regmap requests, port module initialization, and phylink integration.
+This commit adds hardware offloading support for a single bridge device
+to the lan9645x DSA switch driver.
 
+> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drivers=
+/net/dsa/microchip/lan9645x/lan9645x_main.c
 > --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
 > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
 [ ... ]
-> @@ -112,6 +112,323 @@ static int lan9645x_setup(struct dsa_switch *ds)
-> +	lan9645x_port_cpu_init(lan9645x);
+> @@ -269,6 +292,278 @@ static void lan9645x_port_phylink_get_caps(struct d=
+sa_switch *ds, int port,
+[ ... ]
+> +static void lan9645x_port_bridge_leave(struct dsa_switch *ds, int port,
+> +				       struct dsa_bridge bridge)
+> +{
+> +	struct lan9645x *lan9645x =3D ds->priv;
+> +	struct lan9645x_port *p;
 > +
-> +	/* Multicast to all front ports */
-> +	lan_wr(front_ports, lan9645x, ANA_PGID(PGID_MC));
+> +	p =3D lan9645x_to_port(lan9645x, port);
 > +
-> +	/* IP multicast to all front ports */
-> +	lan_wr(front_ports, lan9645x, ANA_PGID(PGID_MCIPV4));
-> +	lan_wr(front_ports, lan9645x, ANA_PGID(PGID_MCIPV6));
+> +	mutex_lock(&lan9645x->fwd_domain_lock);
+> +
+> +	lan9645x->bridge_mask &=3D ~BIT(p->chip_port);
 
 [Severity: High]
-Will this configuration exclude the CPU port from multicast flooding groups?
+Does leaving a port in the forwarding mask when it is removed from a bridge
+create a race condition if it rejoins the bridge later?
 
-Since front_ports only contains the user ports, BIT(CPU_PORT) is omitted
-from the PGID_MC, PGID_MCIPV4, and PGID_MCIPV6 masks. Failing to flood IPv6
-multicast traffic to the CPU could break IPv6 Neighbor Discovery (Router and
-Neighbor Solicitations).
+If bridge_fwd_mask and stp_state are not cleared here in=20
+lan9645x_port_bridge_leave(), the stale forwarding state persists.
 
-> +
-> +	/* Unicast to all front ports */
-> +	lan_wr(front_ports, lan9645x, ANA_PGID(PGID_UC));
-> +
-> +	/* Broadcast to cpu and all front ports */
-> +	lan_wr(BIT(CPU_PORT) | front_ports, lan9645x, ANA_PGID(PGID_BC));
-> +
+When the port later rejoins the bridge, lan9645x_port_bridge_join() sets the
+bridge_mask bit again. There is a small window before the DSA core calls
+port_stp_state_set() to explicitly initialize the port to BR_STATE_BLOCKING
+(which would clear the bridge_fwd_mask bit).
 
-> --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_phylink.c
-> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_phylink.c
-[ ... ]
-> @@ -103,6 +103,50 @@ static int lan9645x_phylink_mac_prepare(struct phyli=
-nk_config *config,
-> +					unsigned int mode,
-> +					phy_interface_t iface)
-> +{
-[ ... ]
-> +	/* RGMII_0 is a 2:1 mux shared between port 4 and port 7. Reject
-> +	 * collisions by looking at current hardware state: the driver
-> +	 * maintains the invariant that RGMII_0_CFG=3D1 iff port 4 owns
-> +	 * RGMII_0, and for port 7 when GMII_ENA bit 7 is set this implies port
-> +	 * 7 owns RGMII_0.
-> +	 */
-> +	if (is_rgmii) {
-> +		hw_cfg =3D lan_rd(lan9645x, HSIO_HW_CFG);
-> +		gmii_ena =3D HSIO_HW_CFG_GMII_ENA_GET(hw_cfg);
-> +
-> +		if (port =3D=3D 4 && (gmii_ena & BIT(7)))
-> +			return -EBUSY;
-> +		if (port =3D=3D 7 && (gmii_ena & BIT(4)) &&
-> +		    HSIO_HW_CFG_RGMII_0_CFG_GET(hw_cfg))
-> +			return -EBUSY;
-> +	}
-> +
-> +	lan_rmw(HSIO_HW_CFG_GMII_ENA_SET(BIT(port)),
-> +		HSIO_HW_CFG_GMII_ENA_SET(BIT(port)), lan9645x, HSIO_HW_CFG);
+If a concurrent STP state change for another port in the bridge executes via
+the switchdev workqueue during this exact window, it will call
+lan9645x_update_fwd_mask(). The mask calculation bridge_mask &
+bridge_fwd_mask will falsely include the newly joined port, prematurely
+programming the hardware to forward traffic to and from it.
 
-[Severity: Medium]
-Is there a race condition between reading and writing the HSIO_HW_CFG regis=
-ter?
-
-Phylink mac_prepare callbacks can be invoked concurrently from per-port
-workqueues. If ports 4 and 7 negotiate link simultaneously, both could pass=
- the
-busy check before either writes its GMII_ENA bit, leading to conflicting
-hardware states on the shared RGMII_0 mux. Does this read-modify-write sequ=
-ence
-need switch-level locking?
-
-> --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
-> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
-[ ... ]
-> @@ -77,6 +77,20 @@ void lan9645x_port_set_tail_drop_wm(struct lan9645x *l=
-an9645x)
-> +{
-> +	int shared_per_port;
-> +	struct dsa_port *dp;
-> +
-> +	/* Configure tail dropping watermark */
-> +	shared_per_port =3D
-> +		lan9645x->shared_queue_sz / (lan9645x->num_phys_ports + 1);
-> +
-> +	/* The total memory size is divided by number of front ports plus CPU
-> +	 * port.
-> +	 */
-> +	dsa_switch_for_each_available_port(dp, lan9645x->ds)
-> +		lan_wr(lan9645x_wm_enc(shared_per_port), lan9645x,
-> +		       SYS_ATOP(dp->index));
-
-[Severity: Medium]
-Will this leave the tail drop watermark uninitialized for the CPU port?
-
-The memory size calculation correctly accounts for lan9645x->num_phys_ports=
- + 1
-to include the CPU port (index 9). However, dsa_switch_for_each_available_p=
-ort
-only iterates over DSA-known ports (indices 0 to 8). Since SYS_ATOP(9) is
-skipped, its watermark remains 0. Could this cause CPU-injected jumbo frame=
-s to
-be dropped on ingress?
+Could this bypass the STP blocking phase, creating a vulnerability to
+broadcast storms and temporary Layer 2 loops?
 
 > +
-> +	/* Tail dropping active based only on per port ATOP wm */
-> +	lan_wr(lan9645x_wm_enc(lan9645x->shared_queue_sz), lan9645x,
-> +	       SYS_ATOP_TOT_CFG);
+> +	/* Last port leaving clears bridge dev */
+> +	if (!lan9645x->bridge_mask)
+> +		lan9645x->bridge =3D NULL;
+> +
+> +	__lan9645x_port_set_host_flood(lan9645x);
+> +	lan9645x_update_fwd_mask(lan9645x);
+> +
+> +	mutex_unlock(&lan9645x->fwd_domain_lock);
 > +}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527-dsa_lan964=
-5x_switch_driver_base-v6-0-4d409ae64f3c@microchip.com?part=3D4
+5x_switch_driver_base-v6-0-4d409ae64f3c@microchip.com?part=3D5
 
