@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-304518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304520-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFMYGxw0Gmp+2AgAu9opvQ
-	(envelope-from <devicetree+bounces-304518-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:49:32 +0200
+	id SEOsMTc1GmoG2QgAu9opvQ
+	(envelope-from <devicetree+bounces-304520-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:54:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1397760A643
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:49:31 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8890960A7A7
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:54:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 25880302E336
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:49:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 92106307CDAF
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:49:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF4C287257;
-	Sat, 30 May 2026 00:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E1662C11EF;
+	Sat, 30 May 2026 00:49:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mFRN9cdI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Loc22R2U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E072D2737F9
-	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 00:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F6B32737F9
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 00:49:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780102141; cv=none; b=Y44Qajb5ZzQRKoxrl0do4iYh6UCSq57ob/cPPVn5zO9xqW9s/leELPIpkWFjsuWJDtAUQui1J6QxjXKyYosNqMlt1mNJl7DJzXhGoGs0cwTx/BZQhdHBvM4ACW1wT9cB3ZSyRSOT78xUpX3k71ryCzrHvzq7Y6WXZBFjK3/K9Ys=
+	t=1780102143; cv=none; b=KgBG+KEuY76tN032HOBLH+wbikAddkyvrVPYab/wNJE6QgbuppJZUDLg3IR4L3ajv8KZfPmtmwFBkUIlwnJZVav0WW9mnmCiUJ6tJ/lVZydKHjHt0fq5BKgDL3lgnMnxMkVE35wJ9ELX/ErbE9MKPPI+KwBFtTBfQi301FIVyLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780102141; c=relaxed/simple;
-	bh=Lt12Qg+pVRT6yKKgoiujWXyG06xK10IQAUgnUUDkOIo=;
+	s=arc-20240116; t=1780102143; c=relaxed/simple;
+	bh=06iXdapGIZkqCv0XwQZubq0W9hkk4wp5HTY4tjaqFlQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=pOerIClU/GypKJdu63xGUZxOILuqC+KiUFo6FeCuuodlOVDCt48F42rSR7Nt+mG8dU2ti2yTzWZr8jNAXLSiF6KoHMQpqCrkhsNnO6DSZl3XduisAiKzzDLrMbdl83g8aS7k6jizMF6cxa5A9FQ6hZL4tnbiI1b8jjy78GZEapY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mFRN9cdI; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C1C51F00893;
-	Sat, 30 May 2026 00:49:00 +0000 (UTC)
+	 Message-Id; b=bxlxlENCaXgdIOaQKnO1NwSmzuOCZUSPfoN5IZAuI98sK9oA0+5ecjLfL+lDV+D0N26T0bUywPIi0VTCJAUQDj6MaS+WMCTv98b0bOm/dNkD6ud1ljSLBfty2jQwYa6HWJQMIfzebKCFRjgEAjdKtLO3FSRQeCNwR+suCc1ekQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Loc22R2U; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F23501F00893;
+	Sat, 30 May 2026 00:49:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780102140;
-	bh=VUKS2YoTcjUC9pvGWTSkBcNPeWxJslRTBlqJ9geEAtE=;
+	s=k20260515; t=1780102142;
+	bh=Pbc7Z+mEI3p5qPEJBeGvuwyJKoRpaeVzV4N88psSDfA=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mFRN9cdIMS9KdBNGCHDTzKK4wnnu0p3xBFc/RQUR02XJwZDO135nD23KhatdL5rK2
-	 LmYh1lXGGe3dXUS2ueRNpoWae8MnF7079ULU7Kz99V1hpuxkg3S1Y+Cn3mGPVB/6qw
-	 ocHc98j/uSmyg126tXiGQW8JNRWYi0rXq6hLKJHhJNlL5t8JRg6UPERUarBEGKxFWf
-	 GcyzAmsnR5nCqYBqL85m+8f3xvVmNhPKnKccpZu4vuzurul85/spYpHaQnOaUlPM4V
-	 CILdnbSc2a0K7maPgxzLQSHj/IaEyR8K/VTb5zEjxKDr3ROsgIKs9e+uXiP4zpy6uK
-	 Jexa0lkiiE3/g==
+	b=Loc22R2UtYmLmB2WXWsTL7a138jx1ljzUCdksEOdDt26dK3AKp04RcJe4Rb8GOUNG
+	 QBSKddlQj68cyyaqy7YI0IrddjYU99aKkyESTdMQCcSeQMLHP6WCUfu84y0vWN7ZtQ
+	 mGEU/BZuV9YZbRDbwoDyV7ctvPBoCGy7ELZ2ZSSMVLFCXuVneHVP7pu6+1pg1YMoqS
+	 nQeO2hCWZL1hNVB+wT1+oBJUQLK2DkydAM1483sXDi9siYOrQ6yDquj/AtWH32UJ9z
+	 5D3LoxvzobxfZEe2iwxomC8oI0Q9VgxVzoIulbDUePpo7eXMLVHFbIJXimFEm8AlXw
+	 tcF29ffPf9KTQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v3 1/5] net: dsa: microchip: Add fallback
- Micrel compatibles
+Subject: Re: [PATCH net-next v3 4/5] net: dsa: microchip: Support Microchip
+ KSZ8995XA / KS8995XA
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Linus Walleij" <linusw@kernel.org>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260526-ks8995-to-ksz8-v3-1-c530f651989f@kernel.org>
-References: <20260526-ks8995-to-ksz8-v3-1-c530f651989f@kernel.org>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260526-ks8995-to-ksz8-v3-4-c530f651989f@kernel.org>
+References: <20260526-ks8995-to-ksz8-v3-4-c530f651989f@kernel.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 30 May 2026 00:49:00 +0000
-Message-Id: <20260530004900.8C1C51F00893@smtp.kernel.org>
+Date: Sat, 30 May 2026 00:49:01 +0000
+Message-Id: <20260530004901.F23501F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,14 +66,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304518-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304520-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
@@ -89,79 +89,74 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 1397760A643
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: 8890960A7A7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Making the KS8995 driver mutually exclusive with the KSZ SPI drive=
-r temporarily breaks support for legacy `micrel,ks8995` hardware, causing a=
- bisection regression.
-- [Medium] The Kconfig dependency `depends on !NET_DSA_MICROCHIP_KSZ_SPI` f=
-ails to prevent both drivers from being built as modules, defeating the sta=
-ted purpose of avoiding probe races.
+- [High] The KSZ8995XA PHY register emulation incorrectly maps and overwrit=
+es fundamental port control bits, disabling RX/TX and MAC learning.
 --
 
-commit ca8ff9ab891d7b4494af8f583c533c66ec764e52
+commit 2e706ae441971159b4241c28e24cf8f143178ad5
 Author: Linus Walleij <linusw@kernel.org>
 
-net: dsa: microchip: Add fallback Micrel compatibles
+net: dsa: microchip: Support Microchip KSZ8995XA / KS8995XA
 
-This commit adds fallback Micrel compatibles for KSZ SPI devices to allow t=
-hem
-to use the more capable KSZ driver. It also adds a Kconfig exclusion to avo=
-id
-probe races with the KS8995 driver.
+This adds support for the Microchip KSZ8995XA also known as the
+Micrel KS8995XA switch to the KSZ driver.
 
-> diff --git a/drivers/net/dsa/Kconfig b/drivers/net/dsa/Kconfig
-> index 4ab567c5bbafc..e704ab702c189 100644
-> --- a/drivers/net/dsa/Kconfig
-> +++ b/drivers/net/dsa/Kconfig
-> @@ -100,6 +100,7 @@ config NET_DSA_RZN1_A5PSW
->  config NET_DSA_KS8995
->  	tristate "Micrel KS8995 family 5-ports 10/100 Ethernet switches"
->  	depends on SPI
-> +	depends on !NET_DSA_MICROCHIP_KSZ_SPI
-
-[Severity: Medium]
-Does this dependency successfully prevent both drivers from being built as
-modules?
-
-Because NET_DSA_MICROCHIP_KSZ_SPI is a tristate config, configuring it as '=
-m'
-makes '!NET_DSA_MICROCHIP_KSZ_SPI' evaluate to 'm'. This satisfies the
-dependency for NET_DSA_KS8995, allowing it to also be built as a module,
-which could allow the probe races this patch intended to fix. To strictly
-enforce mutual exclusion, would `depends on NET_DSA_MICROCHIP_KSZ_SPI =3D n`
-be required?
-
-I note this issue is later resolved by commit 19ced6cb5c2f1 ("net: dsa:
-ks8995: Delete surplus driver") which completely removes the KS8995 driver.
+> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/mic=
+rochip/ksz_common.c
+> index 57c8abfe0147d..ac27beb3054bd 100644
+> --- a/drivers/net/dsa/microchip/ksz_common.c
+> +++ b/drivers/net/dsa/microchip/ksz_common.c
+[ ... ]
+> @@ -554,6 +554,20 @@ static const u8 ksz8895_shifts[] =3D {
+>  	[DYNAMIC_MAC_SRC_PORT]		=3D 24,
+>  };
+> =20
+> +static const u16 ksz8995xa_regs[] =3D {
+> +	[REG_SW_MAC_ADDR]		=3D 0x68,
+> +	[P_FORCE_CTRL]			=3D 0x0C,
+> +	[P_LINK_STATUS]			=3D 0x0E,
+> +	[P_LOCAL_CTRL]			=3D 0x0C,
+> +	[P_NEG_RESTART_CTRL]		=3D 0x0D,
 
 [Severity: High]
-Does making this driver mutually exclusive with the KSZ SPI driver
-temporarily break support for legacy micrel,ks8995 hardware?
+Will this register mapping inadvertently disable RX/TX and MAC learning?
 
-If CONFIG_NET_DSA_MICROCHIP_KSZ_SPI=3Dy, Kconfig forces CONFIG_NET_DSA_KS89=
-95=3Dn.
-However, at this commit, the KSZ SPI driver does not yet support the older
-micrel,ks8995 switches. Could this break network functionality for those
-devices during bisection?
+The newly introduced ksz8995xa_regs array maps P_LOCAL_CTRL and P_FORCE_CTRL
+to 0x0C, and P_NEG_RESTART_CTRL to 0x0D. The driver's PHY emulation
+functions (ksz8_w_phy and ksz8_w_phy_bmcr) apply KSZ8795-specific bitmasks
+to these offsets.
 
-I see support is restored later in the series by commit 2e706ae441971
-("net: dsa: microchip: Support Microchip KSZ8995XA / KS8995XA"), which
-ports KS8995 support to the new KSZ SPI driver.
+On the KSZ8995XA, offset 0x0C resolves to Port Control 12 (e.g., 0x1C for
+Port 1), where BIT 4 is Receive Enable and BIT 3 is Transmit Enable. When
+updating MII_ADVERTISE, the emulation applies PORT_AUTO_NEG_SYM_PAUSE (BIT =
+4)
+and PORT_AUTO_NEG_100BTX_FD (BIT 3). Clearing these advertisement bits
+appears to inadvertently disable RX and TX on the port.
 
->  	select NET_DSA_TAG_NONE
->  	help
->  	  This driver supports the Micrel KS8995 family of 10/100 Mbit ethernet
+Similarly, setting PORT_FORCE_FULL_DUPLEX (BIT 5) via MII_BMCR sets Learning
+Disable. When phylink automatically configures the PHY on startup, these
+writes could execute and completely break the switch port's network
+functionality.
+
+> +	[P_REMOTE_STATUS]		=3D 0x0E,
+> +	[P_SPEED_STATUS]		=3D 0x09,
+> +	[P_STP_CTRL]			=3D 0x02,
+> +	[S_START_CTRL]			=3D 0x01,
+> +	[S_BROADCAST_CTRL]		=3D 0x06,
+> +	[S_MULTICAST_CTRL]		=3D 0x04,
+> +};
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260526-ks8995-to-=
-ksz8-v3-0-c530f651989f@kernel.org?part=3D1
+ksz8-v3-0-c530f651989f@kernel.org?part=3D4
 
