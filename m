@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-304491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304492-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wIIrHr8zGmrQ2AgAu9opvQ
-	(envelope-from <devicetree+bounces-304491-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:47:59 +0200
+	id GKuYCNozGmrQ2AgAu9opvQ
+	(envelope-from <devicetree+bounces-304492-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:48:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA22460A52A
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:47:58 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 245C460A573
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:48:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 33CB7306F882
+	by sin.lore.kernel.org (Postfix) with ESMTP id E598B3026507
 	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:45:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C85712DF719;
-	Sat, 30 May 2026 00:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3A762DB7AE;
+	Sat, 30 May 2026 00:45:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aKsFB3eu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OD/tkyzB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB042DC76C;
-	Sat, 30 May 2026 00:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D912D949C;
+	Sat, 30 May 2026 00:45:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780101942; cv=none; b=pJb5MFSfTrb4MP0yK8oi9MvU/SmsqV++HBB3rAJrYvRZZNxBV/TcDZoM8rOLzr4hq8r6p8tLhTuR7yncA+HKo7C+PjsnZ4loXT2kulQPFvu1aeYtrZlA8rnC4KVtiF7B15ORZRld9Ta3kLV3i31ZcAoKff/7RpNy9oa4iW7G20s=
+	t=1780101943; cv=none; b=Ce4Pp47pgC4eE0fjbpTzjmEUlXPp+oq+B5n4Q9MhPYDdRauVDkQP78ap6taZdlaBlDjapJAw3NVJz52WmHvObnw6l8XqDQQZjoSWCOi3/REdgC3/2SHQVKrbKBe92yiS+PQJBozG9Tw7YWsziKRRwHDpfGhX2+jLuHi2cWmll3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780101942; c=relaxed/simple;
-	bh=hZrsprkC3piBu7Gs3nsnfYJbkjcSZ24uO0id/Qx/QQQ=;
+	s=arc-20240116; t=1780101943; c=relaxed/simple;
+	bh=ftezeYo2IDWYPG9ID0g2Rgt71TIyqPUn3QPZ/DUKRBI=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=KP2QJKc5e4flUQeA3b9n7Ban8SYlh2OruAZavduCUjrznCKGVO5Q6Is7nX77fOnaz733K1kpf9pJ9O6YX9jX26DTht7kcLLUJ8LOQKSnYqIV/C/mZPiFJAt45lTn+hY0RZzGrJuEq7Zis0IeDjt4dyB1E96dTBJnonf+hHwQTpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aKsFB3eu; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 422941F00893;
+	 Message-Id; b=ZMCkESZmlVRNZ5r4TIvRPack713ArW++OdneHwEqTHh5nx4Hn5i8iVvb5uCaZ88SxJsjFZ8EQogHzRi34ESrGQMB5kNkgy1lSmbO9jzMKOuZZGyQyIaLotup4/Kotp8Mrmd9I5ejK2e71iaOnl+V7jzb/weLBAklVi+FqO98H3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OD/tkyzB; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E04701F00898;
 	Sat, 30 May 2026 00:45:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780101941;
-	bh=V3fMNJZnPxXLkXLHJrV9yqQPyPsOVv1zijbqeFv5WxQ=;
+	s=k20260515; t=1780101942;
+	bh=1A2V2ZCSpNCIZalH6mMWfrZsX0gDBSZNOdXsLAhmFxM=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=aKsFB3euspezFXwl1GctlWwodgP8D8hENTmx2onX7yKW+Z8PMvmermfvynszaTC8y
-	 s6weQERvumwlpw9KA4EabRClBpP2dRiwNs1mpreG9xlDxVi149ae+eV9KudlUQCco5
-	 UXDx+TwSiKwb4o9Yvs/KIz3cX7k07uml+p9S7W2+0rT9dPUkSnMGMNkfD5ZAF1LDUd
-	 hYzBcsL0CKFutm+7q+Zp6u0ufxmsTH8cINeFwwhZDp0ZkLQ1o6K7cblolsH/4qOhQs
-	 4iyHGlkz5us9MCUNpdKXJv3nENWc5LKJ5QPSpNJ0uOSt8Kj+TC1Y3uEIhrjke2lIAp
-	 U49xTyZJNn5gg==
+	b=OD/tkyzByI/rsQVGH97qGP6t7x0aw8iIfY4BgsJD8IszFPfzI99dSKKQhqzPerD2q
+	 TnQfLS5ftPiC2WiuTO+EJWFi2OE+6+yKNrsse/zYi8ffUr0mKmQgVowVwpsOFwYacx
+	 HtYqStOoF1TgOPSOgUqDMvRbnoq7VUMG6+Z+QxggYBOw6mqFmdRtFQg2hyqIB9QrCi
+	 yi4CnXBQSfwMedUPX8pqaqx97+MemY9nPSeA8azo+hCavJ7oHcVorrEimZYX9GLiF+
+	 QFjq4tY+NIvQzhC87t0nhq0xJvhomna9XDPYKgHKgDOj+FkQgP03sM+oLnLwaWB+sS
+	 4lh4tcu0FkdZw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 13/23] net: bcmgenet: use platform_device_set_of_node()
+Subject: Re: [PATCH 14/23] pmdomain: imx: use platform_device_set_of_node()
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Bartosz Golaszewski" <bartosz.golaszewski@oss.qualcomm.com>
-Cc: Frank.Li@kernel.org, robh@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260521-pdev-fwnode-ref-v1-13-88c324a1b8d2@oss.qualcomm.com>
-References: <20260521-pdev-fwnode-ref-v1-13-88c324a1b8d2@oss.qualcomm.com>
+Cc: imx@lists.linux.dev, Frank.Li@kernel.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260521-pdev-fwnode-ref-v1-14-88c324a1b8d2@oss.qualcomm.com>
+References: <20260521-pdev-fwnode-ref-v1-14-88c324a1b8d2@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 30 May 2026 00:45:40 +0000
-Message-Id: <20260530004541.422941F00893@smtp.kernel.org>
+Date: Sat, 30 May 2026 00:45:41 +0000
+Message-Id: <20260530004541.E04701F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,94 +66,102 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304491-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304492-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url];
 	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCPT_COUNT_FIVE(0.00)[6];
 	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
-X-Rspamd-Queue-Id: EA22460A52A
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+X-Rspamd-Queue-Id: 245C460A573
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] Mixing `goto`-based error handling and scope-based cleanup (`__free=
-`) in the same function.
+
+Pre-existing issues:
+- [High] OF node reference underflow leading to double-free and use-after-f=
+ree in gpcv2 driver.
 --
 
-commit f58d150fd8f8c2ac44d34e557009b66b7a1a1343
+commit bd67fa18bf0839e7723c9cc2462ace1f391ce4b1
 Author: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
-net: bcmgenet: use platform_device_set_of_node()
+pmdomain: imx: use platform_device_set_of_node()
 
-This commit uses the platform_device_set_of_node() helper to assign the OF
-node for dynamically allocated platform devices. This is done ahead of
-reworking the reference counting logic for platform devices.
+Ahead of reworking the reference counting logic for platform devices,
+encapsulate the assignment of the OF node for dynamically allocated
+platform devices with the provided helper.
 
-> diff --git a/drivers/net/ethernet/broadcom/genet/bcmmii.c b/drivers/net/e=
-thernet/broadcom/genet/bcmmii.c
-> index a4e0d5a682687..451b23a039ceb 100644
-> --- a/drivers/net/ethernet/broadcom/genet/bcmmii.c
-> +++ b/drivers/net/ethernet/broadcom/genet/bcmmii.c
-> @@ -490,10 +490,14 @@ static int bcmgenet_mii_register(struct bcmgenet_pr=
-iv *priv)
->  	/* Retain this platform_device pointer for later cleanup */
->  	priv->mii_pdev =3D ppdev;
->  	ppdev->dev.parent =3D &pdev->dev;
-> -	if (dn)
-> -		ppdev->dev.of_node =3D bcmgenet_mii_of_find_mdio(priv);
-> -	else
-> +
-> +	if (dn) {
-> +		struct device_node *np __free(device_node) =3D bcmgenet_mii_of_find_md=
-io(priv);
-
-[Severity: Low]
-Does this mix scope-based cleanup and goto-based error handling in the same
-function?
-
-The bcmgenet_mii_register() function currently uses a goto-based cleanup pa=
-th
-later in the function. According to include/linux/cleanup.h, the expectation
-is that usage of goto and cleanup helpers should never be mixed in the same
-function.
-
-Could the entire function be converted to use scope-based cleanups, or shou=
-ld
-this remain as a traditional cleanup to avoid mixing the two patterns?
-
-> +
-> +		platform_device_set_of_node(ppdev, np);
-> +	} else {
->  		ppd.phy_mask =3D ~0;
-> +	}
+> diff --git a/drivers/pmdomain/imx/gpc.c b/drivers/pmdomain/imx/gpc.c
+> index 42e50c9b4fb9f..abca5f449a226 100644
+> --- a/drivers/pmdomain/imx/gpc.c
+> +++ b/drivers/pmdomain/imx/gpc.c
+> @@ -487,8 +487,7 @@ static int imx_gpc_probe(struct platform_device *pdev)
+>  			domain->ipg_rate_mhz =3D ipg_rate_mhz;
 > =20
->  	ret =3D platform_device_add_resources(ppdev, &res, 1);
->  	if (ret)
+>  			pd_pdev->dev.parent =3D &pdev->dev;
+> -			pd_pdev->dev.of_node =3D of_node_get(np);
+> -			pd_pdev->dev.fwnode =3D of_fwnode_handle(np);
+> +			platform_device_set_of_node(pd_pdev, np);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does the same fix need to be
+applied to drivers/pmdomain/imx/gpcv2.c?
+
+In imx_gpcv2_probe(), the scoped iterator for_each_child_of_node_scoped()
+drops the reference on np when the loop iteration ends. However, the child
+platform device's node is assigned using device_set_node(), which does not
+increment the OF node's reference count:
+
+drivers/pmdomain/imx/gpcv2.c:imx_gpcv2_probe()
+    ...
+    for_each_child_of_node_scoped(pgc_np, np) {
+        ...
+        pd_pdev->dev.parent =3D dev;
+        device_set_node(&pd_pdev->dev, of_fwnode_handle(np));
+       =20
+        ret =3D platform_device_add(pd_pdev);
+        if (ret) {
+            platform_device_put(pd_pdev);
+            ...
+    }
+
+When the platform device is eventually unregistered, or freed on the error
+path via platform_device_put(), platform_device_release() will invoke
+of_node_put() (or fwnode_handle_put() after the refcounting rework). This
+results in a double-free of the OF node, since the initial reference was
+never taken.
+
+Should platform_device_set_of_node() also be used in gpcv2.c to properly
+handle these reference counts?
+
+> =20
+>  			ret =3D platform_device_add(pd_pdev);
+>  			if (ret) {
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260521-pdev-fwnod=
-e-ref-v1-0-88c324a1b8d2@oss.qualcomm.com?part=3D13
+e-ref-v1-0-88c324a1b8d2@oss.qualcomm.com?part=3D14
 
