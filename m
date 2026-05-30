@@ -1,144 +1,123 @@
-Return-Path: <devicetree+bounces-304578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304579-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id tpAlIuiZGmoq6AgAu9opvQ
-	(envelope-from <devicetree+bounces-304578-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:03:52 +0200
+	id UGcDCa+eGmrE6AgAu9opvQ
+	(envelope-from <devicetree+bounces-304579-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:24:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D48C060BA4E
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:03:51 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77CD160BAE3
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 10:24:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7EE73044124
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 08:03:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CB92E30515BB
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 08:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44230347514;
-	Sat, 30 May 2026 08:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4FC384CF2;
+	Sat, 30 May 2026 08:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="QkUqcadY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lr3XSW/R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 776E022F767
-	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 08:03:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38ECC384CCE;
+	Sat, 30 May 2026 08:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780128229; cv=none; b=ked+QzEOZqvLFLPdD/yURk/bNzFV1y+HCfwbvluCXWNu+b1sOpqmvZzJHjAbtuDlI359ukluL1CtFUri8AXRzkrEtSwNfPzJDCzGx5HbZSruLBZkV0dwMQOMlHt04nHciUnv8lbfvDzuSIMgm5texF9icbSYt+mEAUbcekFSHFA=
+	t=1780129452; cv=none; b=nyNWvkzHdjf//OTb4TZIzxw+y+v2NcLpxWBZP+pbZ+h7nsJX+m06udAn71MDbAkrhBLgRB+mPJIGtS3Nm1dqNkARjRZzmE8+Lr3ywtSf/YwtxvetUFlXLWqK1B5dIrzpYZMCCbWpInLAba75Ng5KPRJqWGtivQmBrSAsTkMm70g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780128229; c=relaxed/simple;
-	bh=OBjJyaHsUhG+kbkg/GRlNDYPjFQcpMDJWYao+jWKk5w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ouMxaUD+sECgycF4e8wbzjTstdVUkynMZkJfUj/bioTVydyCxDInerYlwlmPGhnrgiPwtuuFsP5ZWt6evhJb4D2daEipM73384J0CRvtgyvORJJHRHis26gzjaAz5cpZoeQY8F/jrWAfuvvx5giSXZngtWP66sNpM3xV9I/OiBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=QkUqcadY; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=1ZntxwpWj9N7Ur
-	lJ3CIj2p7p3sXsFY7hoXTKPCTgIiU=; b=QkUqcadY3A51UTe2IgYbcZQUpY7ITq
-	1jjIurjcUbULwLEs9qJ+DECJ72QFFPzHxk2GKCaPQZeBw9lyUXZxl+dmLtROe9o9
-	rdwp+6IyzQW5beIF3piJBQds2qiAqnZCqXMXk/fiB/dMXZN6hB1ZxCWeyfogOt7E
-	FsPk6KdZ85psUffNECIMPWqKptppWG9lsiSl3q3ejysdQoDX7r3+Ca1hub2RFLTT
-	VmcsaW2W6K8J1KQo5ZoJAIP+ObGJ8xmviSXj6CNmWuj5sryVg5S+zAywiZD5wawV
-	YEUv6gfP494FKRUcoBZvHdfMWd+b4FpM4c1uEqufsiyLGpairlm4hurA==
-Received: (qmail 1684699 invoked from network); 30 May 2026 10:03:45 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 30 May 2026 10:03:45 +0200
-X-UD-Smtp-Session: l3s3148p1@cOOAZgRTZqKSAB1K
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2] arm64: renesas: r8a779g0: add MFIS node
-Date: Sat, 30 May 2026 10:02:22 +0200
-Message-ID: <20260530080340.24715-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1780129452; c=relaxed/simple;
+	bh=0kQgF0VU6WNLml0oxeOF7FDH7Un9q9mJ28Xv5n/URQA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CaX7575fL5IqfIC/i6u9tbctSyPcN8j1aL2EnZzTEyi7RiCu7I5FEk9uWsv1Qpp+PPyXiXSQ2RrOrcZM1M/OjHf/3E57BeOT5nPXv4KRKiwY9CCdYfrLEdzBwWhGZCn80011PjACCNQ7oHlZ8WrZGY9Fr+3PjhZDBt80e41JNlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lr3XSW/R; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BFFD1F00893;
+	Sat, 30 May 2026 08:24:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780129450;
+	bh=avfTWFeGMGmg1ha5Cp8GXYUEmbzZJ9JNXqzfpHVT4PA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=lr3XSW/RJq7tQURrbYa01m4nuNrteDP4JE4TJ96z+va0ETKn9PeM4HhkKgNbDlC7Q
+	 8su+Dm8RrN2D1yAlQx+NlmlJq4NiC6TYbs9Y9Fx6rGwcg+S8J0Qwl9GT3otUWRIsG4
+	 kr8pkXZjWctIxvcChJCnTh7heleAGs3Bmkb6L+e5UFe4QjAHqU6+JKMS+rt2DYLO+t
+	 c4tJZ3DOrz3Fs61Q3GJUDjfXWIaRPF44pdb18/HZFsikZdMFNJ78Q8OTd1IidVFuSw
+	 oIZoED+LkcVF1Y+Y4OpsG15GvoDw+Mzh4WbBev1gCc2IWALo/nP5HIolkDKa7fOzDX
+	 jmVUkAc83Bz2Q==
+Date: Sat, 30 May 2026 10:24:08 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Robert Marko <robimarko@gmail.com>, Guru Das Srinagesh <linux@gurudas.dev>, 
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 01/18] dt-bindings: firmware: qcom,scm: Add minidump
+ SRAM property
+Message-ID: <20260530-lumpy-zircon-gibbon-dc83bc@quoll>
+References: <20260522195009.2961022-1-mukesh.ojha@oss.qualcomm.com>
+ <20260522195009.2961022-2-mukesh.ojha@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260522195009.2961022-2-mukesh.ojha@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304578-lists,devicetree=lfdr.de,renesas];
+	TAGGED_FROM(0.00)[bounces-304579-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	DMARC_NA(0.00)[sang-engineering.com];
-	FREEMAIL_CC(0.00)[sang-engineering.com,glider.be,gmail.com,kernel.org,vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gurudas.dev,chromium.org,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:email,sang-engineering.com:mid,sang-engineering.com:dkim,e6260000:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,e6460000:email]
-X-Rspamd-Queue-Id: D48C060BA4E
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 77CD160BAE3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Describe the MFIS core which is used for various tasks including
-inter-processor communication. Interrupt numbers look irregular but they
-all work as expected on a Renesas R-Car V4H SparrowHawk board.
+On Sat, May 23, 2026 at 01:19:52AM +0530, Mukesh Ojha wrote:
+> On most Qualcomm SoCs where minidump is supported, a word in always-on
+> SRAM is shared between the kernel and boot firmware. Before DDR is
+> initialised on the warm reset following a crash, firmware reads this
+> word to decide if minidump is enabled and collect a minidump and where
+>  to deliver it (USB upload to a host, or save to local storage).
+> 
+> Add a 'sram' property to the SCM binding to describe a region in
+> always-on SRAM where the minidump download destination value could be
+> written. Boot firmware reads it before DDR is initialised on a warm
+> reset to decide where to store the minidump either to host PC or to
+> on device storage.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+You described how firmware is using it, but we do not run the firmware
+here. From this entire description we don't need it in DTS, because this
+is not a DTS for firmware.
 
-Change since v1:
-* fixed sorting (Sashiko)
-
- arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-index 82a7278836e5..08d7210629e5 100644
---- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-@@ -589,6 +589,23 @@ tmu4: timer@ffc00000 {
- 			status = "disabled";
- 		};
- 
-+		mfis: system-controller@e6260000 {
-+			compatible = "renesas,r8a779g0-mfis";
-+			reg = <0 0xe6260000 0 0xf000>;
-+			reg-names = "common";
-+			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 916 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 918 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 920 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 922 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "ch0e",  "ch1e",  "ch2e",  "ch3e",  "ch4e",  "ch5e",  "ch6e",  "ch7e",  "ch8e",  "ch9e",
-+					  "ch10e", "ch11e";
-+			#hwlock-cells = <1>;
-+			#mbox-cells = <2>;
-+			status = "disabled";
-+		};
-+
- 		tsn0: ethernet@e6460000 {
- 			compatible = "renesas,r8a779g0-ethertsn", "renesas,rcar-gen4-ethertsn";
- 			reg = <0 0xe6460000 0 0x7000>,
--- 
-2.51.0
+Best regards,
+Krzysztof
 
 
