@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-304522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304524-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KBH8FaI1Gmp+2AgAu9opvQ
-	(envelope-from <devicetree+bounces-304522-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:56:02 +0200
+	id 2HgJD6o1GmoQ2QgAu9opvQ
+	(envelope-from <devicetree+bounces-304524-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:56:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2C3660A804
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:56:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B5960A812
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 02:56:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 677C93093294
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:49:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E3F533097EA4
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 00:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 365A52DE70D;
-	Sat, 30 May 2026 00:49:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06552D7380;
+	Sat, 30 May 2026 00:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cr8oRwjx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hShMWbgk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ECF32D0603
-	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 00:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEAE7257851
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 00:49:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780102157; cv=none; b=KKSN3EERLxUybs12RPG0Er/XkCgyUmOXKhE7q/rDPPBj52YVNhIIChGz5K3EnvaKBwbVlmAxEQ7CnE7cnMzLA0/C7pth/yBItknY5jrDNpqxz5xy8jUsDKX8SlOEcNx20Odqjd5JES7HVJQdt9rlizo4n7qCEv7fgOf/mP0u/WQ=
+	t=1780102158; cv=none; b=GcCHUDrObnnKlBE3LIV1xgOWwqYtwLVwP7+9pAE26rrqeISG7OZcupQF9YKqlp1AIfvqT2z6liYdDWEgjSzXDucviQNUhdp4ZGbqGAdapAVAui1OLjTJ2GD/kXF7zXfonfqurwKWHGjz9ZlO0pY57mHDG7BvFSJV6RNyP25UwYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780102157; c=relaxed/simple;
-	bh=LrJSf1TFxlnhISZJGb/Z8L/TRk/s2hZvfv7zxy3i4Z4=;
+	s=arc-20240116; t=1780102158; c=relaxed/simple;
+	bh=lCeRbD8eCvBjLCF18XkwhcITe0znH6WkE6sFIGiCKtc=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=t6SK6nzLayfXcbdY3vpW6ly92huHYdt0pMGa7CviA9BMKnbMvb0L1/rJDukqLHQf/izJMRlhPXYq/INaNglvHjRQDqogZmnN0mOcR3gnNp53irkuT7aY83Kkv82MrX839bZflr0SMEsgyojmeiZGjMDbugj09T75RsBqdoLMGnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cr8oRwjx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE8311F00899;
-	Sat, 30 May 2026 00:49:15 +0000 (UTC)
+	 Message-Id; b=l9oKyxef+92dxks8qja3Fplk6agzdQzeX3uoyy/PRoFTpL/NZc7djzf6tne706dIBDfp8bTEDBNJfW9zju021zHvGMY6+uvWW6SbPHICOiizwxxgEwDhOYMbIHCJ6TiMrgfYzjOJbMsy/pv6Oa5pWobz2hxExrD9z/cUwoj646o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hShMWbgk; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B10F1F00898;
+	Sat, 30 May 2026 00:49:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780102156;
-	bh=eqbMM9kO1iE01uPoYSQmzQTUrSCWreiMABbnTMa9Pks=;
+	s=k20260515; t=1780102157;
+	bh=/bfkc/TBJoa44M4EXtJIfyaiv5LRhMuCSqysd3QwGlA=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=cr8oRwjxn7LEwObpX83+tFlyaANBI83NvM2OvHusRWRn/5ElxKmKOmoVLKXcYTo7A
-	 Xm4Ila06PkMH60CjLA2Djr2D7jEkXKuIj/MfQsHley0EbKmOcHyd+VvVtaqFReTm/U
-	 L671o9b4+5836qrmRpLa9ZslC95w92U+ArBWm7vxj8Y8OsmHE9zN3CZReYlOFxiFHT
-	 sSbToC0GYQluWjHnsdikbICFb5AdVUvlbumo1ej2ds4QgYm3AuSARIET52lI4Xt389
-	 5Bpl92F5cECL2y1ZHAEyOxqpnjZEFXfw5ljHSrIre6EGGmLBCK221c3P5Ca5nd5liC
-	 YizLqLikJyJiQ==
+	b=hShMWbgkrHuhsJdeklHUbwZpf4UvgT4ncwWdwEk8j+ahWqPqhIVqnu/jWF2NvcpaN
+	 IzNB7n7Lh2ZRXKheDaSqocUXkJFprZmuLdHK/44Y2qafhw6rRvrI6CUsyoFkVY7Z5i
+	 6U9UtQ6XuVkfZMIwFo1IixyGYh4RIXbEKfTQl+rmU4tQ6358/+kP/CE04tdw/D8XsD
+	 XNcm9RrjwJnfOzCkL3+26SlEjvmNjiuc6YpsO/NFREkA4rU22uIBGwcMnMyYF377BZ
+	 KV6MiTlGm9fyzIfin9bpSdUc5Tww6n3k8ra2wsru5S7Pv2A3caeQ9g67flHAT0oVXU
+	 50lb26AMisafQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v2 03/10] net: ethernet: oa_tc6: add
- OA_TC6_BROKEN_PHY quirk flag
+Subject: Re: [PATCH net-next v2 04/10] net: ethernet: oa_tc6: Export the C45
+ access functions
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Ciprian Regus via B4 Relay" <devnull+ciprian.regus.analog.com@kernel.org>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260527-adin1140-driver-v2-3-37e5c8d4e0a0@analog.com>
-References: <20260527-adin1140-driver-v2-3-37e5c8d4e0a0@analog.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260527-adin1140-driver-v2-4-37e5c8d4e0a0@analog.com>
+References: <20260527-adin1140-driver-v2-4-37e5c8d4e0a0@analog.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 30 May 2026 00:49:15 +0000
-Message-Id: <20260530004915.BE8311F00899@smtp.kernel.org>
+Date: Sat, 30 May 2026 00:49:16 +0000
+Message-Id: <20260530004917.5B10F1F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,7 +73,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304522-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304524-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
@@ -92,72 +92,87 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,analog.com:email]
-X-Rspamd-Queue-Id: A2C3660A804
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,analog.com:email,sashiko.dev:url]
+X-Rspamd-Queue-Id: 97B5960A812
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
 
+New issues:
+- [Low] Missing forward declaration for `struct mii_bus` in `include/linux/=
+oa_tc6.h`.
+
 Pre-existing issues:
-- [High] A use-after-free can occur in `oa_tc6_exit` due to calling `kthrea=
-d_stop` on a potentially exited SPI thread.
+- [High] `oa_tc6_mdiobus_read` silently masks negative error codes into `1`=
+ due to using a `bool` type for the return code variable.
 --
 
-commit 2df5842f4d484126d9bd25fecac7f531ed8e5916
+commit 4bde583a95e265a961f05530eea079dbd8883081
 Author: Ciprian Regus <ciprian.regus@analog.com>
 
-net: ethernet: oa_tc6: add OA_TC6_BROKEN_PHY quirk flag
+net: ethernet: oa_tc6: Export the C45 access functions
 
-This commit adds the OA_TC6_BROKEN_PHY quirk flag, allowing drivers to mana=
-ge
-the PHY manually by skipping oa_tc6's internal PHY initialization. It also
-converts oa_tc6_init() to take a configuration structure to avoid extending
-the function signature in the future.
+The C45 access functions can still be used by some Ethernet drivers
+which set the OA_TC6_BROKEN_PHY flag. Export them.
 
 > diff --git a/drivers/net/ethernet/oa_tc6.c b/drivers/net/ethernet/oa_tc6.c
-> index baba5aad84dfa..7ae3639beaddd 100644
+> index 7ae3639beaddd..4a1fd9fd75abe 100644
 > --- a/drivers/net/ethernet/oa_tc6.c
 > +++ b/drivers/net/ethernet/oa_tc6.c
-[ ... ]
-> @@ -1277,24 +1284,28 @@ static int oa_tc6_check_ctrl_protection(struct oa=
-_tc6 *tc6)
+> @@ -499,8 +499,8 @@ static int oa_tc6_get_phy_c45_mms(int devnum)
+>  	}
+>  }
 > =20
->  /**
->   * oa_tc6_init - allocates and initializes oa_tc6 structure.
-> - * @spi: device with which data will be exchanged.
-> - * @netdev: network device interface structure.
-> + * @config: pointer to a caller-filled structure describing the MACPHY
-> + *          (SPI device, net_device, and config flags).
->   *
->   * Return: pointer reference to the oa_tc6 structure if the MAC-PHY
->   * initialization is successful otherwise NULL.
->   */
-> -struct oa_tc6 *oa_tc6_init(struct spi_device *spi, struct net_device *ne=
-tdev)
-> +struct oa_tc6 *oa_tc6_init(struct oa_tc6_config *config)
->  {
+> -static int oa_tc6_mdiobus_read_c45(struct mii_bus *bus, int addr, int de=
+vnum,
+> -				   int regnum)
+> +int oa_tc6_mdiobus_read_c45(struct mii_bus *bus, int addr, int devnum,
+> +			    int regnum)
 
 [Severity: High]
-This is a pre-existing issue, but can calling kthread_stop() in oa_tc6_exit=
-()
-lead to a use-after-free?
+This is a pre-existing issue, but looking closely at the related
+oa_tc6_mdiobus_read() function in this file, it declares the return value
+variable as a bool:
 
-In oa_tc6_spi_thread_handler(), if oa_tc6_try_spi_transfer() returns an
-error, the kthread function returns. This causes the kthread to exit and its
-task_struct to be automatically freed.
+static int oa_tc6_mdiobus_read(struct mii_bus *bus, int addr, int regnum)
+{
+	...
+	bool ret;
 
-Later, if the driver is unloaded or an error handling path invokes
-oa_tc6_exit(), it unconditionally calls kthread_stop(tc6->spi_thread).
+	ret =3D oa_tc6_read_register(...);
+	if (ret)
+		return ret;
 
-Since kthread_run() does not acquire an extra reference for the caller,
-could kthread_stop() dereference the freed task_struct, potentially leading
-to a kernel panic?
+Could this cause negative error codes like -EPROTO to be silently masked in=
+to
+1, which the MDIO subsystem might treat as a successful read of 0x0001?
+
+Should the type of ret be changed to int here?
 
 [ ... ]
+
+> diff --git a/include/linux/oa_tc6.h b/include/linux/oa_tc6.h
+> index 6c38bf49e2a7e..95e041d7d77b6 100644
+> --- a/include/linux/oa_tc6.h
+> +++ b/include/linux/oa_tc6.h
+> @@ -32,3 +32,7 @@ int oa_tc6_read_registers(struct oa_tc6 *tc6, u32 addre=
+ss, u32 value[],
+>  			  u8 length);
+>  netdev_tx_t oa_tc6_start_xmit(struct oa_tc6 *tc6, struct sk_buff *skb);
+>  int oa_tc6_zero_align_receive_frame_enable(struct oa_tc6 *tc6);
+> +int oa_tc6_mdiobus_read_c45(struct mii_bus *bus, int addr, int devnum,
+> +			    int regnum);
+
+[Severity: Low]
+Does this header file need a forward declaration for struct mii_bus?
+
+If another file includes linux/oa_tc6.h without first including mdio.h or
+phy.h, this might cause compiler warnings or errors since struct mii_bus
+has not been declared yet.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260527-adin1140-d=
-river-v2-0-37e5c8d4e0a0@analog.com?part=3D3
+river-v2-0-37e5c8d4e0a0@analog.com?part=3D4
 
