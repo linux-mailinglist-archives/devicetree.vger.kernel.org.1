@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-304728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304729-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cE1+KO0jG2rO/QgAu9opvQ
-	(envelope-from <devicetree+bounces-304728-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 19:52:45 +0200
+	id OMREFEAlG2rO/QgAu9opvQ
+	(envelope-from <devicetree+bounces-304729-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 19:58:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F33246108FF
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 19:52:44 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB729610B97
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 19:58:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7FF0A301466B
-	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 17:46:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 75BC2300C328
+	for <lists+devicetree@lfdr.de>; Sat, 30 May 2026 17:56:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29468351C2F;
-	Sat, 30 May 2026 17:46:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB42342CA7;
+	Sat, 30 May 2026 17:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UxmAi2xO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oEIfecs7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 272AD3AB482
-	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 17:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA52C3AE18D
+	for <devicetree@vger.kernel.org>; Sat, 30 May 2026 17:56:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780163169; cv=none; b=IeSkOljwxy7icBxeU4RGq8n04D1pggmq+LOvvE+FFiQbw0ZvJ5nOs4GOUL4Ad4j6bP1p1ATL0pTjMkbUceN1da+tOzSAJFniGQHfvNbMyouGJuB/0o86If8hmJ4XESpaP5mHZUWZViDnl0fJz4mSqcrdsnywgKhTXn7o60VToGs=
+	t=1780163804; cv=none; b=UhSZVeRDesXb78nX/R2M7hn+GUQc1whbHm70/NpaUP0hu0+fQ+mJP7kEu3StcFeryWbpVu/ON8kxSx7PVFgF3MscHrOHDW40YsmAZvwUH/YAiqwrK6fzezH+1TxE+grc9fKUQS3MzJok8Jigz/9zye1kFUgznLBy3OCMZpyNQuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780163169; c=relaxed/simple;
-	bh=UOuQrPTmH+s4+UrMogh2qBK6J7N2chfgdwA7SeCyTBg=;
+	s=arc-20240116; t=1780163804; c=relaxed/simple;
+	bh=MobSg2E0kspVHEqWNlF715o2+XY5X0ih2aBMAQRjy54=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=thxsrLe8pvnuHQLDoGaXuwihGtra1m3mTjqVCEgvpuX0Ist2b3jaZMQSCi7BgkYKMLffKOE5w63lh2TuSF0ubeRhfur+zJOm6MafLJkYivEMDmwJ0jNujI7y37cEtPCHK2pSIZOHoeixx+i6xxnNhaz9QRSOb0fXA7tvVY3rAhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UxmAi2xO; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE5AD1F00893;
-	Sat, 30 May 2026 17:46:07 +0000 (UTC)
+	 Message-Id; b=JQyCxfgjR1PT43tqZs/kph33s3WzPz0G9b+93BRvik1rpHA5FLZzWO0GqwllH5/81kmJFN6gNV3FbmnYFnuRFVmmjh3HQfZ2GmCCe2pjIWkMSgUSapxyyxGCoagPFn9RLdC/aZqFaD3rsLroqZFIhwL960Eo7ceiFgaW7zdf1kg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oEIfecs7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FFC41F00898;
+	Sat, 30 May 2026 17:56:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780163168;
-	bh=hhNKpfIopQbnQGWcr1jZLOhw5byzac0k/fu2j6DrRjc=;
+	s=k20260515; t=1780163803;
+	bh=GbULqt59L7rbPovftjFEznDbz39BwPeWzva1fKlpzXE=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=UxmAi2xOJri/i5ww0UP92JPDsDFmpMiQKPNflJCyYHrK5mlYhtwxBrh2b1jG9HIjB
-	 2MXgjdF9WHodCl2dLSo4MCXIPx5MprW45TzDfh2N6L1esH8unKluOsvmyMwYcZxm7D
-	 B1t83ucQ8TeMUC5EqJ4DCmvV6w0nUh93Nj/FpiVje/FIe26/xddqb6e+gSrl5TJdvK
-	 qK7aAeF1PlC/cQh3B498EQAQT3uewFzgdiBhUSEh59NYwlefVCX7cRu+loKyqbFyd9
-	 BpLpsrEEMwJucQJHU1DwQfNfYhQrcbjOPqSgpSoa+My1DodbCYECBJISn7ms0anH68
-	 kCU0GChtP6y4g==
+	b=oEIfecs7JJ1u5SvXIFv5db0j0z47whiMRlZ4ku/cWzsYjcDAaAmJgr+b1YwSNHe0i
+	 gfePwkdh7vQ2j7SaA3oUA5F9HUZ3iq+tFVC8Jrxnv5TTH6Y+0KZHdvvQyke+YHc4IX
+	 TAeXa5cCV6hdcUs/Ec00/XRPoJ3iVRFF9us6rlkDYpzOdGbDUAaevATFhgvJFDvkW1
+	 a3PdbVxwloYb2eriBNWuXVokZqySl1Om08INWqE/mJv/82wj7kS4mQOujqKQaMk4rI
+	 A6JMS+M79Rf9MT+u/2cQZRYRHyTbhoP2peu7DvX12XDJuJm4u08OTUH6T9/HjUdo4h
+	 +qQnx0YElwe0A==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 RESEND 2/5] arm64: dts: sophgo: add initial Milk-V
- Duo S board support
+Subject: Re: [PATCH v5 RESEND 4/5] riscv64: dts: sophgo: add SG2000 dtsi
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Joshua Milas" <josh.milas@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260530173347.33533-3-josh.milas@gmail.com>
-References: <20260530173347.33533-3-josh.milas@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260530173347.33533-5-josh.milas@gmail.com>
+References: <20260530173347.33533-5-josh.milas@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 30 May 2026 17:46:07 +0000
-Message-Id: <20260530174607.BE5AD1F00893@smtp.kernel.org>
+Date: Sat, 30 May 2026 17:56:43 +0000
+Message-Id: <20260530175643.8FFC41F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,19 +65,20 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304729-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304728-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
@@ -89,69 +89,53 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: F33246108FF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid,4.196.180.0:email,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: EB729610B97
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] The device tree enables several hardware peripherals (emmc, gmac=
-0, i2c4, mdio, sdhci0, sdhci1, spi3, uart0) without defining or assigning t=
-heir required pinctrl configurations.
+- [Medium] Incorrect memory size specification for SG2000 SoC (256 MiB inst=
+ead of 512 MiB).
 --
 
-commit 562d6189b640dfe9eda31b9948bcc49d22497758
+commit c5b4a9fd5a4e96c34400baa5e56b2ce675d91e7b
 Author: Joshua Milas <josh.milas@gmail.com>
 
-arm64: dts: sophgo: add initial Milk-V Duo S board support
+riscv64: dts: sophgo: add SG2000 dtsi
 
-Adds initial arm64 support for the Milk-V Duo S board making it possible
-to boot Linux to the command line.
+This commit introduces the device tree source include file for the Sophgo
+SG2000 SoC for the RISC-V architecture.
 
-Link: https://milkv.io/duo-s [1]
-
-> diff --git a/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts b/arch/arm=
-64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
-> new file mode 100644
-> index 0000000000000..8632470f43ab0
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2000.dtsi b/arch/riscv/boot/dts=
+/sophgo/sg2000.dtsi
+> index 0000000000000..412adacc00576
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
-
+> +++ b/arch/riscv/boot/dts/sophgo/sg2000.dtsi
 [ ... ]
-
-> +&dmac {
-> +	status =3D "okay";
-> +};
+> +/ {
+> +	compatible =3D "sophgo,sg2000";
 > +
-> +&emmc {
-> +	bus-width =3D <4>;
-> +	no-1-8-v;
-> +	cap-mmc-hw-reset;
-> +	no-sd;
-> +	no-sdio;
-> +	non-removable;
-> +	status =3D "okay";
-> +};
+> +	memory@80000000 {
+> +		device_type =3D "memory";
+> +		reg =3D <0x80000000 0x10000000>;
 
 [Severity: Medium]
-Should these hardware peripherals have their pinctrl configurations defined?
+Should this memory capacity be 512 MiB instead of 256 MiB? The SG2000 SoC
+is a System-in-Package that integrates 512 MiB of DRAM, and the ARM64 device
+tree for the same SoC specifies 0x20000000.=20
 
-Several nodes are enabled here (emmc, gmac0, i2c4, mdio, sdhci0, sdhci1,
-spi3, uart0) without pinctrl-0 and pinctrl-names properties assigned.
+Setting this to 0x10000000 restricts the available RAM to 256 MiB unless it
+is explicitly overridden by a bootloader.
 
-Without these properties, the kernel will not initialize the pin
-multiplexing and relies entirely on the bootloader to have set up the
-pinmux correctly.
-
-If the bootloader behavior changes, or if a driver attempts to manage power
-states by suspending and resuming the device, these peripherals might fail
-to function.
+> +	};
+[ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260530173347.3353=
-3-1-josh.milas@gmail.com?part=3D2
+3-1-josh.milas@gmail.com?part=3D4
 
