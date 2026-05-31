@@ -1,179 +1,158 @@
-Return-Path: <devicetree+bounces-304835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304836-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yAx7MiH7G2qwIAkAu9opvQ
-	(envelope-from <devicetree+bounces-304835-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 11:10:57 +0200
+	id 8MPxNiL9G2rFIAkAu9opvQ
+	(envelope-from <devicetree+bounces-304836-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 11:19:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CA2B615461
-	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 11:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 454BA6154E1
+	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 11:19:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 936EF3031CE5
-	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 09:10:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 52ED8300D967
+	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 09:17:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BF66352010;
-	Sun, 31 May 2026 09:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100A22C08DC;
+	Sun, 31 May 2026 09:17:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iXzL26yt"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="kkS0M9o6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-43167.protonmail.ch (mail-43167.protonmail.ch [185.70.43.167])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5628A348C65;
-	Sun, 31 May 2026 09:10:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3CC32343BE;
+	Sun, 31 May 2026 09:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.167
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780218645; cv=none; b=PvNklpiyzyMaOFTSkPCGkVf6wlVpt4ZPwOvwBKWgzG+gLdnHVX5QX8OsEpmHHScSmWt405c9rbT7c4eFjPWsmNPasuXghd7KWcrnPhBmHLZwueVA09gKVqs8qd5RuDAORBLsZQ4qaKKXNfj5X6jU5UR6zbAxhE1gTpJS4dx1zgE=
+	t=1780219026; cv=none; b=JP5XUYcKBPCGA1d4+VQt3/fzxOlMsUxftCjO3eyT99yY6631C377aGhH2wlnFOBeesAixFrkk59jCnoWFJWhJwwbf8PNDIZDaBZtZfQdE5NewjA7PhOR2b4muC1bkb8oJ1eeXeITZYMV/Squ3/UHgM4JSTYvvB2PE/8cF5JWAeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780218645; c=relaxed/simple;
-	bh=6/oMIOAJ1Qzv7x2FN/hHsOLQFSqBCNkvqDPY2Y8JW24=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OitWnE2kNJ1poSYuHrSjrxC2YXMeddMVSz9UztbSujgLzbDX9VmwCpObHp4REPNnScqCdI1Y6IzujcVvod2f9J0mRde0ghi51i+NTOugGe6rCrR8wHyVa4bPqJkjSqYP55sGeXTKeIr05m9GOXrYEwvq2yp/LxVu9EMdM/6Rvqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iXzL26yt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 292D9C2BCFA;
-	Sun, 31 May 2026 09:10:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1780218645;
-	bh=6/oMIOAJ1Qzv7x2FN/hHsOLQFSqBCNkvqDPY2Y8JW24=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=iXzL26ytLKY2kWbtMH/8kkPcRAd5Ri2U43UyF30R34udyttJ9oNcm92e04e4iPZYJ
-	 v9HEQdLnKUchGkU8BQ/li2h4ligNIAFb5b+JKr7Q5RJ4ZzCqb3NdLRgSWHyWW1W2RP
-	 tWY60yFH12g+m0itr24pb+mTL45tdNKuWHQqBonIEAgNyfwio8Cb5HUUwwIETHgYLk
-	 0vmDetHL4sJZyfAs1RHULpIBau3DsUGIOgjrRA5MU5TjKjI5+AIEJoE3GLyPOSzsnE
-	 sH3YhntSnx1RBh1z5wnp2Cme6AcAfGf5v07TimLnNzrV2TQQl75sIzJ/jZYhcRGdxa
-	 XuXgocVUctWOw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 20867CD6E56;
-	Sun, 31 May 2026 09:10:45 +0000 (UTC)
-From: Yassine Oudjana via B4 Relay <devnull+y.oudjana.protonmail.com@kernel.org>
-Date: Sun, 31 May 2026 11:10:45 +0200
-Subject: [PATCH v2 4/4] Input: mtk-pmic-keys - Add support for MT6328
+	s=arc-20240116; t=1780219026; c=relaxed/simple;
+	bh=jHz8CVODyq/bGFHHw1uFbsab5fAepr9pEEGfvssULnA=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YfD4XiWImYp6wh9il/8TrT+CHFePDGqe2Lc1btpiYt1jWUwZRRBIwhJRQQyuk3b3GPjHstX6S5wek6QGxpLGpy5dSh3PNjfjEwhh7ieg4bmXVbA/LkZ5apl8MnVvZ3iSvWRiRXQZAZr+/bmsHSW6nLbqEyoU1frn4XCcZt6Rt54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=kkS0M9o6; arc=none smtp.client-ip=185.70.43.167
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1780219021; x=1780478221;
+	bh=6Mi/KLOUb5arO23rwQT+9y7j1zQmga8RdlBDubg+76U=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=kkS0M9o65E9vzU0tAQN3sG+1sNy/wqRGMLlBz6rgYzhRrhrKCYAcix10tZSei36Rq
+	 A49IY34WBaDVMNn7Zt7eyW4Z3ernS+5S/Vwn2OhMTe3ohROjGNJj1xywXCUJ4X2GiW
+	 +ZOD1u1hbuP5jc5AEIZLB702dpCk1xO+PccTCrDCugGA0zfHhMxEhzn8LUt4V2wjP0
+	 K4JH90O8bLjt0AUV3k/ykRjl6LzupDieaAVunXpN7Onl7bNyl9FwsCNyJtXZSz8pfq
+	 BeGeufQuklPkukCPDtABDmasJ33OVFmaoN44yBoDgl74Qj5o6Ph9Mo9rzcr9nGlM3t
+	 dhq+BtB6dMFjg==
+Date: Sun, 31 May 2026 09:16:56 +0000
+To: y.oudjana@protonmail.com
+From: Yassine Oudjana <y.oudjana@protonmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Flora Fu <flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] MediaTek MT6735+MT6328 SoC/PMIC pair base support
+Message-ID: <wQ6oaceRZHkMTNpnvLBdrScK2DqHJ1boThn_3lf03guV83pOD24rG4c-a66ziGBrXPj09-xHK_pJoA1QvsP_wxvGZGT3y8KAhnIXaRERtH0=@protonmail.com>
+In-Reply-To: <20260531-mt6735-pwrap-mt6328-pmic-v2-0-dac37bf92894@protonmail.com>
+References: <20260531-mt6735-pwrap-mt6328-pmic-v2-0-dac37bf92894@protonmail.com>
+Feedback-ID: 6882736:user:proton
+X-Pm-Message-ID: 06f8c2a7c3d9eadd276875d922d56e33b78a84b5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260531-mt6735-pwrap-mt6328-pmic-v2-4-dac37bf92894@protonmail.com>
-References: <20260531-mt6735-pwrap-mt6328-pmic-v2-0-dac37bf92894@protonmail.com>
-In-Reply-To: <20260531-mt6735-pwrap-mt6328-pmic-v2-0-dac37bf92894@protonmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Flora Fu <flora.fu@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Yassine Oudjana <y.oudjana@protonmail.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, linux-input@vger.kernel.org
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780218643; l=1904;
- i=y.oudjana@protonmail.com; s=20260531; h=from:subject:message-id;
- bh=CI2JtjrfQGfceMW9Mo7uuZDEncWSbsLSjy6NPimDCZ8=;
- b=YumAYlYpzOnp4NdRv+QSZzgC27vFRedblud7yqmZoD1WccQnx+bmUwOBZrHH5iqjvuYbuKUR/
- 4msldZHl4rBCGFN1KEIleh8cgcC0AuzhnP4TgGssjazW09rDi/Yage7
-X-Developer-Key: i=y.oudjana@protonmail.com; a=ed25519;
- pk=sr7uwnyVqGKAIhvwnIwormkDM3d2VNc3VOTEU1GmsEM=
-X-Endpoint-Received: by B4 Relay for y.oudjana@protonmail.com/20260531 with
- auth_id=802
-X-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
-Reply-To: y.oudjana@protonmail.com
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-304836-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304835-lists,devicetree=lfdr.de,y.oudjana.protonmail.com];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,baylibre.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[protonmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[protonmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[protonmail.com];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[y.oudjana@protonmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.996];
+	DKIM_TRACE(0.00)[protonmail.com:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[protonmail.com,vger.kernel.org,lists.infradead.org];
+	FROM_NEQ_ENVFROM(0.00)[y.oudjana@protonmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,baylibre.com,vger.kernel.org,lists.infradead.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:email]
-X-Rspamd-Queue-Id: 6CA2B615461
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,gitlab.com:url,protonmail.com:email,protonmail.com:mid,protonmail.com:dkim]
+X-Rspamd-Queue-Id: 454BA6154E1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Yassine Oudjana <y.oudjana@protonmail.com>
+On Sunday, May 31st, 2026 at 11:10 AM, Yassine Oudjana via B4 Relay <devnul=
+l+y.oudjana.protonmail.com@kernel.org> wrote:
 
-Add a compatible string and related data for the PMIC keys on the
-MT6328 PMIC.
+> These patches are part of a larger effort to support the MT6735 SoC famil=
+y in
+> mainline Linux. More patches (unsent or sent and pending review or revisi=
+on)
+> can be found here[1].
+>=20
+> This series adds base support for the MediaTek MT6735 SoC and MT6328 PMIC=
+ pair.
+> This includes PMIC wrapper support on the SoC side and regulators and key=
+s on
+> the PMIC side. The PMIC has other blocks such as an audio codec and batte=
+ry
+> charger which can be supported in the future.
+>=20
+> Changes since v1:
+> - Fit regulator definitions in 2 lines and 100 characters whenever possib=
+le.
+> - Remove get_mode and set_mode ops for regulators that don't support them=
+.
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/input/keyboard/mtk-pmic-keys.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Forgot to mention:
+- Remove MD register definitions.
 
-diff --git a/drivers/input/keyboard/mtk-pmic-keys.c b/drivers/input/keyboard/mtk-pmic-keys.c
-index c78d9f6d97c4..6aaca67e7703 100644
---- a/drivers/input/keyboard/mtk-pmic-keys.c
-+++ b/drivers/input/keyboard/mtk-pmic-keys.c
-@@ -9,6 +9,7 @@
- #include <linux/interrupt.h>
- #include <linux/kernel.h>
- #include <linux/mfd/mt6323/registers.h>
-+#include <linux/mfd/mt6328/registers.h>
- #include <linux/mfd/mt6331/registers.h>
- #include <linux/mfd/mt6357/registers.h>
- #include <linux/mfd/mt6358/registers.h>
-@@ -80,6 +81,17 @@ static const struct mtk_pmic_regs mt6323_regs = {
- 	.rst_lprst_mask = MTK_PMIC_RST_DU_MASK,
- };
- 
-+static const struct mtk_pmic_regs mt6328_regs = {
-+	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
-+		MTK_PMIC_KEYS_REGS(MT6328_TOPSTATUS,
-+		0x2, MT6328_INT_MISC_CON, 0x4, MTK_PMIC_PWRKEY_RST),
-+	.keys_regs[MTK_PMIC_HOMEKEY_INDEX] =
-+		MTK_PMIC_KEYS_REGS(MT6328_TOPSTATUS,
-+		0x4, MT6328_INT_MISC_CON, 0x2, MTK_PMIC_HOMEKEY_RST),
-+	.pmic_rst_reg = MT6328_TOP_RST_MISC,
-+	.rst_lprst_mask = MTK_PMIC_RST_DU_MASK,
-+};
-+
- static const struct mtk_pmic_regs mt6331_regs = {
- 	.keys_regs[MTK_PMIC_PWRKEY_INDEX] =
- 		MTK_PMIC_KEYS_REGS(MT6331_TOPSTATUS, 0x2,
-@@ -304,6 +316,9 @@ static const struct of_device_id of_mtk_pmic_keys_match_tbl[] = {
- 	}, {
- 		.compatible = "mediatek,mt6323-keys",
- 		.data = &mt6323_regs,
-+	}, {
-+		.compatible = "mediatek,mt6328-keys",
-+		.data = &mt6328_regs,
- 	}, {
- 		.compatible = "mediatek,mt6331-keys",
- 		.data = &mt6331_regs,
-
--- 
-2.54.0
-
-
+>=20
+> [1] https://gitlab.com/mt6735-mainline/linux/-/commits/mt6735-staging
+>=20
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+> Yassine Oudjana (4):
+>       dt-bindings: mediatek: pwrap: Add MT6735 compatible
+>       soc: mediatek: pwrap: Add support for MT6735 and MT6328 SoC/PMIC pa=
+ir
+>       regulator: Add driver for MediaTek MT6328 PMIC regulators
+>       Input: mtk-pmic-keys - Add support for MT6328
+>=20
+>  .../bindings/soc/mediatek/mediatek,pwrap.yaml      |   1 +
+>  drivers/input/keyboard/mtk-pmic-keys.c             |  15 +
+>  drivers/regulator/Kconfig                          |   9 +
+>  drivers/regulator/Makefile                         |   1 +
+>  drivers/regulator/mt6328-regulator.c               | 500 +++++++++++++++=
+++++++
+>  drivers/soc/mediatek/mtk-pmic-wrap.c               | 177 +++++++-
+>  include/linux/regulator/mt6328-regulator.h         |  49 ++
+>  7 files changed, 749 insertions(+), 3 deletions(-)
+> ---
+> base-commit: 7da7f07112610a520567421dd2ffcb51beaefbcc
+> change-id: 20260531-mt6735-pwrap-mt6328-pmic-de481d5c5e89
+>=20
+> Best regards,
+> --
+> Yassine Oudjana <y.oudjana@protonmail.com>
+>=20
+>=20
+> 
 
