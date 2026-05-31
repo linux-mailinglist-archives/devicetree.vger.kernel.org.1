@@ -1,175 +1,153 @@
-Return-Path: <devicetree+bounces-304825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304826-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uPBCAO/yG2oWHgkAu9opvQ
-	(envelope-from <devicetree+bounces-304825-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 10:35:59 +0200
+	id oGcyEUfzG2oWHgkAu9opvQ
+	(envelope-from <devicetree+bounces-304826-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 10:37:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BC6361522D
-	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 10:35:58 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD6C6615280
+	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 10:37:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 92C9030557D6
-	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 08:31:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 28F333016CE9
+	for <lists+devicetree@lfdr.de>; Sun, 31 May 2026 08:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2EF5383C67;
-	Sun, 31 May 2026 08:31:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Imi2NoGy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB4D4382385;
+	Sun, 31 May 2026 08:37:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ADA3382F17;
-	Sun, 31 May 2026 08:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69AAE3812EA
+	for <devicetree@vger.kernel.org>; Sun, 31 May 2026 08:36:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780216298; cv=none; b=t/nriy7vWCSAXDr37GyhDvdCIGJP87xZfiC52AWFbON2Q2QJb+fjwU1uXnvzKjs+AZohlmL31aCseM3lKUmUZnIXW2g8RgM/2JxZ0C/KQgzwizyDEPTdh6EOHp3nS06tRVMgkqP3oCsMJO+bMHl4OW3lWf1GXB7Z2w3gtDeRPuA=
+	t=1780216620; cv=none; b=hyW44KURQPmpbJCxdWviNmUktPZ8ohRi/csJSPI7ZmgffnqCq2S0EdPf3f4c98VO2co42blv4aAg6tZ8cf8CdpKHtynl9sD3clL8yTBAlC7szzmcY0StMvJnVAgxnbJYhLuuDfbD33dlxMTGNS3QY2EKW9WdSNX9SVQauap/c0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780216298; c=relaxed/simple;
-	bh=aM5yeD8D0EpZb33GZB7QNZJF6fH7o1iaBw8tXcjXvyI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Nk4sVrZ0jSU82beyLHRCT9kcf50b1us/jKgGLoCsLmDDx1ZNYa6WgxylhYrdN6T73PrhDG+VPF4Ri0nqIer1ztB2H+IYqnXQJd4ofaUPW38rzPVJeIZPeLoBGYdwRk6JGNvMks6rnuPyZ8Ob053o/rTfVqQVAPTwFRlpOGRBVgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Imi2NoGy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3BFD7C2BD00;
-	Sun, 31 May 2026 08:31:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1780216298;
-	bh=aM5yeD8D0EpZb33GZB7QNZJF6fH7o1iaBw8tXcjXvyI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Imi2NoGyptEm6AUAD4Y7WGYoRVM36TAKAIKc9w8E4h+nPYv4u4hYjs/whcXez+nT+
-	 OgnTnOKtVtghF/Gocz2RxQ2tXAQeAO+AL/scnB4dgEj+gk2FuQKTY+QxTTyIyyOGI9
-	 +B91mJZ4E9uyMPQQhqUMbdMiL9q5VqZ/5aBSZW25LVP3D1oabDlKqaH7hDDzm9ZkCw
-	 j2IiKWcl4xFsiTFQs+7qAVsHFWnPOUnK2Ry1gvxZjgiD9HluzptCctnKr/D6ST3JjZ
-	 TXTqDiiccnmrgrZ4Hpjf6MuDbSQA10+scuHvjctx6tEO3Pa2v9DimNint+uJOp2DsV
-	 Ie2s/90d6QVBw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3584ACD6E56;
-	Sun, 31 May 2026 08:31:38 +0000 (UTC)
-From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Sun, 31 May 2026 09:30:55 +0100
-Subject: [PATCH v15 12/12] Documentation: ABI: testing: add common ABI file
- for iio/frequency
+	s=arc-20240116; t=1780216620; c=relaxed/simple;
+	bh=VRoCK7u4CxDAaDhSmUkIbsYdQb82r8KYQ5s/yqVlez0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lfLTP/2chn97WF5MtvEzqDcglgCkW9GfJYOpgU9Oz2nB12OyO2vaG6LmMpkBpjbaIaU7vgMfjiqJl0PjarmrPIHbhAVT16O4neI5Hm4fRymTpPZj2dZNl2cGha0zMuNX0D1pvnXaZMmB6AyZgLUh2GmTWMt8fvBfj2puWapMWxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-96393ce9a8aso1968930241.0
+        for <devicetree@vger.kernel.org>; Sun, 31 May 2026 01:36:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780216618; x=1780821418;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KBvM2ORohpXQB4d5IQuHmDJKKy3F6iaCOKJvYc8ytZg=;
+        b=Q6axg2Xm0SzRBLk0d+jw0OTaphtgxNKanpHFZIVLHew4bGI3JjLzSXe0UNu6e6ej1J
+         h9przpUh0A2iVsWJeivwTYHJ3t0B8uOIirmffqa3i+XefiQWBuJo4o9986RdlrWHgux1
+         3/6uhCU9hEXFKgKCABGAtn+5fyko4C04TFe9spFYnk6QV9+OLavj8OSFoN0FOVet4Krd
+         Z/RwMW7pzkfLv8BL+B0UIueTuBOgQw8QiX9KRJ1XueU/M9MZzdAj6ddYeA+l6bGwHyS0
+         cjv3Sy2cmVMGpSjzF6cMwN4sWA+pIDg/An8wgDL1mxgb1rIDBUfHboFZLPEQX4yylyDB
+         YCdQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+Azi6r6eHKTln0QYcC3GfzjcB7GImDRuVDhIAdH+UkgbXhTIe6esJL82Nldry1BgdBZ/RIb8k18MeT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRWYu2loVcRDlaMgJ7QjAEz5BR52fuGHbGmLjIjzZqvu1g71ov
+	S/SQYJS/qy1WdivuLhw3j6s7tImrUA88luKqFd2G8z+c2OKbuZq6piIWLalqCUAj
+X-Gm-Gg: Acq92OHaUxdf86Byvesjtk6vgD32+eCSGOv0LwbcAfRf1zwGjqy11Pyzgsgf0PKBZrb
+	TFgiYbn9Uq+uVoHZIjMNmqFF88VrPYccR/7qyMyc8vRkvBN0Au9YRvqiXSleiQ8WuK5/UZEljgM
+	nyADaarom/bHLQZWNTQyDKd2Yc98Bv6OO1d5zvzs/GGAZzk8zHl1P1/ZyZgguaKhG3DZv3AijkO
+	kEay4YT4b877FOygHfRlqbEdobkTyMuxElhwEW80c3034qeXudPIkEJh3EB+Z1GE+hFHGU//pAx
+	j9TcfRBRDJGmOPv1RJ7DHlw62EwKdnAGw0Vjr/PboxMP7habG5WD6Z85qcwYcUqgsZNcc3vaQr7
+	koXKLnhiWo81p82BaROab7pHaTJ7qKzyYJuNyPbfKoKag0GTywA1z0ODN8hRwEIJIYx/rIpUsfc
+	Enq8mWFy3cpb3S7G7janbhTEGPhyYDLl+aWC/2ow7c+HGrxlT1+HgmyWJ55wJU4ZUO6MTzut0=
+X-Received: by 2002:a05:6102:5344:b0:631:2973:5c2c with SMTP id ada2fe7eead31-6c693648008mr2334808137.21.1780216618312;
+        Sun, 31 May 2026 01:36:58 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-963aba5f57csm4039215241.4.2026.05.31.01.36.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 31 May 2026 01:36:57 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-6c5a522d648so1279276137.2
+        for <devicetree@vger.kernel.org>; Sun, 31 May 2026 01:36:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+SkTX6z9LuR8jaIwAJUC8CRZCXjv4hr6nokCrDRawaPjm9Qm9Q0/aHUGnN7FwNHnTYsZ/C9guELpuq@vger.kernel.org
+X-Received: by 2002:a05:6102:5344:b0:631:4cda:3ebb with SMTP id
+ ada2fe7eead31-6c693a257bfmr2158834137.24.1780216616348; Sun, 31 May 2026
+ 01:36:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260531-adf41513-iio-driver-v15-12-da09adf1c0dd@analog.com>
-References: <20260531-adf41513-iio-driver-v15-0-da09adf1c0dd@analog.com>
-In-Reply-To: <20260531-adf41513-iio-driver-v15-0-da09adf1c0dd@analog.com>
-To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, 
- Sergey Senozhatsky <senozhatsky@chromium.org>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Rodrigo Alencar <rodrigo.alencar@analog.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780216295; l=2211;
- i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=swStfLGThUgetsoO5JlOQerjXKGwa5yLnNDxX9LhxH8=;
- b=de0z8neivuKOvRMhxA4AMSelLOg/TZ59JbdehhZ3s4UNhNotpzc2ApIQoe6mRHhJisJEcPqyT
- 3XqerNxsNV9AX7p3iiTsoGDbSXanHgTTVB42KmTqzB6faugh3MeeGfz
-X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
- pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
-X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
- with auth_id=561
-X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-Reply-To: rodrigo.alencar@analog.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
+References: <20260504144534.43745-1-marek.vasut+renesas@mailbox.org>
+ <20260504144534.43745-4-marek.vasut+renesas@mailbox.org> <CAMuHMdWdqDpU+AZrwz5ccbZPjJfp5DspoVscYi=Q+w-nniuuCQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdWdqDpU+AZrwz5ccbZPjJfp5DspoVscYi=Q+w-nniuuCQ@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Sun, 31 May 2026 10:36:44 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVcmFz0vr+YadbKOy111PgDFYCm6kgRMWjKxyNj4mxbWg@mail.gmail.com>
+X-Gm-Features: AVHnY4JIRr68RiPmOxbgFI01Y083MJgBCtNRl2Ceai1FVE5g6dLCk5lLsnDcPaA
+Message-ID: <CAMuHMdVcmFz0vr+YadbKOy111PgDFYCm6kgRMWjKxyNj4mxbWg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/7] dt-bindings: clock: cs2000-cp: document CS2500
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+	Conor Dooley <conor.dooley@microchip.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Brian Masney <bmasney@redhat.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Rob Herring <robh@kernel.org>, Ulf Hansson <ulfh@kernel.org>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,microchip.com,kernel.org,redhat.com,renesas.com,gmail.com,baylibre.com,sang-engineering.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-304826-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304825-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:replyto,analog.com:mid,analog.com:email]
-X-Rspamd-Queue-Id: 7BC6361522D
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.997];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,mail.gmail.com:mid,glider.be:email,linux-m68k.org:email]
+X-Rspamd-Queue-Id: CD6C6615280
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+On Wed, 6 May 2026 at 12:19, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Mon, 4 May 2026 at 16:46, Marek Vasut
+> <marek.vasut+renesas@mailbox.org> wrote:
+> > Document backward compatibility support for CS2500 chip, which
+> > is a drop-in replacement for CS2000 chip.
+> >
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > Acked-by: Stephen Boyd <sboyd@kernel.org>
+> > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Add ABI documentation file for PLL/DDS devices with frequency_resolution
-sysfs entry attribute used by both ADF4350 and ADF41513.
+Thanks, will queue in renesas-devel for v7.2.
 
-Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
----
- Documentation/ABI/testing/sysfs-bus-iio-frequency         | 11 +++++++++++
- Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350 | 10 ----------
- 2 files changed, 11 insertions(+), 10 deletions(-)
+Gr{oetje,eeting}s,
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency b/Documentation/ABI/testing/sysfs-bus-iio-frequency
-new file mode 100644
-index 000000000000..5af31b5b3a19
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency
-@@ -0,0 +1,11 @@
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_resolution
-+KernelVersion:	3.4.0
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Stores channel Y frequency resolution/channel spacing in Hz for PLL
-+		devices. The given value directly influences the operating mode when
-+		fractional-N synthesis is required, as it derives values for
-+		configurable modulus parameters used in the calculation of the output
-+		frequency. It is assumed that the algorithm that is used to compute
-+		the various dividers, is able to generate proper values for multiples
-+		of channel spacing.
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350
-index 1254457a726e..76987a119feb 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4350
-@@ -1,13 +1,3 @@
--What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency_resolution
--KernelVersion:	3.4.0
--Contact:	linux-iio@vger.kernel.org
--Description:
--		Stores channel Y frequency resolution/channel spacing in Hz.
--		The value given directly influences the MODULUS used by
--		the fractional-N PLL. It is assumed that the algorithm
--		that is used to compute the various dividers, is able to
--		generate proper values for multiples of channel spacing.
--
- What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_refin_frequency
- KernelVersion:	3.4.0
- Contact:	linux-iio@vger.kernel.org
+                        Geert
 
 -- 
-2.43.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
