@@ -1,339 +1,194 @@
-Return-Path: <devicetree+bounces-305227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305220-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YNNgAlynHWpbcwkAu9opvQ
-	(envelope-from <devicetree+bounces-305227-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:38:04 +0200
+	id UID6L+ylHWr5cgkAu9opvQ
+	(envelope-from <devicetree+bounces-305220-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:31:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D004621DD0
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:38:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C10621C5C
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:31:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0072F3112269
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 15:22:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CE70A30CA4ED
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 15:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC5B43E0255;
-	Mon,  1 Jun 2026 15:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE533DBD55;
+	Mon,  1 Jun 2026 15:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h1/4O/gP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T2qtuJWD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50BB13DB630
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 15:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 658AE3DB30C
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 15:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780327174; cv=none; b=kTiOAi0SZ8DX4x2vPChNU5insgrudwbINsF3XNy5z8DCulsB6jDZnGfSdQ6jyajna9AyGNosrx4hi7qceQMiOKahGlMOCDeWTJYTzAWzEKlWBPuOLLM2eymMd67TyRMXzEz/suLk6Y5QJXHmNUl+O8UOS6fWem88OwZks/ZR5GM=
+	t=1780327156; cv=none; b=BjcJ52ZFKweCU8nMVZ0z3leS9x8dLLxosJsciSGKqKbmEZZtpz5h5QbXbyCdJKkV07dF4gkOl0w40xGMyMHlXa9A/3BGykb/A57eY3IexrBbIgta0WVw0pViqdDoGTJmR3wV3pVTinZzHBlHpPPTdg4UkXjV7c4kdyw2zdfIRlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780327174; c=relaxed/simple;
-	bh=RZTQ2H/zzNTFrVxP5f5192LTONxSh/ltoz3RRhQzsG0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RX8KIpbrZm0uffqR5e8V0KMXS/ttIBuwKhOVXvbP8jsVxOHPsSQ8KpIQd/LyZOmkc8EJZm9JnhB6hQxV69V03lKJ70SMIZb5Eh/Sdkrws4fBbP1loBhwstHvPi03Exka0SCr88jejjiUc9lePt959uIFZqa1VcQNMliL48vBQQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h1/4O/gP; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-45ef779c1c2so1806491f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 08:19:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780327154; x=1780931954; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fl3qFf3690+fE50JY3SQOXjzJEQ1bfcjE1YgTovPA6E=;
-        b=h1/4O/gPfRv/HHJqc/lQyR287miEaJngBhbvey0jCYwGsUUUF05RtFdcwvDFn+z6Zj
-         6FWGRME/fTf4SFB3c3DR7hQBjG3CiAiVbPMDh/SRyM3GykIxJUGB/MbJMTzn5btjcazo
-         e8y+ByQORZZP5U0QfLffflTrIv5drS6KYIWtDZYBOTAwSbgS/jvjsM1G0L8Se3EqCbk7
-         Gbv41GbC1+SFKHFWKK0E5S7yOdCrhGgPP5+6s1nXkjy8yuEvORbscLTFDhd+dVKFCWhw
-         yinQbg/1FXZte3lPlRoKDbBDCJ8BE8tIbe46fofSQ6mbERohk9e/zQqSSZIvUmy+ClK3
-         JPOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780327154; x=1780931954;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=fl3qFf3690+fE50JY3SQOXjzJEQ1bfcjE1YgTovPA6E=;
-        b=k6xthoe7G/mqmE5UrHSmfAV8Yk/8pZ/B4Xfc+R3AkmJ/1SkAoZ/qNjeliipVDPbUJf
-         Z2Pu3SqCaNS74H9T9Szj4xKEhUe6FHRrQFBWbsctO8cQBMTog/8fbYBMWsSSK6aJNuQo
-         AjhgFP/c3aq9pmAm/UEr6eas4VG+x1sbgiX+mtl4YV017ShihYt+fcszVSYuFvOzlwCv
-         MOuz/uEPSm4SWszZbSbTJqRRAOo7EI7mkBc5HmVz7/70ZbemjOS1YNnDRIZInyMfrwqR
-         3LXc8MySCFuY8uMWrayzZ6cYYU1fw3Vm8YjlycWHnIiXrlpJjQeRx4DTuSm2SGdBMrw0
-         1cXg==
-X-Forwarded-Encrypted: i=1; AFNElJ8EBzCTKdXJm4pFGzkfSy3qorC98Bj0blBG63ffkwhThqGKEp2kWWkiKIvPutT0UWD5Jwb/CCrq72JZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxfg0zR0i54h4AQfsx78a2VVkrNZ6Uz7HGmGN2mDsvfajTjG5jN
-	B44JWPLGdQGLSfZ59nFY1zSes1p1y/lzBiv2dzSOXdJAGOPU81pbbO3B
-X-Gm-Gg: Acq92OG7XeLrtaRaZHwNDINRDNE9YPCjRXCD93F4KQCmXVKVT1xGgYmQRLR0aLjL+v+
-	0VWPAvCcZhnuh5dAxyztHkseFtbOJmhDxfPFN+dCUwmNHx2bTUDEnkgEQeIWi77D1N42hH024b8
-	FsxkhS+TWVeJ0x1ouFf+yF6raSouG2Nq/lbk4Jmn5e8BB6MokkJ6xcK9PDmk0u1LbB06gYFEC5h
-	O6CJO1pXBu5ax+WJhsTOd1uBA+cJsXUfiAQvV0GzxVNEj/FZU5+zg/lzSAbE9gJsOprI2fxkn6z
-	A8IqY0rNhSJO5XbO9IOQ6d03klZcSXqbBcTka2F7SHiUTjbkog9C3pF0buqcvkOiG0MmfKr5mj7
-	fAb8BiHgMxud6TruaTCMuTnvvZO10EUftqyeYbi1svCGVzaiVrC8VjagOlr1bpa8JeD4SuEUaPo
-	H/7Sbyp4csl/OnDbpcbJIhmyg=
-X-Received: by 2002:a05:6000:1376:b0:43d:7868:21f0 with SMTP id ffacd0b85a97d-45ef6afc537mr16294468f8f.9.1780327154150;
-        Mon, 01 Jun 2026 08:19:14 -0700 (PDT)
-Received: from xeon ([188.163.112.61])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45ef354cd7csm25753103f8f.18.2026.06.01.08.19.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jun 2026 08:19:13 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Lee Jones <lee@kernel.org>,
-	Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Helge Deller <deller@gmx.de>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Johan Hovold <johan@kernel.org>,
-	dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: [PATCH v3 11/11] video: leds: backlight: lm3533: Support getting LED sources from DT
-Date: Mon,  1 Jun 2026 18:18:31 +0300
-Message-ID: <20260601151831.76350-12-clamor95@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260601151831.76350-1-clamor95@gmail.com>
-References: <20260601151831.76350-1-clamor95@gmail.com>
+	s=arc-20240116; t=1780327156; c=relaxed/simple;
+	bh=S4VzG7oFX94AcWmughEF+OAZqTyC+22jQMCZXp8H/bs=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=KuyCkdCLWndQWOKu7RNNh1j3XLcqc9NJbGHh7jGF5KVKKk+3u1yMl/Eb/9e7l4iJMflHFzpwdDmteSitUB9OHsbVSUO4CyS30V4+8SOw/hR7MLy7iPR3C7s1TxYG/u7Sa9Ux9xVJVo4NaaQKbeC+550VH4wxbIyD7jszNO7xWcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T2qtuJWD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD44F1F00A1B;
+	Mon,  1 Jun 2026 15:19:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780327148;
+	bh=bjgW4RMsR3bGkhLNeFhGMKQDzyGH3gHXGZT93lTFak8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=T2qtuJWDTRst04DAsSgdiffxVfypxyl3NTUDI09iyczzOn33O+W0UEe4DDyPjFWlV
+	 llIZ3OgbIzZj6wqfSrRqiq+79nsiIU5eE+G6j/ss81IIP4In0ny+ifEJDcANyPXjNP
+	 pwYrSJYI+c1I2gIsr18s8li8RCskKLUCUMMhRCWMgNamwh9zeHBkbWjd47tcT4JhYd
+	 dzYraE4Rg3jfynyYTtqO5lh4a51h0HVO1AtLTRFZiUq5JonifhKiHZJW/gwTCZ94Dl
+	 N19Gm+ylgubjsA5apuyu8GlQymhfTCPCXoeRra+zaA0ro4Yf68nAVPZ+o/G4bfbgLh
+	 1t0MYOfTvUuvA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v8 2/2] arm64: dts: qcom: Add Xiaomi 12 Lite 5G (taoyao)
+ DTS
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Stanislav Zaikin" <zstaseg@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260601150752.666393-3-zstaseg@gmail.com>
+References: <20260601150752.666393-3-zstaseg@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 01 Jun 2026 15:19:07 +0000
+Message-Id: <20260601151907.AD44F1F00A1B@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-305227-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305220-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 9D004621DD0
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.0:email,0.0.0.2:email,a9000000:email]
+X-Rspamd-Queue-Id: 27C10621C5C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add Control Bank to HVLED/LVLED muxing support based on the led-sources
-defined in the device tree.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] The SBU port in the USB-C connector node has a mismatched unit-a=
+ddress and reg property (`port@2` with `reg =3D <1>`).
+- [Low] Invalid 'mem-type' property in the ramoops node.
+--
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/leds/leds-lm3533.c          | 55 ++++++++++++++++++++++++++++-
- drivers/video/backlight/lm3533_bl.c | 40 ++++++++++++++++++++-
- 2 files changed, 93 insertions(+), 2 deletions(-)
+commit 444192d5f33eb93dfce53fe410ae77991af6102e
+Author: Stanislav Zaikin <zstaseg@gmail.com>
 
-diff --git a/drivers/leds/leds-lm3533.c b/drivers/leds/leds-lm3533.c
-index f2502daf450d..6db1c1fd2e20 100644
---- a/drivers/leds/leds-lm3533.c
-+++ b/drivers/leds/leds-lm3533.c
-@@ -7,6 +7,7 @@
-  * Author: Johan Hovold <jhovold@gmail.com>
-  */
- 
-+#include <linux/bits.h>
- #include <linux/module.h>
- #include <linux/leds.h>
- #include <linux/mfd/core.h>
-@@ -27,6 +28,12 @@
- #define LM3533_ALS_CHANNEL_LV_MIN	1
- #define LM3533_ALS_CHANNEL_LV_MAX	2
- 
-+#define LM3533_REG_OUTPUT_CONF1			0x10
-+#define   OUTPUT_CONF1_MASK			GENMASK(7, 2)
-+#define   OUTPUT_CONF1_SHIFT			2
-+#define LM3533_REG_OUTPUT_CONF2			0x11
-+#define   OUTPUT_CONF2_MASK			GENMASK(3, 0)
-+#define   OUTPUT_CONF2_SHIFT			6
- #define LM3533_REG_CTRLBANK_BCONF_BASE		0x1b
- #define LM3533_REG_PATTERN_ENABLE		0x28
- #define LM3533_REG_PATTERN_LOW_TIME_BASE	0x71
-@@ -54,6 +61,9 @@ struct lm3533_led {
- 
- 	u32 max_current;
- 	u32 pwm;
-+
-+	int num_leds;
-+	u32 leds[LM3533_LVCTRLBANK_MAX];
- };
- 
- 
-@@ -641,7 +651,33 @@ static const struct attribute_group *lm3533_led_attribute_groups[] = {
- 
- static int lm3533_led_setup(struct lm3533_led *led)
- {
--	int ret;
-+	u32 output_cfg_shift = 0;
-+	u32 output_cfg_val = 0;
-+	int ret, i;
-+
-+	if (led->num_leds) {
-+		for (i = 0; i < led->num_leds; i++) {
-+			if (led->leds[i] >= LM3533_LVCTRLBANK_MAX)
-+				continue;
-+
-+			output_cfg_shift = led->leds[i] * 2;
-+			output_cfg_val |= led->id << output_cfg_shift;
-+		}
-+
-+		/* LVLED1, LVLED2 and LVLED3 */
-+		ret = regmap_update_bits(led->lm3533->regmap, LM3533_REG_OUTPUT_CONF1,
-+					 OUTPUT_CONF1_MASK,
-+					 output_cfg_val << OUTPUT_CONF1_SHIFT);
-+		if (ret)
-+			return ret;
-+
-+		/* LVLED4 and LVLED5 */
-+		ret = regmap_update_bits(led->lm3533->regmap, LM3533_REG_OUTPUT_CONF2,
-+					 OUTPUT_CONF2_MASK,
-+					 output_cfg_val >> OUTPUT_CONF2_SHIFT);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	ret = lm3533_ctrlbank_set_max_current(&led->cb, led->max_current);
- 	if (ret)
-@@ -716,6 +752,23 @@ static int lm3533_led_probe(struct platform_device *pdev)
- 	led->pwm = 0;
- 	device_property_read_u32(&pdev->dev, "ti,pwm-config-mask", &led->pwm);
- 
-+	led->num_leds = device_property_count_u32(&pdev->dev, "led-sources");
-+
-+	/*
-+	 * If led-sources property is not set then either this Control Bank uses
-+	 * its default LVLED or is not linked to any LVLED at all.
-+	 */
-+	if (led->num_leds > 0 && led->num_leds <= LM3533_LVCTRLBANK_MAX) {
-+		ret = device_property_read_u32_array(&pdev->dev, "led-sources",
-+						     led->leds, led->num_leds);
-+		if (ret) {
-+			dev_err(&pdev->dev, "failed to get led-sources\n");
-+			goto err_deregister;
-+		}
-+	} else {
-+		led->num_leds = 0;
-+	}
-+
- 	ret = lm3533_led_setup(led);
- 	if (ret)
- 		goto err_deregister;
-diff --git a/drivers/video/backlight/lm3533_bl.c b/drivers/video/backlight/lm3533_bl.c
-index 945625c54fc4..2119433bae45 100644
---- a/drivers/video/backlight/lm3533_bl.c
-+++ b/drivers/video/backlight/lm3533_bl.c
-@@ -7,6 +7,7 @@
-  * Author: Johan Hovold <jhovold@gmail.com>
-  */
- 
-+#include <linux/bits.h>
- #include <linux/module.h>
- #include <linux/init.h>
- #include <linux/mod_devicetable.h>
-@@ -22,6 +23,8 @@
- #define LM3533_HVCTRLBANK_COUNT		2
- #define LM3533_BL_MAX_BRIGHTNESS	255
- 
-+#define LM3533_REG_OUTPUT_CONF1		0x10
-+#define   OUTPUT_CONF1_MASK		GENMASK(1, 0)
- #define LM3533_REG_CTRLBANK_AB_BCONF	0x1a
- #define   CTRLBANK_AB_BCONF_MODE(n)	BIT(2 * (n) + 1)
- 
-@@ -35,6 +38,9 @@ struct lm3533_bl {
- 	u32 max_current;
- 	u32 pwm;
- 	bool linear;
-+
-+	int num_leds;
-+	u32 led_strings[LM3533_HVCTRLBANK_COUNT];
- };
- 
- 
-@@ -253,7 +259,8 @@ static struct attribute_group lm3533_bl_attribute_group = {
- static int lm3533_bl_setup(struct lm3533_bl *bl)
- {
- 	int id = lm3533_bl_get_ctrlbank_id(bl);
--	int ret;
-+	u32 output_cfg_val = 0;
-+	int ret, i;
- 
- 	ret = regmap_update_bits(bl->lm3533->regmap, LM3533_REG_CTRLBANK_AB_BCONF,
- 				 CTRLBANK_AB_BCONF_MODE(id),
-@@ -261,6 +268,20 @@ static int lm3533_bl_setup(struct lm3533_bl *bl)
- 	if (ret)
- 		return ret;
- 
-+	if (bl->num_leds) {
-+		for (i = 0; i < bl->num_leds; i++) {
-+			if (bl->led_strings[i] >= LM3533_HVCTRLBANK_COUNT)
-+				continue;
-+
-+			output_cfg_val |= id << bl->led_strings[i];
-+		}
-+
-+		ret = regmap_update_bits(bl->lm3533->regmap, LM3533_REG_OUTPUT_CONF1,
-+					 OUTPUT_CONF1_MASK, output_cfg_val);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	ret = lm3533_ctrlbank_set_max_current(&bl->cb, bl->max_current);
- 	if (ret)
- 		return ret;
-@@ -336,6 +357,23 @@ static int lm3533_bl_probe(struct platform_device *pdev)
- 	bl->pwm = 0;
- 	device_property_read_u32(&pdev->dev, "ti,pwm-config-mask", &bl->pwm);
- 
-+	bl->num_leds = device_property_count_u32(&pdev->dev, "led-sources");
-+
-+	/*
-+	 * If led-sources property is not set then either this Control Bank uses
-+	 * its default HVLED or is not linked to any HVLED at all.
-+	 */
-+	if (bl->num_leds > 0 && bl->num_leds <= LM3533_HVCTRLBANK_COUNT) {
-+		ret = device_property_read_u32_array(&pdev->dev, "led-sources",
-+						     bl->led_strings,
-+						     bl->num_leds);
-+		if (ret)
-+			return dev_err_probe(&pdev->dev, ret,
-+					     "failed to get led-sources\n");
-+	} else {
-+		bl->num_leds = 0;
-+	}
-+
- 	ret = lm3533_bl_setup(bl);
- 	if (ret)
- 		return ret;
--- 
-2.51.0
+arm64: dts: qcom: Add Xiaomi 12 Lite 5G (taoyao) DTS
 
+This commit adds devicetree support for the Xiaomi 12 Lite 5G handset,
+including display, touchscreen, UFS, buttons, regulators, remote
+processors, and USB device mode.
+
+> diff --git a/arch/arm64/boot/dts/qcom/sm7325-xiaomi-taoyao.dts b/arch/arm=
+64/boot/dts/qcom/sm7325-xiaomi-taoyao.dts
+> new file mode 100644
+> index 0000000000000..ec795f8adc467
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sm7325-xiaomi-taoyao.dts
+
+[ ... ]
+
+> +			ports {
+> +				#address-cells =3D <1>;
+> +				#size-cells =3D <0>;
+> +
+> +				port@0 {
+> +					reg =3D <0>;
+> +
+> +					pmic_glink_hs_in: endpoint {
+> +						remote-endpoint =3D <&usb_1_dwc3_hs>;
+> +					};
+> +				};
+> +
+> +				port@2 {
+> +					reg =3D <1>;
+
+[Severity: Medium]
+Is this port index correct for the SBU endpoint? The devicetree specificati=
+on
+requires the unit-address (@2) to match the first address in the reg proper=
+ty.
+
+Additionally, the usb-connector binding assigns fixed indices to ports:
+reg =3D <0> for High Speed, reg =3D <1> for SuperSpeed, and reg =3D <2> for=
+ SBU.
+Using reg =3D <1> here for the SBU port violates the schema and might logic=
+ally
+miswire the SBU mux to the SuperSpeed data graph port index, breaking
+alternate mode routing. It will also generate a dtc unit_address_vs_reg
+mismatch warning.
+
+> +
+> +					pmic_glink_sbu: endpoint {
+> +						remote-endpoint =3D <&fsa4480_sbu_mux>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+
+[ ... ]
+
+> +		cdsp_mem: cdsp@9c700000 {
+> +			reg =3D <0x0 0x9c700000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		ramoops@a9000000 {
+> +			compatible =3D "ramoops";
+> +			reg =3D <0x0 0xa9000000 0x0 0x200000>;
+> +			mem-type =3D <2>;
+
+[Severity: Low]
+Does this mem-type property pass upstream validation? This appears to be a
+downstream addition historically used to force memory caching attributes,
+which is not supported by the upstream ramoops bindings.
+
+Leaving this in will trigger a dtbs_check validation failure. Upstream
+typically handles memory attributes via standard reserved-memory properties
+like no-map.
+
+> +			pmsg-size =3D <0x100000>;
+> +			record-size =3D <0x100000>;
+> +		};
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260601150752.6663=
+93-1-zstaseg@gmail.com?part=3D2
 
