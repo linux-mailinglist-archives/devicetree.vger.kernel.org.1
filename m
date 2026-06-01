@@ -1,306 +1,228 @@
-Return-Path: <devicetree+bounces-304939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304929-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KllCwEuHWo4WAkAu9opvQ
-	(envelope-from <devicetree+bounces-304939-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:00:17 +0200
+	id wDsJN84qHWo4WAkAu9opvQ
+	(envelope-from <devicetree+bounces-304929-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 08:46:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D9161A89F
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:00:16 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8463761A578
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 08:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 914B1300398A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 06:59:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 272F3304809B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 06:43:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CBF3806CD;
-	Mon,  1 Jun 2026 06:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424E1376BC2;
+	Mon,  1 Jun 2026 06:43:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="AVod6Zd/"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fCjnLsQ/";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="j+jnaIUM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A35E345CD8;
-	Mon,  1 Jun 2026 06:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3B4836AB54
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 06:42:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780297193; cv=none; b=ON6nm/w0Gm7wMWO2ztuLYLQWzs08+Ej+xiTI+SPTAg6fgQgJWRzzPHoDMddSiGI07oglNRainrQjjzebIqFB4lkBw6hfgyr5jp9AltajFVc50w3EPPnJ6EHFy47Bdrg5T99fQsGz4Be9+wcdyhypgNOKZkgEbjwgtmULQEM1QjE=
+	t=1780296181; cv=none; b=iYigKb1g3T++je5EcMMu+V5RQXN64x23NdHZFf+0gT7IUB50n9fh6CkaZlzCzHDfHkFTepkh9hRHRQjIajRUxDnzmj2V/W6qwLMTgoshuSwN3A1b5c9u9Dvf3YQtGQNhRpVVzA8BV86T0V92awhLbVRDzQXJ8+vPUPyQYYLpn3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780297193; c=relaxed/simple;
-	bh=B0Pj6WT4oXE+nl+fmezXsKTRwJhBalayvj5k67U+TW0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nZa4MABKy+1nFf1jlV5YTDYS5iFBDOSNwMwROg2KJBQYRxIbZg41+eqEJYLroyLbekOk8TJc0zofFS93dlJXuU8uOL4/E4Y1cSWuQ0Ipf8VUFga4Ke0lYVe2ea3bZu5Jo0HqCMZf9iLuhk3Zajg3f4hj+0j0AlkVhMq8HSfk8Nk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=AVod6Zd/; arc=none smtp.client-ip=188.40.3.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=Content-Type:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=iTV5J9c1q6vU4HfXaFRAppoi5WMSCM3q+VMiSk/mHIo=; b=AVod6Zd/wLpW1zV3QJyTjcYH+k
-	qKq2Ly5mppBJmHYvWHjO1a2PpnPcysbt8HekijajAh60PTW3cD9F7fH9SEz6sGqHyLI1HAm3lPxnK
-	Ul8TQeyanb189L3nQiVI0hmjLEttTu8RSpz6IGjVTUkj9f2I8bs+pqnJ0x4vL/dU3j01TjM+1K6us
-	VMWov7ANnX6p2ubsMCQI3z33e4jzgP4na4uq6W7xWz+YJ/7rZWuBSeirN08A+OcCOPrSWVocO91dq
-	4pf+6XduOvybNiCCnisZD0mnRw1TLAUy4yG/igytrAEJWn4q18hTHmv30inxPMkoWy1cYw+BPUWwf
-	tQAW8cFQ==;
-Received: from sslproxy04.your-server.de ([78.46.152.42])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wTwEE-000DJL-1d;
-	Mon, 01 Jun 2026 08:34:26 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy04.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wTwEK-000IYB-1G;
-	Mon, 01 Jun 2026 08:34:32 +0200
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-phy@lists.infradead.org, Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: Ioana Ciornei <ioana.ciornei@nxp.com>, Vinod Koul <vkoul@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Tanjeff Moos <tanjeff.moos@westermo.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Subject:
- Re: [PATCH v2 phy-next 13/15] dt-bindings: phy: lynx-10g: initial document
-Date: Mon, 01 Jun 2026 08:34:25 +0200
-Message-ID: <2842502.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20260529171509.1163787-14-vladimir.oltean@nxp.com>
-References:
- <20260529171509.1163787-1-vladimir.oltean@nxp.com>
- <20260529171509.1163787-14-vladimir.oltean@nxp.com>
+	s=arc-20240116; t=1780296181; c=relaxed/simple;
+	bh=nYTn0G/ZDrzIo5l0OdoH+hwjxrMK1S6UIEIHuScxhhA=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Mk010TlD+XZC0yb1wik4uepKaV1TNmS+a4X9nOzIn7nwKTdEqRvuCJCpdwUjsnMYRtTG+hT3JNFxjZ6b6M8ojNkAZ+D10cHSPGs8Fo5L0wTAh8CwJUQZkk74YbKgyKRj2x+bQTfGkqoKf0Cap9gGPMFs7d234uO4MkV7vXRJ25o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fCjnLsQ/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=j+jnaIUM; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6516cU292465780
+	for <devicetree@vger.kernel.org>; Mon, 1 Jun 2026 06:42:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	BUoRT/umrxuN/KHs4F1vXvDSCGOLYsWvMyewnQxtID8=; b=fCjnLsQ/g23ip7p7
+	oBu+yycb5ND+i81+X9WRkdQWA08JR4L5yOXw5aeuGQE6c/oLdeRYlDn6f/EGKlDt
+	W99a2sm91LJ/sp5Hu1sqFS9YntrWh1yrFdkywUpD2uGa9ML5pbH8iOHUdZv8/fKM
+	YooEYIDLEwcA1iignOtMKMh7h58yTQEQJvWrViyezdAsQODRwoCpMFFVk/j1eZuv
+	V2Kcm7ImvvwPLOG8N9F58VcamlnEviarqp5XgBrGVN0PUAhAQPnSelfdNBeWZUzq
+	ojMYfNTd8C5t6MYtCO4J6UnjBpFaCZKIU690IkWh4qSjhqt2KChBchMArhPzIKhh
+	ccnwLQ==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4efs2hdxu9-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 06:42:59 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-36d99181eaaso1574557a91.3
+        for <devicetree@vger.kernel.org>; Sun, 31 May 2026 23:42:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1780296178; x=1780900978; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BUoRT/umrxuN/KHs4F1vXvDSCGOLYsWvMyewnQxtID8=;
+        b=j+jnaIUMikPYxQe3bGsVb7gl8GTAL4NZZJdzH3mbu90qbXmGTvsaMrK3bkJStuOT2/
+         9sqEYkF6b0m32uRFcCq1tjFSSKEWnf6dazkp3H9GpcNynWgzEJkc89pe10UjhcqnrVod
+         iOZl9aRjqLWtcDpz7bPd+bSsBWLScuw3Ix+SLwB/sasyqNhV78qzYPbwPdc+NqR7BvH6
+         B0NerUbmxmEav3VxeuGQ4GfmEtnDpd/+eGOI58OcglQNbgPoTBxDBjjr1Av2coVi9Y1L
+         VvcVXJXzAbVezueI03Lg1u7buAllW0BoshXwJpqAGqghbRFClD3PvtfCt8NmMe4Cclx6
+         YZPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780296178; x=1780900978;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BUoRT/umrxuN/KHs4F1vXvDSCGOLYsWvMyewnQxtID8=;
+        b=jy4dG/o2D3UdgLLPqxCVC4nxeOhZiAqmJVL2hnzrTDERob67DoW2MjyXGOeBjxfNvt
+         V4To8TWTxPlNJ77qDb1ccy/5gjm7oKcQXmqlWqdseDZeC+EMK8pLB4EnM7v90IVdoM7G
+         HHDq8PLD+bi3rhFWziqwZrnF8L89y0MV0ieFGWrUxKuUR8fYkKcVcHKbY9UKQePByuf6
+         we10tdMtow5f6GjRLZzRf+0xyY/e5l/CQDpxuBwoR48F+TCW6QbQEq/4BcKsybDO/J2z
+         6sakDjZ+ivbi2Bwu+GnO3Y/LIl3PA5G2T6+hr3H0yPGan/mrhvlaTdyFHLsSoZV6LiZF
+         px+g==
+X-Forwarded-Encrypted: i=1; AFNElJ/TiWfa+O1Jzgt9iHj+C1h6uiQnm+WRsBWZIUejTdncP+mvHJShc1nGVd1lkvK1C+N+331Z81nsUvoL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5iyj4EYighymSYh/p9FB1GCVmnzb0XleM1U7NXj1FhpTu2eBi
+	/tJxYG02A58qwH440yFBBPviJ4hyZmx0gZHvc914D7oeaZi9i5PPOBSsAVQyuwEy1q92VZZT+jg
+	8gcbMkkZyWqCxk1luQEu6fEvwThSwhQSlEItSK7XGYQ+PkxlRJjoR13BkC70e6/9lo/LMZb1l99
+	8=
+X-Gm-Gg: Acq92OFeAM+tOj5v9fivdkLs4QdEJJv4oUJg6e4y9qAsr0jZpsOlKDNKD2TTxLkoXAe
+	haK9+dpPEeV2rXpaccIzBs8vPph7l8uOfbc2cGBh/QWHzYqtpt2V8VhPQ0Llosyg62UsSRtuRA1
+	J1gQR6nyk6CLgOAMvuyhzTg3Bu4qMlLzibSsJw4jR/vLiHohTQQv3Cop7LRlXpJjvS/d7DQY7ZL
+	U8RrBe/FpZlrfmB2kxogj9zav+wSIZNwxlWsTbgZiH1JBQKLWOBMfdzcLoXRbGPN8hwvsTfr/yO
+	rUrR2z1NvmSeFoLVt8j0dHUFoEPkeS/a8UhipiCv3+tdljE/OZcHzKPJzvPo0zBmkahwAr6X/VE
+	UWTaIPZN37CNqnmYGpWJjGeQx9/IOTF3uOj3kOkt0MsWdP8UetzRF+X7VPtIT/w==
+X-Received: by 2002:a17:90b:5704:b0:36a:f612:e6a3 with SMTP id 98e67ed59e1d1-36c501b8fb2mr9707565a91.17.1780296178461;
+        Sun, 31 May 2026 23:42:58 -0700 (PDT)
+X-Received: by 2002:a17:90b:5704:b0:36a:f612:e6a3 with SMTP id 98e67ed59e1d1-36c501b8fb2mr9707531a91.17.1780296177992;
+        Sun, 31 May 2026 23:42:57 -0700 (PDT)
+Received: from [10.206.103.106] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36bc65e7afasm11934608a91.1.2026.05.31.23.42.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 31 May 2026 23:42:57 -0700 (PDT)
+Message-ID: <f7403443-3c0c-45d2-8235-46c70883a296@oss.qualcomm.com>
+Date: Mon, 1 Jun 2026 12:12:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Virus-Scanned: Clear (ClamAV 1.4.3/28017/Sun May 31 08:27:13 2026)
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+From: Nihal Kumar Gupta <nihal.gupta@oss.qualcomm.com>
+Subject: Re: [PATCH 4/8] arm64: dts: qcom: shikra: Add CAMSS node
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Vikram Sharma <vikram.sharma@oss.qualcomm.com>, bod@kernel.org
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, linux-arm-msm@vger.kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        Suresh Vankadara <quic_svankada@quicinc.com>
+References: <20260526-shikra-camss-review-v1-0-645d2c8c75a7@qti.qualcomm.com>
+ <20260526-shikra-camss-review-v1-4-645d2c8c75a7@qti.qualcomm.com>
+ <178000689150.4557.11759359941436928903.b4-reply@b4>
+ <df00e8d8-21ab-415f-815e-608eb7ab0967@oss.qualcomm.com>
+ <23d2a824-e894-4c26-8bd1-02bbb8a7c6d1@linaro.org>
+Content-Language: en-US
+In-Reply-To: <23d2a824-e894-4c26-8bd1-02bbb8a7c6d1@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjAxMDA2NSBTYWx0ZWRfX1mvYcwrWCtRg
+ pO/i3p7bfIw41Uis/n0DIp8usj8pj9OdOBVrDdvYhuqrDDFMnbp+KwHVyOGRIemix79Ezlj1ZYt
+ +pI47pwaxgMp4crcHpPqYp1/y7ItGb8Z5zX8dUfYfi2TIIsvZNQlAP/lCqC2xysyFUp4OFVJOPi
+ AkksUw0qQwdmCcktGt8FkeRYC5SPiqTqvwxa05LAe9Q/SfVgCdEWtV8djVasPrFgZ7xv2nDFwno
+ wgaLnU9Spx3bNS6K6/k6pa9Z8JxcyYT8ZAwPJJnaH2o7hZxxp86BD1TBIhuQICFAiKSNjHFowBb
+ cYAU/NJ2RunWxmqJA+J5N6a4GVQyxj7UYt0zfq3AJlvz8Y1o4peA9Sj3La2GtlPc3r82Ilso75I
+ JP4I5V5n9E37j50uA3erXevF4BoM8V56v5rdpz595WE3KDIFfX0ai7LW7b5j8R/Ye6grwv++cqt
+ UE7f8KFfB1oUuM6YrJQ==
+X-Proofpoint-ORIG-GUID: JPZqibiT-SnOTvjpuAUWzSioA_nXMTCH
+X-Proofpoint-GUID: JPZqibiT-SnOTvjpuAUWzSioA_nXMTCH
+X-Authority-Analysis: v=2.4 cv=UIvt2ify c=1 sm=1 tr=0 ts=6a1d29f3 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=5UiWIToyZdRRPDun-cEA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-01_02,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0
+ impostorscore=0 adultscore=0 malwarescore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606010065
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304939-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,oss.qualcomm.com,kernel.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,quicinc.com];
+	TAGGED_FROM(0.00)[bounces-304929-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:mid,oss.qualcomm.com:dkim,qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[nihal.gupta@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.996];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ew.tq-group.com:dkim,0.0.0.3:email]
-X-Rspamd-Queue-Id: B8D9161A89F
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 8463761A578
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
-
-Am Freitag, 29. Mai 2026, 19:15:07 CEST schrieb Vladimir Oltean:
-> Add a schema for the 10G Lynx SerDes. This is very similar to the modern
-> form of the 28G Lynx SerDes, which is very much the intention.
->=20
-> We allow both forms of #phy-cells =3D <1> in the top-level provider
-> and #phy-cells =3D <0> in the per-lane provider for more flexibility to
-> consumers, and because the kernel code is shared with the 28G Lynx which
-> already has that support for compatibility reasons.
->=20
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> ---
-> Cc: devicetree@vger.kernel.org
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
->=20
-> v1->v2:
-> - move patch later in series, right before driver
-> - deliberately ignoring this Sashiko feedback:
->   https://lore.kernel.org/linux-phy/20260529125017.ifqunh52gdzhthdg@skbuf/
-> ---
->  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 131 ++++++++++++++++++
->  1 file changed, 131 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.ya=
-ml
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml b/Do=
-cumentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> new file mode 100644
-> index 000000000000..993f076bba4e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> @@ -0,0 +1,131 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/fsl,lynx-10g.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale Lynx 10G SerDes PHY
-> +
-> +maintainers:
-> +  - Vladimir Oltean <vladimir.oltean@nxp.com>
-> +
-> +description:
-> +  The 10G Lynx is a multi-protocol SerDes block which handles networking=
-, PCIe,
-> +  SATA and other high-speed interfaces. It is present on most QorIQ and
-> +  Layerscape SoCs. The register map is common, but the integration is
-> +  SoC-specific, with the differences consisting in register endianness, =
-the
-> +  number of lanes, protocol converters available per lane and their loca=
-tion in
-> +  the PCCR registers. Some SoCs have multiple SerDes blocks and those di=
-ffer in
-> +  their protocol capabilities per lane.
-> +
-> +properties:
-> +  compatible:
-> +    description:
-> +      There is intentionally no generic fsl,lynx-10g compatible string d=
-ue to
-> +      the hardware inability to report its capabilities, despite having a
-> +      common register map.
-> +    enum:
-> +      - fsl,ls1028a-serdes
-> +      - fsl,ls1046a-serdes1
-> +      - fsl,ls1046a-serdes2
-> +      - fsl,ls1088a-serdes1
-> +      - fsl,ls1088a-serdes2
-> +      - fsl,ls2088a-serdes1
-> +      - fsl,ls2088a-serdes2
-
-Silly question: What about LS1043A? AFAIK it has a single serdes block.
-
-Best regards
-Alexander
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  big-endian: true
-> +
-> +  "#phy-cells":
-> +    const: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^phy@[0-7]$":
-> +    type: object
-> +    description: SerDes lane (single RX/TX differential pair)
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 7
-> +        description: Lane index as seen in register map
-> +
-> +      "#phy-cells":
-> +        const: 0
-> +
-> +    required:
-> +      - reg
-> +      - "#phy-cells"
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#phy-cells"
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,ls1028a-serdes
-> +              - fsl,ls1046a-serdes1
-> +              - fsl,ls1046a-serdes2
-> +              - fsl,ls1088a-serdes1
-> +              - fsl,ls1088a-serdes2
-> +    then:
-> +      patternProperties:
-> +        "^phy@[0-7]$":
-> +          properties:
-> +            reg:
-> +              minimum: 0
-> +              maximum: 3
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +      #address-cells =3D <2>;
-> +      #size-cells =3D <2>;
-> +
-> +      serdes@1ea0000 {
-> +        compatible =3D "fsl,ls1028a-serdes";
-> +        reg =3D <0x0 0x1ea0000 0x0 0xffff>;
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +        #phy-cells =3D <1>;
-> +
-> +        phy@0 {
-> +          reg =3D <0>;
-> +          #phy-cells =3D <0>;
-> +        };
-> +
-> +        phy@1 {
-> +          reg =3D <1>;
-> +          #phy-cells =3D <0>;
-> +        };
-> +
-> +        phy@2 {
-> +          reg =3D <2>;
-> +          #phy-cells =3D <0>;
-> +        };
-> +
-> +        phy@3 {
-> +          reg =3D <3>;
-> +          #phy-cells =3D <0>;
-> +        };
-> +      };
-> +    };
->=20
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+On 29-05-2026 20:28, Bryan O'Donoghue wrote:
+>> Regarding cdm iommu we have excluded it as we do not use it to program registers as of now.
+> 
+> Which will be a problem as soon as CDM is attempted to be enabled and yaml changes are dropped upstream.
+> 
+> Hmm then it seems to me that five is too many for Agatti's IOMMU set.
+> 
+> I'd like a number list so that we are discussing facts instead of nebulous hypotheticals.
+> 
+> For both Agatti and Shikra.
 
+Here is the full IOMMU SID list for both platforms:
+Agatti (QCM2290):
+- 0x0400 0x00 — VFE non-protected
+- 0x0800 0x00 — CDM non-protected
+- 0x0820 0x00 — OPE read non-protected
+- 0x0840 0x00 — OPE write non-protected
 
+Shikra:
+- 0x0400 0x00 — VFE non-protected
+- 0x0600 0x00 — CDM non-protected
+- 0x0620 0x00 — OPE read non-protected
+- 0x0640 0x00 — OPE write non-protected
+
+Only VFE SID (0x0400) is shared between the two platforms.
+The current Shikra submission enumerates only the VFE SID. 
+
+Should CDM and OPE each get a separate YAML binding like [1], or
+should both be part of the CAMSS YAML binding? If part of CAMSS, 
+please confirm and we will add their SIDs in the DTS in the next revision.
+[1] https://lore.kernel.org/all/20260508-camss-isp-ope-v3-9-bb1055274603@oss.qualcomm.com/
 
