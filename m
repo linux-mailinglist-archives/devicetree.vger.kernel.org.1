@@ -1,156 +1,123 @@
-Return-Path: <devicetree+bounces-305086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305089-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MOm8FSViHWojZwkAu9opvQ
-	(envelope-from <devicetree+bounces-305086-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:42:45 +0200
+	id AMMGBD9iHWojZwkAu9opvQ
+	(envelope-from <devicetree+bounces-305089-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:43:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3E0361DBE0
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:42:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5E3E61DC1D
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:43:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 395A9300A8C6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 10:19:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D88C303FDE9
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 10:20:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2930E30E0DC;
-	Mon,  1 Jun 2026 10:19:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C564395ACA;
+	Mon,  1 Jun 2026 10:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TbtgbRn8"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="k+OpxkXj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2E11FF7C8
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 10:19:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C0E395ADC;
+	Mon,  1 Jun 2026 10:20:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780309191; cv=none; b=AJnFCi+st/wbhc5K8xQUxfqrtEBao11wYQRnscJ6+gVcbmoUxuwcmcrkae7ZG9ps//bMkV1PnzOMuMf8flZeoULT/+m5XFLdqs4NCE53SQIb2Ahxpltxw1af5enSuchptGghZ0Zxz0cn0xa7uzagx8IOsMYmtjmPtSzpsu5m/vo=
+	t=1780309226; cv=none; b=U8btMLF8AW3KeYw2FN/kjxBtO2ekknAjqkSvd3OsUPZCM57rFQ9nMZUr9IhTSzJUA63SmA7c7kxfK1iY1U5qucU0pQQIA7vATiNS9SuErO13gpJ+2Ox3xLWiagjziMAU6lZcMv16K0X+6tNAbFcf6RBNQ+saRxSn72V7mIZ4DJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780309191; c=relaxed/simple;
-	bh=95ukIHxfe1JBh8KTu3NiwPCr7WlbYxxGSS30GuzJrTQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=alBG5bJ9ly06nfikkHO1uguthXPUp3We4V4iREb/gHBVwAHHNtheCnsQY9WeLeSBtolb6Ym9RcondHKhMWzEGPkqQpF3LRRFKiSkCuQurBlKIP5ktJjOePCEWjDF4bx6cvbjGk8hDO0sfameXw2cxeguLycDhIG3neARvYBDYvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TbtgbRn8; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 904CA1F00893;
-	Mon,  1 Jun 2026 10:19:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780309188;
-	bh=4BkuD3YkbfrMAt3V18V8M+IEmkW77njbAT9uXbEKhms=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=TbtgbRn8raittxRs4RcCxqfVDUpedlWSogDLDDlPNygglJkUvnuULStoOzBjRaQo7
-	 Ma/No3QiYe3DrrNWF54gBFMOZMFc3O2EO3KdZvG346gCCqGgRO+4fREuH0fpv2PmdS
-	 zMacKg6kAAfddysTjG2a7Y5sJDCgj/AZ2EggIDf1+PajvDq4V6mka0bHeO16G07hkg
-	 zsx8zRu+LPdQ98ARcUdstBNfrWt6PhLfKBfms7oOMnywPBpWlqYyyH/FBDvYLzRkJk
-	 YNu3hU+vKRXkIsEkXwkIYxg1PBBpF6c+e3Wqy4uQcAFQWqdDjkwKSLCx0uCWxDmeGU
-	 r2MVjC+Yes0ew==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v15 07/23] arm64: kexec_file: Fix CMA page leaks during
- segment placement retry loops
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jinjie Ruan" <ruanjinjie@huawei.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260601094805.2928614-8-ruanjinjie@huawei.com>
-References: <20260601094805.2928614-8-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 01 Jun 2026 10:19:48 +0000
-Message-Id: <20260601101948.904CA1F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780309226; c=relaxed/simple;
+	bh=1zdTjK78eqlbhHUB8EOuYJDEYfbTqYlRl9cJyvTI7wk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=T4vdrL0/dO3p2iPk4mqg9h39orOEDStLhY3QdpdNMHkv5mKBwH3q8V3magRvL+bNYEUxawbnKHafym62+BwKVk8yjvRo+3Dki2Nhx7hdxVucRdQ6okFuUrTPSG62+zVgPi4UKQYYQ7SWdVJNxmv5QqM6acZ0QGQahVokAGsEU3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=k+OpxkXj; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=SrImUZyjT4lmb9BXIxXyMNGdgHElksCa33HHo6A2zRM=; b=k+OpxkXjey2Lmif/YVYJXqdS98
+	v6TZM1Wo/TjHarw8jxVT8LASmto3lUevq7IivZw9mcm8YnF9ZFC5nbxLY6AiH0kzCmMwQaXkzEIv9
+	kzC+AnOC8yktwJToXXt6qKT73ZkFENaOwpflqybM9auVh7Q6TB/lBZt8dD7mMk4fFDCpHOGlSACqa
+	hHyhALN3No0U0Jm8YDGw+JzZkQTNyhZaybYV7gL2eK2FnDVwKpM3KUm23i+2QBw0DPzwhwYjwAUsP
+	vDyRJMweGynDNNS1PdEp7XyyKbSYXE/LeUu0+71wD2c/EBd5diCLqfQtRS3Yuw92R+88G5FrzGTQ+
+	UwkpzMLg==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Gray Huang <gray.huang@wesion.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	nick@khadas.com
+Subject: Re: [PATCH v3 0/2] arm64: dts: rockchip: Add peripheral support for Khadas Edge 2L
+Date: Mon,  1 Jun 2026 12:20:01 +0200
+Message-ID: <178030918401.239725.2769966054558634435.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260507033541.2576335-1-gray.huang@wesion.com>
+References: <20260507033541.2576335-1-gray.huang@wesion.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305086-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305089-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,huawei.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: B3E0361DBE0
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sntech.de:email,sntech.de:mid,sntech.de:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: A5E3E61DC1D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
 
-Pre-existing issues:
-- [High] CMA page leak during kimage destruction due to kernel segment mems=
-z truncation
---
+On Thu, 07 May 2026 11:35:39 +0800, Gray Huang wrote:
+> This patch series adds support for several key peripherals to the
+> Khadas Edge 2L board, which is based on the Rockchip RK3576 SoC.
+> 
+> These patches build upon the basic board support that was previously
+> applied to the rockchip tree. This series enables essential
+> functionalities including power management, RTC, wireless connectivity,
+> graphics, display output, and USB support.
+> 
+> [...]
 
-commit 92b0521f40a064f818d922d92b679f992a0b9e1d
-Author: Jinjie Ruan <ruanjinjie@huawei.com>
+Applied, thanks!
 
-arm64: kexec_file: Fix CMA page leaks during segment placement retry loops
+[1/2] arm64: dts: rockchip: Enable USB for Khadas Edge 2L
+      commit: 720fe68fd9f138ada2936ffcf3dd0129a889455a
+[2/2] arm64: dts: rockchip: Add Bluetooth support for Khadas Edge 2L
+      commit: ef81db2fdd5a75e3834a4726dc7837f6d2a7229d
 
-This commit addresses CMA memory leaks during arm64 kexec image placement
-retry loops. It explicitly calls kexec_free_segment_cma() to release aborted
-kernel segments before truncation. It also adds a backward iteration in the
-error path of load_other_segments() to free any orphaned allocations.
-
-> diff --git a/arch/arm64/kernel/kexec_image.c b/arch/arm64/kernel/kexec_im=
-age.c
-> index b70f4df15a1ae..ffcb7f9075e62 100644
-> --- a/arch/arm64/kernel/kexec_image.c
-> +++ b/arch/arm64/kernel/kexec_image.c
-> @@ -107,6 +107,7 @@ static void *image_load(struct kimage *image,
->  		 * We couldn't find space for the other segments; erase the
->  		 * kernel segment and try the next available hole.
->  		 */
-> +		kexec_free_segment_cma(image, kernel_segment_number);
->  		image->nr_segments -=3D 1;
->  		kbuf.buf_min =3D kernel_segment->mem + kernel_segment->memsz;
->  		kbuf.mem =3D KEXEC_BUF_MEM_UNKNOWN;
-
-[Severity: High]
-This is a pre-existing issue, but could modifying the segment size later in
-image_load() cause a CMA leak if the image is later unloaded or if the
-syscall fails?
-
-If the segment is successfully placed, the code modifies the segment size:
-
-arch/arm64/kernel/kexec_image.c:image_load() {
-    ...
-    kernel_segment =3D &image->segment[kernel_segment_number];
-    kernel_segment->mem +=3D text_offset;
-    kernel_segment->memsz -=3D text_offset;
-    ...
-}
-
-Since kexec_free_segment_cma() computes the number of pages to release by
-shifting the now-decremented memsz, will dma_release_from_contiguous()
-receive a smaller page count than was originally allocated, permanently
-leaking text_offset worth of CMA pages?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260601094805.2928=
-614-1-ruanjinjie@huawei.com?part=3D7
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
