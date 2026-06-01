@@ -1,171 +1,121 @@
-Return-Path: <devicetree+bounces-305010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305012-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8BDXJ/dOHWrDYgkAu9opvQ
-	(envelope-from <devicetree+bounces-305010-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 11:20:55 +0200
+	id MCHGC8BOHWrDYgkAu9opvQ
+	(envelope-from <devicetree+bounces-305012-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 11:20:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0059E61C4B7
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 11:20:54 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D417061C456
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 11:19:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 06861302E915
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 09:13:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B997A3028442
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 09:14:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51FDF3161A3;
-	Mon,  1 Jun 2026 09:13:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="isC5Gomo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59DA38B7AA;
+	Mon,  1 Jun 2026 09:14:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from twmbx01.aspeedtech.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46AD6312825
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 09:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53778385D88;
+	Mon,  1 Jun 2026 09:14:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780305226; cv=none; b=t/Un0CeV9WFQhQYI7JwgpFKbHYajiz++6oAKYC4Dywg+9w8G4fSv2F5hEPvD1SJOAEEuPE1GxvqgeCaHB+U9mXYnMJfr/1OqYhMam6SCksNmb7RuJgf3dZ7Ooynlya0zCTPX4vUKQk/oGgGrpCgn2V+jK+IaVXStlsWyO7KWqIw=
+	t=1780305260; cv=none; b=CkqFujiU2Q2WDIEEcDwpHYD59fswE98zIQZewRIhLMLjy8vULG3wjnFXALc31fMYAtIh9cfniEHqIooPP0K6yUA25KJGP+M9izGrKINF4GKo1Y6tTPd0wfawIrwcGFMfcRcUS0BlxpC+32Fs5paca6MTgKjrDjexYv3sN6B29ws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780305226; c=relaxed/simple;
-	bh=pWn2vZo0o/ChC4g28gQVvwz9kAoTXZ2WELlqjTVdf54=;
-	h=From:Subject:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=R9QZe61pLPA9MMZ4spfMZzEgX5tSACEDxXoio6eqw0fqLeNLBjdD3C0Gmgxt9TgMso36IACWIO36KJ/x9eI8UqfSq7IQgiZSpG2xucm4RYIz0w1S/I6pDF+m4OBraPmZAM8bNdjOhUyD7mzzAC44uK40gB/Pn2IMVGVJZwSYGeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=isC5Gomo; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEE871F00898;
-	Mon,  1 Jun 2026 09:13:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780305224;
-	bh=jiir70r1W1quZYGHKlzGdL0pEP9FP25ZK9BR/zWikyQ=;
-	h=From:Subject:Reply-To:Cc:In-Reply-To:References:Date;
-	b=isC5GomolJf7CJdwEeczRkJY6XKCmoIYhX/QWbxE+K6uRExtw1PRRF1u6HEtvrM88
-	 8ZXKSuT3vpY2ZzKiecd9Vpb2+AslhfiBfd3JmYZCFdgUHITFGG1c79VAxHLBbEqF5E
-	 uux0dl06RYa1auLFEdZavVwljLUoUsg6GQovgeKqbb/lZ4trIOxTLYlYZjIW8YmVoU
-	 PumwKqCR0UZT2LvzjAEHb9KCtenVZteWaVfFsZLePjNnXUaLVdZ2rsGN7H6d4j/2qd
-	 RvD3QScM++OJzZurGjPoylOlYsCx7WpP5E5NAiBqAOVSgYMC+Ug+A89wjcCSxnkOb2
-	 9++bdyNiZaSIA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 3/5] arm64: dts: ti: k3-am62a-ti-ipc-firmware: Split
- r5f memory region
-Reply-To: sashiko-reviews@lists.linux.dev
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260601-topic-am62a-ioddr-dt-v6-19-v5-3-3856a023aff2@baylibre.com>
-References: <20260601-topic-am62a-ioddr-dt-v6-19-v5-3-3856a023aff2@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 01 Jun 2026 09:13:44 +0000
-Message-Id: <20260601091344.AEE871F00898@smtp.kernel.org>
+	s=arc-20240116; t=1780305260; c=relaxed/simple;
+	bh=BIVqZiBYz0UJFJj0e/Ht6rWfSBtx/Fyk2CN8Z7NBoqw=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=KjVv6w82/VsVMt+Fwrftf1Mf+C4FY5FM/LUSdmhi/ONPmzY0VWLMKJVHOUMcDyOZfrcxPG/1q2aFqAC3Re2puJfgw+E+kZYU1DO2m88gtdcBJpnnfNOrIhpvLaUOkIWNs4nYLOXjb/j9Gfi/x1uCPgHs1SP/vFoDFC7ClRresbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 1 Jun
+ 2026 17:14:10 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 1 Jun 2026 17:14:10 +0800
+From: Tommy Huang <tommy_huang@aspeedtech.com>
+Subject: [PATCH 0/2] rtc: aspeed: Add AST2700 RTC support
+Date: Mon, 1 Jun 2026 17:14:05 +0800
+Message-ID: <20260601-ast2700-rtc-v1-0-15d4ca46500a@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.84 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	MISSING_TO(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF1NHWoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDMwND3cTiEiNzAwPdopJk3RSTxJQkU8MUI0MTCyWgjoKi1LTMCrBp0bG
+ 1tQD52m9pXQAAAA==
+X-Change-ID: 20260601-ast2700-rtc-d4adb51d2148
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
+	<andrew@codeconstruct.com.au>
+CC: <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>, Tommy Huang <tommy_huang@aspeedtech.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780305250; l=637;
+ i=tommy_huang@aspeedtech.com; s=20260601; h=from:subject:message-id;
+ bh=BIVqZiBYz0UJFJj0e/Ht6rWfSBtx/Fyk2CN8Z7NBoqw=;
+ b=k+dRNdw4ySTci6bzre+yAKaseUFPXui2dpoGU5J7TDjLJOtLdZMBf13b3+uyAeFodlxfG31+p
+ UVXjbQSHHl7Dpg8yNLgXtNHBc6e02DHP6LdIkxtAgbTYnHpWIlvAp67
+X-Developer-Key: i=tommy_huang@aspeedtech.com; a=ed25519;
+ pk=/SRU8iPtlyPCtlX7hXjYJhOTpCUdfEZ9pIVVyCQOjLE=
+X-Spamd-Result: default: False [1.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305010-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305012-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-0.999];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 0059E61C4B7
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tommy_huang@aspeedtech.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.970];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,aspeedtech.com:mid,aspeedtech.com:email]
+X-Rspamd-Queue-Id: D417061C456
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Splitting the contiguous R5F firmware memory region into multiple =
-smaller adjacent memory regions breaks backward compatibility with existing=
- remoteproc ELF firmwares if any PT_LOAD segment spans across the newly int=
-roduced boundaries.
---
+This patch series adds support for the ASPEED AST2700 RTC define,
+includeing dt-binding in the Document and rtc-aspeed.c
 
-commit ae8536421e8ee2b18a7727698091d0c0fa7b60cb
-Author: Markus Schneider-Pargmann (TI) <msp@baylibre.com>
+Signed-off-by: Tommy Huang <tommy_huang@aspeedtech.com>
+---
+Tommy Huang (2):
+      dt-bindings: rtc: add ASPEED AST2700 compatible
+      rtc: aspeed: add AST2700 compatible
 
-arm64: dts: ti: k3-am62a-ti-ipc-firmware: Split r5f memory region
+ Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 2 ++
+ drivers/rtc/rtc-aspeed.c                               | 1 +
+ 2 files changed, 3 insertions(+)
+---
+base-commit: e43ffb69e0438cddd72aaa30898b4dc446f664f8
+change-id: 20260601-ast2700-rtc-d4adb51d2148
 
-This commit splits the firmware memory region into multiple more specific
-parts to better describe where to find information, specifically the LPM
-metadata region needed by bootloader software.
+Best regards,
+-- 
+Tommy Huang <tommy_huang@aspeedtech.com>
 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-ti-ipc-firmware.dtsi b/arch/=
-arm64/boot/dts/ti/k3-am62a-ti-ipc-firmware.dtsi
-> --- a/arch/arm64/boot/dts/ti/k3-am62a-ti-ipc-firmware.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a-ti-ipc-firmware.dtsi
-
-[ ... ]
-
-> @@ -78,8 +102,14 @@ &wkup_r5fss0 {
->  &wkup_r5fss0_core0 {
->  	mboxes =3D <&mailbox0_cluster0>, <&mbox_r5_0>;
->  	memory-region =3D <&wkup_r5fss0_core0_dma_memory_region>,
-> -			<&wkup_r5fss0_core0_memory_region>;
-> -	memory-region-names =3D "dma", "firmware";
-> +			<&wkup_r5fss0_core0_ipc_region>,
-> +			<&wkup_r5fss0_core0_lpm_fs_stub_region>,
-> +			<&wkup_r5fss0_core0_lpm_metadata_region>,
-> +			<&wkup_r5fss0_core0_lpm_rest_region>,
-> +			<&wkup_r5fss0_core0_dm_region>;
-> +	memory-region-names =3D "dma", "ipc", "lpm-stub",
-> +			      "lpm-metadata", "lpm-context",
-> +			      "dm-firmware";
-
-[Severity: High]
-Is it safe to split the contiguous R5F firmware memory region into multiple
-smaller adjacent memory regions, or could this break backward compatibility
-with existing remoteproc ELF firmwares if a PT_LOAD segment spans across the
-new boundaries?
-
-The k3_rproc_da_to_va() function in drivers/remoteproc/ti_k3_common.c
-strictly requires each requested ELF PT_LOAD segment to fit entirely within=
- a
-single memory-region defined in the device tree. Prior to this patch, a
-single contiguous 0xf00000 memory region was provided, allowing firmware wi=
-th
-monolithic PT_LOAD segments to load successfully.
-
-By splitting this single region into multiple smaller consecutive pieces, a=
-ny
-existing firmware binary whose ELF segment spans across one of these new
-boundaries will fail to translate. The translation function will return NULL
-and the firmware load will abort with -EINVAL.
-
-Because the kernel lacks the ability to coalesce adjacent regions during th=
-is
-translation, does this DTS update prevent existing deployed firmwares from
-running correctly?
-
->  	bootph-pre-ram;
->  	status =3D "okay";
->  };
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260601-topic-am62=
-a-ioddr-dt-v6-19-v5-0-3856a023aff2@baylibre.com?part=3D3
 
