@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-305217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305219-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cEt+L2OjHWrmcgkAu9opvQ
-	(envelope-from <devicetree+bounces-305217-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:21:07 +0200
+	id qEsbCnGjHWr5cgkAu9opvQ
+	(envelope-from <devicetree+bounces-305219-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:21:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60EBE621925
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:21:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFBCC621953
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:21:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1E9A43024AAE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 15:20:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0F64230144EB
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 15:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65A523DDDB0;
-	Mon,  1 Jun 2026 15:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30753DB65D;
+	Mon,  1 Jun 2026 15:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XiszMNeP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IvW4Y97o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 518A43DCD8B
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 15:19:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE9B3DCD9B
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 15:19:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780327150; cv=none; b=TsA+3l6/R5WAqYCrGkdfRKbv0bigF26WmY16FklFMZ1mD4Z3KPCMUhy4IhcXjy3v+SPqGS/r/+b398HqCvMwc1cZgVlrX9o6fr+3Z2lXOMpfCIV9ofH/XeAIQGoQcK0fjYm41CFrCSw+G6vm9h4hMDUb1B0+dCZDLL3sRN9+Ga4=
+	t=1780327152; cv=none; b=B+fPRU2rnznBh3UoxGgbsMSVUa9pxz2ATZ28kbjACfqiC/sghjX4iC4xQOveZry7b6cXhN3Km6EVMu5V+zuHRiaANxTotIi05Em+0OsefUkrRlNpiCgNbZdMKs5D/3Xjs25c52HbAGjOmj+9CHAUckhPYbS+VoqEKmdZyLEGfoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780327150; c=relaxed/simple;
-	bh=UtPscoMn7/+u3hgCsxGsK5x29OOmOoQ7cGtI5AS2sAY=;
+	s=arc-20240116; t=1780327152; c=relaxed/simple;
+	bh=JALmBwQQvVIGcgHB3eyuOJRgqo+XiRn3ZwSnYM+2DMk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JV9WBWyxciaTUcV/BUxlJdwTcZB3xRBNcTzJyYn8QhSeOb0N34uMDD+Bc/ZRaJnXBz2IA9nVvicz2boTqTy016ldxv/BQT2ZWGnnrsR6fvkHuyhbq8xsIrLDJIxXubCe2Ce040pw40VGPb2VEmyGbURCoJ8UzWSlzzzeh7m0Tec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XiszMNeP; arc=none smtp.client-ip=209.85.221.49
+	 MIME-Version; b=h+Z73FHj7AZgZ2pMiXusi60oLghLjm51xApvX5xYji4KwkOhLw6dQ3//wnnrXTs0ZkHHgOSm2NdH1INbseCY38HRtgxS99GTJ8nzaMw9uP/z9a2bls0MVHznnP3iABJOOy37Gn/r0o56xOFYQmeue5xreyBy7ysY+adnsb3A90U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IvW4Y97o; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-45ef29c5561so1690639f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 08:19:04 -0700 (PDT)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-49050bfe053so71456125e9.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 08:19:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780327142; x=1780931942; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1780327144; x=1780931944; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Y382WZZPSXgqkJt8F6mrSdOVSYmocK83eFeJ1TSWQE4=;
-        b=XiszMNeP4wUTqUxFlUnFLah3PuhRurrdvgYAUaNSfjnBlvvHl4pqWSxVXYji1IkvFB
-         d/yKXKPKYdhAClOQR2tK7rd6MK0PKTeG97Uq4lP711I9N9hCNI2BFP6N7qWzvyjHc9In
-         al2CzUtKFUSIaZNGOZIpI8FLH0E4BJUb5YmBDgLKILvJBa+bbu4E4IvcnkuvDSFQnaHg
-         nYFpMdRKzuUytJchtXBfPXAil8EeAdG9FtyAHUiXh6o0PV5OWMnFdXvXhATbuPKKfPtG
-         Z1EuUnHfzPSCc6uQzKa9H7DvHB5/7IdKsHlpFTWKT1lXdCDdKXCd043ftoa/GPZL4lGk
-         G50A==
+        bh=kHipHX0fj9UFI6kqkRtr6SnJM0WlhcDH4RQJ2Kh7RME=;
+        b=IvW4Y97ophhmqt4XxMHLdh1gLDGtbOqT+OdFsZOzhu7GJHt4vFrtSG2IedcR77PLxE
+         O761zpZ5pUZzK1CQqP6WL/kvw4KIckjUVXCAu1jXVO2LhkhDmEz6tqxKw4Cer+Hz8/Xm
+         67puVzY5GHziIvAaJSb8KZ4Atba79E5rp4sq5NnTZlvEbmqZU4gf280Ic598i93jS/z7
+         M30NpnPAhWSN1q+VDv5Cxs3gb28XlLz3zMcsqzHm8pmOKDLT4CaMJy/SKz1mp3X+4a6X
+         uiDaEZXVwjcg+VKzesel8hwijPgkxWbm90hqpOci5HtG/85+Q48RyZBlV2rLR3GuLWc6
+         j9Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780327142; x=1780931942;
+        d=1e100.net; s=20251104; t=1780327144; x=1780931944;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Y382WZZPSXgqkJt8F6mrSdOVSYmocK83eFeJ1TSWQE4=;
-        b=NXGKcpEsL1bMshqDDg0kRxqMJ1m0aXXlyGn5vweYtaDxWaOnv3rD/vmxSo4nIL/Pb6
-         kktmpUZLXVf61ZVA2MOz8WXNE3/5c+juvaKSguNTv/S9hWGsj/cKcoSqHl60RLxJm1K7
-         1b5TqtcIOD49NDbU37J5Dua603NoUpdn1NIcjQ2N/92SSo96H4WQiD2sNu7cv+Nk18b5
-         KUWRT64rcqEDRmtflD8mjIJ7sheMs1LI08/c+zBsMwNi2lXTB7xGg/t+ZngYe8KYERo8
-         LADZ70M78ZglKWbhHsjgyJfz4gNtK4XbxqNRX/Q6DRQXlwwnFesYYSsedODUx5xLPNqr
-         x/jA==
-X-Forwarded-Encrypted: i=1; AFNElJ/xJ9gRCM7rwz01C6p+f3qA0lqKJJpudmHVOvgnhHHlrHpXPfMJSbHnS0pxe/2NP03SQ8arYj+ziGNa@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHh7a7xkzMYcBywRz2QaOt5Nhv/8yMMtV/Pek8uv5Hg4h2y+TQ
-	+fYM9stujH1zfwhNuGBycjx8nU+XiSVJJmymVBLHsYzj0zuftzRofMPk
-X-Gm-Gg: Acq92OFAiqbku8l5cGt8oH3bTyLqDZzyrOYDaal1Lfdhn+v5ESalgnDoS1VW1WHPyiR
-	oUJoqKN2oWiBl0MEQ6pkt3n/Lxm4yrXHB+qUaxXZYXQbGEAFbx/cOnOS3fEbTeevqkj0+W33B05
-	W/ndmUw39jZmNPmjGHCsoRAVlvwki3cVtAsg3yxPccJBRN1+QORapYl1eYExZoelY1tVEUp3YMe
-	zJV4cn51ItQUhm5W8MUKX82nL4HBwXZy0L72uDpD2FUFr7728gZ9ZZ/aBgkmqfx+ztyH4oiOGOj
-	OEuwIUWYCoz8DM4Pl6A+1Qns1IhznTdKFhKf8mK4wgs7uCscImpJl6d7wattFCyH+GQsZb+ieSf
-	h1t6XweLkPNX2SqJRSiud1OEYlYwmbY3JMh77pTOMNjZv/3f4BPWukUQWkYipi5srGc7PTaoOKy
-	/jdImZhr8DlaHqPjOl3ML+0tw=
-X-Received: by 2002:a05:6000:4c8:b0:45e:ea3a:47d6 with SMTP id ffacd0b85a97d-45ef6b93b94mr15555475f8f.32.1780327142357;
-        Mon, 01 Jun 2026 08:19:02 -0700 (PDT)
+        bh=kHipHX0fj9UFI6kqkRtr6SnJM0WlhcDH4RQJ2Kh7RME=;
+        b=e6iXqwvOQf74UEJF5qFk6rFmn70pq57mbNy3Q8ZpIftsU5b92pbGl0hXdaiIPX9XkO
+         wjbxS6ZSJG05c5Gue2P/s4aFE9FOaBCexNA9GyjFJySsTKtGWOeptqxxpNu7owRoN5Kq
+         4foW9aO8SlcJxO8ITMwwzlqRU3hffzYGs0AYar6TRDAORr8TCnx2YzHDlpRp0gyPq3OZ
+         jNJ8vkAIOIshyhwup3SP2RxrjbGDKwFLswVuXrCBkTJs1q2fR3c0aSzdG4GETIUtufks
+         MBSNEL8t6FqWSGc3PBDGvdQ0pQ4y52iB73mrBhgbiYG2ozsalEWxdzXQcuDb7Wi9LbEN
+         e6bw==
+X-Forwarded-Encrypted: i=1; AFNElJ/h4mBCrxqUM5goBYX0CyKQF8v8Ps3CNY+OHZzHqi3h2YzPoIj9jlHgWc2A6MTSgxBd4N9U5xmZdwdO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYiLBMRSS/fS7K6/jGJpQGYy+O4owrWzMITGHdcyoirLEiNjLA
+	X6JQWcfVmttO715+1P7ue4KJ/UJZdT9lzBiESlv03W18vxeSXVVlaAHX
+X-Gm-Gg: Acq92OFZKMKhAiWELx8ytauNmi+AyQJ0EcVW9vGIu4pDJe0LtlGrSg6EAj8CIbLVJQ2
+	sjriQofhsUKe6kJ57YKysgcUzDf0GK4a+cN63dIl4tQf8PgIVgCeSTbmMqTWgNrnrgH2Of8+Aio
+	FfrCLZK6n/BgTNQ3qRc7Xf9P5Y/kaT99IXO9Az+Fknfmg+zd8HRTA0e35q4+U40PlGdvN9CpLlM
+	phPqUMxSk3uYoRqvsVYNpgqG4KFQuDUZQJIuPV1wP5dBf5qvP+PmOw7I1u0jQKM/0ORA/xFtPkX
+	PMZK0LXPVYm4KqhgkJdDTvrBGLVBmQe0X8xcEzdivbJ2Or/MXqDIoE92byjDN5y7wUaQvN0vvcu
+	HSsqg2AZWimQinSNZJL+SbL6BTfBFDks/YwHU77L57dTCNS2JhXE9kDordpPtbsvk6FPsgXDlZp
+	F0LhhxizFZQVG4mvXJPON4qx8=
+X-Received: by 2002:a05:600d:8444:20b0:490:7136:ad02 with SMTP id 5b1f17b1804b1-490b078f2d5mr5481165e9.7.1780327143862;
+        Mon, 01 Jun 2026 08:19:03 -0700 (PDT)
 Received: from xeon ([188.163.112.61])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45ef354cd7csm25753103f8f.18.2026.06.01.08.19.00
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45ef354cd7csm25753103f8f.18.2026.06.01.08.19.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jun 2026 08:19:01 -0700 (PDT)
+        Mon, 01 Jun 2026 08:19:03 -0700 (PDT)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Lee Jones <lee@kernel.org>,
 	Daniel Thompson <danielt@kernel.org>,
@@ -97,9 +97,9 @@ Cc: Johan Hovold <johan@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	linux-iio@vger.kernel.org,
 	linux-fbdev@vger.kernel.org
-Subject: [PATCH v3 03/11] iio: light: lm3533-als: Remove redundant pdata helpers
-Date: Mon,  1 Jun 2026 18:18:23 +0300
-Message-ID: <20260601151831.76350-4-clamor95@gmail.com>
+Subject: [PATCH v3 04/11] mfd: lm3533-core: Remove redundant pdata helpers
+Date: Mon,  1 Jun 2026 18:18:24 +0300
+Message-ID: <20260601151831.76350-5-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260601151831.76350-1-clamor95@gmail.com>
 References: <20260601151831.76350-1-clamor95@gmail.com>
@@ -124,7 +124,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-305217-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305219-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[20];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de];
@@ -140,101 +140,103 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 60EBE621925
+X-Rspamd-Queue-Id: EFBCC621953
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The lm3533_als_set_input_mode and lm3533_als_set_resistor functions are
-used only in lm3533_als_setup. Incorporate their code into
-lm3533_als_setup directly to simplify driver readability.
+The lm3533_set_boost_freq and lm3533_set_boost_ovp functions are used only
+in lm3533_device_setup, which in turn is only called by
+lm3533_device_init. Incorporate their code directly into
+lm3533_device_init to simplify driver readability.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
- drivers/iio/light/lm3533-als.c | 61 +++++++++-------------------------
- 1 file changed, 16 insertions(+), 45 deletions(-)
+ drivers/mfd/lm3533-core.c | 57 ++++++++++-----------------------------
+ 1 file changed, 14 insertions(+), 43 deletions(-)
 
-diff --git a/drivers/iio/light/lm3533-als.c b/drivers/iio/light/lm3533-als.c
-index fb61904f110f..52136ca1abc9 100644
---- a/drivers/iio/light/lm3533-als.c
-+++ b/drivers/iio/light/lm3533-als.c
-@@ -716,61 +716,32 @@ static const struct attribute_group lm3533_als_attribute_group = {
- 	.attrs = lm3533_als_attributes
+diff --git a/drivers/mfd/lm3533-core.c b/drivers/mfd/lm3533-core.c
+index f9bdc0a1d9be..45e7f7481aa0 100644
+--- a/drivers/mfd/lm3533-core.c
++++ b/drivers/mfd/lm3533-core.c
+@@ -80,35 +80,6 @@ static struct mfd_cell lm3533_led_devs[] = {
+ 	},
  };
  
--static int lm3533_als_set_input_mode(struct lm3533_als *als, bool pwm_mode)
--{
--	u8 mask = LM3533_ALS_INPUT_MODE_MASK;
--	u8 val;
--	int ret;
--
--	if (pwm_mode)
--		val = mask;	/* pwm input */
--	else
--		val = 0;	/* analog input */
--
--	ret = regmap_update_bits(als->lm3533->regmap, LM3533_REG_ALS_CONF,
--				 mask, val);
--	if (ret) {
--		dev_err(&als->pdev->dev, "failed to set input mode %d\n",
--								pwm_mode);
--		return ret;
--	}
--
--	return 0;
--}
--
--static int lm3533_als_set_resistor(struct lm3533_als *als, u8 val)
+-static int lm3533_set_boost_freq(struct lm3533 *lm3533,
+-						enum lm3533_boost_freq freq)
 -{
 -	int ret;
 -
--	if (val < LM3533_ALS_RESISTOR_MIN || val > LM3533_ALS_RESISTOR_MAX) {
--		dev_err(&als->pdev->dev, "invalid resistor value\n");
--		return -EINVAL;
--	}
+-	ret = regmap_update_bits(lm3533->regmap, LM3533_REG_BOOST_PWM,
+-				 LM3533_BOOST_FREQ_MASK,
+-				 freq << LM3533_BOOST_FREQ_SHIFT);
+-	if (ret)
+-		dev_err(lm3533->dev, "failed to set boost frequency\n");
 -
--	ret = regmap_write(als->lm3533->regmap, LM3533_REG_ALS_RESISTOR_SELECT,
--			   val);
--	if (ret) {
--		dev_err(&als->pdev->dev, "failed to set resistor\n");
--		return ret;
--	}
--
--	return 0;
+-	return ret;
 -}
 -
- static int lm3533_als_setup(struct lm3533_als *als,
- 			    const struct lm3533_als_platform_data *pdata)
- {
-+	struct device *dev = &als->pdev->dev;
- 	int ret;
- 
--	ret = lm3533_als_set_input_mode(als, pdata->pwm_mode);
-+	ret = regmap_update_bits(als->lm3533->regmap, LM3533_REG_ALS_CONF,
-+				 LM3533_ALS_INPUT_MODE_MASK,
-+				 pdata->pwm_mode ? LM3533_ALS_INPUT_MODE_MASK : 0);
- 	if (ret)
--		return ret;
-+		return dev_err_probe(dev, ret, "failed to set input mode %d\n",
-+				     pdata->pwm_mode);
-+
- 
- 	/* ALS input is always high impedance in PWM-mode. */
- 	if (!pdata->pwm_mode) {
--		ret = lm3533_als_set_resistor(als, pdata->r_select);
-+		if (pdata->r_select < LM3533_ALS_RESISTOR_MIN ||
-+		    pdata->r_select > LM3533_ALS_RESISTOR_MAX) {
-+			dev_err(&als->pdev->dev, "invalid resistor value\n");
-+			return -EINVAL;
-+		}
-+
-+		ret = regmap_write(als->lm3533->regmap, LM3533_REG_ALS_RESISTOR_SELECT,
-+				   pdata->r_select);
- 		if (ret)
--			return ret;
-+			return dev_err_probe(dev, ret, "failed to set resistor\n");
- 	}
- 
+-
+-static int lm3533_set_boost_ovp(struct lm3533 *lm3533,
+-						enum lm3533_boost_ovp ovp)
+-{
+-	int ret;
+-
+-	ret = regmap_update_bits(lm3533->regmap, LM3533_REG_BOOST_PWM,
+-				 LM3533_BOOST_OVP_MASK,
+-				 ovp << LM3533_BOOST_OVP_SHIFT);
+-	if (ret)
+-		dev_err(lm3533->dev, "failed to set boost ovp\n");
+-
+-	return ret;
+-}
+-
+ /*
+  * HVLED output config -- output hvled controlled by backlight bl
+  */
+@@ -406,18 +377,6 @@ static int lm3533_device_led_init(struct lm3533 *lm3533)
  	return 0;
+ }
+ 
+-static int lm3533_device_setup(struct lm3533 *lm3533,
+-					struct lm3533_platform_data *pdata)
+-{
+-	int ret;
+-
+-	ret = lm3533_set_boost_freq(lm3533, pdata->boost_freq);
+-	if (ret)
+-		return ret;
+-
+-	return lm3533_set_boost_ovp(lm3533, pdata->boost_ovp);
+-}
+-
+ static int lm3533_device_init(struct lm3533 *lm3533)
+ {
+ 	struct lm3533_platform_data *pdata = dev_get_platdata(lm3533->dev);
+@@ -437,9 +396,21 @@ static int lm3533_device_init(struct lm3533 *lm3533)
+ 
+ 	lm3533_enable(lm3533);
+ 
+-	ret = lm3533_device_setup(lm3533, pdata);
+-	if (ret)
++	ret = regmap_update_bits(lm3533->regmap, LM3533_REG_BOOST_PWM,
++				 LM3533_BOOST_FREQ_MASK,
++				 pdata->boost_freq << LM3533_BOOST_FREQ_SHIFT);
++	if (ret) {
++		dev_err(lm3533->dev, "failed to set boost frequency\n");
+ 		goto err_disable;
++	}
++
++	ret = regmap_update_bits(lm3533->regmap, LM3533_REG_BOOST_PWM,
++				 LM3533_BOOST_OVP_MASK,
++				 pdata->boost_ovp << LM3533_BOOST_OVP_SHIFT);
++	if (ret) {
++		dev_err(lm3533->dev, "failed to set boost ovp\n");
++		goto err_disable;
++	}
+ 
+ 	lm3533_device_als_init(lm3533);
+ 	lm3533_device_bl_init(lm3533);
 -- 
 2.51.0
 
