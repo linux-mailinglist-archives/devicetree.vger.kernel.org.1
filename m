@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-304937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304935-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qBlYHawvHWqtWAkAu9opvQ
-	(envelope-from <devicetree+bounces-304937-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:07:24 +0200
+	id sHgcOCovHWqtWAkAu9opvQ
+	(envelope-from <devicetree+bounces-304935-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:05:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A6F61AAD0
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B84E61AA42
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:05:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 32D5330F44D6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 06:57:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 045F330EDAEF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 06:57:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1488352037;
-	Mon,  1 Jun 2026 06:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF81383C9D;
+	Mon,  1 Jun 2026 06:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="KLe1rr3d"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="W1jocCCO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3280.qiye.163.com (mail-m3280.qiye.163.com [220.197.32.80])
+Received: from mail-m1973181.qiye.163.com (mail-m1973181.qiye.163.com [220.197.31.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE5D3803C3;
-	Mon,  1 Jun 2026 06:56:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA61383C97;
+	Mon,  1 Jun 2026 06:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780297027; cv=none; b=G+C693MQDZ5lSg7R32BzqT0iyi0LijC5ltFCm0PVyj9/s13FvpsdKhVPrRiDGVOrAE1NugpyKD7z03n5livXeiFBugtiImgC1ILYznk91PshNYojGSscroS7iAlq19E2TIV++opmdNgG9DMlxNy9YXhgJHfze4IxUedjRB7FAsE=
+	t=1780297000; cv=none; b=cHv8lLZtYpW1ycgFbVXkFsxaJbL1XTzpY7VPEiZA4Xx45VExsteHmCGkErb07fbQx0k9eOO7RTKH5oJ4wsfu5FoDN0Oa6sNbiwGBZjv6Xgf3AfBbhlNpcm9JgNJXjZCVVv3rPOvo7ctsKQi0O3KqMkXz4Dir4n756plQaqekF3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780297027; c=relaxed/simple;
-	bh=GFPWi/xaj2KK9JkNv4kgMVIXco4zFkyHwtNhMlrUhGI=;
+	s=arc-20240116; t=1780297000; c=relaxed/simple;
+	bh=ixP9bbtfLm9n7b7rZTtXkiyTh2jKzvPSeDG46z1FnrA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=uC3Kadw1jFH62/cr2y3/5U7ZHncb0N2OjgCrtq+QKepAD+LR+PNRimgItNn2aAy3jPNRKlJCWa2KrtUuWD3p/oHdHk3vz7rjJq8pRntZgXZkCGm6lQECVYCtBIVyVsptQPAgsvp3xpYXRRnAPabhM9ldvQEFcKErTagYlKhpcMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=KLe1rr3d; arc=none smtp.client-ip=220.197.32.80
+	 MIME-Version; b=NDjhaKBSrCrw92ANAZSjDobljJW73Gmqe2kYpUmTlpyAYMkjRrMRpl02+iqwoJzkGGQ9DGt4AKUuucNro6WOKxUlRAf2sK57tr4YTkhrxm6DKtwIqIzhmksJaWsN7nhOg+N4ER75+phXQM6vaNBFIRIpv4bQVatFVoTBvLSXw60=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=W1jocCCO; arc=none smtp.client-ip=220.197.31.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 408ded09a;
-	Mon, 1 Jun 2026 14:51:14 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 408ded0a3;
+	Mon, 1 Jun 2026 14:51:16 +0800 (GMT+08:00)
 From: Damon Ding <damon.ding@rock-chips.com>
 To: hjc@rock-chips.com,
 	heiko@sntech.de,
@@ -68,9 +68,9 @@ Cc: Laurent.pinchart@ideasonboard.com,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v10 08/11] arm64: dts: rockchip: Add eDP node for RK3576
-Date: Mon,  1 Jun 2026 14:50:57 +0800
-Message-Id: <20260601065100.1103873-9-damon.ding@rock-chips.com>
+Subject: [PATCH v10 09/11] drm/bridge: analogix_dp: Rename and simplify is_rockchip()
+Date: Mon,  1 Jun 2026 14:50:58 +0800
+Message-Id: <20260601065100.1103873-10-damon.ding@rock-chips.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260601065100.1103873-1-damon.ding@rock-chips.com>
 References: <20260601065100.1103873-1-damon.ding@rock-chips.com>
@@ -81,15 +81,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e81f36e7e03a8kunm111da268257e56
+X-HM-Tid: 0a9e81f3738003a8kunm111da268257e71
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZQx5PVk5OH01DHkkeH0oaH1YVFA
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCThlKVktLGUkeTkxIHh5MSFYVFA
 	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
 	pKQk1VSktLVUpCWQY+
 DKIM-Signature: a=rsa-sha256;
-	b=KLe1rr3dZVxW81aCSXZgLN/D1IEwQ6c2h9YYa6mtNPTEo10nkEV43Az7NARNcSa5e/QuQ38RLD9N6tDEOVC8CP+XiwN5oD2rdNjDTuvfOIWrJBSwUHXI/Jm9zh3biedJuyfuda8K+6q5KU5Tj/ovELp4SP7dn0PQq8LYvWgSbxM=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=K1DLY9Im8emQ1pvFmDCS9X34Zpvqnm1ezAB2dEZJU7I=;
+	b=W1jocCCOnlGYN7PqD5J/jIAztLvgHD663bjdcbd+TJPS6F3kvZ7glVAwZ60FG46aJ/iAZpQ+X/IuqHcxo/tWcT/+lXjSHFvGC3T5KIQkx7qT1b4HLojekkLA6MEcwShM0pWSFrHlN6H8dTSez4oL2rA6SKnGqGkS7Cp8pcz7HAA=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=LOMeAIx+KSl1dkBA7xVs1jEHQ7IWNjTCWlPoHezWkhE=;
 	h=date:mime-version:subject:message-id:from;
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -102,7 +102,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304937-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304935-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[30];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -119,70 +119,152 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.1:email,collabora.com:email,27dc0000:email,27e40000:email]
-X-Rspamd-Queue-Id: C4A6F61AAD0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:email,rock-chips.com:email,rock-chips.com:mid,rock-chips.com:dkim]
+X-Rspamd-Queue-Id: 3B84E61AA42
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add full device tree definition for the integrated eDP controller
-on RK3576, following the existing RK3588 hardware layout.
+Rename inline helper is_rockchip() to analogix_dp_is_rockchip()
+to follow driver namespace convention consistently across code.
 
-Configure required register range, clocks, interrupt, phy, power
-domain, reset and grf properties to fully describe the controller.
+Replace chained equality comparisons with switch-case layout
+to improve readability and simplify adding new SoC entries later.
 
 Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Suggested-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
 ---
 
-Changes in v2:
+Changes in v3:
 - Add Reviewed-by tag.
 
 Changes in v4:
 - Modify the commit msg.
 ---
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 28 ++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ .../gpu/drm/bridge/analogix/analogix_dp_core.c |  2 +-
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.c  | 18 +++++++++---------
+ include/drm/bridge/analogix_dp.h               | 11 +++++++++--
+ 3 files changed, 19 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 28175d8200d5..733449cb88b1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1496,6 +1496,34 @@ hdmi_out: port@1 {
- 			};
- 		};
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+index 8cf6b73bceac..116de3bd83a3 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
++++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+@@ -870,7 +870,7 @@ static int analogix_dp_bridge_atomic_check(struct drm_bridge *bridge,
+ 	struct drm_display_info *di = &conn_state->connector->display_info;
+ 	u32 mask = BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) | BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422);
  
-+		edp: edp@27dc0000 {
-+			compatible = "rockchip,rk3576-edp";
-+			reg = <0x0 0x27dc0000 0x0 0x1000>;
-+			clocks = <&cru CLK_EDP0_24M>, <&cru PCLK_EDP0>, <&cru HCLK_VO0_ROOT>;
-+			clock-names = "dp", "pclk", "hclk";
-+			interrupts = <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>;
-+			phys = <&hdptxphy>;
-+			phy-names = "dp";
-+			power-domains = <&power RK3576_PD_VO0>;
-+			resets = <&cru SRST_EDP0_24M>, <&cru SRST_P_EDP0>;
-+			reset-names = "dp", "apb";
-+			rockchip,grf = <&vo0_grf>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				edp_in: port@0 {
-+					reg = <0>;
-+				};
-+
-+				edp_out: port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
-+
- 		dp: dp@27e40000 {
- 			compatible = "rockchip,rk3576-dp";
- 			reg = <0x0 0x27e40000 0x0 0x30000>;
+-	if (is_rockchip(dp->plat_data->dev_type)) {
++	if (analogix_dp_is_rockchip(dp->plat_data->dev_type)) {
+ 		if ((di->color_formats & mask)) {
+ 			DRM_DEBUG_KMS("Swapping display color format from YUV to RGB\n");
+ 			di->color_formats &= ~mask;
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+index 38fd8d5014d2..6207ded7ffd5 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
++++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+@@ -72,7 +72,7 @@ void analogix_dp_init_analog_param(struct analogix_dp_device *dp)
+ 	reg = SEL_24M | TX_DVDD_BIT_1_0625V;
+ 	writel(reg, dp->reg_base + ANALOGIX_DP_ANALOG_CTL_2);
+ 
+-	if (dp->plat_data && is_rockchip(dp->plat_data->dev_type)) {
++	if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type)) {
+ 		reg = REF_CLK_24M;
+ 		if (dp->plat_data->dev_type == RK3288_DP)
+ 			reg ^= REF_CLK_MASK;
+@@ -123,7 +123,7 @@ void analogix_dp_reset(struct analogix_dp_device *dp)
+ 	analogix_dp_stop_video(dp);
+ 	analogix_dp_enable_video_mute(dp, 0);
+ 
+-	if (dp->plat_data && is_rockchip(dp->plat_data->dev_type))
++	if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type))
+ 		reg = RK_VID_CAP_FUNC_EN_N | RK_VID_FIFO_FUNC_EN_N |
+ 			SW_FUNC_EN_N;
+ 	else
+@@ -233,7 +233,7 @@ void analogix_dp_set_pll_power_down(struct analogix_dp_device *dp, bool enable)
+ 	u32 mask = DP_PLL_PD;
+ 	u32 pd_addr = ANALOGIX_DP_PLL_CTL;
+ 
+-	if (dp->plat_data && is_rockchip(dp->plat_data->dev_type)) {
++	if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type)) {
+ 		pd_addr = ANALOGIX_DP_PD;
+ 		mask = RK_PLL_PD;
+ 	}
+@@ -254,12 +254,12 @@ void analogix_dp_set_analog_power_down(struct analogix_dp_device *dp,
+ 	u32 phy_pd_addr = ANALOGIX_DP_PHY_PD;
+ 	u32 mask;
+ 
+-	if (dp->plat_data && is_rockchip(dp->plat_data->dev_type))
++	if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type))
+ 		phy_pd_addr = ANALOGIX_DP_PD;
+ 
+ 	switch (block) {
+ 	case AUX_BLOCK:
+-		if (dp->plat_data && is_rockchip(dp->plat_data->dev_type))
++		if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type))
+ 			mask = RK_AUX_PD;
+ 		else
+ 			mask = AUX_PD;
+@@ -317,7 +317,7 @@ void analogix_dp_set_analog_power_down(struct analogix_dp_device *dp,
+ 		 * to power off everything instead of DP_PHY_PD in
+ 		 * Rockchip
+ 		 */
+-		if (dp->plat_data && is_rockchip(dp->plat_data->dev_type))
++		if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type))
+ 			mask = DP_INC_BG;
+ 		else
+ 			mask = DP_PHY_PD;
+@@ -329,7 +329,7 @@ void analogix_dp_set_analog_power_down(struct analogix_dp_device *dp,
+ 			reg &= ~mask;
+ 
+ 		writel(reg, dp->reg_base + phy_pd_addr);
+-		if (dp->plat_data && is_rockchip(dp->plat_data->dev_type))
++		if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type))
+ 			usleep_range(10, 15);
+ 		break;
+ 	case POWER_ALL:
+@@ -465,7 +465,7 @@ void analogix_dp_init_aux(struct analogix_dp_device *dp)
+ 	analogix_dp_reset_aux(dp);
+ 
+ 	/* AUX_BIT_PERIOD_EXPECTED_DELAY doesn't apply to Rockchip IP */
+-	if (dp->plat_data && is_rockchip(dp->plat_data->dev_type))
++	if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type))
+ 		reg = 0;
+ 	else
+ 		reg = AUX_BIT_PERIOD_EXPECTED_DELAY(3);
+@@ -837,7 +837,7 @@ void analogix_dp_config_video_slave_mode(struct analogix_dp_device *dp)
+ 	u32 reg;
+ 
+ 	reg = readl(dp->reg_base + ANALOGIX_DP_FUNC_EN_1);
+-	if (dp->plat_data && is_rockchip(dp->plat_data->dev_type)) {
++	if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_type)) {
+ 		reg &= ~(RK_VID_CAP_FUNC_EN_N | RK_VID_FIFO_FUNC_EN_N);
+ 	} else {
+ 		reg &= ~(MASTER_VID_FUNC_EN_N | SLAVE_VID_FUNC_EN_N);
+diff --git a/include/drm/bridge/analogix_dp.h b/include/drm/bridge/analogix_dp.h
+index 854af692229b..7b670dd769e9 100644
+--- a/include/drm/bridge/analogix_dp.h
++++ b/include/drm/bridge/analogix_dp.h
+@@ -19,9 +19,16 @@ enum analogix_dp_devtype {
+ 	RK3588_EDP,
+ };
+ 
+-static inline bool is_rockchip(enum analogix_dp_devtype type)
++static inline bool analogix_dp_is_rockchip(enum analogix_dp_devtype type)
+ {
+-	return type == RK3288_DP || type == RK3399_EDP || type == RK3588_EDP;
++	switch (type) {
++	case RK3288_DP:
++	case RK3399_EDP:
++	case RK3588_EDP:
++		return true;
++	default:
++		return false;
++	}
+ }
+ 
+ struct analogix_dp_plat_data {
 -- 
 2.34.1
 
