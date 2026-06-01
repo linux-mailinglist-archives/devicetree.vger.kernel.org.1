@@ -1,166 +1,134 @@
-Return-Path: <devicetree+bounces-305409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305405-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFpnCLQTHmrugwkAu9opvQ
-	(envelope-from <devicetree+bounces-305409-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 01:20:20 +0200
+	id QFhYD1QSHmrugwkAu9opvQ
+	(envelope-from <devicetree+bounces-305405-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 01:14:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC8A26264B2
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 01:20:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 905E46263FD
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 01:14:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 949A130C8C8B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 23:16:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6168730214FB
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 23:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC7FE38B7D2;
-	Mon,  1 Jun 2026 23:16:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB3E636A354;
+	Mon,  1 Jun 2026 23:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hXlGpQhx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CeXj1njD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90F72E0901
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 23:16:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB47231F99C;
+	Mon,  1 Jun 2026 23:13:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780355766; cv=none; b=pIdmFhCyENo6qL+49EYW/eOU6CNkRnHKZMi+CNK7s8/DDAIOyCOHlXKXcGA9eo2YGTloVFnenpaBOGtNLaaS2VXTM+SE11lkKCUVrlNjZwy8UxPwPdHZHUDh1VeBrwMiu6EmUD+i01Pgt4nuu4IDhaNwupzBJxdBaVv6Zq9ilVY=
+	t=1780355596; cv=none; b=GQE3L6gPDrF6aeoxguqt38EnuTHMukhMdKtTFbARK3L5OFu1gtJc1tkjX+qPwM5nP8xJ9M6n4h6YNjCAjeKcxNjN7p8ni96xfyiTd040y0E/ySVX/JUT1sk9YykDg0IwigrluAY52neCto49cql8/XG2PaNTxbh1djItotlM/qw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780355766; c=relaxed/simple;
-	bh=qVUeQWS/7OtGofvve8QyxJxwmCBOhgxcSSPO4Frh6Q8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Sa1sqRaRGGbNT7tYOu2E3W3GLhb1wP5QZJnGBI6TIWYei8fhyOLuEuxvGqMsXZQaNgKpqmUiPmGvOZGQRNTkoD4FTfd+uP85OHq/vY8itWRhOoteaEMoyQ+e34J9stj79E4G1X+x8i/LEHF2fglXhSLat/nXo5e8rDzL521SV6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hXlGpQhx; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2bf20f6be6bso20867245ad.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 16:16:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780355765; x=1780960565; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ozxx9tq3sAfLk06YmZpKiSWd0rtmuUYU/mrvthF8nNs=;
-        b=hXlGpQhxNQdWiCaI8N1fRglEohxieF4dhummgfPtcbcUTQ6dxhjCz2aPb9W5D0FjyU
-         vGB7yWsvlNZ+Jirq6I8huFjHrYBWJTU2X1zkt+koK8WWVpDBdvkozcKz0xUQ1pr/tt8C
-         MvwZR8xwkmKxNDHmSwVQ9T5DZ+CtG/lojl0N6BxKa4YEW0Aqxt2zc75ULVkR9DdMgQXH
-         BBqloJ4F3/nn7x1nCOcTgmI+ppn/zA+SS3Ssb/AHi1Iz3S3EqQK6qnr6FNySKCAZN50n
-         96xGIlxSRveE1oGimfVI5ikF7RmLk1ltUf6rX4lmtiKrtQP+63U0DTJvWN/CKEl4V1Nt
-         dDgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780355765; x=1780960565;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Ozxx9tq3sAfLk06YmZpKiSWd0rtmuUYU/mrvthF8nNs=;
-        b=IPXlCJysAQcbB8GHMiOjZkK6QlznDPSjgLdoRw74DY1eHIVK++w7xQLZyf22GqL5wF
-         Yl99eATQKYz6Ggop/raJ/iQUzfB5nnSgMcuQ0roRPrRqNagltBpD/bXzste5wj1Z8Ghp
-         nvuWphDltT5bBqszt802KThI0mdB5CWRltG4RhaCmCmAPFaUGVTGEYNrBv9nWv5JwjWt
-         t/uSTUXQj/ogZRgkrhCyYsdKmGi2DSYwYxprRhy+yM8c1LP9yauN++sF4DCl3EhGg2s4
-         hm5mwYXA3jvxDQpMc08Y8kjJ7NZ4iHr2xxh+ATm0ML5PQ2fEU+1xuLmytYHpyk3yidzf
-         E3jA==
-X-Forwarded-Encrypted: i=1; AFNElJ+faY6Rq9qbhDl+mnKhc0iDPGm0J13+J+lH3d4yZF5o0i9f6ogiierD60hbWaGZhoKrOh4aJBOA7D2/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2J0H2TksVbIqHdwYIb54KhVk29D1LLXsCY6ZWZwBZWgZYyYER
-	EwvrTgtmJ2PKFIocbQjpF7/Uy6+CJTd5SqwnW+7aH/z6/QcBFb2e8VyJ
-X-Gm-Gg: Acq92OFmU/GOzf3pHxmRIS1D94eYj4IOc371JvSQYi/cb1TtQKPLlm9J34zZ76JHFuV
-	FAdXxqFkI9IzsfVuhNSVUFwLyRmgqua42VGyGS6nKvoIRQVsSkKiTCuHUURcMN3MFnuUgPj/fGv
-	jV2nyBW0DBoUiDtXBovSm0eMzksO3RsRNnlK9ww9Zx6hDX3kJ8oh1AqikDMaq/0zcCMjDmmv/pb
-	QPkaB4OoyEReN34w4Rcl3YWX/RbYXOYhc4dQ8IaeCeZ+3GNmrXp1VSkRvgxVTMIfJG6jETA/tUz
-	EXri4lEVbgd+/3OQM/Bk+sBz+/XK3XueDOybNiY6D16Ooh0w40zegWLnN56C15+lDoKG/eGg0MR
-	VhkjAbhgKMV1B4N5JJ9FWxKnA0hj0px0NDQr0CfIUooVdSbu1Y4ssFhl1tAdK2YUSUTuUO9TnUi
-	NY88wUjDpNBPtOu2pWDz0a4irtsyNLE/uWe56pRGXpr1+YZyDMjDAFET8lfPLZMUBA+B6COK+bP
-	inc1kcwMsR0CxUmLj0t
-X-Received: by 2002:a17:903:1b68:b0:2c0:bcff:e18c with SMTP id d9443c01a7336-2c0bcffe26dmr93746255ad.37.1780355764824;
-        Mon, 01 Jun 2026 16:16:04 -0700 (PDT)
-Received: from tomriddle.canterbury.ac.nz ([202.36.179.106])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bf239fd24fsm143815355ad.20.2026.06.01.16.15.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jun 2026 16:16:04 -0700 (PDT)
-From: Oliver White <oliverjwhite07@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1780355596; c=relaxed/simple;
+	bh=AA7yMsMs1sp95/rAmQFYi61U9As/7rivHHSQmnuZWtg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DDAS5WWCdA9KWaA4xdGr5or/O++rTegVIlehhmNSV4wuYTIhRn+zdMMWNzh3zY8qisadGlQq+PEBXxifQQF2MxLPzo/RsIB1kQyPra4lr0hrSAox8AajK959v+sFb1/AqHMAGLfLNmB+sunPo8adN2zMdd8UGiAQXk1l91u4cXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CeXj1njD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85FE71F00893;
+	Mon,  1 Jun 2026 23:13:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780355595;
+	bh=uaxZFaXKrmIFYBt6dWwzrs7nCg1sSc/qtCvI5zGQOIk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=CeXj1njDTZ9QYc9JvUDDE+waayylRN3SNsTJPudXFsXdbc/Jti6T0wDI0VunUE302
+	 3N/iKGYu2roQtMTfTOrB4y/WJQJ70LBObOJ2uDsZUeZxN3SHD4xLMMCL+7V8+qmeKC
+	 vYMIrjQTEmW5K1kaO9u7LIbpL00Bkn8hPH9agh56sc+tBLmp/tp199JHYQx51nvtz0
+	 KzATeZA7dTXygwASJbTODS0a6H3Y36iIHNaSByWV0n/Gm/VCl+kjLJbBcMrzWdJgCa
+	 Lm9D3W2mg+Xe5cbi9mVpzslKIvhdXAI2jRrBc5kRN9EF5E+dpMDfO2ebpmil7clTUN
+	 xouYJrYkj7V4Q==
+Date: Mon, 1 Jun 2026 18:13:14 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Martin Kepplinger <martin.kepplinger@puri.sm>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Felipe Balbi <balbi@kernel.org>,
-	Oliver White <oliverjwhite07@gmail.com>,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: x1e80100-microsoft-romulus: add phy-reinit-on-resume
-Date: Tue,  2 Jun 2026 11:12:36 +1200
-Message-ID: <20260601231236.20402-4-oliverjwhite07@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260601231236.20402-1-oliverjwhite07@gmail.com>
-References: <20260601231236.20402-1-oliverjwhite07@gmail.com>
+	Purism Kernel Team <kernel@puri.sm>, linux-kernel@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Robby Cai <robby.cai@nxp.com>, Frank Li <Frank.Li@nxp.com>,
+	devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-media@vger.kernel.org, imx@lists.linux.dev,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Martin Kepplinger-Novakovic <martink@posteo.de>
+Subject: Re: [PATCH v2] media: dt-bindings: nxp,imx8mq-mipi-csi2: Fix example
+ endpoint label typo
+Message-ID: <178035559437.165333.7105933627406631706.robh@kernel.org>
+References: <20260519113824.91533-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.84 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260519113824.91533-1-laurent.pinchart@ideasonboard.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,puri.sm,kernel.org,vger.kernel.org,pengutronix.de,nxp.com,lists.linux.dev,gmail.com,posteo.de];
+	TAGGED_FROM(0.00)[bounces-305405-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-305409-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[oliverjwhite07@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: BC8A26264B2
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:email]
+X-Rspamd-Queue-Id: 905E46263FD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Surface Laptop 7 gates the USB2 PHY power domain during deep sleep, causing the PHY register state to be lost. When the DWC3 multi-port controller resumes via the fast path (device_may_wakeup), the PHY is not re-initialized and USB2 devices (such as the wired keyboard on the USB-A port) may exhibit corrupted signalling, e.g. stuck modifier key reports.
 
-Enable the 'snps,reinit-phy-on-resume' quirk to force a full PHY re-initialization cycle on resume.
----
- arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+On Tue, 19 May 2026 13:38:23 +0200, Laurent Pinchart wrote:
+> From: Robby Cai <robby.cai@nxp.com>
+> 
+> The example in imx8mq-mipi-csi2.yaml uses imx8mm_mipi_csi_{in,out}
+> endpoint labels, which is confusing for an i.MX8MQ binding. The labels
+> could be removed as they are not functionally required in the example,
+> but they have a documentation purpose that brings value to the reader.
+> Rename them mipi_csi_{in,out} to avoid the confusion.
+> 
+> Signed-off-by: Robby Cai <robby.cai@nxp.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> Changes since v1:
+> 
+> - Drop imx8mpq_ prefix from label name
+> - Update commit message
+> - Drop Fixes: tag
+> ---
+>  .../devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-index 4356cb88e2bd..2de244ffb54d 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
-@@ -1731,6 +1731,10 @@ &usb_mp {
- 	status = "okay";
- };
- 
-+&usb_mp_dwc3 {
-+	snps,reinit-phy-on-resume;
-+};
-+
- &usb_mp_hsphy0 {
- 	vdd-supply = <&vreg_l2e>;
- 	vdda12-supply = <&vreg_l2j>;
--- 
-2.53.0
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
