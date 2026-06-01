@@ -1,96 +1,55 @@
-Return-Path: <devicetree+bounces-305067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305048-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIw5FeZZHWq/ZgkAu9opvQ
-	(envelope-from <devicetree+bounces-305067-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:07:34 +0200
+	id IAZ7LDJaHWrcZgkAu9opvQ
+	(envelope-from <devicetree+bounces-305048-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:08:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B07AA61D0C7
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:07:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DACB761D136
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:08:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 90ADC3080F98
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 09:58:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EC78A30639E0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 09:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17613ACEED;
-	Mon,  1 Jun 2026 09:50:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="lGO4jUML"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B4D3A48CE;
+	Mon,  1 Jun 2026 09:49:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout09.his.huawei.com (canpmsgout09.his.huawei.com [113.46.200.224])
+Received: from Atcsqr.andestech.com (unknown [60.248.187.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D27539B958;
-	Mon,  1 Jun 2026 09:50:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.224
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 534643A1E92
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 09:49:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.187.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780307422; cv=none; b=Cq5igCCbmsGANEM65E96rfNcOxrPkgE4TXrZPQJiQHj+U3zfNW8hYL+aXJ2i0j2MexBWYJ7fRMh6AyqyZQ5b72LUOjWTD9N37+6oPI3LJgcBjspDx8jgmu6KrINj8SK4mAIbT6sR62WHtD8WPwOP1d8W7wZ8Yjwl3cALAhMFQOY=
+	t=1780307354; cv=none; b=AWAlNyUwhwFzB+LjedXOJYZbLREWmB60IywwwYeWZPWo9qQ/w2elDDqEAPfz8m8ARw51NFwVGBdY8vtjrlIdsAZq/lVqRt+on+vv24tZmB2FhhH78kqZfDh4qUvCYY57BObYfBpriZOjVSK2p6HfUkPYTQBtPULVr4PG6mnTueo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780307422; c=relaxed/simple;
-	bh=a4gMYGQiYhp1KmAYoX19r0tgaPdhdgCwOP9dOP08itQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ht5UvYEq7+kIe8UD0n0hXmhQM/EVjBvFz8ettUBJznbja1hPBhG3l6dMboTs+DfK9Dehmga10QF0v3FjWBjKqpReDVn6u6S33f0UHqnFueYbBCiL8KD0OUwfW7Pmldrvb4IZZ4kPrlPGR0JI7sW9w+R9r32Ti45LyAWjKrEO5Go=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=lGO4jUML; arc=none smtp.client-ip=113.46.200.224
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=NMfQo98jo8ECVpuOal5Pj3QkE2scVbvFzpqAZff4Fag=;
-	b=lGO4jUMLXh7PUPz2g3M4xRkxm5LnWh5mHdKuAEZ9n+1ROfVyL0Wd+zG8D5OiJA2HGLoHIi0/X
-	HGyRAeGV53vEYZwingSDvcOgh4NugimoAxnxaYD3AmA+oZMHaml2368yocWQK7uBIyGSpKMNEYA
-	oKNI0Qd3ypUn0f7J0s427qI=
-Received: from mail.maildlp.com (unknown [172.19.163.15])
-	by canpmsgout09.his.huawei.com (SkyGuard) with ESMTPS id 4gTTWr5ZSxz1cyQh;
-	Mon,  1 Jun 2026 17:42:16 +0800 (CST)
-Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
-	by mail.maildlp.com (Postfix) with ESMTPS id 420A040539;
-	Mon,  1 Jun 2026 17:50:04 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by dggpemf500011.china.huawei.com
- (7.185.36.131) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Mon, 1 Jun
- 2026 17:50:00 +0800
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
-	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
-	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
-	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
-	<akpm@linux-foundation.org>, <bhe@redhat.com>, <rppt@kernel.org>,
-	<pasha.tatashin@soleen.com>, <pratyush@kernel.org>, <ruirui.yang@linux.dev>,
-	<rdunlap@infradead.org>, <feng.tang@linux.alibaba.com>,
-	<dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <elver@google.com>,
-	<kuba@kernel.org>, <lirongqing@baidu.com>, <ebiggers@kernel.org>,
-	<paulmck@kernel.org>, <sourabhjain@linux.ibm.com>, <thuth@redhat.com>,
-	<ardb@kernel.org>, <masahiroy@kernel.org>, <gshan@redhat.com>,
-	<james.morse@arm.com>, <maz@kernel.org>, <leitao@debian.org>,
-	<yeoreum.yun@arm.com>, <coxu@redhat.com>, <suzuki.poulose@arm.com>,
-	<cfsworks@gmail.com>, <osandov@fb.com>, <jbohac@suse.cz>,
-	<ryan.roberts@arm.com>, <tangyouling@kylinos.cn>, <ritesh.list@gmail.com>,
-	<adityag@linux.ibm.com>, <hbathini@linux.ibm.com>, <bjorn@rivosinc.com>,
-	<songshuaishuai@tinylab.org>, <vishal.moola@gmail.com>,
-	<junhui.liu@pigmoral.tech>, <djordje.todorovic@htecgroup.com>,
-	<austin.kim@lge.com>, <namcao@linutronix.de>, <djbw@kernel.org>,
-	<chao.gao@intel.com>, <seanjc@google.com>, <fuqiang.wang@easystack.cn>,
-	<liaoyuanhong@vivo.com>, <makb@juniper.net>, <graf@amazon.com>,
-	<piliu@redhat.com>, <rafael.j.wysocki@intel.com>,
-	<mario.limonciello@amd.com>, <jbouron@amazon.com>, <chenjiahao16@huawei.com>,
-	<guoren@kernel.org>, <bauerman@linux.ibm.com>, <bgwin@google.com>,
-	<takahiro.akashi@linaro.org>, <x86@kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linuxppc-dev@lists.ozlabs.org>,
-	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<kexec@lists.infradead.org>
-CC: <ruanjinjie@huawei.com>
-Subject: [PATCH v15 23/23] arm64: crash: Add crash hotplug support
-Date: Mon, 1 Jun 2026 17:48:05 +0800
-Message-ID: <20260601094805.2928614-24-ruanjinjie@huawei.com>
+	s=arc-20240116; t=1780307354; c=relaxed/simple;
+	bh=rGAs5By7HiLAckjcsP7AQSq6DT8KeI08ba9MVp2EVYw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GgiNCI2OgSgdmg6KiKeCx+U5tEWZe8JdPqfcW9V07Z7SKKRBy29bwyB3px7DMbVQb/ZAI6//LRkaAHuNb+z2rYTEaK3nXq/fGXZ6r5N9jS4zlpj+bnx0x1V+93xmjlY/O+XO6giOtWwzTYxBjM7QqWtBTKLWt3/t5shqVmdUQLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.187.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 6519mqLp065051
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Mon, 1 Jun 2026 17:48:52 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 1 Jun
+ 2026 17:48:52 +0800
+From: CL Wang <cl634@andestech.com>
+To: <vkoul@kernel.org>, <Frank.Li@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <dmaengine@vger.kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tim609@andestech.com>, <cl634@andestech.com>
+Subject: [PATCH v4 0/3] dmaengine: atcdmac300: Add Andes ATCDMAC300 DMA driver
+Date: Mon, 1 Jun 2026 17:48:43 +0800
+Message-ID: <20260601094846.1097678-1-cl634@andestech.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260601094805.2928614-1-ruanjinjie@huawei.com>
-References: <20260601094805.2928614-1-ruanjinjie@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,479 +58,85 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
- dggpemf500011.china.huawei.com (7.185.36.131)
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 6519mqLp065051
+X-Spamd-Result: default: False [2.04 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[andestech.com : SPF not aligned (relaxed), No valid DKIM,reject];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,soleen.com,linux.dev,infradead.org,linux.alibaba.com,google.com,baidu.com,debian.org,fb.com,suse.cz,kylinos.cn,rivosinc.com,tinylab.org,pigmoral.tech,htecgroup.com,lge.com,linutronix.de,intel.com,easystack.cn,vivo.com,juniper.net,amazon.com,amd.com,huawei.com,linaro.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	TAGGED_FROM(0.00)[bounces-305067-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305048-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_GT_50(0.00)[88];
-	DKIM_TRACE(0.00)[huawei.com:+];
-	TO_DN_NONE(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,linux-foundation.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,huawei.com:email,huawei.com:mid,huawei.com:dkim]
-X-Rspamd-Queue-Id: B07AA61D0C7
+	FROM_NEQ_ENVFROM(0.00)[cl634@andestech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	PRECEDENCE_BULK(0.00)[];
+	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.971];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: DACB761D136
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Due to CPU/Memory hotplug or online/offline events, the elfcorehdr
-(which describes the CPUs and memory of the crashed kernel) of kdump
-image becomes outdated. Consequently, attempting dump collection with
-an outdated elfcorehdr can lead to inaccurate dump collection.
+This patch series adds support for the Andes ATCDMAC300 DMA controller,
+a memory-to-memory and peripheral DMA controller that provides
+scatter-gather, cyclic, and slave transfer capabilities.
 
-The current solution to address the above issue involves monitoring
-the CPU/Memory add/remove events in userspace using udev rules and
-whenever there are changes in CPU and memory resources, the entire
-kdump image is loaded again. The kdump image includes kernel, initrd,
-elfcorehdr, FDT, purgatory. Given that only elfcorehdr gets outdated
-due to CPU/Memory add/remove events, reloading the entire kdump image
-is inefficient. More importantly, kdump remains inactive for a
-substantial amount of time until the kdump reload completes.
+The ATCDMAC300 IP is embedded in AndesCore-based platforms or SoCs
+such as AE350 and Qilai.
 
-To address the aforementioned issue, commit 247262756121 ("crash: add
-generic infrastructure for crash hotplug support") added a generic
-infrastructure that allows architectures to selectively update the
-kdump image component during CPU or memory add/remove events within
-the kernel itself.
+Changes in v4:
+  - Use items list format with descriptions for reg property in DT binding
+    as suggested by Conor Dooley
+  - Re-add Acked-by from Conor Dooley for DT binding patch
 
-In the event of a CPU or memory add/remove events, the generic crash
-hotplug event handler, crash_handle_hotplug_event(), is triggered. It
-then acquires the necessary locks to update the kdump image and invokes
-the architecture-specific crash hotplug handler,
-arch_crash_handle_hotplug_event(), to update the required kdump image
-components.
+Changes in v3:
+  - Rename DT binding file from andestech,qilai-dma.yaml to
+    andestech,ae350-dma.yaml
+  - Deprecate IP-core-based compatible and align with SoC/platform-based
+    compatible strings
+  - Dropped Acked-by from Conor Dooley due to the above binding change
+  - Remove "andestech,atcdmac300" from of_device_id table
+  - Replace deprecated tasklet with threaded IRQ using
+    devm_request_threaded_irq() and IRQF_ONESHOT
+  - Update locking from spin_lock_bh() to spin_lock_irqsave()
+  - Use builtin_platform_driver() instead of module_platform_driver()
+  - Remove "select DMATEST" from Kconfig
+  - Add separate MAINTAINERS patch (patch 3/3)
 
-[1] has supported virtual CPU hotplug in virtual machines for ARM64,
-allowing vCPUs to be added or removed at runtime to meet Kubernetes
-demands.
+Please kindly review.
 
-On ARM64, only memory add/remove events are handled. Here's why:
+CL Wang (3):
+  dt-bindings: dmaengine: Add support for ATCDMAC300 DMA engine
+  dmaengine: atcdmac300: Add driver for Andes ATCDMAC300 DMA controller
+  MAINTAINERS: Add entry for Andes ATCDMAC300
 
-1. Physical CPU hotplug: Not supported on ARM64 hardware.
+ .../bindings/dma/andestech,ae350-dma.yaml     |   67 +
+ MAINTAINERS                                   |    6 +
+ drivers/dma/Kconfig                           |   11 +
+ drivers/dma/Makefile                          |    1 +
+ drivers/dma/atcdmac300.c                      | 1505 +++++++++++++++++
+ drivers/dma/atcdmac300.h                      |  296 ++++
+ 6 files changed, 1886 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
+ create mode 100644 drivers/dma/atcdmac300.c
+ create mode 100644 drivers/dma/atcdmac300.h
 
-2. ACPI vCPU hotplug (KVM virtual machine):
-   - vCPU hotplug is implemented as a static firmware policy where all
-     possible vCPUs are pre-described in the MADT table at boot.
-   - The vCPU status will be automatically updated after vCPU hotplug.
-   - No FDT or elfcorehdr update needed.
-
-3. Device tree booted Virtual Machine vCPU hotplug:
-  - The elfcorehdr is built using for_each_possible_cpu(), so it
-    already includes all possible CPUs and doesn't need updates.
-
-For memory add/remove events, the elfcorehdr is updated to reflect
-the current memory layout.
-
-This patch adds the ARCH_SUPPORTS_CRASH_HOTPLUG config option and
-implements:
-- arch_crash_hotplug_support(): Check if hotplug update is supported
-- arch_crash_get_elfcorehdr_size(): Return elfcorehdr buffer size
-- arch_crash_handle_hotplug_event(): Handle memory hotplug events
-
-This follows the same approach as x86 commit
-ea53ad9cf73b ("x86/crash: add x86 crash hotplug support") and powerpc
-commit b741092d5976 ("powerpc/crash: add crash CPU hotplug support")
-and commit 849599b702ef ("powerpc/crash: add crash memory hotplug
-support").
-
-The test is based on the following QEMU version:
-	https://github.com/salil-mehta/qemu.git virt-cpuhp-armv8/rfc-v2
-
-Replace your '-smp' argument with something like:
- | -smp cpus=1,maxcpus=3,cores=3,threads=1,sockets=1
-
-then feed the following to the Qemu montior to hotplug vCPU;
- | (qemu) device_add driver=host-arm-cpu,core-id=1,id=cpu1
- | (qemu) device_del cpu1
-
-feed the following to the Qemu montior to hotplug memory;
- | (qemu) object_add memory-backend-ram,id=mem1,size=256M
- | (qemu) device_add pc-dimm,id=dimm1,memdev=mem1
- | (qemu) device_del dimm1
-
-The qemu startup configuration is as follows:
-qemu-system-aarch64 \
-		-M virt,gic-version=3,acpi=on,highmem=on \
-		-enable-kvm \
-		-cpu host \
-		-kernel Image \
-		-smp cpus=1,maxcpus=3,cores=3,threads=1,sockets=1 \
-		-bios /usr/share/edk2/aarch64/QEMU_EFI.fd \
-		-m 2G,slots=64,maxmem=16G \
-		-nographic \
-		-no-reboot \
-		-device virtio-rng-pci \
-		-append "root=/dev/vda rw console=ttyAMA0 kgdboc=ttyAMA0,115200 \
-			earlycon acpi=on crashkernel=512M" \
-		-drive if=none,file=images/rootfs.ext4,format=raw,id=hd0 \
-		-device virtio-blk-device,drive=hd0 \
-
-There are two system calls, `kexec_file_load` and `kexec_load`, used to
-load the kdump image. Only kexec_file_load syscall way is tested now.
-
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Will Deacon <will@kernel.org>
-Cc: Baoquan He <bhe@redhat.com>
-Cc: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: Breno Leitao <leitao@debian.org>
-Cc: Kees Cook <kees@kernel.org>
-[1]: https://lore.kernel.org/all/20240529133446.28446-1-Jonathan.Cameron@huawei.com/
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
----
- arch/arm64/Kconfig                     |   3 +
- arch/arm64/include/asm/kexec.h         |  13 +++
- arch/arm64/kernel/Makefile             |   2 +-
- arch/arm64/kernel/crash.c              | 152 +++++++++++++++++++++++++
- arch/arm64/kernel/kexec_image.c        |  21 +++-
- arch/arm64/kernel/machine_kexec_file.c |  40 ++-----
- 6 files changed, 195 insertions(+), 36 deletions(-)
- create mode 100644 arch/arm64/kernel/crash.c
-
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index fe60738e5943..9091c67e1cc2 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -1609,6 +1609,9 @@ config ARCH_DEFAULT_CRASH_DUMP
- config ARCH_HAS_GENERIC_CRASHKERNEL_RESERVATION
- 	def_bool CRASH_RESERVE
- 
-+config ARCH_SUPPORTS_CRASH_HOTPLUG
-+	def_bool y
-+
- config TRANS_TABLE
- 	def_bool y
- 	depends on HIBERNATION || KEXEC_CORE
-diff --git a/arch/arm64/include/asm/kexec.h b/arch/arm64/include/asm/kexec.h
-index 892e5bebda95..4f3d4fc2807e 100644
---- a/arch/arm64/include/asm/kexec.h
-+++ b/arch/arm64/include/asm/kexec.h
-@@ -130,6 +130,19 @@ extern int load_other_segments(struct kimage *image,
- 		char *cmdline);
- #endif
- 
-+#ifdef CONFIG_CRASH_HOTPLUG
-+#define pnum_hdr_sz(pnum) ((pnum) * sizeof(Elf64_Phdr) + sizeof(Elf64_Ehdr))
-+
-+void arch_crash_handle_hotplug_event(struct kimage *image, void *arg);
-+#define arch_crash_handle_hotplug_event arch_crash_handle_hotplug_event
-+
-+int arch_crash_hotplug_support(struct kimage *image, unsigned long kexec_flags);
-+#define arch_crash_hotplug_support arch_crash_hotplug_support
-+
-+unsigned int arch_crash_get_elfcorehdr_size(void);
-+#define crash_get_elfcorehdr_size arch_crash_get_elfcorehdr_size
-+#endif
-+
- #endif /* __ASSEMBLER__ */
- 
- #endif
-diff --git a/arch/arm64/kernel/Makefile b/arch/arm64/kernel/Makefile
-index 74b76bb70452..0625422fc528 100644
---- a/arch/arm64/kernel/Makefile
-+++ b/arch/arm64/kernel/Makefile
-@@ -64,7 +64,7 @@ obj-$(CONFIG_KEXEC_CORE)		+= machine_kexec.o relocate_kernel.o	\
- obj-$(CONFIG_KEXEC_FILE)		+= machine_kexec_file.o kexec_image.o
- obj-$(CONFIG_ARM64_RELOC_TEST)		+= arm64-reloc-test.o
- arm64-reloc-test-y := reloc_test_core.o reloc_test_syms.o
--obj-$(CONFIG_CRASH_DUMP)		+= crash_dump.o
-+obj-$(CONFIG_CRASH_DUMP)		+= crash_dump.o crash.o
- obj-$(CONFIG_VMCORE_INFO)		+= vmcore_info.o
- obj-$(CONFIG_ARM_SDE_INTERFACE)		+= sdei.o
- obj-$(CONFIG_ARM64_PTR_AUTH)		+= pointer_auth.o
-diff --git a/arch/arm64/kernel/crash.c b/arch/arm64/kernel/crash.c
-new file mode 100644
-index 000000000000..5882b9b5a90e
---- /dev/null
-+++ b/arch/arm64/kernel/crash.c
-@@ -0,0 +1,152 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Architecture specific functions for kexec based crash dumps.
-+ */
-+
-+#define pr_fmt(fmt)	"crash hp: " fmt
-+
-+#include <linux/kexec.h>
-+#include <linux/elf.h>
-+#include <linux/memblock.h>
-+#include <linux/vmalloc.h>
-+#include <linux/cacheflush.h>
-+#include <linux/crash_core.h>
-+
-+#include <asm/kexec.h>
-+
-+#if defined(CONFIG_KEXEC_FILE) || defined(CONFIG_CRASH_HOTPLUG)
-+unsigned int arch_get_system_nr_ranges(void)
-+{
-+	/* for exclusion of crashkernel region */
-+	unsigned int nr_ranges = 2 + crashk_cma_cnt + CRASH_HOTPLUG_SAFETY_PADDING;
-+	phys_addr_t start, end;
-+	u64 i;
-+
-+	for_each_mem_range(i, &start, &end)
-+		nr_ranges++;
-+
-+	return nr_ranges;
-+}
-+
-+int arch_crash_populate_cmem(struct crash_mem *cmem)
-+{
-+	phys_addr_t start, end;
-+	u64 i;
-+
-+	for_each_mem_range(i, &start, &end) {
-+		if (unlikely(cmem->nr_ranges >= cmem->max_nr_ranges))
-+			return -EAGAIN;
-+
-+		cmem->ranges[cmem->nr_ranges].start = start;
-+		cmem->ranges[cmem->nr_ranges].end = end - 1;
-+		cmem->nr_ranges++;
-+	}
-+
-+	return 0;
-+}
-+#endif
-+
-+#ifdef CONFIG_CRASH_HOTPLUG
-+int arch_crash_hotplug_support(struct kimage *image, unsigned long kexec_flags)
-+{
-+#ifdef CONFIG_KEXEC_FILE
-+	if (image->file_mode)
-+		return 1;
-+#endif
-+	/*
-+	 * For kexec_load syscall, crash hotplug support requires
-+	 * KEXEC_CRASH_HOTPLUG_SUPPORT flag to be passed by userspace.
-+	 */
-+	return kexec_flags & KEXEC_CRASH_HOTPLUG_SUPPORT;
-+}
-+
-+unsigned int arch_crash_get_elfcorehdr_size(void)
-+{
-+	unsigned int phdr_cnt;
-+
-+	/* A program header for possible CPUs, vmcoreinfo and kernel_map */
-+	phdr_cnt = 2 + num_possible_cpus();
-+	if (IS_ENABLED(CONFIG_MEMORY_HOTPLUG))
-+		phdr_cnt += CONFIG_CRASH_MAX_MEMORY_RANGES;
-+
-+	return pnum_hdr_sz(phdr_cnt);
-+}
-+
-+/**
-+ * update_crash_elfcorehdr() - Recreate the elfcorehdr and replace it with old
-+ *			       elfcorehdr in the kexec segment array.
-+ * @image: the active struct kimage
-+ */
-+static void update_crash_elfcorehdr(struct kimage *image)
-+{
-+	void *elfbuf = NULL, *old_elfcorehdr;
-+	unsigned long mem, memsz;
-+	unsigned long elfsz = 0;
-+
-+	/*
-+	 * Create the new elfcorehdr reflecting the changes to CPU and/or
-+	 * memory resources.
-+	 */
-+	if (crash_prepare_headers(true, &elfbuf, &elfsz, NULL)) {
-+		pr_err("unable to create new elfcorehdr");
-+		goto out;
-+	}
-+
-+	/*
-+	 * Obtain address and size of the elfcorehdr segment, and
-+	 * check it against the new elfcorehdr buffer.
-+	 */
-+	mem = image->segment[image->elfcorehdr_index].mem;
-+	memsz = image->segment[image->elfcorehdr_index].memsz;
-+	if (elfsz > memsz) {
-+		pr_err("update elfcorehdr elfsz %lu > memsz %lu",
-+			elfsz, memsz);
-+		goto out;
-+	}
-+
-+	/*
-+	 * Copy new elfcorehdr over the old elfcorehdr at destination.
-+	 */
-+	old_elfcorehdr = (void *)__va(mem);
-+	if (!old_elfcorehdr) {
-+		pr_err("mapping elfcorehdr segment failed\n");
-+		goto out;
-+	}
-+
-+	/*
-+	 * Temporarily invalidate the crash image while the
-+	 * elfcorehdr is updated.
-+	 */
-+	xchg(&kexec_crash_image, NULL);
-+	memcpy((void *)old_elfcorehdr, elfbuf, elfsz);
-+	dcache_clean_inval_poc((unsigned long)old_elfcorehdr,
-+			       (unsigned long)old_elfcorehdr + elfsz);
-+	xchg(&kexec_crash_image, image);
-+	pr_debug("updated elfcorehdr\n");
-+
-+out:
-+	vfree(elfbuf);
-+}
-+
-+/**
-+ * arch_crash_handle_hotplug_event() - Handle hotplug elfcorehdr changes
-+ * @image: a pointer to kexec_crash_image
-+ * @arg: struct memory_notify handler for memory hotplug case and
-+ *       NULL for CPU hotplug case.
-+ *
-+ * Update the kdump image based on the type of hotplug event:
-+ * - CPU add and remove: No action is needed.
-+ * - Memory add/remove: Update the elfcorehdr to reflect the current memory layout.
-+ *
-+ * Prepare the new elfcorehdr and replace the existing elfcorehdr.
-+ */
-+void arch_crash_handle_hotplug_event(struct kimage *image, void *arg)
-+{
-+	if ((image->file_mode || image->elfcorehdr_updated) &&
-+		((image->hp_action == KEXEC_CRASH_HP_ADD_CPU) ||
-+		(image->hp_action == KEXEC_CRASH_HP_REMOVE_CPU)))
-+		return;
-+
-+	update_crash_elfcorehdr(image);
-+}
-+#endif /* CONFIG_CRASH_HOTPLUG */
-diff --git a/arch/arm64/kernel/kexec_image.c b/arch/arm64/kernel/kexec_image.c
-index 93c36a3aa618..21f38de7a8b6 100644
---- a/arch/arm64/kernel/kexec_image.c
-+++ b/arch/arm64/kernel/kexec_image.c
-@@ -8,6 +8,7 @@
- 
- #define pr_fmt(fmt)	"kexec_file(Image): " fmt
- 
-+#include <linux/elf.h>
- #include <linux/err.h>
- #include <linux/errno.h>
- #include <linux/kernel.h>
-@@ -92,16 +93,32 @@ static void *image_load(struct kimage *image,
- #ifdef CONFIG_CRASH_DUMP
- 	if (image->type == KEXEC_TYPE_CRASH) {
- 		/* load elf core header */
--		unsigned long headers_sz;
-+		unsigned long headers_sz, pnum = 0;
- 		void *headers;
- 
--		ret = crash_prepare_headers(true, &headers, &headers_sz, NULL);
-+		ret = crash_prepare_headers(true, &headers, &headers_sz, &pnum);
- 		if (ret) {
- 			pr_err("Preparing elf core header failed\n");
- 			return ERR_PTR(ret);
- 		}
- 		image->elf_headers = headers;
- 		image->elf_headers_sz = headers_sz;
-+
-+#ifdef CONFIG_CRASH_HOTPLUG
-+		/*
-+		 * The elfcorehdr segment size accounts for VMCOREINFO, kernel_map
-+		 * maximum CPUs and maximum memory ranges.
-+		 */
-+		if (IS_ENABLED(CONFIG_MEMORY_HOTPLUG))
-+			pnum = 2 + num_possible_cpus() + CONFIG_CRASH_MAX_MEMORY_RANGES;
-+		else
-+			pnum += 2 + num_possible_cpus();
-+
-+		if (pnum < (unsigned long)PN_XNUM)
-+			image->elf_headers_sz = max(pnum_hdr_sz(pnum), headers_sz);
-+		else
-+			pr_err("number of Phdrs %lu exceeds max\n", pnum);
-+#endif
- 	}
- #endif
- 
-diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
-index d0f73eb3f856..0016001f4d00 100644
---- a/arch/arm64/kernel/machine_kexec_file.c
-+++ b/arch/arm64/kernel/machine_kexec_file.c
-@@ -10,11 +10,11 @@
- 
- #define pr_fmt(fmt) "kexec_file: " fmt
- 
-+#include <linux/elf.h>
- #include <linux/ioport.h>
- #include <linux/kernel.h>
- #include <linux/kexec.h>
- #include <linux/libfdt.h>
--#include <linux/memblock.h>
- #include <linux/of.h>
- #include <linux/of_fdt.h>
- #include <linux/slab.h>
-@@ -39,38 +39,6 @@ int arch_kimage_file_post_load_cleanup(struct kimage *image)
- 	return kexec_image_post_load_cleanup_default(image);
- }
- 
--#ifdef CONFIG_CRASH_DUMP
--unsigned int arch_get_system_nr_ranges(void)
--{
--	/* for exclusion of crashkernel region */
--	unsigned int nr_ranges = 2 + crashk_cma_cnt + CRASH_HOTPLUG_SAFETY_PADDING;
--	phys_addr_t start, end;
--	u64 i;
--
--	for_each_mem_range(i, &start, &end)
--		nr_ranges++;
--
--	return nr_ranges;
--}
--
--int arch_crash_populate_cmem(struct crash_mem *cmem)
--{
--	phys_addr_t start, end;
--	u64 i;
--
--	for_each_mem_range(i, &start, &end) {
--		if (unlikely(cmem->nr_ranges >= cmem->max_nr_ranges))
--			return -EAGAIN;
--
--		cmem->ranges[cmem->nr_ranges].start = start;
--		cmem->ranges[cmem->nr_ranges].end = end - 1;
--		cmem->nr_ranges++;
--	}
--
--	return 0;
--}
--#endif
--
- /*
-  * Tries to add the initrd and DTB to the image. If it is not possible to find
-  * valid locations, this function will undo changes to the image and return non
-@@ -98,6 +66,12 @@ int load_other_segments(struct kimage *image,
- 		kbuf.bufsz = image->elf_headers_sz;
- 		kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
- 		kbuf.memsz = image->elf_headers_sz;
-+
-+#ifdef CONFIG_CRASH_HOTPLUG
-+		if (image->elf_headers_sz < pnum_hdr_sz(PN_XNUM))
-+			image->elfcorehdr_index = image->nr_segments;
-+#endif
-+
- 		kbuf.buf_align = SZ_64K; /* largest supported page size */
- 		kbuf.buf_max = ULONG_MAX;
- 		kbuf.top_down = true;
 -- 
 2.34.1
 
