@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-305107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305108-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MMhsBJdlHWqwaAkAu9opvQ
-	(envelope-from <devicetree+bounces-305107-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:57:27 +0200
+	id ML5aKhxoHWrqaAkAu9opvQ
+	(envelope-from <devicetree+bounces-305108-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 13:08:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7359A61DF93
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:57:26 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAFD261E167
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 13:08:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E6E69301B93E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 10:51:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED37030053E2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 10:57:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99DF5399340;
-	Mon,  1 Jun 2026 10:51:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E394395AFE;
+	Mon,  1 Jun 2026 10:57:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hXfA8/yQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K9vl0aze"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89F8029D26E
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 10:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22E0939656C
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 10:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780311082; cv=none; b=T49qSSdcV3HvKiydi5s6nQYkxvw4oljh+sX38nI1rBPhiXbaNW6mI2aYz2Oipwey9YOTZpPeQYrleNF9VjxFfXYUS1/1S6w3zh3CNRlg3XFJ6LorNeQf7HXlz/lleMws8hMF5b7kHgJ8JifXAtcHhskX1qUBQNXN8pZXhK54D9E=
+	t=1780311436; cv=none; b=XbX5YHlBAWqEoy1/NPUsWVWB4K0Zrr4OUk+SWS6zi1KQRnTbcSVzBgANlBF+50PcsAmATGvpXhL7oOG8ndnQnaDSsb9Sm57UtUxaeTVLe9sWJJHFYPFd3U0mGlbue5v0xIFXiFF6NH8W4Lt8CIg868AI4oaS9eBMNspS7OA7qo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780311082; c=relaxed/simple;
-	bh=6+61G6iClLHH3NYh+5WuEftGNRu98JQksusKpGOWUfM=;
+	s=arc-20240116; t=1780311436; c=relaxed/simple;
+	bh=I+veZGOX1eKE/vtdrJly23HYs7s3UJy01nQWBG7DmIc=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=R1jkX1o5KLKsyEsmte0fspLmTgpjXnEc4pDBHeljp0Uc0vRntoR7nlszMKVYaPasO7qZQxj/CNDFgx9Va5QhmXDaDOlVnt3JGcCRwa02N7fhIMW7aUVKi3dPxV3uDsmC5X9IfbkAywEEFdXeNLad16w6ZiQkJdaI+FOCpGI3Nc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hXfA8/yQ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2469A1F00893;
-	Mon,  1 Jun 2026 10:51:21 +0000 (UTC)
+	 Message-Id; b=LRz8/kQv/r3nhrCQ4gpZ4WCT9Fic640linW9is0PMomr5D2Ptl1o87HtgiZN47WUZR0++CRZPX7MV30+sLikukDp7T3Gv2LPJTpzwahARpTFGaVpU1LoZ90euiWSTox5GYfpZpFzUnBXr4SCBGlYJRRrzy3Vwu4NF//1SWcHcsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K9vl0aze; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B4581F00893;
+	Mon,  1 Jun 2026 10:57:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780311081;
-	bh=TO+8aRlrZ/Mza5O6va/cWW6Qvg53wJEkEfmca9bMNPo=;
+	s=k20260515; t=1780311434;
+	bh=Et+6hxxbuX6vGzVQg/R9H1E74GykC/F8CZSPCPGjSSA=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hXfA8/yQ1zYdbBC0oOp606YFSHHL2ww0RWIvYsgwA2aC0opjIJj7melgQxyH2F0vL
-	 WOM13mXRS38AgIKdVz53BcdLBYkt1o4RnpDilne6nbxn8oIplsc9ndsh9QNw4FRUxL
-	 SSyS+REITJAaZsLphtszjDSNGhc3AyvGX3Z3v7RiQogYjSQMxNVCAZfHMcrajYDRhl
-	 MXEYktBUw9oG3DVkI3C3w64v+JbR2t6ga5c1rk7HVRcXok55DPIUrhDQaguLKUmimL
-	 I0OFS71MRIDXUtHO5fivHit6Wbaf+0MEO9Pg2Wdlje80U/bXe7k4X944VHGE1NgvEf
-	 5wAOD+i4IWe8g==
+	b=K9vl0azeiA8etBDoW8f1FYx4BapOvp1A1GWQzIGjFTUsJhmf2BDyzuMNCl2yi2wfg
+	 qh7RgZZZLWtGkqrVCS0MCZugOWWcJ0dafmtgI11VXXtG+JvkVcsSHDBqbyYIq5xrAE
+	 fJ3DmeKDRmC2J4wzoo3m4C4wBUnJGw2h/Opga0kg/OJdtKgveSIo7zM+ZypgrcZQnm
+	 XrcbdThycVwoDHpZ2RYcri9qCmgUKVsSaXKjTgaUULuSPy5uSB/iIjoV1kjDiOSTN5
+	 U/l1akd/kSCijqYPjv6PkeRQ9Dp4n9814sWrtQb6WVyvsiBnmXMjIlEiKZatlFtnfp
+	 hLW2yJC3YsFgw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v15 14/23] LoongArch: kexec_file: Fix TOCTOU buffer
- overflow via memory region padding
+Subject: Re: [PATCH v15 15/23] crash: Add crash_prepare_headers() to exclude
+ crash kernel memory
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Jinjie Ruan" <ruanjinjie@huawei.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260601094805.2928614-15-ruanjinjie@huawei.com>
-References: <20260601094805.2928614-15-ruanjinjie@huawei.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260601094805.2928614-16-ruanjinjie@huawei.com>
+References: <20260601094805.2928614-16-ruanjinjie@huawei.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 01 Jun 2026 10:51:20 +0000
-Message-Id: <20260601105121.2469A1F00893@smtp.kernel.org>
+Date: Mon, 01 Jun 2026 10:57:13 +0000
+Message-Id: <20260601105714.8B4581F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,12 +67,12 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305107-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305108-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -90,11 +90,11 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,huawei.com:email,sashiko.dev:url,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 7359A61DF93
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,huawei.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid]
+X-Rspamd-Queue-Id: EAFD261E167
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -102,71 +102,79 @@ Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
 
 Pre-existing issues:
-- [Critical] Use-After-Free (UAF) in lockless memblock iteration during con=
-current memory hotplug.
+- [High] Lockless traversal of memblock regions during kexec_file_load race=
+s with memory hotplug, leading to Use-After-Free.
 --
 
-commit 9f733b8a8b1bc2bc76d7b31a5df0518355501151
+commit 4f0896f6bb8685cdb345e9a9e54c301abdd1086a
 Author: Jinjie Ruan <ruanjinjie@huawei.com>
 
-LoongArch: kexec_file: Fix TOCTOU buffer overflow via memory region padding
+crash: Add crash_prepare_headers() to exclude crash kernel memory
 
-This commit aims to fix a race condition in prepare_elf_headers() between
-the initial pass that counts system RAM ranges and the second pass that
-populates them. It adds padding to the initial allocation and introduces
-a boundary check to prevent out-of-bounds writes if a concurrent memory
-hotplug event increases the number of memory regions.
+This commit introduces crash_prepare_headers() to consolidate memory alloca=
+tion=20
+and crash kernel exclusion logic across architectures. It adds three weak=20
+architecture-specific callbacks to handle counting, populating, and excludi=
+ng=20
+crash memory ranges.
 
-> diff --git a/arch/loongarch/kernel/machine_kexec_file.c b/arch/loongarch/=
-kernel/machine_kexec_file.c
-> index 5584b798ba464..3c369124586e1 100644
-> --- a/arch/loongarch/kernel/machine_kexec_file.c
-> +++ b/arch/loongarch/kernel/machine_kexec_file.c
+> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
+> index 4f21fc3b108b8..481babc291310 100644
+> --- a/kernel/crash_core.c
+> +++ b/kernel/crash_core.c
 
 [ ... ]
 
-> @@ -75,6 +76,11 @@ static int prepare_elf_headers(void **addr, unsigned l=
-ong *sz)
->  	cmem->max_nr_ranges =3D nr_ranges;
->  	cmem->nr_ranges =3D 0;
->  	for_each_mem_range(i, &start, &end) {
-> +		if (unlikely(cmem->nr_ranges >=3D cmem->max_nr_ranges)) {
-> +			ret =3D -EAGAIN;
-> +			goto out;
-> +		}
+> @@ -272,6 +269,85 @@ int crash_prepare_elf64_headers(struct crash_mem *me=
+m, int need_kernel_map,
+>  	return 0;
+>  }
+> =20
+
+[ ... ]
+
+> +int crash_prepare_headers(int need_kernel_map, void **addr, unsigned lon=
+g *sz,
+> +			  unsigned long *nr_mem_ranges)
+> +{
+> +	unsigned int max_nr_ranges;
+> +	struct crash_mem *cmem;
+> +	int ret;
 > +
+> +	max_nr_ranges =3D arch_get_system_nr_ranges();
 
-[Severity: Critical]
-This is a pre-existing issue, but does this lockless iteration over the
-memblock array risk a use-after-free during concurrent memory hotplug
-operations?
+[Severity: High]
+This is a pre-existing issue, but can this lockless architecture callback
+trigger a Use-After-Free during concurrent memory hotplug?
 
-While the new boundary check successfully protects against index overruns
-within the newly allocated cmem array, prepare_elf_headers() iterates over
-the underlying memblock array using for_each_mem_range() without holding
-the mem_hotplug_lock.
+In the kexec_file_load() path, we don't seem to hold mem_hotplug_lock
+(via get_online_mems()). When architectures implement arch_get_system_nr_ra=
+nges()
+they typically iterate over memblock.memory.regions locklessly:
 
-If a concurrent memory hotplug event invokes add_memory(), it can trigger
-a reallocation of the memblock array, freeing the old regions array while it
-is still actively being traversed:
+arch_get_system_nr_ranges() {
+    ...
+    for_each_mem_range(i, &start, &end)
+        nr_ranges++;
+    ...
+}
 
-mm/memblock.c:memblock_double_array()
-        memcpy(new_array, type->regions, old_size);
-        ...
-        type->regions =3D new_array;
-        ...
-        if (*in_slab)
-                kfree(old_array);
+If a concurrent memory hotplug operation calls add_memory_resource() and
+the memblock regions array is full, memblock_double_array() will allocate a
+new array and free the old array via kfree().=20
 
-Would it be safer to acquire the hotplug lock (e.g., via get_online_mems())
-before the lockless __next_mem_range() iterator attempts to dereference
-potentially freed array pointers?
+Does this allow the lockless kexec iteration to dereference a freed regions=
+=20
+array, crashing the system when concurrently hot-plugging memory and loadin=
+g=20
+a kexec crash kernel?
 
->  		cmem->ranges[cmem->nr_ranges].start =3D start;
->  		cmem->ranges[cmem->nr_ranges].end =3D end - 1;
->  		cmem->nr_ranges++;
+> +	if (!max_nr_ranges)
+> +		return -ENOMEM;
+> +
+> +	cmem =3D alloc_cmem(max_nr_ranges);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260601094805.2928=
-614-1-ruanjinjie@huawei.com?part=3D14
+614-1-ruanjinjie@huawei.com?part=3D15
 
