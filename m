@@ -1,165 +1,124 @@
-Return-Path: <devicetree+bounces-304967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304968-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +OP1FG8+HWq8XgkAu9opvQ
-	(envelope-from <devicetree+bounces-304967-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 10:10:23 +0200
+	id 2PFdD7A+HWq8XgkAu9opvQ
+	(envelope-from <devicetree+bounces-304968-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 10:11:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2ED161B473
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 10:10:22 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ED5161B494
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 10:11:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 57C1F301682F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 08:09:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5100330060AB
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 08:11:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F21388E64;
-	Mon,  1 Jun 2026 08:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68FA134B183;
+	Mon,  1 Jun 2026 08:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QUodbKsa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ESqOeAc/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A89388886
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 08:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B49113D51E
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 08:11:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780301387; cv=none; b=j5OWSTxbcNuLNutEjyiHNA9lglHDKzTVOfNnjTD/LMLfluKN0FzhZhbVPrV+yFrUnvKlXEFqpjBephFv0AEa8mVLOaoj5WjQosTBWqhqWDmJJVsU8UGjOqrx62Dd7jk+IuslTjNB2vN6qLvzIm118q9R4Q87aAU9qlijVsCQwS8=
+	t=1780301482; cv=none; b=cQiggZlSbawADz+nc/fJ0n/ZwAAmzAhFPannEZGf571tjg6DurNlFFrUzoWc5QUrw8qYFlMJriLkxDQISvIMNvR45kEMQwVE5504Sl2uJ89kQolimmg9emnMIV/IpFYnomFl9nq0cdHUoCSoP7sdkjPXxgnu3x405Kx9X0CzrI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780301387; c=relaxed/simple;
-	bh=/gF4meNxP3tZd7bAVd9ynE3Nae3TsywwTPfmtSKlIho=;
+	s=arc-20240116; t=1780301482; c=relaxed/simple;
+	bh=cvwCnHXYYRupaGgT6OXDm5nRfHmu20ohTaIkIL9NMtM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J3u/TlASJ4J7oxEFUmQIOHoIzXc03jWBxqVYEBeljnmNXtzIulImwrCLdgwJy2Jgl43kFDRvIQGFGxYLWVgsk2GsDR68u33vrLSi1V5QnWbfZYA3EDL0Pj2rDNxqgQUm7oyMIr1W2cmCouhHhpnNQVcma0P87cr+0S6O9+qcPFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QUodbKsa; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AAD81F00899
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 08:09:46 +0000 (UTC)
+	 To:Cc:Content-Type; b=FAYm1shqqb59RQqjhPt2bILu5xX2T6OVLXH8ncQviv3TrS8a67xloq6aJ8/g2d10OcCELhMTQ2p9Hx96HJRSSm+p3/BURbsqo0IqcRCGH1tQEtwK08ypPJ+KsLpf3XEmYEnKBZ3152xK88oDIIr9mnIQLwK49hXUfIFFHx6tu+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ESqOeAc/; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13AAC1F00893
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 08:11:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780301386;
-	bh=ZqSwAQlD8oM7EAZmvH7V6mlqg4Gz6sLRYvv8xidwzlY=;
+	s=k20260515; t=1780301481;
+	bh=cvwCnHXYYRupaGgT6OXDm5nRfHmu20ohTaIkIL9NMtM=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=QUodbKsaCkSw3QMRkLSoadkN8hH4YOLzK8lVUnBPdViAD9Yz4kNF9GDQ69xk6zkKv
-	 Xf5Uz6+B5Bap5NgRpzKX7s35zga+u896VPEOS77hOkSf7eK3fguv+ilkeec00Mpk0e
-	 PGLQnv7oImNll3DjRgvMz65vIaJx0GJt/iRr26J+826ETnTEDGs1STRhCINA0E0QDH
-	 pF+QRDBMWNr82b2hhVMmWa/REJjWym5oVXMbKh+yDdjz2Zbqj2SAkRmWAtCYScskOe
-	 w6XDAWUdBtz1CJuw6Ydxw3NJnI5I1jthmIqGZEVlx54j9PoJcV43+TRVrqABARVd8R
-	 0uo0lRYSDmA1A==
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5aa68cfc182so932350e87.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 01:09:46 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwXouWAi9ZWOhl3se7qcNaNL7HFT8LK0axr2fZG/ehukIVisPVt
-	zm5v/wtzd3+wA08uMqUF8aXMyMxkWtvC76D6IPVyoLxSqNaW71cXyKkkaBM394l6x+bydQ9Z1nJ
-	SWP5/LRBsA9LSuxERXtsHLuShhHA39XA=
-X-Received: by 2002:a05:6512:6181:b0:5aa:6395:9a00 with SMTP id
- 2adb3069b0e04-5aa63959b8cmr2096101e87.45.1780301385240; Mon, 01 Jun 2026
- 01:09:45 -0700 (PDT)
+	b=ESqOeAc/cZ7ZbpYZOctMwBxBwvPcWoQcoVKKAUYqwfnfrqJmsWp9uNnBv3AMq6pBe
+	 Z7yUQZ41R4DtLlnRP0FVqNnqcaHy1wIAbat+esnxt/l9s5/rOipgWiL4sAN2WSqVrm
+	 tE4wUwbjxyWfWls4bo7fJoX9UuQIdHhCBQbGQ+/S4gSADRaoAahkhGJwRbTwmme3AG
+	 i2aJlzsyz2JxWJK+stiLPBGsyWIFBT7E8L+sge1aim/Q1IWhKESjYxy9PV2qVLLkCT
+	 SVMkrbc8tK+pmp8J92kHvGOUXsUyznPCFmI8BV6CwQ3wtnP3FC8sLizsN13sEAaBZd
+	 1Yb8AnEqWu0dw==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5aa619653e4so1695272e87.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 01:11:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ+urLlwS+rmfRUgpasVm8FTDVuYJdqUJwLUP/09QfR2QiOJvPZBdo//aXLrB+pwnPFqGWXCTFCZ+hme@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9IXR4W0/eMH9MUF5Q5ZVb1Mg/SQSxPlv6SEKaZgjaNkHT9bto
+	pfg/uik2J5pR5wXQEDtIG5MNf0ZyrRbz3QW9LgWEFqpEPo1NCrNO9ETyGtGXiwXGMG/zV8j2Dnv
+	6gtK9K+EL5qESqBwOCp+VjekLpS4f3rU=
+X-Received: by 2002:a05:6512:31c4:b0:5a3:ff48:f7d6 with SMTP id
+ 2adb3069b0e04-5aa61425d2dmr1909482e87.13.1780301479851; Mon, 01 Jun 2026
+ 01:11:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260526-ks8995-to-ksz8-v3-5-c530f651989f@kernel.org> <20260530004902.BCC381F00898@smtp.kernel.org>
-In-Reply-To: <20260530004902.BCC381F00898@smtp.kernel.org>
+References: <20260526-ks8995-to-ksz8-v3-0-c530f651989f@kernel.org>
+In-Reply-To: <20260526-ks8995-to-ksz8-v3-0-c530f651989f@kernel.org>
 From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 1 Jun 2026 10:09:33 +0200
-X-Gmail-Original-Message-ID: <CAD++jLmZoGh+o5YKfjoUCWhwiRaO+Lm-9DFUdUzd9KpydWK27g@mail.gmail.com>
-X-Gm-Features: AVHnY4I-Fce43HRszqsDnice1JnVb6cU0myB4eNuyBJaUrbAvABJ0FTEkMAMTyY
-Message-ID: <CAD++jLmZoGh+o5YKfjoUCWhwiRaO+Lm-9DFUdUzd9KpydWK27g@mail.gmail.com>
-Subject: Re: [PATCH net-next v3 5/5] net: dsa: ks8995: Delete surplus driver
-To: sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+Date: Mon, 1 Jun 2026 10:11:07 +0200
+X-Gmail-Original-Message-ID: <CAD++jLmXVKz3rUTAauohfHOK6-GGkn8__Zfory9AW4t4_M08XA@mail.gmail.com>
+X-Gm-Features: AVHnY4KOb-KcbmskCyjdRMoVJ177wKi_qKWA7G6GEqxIRgG_y6tYdsfvPOahOWI
+Message-ID: <CAD++jLmXVKz3rUTAauohfHOK6-GGkn8__Zfory9AW4t4_M08XA@mail.gmail.com>
+Subject: Re: [PATCH net-next v3 0/5] net: dsa: microchip: Add support for KSZ8995XA/KS8995XA
+To: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com, 
+	Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+	Simon Horman <horms@kernel.org>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304967-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304968-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,denx.de,armlinux.org.uk];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: C2ED161B473
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 2ED5161B494
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat, May 30, 2026 at 2:49=E2=80=AFAM <sashiko-bot@kernel.org> wrote:
+On Tue, May 26, 2026 at 5:59=E2=80=AFPM Linus Walleij <linusw@kernel.org> w=
+rote:
 
-> - [Medium] Silent loss of switch driver functionality on kernel upgrade d=
-ue to missing Kconfig migration.
+> This series breaks with the dated attempt to polish the old
+> KS8995 driver, and instead implement support for the KS8995XA
+> in the KSZ driver, and after that delete the old KS8995 driver.
 
-No-one cares.
+Sashiko is only finding fringe stuff and hallucinations now,
+I think this is good to go.
 
-> Pre-existing issues:
-> - [High] The replacement driver (ksz_spi) fails to probe for devices inst=
-antiated via platform data (non-DT) because it lacks driver_data in its spi=
-_device_id table.
-
-There are no upstream consumers of the platforms data registration path.
-This is easy to verify. We don't care about outoftree users of ages
-old drivers.
-
-> - [High] The replacement driver fails to explicitly enable the Port 5 PHY=
- mode, a required initialization step performed by the old driver.
-
-No it does not. It has a special callback for the CPU port and it works
-like a charm.
-
-> - [High] The MTU limit logic in ksz8863_change_mtu is completely inverted=
- for packet sizes between 1523 and 1536 bytes, causing hardware packet drop=
-s.
-
-No. You are misreading the code.
-
-#define KSZ8863_HUGE_PACKET_SIZE        1916
-#define KSZ8863_NORMAL_PACKET_SIZE      1536
-#define KSZ8_LEGAL_PACKET_SIZE          1518
-#define KSZ8995XA_LEGAL_PACKET_SIZE     1522
-
-static int ksz8863_change_mtu(struct ksz_device *dev, int frame_size)
-{
-        u8 ctrl2 =3D 0;
-        unsigned int legalsz;
-
-        if (ksz_is_ksz8995xa(dev))
-                legalsz =3D KSZ8995XA_LEGAL_PACKET_SIZE;
-        else
-                legalsz =3D KSZ8_LEGAL_PACKET_SIZE;
-
-        if (frame_size <=3D legalsz)
-                ctrl2 |=3D KSZ8863_LEGAL_PACKET_ENABLE;
-
-^ If this is cleared, it enables packets larger than normal size.
-
-        else if (frame_size > KSZ8863_NORMAL_PACKET_SIZE)
-                ctrl2 |=3D KSZ8863_HUGE_PACKET_ENABLE;
-
-
-^ This additionally enables packets larger than legal size (jumbo frames)
-
-
-        return ksz_rmw8(dev, REG_SW_CTRL_2, KSZ8863_LEGAL_PACKET_ENABLE |
-                        KSZ8863_HUGE_PACKET_ENABLE, ctrl2);
-}
-
-
+Yours,
 Linus Walleij
 
