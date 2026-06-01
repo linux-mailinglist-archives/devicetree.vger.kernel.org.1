@@ -1,165 +1,154 @@
-Return-Path: <devicetree+bounces-305230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305229-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yCsCLamlHWoqcwkAu9opvQ
-	(envelope-from <devicetree+bounces-305230-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:30:49 +0200
+	id GKROGKWmHWpJcwkAu9opvQ
+	(envelope-from <devicetree+bounces-305229-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:35:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A38BA621BF1
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:30:49 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D9D621D55
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:34:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CED4E302E316
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 15:27:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C6C59301DA5B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 15:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C6FC3DB31F;
-	Mon,  1 Jun 2026 15:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556BB3DB628;
+	Mon,  1 Jun 2026 15:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lZe1LB15"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MDeUMe7R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D5C3DA7ED
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 15:27:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B3993D967D
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 15:27:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780327656; cv=none; b=lcm00wtXr/0kjOkOQ56mI0bEYrRmtS+FADrJajpCvNqIXky/EVpPGooGfuvy3bNu4WUi2caLKELFdvlisSVUcPFlps/NwG43b8i6gWgKhNC/g2gBH6HEigD24j5LipFPXrBGA50qkrJsFA6lawi+UNjVVn3Nyc6JfJIZn39Xx5E=
+	t=1780327631; cv=none; b=iddAqzleLu2I+Q7V26ZfvoUuGPDLsiQopCFu2gDi17RicAbH+jWOt9K/BG/qs28L8ibzDSJcbc/Yb7FPKVJS/wUjvQxcIXG0ezSy4WUifmuSEu0iHsdICRMexROgYze1YchYW1YZXNlyBy59Glg0jcZKMGXZz7TNKfjiLZhNwh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780327656; c=relaxed/simple;
-	bh=RO9rUwD+0ipkd0JqnII+Jf2Yj+dHGhtTa3lOoj8yHvQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=F5qKjswW209zfBbOMoalCBIUZ3MMiTa7eE4Py6aKa9mTZwmPYm6IR71XeUjbBCprOA510R0TaVpk31WUWPxC2VGQG4SyIFzO9GCn3OvItOGPXFVUOKldsJKtRE1lZ4VIiTYJDBpNfOGURPZwCB0pFwoyDJ1/7LtAR5AjEMUW11o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lZe1LB15; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-490a765e68eso12909455e9.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 08:27:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780327646; x=1780932446; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gGzIR3Ya12RsZQy65tkjnFhcSYwdslivQxR7gOO4emA=;
-        b=lZe1LB15zDOyCrIl9zZ8OJzr2ou9/4ics2Fh96N14JEMWYJGea+tBNlKtLBR/CeiiV
-         cBS3WHb5pMAzOz3ilFAzD0wFb1fSJnftNeUETRzKGmx805azvedYGmLCc/TZnDIdIizs
-         SArOIzl0HBVqdPunrOJkF96PkZhZZ7rjfaL3TCLlz2cTfRu8Zzq4OCF2CMddqw8q79Jb
-         ZcwOvI4r4Qw2pRt8C203Hza/dhl5OljOTcdQLenKpPacoMbI75Na8elrDb6eJCTd5G94
-         VqVWpHZWxRPqIW/NbmL/kUYg2FeH5ZU8jB7Qho0gogKYATazwAaX4j/6+KzH8/3kcwbD
-         GoRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780327646; x=1780932446;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gGzIR3Ya12RsZQy65tkjnFhcSYwdslivQxR7gOO4emA=;
-        b=m9ez1qhVQSWdRDLegungjpBl3PSqyRUR9gra95IctSQthDn8xpXVsYfZxgiPH7rm63
-         bfRf1bPl3/DwYM7MnQcjRLDvVJ3omMYE9lk2ClUHvJ/LXbc1yuOIsoBBKXmmeezKcvtx
-         nstf0U/LNYTotgsqLwPxTSWNaI9VKzlkK7k5aoND1vUHSUz5ezY6SHpc+GbReLrc0z+1
-         wLGg4pWwI6u/eqYRi73RaKKxu7QxPIgLDzB6tMqcf+xMuWT+YS9+MYNBvMJqCabnd7cm
-         yr0CG+iDkCsMiTJxPTj30bfAy5LkOrz1QghM4FMKwMROmcQE3dbISbJ6nbF2BnO6/LlF
-         UF/g==
-X-Forwarded-Encrypted: i=1; AFNElJ/2k30OJq7NYcIAggTsWjqM1o8qcZsNPSiXN0o03GGD5JemWLan3Iu3NwPknSGTf4ni60IP5hOG136I@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXbY6nhx4CwW2XnJ3GVrTVGRWKKX/DdhcrDTnjA0UwMHGcxHuT
-	0ACxmoL45og2FNWLPOtkI62gTdxs4y4OTYLidnO+ekvE3U3d3NbGLTxY
-X-Gm-Gg: Acq92OGhFi7TNg5d7+GX/x5hfO64dQpniibUteWEWORwE56fJIwZOPsrFGZmp5ivbly
-	l+pmBKAIwRXwETm/P+/pmIU1SJFsDqJ9OJHtWmsKs9qxJrYkUG2zqclkWzdAGqThqQHGdGl+QBi
-	OJ2ut/sK3krgGsaySLIHWFY+09yY9yfpo+4AnTDFJXnJzUZ2Cf+kbpQBnO3zxtNoQrLZWA4Woia
-	6c0VjkGRr+iRIROPf8Q0zwoqUuQX2QY6sCCzMh65t9qeuNzCnQ/+5UbkpEyh+BcGj1IAa9AgsAs
-	VhFSVRFYdyUXpZPeE6qWIj6qcR8/EKL3eKDOFAiEIGim1uc+XiaX/j8hx+yXz1qn/uaKcDLim7J
-	37qwgmgNLEKuGI02pZyh0+Nf0h976BoIoYsGWdIVlPNuFNJlUE8jo8QvCW4KXFYoCqykd+UwvA5
-	crMzArfgultWvmbeyE17tf+yIbv6E=
-X-Received: by 2002:a05:600c:c285:b0:48e:5fb8:f80f with SMTP id 5b1f17b1804b1-490a2966ce7mr127746435e9.24.1780327646037;
-        Mon, 01 Jun 2026 08:27:26 -0700 (PDT)
-Received: from luca-vm.. ([81.56.18.151])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490ad63b34dsm14041635e9.27.2026.06.01.08.27.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Jun 2026 08:27:25 -0700 (PDT)
-From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-To: linux-mediatek@lists.infradead.org
-Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sean Wang <sean.wang@kernel.org>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] dt-bindings: pinctrl: mediatek: mt6795: document the slew-rate property
-Date: Mon,  1 Jun 2026 17:26:42 +0200
-Message-ID: <20260601152707.29039-1-l.scorcia@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1780327631; c=relaxed/simple;
+	bh=OCL5m0SOtO+FMsNl52bLfTQoAWFAx2INQrquKdQfcKQ=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=K1DzRWiN34PJ/xjNef6kBMbGsyCF+CXOAXNX0jDYjDoO1N0NYKK8MsMmlZj+paHqNyi7QljxwJ4nbpY2AajJFYoRmUHy1PBDrMrxP/bmRgX+LYR1OcCvMh/lvxdQgSccaL9x7OevchbLd/4MINo6AED65xaLV7t5uwKfY6lvSSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MDeUMe7R; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D6FA1F00898;
+	Mon,  1 Jun 2026 15:27:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780327624;
+	bh=9dRhDh1NTli/rxlSsEWuHpP2GBVlNYPqCX5GQ9MYAPw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=MDeUMe7RGSx1U4XOtQy4HJg0KbvN0USPsS6yGBBXUlVWDgmpVvC81bmdttaqshmJY
+	 y26yMHTs3i+MWheu0ScNQFOFpYuru5PRGC4FYqeQPp8mMf7dC4JJK+bweYbcI2dIRh
+	 lDjp9JOxRPbGSt/O6Hm/2hJKdHv/8d5tvsp8K3VFjbdJfEXXAzOTEyJ/d0khC+74pm
+	 a2dTROWwJlXPuNeZxQcQtrRQ4S2xE7rKMDF8ZPJVP4BM4H60WmmACT8ZjDMWk+gXz2
+	 E3JljCYfKDmcuEjFriW3hTFpMAbKEPePSIcrg2DMYdLT+zQJOSUqkrV/4u6X+zopcb
+	 dfNaPpc9/toCA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 02/11] mfd: lm3533: Remove driver specific regmap
+ wrappers
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Svyatoslav Ryhel" <clamor95@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260601151831.76350-3-clamor95@gmail.com>
+References: <20260601151831.76350-3-clamor95@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 01 Jun 2026 15:27:03 +0000
+Message-Id: <20260601152704.6D6FA1F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-305230-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,collabora.com,vger.kernel.org,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305229-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: A38BA621BF1
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 62D9D621D55
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The driver for MT6795 pinctrl already supports the slew-rate property.
-Add its description to the documentation.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Incorrect argument order for `regmap_update_bits` silently prevent=
+s disabling interrupts.
+--
 
-Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
----
- .../bindings/pinctrl/mediatek,mt6795-pinctrl.yaml         | 8 ++++++++
- 1 file changed, 8 insertions(+)
+commit 02ae49c5dba8ff55717ce569312b1ed0ac85b17f
+Author: Svyatoslav Ryhel <clamor95@gmail.com>
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml
-index 68e91c05f122..9a937f414cc9 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml
-@@ -152,6 +152,14 @@ patternProperties:
-             $ref: /schemas/types.yaml#/definitions/uint32
-             enum: [0, 1, 2, 3]
- 
-+          slew-rate:
-+            description: |
-+              Set the slew rate. Valid arguments are described as below:
-+              0: Normal slew rate
-+              1: Slower slew
-+            $ref: /schemas/types.yaml#/definitions/uint32
-+            enum: [0, 1]
-+
-         required:
-           - pinmux
- 
--- 
-2.43.0
+mfd: lm3533: Remove driver specific regmap wrappers
 
+This commit replaces custom wrapper functions for regmap access with standa=
+rd
+regmap helpers across the lm3533 MFD driver and its sub-device drivers. The
+commit message notes that regmap_update_bits requires the mask and value
+arguments to be swapped compared to the old wrappers.
+
+> diff --git a/drivers/iio/light/lm3533-als.c b/drivers/iio/light/lm3533-al=
+s.c
+> index 99f0b903018cf..fb61904f110f1 100644
+> --- a/drivers/iio/light/lm3533-als.c
+> +++ b/drivers/iio/light/lm3533-als.c
+
+[ ... ]
+
+> @@ -280,7 +281,8 @@ static int lm3533_als_set_int_mode(struct iio_dev *in=
+dio_dev, int enable)
+>  	else
+>  		val =3D 0;
+> =20
+> -	ret =3D lm3533_update(als->lm3533, LM3533_REG_ALS_ZONE_INFO, val, mask);
+> +	ret =3D regmap_update_bits(als->lm3533->regmap, LM3533_REG_ALS_ZONE_INF=
+O,
+> +				 val, mask);
+
+[Severity: High]
+Are the mask and val arguments swapped in this regmap_update_bits() call?
+
+The commit message mentions that regmap_update_bits() has the mask and value
+arguments swapped compared to the old wrapper, but in this instance they are
+passed as val, then mask.
+
+If enable is false, val is 0. Calling regmap_update_bits() with 0 as the
+bitmask will modify zero bits, which fails to clear the interrupt enable bi=
+t.
+Could this cause an unhandled interrupt storm when the interrupt is disabled
+via sysfs, or when the driver is removed and free_irq() is called while the
+level-triggered IRQ line remains asserted?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260601151831.7635=
+0-1-clamor95@gmail.com?part=3D2
 
