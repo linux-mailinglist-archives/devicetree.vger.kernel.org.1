@@ -1,129 +1,166 @@
-Return-Path: <devicetree+bounces-305404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305406-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KGciMCESHmrugwkAu9opvQ
-	(envelope-from <devicetree+bounces-305404-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 01:13:37 +0200
+	id EHrRCCETHmrugwkAu9opvQ
+	(envelope-from <devicetree+bounces-305406-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 01:17:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1910B6263E6
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 01:13:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE98B626448
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 01:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6EC05301BA4E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 23:11:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E807930469A6
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 23:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116CF36A354;
-	Mon,  1 Jun 2026 23:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B26A38CFE9;
+	Mon,  1 Jun 2026 23:15:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fGL4zNAt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y+ljZqSw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14DFA34AB19;
-	Mon,  1 Jun 2026 23:11:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0A82D3220
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 23:15:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780355500; cv=none; b=Y4d02kVZ3teFN/KrFwxXg+Y+1Gfck5kTmN81efMmWJfeKgc9AFq+vzwoCilpkw8j4++k3w+JiDmV29nZ99jqHODVW3tFycvIFDh3IntA807x3LA+zrkKX1AtYFXyRGBaiKMUq1MdbAtSNfR7yS/AqUqGDcUqbLOvIhMNbbJ3pXk=
+	t=1780355735; cv=none; b=nxL5Y5Y5yWPI4ZW1y/oMQ/5AUz7HHzeDbv6uRLWOMIT386meDYBsUJp91dFyxa4TTVgoQJfVzyllq5mxRAFYL/7hLqehW+FIdJ5j6dfTGD7yinHTXXd8v7pNLAszjd7f4GpmfYeyxt2+TdMQn9yumT1d3Sgeie2+zptPzSdgqHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780355500; c=relaxed/simple;
-	bh=tZ/FyU6BTe1l76oQLhf/QPSnjO6j3Wt4thVE357l+lQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hpgEF8iHk+plltUAfBnaYl563A3PXCbxl8tcd0Yq4btdJktZOcy12HACzPbJqbOiVeidrYTZ3NTh341REsGhD1HS7y6B28q7RgKNLOM7aDg+JdnCivW+0IcZpHelrgS/XiDeRABym2r5pHvUzH2dW7e6mzW2I+eRZ1iFUDHlwPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fGL4zNAt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C7D61F00893;
-	Mon,  1 Jun 2026 23:11:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780355498;
-	bh=u0uVl58P/+LhtePaVxc1OfDLsvpS/SYXpeqwBFFbzSU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=fGL4zNAtKMHnY544PXECwX2aMFMp24rQEYuUfQs+q21l93HzpIoRz52ZpUN9uwl/c
-	 QoiugUZR1nUBv6FmnjvfYpNQH+WM0id3NatUQeZS7gmM77UqWgWCnDgloXPPUM+q6b
-	 EqvWD8Iwdz2ig7V078bAd9ClTS2Rwhnq0K/E82D/kLa8WxO3WtTvzDE3hW7/NV4hn3
-	 0fwhsepFhBiUJjLnTbY2PoJcanlPDjS33wSP7UO3Kkfl9U+T2Qre7WgeccSvtYofEa
-	 d1hYkbXkCDdi9kkFX4q+1PJfxHkP0OohnKITG8PZ8cu5VfqakCLak+bmY4a6imtF52
-	 ZQ5pS14t8q1/A==
-Date: Mon, 1 Jun 2026 18:11:38 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Eric Dumazet <edumazet@google.com>,
-	Benjamin Larsson <benjamin.larsson@genexis.eu>,
+	s=arc-20240116; t=1780355735; c=relaxed/simple;
+	bh=5C0NvkvoNVW1GzuiitG2zF83G0Py8AToQX3X0I6RQCk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QOVGiDHKx7CJvaKwurPR6iiqBOxRyWxsNZ3oiRy+EoIH6q8OwGsFjVAYtzdCKqN0eIcsp8OBB2URMNNjdXdl7B4fLXz8VYeFDlvj8T0vLfHkoz1JWrDmtpXq4MWs5QFNs0hrLwiFlL/RsjopDbSOJxjAs+nYl3sotijlnIOD5Rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y+ljZqSw; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2c0c3543590so12546565ad.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 16:15:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780355732; x=1780960532; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Qss5GDiUGvvZMzZ4WxtI6WP7Gai0GoYtE3oLWnkhZc=;
+        b=Y+ljZqSw9sDHUZce/xTH9q9LSh3fNE4l3hvu0SZbMWkj6Q46tZTsYGIu39OBw82Gmk
+         XJt24n2rhpyEDWIGsIbQ3XPe/lOD24AheQlZTQSMXs2pFAnh9oS6NclNY1KxMubXuokf
+         FLCNLSlCEGLVSQr7S59ClOUtQt6L5tktWaFwkAlC4SG25c8hL3NzGCxu6mDGPskpuAVP
+         GS85Z1RwBFENN3iGMVN+iQTsd2I6rFhsoBBlUD1d80S9Sj0TiGxvOPa7rka+KmnK7sTz
+         alWD7mtZPMqJsxEtbmy01odXnjRlQIU+98ZHCcFnDsWWiU2aSHEbeqRB7MafZCbK69zY
+         zM4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780355732; x=1780960532;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Qss5GDiUGvvZMzZ4WxtI6WP7Gai0GoYtE3oLWnkhZc=;
+        b=Q8QTntB7gHyuXWLP1iwGGi/MmBFT7VhEh/Ei/cdQsvJ+c4hZ7K0ezfdUUTOm9PvSd+
+         32nqdw3Fv0PVb3pDannbxozmKURwW/cl2WFeZo5iJwtTPAwBLKnPHIGrpi+XLoYMqpVN
+         L3cFXM3jlO41X2vyn/qzSnbd4pumDM5KTn1TQFZia58imrRvx9sSXcrcvZxs28Q2YAMv
+         sPxi+L/z1N27H0xTlBC2Dx5cMqWBdC/n+sFl9DHiWSXxfctG+IIsqqS+yG/3z1Qahl2t
+         nOB/bIdN/XoSwxkVguVIfO3Xz6yDsX5YzHebuakrq/qu1ctRSE7IEe4pLMZY6a73yxVQ
+         SWtw==
+X-Forwarded-Encrypted: i=1; AFNElJ/y5qdh5EbjmYrAuPGcXU+aRjLYQRH6dxnXGBuzfAo5XNeUkROGOVDlVlcwXjKaDflU7XJEUBU10frs@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmVteddpDP5wf+rAWDtfacgJ2DYTHKHSB+Mjj1maYh5f+djj41
+	BaEdmoUWBjPm8rCrJXgiwk+vyq/3mVW55SKe5ida7RSy8Z0H7XysZQmH
+X-Gm-Gg: Acq92OHmEBuzlAxPE5NAhYZKE9hRYGyQo/d+L379gLVFOk+JdLmonV9JjswNpOCyUd5
+	IC75p371KV3552h+fbV2jE9T15K/ZmUHH/VqeRTvn8xtAm+aCVwFbIJBYXVqXBeIOc1cyAxcub+
+	UHiFg9rQ4Fc/R60g1bzCzuF+997Ve7e6/Jmgq3sGzT5yOUQrJ/sd/zuHzkltY7Ai5tLWss/Arou
+	ZQ1Fk4z6EoCommzbOT2omf1ETJnAU9ao5ZAqlObwW30fjPw22yJIclOz0cf8dlI7+gM1xF6+L0q
+	zRa9AZVl5UmBy6m/Bi/fzBtPx8/bESWmoh/vZVyu9fBA0e815YnUD/eGnixadM/5MXG4bqzkxdN
+	+LhIIhhfpr+5yQeKEmvdBXJa/fD0zZEKeaw2LqS1VsSokdKnYRC1ZXRwZ02ImohAv9mOMvY+HOd
+	MaaEV00LQo/eKb87COHQcsZjg7P2OlkTpea3DSKUFubkCzBOTnz7VGSF1GRfEOHvVXqv/gYlS0+
+	YRVzlKK5+FIPn5tcwqq
+X-Received: by 2002:a17:902:e88c:b0:2bd:9803:9308 with SMTP id d9443c01a7336-2bf36878d37mr136499995ad.36.1780355732165;
+        Mon, 01 Jun 2026 16:15:32 -0700 (PDT)
+Received: from tomriddle.canterbury.ac.nz ([202.36.179.106])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bf239fd24fsm143815355ad.20.2026.06.01.16.15.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jun 2026 16:15:31 -0700 (PDT)
+From: Oliver White <oliverjwhite07@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, Paolo Abeni <pabeni@redhat.com>,
-	Jakub Kicinski <kuba@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Christian Marangi <ansuelsmth@gmail.com>
-Subject: Re: [PATCH net-next v8 01/10] dt-bindings: net: airoha: Add GDM port
- ethernet child node
-Message-ID: <178035548342.162634.13411632527297449694.robh@kernel.org>
-References: <20260519-airoha-eth-multi-serdes-v8-0-6bd70e329df6@kernel.org>
- <20260519-airoha-eth-multi-serdes-v8-1-6bd70e329df6@kernel.org>
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Felipe Balbi <balbi@kernel.org>,
+	Oliver White <oliverjwhite07@gmail.com>,
+	linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] usb: dwc3: add snps,reinit-phy-on-resume quirk for USB2 PHY power loss during S3
+Date: Tue,  2 Jun 2026 11:12:33 +1200
+Message-ID: <20260601231236.20402-1-oliverjwhite07@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260519-airoha-eth-multi-serdes-v8-1-6bd70e329df6@kernel.org>
-X-Spamd-Result: default: False [0.34 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[google.com,genexis.eu,kernel.org,vger.kernel.org,lunn.ch,lists.infradead.org,redhat.com,davemloft.net,gmail.com];
-	TAGGED_FROM(0.00)[bounces-305404-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-305406-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[oliverjwhite07@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 1910B6263E6
+X-Rspamd-Queue-Id: AE98B626448
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+The Surface Laptop 7 (x1e80100-romulus) gates the USB2 PHY power domain
+during S3 even when device_may_wakeup is set, causing PHY register
+state to be lost. The DWC3 fast-resume path calls
+phy_pm_runtime_get_sync() to restore the PHY, but this is a no-op for
+PHY drivers that do not implement runtime PM (e.g. the Qualcomm eUSB2
+driver), resulting in corrupted USB2 signalling on resume.
 
-On Tue, 19 May 2026 10:57:44 +0200, Lorenzo Bianconi wrote:
-> EN7581 and AN7583 SoCs support connecting multiple external SerDes to GDM3
-> or GDM4 ports via a hw arbiter that manages the traffic in a TDM manner.
-> As a result multiple net_devices can connect to the same GDM{3,4} port
-> and there is a theoretical "1:n" relation between GDM ports and
-> net_devices.
-> Introduce the ethernet node child of a specific GDM port in order to model
-> a given net_device that is connected via the external arbiter to the
-> GDM{3,4} port. This new ethernet node is defined by the "airoha,eth-port"
-> compatible string. Please note GDM1 and GDM2 does not support the
-> connection with the external arbiter and they are represented by an
-> ethernet node defined by the "airoha,eth-mac" compatible string.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  .../devicetree/bindings/net/airoha,en7581-eth.yaml | 56 +++++++++++++++++++++-
->  1 file changed, 55 insertions(+), 1 deletion(-)
-> 
+This series adds a new DT quirk flag that forces a full phy_exit() +
+phy_init() cycle on each USB2 PHY during system resume, and enables it
+for the Romulus board.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Patch 1 documents the new dt-binding property.
+Patch 2 implements the quirk in the DWC3 core driver.
+Patch 3 enables the quirk on x1e80100-microsoft-romulus.
+
+Oliver White (3):
+  dt-bindings: usb: dwc3: document snps,reinit-phy-on-resume
+  usb: dwc3: add reinit-phy-on-resume quirk
+  arm64: dts: qcom: x1e80100-microsoft-romulus: add phy-reinit-on-resume
+
+ .../bindings/usb/snps,dwc3-common.yaml        | 10 ++++++++
+ .../dts/qcom/x1e80100-microsoft-romulus.dtsi  |  4 +++
+ drivers/usb/dwc3/core.c                       | 25 +++++++++++++++++++
+ drivers/usb/dwc3/core.h                       |  1 +
+ 4 files changed, 40 insertions(+)
+
+-- 
+2.53.0
 
 
