@@ -1,357 +1,230 @@
-Return-Path: <devicetree+bounces-304940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304943-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CO0oN/4wHWrcWAkAu9opvQ
-	(envelope-from <devicetree+bounces-304940-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:13:02 +0200
+	id kLcgKfcyHWoqWQkAu9opvQ
+	(envelope-from <devicetree+bounces-304943-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:21:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C0F361ABFC
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:13:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E34DC61ACC6
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:21:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B95F230B3E0A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 07:06:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 74DD2301A3A5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 07:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8F81384248;
-	Mon,  1 Jun 2026 07:06:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E19F383325;
+	Mon,  1 Jun 2026 07:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aGTnmNmW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mR2xBMiC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com [74.125.82.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA99E38399E
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 07:06:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.174
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780297572; cv=pass; b=YWvPyonCVc3TR6twPmOQbGF6BFr/ms4NlapG0hfJDePRQs4/8Tesld9h1T+jm08Nic5tBmQyf4U7G71oWWTpI7vpXEefsUATXbZC2IrIAm6m5boOv8CPea3Vs2XBnVAwTxKgGUNQ+/MTJ2xxNLImJB48AcDZEj5AaYSBrT6NhCA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780297572; c=relaxed/simple;
-	bh=zL43rRNUkROQAXRx+lI+JoRTxX9AjBpJcLNzRh35qx0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NCpSb3rqA2t+s5XybBiqzhucQuk1luS+cw38x2pFLJ8synbelUCIGUA3OVFuIXaR50rYruMxMS/Jqy89Z6441HkxEf7eVFsjH3ELQiDyIRyh/r+7aBOnW5j01iNnxt+EWe6xphIgueCyq5gFCUrv97kvPfB7nm0fqNPCSG/DhqE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aGTnmNmW; arc=pass smtp.client-ip=74.125.82.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f174.google.com with SMTP id 5a478bee46e88-304d555293aso5229000eec.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 00:06:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780297569; cv=none;
-        d=google.com; s=arc-20240605;
-        b=cuj++TJRhd8bIqKVNnabfYLu91V5fafvD9cg+V3FFsu5vUQPdC9TTEvQa7xcg6cInm
-         nNuCZoVgqV/l6ZQ/pHebt7ZTOF7Uw9k7M/5t4Hpd4L968WVpWh+HGE/qy9WO7dxUPs3K
-         0jWf83Q51Eui1R4tlBtHqwa+VK5xGGB9KLnjLKJ2tK5Auzg+h8H3wMW9mqErz9wu0V23
-         9iMHnQGWQDq724ki3oCINmXlhTX/CEyfBM39w638/KHA9MGJ8kwoslj/DikvlG8UF3GA
-         IXTTUgefZb3Fcq0XdqeMA1FLKEdBBgV5hhYp78tMR/7ASgqD29DciaLW/oZrPsAztFDH
-         bTCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=o6x1wbXvenVeekia93enMRo3NGuqJ+euTvBULiNrpXA=;
-        fh=6/z6lnMY+E2Eu7XKS/MIRZ5fgbPzfyFf9FQjKj0yhbE=;
-        b=C3/+AZg/biPqIOHNSvjfW9vlgaxdcL5oKp9zajQ0oZcqpdh31b3mtlXyw3lYznzb/p
-         gsW09dhqbVNsps7awq2EDDSKPuE49wms73kHKq2UN+X7RZltVmqikO9vQJdtivmanahE
-         mN1oXFywmj8VuJvHUtE7aXVUEt+7sNKtyoxsMP7Yv2WG2N5Pl9EBtqcGvdOXOD/3hUqu
-         vCIaF5JgX92M0+GO5IZ0rh9HQBVb9BwHWZU9coCbZ2tsbnydLFgE+csOxsAXcX8GqGR2
-         yhaGZ7DA6FtB4CaDGDx+fpUbjxa//dM4aBtfoJ86r3H/auGsyvQgPvIBEXPDITIzcDcy
-         DFbQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780297569; x=1780902369; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o6x1wbXvenVeekia93enMRo3NGuqJ+euTvBULiNrpXA=;
-        b=aGTnmNmWbnsu0mGB+qitdiaExDNjMsb8AhWrlAw4UNumOnynSTJd2hEDLVxEHT3YJy
-         nEKYBJVMF9CKmqb8ZsDE1zwu6n1b2+QAcVwCHtNmIMn1q5dZLgNWOFHO/OqNZngzyYl+
-         DYgxcerc96ABaV1nio70X+QUWg/oa+ya+NfoJOLGrtfRwXKSNR5OjXSGjvkQclodAZnC
-         ndJSKEv+IAa5/4ArFeziD0PBuFGkqqste+Yj6R1Wcm8iJxizmifSXgPe7LTW5H9ubynQ
-         7nOgEOr6xmzt0+IoWUD/GqHKFTvvSNjylJLguf3iCJgb+EstLPNrH8uxIf5GEZDyKPwG
-         obBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780297569; x=1780902369;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=o6x1wbXvenVeekia93enMRo3NGuqJ+euTvBULiNrpXA=;
-        b=RlbvK1FU/lmCUb6vaM4OLNrUxNobkZUxhaR1WaqPQSBkd0idb6FBt7J5KQDIBC+Aqq
-         R3dxZm+GxHUuAvzeSS1H5RJMNWruNbytay1cVmS5Wdc2icw8oA+ZxoDrwDMbdEIZGeEQ
-         YPJ8Bhe21rEN4Kd8IMB9d9Vgt6GA5WR1yLJAhmsFLy+tjACRVgcOD+Lge+pNfYuIwY1g
-         OezJAYm+xnKD8TYRRJPwzrXJuXOHL2K8PzemJ2/ajZsCeqKSTx9D9+WuhIEaK4Ir+ee/
-         RNv0H/zRaTDfBZm5viJTz5zwjR5WjxDnStWPYevv86sZmRCGN6pMBQ2Zl+mdUlldNjeJ
-         Ib1Q==
-X-Forwarded-Encrypted: i=1; AFNElJ8a631XiBwB1nE9t/ibo/0Fhkg7LSD3OEo8fQhCMVvycGcMSniaALiY9Y4/9IW/fwk970w7pe6rIn9Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyd1A9XvLJJPD8MWHw60IX++vx7bfYnPQz3NiqMiRzA58cb30A/
-	N45osGVKYue/TfnJNithU7z4hTM1dNzCE0MER9wMULaZhjmRekpQ3EP4dOMEJgcT4EVpwxoOOoJ
-	rKKA9n2KvUrkjSaIuPyU11DmPIns1lb/En1Zw
-X-Gm-Gg: Acq92OEUd4SGnV7KJS+tuIHrQS4uwqgN3viwKWxCSRecU0RL19UbCNIAB69K5UdM/uy
-	or7ETjUjajwPrjj3Rfh3CdCu8Rkt29701IAhTcVIVeURs17c21TVmvvWTCdzEf0MVRN5zq3OqSK
-	0HF1ftsZ+3jLFhNS6I0DWL0Gi3IDKO0d9j5QZY0AOdvb6plC3A4elTJIaf9n6rbo8XEbH4m8GDy
-	RPBpZxvsXI0+nvLjwmxfWeYeljx8Xf7EpNG1SSOtKrT+YkdDs7b1F4f4kC7lyY9ca9Yz0XaaqzW
-	i/g9JNWbbBF/nyuK/HY=
-X-Received: by 2002:a05:7300:e58b:b0:2f2:5c68:5052 with SMTP id
- 5a478bee46e88-304fa508e98mr4749567eec.13.1780297568834; Mon, 01 Jun 2026
- 00:06:08 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1E9258EC1
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 07:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780297865; cv=none; b=CM2c/Jd3AJ6M1QynDCXlLVoWnY+o8kKBS5jikSJLTaoFUZgYgY/Pjj1vz/9MBCDWkWSYcq73dAV/1+lWhYSLyKI2LFJlfTwyMm3Kbchal2pASb9j8lqT+MTBruvXlYX+cXPr/oql2zGkVtvhqDbj0DzMk0mGu7cJQL9nT9Ddz4w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780297865; c=relaxed/simple;
+	bh=vE/wzzQrJi32hd9cv9AjZNgU8J7BFn+3dw808wHFarQ=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=CGc1XY9W2ujN2y39BGV3tNHnQhZZs4oHApCXheWjD54owOz5U7RONfjICx83KM20TAtVFbn2dTMWe5arFUzuHS9A/x5bWW+N1xekC5FWefzvfelMw4P7l69+lqzyt2EeyiWZ8KO+sQriEpeyMw+t4QlGDqcbj3CyBSO1iGKJM9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mR2xBMiC; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE7C81F00893;
+	Mon,  1 Jun 2026 07:11:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780297864;
+	bh=x+WlBtt88x3iThS3KCXYYiNBfa23OtsVRyrmlfNzaMM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=mR2xBMiCT66mpVi0QdKaj7LotraJmREioSipxv/4dls95HTml/M2fNO1fB9lvdx0J
+	 UYqLkb6IkuntQDNfqhaHnUo0Aj6JF9eJg5N1ydMlR0Wr6bHBx4FHgtLBTph5BX4mIy
+	 VYkqeONkzpLWb/bpGQs7r9nPvTpxV+42FdAhSEBacfKRwgF+q91oCED90RJHFHdnD3
+	 f17g0lhd/0mseKQltg2Fus36TuOICM5xvaC57bHwfDcgxawQ/DDos8Y/3HQdR4vwOL
+	 Q8yF23V7MIHjiXrl351k7acjDAd+uroci2o28JiYPBYhovX3cKSYTUXhyzQD/zgdiW
+	 4fEroBVAbOW4A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v10 06/11] drm/rockchip: analogix_dp: Fix OF node
+ reference leak via auto cleanup
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Damon Ding" <damon.ding@rock-chips.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260601065100.1103873-7-damon.ding@rock-chips.com>
+References: <20260601065100.1103873-7-damon.ding@rock-chips.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 01 Jun 2026 07:11:03 +0000
+Message-Id: <20260601071103.BE7C81F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260529054218.5184-1-Ashish.Yadav@infineon.com>
- <20260529054218.5184-2-Ashish.Yadav@infineon.com> <20260529-partake-myself-baa76ed4e279@spud>
-In-Reply-To: <20260529-partake-myself-baa76ed4e279@spud>
-From: ashish yadav <ashishyadav78@gmail.com>
-Date: Mon, 1 Jun 2026 12:35:57 +0530
-X-Gm-Features: AVHnY4KKIhJYyyCvubbTWvCZOWxKwkjn-0kbsOvszc7kwcg7g_uxuWN-ORBhaRQ
-Message-ID: <CAJKbuCZ09AFKqJMB+uVLY1+PC1E6rGtw=RGMG7DF4_K85GLeeQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon/pmbus: Add Infineon XDP720/XDP730
-To: Conor Dooley <conor@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Ashish Yadav <ashish.yadav@infineon.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-304940-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-304943-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,infineon.com:url,infineon.com:email,mail.gmail.com:mid,0.0.0.11:email,0.0.0.12:email]
-X-Rspamd-Queue-Id: 3C0F361ABFC
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,rock-chips.com:email,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: E34DC61ACC6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Conor,
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
 
-Thanks for your time & feedback.
+Pre-existing issues:
+- [High] Stack buffer overflow caused by formatting an unbounded device tre=
+e node name into a fixed-size array, with the resulting string being comple=
+tely unused.
+- [High] Uninitialized variable `port_id` is read if `of_property_read_u32(=
+)` fails.
+- [High] `drm_of_encoder_active_endpoint` returns an endpoint structure con=
+taining a dangling device_node pointer, causing a Use-After-Free.
+- [High] The function calls `clk_prepare_enable()` and `clk_disable_unprepa=
+re()`, which can sleep, from within an atomic context.
+--
 
-I will revert back the file name to infineon,xdp720.yaml.
-I hope it will resolve the issues.
+commit 64019e228c078284dbae98e48cc02de08453152c
+Author: Damon Ding <damon.ding@rock-chips.com>
 
-With Best Regards
-  Ashish Yadav
+drm/rockchip: analogix_dp: Fix OF node reference leak via auto cleanup
 
+This patch converts the device node reference management in
+rockchip_dp_drm_encoder_enable() to use the __free(device_node)
+auto-cleanup helper. It aims to fix a reference leak where
+of_node_put() was missed in early return paths.
 
-On Fri, May 29, 2026 at 10:11=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Fri, May 29, 2026 at 11:12:17AM +0530, ASHISH YADAV wrote:
-> > From: Ashish Yadav <ashish.yadav@infineon.com>
-> >
-> > Add documentation for the device tree binding of the XDP720/XDP730
-> > eFuse Controllers.
-> >
-> > Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
-> > ---
-> >  .../bindings/hwmon/pmbus/infineon,xdp720.yaml | 59 --------------
-> >  .../bindings/hwmon/pmbus/infineon,xdp730.yaml | 80 +++++++++++++++++++
->
-> This rename just bloats out the diff, no thanks. Please do not do this,
-> certainly not without a justification.
-> pw-bot: changes-requested
->
-> Thanks,
-> Conor.
->
-> >  2 files changed, 80 insertions(+), 59 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infin=
-eon,xdp720.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infin=
-eon,xdp730.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp=
-720.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp720.ya=
-ml
-> > deleted file mode 100644
-> > index 72bc3a5e7139..000000000000
-> > --- a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp720.yam=
-l
-> > +++ /dev/null
-> > @@ -1,59 +0,0 @@
-> > -# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > -%YAML 1.2
-> > ----
-> > -
-> > -$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,xdp720.yaml#
-> > -$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > -
-> > -title: Infineon XDP720 Digital eFuse Controller
-> > -
-> > -maintainers:
-> > -  - Ashish Yadav <ashish.yadav@infineon.com>
-> > -
-> > -description: |
-> > -  The XDP720 is an eFuse with integrated current sensor and digital
-> > -  controller. It provides accurate system telemetry (V, I, P, T) and
-> > -  reports analog current at the IMON pin for post-processing.
-> > -
-> > -  Datasheet:
-> > -     https://www.infineon.com/assets/row/public/documents/24/49/infine=
-on-xdp720-001-datasheet-en.pdf
-> > -
-> > -properties:
-> > -  compatible:
-> > -    enum:
-> > -      - infineon,xdp720
-> > -
-> > -  reg:
-> > -    maxItems: 1
-> > -
-> > -  infineon,rimon-micro-ohms:
-> > -    description:
-> > -      The value of the RIMON resistor, in micro ohms, required to enab=
-le
-> > -      the system overcurrent protection.
-> > -
-> > -  vdd-vin-supply:
-> > -    description:
-> > -      Supply for the VDD_VIN pin (pin 9), the IC controller power supp=
-ly.
-> > -      Typically connected to the input bus (VIN) through a 100 ohm / 1=
-00 nF
-> > -      RC filter.
-> > -
-> > -required:
-> > -  - compatible
-> > -  - reg
-> > -  - vdd-vin-supply
-> > -
-> > -additionalProperties: false
-> > -
-> > -examples:
-> > -  - |
-> > -    i2c {
-> > -        #address-cells =3D <1>;
-> > -        #size-cells =3D <0>;
-> > -
-> > -        hwmon@11 {
-> > -            compatible =3D "infineon,xdp720";
-> > -            reg =3D <0x11>;
-> > -            vdd-vin-supply =3D <&vdd_vin>;
-> > -            infineon,rimon-micro-ohms =3D <1098000000>;  /* 1.098k ohm=
- */
-> > -        };
-> > -    };
-> > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp=
-730.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp730.ya=
-ml
-> > new file mode 100644
-> > index 000000000000..fdbc577bccdd
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,xdp730.yam=
-l
-> > @@ -0,0 +1,80 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +
-> > +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,xdp730.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Infineon XDP720 / XDP730 Digital eFuse Controllers
-> > +
-> > +maintainers:
-> > +  - Ashish Yadav <ashish.yadav@infineon.com>
-> > +
-> > +description: |
-> > +  The XDP720 and XDP730 are PMBus-compliant digital eFuse controllers
-> > +  with an integrated current sensor.  They provide accurate system
-> > +  telemetry (V, I, P, T) and report analog current at the IMON pin for
-> > +  post-processing.
-> > +
-> > +  Both parts share the same PMBus register map and direct-format
-> > +  coefficients; they differ in the GIMON gain step exposed via the
-> > +  TELEMETRY_AVG register (bit 10) and in the VDD_VIN pin number
-> > +  (XDP720: pin 9, XDP730: pin 20).
-> > +
-> > +  Datasheets:
-> > +    - XDP720: https://www.infineon.com/assets/row/public/documents/24/=
-49/infineon-xdp720-001-datasheet-en.pdf
-> > +    - XDP730: https://www.infineon.com/assets/row/public/documents/24/=
-49/infineon-xdp730-001-datasheet-en.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - infineon,xdp720
-> > +      - infineon,xdp730
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  infineon,rimon-micro-ohms:
-> > +    description:
-> > +      The value of the RIMON resistor, in micro ohms, required to enab=
-le
-> > +      the system overcurrent protection.
-> > +
-> > +  vdd-vin-supply:
-> > +    description:
-> > +      Supply for the VDD_VIN pin (XDP720 pin 9, XDP730 pin 20), the IC
-> > +      controller power supply.  Typically connected to the input bus
-> > +      (VIN) through a 100 ohm / 100 nF RC filter.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - vdd-vin-supply
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        efuse@11 {
-> > +            compatible =3D "infineon,xdp720";
-> > +            reg =3D <0x11>;
-> > +            vdd-vin-supply =3D <&vdd_vin>;
-> > +            infineon,rimon-micro-ohms =3D <1098000000>;  /* 1.098k ohm=
- */
-> > +        };
-> > +    };
-> > +
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        efuse@12 {
-> > +            compatible =3D "infineon,xdp730";
-> > +            reg =3D <0x12>;
-> > +            vdd-vin-supply =3D <&vdd_vin>;
-> > +            infineon,rimon-micro-ohms =3D <1098000000>;  /* 1.098k ohm=
- */
-> > +        };
-> > +    };
-> > --
-> > 2.39.5
-> >
+Link: https://sashiko.dev/#/patchset/20260527024336.191433-1-damon.ding@roc=
+k-chips.com?part=3D5 #1
+
+> diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gp=
+u/drm/rockchip/analogix_dp-rockchip.c
+> --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> @@ -206,7 +207,6 @@ static void rockchip_dp_drm_encoder_enable(struct drm=
+_encoder *encoder,
+
+[Severity: High]
+This is a pre-existing issue, but does this function call sleeping functions
+from an atomic context?
+
+As the atomic_enable callback for the DRM encoder, this executes in an atom=
+ic
+context where sleeping is forbidden. However, rockchip_dp_drm_encoder_enabl=
+e()
+calls clk_prepare_enable() and clk_disable_unprepare(). Both clock APIs
+acquire a mutex internally and can sleep, which could cause kernel warnings
+or deadlocks.
+
+>  	struct drm_crtc *crtc;
+>  	struct drm_crtc_state *old_crtc_state;
+>  	struct of_endpoint endpoint;
+
+[ ... ]
+
+> @@ -230,18 +230,22 @@ static void rockchip_dp_drm_encoder_enable(struct d=
+rm_encoder *encoder,
+>  	if (ret < 0)
+>  		return;
+> =20
+> -	remote_port_parent =3D of_graph_get_remote_port_parent(endpoint.local_n=
+ode);
+> +	struct device_node *remote_port_parent __free(device_node) =3D
+> +		of_graph_get_remote_port_parent(endpoint.local_node);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does the earlier call to
+drm_of_encoder_active_endpoint() leave endpoint.local_node as a dangling
+pointer?
+
+Looking at drm_of_encoder_active_endpoint(), it parses the endpoint and
+drops the reference before returning:
+
+    ret =3D of_graph_parse_endpoint(ep, endpoint);
+    of_node_put(ep);
+    return ret;
+
+When we pass endpoint.local_node to of_graph_get_remote_port_parent() here,
+could this result in a use-after-free since the node's reference count was
+already decremented?
+
+>  	if (remote_port_parent) {
+> -		if (of_get_child_by_name(remote_port_parent, "ports")) {
+> -			remote_port =3D of_graph_get_remote_port(endpoint.local_node);
+> +		struct device_node *ports __free(device_node) =3D
+> +			of_get_child_by_name(remote_port_parent, "ports");
+> +
+> +		if (ports) {
+> +			struct device_node *remote_port __free(device_node) =3D
+> +				of_graph_get_remote_port(endpoint.local_node);
+> +
+>  			of_property_read_u32(remote_port, "reg", &port_id);
+
+[Severity: High]
+This is a pre-existing issue, but can port_id be left uninitialized if
+of_property_read_u32() fails?
+
+The port_id variable is declared on the stack without initialization. If the
+"reg" property is missing or remote_port is NULL, port_id is never updated.
+
+> -			of_node_put(remote_port);
+>  			sprintf(name, "%s vp%d", remote_port_parent->full_name, port_id);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does this sprintf() write
+potentially unbounded string data into the 32-byte name array?
+
+Device tree node names (like remote_port_parent->full_name) can exceed 32
+characters, which would cause a stack buffer overflow. Additionally, if
+port_id was left uninitialized in the previous call, random integers could
+be appended here.
+
+Furthermore, is the populated name buffer ever used? The subsequent debug
+print ignores it entirely:
+
+    DRM_DEV_DEBUG(dp->dev, "vop %s output to dp\n", (ret) ? "LIT" : "BIG");
+
+Can this sprintf() and the name array be removed entirely?
+
+>  		} else {
+>  			sprintf(name, "%s %s",
+>  				remote_port_parent->full_name, endpoint.id ? "vopl" : "vopb");
+>  		}
+> -		of_node_put(remote_port_parent);
+> =20
+>  		DRM_DEV_DEBUG(dp->dev, "vop %s output to dp\n", (ret) ? "LIT" : "BIG");
+>  	}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260601065100.1103=
+873-1-damon.ding@rock-chips.com?part=3D6
 
