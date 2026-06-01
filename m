@@ -1,64 +1,60 @@
-Return-Path: <devicetree+bounces-305387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305389-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gD9OLnn7HWpSgQkAu9opvQ
-	(envelope-from <devicetree+bounces-305387-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 23:36:57 +0200
+	id qJ+DIB37HWpSgQkAu9opvQ
+	(envelope-from <devicetree+bounces-305389-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 23:35:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A01F62593F
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 23:36:57 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2CA0625918
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 23:35:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 25D1630252BB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 21:34:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6F8EE3049E15
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 21:35:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B9D236657C;
-	Mon,  1 Jun 2026 21:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE64D367286;
+	Mon,  1 Jun 2026 21:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZJ2RPfD8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z9dejrFP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B6523438BF;
-	Mon,  1 Jun 2026 21:34:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E80A3438BF;
+	Mon,  1 Jun 2026 21:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780349648; cv=none; b=VZ+8YbT4JxXuEnWUnF0PVkKJeBZ1t0ZT0UoHVMlcbC0JdumuGp7etQaUuf0Zs82fjyNmNMMZc0ubPZwpbKzNbUFxVDpQEqHyw1XyRbz33zu6QL0hk/Ab5RorGDohTdwyFH5ALgstMRQwkBQ9DThia4NKu6hOXuCBs1PwgYprpdg=
+	t=1780349721; cv=none; b=rcAiJ04zaRPwai7CyIAejQgv/RjvFfrMk17M0naOtCawKg85wGqL+kwwLhqBO89D1ypRHYw3MIsCHqSDWMG/+mqsWMWdp2PWPbL1PFQh52Vm2eXb0i+R85NuF33bcTa2HJPgIywfr7qcVUlQpHT9WHLsCVUuYaRpCQi4oInssCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780349648; c=relaxed/simple;
-	bh=NRYlCpdmqzmlsxcy7X6opw6mtX5AoHH+z2H6+eNgAw0=;
+	s=arc-20240116; t=1780349721; c=relaxed/simple;
+	bh=JX3a56ROqRUJYWv7JLOrWtKCiHHjyk6kNHGwYD50qlY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kTl919pF0ktBRE8Nfu993XBH/tKuLsLbKaLfv2Qgd1cxXnMnAfvsx9AWIJzntTfrrgejIp8Rpj/OFuXStpQH6Njx7V0XXXkm0qHnxyMz7IQ2fF5/TDsGy6ePfgBiynz0HPwO/S0+yLVktkS+zhg1wXeen4zUc+CTATKQBHnyY44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZJ2RPfD8; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE081F00893;
-	Mon,  1 Jun 2026 21:34:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rPOh9KlxsIPmHB9Hh4mAuL1PvCmhOeHraS4HetMgi4Zt1V/lv3cAtkgGJLpZ57J6Enig3m+ETlH39o6se+s+hdjSWqxWeWzfA0vFKS2glmVuzkah4X94IijBpsIZOY4yboeBpz+ET/Wf12WucmEUkM79OUNsIX6lC6g0/aXeAe4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z9dejrFP; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BC201F00893;
+	Mon,  1 Jun 2026 21:35:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780349647;
-	bh=ZKKpXcdBFmynzzVydkupi+5KRs0qIrPSOPaKc+4iIZk=;
+	s=k20260515; t=1780349720;
+	bh=+xqhpciIcKX86EWtkX3wT2FdsVnifRlQ0F7pq6tZMiQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ZJ2RPfD8I4UwelLYMFUHasUL6X6gINo4dvCqshX6JQ8A3Yhvrh56X5YFTKHXarAiG
-	 Lfmleo4yrJFdVn1+0/6g5vu93BaTnUWPKfd6GZKSa0iF7bxWgp+m4yySl821cCg/xb
-	 XPMihgYXdAGgoQcu6P80cX6a4CBgEjjbV1SBwDE8y0RyDHptTR8ltvFgI00R/M0ic5
-	 VkbCNE7y9avDSzTb1lNq5bSIZBNJ62/GJX9XLo0Wcka95YKLkHEav7/kqRZnAWeAgp
-	 NECb4Mass4UmFriQlCB79gTW/LAvHpkjGQu0LLyUj+DHzNg4UXTOroGyNYGHJjpbYn
-	 IxqX5ON7R5QAA==
-Date: Mon, 1 Jun 2026 16:34:06 -0500
+	b=Z9dejrFPuPoHWEQu5J2ko0Bd57NtHTtxh7XkdxgglKT0olwbazk0EO95ebcLPiAbq
+	 ydau/rHrvi3Il01J5S1F1hIIx4JknI89rn3dcE7g28QdiRtnZB7WcJyGWKNgu9iQWn
+	 kZlsNhcV7iakiP896Cmu/5WTL6h06fNWAQLtgZNebkSUDo38jyvCb3Qm7OeCz4JzK9
+	 UN244FgYdszXzPwKivqUiFIravi8yfzYlAdw7gu1c5S87c1DaEbseDASdfe1Ea5Rmq
+	 Txpcb+gFOqmKDqDblvmG85NdGtpcyzIrlwrdrDVm/7+4ruyE3Bdl0sFPzuwFPKHZU2
+	 Ut3CmaLmjvoxw==
+Date: Mon, 1 Jun 2026 16:35:19 -0500
 From: Rob Herring <robh@kernel.org>
-To: lizhi2@eswincomputing.com
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, pritesh.patel@einfochips.com,
-	weishangjuan@eswincomputing.com, sashiko-bot@kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH net v2] dt-bindings: ethernet: eswin: fix hsp-sp-csr
- backward compatibility
-Message-ID: <20260601213406.GA26933-robh@kernel.org>
-References: <20260601032852.961-1-lizhi2@eswincomputing.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: CL Wang <cl634@andestech.com>, vkoul@kernel.org, conor+dt@kernel.org,
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	Frank.Li@kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: dmaengine: Add support for
+ ATCDMAC300 DMA engine
+Message-ID: <20260601213519.GA28688-robh@kernel.org>
+References: <20260601094846.1097678-2-cl634@andestech.com>
+ <20260601095846.3B2431F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,86 +63,83 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260601032852.961-1-lizhi2@eswincomputing.com>
+In-Reply-To: <20260601095846.3B2431F00893@smtp.kernel.org>
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305387-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305389-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,checkpatch.pl:url,qualcomm.com:email]
-X-Rspamd-Queue-Id: 1A01F62593F
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,andestech.com:email]
+X-Rspamd-Queue-Id: E2CA0625918
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Jun 01, 2026 at 11:28:52AM +0800, lizhi2@eswincomputing.com wrote:
-> From: Zhi Li <lizhi2@eswincomputing.com>
+On Mon, Jun 01, 2026 at 09:58:45AM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Low] The Device Tree schema uses `additionalProperties: false` alongside an `allOf: [ { $ref: dma-controller.yaml# } ]` inclusion, which violates DT schema guidelines and prevents the use of standard generic DMA properties.
+> --
 > 
-> c36069c6f46c added two optional cells to eswin,hsp-sp-csr, but
-> omitted minItems: 4.
+> commit 65ee89a1dfc4e52aa6a4083163369bef3de2c374
+> Author: CL Wang <cl634@andestech.com>
+> 
+> dt-bindings: dmaengine: Add support for ATCDMAC300 DMA engine
+> 
+> This commit documents the devicetree bindings for the Andes ATCDMAC300
+> DMA engine. The IP is embedded in AndesCore-based platforms or SoCs
+> such as AE350 and Qilai.
+> 
+> > diff --git a/Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml b/Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
+> > new file mode 100644
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
+> [ ... ]
+> > +allOf:
+> > +  - $ref: dma-controller.yaml#
+> > +
+> > +properties:
+> [ ... ]
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - "#dma-cells"
+> > +
+> > +additionalProperties: false
+> 
+> [Severity: Low]
+> Does this cause a regression during schema validation when standard DMA
+> properties are used?
+> 
+> Since this binding references dma-controller.yaml# via an allOf block, using
+> additionalProperties: false will reject generic properties like dma-channels
+> or dma-requests if they are present in the device tree node. 
+> 
+> Should this be unevaluatedProperties: false instead to properly allow the
+> inherited properties?
 
-Please run checkpatch.pl and fix the issue it reports with the commit 
-reference.
+No, it is fine as-is.
 
-> 
-> As a result, dt-schema implicitly required all 6 cells, which
-> broke backward compatibility with existing 4-cell device trees.
-> 
-> Add minItems: 4 to preserve backward compatibility.
-> 
-> Fixes: c36069c6f46c ("dt-bindings: ethernet: eswin: add optional TXD and RXD delay register offsets")
-> Reported-by: Sashiko AI <sashiko-bot@kernel.org>
-> Closes: https://lore.kernel.org/all/20260519022334.35742C2BCB7@smtp.kernel.org/
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
-> ---
-> Changes in v2:
->   - Reference c36069c6f46c explicitly instead of "previous change".
->   - Improve commit message formatting and line wrapping.
->   - No functional change.
->   - Link to v1:
->     https://lore.kernel.org/lkml/20260525052441.1637-1-lizhi2@eswincomputing.com/
-> ---
->  Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> index b66ae6300faf..65882ff79d8d 100644
-> --- a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> +++ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> @@ -84,7 +84,8 @@ properties:
->        This reference is provided for background information only.
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      items:
-> -      - items:
-> +      - minItems: 4
-> +        items:
->            - description: Phandle to HSP(High-Speed Peripheral) device
->            - description: Offset of phy control register for internal
->                           or external clock selection
-> -- 
-> 2.25.1
-> 
-> 
+Rob
 
