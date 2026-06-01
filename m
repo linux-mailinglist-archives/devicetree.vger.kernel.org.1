@@ -1,65 +1,59 @@
-Return-Path: <devicetree+bounces-305089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305087-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AMMGBD9iHWojZwkAu9opvQ
-	(envelope-from <devicetree+bounces-305089-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:43:11 +0200
+	id aBlhLKdhHWojZwkAu9opvQ
+	(envelope-from <devicetree+bounces-305087-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:40:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E3E61DC1D
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:43:09 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4264361DB2B
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 12:40:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9D88C303FDE9
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 10:20:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B631B304B914
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 10:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C564395ACA;
-	Mon,  1 Jun 2026 10:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47B8C3932E3;
+	Mon,  1 Jun 2026 10:20:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="k+OpxkXj"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="D9ON6zcb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C0E395ADC;
-	Mon,  1 Jun 2026 10:20:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9C936167B
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 10:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780309226; cv=none; b=U8btMLF8AW3KeYw2FN/kjxBtO2ekknAjqkSvd3OsUPZCM57rFQ9nMZUr9IhTSzJUA63SmA7c7kxfK1iY1U5qucU0pQQIA7vATiNS9SuErO13gpJ+2Ox3xLWiagjziMAU6lZcMv16K0X+6tNAbFcf6RBNQ+saRxSn72V7mIZ4DJo=
+	t=1780309226; cv=none; b=MXr7OkEErx8y7l35SjklaAlS7k6k/LkslIULa6qFwf++NLjnhrtklXqzSrHVVy+87hIiCzv7tWhwUQylamt2HlAxoU4nhtIT/8TpR0zVynDfLZis5MOaN4Jzp6MSFVZJRImzEo6zK7mF8VH3qzDA3dPSmy21OWjKAfUW4b+ryJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1780309226; c=relaxed/simple;
-	bh=1zdTjK78eqlbhHUB8EOuYJDEYfbTqYlRl9cJyvTI7wk=;
+	bh=du/qT0GGnkJKl5HML/LNlgpduCoW+JvpYWmTe9jqOX4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T4vdrL0/dO3p2iPk4mqg9h39orOEDStLhY3QdpdNMHkv5mKBwH3q8V3magRvL+bNYEUxawbnKHafym62+BwKVk8yjvRo+3Dki2Nhx7hdxVucRdQ6okFuUrTPSG62+zVgPi4UKQYYQ7SWdVJNxmv5QqM6acZ0QGQahVokAGsEU3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=k+OpxkXj; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=kS7nvQ7bYfmFQcI6gqnMs7BSScXsADkn+vIbO1VtZKY9HXAbO6XvIfEj1F3yKmbc0qe9DX2powcie6ZY9RMq8gGtng6Cq+nb/ztqFgFS2O5PgMIReYwhjjw5VyNk3gOrCGw3wYy2tm1dyRWRhHNJ67nCDxXtlUCQBYXVWqXRTRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=D9ON6zcb; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=SrImUZyjT4lmb9BXIxXyMNGdgHElksCa33HHo6A2zRM=; b=k+OpxkXjey2Lmif/YVYJXqdS98
-	v6TZM1Wo/TjHarw8jxVT8LASmto3lUevq7IivZw9mcm8YnF9ZFC5nbxLY6AiH0kzCmMwQaXkzEIv9
-	kzC+AnOC8yktwJToXXt6qKT73ZkFENaOwpflqybM9auVh7Q6TB/lBZt8dD7mMk4fFDCpHOGlSACqa
-	hHyhALN3No0U0Jm8YDGw+JzZkQTNyhZaybYV7gL2eK2FnDVwKpM3KUm23i+2QBw0DPzwhwYjwAUsP
-	vDyRJMweGynDNNS1PdEp7XyyKbSYXE/LeUu0+71wD2c/EBd5diCLqfQtRS3Yuw92R+88G5FrzGTQ+
-	UwkpzMLg==;
+	bh=vih2sX10b+YArA5nJOOYULDdBvv4rp3a7PZWZiMVUhs=; b=D9ON6zcbalTLogTwXgo7c1NWnM
+	Up6/GzpKX+SPOdmb5q+1aOa1+KFsx1bUtj1XeTNv5vUpxXWoQkk24E9Xx5OnWGuUzE4adybg6fioK
+	AqExpHpHbg1+yiui+kZsne4Lxhn1Lk72cO0sT+Y78Iqgqfv1t8c54GYzK5LZoL6QhfdgOrybN+dUB
+	2xYdR16d/m6to+Urwic488xkTO5h5WNkb29XesXxLO0Plg3rWyh8ZnoyseLVpPFUfavXimdtOPUVi
+	x3YAs6v1fISNr4V0cQ7O16CzD5Z3MjF9Syqd+Rf8zqyPgaY1NoKG1el5ldvnNOczFO2RkLhpDHTpb
+	XzRgVBtw==;
 From: Heiko Stuebner <heiko@sntech.de>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Gray Huang <gray.huang@wesion.com>
+To: Chen-Yu Tsai <wens@kernel.org>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	nick@khadas.com
-Subject: Re: [PATCH v3 0/2] arm64: dts: rockchip: Add peripheral support for Khadas Edge 2L
-Date: Mon,  1 Jun 2026 12:20:01 +0200
-Message-ID: <178030918401.239725.2769966054558634435.b4-ty@sntech.de>
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: rk3399-nanopi-r4s: Disable removed devices
+Date: Mon,  1 Jun 2026 12:20:02 +0200
+Message-ID: <178030918398.239725.10006310705727779216.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260507033541.2576335-1-gray.huang@wesion.com>
-References: <20260507033541.2576335-1-gray.huang@wesion.com>
+In-Reply-To: <20260505172903.33271-1-wens@kernel.org>
+References: <20260505172903.33271-1-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,54 +62,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-305089-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305087-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[sntech.de:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[devicetree];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sntech.de:email,sntech.de:mid,sntech.de:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: A5E3E61DC1D
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sntech.de:email,sntech.de:mid,sntech.de:dkim]
+X-Rspamd-Queue-Id: 4264361DB2B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Thu, 07 May 2026 11:35:39 +0800, Gray Huang wrote:
-> This patch series adds support for several key peripherals to the
-> Khadas Edge 2L board, which is based on the Rockchip RK3576 SoC.
+On Wed, 06 May 2026 01:29:02 +0800, Chen-Yu Tsai wrote:
+> While the design of the NanoPi R4S is based on the common NanoPi 4
+> family, it is trimmed down a lot.
 > 
-> These patches build upon the basic board support that was previously
-> applied to the rockchip tree. This series enables essential
-> functionalities including power management, RTC, wireless connectivity,
-> graphics, display output, and USB support.
+> Disable all the peripherals on the SoC that are not used, and delete
+> all the external components that are not present.
+> 
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: rockchip: Enable USB for Khadas Edge 2L
-      commit: 720fe68fd9f138ada2936ffcf3dd0129a889455a
-[2/2] arm64: dts: rockchip: Add Bluetooth support for Khadas Edge 2L
-      commit: ef81db2fdd5a75e3834a4726dc7837f6d2a7229d
+[1/1] arm64: dts: rockchip: rk3399-nanopi-r4s: Disable removed devices
+      commit: 8333fe46b0010d110b36f1628dd8dfc77d2c389a
 
 Best regards,
 -- 
