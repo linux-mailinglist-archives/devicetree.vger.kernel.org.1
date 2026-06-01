@@ -1,115 +1,306 @@
-Return-Path: <devicetree+bounces-304928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304939-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eMsGH3EnHWoTWAkAu9opvQ
-	(envelope-from <devicetree+bounces-304928-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 08:32:17 +0200
+	id 4KllCwEuHWo4WAkAu9opvQ
+	(envelope-from <devicetree+bounces-304939-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:00:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15E8A61A35A
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 08:32:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8D9161A89F
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:00:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 428393019FE1
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 06:31:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 914B1300398A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 06:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58CD357D05;
-	Mon,  1 Jun 2026 06:31:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CBF3806CD;
+	Mon,  1 Jun 2026 06:59:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OTgy5EWu"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="AVod6Zd/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3706C35674D;
-	Mon,  1 Jun 2026 06:31:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A35E345CD8;
+	Mon,  1 Jun 2026 06:59:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780295507; cv=none; b=WtbnFV6O7LJRDjfz5q5xr8DJX02lEer6wu9YGgmDCubpgqekTp/nmxbueZ+lwOLVRWlEoizfSOE6gupw7SWNQWE+Mtk36QAmiw8OTrlLn7d0XsuVDFJYkJJL7UCzJOANRoovHmDKaUGpc76iUYfY3WsdNQFRrM9/LeUocJEKwfs=
+	t=1780297193; cv=none; b=ON6nm/w0Gm7wMWO2ztuLYLQWzs08+Ej+xiTI+SPTAg6fgQgJWRzzPHoDMddSiGI07oglNRainrQjjzebIqFB4lkBw6hfgyr5jp9AltajFVc50w3EPPnJ6EHFy47Bdrg5T99fQsGz4Be9+wcdyhypgNOKZkgEbjwgtmULQEM1QjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780295507; c=relaxed/simple;
-	bh=1BjJuMfejcYeAdRAgiVOTf8QVvqeO7Hg98YMJ/fBj1g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ki3J7q8IIxVKKNIhh8G6RzkUTVqI9a4VdNPGoOZriszyBu4R/G+iMf/KM0yd0D2n68YjBXjdUGoSNDPRYDXlhWK5yjznJWOUgaKaLu15sqD/2NWFzKeEvxQOOjTKzOqMNsug4qLm19uMWBmFWwfXoev090mEMPWa+0CQaSd8fh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OTgy5EWu; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BAE81F00893;
-	Mon,  1 Jun 2026 06:31:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780295504;
-	bh=nut7/auHhQh+rbp2DQMRfJ5Ro+4NzjUEZWNJ0Mo54Qg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=OTgy5EWuQvrJ0X/m9axOBlTuBclDwZ8YwGy5P9JGUx+7KRirsSrkIdqVDgsE2RihO
-	 gASkUVFu10t3YX0+LGdAgVU0lw1y/9CdBTyhjqypmALTNtoVkwnn9A/QC+bIEfjz+z
-	 Lsc3TTjQw4m0s2xoxcOgrb6ZkUnDnFHM4EsoGrq6tsJM6gxKGkUzwIbD12fX7C4jEn
-	 Li/MoUvU7GlyJotUiwqZqZLspg6U3Yq+8vAUqMLWgaqUvFjbwYO5ljpZ8bUj/heRn9
-	 UemXa5JzmAvts7TVHnfn2RP2xheifxsOfpaFtWsYNR9lj6tnp+4ySdaYavW37uhKWh
-	 h9K8PCt8jvd+w==
-Date: Mon, 1 Jun 2026 06:31:41 +0000
-From: Yixun Lan <dlan@kernel.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: alex@ghiti.fr, aou@eecs.berkeley.edu, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	palmer@dabbelt.com, pjw@kernel.org, robh@kernel.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH 1/1] riscv: dts: spacemit: enable PMIC on OrangePi R2S
-Message-ID: <20260601063141-GKA3815935@kernel.org>
-References: <20260520100000.575719-1-amadeus@jmu.edu.cn>
- <20260530021021.1167953-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1780297193; c=relaxed/simple;
+	bh=B0Pj6WT4oXE+nl+fmezXsKTRwJhBalayvj5k67U+TW0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nZa4MABKy+1nFf1jlV5YTDYS5iFBDOSNwMwROg2KJBQYRxIbZg41+eqEJYLroyLbekOk8TJc0zofFS93dlJXuU8uOL4/E4Y1cSWuQ0Ipf8VUFga4Ke0lYVe2ea3bZu5Jo0HqCMZf9iLuhk3Zajg3f4hj+0j0AlkVhMq8HSfk8Nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=AVod6Zd/; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Type:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=iTV5J9c1q6vU4HfXaFRAppoi5WMSCM3q+VMiSk/mHIo=; b=AVod6Zd/wLpW1zV3QJyTjcYH+k
+	qKq2Ly5mppBJmHYvWHjO1a2PpnPcysbt8HekijajAh60PTW3cD9F7fH9SEz6sGqHyLI1HAm3lPxnK
+	Ul8TQeyanb189L3nQiVI0hmjLEttTu8RSpz6IGjVTUkj9f2I8bs+pqnJ0x4vL/dU3j01TjM+1K6us
+	VMWov7ANnX6p2ubsMCQI3z33e4jzgP4na4uq6W7xWz+YJ/7rZWuBSeirN08A+OcCOPrSWVocO91dq
+	4pf+6XduOvybNiCCnisZD0mnRw1TLAUy4yG/igytrAEJWn4q18hTHmv30inxPMkoWy1cYw+BPUWwf
+	tQAW8cFQ==;
+Received: from sslproxy04.your-server.de ([78.46.152.42])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1wTwEE-000DJL-1d;
+	Mon, 01 Jun 2026 08:34:26 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy04.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1wTwEK-000IYB-1G;
+	Mon, 01 Jun 2026 08:34:32 +0200
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: linux-phy@lists.infradead.org, Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: Ioana Ciornei <ioana.ciornei@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Tanjeff Moos <tanjeff.moos@westermo.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Subject:
+ Re: [PATCH v2 phy-next 13/15] dt-bindings: phy: lynx-10g: initial document
+Date: Mon, 01 Jun 2026 08:34:25 +0200
+Message-ID: <2842502.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20260529171509.1163787-14-vladimir.oltean@nxp.com>
+References:
+ <20260529171509.1163787-1-vladimir.oltean@nxp.com>
+ <20260529171509.1163787-14-vladimir.oltean@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260530021021.1167953-1-amadeus@jmu.edu.cn>
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Virus-Scanned: Clear (ClamAV 1.4.3/28017/Sun May 31 08:27:13 2026)
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-304928-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-304939-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: 15E8A61A35A
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ew.tq-group.com:dkim,0.0.0.3:email]
+X-Rspamd-Queue-Id: B8D9161A89F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Chukun,
+Hi,
 
-On 10:10 Sat 30 May     , Chukun Pan wrote:
-> Hi,
-> 
-> > Enable the i2c8 interface and add the connected SpacemiT P1 PMIC and
-> > its associated regulators to support voltage regulation on the board.
-> 
-> friendly ping
+Am Freitag, 29. Mai 2026, 19:15:07 CEST schrieb Vladimir Oltean:
+> Add a schema for the 10G Lynx SerDes. This is very similar to the modern
+> form of the 28G Lynx SerDes, which is very much the intention.
+>=20
+> We allow both forms of #phy-cells =3D <1> in the top-level provider
+> and #phy-cells =3D <0> in the per-lane provider for more flexibility to
+> consumers, and because the kernel code is shared with the 28G Lynx which
+> already has that support for compatibility reasons.
+>=20
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+> Cc: devicetree@vger.kernel.org
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+>=20
+> v1->v2:
+> - move patch later in series, right before driver
+> - deliberately ignoring this Sashiko feedback:
+>   https://lore.kernel.org/linux-phy/20260529125017.ifqunh52gdzhthdg@skbuf/
+> ---
+>  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 131 ++++++++++++++++++
+>  1 file changed, 131 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.ya=
+ml
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml b/Do=
+cumentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+> new file mode 100644
+> index 000000000000..993f076bba4e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+> @@ -0,0 +1,131 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,lynx-10g.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Lynx 10G SerDes PHY
+> +
+> +maintainers:
+> +  - Vladimir Oltean <vladimir.oltean@nxp.com>
+> +
+> +description:
+> +  The 10G Lynx is a multi-protocol SerDes block which handles networking=
+, PCIe,
+> +  SATA and other high-speed interfaces. It is present on most QorIQ and
+> +  Layerscape SoCs. The register map is common, but the integration is
+> +  SoC-specific, with the differences consisting in register endianness, =
+the
+> +  number of lanes, protocol converters available per lane and their loca=
+tion in
+> +  the PCCR registers. Some SoCs have multiple SerDes blocks and those di=
+ffer in
+> +  their protocol capabilities per lane.
+> +
+> +properties:
+> +  compatible:
+> +    description:
+> +      There is intentionally no generic fsl,lynx-10g compatible string d=
+ue to
+> +      the hardware inability to report its capabilities, despite having a
+> +      common register map.
+> +    enum:
+> +      - fsl,ls1028a-serdes
+> +      - fsl,ls1046a-serdes1
+> +      - fsl,ls1046a-serdes2
+> +      - fsl,ls1088a-serdes1
+> +      - fsl,ls1088a-serdes2
+> +      - fsl,ls2088a-serdes1
+> +      - fsl,ls2088a-serdes2
 
-Ok, will take it, so
+Silly question: What about LS1043A? AFAIK it has a single serdes block.
 
-Reviewed-by: Yixun Lan <dlan@kernel.org>
--- 
-Yixun Lan (dlan)
+Best regards
+Alexander
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  big-endian: true
+> +
+> +  "#phy-cells":
+> +    const: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^phy@[0-7]$":
+> +    type: object
+> +    description: SerDes lane (single RX/TX differential pair)
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 7
+> +        description: Lane index as seen in register map
+> +
+> +      "#phy-cells":
+> +        const: 0
+> +
+> +    required:
+> +      - reg
+> +      - "#phy-cells"
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#phy-cells"
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,ls1028a-serdes
+> +              - fsl,ls1046a-serdes1
+> +              - fsl,ls1046a-serdes2
+> +              - fsl,ls1088a-serdes1
+> +              - fsl,ls1088a-serdes2
+> +    then:
+> +      patternProperties:
+> +        "^phy@[0-7]$":
+> +          properties:
+> +            reg:
+> +              minimum: 0
+> +              maximum: 3
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +      #address-cells =3D <2>;
+> +      #size-cells =3D <2>;
+> +
+> +      serdes@1ea0000 {
+> +        compatible =3D "fsl,ls1028a-serdes";
+> +        reg =3D <0x0 0x1ea0000 0x0 0xffff>;
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +        #phy-cells =3D <1>;
+> +
+> +        phy@0 {
+> +          reg =3D <0>;
+> +          #phy-cells =3D <0>;
+> +        };
+> +
+> +        phy@1 {
+> +          reg =3D <1>;
+> +          #phy-cells =3D <0>;
+> +        };
+> +
+> +        phy@2 {
+> +          reg =3D <2>;
+> +          #phy-cells =3D <0>;
+> +        };
+> +
+> +        phy@3 {
+> +          reg =3D <3>;
+> +          #phy-cells =3D <0>;
+> +        };
+> +      };
+> +    };
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
