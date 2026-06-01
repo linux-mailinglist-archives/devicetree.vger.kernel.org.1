@@ -1,171 +1,197 @@
-Return-Path: <devicetree+bounces-304908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-304953-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MI/vD4v1HGrxUQkAu9opvQ
-	(envelope-from <devicetree+bounces-304908-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 04:59:23 +0200
+	id UPpfAIc3HWoqWQkAu9opvQ
+	(envelope-from <devicetree+bounces-304953-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:40:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76E1618FC2
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 04:59:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1A561B023
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 09:40:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AA733303FFB9
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 02:57:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 471753003E8F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 07:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8341623EA9B;
-	Mon,  1 Jun 2026 02:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27A438655E;
+	Mon,  1 Jun 2026 07:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jhIoKy1N"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="beycXQzU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m1973188.qiye.163.com (mail-m1973188.qiye.163.com [220.197.31.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C49C1F099C
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 02:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CC2385D7D;
+	Mon,  1 Jun 2026 07:35:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780282667; cv=none; b=gK2pdN2Cfvfi85sMSEyqZCEaPEKJzB0UBPK8cmpbBhya9y0yE6VGq6ek8rclyDblzN7VurfMdlZQkWj89bVU8Zndx5MfQ95+p8P2HSh5UBLa7Y86zPP2xYnHCQOhZ7RjsRzADjd4Gv5QUkv8T8FW0mi3Wa3rphwueqJijVKk1SY=
+	t=1780299346; cv=none; b=UQwYUG/I62zbCkpOK4v+3J5ff0kPBA/dUTZNF6USs+9xTYgjXSggq53p1rU3do3Uzjlapz5757ya/OlBADPDEliN4eqI6C2kp2segMB5g+9+lQo4g2LXW7Opzq63wbGIrtCcgmbHqbqSI/gWqF/bOv8i9BFeLLrD6WOep9O+ZxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780282667; c=relaxed/simple;
-	bh=6SyTLlkLlY7/nQLNxMMSWjNn0CtqMy26+6iLfA1gO70=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VkVNWJyTV4/kLSJhMIE1zU0+OmXAUtgj0jt7AQCFGKs4IssxR4HjAisDz+WoxdM6LMpZLaObXxr18Zyk7V7++e6bnbwrAfo37BPKH9VYJYv3DGRpxBnyAT51xctQKtd7ItkL4Kv23224MW9q7UG5757eqD9y36sfXkXDNceVIco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jhIoKy1N; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-36b903567fdso3318263a91.1
-        for <devicetree@vger.kernel.org>; Sun, 31 May 2026 19:57:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780282665; x=1780887465; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u4dc1e6o27a5Kq5vwZr329EQ3xcv7LkgpKk1NAl1/Wo=;
-        b=jhIoKy1NQTSrgAD568t+Ih4ilAVPu2nYlQED/WOlvg+tt1uKBDFeviqKmj7e9DLmYn
-         d+CfGGz4jiI9EhDnzYZLFOivuMRQAvniSVWu9YmspZkh4d7z9C/ElXqPZDatMnFky3Wb
-         L4f9fgPdTHlManft+6GUVMIYhfKXWcmMvXsfuH9RIaN8hmOj7xYebJXmks5WnFi4hyh+
-         UG7e+vkd3YU1qmPc+vHuEwWHRIikF2hlFNmqvGLOFv8wzX67YD1GNJHE1cu/Wd2W9fOm
-         CDGUJeA36ucWEm63LyckHXYrFH5pw6R3Om2nE/JVKYxFb/hQ1TfwXngG5i5/OqJz2jNS
-         exRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780282665; x=1780887465;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=u4dc1e6o27a5Kq5vwZr329EQ3xcv7LkgpKk1NAl1/Wo=;
-        b=ownHOLXtbbmTQf6AnP3hmQINKC0FEObb06g9Q+aFjiP0KsjiPpbhXvFNB55GsT/f0N
-         9uQgoPUQc1TWekDYjY60B2OLHAzPGjC1uue6HXvTfIuB0+vps7OCu9oryRgeIypWcYzc
-         N/GRkfLteq8+OrPkJNGKeoDE9k8kDWuALt2F6/0qxQ9xbkTXAcCPY057PAXCINJytGOR
-         hwhavKzbqWoYQjGa8mRUGRKsH8AoGsRRqYiAE3frF7GJXzImGJYFbnFtqrq2+fS110b1
-         AHKw6OSwN4CFj9apF0KC7s3pRWcgXrYM96x1lJmYY8QBRZy2oSFQNKhALTSFdupAN3AD
-         +pNQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/sgxiIcDwouQhcTK35nIT7HMe+e1AiZI+83xDxh4q+saALdLYh1MV7aE9iWihhf+srbFzQPriNLaBK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxK/PeBXyp8naravsOH6ZxgdlQucvrQnSwhWEblKyNim6F2kafE
-	kSvzaN+z7BncCrS9f7drHXNpwtfyD8Q4oA9LvKFbX3cemXPPyeshz0/M
-X-Gm-Gg: Acq92OGEEeBRcR+in5cLf946f6DE6pGW09wiqx5laSkuq607/17O+8LCi84dsFKo7yp
-	bVj+vyxFtEWhRj/JTaMz8wYbrI8Au7Ndx88FGDRTPYubZglfqgp4QKEE7eHfKRVOPX2ASV2JJGF
-	6j+7Zd/YlCaq+3fo8Wp6queEOvKK9zVsKK/uKMDo893/i0jE7Bph+mrYJJROFid5AZdc5T07mWE
-	XucsyBxWJJ5XR/zJnxI7wGFqwbn1QPztPNUuNGA6Tqo6b56J8chxf2l4JGMUwfcQBAk1r0j125r
-	wpZpZA1yK8vwDPN7kS7qyCtkb9VIiYXvcvEpTK4STIRp+jqaKeAPeByr1qpLeDxd7ow5pNe7fjO
-	KSD0B9YiSRVut727bLnm2PK+lu5+jOr0EPg5jIp1t52aryvLWJAZERqlzDmmp+LCTtF+LEVjPS5
-	FchNbs3uDhaL5hPgH0rhB8dX8YnqGv1OB29A==
-X-Received: by 2002:a17:90b:264e:b0:36a:ee1:fc24 with SMTP id 98e67ed59e1d1-36c4ff41964mr8396209a91.8.1780282665674;
-        Sun, 31 May 2026 19:57:45 -0700 (PDT)
-Received: from localhost ([2001:19f0:8001:1b2d:5400:5ff:fefa:a95d])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36bc6a340b7sm9065397a91.11.2026.05.31.19.57.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 May 2026 19:57:45 -0700 (PDT)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Zixian Zeng <sycamoremoon376@gmail.com>,
-	Han Gao <gaohan@iscas.ac.cn>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Han Gao <rabenda.cn@gmail.com>
-Subject: Re: (subset) [PATCH 0/2] riscv: sophgo: sg2042: Enable PCIe DMA coherence
-Date: Mon,  1 Jun 2026 10:57:24 +0800
-Message-ID: <178028263198.557087.6386925175219722340.b4-ty@b4>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260331171248.973014-1-gaohan@iscas.ac.cn>
-References: <20260331171248.973014-1-gaohan@iscas.ac.cn>
+	s=arc-20240116; t=1780299346; c=relaxed/simple;
+	bh=eOrRTGCMi/K69lLtifXOuIuaBbzMYghKQgGFWXL91io=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tELJj/T4Z1RiLKfoeztALUJwJU8yrAzCrenyWEQIQ2w/FWq3kyS66ne+KNx97lQcRhLxZ4v3g+IhEUwIvMBVL68i/8nL3dpD+LutrFEyLFSC1eNuRBcdCu9ysKYDwN4jl8vRjGq739tEKLdYLW1Gc6S38oDH3ws+5Zc9UXzbz0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=beycXQzU; arc=none smtp.client-ip=220.197.31.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.74] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 4085afb39;
+	Mon, 1 Jun 2026 10:59:28 +0800 (GMT+08:00)
+Message-ID: <17160115-6c30-434b-9dab-b768110cd8d6@rock-chips.com>
+Date: Mon, 1 Jun 2026 10:59:27 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] drm/bridge: analogix_dp: Add validation for
+ samsung,lane-count property
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
+ dmitry.baryshkov@oss.qualcomm.com, dianders@chromium.org,
+ m.szyprowski@samsung.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260529040530.741336-1-damon.ding@rock-chips.com>
+ <20260529040530.741336-3-damon.ding@rock-chips.com>
+ <178014803941.21632.16225608049285101452.b4-review@b4>
+ <DIW1WGLL0GW5.1BGU194UXN0HO@bootlin.com>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <DIW1WGLL0GW5.1BGU194UXN0HO@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9e811f3b2303a8kunm571bef1e23b414
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZSUoYVktPSEtLQh4aSE5PS1YVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=beycXQzUpN7FPhJ+fAnFKBz1/vzWYNCiv9XZmeqLZiDZFkrCqTaI560sy9/RjK386Vd55Uvdy77o8wkoVWe8DVjcwK8gjQHQNRMKZ5MguiLr9lmkNp7QbE/7RLqe3MGSIIjEk3btRd0IeXbEkiBb4MwuEV55/9WdY+TB9L3Xc9Y=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=bTGq6JyMOqNz9AcHQ+pp9TTBnC1HlbtzjBlhQULSRac=;
+	h=date:mime-version:subject:message-id:from;
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[google.com,kernel.org,outlook.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,gmail.com,iscas.ac.cn];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-304908-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-304953-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_CC(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org,ideasonboard.com,kwiboo.se,collabora.com,oss.qualcomm.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-0.993];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: C76E1618FC2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url]
+X-Rspamd-Queue-Id: 6D1A561B023
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 01 Apr 2026 01:12:46 +0800, Han Gao wrote:
-> The SG2042 hardware design supports cache-coherent PCIe.
-> 
-> With recent firmware updates [1], it allows to use DMA coherent.
-> 
-> [1] https://github.com/sophgo/edk2-non-osi/commit/017a5aea26a066fd2bf501b7893937183165af36
-> 
-> Han Gao (2):
->   dt-bindings: pci: sophgo: Add dma-coherent property for SG2042
->   riscv: dts: sophgo: Add dma-coherent to SG2042 PCIe controllers
-> 
-> [...]
+Hi Luca,
 
-Applied to for-next, thanks!
+On 5/30/2026 9:38 PM, Luca Ceresoli wrote:
+> On Sat May 30, 2026 at 3:33 PM CEST, Luca Ceresoli wrote:
+>> On Fri, 29 May 2026 12:05:29 +0800, Damon Ding <damon.ding@rock-chips.com> wrote:
+>>
+>> Hello Damon,
+>>
+>>>
+>>> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>>> index 8cf6b73bceac..699a7f380c56 100644
+>>> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>>> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>>> @@ -1260,8 +1261,16 @@ static int analogix_dp_dt_parse_pdata(struct analogix_dp_device *dp)
+>>>   		 */
+>>>   		of_property_read_u32(dp_node, "samsung,link-rate",
+>>>   				     &video_info->max_link_rate);
+>>> -		of_property_read_u32(dp_node, "samsung,lane-count",
+>>> -				     &video_info->max_lane_count);
+>>> +		ret = of_property_read_u32(dp_node, "samsung,lane-count",
+>>> +					   &video_info->max_lane_count);
+>>> +		if (!ret) {
+>>> +			if (video_info->max_lane_count == 0 ||
+>>> +			    video_info->max_lane_count > LANE_COUNT4) {
+>>
+>> This sashiko report seems to me valid.
+> 
+> Meh, messed up with 'b4 review' :-/ Apologies
+> 
+> "This sashiko report" [0] was about an enum being signed, so '== 0' could miss
+> negative numbers coming from bogus DT values higher than 1^31.
+> 
 
-[2/2] riscv: dts: sophgo: Add dma-coherent to SG2042 PCIe controllers
-      https://github.com/sophgo/linux/commit/e728a57834d06b9bbf9bbed69e3ea16416d257d5
+Ah, I agree. It would be better to add a new inline function to validate 
+that the lane count passed from DT is exactly 1, 2, or 4, just as 
+Sashiko suggested.
 
-Thanks,
-Inochi
+>>
+>> But I'n no DP expert, I have no idea whether this ther one is valid.
+> 
+> And this was about "Additionally, does this check inadvertently allow 3,
+> which is an invalid DisplayPort lane count?"
+> 
+
+Yes, the DisplayPort specification only allows lane counts of 1, 2, or 
+4. I did miss the check for the invalid value 3 in the current code.
+
+(BTW: I did not find a common helper function in drm_dp_helper.h to 
+validate valid DP lane counts (1, 2, 4). I'm not sure if it would be 
+better to add a generic lane count validation function to the DP helper 
+library instead, to avoid duplicating the same functionality across 
+individual DP drivers. Perhaps other DP experts could provide some 
+advice on this.)
+
+>>> +				dev_err(dp->dev, "samsung,lane-count = %d is out of range\n",
+>>> +					video_info->max_lane_count);
+>>> +				return -EINVAL;
+>>> +			}
+>>> +		}
+>>
+>> As reported by sashiko, 'count == 0' should be 'count <= 0', being an enum.
+>>
+>> Additionally I'd avoid the nested if, and I think using dev_err_probe() is
+>> correct here (we are only called by probe functions), so it all could
+>> become:
+>>
+>>     if (ret || count <= 0 || count > LANE_COUNT0)
+>>          return dev_err_probe(...);
+>>
+>> There are other sashiko reports to patch 3, and at least one seems valid to
+>> me. Can you either fix them in the next iteration or elaborate on why the
+>> code is correct there?
+
+Yes, I will add a helper function to validate the valid lane counts (1, 
+2, 4) and use dev_err_probe() instead in next version.
+
+> 
+> [0] https://sashiko.dev/#/patchset/20260529040530.741336-1-damon.ding%40rock-chips.com
+> 
+> 
+
+Best regards,
+Damon
 
 
