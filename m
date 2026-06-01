@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-305240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305242-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WC2uIVWsHWoLdAkAu9opvQ
-	(envelope-from <devicetree+bounces-305240-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:59:17 +0200
+	id QPmfF8CoHWp+cwkAu9opvQ
+	(envelope-from <devicetree+bounces-305242-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:44:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5EF66222EF
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:59:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2EDB621F4B
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 17:43:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5A9643003E85
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 15:35:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 69E81300F95A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 15:37:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76ED246766;
-	Mon,  1 Jun 2026 15:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD96F3769EC;
+	Mon,  1 Jun 2026 15:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iEnOJxOz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SyGvd+XJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80628248880
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 15:35:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41402773F7
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 15:37:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780328149; cv=none; b=Wtig+B522NVoZF3ISRVGkq3na3bMeFH3zG8WqPB2zzAYH60UkWWVsfMWMd6ZmHXNfWCzk1dic3tlThh4YqgqO1I7RuquiqP/KQP7qYRXbRTWQVMyY0AXU5OvFBgrF9VGWvH88jxjJD0HB2SQIByeRTsauK1+FkiqHJCI6hfdkDw=
+	t=1780328277; cv=none; b=qL8tqg+uZmZ/I6sKuZN5/bxpvXZ4w3dM34sXF/f01lIa3VvEnNYgESB4vWnuP0/X8A7dPqNQMKRWLnb5mvYOYY/1mB8q2OqV0GuwVoKO/PK1Avk76Re7xyOOrDJhu//r+3gqKai+7P4oeuTSGRUpViDbwTxtQtm/Gm/6LzTkAAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780328149; c=relaxed/simple;
-	bh=1rHE/RSkiAYhBj9IST/aUxSjxIwWRmVYSLNmuY7LxzQ=;
+	s=arc-20240116; t=1780328277; c=relaxed/simple;
+	bh=zgxNMFruhF9c2NlkNWP/XB6NC2UZlGGz6HNW0gyqKpI=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=oEwVgmOXefM5CUUacon+2SlSfXs6IZO8p9n81KL91qioHR4B7HbKCf/uSQwqH0cFHvey76Uw6bpQWYOOBuJsPXFN9E4VRqzs7VhNhlaMtEwX/uHW9bt9YqRZkd/ridyAkz2H9l/D+QCJ41tGZJPWU4/cFUL1ZuQiK6429o3UtZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iEnOJxOz; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96B8B1F0089A;
-	Mon,  1 Jun 2026 15:35:47 +0000 (UTC)
+	 Message-Id; b=YDEdI1MfhbD7glSDsF9sLRlLPY8o1ZzMKBIX4d+7MrZCodCis9Dp4A3ng+nDJ4mHAdJu8qF0D6B2y3A3eo6XJN30/g0xI5l8TiyRpcQXqW5c6nmxvSza7eRNwQDH09Bpnay22h00EhGOkmqGCDs8gpmZrAaZvWmrqRZfDnEurro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SyGvd+XJ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 463351F00899;
+	Mon,  1 Jun 2026 15:37:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780328148;
-	bh=xVhGI11nETQvO66XjxhlY+r2RDGl50kgjv9SprwmQUg=;
+	s=k20260515; t=1780328276;
+	bh=z1nmKlyGUn1as5S0Ij4ZCrwvR7ctU1VHvpPjSSHlv/Y=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=iEnOJxOzUgkf5eOOPLnKIKZyf59FGVmFF1RUyaxk8+Kq4F2ye6R99RB0ZVBKEI/bn
-	 XFhfzE3OJRnKafLTT0IhPKyB9S53Sc4bRPavXjGWEEk1L8eCbYyIHU+a4wPVC/drDs
-	 HEI52TAx3yciMkVPZDKcaAaA4Pw3AX67WoaHnL/RPaEP3ZvBJXuIj1q3zusoRh0n5x
-	 syKqkeWepMj63PCvT1ZekmUQmTs2+0aSEvVF9/5e9XoSENh0bRqWfmZRyhBmTySL2r
-	 vrvY9LKsVg7n0vQw2vcS0ucxy7uXAUCYdxZaiu4HvGfnRRJSUhkmEkdcafvMOMRzDb
-	 NCpIag/EpU2Wg==
+	b=SyGvd+XJTVGuLbWdTZS9iEcsJddqP4DUEZn32cwsZTz7o3hpxqGNV1WLclw2PUTz1
+	 4Bw3GS8Pywzzdp6zO8vO5rhUgEtonYEmNicJbJBrl7L/I+LfcZ/GceKTUiLqLd0+cs
+	 htiw5Zfk2hphzITGhfrh+Hpd2KHrQfDr0720ChAz27w1cMjt4Fp+2GOyojSGlcUk5o
+	 5czFCvqafJ45MouPXnkFx3UHHW7CJHcKnYuQuLHLPPBCOnoa0ZBwDsoupZBw78gUan
+	 E3mWz9tO4zSDC575Phf7N++HWycG/4QhzNQCsgqEO4hIWv5ht95Y/kde3cCEv3sqHj
+	 f4pIaUdKf41WA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 05/11] mfd: lm3533: Convert to use OF bindings
+Subject: Re: [PATCH v3 10/11] video: backlight: lm3533_bl: Implement
+ backlight_scale property
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Svyatoslav Ryhel" <clamor95@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260601151831.76350-6-clamor95@gmail.com>
-References: <20260601151831.76350-6-clamor95@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260601151831.76350-11-clamor95@gmail.com>
+References: <20260601151831.76350-11-clamor95@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 01 Jun 2026 15:35:47 +0000
-Message-Id: <20260601153547.96B8B1F0089A@smtp.kernel.org>
+Date: Mon, 01 Jun 2026 15:37:55 +0000
+Message-Id: <20260601153756.463351F00899@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,14 +67,14 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305240-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305242-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -90,238 +91,77 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url]
-X-Rspamd-Queue-Id: E5EF66222EF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto]
+X-Rspamd-Queue-Id: D2EDB621F4B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Out-of-bounds array write in `lm3533_devices` when a DT child node=
- matches multiple compatible strings.
-- [High] The ALS driver expects the 'ti,resistor-value-ohms' property, but =
-the DT binding defines 'ti,resistor-ohms'.
-- [Medium] Skipped child nodes with invalid 'reg' properties will cause 'mf=
-d_add_devices' to assign the wrong OF node to subsequent valid subdevices.
-- [Medium] The check `if (!als->irq)` in `store_thresh_either_en` fails to =
-handle negative error codes returned by `platform_get_irq_optional`, allowi=
-ng invalid IRQ configuration.
-- [Low] Incompatible pointer type passed to `device_property_read_u32()`, v=
-iolating strict C typing.
+- [Medium] Unprotected concurrent modification of hardware register and `bd=
+->props.scale` causes state desynchronization.
 --
 
-commit 91427aa1400cfc0dbe1f634ca4391a5aa41811ec
+commit 8adaee77dd01ba44b6fdadefc561f4ab4fed6761
 Author: Svyatoslav Ryhel <clamor95@gmail.com>
-Subject: mfd: lm3533: Convert to use OF bindings
 
-This commit converts the LM3533 driver stack from using platform data to
-using Device Tree bindings. It updates the core, als, backlight, and led
-drivers to parse properties directly from the device hierarchy.
+video: backlight: lm3533_bl: Implement backlight_scale property
 
-> diff --git a/drivers/iio/light/lm3533-als.c b/drivers/iio/light/lm3533-al=
-s.c
-> index 52136ca1abc94..55b35467a722d 100644
-> --- a/drivers/iio/light/lm3533-als.c
-> +++ b/drivers/iio/light/lm3533-als.c
-[ ... ]
-> @@ -716,30 +722,34 @@ static const struct attribute_group lm3533_als_attr=
-ibute_group =3D {
->  	.attrs =3D lm3533_als_attributes
->  };
-> =20
-> -static int lm3533_als_setup(struct lm3533_als *als,
-> -			    const struct lm3533_als_platform_data *pdata)
-> +static int lm3533_als_setup(struct lm3533_als *als)
->  {
-[ ... ]
-> -	if (!pdata->pwm_mode) {
-> -		if (pdata->r_select < LM3533_ALS_RESISTOR_MIN ||
-> -		    pdata->r_select > LM3533_ALS_RESISTOR_MAX) {
-> -			dev_err(&als->pdev->dev, "invalid resistor value\n");
-> -			return -EINVAL;
-> -		}
-> +	if (!als->pwm_mode) {
-> +		ret =3D device_property_read_u32(dev, "ti,resistor-value-ohms",
-> +					       &als->r_select);
+This commit implements the backlight_scale property to describe the linear
+and non-linear modes supported by the device.
 
-[Severity: High]
-Does this use the wrong property name? The device tree binding requires
-"ti,resistor-ohms", but this attempts to read "ti,resistor-value-ohms". If a
-conformant DT is provided, this read will fail and unconditionally abort the
-driver probe when not in PWM mode.
-
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "failed to ger resistor value\n");
-[ ... ]
-> @@ -830,25 +833,28 @@ static int lm3533_als_probe(struct platform_device =
-*pdev)
->  	indio_dev->channels =3D lm3533_als_channels;
->  	indio_dev->num_channels =3D ARRAY_SIZE(lm3533_als_channels);
->  	indio_dev->name =3D dev_name(&pdev->dev);
-> -	iio_device_set_parent(indio_dev, pdev->dev.parent);
->  	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> =20
->  	als =3D iio_priv(indio_dev);
->  	als->lm3533 =3D lm3533;
->  	als->pdev =3D pdev;
-> -	als->irq =3D lm3533->irq;
-> +	als->irq =3D platform_get_irq_optional(pdev, 0);
-> +
-> +	if (als->irq =3D=3D -EPROBE_DEFER)
-> +		return -EPROBE_DEFER;
-
-[Severity: Medium]
-Since platform_get_irq_optional() returns a negative error code (like -ENXI=
-O)
-when an IRQ is absent, does the existing check in store_thresh_either_en()
-need to be updated as well?
-
-Because store_thresh_either_en() still checks:
-    if (!als->irq)
-        return -EBUSY;
-
-A negative error code will bypass this check, allowing userspace to enable
-the interrupt mode via sysfs without a registered interrupt handler.
-
-> +
->  	atomic_set(&als->zone, 0);
->  	mutex_init(&als->thresh_mutex);
-[ ... ]
-> diff --git a/drivers/mfd/lm3533-core.c b/drivers/mfd/lm3533-core.c
-> index 45e7f7481aa0f..d57c2cdf11c51 100644
-> --- a/drivers/mfd/lm3533-core.c
-> +++ b/drivers/mfd/lm3533-core.c
-[ ... ]
-> -static int lm3533_device_init(struct lm3533 *lm3533)
-> +static int lm3533_device_init(struct lm3533 *lm3533)
->  {
-[ ... ]
-> +	lm3533_devices =3D devm_kcalloc(dev, nchilds, sizeof(*lm3533_devices),
-> +				      GFP_KERNEL);
-> +	if (!lm3533_devices)
-> +		return -ENOMEM;
-> =20
-> -	lm3533->have_leds =3D 1;
-> +	device_for_each_child_node_scoped(lm3533->dev, child) {
-> +		if (!fwnode_device_is_available(child))
-> +			continue;
-> =20
-> -	return 0;
-> -}
-> +		if (count >=3D nchilds)
-> +			break;
-> =20
-> -static int lm3533_device_init(struct lm3533 *lm3533)
-> -{
-> -	struct lm3533_platform_data *pdata =3D dev_get_platdata(lm3533->dev);
-> -	int ret;
-> +		if (fwnode_device_is_compatible(child, "ti,lm3533-als")) {
-> +			lm3533_devices[count].name =3D "lm3533-als";
-> +			lm3533_devices[count].id =3D PLATFORM_DEVID_NONE;
-> +			lm3533_devices[count].of_compatible =3D "ti,lm3533-als";
-> =20
-> -	dev_dbg(lm3533->dev, "%s\n", __func__);
-> +			lm3533->have_als =3D true;
-> +			count++;
-> +		}
-> =20
-> -	if (!pdata) {
-> -		dev_err(lm3533->dev, "no platform data\n");
-> -		return -EINVAL;
-> +		if (fwnode_device_is_compatible(child, "ti,lm3533-backlight")) {
-
-[Severity: High]
-Can a malformed device tree node cause a buffer overflow here? Since these
-are independent if-statements rather than mutually exclusive else-if blocks,
-a single node containing multiple matching compatible strings could execute
-multiple blocks in the same iteration. Because the bounds check against nch=
-ilds
-is only at the top of the loop, this would unconditionally increment count =
-and
-write out of bounds of the lm3533_devices array.
-
-> +			ret =3D fwnode_property_read_u32(child, "reg", &reg);
-> +			if (ret || reg >=3D LM3533_HVLED_ID_MAX) {
-> +				dev_err(dev, "invalid backlight node %s\n",
-> +					fwnode_get_name(child));
-> +				continue;
-> +			}
-> =20
-> -	lm3533->hwen =3D devm_gpiod_get(lm3533->dev, NULL, GPIOD_OUT_LOW);
-> -	if (IS_ERR(lm3533->hwen))
-> -		return dev_err_probe(lm3533->dev, PTR_ERR(lm3533->hwen), "failed to re=
-quest HWEN GPIO\n");
-> -	gpiod_set_consumer_name(lm3533->hwen, "lm3533-hwen");
-> -
-> -	lm3533_enable(lm3533);
-> +			lm3533_devices[count].name =3D "lm3533-backlight";
-> +			lm3533_devices[count].id =3D reg;
-> +			lm3533_devices[count].of_compatible =3D "ti,lm3533-backlight";
-
-[Severity: Medium]
-Will this assignment cause mfd_add_devices() to map the wrong OF node to
-subdevices if an earlier node was skipped? Since cell->use_of_reg =3D true =
-and
-cell->of_reg =3D reg are not being set here, mfd_match_of_node_to_dev() will
-simply assign the first available matching OF node to the first requested
-mfd_cell. If an earlier invalid node was skipped, the subdevice may read
-configurations from the wrong DT node.
-
-> =20
-> -	ret =3D regmap_update_bits(lm3533->regmap, LM3533_REG_BOOST_PWM,
-> -				 LM3533_BOOST_FREQ_MASK,
-> -				 pdata->boost_freq << LM3533_BOOST_FREQ_SHIFT);
-> +			lm3533->have_backlights =3D true;
-> +			count++;
-> +		}
-[ ... ]
 > diff --git a/drivers/video/backlight/lm3533_bl.c b/drivers/video/backligh=
 t/lm3533_bl.c
-> index 5c8e690878609..c70b8a3bb3014 100644
+> index f0d88b7bc229d..945625c54fc43 100644
 > --- a/drivers/video/backlight/lm3533_bl.c
 > +++ b/drivers/video/backlight/lm3533_bl.c
-[ ... ]
-> @@ -296,13 +294,20 @@ static int lm3533_bl_probe(struct platform_device *=
-pdev)
->  	bl->cb.id =3D lm3533_bl_get_ctrlbank_id(bl);
->  	bl->cb.dev =3D NULL;			/* until registered */
+> @@ -161,6 +161,7 @@ static ssize_t store_linear(struct device *dev,
+>  					const char *buf, size_t len)
+>  {
+>  	struct lm3533_bl *bl =3D dev_get_drvdata(dev);
+> +	struct backlight_device *bd =3D bl->bd;
+>  	int id =3D lm3533_bl_get_ctrlbank_id(bl);
+>  	unsigned long linear;
+>  	int ret;
+> @@ -174,6 +175,9 @@ static ssize_t store_linear(struct device *dev,
+>  	if (ret)
+>  		return ret;
 > =20
-> +	name =3D devm_kasprintf(&pdev->dev, GFP_KERNEL, "%s-%d",
-> +			      pdev->name, pdev->id);
-> +	if (!name)
-> +		return -ENOMEM;
-> +
->  	memset(&props, 0, sizeof(props));
->  	props.type =3D BACKLIGHT_RAW;
->  	props.max_brightness =3D LM3533_BL_MAX_BRIGHTNESS;
-> -	props.brightness =3D pdata->default_brightness;
-> -	bd =3D devm_backlight_device_register(&pdev->dev, pdata->name,
-> -					pdev->dev.parent, bl, &lm3533_bl_ops,
-> -					&props);
-> +	props.brightness =3D LM3533_BL_MAX_BRIGHTNESS;
-> +	device_property_read_u32(&pdev->dev, "default-brightness",
-> +				 &props.brightness);
+> +	bd->props.scale =3D linear ? BACKLIGHT_SCALE_LINEAR :
+> +				   BACKLIGHT_SCALE_NON_LINEAR;
 
-[Severity: Low]
-Does passing &props.brightness violate strict C typing here? The brightness
-field in struct backlight_properties is an int, but device_property_read_u3=
-2()
-strictly expects a u32 pointer. This could cause build failures on modern
-kernel trees that have -Werror=3Dincompatible-pointer-types enabled.
+[Severity: Medium]
+Is it possible for the hardware state and the software state in
+bd->props.scale to become desynchronized here?
+
+Because sysfs writes can execute concurrently, could an interleaved
+execution of store_linear() by two different threads result in a race
+condition where the states diverge?
+
+For example:
+Thread 1 writes linear=3D1
+Thread 1 updates hardware via regmap_update_bits()
+
+Thread 2 writes linear=3D0
+Thread 2 updates hardware via regmap_update_bits()
+Thread 2 updates bd->props.scale =3D BACKLIGHT_SCALE_NON_LINEAR
+
+Thread 1 updates bd->props.scale =3D BACKLIGHT_SCALE_LINEAR
+
+Would wrapping this update sequence in a lock ensure the hardware and
+software states remain consistent?
 
 > +
-> +	bd =3D devm_backlight_device_register(&pdev->dev, name, &pdev->dev,
-> +					    bl, &lm3533_bl_ops, &props);
->  	if (IS_ERR(bd)) {
->  		dev_err(&pdev->dev, "failed to register backlight device\n");
->  		return PTR_ERR(bd);
+>  	return len;
+>  }
+> =20
+
 [ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260601151831.7635=
-0-1-clamor95@gmail.com?part=3D5
+0-1-clamor95@gmail.com?part=3D10
 
