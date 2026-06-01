@@ -1,226 +1,246 @@
-Return-Path: <devicetree+bounces-305365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305367-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mGTBMhPxHWotgAkAu9opvQ
-	(envelope-from <devicetree+bounces-305365-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 22:52:35 +0200
+	id OH6QLHHwHWotgAkAu9opvQ
+	(envelope-from <devicetree+bounces-305367-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 22:49:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D08A625631
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 22:52:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC716255A1
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 22:49:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 70BD0303D541
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 20:48:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7659E302795B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 20:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDBD8348C7B;
-	Mon,  1 Jun 2026 20:48:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DDD4348C7B;
+	Mon,  1 Jun 2026 20:49:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YlGK8Qlb"
+	dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b="poy0jId5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A57E5361656
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 20:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CEE33DFC80
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 20:49:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780346890; cv=none; b=D1g/VaeiTtP+XQoYV5Pq7g+TJHtG38RS+LuKnJ5gUQQT/QHocl/BQDMH7e5LkAgttQJLxzbPlCqlJqs3vo99/ZhhLNXwdlemNDJWJa7xn6v8mIvSOAWmeZqbHDyUVVPdwF0+VNJgVwziqx5EPvcx+UYWw/AS8+b9ZuFuVzLaoKk=
+	t=1780346949; cv=none; b=sqOMfzAJpdQpumP64Im59wMQ4Q2Psp/nz/cXsyfiF+3tlkePhh9MfMA+NFMo5QfaXhGxiXFSB2tm1V5ObXLk+OHzFBuJeDwNtXuMgSMDe2mLlspzs4wHdpllEJ6O6CEZOCkDoKCcQ8x0JP8UrQzoacfwaWN46rhWdlZ4PNi0xAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780346890; c=relaxed/simple;
-	bh=08l0oZJROEcosOyskoo7I4EdS5/F1vuEg0gvwp94Ixw=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=RNre+qt+DL3lw7iGqYHNzamyHa4nihjQpE+kYv00oyqX54qyx8HG5TpbSXFk9whRPn84tXKg0kGUqmv4UVcVNk5aGMAQojx9f+/yMwjXRkHPaehhIrN+tIh+/C1vVv+Md/fD3awkovShX48OYiIfA+B1J/9l/MnSASOBGLsSSU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YlGK8Qlb; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 187341F00898;
-	Mon,  1 Jun 2026 20:48:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780346889;
-	bh=J0m/ES99evNePdy+sAjfZDY/+Xkvi9xf627vp8ulFiU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=YlGK8QlbKi5mLG+xpjXW9DTtvR51jeVY/LDZCwFqg0pbsBIoiV76aGuYubvZk4oUw
-	 VLdfQoRWaE9ToELdAqBQ5jbEJbhIhvlJl820vWYS3nwhHGvvKe9VKFTjspOi0oNh6J
-	 jwTAPHWaJMMX0LkKZElDtvP+E7xXbkGvUki9PgpLkck8kaJEVv33oJhoFX0yTzjjUU
-	 cQXBUX8h7bPsF9SoP9O7IkuggGu/hiDqinKpos1m0BGILopnaUwusUt0rryDrJrdEe
-	 3aSLAcdD8PTrz79KbyOUNfKFVtKxfY3TabsAByXri8994RKMf/MN3D+eI9+FH1m58R
-	 MhTU+qs72sZ+A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC v6 07/18] riscv_cbqri: Add capacity controller probe
- and allocation device ops
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Drew Fustini" <fustini@kernel.org>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260601-ssqosid-cbqri-rqsc-v7-0-v6-7-baf00f50028a@kernel.org>
-References: <20260601-ssqosid-cbqri-rqsc-v7-0-v6-7-baf00f50028a@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 01 Jun 2026 20:48:08 +0000
-Message-Id: <20260601204809.187341F00898@smtp.kernel.org>
+	s=arc-20240116; t=1780346949; c=relaxed/simple;
+	bh=2NdXQyf2lc9XJgdc/KUyq7NFd1R/OI3Y1Q8DKBtBWj4=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=PehwgzgBnoc7QLD59612hJoXxqfRmvF5EP2sk0owj0XCU4zuQokVWIDxTrsrbX/8NSRn8nht4z4msZkcnrmtu3vwOhcA/4aaACX1NZm0IKVYLBp/8U21K4/PggD7RwVQTzJDjgDcWgat3wzQdEniDKF76ZlL6dMeaQdB4QpTgf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk; spf=pass smtp.mailfrom=pinefeat.co.uk; dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b=poy0jId5; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pinefeat.co.uk
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-49050ff7cbdso96749335e9.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 13:49:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pinefeat.co.uk; s=google; t=1780346946; x=1780951746; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HO3wl142riasjJepHp4iBoN8QUkvS1GbNX0jwvu13jo=;
+        b=poy0jId5zYd2d/AuIiOAv+HxRQrKcOpUL6wy2h6IfVg/EtWxcjGeLz61R8NVWySsIn
+         qMp3d+EJoWXG2vujg2bCu2Xbhp9b+1v4EiWIGR7W+/6+mpntK26KqSnrKQB3HARRtP48
+         7b+nqQ1f+k9fWauoO50eCAUPYNluRaEKsKJNwca4XjJ6a3PAaHTU7c8DNZilgtig1Qfd
+         seRzbdZtLThmhRRci0GzkEJMwv/diTuJksJ+hwA5ekZjOhp//dBYxzMZcyBXS8+o5Y30
+         irgrRhOspUgI/krlCD2rkIIeKmed1u5vAK3Yf1/Tb67m6QKifaWK8r8w3VFEmmeksYFo
+         azsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780346946; x=1780951746;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=HO3wl142riasjJepHp4iBoN8QUkvS1GbNX0jwvu13jo=;
+        b=b3Rxy/F3J0rmRoBd28aR5vvkW0lPWWcPfZAeojnUoRB3VjHTGP9H01JgTi/0Ul5cgT
+         vGZDRuS48wjFwGeXSoVeZyktMCpfGWc5dumWpNsh7/aHfwsmyQbV5lW7/1A4GBwZgxkL
+         MoK9dY4TvAqgHZ54jG4hOxcIF5xI4AR2foXp8nUOpq+AAoBdSC0weg84wKhw0j8m4Kqx
+         fw5jXXyYrjZkIs3rnxCjwO6A6lXB/WRuMT0yAGcw34EkXVrbnEK3+xKmM3fihqdLF3j2
+         XswEwrcMsELPAFZ28wVNh70G4rX5LdG1PXmSxtxcgrKGd+Zd/fpcxr3QyUS48X/yyubz
+         DGGA==
+X-Forwarded-Encrypted: i=1; AFNElJ9q3TopvW2aRZlQahAiUNc86d6GE9VfacSsL+hUK6UFgjFea1/ihDhyAXVqUcwuESuPmKdylTHhbdA9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+rBTbT5rDWisl8AGddOhebaDSSjDAVO2TV08Z955ikgJLTJ2M
+	UuTcIazI3UGbEfS4LTEvvE3VkP+h85FWCkzUEktn9anaxmbAGnNlnNLDvjoh+s75LyU=
+X-Gm-Gg: Acq92OGR4Yc5ytNNvPui+IseF9Vx/K5v7KJjEw1xxZgYYhCOl7jByfRI57h8t4LvhUV
+	qINb5MvhofjK0IssoyiC4kvc2kAEKmoQ1kPgXlxf1GNaxBVtQB+0PB3Zys6uBT9WvwACsX/Tmbs
+	6HWlWpou2AZNbQNXyYlF/k5XWJ0NwhMPunVI35PnnfOTzc/s0bQEcriskylqMAcFQZd7v2iDqeZ
+	9SKLCvAs0FDCHtvdQajhiZaT4od+rJITSjOgco9n4WMDwqnKCP20jcSC4CQeEl7HyvUD7SVGlMQ
+	Vr90chaZi4/Dl4eb+xudUs1FxQmuXNOsBnbEmC7CG0tWSXlOdHwZMgNeuAxPwBX8CDWqo8ZU0+O
+	OpJ1BO3LD02V/WYnCaKolc9pF9j42PQVIIyEGkWgi2vOxwjcAv0efGf2Cg8w5J/+Rhm3Q/c9Eei
+	f/9ahFqykgpkGhXq9FsKsCKJBk/NGZbBVFcywYa6Z5g0SgdwZgwc0w
+X-Received: by 2002:a05:600c:190d:b0:490:abef:dae6 with SMTP id 5b1f17b1804b1-490abefdbacmr80856025e9.19.1780346945632;
+        Mon, 01 Jun 2026 13:49:05 -0700 (PDT)
+Received: from asmirnov-G751JM.Home ([2a02:c7c:b28c:1f00:93e4:a0af:c443:477e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490b0e76153sm16493715e9.11.2026.06.01.13.49.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jun 2026 13:49:05 -0700 (PDT)
+From: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
+To: Alen Karnil <alen.karnil@ideasonboard.com>
+Cc: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Aliaksandr Smirnou <support@pinefeat.co.uk>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	"Kael D'Alcamo" <dev@kael-k.io>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-media@vger.kernel.org (open list:PINEFEAT CEF168 LENS DRIVER),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v7 1/2] dt-bindings: Pinefeat cef168 lens control board
+Date: Mon,  1 Jun 2026 21:48:13 +0100
+Message-Id: <20260601204814.19148-2-asmirnou@pinefeat.co.uk>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260601204814.19148-1-asmirnou@pinefeat.co.uk>
+References: <20260601204814.19148-1-asmirnou@pinefeat.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[pinefeat.co.uk:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305365-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-305367-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[pinefeat.co.uk];
+	DKIM_TRACE(0.00)[pinefeat.co.uk:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[asmirnou@pinefeat.co.uk,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 3D08A625631
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:email,linaro.org:email]
+X-Rspamd-Queue-Id: 0EC716255A1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] `cache_size` permanently remains 0 because cacheinfo lookup happen=
-s synchronously during early discovery before it is populated.
---
+Add the Device Tree schema and examples for the Pinefeat cef168 lens
+control board. This board interfaces Canon EF & EF-S lenses with
+non-Canon camera bodies, enabling electronic control of focus and
+aperture via V4L2.
 
-commit 931d91fef2d993a3edb9eef2d3d5e5329e33655b
-Author: Drew Fustini <fustini@kernel.org>
+Power supply is derived from fixed supplies via connector or GPIO
+header. Therefore, the driver does not manage any regulator, so
+representing any supply in the binding is redundant.
 
-riscv_cbqri: Add capacity controller probe and allocation device ops
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
+---
+ .../bindings/media/i2c/pinefeat,cef168.yaml   | 47 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ MAINTAINERS                                   |  6 +++
+ 3 files changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
 
-Add support for the RISC-V CBQRI capacity controller (CC). The firmware
-discovery layer is responsible for passing the cbqri_controller_info
-descriptor to riscv_cbqri_register_controller().
+diff --git a/Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml b/Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
+new file mode 100644
+index 000000000000..1295b1f4edeb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2025 Pinefeat LLP
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/pinefeat,cef168.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Pinefeat cef168 lens driver
++
++maintainers:
++  - Aliaksandr Smirnou <support@pinefeat.co.uk>
++
++description: |
++  Pinefeat produces an adapter designed to interface between
++  Canon EF & EF-S lenses and non-Canon camera bodies, incorporating
++  features for electronic focus and aperture adjustment. The cef168
++  circuit board, included with the adapter, provides a software
++  programming interface that allows control of lens focus and
++  aperture positions.
++
++properties:
++  compatible:
++    enum:
++      - pinefeat,cef168
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        camera-lens@d {
++            compatible = "pinefeat,cef168";
++            reg = <0x0d>;
++        };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 28784d66ae7b..4e5307a9c5c4 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1289,6 +1289,8 @@ patternProperties:
+     description: Picochip Ltd
+   "^pine64,.*":
+     description: Pine64
++  "^pinefeat,.*":
++    description: Pinefeat LLP
+   "^pineriver,.*":
+     description: Shenzhen PineRiver Designs Co., Ltd.
+   "^pixcir,.*":
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9ec290e38b44..06668674e167 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -21146,6 +21146,12 @@ S:	Supported
+ F:	Documentation/devicetree/bindings/input/pine64,pinephone-keyboard.yaml
+ F:	drivers/input/keyboard/pinephone-keyboard.c
+ 
++PINEFEAT CEF168 LENS DRIVER
++M:	Aliaksandr Smirnou <support@pinefeat.co.uk>
++L:	linux-media@vger.kernel.org
++S:	Supported
++F:	Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
++
+ PLANTOWER PMS7003 AIR POLLUTION SENSOR DRIVER
+ M:	Tomasz Duszynski <tduszyns@gmail.com>
+ S:	Maintained
+-- 
+2.34.1
 
-> diff --git a/drivers/resctrl/cbqri_devices.c b/drivers/resctrl/cbqri_devi=
-ces.c
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/resctrl/cbqri_devices.c
-
-[ ... ]
-
-> +static int cbqri_probe_cc(struct cbqri_controller *ctrl)
-> +{
-
-[ ... ]
-
-> +	/*
-> +	 * Resolve cache_size via cacheinfo. cpus_read_lock satisfies
-> +	 * lockdep_assert_cpus_held() inside get_cpu_cacheinfo_level(). If
-> +	 * every cpu_mask member is offline, cache_size stays 0 and the
-> +	 * controller cannot back occupancy monitoring.
-> +	 */
-> +	cpus_read_lock();
-> +	if (!ctrl->cache.cache_size) {
-> +		int cpu =3D cpumask_first_and(&ctrl->cache.cpu_mask, cpu_online_mask);
-> +
-> +		if (cpu < nr_cpu_ids) {
-> +			struct cacheinfo *ci;
-> +
-> +			ci =3D get_cpu_cacheinfo_level(cpu, ctrl->cache.cache_level);
-> +			if (ci)
-> +				ctrl->cache.cache_size =3D ci->size;
-
-[Severity: High]
-Since this lookup happens synchronously as part of the initial controller
-registration (which happens during early discovery), will
-get_cpu_cacheinfo_level() always return NULL here?
-
-If cacheinfo is unpopulated at this stage, it seems cache_size will be left
-as 0, permanently disabling occupancy monitoring for this controller.
-
-> +		}
-> +	}
-> +	cpus_read_unlock();
-
-[ ... ]
-
-> +int riscv_cbqri_register_controller(const struct cbqri_controller_info *=
-info)
-> +{
-
-[ ... ]
-
-> +	switch (info->type) {
-> +	case CBQRI_CONTROLLER_TYPE_CAPACITY: {
-> +		int level;
-> +
-> +		ctrl->cache.cache_id =3D info->cache_id;
-> +
-> +		level =3D find_acpi_cache_level_from_id(info->cache_id);
-> +		if (level < 0) {
-> +			pr_warn("Failed to resolve cache level for cache id 0x%x (%d), skippi=
-ng\n",
-> +				info->cache_id, level);
-> +			cbqri_controller_destroy(ctrl);
-> +			return level;
-> +		}
-> +		ctrl->cache.cache_level =3D level;
-> +
-> +		/*
-> +		 * cache_size stays at 0 here. cacheinfo is not populated
-> +		 * yet at acpi_arch_init time. Filled lazily during probe
-> +		 * via get_cpu_cacheinfo_level().
-> +		 */
-
-[Severity: High]
-The comment mentions that the size will be filled lazily during probe becau=
-se
-cacheinfo is not populated yet at acpi_arch_init time.
-
-However, doesn't the registration function immediately call
-cbqri_probe_controller() below, making the probe synchronous rather than la=
-zy?
-
-> +		err =3D acpi_pptt_get_cpumask_from_cache_id(info->cache_id,
-> +							  &ctrl->cache.cpu_mask);
-> +		if (err) {
-> +			pr_warn("Failed to get cpumask for cache id 0x%x (%d), skipping\n",
-> +				info->cache_id, err);
-> +			cbqri_controller_destroy(ctrl);
-> +			return err;
-> +		}
-> +		break;
-> +	}
-> +	default:
-> +		pr_warn("controller at %pa: unknown type %u, skipping\n",
-> +			&ctrl->addr, info->type);
-> +		cbqri_controller_destroy(ctrl);
-> +		return -EINVAL;
-> +	}
-> +
-> +	err =3D cbqri_probe_controller(ctrl);
-> +	if (err) {
-> +		cbqri_controller_destroy(ctrl);
-> +		return err;
-> +	}
-> +
-> +	list_add_tail(&ctrl->list, &cbqri_controllers);
-> +	return 0;
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260601-ssqosid-cb=
-qri-rqsc-v7-0-v6-0-baf00f50028a@kernel.org?part=3D7
 
