@@ -1,199 +1,176 @@
-Return-Path: <devicetree+bounces-305171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305172-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ACXHBNiGHWrAbQkAu9opvQ
-	(envelope-from <devicetree+bounces-305171-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 15:19:20 +0200
+	id ePR0D8SIHWrAbQkAu9opvQ
+	(envelope-from <devicetree+bounces-305172-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 15:27:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4ACB61FE6D
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 15:19:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90887620059
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 15:27:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BD8873012D53
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 13:19:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 280533008D3C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 13:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CDE73A5E6F;
-	Mon,  1 Jun 2026 13:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B210F3A544E;
+	Mon,  1 Jun 2026 13:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyTYEJcf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IloNb872"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0E4361667;
-	Mon,  1 Jun 2026 13:19:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821D93A3E95
+	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 13:25:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780319953; cv=none; b=MhQ69PR7Sl0Wolo6iQVuy476Z81kgSrRTi9JyaRawE6hAxMHw/hLqhcIVQxC9v47iHzScZTKMrJ9c5wurn+GoyGfo0nJhRhCZjhVKMP0dAwhymzl7uY+pUE0A87EA+3fiUP4CTcBdMlYVzzJunzfCCeM0OGPugbA31i+TJzsPgs=
+	t=1780320350; cv=none; b=mpLZr7jEPoEN+5JoExQRuWnzW9DUfqgqYOWdV65yaPhM0ONpZXoYK0WIvNfqzkhyxBxFy4+Sv7o1JOSNathYBycqSyFvmW2xv1Vkdcpm8J2f6jTVN5rHEdon3BRe4PcN7KBlYe4wHGrONfElswDvbFiEcePBLbaJZom7El+4DoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780319953; c=relaxed/simple;
-	bh=QG4Z1lJud/2m0d4pUKcPCuFCd9HmCmJz7ekPrVHzQfQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TewIUvhIfeRgmeaPCkhTpiIjvBs5gnbNutE6irJVHI27/FUpp42j5d0bASSNVmwxVVc2NBq2plW1HCkhiVyPdo0DFWMMogxd5i0KxQsGB31FDRtPGnS8X2hBVOujHAN3OXYWTEnUUUHVZkAMptLOSn0Sawue8slpUB53UEUlG4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lyTYEJcf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 12871C2BCFB;
-	Mon,  1 Jun 2026 13:19:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1780319953;
-	bh=QG4Z1lJud/2m0d4pUKcPCuFCd9HmCmJz7ekPrVHzQfQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=lyTYEJcf0znSNvYI5iUXHNfcy4IKKsCG4Wb0kAG4SaTpVAqTdqZuoV/MVgPIJAusw
-	 tKp/ubcIwITADIuqFVk/17z5bkUgS6/immX7G/FBAA6u+LRHK3AyGOln1NQ6u0s2iq
-	 Voqes7gge/v1i7J/npqzQTPSwIAiw9XC74erTyH7ncNisyk7ajyrADRf0W2qVmdkmF
-	 2GpTqsM0P4pn6HsjmjThHVwBodmDruX8AQ13nuXC0sU461WUkXqbU6mfqEEDAmsZOo
-	 eCcmqO65lEb+3XZHA4X8p6Wc+0yo1eVIoo+VLzrABYJ/jUp63sXGHhWTDMrI87naag
-	 eguWlo3IZh5TQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03AE3CD6E64;
-	Mon,  1 Jun 2026 13:19:13 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Mon, 01 Jun 2026 17:19:10 +0400
-Subject: [PATCH 3/3] net: phy: qca,at803x: add RX and TX clock management
- for IPQ5018 PHY
+	s=arc-20240116; t=1780320350; c=relaxed/simple;
+	bh=+KtJDTw3OjeQ7kvSgmwW4gBWZ+mKdjd9X0qCSN4+Els=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OQZZCt8VuEts5EWcwzOM87N4OFu86HRsbAMENPbr2RpcoxlGIrE0AQBhfddbEQax3nQKqF7ypiPdXZUn0si+hUKCRxdCItvIaNy7ouK2aHNb4DafOKbwqwLeua+V8igud2zKwwhFi6dUYBSgUazb1Zw7561cUXlkHqNKuWS/tlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IloNb872; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-36bb3551f6eso3006161a91.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Jun 2026 06:25:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780320349; x=1780925149; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DnHBZf9FwnOpjIKwf/TmkrH6aiNn+aT//tH7U9Z8tL0=;
+        b=IloNb872ChD+6NYy+MeKTM1iOL/Mv7+UHev1CB29vIohCWoYj8INb67gKNNgvMn/a4
+         XyElynRTZh1jEnoBw7NIH6Fp4YkSWL7KoTWChoV6yAYgMuVJ5WB8R4F5I0Ndt3KrdtGA
+         lvH/an14qVzf0b+XK7F8j2J5VZdShHlth1WX3Y0WoMaplYCNr4Te3whiVKxnWMnsXwDs
+         zWn6sNx8sipEEqj8ng7Hmec62uLSXhwMlg+iJOOOVIw468o1Al4TPy/czeE0iLB96Dj8
+         lkmzMWh4bSpkaOcgIQxkaSIWTk65wUZYJCjkBrZSnh25Xb4EenDPgPtevxbfRTB0a4EP
+         IfTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780320349; x=1780925149;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DnHBZf9FwnOpjIKwf/TmkrH6aiNn+aT//tH7U9Z8tL0=;
+        b=KuAPiNyWdiOQn4lb4uoO8jC9LXQq3RhXJWemWpQjP2OwIoVXquoI2yrrjur7AoQyJL
+         KcPHyQz3/B2Ak1i9kOdAP3FQgo24coJrMoAa6Rkgan3lgg9M2RoriWYnEyBp1lv2Guo6
+         amkkOCzfob7J3FwAmwsmzY7EmUv3TTVH8BMWb+0BQSFDrjxXcCC/pPSZvbpkh4MrLlVN
+         TQmysxPnwYYUPlrl/yKlsDcefWpPMDNicmooR6soOOCxK8VQMDxA+16RuWSXj2I55nJb
+         fLdoIbk+TAy0OPbmGQnxBW4XZfpeoL4J+31Jk7HSrclTgch+xhrSLZdri4+wBQOZ4Y+p
+         1gIA==
+X-Forwarded-Encrypted: i=1; AFNElJ9b7c/hBJ5+lBDUK4XSRhhWr9QEcxXXAcJZyllzBkq8ucohfJQxhH+cflMs6W2UfpicrxNHt+C1wu1k@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfJd1ahn7F0cYfNiDTJ8ExgmY68BVruj0FjUHoUh5qftdzE/ch
+	EdWES3AuXLJ8tIWCnucBF+CWCLNPnQsgDi9grox/slPDJjpM91V2MvVG
+X-Gm-Gg: Acq92OGhoonJHpIjK2UmrjwKUmrv5UOonA8d24fV/ERBYnvA2/rf9UpvhFfj4e9Hxr2
+	k0nlWpxACasxdJRPAz1OeBtduHiqIcJVAWc8xHIn3eFxZ4QBJI0mD+un0l8XAYy8u77JN7MkCwQ
+	M5g8YYQSs8y0tw52ePKjx2Gvu7Cr7txDUrc+HSGwNkQpklk5ZihvE31m6qDRG27YR0KkGG6/ZJA
+	sCcL9cj0V+maOqqS+JRXYwnwi2UFYjKNbBvVILwj1vryFaWPss7gqY537lqmaWb4iR2ZX1xOG9q
+	F0JyrycDZ9JlfT+XJt6K5bh55uUDp8A8YPMGuB3hVMTMzyaH0bVW2QzGlWCBQnBI/rVJtSoLBhe
+	N4iQfQPRlzwg7NpKPAMGLW1bOwCntv8J/Ck5I5nKGazRFQPpQAztVu/BLKHR++pJOMOeGV8X4Hb
+	cfyEmsiGWooLf6Bkm1Xe9sgISh3jJcs/xEz6kcXDEy
+X-Received: by 2002:a17:90b:5704:b0:36a:f612:e6a3 with SMTP id 98e67ed59e1d1-36c501b8fb2mr11081482a91.17.1780320348705;
+        Mon, 01 Jun 2026 06:25:48 -0700 (PDT)
+Received: from i386.168.1.127 ([2402:a00:163:2ce9:9c6f:e28:3da8:7980])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36bc02d0a22sm11444234a91.8.2026.06.01.06.25.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Jun 2026 06:25:46 -0700 (PDT)
+From: Hrushiraj Gandhi <hrushirajg23@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Hrushiraj Gandhi <hrushirajg23@gmail.com>
+Subject: [PATCH v2 0/2] arm64: dts: rockchip: add Vicharak Axon board support
+Date: Mon,  1 Jun 2026 18:55:27 +0530
+Message-ID: <20260601132529.139172-1-hrushirajg23@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260601-ipq5018-gephy-clocks-v1-3-2df8287712c3@outlook.com>
-References: <20260601-ipq5018-gephy-clocks-v1-0-2df8287712c3@outlook.com>
-In-Reply-To: <20260601-ipq5018-gephy-clocks-v1-0-2df8287712c3@outlook.com>
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- linux-arm-msm@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780319950; l=2335;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=k3J1uSCRHsxM9xs2etq4AynajTAyY7ew0xbYTGGX5vo=;
- b=T1QR/m5s94c/CPkXHvBNE2KhtPL7PM1qxAywEQga6mFxr+JUiu9n+jBVP6FSfepUu5C0nvxuv
- pu3taMBlZx8CHsA39HzlvDSNypDiHadRKmlsOptmUKgoPNigkbaDPgl
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.infradead.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305171-lists,devicetree=lfdr.de,george.moussalem.outlook.com];
-	FREEMAIL_TO(0.00)[lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-305172-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[outlook.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[george.moussalem@outlook.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.996];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,oss.qualcomm.com,outlook.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[hrushirajg23@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:replyto,outlook.com:mid,outlook.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Queue-Id: B4ACB61FE6D
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 90887620059
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: George Moussalem <george.moussalem@outlook.com>
+This series adds initial device tree support for the Vicharak Axon
+single-board computer, which is based on the Rockchip RK3588 SoC.
 
-Acquire and enable the RX and TX clocks for the IPQ5018 PHY. These
-clocks are required for the PHY's datapath to function correctly.
-In addition, gate the clocks upon link state changes for improved power
-management.
+The Vicharak Axon is a feature-rich SBC targeting developer and embedded
+use cases. It ships with:
 
-Fixes: d46502279a11 ("net: phy: qcom: at803x: Add Qualcomm IPQ5018 Internal PHY support")
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- drivers/net/phy/qcom/at803x.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+  - Rockchip RK3588 (4x Cortex-A76 + 4x Cortex-A55)
+  - RK806 PMIC providing all SoC power domains
+  - eMMC 5.1 (on-board) and microSD slot
+  - Gigabit Ethernet via RGMII (RTL8211F)
+  - Dual HDMI 2.1 output and one HDMI 2.0 input (receiver)
+  - PCIe 3.0 x4 and two PCIe 2.0 slots
+  - SATA 3.0
+  - SDIO Wi-Fi
+  - USB 2.0 host ports (EHCI/OHCI)
+  - NXP PCA9554 I/O expander for status LEDs
+  - Haoyu HYM8563 RTC
 
-diff --git a/drivers/net/phy/qcom/at803x.c b/drivers/net/phy/qcom/at803x.c
-index 63726cf98cd4..b7361a14220d 100644
---- a/drivers/net/phy/qcom/at803x.c
-+++ b/drivers/net/phy/qcom/at803x.c
-@@ -19,6 +19,7 @@
- #include <linux/regulator/consumer.h>
- #include <linux/of.h>
- #include <linux/phylink.h>
-+#include <linux/clk.h>
- #include <linux/reset.h>
- #include <linux/phy_port.h>
- #include <dt-bindings/net/qca-ar803x.h>
-@@ -176,6 +177,8 @@ struct at803x_context {
- };
- 
- struct ipq5018_priv {
-+	struct clk *rx_clk;
-+	struct clk *tx_clk;
- 	struct reset_control *rst;
- 	bool set_short_cable_dac;
- };
-@@ -1062,6 +1065,16 @@ static int ipq5018_config_init(struct phy_device *phydev)
- 
- static void ipq5018_link_change_notify(struct phy_device *phydev)
- {
-+	struct ipq5018_priv *priv = phydev->priv;
-+
-+	if (phydev->link) {
-+		clk_enable(priv->rx_clk);
-+		clk_enable(priv->tx_clk);
-+	} else {
-+		clk_disable(priv->rx_clk);
-+		clk_disable(priv->tx_clk);
-+	}
-+
- 	/*
- 	 * Reset the FIFO buffer upon link disconnects to clear any residual data
- 	 * which may cause issues with the FIFO which it cannot recover from.
-@@ -1084,6 +1097,16 @@ static int ipq5018_probe(struct phy_device *phydev)
- 	priv->set_short_cable_dac = of_property_read_bool(dev->of_node,
- 							  "qcom,dac-preset-short-cable");
- 
-+	priv->rx_clk = devm_clk_get_enabled(dev, "rx");
-+	if (IS_ERR(priv->rx_clk))
-+		return dev_err_probe(dev, PTR_ERR(priv->rx_clk),
-+				     "failed to get and enable RX clock\n");
-+
-+	priv->tx_clk = devm_clk_get_enabled(dev, "tx");
-+	if (IS_ERR(priv->tx_clk))
-+		return dev_err_probe(dev, PTR_ERR(priv->tx_clk),
-+				     "failed to get and enable TX clock\n");
-+
- 	priv->rst = devm_reset_control_array_get_exclusive(dev);
- 	if (IS_ERR(priv->rst))
- 		return dev_err_probe(dev, PTR_ERR(priv->rst),
+Changes since v1:
+- Renamed the dts file from rk3588-axon.dts to rk3588-vicharak-axon.dts
+- Added binding patches for the board (rockchip.yaml) and vendor (vendor-prefixes.yaml)
+- Renamed regulator nodes to the standard `regulator-name` pattern
+- Removed `mem-supply` properties and phandles from cpu nodes (vendor-kernel specific)
+- Fixed pcie20_avdd0v85 vin-supply mismatch
+- Removed obsolete `regulator-compatible` property
+- Removed invalid `regulator-init-microvolt` property
+- Removed dangling `enable-active-high` properties from fixed regulators
+- Cleaned up unneeded i2c3 / es8388 nodes
+- Added missing `vpcie3v3-supply` properties to PCIe nodes
+
+Hrushiraj Gandhi (2):
+  arm64: dts: rockchip: add Vicharak Axon board
+  dt-bindings: arm: rockchip: add Vicharak Axon board
+
+ .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+ .../dts/rockchip/rk3588-vicharak-axon.dts     | 1038 +++++++++++++++++
+ 4 files changed, 1046 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-vicharak-axon.dts
 
 -- 
-2.53.0
-
+2.47.3
 
 
