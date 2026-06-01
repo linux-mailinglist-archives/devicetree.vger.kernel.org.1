@@ -1,86 +1,84 @@
-Return-Path: <devicetree+bounces-305386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305388-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id We6TJDP3HWoFgQkAu9opvQ
-	(envelope-from <devicetree+bounces-305386-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 23:18:43 +0200
+	id ULQLCan7HWpSgQkAu9opvQ
+	(envelope-from <devicetree+bounces-305388-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 23:37:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD88162582B
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 23:18:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D7D62594D
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 23:37:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E5328300D47A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 21:18:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D38993033D2A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 21:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E393101A0;
-	Mon,  1 Jun 2026 21:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E16DA363C75;
+	Mon,  1 Jun 2026 21:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="lmkjcNQo"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="kJevP9gs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010052.outbound.protection.outlook.com [52.101.84.52])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010049.outbound.protection.outlook.com [52.101.69.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D0A1F78E6
-	for <devicetree@vger.kernel.org>; Mon,  1 Jun 2026 21:18:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F33DB36657C;
+	Mon,  1 Jun 2026 21:34:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.49
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780348720; cv=fail; b=n1QfqxqKFIhsfZjJ+PJqwuZxCG2TFP9L8mku+nuDvMLnNW5LKuOahG9wGl2eUu55uJuKoml7VMithDB8yv2r5tUx6cFt74XQdyLMgeuoZLEo4o5/q2WKQJbo8GGe73367yta2EY+rQome9AWM+FvWIEspHS63ZcwAXbmDHPDslU=
+	t=1780349653; cv=fail; b=KFO+PauqrfNqb2CtiLK+A8NWjh0J7b1vOG2JZrhPtGGcO3lyuygvlEKf8SL0Den7pT/EFIFnZ+R18AfolnGfjMf7b6PpgnQQ2Q3fcLKZ+hs0AvZhuyQERP/c43OcqUQ9KGEKAwX53qUHSJ6ln3SgIuzxY1S3SFhQeeteIsgtGqk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780348720; c=relaxed/simple;
-	bh=YtfvIfVoX3jakCA4F6r4VVy/nI7SCc8dZQkSZJJ15VA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KNOuqek+a6PNz/dz1fg7QDmDEy+mQ+69UqjYBwZNm8UHbSvrkl/Ezxf/gbJNsgdv3hZWYp42detzgR77F8gSEHLC3/IoNu669ivW7AzDf4vcSLAUK2+96vzmqr47ZC8zajckfSZgxRpmiAvKMkQ/wtp+ICQXhjB++QEcowqM0RU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=lmkjcNQo; arc=fail smtp.client-ip=52.101.84.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+	s=arc-20240116; t=1780349653; c=relaxed/simple;
+	bh=ppZ4lB5Web6e9VTZOZO6/e1/M/Rnra3fikp55t24EDs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=nBXCERzEjFuszeKwzmsAhVt0jLRZHsZ/ch7tj4KMp5Bn5hzCDrYd4OjClVQxiaItSea0/6EiQt5lQx3sUG9E1XEO4b71aXOB5PTT5GT+nq4qiNHamyVSLptFHpLOsjRboETM5qg5NpKvYThuZgm4jDq3q3BdLXQ68I+j6tRJvVE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=kJevP9gs; arc=fail smtp.client-ip=52.101.69.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LCZlXljkJTi1fDIpZgV4w81RehKsmQD01e8zOB2MsuqkO83Ne9bR6y2KyGtWAKm8OJlOmitKdmu2gTot9I0U+qK3/SiBAMZZomE/8b7/dcwfDRsJrYJFXK4EtzbFNf/M5qD40gWuyphceMROq3wLDLw5BRc1fG/NJ6fs561UCd6MNrx1VltaQnnOrnc5VG1fiMVLumVBzB6QYgkkWuhTd7dXW/Kn6y2LCOSdU4+1dJKSE3OHTKe7oQvgmMyWC/QQsSArjZnpifk4typv+348IkNi7wy8IG7MUQ9r+1z6NxUfU4+FlqdKNDsrJ8XnopIrXMssW7VGqq1TEuqTQxB+ig==
+ b=VVg2WABruRYTHAFGqAvdv4e2Mk4c+jsPPOWiDqAEtBvwi/4C7crvs8lqShq806atsT8fwU23gFpGWhTRn7RB83QK2qOXVZfdaEBBu7nNzBDuRZP3qB+KKGbLBcSntmXLtH10uTBQDmJa45Xs3SmqA8gzVZMsjRyEjcCN8gZbNq2CWlOIqJ3bGjxDrFA2MsVIuf+3Z6tfF7rW7VMtF0b2Er5I+JZ2hOQ3zCckP52sL3y6Pndl874BHNMim4e65QQv5/U4SzE2Sc+ISwalWmIJsn38+B2D1gjfneBG4Ft6lWWrmrGTFgKDBWgL203rG0MPHGnSH4dNBbdTYKfxbar5vw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SJDw7U1kcBNzBmGJrbXZH5GwlVvQzfCWH/Z1O7W/AZw=;
- b=b9kpm49ISLzkazddjHm82OphFYMqMB7VtMQqfwxFWyT9Vcik3+EVLZ9/foTRomG/MP1jrzAwbdGDu9Ao/1zbVPHvdXY3COZKCNeQ6I9mKmgswKCVy7XiujrIXtZd798Cx3V8Q938bEQuZT3H4UB70ULxoG8QtSHsmR2g2Sv2uLSpjU5BQIkKRdhVVxmV+0uGBKOLqWVEU9abJkLQLARmusfHNoIMPMp4C+YE162EI96nbdLXpH4rs5aw08KV7NTdkLVT6PtTvrWSTOuK3pQsgs/TDfHihPniGVPYv38darb42GFOBMv2tvGcJVBXgH/dyKuD3ZYAFSsv9m2DYkNitg==
+ bh=N/HkwPLV1CJ2MbHXR1zu4HwNIm3wcQE1ETRLHxWUWDE=;
+ b=ZsH+qolK9PX9slfXUoJ8BniLDWNd29Go4N4UPSNlKOLvN7sEYmjcpkU21eSX4BgXCHKx46Txjgjb7VdBSzMcTXuAa6dNNcivNBXp/xcdvPYaOJdwnKMibMXdjXLYQHPAavUKdsyoT7vKozJPLNSB4wX8Rn7lfFuxagCZOGLR9PRZ5vK6F8inD6Dc6Fu3gErJpCx7Ym7XPBM9/iqwws1uFxs9t8TNfLp/RcwGpwS1yAfy3YSKw1aPrjI+20UwFxt0lrFrzc1V276P85E+K5FvuTbv3zanfzVhMPlKS9JYywtr1IiTZj/q6erXsJzoYd4KyvdS1/m7baI5tgDl9Pv/5w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SJDw7U1kcBNzBmGJrbXZH5GwlVvQzfCWH/Z1O7W/AZw=;
- b=lmkjcNQoZBqwE3MfMtnAR09yHfoV3bW4sCUiDujcWAanAGT5qxymNX9txSBKnQBu4XdnECoizaFbVCGLw0LRX+FSgT8U/a5iLStGWbnCbdlk0li6z3ZQ+ecqDQQynYW1c2ZURrnPLiqsHK0QvbylVNHJxBIqmvCkDfwP3Nv0P8XAtMYMN2je/THpmfoPhiLvODg7yqt6bX1Un2RJnA7vWHK6B/p1/wHki4AYNCRo72VAhGNPReS4qaXtIWwWN1Yaim+OWR2LMTVexbXDd6/+N3HnPQI01gddahxoLA6MyL2x23zgOFqYMyW051gHZSd4dr7FUa/syQQ007+HyDW4iA==
+ bh=N/HkwPLV1CJ2MbHXR1zu4HwNIm3wcQE1ETRLHxWUWDE=;
+ b=kJevP9gsoVFnI426wN7FyINxCK9NGU24yZankyzLXWesDrbVJVBcya9dubgMB6HF38zim6zDytHDbmkSbMco3yDHisAQohecFIvnzeM4SfJEImsj/OsaWMQ/OQX8IDrCn4O5u1mGWsxK9cE3pVdf77L7/Mj1Vkmo4r2DVN94R5rPSdvEKT35N1OntSpK16AHP/uYGfsfj/0Wt5gKUWos+fVDi8jT7R04p95V9Xw0w4pAUwHhijoZ4/HVlfpmZSorXqeuu80oXZE2bA5FjlAlanVew13RtYWE2xnBCQDCza1XrabTJLOtTMTEXJBuWdW9SAq/xgUAFbWLwe8tvGDA+w==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by GVXPR04MB11043.eurprd04.prod.outlook.com (2603:10a6:150:21c::9) with
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by GV2PR04MB11303.eurprd04.prod.outlook.com (2603:10a6:150:2a3::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.16; Mon, 1 Jun 2026
- 21:18:34 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0071.014; Mon, 1 Jun 2026
- 21:18:34 +0000
-From: Frank.Li@oss.nxp.com
-To: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	Lech Perczak <lech.perczak@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
+ 21:34:03 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%3]) with mapi id 15.21.0071.015; Mon, 1 Jun 2026
+ 21:34:03 +0000
+Date: Mon, 1 Jun 2026 17:33:57 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Florijan Plohl <florijan.plohl@norik.com>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lech Perczak <lechu@hswro.org>
-Subject: Re: [PATCH v3] ARM: dts: imx7d-pico-pi: add OV5645 camera support
-Date: Mon,  1 Jun 2026 17:18:26 -0400
-Message-ID: <178034863312.618273.11214188705931804692.b4-ty@b4>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260527101912.14910-1-lech.perczak@gmail.com>
-References: <20260527101912.14910-1-lech.perczak@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PH1PEPF000132FF.namprd07.prod.outlook.com
- (2603:10b6:518:1::10) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+Subject: Re: [PATCH v2] arm64: dts: imx{91,93}-phyboard-segin: Add peb-av-18
+ overlays
+Message-ID: <ah36xZRtedh5A_DL@lizhi-Precision-Tower-5810>
+References: <20260409090432.130489-1-florijan.plohl@norik.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260409090432.130489-1-florijan.plohl@norik.com>
+X-ClientProxiedBy: SA9PR13CA0039.namprd13.prod.outlook.com
+ (2603:10b6:806:22::14) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,123 +86,378 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|GVXPR04MB11043:EE_
-X-MS-Office365-Filtering-Correlation-Id: bed56a79-dbc7-4b50-a072-08dec023564a
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|GV2PR04MB11303:EE_
+X-MS-Office365-Filtering-Correlation-Id: fe9c4cba-a584-4d22-704f-08dec0258078
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|1800799024|19092799006|11063799006|3023799007|18002099003|56012099006|22082099003;
+	BCL:0;ARA:13230040|366016|19092799006|376014|7416014|52116014|1800799024|38350700014|22082099003|18002099003|56012099006|11063799006;
 X-Microsoft-Antispam-Message-Info:
-	OstKCvS+UbVikTV5N2Qiz8qZLcXvP9FrE5xKC6LSOvpLcVlcZyJ0Ei4hTEtGqxf4/cs8KpgWNEnSjgIilnocZzJHKd3gKh1pogwlsO0lfLaEn9a8CKC8NKqPZzqpuGH43pcB+qiVveWNUSF1mKz+vQP3/UB27I/pY+LSnXJvHtNPgqIvyfkHDSvIRBZEeDi9Tg10ZZRCLoaUe6eEmEBAK7FsFt5VtFE/gK79Cx1HAJr1EMe7XVZijmfncrzi3rpRpR5sGSdhm/fq9qc5Dx7GrL83vgMdP9FCXHrRwXgHfEn2zf7zd+j18Locrbr40oyZkmvK9GvXpd7EGexCvJCyTUVS4axH7yLN3fJ2tCY/71P+pmL4hMCCIYLJf1LVXHeFH35U4/flgipehy0aoOmi5+Za8UpnV+eanfFSiCiXHPWiHhhSRU21ZMjzHARmIg0Flf2G0Gw9JLJWt5qIk5uzxma4rIcuk+qgiJC3LeZpXQTblOCs5WaAEqiX+p65sdKty9kUlmAr3Uop5PYybKZv//yGoafjmPnE1DrSjnX2ff6NHFDuvYvHPqmwGafJyRit2+vC3WDRJ1gN8p/GGGnQEbNWObtdf6n6MHEGFn4V4FgWiljopdC0nPYYrnOyMugcqqzWkR2qnP7GI3FrG1n6O51JinM2NATJKPewP2OPLkMNWLd4e9GRJSaruj2lMgGH
+	FPPEmskSmC6UoeayQWUxlNiEyjvo3KsAPOeIWCcpaOMxJySmAqJw398dONeKfv7jFF/6HsRm9WJo9EB0XLqBKJeCYepo+rEiQkHoUwMJ+AbOvDvSpm0mdCOY0hHjwEG9gEStD24YdMN8ocWHKtRVtEAf5d6cQa/UpoX9bO3vv+etmA4GMYPeMNjG7IBCbrXrEpcLLGbFQLJ8LuyzT5UpVorVgVYIIGYuY36k/g0qnlBSL4zbQgGnZry1x/Y8720R1wjYo29etqtkPFnyxqNc3zmf/vi9KCZYlyfSf938bw6gAUUvg30JySKzLXnrNiFuMao3PD5PY7NNjj3bu9PR139dBjP9GU8/jOdZ9+gK+irMazLAJnWXGtvPK0+oWK+6OsOLtEst+XAZoNffQ3ZL9WEH3LmB13b+gEPnsf52zw3tqHJiXxeczZECFoXViFAA9oDdGenGlEPfvOyTgO/6QvBwpgZ6Rx0qVSpaWPvV33GTbA40DXSX0xvHavv0raBJle8cNEvjSfAX7m7DMHUnc+OxhSNZHTvBUFclu7XJFhk9/l6PZ1et5IIszpl7+wgfObNkkf1IfE4el0QsEAyM0eJiAWuHwLPCaKaImRj3hE+uMErlEHykm5xgHC/dqkLlqaFyccYxsTgqs61oT07qLW3kozwEFschJVV1tHnMOGDIf5nvLcjZWxIMdvgRFwRfUXbvzFVW7plhrEl/CzEQJz81PRuk5+/7h8HtD+AQj6Tp+83i376Mw+nDPna10+mF
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(19092799006)(11063799006)(3023799007)(18002099003)(56012099006)(22082099003);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(376014)(7416014)(52116014)(1800799024)(38350700014)(22082099003)(18002099003)(56012099006)(11063799006);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Ny9XRTd5WXBrRDZiS0lrUG9zRWFHM0t4V0NMQ2R4elRmTXJobkxaQWNzd21J?=
- =?utf-8?B?T0NleldsZisvc0U2RDl5c2tuWkh5eFovTDZ1YXk2bjdtbk1kTXhhYitXN0hz?=
- =?utf-8?B?RmVnMDBlUGY5cWNya0txZVI2Tm5mRU41ZGc1OTRoUzM0MDJ2dnJBS1BxRktB?=
- =?utf-8?B?SmhjUHVNU01Nd3NhRFBwNVR0bzducnAzK0xrSTFxK2psQ3ZTMnMzK053SGhS?=
- =?utf-8?B?TkJ4WFZnNVZYNVFtNjNHeVdjZkg1ZERRME9jVTErL3RSU3k3ZWt2bDFXUEhC?=
- =?utf-8?B?aWtKTzhvd0VPSGI0dS9lY0hHNkFXNk45anRlRGhwQWdkK3JxcHlRY3NGcnI0?=
- =?utf-8?B?WEdRUnc1N2FYR3ZudGgrQnVBV0lubU1pSjMyR2tHZDFJYnVKSXhtRnlSc2lY?=
- =?utf-8?B?WWdWQlJYMjE1RlMvKzRVcXJxbFVJc0dQV3U4ZzNlVzJQR1NtOVJjRzVLdXVN?=
- =?utf-8?B?cStFYnBrU2dvN1VBdjdoMjdEZ2V2bkJzUmlTY0FlMldLRjFLWmd0K3RrSkdu?=
- =?utf-8?B?RiswR2M1M3lhSklKZEl4ZUpJd3krNVArYk52dzB5VXVJMFExa0N6MWsxT3BL?=
- =?utf-8?B?NXMvN2EwRFZRbm5WWk9Id3BuWWp2K0w2aE5EbVYya0FlUm1VMHlGcVd5T2JW?=
- =?utf-8?B?MjkyTjg5a0lJSlp6Sy9xajdFWm4yUzRaekVlSWlkeEJ5Z2xwRzFOV2FOTTVn?=
- =?utf-8?B?cXBqeXh1MEt3a0JlL1FxTUFZNng1MXdlRHd2cUg2QUpUV1MrMzBLYlUvd2hJ?=
- =?utf-8?B?UlFwUjArVnc1dGVBY2Fqb2tTL0FCT3NlT0JLdkZzSWRTaXlFZEZWY0dOUk80?=
- =?utf-8?B?QUlqTFkyZ3k4R0pEZS91NlY0Z0pMbXRGaXlPbmU5eVVDU2RTeHl2YmdnVEl2?=
- =?utf-8?B?Q0ZwMlBwL1o5UFJpcnQ0TjlaRWppZjI3MFF5Vy80TC83MnBqeU1DTUlDK2VD?=
- =?utf-8?B?Q053c1FXYjByTkwvOEw0eDhtQzRpODU2ZmVBUlF2T2N4Si9EekpDVTNzZGs0?=
- =?utf-8?B?ZFlSWGRHZEh4Mzc4SnRvMVZXc29qT1JJbXR5MGdpWVVSQ0R1WlZKSXRFMkVY?=
- =?utf-8?B?cSszVURrQjlEN3dkT2poWVU2dVBxMTNBNFFIN3NUZzNkL0RVR1MzeFlqMGZi?=
- =?utf-8?B?ZE96NEV3d1B2ckRxQ3dJM21kdEF5NW5LOEhFaXh1VnY4K2t6dGdmbEVWNktS?=
- =?utf-8?B?U3RxOVZTZkZNcEFmOUUvSkZjZmZ2ckVzNVB1cFcycllIa01pMEU5bHNyUUJE?=
- =?utf-8?B?K3Z1ejdGM1BBKy9wTnE0b2hDTHNSc0JDZWpld2RGNU1SUUVNQ2pXRzVlUDZB?=
- =?utf-8?B?N2N1ekdSOEp6NkZldjZYQkVTTTJGajM2V1phS2VQSVlpNTlQTmpYR0JTOE96?=
- =?utf-8?B?TWtiaWRCWWw0blRIVndnSE0wNTFXUnVqUGdINldtUEtmcVBuY1lNMnNqTkds?=
- =?utf-8?B?Wm5SMHU5K2JieVJpa0NhemhleG1CUTVYS0IyV25HRkFhVGduS25SRXBxMUd2?=
- =?utf-8?B?bHpuM2pkNWJpTk5zTG9RMTRsSVk3UWVBTnFrZC9WQ2Q1eTg4M0s0dVdPUTFu?=
- =?utf-8?B?MkRkY0pnV2czZ00ySlNDc3dBSmZ5TGRNZmlTak9IbG15eUhyNWNhZ0EwMTNK?=
- =?utf-8?B?WEhXdDlLYTBCaGYwQlpmZzEwOTdhY1o4VGpFR1IxN3VGdFc5MWZObGdra1NE?=
- =?utf-8?B?QytFYmNZZlA5dWdnWXlGTVBULytSVFlDcGIzNUxra29EQXNjZ0JCTjhGZ2wv?=
- =?utf-8?B?QUg3alorZmVoMmRGSWoraW44cjhSRzdqWHZvV0RnTkN3SFh6aGlWSk5MV0FU?=
- =?utf-8?B?TGxrSVdXSGJ3QUxXZkpJWGxRRXE1K00xTFlmTnlrOVo4VmIvRTdTbC9KUWdF?=
- =?utf-8?B?elhpeHdPcmhlTGRDNGR6MVVuOXBWSHRNR2wzUGV3cVYvUXVWWitXNmt0RHUz?=
- =?utf-8?B?WkF5ZmJCK25oTEtsTm5OeEtRMldBRFE5TEd4U29VcTVtM3pkYWpLRklIVlBm?=
- =?utf-8?B?Vlo4aVQxSW8wL0ZRYW5GbkkrSUpXZGlXNG5hUHo2VEt3cHptcGJxUFU2Z0JY?=
- =?utf-8?B?MGkrQmg0NUc3KzlhcSsxWjBzbHBRU1BGbXFWMEorUTl5MGN1TG9oQmRPTC9B?=
- =?utf-8?B?emdNa1hDQ0xocHlLeFN0VkwxT3k4Q3NIeWJJN0E4MnZZL080QUtkV25kaWwr?=
- =?utf-8?B?SExnd0hldUJrTnpLWisvZk9QZGR0RUdOTWxIV0VFSVd0QjZJK2ZYR1JTcnhD?=
- =?utf-8?B?OUZac0FxM21PdDluQmNlYzgxalRmTjdYL1c3dE1jcU1MMXBHWU9CcTZud2JZ?=
- =?utf-8?B?N0wxUFhGLzhvVFlwZmMyaWVhYnpxRkhMUFVwTFN6VkJNUWsrQUcrbEozWHdD?=
- =?utf-8?Q?Mocax0fIgooVuFXY=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bed56a79-dbc7-4b50-a072-08dec023564a
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
+	=?us-ascii?Q?KxkZs+rrREYsZOi/n4fWOUI2A+jqFoFreMQ4IZm/bxECUmZM/nEu8eF5X3xC?=
+ =?us-ascii?Q?7f2ZG/PF79U7oBqM+uQd4s1CfWmrGWqNmKJ2BB1NzotGqVXH+FQhixaqIIdW?=
+ =?us-ascii?Q?Eyj53EEncGgPPPuVSCJ3jdVc3kUQ03Czk+ISQqcLlYyrxOUcMwqLN4/YaQSZ?=
+ =?us-ascii?Q?zM410IR4nxKYTIxSJC8CJ2TN+idOlPO9NBKuMRW/WnTC0VNnvOCX9EMeCcU3?=
+ =?us-ascii?Q?40nJCMrDT79p+y4NvKKoLNcpnpPj7GLs66KTQWOPgd6WI6p+gWJhi4+jTmsL?=
+ =?us-ascii?Q?2eVYHm2ycUuoWLLNZUhcDJ+kGR+U0ZHcDgsN1PI5IJZ3cbUbiqtxzjjsOKfE?=
+ =?us-ascii?Q?KpP9BFTcEC0tDuZG+8ItTcUYq+set5T3wdBegOCEVe6DHMK/Ac9r/ANtcFoo?=
+ =?us-ascii?Q?JTIPOPOqxvPpKLE6vO+kcSIRiNHROuteRCV+p9+OJlWGLDAPJoGF3hRaaVMF?=
+ =?us-ascii?Q?4mTHQMD7FaX6HflnEhkDkp+NCAcm5j6ljVINrpHnAwCdCgARtpEhxu3wHQjU?=
+ =?us-ascii?Q?mssDVzpD6utwq+1Li4UK5/swOc/FU5+m8NeoCjHVDZB1IaFdBlvXI0I58w0u?=
+ =?us-ascii?Q?O1O/u61iB9AEQIiy7uUMHrCA2ndz9wERxGsdrcfaZ1tmRgfCBxdoPPDxUujI?=
+ =?us-ascii?Q?UsUQabuheKqgYi9g2o15fXvf3lWKHnHHiLcZ4ycSeEi7RoytHspc/JAqnx1V?=
+ =?us-ascii?Q?XVt1k9k3tVKcKP8CbaE2z4zRflUUc+ahdlq8MIzevDu1TlxpRi2rGkZER7Ja?=
+ =?us-ascii?Q?mM9cRMPAPeGzaaTEZBF9cnOzSZTRT1bHx98tbl3Tf7WbQPMFtOrFgbQYGcdY?=
+ =?us-ascii?Q?KXXSD8naybKIrraUfSW31myFG8a0FfUr0VPF6iKjW/sg5qp2aTk9wE7nW4HO?=
+ =?us-ascii?Q?qju4P/GziuFr5rJ9Ira/9wIo6d2Unv/uaq8eLbY2JnVytesh1bPcOi7uyYJz?=
+ =?us-ascii?Q?cM7wPJKsSuLCOxSbIjC3x75JycucXVJ3uz3Im4RdJdpaxiRtgXicq/gD+U/4?=
+ =?us-ascii?Q?lFN5/9EU/SltTwOrQPMQUpB8RXB9YtSookssQXV4t0wnoNcGtcGevdVv5ff7?=
+ =?us-ascii?Q?V/Z28o8XRLQfbMjKlxvl0PLY40DX/4+zbYbeNlUyadhLx6paXUPZtEZjspuD?=
+ =?us-ascii?Q?pqsPvTWbOtvXNa7fVnmJaldnutKMS9gakA1ON652y+sYasQTysI0ZCdGxmUs?=
+ =?us-ascii?Q?m/nM56oiMK3maF6H9AUmpQ5DmlHMopXp3GuERpBKCzgpl0DBKoYWaBb1FDl5?=
+ =?us-ascii?Q?LVnkDLzq6Uge3eegmZqQT3jtL0vJFZocDhqH3RytSFMcK7kKBtzwc14l5Geh?=
+ =?us-ascii?Q?CGKknQnkSv6lZkg/Ri9B5ykwV4cXj1/L3HjgG0OT/ia7vslVKZq2jmvHbGYT?=
+ =?us-ascii?Q?kpEmbcBmgIpctp0Za6pE4ZoUcwUcuiQ1OHcCXktm0pyVlBtfzWShtz7TLVwH?=
+ =?us-ascii?Q?GA0RNlJERdexmu9p2HguLfSj/bZsLR4nQLtTqHstQbMDilg+HZxykoOY0tT5?=
+ =?us-ascii?Q?8T7+jwRofbchbH0r8AyxXiEPJjOdK/XQRYIZfxyds6IdhZKejaqVcnsNG4WM?=
+ =?us-ascii?Q?p838RBRerHY8ElNhAG5ytJfGJP2Y2lAE/mkHmi8Er1geXnccSiymblfCHKEa?=
+ =?us-ascii?Q?WtrcVzryeiIbhEs7ugPkP+RPQX+pEHgkXHmYGuE2uLBUU6Nl6l3FzOZd06lg?=
+ =?us-ascii?Q?s9iRZdMOcZ9sHi97mR5witt+FEiQISSHQW2hQtPXHJ4siBg+?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fe9c4cba-a584-4d22-704f-08dec0258078
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2026 21:18:33.9022
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2026 21:34:03.6533
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cHZLGzGilrv2dCz7JXhG//gLVvMvTHPUnquyBnH01dKyC7VSPKPo0TTWWM0d9r/L57PlbHBoAuy1uZmeheun4Vd+URS7uOYC0EHtGqIhYVc+H0nteVr3wZh+YYS4RS/k
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB11043
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-MS-Exchange-CrossTenant-UserPrincipalName: t4mkOVJZRtoNmRYHUkJ18QXJAc4ILjTMhcUyJc+k8c4BEC2OB4GuwxrKI+M5khZT/wyCGxyEQAP0fnPzqs7KhA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11303
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-305386-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,kernel.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,lists.phytec.de];
+	TAGGED_FROM(0.00)[bounces-305388-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[vger.kernel.org,lists.linux.dev,gmail.com];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[nxp.com,gmail.com,pengutronix.de,kernel.org,hswro.org];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	DBL_PROHIBIT(0.00)[0.0.0.41:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,NXP1.onmicrosoft.com:dkim]
-X-Rspamd-Queue-Id: DD88162582B
+	NEURAL_HAM(-0.00)[-0.998];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 68D7D62594D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Frank Li <Frank.Li@nxp.com>
-
-
-On Wed, 27 May 2026 12:19:12 +0200, Lech Perczak wrote:
-> Add OV5645 camera device node and enable relevant components in the
-> video capture data path, so output stream can be captured, and the
-> camera itself can be controlled over I²C bus.
+On Thu, Apr 09, 2026 at 11:01:25AM +0200, Florijan Plohl wrote:
+> Add overlay for the PHYTEC Audio/Video adapter module PEB-AV-18 on
+> phyBOARD-Segin-i.MX91/93 boards. The supported AC220 display is
+> Powertip PH800480T032-ZHC19 panel with a backlight and Ilitek
+> touch-screen controller.
 >
-> This is roughly based on descriptions found in downstream kernel tree [1],
-> adapted to match upstream bindings.
+> Signed-off-by: Florijan Plohl <florijan.plohl@norik.com>
+> ---
+
+Can you rebase it or provide base commit id?
+
+Frank
+
+> Changes in v2:
+> - Link to v1: https://lore.kernel.org/all/20260402070826.970012-1-florijan.plohl@norik.com/
+> - Improve commit message to clarify what PEB-AV-18 is
+> - Move imx91-phyboard-segin-peb-av-18 dtb entry next to
+>   the other imx91 phyboard-segin definition in Makefile
+> - Introduce common imx91-93-phyboard-segin-peb-av-18.dtsi
+> - Adjust drive-strength values
 >
-> [...]
-
-Applied, thanks!
-
-[1/1] ARM: dts: imx7d-pico-pi: add OV5645 camera support
-      commit: ddcc0ca8809b4fe5b80510f611eedcc0679abe5a
-
-Remove always-on for regulor and truncate commit message by remote testing
-part.
-
-Best regards,
---
-Frank Li <Frank.Li@nxp.com>
+>  arch/arm64/boot/dts/freescale/Makefile        |  6 ++
+>  .../imx91-93-phyboard-segin-peb-av-18.dtsi    | 93 +++++++++++++++++++
+>  .../imx91-phyboard-segin-peb-av-18.dtso       | 57 ++++++++++++
+>  .../imx93-phyboard-segin-peb-av-18.dtso       | 57 ++++++++++++
+>  4 files changed, 213 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso
+>
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index bae24b53bce6..574960280744 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -416,6 +416,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-evk.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm-s.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin.dtb
+> +
+> +imx91-phyboard-segin-peb-av-18-dtbs += imx91-phyboard-segin.dtb imx91-phyboard-segin-peb-av-18.dtbo
+> +dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin-peb-av-18.dtb
+> +
+>  dtb-$(CONFIG_ARCH_MXC) += imx91-tqma9131-mba91xxca.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb.dtb
+>
+> @@ -441,6 +445,7 @@ imx93-phyboard-nash-jtag-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-jta
+>  imx93-phyboard-nash-peb-wlbt-07-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-peb-wlbt-07.dtbo
+>  imx93-phyboard-nash-pwm-fan-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-pwm-fan.dtbo
+>  imx93-phyboard-segin-peb-av-02-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-av-02.dtbo
+> +imx93-phyboard-segin-peb-av-18-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-av-18.dtbo
+>  imx93-phyboard-segin-peb-eval-01-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-eval-01.dtbo
+>  imx93-phyboard-segin-peb-wlbt-05-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-wlbt-05.dtbo
+>  imx93-phycore-rpmsg-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-segin.dtb imx93-phycore-rpmsg.dtbo
+> @@ -448,6 +453,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-jtag.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-peb-wlbt-07.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-pwm-fan.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-av-02.dtb
+> +dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-av-18.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-eval-01.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-wlbt-05.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-phycore-rpmsg.dtb
+> diff --git a/arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi b/arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi
+> new file mode 100644
+> index 000000000000..53d5cbcd798b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi
+> @@ -0,0 +1,93 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2026 PHYTEC Messtechnik GmbH
+> + *
+> + * Author: Florijan Plohl <florijan.plohl@norik.com>
+> + */
+> +
+> +#include <dt-bindings/clock/imx93-clock.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +&{/} {
+> +	backlight: backlight {
+> +		compatible = "pwm-backlight";
+> +		brightness-levels = <0 4 8 16 32 64 128 255>;
+> +		default-brightness-level = <5>;
+> +		power-supply = <&reg_vcc_3v3_con>;
+> +		pwms = <&pwm7 0 5000000 0>;
+> +	};
+> +
+> +	panel {
+> +		compatible = "powertip,ph800480t032-zhc19";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_panel>;
+> +
+> +		backlight = <&backlight>;
+> +		enable-gpios = <&gpio4 29 GPIO_ACTIVE_HIGH>;
+> +		power-supply = <&reg_vcc_3v3_con>;
+> +
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint = <&dpi_to_panel>;
+> +			};
+> +		};
+> +	};
+> +
+> +	pwm7: pwm-7 {
+> +		compatible = "pwm-gpio";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pwm7>;
+> +		gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+> +		#pwm-cells = <3>;
+> +	};
+> +
+> +	reg_vcc_3v3_con: regulator-vcc-3v3-con {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC3V3_CON";
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-min-microvolt = <3300000>;
+> +	};
+> +};
+> +
+> +&dpi_bridge {
+> +	status = "okay";
+> +};
+> +
+> +&dpi_to_panel {
+> +	remote-endpoint = <&panel_in>;
+> +	bus-width = <18>;
+> +};
+> +
+> +&lcdif {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_lcdif>;
+> +	assigned-clocks = <&clk IMX93_CLK_VIDEO_PLL>;
+> +	assigned-clock-rates = <27272728>;
+> +	status = "okay";
+> +};
+> +
+> +&lpi2c2 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	touchscreen@41 {
+> +		compatible = "ilitek,ili2130";
+> +		reg = <0x41>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_touchscreen>;
+> +		interrupt-parent = <&gpio4>;
+> +		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
+> +		reset-gpios = <&gpio4 1 GPIO_ACTIVE_LOW>;
+> +		touchscreen-size-x = <800>;
+> +		touchscreen-size-y = <480>;
+> +		wakeup-source;
+> +	};
+> +};
+> +
+> +&media_blk_ctrl {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso
+> new file mode 100644
+> index 000000000000..35edf9b0fb0f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso
+> @@ -0,0 +1,57 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2026 PHYTEC Messtechnik GmbH
+> + *
+> + * Author: Florijan Plohl <florijan.plohl@norik.com>
+> + */
+> +
+> +#include "imx91-pinfunc.h"
+> +#include "imx91-93-phyboard-segin-peb-av-18.dtsi"
+> +
+> +&iomuxc {
+> +	pinctrl_lcdif: lcdifgrp {
+> +		fsl,pins = <
+> +			MX91_PAD_GPIO_IO00__MEDIAMIX_DISP_CLK		0x57e
+> +			MX91_PAD_GPIO_IO01__MEDIAMIX_DISP_DE		0x51e
+> +			MX91_PAD_GPIO_IO02__MEDIAMIX_DISP_VSYNC		0x51e
+> +			MX91_PAD_GPIO_IO03__MEDIAMIX_DISP_HSYNC		0x51e
+> +			MX91_PAD_GPIO_IO04__MEDIAMIX_DISP_DATA0 	0x51e
+> +			MX91_PAD_GPIO_IO05__MEDIAMIX_DISP_DATA1		0x51e
+> +			MX91_PAD_GPIO_IO06__MEDIAMIX_DISP_DATA2		0x51e
+> +			MX91_PAD_GPIO_IO07__MEDIAMIX_DISP_DATA3		0x51e
+> +			MX91_PAD_GPIO_IO08__MEDIAMIX_DISP_DATA4		0x51e
+> +			MX91_PAD_GPIO_IO09__MEDIAMIX_DISP_DATA5		0x51e
+> +			MX91_PAD_GPIO_IO10__MEDIAMIX_DISP_DATA6		0x51e
+> +			MX91_PAD_GPIO_IO11__MEDIAMIX_DISP_DATA7		0x51e
+> +			MX91_PAD_GPIO_IO12__MEDIAMIX_DISP_DATA8		0x51e
+> +			MX91_PAD_GPIO_IO13__MEDIAMIX_DISP_DATA9		0x51e
+> +			MX91_PAD_GPIO_IO14__MEDIAMIX_DISP_DATA10	0x51e
+> +			MX91_PAD_GPIO_IO15__MEDIAMIX_DISP_DATA11	0x51e
+> +			MX91_PAD_GPIO_IO16__MEDIAMIX_DISP_DATA12	0x51e
+> +			MX91_PAD_GPIO_IO17__MEDIAMIX_DISP_DATA13	0x51e
+> +			MX91_PAD_GPIO_IO18__MEDIAMIX_DISP_DATA14	0x51e
+> +			MX91_PAD_GPIO_IO19__MEDIAMIX_DISP_DATA15	0x51e
+> +			MX91_PAD_GPIO_IO20__MEDIAMIX_DISP_DATA16	0x51e
+> +			MX91_PAD_GPIO_IO21__MEDIAMIX_DISP_DATA17	0x51e
+> +		>;
+> +	};
+> +
+> +	pinctrl_panel: panelgrp {
+> +		fsl,pins = <
+> +			MX91_PAD_CCM_CLKO4__GPIO4_IO29			0x1133e
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm7: pwm7grp {
+> +		fsl,pins = <
+> +			MX91_PAD_CCM_CLKO3__GPIO4_IO28			0x1133e
+> +		>;
+> +	};
+> +
+> +	pinctrl_touchscreen: touchscreengrp {
+> +		fsl,pins = <
+> +			MX91_PAD_ENET1_MDIO__GPIO4_IO1			0x11e
+> +			MX91_PAD_ENET1_RD2__GPIO4_IO12			0x1133e
+> +		>;
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso
+> new file mode 100644
+> index 000000000000..11f7d7502be4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso
+> @@ -0,0 +1,57 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2026 PHYTEC Messtechnik GmbH
+> + *
+> + * Author: Florijan Plohl <florijan.plohl@norik.com>
+> + */
+> +
+> +#include "imx93-pinfunc.h"
+> +#include "imx91-93-phyboard-segin-peb-av-18.dtsi"
+> +
+> +&iomuxc {
+> +	pinctrl_lcdif: lcdifgrp {
+> +		fsl,pins = <
+> +			MX93_PAD_GPIO_IO00__MEDIAMIX_DISP_CLK		0x57e
+> +			MX93_PAD_GPIO_IO02__MEDIAMIX_DISP_VSYNC		0x51e
+> +			MX93_PAD_GPIO_IO01__MEDIAMIX_DISP_DE		0x51e
+> +			MX93_PAD_GPIO_IO03__MEDIAMIX_DISP_HSYNC		0x51e
+> +			MX93_PAD_GPIO_IO04__MEDIAMIX_DISP_DATA00	0x51e
+> +			MX93_PAD_GPIO_IO05__MEDIAMIX_DISP_DATA01	0x51e
+> +			MX93_PAD_GPIO_IO06__MEDIAMIX_DISP_DATA02	0x51e
+> +			MX93_PAD_GPIO_IO07__MEDIAMIX_DISP_DATA03	0x51e
+> +			MX93_PAD_GPIO_IO08__MEDIAMIX_DISP_DATA04	0x51e
+> +			MX93_PAD_GPIO_IO09__MEDIAMIX_DISP_DATA05	0x51e
+> +			MX93_PAD_GPIO_IO10__MEDIAMIX_DISP_DATA06	0x51e
+> +			MX93_PAD_GPIO_IO11__MEDIAMIX_DISP_DATA07	0x51e
+> +			MX93_PAD_GPIO_IO12__MEDIAMIX_DISP_DATA08	0x51e
+> +			MX93_PAD_GPIO_IO13__MEDIAMIX_DISP_DATA09	0x51e
+> +			MX93_PAD_GPIO_IO14__MEDIAMIX_DISP_DATA10	0x51e
+> +			MX93_PAD_GPIO_IO15__MEDIAMIX_DISP_DATA11	0x51e
+> +			MX93_PAD_GPIO_IO16__MEDIAMIX_DISP_DATA12	0x51e
+> +			MX93_PAD_GPIO_IO17__MEDIAMIX_DISP_DATA13	0x51e
+> +			MX93_PAD_GPIO_IO18__MEDIAMIX_DISP_DATA14	0x51e
+> +			MX93_PAD_GPIO_IO19__MEDIAMIX_DISP_DATA15	0x51e
+> +			MX93_PAD_GPIO_IO20__MEDIAMIX_DISP_DATA16	0x51e
+> +			MX93_PAD_GPIO_IO21__MEDIAMIX_DISP_DATA17	0x51e
+> +		>;
+> +	};
+> +
+> +	pinctrl_panel: panelgrp {
+> +		fsl,pins = <
+> +			MX93_PAD_CCM_CLKO4__GPIO4_IO29			0x1133e
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm7: pwm7grp {
+> +		fsl,pins = <
+> +			MX93_PAD_CCM_CLKO3__GPIO4_IO28			0x1133e
+> +		>;
+> +	};
+> +
+> +	pinctrl_touchscreen: touchscreengrp {
+> +		fsl,pins = <
+> +			MX93_PAD_ENET1_MDIO__GPIO4_IO01			0x11e
+> +			MX93_PAD_ENET1_RD2__GPIO4_IO12			0x1133e
+> +		>;
+> +	};
+> +};
+> --
+> 2.43.0
+>
 
