@@ -1,140 +1,175 @@
-Return-Path: <devicetree+bounces-305167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305169-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gA1cNFaGHWrAbQkAu9opvQ
-	(envelope-from <devicetree+bounces-305167-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 15:17:10 +0200
+	id YLtpFtqGHWrAbQkAu9opvQ
+	(envelope-from <devicetree+bounces-305169-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 15:19:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34CF361FE15
-	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 15:17:09 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E12961FE7A
+	for <lists+devicetree@lfdr.de>; Mon, 01 Jun 2026 15:19:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AB97730048D1
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 13:16:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B8ED430072A1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jun 2026 13:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398C03A5421;
-	Mon,  1 Jun 2026 13:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742583A544E;
+	Mon,  1 Jun 2026 13:19:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WD2m4k22"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rNVnAzal"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B6E23A4513;
-	Mon,  1 Jun 2026 13:16:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D16A36BCDE;
+	Mon,  1 Jun 2026 13:19:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780319770; cv=none; b=HuHqPi9fi6ud1MWiCrAtKYAkaQXn1udZwUEu4BfheuzOmbPXOlE37LCR7yUrTvggXgP3PHeVGPo48mcnuviwdyVbs8mAkH0TtnVaZnNKQqcGi4IMYknYzExEr9cSnwfBb77gWBOXzZVl4E65eTqPo3Ja+uek8CLkhca9KPb0qP4=
+	t=1780319953; cv=none; b=YreBlpW9lzi3V6p7HEAZKEnRF3OoKxOpXWM92/B1eDTcmp9c5BAo/tcgw1aFfDgHmSyXhBTapD0opDoXy78R8HXGcAOw2/W73j9nz/qU0tF8JXP632StwxE39T+MzY9f4xPHllgkkeujIiTdNKvSxkKe8D/M2DsZrgD9sR+pNqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780319770; c=relaxed/simple;
-	bh=BWtIneBIlQhjcv6vSIMhHxV3eQvlE53NKWO7dJEV4a8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YZdYwxEg5s4jTNyBcErZgWUV3HCaUF7t5iYDzwtaVMs1jmDHelWH0hE6CLSp1gcdUSSkLn3UV0kjmP3gRJkIcXLlx7GQB6knOTbZDaQLKnKxpKHj4olmbsDkfJ5zWwAEYs0jzQgxyfZqaVtTyMwMxX4C7NxEBOtibVHPp+bv6+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WD2m4k22; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 314501F00893;
-	Mon,  1 Jun 2026 13:16:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780319769;
-	bh=BWtIneBIlQhjcv6vSIMhHxV3eQvlE53NKWO7dJEV4a8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=WD2m4k22PhkVpk0bEbkTalKbbpJ2MYHUEElNlmNa4Maq/ZPJGoV8uvaMA/Qtf5gIT
-	 M1wky4nad7SMAO9zhgQrAekKrDuXZqWJurxQIQgnx6bXfQSARqJjROqTh0K5BH2le5
-	 ftEimi3lGlcYQbhNBk0RAtP1/NcZK+how9NV7pzmHg2ymlBIztZCQzXyfPPEtYv/4E
-	 khyS6PhKisPkdgkqhteL6laPYLa5l/uyZafayRJ9ZUfHYiRqonGIfRmLWPeSnyjG+M
-	 HJ1eY7ACypRFdgzhUz0f9GGlNCS9GSdyp38Ao4SgCtMguCewRCoXh74sR3+dtPyt9/
-	 E8w+j++UsPylQ==
-Date: Mon, 1 Jun 2026 14:16:03 +0100
-From: Mark Brown <broonie@kernel.org>
-To: y.oudjana@protonmail.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Flora Fu <flora.fu@mediatek.com>,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] MediaTek MT6735+MT6328 SoC/PMIC pair base support
-Message-ID: <169f4676-07f6-46d4-9478-55af4de1e6a0@sirena.org.uk>
-References: <20260531-mt6735-pwrap-mt6328-pmic-v2-0-dac37bf92894@protonmail.com>
+	s=arc-20240116; t=1780319953; c=relaxed/simple;
+	bh=97pdXoZiUaNbUg/dCgG8k67el3mw2yrvAWwxG2/xB7E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=W3oRGk2Y20pDLG9R0V6Iv14dYcFozKFXQ+/IC5gxXlAxFDZ35FRQh/AEmbMsjhusO7bwJqVir2Fj9K38sLSJPghepfdZ5A/FQ29potizMCm1Zff08H00PloETB0MK2yTaPKoqFiCb1XDUJooAgPCUT/WUTxuZXD/44eeKSeS/Xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rNVnAzal; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CBD2AC2BCB8;
+	Mon,  1 Jun 2026 13:19:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780319953;
+	bh=97pdXoZiUaNbUg/dCgG8k67el3mw2yrvAWwxG2/xB7E=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=rNVnAzallyb+NlbQL9+9CQ/jp+KfGxZUiIJa10QmYquSsARgjBOSBXER2nlAPs5Cv
+	 fiQb90KMcorm4qXLRCoX7NmgiIA3k9fbGqX5lINH1waSFegBV9CjhpAQiJ0eUcvjhv
+	 4GNViKxdbuzedwq3bNkhhsUWgFzuVwZhNfHnHVdsjaHuHa/rWVNVj9UwVq01plWJXZ
+	 89T/7JH4av+wWxkX9kx16iNJ4W6mjkciZT12uFa/JgZ6TMuadVZfLJ39UHPcZJqaNM
+	 zor1WdXCcbeB9XH0BzWwgyVUJ7bnzl55Sw+jRrWQWLvqLetY99T906Ry2QVQJ+UEAl
+	 /Ibe3L1qq81Gg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8A59CD6E55;
+	Mon,  1 Jun 2026 13:19:12 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Subject: [PATCH 0/3] IPQ5018: Add and enable GEPHY RX and TX clocks
+Date: Mon, 01 Jun 2026 17:19:07 +0400
+Message-Id: <20260601-ipq5018-gephy-clocks-v1-0-2df8287712c3@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="c2/ypeZQb3Jmpy3Y"
-Content-Disposition: inline
-In-Reply-To: <20260531-mt6735-pwrap-mt6328-pmic-v2-0-dac37bf92894@protonmail.com>
-X-Cookie: Have a nice day!
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQqAIBBA0avErBsYxUq6SrQQm2ooyhSiiO6et
+ HyL/x9IHIUTtMUDkU9Jsm8ZqizAz26bGGXIBk26ppoUSjgqUhYnDvONft39kpCt08aQaqwjyGm
+ IPMr1b7v+fT8UZsxAZgAAAA==
+X-Change-ID: 20260601-ipq5018-gephy-clocks-e8a2440178a0
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ linux-arm-msm@vger.kernel.org, 
+ George Moussalem <george.moussalem@outlook.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780319950; l=2139;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=97pdXoZiUaNbUg/dCgG8k67el3mw2yrvAWwxG2/xB7E=;
+ b=NlWHkSLpvAxs/YmwWdPWhmxX66Jul+YmsKCW5EBMAYOgKHG7r/f6ZLNRlKX8EBD4I2V2bcMSf
+ TyI9Kk35NwFDwxTdmAO3aF8TzLdJz7Jva0N9C9gWzyE6dXUhdTe9Zfj
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305167-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[protonmail.com];
+	TAGGED_FROM(0.00)[bounces-305169-lists,devicetree=lfdr.de,george.moussalem.outlook.com];
+	FREEMAIL_TO(0.00)[lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,baylibre.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_REPLYTO(0.00)[outlook.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[george.moussalem@outlook.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.996];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,oss.qualcomm.com,outlook.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sirena.org.uk:mid]
-X-Rspamd-Queue-Id: 34CF361FE15
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,outlook.com:replyto,outlook.com:mid,outlook.com:email]
+X-Rspamd-Queue-Id: 5E12961FE7A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Greetings,
 
---c2/ypeZQb3Jmpy3Y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This patch series addresses a missing hardware description issue for the
+Qualcomm IPQ5018 Internal Ethernet PHY, where the data paths fail to
+function correctly unless their dedicated RX and TX clocks are
+explicitly enabled.
 
-On Sun, May 31, 2026 at 11:10:41AM +0200, Yassine Oudjana via B4 Relay wrote:
-> These patches are part of a larger effort to support the MT6735 SoC family in
-> mainline Linux. More patches (unsent or sent and pending review or revision)
-> can be found here[1].
+Further testing revealed that leaving these clocks unmanaged by the
+kernel, they were inadvertently left enabled by the bootloader / QSDK
+platform, which masked the issue. Testing a fresh network configuration
+path exposed that the data link fails to work without explicit software
+gating.
 
-Please send patches for unrelated subsystems as separate serieses to
-each subsystem unless there's a depdendency, making everything into a
-cross subsystem series just makes it harder to work out what's supposed
-to happen.
+To correctly introduce the required multi-clock properties, the IPQ5018
+binding definition must first be split away from the shared
+qca,ar803x.yaml schema. This isolation is required because ar803x
+references the generic ethernet-phy.yaml, which enforces a strict
+single-clock limit constraint. 
 
---c2/ypeZQb3Jmpy3Y
-Content-Type: application/pgp-signature; name="signature.asc"
+- Patch 1: Splits the IPQ5018 definitions to its own bindings schema 
+           to accommodate the multi-clock requirement.
+- Patch 2: Appends the missing RX/TX clock definitions into the IPQ5018
+           device tree before driver modification to avoid the driver
+	   failing to probe.
+- Patch 3: Updates the Qualcomm AT803x PHY driver framework to safely
+	   acquire, enable, and gate these clocks upon link state
+	   changes for runtime power optimization.
 
------BEGIN PGP SIGNATURE-----
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+---
+George Moussalem (3):
+      dt-bindings: net: qca,ipq5018: Split IPQ5018 PHY bindings from ar803x
+      arm64: qcom: ipq5018: Add GEPHY RX and TX clocks
+      net: phy: qca,at803x: add RX and TX clock management for IPQ5018 PHY
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmodhhIACgkQJNaLcl1U
-h9DICQf/R2lYrAwOVaBt02e0o2KXDCOg7XUNcak0rKzUO6DJv/i+DBjYEr9yT8tc
-rGMsTpjPtmINDcIZBmSo3+yMjUMusP3PofGq3KtYhS2Sw08sVOzrFoItEUcpt1do
-tgcsj3U87khkp9maizKvOi9wxe9N0g1mked+B/ejcHXmYqFcEfCpSWg/TLzUM5je
-ggYinIghnIfrE8odn66Vda4OwVITZVy3QamQwnXsrCuv11MbS3uKuzO1Xdrdwexb
-ySiGSWUKCxKqeWUsqclavQjnQQHVShAjku304mKF0uOZ3UJmsLPIbvbMr18VhMkL
-ndY1hQKyOYiBfJDe4ykrwxnVINhGng==
-=Vvm7
------END PGP SIGNATURE-----
+ .../devicetree/bindings/net/qca,ar803x.yaml        | 43 -------------
+ .../devicetree/bindings/net/qca,ipq5018.yaml       | 75 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  3 +
+ drivers/net/phy/qcom/at803x.c                      | 23 +++++++
+ 4 files changed, 101 insertions(+), 43 deletions(-)
+---
+base-commit: 7da7f07112610a520567421dd2ffcb51beaefbcc
+change-id: 20260601-ipq5018-gephy-clocks-e8a2440178a0
 
---c2/ypeZQb3Jmpy3Y--
+Best regards,
+-- 
+George Moussalem <george.moussalem@outlook.com>
+
+
 
