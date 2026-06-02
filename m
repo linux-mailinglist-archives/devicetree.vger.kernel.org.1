@@ -1,152 +1,170 @@
-Return-Path: <devicetree+bounces-305586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305587-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gEavL7C6HmrZJgAAu9opvQ
-	(envelope-from <devicetree+bounces-305586-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:12:48 +0200
+	id IBELLTK7HmrZJgAAu9opvQ
+	(envelope-from <devicetree+bounces-305587-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:14:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55BCB62D317
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:12:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D9A262D3A4
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:14:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 873FB305504F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:07:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 02B1230B8DEE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:08:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA90399001;
-	Tue,  2 Jun 2026 11:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC7D3A962E;
+	Tue,  2 Jun 2026 11:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nmoBBVOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB038370D70
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 11:07:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35B102248A8;
+	Tue,  2 Jun 2026 11:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780398450; cv=none; b=PrEdzIk/x2HorqsbOkvnziArAqg/rXggIF64Om+knBj26xAxLbmnKmjQ1GJWlVgATL8jHrWnSVKcmXxRG0eD8LX2mgpQ8WTPgN3JtNgWG1hJGNhSTnH3dU6s/idROjCK8si7nXGdURM2kBwVCwqX+eJOhZ/czrndg6+8iDVP0AM=
+	t=1780398479; cv=none; b=eFov4wTzc2+mmEHVIhmDWhZJDK5BSIvDydgXqTDgycSbmKCDY7ZqFIDt+O0a0KukfNuYyIoDrxRLBbTcAc/8e/Tpc7q6e+ZhgJXTcO290gctgx469J4TALMknESQ8f7KKD5ZXeAbdUrLRu3FtKyfJWwry/XslfO5DGvbwoVPceg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780398450; c=relaxed/simple;
-	bh=l69NxiUTG+KDRNL+lJ3c2t+QaNlhHUbuUDROt+qYWW4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=npCao9wbk7oY8nJVxqm2fjq2J9QPRvbJhGLCIPCH0+61UN+gzZh9slSFa+umAC/MOx2b0cpOz7We87bFv8PM0ALohcxdaIZ3wP75OcB9o98T9La5WtCZUJVwm1fYQ1/4ht7jB17GfoDLQLYuW1SDO3PeGn/TWCmu9/PdeSMbLoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-68d232ed3f9so3505715a12.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 04:07:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780398447; x=1781003247;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cDA630jESKneh4iwNa8g/St2EwYznnBHuc+Np5jJahc=;
-        b=szyOK4n3CthIwj8Aq/tedUpxjWTPPXBqcm3YGDLH/8TTwPOenhjaAGOyjEnyDk8258
-         IEXQeCBct5/JZE6Lk9GFIYse2KOpG9p6/qfQmiKvB8Ap+8aQRwMQCLlozPNI+ipHcdUF
-         VmXzyRycE7C+WSGsRBuag3wR9uxiIHDw64xIWOSzF5+KZfaDd6sismJztvwJ5q3qNvvN
-         D2kZzh/51EtUJkVnQY+dK1x8L4Z/sn3+G3Fp+yyPddYkuj4V/WJMioVvJwa6Jzm/Vgx/
-         AVj1N/L3bWrfKgE0wBDLp9xmeq432QLOcmqn7eEzX1rBFGlzcjve6qqcBHRDIjLAjzzM
-         agOg==
-X-Forwarded-Encrypted: i=1; AFNElJ/j4uMdLWd3zArSC5f9OMRkQEsNuRguwn7+xA/hYHp8IkqpdGN2wFW878LJJwh4kZcckiu4CbFAgYIy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy18ODOSIjaG1oan49PhqWMQhF8XC9vylix+hKATmFNHGLU8vx/
-	0y2tr6gh/tgR1aTnfbjXpmFYGiD4G5nTQZFTXnPVJ7Mvn8dBvSAiWg3i+9yzmxOM3Ac=
-X-Gm-Gg: Acq92OHL6Jgatw1giRO8wfTIPsCKKzDYDErMahILFwm1JviyKuoF8MHnAV2cnnTLDX8
-	h0X/xlHtkDCfD/OXcBUEYwQ27Se4bY8Q6qxK5nYBKXoHsprr8VNR+cT2VfMWzp5qD6fcl9bd7Uw
-	GI2db/eALmu0JO0N5MnyaxQHcc9qv463HRHSFVLRsTklsIiRiJGm91rvLe6I/GYH7Hqr1LYyBM2
-	5T9Ui8s4vG56olJDCzp7MQMkdcmIc+P2f926OrOr66ZhOo8jMQUsd5+nRsZiV5NkEaziwaJITeV
-	VDziJdTV+xDHukVGXNZScJF/N0k8x/jYZoxzSGhVuvYhcJtKheemKiHKtfNWu653Zw+1ypc2cod
-	luw0Sb1IIYlbBpfoCXZ8LJHEzHW0rL7XPcGWAqi022LStNLb6jEQwuqDpWWm8aBiNSKabs/rEux
-	95KkBFvR+OGR+AJ2epIIx/rCDsggx4WkAmxeZ7X5h6gEccAcNoxcOa17l9n3tLfLzbEpS9+ag=
-X-Received: by 2002:a17:907:a394:b0:bf0:1c43:bd22 with SMTP id a640c23a62f3a-bf01c43c462mr6710166b.19.1780398447060;
-        Tue, 02 Jun 2026 04:07:27 -0700 (PDT)
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com. [209.85.208.42])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bef95a5e95asm59760866b.57.2026.06.02.04.07.26
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jun 2026 04:07:26 -0700 (PDT)
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-68d2342c5e6so3503896a12.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 04:07:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+YCwjmRboDcyInpAHFCVN6oE2ftcYBx1EtKwnxrQVLXBB0dwDTis4XwrFKOgGJm8o6cYeQZSnPD/Sb@vger.kernel.org
-X-Received: by 2002:a05:6402:28c7:b0:68a:f749:608d with SMTP id
- 4fb4d7f45d1cf-68c8d1faa20mr7720273a12.21.1780398446024; Tue, 02 Jun 2026
- 04:07:26 -0700 (PDT)
+	s=arc-20240116; t=1780398479; c=relaxed/simple;
+	bh=mFctebV6efZPkxdiXhNEx0eARojG2bev1G/ivejaxqo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N5wKO8m96znIGQ/0XMMQP7T7KO+4pogBlQAeP5k+mz0MgyGHLW62+e7/BevmT3b6NTZhXvXkPY+qlXwjfeHAzUUayzDZT7hwZN0w1uedJGVW5ZPDutvrDsVaJc6j/Wvi6gTJegP2sFnvBpO2iDfbVYyzXg2VxOIHjnKpa8Y8m8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nmoBBVOr; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1780398478; x=1811934478;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=mFctebV6efZPkxdiXhNEx0eARojG2bev1G/ivejaxqo=;
+  b=nmoBBVOrwCFnArKyPsbRh2FzPl9jwRcZOXoLNpFrFLjddrEvZmlZfG/v
+   /QXsOWkVLe8NH9Xs6+JLb7cBlw62RvEmm/OciI4i6wvzdCW4v1MU4Cd2w
+   YS6vTxn1ep4t898jFGxkMebeSof0l3zILA6pY2Yb/h1jjYcdlzApxrM6P
+   PSbQzaAarTyQM9wH+nnTCHqtngFD/zXzqh5iYspCTfrLUFc3DHt//x5nx
+   DjlZFl7x6LbKi+LrQELFP+ramY9+p67RIHmH12PZrFLhUVQ41qyGDxOru
+   hWhOA7BN45MXBZgLaNM0cFAJsXbixOLJdXSV4NzEOZinf73HOS96Wx3Pt
+   g==;
+X-CSE-ConnectionGUID: I7V0s52lSaCsHjS5TnTuVg==
+X-CSE-MsgGUID: bT+99yrZQBGd+OXYk9skhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="81207825"
+X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; 
+   d="scan'208";a="81207825"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2026 04:07:57 -0700
+X-CSE-ConnectionGUID: lhiRJlaQQHmUbKHn1VV+4A==
+X-CSE-MsgGUID: r7XmoXFkTjavabE0tmKG2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; 
+   d="scan'208";a="243975444"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.229])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2026 04:07:52 -0700
+Date: Tue, 2 Jun 2026 14:07:49 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Helge Deller <deller@gmx.de>,
+	Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v3 08/11] video: backlight: lm3533_bl: Improve linear
+ sysfs logic
+Message-ID: <ah65hfgoM67V6-iR@ashevche-desk.local>
+References: <20260601151831.76350-1-clamor95@gmail.com>
+ <20260601151831.76350-9-clamor95@gmail.com>
+ <ah6PxFtoJUWkd79P@ashevche-desk.local>
+ <CAPVz0n0P7Jk17cM2M1zuHZfySo2=Uibr5izwKU2tqiBpBcg0FQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260519111958.233194-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20260519111958.233194-1-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 2 Jun 2026 13:07:11 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUYxOu5fpyGMRACsBQtAMwJrxt9nPiEN-9UhPVY1h3vwQ@mail.gmail.com>
-X-Gm-Features: AVHnY4Jru0COyS5ymsVNqmANoEEEJi1BF8TktYxaag_QanrsBHKyvZKEqE5P2sU
-Message-ID: <CAMuHMdUYxOu5fpyGMRACsBQtAMwJrxt9nPiEN-9UhPVY1h3vwQ@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Enable RSPI support on RZ/G3L SMARC EVK
-To: Biju <biju.das.au@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 55BCB62D317
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPVz0n0P7Jk17cM2M1zuHZfySo2=Uibr5izwKU2tqiBpBcg0FQ@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 2D9A262D3A4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,bp.renesas.com,vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-305586-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-305587-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,mail.gmail.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:dkim,intel.com:email,ashevche-desk.local:mid]
 X-Rspamd-Action: no action
 
-Hi Biju,
+On Tue, Jun 02, 2026 at 01:19:00PM +0300, Svyatoslav Ryhel wrote:
+> вт, 2 черв. 2026 р. о 11:09 Andy Shevchenko <andriy.shevchenko@intel.com> пише:
+> > On Mon, Jun 01, 2026 at 06:18:28PM +0300, Svyatoslav Ryhel wrote:
 
-On Tue, 19 May 2026 at 13:20, Biju <biju.das.au@gmail.com> wrote:
-> There is an internal discussion about dropping patch#2, as RSPI is useless
-> without a device connected to that interface. However, as per the
-> schematic, RSPI signals are wired up to the PMOD connector. Currently, it
-> is enabled on RZ/G2L and RZ/G3E. Please share your thoughts on this.
+...
 
-Sorry, I had missed this question before.
-RZ/G3E SMARC EVK (which shares the same carrier board) has it enabled,
-too, as the connector is labelled "Type-2A", i.e. meant for expanded
-SPI.  Obviously it really depends on the use case: one might want to
-use the pins as GPIOs?  We can revisit this when we get real connector
-support.
+> > >       if (kstrtoul(buf, 0, &linear))
+> > >               return -EINVAL;
+> >
+> > Besides _assign_bits() in the below, side note here to unshadow error codes:
+> >
+> >         ret = kstrtoul(buf, 0, &linear);
+> >         if (ret)
+> >                 return ret;
+> >
+> > (obviously in a separate change).
+> 
+> Won't happen in this patches.
 
-> Biju Das (2):
->   arm64: dts: renesas: r9a08g046: Add RSPI{0..2} nodes
->   arm64: dts: renesas: r9a08g046l48-smarc: Enable RSPI2
+You mean both suggestions or you are talking about kstrotoul() only? If it's
+only about the latter, it's fine with me, but _assign_bits() makes sense to do
+in this patch as you already change the parameters enough to make it better.
 
-Gr{oetje,eeting}s,
+...
 
-                        Geert
+> > >       ret = regmap_update_bits(bl->lm3533->regmap, LM3533_REG_CTRLBANK_AB_BCONF,
+> > > -                              mask, val);
+> > > +                              CTRLBANK_AB_BCONF_MODE(id),
+> > > +                              linear ? CTRLBANK_AB_BCONF_MODE(id) : 0);
+> > >       if (ret)
+> > >               return ret;
+
+^^^ left for the context.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+With Best Regards,
+Andy Shevchenko
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
