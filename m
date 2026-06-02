@@ -1,69 +1,57 @@
-Return-Path: <devicetree+bounces-305642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305643-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mmYEKxTSHmrpVQAAu9opvQ
-	(envelope-from <devicetree+bounces-305642-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 14:52:36 +0200
+	id CRL4Nz7SHmryVQAAu9opvQ
+	(envelope-from <devicetree+bounces-305643-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 14:53:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D7C662E2D0
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 14:52:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21F9E62E2DE
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 14:53:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="Qe/FI0H3";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305642-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305642-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=Nytbkpnv;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305643-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305643-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B288730046BB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 12:44:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 18AB830BDFB3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 12:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D163D6496;
-	Tue,  2 Jun 2026 12:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E0B37CD2B;
+	Tue,  2 Jun 2026 12:46:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C494131F98D;
-	Tue,  2 Jun 2026 12:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7467C2EF653;
+	Tue,  2 Jun 2026 12:46:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780404258; cv=none; b=RHHFln6bwcIZUE50ei14LFcFIfbUOzG8apQFGRIO1Cf+GxHv1CFda8bKKVVQK7mHoKCeTwEEi9arrEzkZ2wyAvtudUVYQcxF/RJxzkPhCjBazBXa23VCD9WLkkGpKxNteTYELAh0z93/aInoaC8kB/7hLoX0TRN4udOLLle4QUg=
+	t=1780404416; cv=none; b=aN+08Qd8iCn9hHsdZWAOCAUsGuv2KpkdMlLn2ESwohKdSI97m4KyxI2NbxLqQ/z1pxcrJ3V2nrJxHon7L9dm4W4LNtpb7QWLWJtTh+jcOYGtgEefTnFxsjZwnESXaunAY0ppF+rh37JbNyAL/mfgNu5dZ24aWcxzaR5FX9DMAeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780404258; c=relaxed/simple;
-	bh=PsmwG6ZhRtKSko1LER9ksVd4m+49ryYomLkrL8qW77w=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=qDAGogiqFJ5WHlg1iwj03Oz9FBjcy4taDYvu8wec+cTxLdY/5VSCwMA+S/NOZgQK0n+PTceL1M1zSWz9sVTmn8ls8PrE0DunOwMKX2D6WUk09lZUW1cS0U95nmO4kqSnAkjls2Y4GfpE1tOagj7ewB0Cjf3YfN5iWFDNWuJq9mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qe/FI0H3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E5051F00893;
-	Tue,  2 Jun 2026 12:44:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780404257;
-	bh=XmSDqS5doeHURK/Q5K7xJlW3vJVpvtlzzxQyo8gvrZ0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=Qe/FI0H37dmdEvh0APEdjUcJU44wvQ8X/ejU3va5a1eFxuYP5ZKAW3yi49msgZPV3
-	 /kf3axtTnX161vu5VL34N7HymBGChX7t0h9QijHc9+l/PEF0icMXMVwhQxPKTyT0VB
-	 8mN9az0zDIKOkfMMhvRh5Fvb8vnuJDaKOV1KDJG4Ct9WJ4/h150z6xuD+jRuww6yMi
-	 cm73Gy63mCgDyoFTgDAuc0hyUg4hC0JQ/a5DpBRFq8WLe9Y6yr6DKEqMO0xRF1ed53
-	 QNzcLrWkW/Zbcx+ZtH0iENpp2i9b//SkTto2kuDvcppI2xrx+75PjzNelqFZtCzv9C
-	 kR5WeLyb6Xs/A==
-From: Mark Brown <broonie@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Biju Das <biju.das.jz@bp.renesas.com>, john.madieu@gmail.com, 
- linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260525110230.4014435-1-john.madieu.xa@bp.renesas.com>
-References: <20260525110230.4014435-1-john.madieu.xa@bp.renesas.com>
-Subject: Re: [PATCH v7 00/18] ASoC: rsnd: Add RZ/G3E audio driver support
-Message-Id: <178040423936.61081.3832922625019742059.b4-ty@b4>
-Date: Tue, 02 Jun 2026 13:43:59 +0100
+	s=arc-20240116; t=1780404416; c=relaxed/simple;
+	bh=7JSIVJME0qcwrQkDU0f3aTxdQOaohzA3I2n+ATF6Cqc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZVg474TtwWDL+NgpfQkYO9S/HcTm28gAs9qNJ588ZYaGhUBx7vrUKOQhqfvziA3jn/rJAM70ZW0CZUhHEx9bnh+ihxmzN8cPrmHXWaWZdyfPPQM6FFBoPsUh+7OKqVtezXhH9wPXI3IsKyWkzx8im3Ea80jp7/NdpayXf+2Kteo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nytbkpnv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 19749C2BCB4;
+	Tue,  2 Jun 2026 12:46:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780404416;
+	bh=7JSIVJME0qcwrQkDU0f3aTxdQOaohzA3I2n+ATF6Cqc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=NytbkpnvZm9cEu5e4OX06nVnFWbbd6myUUwGAsHmbU6zXX1VTeOaOv35meORmxrWo
+	 tCA0Flr/HAmxpKxbg0BpN3vNjqROfAFJJtv3QtsLqKxhJBK7TJfBR5jiFGjObApwS2
+	 FknjOxTuEJjzhDT7HAuiFjrOXdK/BEaZr2V0IJeC2fCciCu4qHz7T5bNFaF8SFA+VK
+	 KZBrb4O1/rlvZgTIjk4Y6Npmb9XNx5n8D0eAkEQI6ZPPAXbe7CuueJ/wdYrSvzD47L
+	 BzKIDmThUSMO+GQBCbrw9tXvK/vBpk85L01ubDP3Rrt9Oq0ipfFpMYL64yXNbLXcjW
+	 4pvLy+5iWB9cg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 02855CD6E57;
+	Tue,  2 Jun 2026 12:46:56 +0000 (UTC)
+From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Subject: [PATCH 0/4] AUXADC driver for the MediaTek mt6323 PMIC
+Date: Tue, 02 Jun 2026 15:46:53 +0300
+Message-Id: <20260602-mt6323-adc-v1-0-68ec737508ee@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,139 +60,134 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4028; i=broonie@kernel.org;
- h=from:subject:message-id; bh=PsmwG6ZhRtKSko1LER9ksVd4m+49ryYomLkrL8qW77w=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqHtAdezEQIVl/DPbvK36GazMkNvIb797f/j+g5
- hhTJYKz5WKJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCah7QHQAKCRAk1otyXVSH
- 0KJuB/9TcCGrkPo86Tp6nxva0GnswAgqsqrlUNa6Oauk/HDFwgGX5Ua8oQbl5oQvyU3LHAqD8K0
- O6uc2hz9NzPenW3yCIYL/To2vIDIKpj1Ss0relChTyLmrJ5nRL+VtW2WMaGSlXTxcgonPC1DzK+
- xHahvBDNNN2MSgM62tWtGshIADfncoiDxU4J4q0fiH5s0bU7I7cp6C6S5/IeZ+lVnd8rcFjsVzQ
- /0TJKvtNztGaP85GbzWzBBDdudPumCE+9tjkM9a2tTA2TXDt3C49/N0AScjtGvXysOz3xrACwv5
- 2/yn2FKtBCzWkJfiCBMhApsBL8KV8kNyjTbcXrJSqjCJ+LHF
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
-X-Rspamd-Action: add header
-X-Spamd-Result: default: False [8.84 / 15.00];
-	URL_OBFUSCATED_TEXT(9.00)[type=word_dot,url=http://or.in,orig=broonie/sound/c/83c9631e974f [04/18] ASoC: rsnd: ];
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMTQ5AMBBA4avIrDVhGl24iljodMpI/KRFJOLui
+ uW3eO+CyEE4Qp1dEPiQKMucUOYZ0NDNPStxyYAFmqLCSk2b0ahV50hpy55YG7IeIQVrYC/nN2v
+ a33G3I9P2HuC+H2I4g2luAAAA
+X-Change-ID: 20260525-mt6323-adc-3befce36cbf2
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Lee Jones <lee@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, Ben Grisdale <bengris32@protonmail.ch>, 
+ Roman Vivchar <rva333@protonmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780404414; l=2643;
+ i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
+ bh=7JSIVJME0qcwrQkDU0f3aTxdQOaohzA3I2n+ATF6Cqc=;
+ b=0JbMx2y6tCQJ3dd9ZlUioB5ryHJQg5jI2blGOCtlbQ6SkPy7gHQ8050y5eQKPoicbwzx0Hnsg
+ abvtLeSslqPAqYkIExaK3VblfKmPSMfXmth7sUz2Ec+Ybrc3QcZ880Z
+X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
+ pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
+X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
+ auth_id=777
+X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Reply-To: rva333@protonmail.com
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:kuninori.morimoto.gx@renesas.com,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:john.madieu.xa@bp.renesas.com,m:perex@perex.cz,m:tiwai@suse.com,m:magnus.damm@gmail.com,m:p.zabel@pengutronix.de,m:claudiu.beznea@tuxon.dev,m:biju.das.jz@bp.renesas.com,m:john.madieu@gmail.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:johnmadieu@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[renesas.com,gmail.com,kernel.org,glider.be,bp.renesas.com];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:lee@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:bengris32@protonmail.ch,m:rva333@protonmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com];
+	TAGGED_FROM(0.00)[bounces-305643-lists,devicetree=lfdr.de,rva333.protonmail.com];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	GREYLIST(0.00)[pass,body];
-	TAGGED_FROM(0.00)[bounces-305642-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rva333@protonmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[perex.cz,suse.com,gmail.com,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.ch,protonmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,or.in:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:mid,protonmail.com:email,protonmail.com:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,protonmail.ch:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9D7C662E2D0
-X-Spam: Yes
+X-Rspamd-Queue-Id: 21F9E62E2DE
 
-On Mon, 25 May 2026 11:02:12 +0000, John Madieu wrote:
-> ASoC: rsnd: Add RZ/G3E audio driver support
-> 
-> Add audio support for the Renesas RZ/G3E SoC to the R-Car Sound
-> driver. The RZ/G3E audio subsystem is based on R-Car Sound IP but
-> has several differences requiring dedicated handling:
-> 
->   - SSI operates exclusively in BUSIF mode (no PIO)
->   - 2-4 BUSIF channels per SSI (layout differs from R-Car)
->   - Separate register regions for SCU, ADG, SSIU, SSI accessed by name
->   - Per-SSI ADG and SSIF supply clocks
->   - Dedicated audmapp clock/reset for Audio DMAC peri-peri
->   - Per-SSI and per-module reset controllers via CPG
->   - Unprefixed DT sub-node names (ssi, ssiu, src, ...) instead of
->     rcar_sound,xxx
->   - Hyphenated indexed clock/reset names (ssi-0, src-0, adg-ssi-0,
->     audio-clka, ...) instead of the legacy dotted form
-> 
-> [...]
+This series adds support for the 15-bit AUXADC hardware block found on
+the MediaTek mt6323 PMIC.
 
-Applied to
+The previous version of the series for all AUXADC, EFUSE and thermal
+drivers was split after Krzysztof's comment [1].
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.2
+Tested on the MediaTek mt6572 and mt8163 SoCs (Ben), both paired with a
+mt6323.
 
-Thanks!
+The other parts (EFUSE and thermal) will probably be sent next week.
 
-[01/18] ASoC: dt-bindings: sound: Add DT binding for RZ/G3E sound
-        https://git.kernel.org/broonie/sound/c/a86fd3c20218
-[02/18] ASoC: rsnd: Fix RSND_SOC_MASK width to single nibble
-        https://git.kernel.org/broonie/sound/c/c0758279367e
-[03/18] ASoC: rsnd: Add reset controller support to rsnd_mod
-        https://git.kernel.org/broonie/sound/c/83c9631e974f
-[04/18] ASoC: rsnd: Support hyphen or dot in indexed clock and reset names
-        https://git.kernel.org/broonie/sound/c/22622faf8120
-[05/18] ASoC: rsnd: Add RZ/G3E SoC probing and register map
-        https://git.kernel.org/broonie/sound/c/948b075ebc95
-[06/18] ASoC: rsnd: Add audmapp clock and reset support for RZ/G3E
-        https://git.kernel.org/broonie/sound/c/fb859f6fc43b
-[07/18] ASoC: rsnd: Refactor DMA address tables with named structs
-        https://git.kernel.org/broonie/sound/c/e870c10f8bb6
-[08/18] ASoC: rsnd: Add RZ/G3E DMA address calculation support
-        https://git.kernel.org/broonie/sound/c/1cd10dab6702
-[09/18] ASoC: rsnd: ssiu: Add shared SSI reset controller support
-        https://git.kernel.org/broonie/sound/c/b4ef837a28a1
-[10/18] ASoC: rsnd: ssiu: Add RZ/G3E BUSIF support
-        https://git.kernel.org/broonie/sound/c/80f43c521771
-[11/18] ASoC: rsnd: Add SSI reset support for RZ/G3E platform
-        https://git.kernel.org/broonie/sound/c/692f03422f0e
-[12/18] ASoC: rsnd: Add ADG reset support for RZ/G3E
-        https://git.kernel.org/broonie/sound/c/9267b89985de
-[13/18] ASoC: rsnd: adg: Add per-SSI ADG and SSIF supply clock management
-        https://git.kernel.org/broonie/sound/c/47899d53f86f
-[14/18] ASoC: rsnd: adg: Look up RZ/G3E clkin under audio-clk{a,b,c,i}
-        https://git.kernel.org/broonie/sound/c/16593532c47a
-[15/18] ASoC: rsnd: src: Acquire shared SCU clocks for RZ/G3E
-        https://git.kernel.org/broonie/sound/c/799836bc37ac
-[16/18] ASoC: rsnd: src: Add SRC reset support for RZ/G3E
-        https://git.kernel.org/broonie/sound/c/33a3500a34b8
-[17/18] ASoC: rsnd: Support unprefixed DT node names for RZ/G3E
-        https://git.kernel.org/broonie/sound/c/ec1b5ebf6d8b
-[18/18] ASoC: rsnd: Add system suspend/resume support
-        https://git.kernel.org/broonie/sound/c/ef19ecf042b4
+[1]: https://lore.kernel.org/linux-mediatek/20260504-mt6323-v1-0-799b58b355ff@protonmail.com/T/#med30fad67a090be35f549231336b2dec295233f6
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Tested-by: Ben Grisdale <bengris32@protonmail.ch> # Amazon Echo Dot (2nd Generation)
+Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+---
+Changes after split:
+- dt-bindings: Change 'MT63xx' to 'MT6350 series and similar' (Jonathan)
+- AUXADC driver:
+    - Add missing headers (Andy)
+    - Fix AUXADC_TRIM_CH* values (Andy)
+    - Rename masks to include their register name (Jonathan)
+    - Fix formatting (Andy, Jonathan)
+    - Replace channel address with actual register value (Jonathan), align the table
+    - Replace IIO_TEMP with IIO_VOLTAGE, since the actual output is still mV, not mC
+    - Rename constants to match their registers (Jonathan)
+    - Remove 'if/else if/else' in the mt6323_auxadc_read_raw (Andy)
+    - Add comments for fsleep, ADC range and resolution (Andy, Jonathan)
+    - Remove useless error messages (Andy)
+- Maintainers:
+    - Explicitly include mt6323 in the name (Jonathan)
+    - Squash with AUXADC driver commit (Krzysztof)
+    - Set status back to 'Maintained'
+- Link to a previous series: https://patch.msgid.link/20260512-mt6323-v2-0-3efcba579e88@protonmail.com
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+---
+Roman Vivchar (4):
+      dt-bindings: iio: adc: mediatek,mt6359-auxadc: add mt6323 PMIC AUXADC
+      iio: adc: mt6323-auxadc: add mt6323 PMIC AUXADC driver
+      mfd: mt6397-core: add mt6323 AUXADC support
+      ARM: dts: mediatek: mt6323: add AUXADC support
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+ .../bindings/iio/adc/mediatek,mt6359-auxadc.yaml   |   3 +-
+ MAINTAINERS                                        |   8 +
+ arch/arm/boot/dts/mediatek/mt6323.dtsi             |   5 +
+ drivers/iio/adc/Kconfig                            |  11 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/mt6323-auxadc.c                    | 299 +++++++++++++++++++++
+ drivers/mfd/mt6397-core.c                          |   3 +
+ .../dt-bindings/iio/adc/mediatek,mt6323-auxadc.h   |  24 ++
+ 8 files changed, 353 insertions(+), 1 deletion(-)
+---
+base-commit: 028ef9c96e96197026887c0f092424679298aae8
+change-id: 20260525-mt6323-adc-3befce36cbf2
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Best regards,
+--  
+Roman Vivchar <rva333@protonmail.com>
 
-Thanks,
-Mark
 
 
