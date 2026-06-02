@@ -1,157 +1,157 @@
-Return-Path: <devicetree+bounces-305707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305709-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Zrz7NXn4HmozbAAAu9opvQ
-	(envelope-from <devicetree+bounces-305707-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 17:36:25 +0200
+	id nb+iJJX5HmombQAAu9opvQ
+	(envelope-from <devicetree+bounces-305709-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 17:41:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C218662FD56
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 17:36:24 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BE5562FE28
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 17:41:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NnCevYMK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305707-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305707-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AQ9QDLSr;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305709-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-305709-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1D58630B2723
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 15:06:26 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A8B6A30231E8
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 15:12:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B09373EB818;
-	Tue,  2 Jun 2026 15:06:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82FE63EC2E1;
+	Tue,  2 Jun 2026 15:12:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B063E866C;
-	Tue,  2 Jun 2026 15:06:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482973E9F76
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 15:12:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780412780; cv=none; b=AM5z3+3FVwTbxC3CBYT/cEPc3aoSU6NAFtsRX+R7EPnAmj9FxAYbK73tLei3ndhrmwVrsl6QXCq3OOTH/3IRmi0/utQGzYpxXmgvGvycZ7c2nFC3gPiyw1tYjPOYxdS0r38Fag2B2EKSTGEiEJ7EbnM49dZw4Twcio7EfUHy67Y=
+	t=1780413176; cv=none; b=KJaSLrskOwtw0h4qDJU+O+KBbGtZ0TOUZcX9ZA2yY8YakwFd+FpTvWV6h6B3YQPDVtwQB5f8ubh567K/uKX9z5WjsxZqrRrnmXkI4DyABgrbsbsgBmTsCWySAvYK32+05Lun5rpU2pzeMpMrhLm/MeIrN8bnSuK5y63PEv/989c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780412780; c=relaxed/simple;
-	bh=/qDh6glUqJG9/CGdc2rsf6urAuT/oRosIX/vQk+S0Qw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j2ZuQBbjamcA+PoPChVnpoR1qK+Qxo47p9re50iMonT9RxAZz06/sPfXvAIVWK9KMIlYceHhrwuGTGJMJDTHlZIZRQbnlgwxXmLxD0xgifqf2MwFC7kqHXO7n9qdWk//iTAzsiDROKTIbybTU662RMXup+84sVEw0599IIh9G/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NnCevYMK; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A04011F00893;
-	Tue,  2 Jun 2026 15:06:15 +0000 (UTC)
+	s=arc-20240116; t=1780413176; c=relaxed/simple;
+	bh=EKytYke4FHBp7X+EL5OoxkERGDYl7uLikdiTswLKhxo=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=b7k2BPlH98bkIkMe1pyDAHYpK7CRNkJIp8SxiY32pQWRoo+iJwkfQV5sjUqkuoinxZqtPU0dBX65+RBTZ9kX0w0pM38olFhUmLulzojeIFnYb8JAttwQ8TuewsHk3kYn8FLfVI2BhWWzLYhIYjSDRe6c7ix9rUJ+rE/Xod3F4Bc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AQ9QDLSr; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A67161F00893;
+	Tue,  2 Jun 2026 15:12:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780412779;
-	bh=6pKmZ/dzoUsp0qMEiTbEP3JNPcfP6yeX1skgJisax60=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=NnCevYMKe3vepac/omn2XU8h8dP4YVML0a+aXS1aBG6L21OGpNRroEkZcE1v8IWcY
-	 Jr8GigbO2ydOsupOwgEYVRH4KxEhEll+rUkbmYf1e8BG80wHC/Kysccw4pKGE8i8KP
-	 0Xh9GHB56tTDoflogwpC7WVMebaJUJYUG+9ufOFt0OHT7cN1Ip2bu8ffakMw32r9y1
-	 AShcnvWkD2n2ioO1O9rAxmAmgkpwL8BDNDa/Tv6uuDtTUsVUx/DcUlsKWyz+YfeDr1
-	 jMlO6yvdjc2H6MPVUK7kBp9l1DuoqhPz4WiaM0XeoynwTiyQwx4kR5cE44t/KWisZq
-	 YHxFbQreG0vvw==
-Date: Tue, 2 Jun 2026 16:06:13 +0100
-From: Mark Brown <broonie@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	"magnus.damm" <magnus.damm@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	"Claudiu.Beznea" <claudiu.beznea@tuxon.dev>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	"john.madieu@gmail.com" <john.madieu@gmail.com>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 01/18] ASoC: dt-bindings: sound: Add DT binding for
- RZ/G3E sound
-Message-ID: <e4eb9d9d-9bc5-464e-a73e-f6871c5e0582@sirena.org.uk>
-References: <20260525110230.4014435-1-john.madieu.xa@bp.renesas.com>
- <20260525110230.4014435-2-john.madieu.xa@bp.renesas.com>
- <20260602145527.GA211368-robh@kernel.org>
- <987befcc-2fd2-4d4f-8293-72df4dbc03f3@sirena.org.uk>
- <TY6PR01MB173772D84C91DA67CDD557D66FF122@TY6PR01MB17377.jpnprd01.prod.outlook.com>
+	s=k20260515; t=1780413174;
+	bh=ylk/16NkJTb8MDImJUeE9+B0xBKhYqg+1ZgThscsmvk=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=AQ9QDLSrP7VEgdkWeaL2MtX0iCXAYXZkRFIYK8qLn2UnZrwoAiNN+W3vq+mfsOQMu
+	 ErXjvxHwZGL50DzJT2eWK10iAAypqYWCF1zEumXqbyvSJsnkqpblw2S6JquMdOiIGo
+	 SAtOTJeHkEIJydlqe2sg51LTNFKUKXJ9cHuhl1DrHiVmY3MhRCzIJwbDt1KfjBdhTu
+	 rb6UrMc02BNbfHKaw+qbZMNvN193/p62I/zlqCToO+lDzNin4vyeKXXoeg0lkkwuyD
+	 dcEV+cZRwnq4YpPKUy12L139G960qt2GI31/Y1TyvmNYT2YJKnRHlOjEio7+lz8Ujr
+	 aZQxyNcD9KAQQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 3/4] mfd: mt6397-core: add mt6323 AUXADC support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Roman Vivchar via B4 Relay" <devnull+rva333.protonmail.com@kernel.org>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260602-mt6323-adc-v1-3-68ec737508ee@protonmail.com>
+References: <20260602-mt6323-adc-v1-3-68ec737508ee@protonmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 02 Jun 2026 15:12:54 +0000
+Message-Id: <20260602151254.A67161F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rCN1v4T/e48+g5p5"
-Content-Disposition: inline
-In-Reply-To: <TY6PR01MB173772D84C91DA67CDD557D66FF122@TY6PR01MB17377.jpnprd01.prod.outlook.com>
-X-Cookie: The wages of sin are unreported.
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-305707-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,renesas.com,gmail.com,glider.be,perex.cz,suse.com,pengutronix.de,tuxon.dev,bp.renesas.com,vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:john.madieu.xa@bp.renesas.com,m:robh@kernel.org,m:kuninori.morimoto.gx@renesas.com,m:lgirdwood@gmail.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:perex@perex.cz,m:tiwai@suse.com,m:magnus.damm@gmail.com,m:p.zabel@pengutronix.de,m:claudiu.beznea@tuxon.dev,m:biju.das.jz@bp.renesas.com,m:john.madieu@gmail.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:johnmadieu@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-305709-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:devnull+rva333.protonmail.com@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,rva333.protonmail.com,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,lists.linux.dev:replyto,protonmail.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C218662FD56
+X-Rspamd-Queue-Id: 8BE5562FE28
 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Unvalidated parent pointer dereference causes a kernel oops on inv=
+alid Device Tree.
+--
 
---rCN1v4T/e48+g5p5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+commit d38d038f6b60f5f733b7e5174e9d4dc5a41d7cec
+Author: Roman Vivchar <rva333@protonmail.com>
 
-On Tue, Jun 02, 2026 at 03:01:19PM +0000, John Madieu wrote:
+mfd: mt6397-core: add mt6323 AUXADC support
 
-> > Please delete unneeded context from mails when replying.  Doing this makes
-> > it much easier to find your reply in the message, helping ensure it won't
-> > be missed by people scrolling through the irrelevant quoted material.
+This commit registers the AUXADC in the mt6323 devices array to allow the
+corresponding driver to probe using the newly added compatible string.
 
-> Noted.
+> diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
+> index 3e58d0764c7e0..013b0857fb548 100644
+> --- a/drivers/mfd/mt6397-core.c
+> +++ b/drivers/mfd/mt6397-core.c
+> @@ -125,6 +125,9 @@ static const struct resource mt6323_pwrc_resources[] =
+=3D {
+> =20
+>  static const struct mfd_cell mt6323_devs[] =3D {
+>  	{
+> +		.name =3D "mt6323-auxadc",
+> +		.of_compatible =3D "mediatek,mt6323-auxadc",
 
-That was more for Rob than for you.
+[Severity: High]
+Does adding this compatible string expose an unhandled edge case in the
+auxadc driver?
 
---rCN1v4T/e48+g5p5
-Content-Type: application/pgp-signature; name="signature.asc"
+If this device is instantiated directly from a Device Tree without an MFD
+parent (e.g., at the DT root), dev->parent could be the platform bus
+(which has a NULL parent) or NULL itself.
 
------BEGIN PGP SIGNATURE-----
+Looking at mt6323_auxadc_probe() in drivers/iio/adc/mt6323-auxadc.c:
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoe8WQACgkQJNaLcl1U
-h9ARVwf/aiY9DSoMbmhzDZg0L79q/J6m0X/uNlaRb6HTBXNl2X3ghP6UT4MHxCPl
-WgHOqnNbwOySPtnNmWKLA9DPDAATJmfC6OJYnHXA63wo26vpAdlRF2MTu8s2CBxx
-DChE7MGiaRb2OazQfDIbCjWZD/ur6MQ9cCiXmelV2jIvGVcK3HZsQGSeboiEcsGp
-lthsQlRF09hjqWy9Hggf34Xc6LM3wf7jHUJPQljS8Sp5LwVzknURcTtO4So/fD6q
-zLpryzonhScF3jZBtICV4cEBsS85W1pzkt7C3i68JaUBWkgoJNS1npSz3SU6V2dS
-unZL5o1QGczFU4yygdFXF15z+64yEQ==
-=9QJJ
------END PGP SIGNATURE-----
+    regmap =3D dev_get_regmap(dev->parent->parent, NULL);
 
---rCN1v4T/e48+g5p5--
+Could blindly dereferencing dev->parent->parent here, or passing a NULL
+device to dev_get_regmap() (which calls devres_find()), result in a
+kernel oops if probed as a root node?
+
+> +	}, {
+>  		.name =3D "mt6323-rtc",
+>  		.num_resources =3D ARRAY_SIZE(mt6323_rtc_resources),
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260602-mt6323-adc=
+-v1-0-68ec737508ee@protonmail.com?part=3D3
 
