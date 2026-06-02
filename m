@@ -1,133 +1,125 @@
-Return-Path: <devicetree+bounces-305484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305485-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IME7LgOPHmodlAkAu9opvQ
-	(envelope-from <devicetree+bounces-305484-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:06:27 +0200
+	id UMLGIXWNHmoNlAkAu9opvQ
+	(envelope-from <devicetree+bounces-305485-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 09:59:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4850762A24E
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:06:27 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3977862A054
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 09:59:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E0FE0308F64D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 07:59:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0E57E300DEF9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 07:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C615B3B8945;
-	Tue,  2 Jun 2026 07:59:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VU56cKix"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0E83BAD8B;
+	Tue,  2 Jun 2026 07:59:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D123D3B83EC
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 07:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E963B9D81;
+	Tue,  2 Jun 2026 07:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780387156; cv=none; b=fzBRV8m9eU0R+LPnXcPGz8l/zfUzYZxN+cGLkd9jkG2qdAAz2wnu0e49Ek8/cPVpl8zoQWWwJMC++ZHU5uULMgz7JIUDCYRbDYBZpC8/vtKIc/KUNW8YaKBBeHzbxJh1XKjpXZKKdSHkDGepIAMlG0AkC5c/29ajUdMjmiQs7JY=
+	t=1780387160; cv=none; b=PzAzKZ0hUYEcZ5YGu/AQS0V8Pym84+mcNoOjbdemaHJIh5OBLWPgPDAuDuaKrcfbtDQ19BbK3wdlUc+jqkF5+QocndrMi3hPR/HbYZa1efX7wq9GY8gaeln7c4VOMMFz2GghJNY8nbcn6nEXzMaWjaSmf0KOuX9SMRuKwcKqAX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780387156; c=relaxed/simple;
-	bh=G/HpCIqlG2HxGomUFcoIVzuyzpu9MWocyL926EjXgmk=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tcGy5bXTWxjAw5v6CsrgOTdmvozeh6C1WSJ3yIJHD+OKcV6vD8+Afq4za94n4f2Uqnv5ry35HTt9ODb7NKal45cUiVkPsGbeS47Az7NEXP1w8V8oRxJnk8UMlrdPnw2mU/JINLxI5LMh7Nw0r/aEKZsuIhupgupkuOZvwtb9WnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VU56cKix; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B319E1F00A00
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 07:59:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780387155;
-	bh=G/HpCIqlG2HxGomUFcoIVzuyzpu9MWocyL926EjXgmk=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=VU56cKixBIDeC2J/S3kuGNTkdWzTND796sQiRbvRjPsWIIxdR5AQTls/gapJ2Kpz4
-	 CP7v+v/I6a+Hb66HaYbyE4LUTpx3UPrkYmtHQy/d4PAVJyNxz4nPgaPzgBiYcthFNI
-	 D3hPSHH+PDZXPAofn1wbxBiY1Cn0Hq25kS8/spmGAMHUaxlXt9EZNLrS2LwTdzogUp
-	 TtOT1oTZXVGf6vLEJC7NzyJYEapDmkadUxV1BscXVTw6VZJJht4ikMmgLXDm1sLN9d
-	 HIpFP9J+wzk58cp+Z7ZDpVcbtBflzOZZBVQaiXNTs7//x5FCI9dSkIyMRegbC41DdW
-	 zdd8ZwBNJtLJA==
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-395f24a5f2cso91825291fa.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 00:59:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ9OVd3dkqLkIsQVaanScts7zD+zSFjGnDgt7TZoYECk6URZUmJh6yDn6R5iTf44vPOsWHZ4DnLVV5gq@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGM875rkGwZHtSgqlCi96TSJaV3J8HpoJGLQtKFMMBgMnwlVoF
-	D7PgRrCYVPVVlotToAdmgIrIl6RHEGjODhCoKzrx8ztdKH6u1bYYQEmu/cC7i3M0n1kYRxcF/vm
-	Atg3sSy8n8iO/byjw1atoLbQ6smQTeAEvWV2WlFoc6A==
-X-Received: by 2002:a2e:bea6:0:b0:396:9897:4cc5 with SMTP id
- 38308e7fff4ca-3969a852edamr10861651fa.5.1780387154481; Tue, 02 Jun 2026
- 00:59:14 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 2 Jun 2026 07:59:12 +0000
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 2 Jun 2026 07:59:12 +0000
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260601-sm8350-wifi-v1-6-242917d88031@oss.qualcomm.com>
+	s=arc-20240116; t=1780387160; c=relaxed/simple;
+	bh=USvygGn8xi6wy+qhNj9yLgMOzfWYPqYBeZvCWZrXsz0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hqNsgWK0NoICdbjCMMsQ6zD31qkqrmHw/+0ryskB5ahBxdUwYarQagIu8lok+kmejBISDCBUTkoLFJEXmnLrBFpcJxJJTdYQup6zCb/dyp8ZIWHzF9hVJaQrjwXk6TQCqgEdzGL1uasX83lEK0bX2jAltDPWKh2Dj9HFNdy2kR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F5731F00893;
+	Tue,  2 Jun 2026 07:59:15 +0000 (UTC)
+Message-ID: <e6f6b092-b8b8-4dd8-8b6b-93ac2ad70ec1@tuxon.dev>
+Date: Tue, 2 Jun 2026 10:59:14 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260601-sm8350-wifi-v1-0-242917d88031@oss.qualcomm.com> <20260601-sm8350-wifi-v1-6-242917d88031@oss.qualcomm.com>
-Date: Tue, 2 Jun 2026 07:59:12 +0000
-X-Gmail-Original-Message-ID: <CAMRc=Me1OFX9YO9bqBKFffaCS8FH7-_bSS4BsVgW+qoYQmDjVg@mail.gmail.com>
-X-Gm-Features: AVHnY4Jj6PQ-4DZSgjCutJzrmJiIfEI2Eoc9MefyrTPUsszRaLc0Op3HHJ1m_C8
-Message-ID: <CAMRc=Me1OFX9YO9bqBKFffaCS8FH7-_bSS4BsVgW+qoYQmDjVg@mail.gmail.com>
-Subject: Re: [PATCH 6/7] arm64: dts: qcom: sm8350: modernize PCIe entries
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	ath11k@lists.infradead.org, devicetree@vger.kernel.org, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-bluetooth@vger.kernel.org, 
-	Manivannan Sadhasivam <mani@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Qiang Yu <qiang.yu@oss.qualcomm.com>, 
-	Jeff Johnson <jjohnson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-0.66 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] PCI: rzg3s-host: Prepare System Controller
+ handling for multiple controllers
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260520164823.436992-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260520164823.436992-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Language: en-US
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20260520164823.436992-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-305484-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bgdev.pl,kernel.org,google.com,oss.qualcomm.com,gmail.com,holtmann.org,quicinc.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-305485-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[tuxon.dev];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,bp.renesas.com,google.com,pengutronix.de,glider.be];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 4850762A24E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,renesas.com:email,tuxon.dev:mid]
+X-Rspamd-Queue-Id: 3977862A054
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 1 Jun 2026 11:46:54 +0200, Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> said:
-> The recent suggestion is to have PERST# / WAKE pins and PHYs in the PCIe
-> port rather than RC device. The kernel recently started warning about
-> the older style of DT. Modernize DT for SM8350 platform by moving the
-> entries under the root port device node.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+
+On 5/20/26 19:48, Prabhakar wrote:
+> From: Lad Prabhakar<prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Prepare the driver to handle multiple PCIe controllers with distinct
+> System Controller (SYSC) register sets, as required by RZ/V2H(P). The
+> current design stores a single sysc_info structure per SoC, which is
+> insufficient for multi-controller configurations.
+> 
+> Introduce controller identifiers and extend struct rzg3s_pcie_soc_data
+> to hold a sysc_info array indexed per PCIe controller. Add a
+> controller_id field to struct rzg3s_pcie_host and select the appropriate
+> System Controller information during probe based on the hardware
+> instance.
+> 
+> Keep existing single-controller SoCs functionally unchanged while
+> preparing the driver for RZ/V2H(P) multi-controller support.
+> 
+> Signed-off-by: Lad Prabhakar<prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+
+Tested on RZ/G3S:
+
+Tested-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
