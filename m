@@ -1,157 +1,217 @@
-Return-Path: <devicetree+bounces-305472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305474-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ALdDD4CHHmr0kgkAu9opvQ
-	(envelope-from <devicetree+bounces-305472-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 09:34:24 +0200
+	id KMZiOyyGHmqhkQkAu9opvQ
+	(envelope-from <devicetree+bounces-305474-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 09:28:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300C9629BDD
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 09:34:22 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92DE3629B08
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 09:28:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3BEED300AD48
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 07:21:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 162B53026277
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 07:24:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F8D34BA20;
-	Tue,  2 Jun 2026 07:21:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4xN1UNI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951CC35DD1C;
+	Tue,  2 Jun 2026 07:24:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8FE93403F8
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 07:21:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04F9D357D01
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 07:24:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780384914; cv=none; b=POJSPD7qldd/sVfvDGDz8u3W6P1GBHJrOKWIBv1s2Ilvc1R69Icxn+vBw2be+LCliXZ7rxBiOUiBM1gd45fQPUKBcDdGemza31/jTfQ+KaqsxIkymB1F8pMRxfz0lTsbqRCzhiWlDZVh9ogjUbkZqCHxXiOh3+GvNXxV8u2D5MM=
+	t=1780385069; cv=none; b=SVjSySyS2YDov0eCn7jw+jfR/z1Pjv6tplBOgv4p3chxt7cpFR+HQH3fe+wdvp7JjvhaGObp9B3Wti4F8IYS/Pu5RrMZds3cFgC4iK5eT5IQ/c3RJFMQYzkTC3IqsLgXTuHxdiemJsf1/583+R/LlgTSte0dE2iEKJLSlrIQsIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780384914; c=relaxed/simple;
-	bh=h0YyLcTI1ervzdhwapk6OfypGB3hZoj+T8ThjFnFAdQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=iSqEWtzaO6OUhwQ7UBFxUpipVw7mH0W11BfC2ZQMYQ/mv7khLtcdhZ6Sm8stjv04XPrMOy8teawbqezjurDXRBFJqitQZKbh4PwbbJYSbmEJuDcTwHim+oChp0dbxMorv9VI0J399Jb9JP8AiBlXrt/bxcTIUtfsqOt/N2i6ajM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B4xN1UNI; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 338AA1F00893;
-	Tue,  2 Jun 2026 07:21:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780384913;
-	bh=Z/pOJhQcSMLZ2hxmYBySGcMeFDbyYrNmTT+8pI2b5kY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=B4xN1UNIva4z3r88ZqszSs5UH2LxDEGhzFGhUOfMZ3yBeauBdVM2ydw5/6Bzb2Gbv
-	 MtuwkUDLScb0chEU940lNYi2meTr0cvz4Z1tKRuOL3fJS0Xg3oECDm7+3SHggw3Y7k
-	 Pka6bjX/7yJX1idqDGbqNthN1yvaqNSvmvErh+8xTev7EC6zCxD8761FC5b5hwtCbh
-	 F1KfEL9Mqr/LV0BwOGvTtfgrhOdq2/hmyDU/028tY7pyMHrkGtIdwB6yUm+GVXJYVh
-	 hQpNgqdirYoRAEzPUkN+ywIsyH3358N1r7jX/eykD7ZZVH9nLT6K0gZegev2xf2X/l
-	 LmkjzABl8Vu+A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: monaco-arduino-monza: Add QCNFA725B
- support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Qian Zhang" <qian.zhang@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260602071028.3810-1-qian.zhang@oss.qualcomm.com>
-References: <20260602071028.3810-1-qian.zhang@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 02 Jun 2026 07:21:52 +0000
-Message-Id: <20260602072153.338AA1F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780385069; c=relaxed/simple;
+	bh=xVR6i/wkZm3v1BlOY7VOhc/ASssNk/Yg64LnnL3f0pw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EqPb3B3bDaQmI1QZHVWX2bUdw3O8SSXy5Mx9tCQYQZ1pmzpQfdO0sYEUO5gq/2BOOnW2ojW+OkU3dNzUlkJm+JodWgvABUsGAhwer9Hukbp9lBtELvGonLANfNcEmDYSyP6LHpuM/Gka8BdAeDHQbqmqWB96AW3K/6XRaibGflY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1wUJTe-0001hd-Bf; Tue, 02 Jun 2026 09:23:54 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1wUJTc-000i8j-2h;
+	Tue, 02 Jun 2026 09:23:52 +0200
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1wUJTc-0000000Futw-2umF;
+	Tue, 02 Jun 2026 09:23:52 +0200
+Date: Tue, 2 Jun 2026 09:23:52 +0200
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Rob Herring <robh@kernel.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, laurentiu.palcu@oss.nxp.com, 
+	victor.liu@nxp.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/4] Revert "dt-bindings: display: bridge: ldb: Fill in
+ reg property"
+Message-ID: <n6akxiayi3g6gxcqhreb4iaohmeokoalnqup6h5r2fwdt4zijt@u2wyps55ayqm>
+References: <20260504-v7-1-topic-ldb-fixes-v1-0-0125d937ff7f@pengutronix.de>
+ <20260504-v7-1-topic-ldb-fixes-v1-2-0125d937ff7f@pengutronix.de>
+ <20260505141538.GA2547282-robh@kernel.org>
+ <2bl2mwpk57xgkuye2gydliymjkzikiovnb7ovnb73olwtfkjwn@byn3732grvnh>
+ <CAL_JsqLYS1sgU680KNR60+OvtNwEVKWovht7K2APO3sqeJe6Nw@mail.gmail.com>
+ <zbbez4lpme7szgnsd7fqufbuhmvcftw4sqrmwwwzyxu64i2ppb@fh2fgdkc6tat>
+ <CAL_JsqJWyRPh_hmJW8p7+VvtcqpS0a_azjMO-PyQgkqQUfLAGA@mail.gmail.com>
+ <uyh5s6g7bvuufnhfjrmungp5dbyllxfrgfzaxno22knpxxojmj@qqvh75ezblpp>
+ <20260601222941.GA101404-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260601222941.GA101404-robh@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305472-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305474-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	FREEMAIL_CC(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,denx.de,nxp.com,pengutronix.de,oss.nxp.com,lists.freedesktop.org,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email,lists.linux.dev:replyto]
-X-Rspamd-Queue-Id: 300C9629BDD
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.910];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.2:email,pengutronix.de:url,4ac10000:email,0.0.0.1:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,0.0.0.0:email,5c:email]
+X-Rspamd-Queue-Id: 92DE3629B08
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] The `shutdown-gpios` property for `wlan-rfkill` is incorrectly con=
-figured as `GPIO_ACTIVE_LOW`, which will invert the rfkill logic and disabl=
-e the hardware radio when the subsystem attempts to enable it.
---
+On 26-06-01, Rob Herring wrote:
+> On Wed, May 13, 2026 at 12:26:40PM +0200, Marco Felsch wrote:
 
-commit fef17fc3948ff81196d4df1a40b32c0d905e0ab7
-Author: Qian Zhang <qian.zhang@oss.qualcomm.com>
+...
 
-arm64: dts: qcom: monaco-arduino-monza: Add QCNFA725B support
+> > Please see the below full example, is this allowed?
+> > 
+> > system-controller@4ac10000 {
+> > 	compatible = "fsl,imx93-media-blk-ctrl", "syscon";
+> > 	reg = <0x4ac10000 0x10000>;
+> > 	#address-cells = <1>;
+> > 	#size-cells = <1>;
+> > 
+> > 	...
+> > 
+> > 	bridge@5c {
+> > 		compatible = "fsl,imx8mp-ldb";
+> > 		reg = <0x5c 0x4>, <0x128 0x4>;
+> > 		reg-names = "ldb", "lvds";
+> > 		clocks = <&clk IMX8MP_CLK_MEDIA_LDB_ROOT>;
+> > 		clock-names = "ldb";
+> > 		assigned-clocks = <&clk IMX8MP_CLK_MEDIA_LDB>;
+> > 		assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>;
+> > 		status = "disabled";
+> > 
+> > 		ports {
+> > 			#address-cells = <1>;
+> > 			#size-cells = <0>;
+> > 
+> > 			port@0 {
+> > 				reg = <0>;
+> > 
+> > 				ldb_from_lcdif2: endpoint {
+> > 					remote-endpoint = <&lcdif2_to_ldb>;
+> > 				};
+> > 			};
+> > 
+> > 			port@1 {
+> > 				reg = <1>;
+> > 
+> > 				ldb_lvds_ch0: endpoint {
+> > 				};
+> > 			};
+> > 
+> > 			port@2 {
+> > 				reg = <2>;
+> > 
+> > 				ldb_lvds_ch1: endpoint {
+> > 				};
+> > 			};
+> > 		};
+> > 	};
+> > 
+> > 	dpi-bridge {
+> > 		compatible = "nxp,imx93-pdfc";
+> > 		status = "disabled";
+> > 
+> > 		ports {
+> > 			#address-cells = <1>;
+> > 			#size-cells = <0>;
+> > 
+> > 			port@0 {
+> > 				reg = <0>;
+> > 
+> > 				dpi_from_lcdif: endpoint {
+> > 					remote-endpoint = <&lcdif_to_dpi>;
+> > 				};
+> > 			};
+> > 
+> > 			port@1 {
+> > 				reg = <1>;
+> > 
+> > 				dpi_to_panel: endpoint {
+> > 				};
+> > 			};
+> > 		};
+> > 	};
+> > };
+> 
+> Yes, this seems fine.
 
-This commit adds device tree support for the QCNFA725B M.2 module connected
-to PCIe0 on the Arduino VENTUNO Q board. It configures the rfkill shutdown
-and wlan enable GPIOs, and defines the internal PMIC regulators.
+Thanks for the clarification!
 
-> diff --git a/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts b/arch/arm=
-64/boot/dts/qcom/monaco-arduino-monza.dts
-> index ca14f0ea4dae6..b90397c7000e3 100644
-> --- a/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
-> +++ b/arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
-> @@ -153,6 +153,78 @@ vreg_nvme: regulator-3p3-m2 {
->  		enable-active-high;
->  		startup-delay-us =3D <20000>;
->  	};
-> +
-> +	wlan-rfkill {
-> +		compatible =3D "rfkill-gpio";
-> +		label =3D "wlan";
-> +		radio-type =3D "wlan";
-> +		shutdown-gpios =3D <&tlmm 54 GPIO_ACTIVE_LOW>;
+Regards,
+  Marco
 
-[Severity: High]
-The commit message mentions that pulling GPIO54 low disables the radio
-transmitter. Will configuring this as GPIO_ACTIVE_LOW cause the rfkill-gpio
-driver to inadvertently disable the radio when it intends to enable it?
+> 
+> Rob
+> 
 
-Looking at the rfkill-gpio driver, it treats shutdown-gpios as an enable li=
-ne.
-It calls gpiod_set_value_cansleep() passing '!blocked' as the value. So when
-the radio is meant to be enabled (!blocked =3D=3D 1), the driver logically =
-asserts
-the GPIO.
+-- 
+#gernperDu 
+#CallMeByMyFirstName
 
-If the GPIO is configured as GPIO_ACTIVE_LOW in the device tree, a logical 1
-will drive the physical wire LOW, triggering the hardware kill switch. Shou=
-ld
-this be configured as GPIO_ACTIVE_HIGH instead to match the driver's intern=
-al
-logic?
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260602071028.3810=
--1-qian.zhang@oss.qualcomm.com?part=3D1
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
