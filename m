@@ -1,146 +1,231 @@
-Return-Path: <devicetree+bounces-305601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305602-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id B0HGKePCHmo2UwAAu9opvQ
-	(envelope-from <devicetree+bounces-305601-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:47:47 +0200
+	id kdOsIgPDHmo9UwAAu9opvQ
+	(envelope-from <devicetree+bounces-305602-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:48:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37DC362DAF3
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:47:47 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 835C162DB0E
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:48:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=AwxgrlLm;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305601-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-305601-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=FXCcF+QJ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305602-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305602-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CADBA3118C9E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:36:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B89223021B44
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0CF3DEACE;
-	Tue,  2 Jun 2026 11:35:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 949BF3DBD72;
+	Tue,  2 Jun 2026 11:42:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E02FE3DC862
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 11:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D85393DFB
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 11:42:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780400137; cv=none; b=jQIHI5VFlzG6WkB5iu1Og2xZLLpzZs/c01ZP/cRgCZPnFUUX3qEHt4L2UjEOAXDPFmmntZrmBxAep8rB0WUX3UnYSN/N4ZnmoBE8ZGrYBVQ9ZH5zMErrYWwdAMzQpR8zFMy7gggLMqEQ2FjsDXmMED3SN7ENOy92s5DwmrDJLxE=
+	t=1780400573; cv=none; b=nGGRvDm0aJ+w+CtG1ge/sxoJiTvEouuWYkhl6S48vYhT1D71MZqecMcXK1Ro1yZ9+NNDbuSLVrXvtduYC/IOVsLNaIyCqUkhObH4MPVzf3u5WeXTLi8fpwsM9Q6l3UcGIqfVzTOQwn66trKiuyKmSMgswTc5C1LW1qHQxz+1tV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780400137; c=relaxed/simple;
-	bh=uOdOyMhlg/4ykCMFkIgB5lwtIu2oTbxNUE3TfrLThMY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=REHSGG3IpeWJbOWy9JD1fgDwIOc1s65WmS2DkQBJZxYtoW7vAl/DNSxDhWIpwH+RPQ3x32Py2JCywjHlWSVz6MAZJ+h3T9yu9eVhDXSug9NNhNZghJcYsBFyDOlbOMrgosq6JoWr/atUpARJmqlnUQAfgNnrpYae36bItQOxiNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=AwxgrlLm; arc=none smtp.client-ip=194.117.254.33
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=uOdO
-	yMhlg/4ykCMFkIgB5lwtIu2oTbxNUE3TfrLThMY=; b=AwxgrlLmHrIS8S4p9Kc+
-	/oEr7YS9Tlpm2YEc3jKVAg8GgqmE6hVboRKuwKphSImcLQKfv2t2fVdFz9HhMsZi
-	d144HwCyM1hcfLUZXrp3GvrFb5kQWEkTJIDmIerLhOcwWw67m/DbHn/FzkGOhfNw
-	d6Z+VvDP5rT6T06/TApfxwXjD639FnGaXn/oMH+nd+uUilnR937oBggjM/F3RUuA
-	q2KJLlswFG6AWwJ9q21EoqVhXnVevzfKaiww80e7FKU2HJUlBzSptQiPHVXMhEMV
-	8tRvIEwi6s5Nh43W4M/nkWWS2Mnybk4RpeYNfpMbaoy5YvQ/dbfCK1ExnAgyp6fO
-	Sw==
-Received: (qmail 2867990 invoked from network); 2 Jun 2026 13:35:30 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Jun 2026 13:35:30 +0200
-X-UD-Smtp-Session: l3s3148p1@DSxWtUNTzK4ujnv7
-Date: Tue, 2 Jun 2026 13:35:30 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Claudiu Beznea <claudiu.beznea@kernel.org>
-Cc: geert+renesas@glider.be, linusw@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com, claudiu.beznea@tuxon.dev,
-	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v2 0/7] pinctrl: renesas: rzg2l: Add support for RZ/G3S
- I3C
-Message-ID: <ah7AAgK0plmNfL5C@ninjato>
-References: <20260528080439.615958-1-claudiu.beznea@kernel.org>
+	s=arc-20240116; t=1780400573; c=relaxed/simple;
+	bh=Qqa7quuFUGxOZHeycKFVTiZCmNmQh4Y1IFeUEExbxWQ=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=CgY/AkmiZSu6ozKtqOqhfvrpKefeow7UDcI21wU0G8OGsxu7YSjFhZYJw+6hBXESo+nN+C1FEqLXEOuNpNo2x705svN1eIMlYgKEUqDuslRF2LVsJvnTLkIDd4z1EKSq7jk+U3r4GQHyHFk+nAUrmsgu6vCoKj9g87EcK/QLzRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FXCcF+QJ; arc=none smtp.client-ip=209.85.128.48
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-490a76757e5so18644805e9.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 04:42:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780400567; x=1781005367; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:from:to:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=89aeVXXs2STJVpXGsIdEuOvDZI5VpWNiQnZYewdJlX0=;
+        b=FXCcF+QJTa8+LxZOrDua7doGBLx4bPh8i3YVXaaj4SqpPQ450zwWE062Ga+acGJD4J
+         wJPix7Oi/HkRqFmU+FZ9L6nOtDZhuctRTngG9630aB9UDKLGCn45qKMrkYj2p/S5gbKz
+         2yRTp0Ho/3Ln3EC2qsIMBFJiyjXDPygQVYNbmWpbXARYnHjKiWqvMkwkX5pHoH47Q4xY
+         RL7mwFw3SpO51M7J+mWP4cISTFD/H0kjBZYyDDxtca/EVBVxm0Xnux1V2FHTE4QBj2c3
+         oFl2l4d7vebacpTD3uMGS/WrVLnzif5MgNBvuwiEEgnD4WgDrheAgZbWJkfv7czi9T+i
+         SP2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780400567; x=1781005367;
+        h=in-reply-to:references:subject:from:to:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=89aeVXXs2STJVpXGsIdEuOvDZI5VpWNiQnZYewdJlX0=;
+        b=cHt/4IzrmcfexfjPGGmuH03MO3FtuRaoN7JdP2eO/czY6nFHhi78VYEGvj8G/dY9dT
+         zICmGEvm7PINbuXv+3eUedPC7qW0BP1GJvcc0dbthiCwjbfMgZbgxIrARU4Eyw2in7Zm
+         V3qBg2YAtnW7QDcESDYQk/ftwLL8fgTCsrMsZIeRCIRe0OvShpwFrZFiqifJSm0l8l8t
+         vtomNMW7LU86QVnpaslj2reIim5FPWY64h53TenZ7+LEpabAb1Z+0KyftoIr+yLuyEpK
+         Q/7peCk9GS2sPJ+ygOPz10teusGemm8rj3US/u8MQEOXR8ksyOGqusZMX88j7Qwb8Wxs
+         Fp1A==
+X-Forwarded-Encrypted: i=1; AFNElJ8KsQNAUQoJX4uZu2yeADleN/G35ZrE4wsIg2DUKM35+h+INuX8wHLxEgNy4IlzMlOCT+rpDLQyW7O2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJTP3SQ2H0xhCY2m0tUZv+UgCHEDod9UhiTB0blW0MY52JDrCV
+	yVjHZ8BgrXZUEOtwv1iaxmmUd5Wqo+/pOJ3t/7CQRshomUssTqvJCXbv
+X-Gm-Gg: Acq92OE//a3v4rbsTB2LtMD/Ahq1VmVcG0PxIpfhZvI01tdoO/xzcGMM2iZLRQ+G8AL
+	Dip3TMyI98sjlKm8mIsRBu2GbNc7CxShWoKjn5KpEGKmH8tszmGB6NNmBsVPxe4p0K61ztxsLfj
+	Lcd/6Kuy5ihbQ3hVCVhsCx0O3O7LwHSPOIMSZsTGzk/XnZM+dKDydaIRIffUTnjFWt/VIopDoxr
+	thyLdLW7M3MLc8oJV4TMVggvGUsrhcPH8EVt2c5Ea3LfqqyuuZgTpc7+1haQDrvNMCCBAnCXuYE
+	Z4sSJ2lMbPfNhJNI0rQV52fl1g0B6aEyLB9nULl/GU0Y6Sjts4GeuBMCR/xptRhVBexFjD414/f
+	Y5SRHJRQG6wHRtfbGY82dHox2w3G26qCFXchoxCB/930aof7KUhyuKtgATa/UJd/iAgP9z07fzV
+	BXKG4x3x0E8ZTwJJOv0lEsF1Q0WIdZkU8ew7cQeUfz6XyUo0A=
+X-Received: by 2002:a05:600c:82c3:b0:490:59cc:999f with SMTP id 5b1f17b1804b1-490a2901c21mr286995725e9.4.1780400567217;
+        Tue, 02 Jun 2026 04:42:47 -0700 (PDT)
+Received: from localhost ([2001:4bb8:152:df59:3b69:56ea:a39b:adb4])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-45ef35874b7sm33027728f8f.35.2026.06.02.04.42.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Jun 2026 04:42:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rsfaeCIwtI8MyDA2"
-Content-Disposition: inline
-In-Reply-To: <20260528080439.615958-1-claudiu.beznea@kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 02 Jun 2026 13:42:44 +0200
+Message-Id: <DIYJBS4F362A.2LIDZAKU7GBBU@gmail.com>
+Cc: "Jonathan Cameron" <jic23@kernel.org>, "Lars-Peter Clausen"
+ <lars@metafoo.de>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Rishi Gupta"
+ <gupt21@gmail.com>, "David Lechner" <dlechner@baylibre.com>,
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
+ <andy@kernel.org>, "Matti Vaittinen" <mazziesaccount@gmail.com>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>, "Javier Carrasco"
+ <javier.carrasco.cruz@gmail.com>
+From: "Javier Carrasco" <javier.carrasco.cruz@gmail.com>
+Subject: Re: [PATCH v4 2/4] iio: light: add support for veml6031x00 ALS
+ series
+X-Mailer: aerc 0.21.0-143-g2f3a2e260c09
+References: <20260531-veml6031x00-v4-0-e64f7fdce38d@gmail.com>
+ <20260531-veml6031x00-v4-2-e64f7fdce38d@gmail.com>
+ <ah6p-f2RCW8VcuDR@ashevche-desk.local>
+ <DIYI40YK6CSX.2P4017PHVJHCT@gmail.com>
+ <ah66ljSiIc0ywFC2@ashevche-desk.local>
+In-Reply-To: <ah66ljSiIc0ywFC2@ashevche-desk.local>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:claudiu.beznea@kernel.org,m:geert+renesas@glider.be,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:claudiu.beznea@tuxon.dev,m:linux-renesas-soc@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:claudiu.beznea.uj@bp.renesas.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305602-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DMARC_NA(0.00)[sang-engineering.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:lars@metafoo.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gupt21@gmail.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:mazziesaccount@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:andriy.shevchenko@intel.com,m:javier.carrasco.cruz@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:javiercarrascocruz@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[javiercarrascocruz@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[intel.com,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-305601-lists,devicetree=lfdr.de,renesas];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[javiercarrascocruz@gmail.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[glider.be,kernel.org,gmail.com,bp.renesas.com,tuxon.dev,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,gmail.com,baylibre.com,analog.com,vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,ninjato:mid,vger.kernel.org:from_smtp,sang-engineering.com:from_mime,sang-engineering.com:dkim]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 37DC362DAF3
+X-Rspamd-Queue-Id: 835C162DB0E
 
+On Tue Jun 2, 2026 at 1:12 PM CEST, Andy Shevchenko wrote:
+> On Tue, Jun 02, 2026 at 12:45:35PM +0200, Javier Carrasco wrote:
+>> On Tue Jun 2, 2026 at 12:01 PM CEST, Andy Shevchenko wrote:
+>> > On Sun, May 31, 2026 at 09:58:22PM +0200, Javier Carrasco wrote:
+>
+> ...
+>
+>> > + array_size.h
+>> >
+>> >> +#include <linux/bitfield.h>
+>> >> +#include <linux/bits.h>
+>> >> +#include <linux/i2c.h>
+>> >
+>> >> +#include <linux/module.h>
+>> >> +#include <linux/mod_devicetable.h>
+>> >
+>> > In C locale it seems wrong order.
+>> >
+>> >> +#include <linux/mutex.h>
+>> >> +#include <linux/pm_runtime.h>
+>> >> +#include <linux/regmap.h>
+>> >
+>> > + types.h
+>>
+>> Do you know any tool to automate this beyond asking an AI? Manual
+>> auditing is not very reliablo and it is not that difficult to miss a
+>> header that has been indirectly included. Building with W=3D1 and simila=
+r
+>> stuff did not help.
+>
+> `iwyu`, but it needs a custom configuration. Even with that it's quite fa=
+r from ideal.
+> The custom config had been shared in the linux-iio@ mailing list this yea=
+r.
+>
 
---rsfaeCIwtI8MyDA2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks, I'll take a look at it in case it finds some more missing
+headers.
 
+>> >> +#include <linux/units.h>
+>
+> ...
+>
+>> >> +	/* integration time + 10 % to ensure completion */
+>> >
+>> > fsleep() adds up to 25%, isn't it enough?
+>>
+>> The problem is that it adds UP to 25%, but that is not guaranteed. If
+>> almost no extra delay is added, it will be below the margin I added,
+>> which was necessary when I tested this delay with real hardware.
+>
+> Noted. Can it_usec be precalculated already to include that 10%?
+>
 
-> Series adds pinctrl support for the I3C on Renesas RZ/G3S SoC. For a
-> clean I3C support, cleanup patches for the pinctrl driver were also
-> included.
+Yes, that is possible. I'll add it to V5.
 
-I am ready to test but this series doesn't apply on neither master nor
--next of today. Could you kindly push a branch to pull from somewhere?
-That would be great. Thank you!
+>> >> +	fsleep(it_usec + (it_usec / 10));
+>
+> ...
+>
+>> >> +	pm_runtime_put_autosuspend(dev);
+>> >
+>> > Hmm... But why? Wouldn't this be problematic with reference count on t=
+he failed
+>> > devm_iio_device_register() below?
+>>
+>> I could move this a bit further down after devm_iio_device_register(),
+>> but as I replied to a Sashiko complaint, the reference count will never
+>> underflow in this configuration.
+>
+> Please, add a comment elaborating on that, it's not clear at glance.
 
+I will provide the link to the message where I explained this instead of
+copying the explanation to keep the discussion in one place. The mail
+belongs to the discussion thread for [2/4] (this patch) anyway:
 
---rsfaeCIwtI8MyDA2
-Content-Type: application/pgp-signature; name="signature.asc"
+https://lore.kernel.org/all/20260531-veml6031x00-v4-0-e64f7fdce38d@gmail.co=
+m/
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmoev/4ACgkQFA3kzBSg
-Kbbliw//RSqgU2ZakkJblEOhzJXnCpeLCL8GlK+fDNm548nuABjDL/ujlZQKWCdr
-+3BZrVwp690+PXOYhqeL8HU5aQqXKNLsijj973wc+ybCuuvZWoAM6QcWxUDCrD1D
-LsF5dLBByVQalpDDcGD1E4KNTWhr3J8WD+MvAGdhBXEd0qUgbNekH4zDLteID1cv
-m08qO6K5IZ4H/O69pK+nAn2vpe19+0H9cLyqVDxPZmcl7aNtxH7ZJWRhDczG4qry
-RWI3UhPa0EjGlY1kU9wfV1vGxPg6/rcu4E4U8GmfKijt8W+MFt6Mx8nRrk9TqNwz
-o3/mrYINCNXjHO0cf9+vri5VvjPUJY5FBxq3S0IBhF+M1otSO3BFmY4XEXYIzdzf
-UwmbMxqbyYR0668vfxzISzgHCwqkLcf47m9cnHKtbyNg1CcGCsnDzM/2HEbQJ5TF
-IrSeL74lxHNAdrc0kHyoJCIH5v6+UDppzLjv4ItNqeJdYWKaFo/18C+fa+qJdGZv
-LSbl9L+4OgclqNL7CIN99hlj09VGEJIkMC/BDoE5aYjiz5OuFR8MkpNkTQue9A4M
-bC+naTZdZ6xz3EHYZttBhA5FIiN77fFmxo6VQljIivslrH+u/+ANT7/C20n3YKL+
-peALgijaD3xQ3PmH7IMeI77Q4wXR4BsOh2DI5Hl9a8f90SUVllw=
-=5DZw
------END PGP SIGNATURE-----
-
---rsfaeCIwtI8MyDA2--
+Best regards,
+Javier
 
