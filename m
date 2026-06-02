@@ -1,209 +1,121 @@
-Return-Path: <devicetree+bounces-305842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305843-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id I/ZJCtZHH2o+jgAAu9opvQ
-	(envelope-from <devicetree+bounces-305842-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 23:15:02 +0200
+	id pfLkNQVIH2pKjgAAu9opvQ
+	(envelope-from <devicetree+bounces-305843-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 23:15:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631B06320A9
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 23:15:01 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 352096320BC
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 23:15:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dlh8n3i3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305842-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305842-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=FBFaxcJR;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305843-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-305843-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=sntech.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C2073016EFD
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 21:09:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0CF5830604AC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 21:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9670D357D00;
-	Tue,  2 Jun 2026 21:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE753A6F19;
+	Tue,  2 Jun 2026 21:15:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DC7519D89E;
-	Tue,  2 Jun 2026 21:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D31D739E9AC
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 21:15:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780434555; cv=none; b=NABh6Fpz1UEzA8ZqFc/nl0pbnkrr1r8vto75GdVj0Nue3x381UdFDsq/M8sr/Aob/wyGkS3+TLZHSz3S8To5T+TLpq1BsH6/3Jw75LF8hJ25HVrSnf4w0RIaMLEYXgDkEsAh317Vsz911sMvpTvkI3xEiR/ThhTWCPVKB8N+YIs=
+	t=1780434910; cv=none; b=OQzRpFUNOuDKFWbYjVg61PENGDdEqwNf+IynOJRDHKe0Dc2fN0vPvlLkRP+SfFoqe+lG4mdvs/Ys97UIuVN0dBUWvd2on/r17aiemW67T80XEfqBoo4RnNDLF7XUQb7WLIQDTT9bOXfOn/0ziohfJ1HmaBKOXDzlkmggkoeBem4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780434555; c=relaxed/simple;
-	bh=0rL/3VRirg5ODbcnOGuyiX7i6mSlhGh3R2znObiaOmg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xk+dITq9BCHm/KTGBMPUG3WWptmxiQrjT/LCEcvf1l0By2bYSy9h1e1s4400wXq0A7qn1/dvHFJP0p6n9mJGPlDXK4iCUvWDOjeFEYE1Z8dtAAEe6LMSd3VNaOMiAuXxPptcgFulOcZg+oP912p1AEPfBYxuFLHnBGj/oqnXyxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dlh8n3i3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D5311F00893;
-	Tue,  2 Jun 2026 21:09:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780434554;
-	bh=jPW4+bDCMwDt1HiLGDLDGJ2r3CAgguA/gXZ5VD5duAU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=dlh8n3i3W5Z9OiSocXyW3M2GIKcrsUtq4UJVs46xn59FUZl5mQNbX0Btoib20KSKv
-	 4xIBbwKDqTpvsYbfOHVjFk0mItNTZDrpXQjF75tNa5LZgmVCkFvJr5E8edlijqUVCS
-	 upmJBVbkfchuDsTHLVGqg80nso85vwTOa2CLNM3zHdVCaTEPbVVHxZM6YRQk5neqRv
-	 2HHkGnDEp6bDjZbHDMkI4QygERjftoSsBJjBa41ApQ5ZhBr33J8lRSFEcFu07v+l7H
-	 Tgo73E1CDWwjrHDLjUHjsWK7/LB29+/Hg0AvZ7U3fio/TSPX4HT9zzNx39jdXAOfHb
-	 eyFm0mtsIr/HA==
-Date: Tue, 2 Jun 2026 14:09:12 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH RFC v6 15/18] riscv_cbqri: resctrl: Add mbm_total_bytes
- bandwidth monitoring
-Message-ID: <ah9GeBlzrrL/C3kL@x1>
-References: <20260601-ssqosid-cbqri-rqsc-v7-0-v6-15-baf00f50028a@kernel.org>
- <20260601210114.88F1B1F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780434910; c=relaxed/simple;
+	bh=5QtRKEvEZ5Bf60CrCxskUNN1/J6Px2RBNt5WAwEJX5M=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ife80SUwHqh6pipsii0TN0qoHUrh0knk76e3BMYDQDEJasB3bKQ9nd4KYcIDAE2h+MK8QOj8duRXsSdW5P+7HiB/yg5Fp7rcfE/hEtM7peAXDUvW7AJ0u/JOKKIc4l3g5GnYeYPvB1R7c6bExGSBHeYHXKoGXz3SavU9f4E0444=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=FBFaxcJR; arc=none smtp.client-ip=185.11.138.130
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=/iJeZb9oNPWz3PyEi83V5EoFNXaEIzYjGsqFLKQ9BMM=; b=FBFaxcJRQmwkFbEq2g6TCrkt+E
+	p3gRcoQCeZdbKItWHJdn/9zi7Zl2u+d+28iAqh99y2HqkfjIYp5icBfHADdq/F4RKMiiuvdC2KKeL
+	FFRiH1eyDyc7ziDYO2hHwc/ISSwoxIYddMz8H0x6HhSta23TYaqNltGfi863P2/7kq5WmE5nXHyiI
+	dPDTNt7jn4VXeihPcKhFKB1LSKi4ng/KZgdTk7WCknNAyaZPMw1iyGcPUeIFf6IAMSFn+cKFwF53b
+	2P5zEmnEHRQBqnR2c2nBT34fbw2YSLhi4TUb2XrNFXeZ3qWydMq62Pm6FPToLhYPv8788wjjIywGH
+	fYP38jog==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Hugo Osvaldo Barrera <hugo@whynothugo.nl>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Tobias Schramm <t.schramm@manjaro.org>,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix vcc_sdio regulator max voltage on Pinebook Pro
+Date: Tue,  2 Jun 2026 23:14:57 +0200
+Message-ID: <178043489362.713702.703857469309199514.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260519094439.7918-1-hugo@whynothugo.nl>
+References: <20260519094439.7918-1-hugo@whynothugo.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260601210114.88F1B1F00893@smtp.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-305842-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS(0.00)[m:hugo@whynothugo.nl,m:heiko@sntech.de,m:t.schramm@manjaro.org,m:devicetree@vger.kernel.org,m:linux-rockchip@lists.infradead.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305843-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sntech.de:mid,sntech.de:dkim,sntech.de:from_mime,sntech.de:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 631B06320A9
+X-Rspamd-Queue-Id: 352096320BC
 
-On Mon, Jun 01, 2026 at 09:01:14PM +0000, sashiko-bot@kernel.org wrote:
-> > @@ -184,17 +191,67 @@ void resctrl_arch_mon_event_config_write(void *info)
-> >  void resctrl_arch_reset_rmid(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
-> >  			     u32 unused, u32 rmid, enum resctrl_event_id eventid)
-> >  {
-> > +	struct cbqri_resctrl_dom *hw_dom;
-> > +	struct rdt_ctrl_domain *cd;
-> > +
-> > +	if (irqs_disabled())
-> > +		return;
-> > +
-> > +	mutex_lock(&cbqri_domain_list_lock);
-> 
-> [Severity: High]
-> This is a pre-existing issue, but does expanding cbqri_domain_list_lock
-> usage here worsen an AB-BA deadlock with rdtgroup_mutex?
-> 
-> A deadlock can occur during CPU hotplug and sysfs reads due to conflicting
-> lock ordering:
-> 
-> Thread A (CPU Hotplug) takes cbqri_domain_list_lock in
-> cbqri_resctrl_online_cpu(), then calls resctrl_online_mon_domain() via
-> cbqri_attach_cpu_to_l3_mon(), which blocks waiting for rdtgroup_mutex.
-> 
-> Thread B (Sysfs read) takes rdtgroup_mutex in rdtgroup_mondata_show(), then
-> delegates the read via smp_call_on_cpu() to a worker thread.
-> 
-> Thread C (Worker) executes resctrl_arch_rmid_read(), which blocks waiting
-> for cbqri_domain_list_lock.
 
-This is not a problem. Every rdtgroup_mutex -> cbqri_domain_list_lock
-path runs under cpus_read_lock, and the hotplug path runs under
-cpus_write_lock.
+On Tue, 19 May 2026 11:44:39 +0200, Hugo Osvaldo Barrera wrote:
+> The vcc_sdio regulator supports 1.8V to 3.4V output range according to
+> its datasheet.
+> 
+> The current DT incorrectly limits the max voltage to 3.0V. This limit
+> causes issues issues downstream with u-boot, which refuses to apply the
+> out-of range value, and falls back to the minimum in that range: 1.8V.
+> This is insufficient to power the SD card, so driver initialisation
+> fails and booting from it does not work.
+> 
+> [...]
 
-> > +static void cbqri_resctrl_pick_counters(void)
-> > +{
-> [ ... ]
-> > +	/*
-> > +	 * mbm_total_bytes is surfaced on the L3 monitoring domain, so it
-> > +	 * needs a mon-capable L3 cache controller as well as a single
-> > +	 * mon-capable bandwidth controller.
-> > +	 */
-> > +	if (l3->ctrl && l3->ctrl->mon_capable && cbqri_find_only_mon_bc())
-> > +		resctrl_enable_mon_event(QOS_L3_MBM_TOTAL_EVENT_ID, false, 0, NULL);
-> 
-> Does passing any_cpu = false here break monitor reads and RMID resets on
-> nohz_full systems?
-> 
-> When any_cpu is false, the resctrl core ensures the read executes on a CPU
-> in the target domain. If all CPUs in that domain are nohz_full,
-> mon_event_read() falls back from smp_call_on_cpu() (process context) to
-> smp_call_function_any() (IPI hardirq context with interrupts disabled).
-> 
-> Because drivers/resctrl/cbqri_resctrl.c checks for irqs_disabled() in both
-> resctrl_arch_rmid_read() and resctrl_arch_reset_rmid() and silently aborts,
-> monitor reads and resets will fail on nohz_full systems.
+Applied, thanks!
 
-The CBQRI MMIO registers are cpu agnostic so I will register
-QOS_L3_MBM_TOTAL with any_cpu=true so the core reads in process context.
+[1/1] arm64: dts: rockchip: Fix vcc_sdio regulator max voltage on Pinebook Pro
+      commit: 8545eda00fdf3d7e17933ce0f706d005b1bad42d
 
-> > @@ -854,6 +1054,7 @@ static int cbqri_attach_cpu_to_l3_mon(struct cbqri_controller *ctrl,
-> [ ... ]
-> >  err_offline:
-> >  	/*
-> >  	 * cancel_delayed_work avoids deadlocking against the cqm_limbo
-> >  	 * worker which takes cpus_read_lock while this hotplug callback
-> >  	 * already holds cpus_write_lock. mbm_over is only
-> >  	 * INIT_DELAYED_WORK'd when MBM_TOTAL was enabled, so gate the
-> >  	 * cancel on the same condition to avoid touching a zeroed work
-> >  	 * struct.
-> >  	 */
-> >  	cancel_delayed_work(&mon_dom->cqm_limbo);
-> > +	if (resctrl_is_mon_event_enabled(QOS_L3_MBM_TOTAL_EVENT_ID))
-> > +		cancel_delayed_work(&mon_dom->mbm_over);
-> >  	resctrl_offline_mon_domain(res, &mon_dom->hdr);
-> >  err_listdel:
-> >  	list_del(&mon_dom->hdr.list);
-> >  err_free:
-> >  	kfree(mon_dom);
-> >  	return err;
-> >  }
-> 
-> Does this non-blocking cancel_delayed_work() lead to a use-after-free of
-> mon_dom?
-> 
-> In drivers/resctrl/cbqri_resctrl.c:cbqri_attach_cpu_to_l3_mon(),
-> resctrl_online_mon_domain() schedules the mbm_over delayed work. If hardware
-> initialization fails later in the function, the error path executes
-> cancel_delayed_work(), which is non-blocking.
-> 
-> If the worker thread has already woken up and is actively blocked on
-> cpus_read_lock() waiting for the hotplug thread to drop cpus_write_lock(),
-> cancel_delayed_work() will return false.
-> 
-> The hotplug thread will then proceed to free mon_dom and drop the lock.
-> Once the lock is dropped, the worker thread resumes execution and will
-> access the freed mon_dom.
-
-I don't think that this is a problem. resctrl_offline_mon_domain()
-already issues cancel_delayed_work() for mbm_over and cqm_limbo, and x86
-frees the domain right after. The mbm_over and cqm_limbo workers take
-cpus_read_lock() first, and both the error path and the offline teardown
-run under cpus_write_lock().
-
-Drew
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
