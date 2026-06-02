@@ -1,160 +1,194 @@
-Return-Path: <devicetree+bounces-305486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305488-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gFXxLrmOHmodlAkAu9opvQ
-	(envelope-from <devicetree+bounces-305486-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:05:13 +0200
+	id SJ/YNVWPHmpTlAkAu9opvQ
+	(envelope-from <devicetree+bounces-305488-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:07:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 363B162A1C8
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:05:13 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8741F62A2E5
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:07:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1C94030866C8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 08:00:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D3C130C35B2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 08:01:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556BF3BB689;
-	Tue,  2 Jun 2026 08:00:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KzNDbDXU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45D293BE17D;
+	Tue,  2 Jun 2026 08:00:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C893BB126
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 08:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5EF3BE16E;
+	Tue,  2 Jun 2026 08:00:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780387220; cv=none; b=AkKhLcqdrIgBjlZ9NDoNNhNikbo4e3/WJTQpraH+d8jbjJsOHgYaBU2meaEvK4Tsrk8VBom6yIQR/vNICzhRYAj2FHIwW50825HpvdEMH82P+0bTxp/vVDD4kG78Jjb1Pary6+KKY9eOGY1Fi3aUSBDRtXDQTK7Ezzn/0L82j0Q=
+	t=1780387256; cv=none; b=pAoWUz0yOg7aCS7RldabZ1xPbbTqtOAPwIdV6GkJKI1jwFQhCXjYydlM5mk9U5tHy8qJFRj0HPqHtfnrqJy7llK3DyX0hPMw+2keb/0qT0Z23H9XIFXAOggrtuUUCCF2aN683DUzhGZ+VJPU2JnH5bqrf01oyR4HLBRLNYOkvlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780387220; c=relaxed/simple;
-	bh=37KTjZRL4G5Ngm5H44pJADKwMDqne/yoFzMJDKE33lg=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OP7bX2kP9uLphp/QynRddTkLVcJ59fLzGyeDJA4Dm5b3doMaYIPozCJnckMWQiT0e3sp91bk+mQbv0x+lYwl2+Lr75HEB1bm9kh8yWX3SvZBbio+7nYI6d44mHF21bTYWlO26GEqw5LnRQYwrT3WQb8p1mH3U8LdfcpZ4NYhTss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KzNDbDXU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D06651F008A7
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 08:00:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780387218;
-	bh=YcHbUW0/z6MxMlX2QsScaV0gwWaW5ODpoWMz4NoUgZw=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=KzNDbDXUP0/GMeHK0OA58vp1P+iuRNQD3rXvWS3Jv2YLR3nFB6b/Fsx3qmeJ9uDtY
-	 ST49GW2bUSnc6WwFndPZPApLCXbsnR06mrP4zB8k9T249WuHHDIXZRQiHvHqBOkV2c
-	 5jaQVnUAyYkqjMmE2dY9YINfcGHjlYu8PtkJHoYBAaSvW+1FTUn0ScSt2Ato0gHTc6
-	 rm7b5UIX8yQAUqd24jQ8X7TVgQKKjYa1zo+yjfKih3vuOduO5hmqKKLibfOyOFsTX2
-	 hQOWS5oS67SUnmx0GLc6u8uoqOBQ4p2/bY9LxIpEsAvtSXRpyUcjmKkNX1FGrOd1CQ
-	 qceuqgMB41GDA==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-39669bcaadfso24607571fa.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 01:00:18 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+/HKpTb4J2FtgnZYvevUq1htG5EhXUP6nQtRKw7j0cOrIMKY/z/NArQlufUyRLgq/hgWAU/U9PGMz2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHmFM5ewVVZ2Of6MvZIcY9pw4r9XiOhhjh7PQrJGmIO238SWT6
-	UdLTq0gaRGrSP8/leANU94WSTRnIry9iK7V5deSar5DdobSQ9WkNLTYrKnZ3+6zS2vHRC+So8Va
-	hGzcAz7b+b8fd2E7OolgHjFLZqp7DqckBLoLboVtzWQ==
-X-Received: by 2002:a2e:8614:0:b0:396:9630:5ed with SMTP id
- 38308e7fff4ca-3969a81a943mr7988131fa.15.1780387217586; Tue, 02 Jun 2026
- 01:00:17 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 2 Jun 2026 03:00:15 -0500
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 2 Jun 2026 03:00:15 -0500
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260601-sm8350-wifi-v1-7-242917d88031@oss.qualcomm.com>
+	s=arc-20240116; t=1780387256; c=relaxed/simple;
+	bh=NkfBW5FHnHW4bfvwamUKH16Nw5pxunHkiLN/hP36ZmI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=obMyZVCnb7h4StQn6qvh75UJqUe6fCBT0zlNyNIl1TpJXUMN6hQD7/oUzcN5R4/D0FkMbzE/h8sljuUjyeS0VcVIvFV3avbexUB3goMJWGx5Y0bl8PQNw6I1wcM29EvufIQrCE85ZT19+uQWMDRtFFf3E/4i4TLZ8a8LH8mWSsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B34341F00893;
+	Tue,  2 Jun 2026 08:00:50 +0000 (UTC)
+Message-ID: <86e80877-b860-4b93-a5ae-a416840eb393@tuxon.dev>
+Date: Tue, 2 Jun 2026 11:00:49 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260601-sm8350-wifi-v1-0-242917d88031@oss.qualcomm.com> <20260601-sm8350-wifi-v1-7-242917d88031@oss.qualcomm.com>
-Date: Tue, 2 Jun 2026 03:00:15 -0500
-X-Gmail-Original-Message-ID: <CAMRc=MfmosOiaYONd1Cs_G8M4bgL6k844gmANUD-tg_H+VcEqA@mail.gmail.com>
-X-Gm-Features: AVHnY4LpWcxff9jncmRnjmUuLE6aaoj7VaQIrr97syxQJ21dl10x_BOM0i6sA48
-Message-ID: <CAMRc=MfmosOiaYONd1Cs_G8M4bgL6k844gmANUD-tg_H+VcEqA@mail.gmail.com>
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8350-hdk: describe WiFi/BT chip
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	ath11k@lists.infradead.org, devicetree@vger.kernel.org, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-bluetooth@vger.kernel.org, 
-	Manivannan Sadhasivam <mani@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Qiang Yu <qiang.yu@oss.qualcomm.com>, 
-	Jeff Johnson <jjohnson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-0.66 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] PCI: rzg3s-host: Add support for RZ/V2H(P) SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260520164823.436992-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20260520164823.436992-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Language: en-US
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20260520164823.436992-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-305486-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bgdev.pl,kernel.org,google.com,oss.qualcomm.com,gmail.com,holtmann.org,quicinc.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email,mail.gmail.com:mid];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-305488-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[tuxon.dev];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,bp.renesas.com,google.com,pengutronix.de,glider.be];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 363B162A1C8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,tuxon.dev:mid]
+X-Rspamd-Queue-Id: 8741F62A2E5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 1 Jun 2026 11:46:55 +0200, Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> said:
-> The SM8350 HDK has onboard WiFi/BT chip, WCN6851. It is an earlier
-> version of well-known WCN6855 WiFI/BT SoC. Describe the PMU, BT and WiFI
-> parts of the device.
->
-> The firmware isn't (yet) available as a part of linux-firmware, so it
-> was verified with the firmware files from the vendor-supplied package
-> (wcn prefix was applied to Bluetooth firmware files to make them follow
-> upstream driver changes, vendor provided hpbtfw10.tlv and hpnv10.b06).
->
-> Bluetooth: hci0: QCA Product ID   :0x00000013
-> Bluetooth: hci0: QCA SOC Version  :0x400c0110
-> Bluetooth: hci0: QCA ROM Version  :0x00000100
-> Bluetooth: hci0: QCA Patch Version:0x00001017
-> Bluetooth: hci0: QCA controller version 0x01100100
-> Bluetooth: hci0: QCA Downloading qca/wcnhpbtfw10.tlv
-> Bluetooth: hci0: QCA Downloading qca/wcnhpnv10.b06
-> Bluetooth: hci0: QCA setup on UART is completed
-> Bluetooth: hci0: HFP non-HCI data transport is supported
->
-> ath11k_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x605fffff 64bit]: assigned
-> ath11k_pci 0000:01:00.0: MSI vectors: 32
-> ath11k_pci 0000:01:00.0: wcn6855 hw1.1
-> mhi mhi0: Requested to power ON
-> mhi mhi0: Power on setup success
-> mhi mhi0: Wait for device to enter SBL or Mission mode
-> ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb board_id 0x6 soc_id 0x400c0110
-> ath11k_pci 0000:01:00.0: fw_version 0x110c80c8 fw_build_timestamp 2021-05-25 21:43 fw_build_id WLAN.HSP.1.1.c3-00200-QCAHSPSWPL_V1_V2_SILICONZ-1
-> ath11k_pci 0000:01:00.0 wlp1s0: renamed from wlan0
->
-> For the reference, the driver looks for the board data for
-> bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=0,qmi-board-id=6,variant=QC_8350_HDK
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
+Hi, Prabhakar,
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+On 5/20/26 19:48, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Add support for the RZ/V2H(P) SoC PCIe controllers to the rzg3s-host
+> driver.
+> 
+> The RZ/V2H(P) SoC features two independent PCIe controllers that share
+> four physical lanes. The hardware supports two configuration modes:
+> single x4 mode where the first controller uses all four lanes, or dual
+> x2 mode where both controllers use two lanes each.
+> 
+> Introduce a setup_lanes() function pointer to configure the PCIe lanes
+> based on the hardware instance. Implement rzv2h_pcie_setup_lanes() to
+> detect the configuration at boot time and program the lane mode via the
+> system controller.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3:
+> - Parsed controller-id from the "renesas,sysc" property instead of
+>    using linux,pci-domain.
+> 
+> v1->v2:
+> - Updated commit message.
+> - Added locks to protect shared lane configuration state and
+>    prevent concurrent access issues during probe.
+> - Added cleanup action to release lanes on driver removal.
+> - Reconfigured RZG3S_SYSC_FUNC_ID_LINK_MASTER in resume path.
+> - Renamed num_channels to num_pcie_controllers for clarity.
+> ---
+>   drivers/pci/controller/pcie-rzg3s-host.c | 180 +++++++++++++++++++++++
+>   1 file changed, 180 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/controller/pcie-rzg3s-host.c
+> index edb49af7429a..15879b2c0bd2 100644
+
+[ ...]
+
+> +static int rzv2h_pcie_setup_lanes(struct rzg3s_pcie_host *host)
+> +{
+> +	struct device_node *np = host->dev->of_node;
+> +	u32 num_lanes;
+> +	int ret;
+> +
+> +	ret = of_property_read_u32(np, "num-lanes", &num_lanes);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * RZ/V2H(P) supports up to 4 lanes, but only in single x4 mode
+> +	 * for the first controller. Dual x2 mode is supported with 2
+> +	 * lanes for both controllers.
+> +	 */
+> +	if (num_lanes != 4 && num_lanes != 2)
+> +		return -EINVAL;
+> +
+> +	if (host->controller_id == RZG3S_PCIE_CONTROLLER_ID_1 && num_lanes > 2)
+> +		return -EINVAL;
+> +
+> +	guard(spinlock)(&rzv2h_lane_lock);
+> +	if (rzv2h_num_total_lanes + num_lanes > RZV2H_PCIE_MAX_LANES)
+> +		return -EINVAL;
+> +
+> +	ret = rzg3s_sysc_config_func(host->sysc, RZG3S_SYSC_FUNC_ID_LINK_MASTER,
+> +				     num_lanes == 2 ?
+> +				     RZG3S_SYSC_LINK_MODE_DUAL_X2 :
+> +				     RZG3S_SYSC_LINK_MODE_SINGLE_X4);
+> +	if (!ret) {
+
+I personally would prefer:
+
+	if (ret)
+		return ret;
+
+
+
+> +		rzv2h_num_total_lanes += num_lanes;
+> +		host->num_lanes = num_lanes;
+> +	}
+> +
+> +	return ret;
+
+And return 0 here. Up to you.
+
+w/ or w/o that addressed:
+
+Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+
+Tested it on RZ/G3S:
+
+Tested-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+
+Thank you,
+Claudiu
 
