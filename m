@@ -1,56 +1,113 @@
-Return-Path: <devicetree+bounces-305526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305528-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +HGhOsmUHmrElAkAu9opvQ
-	(envelope-from <devicetree+bounces-305526-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:31:05 +0200
+	id uEPMFG2UHmrElAkAu9opvQ
+	(envelope-from <devicetree+bounces-305528-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:29:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 914C762A8E9
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:31:05 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3347062A8B2
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:29:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B207C3019115
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 08:25:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5D2BD30298DB
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 08:27:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F0023C199A;
-	Tue,  2 Jun 2026 08:25:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A93E03C4576;
+	Tue,  2 Jun 2026 08:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DpEelpDs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="qAoBadVH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A9903B8D78;
-	Tue,  2 Jun 2026 08:25:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273173C4542
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 08:26:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780388748; cv=none; b=j2urwqHPGGrz2kIqFw56czXQA7xzrY9kZZIS8Uh86OYbteT6uK13uFMTAMR2bNBddtAuHbuT8bmqo0vYDtI/kO4pLQ6Ddq0iQJFSLJUFSd/NOxDWsvjS67i/NUh5zGy8G7MagzZAdZEJD2CzQYE8f+vK0wILOjy726i0L+s7gkg=
+	t=1780388810; cv=none; b=DMaxusoP3qZU12JQmQwPIcZU4lSV0Q/THI6XqeEVZtVi2UHmQcqOqGFsxRIeUhX2eNminkL73yBumT2dgkpkNUlRPlrUl/5PvD3Rn8Y1NrlGqfr6x5XGM0sDXvZqXb1nVTqHsWw+IR/ash1qq0Qrh96GMU019tnW2wKx/XPmwP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780388748; c=relaxed/simple;
-	bh=vfgwnBG+lxpWKDMp5Hl71qaLhmM4qDpidcG1oLR1LMU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lycJ47zFmfS4hlABE+zg1N561XQ36ngnF2eme5T32FCyGsrRBaK+HeMkg20Ro/HbuQmjQ/sf3QquzpH5PAYwR/728iDUHBT5Oa1K05iDotJsNqz4AiCsOb8B37FGGTYJmLt/EGsLHGYO4mpZtOsKTTGnu+fRerp3jm9HOc+JFSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DpEelpDs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1A223C2BCF7;
-	Tue,  2 Jun 2026 08:25:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1780388748;
-	bh=vfgwnBG+lxpWKDMp5Hl71qaLhmM4qDpidcG1oLR1LMU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=DpEelpDs3FgGxRvdtjX+qJZSRtaTRbUv6P6hp2QGKaloPtTAHFSXSXNcuHC6fN9Mf
-	 RHmFTPUS21xwfkvXb7QRx21uhyC5ump2WL9flE95DPiefjC+3AkutUees+d7TaTjbS
-	 EdZNIMzo/UBnPQklJYnFeO9W66GLgsE67DuKy6cwY+F5jzfxORKxfwkxDOsaCz9gWQ
-	 oSnkLLKAAiBGIMC2lgVzzN5/oLsZab5FMKwriuw54NxVvuw1sneD6erigw1/myvaZM
-	 uIe7aMZRUqiHkpuu0chSmQBBum0kg77QNkfwGOFvFNkSx6FKILjMfIl/4Pj/haMfFp
-	 AMKD3drTqAjnA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 12DADCD6E57;
-	Tue,  2 Jun 2026 08:25:48 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Tue, 02 Jun 2026 10:25:38 +0200
-Subject: [PATCH v6 2/2] phy: add basic support for NXPs TJA1145 CAN
- transceiver
+	s=arc-20240116; t=1780388810; c=relaxed/simple;
+	bh=GFo7eyr+k93doRn4+DluxLJbNFu/w/tMJvyS/O89sYk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VNC/LwvO2h/nR1SGZ4FHBgy+X/NkZ2mTMIzJFz80oR09YP3CdTT4mehWv00HYrHdkMvuwMAENB9kF2uXwWPaQPzat+LKeEEjpg9Op58FDGf6LFKR9Xz0VKFzrcoJcX2TzkIhva7Av5E55cIrIvf2z3xkw9RzMLD/wJtyS3kjMqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qAoBadVH; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-8423f420455so888600b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 01:26:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780388807; x=1780993607; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gOUthwrtbXM+y6Tz2Zof/YPxQsVutrNjHKZLo6oqW54=;
+        b=qAoBadVHqc0l4nMADc8wLR4cqj64OHpLeQCC4/KmlFxenETMwXL6qPVFNiEh6eRUEt
+         7Wo7MjwBdYLTOSlXUnTB0DF4/hUdzPL25pFqWTPleiRwOM72o1D7k3OgN/aTqbl/Hc6w
+         lZJjUhHzoUglGc66oHgaeS2FlRNFDoOryZraZ9V8zbjiC1IcQj1awBiVSxaxV8KVRg7s
+         4K8JJd+KePMcSGKvQmbSpUpG8XmOfg5GOw+reriPffqjeC59bgpWVO+XcsJV7VcHbncV
+         ZtYwPjKCY9hPLVBBQXlY4OceJuE+FxDKbBygX6mb7i55fFiEVZNLqdzDSNrN4J0JynSn
+         iYZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780388807; x=1780993607;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=gOUthwrtbXM+y6Tz2Zof/YPxQsVutrNjHKZLo6oqW54=;
+        b=pv+GtRuM9B/+8Biyr+c0Miz6bMAQtRe/A1Bq6zxQtPWnche2ArjFYkNseMKBDnYgE5
+         Ib96jukjT2a8QJCOneDJJYZYOdeJXn+DIWqx4VjxXTc2yYRDQEd+rfkqBdXmyODwsyJI
+         8RAZ8cfyt2V/XHnMz9K2N8cewdMMiGmQObxF9B5MQFhmRfmU13A2rTWjvGC9kmig9wuZ
+         sP+9TB7MtF442X8+yJmucR2lHh8vM5zkt/7ROzyhNVAezjdIA5OM9Me5e2myfbrtjK0J
+         z9wv2uXElyN0Gk0kqReJRPiFbYeU7iQMUo77EOqr9exdBBXNiQKggydDn9v+0ilslSLG
+         12Tw==
+X-Forwarded-Encrypted: i=1; AFNElJ+hTZexjUzmQjKhMlADlLvMShwz/9tjzZ2czTd4xKh2SFgRmuPG2gcBcZayPpPtRVdx8I85KANey69+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiJQTSYebJ/gAszi5QMZbOzM87zTsF1FOnFH+mQF4nh92ZOwPC
+	KSSnGLkTAz1q0fZc/Uw/piXx82i1LVFG1KBss5wbt56NTv+CCOcUnijf
+X-Gm-Gg: Acq92OH0Z9o6TLy6L9H58R/R24crPn30LthSgszZx4hhTrOL9kwW6qBry+mIN/EI6h1
+	1prPLZ73MSe50BKG8ikcz6rLfjfS6fB6bbb5uCaLj7kiw9PbtMTpSBuWSX8cvDsjYLdXlOKX88V
+	P8zM7EtzYnNt85POFL7rDji5viiPQggNgIE5qgXEqDC+E96kfH+f4ZipAKAOIxuQH3zxzYK5EHI
+	twVpj45e9zZyr5Jm3YtLs0LaC3ETlsE10+FXporfuU3/6c22P/2aLi1dF4jtXCesGiOlQKn/DSs
+	Rq0xAw+KbDYXXRViV61+531Bkr1kZRCtVuCwMqEgvwwu62tO4n8uJGTBGz/Xuz/vo2a/KLe/tbw
+	VwF75+hsyfSVfycdEq/cD84dZygpuKuPYuNwLNAiWJ9h7Kg9fyQ2U1EEHWrKpHNkd2x6fLotpO/
+	/3xfJCeU4RC+3Jsvx2OhjsMfloC59+isId+w==
+X-Received: by 2002:a05:6a00:9457:b0:842:2f28:4e53 with SMTP id d2e1a72fcca58-8422f28a4ffmr11145495b3a.47.1780388807111;
+        Tue, 02 Jun 2026 01:26:47 -0700 (PDT)
+Received: from localhost ([2001:19f0:8001:1b2d:5400:5ff:fefa:a95d])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-842498819e3sm7025142b3a.34.2026.06.02.01.26.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jun 2026 01:26:46 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: tglx@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	pjw@kernel.org,
+	samuel.holland@sifive.com,
+	unicorn_wang@outlook.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	liujingqi@lanxincomputing.com,
+	alexander.sverdlin@gmail.com,
+	rabenda.cn@gmail.com,
+	dlan@kernel.org,
+	chao.wei@sophgo.com,
+	anup@brainfault.org,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Joshua Milas <josh.milas@gmail.com>
+Cc: Inochi Amaoto <inochiama@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev,
+	hanguidong02@gmail.com,
+	michael.opdenacker@rootcommit.com
+Subject: Re: (subset) [PATCH v5 RESEND 0/5] Add initial Milk-V Duo S board support
+Date: Tue,  2 Jun 2026 16:26:23 +0800
+Message-ID: <178038877400.2114604.9271390665852626517.b4-ty@b4>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260530173347.33533-1-josh.milas@gmail.com>
+References: <20260530173347.33533-1-josh.milas@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,305 +115,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260602-tja1145-support-v6-2-0e0ffc8ee63d@liebherr.com>
-References: <20260602-tja1145-support-v6-0-0e0ffc8ee63d@liebherr.com>
-In-Reply-To: <20260602-tja1145-support-v6-0-0e0ffc8ee63d@liebherr.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- lee.lockhey@gmail.com, Marc Kleine-Budde <mkl@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780388746; l=7419;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=cTwa7LJ4WYrfE9uhGBTMXWFXb7E3Zcyu/daqVib881Q=;
- b=Yz82mMFTB5TxVPWH+Mg/B3dArRXDIOaccHem8sjAnpdNTOHXQUXUQz2Cvfo8gAJbbXMr1bK6r
- XKtqS9OfXbvBMHF4Ow0H9N1xURiDym8SLviI05fqZ2Wj9Tv35cjJ+Ok
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305526-lists,devicetree=lfdr.de,dimitri.fedrau.liebherr.com];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,sifive.com,outlook.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lanxincomputing.com,gmail.com,sophgo.com,brainfault.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-305528-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,liebherr.com,gmail.com,pengutronix.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[dimitri.fedrau@liebherr.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,rootcommit.com];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,pengutronix.de:email]
-X-Rspamd-Queue-Id: 914C762A8E9
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 3347062A8B2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+On Sat, 30 May 2026 13:33:42 -0400, Joshua Milas wrote:
+> This adds an initial device tree for the Milk-V Duo S board
+> with support for reading from the SD card and network over
+> Ethernet. This is continued work from Michael Opdenacker's
+> v6 series [1] on the ARM64 and RISCV side. It has been tested
+> with ARM64 and RISCV64 to boot from an SD card, have networking,
+> and read I2C slave devices over i2c4.
+> 
+> [...]
 
-Add basic driver support for NXPs TJA1145 CAN transceiver which brings the
-PHY up/down by switching to normal/standby mode using SPI commands.
+Applied to for-next, thanks!
 
-Tested-by: <lee.lockhey@gmail.com>
-Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/phy/Kconfig           |  10 +++
- drivers/phy/Makefile          |   1 +
- drivers/phy/phy-nxp-tja1145.c | 184 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 195 insertions(+)
+[1/5] dt-bindings: soc: sophgo: add Milk-V Duo S board compatibles
+      https://github.com/sophgo/linux/commit/efe66eed43ef507a5b3784d988842d2e621806e1
+[3/5] dt-bindings: soc: sophgo: add sg2000 plic and clint documentation
+      https://github.com/sophgo/linux/commit/972e8823d93866bc39cf6270bd5ec26d055b9d6f
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index ab96ee5858c1a9dee2aea3a896c09b397cc30c7f..a3f9a05e222002e23d5080aa22b56f2a822a4b97 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -124,6 +124,16 @@ config PHY_NXP_PTN3222
- 	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
- 	  Speed and High Speed.
- 
-+config PHY_NXP_TJA1145
-+	tristate "NXP TJA1145 CAN transceiver PHY"
-+	select GENERIC_PHY
-+	select REGMAP_SPI
-+	depends on SPI
-+	help
-+	  This option enables support for NXPs TJA1145 CAN transceiver as a PHY.
-+	  This driver provides function for putting the transceiver in various
-+	  functional modes using SPI commands.
-+
- config PHY_PISTACHIO_USB
- 	tristate "IMG Pistachio USB2.0 PHY driver"
- 	depends on MIPS || COMPILE_TEST
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index f31767745123773757e84b0b5fb85ec286c1d977..65ea9f0bc7f151378caa6e161f8b8a5c6884d7e5 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_PHY_GOOGLE_USB)		+= phy-google-usb.o
- obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
- obj-$(CONFIG_PHY_LPC18XX_USB_OTG)	+= phy-lpc18xx-usb-otg.o
- obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
-+obj-$(CONFIG_PHY_NXP_TJA1145)		+= phy-nxp-tja1145.o
- obj-$(CONFIG_PHY_PISTACHIO_USB)		+= phy-pistachio-usb.o
- obj-$(CONFIG_PHY_SNPS_EUSB2)		+= phy-snps-eusb2.o
- obj-$(CONFIG_PHY_XGENE)			+= phy-xgene.o
-diff --git a/drivers/phy/phy-nxp-tja1145.c b/drivers/phy/phy-nxp-tja1145.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..1e8bd169743abfaeee6948d200e6ac320cd616ff
---- /dev/null
-+++ b/drivers/phy/phy-nxp-tja1145.c
-@@ -0,0 +1,184 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025 Liebherr-Electronics and Drives GmbH
-+ */
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+
-+#include <linux/phy/phy.h>
-+#include <linux/spi/spi.h>
-+
-+#define TJA1145_MODE_CTRL		0x01
-+#define TJA1145_MODE_CTRL_MC		GENMASK(2, 0)
-+#define TJA1145_MODE_CTRL_STBY		BIT(2)
-+#define TJA1145_MODE_CTRL_NORMAL	TJA1145_MODE_CTRL_MC
-+
-+#define TJA1145_CAN_CTRL		0x20
-+#define TJA1145_CAN_CTRL_CMC		GENMASK(1, 0)
-+#define TJA1145_CAN_CTRL_ACTIVE		BIT(1)
-+
-+#define TJA1145_IDENT			0x7e
-+#define TJA1145_IDENT_TJA1145T		0x70
-+
-+#define TJA1145_SPI_READ_BIT		BIT(0)
-+#define TJA1145T_MAX_BITRATE		1000000
-+
-+static int tja1145_phy_power_on(struct phy *phy)
-+{
-+	struct regmap *map = phy_get_drvdata(phy);
-+	int ret;
-+
-+	/*
-+	 * Switch operating mode to normal which is the active operating mode.
-+	 * In this mode, the device is fully operational.
-+	 */
-+	ret = regmap_update_bits(map, TJA1145_MODE_CTRL, TJA1145_MODE_CTRL_MC,
-+				 TJA1145_MODE_CTRL_NORMAL);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Switch to CAN operating mode active where the PHY can transmit and
-+	 * receive data.
-+	 */
-+	return regmap_update_bits(map, TJA1145_CAN_CTRL, TJA1145_CAN_CTRL_CMC,
-+				  TJA1145_CAN_CTRL_ACTIVE);
-+}
-+
-+static int tja1145_phy_power_off(struct phy *phy)
-+{
-+	struct regmap *map = phy_get_drvdata(phy);
-+
-+	/*
-+	 * Switch to operating mode standby, the PHY is unable to transmit or
-+	 * receive data in standby mode.
-+	 */
-+	return regmap_update_bits(map, TJA1145_MODE_CTRL, TJA1145_MODE_CTRL_MC,
-+				  TJA1145_MODE_CTRL_STBY);
-+}
-+
-+static const struct phy_ops tja1145_phy_ops = {
-+	.power_on = tja1145_phy_power_on,
-+	.power_off = tja1145_phy_power_off,
-+	.owner = THIS_MODULE,
-+};
-+
-+static const struct regmap_range tja1145_wr_holes_ranges[] = {
-+	regmap_reg_range(0x00, 0x00),
-+	regmap_reg_range(0x02, 0x03),
-+	regmap_reg_range(0x05, 0x05),
-+	regmap_reg_range(0x0b, 0x1f),
-+	regmap_reg_range(0x21, 0x22),
-+	regmap_reg_range(0x24, 0x25),
-+	regmap_reg_range(0x30, 0x4b),
-+	regmap_reg_range(0x4d, 0x60),
-+	regmap_reg_range(0x62, 0x62),
-+	regmap_reg_range(0x65, 0x67),
-+	regmap_reg_range(0x70, 0xff),
-+};
-+
-+static const struct regmap_access_table tja1145_wr_table = {
-+	.no_ranges = tja1145_wr_holes_ranges,
-+	.n_no_ranges = ARRAY_SIZE(tja1145_wr_holes_ranges),
-+};
-+
-+static const struct regmap_range tja1145_rd_holes_ranges[] = {
-+	regmap_reg_range(0x00, 0x00),
-+	regmap_reg_range(0x02, 0x02),
-+	regmap_reg_range(0x05, 0x05),
-+	regmap_reg_range(0x0b, 0x1f),
-+	regmap_reg_range(0x21, 0x21),
-+	regmap_reg_range(0x24, 0x25),
-+	regmap_reg_range(0x30, 0x4a),
-+	regmap_reg_range(0x4d, 0x5f),
-+	regmap_reg_range(0x62, 0x62),
-+	regmap_reg_range(0x65, 0x67),
-+	regmap_reg_range(0x70, 0x7d),
-+	regmap_reg_range(0x7f, 0xff),
-+};
-+
-+static const struct regmap_access_table tja1145_rd_table = {
-+	.no_ranges = tja1145_rd_holes_ranges,
-+	.n_no_ranges = ARRAY_SIZE(tja1145_rd_holes_ranges),
-+};
-+
-+static const struct regmap_config tja1145_regmap_config = {
-+	.reg_bits = 8,
-+	.reg_shift = -1,
-+	.val_bits = 8,
-+	.wr_table = &tja1145_wr_table,
-+	.rd_table = &tja1145_rd_table,
-+	.read_flag_mask = TJA1145_SPI_READ_BIT,
-+	.max_register = TJA1145_IDENT,
-+};
-+
-+static int tja1145_check_ident(struct device *dev, struct regmap *map)
-+{
-+	unsigned int val;
-+	int ret;
-+
-+	ret = regmap_read(map, TJA1145_IDENT, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val != TJA1145_IDENT_TJA1145T) {
-+		dev_err(dev, "Expected device id: 0x%02x, got: 0x%02x\n",
-+			TJA1145_IDENT_TJA1145T, val);
-+		return -ENODEV;
-+	}
-+
-+	return 0;
-+}
-+
-+static int tja1145_probe(struct spi_device *spi)
-+{
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &spi->dev;
-+	struct regmap *map;
-+	struct phy *phy;
-+	int ret;
-+
-+	map = devm_regmap_init_spi(spi, &tja1145_regmap_config);
-+	if (IS_ERR(map))
-+		return dev_err_probe(dev, PTR_ERR(map), "failed to init regmap\n");
-+
-+	ret = tja1145_check_ident(dev, map);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to identify device\n");
-+
-+	phy = devm_phy_create(dev, dev->of_node, &tja1145_phy_ops);
-+	if (IS_ERR(phy))
-+		return dev_err_probe(dev, PTR_ERR(phy), "failed to create PHY\n");
-+
-+	phy->attrs.max_link_rate = TJA1145T_MAX_BITRATE;
-+	phy_set_drvdata(phy, map);
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct spi_device_id tja1145_spi_id[] = {
-+	{ "tja1145" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, tja1145_spi_id);
-+
-+static const struct of_device_id tja1145_of_match[] = {
-+	{ .compatible = "nxp,tja1145" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, tja1145_of_match);
-+
-+static struct spi_driver tja1145_driver = {
-+	.driver = {
-+		.name = "tja1145",
-+		.of_match_table = tja1145_of_match,
-+	},
-+	.probe = tja1145_probe,
-+	.id_table = tja1145_spi_id,
-+};
-+module_spi_driver(tja1145_driver);
-+
-+MODULE_DESCRIPTION("NXP TJA1145 CAN transceiver PHY driver");
-+MODULE_AUTHOR("Dimitri Fedrau <dimitri.fedrau@liebherr.com>");
-+MODULE_LICENSE("GPL");
-
--- 
-2.39.5
-
+Thanks,
+Inochi
 
 
