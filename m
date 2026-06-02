@@ -1,198 +1,209 @@
-Return-Path: <devicetree+bounces-305557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305559-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6KFiDnKrHmq3IwAAu9opvQ
-	(envelope-from <devicetree+bounces-305557-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:07:46 +0200
+	id +PMhKWStHmq3IwAAu9opvQ
+	(envelope-from <devicetree+bounces-305559-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:16:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9116E62C2C2
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:07:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E3862C5EE
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:16:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2F6C73028EF4
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 10:02:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BB5343073764
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 10:06:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C79022BD5B4;
-	Tue,  2 Jun 2026 10:02:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D2C53D6485;
+	Tue,  2 Jun 2026 10:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MfOlSLaA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZR7RQFCW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013010.outbound.protection.outlook.com [40.107.201.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867EC3438BA
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 10:02:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22DBE3D5C1D;
+	Tue,  2 Jun 2026 10:06:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.10
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780394542; cv=pass; b=OsxeGa/vI1KI8jt0eeTIwn/9LyJY+mpk9gwngmXHz5LEBcJ0HEyl/8Aq/IWuJ9f/rlRkU+zsHMK7sN4MwqCHKlVWEgcQrYBeSyYIiROGmvn+JwYuAD7LzUNDxdypj/d/N3U9crB/WCRL6DBRUncmCMAj9q3qr96ZdnYX3x4NvnE=
+	t=1780394778; cv=fail; b=V9+R4C3vGdsAwhgNQMuOkjr0n/nTdoc0+8zF4Pj9UrsuUtoUwbiCOZLwchX983l0owuo0FlW8PHbNZerEUeKtRnlAJbgLUU2VtcvLILcdYzYM3IyRqA4uNeQ9BopG8uuR6P0nhZp+x31eZlIZG4wfvCFhYhco8idx4KCij7fKdc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780394542; c=relaxed/simple;
-	bh=0gvLGFThv2lHT+nyPjifExNtH/ts5i70ONfWfPnWqh4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BPQY5qpcxYlqAucfBjOzDZaT1sbN/gAAXJIAXSm/XKuUBWLPQX56v7GwQW4ug6Iv1B5z4enrePJybwq55DKXNLs8r7V9Oe5moqlSwpBfEV2Gf1EXx4S3GArMatXWvAWAv3ftwWGuBZwiRChZbhK6ECfAvAuxY691pp7y9gH5Kd8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MfOlSLaA; arc=pass smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2bf20f6be6bso23677795ad.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 03:02:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780394541; cv=none;
-        d=google.com; s=arc-20240605;
-        b=O1romf9pLUiDejVMUxV0Z+Ja+THwdNHFChCnZ30stHn/vVdZWDrG52TnzL/8umz6iv
-         JNgQGNRinohdL1KJPc93YemxGn1zboFjzbU0tBT8XoQ/t7898+U+q0oAWeoWnqS3wZYW
-         KvwARJUWNQTblvLiMpbSuLzFq/ZrnkXIMFXrmT0hTdJLub36pSA7X8RKzLC45YgSllY9
-         YsxlFRxwFlagNNJR9Dx08IFdfeMQ/Sert0AGQfiufFM1eXEtA3uJVWLTXWszTS4weE5R
-         foIExkW1vQPFO+tF//+woM5w/LcuMcVbWP9GJ9ZsKyPm33sUq14ZQE2s3GDghmXOM5aO
-         nD5A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=0gvLGFThv2lHT+nyPjifExNtH/ts5i70ONfWfPnWqh4=;
-        fh=+Kn94FVzl6rE7mDhn4pFvEHlRshbQ57dQ5o19v04Oyg=;
-        b=ADu4YZQqbZjNXb0L8zdk9LeBmB4+mhKyddKkTLipIM6Lu22dLRBplueusDB9bNVUap
-         /y5Ep2/fMgmBPoeM2A5BbAlHFrDjvbEqKz/ag20HSI8Gq6uiJvYsB7M+7UC5BHG1xc2m
-         FeyRDXDJof7jvV+zWtOkLZCZKfOc4OkrQT7J2nXNLix/sMq5mOTBmiC3fmN+7SjYLcHI
-         dNLChVguOBUEIw5O06pV4cFsxUMxVorDvc7QgSpYPQLCyOYuIE3SklfdQ4r8B6Ffmqwm
-         t6gxnGUeASk8kl285zWtD0GylgD5/ybuWygtyYkgzE863sRd6399boyXwid7B7rAMRkn
-         YuWw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780394541; x=1780999341; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0gvLGFThv2lHT+nyPjifExNtH/ts5i70ONfWfPnWqh4=;
-        b=MfOlSLaAx1rH7WZs2AdXNTNItSL5qWS16AM0RybIUmHkafOqFIRJMA8gKHR0p0bi6I
-         bs/cTiO6Yb0gHX7MH9aICgG0GB6Htz0CUJK1+4vqF17rPYCqYAWq0SVEhsCSivYMrrRb
-         5jttTHseUdiptc77em74SzHR413PocIzUcx8pJEt7KnCl8p2SK7b9opL+d0sa6TCMOol
-         YJARD9vwuIxq0m5yaFBeQdlnkh+T3/2TfCM4iCeSDCP4WUCqEo/EaCahHUDksx2tPTo+
-         JWt3uXmjLnDgF3JutyFzBR1yzn5IeJbpf+9o2F7I019poxjj6PUHBop+Y0HwsYYPoIL7
-         E8qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780394541; x=1780999341;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0gvLGFThv2lHT+nyPjifExNtH/ts5i70ONfWfPnWqh4=;
-        b=YRE+7eo1ko2k6B1oFO8J3eZXmuf2ak3ljmpIfEqKOs2gyojA5Nx185OKliFQXTk80f
-         JaqcqvjeUFR5izUAz0uUMFTtpux7X9q798RbHHupZk3pBc0vv5K28D7Nou6r78Pow4wy
-         +vr1qgxOvdo795xihoS8BBhj2/ZJeV0bCCH8cjjJ8F5EBBulXGr+ifvhbK816od4fmGj
-         b8c6N9vz26N62lVAysm7B4FeEqz+WvSShH/Q6kapi9q/qU7LOHEfLGdKbl/Y4DzMsCO9
-         RLLJ/ZAJ//nmcfeR191rFGKYdKUqmYnYJ6qFk245nNCSVk27ewfpPXFQDFQhQnoWMofh
-         vOcQ==
-X-Gm-Message-State: AOJu0YxZfN7tQTOg5I7OaN/SLIZEH6ILa8Uve/ad++1/aTF2NYCDTqwX
-	+4JPfwPf24hXjFeJsjGm6Wsjdq9i4pA3jTkQcFunGVb4/XDG81fQs4JXbFa3wB96oUZya3XYZPv
-	3UpnkGbJmMrbY3HEHlZbWkCl2MyvAfcOXO7Gb
-X-Gm-Gg: Acq92OH8AQYzQbJQbOrAPdbSR7tjb4GcvuAtxugPrp1jireKobZ48EDS8x1wgqRU1y/
-	SzihsIBSTZ5r2kAkyVT3FiBjvq2tl3pZVxBB+vmSexVT/5LvsQEY+M5yLvT+wBZX6Fcm9wdwG/r
-	qJds/bzqZCLiOL199sgSBakPMGuTUeon8nMtdsS/Eks6Ot2zX+TZtn8HZNTZRUsWDVHBRotahm2
-	7Z3Z1qZJoRgBTwXv75piXBn5VhzdLtnDNjnAUeKoY1BtWafObQJOXxtLce0cpQu+qLN/xxuz9uU
-	MLyj9xxdOIvUhA0VZi6pueVZv+L64kGfrZzGEjF2LKz+SY6p
-X-Received: by 2002:a17:903:1983:b0:2bf:23cf:3e4 with SMTP id
- d9443c01a7336-2bf367d9da0mr163447475ad.17.1780394540758; Tue, 02 Jun 2026
- 03:02:20 -0700 (PDT)
+	s=arc-20240116; t=1780394778; c=relaxed/simple;
+	bh=guG6Thmb3ueln2F19iZ4vxD/jQUk4cdiXPJjqC7mu/E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZQGGx8Va3stp/Bb/0y7Jewxf3Bp8DEeWWPOlr1bdATOxTyT987OwhgyrQNYJnqjTdFBZ32O6/zHPaW8Q4lugvRntEEVFLRpaqXYJtXfNre8pK+1SCYG080hgyLtM37EztLHvCtEt5/rOOMdmYfk2U2Yq1yqH06tgXCF/vJGSBSo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZR7RQFCW; arc=fail smtp.client-ip=40.107.201.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lkLbPQI0mZaQ5anVPFCVpm5bSb4vzPe3KMP1MPm2NSLqZRZJ9zwdmYlDkYIP89ET9JwhVfuUlBEgS60TVXFH+e3EPFtTIfCOF3S3DXWgraqqde+eBI3f3qTXDGZ/HkENwTQZrD1GixYIcJ6UTSV+y8ALVGtojkuDlq+VLjLPKUR44Whj8Mr4cFBgC4E0SGZloOhUHBlPHnfv62DvdT/MuIvyEe/m5lTVwtJpg6LtH5fHwr9WPz1YHZmlVuN2vrxrzK4nA86ZVlmHYvmKZavMohlZb4Ql1Ex+Xb0imk5b33+xQ7uFG7z84KVJRJadWU1Z++Ewe6s9vlZhliCF4kPdoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZM7mrnWjp4/A6xQN29z00/29u2LgvzRXtzV6/yR57LY=;
+ b=DwnpgPAeomulQ/w8FdJnAkkPvFAJJDF8/llUKkUeGleIuq/8yD+mUrdAshjpa3+mdRbEG6BqvMlwjm8QNFNWDwkn41J9NzF0+CYtc9PFTH8QR+TIDq18Sll054D12RqsQPc6iFotoYmzLVTTt+LS2w3CHvkic+DWc7Kd6R5r+GQ+41wVDIjmvYynBoqZJWK1lENJNpwz7sZ94920v9ewwZ66Phy7gqWRXUAdlfSpJdwHloW+8addAVE/yo51hTPCZKo8GO3v9+Ka2PgIHfPst2XIFDKecwLu9h5kg7Hb99pNd3KK6DbPXlQKHKnAL0Xc1NKqCJ+pYPG5Ijg9hUFJvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=google.com smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZM7mrnWjp4/A6xQN29z00/29u2LgvzRXtzV6/yR57LY=;
+ b=ZR7RQFCW763oYnEtnjhZe1beEoNOFDaES1jSFJTblb+M5xDw6cqDG8VdoRGHgUPhDPOEfTm09WbZ6rBsnr67Z9FDOcaStsQelTJ8gEaJS6zNUgkG85TGIzNWsT3RbHANRiOiid4wBf6za+K03Bc/sMM1HPpiblJmkfAz6ffup5E=
+Received: from SJ0PR03CA0046.namprd03.prod.outlook.com (2603:10b6:a03:33e::21)
+ by SN7PR10MB6497.namprd10.prod.outlook.com (2603:10b6:806:2a4::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.16; Tue, 2 Jun 2026
+ 10:06:13 +0000
+Received: from CO1PEPF00012E64.namprd05.prod.outlook.com
+ (2603:10b6:a03:33e:cafe::28) by SJ0PR03CA0046.outlook.office365.com
+ (2603:10b6:a03:33e::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.16 via Frontend Transport; Tue, 2
+ Jun 2026 10:06:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ CO1PEPF00012E64.mail.protection.outlook.com (10.167.249.73) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Tue, 2 Jun 2026 10:06:12 +0000
+Received: from DLEE206.ent.ti.com (157.170.170.90) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 2 Jun
+ 2026 05:06:06 -0500
+Received: from DLEE203.ent.ti.com (157.170.170.78) by DLEE206.ent.ti.com
+ (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Tue, 2 Jun
+ 2026 05:06:05 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE203.ent.ti.com
+ (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Tue, 2 Jun 2026 05:06:05 -0500
+Received: from lelvem-mr06.itg.ti.com ([10.250.165.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 652A5uYS3539205;
+	Tue, 2 Jun 2026 05:05:57 -0500
+From: Baojun Xu <baojun.xu@ti.com>
+To: <broonie@kernel.org>, <tiwai@suse.de>
+CC: <andriy.shevchenko@linux.intel.com>, <13916275206@139.com>,
+	<shenghao-ding@ti.com>, <baojun.xu@ti.com>, <linux-sound@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <lgirdwood@gmail.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<k-yi@ti.com>, <henry.lo@ti.com>, <robinchen@ti.com>, <will-wang@ti.com>,
+	<jim.shil@goertek.com>, <toastcheng@google.com>, <chinkaiting@google.com>,
+	<riyo@ti.com>, <a0393308@india.ti.com>
+Subject: [PATCH v2 1/2] ASoC: dt-bindings: ti,tas2781: Add TAS2573 support
+Date: Tue, 2 Jun 2026 18:05:31 +0800
+Message-ID: <20260602100532.6463-1-baojun.xu@ti.com>
+X-Mailer: git-send-email 2.43.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260522100318.73474-4-phucduc.bui@gmail.com> <20260522110302.349421F000E9@smtp.kernel.org>
-In-Reply-To: <20260522110302.349421F000E9@smtp.kernel.org>
-From: Bui Duc Phuc <phucduc.bui@gmail.com>
-Date: Tue, 2 Jun 2026 17:02:09 +0700
-X-Gm-Features: AVHnY4IKu4cfANumj7wmqQvDtssDhq3TpxXIjIHmGdj6XFJ_23uSlD1EG9gmtw8
-Message-ID: <CAABR9nEHn7Fz2RNz2ttp-3NmHX8pAMtVQPuP+z2Qi1v9FLT9+g@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ASoC: rockchip: rockchip_pdm: Reorder clock enable sequence
-To: sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 9116E62C2C2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF00012E64:EE_|SN7PR10MB6497:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5195ce67-9e6a-4b22-ef88-08dec08e9395
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700016|7416014|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	t1CV8zssF2y1B6oHwEsmZ7bkCHM6vD3UVS/hsg1oAGFAKrX3rTQYPdaWkF2a1rZa5ZKPY1WH7FlDSR4S7b7342t+1IiBZ/RquaW4c5rs4kNtTe/nq3mn/H6zeDrj5id/TKBSzO144m3f/1qYo4XQDw8bY3IxPJ7mZEuLf+1W6t57R69LGfRmy6IbZ4dnmmQDlWfyy6ElmaEtWeKCKZES64pSyWsmO3OcHinKY02ARdetKrS+hidJxqhXDMZMR8w2mJbIx6yBAfjPevqE7GcZ0Cc/Vjt8DePIJk1dnv1wA70QnMULEM96xg/ugG8wRyzksq8l2/6lv2nSA7IIR8RT17EUyn4Z1EqtJ3TIPquoXjEwrmMIJdZ3Ejufm07x0dubZzF98ITlVILVxYadKA0BG4EBiE2lx5s2ZQ6xDXLRQOE3pv79dzyjBr+CS9ijdIxVjO9D6cFE+RDq8Y+ZoSE8KKwnPx9b/dkc6FPAnmRwcp12a6TXKNEX4qbW29i86VhEoc3qevNJEMm9yH3cw54SEUY+Cc37jxR/3vA0SxFu4WLNtlReO/5NI6X9prsS/0CmE/g5S5Wev/ncyvvhXtXKZsJQhbTWrqn74lPZffx7Oc5Ej3/qiS5WZzmlNW/vrPb/uiC3gjmKGqAWTH6nupPjwBj6EpmfTvL7TDVp0jh04gE+DG86XPuzOrQEoE7fmtapEKHCfo9TH/HmqrtDenHU1MZDz+tKrKMmaKNBGDDGMy8=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(7416014)(18002099003)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	lMp3BTQserixhaEpyzIwsHbS6M6ILY9UON3nZniSSCI2YUafQAq/shi7wTumkKDtyAF+HvsomD+8YRJx/fkaiya/dhFBuOMsGSP3D881U1smqVSMgo2Ddr9t3vyYFRDu6sxmYkY2umFugajHF+xhfkU4vGdQoGcPWXFLnjOrTQD7pwxQ0ATmVXnihFx/qxYXweEnrSUcvbIYrrlnREQcj3LWb19QLro2bfNgBbb80ovOBs9HCL9CWiFpl7myCNTHLhaLD+/u5h+CSCViWRgkOKnrx2BTt1xl+kCCJdRJUSnfSfnaWEkc5CCBW3PmJEgwwn2PwReVMtLut0gALtKNUZ689AuYqixV6WCOmlJ7d6N2dTGfITf9G4UyVngNg1W7NkI1Lza42AnyZjrUm2/Q1oopqlGHd+GLXH3BEGycuxhs9bO6CWzw8+chDbUZFhBR
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2026 10:06:12.5829
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5195ce67-9e6a-4b22-ef88-08dec08e9395
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CO1PEPF00012E64.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR10MB6497
+X-Rspamd-Queue-Id: 17E3862C5EE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-305557-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305559-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,139.com,ti.com,vger.kernel.org,gmail.com,kernel.org,goertek.com,google.com,india.ti.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[baojun.xu@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ti.com:mid,ti.com:dkim,ti.com:email];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Action: no action
 
->
-> [Severity: High]
-> This is a pre-existing issue, but can manually disabling the clocks and PM
-> runtime before the devm teardown cause bus faults?
->
-> The driver registers the ASoC component using
-> devm_snd_soc_register_component() in rockchip_pdm_probe(), which defers
-> unregistration until after the remove() callback returns.
->
-> If the device is unbound via sysfs while an audio stream is active, ALSA
-> will attempt to tear down the stream during the deferred devres
-> unregistration. This triggers operations like
-> rockchip_pdm_trigger(SNDRV_PCM_TRIGGER_STOP), which writes to the
-> hardware registers.
->
-> Since the clocks and power domains were already forcibly disabled in
-> remove(), this could result in a bus fault and kernel panic.
->
-> Should the driver use devm_pm_runtime_enable() with a devres action for
-> clock disable, or unregister the component manually before turning off
-> resources?
->
+The TAS2573 belongs to the TAS257x device family, featuring an integrated
+DSP and IV sensing capability.
 
-Thank you for pointing this out.
+Signed-off-by: Baojun Xu <baojun.xu@ti.com>
+---
+v2:
+ - No update.
+---
+ Documentation/devicetree/bindings/sound/ti,tas2781.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-I agree that your concern makes sense, and the teardown ordering may
-indeed deserve further investigation.
-However, addressing it appears to require a relatively significant change
-to the driver's resource management and lifecycle handling. Since I do
-not have the hardware on hand, I am not able to validate either the reported
-scenario or a potential fix.
-Given that, I don't feel comfortable submitting a speculative patch that
-I cannot test properly. For now, I'll leave this issue to someone with the
-hardware or with more familiarity with the expected teardown sequence
-in this driver.
+diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+index b21466bb0730..aa5a317b5a36 100644
+--- a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
++++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+@@ -71,6 +71,9 @@ properties:
+       ti,tas2572: 6.6-W Digital Input smart amp with I/V sense and integrated
+       13-V Class-H Boost
+ 
++      ti,tas2573: Boosted Class-D Audio Amplifier with Integrated DSP and IV
++      Sense
++
+       ti,tas2574: 8.5-W Digital Input smart amp with I/V sense and integrated
+       15-V Class-H Boost
+ 
+@@ -121,6 +124,7 @@ properties:
+               - ti,tas2568
+               - ti,tas2570
+               - ti,tas2572
++              - ti,tas2573
+               - ti,tas2574
+               - ti,tas5802
+               - ti,tas5806m
+@@ -183,6 +187,7 @@ allOf:
+           contains:
+             enum:
+               - ti,tas2563
++              - ti,tas2573
+               - ti,tas5825
+     then:
+       properties:
+-- 
+2.25.1
 
-
->
-> [Severity: High]
-> This isn't a bug introduced by this patch, but is it safe to ignore the
-> return value of pm_runtime_get_sync() here?
->
-> If the runtime resume fails (for example, if clock enablement or power
-> domain restoration fails), the function ignores the negative error code
-> and proceeds to call regmap_update_bits().
->
-> Accessing hardware registers when the hardware is powered down or unclocked
-> can lead to a synchronous external abort (bus fault) and a kernel panic.
->
-> Should pm_runtime_resume_and_get() be used instead, and the error handled?
->
-
-I agree this looks like a valid issue. The proposed fix is relatively
- small and localized, and does not affect the overall resource lifetime
- handling of the driver. I'll prepare a follow-up patch for it, although
-I can only perform compile testing since I don't have the hardware
-on hand.
 
