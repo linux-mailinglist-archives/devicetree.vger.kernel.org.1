@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-305609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305611-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Z+71B2zFHmrAUwAAu9opvQ
-	(envelope-from <devicetree+bounces-305609-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:58:36 +0200
+	id WCVZDEfEHmqJUwAAu9opvQ
+	(envelope-from <devicetree+bounces-305611-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:53:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67CF262DC55
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:58:35 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6019762DBC1
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:53:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=aLS2RVZH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305609-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305609-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qBUHXLGl;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305611-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-305611-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 83280305FC00
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:52:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AA2E83014009
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:52:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 258E63E00BA;
-	Tue,  2 Jun 2026 11:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22CDC394781;
+	Tue,  2 Jun 2026 11:51:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2FC3C8C5E
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 11:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6102B394EA6
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 11:51:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780401113; cv=none; b=Hu3hC34fQKQkGnauYa9J6Tmrvc9l1ORAGV9Q4wbfGJa3xEsD9X91NuGSvHh0TiMNg8znEN18If5SXJcLY/iI2s2HmpkDC731Tihh0BxkRlDX+DomoBc+Z1rcpZXHyqZ2LeXAjZRWZ5He3Aj2dj5dO+cS/xKqCKpXINYrocTsd50=
+	t=1780401115; cv=none; b=unc9jxudePK3/cWzX2VZDxRm8WgON/EoeYL5CN0lVN1gqd2+mL+sJMpWBDkX0Eyn4Kx0Gh4aMR1hw8sB3w4BTQ8QRb5F31f7NDWWypv54Rpo0lgGCMpvd3GHgIL6/c21uC+7IktBYO67nQ/kYFLGetinjplEgm3Jo1yN5Y0rfXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780401113; c=relaxed/simple;
-	bh=huJSha/vBHDgVvprsuUDvcbacjXmFi6mxRwgk4rmUSk=;
+	s=arc-20240116; t=1780401115; c=relaxed/simple;
+	bh=JdY3hvmJaPh3+/o1HU5uhJ4gmsfMid7x6UtR6uhLrSA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LoMj1lppWFG2h5gpe5fS/FU4uw9Iy0iRENG/+DKCszYF4xNcpTzvJSbz4/GoQWDymkEP4kqaMwsfGwiE48cebnQ/nSp5VU9LxR5bEk0t/7MINcoL5lftse96UZss3lBQ9q+XDxIndEA2GxPcIW05dvzlQBernpC3eTY2CbMt8IA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aLS2RVZH; arc=none smtp.client-ip=209.85.128.53
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-49041e84237so92116815e9.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 04:51:47 -0700 (PDT)
+	 MIME-Version; b=Hs/SZfW+Hg2c5mVYbRgHtJNiuCWJMJPZizBotUmXLOlxIOTexJuuyCAmqKB0ZyovHb9BujbJeGq6U/OdJhywgdbkxHIBQeU4EWxzIkpHr/aP4cpYTRDQjO8xPUyFd+6Mw1GgRQYhmx48b/HSO1+Dj1zz3erg4ovRyw+BdmHambA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qBUHXLGl; arc=none smtp.client-ip=209.85.128.45
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-490b09e4cccso7520785e9.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 04:51:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780401106; x=1781005906; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1780401107; x=1781005907; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rW3dGwAqiUruHWn/0Ai/AGMfG26DoRiScxLbS+CHlR8=;
-        b=aLS2RVZH+5RQmkpq4+5tC9rs9s8bYcAKOubOOTB5ZNwa5zDZkR1vemu3ZGWs+G6Qyl
-         9qEr0HiQrfa41N1gnIJt61VZ/AbKNrq8sot5z4RiQduYn7KTyt9u6F3rHGs4I2R/SyVx
-         v+AtnJyt5eR9N4LA0Q+BIqiFnMd8d8gIt7LGcEIXJqRHDaZx9vVDfyBNML9haEEjVRo7
-         UQYd6UagdYfSc56xLwBz7e6vBEPBvbTSrbcYwzPFklHVs/BUIZO8hd1nu+B0wyY/dbAL
-         7aEbzthFahct9vzqNuYy+oZR8SJ1WSIRu8OUvHQY/u1o3AHIXAiAwcL6npusS6OrXL1N
-         bMBw==
+        bh=oXcmuDuWbm11caMZgoFDNnNhGqzpwO02IBzSYCaXizM=;
+        b=qBUHXLGlvse7aQRnisTsC5oakuJBPsqJGPq8IIKQr3tT8JaEsJZJ3mVfh4uQxTXlH4
+         Eg9rYATevgqptqrpGvf77YrQGb3zJyXYjqcnGc920oGJ1tXg1ppQ6xBZz7OfTqqiQBMz
+         H9cEBWO0GIcCqh86YYdAhjlY+sPk+wDSV0v27Yjs7sR6x6mQg10whjFF1cUCLUkbmVRf
+         fB0Iu3n3KtpaZHUeE2tVBhL4VoLWP0WFxM37MvrD4PbMxF8PldFgiyUF/2ABGrnpu2V+
+         jY/54Pc47Uf9nrihtTl/flTtfd4OxFzu9A0RwQRYYpy9PlO8fkKSXY0vW4r9vnaRBZNb
+         Okow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780401106; x=1781005906;
+        d=1e100.net; s=20251104; t=1780401107; x=1781005907;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=rW3dGwAqiUruHWn/0Ai/AGMfG26DoRiScxLbS+CHlR8=;
-        b=k3+cjzhOCpHsXB2mmiscQPoKAEap9Wq7pVZ9m9Ke9BfOfyPyEXxuBBFU9MZnaG59H5
-         2cBsxyloKg80xTayjR6pjsaIapk1z/rUjYybprlSGVM749uj/1G3xYgXlGk8RoCB7b4o
-         aCxugkJbaD3kF64RlQXuCwyywOt4InwvaOgeu+fCrho2MMBnQEWRYpz0sFkG4tJ5AUC3
-         InoA7Wu+C1JxG8M114+l8fqyry3HDEJIAzHeGXQMsQqlAakA8miVfwt4z2yqaML1KoQ+
-         WdfOY57SCt+CC8b2qHbZ86PVH+mfS4FkDpWtnyPACQJBo8zgddbEPPCe0LTEcE+loWgo
-         q3YA==
-X-Forwarded-Encrypted: i=1; AFNElJ+CxaKAjfPIvGvkzliJn3Hp7YyJE0tHCQ9/wE+TeiJuB6mNsi2KHxkkjhG5RE5J/jKLhF48ob68gNKJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YywXX59PnSprVHGSYNUDcXIRFgHdKV9u2b4lqY8ZTW7AkiCsVch
-	poGDUO0oIpgD024cY/XybEwMK3FML/U/hifoLLtSQWbcDisRQcL4FrbI
-X-Gm-Gg: Acq92OHOuXyoCq+12ZHEsAbGgSxJZBB8tSf5jmoDbZ7RR4+GBTF5v3Pl+oONnT+WrhV
-	Bbq0pb48XflwjrE77aLWf1XhWdS4hJl3I1fYX01vMkRuVbAkLi48evxzQbohxEaGyrGCSmR53oe
-	1zI4ERuOCc2ZrCjAwgWySg4PPoxQ7BEd4pE0gXYgiAvAv6Z5qxvTX5lkkRpaG1UXA8EbL1PTGzw
-	S0KapKzMnnhDmjiM/xPQwwbcT0IzjwIYOCpmuHCOvmvTkwk/02Sxm6wbAZTMvVzDZcfRT6YlNnx
-	d28SeEubVvbd4fSVqyv8MW43z6TYt6v0SobjDPG5fO9NlRez9+K+ZKHD/+JXzLAWmjWPlbFO33F
-	icy/qzGIoa3apH8oH2e9EQsJp9CZi3rH5e0jIzw9MWy+Sa91klTEkuaKXqFiXD079RUe2g3FrRd
-	sD1/1M2m1eEg/Ah/IRuR/Fjre3uw==
-X-Received: by 2002:a05:600d:8488:10b0:490:9dc3:3483 with SMTP id 5b1f17b1804b1-490b0e373a0mr40839215e9.2.1780401106125;
-        Tue, 02 Jun 2026 04:51:46 -0700 (PDT)
+        bh=oXcmuDuWbm11caMZgoFDNnNhGqzpwO02IBzSYCaXizM=;
+        b=g0u/fjdz9CTgAMbq/TQCRR6eWNc6k/4OfCXjpltqGQjyRNBkYJ20ufLuLLO1OvPVVG
+         W5/ofc4Vz6Kr/hL2RfMojW0d+ZSrcPnircXvUU89ps8NmCBFyJO1Fdr3eDNmZAFeIGQI
+         Xc/CD/rB5Z/WtYOhuXVJBhbDlFtHPC7+kK1UVIdFsguOEQzOtf4HXj5WLLe5T49lKbDP
+         cU7UdNsQFzr6HmPzfQRcHs4+JrpAvDzSVJXMt14KVghF7uWL9Q50vDqbj2/SAI5LeFiD
+         O5Njvjc7/36IO55D8jvM2MJeUOBVffzSyhU3hZrzta9WMX5wem+r6cvkbhBtaxs4ZgMN
+         Rz7A==
+X-Forwarded-Encrypted: i=1; AFNElJ8bbUurXIGKzkqX8z08/V/EquyIimyZAgXfrIs2n/UXHFZiI0l+D5YnGKzGxyouwg/WEsMD1prswpD3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGxMk/ehykD6SENrKKR+WSiTmQ09VeuTsbqLJyxD3cj6MtFeS7
+	SLdX5oCWiDfiw5z8fwm//1qaCt0PDmDLZcLC0McbahdlT9aEutKNa7cZ
+X-Gm-Gg: Acq92OE3GtwooKTEjs3C2TGcx3/ao6DCeCDwN5E/Mgc8nHz5/BEf9NbnRvOokCLkwkI
+	6G7ohRhu519skabB5a1VMbeFDp+9nmZqYKLvmgU+r5VwkvWlXY/orf2RO9TeWEiifz2vcISASKR
+	NPeOk06workE46xF+jUOdkwFLHYXPuqibDIUpL670I/jl79Ww8RebuC3Q7Ac2+yjvC08us44TJ7
+	ID5aWgTmiQ/SPZ3RxXhIo7XireQGFJ6AN7XACc02w6gb6qgDZDvjid4cdmKM0BM3cW7FTiu4xM+
+	Ow3L/YJEgrFQlYqc7D5ubN/kEpDnUg9plpMBZxnvm8dvzzfIGpy79UGZHi+0tDMBxYXfOXJN68b
+	AZ3kxuWtX48PnjQwHoa1SylyBAkLyhIfxsl+nH+resklktqd/Rx+r9uttokFNebtupL6+UFhxok
+	QJC22UT25Q25HIUWTjeY0GApsc8g==
+X-Received: by 2002:a05:600c:82c3:b0:490:59cc:999f with SMTP id 5b1f17b1804b1-490a2901c21mr287671715e9.4.1780401107527;
+        Tue, 02 Jun 2026 04:51:47 -0700 (PDT)
 Received: from vitor-nb ([2001:8a0:c4c6:f00:e8c3:a961:5b26:a2c6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4909c152570sm139480015e9.9.2026.06.02.04.51.44
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4909c152570sm139480015e9.9.2026.06.02.04.51.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jun 2026 04:51:45 -0700 (PDT)
+        Tue, 02 Jun 2026 04:51:46 -0700 (PDT)
 From: Vitor Soares <ivitro@gmail.com>
 To: Nishanth Menon <nm@ti.com>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
@@ -87,9 +87,9 @@ Cc: Vitor Soares <vitor.soares@toradex.com>,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/7] arm64: dts: ti: k3-am69-aquila: Add Toradex Capacitive Touch Display 10.1" DSI
-Date: Tue,  2 Jun 2026 12:51:28 +0100
-Message-ID: <20260602115123.1324474-14-ivitro@gmail.com>
+Subject: [PATCH v2 6/7] arm64: dts: ti: k3-am69-aquila: Add Toradex Capacitive Touch Display 7" DSI
+Date: Tue,  2 Jun 2026 12:51:29 +0100
+Message-ID: <20260602115123.1324474-15-ivitro@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260602115123.1324474-9-ivitro@gmail.com>
 References: <20260602115123.1324474-9-ivitro@gmail.com>
@@ -108,7 +108,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -118,10 +118,10 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_RECIPIENTS(0.00)[m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vitor.soares@toradex.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305609-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305611-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[ivitro@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -134,74 +134,76 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,toradex.com:url,toradex.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,toradex.com:url,toradex.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 67CF262DC55
+X-Rspamd-Queue-Id: 6019762DBC1
 
 From: Vitor Soares <vitor.soares@toradex.com>
 
-Add a device tree overlay for the Toradex Capacitive Touch Display 10.1"
+Add a device tree overlay for the Toradex Capacitive Touch Display 7"
 DSI on the Aquila DSI_1 interface. Used on the Clover Board (J12), where
 DSI_1 is exposed via a FFC/FPC connector.
 
 The display includes an internal Texas Instruments SN65DSI83 DSI-to-LVDS
-bridge driving a Riverdi RVT101HVLNWC00 10.1" WXGA IPS TFT LCD panel.
+bridge driving a Riverdi RVT70HSLNWCA0 7" WSVGA IPS TFT LCD panel.
 Touch input is provided by an Ilitek ILI2132 capacitive touch controller.
 
-The overlay is also combined with the Aquila AM69 Clover carrier board
-device tree to provide a ready-to-use DTB.
-
-Link: https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-101inch-dsi
+Link: https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-7inch-dsi
 Signed-off-by: Vitor Soares <vitor.soares@toradex.com>
 ---
 Changes in v2:
-- Enable main_ehrpwm5 for Clover board
+- Enable main_ehrpwm5 for Clover board.
 
  arch/arm64/boot/dts/ti/Makefile               |   5 +
- ...m69-aquila-panel-cap-touch-10inch-dsi.dtso | 158 ++++++++++++++++++
+ ...am69-aquila-panel-cap-touch-7inch-dsi.dtso | 158 ++++++++++++++++++
  2 files changed, 163 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-panel-cap-touch-10inch-dsi.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-panel-cap-touch-7inch-dsi.dtso
 
 diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index c145cc4ca7fc..bf50b7a72973 100644
+index bf50b7a72973..a8c2fae6a212 100644
 --- a/arch/arm64/boot/dts/ti/Makefile
 +++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -190,15 +190,20 @@ dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-rpi-cam-imx219.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm-csi2-quad-tevi-ov5640.dtbo
- 
- # Boards with J784s4 SoC
-+k3-am69-aquila-clover-panel-cap-touch-10inch-dsi-dtbs := \
-+	k3-am69-aquila-clover.dtb \
-+	k3-am69-aquila-panel-cap-touch-10inch-dsi.dtbo
- k3-am69-aquila-dev-dsi-to-hdmi-dtbs := k3-am69-aquila-dev.dtb \
- 	k3-am69-aquila-dsi-to-hdmi.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-adapter-panel-cap-touch-10inch-dsi.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-adapter-panel-cap-touch-7inch-dsi.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-clover-panel-cap-touch-10inch-dsi.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-clover.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-dev.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-dev-dsi-to-hdmi.dtb
+@@ -204,6 +204,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-dev-dsi-to-hdmi.dtb
  dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-dsi-to-hdmi.dtbo
  dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-panel-cap-touch-10inch-dsi.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-panel-cap-touch-10inch-dsi.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-am69-aquila-panel-cap-touch-7inch-dsi.dtbo
  dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
  dtb-$(CONFIG_ARCH_K3) += k3-am69-sk-pcie0-ep.dtbo
  dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila-panel-cap-touch-10inch-dsi.dtso b/arch/arm64/boot/dts/ti/k3-am69-aquila-panel-cap-touch-10inch-dsi.dtso
+@@ -318,6 +319,9 @@ k3-am68-sk-base-board-csi2-dual-imx219-dtbs := k3-am68-sk-base-board.dtb \
+ 	k3-j721e-sk-csi2-dual-imx219.dtbo
+ k3-am68-sk-base-board-pcie1-ep-dtbs := k3-am68-sk-base-board.dtb \
+ 	k3-am68-sk-base-board-pcie1-ep.dtbo
++k3-am69-aquila-clover-panel-cap-touch-7inch-dsi-dtbs := \
++	k3-am69-aquila-clover.dtb \
++	k3-am69-aquila-panel-cap-touch-7inch-dsi.dtbo
+ k3-am69-aquila-dev-adapter-panel-cap-touch-10inch-dsi-dtbs := \
+ 	k3-am69-aquila-dev.dtb \
+ 	k3-am69-aquila-adapter-panel-cap-touch-10inch-dsi.dtbo
+@@ -410,6 +414,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+ 	k3-am68-phyboard-izar-peb-av-15.dtb \
+ 	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
+ 	k3-am68-sk-base-board-pcie1-ep.dtb \
++	k3-am69-aquila-clover-panel-cap-touch-7inch-dsi.dtb \
+ 	k3-am69-aquila-dev-adapter-panel-cap-touch-10inch-dsi.dtb \
+ 	k3-am69-aquila-dev-adapter-panel-cap-touch-7inch-dsi.dtb \
+ 	k3-am69-aquila-dev-dsi-to-lvds-panel-cap-touch-10inch.dtb \
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-aquila-panel-cap-touch-7inch-dsi.dtso b/arch/arm64/boot/dts/ti/k3-am69-aquila-panel-cap-touch-7inch-dsi.dtso
 new file mode 100644
-index 000000000000..c5d597873440
+index 000000000000..ce8490837c76
 --- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am69-aquila-panel-cap-touch-10inch-dsi.dtso
++++ b/arch/arm64/boot/dts/ti/k3-am69-aquila-panel-cap-touch-7inch-dsi.dtso
 @@ -0,0 +1,158 @@
 +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 +/*
 + * Copyright (c) Toradex
 + *
-+ * Toradex Capacitive Touch Display 10.1" on Aquila DSI_1.
++ * Toradex Capacitive Touch Display 7" on Aquila DSI_1.
 + * Used on Clover Board (J12), DSI_1 is exposed via a FFC/FPC connector.
 + *
-+ * https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-101inch-dsi
-+ * https://www.toradex.com/accessories/capacitive-touch-display-10.1-inch-dsi
++ * https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-7inch-dsi
++ * https://www.toradex.com/accessories/capacitive-touch-display-7-inch-dsi
 + */
 +
 +/dts-v1/;
@@ -220,24 +222,24 @@ index 000000000000..c5d597873440
 +	};
 +
 +	panel-lvds-bridge {
-+		compatible = "riverdi,rvt101hvlnwc00", "panel-lvds";
++		compatible = "riverdi,rvt70hslnwca0", "panel-lvds";
 +		backlight = <&backlight_pwm3>;
 +		data-mapping = "vesa-24";
-+		height-mm = <136>;
-+		width-mm = <217>;
++		height-mm = <86>;
++		width-mm = <154>;
 +
 +		panel-timing {
-+			clock-frequency = <72400000>;
++			clock-frequency = <51200000>;
 +			de-active = <1>;
-+			hactive = <1280>;
-+			hback-porch = <83 83 83>;
-+			hfront-porch = <12 72 132>;
++			hactive = <1024>;
++			hback-porch = <100 100 100>;
++			hfront-porch = <16 160 216>;
 +			hsync-active = <0>;
-+			hsync-len = <1 5 40>;
++			hsync-len = <1 60 140>;
 +			pixelclk-active = <1>;
-+			vactive = <800>;
++			vactive = <600>;
 +			vback-porch = <13 13 13>;
-+			vfront-porch = <1 15 49>;
++			vfront-porch = <1 12 127>;
 +			vsync-active = <0>;
 +			vsync-len = <1 10 20>;
 +		};
