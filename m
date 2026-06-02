@@ -1,191 +1,180 @@
-Return-Path: <devicetree+bounces-305588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305590-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
-	by lfdr with LMTP
-	id IA9CFqO6HmrZJgAAu9opvQ
-	(envelope-from <devicetree+bounces-305588-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:12:35 +0200
+	by mail.lfdr.de with LMTP
+	id 1ncqGZu/HmojPQAAu9opvQ
+	(envelope-from <devicetree+bounces-305590-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:33:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB52B62D308
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:12:34 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5825562D94A
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:33:46 +0200 (CEST)
+Authentication-Results: mail.lfdr.de;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=pCnCVOqe;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305590-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305590-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 64525301104B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:12:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0F4883006826
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDCC63D3CF6;
-	Tue,  2 Jun 2026 11:12:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AQJvsk4p"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E6B83CB910;
+	Tue,  2 Jun 2026 11:21:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CBC83D25B4;
-	Tue,  2 Jun 2026 11:12:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780398752; cv=none; b=PKd7KKVWelw0cfjIGOgsPtAFSNeMBDI2xRQjZ4+9z5t89Ov9HNwiUhl0KU0/GZu1lP9VLyJAY5LorMfwci3fGr7IN3Aavt2a4f5FJ6W1uIslNLhlvonmw21IPBSGtaF3R7xqhoUSpP9n7/UEt+H4CBBAXO+79v1L108YdYNrWAA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780398752; c=relaxed/simple;
-	bh=9T4zNQT0trs46eiYmksy1HHbaHk+hzaIynpxPXrOOy4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E2w+p8S/78FTHdFACYk1zKZT2mZSqthgDbxQauxG7Nhln5d3In7m8Ii80be0x/xzCNlGMWEwwfrzhvuPQ1o6W+FIdeFAN8BB3cvMuRaSHDkzlVoaMs6GGDay+FfmWVqYlYIx3FtLVEY83znbE0c0VG1Sedfqx2BZ0SnuBbJJI9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AQJvsk4p; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1780398749; x=1811934749;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9T4zNQT0trs46eiYmksy1HHbaHk+hzaIynpxPXrOOy4=;
-  b=AQJvsk4pfK+zXxTGWCNxpm4E6c/no0sxTj083NvRPjMAFAaLehjl4sai
-   5DyHqh1EJIZ593mwtdudszu0I9njwDpL4zuurc+UQxWkzg/KDMGI0Om5D
-   ILNDZzxcYE/y7IqzlgZcbbMtRr4iCCqxG8Rs3mphauTPK/djjvwbeArMv
-   1LDs81VSXXqRR6euuCXnyVyY4CZqzPQb95fMC1n1QAIOtnYxlYWPbx2bI
-   yWKRXVne2/nkYx6nc5jnPaJ4O+y2s/STr3frZTT8veG698SO4YT3CSPBS
-   arERcZ9G8SIWci3H9nH7wRTGwXh9NFeKCRZw0O5LE9se6cyTeO8BWnB8V
-   A==;
-X-CSE-ConnectionGUID: IqUj/wMxQhC7UW3xbpN7Qw==
-X-CSE-MsgGUID: Z00l+qcsTjW3AFR5JHeVvQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="84803636"
-X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; 
-   d="scan'208";a="84803636"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2026 04:12:28 -0700
-X-CSE-ConnectionGUID: vBQj/Q+8RgGRvI4hjRuesQ==
-X-CSE-MsgGUID: DtVtKBtbSAiIrUHfWhG5yQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; 
-   d="scan'208";a="240874332"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.229])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2026 04:12:24 -0700
-Date: Tue, 2 Jun 2026 14:12:22 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] iio: light: add support for veml6031x00 ALS series
-Message-ID: <ah66ljSiIc0ywFC2@ashevche-desk.local>
-References: <20260531-veml6031x00-v4-0-e64f7fdce38d@gmail.com>
- <20260531-veml6031x00-v4-2-e64f7fdce38d@gmail.com>
- <ah6p-f2RCW8VcuDR@ashevche-desk.local>
- <DIYI40YK6CSX.2P4017PHVJHCT@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 211F83D75A0
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 11:21:47 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780399311; cv=pass; b=XLW55gOhbZyQYAAnrz3B2IKEu2sKPtJRpF0vlU53aQ0CkzLfEYSTMGcsdKb2CFI9Yq+0dA6e+9sjFHa8MG0TAFrCz8sZcfMdm/u8vmiu+OefQrthLGEqaN78SGw/V43qONzQerXIauEXgQk+2ZwiVvE9upqUA0FC3uLIOJX+K3w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780399311; c=relaxed/simple;
+	bh=YFWTpa768Mizy6Y9RP1z5B3yTHYadcLcipl2r2WP5ic=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Q9dqJTR50+Nde0d2kvAdGBgjMM/1Ton9GBQmDh52oXeoMnhat0OJaTGLT9N++rOhYYePBNZvkk1XBJcW0vgCMyusfR4Eh5daTY90huwDGavkBXuUxYF/nyuNqQ+7Y5ihlSwR/Qutn1E96vQm5rzENBC1/DVY0e9Uv7T4C/uB/dM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pCnCVOqe; arc=pass smtp.client-ip=209.85.221.51
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-45fd461e4a5so2182524f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 04:21:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780399306; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Tcwhx4p4awGCDHIbjKy0RoXIxUmmAwgTRh+Iyht3N1745LeN72lieCtRp1f0RfIUq1
+         gFqIevjHV+imIcKh2wXirfbkf4L49gULI6p4LES0qu4rmPM1BPbrq3vw4ikccxdPOj7m
+         51k4tLWqS0j8ffSWlEoHYEPrVDodi3zqQk+qKSPc9sYVeF3UeEUSYkqG46RaLsxe9xsY
+         aeDO0ArFh4pxf5qUsC3rvunrZMJGpQZWugAo2HE4zf4pj/J1V6y+QzIrIQhbtzHhszFc
+         LSwdEX/hUDCgbwS4zmMlbGlGyEqeYHT3KNFKK6wO7+z62zBZQjBke5HJYOtMW/jRKwev
+         ZMyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=ZLqHBgXsfQzat/RItjNrifpP2fiT1XPOaumQDI9WwPk=;
+        fh=yvXL7kTO9oBn343rTAINkqvDp/XxEjnqF+cD3U/0i74=;
+        b=Y4qIkBsrmR3/KD3GAV7Jl+rBaoKxsTr8BL5Fr5+H5nifPcGAS+TSmAzY+lRJvBT8lC
+         Qjrw5+TqrOvGG/GWE9Qlr/jnj/lOKeSYbAJy0wI02oDwcirvu+TnFV2VHLjJcaYm6KxS
+         XSoIZXN6dHNqn8tI8rUNVcTGt5YJt36/QC/yVO65FaejR6FppbX8U3SoRl6pGhCMnacW
+         QKFIEeiB0wqacQsnW9fwoisfyOq2dUKk9hZDQFbiLFwRp2Y/KgSR2JiseE79ZSBWsb32
+         ysS/WMCzdMGjm/OT3yOT5CcUcWgXw3ceLUjcD8TxvQZkWYmrWb1VpADnCKYmMpF+pZtQ
+         YjAw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780399306; x=1781004106; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZLqHBgXsfQzat/RItjNrifpP2fiT1XPOaumQDI9WwPk=;
+        b=pCnCVOqeI1WbYufiTLH6wXklubXrzr3ina22dpdrWp1totW2Os9D45601P/l4G3Qv+
+         sinI8F/Wk+XwwJ7nQxqg/Erll8Hts3eFSDA0UChjOKfBrViZKQigqrXaDq8HzNFISuui
+         Tuz411bUFwQdgBkpIEUevS3zuod4CDdamg9kUU3leExAlULNNq/Cpry83MiG/MfNZdjA
+         BB0v99k6uWFNgUHSoc39TgyXEHFggK2gNmR+leJFGScDqJPRy5sl7UFJg2XtRTq1I70k
+         nLHSFit3tsGYh5rLkgZG22RKleh66JFC3Bec782yOIcQGtXnXxFiXYj3p0uFQOiB608a
+         dLow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780399306; x=1781004106;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZLqHBgXsfQzat/RItjNrifpP2fiT1XPOaumQDI9WwPk=;
+        b=XMyN0mrfgzl7LblRIoIZZJ377EZkeaVVgUWu1DghR7P3PCc4SDd8vpFS5yqwlbfn/p
+         sxejW1Fpn9cjsBoP+45aZqvUIHfMVa2pLhwDAzTK9yOH7cB9bA/HY9nOn8h6t9RqOm1w
+         WnEEF+OrtIhi+QcsekUzGJtIGoT/Gdx/hpXI3AXMPDFkkMoDrl6fzEmk7xreDygX4DZf
+         lRdb21aqBAOiLSaDTbSGaSTzzRaedmuBN5qyWjOUajjBQJKLxJo+TniAD71ZQ83vTpug
+         UisXMIbnNzGE0aiIntIG8fKfSiT93fMzqTro9Je7dcXwp163HHDB02SW9Mc3yZndGMhx
+         Og4A==
+X-Forwarded-Encrypted: i=1; AFNElJ+0jojvCtpbCgrhTaw7eUFp5tUJCOWYpGuyr4Q6DAEFECSc2RrpyA+M0Cqus1HPmo24aqVnAB8K28fW@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXmmy4FvDJDSetV5s+Fxp/PzW5fGqVoYfhSKtlbP8kIGHdX717
+	yOpSuHehPGAifHNiQYDNyP7A5ngj0GKwsW801YpnyL3e0boyIBF1csM1wuZqAyOOjalbxwKrk1k
+	bccuNktjOZA/8bFIq8wQg0EKZK5eACzk=
+X-Gm-Gg: Acq92OGBaHFcppzrHFJ8x9TUOxyF8A51jIgPdqKKms565CjuKuQdkVW1eEjXfBltA6p
+	qwsQ2eto0livSHusxepTX6ge9es8fN+3k/WOuUdjZ28ajNJIfafYGoFB0zxBkZqmaixWHdTQ+BW
+	WZp0mKCEMQhqVwpqR4XyBLQfa/scOMfKDBoQZSuk5vicMW3u+kmJ0A+w/kNldTHqy/nBXCnFt0V
+	RD4BSbs5t7/kb2mUmD/k9joeZKfPnsdF0Y/ZQ50GeKAJIGCewU3iOVYF298Fb2WgRoFtntbAO0K
+	fDXu1XE2p2td9Ir6r6DidQCsfAzZEyirXrTeE4yLj1WycCDrXqnwqSPp2b6Bp0/lhuWN9x/6T0n
+	q3477HlQ5Sm5y2ZTJfWAaGeMa+2WSf7ogdqm9Calmy8EIeHauM4YyGr1BUTUtPX5w2SWAMR7wMG
+	DkcKJRFaenF4eLQzTm
+X-Received: by 2002:adf:ea04:0:b0:45e:de0a:1773 with SMTP id
+ ffacd0b85a97d-45ef6b93c7bmr20479177f8f.33.1780399306177; Tue, 02 Jun 2026
+ 04:21:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DIYI40YK6CSX.2P4017PHVJHCT@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: EB52B62D308
-X-Rspamd-Server: lfdr
+References: <20260531-veml6031x00-v4-0-e64f7fdce38d@gmail.com>
+ <20260531-veml6031x00-v4-2-e64f7fdce38d@gmail.com> <ah6p-f2RCW8VcuDR@ashevche-desk.local>
+ <DIYI40YK6CSX.2P4017PHVJHCT@gmail.com> <ah66ljSiIc0ywFC2@ashevche-desk.local>
+In-Reply-To: <ah66ljSiIc0ywFC2@ashevche-desk.local>
+From: Joshua Crofts <joshua.crofts1@gmail.com>
+Date: Tue, 2 Jun 2026 13:21:34 +0200
+X-Gm-Features: AVHnY4JnJuVXmwDjzbvcOTJxkPYCt3QsTcWYCYMeswe3B4QFyV_njNnZZmIFMWI
+Message-ID: <CALoEA-wdakU-Ei2FE3WpGR+CYRDN1bjv2sZ=XJ01ZeH3NP8xeA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] iio: light: add support for veml6031x00 ALS series
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Javier Carrasco <javier.carrasco.cruz@gmail.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>, 
+	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-305590-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-305588-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:javier.carrasco.cruz@gmail.com,m:jic23@kernel.org,m:lars@metafoo.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gupt21@gmail.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:mazziesaccount@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:javiercarrascocruz@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2600:3c15:e001:75::12fc:5321:from];
+	FORGED_SENDER(0.00)[joshuacrofts1@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,metafoo.de,baylibre.com,analog.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,gmail.com,baylibre.com,analog.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	DNSWL_BLOCKED(0.00)[100.90.174.1:received,2600:3c15:e001:75::12fc:5321:from,209.85.221.51:received];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[joshuacrofts1@gmail.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	DWL_DNSWL_BLOCKED(0.00)[gmail.com:dkim];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.90.174.1:received];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ashevche-desk.local:mid,intel.com:dkim]
-X-Rspamd-Action: no action
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,intel.com:email,vger.kernel.org:from_smtp,mail.gmail.com:mid]
+X-Rspamd-Server: lfdr
+X-Rspamd-Queue-Id: 5825562D94A
 
-On Tue, Jun 02, 2026 at 12:45:35PM +0200, Javier Carrasco wrote:
-> On Tue Jun 2, 2026 at 12:01 PM CEST, Andy Shevchenko wrote:
-> > On Sun, May 31, 2026 at 09:58:22PM +0200, Javier Carrasco wrote:
+On Tue, 2 Jun 2026 at 13:17, Andy Shevchenko
+<andriy.shevchenko@intel.com> wrote:
+> > Do you know any tool to automate this beyond asking an AI? Manual
+> > auditing is not very reliablo and it is not that difficult to miss a
+> > header that has been indirectly included. Building with W=1 and similar
+> > stuff did not help.
+>
+> `iwyu`, but it needs a custom configuration. Even with that it's quite far from ideal.
+> The custom config had been shared in the linux-iio@ mailing list this year.
 
-...
+Let me help with that.
 
-> > + array_size.h
-> >
-> >> +#include <linux/bitfield.h>
-> >> +#include <linux/bits.h>
-> >> +#include <linux/i2c.h>
-> >
-> >> +#include <linux/module.h>
-> >> +#include <linux/mod_devicetable.h>
-> >
-> > In C locale it seems wrong order.
-> >
-> >> +#include <linux/mutex.h>
-> >> +#include <linux/pm_runtime.h>
-> >> +#include <linux/regmap.h>
-> >
-> > + types.h
-> 
-> Do you know any tool to automate this beyond asking an AI? Manual
-> auditing is not very reliablo and it is not that difficult to miss a
-> header that has been indirectly included. Building with W=1 and similar
-> stuff did not help.
-
-`iwyu`, but it needs a custom configuration. Even with that it's quite far from ideal.
-The custom config had been shared in the linux-iio@ mailing list this year.
-
-> >> +#include <linux/units.h>
-
-...
-
-> >> +	/* integration time + 10 % to ensure completion */
-> >
-> > fsleep() adds up to 25%, isn't it enough?
-> 
-> The problem is that it adds UP to 25%, but that is not guaranteed. If
-> almost no extra delay is added, it will be below the margin I added,
-> which was necessary when I tested this delay with real hardware.
-
-Noted. Can it_usec be precalculated already to include that 10%?
-
-> >> +	fsleep(it_usec + (it_usec / 10));
-
-...
-
-> >> +	pm_runtime_put_autosuspend(dev);
-> >
-> > Hmm... But why? Wouldn't this be problematic with reference count on the failed
-> > devm_iio_device_register() below?
-> 
-> I could move this a bit further down after devm_iio_device_register(),
-> but as I replied to a Sashiko complaint, the reference count will never
-> underflow in this configuration.
-
-Please, add a comment elaborating on that, it's not clear at glance.
+https://lore.kernel.org/all/20260512073505.1310-1-joshua.crofts1@gmail.com/
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Kind regards
 
-
+CJD
 
