@@ -1,167 +1,166 @@
-Return-Path: <devicetree+bounces-305827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305828-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Qss3IXFBH2rsjAAAu9opvQ
-	(envelope-from <devicetree+bounces-305827-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 22:47:45 +0200
+	id 06tqJuxCH2pAjQAAu9opvQ
+	(envelope-from <devicetree+bounces-305828-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 22:54:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1201631DD0
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 22:47:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12AB0631E9F
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 22:54:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=fvfp7CB2;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305827-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305827-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=sntech.de;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=c6byGlGz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305828-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-305828-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 392823035F33
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 20:42:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 204EE30C1F6A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 20:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 584DA370AF4;
-	Tue,  2 Jun 2026 20:42:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B002388881;
+	Tue,  2 Jun 2026 20:47:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 244AD35E948;
-	Tue,  2 Jun 2026 20:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3960A258CD0
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 20:47:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780432925; cv=none; b=nfLGcX/iUuiBwSjCOGnvVU9p2f8D5SwDanlOMFD/jO6sxwsvy8cw/ZO5qIMsDSjuSfNxhBWQdEx2qf0J0snqjEWtRKQbPFMLpzWHy9SUedrBVlskigY0RdzfCjc2G/yZfcuZCqgyuiKpOFULbXbiQ/TBsGEhw5Ud44obUl1a2Vo=
+	t=1780433232; cv=none; b=ci3mw2q3WDhhJnjKN06/PVFMsfSWNE4zVuiJ7ALlsZl4Suxb1lfeIkYnH6eUFLUN4Bepf5+sD68mseqrBRyhbZdZjZbx96uhpu6UDeVbS1C9IYjq9D9krkcu5qGhBd5HHrXTY3mP6nXSKo9Gn7Hw5/3XXJ+1+hIgkDYvZgXG9Yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780432925; c=relaxed/simple;
-	bh=noDcJ29FQYaZnhzabQyXd+mnDqG6oMNDO5VmNNOKKeY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uahQyVQO+G5L2wfDhcuy4mt4kNsUu5KE82GF5RTy+urN88au51podwjToTc4huTldstcOt9H5Nqq+4F2+WF0LclZYdoTpeij8Uwh605meb6+umKhcLwYpM31fKORctGHqxKvHKZpz9vsIqaog3f8/xwRITIUsdBl65TXMpahQmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=fvfp7CB2; arc=none smtp.client-ip=185.11.138.130
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=xclY5ZY6I6M+MMUhy+w96bAdYd7mbDw5BEiQwvO2aW0=; b=fvfp7CB2qRSdYm1fA/eC4IJh8C
-	eR4cVrTQxR7bQcWvxce+HF+lQOw0HQFyGTjcdIFHlD6/0WRXgbFKSTsxNDpmk3w5t2z0fn/HIehGj
-	qULblnQ99U5i/c4ILZ0N27Tfjd1BzKKH4Y05OqJafU96lClb+3sAQ1eclB46dyHdze7fxlsIVaX1H
-	fhv6AJgA8N6685NOExXFIqF7MW64YdCWYoBg7gAmj28WIYo5TBPxIz8SFC15haVM/S256rFaQPg5x
-	zW/bcwant+o30nq7F8j92k4eNpU5AjfyXSb6+NFRmMUoSV2oTiszPDVaT6UTnxNmMST7ICiQSeiwl
-	I/zyU1pA==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: hjc@rock-chips.com,
-	andy.yan@rock-chips.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	nicolas.frattaroli@collabora.com,
-	cristian.ciocaltea@collabora.com,
-	sebastian.reichel@collabora.com,
-	dmitry.baryshkov@oss.qualcomm.com,
-	luca.ceresoli@bootlin.com,
-	dianders@chromium.org,
-	m.szyprowski@samsung.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v10 00/11] Add eDP support for RK3576
-Date: Tue,  2 Jun 2026 22:41:33 +0200
-Message-ID: <178043288414.700628.1161981255624036929.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260601065100.1103873-1-damon.ding@rock-chips.com>
-References: <20260601065100.1103873-1-damon.ding@rock-chips.com>
+	s=arc-20240116; t=1780433232; c=relaxed/simple;
+	bh=CH5jEkH/7DtiWKRIAoey1zT04jj0PVsEEIht4C6SGRg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=j+n7FH+m0DOjhEH7xYrrU77qeyAuchuOhO7uuMCDdLj9+7GNIGu5XeCy54sXba/SR3iJD41dNwjwb91HUKQiVpK8BzBuedpJZYwBDL7eE1BEjjbG54JGw4nLH5S9c++4IbW/hvNZ2YPYVR5hzJzsdd7Rk60kOWaDqXbstPtOYXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c6byGlGz; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4906869f0cbso113119805e9.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 13:47:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780433230; x=1781038030; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c+zSDqbjDhTQXHHFgjfSwZJRVdEr3LaMQ8oiOrRUKac=;
+        b=c6byGlGzI/L1Gtf9ar+6zcEOMhNYYnEVKtZemQPfrsmddyy3ZqBWiC4S2g0+7Fn/1S
+         1hrs57BSxXWA3C8uv0T5EbWiTKIo/reht++La/ZvunOWjug+HrOi4HOq4Sb6ZlGZw1pM
+         edZkI8Wt7LsJEl+FHEUt0UNqaRK95jATgW96i511dlaAxemjb4oSlfrfG3JeRhVvQvdQ
+         kOdVzmp5O6n0QLwtS8GDjqjDryqOJim56aEW8sA2BshAIJocXNdBAdHJ5QXtt7zeWomD
+         UPdaq27rjUVoKMJnhh6vbPzIF7uuLUBtAJM3sL0brOZVNK5hpZ0xYk/xsuwSWS/JTdv1
+         badw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780433230; x=1781038030;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c+zSDqbjDhTQXHHFgjfSwZJRVdEr3LaMQ8oiOrRUKac=;
+        b=KzerM5wViQN7bP9SxVwpjzWs17xtOYghRiXI/+4j4M0DcUbVAFlkORLt0s8VlF/RD6
+         mYkOrXsTG6gwtDyV+3/weGJTXyaKsL4uKibXTDKuvKUhKLqzXfrdL4ZHxEr/BIw0w1zg
+         fvfNhkT6P3MFTBuYG76tON72P5RhzZT4VgS5ehboG1US9vgH0Le9BBBflpl6NW+/is7j
+         Z6zk5gRQVwgaV6FU6EH8LFehlGhf+nlANn9UIdIfcUV7bd/t9jeG6E3EHo4/KBoqsM6c
+         0IIJLDg2IQsWl3MZDoXcbDmRPWnZRX58uJ4RDkB+jEEfnvnJRApW+YglhvqIfdmQzWy+
+         B1IQ==
+X-Gm-Message-State: AOJu0YzSqYa/8XEKiIK4IWzQlkO7BdTie8B+Ga3HdrLwHtC5lgAeyc80
+	YQh+0qnbRw6Ym+KnYa4Ywad3sr+Gh1xI7ac3czPPrJkEi4Y6D6gC+A8x
+X-Gm-Gg: Acq92OEsYsVZV/i9u0KcLupV3xrDLRLu3NIWZg2H0sTRtTVWKyxBu+1dwkHiu8cQwTQ
+	yBopdd3evdqr/60sV1CPdMrHd1kwwxmnd+AkEuJV4gweRggbrzVr/sIyMih3RESwlRK6kWZR4KE
+	T/fW0WR+cyShXwWuWfAqeln34b0JbmEa87oyA3UUF2gdzPOsiRHyBZiuiQ0mXXDtZKC94L5iLUQ
+	HfKYAG+B/C6kqb/hRlw2dt8xy43vHl6jnCeyUzcfW/8XrdpXmjkaXl6GVsXJYZXYkUuz2eZDr/y
+	HRpiMAi70NNvC4CB3AtGTwM5vdbTOw8yKVPIvLPtHC35n2tYFrKbYaYrvzumPEJCXHZE0tjEmKy
+	ZEATv6hQ92O08u2f2IKBF83Dw+IW8RZOpnhH5VnfQuRO2o175LCD/n62xOEUn9oiAPbfvvA1+NX
+	7PzxYw7O9c7dBgGZDk1NfcQ8/uL7KELEg9TP/+aZTJ0ronOP/AfUS/Ma1mF2nfBreKGi2KhneaV
+	k7eKZYHeo8gpvG30BOVx3W3GMLqBs78oLOO7IZkIqNu2hJ2EQC9Q2tp
+X-Received: by 2002:a05:600c:5288:b0:489:5022:39a4 with SMTP id 5b1f17b1804b1-490b5ec053amr6618515e9.9.1780433229685;
+        Tue, 02 Jun 2026 13:47:09 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:5ef:9913:4a77:3bcf])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f351d40sm1957833f8f.26.2026.06.02.13.47.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jun 2026 13:47:09 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/2] Add PCIe support to RZ/V2H SoC and EVK
+Date: Tue,  2 Jun 2026 21:47:05 +0100
+Message-ID: <20260602204707.1920839-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:hjc@rock-chips.com,m:andy.yan@rock-chips.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:damon.ding@rock-chips.com,m:heiko@sntech.de,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:nicolas.frattaroli@collabora.com,m:cristian.ciocaltea@collabora.com,m:sebastian.reichel@collabora.com,m:dmitry.baryshkov@oss.qualcomm.com,m:luca.ceresoli@bootlin.com,m:dianders@chromium.org,m:m.szyprowski@samsung.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[rock-chips.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
-	FORGED_SENDER(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	TAGGED_FROM(0.00)[bounces-305827-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305828-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:prabhakar.csengg@gmail.com,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:geert@glider.be,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:prabhakarcsengg@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,bp.renesas.com,renesas.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[sntech.de:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[sntech.de,ideasonboard.com,kwiboo.se,gmail.com,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sntech.de:mid,sntech.de:dkim,sntech.de:from_mime,sntech.de:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F1201631DD0
+X-Rspamd-Queue-Id: 12AB0631E9F
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Mon, 01 Jun 2026 14:50:49 +0800, Damon Ding wrote:
-> Patch 1-5 are to add missing clock "hclk" for RK3588 eDP nodes.
-> Patch 6 is to use automatic cleanup to fix OF node reference leak
->         reported by Sashiko.
-> Patch 7-8 are to add the RK3576 eDP node.
-> Patch 9-11 are to support the RK3576 Analogix DP controller.
-> 
-> Damon Ding (11):
->   dt-bindings: display: rockchip: analogix-dp: Fix hclk as third clock
->     for RK3588
->   dt-bindings: display: rockchip: analogix-dp: Add per-clock
->     descriptions
->   arm64: dts: rockchip: Add missing hclk for RK3588 eDP0
->   arm64: dts: rockchip: Add missing hclk for RK3588 eDP1
->   drm/rockchip: analogix_dp: Enable hclk for RK3588
->   drm/rockchip: analogix_dp: Fix OF node reference leak via auto cleanup
->   dt-bindings: display: rockchip: analogix-dp: Add support for RK3576
->   arm64: dts: rockchip: Add eDP node for RK3576
->   drm/bridge: analogix_dp: Rename and simplify is_rockchip()
->   drm/bridge: analogix_dp: Add support for RK3576
->   drm/rockchip: analogix_dp: Add support for RK3576
-> 
-> [...]
+Hi all,
 
-Applied, thanks!
+This patch series adds PCIe support to the Renesas RZ/V2H SoC and enables
+PCIe on the RZ/V2H EVK. The first patch adds the necessary device tree
+nodes for the PCIe controller, while the second patch enables the PCIe
+slot on the EVK.
 
-[07/11] dt-bindings: display: rockchip: analogix-dp: Add support for RK3576
-        commit: 473e50b27b0020ade5fd97ca04d941e448c5659a
-[09/11] drm/bridge: analogix_dp: Rename and simplify is_rockchip()
-        commit: 709445fb6fc57aa96d48c8492e84ed4b2a9a4b5e
-[10/11] drm/bridge: analogix_dp: Add support for RK3576
-        commit: 5442cdc38470ecd6b51562d378b6ed852a4d9d45
-[11/11] drm/rockchip: analogix_dp: Add support for RK3576
-        commit: 7e60c4e19fd3d3f1203fbb1fdd9b2bb1a1201e65
+Note, the driver and binding patches have been posted separately [0].
+[0] https://lore.kernel.org/all/20260602195019.1798126-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-Best regards,
+Cheers,
+Prabhakar
+
+Lad Prabhakar (2):
+  arm64: dts: renesas: r9a09g057: Add PCIe nodes
+  arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Enable PCIe
+
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi    | 140 ++++++++++++++++++
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |  18 +++
+ 2 files changed, 158 insertions(+)
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+2.54.0
+
 
