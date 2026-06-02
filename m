@@ -1,205 +1,166 @@
-Return-Path: <devicetree+bounces-305515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305522-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aICQCVaTHmqdlAkAu9opvQ
-	(envelope-from <devicetree+bounces-305515-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:24:54 +0200
+	id 0LfKEWiWHmrPlAkAu9opvQ
+	(envelope-from <devicetree+bounces-305522-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:38:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9486462A7B6
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:24:53 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4559962AAE1
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:37:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0611D30078BF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 08:21:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BFB8430459E6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 08:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D736534BA20;
-	Tue,  2 Jun 2026 08:21:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4B33B6BEC;
+	Tue,  2 Jun 2026 08:22:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VPg1Qixm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I26RfAfL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B942E2C029D;
-	Tue,  2 Jun 2026 08:21:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 327D23B992F
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 08:22:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780388496; cv=none; b=gz2ylEESfYU8lQv2iz88KuxysRvTJTf5YpWo/OI3nsYPs6BiAWPpzreSnKMDYdMT7GaZMwjRrsdZFvsmzbV03CQihRzlBV5Ox0/jCXwCIi7/48nBrkzevZMuWgM6o7PLXlKpIaidqzAjuIbtFrMYZK1RTZwm5OZQufGFLa2Ea3s=
+	t=1780388544; cv=none; b=YPZL0zN0Wv1eLAqRc8xS0CeCDQAMx9nNQFr5DlFCFeOgaS/z/bAM7D+i/MZDLqAxrh5HaZ8a6VsdWybZkRULd31PibxLNqN0kOe9Rph1Ff1gnOmPoRsYoKdoYB9fKPcHhSiPaiWM1P5FeRFZAAota6zt/ZEptSh/8JW6nuQ2HdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780388496; c=relaxed/simple;
-	bh=c/2cZtD9sP8z3cs75tkWfygYjcrazGNL/FvaGM4hCaw=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=TikKHi6ran8k4lBdJ9f7tJGVouSa6aJduBnX8k8kF0wlzLaYRld/sccZXeLy19IKx2dhCAcK+pgjllzRTszn1+xa8+XsYtWAyGKSlofTTbPiSzFCxvLTwk17NODXyj0l45629voW//h3Bb2Iktfzu6JcV2PMGBy1K9unJad6Da0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VPg1Qixm; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0709B1F00893;
-	Tue,  2 Jun 2026 08:21:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780388495;
-	bh=PtBNk0g8mRGl4pTTJm0gNHPYAvl9kFi7i5BTDgauKoA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=VPg1QixmnDHJZRhjJyfttTRk7X7FZD+Cieh/oKEmGZntBCMP/tvnDwbS6mWHe5AFE
-	 ojGLreC9dTpU4LnHnErtmpTyTK/2LxE6WKBZaOCnrVRpZfgBEP+VqZ41wkFL9fD1nA
-	 EvkqbrPjx35tfTNFkLENeupEQ6eFac0kkj9GTHx3V8QPSAdcDPFkHpdoWcyCAa8Dt8
-	 bdEUIGj2/xyOJ/zk8dgNRWPUIbNI1QpAH9HGoJQe8BJhmun3iYEBdoVKDR+jhweaq/
-	 MNMEf+2p6l7FwXuzW8/wns+7/0MPpEyrMpucgvCRtlVMTYNYD047KQp8/7YFZsQimx
-	 +QZ90Uk2SEiLQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 4/6] dt-bindings: pinctrl: s32g2-siul2: describe
- GPIO and EIRQ resources
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Khristine Andreea Barbulescu" <khristineandreea.barbulescu@oss.nxp.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, imx@lists.linux.dev, Frank.Li@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260602080132.3256239-5-khristineandreea.barbulescu@oss.nxp.com>
-References: <20260602080132.3256239-5-khristineandreea.barbulescu@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 02 Jun 2026 08:21:34 +0000
-Message-Id: <20260602082135.0709B1F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780388544; c=relaxed/simple;
+	bh=EJikaUMJCTIOu24FQfnsiP8Ha+Alj5V2JdWUXPbDzPE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fO4X0fTbiehw6CbA1gXF8NwhXhthllHkFU0nRer9F1lMuXfcA/G5qHpJ1L4LLojkRfMudGnLuyZ7liUfCETgKMOPPuHNXWjuEU1QA/aqOYkp1iSk4qbI+pwcOvBa/3fHNp0wIn4UKqvIqZ6Gcuteu5w2uEKaNvRhfXyZ6H2g40s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I26RfAfL; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-36b9033d230so2416647a91.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 01:22:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780388541; x=1780993341; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=evjuzAv8DSTdE0Ve2B6VtbgLhoX9BoKz8McLMZToRaA=;
+        b=I26RfAfLfB6+dqTlsdbErRAwuCbPyt4XVRRls4J45JgBcIBEiIB8v9xTSgQiCBROfQ
+         MlpBvkPYX1LLcSvIpbOIDh/cwHZlheTWB5j/CReakDBcDAke2qNu90xXD2GpnRD10Umy
+         jKdCdbDJtK0aYZa9pendkCiK2Hf2AjNgJkQj6iyR7yXTHX7JM2HubKjTfX5i2aXELUhd
+         IpMuKwsHaXwwO0cyUvBrFmceCBXTOxTsV/IVpR+idSHVpAgfjFi+SVkWPrFWK6Ohcnd0
+         YQza5JCjHlScyM455LqUCB8FNt+8cKkJ/wMO5Hd8yfkDWmxdBcjZvlRBNgsWPBLtOHjb
+         OltQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780388541; x=1780993341;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=evjuzAv8DSTdE0Ve2B6VtbgLhoX9BoKz8McLMZToRaA=;
+        b=Wbxjo3IDpU9q9OijQA1xb/ESi+a0QTGeGJmAPXRIrsSaHQxYGZlPga5uYi7VlWFqMc
+         qk+50j1LC8Tvdo/opglpldERREahFbP338YNMJzQttcT9TRy/0LUWjTcz0JfGQmLrd+N
+         nt5zCIz4nHK0QqUAF5oEP537oFEvlA5/RKkIYpSzh+XrZ+M9hs5NBILtP9sf18fhfvrU
+         7uPw8689Sm5qEZc4hKqN0HJ2qYes/cww0psoztDFOtcymy+WBJIZ0+l0skghr+ANmCCF
+         EL6pa1SYIClmKOt5cBOH8HqCoQMFxWQhzDYaHqVVPGuC18aHgah42OScu/Jx3Sj3Vah+
+         /5TA==
+X-Forwarded-Encrypted: i=1; AFNElJ/0Rakt5NrC0MB2/vEieVCpeq41Ac35LA8At1PDmSrcMQ7p8owbVl8pe/a+enMoup8yFeDVRLfgK09c@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3U4jKtsChf6Vz9KZtQtDjGSADWWSaPS5NOaJCb0nRCNfJvdxC
+	ptirkcdcbeCqBg9aV4/FCpstDyrR5ZZv7y9lgcvGBy8hbB3REaTz9vz8
+X-Gm-Gg: Acq92OFW68nQ2aVHrdNvFra0vyx1NGiPr6IJAiGQHKu+FfTBPgnMPVB5nCa6fo3K2JB
+	WkrKv7XnWVQqU5ntDzEP7HbJdTWnLu2uMJ9AUjxzwf622yl26nXNErAoTo33Mt91hc1HvFxJH6x
+	ARzTSkeKsiipNldK29KWugsW/sK7KJqvWnrTxYqsE/NnrYZcPjn1xI8yGQ99EP9q7QZ9aLgOirR
+	7fAFL6jHpjZR2I7Pbfq2X1/X17bY9Mx/nfafZotsJ28W0l/Gf3dRRV/5PzaBzXMyCtPaoBjbLhK
+	woEtfpoICCT43oszat+JUgBflxLQsatW4kEM3sl6JRWfJPqdnCnqNKOC/+CKXhFQEN53awWAR29
+	zWBK5YvZl0Po8jozIeHa5hWw3oa55EMPNol2x0xSH5UnOg6vQ85Z3hsf1ldp02CnukCLSuOwcYY
+	1XznNZc8sRLeyGTBa7Og58c4mDeGusUMbWQg==
+X-Received: by 2002:a17:90a:d006:b0:36a:caf2:3815 with SMTP id 98e67ed59e1d1-36dd98883ebmr2740656a91.15.1780388541458;
+        Tue, 02 Jun 2026 01:22:21 -0700 (PDT)
+Received: from localhost ([2001:19f0:8001:1b2d:5400:5ff:fefa:a95d])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36dd931ab67sm1864181a91.16.2026.06.02.01.22.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jun 2026 01:22:20 -0700 (PDT)
+Date: Tue, 2 Jun 2026 16:22:02 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: tglx@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, pjw@kernel.org, samuel.holland@sifive.com, 
+	unicorn_wang@outlook.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
+	liujingqi@lanxincomputing.com, alexander.sverdlin@gmail.com, rabenda.cn@gmail.com, 
+	dlan@kernel.org, chao.wei@sophgo.com, anup@brainfault.org, 
+	Daniel Lezcano <daniel.lezcano@kernel.org>, Joshua Milas <josh.milas@gmail.com>
+Cc: Inochi Amaoto <inochiama@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, sophgo@lists.linux.dev, 
+	hanguidong02@gmail.com, michael.opdenacker@rootcommit.com
+Subject: Re: (subset) [PATCH v5 RESEND 0/5] Add initial Milk-V Duo S board
+ support
+Message-ID: <ah6Se6TJM-wS8UVP@inochi.infowork>
+References: <20260530173347.33533-1-josh.milas@gmail.com>
+ <178038833103.2088679.3632311874557644565.b4-ty@b4>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <178038833103.2088679.3632311874557644565.b4-ty@b4>
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305515-lists,devicetree=lfdr.de];
+	URIBL_MULTI_FAIL(0.00)[inochi.infowork:server fail,sin.lore.kernel.org:server fail];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,nxp.com:email,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,4009c240:email];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-305522-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,sifive.com,outlook.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lanxincomputing.com,gmail.com,sophgo.com,brainfault.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,rootcommit.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
-X-Rspamd-Queue-Id: 9486462A7B6
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Queue-Id: 4559962AAE1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] The legacy fallback branch in the `oneOf` block fails to explici=
-tly forbid newly added capability properties (`gpio-controller`, `interrupt=
--controller`), creating a schema validation loophole.
-- [Low] The device tree example will fail `dt_binding_check` compilation du=
-e to an unresolved phandle reference to the undeclared label `&pinctrl`.
---
+On Tue, Jun 02, 2026 at 04:19:05PM +0800, Inochi Amaoto wrote:
+> On Sat, 30 May 2026 13:33:42 -0400, Joshua Milas wrote:
+> > This adds an initial device tree for the Milk-V Duo S board
+> > with support for reading from the SD card and network over
+> > Ethernet. This is continued work from Michael Opdenacker's
+> > v6 series [1] on the ARM64 and RISCV side. It has been tested
+> > with ARM64 and RISCV64 to boot from an SD card, have networking,
+> > and read I2C slave devices over i2c4.
+> > 
+> > [...]
+> 
+> Applied to for-next, thanks!
+> 
+> [1/5] dt-bindings: soc: sophgo: add Milk-V Duo S board compatibles
+>       https://github.com/sophgo/linux/commit/eeec80c3ce36ead24e2f53d88a24dac1e3de8041
+> [4/5] riscv64: dts: sophgo: add SG2000 dtsi
+>       https://github.com/sophgo/linux/commit/2145cd2f0082c11177b062e1ecbce121c3b50b43
+> 
+> Thanks,
+> Inochi
+> 
 
-commit 055c2d417b67cea0bcdcafe1444e526610028d07
-Author: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.c=
-om>
+Please ignore this, I apply the wrong patch, A new thanks will be sent 
+after I fix this. Sorry for the noise.
 
-dt-bindings: pinctrl: s32g2-siul2: describe GPIO and EIRQ resources
-
-This commit extends the S32G2 SIUL2 pinctrl binding to describe GPIO data
-and external interrupt resources. It adds GPIO and interrupt controller
-properties and expands the reg property ranges. It also provides a oneOf
-construct to support legacy and new node layouts.
-
-> diff --git a/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pi=
-nctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinc=
-trl.yaml
-> index a24286e4def62..e4cc1a3a795c8 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.y=
-aml
-> +++ b/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.y=
-aml
-[ ... ]
-> @@ -86,10 +118,32 @@ required:
->    - compatible
->    - reg
-> =20
-> +oneOf:
-> +  - description: Legacy pinctrl-only node
-> +    properties:
-> +      reg:
-> +        minItems: 6
-> +        maxItems: 6
-
-[Severity: Medium]
-Since gpio-controller and interrupt-controller are allowed at the top level,
-does this legacy branch need to explicitly forbid them?
-
-Without setting gpio-controller: false and interrupt-controller: false here,
-could a node matching this legacy branch declare these capabilities without
-providing the 11 reg items and gpio-ranges required to actually use them,
-thereby bypassing schema validation?
-
-> +
-> +  - description: Pinctrl node with GPIO and external interrupt support
-> +    required:
-> +      - gpio-controller
-> +      - "#gpio-cells"
-> +      - gpio-ranges
-> +      - interrupt-controller
-> +      - "#interrupt-cells"
-> +      - interrupts
-> +    properties:
-> +      reg:
-> +        minItems: 11
-> +        maxItems: 11
-> +
->  additionalProperties: false
-> =20
->  examples:
->    - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
->      pinctrl@4009c240 {
->          compatible =3D "nxp,s32g2-siul2-pinctrl";
-
-[Severity: Low]
-Does this node need a pinctrl: label?
-
-The gpio-ranges property added below attempts to reference &pinctrl, which
-will cause dt_binding_check to fail with a 'reference to non-existent node
-or label' error.
-
-[ ... ]
->                /* IMCR119-IMCR397 registers on siul2_1 */
->                <0x44010c1c 0x45c>,
->                /* IMCR430-IMCR495 registers on siul2_1 */
-> -              <0x440110f8 0x108>;
-> +              <0x440110f8 0x108>,
-> +              /* PGPDO registers on siul2_0 */
-> +              <0x4009d700 0x10>,
-> +              /* PGPDI registers on siul2_0 */
-> +              <0x4009d740 0x10>,
-> +              /* PGPDO registers on siul2_1 */
-> +              <0x44011700 0x18>,
-> +              /* PGPDI registers on siul2_1 */
-> +              <0x44011740 0x18>,
-> +              /* EIRQ registers on siul2_1 */
-> +              <0x44010010 0x34>;
-> +
-> +        gpio-controller;
-> +        #gpio-cells =3D <2>;
-> +        gpio-ranges =3D <&pinctrl 0 0 102>,
-> +                      <&pinctrl 112 112 79>;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260602080132.3256=
-239-1-khristineandreea.barbulescu@oss.nxp.com?part=3D4
+Regards,
+Inochi
 
