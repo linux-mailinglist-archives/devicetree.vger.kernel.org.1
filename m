@@ -1,192 +1,167 @@
-Return-Path: <devicetree+bounces-305821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305822-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gV62Dss4H2qYiwAAu9opvQ
-	(envelope-from <devicetree+bounces-305821-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 22:10:51 +0200
+	id 3k4GB3U5H2qpiwAAu9opvQ
+	(envelope-from <devicetree+bounces-305822-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 22:13:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CE99631A8F
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 22:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60AF4631AD3
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 22:13:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="nsN5D/l9";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305821-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305821-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=sntech.de header.s=gloria202408 header.b=vcSsT6g8;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305822-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305822-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=sntech.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F0863305FC0C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 20:03:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8A7B8300951B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 20:06:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1B21F78E6;
-	Tue,  2 Jun 2026 20:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3244E2741A0;
+	Tue,  2 Jun 2026 20:06:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260452F7EF3;
-	Tue,  2 Jun 2026 20:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA54E2F12DA;
+	Tue,  2 Jun 2026 20:06:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780430610; cv=none; b=eGlKG4Ntl/OC1+NRINR4jGZcBysLX02HUHwSrb7XcKRYoOlhHh3jby39fYXtyvaR1PPbMJIXVDmZlGxwdCC7LS4UXPIKoJtqhPRgBTHuuuFmzQLkcq22Nz2VYlhUqg+VVf6QrmPkLjgR9Q1qBthCBepy1eGBIbIh1TqDe1Nv+qE=
+	t=1780430792; cv=none; b=s3gMRRrmzpKQh/Xm2VS+/jF914ilPUgF45h9JfGk+taBeySP4cVuiaoi4COYZFN1taojElMPbisbxhD9aVTmYXcGMKJnf94a5YXiYNGZb6ETlKcyYC80VDW2XxiReslk1kpym8QyeJFqf1kriAWu7WbYO6sOO3UfZlrTwelAWQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780430610; c=relaxed/simple;
-	bh=2S7zYuZiSnRMdevwHwNSGBWVVVzl2lkrKrqhFLXzNfY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=QWXDOnqYcfOgCgPLIgmGEmkl1p63lDCLcysr/J66qn2QmZthSd0OcFajFCFIh3wo5u/z+3LpnwJABvftDAGyh3iACxn0nGira7wLCwpkFtJ88RLpYFPFTmWyRXLo7rWqmFmijP+EG9as8JXhjrG5kc/UPCVaWPcHUgp8cwYIgO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nsN5D/l9; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 762B21F00893;
-	Tue,  2 Jun 2026 20:03:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780430608;
-	bh=B7KAa9FP34L6SmihAuP7NkokXs0YBAGkZg95xTzF05c=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=nsN5D/l9DE8gsw1NdvPpd+gpAcz2QHGfHxQS9H26qJ25FQzDuVjfthDLioJz7sjte
-	 Dl1PiHBH7/wd+SLO8+zTDySkIeC6QOqX7EW29ICWphuaas/USezM3N2dNo2XXJuJ1e
-	 QWYUwjsmpfciveUfbjVlyjBbIToAFiNyBnJWClHx9ezbFgVY0ixqfT1gRuM/67X5sf
-	 4BjBg6gMaJnHzKSgvrOUx8XuyBFGXpTo9DqENW0o541MRMaMZCi+3CZ6KECv+KSoh/
-	 r58bEfoxK5gjRHDnGWc9HIe19MvJDe7C33P/XvCTdSdrn4vREgHVLPXOZJxFCPTCDk
-	 p0wEYJl/7AdWg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/4] PCI: rzg3s-host: Use shared reset controls for
- power domain resets
-Reply-To: sashiko-reviews@lists.linux.dev
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: linux-pci@vger.kernel.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, wsa+renesas@sang-engineering.com
-In-Reply-To: <20260602195019.1798126-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260602195019.1798126-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 02 Jun 2026 20:03:28 +0000
-Message-Id: <20260602200328.762B21F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780430792; c=relaxed/simple;
+	bh=Jq+Rh5AzQtmnHI/dmMt68k9m9uly8jea4Z9HuVwtKyc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=g6OoE+0mDVrxWPCXpF0BXNAjXN5F0bM+3RJJvZMPWy/AvBAGj9DAQOc3e+xfW++v/fw2JH5v0O7MjeL+Sank+qZGJLBFE/WExWDh4Yk9wZjHxuyM4mLoDdXF857vWP1esoVjyTQfB3XLSvUGHxlqsQ7EM4fnCXiGCLELiTz2Z/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=vcSsT6g8; arc=none smtp.client-ip=185.11.138.130
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=QfQEDsKS6dbk9DnS1YH4HjGcuydsJ8S8waoFaz8Seoo=; b=vcSsT6g8OzYRFLBCXEJEhR7foL
+	1i7AkqP37LfhlTv9QJjNw10ZkLxx9AEzzVCWAjjJSo4fC5dmoLprmzkiZfxRBu1raXdx/oNZRWMYn
+	vboPVBmIBMBxVSSNKjE/swxIOubGSQNQ3lvXIGiOHbDeMNP+MMm1cTso/FWsAv1x3974hP8mvaioX
+	G0Z4guQYEJmBwM2vRtOQVYJBm3ENlkWwEiILmauiAs/phEFE5CDva7dHStToK2azk5QAcHuqX8hVe
+	VAzQH0CB/TEOehrOeFt8YEaXzBn3D552j9tzkKFzfAGwBf2mUMew2aQhxN0tFsyswCeJV+MzKuTEH
+	BBxFXN1w==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: hjc@rock-chips.com,
+	andy.yan@rock-chips.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	nicolas.frattaroli@collabora.com,
+	cristian.ciocaltea@collabora.com,
+	sebastian.reichel@collabora.com,
+	dmitry.baryshkov@oss.qualcomm.com,
+	luca.ceresoli@bootlin.com,
+	dianders@chromium.org,
+	m.szyprowski@samsung.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v10 00/11] Add eDP support for RK3576
+Date: Tue,  2 Jun 2026 22:05:40 +0200
+Message-ID: <178043072949.664369.15843941283523280742.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260601065100.1103873-1-damon.ding@rock-chips.com>
+References: <20260601065100.1103873-1-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:hjc@rock-chips.com,m:andy.yan@rock-chips.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:damon.ding@rock-chips.com,m:heiko@sntech.de,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:nicolas.frattaroli@collabora.com,m:cristian.ciocaltea@collabora.com,m:sebastian.reichel@collabora.com,m:dmitry.baryshkov@oss.qualcomm.com,m:luca.ceresoli@bootlin.com,m:dianders@chromium.org,m:m.szyprowski@samsung.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-305821-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:prabhakarcsengg@gmail.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[rock-chips.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
+	FORGED_SENDER(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	TAGGED_FROM(0.00)[bounces-305822-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[sntech.de,ideasonboard.com,kwiboo.se,gmail.com,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7CE99631A8F
+X-Rspamd-Queue-Id: 60AF4631AD3
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
 
-Pre-existing issues:
-- [High] Chained IRQ handlers are not removed during probe failure or teard=
-own, leading to a potential Use-After-Free.
---
+On Mon, 01 Jun 2026 14:50:49 +0800, Damon Ding wrote:
+> Patch 1-5 are to add missing clock "hclk" for RK3588 eDP nodes.
+> Patch 6 is to use automatic cleanup to fix OF node reference leak
+>         reported by Sashiko.
+> Patch 7-8 are to add the RK3576 eDP node.
+> Patch 9-11 are to support the RK3576 Analogix DP controller.
+> 
+> Damon Ding (11):
+>   dt-bindings: display: rockchip: analogix-dp: Fix hclk as third clock
+>     for RK3588
+>   dt-bindings: display: rockchip: analogix-dp: Add per-clock
+>     descriptions
+>   arm64: dts: rockchip: Add missing hclk for RK3588 eDP0
+>   arm64: dts: rockchip: Add missing hclk for RK3588 eDP1
+>   drm/rockchip: analogix_dp: Enable hclk for RK3588
+>   drm/rockchip: analogix_dp: Fix OF node reference leak via auto cleanup
+>   dt-bindings: display: rockchip: analogix-dp: Add support for RK3576
+>   arm64: dts: rockchip: Add eDP node for RK3576
+>   drm/bridge: analogix_dp: Rename and simplify is_rockchip()
+>   drm/bridge: analogix_dp: Add support for RK3576
+>   drm/rockchip: analogix_dp: Add support for RK3576
+> 
+> [...]
 
-commit 8cee5b223d5c91e47fe4df2561360a3e326a556f
-Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Applied, thanks!
 
-PCI: rzg3s-host: Use shared reset controls for power domain resets
+[01/11] dt-bindings: display: rockchip: analogix-dp: Fix hclk as third clock for RK3588
+        commit: 826ab13cf73e7bd5b268085c9594850f6a7fc7fd
+[02/11] dt-bindings: display: rockchip: analogix-dp: Add per-clock descriptions
+        commit: 38f41d4e704c2a9bfc025bb17594d53be010a629
+[05/11] drm/rockchip: analogix_dp: Enable hclk for RK3588
+        commit: 104f20616d72825fdcf56cfdc5f89f4e96fd8dbe
+[06/11] drm/rockchip: analogix_dp: Fix OF node reference leak via auto cleanup
+        commit: 87e060521371257ddbb77964b66e60d80afcc7b2
 
-This commit switches to shared reset controls for PCIe power resets to prep=
-are
-for RZ/V2H(P) support. Multiple PCIe controllers share the same reset line =
-on
-this platform, which requires shared ownership of the reset control.
-
-> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/contr=
-oller/pcie-rzg3s-host.c
-> index d86e7516dcc29..a5192e4b58dfb 100644
-> --- a/drivers/pci/controller/pcie-rzg3s-host.c
-> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
-> @@ -1276,9 +1276,9 @@ static int rzg3s_pcie_resets_prepare_and_get(struct=
- rzg3s_pcie_host *host)
->  	for (i =3D 0; i < data->num_cfg_resets; i++)
->  		host->cfg_resets[i].id =3D data->cfg_resets[i];
-> =20
-> -	ret =3D devm_reset_control_bulk_get_exclusive(host->dev,
-> -						    data->num_power_resets,
-> -						    host->power_resets);
-> +	ret =3D devm_reset_control_bulk_get_shared(host->dev,
-> +						 data->num_power_resets,
-> +						 host->power_resets);
->  	if (ret)
->  		return ret;
-> =20
-
-[Severity: High]
-This is a pre-existing issue, but I noticed a potential use-after-free
-with the chained IRQ handlers in this driver during probe failure or teardo=
-wn.
-
-In rzg3s_pcie_init_irqdomain(), chained handlers are installed for each INTx
-interrupt:
-
-drivers/pci/controller/pcie-rzg3s-host.c:rzg3s_pcie_init_irqdomain() {
-	...
-	for (i =3D 0; i < PCI_NUM_INTX; i++) {
-		...
-		irq =3D platform_get_irq_byname(pdev, irq_name);
-		if (irq < 0)
-			return dev_err_probe(dev, -EINVAL, ...);
-	=09
-		host->intx_irqs[i] =3D irq;
-		irq_set_chained_handler_and_data(irq,
-						 rzg3s_pcie_intx_irq_handler,
-						 host);
-	}
-	...
-}
-
-If platform_get_irq_byname() fails on a subsequent loop iteration, the
-function returns an error without unregistering the already installed
-chained handlers.
-
-Additionally, during teardown, rzg3s_pcie_teardown_irqdomain() does not
-clear these handlers:
-
-drivers/pci/controller/pcie-rzg3s-host.c:rzg3s_pcie_teardown_irqdomain() {
-	if (IS_ENABLED(CONFIG_PCI_MSI))
-		rzg3s_pcie_teardown_msi(host);
-
-	irq_domain_remove(host->intx_domain);
-}
-
-Because chained handlers are not managed by devres and persist after the
-driver unbinds, could an interrupt on these lines cause
-rzg3s_pcie_intx_irq_handler() to dereference the freed host pointer?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260602195019.1798=
-126-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D2
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
