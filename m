@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-305806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305807-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id L3JTK6wsH2qciQAAu9opvQ
-	(envelope-from <devicetree+bounces-305806-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 21:19:08 +0200
+	id LttAER0tH2qriQAAu9opvQ
+	(envelope-from <devicetree+bounces-305807-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 21:21:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC4D63159F
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 21:19:08 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A6BD6315D1
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 21:21:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=FTJ9WrO6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305806-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-305806-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=intel.com header.s=Intel header.b="NGfv10t/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305807-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-305807-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AA4AA3028DDF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 19:19:07 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 27D0A3008D1A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 19:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0CC3CBE8F;
-	Tue,  2 Jun 2026 19:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 962A93D667B;
+	Tue,  2 Jun 2026 19:20:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1BF53A5E85;
-	Tue,  2 Jun 2026 19:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F813A3E98;
+	Tue,  2 Jun 2026 19:20:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780427943; cv=none; b=FH5fiDjTDwU8YkvdeJQseRDv8CcfQXX9/PDYZmT13nG4XYUPRTKCqdyYOdRsi5OpDxrKR5cLKEvGgW+wwh+R9sWhzoGOWSEOzg3KFEnHEc6neWXyMSUf1WVxmAp+yAxfFHdfa3Q/Ly+KtW4+dOg9NpwiDDegj/5Y/LqIhK0L4Cs=
+	t=1780428023; cv=none; b=sp1dhvjTz6EKjV8DqZgKOPIXo2Qs7uPpjPgpFvTefllURYjTopa2C8EhGecj2J1rVoCyWeKxkmuBdAEtZNyG0WcBHldQMGEpF3FxqBWjz6QK9Wnx7OaLedX+5Om3nrKJ9D89HS41BIu1f1cPYXqgs3zF9SWxoVlqQHV8Zw/i+0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780427943; c=relaxed/simple;
-	bh=5+victKJvf4xlYtUWm9ubefdyFRrnT6iLe597OdvJA8=;
+	s=arc-20240116; t=1780428023; c=relaxed/simple;
+	bh=3Oik8/6wlJ8nANZPQZ/zclha0jX90ArP0XgyL4YgAj8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=omN4ZYFi/0BmnS6MQUfJ9KdKIIW79/KWHMJ8cPMXwu8qGGPt00fwRjGeClRI4/pfm9ai4tW/MSH8vARAIRR8PY627XTgvj5vc97EQmqsmSuBvLKrzD9PqssV0HisS8UjEmkQqv/JFu+DNnTHM4q2BY9BCiSADLVr3f4s4aUUY9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FTJ9WrO6; arc=none smtp.client-ip=192.198.163.13
+	 Content-Type:Content-Disposition:In-Reply-To; b=tWaMyn3BEa2cRXqVcmJdQtmtDXA5v51NZT2mXSXBmL10kp0lF4KBw2C9X9H1b2LEx5FbZT2KPVPy8ti/TZq191tKm5iT40rmzcIRJCfz8REZ4Y7aMBiNIQuPc1ErTUJcDvJN58zhYHxwzUIihFZ4W3Ly/QXcnTXmyTO4Odaudl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NGfv10t/; arc=none smtp.client-ip=192.198.163.12
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1780427942; x=1811963942;
+  t=1780428022; x=1811964022;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=5+victKJvf4xlYtUWm9ubefdyFRrnT6iLe597OdvJA8=;
-  b=FTJ9WrO6NPwcHD3I31uB8V5KYQzN9042iCKR9GDJW12TVHfPsRp2y2Uv
-   O4fRucToBPmM422q+Xlj5Hu8ldSktW8Gp8LBCekqpncE20ska8C/OdNeR
-   HQJ2jhM9v3V2d7nUJt2q5eFgy4B3ERbtKObY4WDy5NXai/fqoQON3B2SM
-   ZW0frhEAPdqeVL/CFrLqCY7t5osUmcMRLO0KE/awGAKO9F3RmkjpzZfJL
-   YJqae7vQFXA62XX8Nv/ilFOkuLCI1dPdv5dBLsfyDcG3ISI2JP8brd3w+
-   9FAhw+ERn+88pbCdfg0GNK20CxlnS8NYhGPNhPYOX0CCA297tvqImfCjY
-   w==;
-X-CSE-ConnectionGUID: Q40iNihzQ/ed+ooKEYNjPg==
-X-CSE-MsgGUID: zDstIIGyQIWh34NgKIKCFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="83807583"
+  bh=3Oik8/6wlJ8nANZPQZ/zclha0jX90ArP0XgyL4YgAj8=;
+  b=NGfv10t/DRJEhYRgKoDd7aSnpQMuzHyReoXOJrSixETTI8nsG/VZSB2r
+   U6t2+LQYx5CspfjoFAGYudBhMLBvfwsbQnXEHk5rLCBOJa1zBsfsxmZBA
+   ZzQTWFgCBP+lnXoBELvyRt8TAnFjDGiP8nxiFXc+jRadWjudios/RPK66
+   48UKIER9rK4vlusDJIrsPB2EQJVIVjTAmSOIGt9kbhCwrAXKDQb9nbNQf
+   fLzp85zCCob6xRtChbeJk5NB+ClX+5XnKZbMzofuNa6C314QVlnC94zhH
+   SdotUQzNFFZ+CoF/W9YArfPX9vwPqnGenmsG8lXLXdMr6fECzBtFrci5q
+   A==;
+X-CSE-ConnectionGUID: T2MWF2kVTGGJ55OirCqEDw==
+X-CSE-MsgGUID: ABTzOGHlSHSKObNpkoKAmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="85080859"
 X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; 
-   d="scan'208";a="83807583"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2026 12:19:01 -0700
-X-CSE-ConnectionGUID: Gu1DLD3uQi2271mrqCg2EA==
-X-CSE-MsgGUID: I+S8wWYYRgqi6xN4T8r3NQ==
+   d="scan'208";a="85080859"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2026 12:20:22 -0700
+X-CSE-ConnectionGUID: LC8TOjOJRm+xCBDRey0eDg==
+X-CSE-MsgGUID: XoyiKCgUTP+u3uVU6yw1iQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; 
-   d="scan'208";a="237645579"
+   d="scan'208";a="241016841"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.229])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2026 12:18:58 -0700
-Date: Tue, 2 Jun 2026 22:18:55 +0300
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2026 12:20:18 -0700
+Date: Tue, 2 Jun 2026 22:20:16 +0300
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
 To: rodrigo.alencar@analog.com
 Cc: Michael Auchter <michael.auchter@ni.com>, linux@analog.com,
@@ -75,10 +75,10 @@ Cc: Michael Auchter <michael.auchter@ni.com>, linux@analog.com,
 	Conor Dooley <conor+dt@kernel.org>,
 	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>,
 	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH 10/12] iio: dac: ad5686: add triggered buffer support
-Message-ID: <ah8sn1APUA8_zTf9@ashevche-desk.local>
+Subject: Re: [PATCH 11/12] iio: dac: ad5686: write_raw: use guard(mutex)()
+Message-ID: <ah8s8J4H0LcS2ZFs@ashevche-desk.local>
 References: <20260602-ad5686-new-features-v1-0-691e01883d27@analog.com>
- <20260602-ad5686-new-features-v1-10-691e01883d27@analog.com>
+ <20260602-ad5686-new-features-v1-11-691e01883d27@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +87,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260602-ad5686-new-features-v1-10-691e01883d27@analog.com>
+In-Reply-To: <20260602-ad5686-new-features-v1-11-691e01883d27@analog.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
@@ -95,13 +95,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305806-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305807-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
@@ -109,7 +109,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	HAS_ORG_HEADER(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -123,78 +123,16 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3DC4D63159F
+X-Rspamd-Queue-Id: 3A6BD6315D1
 
-On Tue, Jun 02, 2026 at 05:33:57PM +0100, Rodrigo Alencar via B4 Relay wrote:
+On Tue, Jun 02, 2026 at 05:33:58PM +0100, Rodrigo Alencar via B4 Relay wrote:
+> 
+> Use guarded mutex lock to facilitate code review when adding new
+> attributes. This will allow for early returns, avoiding error-prone
+> locking and unlocking in error paths. Gain-control support will add
+> the scale attribute.
 
-> Implement trigger handler by leveraging the LDAC gpio to update all DAC
-> channels at once when it is available. Also, the multiple channel writes
-> can be flushed at once with the sync() operation.
-
-...
-
-> +static irqreturn_t ad5686_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf = p;
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct iio_buffer *buffer = indio_dev->buffer;
-> +	struct ad5686_state *st = iio_priv(indio_dev);
-> +	u16 val[AD5686_MAX_CHANNELS] = { };
-> +	int ret, ch, i = 0;
-> +	bool async_update;
-> +	u8 cmd;
-> +
-> +	ret = iio_pop_from_buffer(buffer, val);
-> +	if (ret)
-> +		goto out;
-> +
-> +	mutex_lock(&st->lock);
-> +
-> +	async_update = st->ldac_gpio && bitmap_weight(indio_dev->active_scan_mask,
-> +						      iio_get_masklength(indio_dev)) > 1;
-
-Easier to read on a logical split
-
-	async_update = st->ldac_gpio &&
-		       bitmap_weight(indio_dev->active_scan_mask, iio_get_masklength(indio_dev)) > 1;
-
-Or with a temporary variable where you keep the weight of the bitmap.
-
-> +	if (async_update) {
-> +		/* use ldac to update all channels simultaneously */
-> +		cmd = AD5686_CMD_WRITE_INPUT_N;
-> +		gpiod_set_value_cansleep(st->ldac_gpio, 0);
-> +	} else {
-> +		cmd = AD5686_CMD_WRITE_INPUT_N_UPDATE_N;
-> +	}
-> +
-> +	iio_for_each_active_channel(indio_dev, ch) {
-> +		ret = st->ops->write(st, cmd, indio_dev->channels[ch].address, val[i++]);
-> +		if (ret)
-> +			goto cleanup;
-> +	}
-> +
-> +	if (st->ops->sync)
-> +		ret = st->ops->sync(st); /* flush all pending transfers */
-
-> +cleanup:
-
-Bad label naming. Also may clash in the future with some overflow or wrap traps
-(you can find interesting discussion with Linus on the implementation of that
- with Kees).
-
-> +	if (async_update)
-> +		gpiod_set_value_cansleep(st->ldac_gpio, 1);
-> +
-> +	mutex_unlock(&st->lock);
-> +out:
-
-out_notify_done:
-
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +
-> +	return IRQ_HANDLED;
-> +}
+You just added one in the previous patch.
 
 -- 
 With Best Regards,
