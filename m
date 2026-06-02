@@ -1,151 +1,176 @@
-Return-Path: <devicetree+bounces-305562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305567-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wA4yJ3OwHmr7JAAAu9opvQ
-	(envelope-from <devicetree+bounces-305562-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:29:07 +0200
+	id WALzL7GwHmr7JAAAu9opvQ
+	(envelope-from <devicetree+bounces-305567-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:30:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9DAB62C8F8
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:29:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F3862C916
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:30:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CDC4A31AA6B0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 10:17:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3DFB5305B100
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 10:18:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C13C53D5C10;
-	Tue,  2 Jun 2026 10:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232E93D669F;
+	Tue,  2 Jun 2026 10:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BlwLhYeP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FEUjRwTQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F31B3D410B
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 10:16:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EFC13DA7D9
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 10:16:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780395372; cv=none; b=g57Cvbpa0JOe1ALYt4v6FMP4ZZHv4B4jL7cZDJDABpMyksj43BqAheiG033DFemkYc+SjvH9d05a/o+5q/SYd5texzYpAv/zo+/J8G/ZEwsXGYIRSOruDyXJO98x5DJJrPzw7iDxGZJe67l4DAmOgiaMJPlWBpqyQEZXGx5dJro=
+	t=1780395420; cv=none; b=ZRuaynQqU4nthEsEWB5hzuCvdfsqUT5hBc9gugB5zXZIDojksROeSGdhY9XmTGU5g9z9EyNl7Nya8haGeT9VHu7M/J1mpoXWS01kUHVdyUXx2Yb7Sb8tgTpQ7wlw9oz3+9csd28kpQEf5uJkpgzCEjsq6cduAhpnM6ZzquFtvI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780395372; c=relaxed/simple;
-	bh=f84VhQa/St2+evr4TtwcBCBAVfxHSYOs3xw1PSgUknk=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=FmPXWaOTs4f3r2WuAsLvi99fkGCandvW/5GkaSf4uIJr1Me2TGet0rpEcRtwbz/EAvxe6CmM+KSYK87tzw6Teadkn0FI3UPBGEXnDVx4wv0mmP2TZpcCQsVo6/52HN1zu0k1AP4DW48GFIhj/VCDZXtnNCNu1IObsgfQSDngl9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BlwLhYeP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B0971F00898;
-	Tue,  2 Jun 2026 10:16:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780395371;
-	bh=F+Nk+ceO0alfZGjD8Y4fftB4La0hJqtLUjdGIzsLjO0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=BlwLhYePlqgHrTK2Jqqu6xpAwlw4J2a6UPAetKrJlhxF/j8sS6tVKqkbrgzShUsPj
-	 sS6ezbuSAhMayG1MNhg1cUh1UaUGAN0yH7Uud3l+5zByu2tmj6LR65dD0lnzstCfO9
-	 g5Cs0njN7NyIZ13y1RUdh8tz9XkSjj+bhevQnzcGyAFaWIp27APJzP5QVYFRbhea2C
-	 b5gS/V7gTH3lQPcQ6Xs83rLSwy17E02+4RJsZtk/IPMMgHomFA0JLPvfLy8tyddPv5
-	 tT0TMfOIgIfjdkV01NvJnaDj4nVf4RCVzPiJzPXmFnjTHjDQHbIpQ4BjPTtBrnx7WY
-	 yCVm4gKAjPrZQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: ti,tas2781: Add TAS2573
- support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Baojun Xu" <baojun.xu@ti.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260602100532.6463-1-baojun.xu@ti.com>
-References: <20260602100532.6463-1-baojun.xu@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 02 Jun 2026 10:16:07 +0000
-Message-Id: <20260602101608.5B0971F00898@smtp.kernel.org>
+	s=arc-20240116; t=1780395420; c=relaxed/simple;
+	bh=QA4yfPP1XxGkqqeUczCeaNMxgcEitZq5JbfLWgt6jZ8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=iXb8xpVUvzfcFqY4TJV48E9iRygcxMjNGXsSoRRaC0Ty6RPdWtFWQ4F5q+/aWCaYZbIPh7qS4WjSUsT+EKEkgUwoo8sfBSQI8HyioQ+wOf+I8IWoYcbCiavEN9P5acpvPsoQgdwmYaBwiy0myLHFTF+N5UUD5EueYEK7QFQmoCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FEUjRwTQ; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2c0c2a68d01so14705545ad.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 03:16:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780395418; x=1781000218; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GPHRLle9I7Nd/qZunsQNy1JsrfMY8rVkIYFRWvNrhY8=;
+        b=FEUjRwTQ6cGEhrfF5peAmdh4DaasOBOvZfy8GSJgr+l3a9UPta7MbAO7+1yjShXv+h
+         RR/2Eqd4LGyZWYyCYdU5mMusj67V9/L2m6OO5IUKfHlSsdkjN3KRFUy9akrcM1/WNr5U
+         uyYFo7A+rbTWi9kjIBz5pdCfyg8erSC8E8z9EnVak/UAYcPCpdrUU7Rfp7Z7OpWznI6p
+         ZF8sEVLlSY95KpVmuXh3NE0RT7hqR+v47k4PKGM9TFWkZelJ/8UCTWlGPxpAtbj/3O8Y
+         63irI1YOK3Rlg3/GmZUeCHGGUcH7SVQVkGsRYqTB8zvMp5xQMds9Li5/HHQgNh6PPbHa
+         9HZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780395418; x=1781000218;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=GPHRLle9I7Nd/qZunsQNy1JsrfMY8rVkIYFRWvNrhY8=;
+        b=FTxFWHo41re7gtiKGdRx4etW70mhfvoEhVueu5Ty723aTNwkYCoMfjR/wJ8psPfznS
+         3fGZz/CAvDMUnXOIDuR9esBZ8eRO7Llsogod6O1QOwraAe10n/zA1pNNiQKVfDmN+Tx8
+         AblsrBRB3btgB7ck7cymNhOEYpw/t/M49cukpIIfPvm8vo0+lhDmSLpIq70/OOqnZy1D
+         XM+oElxyxH/I3t9C7sRGdINiWkORvcfdXhwSAVBFFoCZu1/Y95OVzIqvx5V1lvICEVhr
+         yAPpfZFH+2GsQSkb000Exjta7c6/kE26odoAlrth4zlaIQh5cgvG4P35ov57OOwbuahF
+         4TkQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/oqxyTybG0/szVa9LnPgS6m1Xmh9c0wwfGrCFlibcHxQLJoiOO7hI6Twmif/9Htl2fjOX8RRfevagT@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjOyxCJu1Hczdi+lgaPJNtToCNoHPPOdg+ofEg8iw/sGQL24aR
+	7bNRsyebc9ilK4dkgJAGCCf8PIKVC9+5DfOfmPiLTCklt3wyl1mV3FuZ
+X-Gm-Gg: Acq92OFlP9pHDgMHgDe7J4riimd+s8cqQoXvMehiBMvbbuGx/N/YT5jKG7MQWWulJ/x
+	nQk4k/JYgNK822m9eavNvWnf58m2vqntjjOIqQtYyAZzeIZ08cNunX7949bmHXMcvxFoXXF95l4
+	SRK1GxB+t9B42qOVARY1h2py0HnvxU8GM3nRzjABjCeVHnkwsXdLbsyrc9tqY5gAH7G+46mpp76
+	uLP/NwnoxrvT175xH/kzkC1hfT1U7JohUvPrksS/vXASNxXK8GW/5pI6U9M1U/SiC8qZeb2PtiY
+	NmWJKo4+aubxic5fsv3UYE3EjMdATVPCg3HqkrG1VeqOtSreHxR8gNQsoLd/422cvXHIhsrozw4
+	kxQSH+1+nImupujr5t/jQEpk/hiibU1WuuJVN676yWuIAb2bUHsr2raawG3/8XK5WcJsi7tAa9L
+	nI5mjen6gLeIMKRzbKr5u6oyvHFeNE6lW59B5ZVDq7TEn5UFdts4cX8k/1d6yXC+6weN3T
+X-Received: by 2002:a17:903:1905:b0:2bf:23c3:34b2 with SMTP id d9443c01a7336-2bf36867d31mr173447395ad.32.1780395417737;
+        Tue, 02 Jun 2026 03:16:57 -0700 (PDT)
+Received: from phuc-desktop.. ([183.91.15.56])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bf239fd84fsm132766305ad.23.2026.06.02.03.16.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jun 2026 03:16:57 -0700 (PDT)
+From: phucduc.bui@gmail.com
+To: Heiko Stuebner <heiko@sntech.de>,
+	Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	bui duc phuc <phucduc.bui@gmail.com>,
+	Sashiko AI Review <sashiko-bot@kernel.org>
+Subject: [PATCH v2 4/5] ASoC: rockchip: spdif: Restore regcache cache-only mode on sync failure
+Date: Tue,  2 Jun 2026 17:16:07 +0700
+Message-ID: <20260602101608.45137-5-phucduc.bui@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260602101608.45137-1-phucduc.bui@gmail.com>
+References: <20260602101608.45137-1-phucduc.bui@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Queue-Id: E9DAB62C8F8
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 29F3862C916
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-305562-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305567-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,perex.cz,suse.com,vger.kernel.org,lists.infradead.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[sntech.de,kernel.org,gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The dt-binding schema enforces mutually exclusive `reg` constrai=
-nts for `ti,tas2573`, causing schema validation to always fail for this dev=
-ice.
---
+From: bui duc phuc <phucduc.bui@gmail.com>
 
-commit fae137d4c240a643a606f184ad877663a7719392
-Author: Baojun Xu <baojun.xu@ti.com>
+If regcache_sync() fails during runtime resume, the driver disables the
+clocks and returns an error. However, the regmap cache-only mode is left
+disabled.
+Restore cache-only mode in the error path so subsequent register accesses
+continue to use the cache while the device is inactive.
 
-ASoC: dt-bindings: ti,tas2781: Add TAS2573 support
+Reported-by: Sashiko AI Review <sashiko-bot@kernel.org>
+Closes: https://lore.kernel.org/all/20260522103713.6C09D1F000E9@smtp.kernel.org/
+Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
+---
 
-The TAS2573 belongs to the TAS257x device family, featuring an integrated
-DSP and IV sensing capability. This commit adds support for the TAS2573
-to the ti,tas2781 dt-binding schema.
+NOTE: This patch is compile-tested only. Please help test if you have 
+    the relevant Rockchip hardware.
 
-> diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Do=
-cumentation/devicetree/bindings/sound/ti,tas2781.yaml
-> index b21466bb0730a..aa5a317b5a361 100644
-> --- a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-> +++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-[ ... ]
-> @@ -183,6 +187,7 @@ allOf:
->            contains:
->              enum:
->                - ti,tas2563
-> +              - ti,tas2573
->                - ti,tas5825
->      then:
->        properties:
+ sound/soc/rockchip/rockchip_spdif.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-[Severity: Medium]
-Will these mutually exclusive reg constraints cause a regression during
-schema validation for ti,tas2573?
+diff --git a/sound/soc/rockchip/rockchip_spdif.c b/sound/soc/rockchip/rockchip_spdif.c
+index 8de5b76cfe79..7f15bc7f8f35 100644
+--- a/sound/soc/rockchip/rockchip_spdif.c
++++ b/sound/soc/rockchip/rockchip_spdif.c
+@@ -94,6 +94,7 @@ static int rk_spdif_runtime_resume(struct device *dev)
+ 
+ 	ret = regcache_sync(spdif->regmap);
+ 	if (ret) {
++		regcache_cache_only(spdif->regmap, true);
+ 		clk_disable_unprepare(spdif->mclk);
+ 		clk_disable_unprepare(spdif->hclk);
+ 	}
+-- 
+2.43.0
 
-Since the schema requires ti,tas2573 to have ti,tas2781 as a fallback in the
-compatible array, a device tree node will typically have:
-compatible =3D "ti,tas2573", "ti,tas2781";
-
-This triggers the conditional block here, restricting reg addresses to
-0x4c-0x4f.
-
-However, it also triggers the later conditional block for ti,tas2781, which
-restricts reg addresses to 0x38-0x3f.
-
-Since reg cannot satisfy both disjoint ranges simultaneously, will
-dt_binding_check always fail for valid ti,tas2573 device trees?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260602100532.6463=
--1-baojun.xu@ti.com?part=3D1
 
