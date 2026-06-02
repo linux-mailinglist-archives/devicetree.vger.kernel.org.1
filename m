@@ -1,215 +1,185 @@
-Return-Path: <devicetree+bounces-305561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305563-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kB4OETetHmq3IwAAu9opvQ
-	(envelope-from <devicetree+bounces-305561-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:15:19 +0200
+	id EM14GIOwHmr7JAAAu9opvQ
+	(envelope-from <devicetree+bounces-305563-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:29:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C0F462C5D0
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:15:18 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D21E062C907
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:29:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DE7833028592
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 10:10:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B6C1731C7A18
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 10:18:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 566383D5234;
-	Tue,  2 Jun 2026 10:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87E23D891E;
+	Tue,  2 Jun 2026 10:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eibFwWAM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jhni2arO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 029FE3D45E9;
-	Tue,  2 Jun 2026 10:10:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C17A3D8902
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 10:16:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780395009; cv=none; b=LMVDgG7NFiwLs3i+Iwhg8pr6Rcge34B4wAVqwsYc3opNw3xY+XHX0aMA7MQb5q332nKgrnYphv0DigEF3Dt/paXK7BE6XZQqbQCghJL1G5yAoMQbwUTqtV7e7KWpZGUJL3Akc+GJi+mq1Ka6Dw0cyXvr368gg2Xjjz4XfnkRUOM=
+	t=1780395396; cv=none; b=YiDqRQLZihohElvW+T3537T18dmrhKaN934ylBoOYnB5fzKP5jlnAYNa3deun2qL9SuLFotvPnMuVPRaQ4H97aTCtEIaGQwWA7whnc06/k4K2WnnaS6q6KWIaWY5pjNZqju4LCogYxkvHlLzBM01JEBFUeePeTZkmT/s9bCox10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780395009; c=relaxed/simple;
-	bh=PSupo4XG5wJE3VdT2NoXu7XsQnHKRm0bDvhLxERvChI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fRSU7oN9fpswGytEmsN8ktBlmktvqyT8084AV/d/DyxAhLwctyxygOQY4GcvMNQOAtJd0K0f4XoTT+VObYxq/KlLWZg0/vWRrj4DWL04MNdwSHO6OUqfLLr1pvqYJeQ6TJLhuI0rSKYaZf9gLH8+Ap60rEWQdQnJuEiYC90mwtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eibFwWAM; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1780395009; x=1811931009;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PSupo4XG5wJE3VdT2NoXu7XsQnHKRm0bDvhLxERvChI=;
-  b=eibFwWAMFs5iXsARM7qkpn4UwEgk4AAZ1eyt28hgkzbAn6pJ3X2kTtuC
-   d/10U7vQg09MlB6XgJu7WFMPYK6FjhF4HOPkULYe8BLuTg0lg3jrt39VN
-   v/DQfphNLwCnN5XUQD0WNXLPXmrLbJgLZOVJim2CRhC+872LToV7ncBB1
-   FbOGvcYnsLL1lWmVaglCO9oqeUJmP5IIt3zzsXK7J/6oIb5MYDZ5K2ZZ8
-   ZKny9fKrX//hNFqL5nmtV37bjY9hx+woPMw8h1PqeYPm0G5oFJ6Lyv/4S
-   VfEfERj8VNSLuGauPK+1j1Hc1POx5bPIbGt/C0SaCXrj7KOwP1wgvt25t
-   Q==;
-X-CSE-ConnectionGUID: JfVxaPB9ThmqGht7/6oSYw==
-X-CSE-MsgGUID: aJ+QmhT9Q5SxSSj4WSaUCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="81076672"
-X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; 
-   d="scan'208";a="81076672"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2026 03:10:08 -0700
-X-CSE-ConnectionGUID: gdjoF3+US4CG7At2JRbilQ==
-X-CSE-MsgGUID: aNhtmc3DT+OyjVVfYw9dIg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; 
-   d="scan'208";a="274129105"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.245.229])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2026 03:10:04 -0700
-Date: Tue, 2 Jun 2026 13:10:01 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] iio: light: veml6031x00: add support for
- triggered buffers
-Message-ID: <ah6r-ZnAb_zIZfeY@ashevche-desk.local>
-References: <20260531-veml6031x00-v4-0-e64f7fdce38d@gmail.com>
- <20260531-veml6031x00-v4-3-e64f7fdce38d@gmail.com>
+	s=arc-20240116; t=1780395396; c=relaxed/simple;
+	bh=38/Zl5XdWU3WE6drEyc9KjDkqO0LDYBqDFG4G2evA7w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CzPQq06O/bzN/yzfhh6zZAr4u+oOtzEF1AlydEhlW53SHFYUxVRvwl0RuywNv6CFKG4Y35B4R5WDnHSe3NGo0rh8JpEmSc4+0yz7No3GWKFkr8VWSSjifersFpzkrfeBPCPWvb69fJroJrkAh51INShoNpSdMTziI90pPpkZ0Ys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jhni2arO; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2bf22d29dabso30497635ad.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 03:16:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780395393; x=1781000193; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4FJlifkRqPEqQqgwEVL3qsdnCft9gZAAhkwAUUbqYm4=;
+        b=jhni2arO+NqIV/BXipl433F7rgNA+dpqyOGW41L9jXjB14DeRFMZ3tpJq6NLKJfXQ3
+         DzHhIYtNZlWKINZuJ9+/x/xaQuSPkVKOht/JjAAG4q+nV5l/sJChrfgScgiChVho4eAw
+         BDe7ikPBudgqNmWJZ6IL8Lg420Ueq5inE6oti2YSa+C88lKGciJDZBCfK0dmegFGYxeY
+         X5awYn3K34/GxisN6n+dDmNLxpvxbImDb+R3AgcyWp8jzo/bS/yOAZOtMV0PZrPULivD
+         6zl8ZaYkln/c7s6I9lg8BWrTnXGs8i1JU3g+HpVBhb0xjaIYGvrfldhAgceSjxbwVQN7
+         G0Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780395393; x=1781000193;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4FJlifkRqPEqQqgwEVL3qsdnCft9gZAAhkwAUUbqYm4=;
+        b=M0CLGdijH0pb7Aj9GEJ+x6fBwiyiVktL0I+LqmALq/voNwwFaiUa202Dkqufmst3SQ
+         Zy5BdWiwiyr+HZ6Vw4JwhBCdAo8wwDL1Hl6L9r3V/d/UaZoV9MgLfacg2A0pxMncEb9T
+         wTEynlEUpr1BnEwamSF9amsSKEqwXMGWdPRKiWS4aHzLMpzdurQW9PG37/eGvafh8yRu
+         k2y+p9bb2KRA7kJYOJwJo8mvb5oZtHg1GEmgGw2z0UTFyeMoMBHR/NN0ZAf7TehJBU0d
+         ILAKMjzta4k3f9mRaZN7S8ZDV+CoScGfPu+bXDsscUO+Rr/2AL9mVmcswLLzCsTMJe6v
+         4qpg==
+X-Forwarded-Encrypted: i=1; AFNElJ+eYIUcOOPy7W7O6tUoAk1Bd8OzdOZqFnWYuotN1JFCi+b9S3zRaKTpmwj9O2xOzG20PhrHPCiLSnmO@vger.kernel.org
+X-Gm-Message-State: AOJu0YylhiUSw97Gtk96oqmu/oT8ej3A3W2TCEVADUCtaaRYd360Lscc
+	gjk4cJQ1XQYCNVTChEvMgt4LjMLF/QTBCubWJ73298Q/+FPM0OZbnGAx
+X-Gm-Gg: Acq92OF2V2MXQ51tpQVgBQvgqPRtWn/5BNFRkWuX4c/qdNPcL0uFCoJq/pJkGENdleR
+	BaL8trmW5j0s+SyVFaoOyhrXF0X53RqN1MZO1lCj4I3qJdq+FtpjRNdK2+l3eOj5H5gPO7km83L
+	6FqJXIaXKZWkdMVVspGgxwFHCTLEOBwTlI4+hk/sJUlfZj2bUp+tt1ssVan12sVwDypqjxrMCE9
+	+IwvhRwY1sCm5OTrwNuQSCGTpCVJbAlFkNs2VMjXExgDY7b8wqXS5Tjp5Qll728H0acgi7rErkf
+	fRxpXxhO93m9YIZNDj1tRzDVvmeyAMtMgsZPHROhK/hZo4zHjwtOXw43pgeq/IjLf+6VRdIn3yA
+	DlQkTyozspK1Hm70W3MmnhwiFLOQ9WF2vqqUoN+QZ/qFD9Dm3sO4ySJ4PGFg3NfLHdhZv47hmxZ
+	w1Z0WB3iysCt3Q1SIflTC8tXoxDo1I/sX6B1JWSUUup3QwoXQyVUNVCdxXan4YoSMh7Emy
+X-Received: by 2002:a17:902:ef49:b0:2c0:db23:4c9 with SMTP id d9443c01a7336-2c0db23074dmr97094065ad.20.1780395393395;
+        Tue, 02 Jun 2026 03:16:33 -0700 (PDT)
+Received: from phuc-desktop.. ([183.91.15.56])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2bf239fd84fsm132766305ad.23.2026.06.02.03.16.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jun 2026 03:16:32 -0700 (PDT)
+From: phucduc.bui@gmail.com
+To: Heiko Stuebner <heiko@sntech.de>,
+	Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	bui duc phuc <phucduc.bui@gmail.com>
+Subject: [PATCH v2 0/5] ASoC: rockchip: Reorder clock enable sequence
+Date: Tue,  2 Jun 2026 17:16:03 +0700
+Message-ID: <20260602101608.45137-1-phucduc.bui@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260531-veml6031x00-v4-3-e64f7fdce38d@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: 3C0F462C5D0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: D21E062C907
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-305561-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,metafoo.de,gmail.com,baylibre.com,analog.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305563-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,perex.cz,suse.com,vger.kernel.org,lists.infradead.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_TO(0.00)[sntech.de,kernel.org,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,ashevche-desk.local:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Sun, May 31, 2026 at 09:58:23PM +0200, Javier Carrasco wrote:
-> Add triggered buffer functionality for the two channels the device
-> provides (ALS and IR).
+From: bui duc phuc <phucduc.bui@gmail.com>
 
-...
+Hi all,
 
-> +static int veml6031x00_buffer_preenable(struct iio_dev *iio)
-> +{
-> +	struct veml6031x00_data *data = iio_priv(iio);
-> +	int ret, it_usec;
+This series reorders the runtime resume clock enable sequence in the 
+Rockchip SPDIF and PDM drivers to enable the bus clock before the 
+functional controller clock.
 
-Can it_usec be negative?
+It also updates the SPDIF DT binding clock descriptions to match the 
+actual clock usage in the driver.
 
-> +	ret = pm_runtime_resume_and_get(data->dev);
-> +	if (ret)
-> +		return ret;
+Additionally, this v2 adds two new patches addressing issues reported 
+by the Sashiko AI Review tool regarding regcache sync failure handling 
+and runtime PM resume status validation.
 
-Wouldn't be better to use respective ACQUIRE() macros from pm_runtime.h?
+Testing:
+  - Patch 1: Verified (dt_binding_check passed).
+  - Patches 2 to 5: Compile tested only. Please help test if you have 
+    the relevant Rockchip hardware.
 
-> +	ret = veml6031x00_get_it(data, &it_usec);
-> +	if (ret < 0) {
-> +		pm_runtime_put_autosuspend(data->dev);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * Wait one integration period + 10% margin so the first triggered
-> +	 * read does not race with the sensor completing its first conversion
-> +	 * after power-on.
-> +	 */
-> +	fsleep(it_usec + (it_usec / 10));
+Changes in v2:
+  - Include two new patches to handle runtime PM resume and regcache sync 
+    failures based on Sashiko AI Review.
+  - Update commit message based on Krzysztof's review
+  - Clarify in the commit message that the resume sequence becomes the
+    reverse of the suspend sequence.
 
-fsleep() adds up to 25% of margin, wouldn't be that enough?
 
-> +	return 0;
-> +}
+Best Regards,
+Phuc
 
-...
+bui duc phuc (5):
+  ASoC: dt-bindings: rockchip-spdif: Correct SPDIF clock descriptions
+  ASoC: rockchip: spdif: Reorder clock enable sequence
+  ASoC: rockchip: rockchip_pdm: Reorder clock enable sequence
+  ASoC: rockchip: spdif: Restore regcache cache-only mode on sync
+    failure
+  ASoC: rockchip: rockchip_pdm: Handle runtime PM resume failures in
+    set_fmt
 
-> +static irqreturn_t veml6031x00_trig_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf = p;
-> +	struct iio_dev *iio = pf->indio_dev;
-> +	struct veml6031x00_data *data = iio_priv(iio);
-> +	int ch, ret, i = 0;
-
-Make 'i' unsigned and split the assignment so it goes closer to the user, makes
-maintenance easier.
-
-> +	struct {
-> +		__le16 chans[2];
-> +		aligned_s64 timestamp;
-> +	} scan = { };
-> +
-> +	if (test_bit(VEML6031X00_SCAN_ALS, iio->active_scan_mask) &&
-> +	    test_bit(VEML6031X00_SCAN_IR, iio->active_scan_mask)) {
-
-I hope everyone understands that this testing may be immediately false here
-(without any additional protection added). Even more, the _ALS bit may be
-cleared just before checking the _IR one.
-
-> +		ret = regmap_bulk_read(data->regmap,
-> +				       VEML6031X00_REG_ALS_L,
-> +				       &scan.chans, sizeof(scan.chans));
-> +		if (ret)
-> +			goto done;
-> +	} else {
-> +		iio_for_each_active_channel(iio, ch) {
-> +			ret = regmap_bulk_read(data->regmap,
-> +					       iio->channels[ch].address,
-> +					       &scan.chans[i++],
-> +					       sizeof(*scan.chans));
-> +			if (ret)
-> +				goto done;
-> +		}
-> +	}
-> +
-> +	iio_push_to_buffers_with_ts(iio, &scan, sizeof(scan), pf->timestamp);
-> +
-> +done:
-> +	iio_trigger_notify_done(iio->trig);
-> +
-> +	return IRQ_HANDLED;
-> +}
+ .../bindings/sound/rockchip-spdif.yaml           |  2 +-
+ sound/soc/rockchip/rockchip_pdm.c                | 16 ++++++++++------
+ sound/soc/rockchip/rockchip_spdif.c              | 11 ++++++-----
+ 3 files changed, 17 insertions(+), 12 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
