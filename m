@@ -1,84 +1,53 @@
-Return-Path: <devicetree+bounces-305864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305867-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jj4JJxlWH2rlkgAAu9opvQ
-	(envelope-from <devicetree+bounces-305864-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 00:15:53 +0200
+	id tEFJDypYH2pLkwAAu9opvQ
+	(envelope-from <devicetree+bounces-305867-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 00:24:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F251B6325ED
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 00:15:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE121632666
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 00:24:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=e8rHw67s;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305864-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305864-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linaro.org;
+	dkim=pass header.d=mythread.it header.s=a1 header.b=cYZYEU8W;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305867-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305867-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=mythread.it;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 92308303DD1A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 22:15:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CA15A304E41D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 22:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5853B83EF;
-	Tue,  2 Jun 2026 22:15:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 115823B8BC6;
+	Tue,  2 Jun 2026 22:21:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpcmd14161.aruba.it (smtpcmd14161.aruba.it [62.149.156.161])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E28356758
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 22:15:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2C53B6C1D
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 22:21:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780438529; cv=none; b=ldCl2CFABpT/ggb8oLTOUHj2qCh829ce96rG6a6UvJ2clWo0afCZvtVy4/SpMa51lpHQpFjRkYBOZh4cAFJswZVUWsKWFv4GuZCgrfFqaxJhB4DT03prZ5BhX7UQ8Fux39+5d2KixhZ8gSpF57y57vZMJBrQYB6pDtXfIR8VFtY=
+	t=1780438913; cv=none; b=qRXPLuRv0FX+S3aELyLlBPl0Kpw46w/eM1sEWzndsO6n54UiKxcTH+2ukqOW3uoVxvMy+7OotoHAYvvLek/q88TEnJvK9NxcOVuy/GYIuPgrZdd198775M6N7g5vUWEMfEaaRqyIjxSbdwjSDY7l53QdjcVGcmSuNZOk+qzssDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780438529; c=relaxed/simple;
-	bh=0l2ZoBsNnuodhMPRW4K78PbcurismS2rK+dwCagNV1I=;
+	s=arc-20240116; t=1780438913; c=relaxed/simple;
+	bh=yxylBBvHC4MI+/sGio2ZTsDA9f+yXeKuTPj/6M7xbMU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hg1x52+/FFAy830U6cEZQVVS3UuN3QJQ6xPBtp4hSmT23lcNr5lhcXq4o/Urb8Tnwx1c2aQ9+n6BPCZeiTqqrQjq7cD8L/ZJgjvQrn9Ng31hyUWO5rLMFakOIUGv++NEgczLJihfubvcjfEFea5y66//Zyn+sn3WK/DpkfUrBfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e8rHw67s; arc=none smtp.client-ip=209.85.167.42
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5aa679cc2c9so393861e87.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 15:15:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1780438526; x=1781043326; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jgy25aO5siADmjOHA8m8ArvPv18ukgqv39s8uxTpK68=;
-        b=e8rHw67skHmOQ8kPoTe6+oocv4OUg/IB2nEMr+0fpK4i5Gb2Ty7tk+7gOoSVPyFYkj
-         cz/rgfHDQo3o4q3rgEEfot2bUDKa/U5IhhwM60C5H2eqV32hKrWQOizcVhOhjldx6VFJ
-         7Gy4PbKz6Q7O/j43kO62HDI6B7Dm9I/BhUsVtrgQs8+vW8MS+68ML1f+aJtRoQF9neUF
-         zzQ86WLaAsy6UcFJiXMskcb3xNHNAzDElazx1IwJinN183bynJ6KCOrm/AZFplO8LuF5
-         XlprvD1OHBrBF0IoOIm+TDoV/lCxVXfly3/xY8SPgMXRqMLKXSVRvtXy4sdy9o+7QAsW
-         4e7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780438526; x=1781043326;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jgy25aO5siADmjOHA8m8ArvPv18ukgqv39s8uxTpK68=;
-        b=r2MoLMvD1eoPafmcKrJZRHwZ28UrXhqc+yFRyTfe3psO8w1aHlcgDGBMKRHcTUhTkj
-         Y3zu56pPuvJu93xAfYvBLqZ9cSBsP7pZbKfN4aPzf/c624dXF+fpNeBru4Ap5PmxDCpW
-         xTCPX53MOuJ/wR3lFcKlRWzWuc1SMD78AzDCeEUyRxbRSfqW4tbnEjN3snJbWCLb+s9I
-         jetXNUPhlDsojgT13HY0bFojRy3+J0QkSnLu03FBJViV3UF9ufORMT2VV5xenGzgSCKn
-         9izClob9RjY9QofedArULCpOchNOZF6SWNdW7k/DUk9TqjUwaBBabgsj6Sc5ITYEkPQX
-         6bGg==
-X-Forwarded-Encrypted: i=1; AFNElJ+8dRAjWda869JSAZ+Boum7pWElqnSvHGkt/lvvmnuTqaQZejHjjl/OHI8PfKQ/3ad+0ywyOrip0WEW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0n1F91uxvUD0fVceudCzaxmqLF0wd3kl+E+jGj3DH/3is6msC
-	eNr7TiA6rPFkjiupM8HWmEj62G8t/vC2MMPLESz0R8I/o0RNqAPz25bTQTvvYRurkDw=
-X-Gm-Gg: Acq92OHAbaeIS8DT3kGni47kg60lqnRwKiA9wt29RZ54sdhcb37jUO6W+qdpnGmVJ0X
-	RGgX9tW/ABJ8O/V+1f2003eJkHmyqditb/GB9qXHByDmEpjABftVLr3x5OEjKOWmO7/MLh/AFru
-	UquW/JQXFlaxXdk0yBJKZi4VBvkC9bqP5M11OQJU8OaUaxWsu9aX5XACUJr1qQ34PRpoh5OpTQm
-	JCEeZ5DkZCo5q2pw60lWxWeRn9ACpx+5oNaKkyX78NNkCosMQj3BEHNoSt84WqhCQCNIXFq5fiW
-	UWplZ9WOyjo/+P4v70JOq/QfZzmjRylmymnVS5jFdu/zopQa2yKBN1J024n+IeauqccmWwwh/fP
-	MQpUI/DML34I2GOzAHnQmT4DmpTXdVfaqwxJdmTSuWjU/JJqbsUtfHR4PPc20wJ0rzlrDkd9sWO
-	sRw3EepkzeRDTP+H+beQ49e17sDxYWu2Xp0tQs7hzg4vQpdB5M3pOO6dzdjT9yrAHQtsiVCtXzR
-	JAlC42VCfz40ZjI
-X-Received: by 2002:a05:6512:3c95:b0:5aa:7126:c62e with SMTP id 2adb3069b0e04-5aa7beaff61mr128839e87.2.1780438525691;
-        Tue, 02 Jun 2026 15:15:25 -0700 (PDT)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa7b8ed2d3sm217245e87.5.2026.06.02.15.15.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Jun 2026 15:15:22 -0700 (PDT)
-Message-ID: <d9564f1e-0b5e-4c69-88c5-b57ab2e0b543@linaro.org>
-Date: Wed, 3 Jun 2026 01:15:20 +0300
+	 In-Reply-To:Content-Type; b=odiC5RvaLemd3+baJmr7WIPUuBBljg1gi1ofRbWpo3CLcp/k2GJ/2uUdlbV+tpW/+mCzWzk0CtQktbjZz4iebULIrZ29x5Txx5FQgcEkW12WKNSGpDLinJ/432AmKUkLDwiP8SgN6I459PsJQiw26BuCQoe+on2aeDyki91PKoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mythread.it; spf=pass smtp.mailfrom=mythread.it; dkim=pass (2048-bit key) header.d=mythread.it header.i=@mythread.it header.b=cYZYEU8W; arc=none smtp.client-ip=62.149.156.161
+Received: from [192.168.1.83] ([79.20.159.46])
+	by Aruba SMTP with ESMTPSA
+	id UXRXwqUS14OeoUXRXw4OV7; Wed, 03 Jun 2026 00:18:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mythread.it; s=a1;
+	t=1780438719; bh=yxylBBvHC4MI+/sGio2ZTsDA9f+yXeKuTPj/6M7xbMU=;
+	h=Date:MIME-Version:Subject:To:From:Content-Type;
+	b=cYZYEU8WsHsqr2FKt/wWxrqohSucPl7S1xEd0xNDKIkYyC+0pmhA39QP3FQVpmvib
+	 PsY3gcCbVMVCe/4sGn7s5BkW61F6VKRlq/Ub2R8cXGwTTZOcpFlgU18xSRI2pMD3ZV
+	 Zg+d1HfGFY5QltQGVMk2O3ul6m3d9SfMBJv6y7t4GUWSEB/I0DyKn5oA6Kwtvc47rk
+	 AZoQ1LL0BQLcJfMSUcXQd8hWAHNWiBKLxrgFAFU4/5ve5KgOeK4A6DJG1PDqhaR7Oh
+	 R739akBDqnps/PUAA5VR6ROfiPGKFh1DkDE7huxWZkA2XEaoWyYjhPQGOWgW/LNf95
+	 6P1mL0Ofs+YyA==
+Message-ID: <d2b62530-2f9b-4ac3-8de6-dabe70994e97@mythread.it>
+Date: Wed, 3 Jun 2026 00:18:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,72 +55,184 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 3/5] media: qcom: camss: csiphy: Add support for
- v2.4.0 two-phase CSIPHY
-To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Bryan O'Donoghue <bod@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- jeyaprakash.soundrapandian@oss.qualcomm.com,
- Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
-References: <20260508-kaanapali-camss-v13-0-2541d8e55651@oss.qualcomm.com>
- <20260508-kaanapali-camss-v13-3-2541d8e55651@oss.qualcomm.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20260508-kaanapali-camss-v13-3-2541d8e55651@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 3/4] dt-bindings: bus: add brcm,bcm6362-wlan
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260529-add-bcm6362-wlan-v1-0-722242777f58@gmail.com>
+ <20260529-add-bcm6362-wlan-v1-3-722242777f58@gmail.com>
+ <20260530-psychedelic-cyber-seagull-140adf@quoll>
+Content-Language: it
+From: Alessio Ferri <alessio.ferri@mythread.it>
+In-Reply-To: <20260530-psychedelic-cyber-seagull-140adf@quoll>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfKbqOYmpd1hiin7c3dRXZOyWZ9VpWySOYT0P0im5FE7DcsG/9wDEYC8ELRB+03jLaRTQ+H/pZc/g8ee1BV+E8criswdsvpBuiqfpa+tOEMcPGZ7r222q
+ SmHh7TyDhH6mYRcj9aPmhGO3MKXCcitceWyccoKiUQfKLNRGkdyM1qfQXZr79dMTlbwPySGNeUFQAP948L8yZbKIOPKjSCOc3anAEXTUHqHoM7i5JkEXuK8s
+ ZEgYZ+GDdSvM3F85/7bJcP0C1qA7jiTZv6GdlTvuOZ7uWBRx3aEcF47YDGDNOKAsFVP+AdRD+F+83A8jssAMYRACNp7R7t+L6/LNY5fSAJeS8FtCyfl10yva
+ rbHqv/EU7joKpjlxRCWPhtMDhUcRgTOJzKXeKE0Tu0rVOa4ed/cGDjc0dC6DmSn3kTrh1/TCrZ6gpLnMuGuDnLtgVtvrJCKqnMcTSZL46NQbJtZA11WuN6by
+ izTLL8EC5ZVfXg26fvEJKsTa6AXT6VOwv4uVNg==
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[mythread.it,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[mythread.it:s=a1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-305867-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305864-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:hangxiang.ma@oss.qualcomm.com,m:bod@kernel.org,m:rfoss@kernel.org,m:todor.too@gmail.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bryan.odonoghue@linaro.org,m:linux-arm-msm@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jeyaprakash.soundrapandian@oss.qualcomm.com,m:vijay.tumati@oss.qualcomm.com,m:todortoo@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,linaro.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,broadcom.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:zajec5@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:florian.fainelli@broadcom.com,m:linux-kernel@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER(0.00)[alessio.ferri@mythread.it,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alessio.ferri@mythread.it,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mythread.it:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:from_mime,linaro.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mythread.it:mid,mythread.it:dkim,mythread.it:from_mime,mythread.it:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F251B6325ED
+X-Rspamd-Queue-Id: BE121632666
 
-On 5/8/26 11:05, Hangxiang Ma wrote:
-> Add more detailed resource information for CSIPHY devices in the camss
-> driver along with the support for v2.4.0 in the 2 phase CSIPHY driver
-> that is responsible for the PHY lane register configuration, module
-> reset and interrupt handling.
+
+Il 30/05/2026 13:50, Krzysztof Kozlowski ha scritto:
+> On Fri, May 29, 2026 at 02:06:01AM +0200, Alessio Ferri wrote:
+>> Document the binding for the SHIM bridge that gates the on-chip
+>> 2.4 GHz WLAN block of the Broadcom BCM6362 SoC. The bridge owns the
+>> SHIM peephole, a single clock for the macro, and two resets (the
+>> SHIM macro itself and its ubus side). It is also a bus: it carries
+>> one brcm,bus-axi child describing the bcma backplane behind the
+>> SHIM, with a standard interrupt-map routing the d11 core's IRQ to
+>> the SoC interrupt controller.
+>>
+>> Assisted-by: Claude:claude-4.8-opus
+>> Signed-off-by: Alessio Ferri <alessio.ferri@mythread.it>
+>> ---
+>>  .../devicetree/bindings/bus/brcm,bcm6362-wlan.yaml | 106 +++++++++++++++++++++
+>>  1 file changed, 106 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/bus/brcm,bcm6362-wlan.yaml b/Documentation/devicetree/bindings/bus/brcm,bcm6362-wlan.yaml
+>> new file mode 100644
+>> index 000000000000..c8d49ccdd2c1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/bus/brcm,bcm6362-wlan.yaml
+>> @@ -0,0 +1,106 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/bus/brcm,bcm6362-wlan.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Broadcom BCM6362 on-chip WLAN SHIM bridge
+>> +
+>> +maintainers:
+>> +  - Alessio Ferri <alessio.ferri@mythread.it>
+>> +
+>> +description: |
+>> +  The BCM6362 SoC integrates a 2.4 GHz Broadcom WLAN block whose
+>> +  register backplane uses the Broadcom AMBA (bcma) architecture. The
+>> +  backplane is gated by a small SHIM bridge that holds the WLAN macro
+>> +  in reset and disables its clocks until released by software. CFE
+>> +  does not release this block, so software bring-up is required
+>> +  before bcma can enumerate the backplane.
+>> +
+>> +  This binding describes the SHIM bridge node. The SHIM driver brings
 > 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+> Do not describe binding. Do not describe driver.
+> Describe hardware.
+> 
+>> +  the macro up and then populates the brcm,bus-axi child node, which
+>> +  describes the bcma backplane behind the SHIM and is bound by the
+>> +  bcma-host-soc driver. The SoC-specific configuration (big-endian
+>> +  accessors, SHIM-attached topology, SHIM Control register peephole
+>> +  pointer) is delivered to bcma via platform_data injected at
+>> +  populate time, so the brcm,bus-axi child stays SoC-agnostic.
+> 
+> How is it relevant?
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: brcm,bcm6362-wlan
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: SHIM peephole registers.
+> 
+> What is SHIM?
+> 
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: shim
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  resets:
+>> +    items:
+>> +      - description: SHIM macro reset
+>> +      - description: SHIM ubus reset
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: shim
+>> +      - const: shim-ubus
+>> +
+>> +  '#address-cells':
+>> +    const: 1
+>> +
+>> +  '#size-cells':
+>> +    const: 1
+>> +
+>> +  ranges: true
+>> +
+>> +patternProperties:
+>> +  "^axi@[0-9a-f]+$":
+> 
+> Use consistent quotes.
+> 
+>> +    type: object
+>> +    description: The bcma AXI backplane behind the SHIM.
+>> +    $ref: /schemas/types.yaml#
+> 
+> Need proper ref. You could easily check instead of sending Claude slop -
+> is there any binding with above syntax?
+> 
+> You don't get subnodes for buses for devices not being the actual
+> buses.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Sorry for letting AI-slop pass through in this patch and excessive 
+descriptions. 
 
--- 
-Best wishes,
-Vladimir
+SHIM is just the control block for the integrated wlan. Copied verbatim 
+from the original broadcom 96362 code.
+
+For the last sentence, how should i map it? At the very least I need to 
+tell bcma that this is big-endian before it touches anything, otherwise 
+it will read/write garbage or even cause a panic. If necessary i can 
+pick up the quirks after reading the chip-id from the bus, skipping the
+new driver and the new bindings.
 
