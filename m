@@ -1,189 +1,214 @@
-Return-Path: <devicetree+bounces-305660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305661-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cIYcMVvYHmrLVwAAu9opvQ
-	(envelope-from <devicetree+bounces-305660-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 15:19:23 +0200
+	id djiKKIvYHmrlVwAAu9opvQ
+	(envelope-from <devicetree+bounces-305661-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 15:20:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C349962E6A7
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 15:19:22 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF41B62E6AE
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 15:20:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=MvWJ3mfB;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305660-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305660-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OIrxcSw9;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305661-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305661-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 792C03003BDC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 13:13:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 86B7F301DAF2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 13:19:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF0AA3DD85B;
-	Tue,  2 Jun 2026 13:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2075430146C;
+	Tue,  2 Jun 2026 13:19:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E9B23126DA
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 13:13:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081F51DF73C
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 13:19:21 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780406016; cv=none; b=QNUw+/ewBwHp570L/cO7nJT2W5i03T23sJwFuyTj5kXcHp3p0RhjCaZIjqkKWqoKCjolAJbm5O+UD5pc0kkB9zHzWLogKMvFX2Yg25h3j9KQGwYTc9jyojYhhJ27lASmi5T151LCygY6FoEWk9nZAFeFgyyB7fq282tau1fDwPw=
+	t=1780406363; cv=none; b=idiW8rzVlSDdSl6qm2/mz+wU+L/DMjTnOxvh3pTfKo8+bFQarx16mRx6306PNC1lawGYUWQu2abmu7eb9XWX91InW9F3XAdZHi0dbz0vZg30YL9q9QKZl2V+TtqnsY0CCRpwHLwKI6Nk4QsOpCp18Qr8CzRroIABJ2sIoYtSgxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780406016; c=relaxed/simple;
-	bh=eWPy+VzuovJm+ElD2gK6/fOIlHy+EasXmbIJDRlJmhw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i9H+R7vwO1Q16dJxBdp8oZx7JouzNELqtU1zFoY8yyp+tdNkKwoFRUgxoNMHDhQMPqLgehXOL/fh6sXgk4KVBwMcZIueKhfJ/ywZ5N/2mzqoW6y0WZ34t+TsQ7qg48TRSt7ay9ANKR+eFL/H8ykR3uuYxz98puxQ2j85RcUw4oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MvWJ3mfB; arc=none smtp.client-ip=209.85.128.45
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-490abf12f0fso10544995e9.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 06:13:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780406014; x=1781010814; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jTfcCRizo1BCoCuZvjrGsrottsZL+2Hdq3AL0290nzE=;
-        b=MvWJ3mfB+zivYWrpj9uxYW0OOM8dcNtNZIbJqE46l8Ej89uSmkKCHKqrFcNbjO53ri
-         zNI1NJhM4SGQPAIdiD5mKoBOcOfFgj0Ivb2r0a1kSpyQ4BXntEavxrEpZ9KOi0p31+RJ
-         prdc7tSXRlZ6nDT590WBeSPWyKf9U5XKqiaoMyQ4GXVTgADfjrHL39LDqcmnB2ZaLLOU
-         lRzTn2F1LOCVk+aU4fxz/VL01gGu7tcWXsjUjuHHsOzxDa57R/I9kUNBuIzUE6XuU2FP
-         ipGNk82+tgTbJxePfGRPqv0EJ/H6zjE2jhly8zOuWaOAKWHIQbWMqYpa31eZMb16BfFM
-         6COw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780406014; x=1781010814;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jTfcCRizo1BCoCuZvjrGsrottsZL+2Hdq3AL0290nzE=;
-        b=m3yG12zURxwEr8HleIOboz6NngWT2O7FYTbMNEfAfjpmyS8/O1Bzn6rK6pi6chofdj
-         AUxUrQ63wqmj6tVI7JDoj+Mz1Zy+7rI60jhwlxBT/yWgR9Z6HYQN7sToYmJw2j3vPQg5
-         cDbmCbsjme/tkNsTu/rxuWssJnWWmNiT7XQpyRDFNga81/hwbBD0eJgatTLCph2HfR7b
-         tsnN8k6oajiP9880t8fuaJjuZLBSYmYN3T/3pEoQzLRUtGt9Orkh1SPXAslS665cMRLQ
-         DwtcdsNeM18dahq+Nkbnuwy7wA8fXI5Pl9Q1ZBmviXqrlNRhLtsIrQUJSvmlvxJd9z4I
-         sKeQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+DA26uN1QvKbmZPwpQRM85oarq8wPEi47Wl2jAanV4u3+aNVrHTiMjv0n+TdHrKuat2jKGTk9w+1yg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLBOn4K185Na2u0Bk5mBkoUXk5DSEh8WKKIvxS03CUfsz8wFW3
-	39rKKe47X3EK7jweNyrhLS7TrYmrF0zrwgLJGsxA0FkXK8sPhBXWUnW1
-X-Gm-Gg: Acq92OHc8KyCc4y3MFNKwNHlrtUou5bOR2ONcKg8WXQR3tWEumBbBn+ZZmYFJAp1bdl
-	e6a86vfSjdWrct7Fy9fUkF269ABQkFalM6omV/BZ1y8/NzZCOxShS8gG7QJw4ZDcCHhqg5gNRVF
-	70lJBunj2sV+dYWTJujKxDzWlAKRim7tiyTfsOfLRJZUvj0016QsmR6aMfX2kSx9k+8dLynrsFZ
-	oXmRfCtSwMGHLLCsXKPJKqI4/h7RuG15+GGFnLg1oi2q1hHgQ0UgsxufpHsETQN0OYMgc0hd5yZ
-	f9a1sZbQQBuAS7DIeLl4g6oXgzpcau1u3KNzFV8D1UTZeoLjOUWqIWEkg/dj69PyrdPp2IU0Oou
-	ilBm4fcJNpBQMpoyr8dxpi64oBFhpC8VHN3aUSkzKPdtwSeDqd+z+X+ESjn2opJNRh25p9ERfYN
-	U40X0TdmOKlCCqctmLH+gcdJrdaKYUVHUl8xCfLrujMA==
-X-Received: by 2002:a05:600d:6405:10b0:48f:e230:29f4 with SMTP id 5b1f17b1804b1-490b0ea300dmr44802245e9.15.1780406013876;
-        Tue, 02 Jun 2026 06:13:33 -0700 (PDT)
-Received: from biju.lan ([2a00:23c4:a700:7301:dd72:88d8:481a:904e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490b0e13f91sm86589155e9.3.2026.06.02.06.13.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Jun 2026 06:13:33 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH] dt-bindings: mfd: syscon: Make ranges required for renesas,r9a08g046-lvds-cmn
-Date: Tue,  2 Jun 2026 14:13:29 +0100
-Message-ID: <20260602131331.90756-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1780406363; c=relaxed/simple;
+	bh=D/Wl1U0UPioWsHqOG59SubfHcK09LPSYYPbHMFMEVxo=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=StM8YE6ojY8ilRM9ImYHhF8ZCGPcmqg/Uo57CvUzN3OEWHIdVzY2nePLgOaNazDolyabq11KRwKayM2U0RT2juAXpq1Vu1K3P3D5l9vBWVTtbioQ2qa+171DaI9wNqiEAmHD1JwN+DcXL0liGISZB7MMDrqy984tt801UnhvGnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OIrxcSw9; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 661821F00893;
+	Tue,  2 Jun 2026 13:19:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780406361;
+	bh=EGBIF9jwVFIsrfbLYAsAwp9RZKmdvqaxaj/XMnbDC3c=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=OIrxcSw9BopdmAT8XAxxsipjfo5+tpEXJuHRm3ZLMHWy+kXW9VZaNzazcqkHKKHuI
+	 RnzTLWTTdjlqCVcg9qi+sDUwh5aImSOgZjYFWK5GwnjgSdeF0d+a/PIsqh1yMiD8ti
+	 vujsXaxwQDPA2Cm1FhNooxZwIJGv9hKEF0/FgT9SX1hAh/K96+ox6ySR3iylzI7/kn
+	 AKhlDVUP2aMhyxLMMcOwMGJFhwyzVp7M5CaPcz7BLDhRzA2g5GuXmTrnqi74HrxTYx
+	 psWgWvqlxV4Db5hLBdHDnjZ+h3tvIORoQ7qM/n/s/FLJGqGgupIZRuaHNf3KEd41f6
+	 Klm2LBlrzoNxA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: net: qca,ipq5018: Split IPQ5018 PHY
+ bindings from ar803x
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "George Moussalem via B4 Relay" <devnull+george.moussalem.outlook.com@kernel.org>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260601-ipq5018-gephy-clocks-v1-1-2df8287712c3@outlook.com>
+References: <20260601-ipq5018-gephy-clocks-v1-1-2df8287712c3@outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 02 Jun 2026 13:19:20 +0000
+Message-Id: <20260602131921.661821F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305660-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:biju.das.jz@bp.renesas.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:biju.das.au@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:bijudasau@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-305661-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:devnull+george.moussalem.outlook.com@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,george.moussalem.outlook.com,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,renesas.com:email]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url,outlook.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C349962E6A7
+X-Rspamd-Queue-Id: EF41B62E6AE
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] Schema Validation Bypass Failure and Binding Incompleteness
+- [High] Broken Schema Validation for AR803x PHYs due to Removed Selection =
+Criteria
+--
 
-Add a conditional schema rule to the syscon bindings that requires the
-ranges property when the compatible string contains
-renesas,r9a08g046-lvds-cmn. This ensures the LVDS common control block
-on the RZ/G3L SoC correctly declares its address translation, as the
-device has child nodes that need a valid ranges mapping to be described
-in the device tree.
+commit 48327af0b67eba3af6e8fa934ae07a6c6cb94d54
+Author: George Moussalem <george.moussalem@outlook.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- Documentation/devicetree/bindings/mfd/syscon.yaml | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+dt-bindings: net: qca,ipq5018: Split IPQ5018 PHY bindings from ar803x
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index 9c81010d5a74..cbf83a06ae25 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -269,6 +269,8 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  ranges: true
-+
- required:
-   - compatible
-   - reg
-@@ -276,6 +278,18 @@ required:
- allOf:
-   - $ref: syscon-common.yaml#
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a08g046-lvds-cmn
-+    then:
-+      properties:
-+        ranges: true
-+
-+      required:
-+        - ranges
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.43.0
+This commit moves the Qualcomm IPQ5018 Internal PHY definition into a dedic=
+ated
+file. It isolates the binding from qca,ar803x.yaml in an attempt to support
+both RX and TX clocks, as the core ethernet-phy.yaml restricts clocks to on=
+e.
 
+> diff --git a/Documentation/devicetree/bindings/net/qca,ar803x.yaml b/Docu=
+mentation/devicetree/bindings/net/qca,ar803x.yaml
+> index 7ae5110e7aa2c..3acd09f0da863 100644
+> --- a/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> +++ b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+
+[ ... ]
+
+>  properties:
+> -  compatible:
+> -    enum:
+> -      - ethernet-phy-id004d.d0c0
+> -
+>    qca,clk-out-frequency:
+>      description: Clock output frequency in Hertz.
+>      $ref: /schemas/types.yaml#/definitions/uint32
+
+[Severity: High]
+With the compatible property removed, how will dt-schema match this binding
+to device nodes?
+
+Because device tree schema validation relies on the compatible property
+to automatically generate selection conditions, removing it leaves the sche=
+ma
+with no way to match device nodes.
+
+This causes qca,ar803x.yaml to be silently skipped during validation,
+breaking validation for properties like qca,clk-out-frequency for all
+downstream AR803x PHY configurations.
+
+[ ... ]
+
+> diff --git a/Documentation/devicetree/bindings/net/qca,ipq5018.yaml b/Doc=
+umentation/devicetree/bindings/net/qca,ipq5018.yaml
+> new file mode 100644
+> index 0000000000000..7cdc96f6d389f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/qca,ipq5018.yaml
+
+[ ... ]
+
+> +properties:
+> +  compatible:
+> +    const: ethernet-phy-id004d.d0c0
+> +
+> +  reg:
+> +    const: 7  # This PHY is always at MDIO address 7 in the IPQ5018 SoC
+> +
+> +  clocks:
+> +    items:
+> +      - description: RX clock
+> +      - description: TX clock
+
+[Severity: High]
+The commit message mentions splitting this file to bypass the 1-clock
+restriction in ethernet-phy.yaml, but does this actually prevent the core
+schema from applying?
+
+Since the device tree node is named ethernet-phy@7 (as seen in the examples=
+),
+dt-schema will still automatically apply the core ethernet-phy.yaml schema
+due to its select logic on the node name. Validation will therefore still
+fail for having two clocks.
+
+[ ... ]
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +
+> +additionalProperties: false
+
+[Severity: High]
+Does this block standard Ethernet PHY properties?
+
+Because additionalProperties is set to false without a reference to the
+core ethernet-phy.yaml schema, any standard PHY properties (such as
+max-speed or interrupts) added to a device tree will be incorrectly
+rejected.
+
+The standard approach is to modify ethernet-phy.yaml to allow multiple
+clocks, include the $ref to it here, and use unevaluatedProperties: false.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260601-ipq5018-ge=
+phy-clocks-v1-0-2df8287712c3@outlook.com?part=3D1
 
