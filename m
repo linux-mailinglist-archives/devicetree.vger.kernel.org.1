@@ -1,161 +1,192 @@
-Return-Path: <devicetree+bounces-305820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305821-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GdDKFD82H2oRiwAAu9opvQ
-	(envelope-from <devicetree+bounces-305820-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 21:59:59 +0200
+	id gV62Dss4H2qYiwAAu9opvQ
+	(envelope-from <devicetree+bounces-305821-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 22:10:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A15A3631958
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 21:59:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE99631A8F
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 22:10:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="GoR/ooG3";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305820-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-305820-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="nsN5D/l9";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305821-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305821-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D252A3009FA8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 19:58:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F0863305FC0C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 20:03:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356EB34C155;
-	Tue,  2 Jun 2026 19:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1B21F78E6;
+	Tue,  2 Jun 2026 20:03:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3469A2F8EA2;
-	Tue,  2 Jun 2026 19:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260452F7EF3;
+	Tue,  2 Jun 2026 20:03:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780430289; cv=none; b=NTMc4cGZ3BihBFCKhKFuCmHVDmRpogCqkp0qFE4r+lXC/fOrEXnM40q+dNScFtnPuQxw6/qnNO/yq5x4NevcScNBNjiGd6TCuLR8cSDINqiedDK7l6pK4XSNcAHOR7eXEW34gkq9RVUY3Q0JsGsMJJGIw/ZzMF43mcdRkYWe0P0=
+	t=1780430610; cv=none; b=eGlKG4Ntl/OC1+NRINR4jGZcBysLX02HUHwSrb7XcKRYoOlhHh3jby39fYXtyvaR1PPbMJIXVDmZlGxwdCC7LS4UXPIKoJtqhPRgBTHuuuFmzQLkcq22Nz2VYlhUqg+VVf6QrmPkLjgR9Q1qBthCBepy1eGBIbIh1TqDe1Nv+qE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780430289; c=relaxed/simple;
-	bh=zWmUa9IoGsfRyRSXVEZh1hDJdjIO4Y+uoIZvYw4doy0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uCPuYqGMz6ZiJkLqMxgWbHH6/YGSWiFPFmPC/9CaI51Xpda+/ODXIT21inW+6d39k8cFbqy+2y4kjWrb/dKUHsBXSyaeTCfvJpspZafNNV1NzcUD/F7TCXLVQWVbu7UY+9Oans7OQNyH09V7cEsXQK4+i7j7xV0mSTdkYko6kag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GoR/ooG3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD89E1F00893;
-	Tue,  2 Jun 2026 19:58:07 +0000 (UTC)
+	s=arc-20240116; t=1780430610; c=relaxed/simple;
+	bh=2S7zYuZiSnRMdevwHwNSGBWVVVzl2lkrKrqhFLXzNfY=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=QWXDOnqYcfOgCgPLIgmGEmkl1p63lDCLcysr/J66qn2QmZthSd0OcFajFCFIh3wo5u/z+3LpnwJABvftDAGyh3iACxn0nGira7wLCwpkFtJ88RLpYFPFTmWyRXLo7rWqmFmijP+EG9as8JXhjrG5kc/UPCVaWPcHUgp8cwYIgO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nsN5D/l9; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 762B21F00893;
+	Tue,  2 Jun 2026 20:03:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780430287;
-	bh=fnLig1efP0TuJ12veBvKUYnUO2mrsAHX1oK+MYE3e7Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=GoR/ooG3A23xypxe/2xIjqhXBgNQL6JSdsjAIy5mcUDJyifn889NEwPXaX9plNUoQ
-	 95s+38nJXC3BmSI6OEEU9xfocEKCy4p3TuYErHQCifEiF5vj2uv69ycot9xDWNk8Uo
-	 lKQgRWyKxyn1v7TCaUc4ZigPwyxw7+23CyRtPwNMCb9g0wGFAEmy64M2jxJBQRt77t
-	 MCghHnNJMLBMEnrPwsa+jZT59Iykyxv3SbFGTk1qCENU3CeqW37zeThZjKl4tlDHWo
-	 waTd9ltZGETh15fjYkBwNpQEtlbfYmE0w6t/84CMFfn9gIPvZkLqmeid/filaiA1Xz
-	 GWL3TLidwOjjw==
-Date: Tue, 2 Jun 2026 14:58:07 -0500
-From: Rob Herring <robh@kernel.org>
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Chen Zhong <chen.zhong@mediatek.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, kernel@collabora.com,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-input@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH 0/9] MT6365 PMIC support cleanup
-Message-ID: <20260602195807.GA1062343-robh@kernel.org>
-References: <20260429-mediatek-genio-mt6365-cleanup-v1-0-6f43838be92f@collabora.com>
+	s=k20260515; t=1780430608;
+	bh=B7KAa9FP34L6SmihAuP7NkokXs0YBAGkZg95xTzF05c=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=nsN5D/l9DE8gsw1NdvPpd+gpAcz2QHGfHxQS9H26qJ25FQzDuVjfthDLioJz7sjte
+	 Dl1PiHBH7/wd+SLO8+zTDySkIeC6QOqX7EW29ICWphuaas/USezM3N2dNo2XXJuJ1e
+	 QWYUwjsmpfciveUfbjVlyjBbIToAFiNyBnJWClHx9ezbFgVY0ixqfT1gRuM/67X5sf
+	 4BjBg6gMaJnHzKSgvrOUx8XuyBFGXpTo9DqENW0o541MRMaMZCi+3CZ6KECv+KSoh/
+	 r58bEfoxK5gjRHDnGWc9HIe19MvJDe7C33P/XvCTdSdrn4vREgHVLPXOZJxFCPTCDk
+	 p0wEYJl/7AdWg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 2/4] PCI: rzg3s-host: Use shared reset controls for
+ power domain resets
+Reply-To: sashiko-reviews@lists.linux.dev
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: linux-pci@vger.kernel.org, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, wsa+renesas@sang-engineering.com
+In-Reply-To: <20260602195019.1798126-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260602195019.1798126-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 02 Jun 2026 20:03:28 +0000
+Message-Id: <20260602200328.762B21F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260429-mediatek-genio-mt6365-cleanup-v1-0-6f43838be92f@collabora.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com,baylibre.com,analog.com,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-305820-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:louisalexis.eyraud@collabora.com,m:sen.chu@mediatek.com,m:sean.wang@mediatek.com,m:macpaul.lin@mediatek.com,m:lee@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:dmitry.torokhov@gmail.com,m:chen.zhong@mediatek.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:kernel@collabora.com,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:linux-input@vger.kernel.org,m:linux-iio@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305821-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid,sashiko.dev:url];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:prabhakarcsengg@gmail.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A15A3631958
+X-Rspamd-Queue-Id: 7CE99631A8F
 
-On Wed, Apr 29, 2026 at 11:44:13AM +0200, Louis-Alexis Eyraud wrote:
-> Several Mediatek and Radxa boards, based on MT8370, MT8390 or MT8395
-> SoC, integrate the MT6365 PMIC, that is a MT6359P variant:
->  - Mediatek Genio 1200-EVK
->  - Mediatek Genio 700-EVK
->  - Mediatek Genio 510-EVK
->  - Radxa NIO-12L
-> It is compatible with the MT6359 PMIC.
-> 
-> But both MT6365 PMIC support and compatibility were never expressed in
-> the dt-bindings and there is no MT6365 include file as well.
-> So, since these board support was introduced, their devicetrees use the
-> mt6359 include file to enable this PMIC support. 
-> 
-> The goal of this series is to clean this support by adding the missing
-> compatible strings for this MFD main and subdevices in the dt-bindings,
-> and add a include for MT6365 definitions to replace the MT6359 include
-> in these board devicetrees and for future ones (like Genio 520/720
-> EVKs).
-> 
-> The series is based on linux-next tree (tag: next-20260428) and has
-> been tested on Mediatek Genio 510, 700 and 1200-EVK boards.
-> 
-> ---
-> Louis-Alexis Eyraud (9):
->       dt-bindings: mfd: mediatek: mt6397: Add rtc for MT6359
->       dt-bindings: mfd: mediatek: mt6397: Add MT6365 PMIC support
->       dt-bindings: input: mediatek,pmic-keys: Add MT6365 support
->       dt-bindings: iio: adc: mt6359: Add MT6365 PMIC AuxADC
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-Applied these 2 to fix warnings in linux-next.
+Pre-existing issues:
+- [High] Chained IRQ handlers are not removed during probe failure or teard=
+own, leading to a potential Use-After-Free.
+--
 
-Angelo, Apply the binding changes along with the .dts changes if they 
-haven't been picked up yet.
+commit 8cee5b223d5c91e47fe4df2561360a3e326a556f
+Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Once again, Mediatek warnings are moving in the wrong direction. :(
+PCI: rzg3s-host: Use shared reset controls for power domain resets
 
-Rob
+This commit switches to shared reset controls for PCIe power resets to prep=
+are
+for RZ/V2H(P) support. Multiple PCIe controllers share the same reset line =
+on
+this platform, which requires shared ownership of the reset control.
 
->       arm64: dts: mediatek: mt6359: use proper compatible for rtc
->       arm64: dts: mediatek: add MT6365 PMIC include
->       arm64: dts: mediatek: mt8390-genio-common: use MT6365 PMIC definitions
->       arm64: dts: mediatek: mt8395-genio-common: use MT6365 PMIC definitions
->       arm64: dts: mediatek: mt8395-radxa-nio-12l: use MT6365 PMIC definitions
+> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/contr=
+oller/pcie-rzg3s-host.c
+> index d86e7516dcc29..a5192e4b58dfb 100644
+> --- a/drivers/pci/controller/pcie-rzg3s-host.c
+> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
+> @@ -1276,9 +1276,9 @@ static int rzg3s_pcie_resets_prepare_and_get(struct=
+ rzg3s_pcie_host *host)
+>  	for (i =3D 0; i < data->num_cfg_resets; i++)
+>  		host->cfg_resets[i].id =3D data->cfg_resets[i];
+> =20
+> -	ret =3D devm_reset_control_bulk_get_exclusive(host->dev,
+> -						    data->num_power_resets,
+> -						    host->power_resets);
+> +	ret =3D devm_reset_control_bulk_get_shared(host->dev,
+> +						 data->num_power_resets,
+> +						 host->power_resets);
+>  	if (ret)
+>  		return ret;
+> =20
+
+[Severity: High]
+This is a pre-existing issue, but I noticed a potential use-after-free
+with the chained IRQ handlers in this driver during probe failure or teardo=
+wn.
+
+In rzg3s_pcie_init_irqdomain(), chained handlers are installed for each INTx
+interrupt:
+
+drivers/pci/controller/pcie-rzg3s-host.c:rzg3s_pcie_init_irqdomain() {
+	...
+	for (i =3D 0; i < PCI_NUM_INTX; i++) {
+		...
+		irq =3D platform_get_irq_byname(pdev, irq_name);
+		if (irq < 0)
+			return dev_err_probe(dev, -EINVAL, ...);
+	=09
+		host->intx_irqs[i] =3D irq;
+		irq_set_chained_handler_and_data(irq,
+						 rzg3s_pcie_intx_irq_handler,
+						 host);
+	}
+	...
+}
+
+If platform_get_irq_byname() fails on a subsequent loop iteration, the
+function returns an error without unregistering the already installed
+chained handlers.
+
+Additionally, during teardown, rzg3s_pcie_teardown_irqdomain() does not
+clear these handlers:
+
+drivers/pci/controller/pcie-rzg3s-host.c:rzg3s_pcie_teardown_irqdomain() {
+	if (IS_ENABLED(CONFIG_PCI_MSI))
+		rzg3s_pcie_teardown_msi(host);
+
+	irq_domain_remove(host->intx_domain);
+}
+
+Because chained handlers are not managed by devres and persist after the
+driver unbinds, could an interrupt on these lines cause
+rzg3s_pcie_intx_irq_handler() to dereference the freed host pointer?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260602195019.1798=
+126-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D2
 
