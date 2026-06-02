@@ -1,195 +1,207 @@
-Return-Path: <devicetree+bounces-305570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305589-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4NVcLv6wHmr7JAAAu9opvQ
-	(envelope-from <devicetree+bounces-305570-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:31:26 +0200
+	id iMFHGbK7HmrZJgAAu9opvQ
+	(envelope-from <devicetree+bounces-305589-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:17:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A9062C953
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:31:26 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D74A662D479
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:17:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 019A030ADA10
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 10:19:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B603E3052716
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:13:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373063D75B4;
-	Tue,  2 Jun 2026 10:19:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2334C3D668C;
+	Tue,  2 Jun 2026 11:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AyUwTwsC"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=xmission.com header.i=@xmission.com header.b="PT1nwI4K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com [74.125.82.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out02.mta.xmission.com (out02.mta.xmission.com [166.70.13.232])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E34103D6CC4
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 10:19:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=74.125.82.175
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780395554; cv=pass; b=K7jGHU0uIkltFilUVvcNfLgVHeoUO1i05tzEDjCcDd9IpW/CV6YHvKdeq2PoIEQDd9jPUC67bHQIAKfcwMjq3SCJQsr29QFINDaFs+Tbq1t0iFEtTP7+O+bcmB9EQWGsrcjzvdSH76xVc2cPTQOChrTxN5baGe672oF5EMJZETI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780395554; c=relaxed/simple;
-	bh=3B3t6ptcOYLW8i15s/yZOStzPGXLE8YErZRu0mWiPrk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nIY6bPJlITMrxPoHBGStj3k0pInbEopzTF/G61dA0VRIQOcVJG7NG2UB5Hiwe2JOe5OxHCjN9W61t1vPrgrZakQ49C7ZnmSGvBhsn+pcxF6/a3PbUjLTm8qd+vWExRJKi7qr+/oEfPr4sR0sm3yUOtfVD3jQlyPslaseEXMlZ3I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AyUwTwsC; arc=pass smtp.client-ip=74.125.82.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f175.google.com with SMTP id 5a478bee46e88-304d8e3bb72so7814556eec.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 03:19:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780395552; cv=none;
-        d=google.com; s=arc-20240605;
-        b=PpUqGDGVU5b7+JtALIndBtx89saxPDTp051CjanW01hGAKmaRBLT6vjrsACqMLLXHN
-         LUp0BARvsWFJL3+S9XUc5EWPbjGafFodITdJ5mSolIzuNfe2k2ABjydYe2ECKPzTlRo0
-         +dg6BS+bi287AxOWdNdbiGVuBValCSHElJ/9wJbn3fGmILzz5p0+g+iI2Lir5aEyZ3sK
-         3Kolnl/v/qUPsYN9ZHdfnf7SGcI6i1EVBbEBB+xH1Gup4X+fk785LO3hJhOUB4bYUKlm
-         U77UPpGeKK//hvP3S6Nm49hyLaQGZuI8120u4QPR874a/A5fJlhkd8tXz/thBLnbg0nQ
-         6GWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=+Rz2DgaRr0tqOwLOIkcbJ3/5tQrroNwxRI/2HG/tAbU=;
-        fh=t5WlViZbq8T9dEcVHLV05fkQRy0BND6ASq+inkrfDbI=;
-        b=AK72MzoZ0dyc2JC+hfUG/jErPaKwiFlUScMmCDNSF7WGPEPck36gQfv5wNjuZBr6rb
-         tNDw5CKm7TNgFbaQtXEeTPo7lFj4J9olJrCcdVyoQ3iVrFbiwkiH6lh19zm9NvtsEFOO
-         y/mSkknv8T/3Sl+EaBNZBbHfuaFxnwDdowEU9U5VvnA8XLO7IJRUBa1hwQeIAuWJVWyo
-         G2rC8889/tkZdJ0AQ2TzauzZ9iM22JhLyIybxx8GBQF48eXnl6cdaQ30RwawASqc2Beo
-         h/cDlIKpF13Nh5xB6927iU/znwTIWNTwBwPAT5sf493zGim3bUVXOUr8RkqjCgrVjy4A
-         XPZw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780395552; x=1781000352; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+Rz2DgaRr0tqOwLOIkcbJ3/5tQrroNwxRI/2HG/tAbU=;
-        b=AyUwTwsCHthjP6xub1kYtxw/LI3RE35opRdOgCOuDfMit/QnFgIeUTShTZZIpe7lBF
-         qRQWCXiVBDsalYrzAVptKLel2m0TfNtWh7rlB/0YfAa0JxZpFTBMXmCqjgmyp6XYUC2h
-         QjJ6fthhtIhDtpCkrreEsYzND+1a/XPf++2mHd6EuNSDjeEjI7/TXRDIJKyO1emHRWQd
-         zZIsyiRQ76oy+WEZjmkjDAgD1tRWUqjXZbd+Fs1Ujp7llqA6OFqX3OzWrDW1ZFoisIF0
-         yd6l2WV2jaXKT5SEz13bXNf+ZxlWNte7M/NODRmIIqX/pt8TiBLOFbw5Wg3xJht71mBr
-         S/Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780395552; x=1781000352;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=+Rz2DgaRr0tqOwLOIkcbJ3/5tQrroNwxRI/2HG/tAbU=;
-        b=Y89NltaprCscAZkHYUFaHTNGlMZ3mvmnIw10ruGsXHKZ96TdE+QaLS6DI9m1JgdSuC
-         huIK5bGqmhAqKwIeU4WSvqwGXdCaITTtTFYbCsyYZB4/b2PEViNySTzcZaHWnf2P9jW1
-         CB43SnuLglKO3IV+DM+tPGzPZulNU5XVfSytq3B4kuIDJ7k8u2iIewI13HIhy0xegMIo
-         KKTlzFUbYBlNywNSF6R2OlhC0wYFTtk6Tmn7RwvQcbkWxp9GHLnMznKxwtxyP0CiScLR
-         zjfb4wDpmU8b6lHVPhuUdjq/57FMn4rUlfPtyHHXbwTfRPn0Kgxcy02mkmhiPfl/H6qk
-         nBqQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+zw6+ITxonh1yGr1WuWo7OjLNwBDA35Gf9DmBgRgqnTXHU4ZtKtWown/O5ZS2KMux3/4z44gviQR7t@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3XWgnV5QDvk/wOoiYLW4BRuhTEhXq4MJ2/l4sdS6MoeMxnXji
-	FL6DLNfe4ANtv4nOxW5s7wdawfvxagnOZlN5Be0atBTx9EO67A1wxwsZXGDST3/g5sGNxx4ynZe
-	qi0tIGZucd5D4hrWTBhinZzfrVoGrtrA=
-X-Gm-Gg: Acq92OGak1+IVtK9f2SG2sMMM6uN8L7EuUPwrK5ET3B6siAXr4ONtXAV0AQ3QCKjBuE
-	GdqqjJzh/GZNJHm/foUTfBCGFnsxl3flaCG7fqFkcwAIRnFG1tcwMIp1XJruGm8a3TcKvymirif
-	vpgv66hhStlATgI0OzygLlheIKhDqbVmQQMpPO8/KavzrtIQ4P8dO39QyOn1/oOQ4P/RrXQBTK1
-	1X2O0VcRaj6WNsIOEA2TL9M+LydlFened9pp9va70YfHRxNKgqKEZ0Wj6CfhBf7cdHFndeUNBrt
-	9BphFYgtaUC711sDrMM=
-X-Received: by 2002:a05:7300:6427:b0:2df:919f:ce59 with SMTP id
- 5a478bee46e88-304fa67ee46mr6895369eec.19.1780395552116; Tue, 02 Jun 2026
- 03:19:12 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D0D3D5C0C;
+	Tue,  2 Jun 2026 11:12:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=166.70.13.232
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780398772; cv=none; b=qgLH/i0NL+XBarjIdlPH26etRAHkrP97UHzrntyNLC5oncKOTQ56u/Hbit3C/yGw9AbsgyVFMGhiI55krm/VUZnxlSpn+XtA1kgPr3Mi4fTcsONTYM5FXCuVeFZAWL0TeyGqQRRos1uey/2Xu3ctT2FX1EqBBx/eTvY28KbbfUQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780398772; c=relaxed/simple;
+	bh=vvILlsXaVQShutp1p5WceQi2Eaf3pB4ovG/S15HHsU4=;
+	h=From:To:Cc:In-Reply-To:References:Date:Message-ID:MIME-Version:
+	 Content-Type:Subject; b=cNHkPHmtouJJRpCZK+UhcqWNnVG5Lnj/ejJkkyBb5FzLTOY4+tGJEfbHDPiD/c+8vGwiYeHAUgNjc0CC3//sCAJFkNx0uwE8zfSpNt6jFeXySlJHlHrdViH9FrHGsc9zhd0iiVVL9o91EUAYtQCKiwa1XB3bZ3PFo73l6liDFYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xmission.com; spf=pass smtp.mailfrom=xmission.com; dkim=pass (1024-bit key) header.d=xmission.com header.i=@xmission.com header.b=PT1nwI4K; arc=none smtp.client-ip=166.70.13.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xmission.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xmission.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=simple/simple; d=xmission.com;
+	 s=xmission; h=Subject:Content-Type:MIME-Version:Message-ID:Date:References:
+	In-Reply-To:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=vvILlsXaVQShutp1p5WceQi2Eaf3pB4ovG/S15HHsU4=; b=PT1nwI4K/LueK0DDSNL+s4C13J
+	wCISW9cQ6Rku1p5e71v6LNcH9E8BpNOErgTq20OxsIi/JohdQWrgMebuwQrMKgen7pJXROs+AsRqv
+	q/PDtUrCrIsMZAHrVRiLpwUsOkpysGxuDIlQz4e1uDX5u9eweqgYZDbb9a8545EZNJqI=;
+Received: from in01.mta.xmission.com ([166.70.13.51]:57296)
+	by out02.mta.xmission.com with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <ebiederm@xmission.com>)
+	id 1wUMHI-00EQUk-Sf; Tue, 02 Jun 2026 04:23:20 -0600
+Received: from ip72-198-198-28.om.om.cox.net ([72.198.198.28]:37600 helo=email.froward.int.ebiederm.org.xmission.com)
+	by in01.mta.xmission.com with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <ebiederm@xmission.com>)
+	id 1wUMHF-002RRp-JI; Tue, 02 Jun 2026 04:23:20 -0600
+From: "Eric W. Biederman" <ebiederm@xmission.com>
+To: Andreas Schwab <schwab@linux-m68k.org>
+Cc: Deepak Gupta <debug@rivosinc.com>,  Deepak Gupta via B4 Relay
+ <devnull+debug.rivosinc.com@kernel.org>,  Thomas Gleixner
+ <tglx@linutronix.de>,  Ingo Molnar <mingo@redhat.com>,  Borislav Petkov
+ <bp@alien8.de>,  Dave Hansen <dave.hansen@linux.intel.com>,
+  x86@kernel.org,  "H. Peter Anvin" <hpa@zytor.com>,  Andrew Morton
+ <akpm@linux-foundation.org>,  "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+  Vlastimil Babka <vbabka@suse.cz>,  Lorenzo Stoakes
+ <lorenzo.stoakes@oracle.com>,  Paul Walmsley <paul.walmsley@sifive.com>,
+  Palmer Dabbelt <palmer@dabbelt.com>,  Albert Ou <aou@eecs.berkeley.edu>,
+  Conor Dooley <conor@kernel.org>,  Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Arnd Bergmann <arnd@arndb.de>,
+  Christian Brauner <brauner@kernel.org>,  Peter Zijlstra
+ <peterz@infradead.org>,  Oleg Nesterov <oleg@redhat.com>,  Kees Cook
+ <kees@kernel.org>,  Jonathan Corbet <corbet@lwn.net>,  Shuah Khan
+ <shuah@kernel.org>,  Jann Horn <jannh@google.com>,  Conor Dooley
+ <conor+dt@kernel.org>,  Miguel Ojeda <ojeda@kernel.org>,  Alex Gaynor
+ <alex.gaynor@gmail.com>,  Boqun Feng <boqun.feng@gmail.com>,  Gary Guo
+ <gary@garyguo.net>,  =?utf-8?Q?Bj=C3=B6rn?= Roy Baron
+ <bjorn3_gh@protonmail.com>,  Andreas
+ Hindborg <a.hindborg@kernel.org>,  Alice Ryhl <aliceryhl@google.com>,
+  Trevor Gross <tmgross@umich.edu>,  Benno Lossin <lossin@kernel.org>,
+  linux-kernel@vger.kernel.org,  linux-fsdevel@vger.kernel.org,
+  linux-mm@kvack.org,  linux-riscv@lists.infradead.org,
+  devicetree@vger.kernel.org,  linux-arch@vger.kernel.org,
+  linux-doc@vger.kernel.org,  linux-kselftest@vger.kernel.org,
+  alistair.francis@wdc.com,  richard.henderson@linaro.org,
+  jim.shu@sifive.com,  andybnac@gmail.com,  kito.cheng@sifive.com,
+  charlie@rivosinc.com,  atishp@rivosinc.com,  evan@rivosinc.com,
+  cleger@rivosinc.com,  alexghiti@rivosinc.com,  samitolvanen@google.com,
+  broonie@kernel.org,  rick.p.edgecombe@intel.com,
+  rust-for-linux@vger.kernel.org,  Zong Li <zong.li@sifive.com>
+In-Reply-To: <87wlwif04z.fsf@igel.home> (Andreas Schwab's message of "Mon, 01
+	Jun 2026 22:58:52 +0200")
+References: <20251112-v5_user_cfi_series-v23-0-b55691eacf4f@rivosinc.com>
+	<20251112-v5_user_cfi_series-v23-6-b55691eacf4f@rivosinc.com>
+	<87jyslndo4.fsf@igel.home>
+	<CAKC1njS=AHu6uHrH4ae8VxcdEbhgiPXYCAoN3F_mnppBd3SwOA@mail.gmail.com>
+	<875x44o9hj.fsf@igel.home>
+	<CAKC1njSn_rtCj8ii876PNQTk0nsCTfWsb4DzdymufHVthh1Rkg@mail.gmail.com>
+	<871peqgp9v.fsf@igel.home>
+	<CAKC1njR+dTdvp+BmLGPtgd8dufiUwBtkQ9a-qinELT_Fmi13sQ@mail.gmail.com>
+	<87wlwif04z.fsf@igel.home>
+Date: Tue, 02 Jun 2026 05:23:10 -0500
+Message-ID: <87tsrli6lt.fsf@email.froward.int.ebiederm.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260601151831.76350-1-clamor95@gmail.com> <20260601151831.76350-9-clamor95@gmail.com>
- <ah6PxFtoJUWkd79P@ashevche-desk.local>
-In-Reply-To: <ah6PxFtoJUWkd79P@ashevche-desk.local>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 2 Jun 2026 13:19:00 +0300
-X-Gm-Features: AVHnY4KArfWMr0jnHoh9vtR5UqW4K7jQ3330Z8FTAYXvtwkDG99A7ncLjymdKC8
-Message-ID: <CAPVz0n0P7Jk17cM2M1zuHZfySo2=Uibr5izwKU2tqiBpBcg0FQ@mail.gmail.com>
-Subject: Re: [PATCH v3 08/11] video: backlight: lm3533_bl: Improve linear
- sysfs logic
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Helge Deller <deller@gmx.de>, Johan Hovold <johan@kernel.org>, 
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 22A9062C953
+Content-Type: text/plain
+X-XM-SPF: eid=1wUMHF-002RRp-JI;;;mid=<87tsrli6lt.fsf@email.froward.int.ebiederm.org>;;;hst=in01.mta.xmission.com;;;ip=72.198.198.28;;;frm=ebiederm@xmission.com;;;spf=pass
+X-XM-AID: U2FsdGVkX19J6tpF2AGRJ9xglxGPNzSSZeVg13KZsgY=
+X-Spam-Level: 
+X-Spam-Virus: No
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	*  0.1 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4997]
+	*  0.7 XMSubLong Long Subject
+	*  0.0 T_TM2_M_HEADER_IN_MSG BODY: No description available.
+	* -0.0 DCC_CHECK_NEGATIVE Not listed in DCC
+	*      [sa02 1397; Body=1 Fuz1=1 Fuz2=1]
+	*  0.0 T_TooManySym_01 4+ unique symbols in subject
+	*  0.0 T_TooManySym_02 5+ unique symbols in subject
+X-Spam-DCC: XMission; sa02 1397; Body=1 Fuz1=1 Fuz2=1 
+X-Spam-Combo: ;Andreas Schwab <schwab@linux-m68k.org>
+X-Spam-Relay-Country: 
+X-Spam-Timing: total 2774 ms - load_scoreonly_sql: 0.03 (0.0%),
+	signal_user_changed: 3.6 (0.1%), b_tie_ro: 2.5 (0.1%), parse: 0.84
+	(0.0%), extract_message_metadata: 8 (0.3%), get_uri_detail_list: 0.86
+	(0.0%), tests_pri_-2000: 7 (0.3%), tests_pri_-1000: 8 (0.3%),
+	tests_pri_-950: 1.02 (0.0%), tests_pri_-900: 0.92 (0.0%),
+	tests_pri_-90: 62 (2.2%), check_bayes: 61 (2.2%), b_tokenize: 13
+	(0.5%), b_tok_get_all: 9 (0.3%), b_comp_prob: 1.76 (0.1%),
+	b_tok_touch_all: 35 (1.3%), b_finish: 0.56 (0.0%), tests_pri_0: 297
+	(10.7%), check_dkim_signature: 0.41 (0.0%), check_dkim_adsp: 3.2
+	(0.1%), poll_dns_idle: 2367 (85.3%), tests_pri_10: 2.7 (0.1%),
+	tests_pri_500: 2379 (85.8%), rewrite_mail: 0.00 (0.0%)
+Subject: Re: [PATCH v23 06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ
+ | VM_WRITE
+X-SA-Exim-Connect-IP: 166.70.13.51
+X-SA-Exim-Rcpt-To: too long (recipient list exceeded maximum allowed size of 512 bytes)
+X-SA-Exim-Mail-From: ebiederm@xmission.com
+X-SA-Exim-Scanned: No (on out02.mta.xmission.com); SAEximRunCond expanded to false
+X-Rspamd-Queue-Id: D74A662D479
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_DKIM_REJECT(1.00)[xmission.com:s=xmission];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[xmission.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-305570-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305589-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[rivosinc.com,kernel.org,linutronix.de,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,oracle.com,suse.cz,sifive.com,dabbelt.com,eecs.berkeley.edu,arndb.de,infradead.org,lwn.net,google.com,gmail.com,garyguo.net,protonmail.com,umich.edu,vger.kernel.org,kvack.org,lists.infradead.org,wdc.com,linaro.org,intel.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FROM_NEQ_ENVFROM(0.00)[ebiederm@xmission.com,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,debug.rivosinc.com,dt];
+	RCPT_COUNT_GT_50(0.00)[60];
+	DKIM_TRACE(0.00)[xmission.com:-];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[email.froward.int.ebiederm.org:mid,linux-m68k.org:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-=D0=B2=D1=82, 2 =D1=87=D0=B5=D1=80=D0=B2. 2026=E2=80=AF=D1=80. =D0=BE 11:09=
- Andy Shevchenko <andriy.shevchenko@intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Mon, Jun 01, 2026 at 06:18:28PM +0300, Svyatoslav Ryhel wrote:
-> > Simplify the sysfs logic of the linear property by switching to a macro
-> > and a ternary operator.
->
-> ...
->
-> >       if (kstrtoul(buf, 0, &linear))
-> >               return -EINVAL;
->
-> Besides _assign_bits() in the below, side note here to unshadow error cod=
-es:
->
->         ret =3D kstrtoul(buf, 0, &linear);
->         if (ret)
->                 return ret;
->
-> (obviously in a separate change).
+Andreas Schwab <schwab@linux-m68k.org> writes:
 
-Won't happen in this patches.
+> On Jun 01 2026, Deepak Gupta wrote:
+>
+>> riscv uses `VM_SHADOW_STACK`. It's just very simple to use `protection_map`
+>> with just `VM_WRITE`. On RISC-V, `-W-` is a shadow stack mapping. It's not same
+>> on x86 or arm64. So `protection_map[VM_WRITE]` simply picks shadow stack
+>> encoding. We just ensure that PROT_WRITE is converted to
+>> "VM_READ | VM_WRITE" at vma level.
+>
+> That does not explain _why_ you need to make that user visible change,
+> when others can get away without it.
 
->
-> ...
->
-> >       ret =3D regmap_update_bits(bl->lm3533->regmap, LM3533_REG_CTRLBAN=
-K_AB_BCONF,
-> > -                              mask, val);
-> > +                              CTRLBANK_AB_BCONF_MODE(id),
-> > +                              linear ? CTRLBANK_AB_BCONF_MODE(id) : 0)=
-;
-> >       if (ret)
-> >               return ret;
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+Especially since as I recall the decision was made was that the user
+visible protection bits would match the mmap call.  If there is some
+combination an architecture does not support that would simply not be
+reflected in hardware until some future version of the hardware gets
+around to supporting it.
+
+This is what happened with executable page permissions on x86 for
+example.  It used to be that it was not possible to deny execute
+permission on a readable page.  Later that proved sufficiently valuable
+that support for denying execute permission was added to the hardware.
+
+That all happened quite transparently to userspace, that wasn't trying
+to assuming PROT_READ implied PROT_EXEC.
+
+So I am at a complete loss why someone would choose to break userspace
+by confusing hardware limitations with what userspace asks for in mmap.
+
+Eric
+
 
