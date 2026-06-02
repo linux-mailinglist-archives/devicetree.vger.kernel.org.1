@@ -1,169 +1,183 @@
-Return-Path: <devicetree+bounces-305527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305525-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eGbHEyqXHmoAlQkAu9opvQ
-	(envelope-from <devicetree+bounces-305527-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:41:14 +0200
+	id SNR/MdqWHmrPlAkAu9opvQ
+	(envelope-from <devicetree+bounces-305525-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:39:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F2A62ABBC
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C221862AB4B
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 10:39:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6CBE7305E132
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 08:26:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B7A3C303688C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 08:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3502E3C4174;
-	Tue,  2 Jun 2026 08:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED353C1418;
+	Tue,  2 Jun 2026 08:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OOW9Pl54"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8EFC3C4141
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 08:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AA293B992F;
+	Tue,  2 Jun 2026 08:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780388768; cv=none; b=CzxFGi959KF4VOb6gfprh+4F6DE849AZT3Iu5187mocB3aDMhzwZABwFx56E2h3k8x55WKVmquQDMFkxJaGUAcM6Kj/zXWh+PsBKaFEu1TY0/85RtYsfj3ZexbL4pipGMpx0W4X0FiDOtGhyfikCiv8l6LVGhkOkJf4f4Mo21Qs=
+	t=1780388748; cv=none; b=gOAoQQIcGdUF7JuOvhRLTf2Z+eyZU7Axj4/RiFHt400sgZpcqCZzUzYffn0WI1/INMjldLz1WlhR8Zl/TzIfIsj5Z8cyJ/gOFl70S5eOrf19llKdinD5I+14hzeNlfYJcriJ+f+gO7zl7r62zwtd1C6WyJkI6r6iIicjdMlBcMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780388768; c=relaxed/simple;
-	bh=ZQkpBhdyPFX8K1AgwsbSqD6e4PBbKm/F+6uEvcBzPyk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bPxHRAbkg4SEiVKQwCD6GDhp0kEXqomIxB0XSj+iU8Db5PeLukb6u7DbbBlZHyp0x0jCp0agEOTOPILc19CFDUPl9qpJd013nTuSr6dBsJkcyWIaHMNdKZN2J8CXba57g1vm9jzSgG0l7fJYKVYt/W8/MV/IrXN3lNSfQ688mQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1wUKQZ-0001Gf-0T; Tue, 02 Jun 2026 10:24:47 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1wUKQT-000iZa-13;
-	Tue, 02 Jun 2026 10:24:41 +0200
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1wUKQT-000000003ba-0TqR;
-	Tue, 02 Jun 2026 10:24:41 +0200
-Message-ID: <6af284545729f03a60d06479339862a2f08c6b7e.camel@pengutronix.de>
-Subject: Re: [PATCH 22/23] reset: rzg2l: use
- platform_device_set_of_node_from_dev()
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, Lee Jones	
- <lee@kernel.org>, Mark Brown <broonie@opensource.wolfsonmicro.com>, Thierry
- Reding <thierry.reding@avionic-design.de>, Sebastian Hesselbarth	
- <sebastian.hesselbarth@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Srinivas Kandagatla <srini@kernel.org>, Greg
- Kroah-Hartman	 <gregkh@linuxfoundation.org>, Vinod Koul <vkoul@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich
- <dakr@kernel.org>, Rob Herring <robh@kernel.org>,  Saravana Kannan
- <saravanak@kernel.org>, Madhavan Srinivasan <maddy@linux.ibm.com>, Michael
- Ellerman	 <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Andi Shyti
- <andi.shyti@kernel.org>, Andy Shevchenko	
- <andriy.shevchenko@linux.intel.com>, Joerg Roedel <joro@8bytes.org>, Will
- Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Doug Berger
- <opendmb@gmail.com>,  Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list	
- <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson <ulfh@kernel.org>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team	 <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, Matthew Brost	 <matthew.brost@intel.com>, Thomas
- =?ISO-8859-1?Q?Hellstr=F6m?=	 <thomas.hellstrom@linux.intel.com>, Rodrigo
- Vivi <rodrigo.vivi@intel.com>,  David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>,  Paul
- Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, Maximilian Luz
- <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, Ilpo
- =?ISO-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,  Krzysztof
- Kozlowski	 <krzk@kernel.org>, Benjamin Herrenschmidt
- <benh@kernel.crashing.org>
-Cc: brgl@kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
-	driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
- iommu@lists.linux.dev, 	linux-pm@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
-	dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
-	linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Date: Tue, 02 Jun 2026 10:24:41 +0200
-In-Reply-To: <20260521-pdev-fwnode-ref-v1-22-88c324a1b8d2@oss.qualcomm.com>
-References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
-	 <20260521-pdev-fwnode-ref-v1-22-88c324a1b8d2@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1780388748; c=relaxed/simple;
+	bh=cHp3nkT0cfcBUKtkYPQ5ueVJrGW1JpdFjs6fxXYP9t8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=G9i3XJEYbkHdDn+LhQaIfaGo/Z2AmRjdiIsljJZiAUSeGNoXs5FGhYW0S08FqdmUn/VVCvYrJZbmuUHBlEvx+nTzaUISSrsaUigALegCevhzB2RvR/tY/urmUYQ+oOPDkNjKl4ERUQ+Nn3KZmIBQql3pZZhc2Wn+WKCvOZje3W4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OOW9Pl54; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E763FC2BCB4;
+	Tue,  2 Jun 2026 08:25:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780388748;
+	bh=cHp3nkT0cfcBUKtkYPQ5ueVJrGW1JpdFjs6fxXYP9t8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=OOW9Pl54BT11UnaiRQXy54J2+Mz/tKgFC70yOwziqjplGS8j5beJbQKu+7qke5Qox
+	 fQcVtTSfsJuqAQDJbstLiRVwFsQ0g8miNl9oUYXlvO2uPC6kKEa0uxoOFeYiRBKRFj
+	 b8DXMhioJsI7KT2saR4O2hFy4r51lr/2w5YsXSQiLrPm8H8PWj657CfPVuwxeNOXKv
+	 3gMX3CJ+HEFyVrSNi+P88tS6ystZcIfUQPitlf0FFtGBA72uUOpnFQmBVqcnyrv4LN
+	 GHiaTU4vIzCdo+n5odX/VkAv0gnxcrGXNGhJl7XYCTZhG2mZV9cVLsDkfdJqagosWP
+	 Ol7L78MgbANow==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DC4D2CD6E57;
+	Tue,  2 Jun 2026 08:25:47 +0000 (UTC)
+From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
+Subject: [PATCH v6 0/2] phy: add basic support for NXPs TJA1145 CAN
+ transceiver
+Date: Tue, 02 Jun 2026 10:25:36 +0200
+Message-Id: <20260602-tja1145-support-v6-0-0e0ffc8ee63d@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAICTHmoC/23OzU7DMAzA8VeZciYoceJ8cOI90A5Z4tIgWKukV
+ ENT35100gDRHv+W/LOvrFLJVNnT4coKzbnm4dzCPBxY7MP5lXhOrRkIQGHB8OktSKmR189xHMr
+ Ek4kxRZ0gBcXa1lioy5eb+HJs3ec6DeXrdmCW6/RuuY01Sy44nZLTXifUGJ/fM516KuUxDh9s5
+ Wb4JRz4LQGNMMJ72ylw3vodQv0QUki1JVQjdPAJNHYkjN0h9F8Ct4ReiaRikCo65+QOgXfCCNz
+ 7AhuhnAURLJFR9I9YluUbmXjhDb0BAAA=
+X-Change-ID: 20250726-tja1145-support-d6ccdc4d2da3
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, lee.lockhey@gmail.com, 
+ Marc Kleine-Budde <mkl@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780388746; l=2451;
+ i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
+ bh=cHp3nkT0cfcBUKtkYPQ5ueVJrGW1JpdFjs6fxXYP9t8=;
+ b=p1me/q6zUuMZYy17fczKcV6f2U8Y8qghF6aQalv6p3RC54NImHNf1nsAXn0PJRtX21EXJhhpH
+ IknPafPwXvABnXb3ntP9Z0Qxxd/YYCTXP7un9KI3NOA79jhoFfyh3vS
+X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
+ pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
+X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
+ with auth_id=290
+X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Reply-To: dimitri.fedrau@liebherr.com
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305527-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,opensource.wolfsonmicro.com,avionic-design.de,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,linuxfoundation.org,linux.ibm.com,ellerman.id.au,linux.intel.com,8bytes.org,arm.com,broadcom.com,nxp.com,pengutronix.de,intel.com,ffwll.ch,crapouillou.net,ti.com,kernel.crashing.org];
+	TAGGED_FROM(0.00)[bounces-305525-lists,devicetree=lfdr.de,dimitri.fedrau.liebherr.com];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[65];
-	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,liebherr.com,microchip.com,gmail.com,pengutronix.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[dimitri.fedrau@liebherr.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,pengutronix.de:mid,pengutronix.de:email,qualcomm.com:email]
-X-Rspamd-Queue-Id: 49F2A62ABBC
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,liebherr.com:replyto,liebherr.com:mid,liebherr.com:email]
+X-Rspamd-Queue-Id: C221862AB4B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Do, 2026-05-21 at 10:36 +0200, Bartosz Golaszewski wrote:
-> Ahead of reworking the reference counting logic for platform devices,
-> encapsulate the assignment of the OF node from another device for
-> dynamically allocated platform devices with the provided helper.
->=20
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> ---
->  drivers/reset/reset-rzg2l-usbphy-ctrl.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/reset/reset-rzg2l-usbphy-ctrl.c b/drivers/reset/rese=
-t-rzg2l-usbphy-ctrl.c
-> index fd75d9601a3bfde7b7e3f6db287ec8c5c45a20ab..f003b360629c90bb37ed0ade7=
-a675b5b0f28fa7e 100644
-> --- a/drivers/reset/reset-rzg2l-usbphy-ctrl.c
-> +++ b/drivers/reset/reset-rzg2l-usbphy-ctrl.c
-> @@ -249,7 +249,7 @@ static int rzg2l_usbphy_ctrl_probe(struct platform_de=
-vice *pdev)
->  	vdev->dev.parent =3D dev;
->  	priv->vdev =3D vdev;
-> =20
-> -	device_set_of_node_from_dev(&vdev->dev, dev);
-> +	platform_device_set_of_node_from_dev(vdev, dev);
->  	error =3D platform_device_add(vdev);
->  	if (error)
->  		goto err_device_put;
+Add basic driver support for NXPs TJA1145 CAN transceiver which brings the
+PHY up/down by switching to normal/standby mode using SPI commands.
 
-Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+---
+Changes in v6:
+- Added interrupts to bindings and dt example.
+- Link to v5: https://lore.kernel.org/r/20260513-tja1145-support-v5-0-38720a7ee63e@liebherr.com
 
-regards
-Philipp
+Changes in v5:
+- No functional change, basically a resend with added tags
+- fixed typo in define TJA1145_MODE_CRTL_STBY to TJA1145_MODE_CTRL_STBY
+  and TJA1145_MODE_CRTL_NORMAL to TJA1145_MODE_CTRL_NORMAL
+- remove unneeded include -#include <linux/bitfield.h>
+- added owner to tja1145_phy_ops
+- Link to v4: https://lore.kernel.org/r/20251015-tja1145-support-v4-0-4d3ca13c8881@liebherr.com
+
+Changes in v4:
+- Change compatible to: nxp,tja1145 (Connor)
+- Mark spi-cpha as required (Connor)
+- Switch from unevaluatedProperties: false to
+  additionalProperties: false (Connor)
+- Remove double newline after tja1145_rd_table (Marc)
+- Link to v3: https://lore.kernel.org/r/20251013-tja1145-support-v3-0-4a9d245fe067@liebherr.com
+
+Changes in v3:
+- bindings: fix SPI bus unit address format error
+- bindings: added resolution of discussion into commit msg
+- Checked binding with:
+  make dt_binding_check DT_SCHEMA_FILES=nxp,tja1145-can.yaml
+  Missed it for V2, didn't do it intentionally. Sorry.
+- Link to v2: https://lore.kernel.org/r/20250829-tja1145-support-v2-0-60997f328979@liebherr.com
+
+Changes in v2:
+- bindings: Change node name in example to can-phy
+- bindings: Fix order of properties, reg property is second
+- bindings: Change compatible to match filename
+- change compatible to nxp,tja1145-can
+- Link to v1: https://lore.kernel.org/r/20250728-tja1145-support-v1-0-ebd8494d545c@liebherr.com
+
+---
+Dimitri Fedrau (2):
+      dt-bindings: phy: add support for NXPs TJA1145 CAN transceiver
+      phy: add basic support for NXPs TJA1145 CAN transceiver
+
+ .../devicetree/bindings/phy/nxp,tja1145.yaml       |  86 ++++++++++
+ drivers/phy/Kconfig                                |  10 ++
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/phy-nxp-tja1145.c                      | 184 +++++++++++++++++++++
+ 4 files changed, 281 insertions(+)
+---
+base-commit: 29b4d8a7637f027b538787896bee520f2dacc904
+change-id: 20250726-tja1145-support-d6ccdc4d2da3
+
+Best regards,
+-- 
+Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+
+
 
