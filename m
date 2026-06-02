@@ -1,173 +1,184 @@
-Return-Path: <devicetree+bounces-305627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305630-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4EKYMjjMHmoKVQAAu9opvQ
-	(envelope-from <devicetree+bounces-305627-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 14:27:36 +0200
+	id AiezCsjLHmrqVAAAu9opvQ
+	(envelope-from <devicetree+bounces-305630-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 14:25:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C96B62E076
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 14:27:36 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7500E62E02D
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 14:25:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=F4ukxueR;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305627-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305627-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=arndb.de header.s=fm3 header.b=QtyRN8j2;
+	dkim=pass header.d=messagingengine.com header.s=fm1 header.b="j THPM8K";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305630-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305630-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=arndb.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 797F4313623B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 12:18:53 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8E4E93021ECE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 12:23:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424AA3D669D;
-	Tue,  2 Jun 2026 12:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BCB63DB33B;
+	Tue,  2 Jun 2026 12:23:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from fhigh-b4-smtp.messagingengine.com (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFC13C81A9
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 12:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91FD03DC4CD;
+	Tue,  2 Jun 2026 12:23:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780402733; cv=none; b=CkDRuaPOqN3XrePPULMtf9fHOr3kk8TlCMTpDPFncPkSxomdCGa9dhTMam1fyYjNY+u3p+8E6rmFOXwHuZm5GzWj8uedC1ugIrim19b/if/kIIVwZ+W6ZpdiPkE5GMDbhk/rFMiXu/2XmXmMjx86m0XRYZq+BQ4vfKt8e4D3rPE=
+	t=1780403002; cv=none; b=Aa17thTRxIHnRJ6xXPXSkmbGZdUTz3HoOmHBad5r0I0rtRbS7b1Gx7sMQZgzbNEH0bmTgDrE8xGCg2QAOH5nu96O5Gs2aTeK5jiqdciHl8+JOkKImIcrjM1CAs11I/yf3367c0ofUpRk4XHtW4op6jCW3H6rBCj7lpmHcxqJrLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780402733; c=relaxed/simple;
-	bh=kGsKCEXO0ZUzl+8w3uTBJNuhgkcJWQGWwJRl+g4zDAA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=VB7YyAxdjs8JC+B5QCNRxj1+dGqatVW/k3ZFNpy2/ADY79EfJcWxtJlLDFYFeNiUJoS9t+pAU9ZV//5h0DnQQVW24fz513WhSPSyJ1g77ghUBVmNzetgga1kF8z9UfY4tnKTdR2LB1USnfwxdppQqHxN/Cxk7p8kGwdWdjxcScA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=F4ukxueR; arc=none smtp.client-ip=185.171.202.116
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id B2273C6220B;
-	Tue,  2 Jun 2026 12:18:52 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 41356603BC;
-	Tue,  2 Jun 2026 12:18:50 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B693110888429;
-	Tue,  2 Jun 2026 14:18:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1780402729; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=LDb4o52DTUweCNoaveunh0r8+3SLZ3VLRjrgEU8ebf0=;
-	b=F4ukxueRbcpmWVLMtCyjP8pu5HOz/aIu4z/6QeJu7cdoxhQ7cJDhxIu1oMOrZM1UAFwyob
-	aTrZLusfl8KLnYxou0aIsz+BGN9PSb3Pqg3A3ygNJA0a3jXyyT2lXVAFsT9Tv4uNat8J0H
-	b8Gc8eB+y6OiTIU8WL1Wk65mX2Bjv02CyJWSbw34U0xrtBn1PDJwVFjiReZfeRbdTeJwMC
-	mgtmwgZj422X0cAIdfUxSuvPhljWjKxGy5pzSANENbAISkYtAonhN+xiodHUC0pT7OkQWx
-	2ZYqxq58hl545Fg1Jx/v6CsgOfHznY3XwrdzKKvZZ1m6YJ8N6RdCO/99a04X3g==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Santhosh Kumar K <s-k6@ti.com>
-Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
-  <conor+dt@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
-  <pratyush@kernel.org>,  <mwalle@kernel.org>,
-  <takahiro.kuwano@infineon.com>,  <linux-spi@vger.kernel.org>,
-  <devicetree@vger.kernel.org>,  <linux-kernel@vger.kernel.org>,
-  <linux-mtd@lists.infradead.org>,  <praneeth@ti.com>,  <u-kumar1@ti.com>,
-  <a-dutta@ti.com>
-Subject: Re: [PATCH v3 11/13] mtd: spinand: run PHY tuning after init and
- update dirmap frequencies
-In-Reply-To: <2f509130-491c-4a66-9156-39b01b40e65f@ti.com> (Santhosh Kumar
-	K.'s message of "Mon, 1 Jun 2026 14:46:44 +0530")
-References: <20260527175527.2247679-1-s-k6@ti.com>
-	<20260527175527.2247679-12-s-k6@ti.com> <87mrxjg9zi.fsf@bootlin.com>
-	<2f509130-491c-4a66-9156-39b01b40e65f@ti.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Tue, 02 Jun 2026 14:18:37 +0200
-Message-ID: <87y0gx16g2.fsf@bootlin.com>
+	s=arc-20240116; t=1780403002; c=relaxed/simple;
+	bh=Z95sJuQCTgajvOD0RfQFxhKPMT4RoY6/+AzQrFXJPPA=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=IM/CnyVye9Uxje7pRYUHBAYfxaakfVmYdKHvqXli3IEuh59afCi+2F5MaLLxK5Fj4RZkz3OsXiyrqzenJootb3/4ujRKbRagjiHPseP0aulDj8w8fF/EglgE4u+oD00dY0IgCji1KinLag7dwehxmwUiNfCtepgozxULVzJLw5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=QtyRN8j2; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=jTHPM8Kd; arc=none smtp.client-ip=202.12.124.155
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 3B8267A00A5;
+	Tue,  2 Jun 2026 08:23:19 -0400 (EDT)
+Received: from phl-imap-05 ([10.202.2.95])
+  by phl-compute-04.internal (MEProxy); Tue, 02 Jun 2026 08:23:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1780402998;
+	 x=1780489398; bh=hRhE2JS8VMDtVgLzaO+li85xbKbuR8ESfHzz9aiWT/c=; b=
+	QtyRN8j29GKZF5IDSW+WQT8pgLgcy4Q3xWxOTXVQTcf4PpjHarj0ZnFQScY83XqT
+	G4l8D2xHL7Xfz2vxSMdglyFs9bQNZVNgpjDjQYz2V3+4eH16hmxHsfvkpmhA40vF
+	cHvVCuVjO/ANV8SnU+DBZy4L/IfqaS3EIaY6zCLzY+RwoBBiiCMsIX0hVZHzJsFG
+	5UyRymkDkenHAIYmylagZ+SqcdrnGpaNPPA7NV9LTpBZ3/vVHJVxwABICowShD39
+	gy2qOQ/n0SnbcsEk/tbY8TN2DkzYHrdKdFIF91ZvVc4OdukLK7QFVTtJ+ZvIgVfB
+	/BLtzso/+vt/dLHD7L3LDw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1780402998; x=
+	1780489398; bh=hRhE2JS8VMDtVgLzaO+li85xbKbuR8ESfHzz9aiWT/c=; b=j
+	THPM8Kd7XTbXh3mZCXz4Fb/3SeDY0VprvCEbWlpXDVGK6tn+4jJfNnrfyzYdLexj
+	JQUxMCgb8yh35vdun56MWoc+l8uTuGtVXMkDi7ggHBOtELsg5z0C/Ay1URRslPd/
+	sbBjPDNxSMYR7sB1MjjgFK03X+T7ZK/7hvgzxH58Ii7ZFCJM9Dm1P5PhFjjfsQp0
+	2dkas3HdaJPw6F25mGobI07+3W64nGs9dCCG1JRDQ1g+BPJFyltRDr6ZEUsluvz3
+	hwUo2IqbjuobdVbF7HJJ8WamQ1tr9NY4W+T23qoM3GaLJwoliZQmpJU9V3kAbABf
+	8qgrv5uVTlo1zb+yPyJlQ==
+X-ME-Sender: <xms:Ncseasli4_R4W3QDYJhW6D38Gy6GqnBetSbVdAG5xsL4JOaODOfyGQ>
+    <xme:Ncseamp5bMq5Xy8b_gbBuehb_kcN5n5FE0YIFwmf9e9trU_4tBE2raiCBkX8ER__y
+    D8iD2cVce8InU5N1E9yyw7Ee8C5iX5ZDobhShydyhAvejdSxqhxEyE>
+X-ME-Proxy-Cause: dmFkZTESgYyi6e4cEOd4bw/XAYmop9bp+Es/eLhRIz5HZQlg/9EMr78/xnJGNo1+hXDWsG
+    HTKPM/336wDCh4Yzisnqt6fAwQYJimc26yQovtKNsvcUirJ30fMPswJyTBY9zr1mg+ejEw
+    1mqoYpt/rfadcy6R0oEywDm97ts7NMZYeyx9CrKGOKQJPvkXsP8znJaqa88PTLyYdOQ1LE
+    xlWDAUqB4umgEl4aTqGGOF9eFS1J6wMDT97kvzM/VCUPBCQObrb2RZJncpZzUjplexsjsB
+    8mYTUaEHGHbCmIGDeFmoZYCc+kxrN4c2tNAF+TaQt88zs02gbllA2BK3v1un5gRgAfD1JJ
+    dOJYz82z1UeYLXrFxVwlMsvxYzENqiZ4TLd2DQU2k5MPEmm2VuzAuWuGejlrvFsVVl4c+w
+    LcoKCKuJBOdaDQV4aTJ/fdBfNGZaWB5XhYw9buY6QbkrzuSlLQg0QgHSnIrhenLb6Qv+J3
+    +EaYk2rEzFam+7x8wEb5XGzg6+NdiN3MZP9Cx1zaZzovc0VEP6xn1LxPr8aOy+HsFQJ/6P
+    ChtKluJeJdX74hfTjQC4emnYSUYbjuS+ZkU8RNImujGUf3WHpJrpj9TdYLgFwnbQv8y4It
+    EF5tHitX3AJAOVBZ2lePP4txZSzdAxRnVWQ6Wkh/APzprwu4BsfB2CS2S3aA
+X-ME-Proxy: <xmx:NcseakhJfhRJSqT1yYXRv96xxYAF8Z0uLI7BRiFSNFl4ZIN6wSqbYw>
+    <xmx:NcseajZiZoAmHyRY8naS5-3ZEY3D8ad2N_MQpTJu0ff4EwBMi7DHKA>
+    <xmx:NcseaoV2jILX7zbU7dane6jIkdvKUCOvAxpRFcNQanl1GcW8VpdBQw>
+    <xmx:NcseajGUU8bRCkhiNQIrY4dbBS9lgZMBYgcyIhBF7DYCL-wEoGRHYw>
+    <xmx:Nsseagr5NT5Vs_mvZCrzcOsoNkOUOqrFy3slKR94V_adQ4e2pYcqqDC_>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 4D44A182007A; Tue,  2 Jun 2026 08:23:17 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-ThreadId: AkPwN-kLRsNN
+Date: Tue, 02 Jun 2026 14:22:36 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>,
+ "yangzh0906@thundersoft.com" <yangzh0906@thundersoft.com>
+Cc: bst-upstream <bst-upstream@bstai.top>,
+ "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Conor Dooley" <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ "gordon.ge" <gordon.ge@bst.ai>, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ "Rob Herring" <robh@kernel.org>, "Will Deacon" <will@kernel.org>
+Message-Id: <24f942db-ec50-4716-9a1b-11ae07923479@app.fastmail.com>
+In-Reply-To: <c6e0a027-38c3-4054-b971-033f021dcff4@kernel.org>
+References: <20260427062329.3715925-1-yangzh0906@thundersoft.com>
+ <20260602084302.2101364-1-yangzh0906@thundersoft.com>
+ <c6e0a027-38c3-4054-b971-033f021dcff4@kernel.org>
+Subject: Re: [PATCH v8 0/2] arm64: dts/defconfig: enable BST C1200 eMMC
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.65 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[arndb.de,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[arndb.de:s=fm3,messagingengine.com:s=fm1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-305627-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305630-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:yangzh0906@thundersoft.com,m:bst-upstream@bstai.top,m:catalin.marinas@arm.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:gordon.ge@bst.ai,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:will@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:s-k6@ti.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:richard@nod.at,m:vigneshr@ti.com,m:pratyush@kernel.org,m:mwalle@kernel.org,m:takahiro.kuwano@infineon.com,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:praneeth@ti.com,m:u-kumar1@ti.com,m:a-dutta@ti.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[arndb.de:+,messagingengine.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[messagingengine.com:dkim,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux.dev:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2C96B62E076
+X-Rspamd-Queue-Id: 7500E62E02D
 
-Hello Santhosh,
-
->>> +	/*
->>> +	 * Dirmaps were set up in spinand_init() before tuning ran; update
->>> +	 * their op templates to use the validated frequency.
->>> +	 */
->>> +	if (!ret) {
->>> +		struct nand_device *nand =3D spinand_to_nand(spinand);
->>> +		int i;
->>> +
->>> +		for (i =3D 0; i < nand->memorg.planes_per_lun; i++) {
->>> +			if (spinand->dirmaps[i].rdesc) {
->>> +				spinand->dirmaps[i].rdesc->info.primary_op_tmpl.max_freq =3D
->>> +					spinand->max_read_op.max_freq;
->>> +				spinand->dirmaps[i].rdesc->info.secondary_op_tmpl.max_freq =3D
->>> +					spinand->max_read_op.max_freq;
->>> +			}
->>> +			if (spinand->dirmaps[i].wdesc)
->>> +				spinand->dirmaps[i].wdesc->info.primary_op_tmpl.max_freq =3D
->>> +					spinand->max_write_op.max_freq;
->>> +		}
->>> +	}
->> Unfortunately, hot fixing the dirmaps is invalid. When we take the
->> best
->> variant, we select a maximum speed that may be lower than the tuned PHY
->> speed. We cannot just overwrite that value without consequence, because
->> depending on the boundaries we cross, extra dummy cycles may be
->> required.
->> I believe spinand_select_op_variant() shall be aware of the different
->> possible speeds. It should look for the max_speed_hz capability and not
->> for the base_speed_hz, and fallback to base_speed_hz in case of
->> issue.
->> Or otherwise, maybe we could go through the whole I/O variant
->> selection again after tuning, with the actual maximum speed set.
+On Tue, Jun 2, 2026, at 14:00, Krzysztof Kozlowski wrote:
+> On 02/06/2026 10:43, Albert Yang wrote:
+>>=20
+>> Gentle ping on this series. It has been about 5 weeks since v8 was po=
+sted.
+>>=20
+>> The MMC driver patches from the original series were merged via mmc-n=
+ext
+>> in v7.1-rc1. These remaining 2 patches (DTS + defconfig) are still pe=
+nding.
+>>=20
+>> Both patches have Acked-by: Gordon Ge <gordon.ge@bst.ai>.
+>>=20
+>> No code changes needed =E2=80=94 still applies cleanly.
+>>=20
+>> Would you be able to pick this up via soc tree?
 >
-> Good catch. Updating the dirmap templates after they have already been
-> created is indeed not correct, as the operation selection may depend on
-> the final frequency and associated parameters such as dummy cycles.
->
-> Instead of patching the dirmaps after tuning, I'll move the
-> _execute_tuning() call before dirmap creation. This way, the validated
-> frequency can be written back into the selected read/write variant, and
-> the dirmaps will then be created using the final ops.
->
-> I'll rework the flow accordingly and let you know the results once I've
-> tested it.
+> This is not a patchset for soc tree. This is patchset for BST - you are
+> waiting on BST maintainers. I recommend reading soc maintainer profile
+> doc, it describes the process.
 
-If this is doable, it is clearly the best approach, but on the other
-side you might need to know what is the read variant before running the
-tuning algorithm, so I am not sure it is feasible. I'll let you dig the
-topic and propose the best approach you find!
+What's odd here is that Albert authored and sent all the BST patches
+so far, including the one that adds Gordon as the sole maintainer.
+I merged these from patches in the initial merge and expected to
+see future work get routed through Gordon.
 
-Thanks,
-Miqu=C3=A8l
+Albert and Gordon, please figure out between yourselves how you
+want to handle this in the future. You can both be listed as
+maintainers if you want, but to make everybody's life easier,
+make sure that only a person who is listed in the MAINTAINERS
+files is responsible for collecting patches and forwarding
+them to soc@lists.linux.dev for inclusion.
+
+        Arnd
 
