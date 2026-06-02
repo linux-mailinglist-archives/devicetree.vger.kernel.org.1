@@ -1,163 +1,215 @@
-Return-Path: <devicetree+bounces-305839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305840-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /tqoNfZEH2qujQAAu9opvQ
-	(envelope-from <devicetree+bounces-305839-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 23:02:46 +0200
+	id F0TsKWVFH2rDjQAAu9opvQ
+	(envelope-from <devicetree+bounces-305840-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 23:04:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95FF7631FA7
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 23:02:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 227A7631FE1
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 23:04:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=OQ5k6o0S;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305839-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-305839-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=K7cp8Wdu;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305840-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-305840-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 80377301A7C0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 21:01:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8CE83305159B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 21:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B69396D0A;
-	Tue,  2 Jun 2026 21:01:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCEE8397695;
+	Tue,  2 Jun 2026 21:04:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6337C395D8E
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 21:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 959B623B62B
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 21:04:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780434104; cv=none; b=Dl7E1vWMOGso/JSWhagY1xwyjSY7y67W4ZxsMkkM+RCauyiOkx6Z/3XteVB4FFifs0FrOvjkE0QWe5uFpDUsijZbT00Ym6Cxy0shqYTb0nDHseM0BP9tLp5IrGuwjh5aSAAuW4EGDVS8PyTi+kgUQLcLTvU5IiGzaGxLinsLhvc=
+	t=1780434250; cv=none; b=fecEgxHTdJly9fv5JdOPlHtgfZzLn0eqHl7hZSNqXotYt74DOBI38m2Fa18QzB4+z/D63RMmGm3US468XKFjnWFCuOIFuAuFdJHxHk/29uZuSlgYO6oaDzEluJReoS29elbVd8AJKvgesI+uS/JxWP5my3Srice7p+sZqWVI9nQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780434104; c=relaxed/simple;
-	bh=xGSBBdZRO7z7VI/FAZc2A0j9OplvL/xNRGdcbNke2nw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TPIYANY4CVWXMvQ0Yo+VPhjsOqWGTJOZkKbK+VmHd6r+ctUR07fKJ+hOfeEQWD0ywDxPlCc9f1G6gKdMEbzfSty4/aa9VCyKDmXGQ+hDyC4XZBKAznHWAoAicy5ZawGsiA37R/do5cbCL4iuXjX5sW0GOFyiijSp3nfoskTuoVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=OQ5k6o0S; arc=none smtp.client-ip=194.117.254.33
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=xGSB
-	BdZRO7z7VI/FAZc2A0j9OplvL/xNRGdcbNke2nw=; b=OQ5k6o0Sun3RP1zH8B7n
-	wvkGP3siNud8Q0w8mbWkBk/gRODeUL96RfpqVgLGnJxDgGcDyiGvwziMd1OSKRjY
-	qHyAjrzvbnmrQdZrGEAfX22iFPTcAeI2RBlA7KrWOR+4k04e/tthjLq4uRuuHw63
-	btJM+0RbyU3hrZ4UGp4EJpJrvyXchPmsNulbtBPBF506F9HzDcU95erJJOBTErFU
-	IzQQ2KXDjmpA8w/D2KjnA988XyeJuu1A7JntNpBtn/s4vmZ3egeb6FHBggFOCeVg
-	uuQAfPR2bKQT0EZkBBUqXoFXdFjYm843sDQqjlEhYQCy/OZnXiSStOa9GHSYqeLd
-	7A==
-Received: (qmail 3022471 invoked from network); 2 Jun 2026 23:01:41 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Jun 2026 23:01:41 +0200
-X-UD-Smtp-Session: l3s3148p1@TssknktTwugujnv7
-Date: Tue, 2 Jun 2026 23:01:41 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Biju <biju.das.au@gmail.com>
-Cc: Ulf Hansson <ulfh@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 00/17] Add Renesas RZ/G3L SD/eMMC support
-Message-ID: <ah9EtYNGBiyms_KY@ninjato>
-References: <20260530160823.130907-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1780434250; c=relaxed/simple;
+	bh=CB4ijYIoQU7PiO6yat+y9PHCiJlLlHDs6S0ocfvHS2U=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=GMAg93vt+jTy+mj3DiRuOCtExShqTABniL68J1M45eZmFboxFVOrqDHqT1NNJa7LOQGQOGFCfumRrQqa3yoiyHIChQ0Fi9329z36crwAiz7/7cJSIcd5oPwEBQsJqA0Crw6+8LK2qVJwTAQZVdPpKyXaFg0nM8bYrbobut3Hu9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K7cp8Wdu; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A4BE1F00893;
+	Tue,  2 Jun 2026 21:04:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780434249;
+	bh=uLbvXBv+rAtHH8wJv7BeoAwxOyUiJ7ll+fnl6WZWzAg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=K7cp8WduXtk4g2rzauujKAYmlq7e5bHzQRkgo0tuc45UfW4aHALS64MmTuXikN5pr
+	 YZOTXwxR3U8oYXykfTOpoCeEcs2C0r2OujdaNFxpBt59+ub5GsHFGFsE7NTfRqPvE3
+	 Odtb4TIR2ku+Lwa2TmoKnOY8hFWRWTPLaDcOEVKsLJixnnK9bPVHoZX4Om1cQxRtuJ
+	 WUkJf4Cdru0cJ5c3i0nggf4XUhVB6TlyX+8WEXCwOR6BzQolJGUrv59zQU+Lrf8R5P
+	 1yarqr6599xeuWiogorsLFR/3h55kQJeccDibOaVSSyGZVxzI3x67YTm9V7y1GSdvR
+	 rqdvSC6X8Vp2A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a09g057: Add PCIe nodes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, wsa+renesas@sang-engineering.com, conor+dt@kernel.org
+In-Reply-To: <20260602204707.1920839-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260602204707.1920839-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 02 Jun 2026 21:04:08 +0000
+Message-Id: <20260602210408.8A4BE1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kmXOm/pm/MaYEqtK"
-Content-Disposition: inline
-In-Reply-To: <20260530160823.130907-1-biju.das.jz@bp.renesas.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:biju.das.au@gmail.com,m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:p.zabel@pengutronix.de,m:magnus.damm@gmail.com,m:biju.das.jz@bp.renesas.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:bijudasau@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[sang-engineering.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	FREEMAIL_CC(0.00)[kernel.org,glider.be,pengutronix.de,gmail.com,bp.renesas.com,vger.kernel.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-305839-lists,devicetree=lfdr.de,renesas];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-305840-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:wsa+renesas@sang-engineering.com,m:conor+dt@kernel.org,m:prabhakarcsengg@gmail.com,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sang-engineering.com:from_mime,sang-engineering.com:dkim,ninjato:mid]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 95FF7631FA7
+X-Rspamd-Queue-Id: 227A7631FE1
 
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] Hardware Resource Conflict (Clocks and Resets)
+- [High] Invalid DT Phandle Argument and System Controller Overwrite
+- [Medium] Invalid PCI Address Space Code in dma-ranges
+--
 
---kmXOm/pm/MaYEqtK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+commit fa05d51f2639a95f4f5a2df1ac7430cbbe90aa83
+Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Sat, May 30, 2026 at 05:07:54PM +0100, Biju wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->=20
-> RZ/G3L SoC has:
->=20
-> Channel 0 supports SD and eMMC (including HS400/HS400ES).
-> Channel 1 supports SD and eMMC (except for HS400).
-> Channel 2 supports SD.
->=20
-> The SoC supports a maximum frequency of 150 MHz. The SD0 interface does
-> not support IOVS and PWEN in the SDHI register (no internal regulator),
-> unlike SD1 and SD2. It has an internal divider for all modes except HS400.
-> It also has a 2048-bit divider compared to 512 on others. Moreover
-> RZ/G3L supports HS400 enhanced strobe mode.
+arm64: dts: renesas: r9a09g057: Add PCIe nodes
 
-Sigh, so many HW changes again...
+Add PCIe nodes to Renesas RZ/V2H(P) ("R9A09G057") SoC DTSI.
 
-I want to review it but I won't have time before the next merge window
-ends. In the meantime, could you resend the series properly in just one
-thread, please? From patch 14 on, it gets messy...
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot=
+/dts/renesas/r9a09g057.dtsi
+> index 9581af58024ed..4aab7b8250c7a 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+[ ... ]
+> @@ -1024,6 +1024,146 @@ rsci9: serial@12803000 {
+>  			status =3D "disabled";
+>  		};
+> =20
+> +		pcie0: pcie@13400000 {
+> +			compatible =3D "renesas,r9a09g057-pcie";
+> +			reg =3D <0 0x13400000 0 0x10000>;
+> +			ranges =3D <0x02000000 0 0x30000000 0 0x30000000 0 0x8000000>,
+> +				 <0x43000000 4 0x40000000 4 0x40000000 6 0x00000000>;
+> +			dma-ranges =3D <0x42000000 0 0x40000000 0 0x40000000 4 0x00000000>;
 
+[Severity: Medium]
+Is the 32-bit memory space code (0x42000000) correct for a 16 GB DMA range?
 
---kmXOm/pm/MaYEqtK
-Content-Type: application/pgp-signature; name="signature.asc"
+A 32-bit memory space mathematically cannot represent a size of 16 GB or=20
+addresses above 4 GB.
 
------BEGIN PGP SIGNATURE-----
+Should this use the 64-bit memory space code (0x43000000) instead, similar
+to what is correctly done in the ranges property above?
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmofRLQACgkQFA3kzBSg
-KbYUGxAAmN83rTxKy+OCAttjLLPMw6hdhokpkjA7yY1gwiAB/WpP0KH1JOG4+E4p
-5aaJYTpLdY0/t1LXELQM0GWjDgPXiQ3qlUUOrtDcDYYaFIYp+S+QbIW2iX8kcppG
-ZMVl/FthfXXwSAm/3qm/RL0+whmBxjTe2uzeZB/Ptrp09xOIdRYTo/lCIdhI0ig/
-j39xSoj22xrvady0lkIfHJfnHnxs82Qmj5CXvmUFJ9idypKQVSwMOT56oF+Fd3lZ
-ks6JzW6Lq+uTOb8OqKvN2SP6gduBUMx21SSXgVP5MfEGEdeNYxn8yDS/rShlYKP9
-2Az1z+qiT7T45j0xBe7scH8yOxKU1FS4JKWgr/Spnojk3/B5S0Yi1Kcja28UvRx1
-fD7eC6ApMwCOc5SkeansUuxRDHjbI5zo4au1kkzbQn8kVbMV7gZ8KagWxqKNimiK
-oCKhAjJ30mnrHZOcCfxIKm698E4ZOwpGmtBaxUVieFyVZwf8IGNynNY8v6WsRj+L
-uNh452vvAEhluQCtsjBsYvnng5Go6bBZ34//rwYHUSXpFdcsY019E7b8EBGPfqX0
-nSsbD3QC5MS37NcYffcrBRNi6gNCyU4KIS1kLn2M/5KGPvL6ptncqtpWIkl6zFK2
-wTuHpJ8s+dIlZhJht6dZ1Ek9AaN2qw2tVb4NLSJ4V8s7QaI28/k=
-=xUEP
------END PGP SIGNATURE-----
+[ ... ]
+> +			#address-cells =3D <3>;
+> +			#size-cells =3D <2>;
+> +			num-lanes =3D <2>;
+> +			renesas,sysc =3D <&sys 0>;
 
---kmXOm/pm/MaYEqtK--
+[Severity: High]
+Does the driver actually parse the index argument in this phandle?
+
+If the target sys node lacks a #sysc-cells property, of_parse_phandle()
+will ignore the extra 0 or 1 index passed here.
+
+Will this result in both pcie0 and pcie1 applying system controller
+configurations using the exact same static register offsets defined in the
+driver, causing pcie1 to overwrite pcie0's settings?
+
+> +			status =3D "disabled";
+> +
+> +			pcie_port0: pcie@0,0 {
+[ ... ]
+> +		pcie1: pcie@13410000 {
+> +			compatible =3D "renesas,r9a09g057-pcie";
+> +			reg =3D <0 0x13410000 0 0x10000>;
+> +			ranges =3D <0x02000000 0 0x38000000 0 0x38000000 0 0x8000000>,
+> +				 <0x43000000 0xa 0x40000000 0xa 0x40000000 5 0xc0000000>;
+> +			dma-ranges =3D <0x42000000 0 0x40000000 0 0x40000000 4 0x00000000>;
+
+[Severity: Medium]
+Does this dma-ranges property also incorrectly use the 32-bit memory space
+code (0x42000000) for a 16 GB range?
+
+[ ... ]
+> +			interrupt-map-mask =3D <0 0 0 7>;
+> +			interrupt-map =3D <0 0 0 1 &pcie1 0 0 0 0>, /* INTA */
+> +					<0 0 0 2 &pcie1 0 0 0 1>, /* INTB */
+> +					<0 0 0 3 &pcie1 0 0 0 2>, /* INTC */
+> +					<0 0 0 4 &pcie1 0 0 0 3>; /* INTD */
+> +			clocks =3D <&cpg CPG_MOD 0xc4>, <&cpg CPG_MOD 0xc5>;
+> +			clock-names =3D "aclk", "pmu";
+> +			resets =3D <&cpg 0xb2>;
+
+[Severity: High]
+Are these clock and reset indices accidentally copied from pcie0?
+
+The pcie1 node reuses the exact same clocks (0xc4, 0xc5) and resets (0xb2)
+as pcie0.
+
+When the driver probes or manages power for pcie1, won't it physically
+toggle the reset lines and clocks of pcie0, disrupting its operation?
+
+> +			reset-names =3D "aresetn";
+> +			power-domains =3D <&cpg>;
+> +			device_type =3D "pci";
+> +			#address-cells =3D <3>;
+> +			#size-cells =3D <2>;
+> +			num-lanes =3D <2>;
+> +			renesas,sysc =3D <&sys 1>;
+
+[Severity: High]
+Does the driver ignore the index 1 here due to a missing #sysc-cells
+property on the sys node?
+
+If the index is ignored, will this cause a syscon register collision with
+pcie0 as mentioned above?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260602204707.1920=
+839-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D1
 
