@@ -1,174 +1,212 @@
-Return-Path: <devicetree+bounces-305604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305605-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LQ39JHXEHmqSUwAAu9opvQ
-	(envelope-from <devicetree+bounces-305604-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:54:29 +0200
+	id DSlxJRjFHmqtUwAAu9opvQ
+	(envelope-from <devicetree+bounces-305605-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:57:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3ADC62DBDB
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:54:28 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E386162DC1C
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 13:57:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=P3W+FTps;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305604-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305604-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=CpLzbMRx;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305605-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-305605-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5040230861F2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:47:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5DC0D300E248
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 11:51:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0C13624A9;
-	Tue,  2 Jun 2026 11:47:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F323D5C0C;
+	Tue,  2 Jun 2026 11:51:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F23F2D3220
-	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 11:47:46 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780400867; cv=pass; b=k4xsyvbIjNKtpjw+UzlBged4DTg5mZESyWs2vPx2U6gvF7PTYqM/E0UBr7iZ1StZ4NXLKgOG7Je5Voe6YHOdpY0nBleIlyb6N79FS/4JEfwqe0ly3uCuHPBrEjxkwTpW5ag9kdBjm0oR5x7hry29N0ID1GHO4KO7v6B80bKnr2Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780400867; c=relaxed/simple;
-	bh=ia80s/TPDIDBnVGNZD0BFxErJJl6QIBJJp6uFXi3N4I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XFN3coKy7dtId3vCDyd1V6e7ZElcksq1eLBF6gNUSPlr4fSBdxvqkuH+OBxPAyMDmbiuiKQP+reZEwLD1y5LBd7a8F2MjQ2CPMzlXDAABO7lHuyr/O6SXqd0a+PkM8LgItgOZaPjNXR5Or/OjnHKjW87HkjPNDuzct6hzFFAsTA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P3W+FTps; arc=pass smtp.client-ip=209.85.128.53
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-490ac10e337so12094935e9.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 04:47:46 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780400865; cv=none;
-        d=google.com; s=arc-20240605;
-        b=KQIJPB0PCNQA0Q32hJ8JC+cfGU6GRx1XTfdCIle475qhhlhV/bRaKGFUIqiBkuU2en
-         /hi4pF9taCG8UdGjKZs1+DRDSQVXPj0tk3tjJoQ5x1SbbKII0Guj/rtgphg6eifrAUEl
-         m8wYmu7IztqigizPWm4qpfPitX/pbcJVQAlP+AQVzd6EmJbWBAHK4z1Er+Ywty67ZEbp
-         LswcFg61o7neiO4UWvml22M7U9Zh4Xk8FGpcjyCVoTpd5PGw+x4OyhADaofb6WfakGac
-         sLIg17rbxbyrEea0F3UgYU6esf79oa7n+2fXrf+AOi8+iLR6FHJgdfXCpZ/Vp9Fu9UI3
-         2gaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=8AwxY9CSp1eGjrFxRthuGQbj9sX7YnjxXlLiomleQTU=;
-        fh=NeT1pJ7piA6I7FDHIUHQnHMjfms1mpxrN2jnc0QN8ig=;
-        b=WpgglLHP+zXNVbjCqj/7QCZ9NBfeKj5lWtKNcdjvIbvlaq6GXeIRBcWY9q9CDv+SbT
-         gugoySu0TgRkO2C0NkntbFuUQtGI1na+ZSkQI5Jiuh41plUM8XNRhAWceyw+g8ritZf/
-         xffMJGCh4Leh44/MYV0Ii29zpHitRYfWKuslPO980mKgdk0b8/L3RZI3ciLpqio9NrIr
-         hSY/M9sJy18vRuFsAhykmL5rLNVNk8oJu9jUkkhDMXaTAaOcYzRUJCcHQppASGKUS65d
-         0UXNw8EsuJ037BY33rZl8Glkj4hUb7wg1tR61OaKvTV93ImMcyaqx550bnsEBrn2mtoT
-         hLiw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6BBA3939B5
+	for <devicetree@vger.kernel.org>; Tue,  2 Jun 2026 11:51:39 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780401101; cv=none; b=hun1YZkB2EUK53RR82SQRCicpRtwqXt4pgxyqZ7rvJqc8GFuHBF+t31VFvNKBGIFUvI6cNX/QEW33FXTUrTFNXZB/iu751lJULgoBgR/a4u/4fjW9QyHYbUg30PRUTpq80l0z57OZVcJk9GeA/Eel/vBHrrVVeasayuHK6FYqDA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780401101; c=relaxed/simple;
+	bh=Hm7lcbuEa3gIiNAfgN5UVderGHMXjjcL7M0W+ZyYo00=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kg8JBmrOFv7eErY8tI4g4dGihosD29xoLXEpXIOudWP1PkdbCoxVHs0FLGaNm7Fnk2ErGcWuovHWA27jXudn9eb5EqJZHS3TeGHokMpUketeFwDmt3Qup9QKwZfEQu0xHFyxQDwVBDu5aANnezgNwGoozvxNuecvvNambPqapeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CpLzbMRx; arc=none smtp.client-ip=209.85.221.46
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-45eecb8bf67so3829253f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 04:51:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780400865; x=1781005665; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8AwxY9CSp1eGjrFxRthuGQbj9sX7YnjxXlLiomleQTU=;
-        b=P3W+FTpsmyQPfBsaWYG4IsIRdmpR/4JvThM1RJtQKOQIcBSfNga9/lMu6PIH60/5dY
-         1eyz/uHF7pul7stMJLo5G0DkF94/SaN5i8aaL6fpFdENmlg+QNxXnEn7kqG/lkJRGm3o
-         I6q18rX20/bjRjoPJYNrahp0OYFUTUbqqhrcWq5yasfz6rI6Revf2mrJXzuCurC0QsOm
-         NR2GI34FayybhgETgoEvmD6ff+vvKfLJ0wFSOTQh/+xNqmEB2QzqqGh0IV/e5lJ2PO8u
-         JNbyWPzkfEyHkzx8VPj8Ey81BUT598NVn0z96wkS9qxdmuVXjJzGOX+6nBNQqwcAI/3q
-         2e+Q==
+        d=gmail.com; s=20251104; t=1780401098; x=1781005898; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7im3CUG3zSzSawz5dX5Ezc+o8cBVuqZtJiTJ2Y8aJ68=;
+        b=CpLzbMRxwHQfcnaWyekPcl65fB1rdxxUvnfBUhYCUmSwzexBZ7CgHJhHXhv/VhDFs0
+         +O0nRdZbIr3jq6NX8CmRq8O/8+YhQ83nt79Eo8lI+0CE/67kpXcHFUx1N/q5mzZ/r1zN
+         GXSjkmITTT3m9uMcn1yveEyZnAJH+/oUO7GPGOjHaYrxLGN3MphBTI2S3XWlwZDhjFAW
+         QfjxH5hmjPB+C4otPQWavjDQ155ygwy+WzSz/Pw+/t6yK0I6BBeFGwfQbYDuZ5hYqv5J
+         RcApcmCCoHl79hCP391G9BCHxsLP8uRjGVcq2CanL+e9bGZkLZMKq0m8GvctMr0WfqeW
+         SOgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780400865; x=1781005665;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20251104; t=1780401098; x=1781005898;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8AwxY9CSp1eGjrFxRthuGQbj9sX7YnjxXlLiomleQTU=;
-        b=CC7bHLeh68OLcpRR74FDfBGao3eU20krJcvhT/2tO5Bzd2Ds/hNRgB8AObMlIbE025
-         QTaRpGqznsObuDgTyP3AYCbtV/1qbNrkl1TD/W7/Pm1V65fUlX0vBaezazVSkm4q53mq
-         1ZMzLUsZuZwAs543CMWj56bHEIIyEBzkFBBZQgFRLbPAQKiKNzw5eQEvlRvAAtBdT4uq
-         w3WGwRRlsdb3unf2vwJ2RpS2Pr2spqRY9sQ93QzYnu4rFWVDLfyT06zpl/UMNcCUyi0+
-         jNSZXM40lhcolRliPia76u9TUM7m+OabP9s89YASlldWbSiVbuLtBUo+klaVtvE9lFvA
-         RSNQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8Xzhuzg8mAkrZ34gNGTFfonMiOj84tM7WTIJLwbfgNcXpYFKbSG4oIJoimXhwqcgjCMJ3KTnhbpFx9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkDvyMSaXbgURslhKB0BNnhQFBacyKWvoZvg7A+U/w4kQd68Fk
-	2+ktIQGbGJ+lDzrHO4RfEoDe6U1N6DzorgWEark6+TmMsFlKCyd1KH75ku11mf93W3COJmQyR1W
-	SvmVz60uIUS43PPEiU6HRkLXcR6qL+P4=
-X-Gm-Gg: Acq92OEWbb3ggaqq0E22QXU7XcTxObXd5S9anlhMS5UIZa9b+mU8WIwPAXF6TTwpOk9
-	9bAimq6Z5sMQiTLGaSFQ1RDvqGiit/m/3/vCUrNTOgNvBxTzT2rJC+zVPry9ZJfF86rfQukXoR+
-	26/IPafscoGd31ozsyys1eKgW/3FqsUMreK3VCanDwX1Um/nir4qMhz6dvDpbesWEZ/PBW/n7Ya
-	HUPmO8wtniDSX6Ub8ehTgc/7CdyaSnC11t0j+qT2r91hDsO0LMBn3Lv79c+YvrHmJrSDkKoBAIC
-	w5/NVwsDb3CSRKsq13MfviRmt3IIRs0LJPxhCEOYy8ATQ4c1jXn+oZf4phYLhcSAeYokiciuhsW
-	vIMlipL+pK5IsXbPtx9d3+Xi7VQO0df4uDXVZPZfZpVlG10qh/OPA3Chz+34MQf14nj/P/D4QGD
-	GXgkhz4zxIIp7U2Bc8
-X-Received: by 2002:a05:600c:6287:b0:490:5429:1513 with SMTP id
- 5b1f17b1804b1-490a2901c14mr288813455e9.6.1780400864930; Tue, 02 Jun 2026
- 04:47:44 -0700 (PDT)
+        bh=7im3CUG3zSzSawz5dX5Ezc+o8cBVuqZtJiTJ2Y8aJ68=;
+        b=bFs1qG2xUFpaoBar5xwVjLBrFUUCCNLuzUAMwH3pmuwkurd+4F1HJOIp/O3PIhrwnC
+         SkvX77mC7jvaOgtHWy5/eyoX5grjTeoHP2z/kTpMv4cabskW2ZW5qNWdFGASW7KgvBI4
+         Is1oMI1XHbIto4z5e1gKTXkm5JqsPhSdocDpjzRwr0WYoKOyqVq0DXQYpVOnDKR8cDI6
+         qwGOIyNCoyyikOxkNFOF0cX4LykHPqtZR0bs6SL1fapJwhLSuKiFeVctW8Ie2zDIelFR
+         7PnCtxvXYay03g+XCRvXzGHmRWAM0Dc+tI1TC0GUAaQPKwzLBdpSOONOUJv3VXrdqBx0
+         IPDg==
+X-Forwarded-Encrypted: i=1; AFNElJ+y2e1dX+sIm1I+26dDApMTwar3Bl5JSniAWnqBnUDK/Co0+fZSYKUzKn/egL1U8sxI6wqcVmJde0V+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+ksg1DJZe2rK4gC6JaCvcJWP9FukXnCFpzSHvElRE8KHRyFTt
+	A6WBcZvGTBegSe2p+5sYw8SRJd0sBSrvqO2lFOswjqZhGa0U+hMydrgq
+X-Gm-Gg: Acq92OGT25MfBgE+K8jtSz/606+1AjElTdfUPabUC+gKyKz1bJR/RgqaGhGds46kWw3
+	4NQhdMW/LuFwl6cu4K4Pe2mGTAKwenuiDb63JS5dCB+4IyANIkNBaBdCuKxxwJTEnYyfonxKEdn
+	NUdND8s4yK4Lvbk1EmQtqLO1I40CqSeXFwkIDOH+UBOC8KF/Pj4D/GoCUThZbGcuq7Q9iM1WSte
+	EgZMDjZHcTt6FwzlDgF83yusKy1/FJ0nbxriQRuJCDj2OW5b8opPthCgPr6XuC2jKy7Tc9nUVPO
+	V6eI1cW3IFXL1sP1KJs89auy5C2fXKeHrt0swaufRFv2J1wflxN7/IGj3ZhduR3SqpI/etIvZPh
+	a2iwMOgHseeN/zNNRCvi81R1Zy3ZSebgCsl2ukCzx3B+ye+t7Q0gA8/5Ezl9BJYEBhvT8JbSqBo
+	wrWdwymCshFKW3hZW10wqmxMpPQfQYTQGBPaxZ
+X-Received: by 2002:a05:600c:3b10:b0:490:b0df:9eac with SMTP id 5b1f17b1804b1-490b0dfa72bmr59783675e9.3.1780401097928;
+        Tue, 02 Jun 2026 04:51:37 -0700 (PDT)
+Received: from vitor-nb ([2001:8a0:c4c6:f00:e8c3:a961:5b26:a2c6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4909c152570sm139480015e9.9.2026.06.02.04.51.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Jun 2026 04:51:37 -0700 (PDT)
+From: Vitor Soares <ivitro@gmail.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Vitor Soares <vitor.soares@toradex.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/7] arm64: dts: ti: k3-am69-aquila: Add display and peripheral overlays
+Date: Tue,  2 Jun 2026 12:51:23 +0100
+Message-ID: <20260602115123.1324474-9-ivitro@gmail.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260531-veml6031x00-v4-0-e64f7fdce38d@gmail.com>
- <20260531-veml6031x00-v4-2-e64f7fdce38d@gmail.com> <ah6p-f2RCW8VcuDR@ashevche-desk.local>
- <DIYI40YK6CSX.2P4017PHVJHCT@gmail.com> <ah66ljSiIc0ywFC2@ashevche-desk.local>
- <CALoEA-wdakU-Ei2FE3WpGR+CYRDN1bjv2sZ=XJ01ZeH3NP8xeA@mail.gmail.com> <DIYJ5ZACTWVS.13T8L275VHTKM@gmail.com>
-In-Reply-To: <DIYJ5ZACTWVS.13T8L275VHTKM@gmail.com>
-From: Joshua Crofts <joshua.crofts1@gmail.com>
-Date: Tue, 2 Jun 2026 13:47:33 +0200
-X-Gm-Features: AVHnY4KTMuChhhggHc3Zlzy7ApZijOzq7Mr9kHfu153-5N7Dj613xK76dQ3KH3g
-Message-ID: <CALoEA-w3TqD=2YP36=ScmRttmmG3BBCKvtfSqeJL0PVxRxEbuQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] iio: light: add support for veml6031x00 ALS series
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>, 
-	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:javier.carrasco.cruz@gmail.com,m:andriy.shevchenko@intel.com,m:jic23@kernel.org,m:lars@metafoo.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gupt21@gmail.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:mazziesaccount@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:javiercarrascocruz@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[joshuacrofts1@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-305604-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vitor.soares@toradex.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305605-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[ivitro@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joshuacrofts1@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[intel.com,kernel.org,metafoo.de,gmail.com,baylibre.com,analog.com,vger.kernel.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ivitro@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,mail.gmail.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,toradex.com:email,gitlab.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E3ADC62DBDB
+X-Rspamd-Queue-Id: E386162DC1C
 
-On Tue, 2 Jun 2026 at 13:35, Javier Carrasco
-<javier.carrasco.cruz@gmail.com> wrote:
-> Thank you, Joshua. One question, though: maybe you remember that your
-> last driver was missing one header (which I am not criticizing at all,
-> as you can see I missed some too!), and I am wondering if it was because
-> iwyu missed it and if so, how that could be avoided.
+From: Vitor Soares <vitor.soares@toradex.com>
 
-About that - I didn't actually run iwyu on my driver, I recently migrated to
-Fedora and forgot to set up LLVM and iywu-tool :-)
+This series adds device tree overlays for the Toradex Aquila AM69
+platform. The overlays cover display adapters, DSI displays, and OV5640
+CSI camera modules available through the Toradex accessory ecosystem.
+
+Display additions cover three configurations:
+- DSI-to-HDMI adapter based on the LT8912B
+- DSI-to-LVDS adapter based on the SN65DSI84 with the Toradex Capacitive
+  Touch Display 10.1" LVDS
+- DSI driving the Toradex Capacitive Touch Display 7" and 10.1" DSI
+
+For the OV5640 camera overlays, both the current Toradex CSI Camera Set
+5MP OV5640 with a 27 MHz oscillator and the legacy CSI Module 5MP OV5640
+with a 24 MHz oscillator are supported.
+
+This series depends on the Riverdi vendor prefix and panel-lvds binding
+patches, which have been applied to drm-misc-next:
+
+https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3764568dd2e621850c8c2a34dd8a88096ae73e72
+https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3c3c5fb9b36836d279ebe370189d68a0a3387362
+
+---
+Changes in v2:
+- Fix missing main_ehrpwm5 enable in Capacitive Touch Display 10.1" and
+  7" DSI overlays for the Clover board.
+- Reorder remote-endpoint property in DSI-to-LVDS bridge endpoint.
+- Reorder supply properties in OV5640 CSI camera nodes and rename clock
+  node to match binding preferred node name pattern.
+- Link v1: https://lore.kernel.org/all/20260529120853.636015-9-ivitro@gmail.com/
+
+Vitor Soares (7):
+  arm64: dts: ti: k3-am69-aquila: Add Toradex DSI to HDMI Adapter
+  arm64: dts: ti: k3-am69-aquila: Add DSI to LVDS adapter with 10.1"
+    display
+  arm64: dts: ti: k3-am69-aquila: Add Toradex Capacitive Touch Display
+    10.1" DSI with adapter
+  arm64: dts: ti: k3-am69-aquila: Add Toradex Capacitive Touch Display
+    7" DSI with adapter
+  arm64: dts: ti: k3-am69-aquila: Add Toradex Capacitive Touch Display
+    10.1" DSI
+  arm64: dts: ti: k3-am69-aquila: Add Toradex Capacitive Touch Display
+    7" DSI
+  arm64: dts: ti: k3-am69-aquila: Add Toradex OV5640 CSI cameras
+
+ arch/arm64/boot/dts/ti/Makefile               |  43 +++++
+ ...la-adapter-panel-cap-touch-10inch-dsi.dtso | 155 +++++++++++++++++
+ ...ila-adapter-panel-cap-touch-7inch-dsi.dtso | 155 +++++++++++++++++
+ .../ti/k3-am69-aquila-csi1-ov5640-24mhz.dtso  |  18 ++
+ .../dts/ti/k3-am69-aquila-csi1-ov5640.dtsi    |  76 +++++++++
+ .../dts/ti/k3-am69-aquila-csi1-ov5640.dtso    |  19 +++
+ .../ti/k3-am69-aquila-csi2-ov5640-24mhz.dtso  |  18 ++
+ .../dts/ti/k3-am69-aquila-csi2-ov5640.dtsi    |  76 +++++++++
+ .../dts/ti/k3-am69-aquila-csi2-ov5640.dtso    |  19 +++
+ .../dts/ti/k3-am69-aquila-dsi-to-hdmi.dtso    | 115 +++++++++++++
+ ...la-dsi-to-lvds-panel-cap-touch-10inch.dtso | 142 ++++++++++++++++
+ ...m69-aquila-panel-cap-touch-10inch-dsi.dtso | 158 ++++++++++++++++++
+ ...am69-aquila-panel-cap-touch-7inch-dsi.dtso | 158 ++++++++++++++++++
+ 13 files changed, 1152 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-adapter-panel-cap-touch-10inch-dsi.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-adapter-panel-cap-touch-7inch-dsi.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640-24mhz.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi1-ov5640.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640-24mhz.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-csi2-ov5640.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-dsi-to-hdmi.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-dsi-to-lvds-panel-cap-touch-10inch.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-panel-cap-touch-10inch-dsi.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-aquila-panel-cap-touch-7inch-dsi.dtso
 
 -- 
-Kind regards
+2.54.0
 
-CJD
 
