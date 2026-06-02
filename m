@@ -1,229 +1,167 @@
-Return-Path: <devicetree+bounces-305555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305558-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHBqMKqqHmq3IwAAu9opvQ
-	(envelope-from <devicetree+bounces-305555-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:04:26 +0200
+	id EBNiDACtHmq3IwAAu9opvQ
+	(envelope-from <devicetree+bounces-305558-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:14:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2296B62C18F
-	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:04:26 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E37662C5A5
+	for <lists+devicetree@lfdr.de>; Tue, 02 Jun 2026 12:14:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D4A0A3074638
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 09:56:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED1EE3022AAE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jun 2026 10:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BEC73CEB9E;
-	Tue,  2 Jun 2026 09:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="KHhna32v"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BF543B1ED7;
+	Tue,  2 Jun 2026 10:05:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6441536F907;
-	Tue,  2 Jun 2026 09:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E79112BD5B4;
+	Tue,  2 Jun 2026 10:05:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780394176; cv=none; b=N9pbHsBg+jOVIC+Br/DVTnW3Lccz3E6hSzmKhbQ7rizudXHFvDrRCTB/z3A6w+aJCpjjLzz51qqCxXmhR8PfiZ5epVvCwQVkCHUw+d6+lhNHG2fwRqfhAiyQsDhLqz3KE9X5YJkUcs20fd9CTsIEGSLNQQs+0fW1fCuOxXWDfX0=
+	t=1780394742; cv=none; b=chT+BQKGbS+yGx+h0o0HpS3TQcwnORsALrcbV3pDZ1GjYGIbDglzxq4AKyJKF60N91MITpWG5ySwQ/GV0CNCoi2inhrL4pXxb3MQ2mQjZC57eLvvH1BjWz24dpwnzwSztUR8jiSDSjabjQc3Pedmkoo7HEynhe5nXziyP9AT/10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780394176; c=relaxed/simple;
-	bh=YDaUAb73EWjhsc+A5euHeSrLxXMyrtcbeeKiaMe6NVY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=cOnfZCR15A+OoYv0I3yxQp8ryYDDEmJvuCwcM1xIdSaG6IW1lA3bmH+fwwlqu6g7cWeZN4jkbCuDKpJswogVi7jQTENH85iYekB6RUNlSUhjBYVUsv7NEPNsQDiwLSH4jOSvfL660pAnG36R9Gk6mfyofMMrJwalp7gKr1PXmyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=KHhna32v; arc=none smtp.client-ip=188.40.3.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=MIME-Version:Content-Transfer-Encoding:
-	Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=tNtggajtPS/6B2q6YiJYjuXgqHO/K+hRE4We3qzRvT8=; b=KHhna32vrdKF/fNjy6wfgzkhnr
-	PfMIyH4AMAQij9Ccr2zMspTM2z4DxE/rHNjAGEPNIVtwJsmcQpuaZIc+yMRoB/cxRTBoaBCxKTppw
-	COpDz61skm+d7ZrqfZ896b//g2CKf/4108cN9AqSQQI1phdzoQt+xTnbzOMawUyjhWFjqOUH7+Ww5
-	e+lGvtdT0wNmiT/pD/ayxBp98RnDUUkHIM5ggxUcZGHTb/DyvchDFUO2ZvZHbH+75qFMHL2XVBk87
-	T6Ilt6fd9Ff2P421ev8OPzEhet412ZNyHoFj4aj8fKRMluJVCgZCY+cehFXovtHqUa3t+z3tUB3b7
-	tgYMOtTg==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <nora.schiffer@ew.tq-group.com>)
-	id 1wULr2-0003LT-0J;
-	Tue, 02 Jun 2026 11:56:12 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <nora.schiffer@ew.tq-group.com>)
-	id 1wULr0-000FFh-38;
-	Tue, 02 Jun 2026 11:56:11 +0200
-Message-ID: <2b4b5b6ab51f991d859e52c1572008ae715c650f.camel@ew.tq-group.com>
-Subject: Re: [PATCH v2] arm64: dts: freescale:
- fsl-ls1028a-tqmls1028a-mbls1028a: switch mmc aliases
-From: Nora Schiffer <nora.schiffer@ew.tq-group.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Alexander Stein
- <alexander.stein@ew.tq-group.com>,  linux-arm-kernel@lists.infradead.org,
- linux@ew.tq-group.com,  devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Date: Tue, 02 Jun 2026 11:56:10 +0200
-In-Reply-To: <fc375090851c17e069d7271f99ac4f75490a9a92.camel@ew.tq-group.com>
-References: <20260224152523.570057-1-nora.schiffer@ew.tq-group.com>
-	 <bfd19beec4ccbe296cdc1da865b15caf3ad1e5cc.camel@ew.tq-group.com>
-	 <fc375090851c17e069d7271f99ac4f75490a9a92.camel@ew.tq-group.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3-0ubuntu1.1 
+	s=arc-20240116; t=1780394742; c=relaxed/simple;
+	bh=lrCsqlvXc2Wsoz95pzJ5h+L/VSx0Ak+qrznkdAdP7jo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=k0KUoVdnG1iuJgzfSPtjh0Zb4DxISmCugoJ8Dg6ld+Q34uEX7QcGNZJVbsqTQMSIKnzDpqF2JtlSKUPhfyqv2oNiyVnjl3MgwMNbw0N4pbtv39V8OLAtAcDLw5g+SjwDABQanrw7ei9XV/wzN7K3wn7IE3N7ZNSjWIA8mikAEYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [113.80.141.91])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 40bec0aa9;
+	Tue, 2 Jun 2026 18:00:26 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Yixun Lan <dlan@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	spacemit@lists.linux.dev,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH 1/1] riscv: dts: spacemit: enable PCIe on OrangePi R2S
+Date: Tue,  2 Jun 2026 18:00:00 +0800
+Message-Id: <20260602100000.2402784-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Virus-Scanned: Clear (ClamAV 1.4.3/28019/Tue Jun  2 08:33:27 2026)
-X-Rspamd-Queue-Id: 2296B62C18F
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9e87c6fe4f03a2kunm243339981b09f4
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaSExIVklJTBpCTUNJTkofTVYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKSkhVQ0tVSk9KVUJKWVdZFhoPEhUdFFlBWU9LSFVKS0lCQ0
+	NMVUpLS1VLWQY+
+X-Rspamd-Queue-Id: 7E37662C5A5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[jmu.edu.cn : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305558-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305555-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[amadeus@jmu.edu.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nora.schiffer@ew.tq-group.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,tq-group.com:email,tq-group.com:url,ew.tq-group.com:dkim,ew.tq-group.com:mid,nxp.com:email]
+	R_DKIM_NA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,jmu.edu.cn:email,jmu.edu.cn:mid]
 X-Rspamd-Action: no action
 
-On Wed, 2026-04-01 at 13:31 +0200, Nora Schiffer wrote:
-> On Tue, 2026-03-17 at 09:29 +0100, Nora Schiffer wrote:
-> > On Tue, 2026-02-24 at 16:25 +0100, Nora Schiffer wrote:
-> > > All modern TQ-Systems boards follow the convention that mmc0 is the e=
-MMC
-> > > and mmc1 is the SD-card when both interfaces exist, reducing differen=
-ces
-> > > between boards for both documentation and U-Boot code (which uses the
-> > > same Device Trees). Adjust the recently added MBLS1028A Device Tree
-> > > accordingly.
-> > >=20
-> > > Fixes: 0538ca1f102d ("arm64: dts: ls1028a: Add mbls1028a and mbls1028=
-a-ind devicetrees")
-> > > Signed-off-by: Nora Schiffer <nora.schiffer@ew.tq-group.com>
-> > > Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >=20
-> > > v2:
-> > > - updated author information after name change
-> > > - collected review tags
-> > >=20
-> > > As mentioned in the v1 submission, it would be great to get this in
-> > > before v7.0, as the TQMLS1028A/MBLS1028A was just added in the curren=
-t
-> > > development cycle, and we'd like to avoid changing the aliases after =
-the
-> > > DTS was part of a mainline kernel release.
-> > >=20
-> > > Best,
-> > > Nora
-> >=20
-> >=20
-> > Hi Frank,
-> >=20
-> > can we get this applied, so the change makes it into v7.0?
-> >=20
-> > Best,
-> > Nora
->=20
-> Hi Frank,
->=20
-> is there still time for this patch to make it into v7.0? If not, it would=
- be
-> great to have this applied early in the v7.1 development cycle, so it can=
- get
-> backported to 7.0.y before anyone starts relying on the current order of =
-mmc
-> devices.
->=20
-> Best,
-> Nora
+Enable the two RTL8125 network controllers and corresponding
+PHYs connected via the PCIe controllers on the OrangePi R2S.
 
-Hi Frank,
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+Current PCIe drivers can only negotiate down to Gen.1,
+so the RTL8125 cannot reach speeds above 2Gbps.
+---
+ .../boot/dts/spacemit/k1-orangepi-r2s.dts     | 38 +++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-how should we proceed with this? You provided your Reviewed-by months ago, =
-but
-the patch never got applied.=C2=A0It is also marked as 'archived' in patchw=
-ork:
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20260224152523.=
-570057-1-nora.schiffer@ew.tq-group.com/
+diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
+index b13a8d6a2670..919e5b451109 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
++++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-r2s.dts
+@@ -23,6 +23,14 @@ chosen {
+ 		stdout-path = "serial0";
+ 	};
+ 
++	pcie_vcc3v3: regulator-pcie-vcc3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "pcie_vcc3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++	};
++
+ 	vcc4v0: regulator-vcc4v0 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc4v0";
+@@ -228,6 +236,36 @@ dldo7 {
+ 	};
+ };
+ 
++&pcie1_phy {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie1_3_cfg>;
++	status = "okay";
++};
++
++&pcie1_port {
++	phys = <&pcie1_phy>;
++	vpcie3v3-supply = <&pcie_vcc3v3>;
++};
++
++&pcie1 {
++	status = "okay";
++};
++
++&pcie2_phy {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie2_4_cfg>;
++	status = "okay";
++};
++
++&pcie2_port {
++	phys = <&pcie2_phy>;
++	vpcie3v3-supply = <&pcie_vcc3v3>;
++};
++
++&pcie2 {
++	status = "okay";
++};
++
+ &pdma {
+ 	status = "okay";
+ };
+-- 
+2.34.1
 
-
-I'm not sure if changing the aliases at this point would be too much of a
-breaking change... would it make sense to resubmit it, or should I consider=
- it
-rejected?
-
-Best,
-Nora
-
-
->=20
->=20
->=20
-> >=20
-> >=20
-> >=20
-> > >=20
-> > >=20
-> > >  .../boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.dtsi  | 4 ++=
---
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbl=
-s1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028=
-a.dtsi
-> > > index cf338b2e80064..426a81e1743f1 100644
-> > > --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.=
-dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-tqmls1028a-mbls1028a.=
-dtsi
-> > > @@ -17,8 +17,8 @@ aliases {
-> > >  		gpio0 =3D &gpio1;
-> > >  		gpio1 =3D &gpio2;
-> > >  		gpio2 =3D &gpio3;
-> > > -		mmc0 =3D &esdhc; /* SD-Card */
-> > > -		mmc1 =3D &esdhc1; /* eMMC */
-> > > +		mmc0 =3D &esdhc1; /* eMMC */
-> > > +		mmc1 =3D &esdhc; /* SD-Card */
-> > >  		serial0 =3D &duart0;
-> > >  		serial1 =3D &duart1;
-> > >  	};
-> >=20
->=20
-
---=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-https://www.tq-group.com/
 
