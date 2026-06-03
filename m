@@ -1,262 +1,166 @@
-Return-Path: <devicetree+bounces-306150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306152-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TJPdAiMMIGoDvAAAu9opvQ
-	(envelope-from <devicetree+bounces-306150-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 13:12:35 +0200
+	id LF5WBb0MIGpRvAAAu9opvQ
+	(envelope-from <devicetree+bounces-306152-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 13:15:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66899636E0E
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 13:12:34 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53EB3636ECC
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 13:15:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aCq1gE4E;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306150-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306150-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=9elements.com header.s=google header.b=TySAk75b;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306152-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306152-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=9elements.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AB5B33123A81
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 11:04:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 29C893019D8C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 11:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285FC44CF2E;
-	Wed,  3 Jun 2026 11:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB96F472784;
+	Wed,  3 Jun 2026 11:01:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D996D407592;
-	Wed,  3 Jun 2026 11:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2054E46AF11
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 11:01:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780484485; cv=none; b=KTg+VC3UZHNvQZUcbC+okUNmIhrH1V+qPTvksk7vft8eQaU/dfa+wLEtYctd7R6olgCCkoNKkbGCdWEUGut9CTPkuPdAjrBhKkPW03b8x5PFCrKCFG2Js5McsZuGgTSZM6K6oRAyQyhqfZ6CouWsl9/vJV4v8yMG3KOojQSKsw4=
+	t=1780484494; cv=none; b=nuhY68cNWVDATgg4i7H14LSOXtzf7FYlhyin870bHNglJ6BxEQt6/y4Dd05rKrCZOW44Nk+kWW7PolmEr7BBQlbtCAPdBOk/uDP+BFB8MN/udQOiy4RWXzaShlw2gmxPQNDl3/gEpWgxRoXUirdRemvDJq8VTy6cvXO6tHu3ayU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780484485; c=relaxed/simple;
-	bh=olXcyto2y0hNmKyhM1+hLEFVSuUEYUpRrGLf2iRrqPM=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=UDV0wvsvgH4ENoenKtTDPjsaIfJ7dV4wUKDWWek26ukDIrrUvG9jcudw7OBhQhzKeUZgs4Vy3sqDlLqSLY5ZrQ7fiGfET2A9LF/P5hWPQjwyEUb9HW/UUE1jL6dzBebkWEFC1AsO3oUn6Pt9vv6AP9zJBwZG+HErn3TaLHcRqNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aCq1gE4E; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 541FB1F00893;
-	Wed,  3 Jun 2026 11:01:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780484483;
-	bh=ipbvZ982F1A42hFuMQBnrDar5vsOoLmsPhsUvz2IYOU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=aCq1gE4Er85yZfO6rSdD5+Do1iQF2+ut2hdqU4NH3F30mT8ldMYYVRScq4WewwgTd
-	 1I2iSfnmFxEAaWDXU6wk8euUUVMXFH4ZssRJEj4eY3UHpzvUyI0bvXRF9EZ5C/LiZi
-	 xG+hVrxyhUoJym7183bMLjb/U/ADhX8GcKKJtiF5Q8v23VnJzjvR0i7De7VcZ2W2e2
-	 C138K3x9H5L4Q/QGWbUm1bV3QDS+mTKA6Dt9DOGLOZw1lTzsvNnN/6R6XlAoy7D+WO
-	 lfZp4p3zagwxgjhKQmTW8ItO5cG471juwoBAj/gLTXDPwhNNnM2n6wLvIkoUa+ZSQH
-	 +Beyc/IJKaPcg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 03/14] media: mediatek: vcodec: add driver to support
- vcp encoder
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Kyrie Wu" <kyrie.wu@mediatek.com>
-Cc: conor+dt@kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260603084045.17488-4-kyrie.wu@mediatek.com>
-References: <20260603084045.17488-4-kyrie.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 11:01:22 +0000
-Message-Id: <20260603110123.541FB1F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780484494; c=relaxed/simple;
+	bh=gUffnRCkZd8GCDVad4nVwDK9l/4YI41QMrTFTZag9po=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C34bx+d34/JHJV4MskBLh1YFV5rAFyGdEioY8aDZracu0eYY6WAtmbIMO5hcMkU8bSDIpGRvPXMrH5/wHlga1b8y9bEo+z/LfWNiYiYKpHZwowgIg4rGiN1kWD1VlvAXZmWngHkfbs4KIFbXbfcYTxolCMrbwYLNqFXxc1t+2fY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=TySAk75b; arc=none smtp.client-ip=209.85.128.54
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-490ac10e337so18811935e9.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 04:01:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1780484490; x=1781089290; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=im10zWUipLMKBqnVFXqr0KEaN2pPpAtbqMH2WbacGe4=;
+        b=TySAk75bvOfPx1XvqKp8CqfVI2ej2/DNr6ytwUdC87W85ssfcFPp05diYJAdWif3+q
+         M7j6ovNAbgeQ0Z5Atzz8HHHY7h0HVXqMfHsuV/4WU4j5dXckO0B4WtPxFuM7pUyj0pBD
+         VZ2o7t7Xr/fVFL9QlS0zB3af4Gpc0bDkpXLKSehc8RJNjqS3ylj8GUlNDrA1aSDbBSAX
+         VRDOINiAX/aniK3G6LJNfEsJhuYthEw65axsK8ov4MQVHvBDhn5NF7tP5h6ycozmJzsP
+         Zqud9tHBwtr6Ea0/vACuogTdWP6sikZhdLUkUM8GaJGnQqSYPOj72lPfzU3weloV29zF
+         BCAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780484490; x=1781089290;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=im10zWUipLMKBqnVFXqr0KEaN2pPpAtbqMH2WbacGe4=;
+        b=gPPm0+PIvsaje99giGsr/hYnexXlnmXPxJE62qSNjEU2xL+gVtqGyPxqaNZmM267Py
+         46F2vzwykM9UA/SyYvgFXiDc7Cg9+CxPYN6fWeQvrPGD6gXaFT0368pTZJjwTMSUVNZW
+         1lv7F9bkI1P7Q1wsVCMF5fCpiCQYNUBgmQLDC1kLcTKG1fMoMjM4MieKpWWXTVzi8yQo
+         0kQOCIGNVAg+eykUrZ7557MS1VwrEK87akXP5O90zO8GoWB5o19oUk5CTrz2lgFMMWv1
+         aQdYGjsN7YH9qS/9niVZ1kebnfvzuDBZz0uVTnS+PdusXvxy7AJNChgoSv0MPzgZ6t/V
+         wmPQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/Nbv43NEpHYudWKC7OwT8DaZzqCkDkGqfH9goDVsj8NZsyuXYm4TjaIYikgRsiuyUKz2BiU6xD896e@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfLaOl7LqNPoK6BY5+vjYql726fT4kdb24FL+jd4RYkiE8JJHg
+	DgEfz2ES5eTzUkWubXhPhwYlfjrym5WLyUCbRSh2bSh9pGsE6oWmSNmomNUWqd4Yawo=
+X-Gm-Gg: Acq92OFUw6+kQiUPFl0XkJgwMrokU/Ui/Sa+5KpcpyUhdw2TovkB8kmz+K0vSuCFa4R
+	86e71HKseS32XA//09bwG1T8jZjBN3EF2xEyRbw/Q2ssh7vAOg7kEf8PkvmhG1+mBTpoyK2CHMp
+	ii3Vy3cdRtxSuVlyJdrMdKUhWlyF1CKvDLbGe4dk50USj0rYxeZIjd1tIKB966iJ8NKk3/ZGcsS
+	gg4POg1vgSCMjf8p+ifwcR9Rs7NPwFbHSuMM960htMLzRV/v3X4E/dxXyy/wqZIHZyITHgsfYuJ
+	N39dVj+HZ2Y7V7fSnMSONh+GNlHiwAnkYJJyDEAsFjeQeQeboV79MGLUBzG6JImCa2DGzz8vSvG
+	EZ7JlcPImYoTkLa925mrKMTHXadjrCrTYWE5AMvHku8SeYwE/Y0wcnpZ70UmnqRoet/EAs7G+ZY
+	VkHoCDy/Pnpn96ApUpLH4EtOenrK02Nue2IDCO4ts0f8XHo3brRq2YYzE+uwXkPp2CANROCetM+
+	Nn8970yPw2zmjrQfoyh7b9t+sFdWdkG0qYPYgrQEWDFCK0FE3a16Q==
+X-Received: by 2002:a05:600c:8b30:b0:48f:e26a:1744 with SMTP id 5b1f17b1804b1-490b5eb4aeemr46258005e9.9.1780484490576;
+        Wed, 03 Jun 2026 04:01:30 -0700 (PDT)
+Received: from nareshubuntu2404-gh-runner.lab.9e.network ([188.111.3.154])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490b0e76153sm138908575e9.11.2026.06.03.04.01.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jun 2026 04:01:29 -0700 (PDT)
+From: Naresh Solanki <naresh.solanki@9elements.com>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Grant Peltier <grantpeltier93@gmail.com>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>
+Subject: [PATCH 1/2] dt-bindings: hwmon: isl68137: Add RAA228234 compatible
+Date: Wed,  3 Jun 2026 11:01:26 +0000
+Message-ID: <20260603110127.23930-1-naresh.solanki@9elements.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[9elements.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[9elements.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mediatek.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid];
-	TAGGED_FROM(0.00)[bounces-306150-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:kyrie.wu@mediatek.com,m:conor+dt@kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-306152-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[glider.be,gmail.com,vger.kernel.org,9elements.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[naresh.solanki@9elements.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:grantpeltier93@gmail.com,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:patrick.rudolph@9elements.com,m:naresh.solanki@9elements.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[naresh.solanki@9elements.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[9elements.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[9elements.com:mid,9elements.com:dkim,9elements.com:from_mime,9elements.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 66899636E0E
+X-Rspamd-Queue-Id: 53EB3636ECC
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
-s) to consider:
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-Pre-existing issues:
-- [Critical] Untrusted coprocessor input `obj->id` is used directly as an a=
-rray index without bounds checking, causing out-of-bounds memory access and=
- potential arbitrary code execution.
-- [High] The kthread_run() task pointer is discarded, causing a memory leak=
- and a fatal use-after-free when the device is unbound.
-- [High] The msg_signaled flag is not reset before waiting, allowing a stal=
-e, delayed ACK to trigger a false positive for a subsequent IPC message.
-- [High] The driver registers an IPC mailbox and a notifier but fails to un=
-register them during device teardown, leading to a Use-After-Free.
-- [High] The message processing thread exits permanently upon receiving an =
-unhandled message ID, hanging the entire driver.
-- [High] The driver fails to initialize the `ipi_desc` mutex for the CORE d=
-ecoder, leading to lockdep warnings and potential crashes.
---
+Add the compatible string for the Renesas RAA228234 8-phase PWM
+controller, which shares the same PMBus interface as the RAA228228.
 
-commit 7793240a286886003391171d60e17e6a2e3e89f8
-Author: Yunfei Dong <yunfei.dong@mediatek.com>
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+---
+ Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-media: mediatek: vcodec: add driver to support vcp encoder
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml
+index 8216cdf758d8..2988bc6300ae 100644
+--- a/Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml
+@@ -55,6 +55,7 @@ properties:
+           - renesas,raa228004
+           - renesas,raa228006
+           - renesas,raa228228
++          - renesas,raa228234
+           - renesas,raa228244
+           - renesas,raa228246
+           - renesas,raa229001
+-- 
+2.43.0
 
-Encoder also need to call vcp interface to communicate with vcp,
-add driver to support encoder.
-
-> diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_=
-vcp.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
-> --- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
-> +++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
-> @@ -226,8 +228,13 @@ static int mtk_vcodec_vcp_msg_ipi_send(struct mtk_vc=
-odec_fw *fw, int id, void *b
->  	}
-> =20
->  	mutex_lock(&vcp->ipi_mutex);
-> -	feature_id =3D VDEC_FEATURE_ID;
-> -	mailbox_id =3D IPI_OUT_VDEC_1;
-> +	if (fw->fw_use =3D=3D ENCODER) {
-> +		feature_id =3D VENC_FEATURE_ID;
-> +		mailbox_id =3D IPI_OUT_VENC_0;
-> +	} else {
-> +		feature_id =3D VDEC_FEATURE_ID;
-> +		mailbox_id =3D IPI_OUT_VDEC_1;
-> +	}
-
-[Severity: High]
-This is a pre-existing issue, but does mtk_vcodec_vcp_msg_ipi_send()
-properly handle stale delayed ACKs?
-
-If wait_event_timeout() times out later in this function, it appears it sets
-the msg_signaled flag to false and returns. However, if a delayed ACK arriv=
-es
-afterward, the worker thread will set the flag to true.
-
-Since mtk_vcodec_vcp_msg_ipi_send() does not re-initialize the msg_signaled
-flag to false before sending the next IPC message, could a subsequent wait
-immediately return success without actually waiting for the new message to
-be acknowledged?
-
-[ ... ]
-
-> @@ -383,6 +397,20 @@ static int mtk_vcodec_vcp_load_firmware(struct mtk_v=
-codec_fw *fw)
->  	mutex_init(&fw->vcp->ipi_desc[ipi_id].lock);
->  	mutex_init(&fw->vcp->ipi_mutex);
-
-[Severity: High]
-This isn't a bug introduced by this patch, but are all the ipi_desc mutexes
-properly initialized?
-
-Here, mutex_init() is only called for a single ipi_id. If this path is taken
-for the decoder, it initializes the lock for VCP_IPI_LAT_DECODER, but it om=
-its
-VCP_IPI_CORE_DECODER.
-
-When the decoder client later registers its CORE handler,
-mtk_vcodec_vcp_ipi_register() will attempt to acquire the lock. Could locki=
-ng
-the uninitialized CORE mutex lead to lockdep splats or undefined behavior?
-
-> =20
-> +	if (fw->fw_use =3D=3D ENCODER) {
-> +		kthread_run(mtk_vcodec_vcp_msg_process_thread, fw, "vcp_enc_msq_thread=
-");
-> +
-
-[Severity: High]
-This is a pre-existing issue, but is it safe to discard the task pointer
-returned by kthread_run()?
-
-If the pointer is not saved, kthread_stop() cannot be called in
-mtk_vcodec_vcp_release() during device teardown. Because the fw structure
-is allocated with devm_kzalloc, the memory will be automatically freed when
-the driver unbinds.
-
-Could this cause a use-after-free when the unstopped thread wakes up
-and accesses the freed fw->vcp structures?
-
-[Severity: Critical]
-This is a pre-existing issue, but does mtk_vcodec_vcp_msg_process_thread()
-validate the obj->id from the coprocessor?
-
-Looking at the thread function, it appears the ID from the IPC payload is
-used directly as an array index:
-
-handler =3D fw->vcp->ipi_desc[obj->id].handler;
-
-If a compromised or malicious coprocessor sends an out-of-bounds ID, could
-this read out-of-bounds function pointers and execute them when calling
-handler(), leading to arbitrary kernel code execution?
-
-[Severity: High]
-This isn't a bug introduced by this patch, but how does
-mtk_vcodec_vcp_msg_process_thread() handle invalid message IDs?
-
-If the handler is null for a message, the function executes return -EINVAL;
-instead of using continue; to process the next message.
-
-Does this permanently terminate the kthread loop? If the thread exits,
-wouldn't all subsequent valid IPC messages be queued but never processed,
-permanently hanging active decode or encode instances?
-
-[ ... ]
-
-> @@ -438,8 +466,8 @@ static void mtk_vcodec_vcp_release(struct mtk_vcodec_=
-fw *fw)
->  	if (!fw->vcp->is_register_done)
->  		return;
-> =20
-> -	feature_id =3D VDEC_FEATURE_ID;
-> -	ret =3D vcp_device->ops->vcp_deregister_feature(vcp_device, VDEC_FEATUR=
-E_ID);
-> +	feature_id =3D fw->fw_use =3D=3D ENCODER ? VENC_FEATURE_ID : VDEC_FEATU=
-RE_ID;
-> +	ret =3D vcp_device->ops->vcp_deregister_feature(vcp_device, feature_id);
->  	if (ret < 0) {
->  		dev_err(dev, "deregister feature_id(%d) fail(%d)\n", feature_id, ret);
->  		return;
-
-[Severity: High]
-This is a pre-existing issue, but does this release function completely
-tear down the IPC mailbox and notifier?
-
-The driver registers an IPC mailbox via mtk_vcp_mbox_ipc_register() and a
-notifier via vcp_register_notify() in mtk_vcodec_vcp_load_firmware().
-However, these do not appear to be unregistered here during teardown.
-
-Because fw->vcp is managed by devm_kzalloc, could this leave dangling
-callbacks in the IPC or notifier frameworks that might trigger a
-use-after-free if an event arrives after the device is unbound?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603084045.1748=
-8-1-kyrie.wu@mediatek.com?part=3D3
 
