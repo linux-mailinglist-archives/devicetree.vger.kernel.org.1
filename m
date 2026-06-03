@@ -1,357 +1,185 @@
-Return-Path: <devicetree+bounces-305991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305993-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dfEKHXTNH2piqAAAu9opvQ
-	(envelope-from <devicetree+bounces-305991-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:45:08 +0200
+	id uw86EAvQH2rqqAAAu9opvQ
+	(envelope-from <devicetree+bounces-305993-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:56:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B4D4634C50
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:45:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92272634DBD
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:56:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=brainfault-org.20251104.gappssmtp.com header.s=20251104 header.b=QzsgsQmo;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305991-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305991-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DKNFJQFi;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305993-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-305993-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 622BE3076F10
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 06:44:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3F63D30221C7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 06:50:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD4B38F24B;
-	Wed,  3 Jun 2026 06:44:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EA3F3955D9;
+	Wed,  3 Jun 2026 06:50:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C0DC385D71
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 06:44:48 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780469091; cv=pass; b=QkRY1jpWqChvZ/uyBEgt3+KsOvFDfaZMbji7WGIb33kQZH9+RuKn2/KcLy+zWrQi6DN3JQnyMGNXvhckE+tMBoR8tAXF6M1VsRAoPB/Kq+NhAAtrhfNmZQr3gBb56uY8A1HOTNCtrqzIYynQhKSUY5WoAKNun+7hruXhHVfglD0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780469091; c=relaxed/simple;
-	bh=56G+6KSF26fnjlqQuQaSxXvZtnVr1hBfZPPvTYbNb3A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hKtDrSkvZHI4hTigfnxV7YBtf0EJv35Cn0dQA6nd8z0XXvNS4jHrofLzroNs7ZlaKMOlYNkJcKF989t7c7PJ2rX9oNjik4r58uYBb213cIwkg2KxPQDqsHRhaVEFG0KdF7IEe4qBmJfiqAuf7IgAG/gOkA2kLcsreO5F/BnWq0s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20251104.gappssmtp.com header.i=@brainfault-org.20251104.gappssmtp.com header.b=QzsgsQmo; arc=pass smtp.client-ip=209.85.210.46
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7e6deacafa8so187373a34.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Jun 2026 23:44:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780469087; cv=none;
-        d=google.com; s=arc-20240605;
-        b=b/AIsGxEX0WwDiW4rgZdqvwyp5FxMvp5R1kk+PKsUMFksbmf3/ndLNKy1MwxZbWzVG
-         gyJ9QaOSLBEFZwdWDVu6kXcLXcN7g8iODQ2lBNLrZlLk1oGnj2vxvhvPVKIKSLnaoLLp
-         xlBNMBTSXVAwCN5TXdCqRqjVVgoQsNOKVx1gxlbEISSRk9eXxTGGgSNIuHaXIFooeJe1
-         nfbpa7uDV3n0YqYlLJrYTBAu22qJ4zCPVnCXLN9x08hya/WNpliBDFxIZ8cQZ/JzB4lg
-         HQtDu4LwvQs6BP0TOouGgtJE+3p+/HbgEebVocBtjekjgnHbSYYJTikxAw7NbnWDBh0t
-         SJjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=vguV3vMU4h/2CSVTFHkBd4daU9WvVPcYCYkqg5eye6Q=;
-        fh=P88unQ2jYjz3oC4mIgyZ/azaGqIgFai8hpQAI4Lhm7k=;
-        b=T3OqEPuwnwPYd2SQEqzY81HWaG3dotBo15tmIPbhyu2Wo7i46o7/YAPWEnJEFTxhZj
-         kz+U1YdqHRc6hi+mdsQBuNBAF2Nt5Jm3XiADYrjBV7Tn4VoJO3YwsRvEl4hN0sgjh3Tx
-         3dtpoAfS8PCd83/7IMWT8UyTdYREswrvgEsCW+f9g1yIpswBIu+uo7cfUZzK1gmhMt+m
-         EhFHWTC81HeWVRw9qd7CyuFYvuiLuCa42/VkbLGOjW6fnR6pXafG5eo01O2UTVLnPyCP
-         XhtFpgB3WfIs1Kxv2vKMmsnM2kzMrgBhccT5ToCjnPqWpqIIEWk3IxJUeI8Qn2DhPQ30
-         uqTg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20251104.gappssmtp.com; s=20251104; t=1780469087; x=1781073887; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vguV3vMU4h/2CSVTFHkBd4daU9WvVPcYCYkqg5eye6Q=;
-        b=QzsgsQmovGOac8c7c+vCD3KF3L7rEvmCTcOPgX/X+BPKUfo0BY92duMoCWgrGsAIw4
-         2QAD+/tP2v2Hk/puP/SbdOSoJKNCkf4g3VFxJ72jI47tISQ/JgDbLf+zZn68hRiKNiYf
-         C5gQjcyPLGi3AkYHR8F4K3K7sNqD9+xM9od7ipwB+58Kypg5lSk3TsIuE18e0LhsLron
-         xUYvKzsZzaskPxYSu/a9cx4PLpfyZM0Eloty4A64cjf5AYJGFPMd2N27/36P70cdmu20
-         PAjk7cYnrzyMIKA0zGtmfOtl3KbgdSq3Uxh1RZ4FTHigq8SahVi/MX6kBVsfUC094VT9
-         Rbvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780469087; x=1781073887;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=vguV3vMU4h/2CSVTFHkBd4daU9WvVPcYCYkqg5eye6Q=;
-        b=kV7X+qkvZTxhFYMB1WVlHTK4l9cuMc58berF39DBEO5yA+1sGnF+0lKRrx/LhaM87t
-         8GwcZ/qGf/IbmBKoBl4hVVhdcR7wtzop+I2PTDZf+0oR0whiRNG4EFxyLj9R7NZUkHM5
-         aEaC2LWR9WpyINRuU+OQsLqk0l6Djoz2yh0bsHF+X61ENZsoWpwZ9yvdSaNpdAYV2NvW
-         Fb1L6OTVitu1n28MJZETy8Egp99+CG0s7jQgFP/TRna2DaiOqXrcllup5zO2Ym7l3LmO
-         hjLow9KG47f4wRk6Lz1PszXrLv39IXqJZrhx/B3gfWfV3HUrux5Y4FhvUvYBi1gfWsCj
-         TFoA==
-X-Forwarded-Encrypted: i=1; AFNElJ/uFJ2+BzRRzPvRcjYems/O6k2NzRjFn97dat1iqo8J0aDqoD+zLpRuQDvQuyhqPCX1FOLhtHzWFGcE@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQ2KxgxOWH6B8vtGjZ3v3aAljf8PlBrfKXS7/6fJTYj8q7SEXa
-	B6X7Xp4RdWIykT0VzttR5s9tJgNvwDeWwrjt7L7bl9Lpps+bhDHVPgju2bVsvTFZFPZc0EeXEOo
-	zDrrm73+pu2fWZODwDng43Ftl7Q30x32imBhkQ5PmfQ==
-X-Gm-Gg: Acq92OGBusE/qxaZwOUKCRLXVGnPV85ooYLj4fF2iBByXbt6xuM3FVFahATypzvRaqA
-	1M2tszG7Zql+Q4oj9iz+42afJINsiHoooQ31yf0H9Qp2f9qlUwclBLJDFKLCNpOSi/4zT3kFcGE
-	OjPVSciQwQG9RfaEvacaJ9WpC+yFrjgpcVTND9CyntJHajKtPbE8HHWlB2JfVuQ51Yj+9dvvpCh
-	eD4oW9q2CVE2hS/iL8kLbseI8K9k4ZLBT7O/Bi2/pz3lnh66HElVLmJh7ddbIkEgHKI+e8deAet
-	BMQ5VTYNy/x6+fAfHbAJrnh/qvQ3EepgKUbmwI1zZqo2uIy5opnGnGi7nIW5PevD4XdQrIrpryr
-	3iM1g5vP1lylTrnh34EpjFrKbUitcLBrV/t8Pdw==
-X-Received: by 2002:a05:6820:f014:b0:694:8fe0:152e with SMTP id
- 006d021491bc7-69e48cf5960mr936756eaf.31.1780469087406; Tue, 02 Jun 2026
- 23:44:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E3BB3905F8;
+	Wed,  3 Jun 2026 06:50:18 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780469419; cv=none; b=oJiVvDXIKYKPnMHV/xKbqFYvAcjEiuLdS9V3Un9Q3wN45ASoGoaIqfHCrR0aXud8AxSLHAwj8tP0VXNZVtUCcdNhl5rgHVX+xd4aOfCrlnHY9uI4jqQ6/w7JRcbaq1ZcTKfl9dEo8yrQZI/shGP0rTKQULaB+G24/aUt2zFT9EQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780469419; c=relaxed/simple;
+	bh=pU1kWWFlfpIrNiyi/QGRQB4RPeP7pUM59uT803OtXSo=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=JhmelwTUy+SYwprDr5K6GKbgqPKjJ9j/yY0aBK1l1Klk+flcWulJVUYcBCsJ310FgVlLYB9AJd4wgUzYFAAbcEw8339w5voQ2/1U3QwgStAqokoWUSeVdKrYBS71s8gDfdb3sUo081w0CWtbo32IdyKygpUIpFzWR+WZ7PDI6Ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DKNFJQFi; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65FD41F00893;
+	Wed,  3 Jun 2026 06:50:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780469418;
+	bh=pPHESEW29LuV/32hvd+7KGwYuLMkojV6U/198TMCRNc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=DKNFJQFiqP5Q/AAmxKKY1rdehxYtQaL381RDW2g5WZWeDlspmbCGVGcy1C1DX6dH/
+	 t6gkDH+ZLU4G1Ttezaa4Qg3K+gqQCkOOF6W2x7mNRGkBSWKK0Eiuos7JXo0d1SAHCC
+	 sKMDp/OwlglPQv+tGni3Ioh4Q8Okq7LueHiAzVxbmnV3GD15T1ZH46uHM6PNAC6cuH
+	 I8eWCRjYQd/gPeq2NWyQNDBDQ1muDcBCpn4SGtRtaL6CQLzFgtBdesJC9KzlavG45v
+	 HMQv3ZlyEHQvgStTV3AUMR0BPydkBVrVMIC7pXTl/HMAWjgBGhUcWo8YJeKrBPU6KS
+	 Jjhjv9jZlm/tg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 2/3] arm64: dts: imx95: Add dma, intr, aer and pme
+ interrupts for PCIe
+Reply-To: sashiko-reviews@lists.linux.dev
+To: hongxing.zhu@oss.nxp.com
+Cc: robh@kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org
+In-Reply-To: <20260603062510.3767610-3-hongxing.zhu@oss.nxp.com>
+References: <20260603062510.3767610-3-hongxing.zhu@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 03 Jun 2026 06:50:16 +0000
+Message-Id: <20260603065017.65FD41F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260526145240.1627200-1-anup.patel@oss.qualcomm.com> <89e1334f-e7c2-4992-ba39-0d23f5605275@arm.com>
-In-Reply-To: <89e1334f-e7c2-4992-ba39-0d23f5605275@arm.com>
-From: Anup Patel <anup@brainfault.org>
-Date: Wed, 3 Jun 2026 12:14:36 +0530
-X-Gm-Features: AVHnY4JmV0zm-0tTvkp_o34WcjHkNEMQ2AMhT0fQwQmHlV9bWdR1bNfsmtDJXa0
-Message-ID: <CAAhSdy0dOeCrH2YEkEyrNQU2nyO-41AT3m4-BaYJuQ3GbocqmQ@mail.gmail.com>
-Subject: Re: [PATCH] driver core: platform: Setup device MSI domain just
- before driver probe
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Anup Patel <anup.patel@oss.qualcomm.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <pjw@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>, Thomas Gleixner <tglx@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Danilo Krummrich <dakr@kernel.org>, 
-	Tomasz Jeznach <tomasz.jeznach@linux.dev>, Joerg Roedel <joro@8bytes.org>, 
-	Will Deacon <will@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
-	Saket Dumbre <saket.dumbre@intel.com>, Rahul Pathak <rahul@summations.net>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <andrew.jones@oss.qualcomm.com>, 
-	linux-acpi@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	driver-core@lists.linux.dev, iommu@lists.linux.dev, 
-	acpica-devel@lists.linux.dev, Sunil V L <sunilvl@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_DKIM_ALLOW(-0.20)[brainfault-org.20251104.gappssmtp.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:robin.murphy@arm.com,m:anup.patel@oss.qualcomm.com,m:palmer@dabbelt.com,m:pjw@kernel.org,m:alex@ghiti.fr,m:tglx@kernel.org,m:gregkh@linuxfoundation.org,m:dakr@kernel.org,m:tomasz.jeznach@linux.dev,m:joro@8bytes.org,m:will@kernel.org,m:jassisinghbrar@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:rafael@kernel.org,m:lenb@kernel.org,m:saket.dumbre@intel.com,m:rahul@summations.net,m:atish.patra@linux.dev,m:andrew.jones@oss.qualcomm.com,m:linux-acpi@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:driver-core@lists.linux.dev,m:iommu@lists.linux.dev,m:acpica-devel@lists.linux.dev,m:sunilvl@oss.qualcomm.com,m:krzk@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305993-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[anup@brainfault.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-305991-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	DMARC_NA(0.00)[brainfault.org];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:hongxing.zhu@oss.nxp.com,m:robh@kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:linux-pci@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[brainfault-org.20251104.gappssmtp.com:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[anup@brainfault.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,dabbelt.com,kernel.org,ghiti.fr,linuxfoundation.org,linux.dev,8bytes.org,gmail.com,intel.com,summations.net,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,brainfault-org.20251104.gappssmtp.com:dkim,qualcomm.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,brainfault.org:from_mime,arm.com:email,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,sashiko.dev:url,i.mx:url,smtp.kernel.org:mid,nxp.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9B4D4634C50
+X-Rspamd-Queue-Id: 92272634DBD
 
-On Tue, May 26, 2026 at 8:53=E2=80=AFPM Robin Murphy <robin.murphy@arm.com>=
- wrote:
->
-> On 26/05/2026 3:52 pm, Anup Patel wrote:
-> > On RISC-V, the MSI controller (aka RISC-V IMSIC) is probed as a regular
-> > platform device and MSI client drivers are always probed after the MSI
-> > controller driver using fw_devlink. Unfortunately, this is not sufficie=
-nt
-> > to ensure device MSI domain is set for MSI client devices before driver
-> > probe because OF framework sets device MSI domain at the time of platfo=
-rm
-> > device creation whereas ACPI framework expects arch specific code to se=
-t
-> > the device MSI domain at the time of platform device creation.
-> >
-> > Currently, to work-around the problem of missing device MSI domain,
-> > various RISC-V MSI client drivers explicitly set device MSI domain
-> > in the driver probe function using below code pattern:
-> >
-> >       /*
-> >        * The device MSI domain for platform devices on RISC-V architect=
-ure
-> >        * is only available after the MSI controller driver is probed so=
-,
-> >        * explicitly configure here.
-> >        */
-> >       if (!dev_get_msi_domain(dev)) {
-> >               /*
-> >                * The device MSI domain for OF devices is only set at th=
-e
-> >                * time of populating/creating OF device. If the device M=
-SI
-> >                * domain is discovered later after the OF device is crea=
-ted
-> >                * then we need to set it explicitly before using any pla=
-tform
-> >                * MSI functions.
-> >                */
-> >               if (is_of_node(fwnode)) {
-> >                       of_msi_configure(dev, dev_of_node(dev));
-> >               } else if (is_acpi_device_node(fwnode)) {
-> >                       struct irq_domain *msi_domain;
-> >                       msi_domain =3D irq_find_matching_fwnode(imsic_acp=
-i_get_fwnode(dev),
-> >                                                             DOMAIN_BUS_=
-PLATFORM_MSI);
-> >                       dev_set_msi_domain(dev, msi_domain);
-> >               }
-> >
-> >               if (!dev_get_msi_domain(dev))
-> >                       return -EPROBE_DEFER;
-> >       }
-> >
-> > Instead of the above approach, extend the platform_dma_configure() to s=
-et
-> > device MSI domain for both OF and ACPI based platform devices before dr=
-iver
-> > probe and remove the duplicate code pattern from RISC-V MSI client driv=
-ers.
-> >
-> > Co-developed-by: Sunil V L <sunilvl@oss.qualcomm.com>
-> > Signed-off-by: Sunil V L <sunilvl@oss.qualcomm.com>
-> > Signed-off-by: Anup Patel <anup.patel@oss.qualcomm.com>
-> > ---
-> >   drivers/acpi/riscv/irq.c                | 13 +++++++++++
-> >   drivers/acpi/scan.c                     | 10 +++++++++
-> >   drivers/base/platform.c                 |  4 ++++
-> >   drivers/iommu/riscv/iommu-platform.c    |  9 --------
-> >   drivers/irqchip/irq-riscv-aplic-msi.c   | 27 -----------------------
-> >   drivers/irqchip/irq-riscv-rpmi-sysmsi.c | 29 ------------------------=
--
-> >   drivers/mailbox/riscv-sbi-mpxy-mbox.c   | 29 ------------------------=
--
-> >   include/acpi/acpi_bus.h                 |  1 +
-> >   include/linux/acpi.h                    | 10 +++++++++
-> >   9 files changed, 38 insertions(+), 94 deletions(-)
-> >
-> > diff --git a/drivers/acpi/riscv/irq.c b/drivers/acpi/riscv/irq.c
-> > index 9b88d0993e88..17fa5dcdd2c0 100644
-> > --- a/drivers/acpi/riscv/irq.c
-> > +++ b/drivers/acpi/riscv/irq.c
-> > @@ -5,8 +5,11 @@
-> >    */
-> >
-> >   #include <linux/acpi.h>
-> > +#include <linux/device.h>
-> >   #include <linux/sort.h>
-> >   #include <linux/irq.h>
-> > +#include <linux/irqdomain.h>
-> > +#include <linux/irqchip/riscv-imsic.h>
-> >
-> >   #include "init.h"
-> >
-> > @@ -397,6 +400,16 @@ static u32 riscv_acpi_add_irq_dep(acpi_handle hand=
-le)
-> >       return count;
-> >   }
-> >
-> > +void acpi_arch_msi_configure(struct device *dev)
-> > +{
-> > +     struct irq_domain *msi_domain;
-> > +
-> > +     msi_domain =3D irq_find_matching_fwnode(imsic_acpi_get_fwnode(dev=
-),
-> > +                                           DOMAIN_BUS_PLATFORM_MSI);
-> > +     if (msi_domain)
-> > +             dev_set_msi_domain(dev, msi_domain);
-> > +}
-> > +
-> >   u32 arch_acpi_add_auto_dep(acpi_handle handle)
-> >   {
-> >       if (acpi_has_method(handle, "_PRT"))
-> > diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-> > index 530547cda8b2..e50e5d246a54 100644
-> > --- a/drivers/acpi/scan.c
-> > +++ b/drivers/acpi/scan.c
-> > @@ -1648,6 +1648,16 @@ static int acpi_iommu_configure_id(struct device=
- *dev, const u32 *id_in)
-> >
-> >   #endif /* !CONFIG_IOMMU_API */
-> >
-> > +/**
-> > + * acpi_msi_configure - Set-up MSI domain for the device.
-> > + * @dev: The pointer to the device
-> > + */
-> > +void acpi_msi_configure(struct device *dev)
-> > +{
-> > +     acpi_arch_msi_configure(dev);
-> > +}
-> > +EXPORT_SYMBOL_GPL(acpi_msi_configure);
-> > +
-> >   /**
-> >    * acpi_dma_configure_id - Set-up DMA configuration for the device.
-> >    * @dev: The pointer to the device
-> > diff --git a/drivers/base/platform.c b/drivers/base/platform.c
-> > index a19dd22deef2..225e33080bc6 100644
-> > --- a/drivers/base/platform.c
-> > +++ b/drivers/base/platform.c
-> > @@ -1470,8 +1470,12 @@ static int platform_dma_configure(struct device =
-*dev)
-> >       int ret =3D 0;
-> >
-> >       if (is_of_node(fwnode)) {
-> > +             if (!dev_get_msi_domain(dev))
-> > +                     of_msi_configure(dev, dev->of_node);
-> >               ret =3D of_dma_configure(dev, to_of_node(fwnode), true);
-> >       } else if (is_acpi_device_node(fwnode)) {
-> > +             if (!dev_get_msi_domain(dev))
-> > +                     acpi_msi_configure(dev);
->
-> But surely this needs to handle the deferral case that's being removed
-> from some of the users below?
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Unrealized feature claim regarding PCIe 'intr', 'aer', and 'pme'=
+ interrupts.
+--
 
-The deferral cases removed by this patch are redundant because:
-1) For device tree, the fw_devlink support in Linux DD core takes
-case of probe ordering and individual driver don't need to explicitly
-do EPROBE_DEFER
-2) For ACPI, the _DEP objects helps us ensure probe ordering.
+commit 29e808a747deaa069b3eea1b8af9a71ce6b4b8c9
+Author: Richard Zhu <hongxing.zhu@nxp.com>
 
-In other words, the issue of probe ordering or deferral is already
-handled for both device tree and ACPI.
+arm64: dts: imx95: Add dma, intr, aer and pme interrupts for PCIe
 
-The only problem which remains is msi_domain pointer not set
-in struct device before the driver is probed. This happens because
-MSI controller driver is a regular platform driver hence MSI domain
-pointer is not set when platform devices are created.
+This commit adds dma, intr, aer, and pme interrupts to the pcie0 and pcie1
+device tree nodes for the i.MX95. The commit message states this enables
+enhanced PCIe features that were previously unavailable.
 
->
-> Also I'm not really convinced about bundling it into dma_configure,
-> since it's mroe about IRQs than DMA. I wonder if overall it wouldn't be
+> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/d=
+ts/freescale/imx95.dtsi
+> index 3e35c956a4d7a..1a9803f967901 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
 
-Using platform_dma_configure() to update the MSI domain
-in struct device is appropriate because:
-1) MSIs are device initiated writes just like DMA writes
-    initiated by the device.
-2) The iommu_device_use_default_domain() called by
-   platform_dma_configure() will override MSI domain
-   in struct device for architectures (such as x86 and
-   RISC-V) where IOMMU driver implements a IRQ
-   remap MSI domain for MSI capable devices.
+[ ... ]
 
-> better with a flow closer to regular request_irq(), with
-> msi_create_device_irq_domain() growing the ability to distingush between
-> "there is no domain" and "there is no domain now, but could be if we try
-> again later", such that drivers can handle deferral at the point where
-> they request MSI vectors?
+> @@ -1945,8 +1945,12 @@ pcie0: pcie@4c300000 {
+>  			bus-range =3D <0x00 0xff>;
+>  			num-lanes =3D <1>;
+>  			num-viewport =3D <8>;
+> -			interrupts =3D <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>;
+> -			interrupt-names =3D "msi";
+> +			interrupts =3D <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names =3D "msi", "dma", "intr", "aer", "pme";
 
-Like mentioned above, the problem is not about probe deferral
-(aka returning EPROBE_DEFER) from request_irq() or
-msi_create_device_irq_domain() rather about updating the
-MSI domain pointer in struct device before driver probe.
+[Severity: Medium]
+The commit message mentions that adding these interrupts enables enhanced P=
+CIe
+features and capabilities that were previously unavailable. Are these new
+interrupts actually consumed by the kernel?
 
-Regards,
-Anup
+Looking at the Linux PCIe DesignWare core and the i.MX PCIe driver, it does
+not appear that the intr, aer, or pme interrupts are requested or handled v=
+ia
+these names. Features like AER and PME are typically handled generically by
+the PCIe Port Bus driver using standard in-band PCIe capabilities.
+
+Could the commit message be updated to clarify if these are being added
+primarily for hardware description completeness, rather than directly enabl=
+ing
+new features in the Linux drivers?
+
+[ ... ]
+
+> @@ -2020,8 +2024,12 @@ pcie1: pcie@4c380000 {
+>  			bus-range =3D <0x00 0xff>;
+>  			num-lanes =3D <1>;
+>  			num-viewport =3D <8>;
+> -			interrupts =3D <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>;
+> -			interrupt-names =3D "msi";
+> +			interrupts =3D <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names =3D "msi", "dma", "intr", "aer", "pme";
+
+[Severity: Medium]
+Similar to pcie0, these interrupts are defined here for pcie1 but do not
+appear to be consumed by the kernel. Is the functionality claim in the comm=
+it
+message accurate for these definitions?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603062510.3767=
+610-1-hongxing.zhu@oss.nxp.com?part=3D2
 
