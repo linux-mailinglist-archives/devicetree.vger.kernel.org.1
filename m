@@ -1,137 +1,147 @@
-Return-Path: <devicetree+bounces-306067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306068-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id B9rxDBLkH2qTrwAAu9opvQ
-	(envelope-from <devicetree+bounces-306067-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:21:38 +0200
+	id 72F9IAPnH2pusAAAu9opvQ
+	(envelope-from <devicetree+bounces-306068-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:34:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DE67635A5A
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:21:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C54635BDC
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:34:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=herrie.org header.s=transip-a header.b=iHI9q+fQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306067-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-306067-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="SWvm/YIk";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306068-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306068-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 56374309BFE2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:18:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F0831302EE8E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649D93FBB79;
-	Wed,  3 Jun 2026 08:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E46CF408037;
+	Wed,  3 Jun 2026 08:19:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound0.mail.transip.nl (outbound0.mail.transip.nl [149.210.149.69])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC55D421A09;
-	Wed,  3 Jun 2026 08:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE2618472;
+	Wed,  3 Jun 2026 08:19:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780474679; cv=none; b=FhmImLbKOW+9AziS+7WLTJPNASed/YYDPDNrwxFYkcTofmet/1OKq1s0Nf7WfEzCKJPS7EMlQ0RZMcR6vDrgxdKcZhYLoo3l1gQ/x7lFBR/hF6Ba37sg+c1+Ay77b5zJTJofJhMWKyR2lOVjb18aXXYhZ1frhyJ9BkjuvYFbRmE=
+	t=1780474779; cv=none; b=lty3YuNbCfKviaKU8qW8DcD4PFOHSM0zQVx1+rinB653mqD1RhLM35XHlkn5egw/lg0+4uchFjm2fMqpv1ezUXovpajcr6G2QdjDzmtAQqLE+8cGaqxfdrgu67oGfjeBTsOy+XOCTjfD+sTicGYuzNnsqIw1YOHuJFzcGN/X1i0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780474679; c=relaxed/simple;
-	bh=oBKV6LyjynghyhkhfEqiKMnROJH+Ew21FK35o5B1ne0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pL0ImyzJGIV0uemOh/v4RQkOG3AYFB1ufEgbTHmDQ8dkOM7ts7l3Zixj3aGFaLjxWlXLcAjPDZY/oKvx2UGDpOyCJjvV17mLSxxgrqQNrs1Cer0Vbvnnx5yvPaz/yanB7NCscpuDiG56bn+++cxsAbznI9NHRL3FYezyEB6T8QM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=iHI9q+fQ; arc=none smtp.client-ip=149.210.149.69
-Received: from submission7.mail.transip.nl (unknown [10.103.8.158])
-	by outbound0.mail.transip.nl (Postfix) with ESMTP id 4gVgYR0g7tzxPYv;
-	Wed,  3 Jun 2026 10:17:47 +0200 (CEST)
-Received: from herrie-desktop.. (180-93-184-31.ftth.glasoperator.nl [31.184.93.180])
-	by submission7.mail.transip.nl (Postfix) with ESMTPA id 4gVgYQ3Hqbz3fqYsP;
-	Wed,  3 Jun 2026 10:17:46 +0200 (CEST)
-From: Herman van Hazendonk <github.com@herrie.org>
-To: lee@kernel.org,
-	robh@kernel.org
-Cc: krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Herman van Hazendonk <github.com@herrie.org>
-Subject: Re: [PATCH 1/1] dt-bindings: mfd: add ti,lm8502 combo LED + haptic controller
-Date: Wed,  3 Jun 2026 10:17:45 +0200
-Message-ID: <20260603081746.932652-1-github.com@herrie.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260603080256.853037-2-github.com@herrie.org>
-References: <20260603080256.853037-2-github.com@herrie.org>
+	s=arc-20240116; t=1780474779; c=relaxed/simple;
+	bh=nWwjS8Mr20fDWKSL0zfgfubdVpa6oMYco7fA71M/hAY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IrkX6Ci346Gu1YicPzXX4GfBMle5pWQr0iiwaAXSBF8lEhyioNiYAp8nmqLOthDHAqbqTtlQ5L8j5RtLArPFMsLBb3I5tOt7TH6thj18K4gWBO54fkIY0ArgrAbRjMZsiP4+NOe6yrgio7ojG3Au8IU1KrkLrSMsupTqbzwspoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SWvm/YIk; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 919751F00898;
+	Wed,  3 Jun 2026 08:19:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780474778;
+	bh=JcYA2oFILzb6weg9P7dCyayz8oFLadaOOZdee5CSgOQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=SWvm/YIkETWsR0+HHd1o6beNzkUd/KKdobYbOCh05Lm+8gIhs4MeR+3xEl9obrGdG
+	 AqcHLpG+OjWP2m7BsJBU+w0xU5V8XWaQZdVFMqF2foRkSTVshRUZ3jBL06Yq4ZYkKZ
+	 r3ejsSBdm40Il+8NXJWCnIJBhRXtMKtKnoJ8damxm3i8IVOV7xGr7zopfE81FnvcvM
+	 2+SwgmTWA9QHrG56g+yJI4cAMWTZ77P1vkUOCmIEYxu9VzCwF3xUNQxzB5PFWANCy7
+	 LbG/3gyg1Jk94lM2BPOHAWJZMO7miFmlMolxUJO+8WE8gW6PUUgS3eB7MGF/ut7272
+	 6j8u8jBMoB40Q==
+Message-ID: <096df078-1027-44f2-b02c-c0a27b646a87@kernel.org>
+Date: Wed, 3 Jun 2026 11:19:33 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: ClueGetter at submission7.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=herrie.org; t=1780474666; h=from:subject:to:cc:
- references:in-reply-to:date:mime-version:content-type;
- bh=oBKV6LyjynghyhkhfEqiKMnROJH+Ew21FK35o5B1ne0=;
- b=iHI9q+fQrFIjggI7y7Ru+ZqZGGBffQjcOOHfLaQ/DrLxBMXUFsdkuy8M8xrT0vkLpOA+Qd
- 5tj4VkeliAQ3BDOLFbY52DUGqEHo0te7oTLfj9//hobwrmHZCt3Qa2Rh+U6WvuHdGxobMw
- LdHQPMXEYUNp6vhAdQpn7xyE/Cuk3O1BVmmYyQ7EjH5mPHYVr971EkIk/4UyRXhdODArFF
- zeD7WMMKnDlF0S2QQKw/tV1L46K7Rcf7EL1leEoScLf7jJaLqEuGDgLmvMB8x7Ig+m6bp4
- iWvPieEsmB3nivzVc/2haL/QTbPJUdbQWEVEPNDRk/IbMCe2hq8IUT/BD9eEHw==
-X-Report-Abuse-To: abuse@transip.nl
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/7] pinctrl: renesas: rzg2l: Generalize the power
+ source code
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: geert+renesas@glider.be, linusw@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, claudiu.beznea@tuxon.dev,
+ linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20260528080439.615958-1-claudiu.beznea@kernel.org>
+ <20260528080439.615958-2-claudiu.beznea@kernel.org>
+ <ah9BkQjUKwZ9KXMH@ninjato>
+Content-Language: en-US
+From: Claudiu Beznea <claudiu.beznea@kernel.org>
+In-Reply-To: <ah9BkQjUKwZ9KXMH@ninjato>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306067-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306068-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:wsa+renesas@sang-engineering.com,m:geert+renesas@glider.be,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:claudiu.beznea@tuxon.dev,m:linux-renesas-soc@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:claudiu.beznea.uj@bp.renesas.com,m:wsa@sang-engineering.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[claudiu.beznea@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[glider.be,kernel.org,gmail.com,bp.renesas.com,tuxon.dev,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:github.com@herrie.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
-	DMARC_NA(0.00)[herrie.org];
-	DKIM_TRACE(0.00)[herrie.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,herrie.org:mid,herrie.org:dkim,herrie.org:from_mime,herrie.org:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sang-engineering.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7DE67635A5A
+X-Rspamd-Queue-Id: C0C54635BDC
 
-Thank you for the review feedback.
 
-Acknowledged — the ti,lm8502-leds / ti,lm8502-haptic compatible strings
-are a Linux MFD driver artifact rather than a hardware description. The
-description text also mentions the OS split, which should be removed.
 
-Before preparing v2 I wanted to ask how you would prefer this structured:
+On 6/2/26 23:48, Wolfram Sang wrote:
+> On Thu, May 28, 2026 at 11:04:33AM +0300, Claudiu Beznea wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> The current functions used to get/set the pin power source check the
+>> OTHER_POC register, which is specific to the RZ/G3L SoC only. To allow the
+>> code to be extended for other power source functionalities (e.g. I3C on
+>> RZ/G3S), generalize the functions used to get/set the pin power source.
+>>
+>> For this, introduce the struct rzg2l_register_masks data structure whose
+>> purpose is to store SoC specific register bit masks. The members of this
+>> structure are then used in rzg2l_caps_to_pwr_reg() to retrieve the bitmask
+>> corresponding to a SoC specific power source capability.
+>>
+>> The conversion between HW specific power source values and SW specific
+>> power source values is now handled through rzg2l_pwr_reg_val_to_ps() and
+>> rzg2l_ps_to_pwr_reg_val().
+>>
+>> Finally, to keep the code generic, the register update in
+>> rzg2l_set_power_source() was changed to a read-modify-write approach to
+>> cover all cases.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> 
+> Have you seen the comment from Sashiko about this patch? Doesn't sound
+> entirely wrong to me...
 
-Option A — LP55xx style (no sub-node compatibles):
-Individual led@N nodes (reg 0..9 = D1..D10) go directly on the parent,
-following leds-lp55xx.yaml. The haptic function is a plain haptic sub-node
-(config container for ti,invert-direction) with no compatible. The parent
-driver instantiates children via mfd_cells[] keyed on platform device name;
-DT parsing is done in the parent driver. This requires companion changes to
-the MFD core and child drivers.
+Indeed, that should be fixed. I'll add a fix patch in the next version.
 
-Option B — Single flat node:
-Fold everything into the parent node. LED channels and haptic described via
-properties directly on the I2C device node, no sub-nodes at all. Simpler
-binding, but per-LED led-max-microamp config becomes a list property rather
-than per-node, which is less readable for a 10-channel device.
+Thank you for testing this,
+Claudiu
 
-My inclination is Option A as it matches the LP55xx precedent, but happy to
-follow your preference or any third approach you have in mind.
-
-Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
 
