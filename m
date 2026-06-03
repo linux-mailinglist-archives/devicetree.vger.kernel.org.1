@@ -1,253 +1,205 @@
-Return-Path: <devicetree+bounces-306180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306194-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9EAVHdYZIGolvwAAu9opvQ
-	(envelope-from <devicetree+bounces-306180-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:11:02 +0200
+	id gBW6GQ8dIGpFwAAAu9opvQ
+	(envelope-from <devicetree+bounces-306194-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:24:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF307637599
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:11:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5AF4637764
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:24:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="NL/O1bMl";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306180-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306180-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b="zOHk/Hi8";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306194-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306194-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3BF67303AAB3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 11:57:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 15AE43122623
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 12:03:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D39746AECF;
-	Wed,  3 Jun 2026 11:57:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCF0F47A0B7;
+	Wed,  3 Jun 2026 12:02:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 308133D7D77
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 11:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 504B2472771;
+	Wed,  3 Jun 2026 12:02:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780487871; cv=none; b=MdibNREMIlKH/6pFqfT85vF7ZK4N6U+2nf5xovXl+I+QeV/oxvkNneeNaxf54VlYnX0hjyoL1jPFqCNSFEAGcHWZPt1k49cKZ+vH5ZZgtV4IR/0ORVR3+OOkAP/0qt/IlfWFDTMcIPA+GmvdEXEaL7RQmxy1nHCj3VNGL+EiGsU=
+	t=1780488166; cv=none; b=c/9xB1pS1X3wRGVGqaeDBkCQzZ8oMb+CtenoSRMFSts6jASOYiWi7STDQa0cNF+t0/HmEa6DZjijfvopjzPGME3Yz8zAS8kGSkQV8sGIA+CZDNrbqROCEpO1FmaV5XYbQogYPurLrL3+tuQXRDErVTumm6MMsuaF0WxHM7Mst3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780487871; c=relaxed/simple;
-	bh=DjUT5aBftEoRVGB+npU3/j0yKiFQnkBpVVQvAeO5wKo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=szzw94V+FiDOatpk6LDbqvoyWLnvMgNn05w5aLUJ4bwmIXJU2B71S4pHgvyQiU+sZeH7nxuNwkVf4waRwZqEZbrP+UsR8CPdVLWtnF3+umK+B++sckCgd0pKBhrcv8Bxr982/f8tmLc0x4aGsiWCIkgUDYNDdRlfSJw6a/SYhZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NL/O1bMl; arc=none smtp.client-ip=209.85.215.181
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-c85a2cd51e7so219369a12.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 04:57:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780487869; x=1781092669; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=k28+kaUswliCdDHq3RJFU26Ptqjhc+SLCKZBma4M7JU=;
-        b=NL/O1bMlk4QJ2sE8mQiHiU/FI3VARjgA0CIPz3ZBDuVyj+o9mhLNGJ3Bbjwq60qTWc
-         dv8oAGHiYz4yL1dxlNIv6QQnE2ymSm5DPppCn165wuJLGwAdpvunHaz+doTgOCka9IiY
-         fIpu/zs5J6GNrN1EG23TITm6uuWM8qvcjA0gwLluU52qp/5K4OwQRuRyDWOa7NS+ssqa
-         G4nKwrDclUvUH/CYTb/j57SzOU+di6hKaQHiT62L3tUEVQlX/FPHaDHMwFG8ZYBBc91k
-         RH+jnRCLBN/FwzXJMjj86yorp4yBoyxVaIOEtQtRXM5cbfZ0gxFma3vSGJ+zoNRlPK3s
-         UeSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780487869; x=1781092669;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=k28+kaUswliCdDHq3RJFU26Ptqjhc+SLCKZBma4M7JU=;
-        b=jrJZ67IznECtzukS0EvAtLqiekWsLx5ljRfAwp+4ZHeKz5F7MlcsATmspQMhIT6OaF
-         S0JAW+SfVj54Nk6MB62WvFxz9oq9pFUPxyRaqeqNQ5gUfD6X3QbeY9eSdT9CQF+o/U2K
-         Xn/1Q32TYTJ+WT7pvUCMtNRlOjix73AN2jKLYcmmtiuX9MtoDen2pxZr8goutATQtJ2J
-         D5Qy1oTD5FwW68lQw9XaaLWDW1qnN6mHpvyDmvM4X+mG5b9amTLBh1q4l1ZN7QEllT7f
-         4bmnsinugMh6PvJpAocCY+QFBuibNl8UTqb7IxuhbP6jAGFZFu8T5/TSxq/SqzeInx22
-         pmzw==
-X-Gm-Message-State: AOJu0YynUn0GPQ+jjL2ItTEqeIWGgJQm3aqmP7DRnaSL3fwWFGTSlGfw
-	hjTmuXpcMW4NqSEUoxA5ehtSzwtI4XkRVRWyq86SPcgD/jblQHSamUx4
-X-Gm-Gg: Acq92OFeNQFAen4nH+73qT6O5WyIGdkihlw/BuR8ThLt+sT5Ckij5wFsp9htbaW4PPA
-	i/CihsI6ArnDqYeMbhDjLeoH4WH5kPdndXCljyGmm4GL9LEH0ikAhzuF9s9xIOsFudTsMhWC+ik
-	BlentYXf5hChJFFbLvPdWeILslEycY+Xao9PFPXKV8cINhHyi/PVDVCdYpXFcLi2aM972v1XpqP
-	fYc7WpKkK/SxAr35J4e/G3f7d9z5xMQpbEY0ep5qcbMAelajsdz2qtm2TvXCVdsCuXkNXGpZXVm
-	iILbiIMi6wBRRsyp+EC2YfqLEX1+LAJoFXZNCNINS1L7lPGKKnvCE3qGyAOJmGgCzeYoUxH6iJf
-	+6RdxFOYvxFBNZhYkMoS5inirrtFi2871WCtJRcqcbp/0mHlEeL8OAbyle8RSwJm+Ygl5/j19wE
-	QyaYQ7X6R4OFJGPBlpI0rj0+cTWW0JdjU4d/jWMomUSqg=
-X-Received: by 2002:a05:6a00:1916:b0:83e:f208:b11d with SMTP id d2e1a72fcca58-84282f381e5mr1983863b3a.6.1780487869275;
-        Wed, 03 Jun 2026 04:57:49 -0700 (PDT)
-Received: from [192.168.1.4] ([2401:4900:881d:447d:455f:e104:1ee9:e49d])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84282221470sm3132067b3a.6.2026.06.03.04.57.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 04:57:48 -0700 (PDT)
-From: Bhargav Joshi <j.bhargav.u@gmail.com>
-Date: Wed, 03 Jun 2026 17:27:39 +0530
-Subject: [PATCH] dt-bindings: arm: omap: ti,omap-dmm: Convert to DT schema
+	s=arc-20240116; t=1780488166; c=relaxed/simple;
+	bh=4hAvxFKZHSSYDu4jd5tgpaEVXw4jjuLOgjT1fSUJXdU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ujL3vSeKYZutoPqOWkSAA1r6t27CO6EGBcb4+UkLfaoGKYDLiApZheo6rpVZWaxLJ1QY+DRL8n7jGECQ5Ucmq7BSh8PMhclumHALw4yZNjRSZh51dbzEsb6TcBLLgS0vz+VDJOJAtYV4Gcdo3RYTVZxSy9YE7krYa5gEKHf8P3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zOHk/Hi8; arc=none smtp.client-ip=185.246.84.56
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id C7BFD1A02F4;
+	Wed,  3 Jun 2026 12:02:42 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 9CF906029E;
+	Wed,  3 Jun 2026 12:02:42 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6B2E010888CC6;
+	Wed,  3 Jun 2026 14:02:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1780488159; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=GoX6DBzQK3bxyZ5OdVtosgZMLBjxal2wLwkY1xIOuVY=;
+	b=zOHk/Hi8JD/C9VtAkNDNIJVHHA+Zy+7bjj/cIUNKDZ62QTyUW0bI7M+zGWVR2El8BqSBDS
+	Hl2PFZzOVOPBcXjT0UkBBVZO0b+KGHO0cOTpI6xDWarmjH0cs6sjsqkh4HUprnZiQNbdwl
+	Oan14+IAe13dthCR8ygFKoQGkEaKSFtRnZxOFc0hR0DOxtMrd+RZys80XwKffH8FtJEYv4
+	rP0gwpnvXX/iV4mjVw6xezVqRCi+VOb1f+00fM2j1STaGyFs5bltFqntdDxyVpjZ71nCsS
+	fDQBmEO5ud3P9i2YAM2S4ioRLnsZyGidZ1a9WAeeHS+LnmeAh85csLIvMkdZZA==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: linux-hwmon@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-binding: hwmon: Add binding for ADT7462
+Date: Wed, 03 Jun 2026 14:02:33 +0200
+Message-ID: <2eAABoDhQ5ih8u_5nmvpxw@bootlin.com>
+In-Reply-To: <20260603113526.232F61F00898@smtp.kernel.org>
+References:
+ <20260603-adt7462-bindings-v1-1-301304bcf774@bootlin.com>
+ <20260603113526.232F61F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260603-ti-omap-dmm-v1-1-ef491c4699d9@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDU2MD3ZJM3fzcxALdlNxc3WRzEzMzyzQDg+Q0IyWgjoKi1LTMCrBp0bE
- QfnFpUlZqcgnICKXaWgCIp2NRbwAAAA==
-X-Change-ID: 20260530-ti-omap-dmm-c74669f00cf2
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- goledhruva@gmail.com, m-chawdhry@ti.com, daniel.baluta@gmail.com, 
- simona.toaca@nxp.com, j.bhargav.u@gmail.com
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780487865; l=3673;
- i=j.bhargav.u@gmail.com; h=from:subject:message-id;
- bh=DjUT5aBftEoRVGB+npU3/j0yKiFQnkBpVVQvAeO5wKo=;
- b=91zrxjqErYzbjHVg/nfgNCPicq0FT0Z6dYt/V702pgmCu3YfH51KxJeCMDSUAhJoSkIPSWTbN
- XjBd/wCaP+4AVBH4/hikcIPkn2iRGsG/jnPDO6Q56xORaBlIlAhWmay
-X-Developer-Key: i=j.bhargav.u@gmail.com; a=ed25519;
- pk=IqNDwUZKECEA+n8wXctFLBbYL9NhFstZNbOznm/nX1k=
+Content-Type: multipart/signed; boundary="nextPart_tMOLV3iRx26hmmL8Ybxbw";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,ti.com,nxp.com];
-	TAGGED_FROM(0.00)[bounces-306180-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306194-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:goledhruva@gmail.com,m:m-chawdhry@ti.com,m:daniel.baluta@gmail.com,m:simona.toaca@nxp.com,m:j.bhargav.u@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:danielbaluta@gmail.com,m:jbhargavu@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[jbhargavu@gmail.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbhargavu@gmail.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:linux-hwmon@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,bootlin.com:dkim,bootlin.com:mid,bootlin.com:email,bootlin.com:from_mime,bootlin.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DF307637599
+X-Rspamd-Queue-Id: B5AF4637764
 
-Convert the TI OMAP Dynamic Memory Manager (DMM) dt binding
-from text format to DT schema.
+--nextPart_tMOLV3iRx26hmmL8Ybxbw
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: sashiko-reviews@lists.linux.dev
+Subject: Re: [PATCH 1/2] dt-binding: hwmon: Add binding for ADT7462
+Date: Wed, 03 Jun 2026 14:02:33 +0200
+Message-ID: <2eAABoDhQ5ih8u_5nmvpxw@bootlin.com>
+In-Reply-To: <20260603113526.232F61F00898@smtp.kernel.org>
+MIME-Version: 1.0
 
-During conversion following changes were made:
-- Make the 'ti,hwmods' property optional and mark it deprecated as it is
-  no longer used, it is kept to support legacy dtbs.
-- Add the missing required property 'interrupts' to example node.
+On Wednesday, 3 June 2026 13:35:25 CEST sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential
+> issue(s) to consider: - [Medium] Incomplete binding migration:
+> `onnn,adt7462` is not migrated to the new schema and remains in
+> `trivial-devices.yaml`. --
+> 
+> commit 8e3b73cf675c7a9534a713ae61c15469f85f0d06
+> Author: Kory Maincent <kory.maincent@bootlin.com>
+> 
+> dt-binding: hwmon: Add binding for ADT7462
+> 
+> This commit adds the ADT7462 hwmon Controller device tree bindings
+> documentation.
+> 
+> > diff --git a/Documentation/devicetree/bindings/hwmon/adt7462.yaml
+> > b/Documentation/devicetree/bindings/hwmon/adt7462.yaml new file mode
+> > 100644
+> > index 0000000000000..745a371affd65
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hwmon/adt7462.yaml
+> 
+> [ ... ]
+> 
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - adi,adt7462
+> 
+> [Severity: Medium]
+> Should the existing onnn,adt7462 compatible string be migrated into this
+> new schema?
+> 
+> The ADT7462 device is already documented in trivial-devices.yaml under
+> the compatible string onnn,adt7462, which is actively used in existing
+> device trees.
+> 
+> By introducing this new schema without including onnn,adt7462 and without
+> removing it from trivial-devices.yaml, existing device trees will not
+> benefit from the detailed schema validation. This also leaves the subsystem
+> with two conflicting, fragmented representations of the same hardware.
 
-Signed-off-by: Bhargav Joshi <j.bhargav.u@gmail.com>
----
- Documentation/devicetree/bindings/arm/omap/dmm.txt | 22 ---------
- .../devicetree/bindings/arm/omap/ti,omap-dmm.yaml  | 53 ++++++++++++++++++++++
- 2 files changed, 53 insertions(+), 22 deletions(-)
+I've just done a bit of research and it looks like this component is now 
+commercialized by Onsemi, so the existing compatible would be the correct one.
 
-diff --git a/Documentation/devicetree/bindings/arm/omap/dmm.txt b/Documentation/devicetree/bindings/arm/omap/dmm.txt
-deleted file mode 100644
-index 8bd6d0a238a8..000000000000
---- a/Documentation/devicetree/bindings/arm/omap/dmm.txt
-+++ /dev/null
-@@ -1,22 +0,0 @@
--OMAP Dynamic Memory Manager (DMM) bindings
--
--The dynamic memory manager (DMM) is a module located immediately in front of the
--SDRAM controllers (called EMIFs on OMAP). DMM manages various aspects of memory
--accesses such as priority generation amongst initiators, configuration of SDRAM
--interleaving, optimizing transfer of 2D block objects, and provide MMU-like page
--translation for initiators which need contiguous dma bus addresses.
--
--Required properties:
--- compatible:	Should contain "ti,omap4-dmm" for OMAP4 family
--		Should contain "ti,omap5-dmm" for OMAP5 and DRA7x family
--- reg:		Contains DMM register address range (base address and length)
--- interrupts:	Should contain an interrupt-specifier for DMM_IRQ.
--- ti,hwmods:	Name of the hwmod associated to DMM, which is typically "dmm"
--
--Example:
--
--dmm@4e000000 {
--	compatible = "ti,omap4-dmm";
--	reg = <0x4e000000 0x800>;
--	ti,hwmods = "dmm";
--};
-diff --git a/Documentation/devicetree/bindings/arm/omap/ti,omap-dmm.yaml b/Documentation/devicetree/bindings/arm/omap/ti,omap-dmm.yaml
-new file mode 100644
-index 000000000000..0b375385a7ee
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/omap/ti,omap-dmm.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/omap/ti,omap-dmm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OMAP Dynamic Memory Manager (DMM)
-+
-+maintainers:
-+  - Bhargav Joshi <j.bhargav.u@gmail.com>
-+
-+description:
-+  The dynamic memory manager (DMM) is a module located immediately in front of
-+  the SDRAM controllers (called EMIFs on OMAP). DMM manages various aspects of
-+  memory accesses such as priority generation amongst initiators, configuration
-+  of SDRAM interleaving, optimizing transfer of 2D block objects, and provide
-+  MMU-like page translation for initiators which need contiguous dma bus
-+  addresses.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,omap4-dmm
-+      - ti,omap5-dmm
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ti,hwmods:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Name of the hwmod associated to DMM, which is typically "dmm"
-+    deprecated: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    dmm@4e000000 {
-+      compatible = "ti,omap4-dmm";
-+      reg = <0x4e000000 0x800>;
-+      interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
-+      ti,hwmods = "dmm";
-+    };
+Furthermore, the suggested binding only has a "reg" property and a 
+"compatible" property, so it seems like the trivial-devices binding is enough 
+to describe it for now.
 
----
-base-commit: 8fde5d1d47f69db6082dfa34500c27f8485389a5
-change-id: 20260530-ti-omap-dmm-c74669f00cf2
+I'll drop patch 1/2 in version 2.
 
-Best regards,
---  
-Bhargav
+Thanks,
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart_tMOLV3iRx26hmmL8Ybxbw
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmogF9kACgkQKCYAIARz
+eA565BAAiUnofwPG57qpJi2HrG9yKzAvGwJBZIJyDsTJFLIYkI+HdkbsrBpxRml/
+i6x3Lp4p2CCXpzua1RrMGoxlz+t7CrkS1OxrS6vC0j6nIsU3iR/r9KNkX4SU6t3A
+zMCTivlr2ZG0zgHy05XAlpa30KGba3uNYAcJQozET9f+165S7M1euv9vzt1aMLQ3
+r6lQP0NcpNAJ898f01vD5cIUj6ZF1iuK4eGBoCvTiLRvj24c9wddkjmBEI7+nZ1G
+/XFMSg2UIHwLl6HqWgJGE/UheElE8qzHvr6VpGYND0lHnczvfpqQJgb93wTYAakf
+gDC131Ep/5AX7oPI3pQ+hio9iTeb5qtqVkZN7d3NSXdJj6ONvi2mS3+2qyGvWBBH
+1XVU6t3ZEMvctbs5BDliWqkg1/gxJrHdyFaEfsLyBbiCu8dtpyz1QL3IxzCVLk3g
+1VuJORSl5cEuezkgp/Z8KjQQRCdhS8W8oFKnUtSOjgT8vvph7r732UI/DRO7AvNw
+dTSqj5gelVEOsGeDxbZNbEFIV+eUxM8xeqS7blkanXTxLWjuXoJyoITj8zzbKsuU
+12RlIurihXQhK52pQjM//LEzLmmeX2+5mLjJvHAJ6aPXVd2iSygv3vr/vK9B483g
+DU2Xh2BUn8dewzdMzkgUIphPyMWJZNtUCUAbWsP9ZgCm7R3NBbE=
+=8wQ0
+-----END PGP SIGNATURE-----
+
+--nextPart_tMOLV3iRx26hmmL8Ybxbw--
+
+
 
 
