@@ -1,171 +1,206 @@
-Return-Path: <devicetree+bounces-306072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306076-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bNpQElfnH2qhsAAAu9opvQ
-	(envelope-from <devicetree+bounces-306072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:35:35 +0200
+	id 6QKNDb/mH2pRsAAAu9opvQ
+	(envelope-from <devicetree+bounces-306076-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:33:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A01F4635C04
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:35:34 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81D80635BA7
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:33:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Kp0RB3mn;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306072-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306072-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=PZq4RFbW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306076-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306076-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CB4443084450
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:25:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DC126300EC91
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9440C423A63;
-	Wed,  3 Jun 2026 08:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74D9408002;
+	Wed,  3 Jun 2026 08:27:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FD741C314;
-	Wed,  3 Jun 2026 08:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C03A409632
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 08:27:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780475112; cv=none; b=B/PDHh5kwz+mLVuU7SNuRcSvG641cP8QrcFo924glV8NFUeSrnA065Cv37pEi1X4AREO/xTCNX7Bkr8inE2G1f27gHP4UYAbexMenRGsaTDR9gq79YfoYTe6abcTXZTYfbJqit21HAG4NAak0FWX0bSQU+zDIwW0P01Z0f81B2A=
+	t=1780475251; cv=none; b=AkHEQUVoS56Bn+E0JrLXwAN+BLf236yMecsoRAIqEYzCmHm/KDrnFhAmvJmHaafgBKy1thJbHEYuk0OAek4KVLbqDXCv4RWgFHxIKii5SquZqO2TsO+is1QXPq48QKzJYk7yvd7danaW9xrIrH0r5W6MEoKvPMOqF0CY3Ts4wTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780475112; c=relaxed/simple;
-	bh=nVhPK1Ite25Pa5B9ZRy6N25I+44LyzmpxuEq1fd02Uc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=a1D1KRbUHMb1Yf9JtQhnbI/hIxZhdzIsnzmkvgmpqOAA8eQom09T9toPn8gOAGuexdnnxp5p/oFumo6396LWEESGvUpBECBNnZPC7U216ZQOxl/qsEmKcSc3HYJtjl0v9oACx5gYRTYNmKcnmvyatz/IUkEXYaP1IPjW0KwG3XA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kp0RB3mn; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F32ED1F0089A;
-	Wed,  3 Jun 2026 08:25:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780475111;
-	bh=kyj/ZEwoUj3qmXmSokMJB0S858wBTWhbj8un9+kesYU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Kp0RB3mncnZ2kFMGoK8t7eQvfAJeHkBuiX0i9T56MltJXpglhcWgUPZgyXdY/x0ir
-	 I2RdEWOGQesGYzal8vPYvzyx2QG+RClYqi1bLY3fz/mTuvuUWDNcugVZlUr+akXol1
-	 Bf4gNjRbjgpSZz1LUJnpnTSURT6C2HrJpE1B6zzTMH2hGlI3dPWpL+SL+bfdYk+RYv
-	 B5VTiwHRlPRzLU9QegoqLqUsc1CYwu45GODMK3qnI7vd/d2Pa+ILXDJ3bWbAGKzUVK
-	 aGBt7WzxDTFowQKYv4hhnfyGoF6tqbCtgfZjb8TdizpEaeCHKjI0bpmEQ5eKHoshCq
-	 PlFrdtzjQkJPg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RESEND v4 6/8] can: flexcan: add NXP S32N79 SoC support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Ciprian Costea" <ciprianmarian.costea@oss.nxp.com>
-Cc: Frank.Li@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, conor+dt@kernel.org
-In-Reply-To: <20260603071342.641874-7-ciprianmarian.costea@oss.nxp.com>
-References: <20260603071342.641874-7-ciprianmarian.costea@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 08:25:10 +0000
-Message-Id: <20260603082510.F32ED1F0089A@smtp.kernel.org>
+	s=arc-20240116; t=1780475251; c=relaxed/simple;
+	bh=LumPu9r+mU+AnVH6fxprfAR9qbofx4edE4J4MDl1xdM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LdhUgihoQeVgIdmWDKxTzZCRjS56Iz+BV6HBiq0Oy2ZQyeDQ3e51z5wI59AFFoofEn7RZZTcUv9h90y+r/jwwdCrL3jqWwHAqnwBjB8ZQCpP0Y7+A+wJNpU8pEA4YThCkiX7dBMl1uoBgDRTtxRYOv3GXoZB5RejJAFtd/X0BAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PZq4RFbW; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-49041fb8c23so93302335e9.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 01:27:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780475249; x=1781080049; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FgsYYdbc7FC5Ra24DrI1H09WIybYU7rqzf3pPkcoQ7k=;
+        b=PZq4RFbWUQV0XeD+9B8dsXzJJ7eSaOUTEi4U5+HrnW7DrF7/TTNO4MnnSgvmmxdkI7
+         eqxPuDi8VR+M2QguQmh1+MYDiiWf/ttsurwgCEBP9kN6El0bc1K2dfdvfniv8IAIgoat
+         DJLLPC9l2RtTbhYImHQLbq9nQImSobpNQDRPQEiBgCixxxgwgM5AZphXjq0qF/wM3MS3
+         RiZsdZOx6aLkUon9q32yetH4Dok3QNOdiXkSi48Rh9He18p8S7fcmDdiZhu6ABKW+7NW
+         /gkD4lb9aKH5LdPe2ca0gmen+wJB0Yj5Y8oKys2A4pXKZoX+VOOir5BPS5vF8QQlsdUE
+         BD2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780475249; x=1781080049;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FgsYYdbc7FC5Ra24DrI1H09WIybYU7rqzf3pPkcoQ7k=;
+        b=rK84uPgw2Od5R5pCu+HquBCHJ5rPH9vINIH7v8U0kON9E8UxfxBufVFQeVbz+rWSPG
+         1O6rhsW0STsiHJ6cdv8k10FAu7NnQJiS3HOrqqv7Gh/aTP7WvcG5GWPBdJ80babUSFGC
+         czbKDEy1y1LHgZT839Z/4R291T//ttRkYAQH779bLqkEebvVG5MrbL+4EjsaUiHYWMod
+         /o4d0OEmJQzCCQGWjVCTo8EZHCdvsNfjJCsl2qGfAyFSDD2f3wy+T5obnTXjwfU6FHtk
+         0MJy/Z9RduQ0bUIrQA241WbuaYHhMbn0MZFB52sP1KwrFSwTWEltiR2Kgk++ehZ0hd5S
+         lP7A==
+X-Forwarded-Encrypted: i=1; AFNElJ+PXXE82BGM9fAc+YabKZXrxV8CMYFu2aE3VpR/JCxrj9ZPMt8rgdmHPPIt3MtqEUuR5Etxiahc96+W@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZbskXRmqVajv7D/VvMN2favJ/7smNU1k4Mfv5y4V41asNJw+d
+	wvI8aqBRnjKdd5uCsfxigJ5An3htvr6n0D9US3DFYf3lIcNhp5/t5q/d
+X-Gm-Gg: Acq92OG+eGy+y7SSIOkqGiF54QekJ4QztOqVpwWYNy3PKAlMmuyc860vQBg3uKiNle5
+	aKB6zNVjArJnzQ18o7OCCb3mU+jDr0K1eyctGani8l0zHj4+UZey8uTs2VfiC9SfsaQAmQ9vypI
+	FeWWvDRg0cN3gh2gS8wN5D2ATgnZEZc2eBcnDef9cSgm/qx2QewSczscoMFlFKEeqIE0oYt+/OQ
+	5Y1hzGBJN3TdMfhuLc04OGh0EGenBOo1Aqe2FHn8f5FlMeH50a3f4+Lt5+6YPMpgdzkvpMxpPnW
+	Y0wd0GD+kkyUBY0ZIWQTEIB5URRNMK//ftm5y0TRGTcgP1pkUU9urB57NccCG8SLwWxVxyFDSCO
+	hTMAyHm4PsXCScMZTcKAGNfxYqSKdHK1Uq0/M5PNMAhNhti8VXhT0nIbU5QcVTrx99MKUEakEyD
+	stmyYKKPUdyTPwtIlXRt6A5qeHmw==
+X-Received: by 2002:a05:600c:6748:b0:490:9df1:f0d5 with SMTP id 5b1f17b1804b1-490b5fe64d9mr38872955e9.28.1780475248655;
+        Wed, 03 Jun 2026 01:27:28 -0700 (PDT)
+Received: from nsa ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f2e4004sm5814991f8f.9.2026.06.03.01.27.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jun 2026 01:27:28 -0700 (PDT)
+Date: Wed, 3 Jun 2026 09:28:26 +0100
+From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+To: rodrigo.alencar@analog.com
+Cc: Michael Auchter <michael.auchter@ni.com>, linux@analog.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH 06/12] iio: dac: ad5686: consume optional reset signal
+Message-ID: <ah_k9A9535Vz6PCw@nsa>
+References: <20260602-ad5686-new-features-v1-0-691e01883d27@analog.com>
+ <20260602-ad5686-new-features-v1-6-691e01883d27@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260602-ad5686-new-features-v1-6-691e01883d27@analog.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-306076-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306072-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url];
-	FORGED_RECIPIENTS(0.00)[m:ciprianmarian.costea@oss.nxp.com,m:Frank.Li@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,analog.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A01F4635C04
+X-Rspamd-Queue-Id: 81D80635BA7
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+On Tue, Jun 02, 2026 at 05:33:53PM +0100, Rodrigo Alencar via B4 Relay wrote:
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> 
+> Add RESET pin GPIO support through an optional reset control, which is
+> local to the probe function. Also, include delays for power-up time and
+> reset pulse width.
+> 
+> Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> ---
+>  drivers/iio/dac/ad5686.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
+> index 4a8c587ff116..345ca2436332 100644
+> --- a/drivers/iio/dac/ad5686.c
+> +++ b/drivers/iio/dac/ad5686.c
+> @@ -8,12 +8,14 @@
+>  #include <linux/array_size.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/bitops.h>
+> +#include <linux/delay.h>
+>  #include <linux/dev_printk.h>
+>  #include <linux/errno.h>
+>  #include <linux/export.h>
+>  #include <linux/kstrtox.h>
+>  #include <linux/module.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/reset.h>
+>  #include <linux/sysfs.h>
+>  #include <linux/wordpart.h>
+>  
+> @@ -471,6 +473,7 @@ int ad5686_probe(struct device *dev,
+>  		 const struct ad5686_chip_info *chip_info,
+>  		 const char *name, const struct ad5686_bus_ops *ops)
+>  {
+> +	struct reset_control *rstc;
+>  	struct ad5686_state *st;
+>  	struct iio_dev *indio_dev;
+>  	int ret, i;
+> @@ -506,6 +509,16 @@ int ad5686_probe(struct device *dev,
+>  		return dev_err_probe(dev, -EINVAL,
+>  				     "invalid or not provided vref voltage\n");
+>  
+> +	rstc = devm_reset_control_get_optional_exclusive(dev, NULL);
+> +	if (IS_ERR(rstc))
+> +		return dev_err_probe(dev, PTR_ERR(rstc),
+> +				     "Failed to get reset control\n");
 
-Pre-existing issues:
-- [High] Wakeup functionality is broken for multi-IRQ FlexCAN platforms (li=
-ke S32N79) because `enable_irq_wake()` is called on the mailbox interrupt (=
-`dev->irq`) instead of the state/wakeup interrupt (`priv->irq_err`).
---
+On top of what Andy stated, I'm fairly sure
+devm_reset_control_get_optional_exclusive() returns with the GPIO
+asserted.
 
-commit 39bd2be7b5ab93fd5fb7064b8e7d3eac344ed38f
-Author: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-
-can: flexcan: add NXP S32N79 SoC support
-
-This patch introduces support for the NXP S32N79 SoC in the FlexCAN driver.
-It adds a new device data structure specifying necessary quirks, including
-multiple interrupt handling, and registers the new compatible string.
-
-> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
-xcan/flexcan-core.c
-> --- a/drivers/net/can/flexcan/flexcan-core.c
-> +++ b/drivers/net/can/flexcan/flexcan-core.c
-> @@ -397,6 +397,15 @@ static const struct flexcan_devtype_data nxp_s32g2_d=
-evtype_data =3D {
->  		FLEXCAN_QUIRK_SECONDARY_MB_IRQ,
->  };
-> =20
-> +static const struct flexcan_devtype_data nxp_s32n_devtype_data =3D {
-> +	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
- |
-> +		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_USE_RX_MAILBOX |
-> +		FLEXCAN_QUIRK_BROKEN_PERR_STATE | FLEXCAN_QUIRK_SUPPORT_FD |
-> +		FLEXCAN_QUIRK_SUPPORT_ECC | FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX |
-> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR |
-> +		FLEXCAN_QUIRK_IRQ_BERR,
-
-[Severity: High]
-This isn't a bug introduced by this patch, but will wakeup functionality be
-broken for this new platform since it uses multiple interrupts?
-
-In flexcan_suspend() and flexcan_resume(), the driver hardcodes
-enable_irq_wake(dev->irq) and disable_irq_wake(dev->irq):
-
-flexcan_suspend() {
-	...
-	if (device_may_wakeup(device)) {
-		enable_irq_wake(dev->irq);
-	...
-}
-
-For multi-IRQ platforms using FLEXCAN_QUIRK_IRQ_BERR, dev->irq is dedicated
-to mailboxes, while state changes and wakeups (FLEXCAN_ESR_WAK_INT) are
-routed to priv->irq_err.
-
-Because enable_irq_wake() is never called for priv->irq_err, will the
-interrupt controller mask the actual wakeup interrupt during suspend,
-preventing the CAN controller from waking up the CPU?
-
-> +};
 > +
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603071342.6418=
-74-1-ciprianmarian.costea@oss.nxp.com?part=3D6
+> +	udelay(5); /* power-up time */
+> +	reset_control_assert(rstc);
+> +	udelay(1); /* reset pulse: comfortably bigger than the spec */
+> +	reset_control_deassert(rstc);
+> +
+>  	/* Initialize masks to all ones */
+>  	st->pwr_down_mask = ~0;
+>  	st->pwr_down_mode = ~0;
+> 
+> -- 
+> 2.43.0
+> 
+> 
 
