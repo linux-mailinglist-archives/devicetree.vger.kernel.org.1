@@ -1,239 +1,417 @@
-Return-Path: <devicetree+bounces-305979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305992-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bBlbCFbGH2oNpwAAu9opvQ
-	(envelope-from <devicetree+bounces-305979-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:14:46 +0200
+	id ydXJApDOH2qZqAAAu9opvQ
+	(envelope-from <devicetree+bounces-305992-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:49:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 106FF634938
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:14:45 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C71A634D22
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:49:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ew.tq-group.com header.s=default2602 header.b=mybKwaa6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305979-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305979-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=ew.tq-group.com;
+	dkim=fail ("headers rsa verify failed") header.d=norik.com header.s=default header.b=Xa55WF9p;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305992-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-305992-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 06F163014424
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 06:14:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BA6953047352
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 06:48:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E6CA3845BC;
-	Wed,  3 Jun 2026 06:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D7A3955CE;
+	Wed,  3 Jun 2026 06:48:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD1F3DD51C;
-	Wed,  3 Jun 2026 06:14:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133953932E8;
+	Wed,  3 Jun 2026 06:48:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780467279; cv=none; b=WZTOlyulN3YCgsZ29FXIB4Rp1nOOm0AFh/+Iv5df4LTuS++vN7JChkSJvJ4TO1sYl+QGJ7QZC+YnkZT1oTTypUjaEfJE7czC7OyvLE4P4yA2qp3C3qUTrQPtrH1ROF7TC21Dz3qoaEIksMAyDmUNhoHdpUiuNrBCUm09Ktc+A0w=
+	t=1780469323; cv=none; b=A53/40k2kzV3F0eKq9tuY3RJZGB6AG1wqTEf4cWzkU03+i7/ZfxAbGX2q2cWZ73yjJhvWxIc8yULz+OjbUFMz+fxfSbbh7G27LMg/prQz8AsdjvOTtPP73RUf8hJDl1xMTk70vQSVUd3nO+QcrImYC0ai1XkewMHm7AH3F8ydmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780467279; c=relaxed/simple;
-	bh=+EkKV6fRcL8CNzedG2Xv5DSrKE4UUBiPO3WTBuC8mLc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Pvq0NquHt1VDnu4Wcf6/OhYq/j4545E243x/me+Ijfx8gHOTOXhLwcrgT39VU0qzx9bsvzifkc9U6o7cfqHOGxRwl2x9zJ6jXSM0CM3DAG5e7Sz3QjOBvmA/Z+IJS0L24jXbF3w9mVPxyeNP6YjtJvXGZ5o8SJMwMMQedkGsIeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=mybKwaa6; arc=none smtp.client-ip=188.40.3.216
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=Content-Type:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=y607uulUmr2CvX+maPSBeo2KBP9xki0r6+5VJWHdYvU=; b=mybKwaa6U1ItEswUwSRZmjRCrw
-	iHrrj57zxLf+hUxQJy+HH9Ywpsa7ffWFIGHADkkytXwUpe3XAPBPvLC4jo57NT2tuFKPsG4fdF40M
-	v9isdzBXg9tEMl86O9+3xEcLrBNd1uM4ncEan7sNI+G38H6z3i2zpCk9ZApUZrkiIuTXNGztXLHDj
-	f4Ck1hkHHdozzSvuDoDb4mjUrG30Lok8O79K50sHRsa9jLNOGLttCQpbQNKyChWHdNrwelblB/RD7
-	PllGwaowjA/aCPtnmPBf/7P5ShYIyz76XKmPlQi36ERgnsZkwNNhgodUUT1Gy+CdPWcM2ZhjuJbDS
-	h6u4a12w==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wUes4-000Goq-1Q;
-	Wed, 03 Jun 2026 08:14:32 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy05.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1wUes3-0000R1-18;
-	Wed, 03 Jun 2026 08:14:32 +0200
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: linux-phy@lists.infradead.org, Ioana Ciornei <ioana.ciornei@nxp.com>,
- Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Tanjeff Moos <tanjeff.moos@westermo.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Subject:
- Re: [PATCH v2 phy-next 13/15] dt-bindings: phy: lynx-10g: initial document
-Date: Wed, 03 Jun 2026 08:14:31 +0200
-Message-ID: <5829252.LvFx2qVVIh@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20260602090356.ewl5bezjxyqys6ee@skbuf>
-References:
- <20260529171509.1163787-1-vladimir.oltean@nxp.com>
- <2842502.mvXUDI8C0e@steina-w> <20260602090356.ewl5bezjxyqys6ee@skbuf>
+	s=arc-20240116; t=1780469323; c=relaxed/simple;
+	bh=R6mYurVSngnDC42d0BRjIhMQ+eUy9yfltEFAqUJDvVs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s269s7zgk+U3uOandVyCuWsxZdKQym6rGypqaO+Nl13vHhI3mIB80bfbnfOmHxREljVTX/2x1f0slPq1mcLDFeLQ+EEZa0ercbz5lHEKwTCcG3vSbePTxgE2TiS7NPllPVb6XIoyplkkfkM5bvzlM9K2/EO0jaulegOobJiROyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=Xa55WF9p; arc=none smtp.client-ip=46.19.12.180
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=dbX87z8LjPJwQt55Q5pDLHPc+DkK4Jni9A43QZIbxnk=; b=Xa55WF9p5Oja3fEwvjBjL+hgxr
+	p2b9jhSDVWiE/Ig+Rs2H6HQZ65AnMMPbI6TIFsGZEOIR+rSz5nas0fpKXtIWwuC2MMbXV/ZZ6fm8V
+	avPmC5j+84WHT60jNFWxpQDfdhBappDEmzOBBzKyR7BT7laWwmkAC3oEAtKXVqn/HLZMTNrjz6v6U
+	mN5ysrSrfQII2OFtzIpc2QqjPQZ7KR2eEtjvkA/kix6VRiFNt5iw2eFLzJJBeclErZnFVkUy+i3Wv
+	0fH9k3IEiHUxtH5Jf8AUNzqdlFXyQ9GzxqBkvm1FvPbYe5fo7wQH7mWJ6FCsSI1b+dI6mgCAs8PEK
+	rjjtEgLg==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:48996 helo=florijan-nb..)
+	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.4)
+	(envelope-from <florijan.plohl@norik.com>)
+	id 1wUeuu-00000009fV2-32RJ;
+	Wed, 03 Jun 2026 08:17:28 +0200
+From: Florijan Plohl <florijan.plohl@norik.com>
+To: Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de
+Subject: [PATCH v3] arm64: dts: imx{91,93}-phyboard-segin: Add peb-av-18 overlays
+Date: Wed,  3 Jun 2026 08:15:01 +0200
+Message-ID: <20260603061726.2908262-1-florijan.plohl@norik.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Virus-Scanned: Clear (ClamAV 1.4.3/28019/Tue Jun  2 08:33:27 2026)
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cp2.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: florijan.plohl@norik.com
+X-Authenticated-Sender: cp2.siel.si: florijan.plohl@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [2.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_DKIM_REJECT(1.00)[norik.com:s=default];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-305979-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:vladimir.oltean@nxp.com,m:linux-phy@lists.infradead.org,m:ioana.ciornei@nxp.com,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:tanjeff.moos@westermo.com,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
-	HAS_ORG_HEADER(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS(0.00)[m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:upstream@lists.phytec.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[norik.com];
+	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org];
+	HAS_X_GMSV(0.00)[florijan.plohl@norik.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	HAS_X_AS(0.00)[florijan.plohl@norik.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[florijan.plohl@norik.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	HAS_X_SOURCE(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[florijan.plohl@norik.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-305992-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,devicetree.org:url,vger.kernel.org:from_smtp,tq-group.com:url,steina-w:mid]
+	DKIM_TRACE(0.00)[norik.com:-];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_X_ANTIABUSE(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,norik.com:mid,norik.com:from_mime,norik.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 106FF634938
+X-Rspamd-Queue-Id: 9C71A634D22
 
-Hi Valdimir,
+Add overlay for the PHYTEC Audio/Video adapter module PEB-AV-18 on
+phyBOARD-Segin-i.MX91/93 boards. The supported AC220 display is
+Powertip PH800480T032-ZHC19 panel with a backlight and Ilitek
+touch-screen controller.
 
-Am Dienstag, 2. Juni 2026, 11:03:56 CEST schrieb Vladimir Oltean:
-> Hi Alexander,
->=20
-> On Mon, Jun 01, 2026 at 08:34:25AM +0200, Alexander Stein wrote:
-> > Hi,
-> >=20
-> > Am Freitag, 29. Mai 2026, 19:15:07 CEST schrieb Vladimir Oltean:
-> > > Add a schema for the 10G Lynx SerDes. This is very similar to the mod=
-ern
-> > > form of the 28G Lynx SerDes, which is very much the intention.
-> > >=20
-> > > We allow both forms of #phy-cells =3D <1> in the top-level provider
-> > > and #phy-cells =3D <0> in the per-lane provider for more flexibility =
-to
-> > > consumers, and because the kernel code is shared with the 28G Lynx wh=
-ich
-> > > already has that support for compatibility reasons.
-> > >=20
-> > > Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> > > ---
-> > > Cc: devicetree@vger.kernel.org
-> > > Cc: Conor Dooley <conor+dt@kernel.org>
-> > > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > > Cc: Rob Herring <robh@kernel.org>
-> > >=20
-> > > v1->v2:
-> > > - move patch later in series, right before driver
-> > > - deliberately ignoring this Sashiko feedback:
-> > >   https://lore.kernel.org/linux-phy/20260529125017.ifqunh52gdzhthdg@s=
-kbuf/
-> > > ---
-> > >  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 131 ++++++++++++++++=
-++
-> > >  1 file changed, 131 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10=
-g.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml =
-b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> > > new file mode 100644
-> > > index 000000000000..993f076bba4e
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> > > @@ -0,0 +1,131 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/phy/fsl,lynx-10g.yaml
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml
-> > > +
-> > > +title: Freescale Lynx 10G SerDes PHY
-> > > +
-> > > +maintainers:
-> > > +  - Vladimir Oltean <vladimir.oltean@nxp.com>
-> > > +
-> > > +description:
-> > > +  The 10G Lynx is a multi-protocol SerDes block which handles networ=
-king, PCIe,
-> > > +  SATA and other high-speed interfaces. It is present on most QorIQ =
-and
-> > > +  Layerscape SoCs. The register map is common, but the integration is
-> > > +  SoC-specific, with the differences consisting in register endianne=
-ss, the
-> > > +  number of lanes, protocol converters available per lane and their =
-location in
-> > > +  the PCCR registers. Some SoCs have multiple SerDes blocks and thos=
-e differ in
-> > > +  their protocol capabilities per lane.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    description:
-> > > +      There is intentionally no generic fsl,lynx-10g compatible stri=
-ng due to
-> > > +      the hardware inability to report its capabilities, despite hav=
-ing a
-> > > +      common register map.
-> > > +    enum:
-> > > +      - fsl,ls1028a-serdes
-> > > +      - fsl,ls1046a-serdes1
-> > > +      - fsl,ls1046a-serdes2
-> > > +      - fsl,ls1088a-serdes1
-> > > +      - fsl,ls1088a-serdes2
-> > > +      - fsl,ls2088a-serdes1
-> > > +      - fsl,ls2088a-serdes2
-> >=20
-> > Silly question: What about LS1043A? AFAIK it has a single serdes block.
-> >=20
-> > Best regards
-> > Alexander
->=20
-> My understanding is that hardware validation for LS1043A was not
-> budgeted for the main two features why the lynx-10g driver is necessary:
-> RCW override for 1G <-> 10G dynamic protocol switching and KR link
-> training. As such, this SoC isn't supported by the SerDes driver in the
-> NXP BSP either. With the exception of 1G <-> 2.5G minor protocol
-> switching, having a lynx-10g driver would not be very useful for the
-> LS1043A as is, without a procedure from h/w validation to do RCW
-> override.
+Signed-off-by: Florijan Plohl <florijan.plohl@norik.com>
+---
+Changes in v3:
+- Link to v2: https://lore.kernel.org/all/20260409090432.130489-1-florijan.plohl@norik.com/
+- rebase on top of v7.1-rc6
 
-Thanks for the explanation. If there is no need for serdes driver then good.
-I was just wondering why ls1043a was not in the list, although it's quite
-similar to ls1046a.
+Changes in v2:
+- Link to v1: https://lore.kernel.org/all/20260402070826.970012-1-florijan.plohl@norik.com/
+- Improve commit message to clarify what PEB-AV-18 is
+- Move imx91-phyboard-segin-peb-av-18 dtb entry next to
+  the other imx91 phyboard-segin definition in Makefile
+- Introduce common imx91-93-phyboard-segin-peb-av-18.dtsi
+- Adjust drive-strength values
 
-Thanks and best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+ arch/arm64/boot/dts/freescale/Makefile        |  6 ++
+ .../imx91-93-phyboard-segin-peb-av-18.dtsi    | 93 +++++++++++++++++++
+ .../imx91-phyboard-segin-peb-av-18.dtso       | 57 ++++++++++++
+ .../imx93-phyboard-segin-peb-av-18.dtso       | 57 ++++++++++++
+ 4 files changed, 213 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso
 
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 711e36cc2c99..e87cf999e0a5 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -442,6 +442,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm-s.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin.dtb
++
++imx91-phyboard-segin-peb-av-18-dtbs += imx91-phyboard-segin.dtb imx91-phyboard-segin-peb-av-18.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin-peb-av-18.dtb
++
+ dtb-$(CONFIG_ARCH_MXC) += imx91-tqma9131-mba91xxca.dtb
+ 
+ imx91-tqma9131-mba91xxca-lvds-tm070jvhg33-dtbs := imx91-tqma9131-mba91xxca.dtb imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtbo
+@@ -474,6 +478,7 @@ imx93-phyboard-nash-jtag-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-jta
+ imx93-phyboard-nash-peb-wlbt-07-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-peb-wlbt-07.dtbo
+ imx93-phyboard-nash-pwm-fan-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-pwm-fan.dtbo
+ imx93-phyboard-segin-peb-av-02-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-av-02.dtbo
++imx93-phyboard-segin-peb-av-18-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-av-18.dtbo
+ imx93-phyboard-segin-peb-eval-01-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-eval-01.dtbo
+ imx93-phyboard-segin-peb-wlbt-05-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-wlbt-05.dtbo
+ imx93-phycore-rpmsg-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-segin.dtb imx93-phycore-rpmsg.dtbo
+@@ -481,6 +486,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-jtag.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-peb-wlbt-07.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-pwm-fan.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-av-02.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-av-18.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-eval-01.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-wlbt-05.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93-phycore-rpmsg.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi b/arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi
+new file mode 100644
+index 000000000000..53d5cbcd798b
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi
+@@ -0,0 +1,93 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (C) 2026 PHYTEC Messtechnik GmbH
++ *
++ * Author: Florijan Plohl <florijan.plohl@norik.com>
++ */
++
++#include <dt-bindings/clock/imx93-clock.h>
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		brightness-levels = <0 4 8 16 32 64 128 255>;
++		default-brightness-level = <5>;
++		power-supply = <&reg_vcc_3v3_con>;
++		pwms = <&pwm7 0 5000000 0>;
++	};
++
++	panel {
++		compatible = "powertip,ph800480t032-zhc19";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_panel>;
++
++		backlight = <&backlight>;
++		enable-gpios = <&gpio4 29 GPIO_ACTIVE_HIGH>;
++		power-supply = <&reg_vcc_3v3_con>;
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&dpi_to_panel>;
++			};
++		};
++	};
++
++	pwm7: pwm-7 {
++		compatible = "pwm-gpio";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_pwm7>;
++		gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
++		#pwm-cells = <3>;
++	};
++
++	reg_vcc_3v3_con: regulator-vcc-3v3-con {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC3V3_CON";
++		regulator-max-microvolt = <3300000>;
++		regulator-min-microvolt = <3300000>;
++	};
++};
++
++&dpi_bridge {
++	status = "okay";
++};
++
++&dpi_to_panel {
++	remote-endpoint = <&panel_in>;
++	bus-width = <18>;
++};
++
++&lcdif {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_lcdif>;
++	assigned-clocks = <&clk IMX93_CLK_VIDEO_PLL>;
++	assigned-clock-rates = <27272728>;
++	status = "okay";
++};
++
++&lpi2c2 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	touchscreen@41 {
++		compatible = "ilitek,ili2130";
++		reg = <0x41>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_touchscreen>;
++		interrupt-parent = <&gpio4>;
++		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&gpio4 1 GPIO_ACTIVE_LOW>;
++		touchscreen-size-x = <800>;
++		touchscreen-size-y = <480>;
++		wakeup-source;
++	};
++};
++
++&media_blk_ctrl {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso
+new file mode 100644
+index 000000000000..35edf9b0fb0f
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso
+@@ -0,0 +1,57 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (C) 2026 PHYTEC Messtechnik GmbH
++ *
++ * Author: Florijan Plohl <florijan.plohl@norik.com>
++ */
++
++#include "imx91-pinfunc.h"
++#include "imx91-93-phyboard-segin-peb-av-18.dtsi"
++
++&iomuxc {
++	pinctrl_lcdif: lcdifgrp {
++		fsl,pins = <
++			MX91_PAD_GPIO_IO00__MEDIAMIX_DISP_CLK		0x57e
++			MX91_PAD_GPIO_IO01__MEDIAMIX_DISP_DE		0x51e
++			MX91_PAD_GPIO_IO02__MEDIAMIX_DISP_VSYNC		0x51e
++			MX91_PAD_GPIO_IO03__MEDIAMIX_DISP_HSYNC		0x51e
++			MX91_PAD_GPIO_IO04__MEDIAMIX_DISP_DATA0 	0x51e
++			MX91_PAD_GPIO_IO05__MEDIAMIX_DISP_DATA1		0x51e
++			MX91_PAD_GPIO_IO06__MEDIAMIX_DISP_DATA2		0x51e
++			MX91_PAD_GPIO_IO07__MEDIAMIX_DISP_DATA3		0x51e
++			MX91_PAD_GPIO_IO08__MEDIAMIX_DISP_DATA4		0x51e
++			MX91_PAD_GPIO_IO09__MEDIAMIX_DISP_DATA5		0x51e
++			MX91_PAD_GPIO_IO10__MEDIAMIX_DISP_DATA6		0x51e
++			MX91_PAD_GPIO_IO11__MEDIAMIX_DISP_DATA7		0x51e
++			MX91_PAD_GPIO_IO12__MEDIAMIX_DISP_DATA8		0x51e
++			MX91_PAD_GPIO_IO13__MEDIAMIX_DISP_DATA9		0x51e
++			MX91_PAD_GPIO_IO14__MEDIAMIX_DISP_DATA10	0x51e
++			MX91_PAD_GPIO_IO15__MEDIAMIX_DISP_DATA11	0x51e
++			MX91_PAD_GPIO_IO16__MEDIAMIX_DISP_DATA12	0x51e
++			MX91_PAD_GPIO_IO17__MEDIAMIX_DISP_DATA13	0x51e
++			MX91_PAD_GPIO_IO18__MEDIAMIX_DISP_DATA14	0x51e
++			MX91_PAD_GPIO_IO19__MEDIAMIX_DISP_DATA15	0x51e
++			MX91_PAD_GPIO_IO20__MEDIAMIX_DISP_DATA16	0x51e
++			MX91_PAD_GPIO_IO21__MEDIAMIX_DISP_DATA17	0x51e
++		>;
++	};
++
++	pinctrl_panel: panelgrp {
++		fsl,pins = <
++			MX91_PAD_CCM_CLKO4__GPIO4_IO29			0x1133e
++		>;
++	};
++
++	pinctrl_pwm7: pwm7grp {
++		fsl,pins = <
++			MX91_PAD_CCM_CLKO3__GPIO4_IO28			0x1133e
++		>;
++	};
++
++	pinctrl_touchscreen: touchscreengrp {
++		fsl,pins = <
++			MX91_PAD_ENET1_MDIO__GPIO4_IO1			0x11e
++			MX91_PAD_ENET1_RD2__GPIO4_IO12			0x1133e
++		>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso
+new file mode 100644
+index 000000000000..11f7d7502be4
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso
+@@ -0,0 +1,57 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (C) 2026 PHYTEC Messtechnik GmbH
++ *
++ * Author: Florijan Plohl <florijan.plohl@norik.com>
++ */
++
++#include "imx93-pinfunc.h"
++#include "imx91-93-phyboard-segin-peb-av-18.dtsi"
++
++&iomuxc {
++	pinctrl_lcdif: lcdifgrp {
++		fsl,pins = <
++			MX93_PAD_GPIO_IO00__MEDIAMIX_DISP_CLK		0x57e
++			MX93_PAD_GPIO_IO02__MEDIAMIX_DISP_VSYNC		0x51e
++			MX93_PAD_GPIO_IO01__MEDIAMIX_DISP_DE		0x51e
++			MX93_PAD_GPIO_IO03__MEDIAMIX_DISP_HSYNC		0x51e
++			MX93_PAD_GPIO_IO04__MEDIAMIX_DISP_DATA00	0x51e
++			MX93_PAD_GPIO_IO05__MEDIAMIX_DISP_DATA01	0x51e
++			MX93_PAD_GPIO_IO06__MEDIAMIX_DISP_DATA02	0x51e
++			MX93_PAD_GPIO_IO07__MEDIAMIX_DISP_DATA03	0x51e
++			MX93_PAD_GPIO_IO08__MEDIAMIX_DISP_DATA04	0x51e
++			MX93_PAD_GPIO_IO09__MEDIAMIX_DISP_DATA05	0x51e
++			MX93_PAD_GPIO_IO10__MEDIAMIX_DISP_DATA06	0x51e
++			MX93_PAD_GPIO_IO11__MEDIAMIX_DISP_DATA07	0x51e
++			MX93_PAD_GPIO_IO12__MEDIAMIX_DISP_DATA08	0x51e
++			MX93_PAD_GPIO_IO13__MEDIAMIX_DISP_DATA09	0x51e
++			MX93_PAD_GPIO_IO14__MEDIAMIX_DISP_DATA10	0x51e
++			MX93_PAD_GPIO_IO15__MEDIAMIX_DISP_DATA11	0x51e
++			MX93_PAD_GPIO_IO16__MEDIAMIX_DISP_DATA12	0x51e
++			MX93_PAD_GPIO_IO17__MEDIAMIX_DISP_DATA13	0x51e
++			MX93_PAD_GPIO_IO18__MEDIAMIX_DISP_DATA14	0x51e
++			MX93_PAD_GPIO_IO19__MEDIAMIX_DISP_DATA15	0x51e
++			MX93_PAD_GPIO_IO20__MEDIAMIX_DISP_DATA16	0x51e
++			MX93_PAD_GPIO_IO21__MEDIAMIX_DISP_DATA17	0x51e
++		>;
++	};
++
++	pinctrl_panel: panelgrp {
++		fsl,pins = <
++			MX93_PAD_CCM_CLKO4__GPIO4_IO29			0x1133e
++		>;
++	};
++
++	pinctrl_pwm7: pwm7grp {
++		fsl,pins = <
++			MX93_PAD_CCM_CLKO3__GPIO4_IO28			0x1133e
++		>;
++	};
++
++	pinctrl_touchscreen: touchscreengrp {
++		fsl,pins = <
++			MX93_PAD_ENET1_MDIO__GPIO4_IO01			0x11e
++			MX93_PAD_ENET1_RD2__GPIO4_IO12			0x1133e
++		>;
++	};
++};
+-- 
+2.43.0
 
 
