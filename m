@@ -1,217 +1,251 @@
-Return-Path: <devicetree+bounces-306439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306441-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Fa+WOxhuIGpe3QAAu9opvQ
-	(envelope-from <devicetree+bounces-306439-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 20:10:33 +0200
+	id LXgAHnxuIGpw3QAAu9opvQ
+	(envelope-from <devicetree+bounces-306441-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 20:12:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B91D63A6AC
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 20:10:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C247263A6DB
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 20:12:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=q88hB1FX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306439-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306439-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b="sr7j0KG/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306441-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306441-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0F985304D5C7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 18:03:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BE4093014DA0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 18:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86E3837DE89;
-	Wed,  3 Jun 2026 18:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F8B83839B9;
+	Wed,  3 Jun 2026 18:06:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011023.outbound.protection.outlook.com [52.101.70.23])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4069B30C172;
-	Wed,  3 Jun 2026 18:03:25 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780509807; cv=fail; b=RQtF0LxrBHTV5fiPXrWloPwPui9SIOtIIYNbnEdkDi3aWyBtpnyXxRsvSSmvOhcVie/o8UEkmBIQNUrSLKktqLj5vUtT9zQgulgBWn8MZ4KHSY6+j6iPUXfZqly1E/DAn0fT63Whuh0PKQR7EnEUrTahE+2gspj/ETAaCxZmIhI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780509807; c=relaxed/simple;
-	bh=cqb4q0S3uXKbP36ho3R5I6mFU7jXgewtTgF5On6CyVo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AuSc4glA7RBSgur4FV7hYnjBHQVN46OLDtWRfiHx1NEl15YPUS6Ajv4Q/dAdV0PxKzQDdNnG80lTdtiMKimKVTrJSHofadpy+GGknmK8v88ISWZZ8XU7piyX4zv4UHeui5RaxEFVIic4q1v/HGh+TBGvWfoPEDX5En/Q+3uHD5A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=q88hB1FX; arc=fail smtp.client-ip=52.101.70.23
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SwmR4XZW32bc4KU5qIeSEmBGcIYAGa24RqdWVojpWDfvHDfUh9j0U1XlBt2eRyNJdskDmjf0kD1PDeQW4sNUlXjo7EXar0Kos5qW/CPie8VgzoNRQqlpn4rCGGI8sMw5lRq+tV6SmuEZBgzjjsVLOWRNnt6Nsk/FWxSHpZnQvYaiVYqOp98CPjPBMNdKRPrktD4q641K9dFIbPffN93tU8fnjSGUv1XMjbJwWWT8cDaUDXnVoSsYeuxmmxgZG4USWgtgVhzlw6Beqw0GWyUT7k0aR5m2vh6aP7ydYExoXmkJvFT/VOoYUqfgYqfKG3F0L8E/xcnOgPaGYp37asfj5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=13P7YHxg/mku6Uo59uEDP4B8lcGCSGxzrmDjOgaw2Vo=;
- b=fdQRNU6ydBKYjo6Tn8xKXJ57CXvjYYwlTiSgKQ+QtuP9yJW6Na0zOus7GGTRYJWbeqd41QxlTsAk9HJtio/OXmtqkr2cyj5/Ni+rg4VTjmJC0cQdfRBi6W0RuJYBPEAWo3lQkRvTYa2UxbiRxIHqXCw3kXWAhPOCkMIMxrVK5z2qdcPubd2ZqDI0UAlZME74+JbC4vmLZiDAbcbfT2c62mObcxSo2G7fv4yCytAWMdmDZmRlx1l9xyy1Yut0JF6y4Zb2cF3GQHVhR518akw73kWgQqGslHzTs769pcJ+D2BJ9lAETUzChP6M+AVuQ/Dqth+qxW4JvfeSZvikZtt1fg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=13P7YHxg/mku6Uo59uEDP4B8lcGCSGxzrmDjOgaw2Vo=;
- b=q88hB1FXoetg/PQJhSS/gArUJyNLIgcZM72SkMDAXjaVHVacT/hHYWhGrGfxcMF3F6t9PsSpJixo0msX+SypnDBA/ksJ/3gs4YVaZ6zAPA71J9Fl0zLGL2qCR/oH8Ew63bxFQ9ei20WHy+kpis6ACfrn/ZUpDdjBO1OEGpgSRfBx81BjEsOxiz1mx0L9T715xqgaZ0TMezgZCJNTuGqpYutJz+zrXdyxCId8QuvHWx85rgkf+Dk1uBqGsz/YibHywtlcwtLi7RVmbAzDNLShZPoFHIxPCmQvCu5krIUuZKlW4rx2zs4eUVUKL03FPxSPmyIBG+IFHQmqWzoLVajeZg==
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
- by DUZPR04MB9967.eurprd04.prod.outlook.com (2603:10a6:10:4dd::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Wed, 3 Jun 2026
- 18:03:22 +0000
-Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
- ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0092.006; Wed, 3 Jun 2026
- 18:03:21 +0000
-From: Frank.Li@oss.nxp.com
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/1] arm64: dts: imx91-var-som-symphony: fix RGB_SEL handling
-Date: Wed,  3 Jun 2026 14:03:13 -0400
-Message-ID: <178050978998.2666928.308593257375905265.b4-ty@b4>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260529134850.22196-1-stefano.r@variscite.com>
-References: <20260529134850.22196-1-stefano.r@variscite.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PH8PR15CA0010.namprd15.prod.outlook.com
- (2603:10b6:510:2d2::6) To GV2PR04MB11799.eurprd04.prod.outlook.com
- (2603:10a6:150:2cf::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5783A3033DE;
+	Wed,  3 Jun 2026 18:06:07 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780509967; cv=none; b=ppSSUR1+x7ApO0admKwxamrIKgmzFPbu8aw5q7JC0E5Zg4pJKr4zipl9k60+q+5pallsnttAyW5W9p6Kn7lxn42Rzx3qCZ/L+42B/GaKWJwzoahchwB7hCWt3m88MMWwXPYo0FZ/0mvv27VGQrR/+vHLnM9F41OWWH+Myutccq0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780509967; c=relaxed/simple;
+	bh=mW+xaqDNXTlMQUworvAQXvJL5yRZV2v+IskzATtrYqs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VmFLKzu7kcmo7g3EM1kjyO0cdCgwlq/7mYNHxklE+1MBjSLEZckrvBtj/GFE/uOPElavMG/H6edpwI+fXzvUvKgNh16Idca0RRg32Ye2bIAVmYgYRgpHstgHKZ7eAWQUHNJLMEK9KKH7c63KsXVA2N1Pbqx86Y/Uw28Jxb5GLCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sr7j0KG/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D813DC2BCB0;
+	Wed,  3 Jun 2026 18:06:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780509966;
+	bh=mW+xaqDNXTlMQUworvAQXvJL5yRZV2v+IskzATtrYqs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=sr7j0KG/T2YZdBekIJlPJWBwJ2HkNybWKdPDZgZCpkxkVFu3eGarbAuVDIha9utCB
+	 +pBGG3W5zZED754oUgHb/nIZ9jraLeGplIvmIMh9z7ofYWFUOu3FQ4mVur5QxngVMF
+	 2LeVK7PlzWfyrcgyEsHjdFiyGRXqEzLrlekxix9oFABKXR3L2o7fUzq/H9fn8UgErb
+	 ubpzqHsJqhvfJZIg7BAAJh4jtfOr7oRp5qoPhROeJpFvqaHl/+qZz0dNm8dm/eVjvf
+	 xkJ7MDUqnALRjXFlGaGVNvmhyI4B+SuBCAGmcr5mVjS2kTLlpkBJUTZZN5jwyrJZY+
+	 7x6cLE6FQWQfQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C8CFFCD6E55;
+	Wed,  3 Jun 2026 18:06:06 +0000 (UTC)
+From: Ronald Claveau via B4 Relay <devnull+linux-kernel-dev.aliel.fr@kernel.org>
+Subject: [PATCH v7 0/8] Add VIM4 MCU/FAN support
+Date: Wed, 03 Jun 2026 20:05:22 +0200
+Message-Id: <20260603-add-mcu-fan-khadas-vim4-v7-0-594ba8a965d8@aliel.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|DUZPR04MB9967:EE_
-X-MS-Office365-Filtering-Correlation-Id: f9d2e420-de41-472b-52c7-08dec19a6617
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|19092799006|366016|7416014|376014|1800799024|6133799003|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info:
- fz6rW1LmsQkUEExuu3y63bBCL+wXqUZecIOKVHBsFA1HJxjn5+LVk2efNIPEF6D25FmsEIrqXTE3Y7wl3DttKPb42fN602h8k/PQErXpIATUbVDaL2HnXwUvMdF/mujniklkEP1uEkoPe4I53brg1MghqN/tnfGLy4jHPHQ/GETU7Piygg6LX8JtewBcsy4DgZj/srX6ayIRny4MntQJFpxLg3un6r7hoGI3HFY8dNb1rbersCo4mMZLwRVCEQuFYbfLFq7wQ5gFyBzoKNGKK/6Wu2PJlc0xaHfYbQF6NML/PE9htnZhqowaoIf2zVNQB9zADPUZmQY3xfCogyYk/hrWaXZRdG2L6gnJ47Lie0HfWGgxkmpe32ptVi0ow/lNM5qqQ6roXucm/Fbzg+0MGRl10usibdk9zd99F5MH+nDlr3wYoG2DlZmKCLdZim2y4TrIiapdxYFj11zk6rwEoWzQ25rWJfEce7Dmmc4Pt4BWgZj8oS5Dva+fyqglNImv31o+CD2T6F7xfT+6gsqN4uTE/x0sBWc7PsManIHDMxmSpDvmaS3qExPgOeXDJ2/zKeJSA41qb0eW/XRmWsx3KFm7Juux1Ppol4/sNCVYUgODCiGYdt1n9dqEqSa1a05zuAdMiTmk5dGassL6zrkXmOekM/JpFZCmssRXoarEfKoqBA32/kkPLMiFFAC/WAdm
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(376014)(1800799024)(6133799003)(18002099003)(22082099003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?Q0xQZDNzUHVWWXlVWkNYclhKa0JZOW14UC90OGQ0MXVhZTJQUHlvRHJmYkts?=
- =?utf-8?B?TjNHVEVHWVpmSnl2UXpoUjNyMVhWV3pNVnRCK0hvNW1zWFJpcnlONHZPT2FK?=
- =?utf-8?B?eWZIdXNRSWdBUGRocFNyK012dHFwTTExeEVJbmRhTFlEeDRDTThZTGcxVURh?=
- =?utf-8?B?dnp1SUQ4WmdYT1BkYjlsZEt5c29FOWU4a21qUGNrTEJJZW5HOUNvd2hzTEw4?=
- =?utf-8?B?SXpjZm82Q25jYW5wU3RJK3Q1dDNiY3FoUFMrMytsbWQvdlJKZVNMTTRVeUVv?=
- =?utf-8?B?OWp0YzhFQ0I2L1RSMkhka0d6ZlRYamtEcTV4RmZDNFYvaVBYbTMxWFJnb1Yv?=
- =?utf-8?B?TzFhOHBrOGs5TkJWTGZkWDNUeFFuQmtHQ0FUaGFwSVo5aVF2bEQ0ZHRuTDNq?=
- =?utf-8?B?MnVocVlLQmM5WEFuSFhETDFVSkxjYmZlbEVKUW9ZTFZ0aWdTZitoZkNGR2s1?=
- =?utf-8?B?T1BUZk9aMjdIQjNMWlZVV1FzVFpVSC84UGs4WGpXcXNTTDFTTmdISUxBbmU5?=
- =?utf-8?B?MWM1WmUzaDduR1pmbzVKVU1naXg2SGg3K0VxdVdWeUZ3c1BUcGw4MTUyZU5v?=
- =?utf-8?B?dDBnMk5NQXQrb04xU3kzci9Pei9kNGpxU2lQbHhYaXVIenhWeFp5ZXFNcHBn?=
- =?utf-8?B?QTBZTmdpbzNPRXE2NVRkU3BvREZpM3JMTzdSTVpLYUNNVExYZ0Y0aEJJTCtG?=
- =?utf-8?B?TkcwcXdidG5RVDlmMEhaMGU5YzdlS2pFMElnSGRURVVNU2tMajBUaFRMcElv?=
- =?utf-8?B?ZFhNZlRtOE9Ub1VVeWY2TmFxeHJxS3ByV3VwaW5hem9nRDR1VmViUUFnZkhF?=
- =?utf-8?B?QVVjRXFFYm4vL1czam1QdWp2V01MVWR3M0puRWZ0alQrRlVtTXU3K08rb1Iw?=
- =?utf-8?B?OHFBbVhKMHM4NXVHeW44L0grQzFHT2lxUlZlWWU1TWdrRUQwN2Zmb1lLUmNU?=
- =?utf-8?B?OWZydEtQS1NFZThDRkY4WmRXblZlVStJQXB3QTc2MmduZ2tGaEpnaDdnWW9U?=
- =?utf-8?B?TlA3N2lDZ0xCS21GU2ZHZFVvUnBvdTVqMGVuREp3cjV1dDNRTGJGRXZVWDdq?=
- =?utf-8?B?UlRQdERRR2FVQzh6R1lDUitzR0RVQjBPSEdISWkwb21HNGdpUGdJUDRSZm1S?=
- =?utf-8?B?M1ZWMVQxMkFQR1lSdmlRQ2R2YUR0NjdBZ0M5WkRld2J3NlJGUXhKT0JkZkEw?=
- =?utf-8?B?TGdYaVlrd1k5UWV2ZGVKcktUNldyUFo2a0MrbXhrY0gzMHppVGdJd2ZZYVZx?=
- =?utf-8?B?TjNtSWxzMTdrc1MyeXJuTlpxakFrbExRcnVXY2dCczBLUDFnWHo5RjRsaktl?=
- =?utf-8?B?bUtuSmZUSUhoZHVTKzVMUWZpaUU2YTk1Y3hSQ091Z2I5R3dOZkRVMExzZHFM?=
- =?utf-8?B?dzJlc1VkcG1tL200ViswdTZJMGtoRVhCT1Ewd0xZWmN2TlJPcDBzOGY5U2Vo?=
- =?utf-8?B?YnpSeGo2N1NzVlFadEFuUWVXTjVRb1FxZkFUN2J5b3luQ2drTUdGUFlldFFM?=
- =?utf-8?B?ZUlsZzNiRjdqYlg0Q3hRZmNaV3RFZGhVV1pOdlJmMENmVlFWSnRoS3pNclQv?=
- =?utf-8?B?UmhLMm05WkVpMml6VldHelJQZnVRVm55SjJnWUQrZFBja3ZVdVg2QXhQV016?=
- =?utf-8?B?ZEJ2MlJoV1Zhb1lDZjl2Nm5Yblh6NFlGbjVFSjdJUmlVQnpMTm80bHFSci93?=
- =?utf-8?B?UVY0b2xDa2ZNRVRzUkJjY3FhbkVQbWRKTVBPOVlyaFFmcm5oYThvY09pNCt6?=
- =?utf-8?B?Z1RnTDhuNFdiV2lIZ0JWb0duejRabUVwdFlRQjdKdTc3T25iTHMvaVZBNWZk?=
- =?utf-8?B?NnBmcjl4SVl1alpDdW1ZeDFkM2xYUzlyKzRLVkxhUFZBWWFFYWtWbTlTTmtV?=
- =?utf-8?B?Y3kxNVphL0FNNk5zdCtCR1hONDE3dXpHMHo1ekJtbVo3YVhrUXNLSnNGb1hr?=
- =?utf-8?B?ZHdaWUowaGZlbEZxYWJPeXFqTldzR1JyVzlOckQxYWZkbTdJWHdWTXI0QlRH?=
- =?utf-8?B?b0FYZXdkbWRtQ1VKeDIvby9IZmkxK1NpVVdUZ1VpS1VURjhKQXRIODcySUs2?=
- =?utf-8?B?U2NJWnZVYk4vbCtvbjVPVkhQeXd2TGFLZTdNL0lVaXdCTUxEaWRPRTFlN0Yy?=
- =?utf-8?B?T0VKTE1ZMmxvV0wrUGQ4WGZ5MEtIVXNBdEZEdHFJa29Ndmk1MWNIcGtMSVBB?=
- =?utf-8?B?MUY0T21HRkVXRks2Vm9GT2w2SktZWUZId0phN2ZYU3dWQyt6WHQrbFhwY1Y1?=
- =?utf-8?B?WDZGVi9hYkt6R05IaXZ3K3NtYnBtRk1YMWRmVkxIbzlyN0dhWGNzY29SVlpD?=
- =?utf-8?B?T2lwaWg1YVRkMmlJZm5TdGdhNWM0ZGVSaW41akltZlkreStVSXM2TzNXdzlN?=
- =?utf-8?Q?UHqopHCXtY8RTPCo=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9d2e420-de41-472b-52c7-08dec19a6617
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 18:03:21.8160
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UapdOsWfhjP4OO4eODUgKjf0jWKHELV4X7J8JMEWS058jMwRnisR3+3SoRER7FwVr66ZM8B7vJmUObH1sn1I2VhK8SjOSkHg/x0q6wXg9MXhGV8tSK2cUtfU5VCVLJwB
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9967
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WS3W7bMAyFXyXw9RTon1YwDH2PYRekRC3aYqezn
+ aBF0Xcf4xZYmi2Y7ijhfIfi4Us389R47nabl27ic5vbcZQCPm26vMfxO6tWpO6stlF7bRWWooZ
+ 8UhVH9XOPBWd1boNXmE0mDsHlRJ2oHyeu7Wklf/32Vk/86yQGy9tlRzizysdhaMtuM/LTolYTZ
+ +GiH3iecbXfbT6/P0SdbPRha3SQwiijfjQct/vTAw6H4/eWt4L7srrjkverNgYMBWKthaQzh0j
+ O9YEohkzagtY+O83AH1XWgY2p16a3sRSHBSqZyOQLlFg8IwXtLfQfVQE4ke4xxR651OBdcUWXE
+ HM1GX0hq8miid31dMXs/XfrbCkP3kGwl8kIudGBFcuv0VdI4HB3th9NCZyugb0lNqVPxSTH0aE
+ wg08hF6o2QwH6p6nTSlJSbTzjoRX1OB0feVqeFUmUviTnKph3x7+1ZtXK6NUCajwdDmrimSVGi
+ rpnqqmg351Nd4l/3+blOD2veyZXl/z/u1Jno7TAjJW5YwbSD9IkH7Z1WpHS1hXG3cdYwYCsTCR
+ rvUt4g3FXGAP3MU4wGBFqAE3G0A3GX2GsuY/xgvEejPFo+2rLDSZcY/x9TLh0U3NFMAHIuhtM/
+ IMJJt7HRMFkOYmiqT6GK8zr6+tvC1Uf1R8EAAA=
+X-Change-ID: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+To: Neil Armstrong <neil.armstrong@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Beniamino Galvani <b.galvani@gmail.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5648;
+ i=linux-kernel-dev@aliel.fr; h=from:subject:message-id;
+ bh=mW+xaqDNXTlMQUworvAQXvJL5yRZV2v+IskzATtrYqs=;
+ b=owGbwMvMwCWm1SvKXP3cUInxtFoSQ5ZCzs8LqTOF56nYr3y74sTp6qriz1xyUovKE+drPP3vV
+ tGlKJbRUcrCIMbFICumyNI/1/LEu8tHz3zdo54CM4eVCWQIAxenAEzk4RRGhu+FFeuzGZOzZ8y9
+ eOGwpUtV5guPX1mLGNe/r3mU/938qRMjw6MJm6LWnVx96MD/wEiRc/ZHU2wCkn74fN+jdrLO+UC
+ gKR8A
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openpgp;
+ fpr=DFD863F61375BF917F0012173953305EF1D0EC3E
+X-Endpoint-Received: by B4 Relay for linux-kernel-dev@aliel.fr/default with
+ auth_id=744
+X-Original-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Reply-To: linux-kernel-dev@aliel.fr
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:stefano.radaelli21@gmail.com,m:Frank.Li@nxp.com,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-arm-kernel@lists.infradead.org,m:stefanoradaelli21@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306441-lists,devicetree=lfdr.de,linux-kernel-dev.aliel.fr];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andi.shyti@kernel.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:b.galvani@gmail.com,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:linux-amlogic@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-pm@vger.kernel.org,m:linux-kernel-dev@aliel.fr,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,m:bgalvani@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[vger.kernel.org,lists.linux.dev,gmail.com];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER(0.00)[Frank.Li@oss.nxp.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-306439-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[nxp.com,variscite.com,kernel.org,pengutronix.de,gmail.com,lists.infradead.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_TO(0.00)[linaro.org,kernel.org,baylibre.com,googlemail.com,gmail.com,intel.com,arm.com];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[linux-kernel-dev@aliel.fr];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.nxp.com:from_mime,NXP1.onmicrosoft.com:dkim,nxp.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aliel.fr:mid,aliel.fr:email,aliel.fr:replyto,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amlogic.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4B91D63A6AC
+X-Rspamd-Queue-Id: C247263A6DB
 
-From: Frank Li <Frank.Li@nxp.com>
+The Khadas VIM4 board features a different MCU variant compared to
+previous VIM boards.
+While it shares the same I2C-based communication model,
+it differs in some ways:
 
+  - A distinct register map with its own volatile/writeable register set
+  - A fan control with 0–100 levels instead of the 0–3 levels previously
+  - A fan power supply gated through a regulator
 
-On Fri, 29 May 2026 15:48:50 +0200, Stefano Radaelli wrote:
-> RGB_SEL is a board-level signal driven by the PCAL6408 GPIO expander on
-> the Symphony carrier board.
-> 
-> The signal needs to be driven high on the i.MX91 variant to keep the
-> board in the expected display configuration. Move the handling of this
-> line from a fixed regulator tied to the PCAL6408 supply to a GPIO hog on
-> the correct GPIO expander.
-> 
-> [...]
+This series adds support for this new variant by:
 
-Applied, thanks!
+  1. Refactoring the khadas-mcu MFD driver to use per-variant data
+     structures (regmap config, cells, fan platform data),
+     and adding the khadas,vim4-mcu compatible string.
 
-[1/1] arm64: dts: imx91-var-som-symphony: fix RGB_SEL handling
-      commit: b3801c6dd15f9dfebeba25b2308dd5143016d52d
+  2. Extending the fan thermal driver to retrieve the fan register
+     and maximum level from platform_data,
+     and to optionally manage a power regulator for the fan supply.
+
+  3. Adding the corresponding DTS node for the VIM4, wiring the MCU to
+     the I2C AO_A bus and exposing it as a thermal cooling device.
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
+---
+Changes in v7:
+- PATCH 3-4: Simplify the per-variant handling by using local variables in khadas_mcu_probe()
+             instead of introducing a dedicated data structure. Thanks to Lee's review.
+- Link to v6: https://lore.kernel.org/r/20260516-add-mcu-fan-khadas-vim4-v6-0-cccc9b61f465@aliel.fr
+
+Changes in v6:
+- PATCH 4: Address Lee's review comments:
+  - Use an enum to discriminate between MCU types instead of passing
+    MFD data through the DT match table
+  - Fix error code from -EINVAL to -ENODEV when no MCU type is matched
+  - Make khadas_mcu_fan_cells and khadas_mcu_cells const
+  - Use dev_err_probe() for regmap initialization error
+  - Document fan speed levels for max_level
+- Link to v5: https://lore.kernel.org/r/20260424-add-mcu-fan-khadas-vim4-v5-0-afcfa7157b23@aliel.fr
+
+Changes in v5:
+- PATCH 5: Replace devm_regulator_get_optional() with devm_regulator_get()
+           to simplify error handling and remove NULL checks, also
+           ordering as reverse christmas according to Neil's feedback.
+- Link to v4: https://lore.kernel.org/r/20260421-add-mcu-fan-khadas-vim4-v4-0-447114a28f2d@aliel.fr
+
+Changes in v4:
+- PATCH 1: limit fan-supply property by compatible according to Conor's feedback.
+- Link to v3: https://lore.kernel.org/r/20260417-add-mcu-fan-khadas-vim4-v3-0-a6a7f570b11b@aliel.fr
+
+Changes in v3:
+- PATCH 1: adding comment on vim4 compatible saying it is not discoverable,
+           thanks to Rob's and Neil's feedback.
+- Link to v2: https://lore.kernel.org/r/20260403-add-mcu-fan-khadas-vim4-v2-0-70536b22439a@aliel.fr
+
+Changes in v2:
+- PATCH 5: Add regulator_disable on suspend thanks to Neil's feedback.
+- Link to v1: https://lore.kernel.org/r/20260402-add-mcu-fan-khadas-vim4-v1-0-2b12eb4ac7b0@aliel.fr
+
+---
+Ronald Claveau (8):
+      dt-bindings: mfd: khadas: Add new compatible for Khadas VIM4 MCU
+      dt-bindings: i2c: amlogic: Add compatible for T7 SOC
+      mfd: khadas-mcu: Add per-variant configuration infrastructure and VIM4 support
+      mfd: khadas-mcu: Add support for VIM4 MCU variant
+      thermal: khadas-mcu-fan: Add fan config from platform data Add regulator support
+      arm64: dts: amlogic: t7: Add i2c pinctrl node
+      arm64: dts: amlogic: t7: Add i2c controller node
+      arm64: dts: amlogic: t7: khadas-vim4: Add i2c MCU fan node
+
+ .../bindings/i2c/amlogic,meson6-i2c.yaml           |  13 ++-
+ .../devicetree/bindings/mfd/khadas,mcu.yaml        |  18 ++++
+ .../dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts  |  13 +++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi        |  20 ++++
+ drivers/mfd/khadas-mcu.c                           | 115 ++++++++++++++++++---
+ drivers/thermal/khadas_mcu_fan.c                   |  37 +++++--
+ include/linux/mfd/khadas-mcu.h                     |  22 ++++
+ 7 files changed, 211 insertions(+), 27 deletions(-)
+---
+base-commit: f7b64ed948718290209074a50bb0df17e5944873
+change-id: 20260402-add-mcu-fan-khadas-vim4-ac1cbe553c9b
+prerequisite-message-id: <20260326092645.1053261-1-jian.hu@amlogic.com>
+prerequisite-patch-id: f03a086b4137158412b2d47b3de793b858de8dde
+prerequisite-patch-id: 123970c9b29c2090440f2fd71c85d3c6fd8e36de
+prerequisite-patch-id: 3e2e56b0926ba327b520f935df4ced5089bbe503
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-change-id: 20260326-add-bcm43752-compatible-e264a4f7973a:v2
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-change-id: 20260330-fix-invalid-property-bbe54d933f71:v2
+prerequisite-patch-id: 8d675e7a239985c762843515b241f0a2f45f9c92
+prerequisite-change-id: 20260331-fix-aml-t7-null-reset-2b608ebf9da4:v1
+prerequisite-patch-id: 5b5de77af11747ce964404fb827d2ee2bff47ea5
+prerequisite-patch-id: 1e37fc75fed1e533adee0f3e7e6ead1f8ff3c55c
+prerequisite-patch-id: 65a5d76ffdbc9b3aab3385bb65cb027004c30e7e
+prerequisite-patch-id: 2daf583fb5e7449a02bd217d8aca330171b598aa
+prerequisite-patch-id: 237269801826dd3ad7fb16eb4d7d6d4eab504278
+prerequisite-patch-id: d1ddf9b7710e91f8062de83bd7ba55afb2c4c112
+prerequisite-patch-id: 57e9b08a968aedf543d3d0d56cf1ca4db20b2a16
+prerequisite-patch-id: cd98b74fa56af72af2553f391c400981d83cd4f4
+prerequisite-patch-id: b730f5e42be1d89d193e63a0265495cdbf2c7d7b
+prerequisite-patch-id: 9debd88fa60febed9cd7208f86603b4c2d270520
+prerequisite-patch-id: 314ef9ff0c4d1d15dab1dea9d92aa065f1eac3e9
 
 Best regards,
 -- 
-Frank Li <Frank.Li@nxp.com>
+Ronald Claveau <linux-kernel-dev@aliel.fr>
+
+
 
