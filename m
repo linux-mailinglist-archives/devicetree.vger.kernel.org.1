@@ -1,225 +1,124 @@
-Return-Path: <devicetree+bounces-306263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306264-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QT03F7ovIGpPyQAAu9opvQ
-	(envelope-from <devicetree+bounces-306263-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:44:26 +0200
+	id He+1GasxIGqyyQAAu9opvQ
+	(envelope-from <devicetree+bounces-306264-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:52:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F021963831C
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:44:25 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0FB7638440
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:52:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=nxp.com header.s=selector1 header.b=dWRv7ely;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306263-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306263-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=nxp.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=pm.me header.s=protonmail3 header.b=nXoSgNsL;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306264-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306264-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=pm.me;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DDA373029C98
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 13:38:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 45A2B3110DF0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 13:39:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C352F39B9;
-	Wed,  3 Jun 2026 13:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACEA31B131;
+	Wed,  3 Jun 2026 13:39:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011061.outbound.protection.outlook.com [52.101.65.61])
+Received: from mail-10630.protonmail.ch (mail-10630.protonmail.ch [79.135.106.30])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65BAA175A70
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 13:38:32 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780493913; cv=fail; b=Dw9NeVf1AR/nhRAd21laKTHEI6N6mcJNDXBnSK9FuOKmUBmLwi0hp1rFxm+yuyqIAkMUnnD1tYYiE/4nv1t816G7DVFT8qsd5gH1oPsdDoP8f6QMyrOa1rAnVRfCLmDVJroVbhGCAjo2EMe5fwAcxbogwcsSQD5SwD0v2/UrhKA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780493913; c=relaxed/simple;
-	bh=/52W+v3+eqzIjJSh13w4oaJdtWhsmCghM9wCEjpgpRQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=gYscsdBKssBi3NxU2xnTzzhq3aY19+5UW/Tyxrqi0erFM/zJDJIb+Q/2MQsWQD7ToikVllqO9zUX+27QWonzCxsIKGRituUlnpGVTNWpmP71gaszbwmfWQVOr6pYWBud+xYTm3noV44Ol7Bqujjgpgw5eihCKjFB4A1sZ6jLaoY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dWRv7ely; arc=fail smtp.client-ip=52.101.65.61
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Egq4JnGUM8uKfwDxU5IfMP5NfnxIjLeij5WpHZWKPtTOWOnPsuywX3q6NibQzluJUTo/eyfmHUJbP8+T3F8vfR1xnD4H/yqKZmXXbsS86UEzzdXt2XFsfVoZEyrY/uU88eZb8zQt843Qc2gh7fuoSV3rjI7RUuFjyfNYpWRdo0UiTTcjoXzJyrRlkiyRl4k6jlp0+tZAaIUiWh4ACdBBq2lgWECcdoXir/2xs0cq9SQV8eYhPBmQZHkf8AK/Gs+NkvzsI2HBvpA/MkMt5lPOKMBWV2g9k+k7+8OyJwNzX1k2+9N9K9oMxpuvuphG8yFa1Id3foUs9K2DpkB+U1eosA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2NvoXCKga/6ELGsMNVHpXOXKyCVg0Hq6KZJbE04Fcrc=;
- b=lLbG3/k7R3y6fI//ttCHsMo8FRYZ0fg4/6q4Q+P3/nN6F/nktxtPJq4RIn8rj7LUBl5fq4VvxS0RgUAUdvWaK+pcjjEulmicetdcQtALiLqT6F7LdVOBMcwGl9335qU1bYrIrR8YwbsxX9hYqSDAcU/P5nvoqKF0FOdcO61CAr0uA7XjJ4L0RATQ5p/yD+um35KOUTOdONChAVBTqPcOCWpB9PPakaPS0EFv5BU2MWJ4tFmv3usHZr5UJ9DfxKO6p7qDxue8cBlBI5rKu1sPZztPVQJgT45HKtnfBb8r73vkFdmGnswb0YpLppHzq9yoXiSJFlFAGwwJi3+RttupTw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2NvoXCKga/6ELGsMNVHpXOXKyCVg0Hq6KZJbE04Fcrc=;
- b=dWRv7elyPpqKJqqg6ZasrDlD1jUYm5P6grui/ewBnNxTgyGTNUxUD/gM9OhIYMqnCqrX3h+1WDSFyB70xFQAxbUnvTvgPNdXcPdJGuvKalAbkOcqFwPftwazkm2gG9O4wNXbzYPJaT2NCQkf3mUAN0KdI8Ws+PrAfc0gbZYkkeI3dT3lNlK1qBd0D30nffO6HBva2MfGZq11w7dy+pVzOXKq/hDuNySvMUmxc7STgHLHmT4fnBK1hBG29HskScT4udGrsovrS6fUF5Kub5KEMPIjwkEbfk9axKkS7tBrKTnyew5ACz7gCzpYmhjWTJoQ9UnSHp4vtj+GCh2qOjJXNA==
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10)
- by AM9PR04MB8422.eurprd04.prod.outlook.com (2603:10a6:20b:3ea::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Wed, 3 Jun 2026
- 13:38:29 +0000
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023]) by AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023%5]) with mapi id 15.21.0092.006; Wed, 3 Jun 2026
- 13:38:29 +0000
-Date: Wed, 3 Jun 2026 16:38:25 +0300
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org, vkoul@kernel.org, neil.armstrong@linaro.org,
-	conor+dt@kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, olteanv@gmail.com
-Subject: Re: [PATCH v3 phy-next 14/16] dt-bindings: phy: lynx-10g: initial
- document
-Message-ID: <20260603133825.l544tnmtn2pqfrzh@skbuf>
-References: <20260603132059.503527-1-vladimir.oltean@nxp.com>
- <20260603133350.9FA271F00893@smtp.kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260603133350.9FA271F00893@smtp.kernel.org>
-X-ClientProxiedBy: MR1P264CA0027.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:501:2f::14) To AM0PR04MB6900.eurprd04.prod.outlook.com
- (2603:10a6:208:17d::10)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62CEE313523
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 13:39:23 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780493964; cv=none; b=qneRMRaWTbvbf093q+dR00Nzw+HvybQ5BpDZeNpRMAjOMOeIMq19B1VvQt+iIxK8Jaf4TTQwN43PdDVTDN3b9MkrTBGGD0/fRtFf777Gj2duuLUqbjT4t6lY1T0rl3EkrqfgE0v+lPIzeSX+/0+wuPlxJ6pnqD6/O4ZYF8qOsOc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780493964; c=relaxed/simple;
+	bh=JcvdzGfndVVnJar+huUhyB/yHq6aA5KVpzELIZHaeFQ=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CAOdQcuBKR+OnMyZGbiknl+g7f3WI+8AXscdvrCN6jEApHAVsTol/iAAq7yn5/yBLKZxEHuJ02MSUEFmM3A8xizif/zd0j1QMI7YayrzrG7r/MjlqKu+cAgjcQ7U9/GDD/JVk/1gv+bC6Z6xRfSWi16n+K3HyerRjkrzGcGOb90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=nXoSgNsL; arc=none smtp.client-ip=79.135.106.30
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1780493955; x=1780753155;
+	bh=JcvdzGfndVVnJar+huUhyB/yHq6aA5KVpzELIZHaeFQ=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=nXoSgNsLZ/Y262TMtSpHLxtBSpsLSGhtouWr6B3y028vXlGFYHTQE8bIwmjViLauY
+	 NBD8nXD7vNOIMHgv9PQqdoyQtAiOqD5SFd1Ja3QKwT7uxfdf5gjc6Ge2j01vKpSY/w
+	 Y435b6nYum9GDJQ726o7GwoFa+y8M/Goa9MYyEtUnP1+VwvyuWGuF82Jy8gqCCl5c2
+	 HVTHeUBNdy+twxPoiFn3iXOgGsi6U0jYnzLFG9wTrdhkT3eB/T9fa2asCMJaBFh1fL
+	 DQ1iffuynsRCFqDDvUoos6KvjJSbLnwGz/upTKEg9HxOCr4eGhUgzq+YmgAQXg6N/o
+	 /orDKAEifNIWA==
+Date: Wed, 03 Jun 2026 13:39:10 +0000
+To: Rob Herring <robh@kernel.org>
+From: Alexander Koskovich <akoskovich@pm.me>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>, Luca Weiss <luca.weiss@fairphone.com>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Add the Nothing Phone (3a)
+Message-ID: <v_gzn_KoQPa_5JCT7xrvQyv-AZlsKVq0sI3QS32kfcoqLyVvI7kUClz8mXo35TbQ9nXU-mz6MWfHm6s4OsZBwAF3pVM7zcb1y7rHL-dIb3g=@pm.me>
+In-Reply-To: <20260602224420.GA1290244-robh@kernel.org>
+References: <20260323-asteroids-v2-0-1a35fa9e178a@pm.me> <20260323-asteroids-v2-3-1a35fa9e178a@pm.me> <20260602224420.GA1290244-robh@kernel.org>
+Feedback-ID: 37836894:user:proton
+X-Pm-Message-ID: 4433180bc5c3a08973f81c3c856e10cd01bad00c
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6900:EE_|AM9PR04MB8422:EE_
-X-MS-Office365-Filtering-Correlation-Id: 231b0170-365e-4dc4-13a3-08dec1756590
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|10070799003|376014|1800799024|19092799006|366016|56012099006|11063799006|4143699003|3023799007|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	2KTBzM+5hZypX7UUiV7ZXajDZ+Gxb8BTkzRQmJ+8SBTXv+5gMAUz0XJJ+iJQsrdXUOjvlyO/rAJ/zwK19vQ8gWithZhZ7BNYnFCWlVaaIHqHFozHyQXtvRvYaumz1VSfJJTcSlQlaFKzcpjGZuAWGaQtJ6GUt9x91q+uskJ4rc9D1Er+FQiiD19+9gTz7HEZMGblWmQg2NuZU2r/fe2Tq2AzuBKpkBlGzi6Mjp/NZWdGNcpk5opuUaWH+zLeX9sz5CHjtJuQcASjET40fCwyxmGX8yGTYQufBhJG7X1KuXuDON7cIRLAntXCIUnmVPUbDvReVQvjzfPGaO4ixAWu53EwbPgdaAhQubJ+gQWhqYEbP5frnEpoSuOAlpZBvSjAQwEXD55oJBfAuYngTSESqweuRpVskN9FevBBXaisb9dXiKFCjzRQ/YpigmS1VLeZCi9vhCmJgVld3VycDiZBzG9NYf2P5r3Y0Ow3GtJN26TF7e1s2nvj4nuDLTeUDKNRqwHWcpDryAVPkG8egWYxo6Fi7XcE3QESPOuIK25geUpRka2zq/fHzoRIZ/DH6v95FNS4pO9fjLiJXk5dCyBt84z0Nlr7ASay/y+9pW+rpOahOQuHUXMFjbvvzWYh0H/eSTCrDCgZ2H10VPKc/MnrOZJMt5SQGUZci2ibDnSW9BgV8DHfKgGfu1ajCyfd6ejW
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6900.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(376014)(1800799024)(19092799006)(366016)(56012099006)(11063799006)(4143699003)(3023799007)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?thyimy7wiAfmReuCn7IPcXFVT0bSwSnlHKdZfP180eGw8qT3V5TtcPvtiKIu?=
- =?us-ascii?Q?/Hz1tLvhco7ScBEyNcHE7l7CmpPx7HI1mtAhap4aAcvENz5f5lD7hSmNyHgb?=
- =?us-ascii?Q?CTbmTlMdUaHORYtZkzgCR5znSunWvJcaZ/nxVHgvb1gK77YcJa5Gs5votHcv?=
- =?us-ascii?Q?TsrvB879ZGQUe30sD7J575Xux7PmMKIozO5OKttTYg7QndiQcHmRx2iQvoql?=
- =?us-ascii?Q?e4sChYDHlThe4lVrl8bki5+BNqV+b1FG2eVHdqXT+Yyz46bH6Dnf0NFUKddZ?=
- =?us-ascii?Q?f7Op14k2b9ivVwhzgl68+zSaRTjElLBuGSWCOHtLVDMPf8UQUwiN17oUtpUl?=
- =?us-ascii?Q?ZNIGKHQ/nNC+PTWIleIUnsGUWMZ5tSINQYyCFeoEXuPGYwCYunWJy2pA02w9?=
- =?us-ascii?Q?7/LPXkKgcroG3jQCUqR7L0zdU3utrdJd8R+DlYfr1B8R+5+Gn/ObsMAqTAT4?=
- =?us-ascii?Q?R6DdVKPdKIziknfJqstPRmjekAkI+4ww4WGYv+DrERQI/+izlrqVQf9eLIJ9?=
- =?us-ascii?Q?svVYJ4nBKe8FTnNOoL8RlGyfUXrOxnrATi3F3lhLyaIUl36zE1kcMxuNiPgQ?=
- =?us-ascii?Q?r1sAK+khYoJbqE6+O5rvqIZNlG3tqLCz24GxX/rZdbaTMsHsYOEMSFPM5cCk?=
- =?us-ascii?Q?zT5HzeWK6Q36mKARsjbH4wzWnAjQaXOZIQvFfv1qHJYGxjp38o/c89hotG99?=
- =?us-ascii?Q?/DGYQZAdm1iVC8foPeu7dgFk56NcXwCWtGRgHpDmCo0bdeyzGbyTJwDKTC4l?=
- =?us-ascii?Q?Wq8dyRkOPngdO/My3/1TkZ5P1PUlam3UnmcCm0rZoXElCp5ROBcYOetOH+QW?=
- =?us-ascii?Q?6SARToBTBgdqI+TEnJLWT0Vf4xqwKsnhF6VxooCnqEyDKCZF14786mGDVlN0?=
- =?us-ascii?Q?g4KRmnJGGEx1wgluQ2id7G0twDXConWzHH+grqebmyEePECb31kpF2587XOZ?=
- =?us-ascii?Q?gDg95fFPV63YA+bI/Bj7R2d7NrU/CXa4vVNszRyif7UJRbE8Fb1oSJjbt7eQ?=
- =?us-ascii?Q?RziwcdWA92/iYtgKRuWU+H5TZ2s8BG5cIgXwizLk6b4wYLxcwYnN+vGRSutn?=
- =?us-ascii?Q?Q/mosxy+wz+x0DX5X/GqiDe+kS2l3yi6/uCFmCloqh3O2DKRf51JCnaO+gs6?=
- =?us-ascii?Q?+d+wxBIkpVV5KNrv/35Jqcfax5Xk4BFp4lsm1eYkOtO+hi0m8n9BBUT4IElz?=
- =?us-ascii?Q?L2mYsQGqBATnoLv3lLgf30QzF1z82ooTNlqorOebaU4qWSoszOmIjO81ik4I?=
- =?us-ascii?Q?gmpIYNoxFm4uuzKAH4jJ2kYx4zttMpTHAE3aPnXivDobqR48hT+NGwWfFjEX?=
- =?us-ascii?Q?8B/vjq5yN/zuH50QwwiZ6Bo8u5RWw4lVnemWGwg3XUo901+MvH1KCcT2eLhe?=
- =?us-ascii?Q?FR7BbDhEcTb70SLMw7DSpq9Wcmu01Zhn/lkTnE1SUDzz3fvaNB7HAj3ds77Y?=
- =?us-ascii?Q?cLgC4z6MLqlmHM97dVEWnoHzypXaaKX5y1TkJHdK5yMX386wi6Ph+fZEZNii?=
- =?us-ascii?Q?CHfy9Z/2lkDPrHkx6GsTqamdCzNRKjJrzCxG85e5lE5NiC0yNHBqMev0L9Vx?=
- =?us-ascii?Q?a7uTJq+NO98u+IhsVLrsTljIJWjQO+aSlMl1omf1kmJbx+VpgmxC8xIUyoib?=
- =?us-ascii?Q?Go+mgdbKnyZ5SNVm2LXypW5Whocu1fP9ILMDHt4tFusTjZXOdc2qcCSX1MkU?=
- =?us-ascii?Q?MINVE+A16itH219Z6uAkrhpzFuSedSGMFkh3cqsOD+FXeUAuTCAH4XVGrKH3?=
- =?us-ascii?Q?jx+jTpogIgzHgywaVcZroOAA8nwGUqXeiMOUBk/RBbaeJTnwFpmYeYegN6y9?=
-X-MS-Exchange-AntiSpam-MessageData-1: PQqqtWliyCqkpaBYog/BrxQibuIaQ6nHW8M=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 231b0170-365e-4dc4-13a3-08dec1756590
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6900.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 13:38:29.3452
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Uw/2Ob5S8HGlQEm/Z+prCz11JiWE0RGwFMpkC2PKhERevvB7Ss38PY1yrDcJyB64mzBA6B8rDNQyP+jVPmraOg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8422
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
+	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,lists.infradead.org,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-306263-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:olteanv@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306264-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kees@kernel.org,m:tony.luck@intel.com,m:gpiccoli@igalia.com,m:luca.weiss@fairphone.com,m:dmitry.baryshkov@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[vladimir.oltean@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vladimir.oltean@nxp.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[pm.me:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,nxp.com:from_mime,nxp.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,devicetree.org:url]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,pm.me:mid,pm.me:from_mime,pm.me:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F021963831C
+X-Rspamd-Queue-Id: E0FB7638440
 
-On Wed, Jun 03, 2026 at 01:33:50PM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] The `if` condition for enforcing the `big-endian` property incorrectly matches the `compatible` string array directly against an `enum`, which will always evaluate to false and cause the requirement to silently fail.
-> --
-> 
-> commit 8bd3982a89722b20a3686e42d4ab3b9f0711ae11
-> Author: Vladimir Oltean <vladimir.oltean@nxp.com>
-> 
-> dt-bindings: phy: lynx-10g: initial document
-> 
-> This commit adds the schema for the 10G Lynx SerDes used on most QorIQ and
-> Layerscape SoCs. It defines the valid compatible strings, PHY cell requirements,
-> and enforces SoC-specific constraints such as lane counts and endianness.
-> 
-> > diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> > new file mode 100644
-> > index 0000000000000..8cf6027a75b91
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          enum:
-> > +            - fsl,ls1046a-serdes1
-> > +            - fsl,ls1046a-serdes2
-> 
-> [Severity: Medium]
-> Does this conditional correctly enforce the big-endian property? 
-> 
-> Since the compatible property is a string array in device trees, evaluating it
-> directly against an enum always returns false. Should this use "contains:" 
-> with the enum, similar to the preceding if block, so dt_binding_check 
-> correctly enforces the requirement?
+On Tuesday, June 2nd, 2026 at 6:44 PM, Rob Herring <robh@kernel.org> wrote:
 
-The tests I did suggest that it does enforce the requirement.
+> On Mon, Mar 23, 2026 at 01:55:05PM +0000, Alexander Koskovich wrote:
+> > +=09=09=09panel: dummy-panel {
+> > +=09=09=09=09compatible =3D "boe,bf068mwm-td0";
+>=20
+> This is missing documentation and gives a warning. However, having a
+> panel node here is not valid. Either define a complete panel node or
+> none at all. That should throw a warning as well.
+>=20
+> Please send fixes for this and any other warnings you didn't check or
+> ignored.
+>=20
 
-- "make dt_binding_check" passes with the submitted example
+Sent a change here, though realize I forgot to add 'Fixes:' to it:
+https://lore.kernel.org/linux-arm-msm/20260603-asteroids-drop-simplefb-v1-1=
+-34d73477c9d4@pm.me/
 
-- If I replace "fsl,ls1028a-serdes" from the example with
-  "fsl,ls1046a-serdes1" but leave everything else as is (implying:
-  little endian), I get:
+Thanks,
+Alex
 
-$ make -j 8 DT_CHECKER_FLAGS=-m dt_binding_check DT_SCHEMA_FILES=phy/fsl,lynx-10g.yaml
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  CHKDT   ../Documentation/devicetree/bindings
-  LINT    ../Documentation/devicetree/bindings
-  DTEX    Documentation/devicetree/bindings/phy/fsl,lynx-10g.example.dts
-  DTC [C] Documentation/devicetree/bindings/phy/fsl,lynx-10g.example.dtb
-Documentation/devicetree/bindings/phy/fsl,lynx-10g.example.dtb: serdes@1ea0000 (fsl,ls1046a-serdes1): 'big-endian' is a required property
-        from schema $id: http://devicetree.org/schemas/phy/fsl,lynx-10g.yaml
 
