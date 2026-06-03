@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-305984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305986-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tUqrH+rJH2rHpwAAu9opvQ
-	(envelope-from <devicetree+bounces-305984-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:30:02 +0200
+	id C59OGgDMH2oCqAAAu9opvQ
+	(envelope-from <devicetree+bounces-305986-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:38:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF34B634A9D
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:30:01 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1C2B634B3C
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:38:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EL+ka7KX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305984-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-305984-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TAuEos40;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305986-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-305986-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11F433021E5E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 06:25:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 61863301E576
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 06:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B0783F54DF;
-	Wed,  3 Jun 2026 06:25:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D95367B89;
+	Wed,  3 Jun 2026 06:38:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57D533921DD
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 06:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC32330F534
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 06:38:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780467953; cv=none; b=XFedufGcBcRqn2IOty8gOYaNUgLmsrpcGXh42Pvaq+k57PXU9f6lGUgBcxkHUetAfgXRoRBdd+PWM1BFg/TufsvRq7B1sCD8hmXNbmJ2gr2CbinmKaMMLBhvU7HQ5jI9dX/t6zbWkFhRSmd6rkXxNH3xbCTMeNT3v5EikLX6cu4=
+	t=1780468734; cv=none; b=VG1VfJbYN1UX1Osf5YXQueLya9wV6xoxKew7RzpezibZ/Jrfp0djeO1vHZHWi6o+fkvTfMcBcqolm+0n8BmYAcLsGZGpt/hvN3X0LDwgRaW1ajenJH2CHN8XsDNT19sN/ebDaGs42f/jApQUYZbloKenYhpFmXM0VGwJvqdwHAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780467953; c=relaxed/simple;
-	bh=rfYGZ6cHyYKQU7HKfShWjTlcSoXjBBPn6nhkdwc25yE=;
+	s=arc-20240116; t=1780468734; c=relaxed/simple;
+	bh=fMjE8bz78lSvhegJztlU3rVzJFmdf8imzASUe0CSXeI=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=gwDu7WvHHOkVo8kkqsaoSr7uAeHWQ3aWSQsAwKWtfTUUoR+Kxcy75K/oEm9fYeBLQnnPiW6Qlr7G/IUJ0up/YpPQ9peLaQgJv/Xw1GHAfOPdgXqKNnrcifPca+1PibPoGVnOd1/64W7xDB7VwVDz50vFKL6QYrvmz6Hx27B4YC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EL+ka7KX; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C00A21F00898;
-	Wed,  3 Jun 2026 06:25:51 +0000 (UTC)
+	 Message-Id; b=HNzEsye0kolH0vfSrlIzcoqtgbyz/Nk6cr1gdI5E2g7a3NNofx3FPJ6juyPMmGV/FQlDl6O33ktv4LGZRp2iQ0DKKlpxrHvU7zQLEUPZtY1SoQ3aJy5u/NPvxSOasds9PaxDNoBmnnNGyawOJnh4877FBfTed+MT95hOPUNb+Rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TAuEos40; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 330301F00893;
+	Wed,  3 Jun 2026 06:38:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780467952;
-	bh=XicfxWCBxSOy+Ew6/9q8z6boLkaRkd6pU19QFi3UkYM=;
+	s=k20260515; t=1780468732;
+	bh=XNVmdbtFOERVtVIseI4bEblSMCgSwUCx69WpFo+sSwQ=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=EL+ka7KXREZIU4W7B072Fv91ado8ln80PfXe3PpjEzW4g2gAbLqZUDgK4ZI94AaxG
-	 yjyMO8rwGKzG4GT2Y+kRI2l3ROEeQea0N51/asHJoaZXyMEjPRf52V0Xv8DJ7yWo+2
-	 uBzpv+V1vPsfoQug774IxHrFjeqCI6DUvLnzyIp4V1U8q8QQ95QOKSVM3jN2mh27GO
-	 o1RwYZ+qzh2DqMI+K3KqzYus3DqyqSGBnJEozxkGXEGF70Y4Yp8CfUWGMHhGXeKSvo
-	 kVOvwhc4ZRO5tPuciD/rO37+mWg7QH83Hq+P9lSrYypHRrWyx6OExB0e7K03ZAkL2W
-	 KjUwltOEGjyOA==
+	b=TAuEos40Pq6u7pjY2lGslcOb4Tzk9f5e0XgyXughtZS2tLCltXA1OMeO86krPIOMn
+	 MZKq0Y67hXL7f/sMks1ZeebwLBKLqC76UDFXMSDNMSmIf51oY14gW+1xbRYktqBdcD
+	 hwGOKKfsNC4GJDRc8AM250TT/HSbTXVMgTrt3f+HuAvUdrIVX9F75wwPeyDpuYIp7i
+	 XISvMD56CjOSLryfTyDttSVEvDvG2t5W6tqheT8itllEeLQfJwNdZx32S9AQs+Dym9
+	 kECNOVpBzCZt5Dymh9xYYFk2ErKN4yDf6sc24U5KCGiNzufjcpR8uyX6chb4ub/pLu
+	 e7HbgT6cpko1w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v31 4/5] i2c: ast2600: Add controller driver for AST2600
- new register set
+Subject: Re: [PATCH v31 5/5] i2c: ast2600: Add target mode support
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Ryan Chen" <ryan_chen@aspeedtech.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260603-upstream_i2c-v31-4-ba7a02714f22@aspeedtech.com>
-References: <20260603-upstream_i2c-v31-4-ba7a02714f22@aspeedtech.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260603-upstream_i2c-v31-5-ba7a02714f22@aspeedtech.com>
+References: <20260603-upstream_i2c-v31-5-ba7a02714f22@aspeedtech.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 06:25:51 +0000
-Message-Id: <20260603062551.C00A21F00898@smtp.kernel.org>
+Date: Wed, 03 Jun 2026 06:38:51 +0000
+Message-Id: <20260603063852.330301F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,7 +69,7 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -78,10 +77,10 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305984-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-305986-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:ryan_chen@aspeedtech.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ryan_chen@aspeedtech.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -97,235 +96,211 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,aspeedtech.com:email,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CF34B634A9D
+X-Rspamd-Queue-Id: F1C2B634B3C
 
-Thank you for your contribution! Sashiko AI review found 10 potential issue=
-(s) to consider:
-- [High] A 0-length SMBus block read completes without issuing a STOP condi=
-tion, permanently hanging the I2C bus.
-- [High] Returning early in the IRQ handler when `i2c_bus->msgs` is NULL sk=
-ips clearing the interrupt status, causing an infinite interrupt storm.
-- [High] Calling `i2c_transfer` with `num =3D=3D 0` causes an out-of-bounds=
- access or NULL pointer dereference on the `msgs` array.
-- [High] A race condition in the I2C transfer timeout path can lead to a Us=
-e-After-Free of the `i2c_bus->msgs` buffer.
-- [High] Trailing interrupts unconditionally overwrite previous error codes=
- and improperly resume aborted transactions, leading to Use-After-Free.
-- [High] The interrupt handler accesses `i2c_bus->msgs[msgs_index]` without=
- checking if `msgs_index` is within bounds.
-- [High] A malformed device tree can cause a divide-by-zero kernel panic by=
- setting `clock-frequency =3D <0>`.
-- [High] The I2C controller interrupt handler fails to clear all packet sta=
-tus bits in the Write-Clear ISR register, leading to stale status bits and =
-spurious timeouts.
-- [Medium] Uninitialized variables `clk_div_reg` and `global_ctrl` are used=
- if `regmap_read` fails.
-- [Medium] The `AST2600_I2CM_BUS_RECOVER_FAIL` interrupt is not enabled in =
-the interrupt enable register (`IER`), causing bus recovery failures to unn=
-ecessarily time out.
+Thank you for your contribution! Sashiko AI review found 6 potential issue(=
+s) to consider:
+- [High] Target RX data is discarded when a target interrupt aborts a concu=
+rrent controller transfer due to premature zeroing of `AST2600_I2CC_BUFF_CT=
+RL`.
+- [High] Incorrect I2C slave event ordering and generation of spurious even=
+ts.
+- [High] Missing clamp on target RX buffer length causes out-of-bounds MMIO=
+ reads.
+- [High] `target_active` is incorrectly set to `false` when a STOP conditio=
+n and a new transaction start are coalesced, leading to shared buffer corru=
+ption.
+- [High] Failing to explicitly W1C-clear error status bits permanently dead=
+locks the controller.
+- [High] Use-After-Free (UAF) of i2c_bus->msgs due to premature re-enabling=
+ of master interrupts.
 --
 
-commit e2c4f0c2ecd8a3e8e1c9e3768ae911afff057121
+commit d29dcb5ac45f9953b386f06cfe1a4604787fdc18
 Author: Ryan Chen <ryan_chen@aspeedtech.com>
-Date:   Wed Jun 3 05:50:16 2026 +0000
 
-    i2c: ast2600: Add controller driver for AST2600 new register set
-   =20
-    This commit adds an AST2600-specific I2C controller driver implementing=
- the
-    new register layout, including support for packet-based transfers. It p=
-robes
-    based on the presence of the "aspeed,global-regs" device tree property.
+i2c: ast2600: Add target mode support
+
+This commit adds target mode support to the AST2600 I2C driver.
+It implements target interrupt handling and address match and
+response logic to enable dual-role capability.
 
 > diff --git a/drivers/i2c/busses/i2c-ast2600.c b/drivers/i2c/busses/i2c-as=
 t2600.c
-> new file mode 100644
-> index 0000000000000..35f38e1f47999
-> --- /dev/null
+> --- a/drivers/i2c/busses/i2c-ast2600.c
 > +++ b/drivers/i2c/busses/i2c-ast2600.c
-> @@ -0,0 +1,864 @@
 [ ... ]
-> +static void ast2600_i2c_ac_timing_config(struct ast2600_i2c_bus *i2c_bus)
+> @@ -346,6 +351,253 @@ static int ast2600_i2c_recover_bus(struct ast2600_i=
+2c_bus *i2c_bus)
+>  	return ret;
+>  }
+> =20
+> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
+> +static void ast2600_i2c_target_packet_buff_irq(struct ast2600_i2c_bus *i=
+2c_bus, u32 sts)
 > +{
-> +	unsigned long base_clk[16];
-> +	int baseclk_idx =3D 0;
-> +	int divisor =3D 0;
-> +	u32 clk_div_reg;
-> +	u32 scl_low;
-> +	u32 scl_high;
-> +	u32 data;
-> +
-> +	regmap_read(i2c_bus->global_regs, AST2600_I2CG_CLK_DIV_CTRL, &clk_div_r=
-eg);
-
-[Severity: Medium]
-If regmap_read() fails for the syscon I/O, does it leave clk_div_reg
-uninitialized before using it in the divisor calculation below?
-
-> +
-> +	for (int i =3D 0; i < ARRAY_SIZE(base_clk); i++) {
-> +		if (i =3D=3D 0)
-> +			base_clk[i] =3D i2c_bus->apb_clk;
-> +		else if (i < 5)
-> +			base_clk[i] =3D (i2c_bus->apb_clk * 2) /
-> +			   (((clk_div_reg >> ((i - 1) * 8)) & GENMASK(7, 0)) + 2);
-> +		else
-> +			base_clk[i] =3D base_clk[4] >> (i - 4);
-> +
-> +		if ((base_clk[i] / i2c_bus->timing_info.bus_freq_hz) <=3D 32) {
-
-[Severity: High]
-If the device tree specifies clock-frequency =3D <0>, does i2c_parse_fw_tim=
-ings()
-leave bus_freq_hz as 0, resulting in a divide-by-zero kernel panic here?
-
-[ ... ]
-> +static int ast2600_i2c_setup_buff_rx(u32 cmd, struct ast2600_i2c_bus *i2=
-c_bus)
-> +{
-> +	struct i2c_msg *msg =3D &i2c_bus->msgs[i2c_bus->msgs_index];
-> +	int xfer_len =3D msg->len - i2c_bus->controller_xfer_cnt;
-> +
-> +	cmd |=3D AST2600_I2CM_PKT_EN | AST2600_I2CM_RX_BUFF_EN | AST2600_I2CM_R=
-X_CMD;
-> +
-> +	if (cmd & AST2600_I2CM_START_CMD)
-> +		cmd |=3D AST2600_I2CM_PKT_ADDR(msg->addr);
-> +
-> +	if (msg->flags & I2C_M_RECV_LEN) {
-> +		dev_dbg(i2c_bus->dev, "smbus read\n");
-> +		xfer_len =3D 1;
-> +	} else if (xfer_len > i2c_bus->buf_size) {
-> +		xfer_len =3D i2c_bus->buf_size;
-> +	} else if (i2c_bus->msgs_index + 1 =3D=3D i2c_bus->msgs_count) {
-> +		cmd |=3D CONTROLLER_TRIGGER_LAST_STOP;
-> +	}
-
-[Severity: High]
-If this is an SMBus block read and the peripheral later returns a length of=
- 0,
-does the driver complete the message without ever issuing a STOP condition,
-leaving the I2C bus permanently busy? The I2C_M_RECV_LEN check bypasses the
-CONTROLLER_TRIGGER_LAST_STOP setup for the first byte.
-
-[ ... ]
-> +static int ast2600_i2c_do_start(struct ast2600_i2c_bus *i2c_bus)
-> +{
-> +	struct i2c_msg *msg =3D &i2c_bus->msgs[i2c_bus->msgs_index];
-
-[Severity: High]
-If the I2C subsystem calls i2c_transfer() with num =3D=3D 0, does this code
-dereference a NULL pointer or empty array since there are no checks on the
-number of messages?
-
-[ ... ]
-> +static void ast2600_i2c_controller_packet_irq(struct ast2600_i2c_bus *i2=
-c_bus, u32 sts)
-> +{
-> +	struct i2c_msg *msg;
-> +	int xfer_len;
+> +	u8 value =3D 0;
+> +	int target_rx_len =3D 0;
+> +	u32 cmd =3D 0;
 > +	int i;
 > +
-> +	if (!i2c_bus->msgs)
-> +		return;
+> +	/* due to controller target is common buffer, need force the master sto=
+p not issue */
+> +	if (readl(i2c_bus->reg_base + AST2600_I2CM_CMD_STS) & GENMASK(15, 0)) {
+> +		writel(0, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
+> +		writel(0, i2c_bus->reg_base + AST2600_I2CM_IER);
+> +		writel(readl(i2c_bus->reg_base + AST2600_I2CM_ISR),
+> +		       i2c_bus->reg_base + AST2600_I2CM_ISR);
+> +		i2c_bus->cmd_err =3D -EBUSY;
+> +		writel(0, i2c_bus->reg_base + AST2600_I2CC_BUFF_CTRL);
 
 [Severity: High]
-If a trailing hardware interrupt fires when no transfer is active, does
-returning here without acknowledging the interrupt in the Write-Clear regis=
-ter
-cause an infinite interrupt storm?
+Does zeroing AST2600_I2CC_BUFF_CTRL here discard the target's received RX
+buffer length?=20
 
-> +	msg =3D &i2c_bus->msgs[i2c_bus->msgs_index];
+When the handler subsequently reads this register to determine the target RX
+length, it will get 0, potentially dropping any received target data.
 
-[Severity: High]
-If a spurious or trailing interrupt arrives after a transfer completes but
-before msgs is set to NULL, can msgs_index equal msgs_count here?
-If so, does this cause an out-of-bounds pointer calculation and a subsequent
-out-of-bounds read in ast2600_i2c_clamp_len()?
-
-> +
-> +	sts &=3D ~AST2600_I2CM_PKT_DONE;
-> +	writel(AST2600_I2CM_PKT_DONE, i2c_bus->reg_base + AST2600_I2CM_ISR);
-
-[Severity: High]
-Since AST2600_I2CM_ISR is a Write-Clear register, does writing only
-AST2600_I2CM_PKT_DONE fail to clear the other status bits contained in sts?
-Will those stale bits accumulate and cause subsequent transfers to fall
-through the switch statement below and timeout?
-
-[ ... ]
-> +static int ast2600_i2c_controller_irq(struct ast2600_i2c_bus *i2c_bus)
-> +{
-> +	u32 sts =3D readl(i2c_bus->reg_base + AST2600_I2CM_ISR);
-> +	u32 ctrl;
-[ ... ]
-> +	i2c_bus->cmd_err =3D ast2600_i2c_irq_err_to_errno(sts);
-
-[Severity: High]
-If an error like arbitration loss occurs, and the hardware later issues a
-trailing NORMAL_STOP interrupt before the process context cleans up, does t=
-his
-unconditionally overwrite the existing error code and improperly resume the
-next step of an already failed transaction?
-
-[ ... ]
-> +static int ast2600_i2c_controller_xfer(struct i2c_adapter *adap, struct =
-i2c_msg *msgs, int num)
-> +{
-[ ... ]
-> +	ret =3D ast2600_i2c_do_start(i2c_bus);
-> +	if (ret)
-> +		goto controller_out;
-> +	timeout =3D wait_for_completion_timeout(&i2c_bus->cmd_complete, i2c_bus=
-->adap.timeout);
-> +	if (timeout =3D=3D 0) {
-> +		u32 ctrl =3D readl(i2c_bus->reg_base + AST2600_I2CC_FUN_CTRL);
-[ ... ]
+> +		complete(&i2c_bus->cmd_complete);
 > +		writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER,
 > +		       i2c_bus->reg_base + AST2600_I2CM_IER);
 
 [Severity: High]
-If a late completion interrupt fires concurrently on another CPU right after
-the IER is re-enabled here, but before msgs is set to NULL at the end of th=
-is
-function, does this create a use-after-free where the interrupt handler
-accesses the caller's freed message buffer?
+Could this cause a use-after-free of i2c_bus->msgs?=20
 
-[Severity: Medium]
-Should AST2600_I2CM_BUS_RECOVER_FAIL also be enabled in the IER here?
-The interrupt handler checks for this flag to return -EPROTO immediately.
-Without it, will bus recovery failures silently block until the full softwa=
-re
-timeout expires?
+Waking the master thread with complete() before re-enabling master interrup=
+ts
+allows the thread to resume and clear msgs to NULL. If a hardware master
+interrupt fires concurrently, the racing IRQ handler might access
+i2c_bus->msgs before it is NULLed out.
 
+> +	}
+> +
+> +	/* Handle i2c target timeout condition */
+> +	if (sts & AST2600_I2CS_INACTIVE_TO) {
+> +		/* Reset timeout counter */
+> +		u32 ac_timing =3D readl(i2c_bus->reg_base + AST2600_I2CC_AC_TIMING) &
+> +				AST2600_I2CC_AC_TIMING_MASK;
+> +
+> +		writel(ac_timing, i2c_bus->reg_base + AST2600_I2CC_AC_TIMING);
+> +		ac_timing |=3D AST2600_I2CC_TTIMEOUT(i2c_bus->timeout);
+> +		writel(ac_timing, i2c_bus->reg_base + AST2600_I2CC_AC_TIMING);
+> +		writel(TARGET_TRIGGER_CMD, i2c_bus->reg_base + AST2600_I2CS_CMD_STS);
+> +		writel(AST2600_I2CS_PKT_DONE, i2c_bus->reg_base + AST2600_I2CS_ISR);
+
+[Severity: High]
+Is it possible for the controller to permanently deadlock here?
+
+The AST2600_I2CS_ISR register uses write-1-to-clear bits, but only
+AST2600_I2CS_PKT_DONE is written. The AST2600_I2CS_INACTIVE_TO error bit
+remains set, which might cause subsequent controller transfers to
+unconditionally evaluate readl(I2CS_ISR) as true and return -EBUSY.
+
+> +		i2c_slave_event(i2c_bus->target, I2C_SLAVE_STOP, &value);
+> +		WRITE_ONCE(i2c_bus->target_active, false);
+> +		return;
+> +	}
+> +
+> +	sts &=3D ~(AST2600_I2CS_PKT_DONE | AST2600_I2CS_PKT_ERROR);
+> +
+> +	if (sts & AST2600_I2CS_SLAVE_MATCH)
+> +		WRITE_ONCE(i2c_bus->target_active, true);
+> +
+> +	switch (sts) {
+> +	case AST2600_I2CS_SLAVE_PENDING | AST2600_I2CS_WAIT_RX_DMA |
+> +		 AST2600_I2CS_SLAVE_MATCH | AST2600_I2CS_RX_DONE | AST2600_I2CS_STOP:
+> +	case AST2600_I2CS_SLAVE_PENDING |
+> +		 AST2600_I2CS_SLAVE_MATCH | AST2600_I2CS_RX_DONE | AST2600_I2CS_STOP:
+> +	case AST2600_I2CS_SLAVE_PENDING |
+> +		 AST2600_I2CS_SLAVE_MATCH | AST2600_I2CS_STOP:
+> +		i2c_slave_event(i2c_bus->target, I2C_SLAVE_STOP, &value);
+> +		fallthrough;
+
+[Severity: High]
+Will emitting I2C_SLAVE_STOP before falling through to emit
+I2C_SLAVE_WRITE_REQUESTED and I2C_SLAVE_WRITE_RECEIVED break backend state
+machines?=20
+
+Some backends, like i2c-slave-eeprom, rely on the STOP event to commit writ=
+es,
+so the order here might cause them to mishandle the transaction.
+
+> +	case AST2600_I2CS_SLAVE_PENDING |
+> +		 AST2600_I2CS_WAIT_RX_DMA | AST2600_I2CS_SLAVE_MATCH | AST2600_I2CS_RX=
+_DONE:
+> +	case AST2600_I2CS_WAIT_RX_DMA | AST2600_I2CS_SLAVE_MATCH | AST2600_I2CS=
+_RX_DONE:
+> +	case AST2600_I2CS_WAIT_RX_DMA | AST2600_I2CS_SLAVE_MATCH:
+> +		i2c_slave_event(i2c_bus->target, I2C_SLAVE_WRITE_REQUESTED, &value);
+> +		cmd =3D TARGET_TRIGGER_CMD;
+> +		if (sts & AST2600_I2CS_RX_DONE) {
+> +			target_rx_len =3D AST2600_I2CC_GET_RX_BUF_LEN(readl(i2c_bus->reg_base=
+ +
+> +						       AST2600_I2CC_BUFF_CTRL));
+> +			for (i =3D 0; i < target_rx_len; i++) {
+> +				value =3D readb(i2c_bus->buf_base + i2c_bus->buf_size + i);
+
+[Severity: High]
+Could this loop read out-of-bounds mapped I/O memory?=20
+
+The target_rx_len extracted from the hardware register is not clamped to the
+software-defined i2c_bus->buf_size. If the hardware reports a length up to =
+63,
+iterating up to target_rx_len directly could cause an out-of-bounds MMIO re=
+ad
+from i2c_bus->buf_base.
+
+> +				i2c_slave_event(i2c_bus->target, I2C_SLAVE_WRITE_RECEIVED, &value);
+> +			}
+> +		}
 [ ... ]
-> +static int ast2600_i2c_probe(struct platform_device *pdev)
-> +{
+> +	case AST2600_I2CS_SLAVE_MATCH | AST2600_I2CS_WAIT_TX_DMA | AST2600_I2CS=
+_RX_DONE:
+> +	case AST2600_I2CS_WAIT_TX_DMA | AST2600_I2CS_RX_DONE:
+> +	case AST2600_I2CS_WAIT_TX_DMA:
+> +		if (sts & AST2600_I2CS_SLAVE_MATCH)
+> +			i2c_slave_event(i2c_bus->target, I2C_SLAVE_WRITE_REQUESTED, &value);
+
+[Severity: High]
+Does emitting I2C_SLAVE_WRITE_REQUESTED for a read match (WAIT_TX_DMA) corr=
+upt
+backend state?=20
+
+This appears to generate a spurious write request before properly requesting
+the read data.
+
+> +
+> +		if (sts & AST2600_I2CS_RX_DONE) {
 [ ... ]
-> +	regmap_read(i2c_bus->global_regs, AST2600_I2CG_CTRL, &global_ctrl);
-> +	if ((global_ctrl & AST2600_GLOBAL_INIT) !=3D AST2600_GLOBAL_INIT) {
+> +	if (cmd)
+> +		writel(cmd, i2c_bus->reg_base + AST2600_I2CS_CMD_STS);
+> +
+> +	writel(AST2600_I2CS_PKT_DONE, i2c_bus->reg_base + AST2600_I2CS_ISR);
+> +	readl(i2c_bus->reg_base + AST2600_I2CS_ISR);
+> +
+> +	if (sts & AST2600_I2CS_STOP)
+> +		WRITE_ONCE(i2c_bus->target_active, false);
 
-[Severity: Medium]
-If regmap_read() returns an error for the syscon I/O, does this evaluate an
-uninitialized global_ctrl variable?
+[Severity: High]
+Could clearing target_active unconditionally on AST2600_I2CS_STOP lead to
+shared buffer corruption?
 
-[ ... ]
-> +	writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER,
-> +	       i2c_bus->reg_base + AST2600_I2CM_IER);
+If the hardware coalesces a STOP condition from a previous transaction with=
+ a
+SLAVE_MATCH for a new transaction, target_active is set to false while the
+target hardware is still transmitting. A concurrent controller transfer mig=
+ht
+then see the bus as free and overwrite the shared I2C buffer.
 
-[Severity: Medium]
-Similar to the timeout path, does the omission of AST2600_I2CM_BUS_RECOVER_=
-FAIL
-here cause initial bus recoveries to also hit the full timeout instead of
-fast-failing?
+> +}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603-upstream_i=
-2c-v31-0-ba7a02714f22@aspeedtech.com?part=3D4
+2c-v31-0-ba7a02714f22@aspeedtech.com?part=3D5
 
