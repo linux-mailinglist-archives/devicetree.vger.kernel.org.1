@@ -1,212 +1,162 @@
-Return-Path: <devicetree+bounces-306369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306370-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aMiBDR9JIGrH0AAAu9opvQ
-	(envelope-from <devicetree+bounces-306369-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 17:32:47 +0200
+	id RBB+IKlIIGqb0AAAu9opvQ
+	(envelope-from <devicetree+bounces-306370-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 17:30:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD52F6393A1
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 17:32:46 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 148AB639352
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 17:30:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GRiwEnU0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306369-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-306369-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gWqMOU14;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306370-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306370-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 69C333260858
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 15:19:13 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2A6CB304553D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 15:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB993CF04F;
-	Wed,  3 Jun 2026 15:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 284483B6BEC;
+	Wed,  3 Jun 2026 15:20:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C10039A063;
-	Wed,  3 Jun 2026 15:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD25396D2E;
+	Wed,  3 Jun 2026 15:20:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780499913; cv=none; b=sT3wDcMZy1cmkh1Dh7n9N1nzIaqpoJB4xkdN79UkPvp2/s1i8QICSCunBkMx4/6NgtYWU725kY4DcvCb4cFW5Gbpf7HoNXglO3T6+LuC45OFjwspzwN+MWTGgicXr0kEq3M3VrhdXsgYU2QyvHq8I2C6DIo2Ze3Gdm3y5WH+nDA=
+	t=1780500026; cv=none; b=NTvlLMjwge1zluMwrhbzQDKzfh+DrRdoy5yB+NWKydAdZFRDq1rA8HljNSsSfWE238qARr25+ksuUVKDpC2394GXD8eL3AtQih9lFmCp/29t7oAa7A9fQShKqsNMVVDdfOVDHI9XBrU87xa3PWk8FoScdzYAlZjIuafXBOsa3R4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780499913; c=relaxed/simple;
-	bh=ILeO4hImKBexRl/fKhTwLPIU3nPhZ/CXs2vCp2xpNsM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j/E/PSFCTsswMOGt9d476Wd+HsyvzQUuXr14oJWyqzUniOFJOxaeOgkZrlv9Qqk2l1r2Il9bSmVQfPf7yRLU4DmGEQuVU2O4BWz2yUOznWzEkhjjoUt7KtZIQ+YGOcAYKEnUE+DhqVzWRFr5GmAyOEwLUllNF2O+CEJOyHs2MIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GRiwEnU0; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 138891F00893;
-	Wed,  3 Jun 2026 15:18:28 +0000 (UTC)
+	s=arc-20240116; t=1780500026; c=relaxed/simple;
+	bh=T94aojp7Y1magEVlWMSVQW54PGqV3z7MrayC13iNTXE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=PJfsIOzFt/rVlqhaQhQaxGOxhNa2JUn5L9QwZCg3UMXzwHeetViAXwB38dgDXjmOIrprNOlTWT4A4J90Ac3Av7UCnm0KqmZtsUYxEtwcaJg/prC5JmugTZEDhre11gc5MmRdp7c00Vbs+Vf4JDRNZx0hogLm8Vu3rlM+WJcMDsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gWqMOU14; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5ED4F1F00893;
+	Wed,  3 Jun 2026 15:20:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780499912;
-	bh=gqLubRzDZskEA9R3dJXzcbqYgA5a+l8atiBeOr7IMyo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=GRiwEnU0BcFdjpGIldWYYQNw1LEa2mwix99tP6yfOXlV79rEJOB706J70/mTY05WO
-	 Fz1N4FnNxlXkC8iT00hRocwYuYiQ5TdCqPT2sydp/zX7/EtIjkEamLOgG9Uf6fdbpb
-	 oGi23KdbA4opEgs1lk7n5Jsa/6NUpOWTCPx9yFQxztl221UC/bIjG7AsWjvK/b7p03
-	 c0KELW386SW/8QhA+/m2JjqAXvzwZN1LOmyw6K7ZLMi6AZwX2CAimlJaxAS1Rs5ilf
-	 z+BLZBYg6nT7r0qb+eKhvwVVyI/Tcz5OsTOaLIn0fMWIWeofmdWBCvnXIsEfctLaEW
-	 VftYIXSfp4npQ==
-Date: Wed, 3 Jun 2026 16:18:27 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Paul Walmsley <pjw@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Bartosz Golaszewski <brgl@kernel.org>, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
-Subject: Re: [PATCH v3 02/21] pinctrl: pinconf-generic: Add property
- 'input-debounce-ns'
-Message-ID: <20260603-sinless-mooing-48a37d3d05ea@spud>
-References: <20260603055347.66845-1-changhuang.liang@starfivetech.com>
- <20260603055347.66845-3-changhuang.liang@starfivetech.com>
+	s=k20260515; t=1780500024;
+	bh=d9IEQjYBPa0mRjM+hhCeDTonCZfy0dp3TeDAxyQL43k=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=gWqMOU142LNUQ0+t8nhkK6fGVltmUlUCGnICo0rSn4MSd4IgfdhcQPq+paUgZ79mu
+	 lxEL3Feot4oYCAQ9c4gN9luyhtrsyK3k/azVYNpEwVU0yUNcXn9+W+bk+IMZs1Hu++
+	 hRxw2lOwCLKGezWfqp69eMdO11O0/aIwMysmBOpNkQTcR1cMn1rKQOz2ihQlSgAY3w
+	 RyMxqrEz5VmBi1CRfUTr2UHyXmwQaS5jJ/nILiQw3kGTgQuy3tZto6NQJIIa8plD5r
+	 V3sx4xyRr+hytXAWlPRc3vXUL5PWddYm5TLDTtBEgkWNlop/fpeZ5Ius3l1Nh028Pq
+	 bytIpFR3am6Qg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 07/14] arm64: dts: imx8mp-var-som-symphony: add HDMI
+ support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Stefano Radaelli" <stefano.radaelli21@gmail.com>
+Cc: Frank.Li@kernel.org, imx@lists.linux.dev, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <24154af5fc04cf4b355dbebc33566f83d85b222e.1780497188.git.stefano.r@variscite.com>
+References: <24154af5fc04cf4b355dbebc33566f83d85b222e.1780497188.git.stefano.r@variscite.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 03 Jun 2026 15:20:23 +0000
+Message-Id: <20260603152024.5ED4F1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="UxFbr67Tboxoi01J"
-Content-Disposition: inline
-In-Reply-To: <20260603055347.66845-3-changhuang.liang@starfivetech.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306369-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_RECIPIENTS(0.00)[m:changhuang.liang@starfivetech.com,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kernel@esmil.dk,m:pjw@kernel.org,m:aou@eecs.berkeley.edu,m:palmer@dabbelt.com,m:alex@ghiti.fr,m:p.zabel@pengutronix.de,m:brgl@kernel.org,m:linux-gpio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:lianfeng.ouyang@starfivetech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306370-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,variscite.com:email,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:stefano.radaelli21@gmail.com,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:stefanoradaelli21@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,starfivetech.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BD52F6393A1
+X-Rspamd-Queue-Id: 148AB639352
 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The HDMI Hot Plug Detect (HPD) pin configuration is missing from=
+ the pinctrl group, breaking HDMI display detection.
+--
 
---UxFbr67Tboxoi01J
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+commit f9812a899ecb88eea9dc09a1da7735f389e9686c
+Author: Stefano Radaelli <stefano.r@variscite.com>
 
-Linus,
+arm64: dts: imx8mp-var-som-symphony: add HDMI support
 
-On Tue, Jun 02, 2026 at 10:53:28PM -0700, Changhuang Liang wrote:
-> Add 'input-debounce-ns' to the generic parameters used for parsing DT
-> files, along with the corresponding configuration parameter
-> PIN_CONFIG_INPUT_DEBOUNCE_NS. This allows debounce time to be specified
-> in nanoseconds as an alternative to the existing 'input-debounce'
-> property which uses microseconds
->=20
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  drivers/pinctrl/pinconf-generic.c       | 2 ++
->  include/linux/pinctrl/pinconf-generic.h | 5 +++++
->  2 files changed, 7 insertions(+)
->=20
-> diff --git a/drivers/pinctrl/pinconf-generic.c b/drivers/pinctrl/pinconf-=
-generic.c
-> index 64ed28309788..9d67e2d26e28 100644
-> --- a/drivers/pinctrl/pinconf-generic.c
-> +++ b/drivers/pinctrl/pinconf-generic.c
-> @@ -43,6 +43,7 @@ static const struct pin_config_item conf_items[] =3D {
->  	PCONFDUMP(PIN_CONFIG_DRIVE_STRENGTH, "output drive strength", "mA", tru=
-e),
->  	PCONFDUMP(PIN_CONFIG_DRIVE_STRENGTH_UA, "output drive strength", "uA", =
-true),
->  	PCONFDUMP(PIN_CONFIG_INPUT_DEBOUNCE, "input debounce", "usec", true),
-> +	PCONFDUMP(PIN_CONFIG_INPUT_DEBOUNCE_NS, "input debounce", "nsec", true),
->  	PCONFDUMP(PIN_CONFIG_INPUT_ENABLE, "input enabled", NULL, false),
->  	PCONFDUMP(PIN_CONFIG_INPUT_SCHMITT, "input schmitt trigger", NULL, fals=
-e),
->  	PCONFDUMP(PIN_CONFIG_INPUT_SCHMITT_UV, "input schmitt threshold", "uV",=
- true),
-> @@ -185,6 +186,7 @@ static const struct pinconf_generic_params dt_params[=
-] =3D {
->  	{ "drive-strength", PIN_CONFIG_DRIVE_STRENGTH, 0 },
->  	{ "drive-strength-microamp", PIN_CONFIG_DRIVE_STRENGTH_UA, 0 },
->  	{ "input-debounce", PIN_CONFIG_INPUT_DEBOUNCE, 0 },
-> +	{ "input-debounce-ns", PIN_CONFIG_INPUT_DEBOUNCE_NS, 0 },
->  	{ "input-disable", PIN_CONFIG_INPUT_ENABLE, 0 },
->  	{ "input-enable", PIN_CONFIG_INPUT_ENABLE, 1 },
->  	{ "input-schmitt", PIN_CONFIG_INPUT_SCHMITT, 0 },
-> diff --git a/include/linux/pinctrl/pinconf-generic.h b/include/linux/pinc=
-trl/pinconf-generic.h
-> index a5d4b2d8633a..1df63c732b99 100644
-> --- a/include/linux/pinctrl/pinconf-generic.h
-> +++ b/include/linux/pinctrl/pinconf-generic.h
-> @@ -71,6 +71,10 @@ struct pinctrl_map;
->   *	which means it will wait for signals to settle when reading inputs. T=
-he
->   *	argument gives the debounce time in usecs. Setting the
->   *	argument to zero turns debouncing off.
-> + * @PIN_CONFIG_INPUT_DEBOUNCE_NS: this will configure the pin to debounc=
-e mode,
-> + *	which means it will wait for signals to settle when reading inputs. T=
-he
-> + *	argument gives the debounce time in nsecs. Setting the
-> + *	argument to zero turns debouncing off.
->   * @PIN_CONFIG_INPUT_ENABLE: enable the pin's input.  Note that this doe=
-s not
->   *	affect the pin's ability to drive output.  1 enables input, 0 disables
->   *	input.
-> @@ -143,6 +147,7 @@ enum pin_config_param {
->  	PIN_CONFIG_DRIVE_STRENGTH,
->  	PIN_CONFIG_DRIVE_STRENGTH_UA,
->  	PIN_CONFIG_INPUT_DEBOUNCE,
-> +	PIN_CONFIG_INPUT_DEBOUNCE_NS,
->  	PIN_CONFIG_INPUT_ENABLE,
->  	PIN_CONFIG_INPUT_SCHMITT,
->  	PIN_CONFIG_INPUT_SCHMITT_ENABLE,
+Enable the HDMI display pipeline and HDMI audio support on the Symphony
+carrier board.
 
-Should this grow a mutual exclusion check in parse_fw_cfg()?
-Part of me says yes for consistency, but also as this is a new property
-that's going to have had exclusion in the binding from the start part of
-me says that it is unnecessary to add that.
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts b/=
+arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
+> index db0ae706f6487..f7eebf265fab2 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
 
+[ ... ]
 
+> @@ -253,6 +306,14 @@ &usdhc2 {
+>  };
+> =20
+>  &iomuxc {
+> +	pinctrl_hdmi: hdmigrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL			0x1c2
+> +			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA			0x1c2
+> +			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC				0x10
 
---UxFbr67Tboxoi01J
-Content-Type: application/pgp-signature; name="signature.asc"
+[Severity: Medium]
+Will this configuration allow the driver to reliably detect monitor hotplug
+events?
 
------BEGIN PGP SIGNATURE-----
+It appears the Hot Plug Detect (HPD) pin configuration (such as
+MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD) is missing from this pinctrl group,
+and there is no hpd-gpios property specified for the HDMI node. Without a
+configured HPD pin, the display driver may fail to detect when a monitor is
+connected, potentially leaving the display undetected or blank.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiBFwgAKCRB4tDGHoIJi
-0shdAQDVn1y7zJ5GetjXm2OW2sQdptXIBXriOfUWzTJBsBzXhAEAqbwd03uZvPIu
-EdG/j/Pj6pCWlzrc4wAopEkRvGV20gs=
-=uhlk
------END PGP SIGNATURE-----
+> +		>;
+> +	};
+> +
+>  	pinctrl_i2c3: i2c3grp {
+>  		fsl,pins =3D <
+>  			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL                                 0x400=
+001c2
 
---UxFbr67Tboxoi01J--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1780497188.gi=
+t.stefano.r@variscite.com?part=3D7
 
