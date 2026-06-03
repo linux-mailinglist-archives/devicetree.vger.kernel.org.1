@@ -1,161 +1,358 @@
-Return-Path: <devicetree+bounces-306140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306142-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0e3NDGYDIGo7uAAAu9opvQ
-	(envelope-from <devicetree+bounces-306140-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 12:35:18 +0200
+	id sgL2G5gBIGqKtwAAu9opvQ
+	(envelope-from <devicetree+bounces-306142-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 12:27:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB9D636A3F
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 12:35:17 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5227636932
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 12:27:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Tn3KpQMU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306140-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306140-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=AS0wMddM;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="cxU9W/Qr";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306142-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306142-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 211D93022671
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 10:23:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D0A2C304ADFC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 10:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A96539D3D3;
-	Wed,  3 Jun 2026 10:23:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 706183AFB0C;
+	Wed,  3 Jun 2026 10:27:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834F83002DD;
-	Wed,  3 Jun 2026 10:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05EA63314B9
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 10:27:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780482213; cv=none; b=oG0ON3TVu9l2alY/bqqArYvzRGAvqpPAplEsKKDa/HgpJfu/LuAlNvnsX2fVSgcyzm9TaP6I/bI+ZPeShAkzaWPV6mJACjvYd7ToWzY5lfKBJu9Ihp/tnR0AQfeC+9udjAgOgyhxQLKEPGostpihyQ0pyqcCHIsfmBEO9jcsXv4=
+	t=1780482442; cv=none; b=P8cFtpS2xfd5bLRbArSV8HOFjfpzIYWIeD8EBFt7EFnYygChLRdH7gata6AAt6viTRw/nRWRzlSocX+vq5JEecfRAKKMjgNSzRtmxtklfze+gwJppGesCriseeXVDqXSrQQumRttXomcTDkwchYOnVbvA3kw70rLf2rd2NpGth8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780482213; c=relaxed/simple;
-	bh=BltK2ItbtfLVIPd4Jm8RKN8UBqwQ6rWn9mts6j+Qtsc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=e2GZzn60S+2QZiP65IEZXMiH5Y9mAToTRXrSnUA2nhtNhQiEn+weko0IBqeasjxYUnn5Qa3l/L3YAzP6jtDWE3wK154SdddWNHZjqdOLkWHq79BfeCSL9BiDSUybH7sOOLTZ0Bv/kkG1ldb7vh2RSesWdfpyNgEKxAoUetRFh3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tn3KpQMU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2F881F00893;
-	Wed,  3 Jun 2026 10:23:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780482212;
-	bh=wedUPkP/ZkbDoVrJh/keu1QRh9w3bsDLnSt98yeq5qY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Tn3KpQMUfaQvVJk5AMJjykERNeVGi1VsuAkyeLkoU9sAeSlnJhMFvA7rzEWwrII7N
-	 lxNQLHjdvtXkAY7YCBQGpQ304h1ukSlzZ2nheTtU/4FAPvXHxHaRs1bdjYGPShnjTC
-	 lV0gNWjeqh+1HyzayhtZINbPzLMLrZ2cH3j6U1MlnCxIbMYGQLaPSndJYvwHdwCy0X
-	 m+whf2KrdYnfg6uCgCoOOpAOWl4ygWbmW9z37SfvuumwZIuNV/OiW+cJ9g7abKXBpB
-	 ExPsEasJsSWjr5cl4mcgbdr+bupl0FdZTVGVRI1KKRxNavmbv+SmuRr6rkAmFOjdDb
-	 0H+AkDUhMXp6A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 4/4] arm64: dts: freescale: Add dual-channel LVDS
- overlay for TQMa8MPxS
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Alexander Stein" <alexander.stein@ew.tq-group.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev, conor+dt@kernel.org, wsa+renesas@sang-engineering.com
-In-Reply-To: <20260603093621.2504490-4-alexander.stein@ew.tq-group.com>
-References: <20260603093621.2504490-4-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 10:23:31 +0000
-Message-Id: <20260603102331.C2F881F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780482442; c=relaxed/simple;
+	bh=WaJnq4vJPJN0OK3iw6juyyLuxpGKER8KzYNWQqTNCUQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=k/3dU72gNZTrYLpNxlkvTM/WAidQfDOmreH35d0yI031UPFcGXyiCUgi9utnHVVehuR0Wzzj2drZ6/5QZ9Qcpn9FtV6mWwHpUIbJVCASi1NbTZS6iFBPsNJg/WoXPvU5nrrx0DJ+99aJrp4HKbK0pWyNPP3yLkc9853rGBe35Nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AS0wMddM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cxU9W/Qr; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6536RGD91740442
+	for <devicetree@vger.kernel.org>; Wed, 3 Jun 2026 10:27:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Ke6hFaye3GUWTYMdDv1mH0rJhnS2IhQe2jTb8z6TWDU=; b=AS0wMddMbp1fh/so
+	LCIczNK/D0EgtaowsN9foXMEEKOaP+ydRDWE+hyr9/xJGowRNASIbON7wol+YolX
+	w+ZV0MlQQdZcmb+g0chRUlOTwsdR/uQ3Q5w86GrjOHw7VoHBxAi8NOhioaWAp517
+	VN+pq5VzwCIdTVtNvziq4m4HIBxXoF5zO/Ii2Z7/z9Df+hU6L425FABWtyQLG5lM
+	THtDxm9XMG6QumSe8rWzPVjfxiCCie7lflQPtTBAE27WA4kAOKlj2sa4qAomd+qB
+	CMTmXw1csnyc4Cu+mHgQIg2LkvxSLVpittDnhXAnX+JnVeM6pJ/yC1C1Dpq4tAJI
+	ZWFgfQ==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ejdq7sb2n-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 10:27:20 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-8423f407223so872172b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 03:27:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1780482440; x=1781087240; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Ke6hFaye3GUWTYMdDv1mH0rJhnS2IhQe2jTb8z6TWDU=;
+        b=cxU9W/QrOGq0x74ri8BqVkKorIs6Ql2vOcuSNdtbtU7dWjRA+CueJ2ivm2CHJnHD5H
+         O6DlQMapio8hS0S9fVvpPYQgk8pJKSIJbaxamkhJLscrHx7FM62On1TE2P3jbpZS7s3X
+         pxh0wv3vBEhUMrVPszzRlwRUsh8vYCXvu7XxfaP7X3/k7PFqd3HTLvJTX1rcTaD+SIz1
+         BwV0OKJMvHCEH+95+V+UKfQ/aQk/rC7hcsjBxsJ+KjDXdd82mQ4Gz2tdKY6uTC2Tv+wh
+         iDr6BO+PCmcwxvRm3W5ntrMjDjpq5AorPPhhtXI4ThFxcT3obkGOwXNjkX88wbeJWxHf
+         5VKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780482440; x=1781087240;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ke6hFaye3GUWTYMdDv1mH0rJhnS2IhQe2jTb8z6TWDU=;
+        b=ntlQI36ElO/48h2a5P2/PE+EgVfoxxCnvbcYLX/h9LeXT7rCvlJFKMLpFDVrRDx0Pe
+         ssLf9kH+u4pRSQRMZrFgqLz6yUxvWh2G+dTLA8DbrfylgpS++apGBNCcVQk7S405hVA9
+         8se7LVL3p6iGReyEL4mscIYo7FM3A9DD+3nhQFd69rfXvQ62eR7kPEmpITqUpF4qmSLj
+         4azdGjQEr5e9H7sonU3LqjhM/VfTuR7bfFkysdDg+50PRstKRHgVfXJDq3Hs1rnPMO76
+         H6vaoVo09JNoxCBlm++Ai7wU6blC1dpkzJhNe+VB0LupMPIOpf4tp4ozFzbTKVkqwjVd
+         NkIA==
+X-Forwarded-Encrypted: i=1; AFNElJ8eEzGtPzH/fOYK4iOPUvFMZR9Qf3FdFCNFPX766K83f7uAmJVHmiD31mpSW0RjejmPWWtM3RSYgNta@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+qWCPNAIHlwqZAd1ns2jGWLZMd0e2Plfx9ryX9ISnEBpURvYX
+	mQHb75m+fzuvulD8BIMRhymb4ZQscQxMlyuf4xwoj0qHwIIYgY3JFuwEwhO2R22poC/y3If6i/u
+	v2cx5reeZpn0mBtwbNJ+RZFkiRC4o4UWgvFO3JF1g6IpUhv53ozIn4bmoIxfIVBM0suwSRLmF
+X-Gm-Gg: Acq92OFyzOYb+XGTGd2rfTT65bet5cMgr/HGVMppHsjrQltRQx0XbXv2ELeuXXEFDyQ
+	rTEEQZEsgzmNElbclp2MTg87wRKuzfbvLFYY0i3Mx+xJ8i5wqbcSDYvS4tDtmY0pCBCvOSN01vB
+	wA2x+214PXegoRt61oVDGpl6GJzbbV6scBB01gxrz/LIDcsthNrZC/sbOPKUog8Zmpp255Dfqcn
+	UwaWu4Vr6O+ihQBbTiPZcahA/oXBf73wu08Biz0w+ODTOrprXPxmZuuqxZm4tcpKyMBN8t2nQo1
+	TIUi0ZxyGZgV+0sprmvmMLRlOCb325B/dmOC/QuyP88bBzNMpeLJ7VKE5f6krzyB2nTa5Nl3M2F
+	0pgTDcCwsIzvgh8PorrzxOeusoWKjrCGYYpInNuWG+MdokSmG7uJFEh/wbI/j
+X-Received: by 2002:a05:6a00:3a27:b0:842:2d2c:2b58 with SMTP id d2e1a72fcca58-842838e011amr1625223b3a.5.1780482439599;
+        Wed, 03 Jun 2026 03:27:19 -0700 (PDT)
+X-Received: by 2002:a05:6a00:3a27:b0:842:2d2c:2b58 with SMTP id d2e1a72fcca58-842838e011amr1625198b3a.5.1780482439078;
+        Wed, 03 Jun 2026 03:27:19 -0700 (PDT)
+Received: from [10.92.217.24] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8428237430esm2428145b3a.21.2026.06.03.03.27.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Jun 2026 03:27:18 -0700 (PDT)
+Message-ID: <fd5c9415-5275-4c0b-90ee-d81a5d5b660f@oss.qualcomm.com>
+Date: Wed, 3 Jun 2026 15:57:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/8] dt-bindings: arm: ras: Introduce bindings for ARM
+ AEST
+From: Umang Chheda <umang.chheda@oss.qualcomm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Ruidong Tian <tianruidond@linux.alibaba.com>,
+        Tony Luck <tony.luck@intel.com>, Borislav Petkov <bp@alien8.de>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, catalin.marinas@arm.com,
+        will@kernel.org, lpieralisi@kernel.org, rafael@kernel.org,
+        mark.rutland@arm.com, Sudeep Holla <sudeep.holla@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260505-aest-devicetree-support-v1-0-d5d6ffacf0a5@oss.qualcomm.com>
+ <20260505-aest-devicetree-support-v1-5-d5d6ffacf0a5@oss.qualcomm.com>
+ <20260513175823.GA1471517-robh@kernel.org>
+ <48e298d0-f4cb-4afb-8ba1-a6b39f3285cb@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <48e298d0-f4cb-4afb-8ba1-a6b39f3285cb@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjAzMDEwMCBTYWx0ZWRfX9El8W3Eml8hz
+ gogbndJnQ5f43A1WhMXO7U7j0mFlsDIk44hClKTr01Ulg/xe5fJZ6k86lmziSVGzOqoiYZB7I8v
+ SrnfBtD2GbjN5xXliK8Sy/1EatR3Rm2k3wEz/KtEI/QQCPsX0rsSK+6hoB1Ov+zgRR38ZA7f3zr
+ PVaHnpMy+VQdV1i6Eq5rQGdySFJO4iKskHRJJaW9n1a22yZvNbJYcFSXbQ3UJ3p30RgrfPGVVec
+ H8QbJWGh8x1PLwnO4VXuufjEUfrMTe4558nyLKoK2oQXFPIGEIUsAHMUbp9qNGT9A8lxDwIUF0M
+ cvGhw6oMu2K1RRhA5scueh0/JgGHc/c3dko6rhzpMKljE9AmOq64+A1lzI2APN/Kx5aRJ/pUllZ
+ lQ7ldHPpyhidFGy5HhO5+jRP3PVIwwBEYP8DyyEHU8fEbGRkD/Og0il2zIyLn3y80SaARCj7BFc
+ AyTX7FLtJcnxC11GsyQ==
+X-Proofpoint-ORIG-GUID: bFuNLCT_hzVpVDT1jFbyH0VK_iRiUUMT
+X-Proofpoint-GUID: bFuNLCT_hzVpVDT1jFbyH0VK_iRiUUMT
+X-Authority-Analysis: v=2.4 cv=ccniaHDM c=1 sm=1 tr=0 ts=6a200188 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8 a=AMbOtgs2x-SaA9YGKiUA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-03_03,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 bulkscore=0 clxscore=1015 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 adultscore=0 phishscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606030100
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306140-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306142-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:alexander.stein@ew.tq-group.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url];
+	FORGED_SENDER(0.00)[umang.chheda@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:tianruidond@linux.alibaba.com,m:tony.luck@intel.com,m:bp@alien8.de,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:catalin.marinas@arm.com,m:will@kernel.org,m:lpieralisi@kernel.org,m:rafael@kernel.org,m:mark.rutland@arm.com,m:sudeep.holla@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-edac@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[umang.chheda@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,tq-group.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1FB9D636A3F
+X-Rspamd-Queue-Id: D5227636932
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] Missing deletion of the original 'port' node when adding 'ports' to=
- 'panel_lvds0', causing DT schema violations and broken bidirectional links.
---
+Hello Rob,
 
-commit f3c8e1f6a8535dc5df481fba1097371fa89698ff
-Author: Alexander Stein <alexander.stein@ew.tq-group.com>
+On 5/20/2026 11:43 PM, Umang Chheda wrote:
+> Hello Rob,
+> 
+> Thanks for helping reviewing the code!
+> 
+> On 5/13/2026 11:28 PM, Rob Herring wrote:
+>> On Tue, May 05, 2026 at 05:53:49PM +0530, Umang Chheda wrote:
+>>> The Arm Error Source Table (AEST) specification describes how firmware
+>>> exposes RAS error source topology to the operating system. On ACPI
+>>> systems this information is provided via the AEST ACPI table.
+>>>
+>>> Introduce Device Tree bindings that provide an equivalent description
+>>> of AEST error sources for DT-based platforms.
+>>>
+>>> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
+>>> ---
+>>>  .../devicetree/bindings/arm/arm,aest.yaml          | 406 +++++++++++++++++++++
+>>>  include/dt-bindings/arm/aest.h                     |  43 +++
+>>>  2 files changed, 449 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/arm,aest.yaml b/Documentation/devicetree/bindings/arm/arm,aest.yaml
+>>> new file mode 100644
+>>> index 000000000000..7809a0d38270
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/arm,aest.yaml
+>>> @@ -0,0 +1,406 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/arm/arm,aest.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Arm Error Source Table (AEST)
+>>> +
+>>> +maintainers:
+>>> +  - Umang Chheda <umang.chheda@oss.qualcomm.com>
+>>> +
+>>> +description:
+>>> +  The Arm Error Source Table (AEST) describes RAS error sources and their
+>>> +  register interfaces. Each error source exposes one or more error records
+>>> +  through either system registers or a memory-mapped register window, and
+>>> +  may signal errors via interrupts. The top-level node acts as a container
+>>> +  for one or more child nodes, each describing a single AEST error source.
+>>> +  Refer to the Arm AEST specification (DEN0085 / DDI 0587B) for details.
+>>> +  Flag bit constants for use in DT source files are defined in
+>>> +  <dt-bindings/arm/aest.h>.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: arm,aest
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 2
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 2
+>>> +
+>>> +  ranges: true
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +patternProperties:
+>>> +  "^aest-[a-z0-9-]+(@[0-9a-f]+)?$":
+>>> +    type: object
+>>> +    description:
+>>> +      An AEST error source node describing one error source defined by
+>>> +      the Arm AEST specification.
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +        description:
+>>> +          Identifies the type of AEST error source. Each value corresponds to
+>>> +          a distinct error source class defined by the Arm AEST specification.
+>>> +          arm,aest-proxy represents a proxy error source that forwards errors
+>>> +          from another error source.
+>>> +        enum:
+>>> +          - arm,aest-processor
+>>> +          - arm,aest-memory
+>>> +          - arm,aest-smmu
+>>> +          - arm,aest-gic
+>>> +          - arm,aest-pcie
+>>> +          - arm,aest-vendor
+>>> +          - arm,aest-proxy
+>>
+>> This is a fundamental difference how DT and ACPI get structured. ACPI 
+>> defines new table for some feature and puts everything in that table. 
+>> For DT, these all belong in the node for the corresponding h/w. For 
+>> example, if the GIC supports AEST, then that belongs in the GIC node.
+> 
+> Thanks for the feedback. To clarify your suggestion — should the AEST
+> RAS properties be added directly as properties of the hardware node
+> (e.g. arm,ras-num-records inside the cpu@0 node itself), or as a child
+> node under the hardware node (e.g. a ras-error-source {} child under cpu@0)?
 
-arm64: dts: freescale: Add dual-channel LVDS overlay for TQMa8MPxS
+Can you please help with this query ?
 
-This adds an overlay for the supported LVDS display AUO G133HAN01.
-Configure the video PLL frequency to exactly match typical pixel clock of
-141.200 MHz.
+> 
+> 
+>>
+>>> +
+>>> +      reg:
+>>> +        description:
+>>> +          Register ranges for the error source. Absence of reg implies
+>>> +          system-register access (interface type 0). A single range implies
+>>> +          memory-mapped access (interface type 1). Two ranges imply
+>>> +          single-record memory-mapped access (interface type 2).
+>>> +        minItems: 1
+>>> +        maxItems: 4
+>>> +
+>>> +      reg-names:
+>>> +        description:
+>>> +          Names for the register ranges. The base error-record window is
+>>> +          unnamed (or first entry). Optional named ranges provide access to
+>>> +          the fault-injection, error-group, and interrupt-config register
+>>> +          windows defined by the AEST specification.
+>>> +        minItems: 1
+>>> +        maxItems: 4
+>>> +        items:
+>>> +          enum:
+>>> +            - fault-inject
+>>> +            - err-group
+>>> +            - irq-config
+>>> +
+>>> +      interrupts:
+>>> +        description: Interrupts associated with the error source.
+>>> +        minItems: 1
+>>> +        maxItems: 2
+>>> +
+>>> +      interrupt-names:
+>>> +        description: Names of the interrupts associated with the error source.
+>>> +        minItems: 1
+>>> +        maxItems: 2
+>>> +        items:
+>>> +          enum:
+>>> +            - fhi
+>>> +            - eri
+>>> +
+>>> +      arm,fhi-flags:
+>>> +        description:
+>>> +          Bitmask of flags for the fault-handling interrupt (FHI), as defined
+>>> +          in the AEST node interrupt structure flags field. Constants are
+>>> +          defined in <dt-bindings/arm/aest.h> - AEST_IRQ_MODE_LEVEL (0),
+>>> +          AEST_IRQ_MODE_EDGE (1).
+>>
+>> DT already has a way to define interrupt flags. Why invent something 
+>> new?
+> 
+> Ack, this flag is not needed for DT based systems, will remove this.
+> 
+>>
+>> Rob
+> 
+> Thanks,
+> Umang
+> 
+> 
 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpqs-mb-smarc-2-lv=
-ds-g133han01.dtso b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpqs-mb-smarc=
--2-lvds-g133han01.dtso
-> new file mode 100644
-> index 0000000000000..9595cf4d43cd0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpqs-mb-smarc-2-lvds-g133=
-han01.dtso
-[ ... ]
-> +&panel_lvds0 {
-> +	compatible =3D "auo,g133han01";
-> +	status =3D "okay";
-> +
-> +	ports {
+Thanks,
+Umang
 
-[Severity: Low]
-Does this overlay need to explicitly remove the original port node using
-/delete-node/ port;?
 
-The base device tree defines panel_lvds0 with a single port node. Because
-device tree overlays merge rather than overwrite nodes, the original port
-node remains in the merged tree alongside this new ports node.
-
-This violates the OF graph device tree schema which enforces
-oneOf: [port, ports]. It also breaks the OF graph bidirectional link
-requirement, as the old endpoint points to ldb_lvds_ch0, but ldb_lvds_ch0
-no longer points back to it, triggering a remote-endpoint is not
-bidirectional error in dtbs_check.
-
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		port@0 {
-> +			reg =3D <0>;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603093621.2504=
-490-1-alexander.stein@ew.tq-group.com?part=3D4
 
