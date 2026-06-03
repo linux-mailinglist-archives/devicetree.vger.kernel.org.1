@@ -1,87 +1,99 @@
-Return-Path: <devicetree+bounces-306385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306373-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jRoMHGtTIGp81AAAu9opvQ
-	(envelope-from <devicetree+bounces-306385-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 18:16:43 +0200
+	id ICKvHrBSIGou1AAAu9opvQ
+	(envelope-from <devicetree+bounces-306373-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 18:13:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE3D96399CD
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 18:16:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0BE863997B
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 18:13:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=QxIchyvI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306385-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306385-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=suse.com header.s=google header.b=AdLnftGE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306373-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306373-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=suse.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 46B5C329DDA7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 15:30:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 430EF34F69B7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 15:28:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB15F3D8137;
-	Wed,  3 Jun 2026 15:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55BF43DD513;
+	Wed,  3 Jun 2026 15:24:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88FCF3D88FB
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 15:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B870F3DD50F
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 15:24:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780500487; cv=none; b=K1kYVoat2fUP+av/qCECmjB/tzFarItpYnPM2IFHQfK4ZqnWsMv8MGAXikkPYg5vI48LszisELemuVU8olBJhhwVhzeGtEeZSC12c2dp+mSmDygI/ecRnqtPof/Wf0gyr3sePhXVzkxn4OW3zlFyzDNSHN7y25ECfV2IgZ73PFQ=
+	t=1780500283; cv=none; b=ZNiDs73V5HH8KX2yzF0cfJ9hKJMAp8/C+G31/rSJrHfk8CfSXWJICqjiM2GkylOUGH0Adh+InzbbIInoX79YwYJ/37aUAfWTxsg2xlzl7a4yVopStVmNN8v7/sJladPbIcBXEO9UNyIifnQCN0nPyN7v5FzIvyr1CuvnkVG6ZxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780500487; c=relaxed/simple;
-	bh=KvHAe0AvuOAoes4UZDGvh2s8NnStfb8rUlQlgpH51PA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Vw8LmAPCcCDkRXsxzLhKcdXMdTv41q+xA6FFR/jfcUWuiXpnLsuW98n/NqwMSBtEVdxulnb9tpiZHk0aYiwMwc7FpA91GCcAmQOJDYCLAd+ZI5tscy3k/DwgzbpybAco+m4Gf6J8shQpINpT7kwVgJX+TvdEo2+x5ZWgg9wJrU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QxIchyvI; arc=none smtp.client-ip=209.85.210.175
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-84226d0f1d2so3100757b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 08:28:04 -0700 (PDT)
+	s=arc-20240116; t=1780500283; c=relaxed/simple;
+	bh=pwnLdAL7wp0rmLebUr1pKIcbrTLNSQRBMwWuio2DBUA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=OelS5tOaTmF7TiQ9AR7MLTLPoe//RPYAC7VFZAWiObDWAUoEL7c9JznCyPW55/QtR79AhP/Y8jItX5S+E6jleAhQnCw+qtUfFAv1tHmOWVqY6RbPb5Gq4ithK7FqDwIoPhmT8zxiSjr4wRmRJw6qjZp3u7jZraPxjBy055SoQMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=AdLnftGE; arc=none smtp.client-ip=209.85.221.53
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-4600ddc4017so3275285f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 08:24:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780500484; x=1781105284; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NLtXXU0NJs5ryiC71xZHTIGuUy5eFHh/uyyGKZ/bRwk=;
-        b=QxIchyvIWjNh5XVZqKBxK/QFcX/wx6PPA7bAKqlgRc2zR89PKo8EYgIEBHgFMjlAj5
-         cLhgJ555qbCnZedrZtS1+jcSPzj82a47nivS4FxdxgrfQcv8VL25oCW+paCRl9m7oeiz
-         M6BR0oMzrFtE0C46o0c//OLd7Ez+NiKDcSFr7F/PHSkX+Zx6X5bAkFqnI8UEKKZ1/cYr
-         Jjqploq5YnDWgQmaDZGLCQdCd2fT5WCvi/0ZFuUKPmmC8kfe4TPI3Op/mzCYk6Awrt8A
-         Y4mpKISLcSoweVOXPOT+iaVesYb6Vo2RatKmoFG+Paz+icGckPWCjZ/TcCFwEjxzPvq4
-         UsgQ==
+        d=suse.com; s=google; t=1780500280; x=1781105080; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=d1fMCVLbIKr90LXf3SjcImREe67/kY5zx03n0vnfB2Y=;
+        b=AdLnftGEO1xCzY4HC3+jrsk73p/0uUDVJ7NTNiBA1Vp9+V503W7EyKWIjN25xrlzfz
+         /Xz7BPqtQgAPjknPDQLfLB+Yt/qNajs2D6Wcfc4GwhhCWfjNy9+93tPnmzI+UMBVT0ri
+         bAcvBfD+8bRKQzR4jZilG47d1fGWMUhWGkU3ev6OSZoPMq+q46M8qi+NRQxb3vukRyBe
+         /rBfwIfK03INgM0imkJmuruS+S9CnWsxcGc9nSuN7sk4NBmZYyJOrrPHBc1A0JXBSxy7
+         P9DTCwnhEXgflY7seyovCS5+qRn0OTl5eFg01Rs/2CKME8gO9Z9JTWWhbSe2Z/d4gIEw
+         BFbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780500484; x=1781105284;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NLtXXU0NJs5ryiC71xZHTIGuUy5eFHh/uyyGKZ/bRwk=;
-        b=DCIpSGbfrzA2EmEzzRb3lJEz7SGmJwKQjHv/bZzNSUswS23TfRYmttLJwhy5CJSVMp
-         /qKyGCtA0ZuFhrDkCu46ICFGKCLXoS37AQ9MQkPbhpzuSt/yKE0P10GNvhIzT39pl6Yy
-         A1ubR4YmtMYbddVCtjyukqUHKQRfOq2CvCrodPNE7Dlmz8bL7HMHiPpuSx0jtURBrGUU
-         njnJRATPZmEjYUlxfOF1l1Fq2TsDLYOG5D/WdJK0d16XEyUOhVgPBJs+AkZe5Rtyh6I/
-         8XVU5taXXSFicPt8Q6jmyfi8OtR2sbi/wzSsqg1nN3UZHQ6+IjU+o9bBFB2TyvDZY+oP
-         19sg==
-X-Gm-Message-State: AOJu0YzvpONPKHvD/CMWdJ5jtXwhBIivR1xJpjVjQA5AuVPjBWlbnKbS
-	tQoeBykcQFhpef0HiGIELICnwNLBUlgoq8wW05/UdKAw8Z+R7BdY3s9s
-X-Gm-Gg: Acq92OGvQ37zQRzmJBmW5t5QHJcvOwSsmSFdyJTbgAWumQ1FRINoUc9WMEwPhzLwjZ7
-	DOYD1vsoUzEq7AnPKSf7RqMs6SyTxVTHq6xTAb8erbWhIr2hHDyT3P9+Ute+13X4qB2DufPfYbb
-	UF4+2eLa0lT91fq0a5xQO2giLBPEhPkzonJP8NPsrKrs70qDnVfVkmR3y5DxTHSSnczPdBk9OYr
-	G0VisGpimdAw6QL7tdBnf39VbCBlKwW/d0mMjsgnyR//XJm7IESUpRtT+GxiVlMNwt+HWwLFRyJ
-	+RkgN6TL9F7mhR+pd8WKAUuPxBlvKky0pDcumOLOV6Doo1DbAo/y1URxoEIlwxOBtEcRDEsVF2s
-	5yD7XkuzgFTdpTi1RNgMr3o90d2MNP6ILfKeVZJ/bt8qE1AefV9eEsuW4+YQzaY+YCAEXfXqf4T
-	93Vd1g4SSYP8NWsdk9PfkWHQBs3lSL
-X-Received: by 2002:a05:6a00:c84:b0:842:4f22:f387 with SMTP id d2e1a72fcca58-84284f347bamr3766555b3a.49.1780500483566;
-        Wed, 03 Jun 2026 08:28:03 -0700 (PDT)
-Received: from ubuntu.. ([110.9.142.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84282372a16sm4172100b3a.18.2026.06.03.08.28.02
+        d=1e100.net; s=20251104; t=1780500280; x=1781105080;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d1fMCVLbIKr90LXf3SjcImREe67/kY5zx03n0vnfB2Y=;
+        b=d5v93rfphNGEHyNxn9SpJnx8B8t0UgiOkhRSLrnY8ngaNKrJyHxLOwWOH3LdhR43DB
+         m4tNsv1Q4S3GlrUJGjHCzLCXhuiHS7wehNffnKp8mp4hQ74+iaVeJtlei+iUyJ9XzlNm
+         /s9Qp9jwVaBWBdAyuxmxZQUuSr4oBTMFeB0+BTrzB2QyrLE1bCsTanKe0O5+w5ph2QZA
+         zx5hxM4Sl6dEgb/8mFsha0QOUE9Rb+YNGpHMD3Kl4AQ478UxQgt9JOOpfFE9FyKJD6vZ
+         WAzv3nCW/vbVTODO1cCRvSmvNSxbETjz0FfyK18LKFDFD4WyZbuJxWyN/RggwI655HID
+         LDuQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/5sCab0Eo7KgAzUYFXjF/QwCzoi+wyhZrzlTOQIH55HgBdEy0d5QbOFx/SZ1LAZRzObPjuJ6OLrNKQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwmlIZ6gO+6jw0vKjiQOBKRWqEN8GWxWKpPFdatt23UVACx9jh
+	mfE+Fbu0Bc3HgicvSQ4LGsx9zJp6ib9UaNkK6Mq7rL6Jze/oA4Zd6GiBQ2md06sMf0w=
+X-Gm-Gg: Acq92OF/XCfR7NZWdK22kyTMmvhmuBU4RtSDNH1xDvY2XGZ6BGicbWsSkNp8DmsdWMT
+	4AXs+iuBh37/64Ad6tjFU4eaZGlMLkDw9Wr1K/uefRLwrysycXYqSaPDwDX+IN/oJaT7JCL8EIX
+	OyiYUtVOq00x/qTqnPHPzlPYgIKcaviR9/TMjJ+dGRNRn7MVAiCfxz6uN/neDgy4iPYQpv25HCt
+	wgbSQpKnrY3kd+qZKuV9b5lR9fVErP7DnFl9pf2aUKnzKq97uI1TGspPAKqntD8m8Gpvym03Kph
+	hWiRF/+mzP/hXoZj+N9jY/HcPLOvprUGJgCh82N4E2AcCGJMMQFzkHnh4NL9Y+e/rnUnKobeXgq
+	a7oIhcKsbxbRvMKM5eGstTeT3HAGwhO+Z4kgk6qo8PKjnFyTUYsYIw+S+A0tS/bEKT7E+1rdO84
+	SGzEUhzvjiAo2kP2vqpZslaixrl088T893ZS+DsD992UA=
+X-Received: by 2002:a5d:5710:0:b0:453:e3a1:6580 with SMTP id ffacd0b85a97d-46021844ce7mr4341301f8f.25.1780500280187;
+        Wed, 03 Jun 2026 08:24:40 -0700 (PDT)
+Received: from localhost ([82.192.120.99])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f3444fesm9185525f8f.20.2026.06.03.08.24.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 08:28:03 -0700 (PDT)
-From: Sang-Heon Jeon <ekffu200098@gmail.com>
-To: robh@kernel.org,
-	saravanak@kernel.org
-Cc: devicetree@vger.kernel.org,
-	Sang-Heon Jeon <ekffu200098@gmail.com>
-Subject: [PATCH] of: reserved_mem: prevent OOB when too many dynamic regions are defined
-Date: Thu,  4 Jun 2026 00:27:09 +0900
-Message-ID: <20260603152709.941788-1-ekffu200098@gmail.com>
-X-Mailer: git-send-email 2.43.0
+        Wed, 03 Jun 2026 08:24:39 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	linux-pwm@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Naushir Patuck <naush@raspberrypi.com>,
+	Stanimir Varbanov <svarbanov@suse.de>,
+	mbrugger@suse.com
+Subject: [PATCH v4 0/3] Add RP1 PWM controller support
+Date: Wed,  3 Jun 2026 17:27:43 +0200
+Message-ID: <cover.1780498640.git.andrea.porta@suse.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,131 +102,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306385-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[ekffu200098@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:saravanak@kernel.org,m:devicetree@vger.kernel.org,m:ekffu200098@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306373-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:ukleinek@kernel.org,m:linux-pwm@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:andrea.porta@suse.com,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:naush@raspberrypi.com,m:svarbanov@suse.de,m:mbrugger@suse.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ekffu200098@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DKIM_TRACE(0.00)[suse.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EE3D96399CD
+X-Rspamd-Queue-Id: D0BE863997B
 
-On boot, fdt_scan_reserved_mem() saves each dynamically-placed
-/reserved-memory subnode into a local array of size
-MAX_RESERVED_REGIONS.
+This patchset adds support for the PWM controller found on the
+Raspberry Pi RP1 southbridge. This is necessary to operate the
+cooling fan connected to one of the PWM channels.
 
-If the device tree declares more than MAX_RESERVED_REGIONS
-dynamically-placed regions, fdt_scan_reserved_mem() writes past the
-end of the local array.
+The tachometer pin for the fan speed is managed by the firmware 
+running on the RP1's M-core. It uses the PHASE2 register
+to report the RPM, which is then exported by this driver via
+syscon registers. A subsequent patch will add a new device
+and driver to read the RPM and export this value via hwmon.
+ 
+Subsequent patches will also add the CPU thermal zone, which
+acts as a consumer of the PWM device.
 
-Add a bounds check that logs an error and skips the excess regions,
-restoring the original behavior.
+Best regards,
+Andrea
 
-Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
-Signed-off-by: Sang-Heon Jeon <ekffu200098@gmail.com>
----
-QEMU-based test results
+CHANGES in V4:
 
-- With 65(MAX_RESERVED_REGIONS + 1) dynamically-placed region DTB
+- s/rp1_pwm/rp1_pwm1/ in the DTS, so adding rp1_pwm0 in the
+  future will be unambiguous
+- the driver can now be compiled as module. Since it cannot
+  be unloaded (due to syscon registration), substitute
+  builtin_platform_driver for module_platform_driver.
+- preserved the polarity bit when setting up the channel on
+  rp1_pwm_request()
+- rp1_pwm_round_waveform_tohw(): capped duty_ticks to be no
+  more than period_ticks, and adjusted offset_ticks
+  accordingly (best effort)
+- the syscon registration is moved at the end of the probe
+  function, to avoid leaking if the probing bail out
+  prematurely
+- fixed the erroneous casting about pwm_chip/rp1_pwm struct
+  in suspend/resume functions.
 
-1) AS-IS (before-fix)
-[    0.000000] OF: reserved mem: 0x000000043ffff000..0x000000043fffffff (4 KiB) map non-reusable rgn00
-[    0.000000] OF: reserved mem: 0x000000043fffe000..0x000000043fffefff (4 KiB) map non-reusable rgn01
+Naushir Patuck (2):
+  dt-bindings: pwm: Add Raspberry Pi RP1 PWM controller
+  pwm: rp1: Add RP1 PWM controller driver
 
-...
+Stanimir Varbanov (1):
+  arm64: dts: broadcom: rpi-5: Add RP1 PWM node
 
-[    0.000000] OF: reserved mem: 0x000000043ffc1000..0x000000043ffc1fff (4 KiB) map non-reusable rgn62
-[    0.000000] OF: reserved mem: 0x000000043ffc0000..0x000000043ffc0fff (4 KiB) map non-reusable rgn63
-[    0.000000] OF: reserved mem: not enough space for all defined regions.
-[    0.000000] Kernel panic - not syncing: stack-protector: Kernel stack is corrupted in: fdt_scan_reserved_mem+0x5f0/0x610
-[    0.000000] CPU: 0 UID: 0 PID: 0 Comm: swapper Not tainted 7.1.0-rc1-00022-gcf5d7a55d3b6 #6 PREEMPT 
-[    0.000000] Hardware name: linux,dummy-virt (DT)
-[    0.000000] Call trace:
-[    0.000000]  show_stack+0x18/0x24 (C)
-[    0.000000]  dump_stack_lvl+0x34/0x8c
-[    0.000000]  dump_stack+0x18/0x24
-[    0.000000]  vpanic+0x47c/0x4dc
-[    0.000000]  do_panic_on_target_cpu+0x0/0x1c
-[    0.000000]  __stack_chk_fail+0x20/0x24
-[    0.000000]  fdt_scan_reserved_mem+0x5f0/0x610
-[    0.000000]  early_init_fdt_scan_reserved_mem+0x50/0x124
-[    0.000000]  arm64_memblock_init+0x188/0x2b8
-[    0.000000]  setup_arch+0x24c/0x5f4
-[    0.000000]  start_kernel+0x70/0x848
-[    0.000000]  __primary_switched+0x88/0x90
-[    0.000000] ---[ end Kernel panic - not syncing: stack-protector: Kernel stack is corrupted in: fdt_scan_reserved_mem+0x5f0/0x610 ]---
+ .../bindings/pwm/raspberrypi,rp1-pwm.yaml     |  54 +++
+ .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |  12 +
+ arch/arm64/boot/dts/broadcom/rp1-common.dtsi  |   9 +
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rp1.c                         | 422 ++++++++++++++++++
+ 6 files changed, 507 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/raspberrypi,rp1-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-rp1.c
 
-2) TO-BE (after-fix)
-[    0.000000] OF: reserved mem: not enough space for all dynamic regions.
-[    0.000000] OF: reserved mem: 0x000000043ffff000..0x000000043fffffff (4 KiB) map non-reusable rgn00
-[    0.000000] OF: reserved mem: 0x000000043fffe000..0x000000043fffefff (4 KiB) map non-reusable rgn01
-
-...
-
-[    0.000000] OF: reserved mem: 0x000000043ffc1000..0x000000043ffc1fff (4 KiB) map non-reusable rgn62
-[    0.000000] OF: reserved mem: 0x000000043ffc0000..0x000000043ffc0fff (4 KiB) map non-reusable rgn63
-
----
-Hello,
-
-I found a bug introduced by a previous patch, so I am sending this
-fix as quickly as possible after testing. Although we are at the end
-of the 7.1 -rc cycle, I do not want to rush this patch.
-
-Thank you as always for the thoughtful review.
-
-Best Regards,
-Sang-Heon Jeon
----
- drivers/of/of_reserved_mem.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index ce1d5530ec0f..4efd521adee0 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -346,6 +346,12 @@ int __init fdt_scan_reserved_mem(void)
- 		err = __reserved_mem_reserve_reg(child, uname);
- 		if (!err)
- 			count++;
-+
-+		if (dynamic_nodes_cnt == MAX_RESERVED_REGIONS) {
-+			pr_err("not enough space for all dynamic regions.\n");
-+			continue;
-+		}
-+
- 		/*
- 		 * Save the nodes for the dynamically-placed regions
- 		 * into an array which will be used for allocation right
 -- 
-2.43.0
+2.35.3
 
 
