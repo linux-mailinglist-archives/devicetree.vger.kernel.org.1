@@ -1,165 +1,245 @@
-Return-Path: <devicetree+bounces-305952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305965-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OcybKcfBH2oTpgAAu9opvQ
-	(envelope-from <devicetree+bounces-305952-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 07:55:19 +0200
+	id ofbGHjjEH2qepgAAu9opvQ
+	(envelope-from <devicetree+bounces-305965-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:05:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D5C76346F4
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 07:55:19 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E579563482D
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:05:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=N2X1t0Xr;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305952-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-305952-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=D4BWVMxy;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305965-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305965-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 26D92301D319
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 05:55:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7976930C85BC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 06:01:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 473E33DC4AF;
-	Wed,  3 Jun 2026 05:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3FA83F5BF8;
+	Wed,  3 Jun 2026 06:01:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3E0314B8F
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 05:55:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F7423F44D3;
+	Wed,  3 Jun 2026 06:01:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780466116; cv=none; b=OVxAJYZGLJ9bLlRM4pDcv1jFcpA9PcVX0wVsIIGKff5FEZf0Vd4+I+MlXZwCpYQ5cfG6uvLJtSh9q5LMo87d7jffqo5q307ecWUhLf6TjvAAKu1pMsQvUoHt35MX8ps43iU1JAOMz5pu2ArXKnlbmQpUhzSo7ODzkRWn2ox7I8I=
+	t=1780466462; cv=none; b=f0DjusZyMto+mJFsI2qbNdaUoXeQV5AdrWqneig8DWRjP08cgbBdtJOYjTE5JAbNIklhaEZFOzWqN+Z5Hzl2WhO3BM4IvYKXWWI+PZ4DZb3n6UsyZmmupChnM6rq8fOeDKQds4ONxmmdFXslHslZqLy0IPFdsIsPNDITXVh5WMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780466116; c=relaxed/simple;
-	bh=h4FuU5eF2zPKSTUJ1x+8cUuejYFnNjiEBaNZyXeC45s=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=XGcCi54NudXLe+if6qDWzNHl+MwemSKIiICIrCKRiaRcNTDeIGzE3cFD2pbc4azngiwYrsT5pYuDjnRk+6bO4LTVYn562gDChmUIIywR89czMfKZHxUq7XEgdnWxzF+inSbFM5R9Ae8gUCh9D/6w9gm3+Yu8Eii8XL6VTDZyArA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N2X1t0Xr; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DBDE1F008A1;
-	Wed,  3 Jun 2026 05:55:14 +0000 (UTC)
+	s=arc-20240116; t=1780466462; c=relaxed/simple;
+	bh=pp9HcY2xS66toHNxbB7sr3vXGCzSt2XLjnl7od/onoQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=g812IOS9Rdi+Ihoi+V4yG5lx86J7JgIdDTzQ1FHAFRz+pVU0lYZ9T0J2oJqqMzkzDb3ObwisYtKSsCcJOAA1UdMjw9Jx71oKd6ePuC7zwy3T9L3A61WNOWh/jtfAGNCkWe5+Q+7Xs5x+ycnRnGyuunqh1QWkdf9pNX3OLqXPT1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D4BWVMxy; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD51E1F00893;
+	Wed,  3 Jun 2026 06:01:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780466114;
-	bh=m72tQO36EozvSScd6gBkhrOXXAJ3yAsNeXVOSlp17nQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=N2X1t0Xrij37jLSzIK2Pv2l4cU4OKBkuoP8yMiTXCE1sTlBsrYssqZi55WilgvlpI
-	 B5zjaYhWtUDtmoBANZpSCPf5ORRI2TAJ/iZGI/vLpCeSv/zeQhlWQVjX0MKJEaKT1d
-	 BMJuXyfL76JLKqg/eTOClH0xLtz+8E2QFvfaSiLRiOmasxAVE1cFqddpNgT/zeBWtH
-	 CHEZqsc83+6/MIFl/zot6UNGOWu5idPQxrn1qTio1gXiC+WApyj6uExd6mb8zHMzRV
-	 QlRrUVrmePhfVDbR0oXHcUn56GMhSYYumv6n0tWVnPmG0ppvhKmcNhr0H9VEi+XVJ1
-	 DS+3N6Ocs4NYg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,usb-hs-phy: add
- qcom,vendor-init-seq
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Herman van Hazendonk" <github.com@herrie.org>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, olteanv@gmail.com, linux-phy@lists.infradead.org, vkoul@kernel.org, neil.armstrong@linaro.org
-In-Reply-To: <20260603054809.565723-2-github.com@herrie.org>
-References: <20260603054809.565723-2-github.com@herrie.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 05:55:14 +0000
-Message-Id: <20260603055514.7DBDE1F008A1@smtp.kernel.org>
+	s=k20260515; t=1780466461;
+	bh=iIDbnu+hln/EA7ynrMKJhtLipUKdalEJHgUvmnSOonw=;
+	h=From:Subject:Date:To:Cc;
+	b=D4BWVMxyAgWppCpi4bvzqMJ4AIDUZxqBAU22i0RzX1a45PJPKzI5Ds+Ov9YJ4Rjwf
+	 dTwpB4gOMSH28nKGKfZqLZ7YoXlf6Bz7cGFVUqxaJcuK6NaC1qwSaZThoy7EWt9tSn
+	 D1srZz0Z+JtH+Ar/9iFyPUG217PLpTmPZa6IKSZpCookmaR6sXqrAFkCjnzrXoVTl4
+	 fhAASpCyoqKqfwfymk+5Pv/IfCkBCPybMSwBh3CdwS8WDY6QYQwrUlWtrJN7UasygI
+	 4dcLiOtPguoM/MFFziTZ6aAmQrkUeOflkdJYH1iwdlKPXevF5Tc3vD92+yP1FUUMQE
+	 WLccJ2II+F3lA==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH net-next v9 0/6] net: airoha: Support multiple net_devices
+ connected to the same GDM port
+Date: Wed, 03 Jun 2026 08:00:14 +0200
+Message-Id: <20260603-airoha-eth-multi-serdes-v9-0-5d476bc2f426@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33SS2rEMAwG4KsMXtdF8TPuqvcoXfghT0ynSXHSM
+ GXI3esJhUkxyVIIfUI/upERc8KRvJxuJOOcxjT0pTBPJ+I725+RplBqwoAp4ExQm/LQWYpTRz+
+ /L1OiBQg40uiEk1IhaqlImf7KGNN1ld9IjxPt8TqR99Lp0jgN+WddOTdr/083u/rcUKAAUbLgu
+ QJvXz8w93h5HvJ5RWf2gAQ0+xArkPWCaYvCIboK4ltI7UP8DjmFVpggTYwVJB6QBL0PiTsUVcO
+ daiwCqyC5hQ4ykgVqQSJvMXhm64zUBmoOMlIF8q0xQjEvopYVpLfQQUa6QMYggOEcONantVvo4
+ LS2QMoFDVi+JET1D1qW5RcsUjGkyAIAAA==
+X-Change-ID: 20260324-airoha-eth-multi-serdes-fb4b556ee756
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Christian Marangi <ansuelsmth@gmail.com>, 
+ Benjamin Larsson <benjamin.larsson@genexis.eu>, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ Xuegang Lu <xuegang.lu@airoha.com>, 
+ Madhur Agrawal <madhur.agrawal@airoha.com>
+X-Mailer: b4 0.14.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-305952-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:github.com@herrie.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,lists.infradead.org,linaro.org];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305965-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lorenzo@kernel.org,m:ansuelsmth@gmail.com,m:benjamin.larsson@genexis.eu,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:xuegang.lu@airoha.com,m:madhur.agrawal@airoha.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,genexis.eu,lists.infradead.org,vger.kernel.org,airoha.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,herrie.org:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1D5C76346F4
+X-Rspamd-Queue-Id: E579563482D
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The `qcom,vendor-init-seq` property uses a flat `uint8-array` type =
-instead of `uint8-matrix`, preventing dt-schema from enforcing its required=
- address-value pair structure.
---
+EN7581 or AN7583 SoCs support connecting multiple external SerDes (e.g.
+Ethernet or USB SerDes) to GDM3 or GDM4 ports via a hw arbiter that
+manages the traffic in a TDM manner. As a result multiple net_devices can
+connect to the same GDM{3,4} port and there is a theoretical "1:n"
+relation between GDM ports and net_devices.
 
-commit c31501f8d171d100ea82c554966b30fc82a8bc2c
-Author: Herman van Hazendonk <github.com@herrie.org>
+           ┌─────────────────────────────────┐
+           │                                 │    ┌──────┐
+           │                         P1 GDM1 ├────►MT7530│
+           │                                 │    └──────┘
+           │                                 │      ETH0 (DSA conduit)
+           │                                 │
+           │              PSE/FE             │
+           │                                 │
+           │                                 │
+           │                                 │    ┌─────┐
+           │                         P0 CDM1 ├────►QDMA0│
+           │  P4                     P9 GDM4 │    └─────┘
+           └──┬─────────────────────────┬────┘
+              │                         │
+           ┌──▼──┐                 ┌────▼────┐
+           │ PPE │                 │   ARB   │
+           └─────┘                 └─┬─────┬─┘
+                                     │     │
+                                  ┌──▼──┐┌─▼───┐
+                                  │ ETH ││ USB │
+                                  └─────┘└─────┘
+                                   ETH1   ETH2
 
-dt-bindings: phy: qcom,usb-hs-phy: add qcom,vendor-init-seq
+This series introduces support for multiple net_devices connected to the
+same Frame Engine (FE) GDM port (GDM3 or GDM4) via an external hw
+arbiter. Please note GDM1 or GDM2 does not support the connection with
+the external arbiter.
 
-This commit introduces the qcom,vendor-init-seq property to the Qualcomm
-USB HS PHY binding. It allows passing raw ULPI (address, value) pairs to
-be written after PHY reset, targeting the standard ULPI vendor register
-range for MSM8x60-class hardware configuration.
+---
+Changes in v9:
+- Do not stop device probe if mac address are misconfigured but just
+  report the warning
+- Rebase on top of net-next main branch
+- Remove redundant net_device pointer inside airoha_gdm_dev struct.
+- Link to v8: https://lore.kernel.org/r/20260519-airoha-eth-multi-serdes-v8-0-6bd70e329df6@kernel.org
 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml b=
-/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-> index e03b516c698cc..b9eca670419a8 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
-> @@ -85,6 +85,20 @@ properties:
->              the address is offset from the ULPI_EXT_VENDOR_SPECIFIC addr=
-ess
->          - description: value
-> =20
-> +  qcom,vendor-init-seq:
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+Changes in v8:
+- Fix dts schema issues reported by sashiko.
+- Fix possible NULL-pointer dereference in patch 2/10.
+- Fix max mtu computation in airoha_dev_change_mtu().
+- Link to v7: https://lore.kernel.org/r/20260516-airoha-eth-multi-serdes-v7-0-99e0093303e2@kernel.org
 
-[Severity: Low]
-Since the sequence consists of (address, value) pairs, should this use
-/schemas/types.yaml#/definitions/uint8-matrix instead of uint8-array?
+Changes in v7:
+- Fix dma_sync_single_for_cpu() size in airoha_qdma_rx_process().
+- Fix hw stats reset.
+- Fix typos.
+- Add fix for airoha_tc_remove_htb_queue queue index.
+- Fix dts schema issues.
+- Remove hw stats patch from the series.
+- Link to v6: https://lore.kernel.org/r/20260511-airoha-eth-multi-serdes-v6-0-c899462c4f75@kernel.org
 
-Using a uint8-matrix with an inner items list would allow the dt-schema
-validation tool to statically catch malformed properties that do not have
-an even number of bytes. This would structurally enforce the two-byte tuple
-layout before runtime, similar to the existing qcom,init-seq property.
+Changes in v6:
+- Reconfigure REG_GDM_LEN_CFG() whit max 'running' MTU in
+  airoha_dev_stop().
+- Fix port staring MIB counters in airoha_update_hw_stats().
+- Fix regression in TC_HTB_NODE_MODIFY command.
+- Fix length check in airoha_qdma_rx_process().
+- Fix dts schema.
+- Link to v5: https://lore.kernel.org/r/20260509-airoha-eth-multi-serdes-v5-0-805e38edc2aa@kernel.org
 
-> +    description: >
-> +      Flat sequence of raw ULPI address/value byte pairs written after
-> +      the PHY reset. Each pair is two consecutive bytes:
-> +      [addr0, val0, addr1, val1, ...]. Total length must be even and
-> +      no more than 64 bytes (32 pairs). Unlike qcom,init-seq the
-> +      address field is not offset by ULPI_EXT_VENDOR_SPECIFIC, so this
-> +      property can reach the standard ULPI vendor range (0x30-0x3f) =E2=
-=80=94
-> +      used on MSM8x60-class hardware to program pre-emphasis, HS
-> +      driver slope and CDR auto-reset bits the legacy msm_otg driver
-> +      used to set via platform data.
-> +    maxItems: 64
-> +
+Changes in v5:
+- Move qos_sq_bmap bitmap in airoha_gdm_dev struct.
+- Unregister netdevice before running of_node_put().
+- Move stat MIB counters in airoha_gdm_dev struct.
+- Fix airoha_ppe_init_upd_mem() mac address configuration.
+- Do not return -EBUSY if we try to decrease configured MTU of a shared
+  GDM port, just skip hw configuration.
+- use int instead of atomic_t for GDM port users.
+- Add patch "net: airoha: Reserve RX headroom to avoid skb reallocation"
+- Fix typos.
+- Link to v4: https://lore.kernel.org/r/20260507-airoha-eth-multi-serdes-v4-0-af613b61ae02@kernel.org
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603054809.5657=
-23-1-github.com@herrie.org?part=3D1
+Changes in v4:
+- Make ethernet-port property available just for GDM3 and GDM4 in DTS
+  specification
+- Move cpu_tx_packets, fwd_tx_packets qos_sq_bmap fields in airoha_qdma
+  struct
+- Fix of_node leak removing the net_device in airoha_remove() or
+  airoha_probe() error path
+- Fix nbq backward compatibility
+- Link to v3: https://lore.kernel.org/r/20260406-airoha-eth-multi-serdes-v3-0-ab6ea49d59ff@kernel.org
+
+Changes in v3:
+- Fix MTU and VIP configuration when the GDM port is shared between
+  multiple net_devices.
+- Add sanity check for nbq parameter.
+- Add missing of_node_get() for net_device np node.
+- Check if GDM port is shared before decresing device MTU.
+- Move port forward configuration in airoha_dev_stop() before
+  configuring DMA tx/rx engine.
+- Introduce PRIV_FLAG_WAN parameter.
+- Link to v2: https://lore.kernel.org/r/20260401-airoha-eth-multi-serdes-v2-0-ac427ae4beeb@kernel.org
+
+Changes in v2:
+- Rename multiplexer in arbiter in the commit logs.
+- Rebase on top of net-next main branch.
+- Add missing PPE cpu port configuration for GDM2 when loopback is
+  enabled.
+- Link to v1: https://lore.kernel.org/r/20260329-airoha-eth-multi-serdes-v1-0-00f52dc360ca@kernel.org
+
+---
+Lorenzo Bianconi (6):
+      dt-bindings: net: airoha: Add GDM port ethernet child node
+      net: airoha: Remove private net_device pointer in airoha_gdm_dev struct
+      net: airoha: Support multiple net_devices for a single FE GDM port
+      net: airoha: Do not stop GDM port if it is shared
+      net: airoha: Introduce WAN device flag
+      net: airoha: Support multiple LAN/WAN interfaces for hw MAC address configuration
+
+ .../devicetree/bindings/net/airoha,en7581-eth.yaml |  56 ++-
+ drivers/net/ethernet/airoha/airoha_eth.c           | 490 ++++++++++++++++-----
+ drivers/net/ethernet/airoha/airoha_eth.h           |  25 +-
+ drivers/net/ethernet/airoha/airoha_ppe.c           |  32 +-
+ 4 files changed, 480 insertions(+), 123 deletions(-)
+---
+base-commit: dfcc2ff12925d99e858eaf539eaa4aaaf81fe2a6
+change-id: 20260324-airoha-eth-multi-serdes-fb4b556ee756
+
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo@kernel.org>
+
 
