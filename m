@@ -1,151 +1,230 @@
-Return-Path: <devicetree+bounces-306290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306306-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JH0yCAQ5IGoeywAAu9opvQ
-	(envelope-from <devicetree+bounces-306290-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:24:04 +0200
+	id pA49IBc+IGp9zAAAu9opvQ
+	(envelope-from <devicetree+bounces-306306-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:45:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF64263885E
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:24:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE046638BDE
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:45:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=lHVVnnKS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306290-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306290-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FRZus5fa;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306306-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306306-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3C5133059A5B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 14:20:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1647031BFF77
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 14:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25B0438836C;
-	Wed,  3 Jun 2026 14:20:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092CD43E9D5;
+	Wed,  3 Jun 2026 14:23:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7189C386440;
-	Wed,  3 Jun 2026 14:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F20383C65;
+	Wed,  3 Jun 2026 14:23:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780496402; cv=none; b=IomFkmtpF+h6KsTM3XpcBwvSmI2gohtG9AlPwGaxoZPIVT1li1em+/cfHE4+rMtlmX+Pcd0cNHV0zrM9okgnXnIuFxCOAgt8cVpousyVpLku10R6Ugp13VWKJfDCKvynJe8xBAXyEDXwZhNEENjv7ML9EtcICtj3BKz26x3LvR0=
+	t=1780496601; cv=none; b=CgkUrdciuXfGWG4EfAZwOd7AJRiBiP/WULCMZIIHeRvpXv8P26633x2CfDOQT0lRZfWo7hCL4ht84SJOdI8cHjoKYKcpVLbNX2GgWAs0v5UdbDdez1SUjwlLRlX6rEoR+Z+srdZxSEtFDbzc1dF7iUNTn42v4tiyYxjddzXHjro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780496402; c=relaxed/simple;
-	bh=vwsFzcfP/4JAioQo/Nb7KCVYo0sn23L12Vil+WJYSDQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VC74Mf1aA24XVEmVOSFuntDikBoIYyB0ucQz4sK+SYMVJAgCOA+I0SI7X1pwcF9C7T0corzvG5pJolccxSdd3vlxCz0pQzolaZBZ5SIvXYyAkBk+QkZ1VHPqV/aDZKFLbP5wCMeE0pVTvDwIHUVkBnq8XnPQX8tV9vdgG99Mlh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lHVVnnKS; arc=none smtp.client-ip=192.198.163.12
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1780496400; x=1812032400;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vwsFzcfP/4JAioQo/Nb7KCVYo0sn23L12Vil+WJYSDQ=;
-  b=lHVVnnKSMZymsGPguGHUkG4XAkpk7z0eE6+I1pXBFOnMqaXE+jBtuHIi
-   7osHWh7+42LG/Ki4b4ZcibHb6tkWpCDHlwa/9EakUDAudbOQ/9wnjrLQr
-   LU/D2tfTnHP8CcMpe0laxe9I+z4qjOgLhHWrL2uj0hTBuIm64ZYqYxSoY
-   OvRGx36QVER4c1PjDID7pCT/+mfajdYwOS0h2qX3OtvX/tcQBj+c6Sv3t
-   LbC+tEUVKgnz/rfqlZLhFUw121hLima5P0zKqEi6Rxb/YvR2X/Ue5Q+3e
-   mujE6igxLlBIcmsO+cur057qx28q9MN69+T/S5kxwZ7ToQ6ZjZM8rzIYX
-   g==;
-X-CSE-ConnectionGUID: F/LbJyOGQGeQE51/me2x9w==
-X-CSE-MsgGUID: gZVCcrxkRlKrpu6il28uRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="85162025"
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; 
-   d="scan'208";a="85162025"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2026 07:20:00 -0700
-X-CSE-ConnectionGUID: LoSveQ9VTW+tmjlePSRlKg==
-X-CSE-MsgGUID: 5Nn22IyPSTyv6aezcUX4uw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; 
-   d="scan'208";a="239778637"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost) ([10.245.244.250])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2026 07:19:56 -0700
-Date: Wed, 3 Jun 2026 17:19:54 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Petar Stepanovic <pstepanovic@axiado.com>
-Cc: Akhila Kavi <akavi@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Subject: [PATCH 0/3] iio: adc: Add Axiado SARADC
- driver
-Message-ID: <aiA4CocrAmUCKDKn@ashevche-desk.local>
-References: <20260528-axiado-ax3000-ax3005-saradc-v1-0-345dd5f6608a@axiado.com>
+	s=arc-20240116; t=1780496601; c=relaxed/simple;
+	bh=kGbPyo8fXJsXOF4kC6/8eqnZ+Q+5lTSF/QptwAArjhs=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=j9W/5RPfc1V9zs2Ul6VPwbsfitjBgm4m86uLbqPGkihtfvOWjVfZDXgCMZuogSQRUMy5kclwwirfhgcmLN2awhZl/wz+UfPCd618h1HX+iNzvyRbb1Q56qpmc6cK2at/n9AVLBDcFnCyJJxwMAIPM2Heq1YF02oqxL5XF/2EuF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FRZus5fa; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ABFF1F00893;
+	Wed,  3 Jun 2026 14:23:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780496600;
+	bh=A3Zbp8bg/8TwgNuV+aZWHIOV1U+jXBCtOs6RBJ5FSLk=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=FRZus5fayrH/y+tgQZ39Ujxf0iOQC2KNmtXSN72112+tEqigjiUB5vzft99XD4+q/
+	 JhHTEdaMrmrlt6Ej6TMVwePlekLQaGmMDtKl3m7bBryR97YEGnaLEKrsLU2ABlZVBM
+	 Lxz6OtmukgOMmMUL/Wu64zr02uq6uIbunOmMvD8Rnc605y6XH/+g0GDVC7PjYhpZaY
+	 kUIh7ESex6UXI832IfuIyW/M+zACEeQQXrSXog33afdxt2KrnUDIp7B2hVkOxogqke
+	 dRyTrfFFSlVapfjV6dJH1aFKdBtGtBNR440rYIeSMWO9HSd0jvHJS4FSYAvT2sGOD8
+	 ESJihmY6IQKdA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: hwmon: lm90: Document SMSC
+ EMC1402/1403/1404/1428
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Svyatoslav Ryhel" <clamor95@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
+In-Reply-To: <20260603141033.111300-2-clamor95@gmail.com>
+References: <20260603141033.111300-2-clamor95@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 03 Jun 2026 14:23:19 +0000
+Message-Id: <20260603142320.4ABFF1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260528-axiado-ax3000-ax3005-saradc-v1-0-345dd5f6608a@axiado.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306290-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:pstepanovic@axiado.com,m:akavi@axiado.com,m:pbolisetty@axiado.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hshah@axiado.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-306306-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:clamor95@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:from_mime,intel.com:dkim,ashevche-desk.local:mid,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AF64263885E
+X-Rspamd-Queue-Id: CE046638BDE
 
-On Thu, May 28, 2026 at 01:10:22AM -0700, Petar Stepanovic wrote:
-> This series adds support for the SAR ADC controller found on Axiado
-> AX3000 and AX3005 SoCs.
-> 
-> The controller is a 10-bit ADC. AX3000 has sixteen input channels and
-> AX3005 has eight input channels. The driver uses SoC match data to
-> select the number of available channels for each compatible.
-> 
-> The driver supports single-shot voltage reads through the IIO subsystem
-> and uses the reference voltage regulator for scale calculation.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] The schema artificially restricts the number of allowed channels=
+, rejecting valid hardware configurations for the newly added SMSC EMC1404 =
+and EMC1428 devices.
+- [Medium] The dt-binding incorrectly applies maximum temperature threshold=
+ limits to the 'temperature-offset-millicelsius' property.
+--
 
-Always explain:
-- why do we need a brand new driver?
-- where can we read the datasheet (Link)?
+commit 7ac2109c4a63c7879d955565cef8a4c30bd05436
+Author: Svyatoslav Ryhel <clamor95@gmail.com>
 
-No need to resend for that right now, just reply here
-(also do not forget to include in a new version).
+dt-bindings: hwmon: lm90: Document SMSC EMC1402/1403/1404/1428
 
--- 
-With Best Regards,
-Andy Shevchenko
+Document SMSC (now Microchip) EMC1402/1403/1404/1428 thermal sensors.
 
+> diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b=
+/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> index 164068ba069d7..a1de96e0b87f3 100644
+> --- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> @@ -12,38 +12,67 @@ maintainers:
+> =20
+>  properties:
+>    compatible:
+> -    enum:
+[ ... ]
+> +    oneOf:
+> +      - enum:
+[ ... ]
+> +          - smsc,emc1402
+> +          - smsc,emc1403
+> +          - smsc,emc1404
+> +          - smsc,emc1428
 
+[Severity: Medium]
+Does adding smsc,emc1404 and smsc,emc1428 here without expanding the global
+channel limits cause schema validation failures for valid hardware?
+
+The emc1403 driver supports up to 4 channels for the EMC1404 and up to 8
+channels for the EMC1428. However, the base schema in
+Documentation/devicetree/bindings/hwmon/national,lm90.yaml globally restric=
+ts
+channels:
+
+  patternProperties:
+    "^channel@([0-2])$":
+      type: object
+      ...
+      properties:
+        reg:
+          items:
+            minimum: 0
+            maximum: 2
+
+With additionalProperties: false at the root, defining channel@3 for EMC1404
+or channel@7 for EMC1428 will fail schema validation.
+
+Can we expand the global channel regex and reg bounds, and use if-then bloc=
+ks
+to restrict legacy devices to fewer channels?
+
+[ ... ]
+> @@ -169,6 +198,7 @@ allOf:
+>                - national,lm99
+>                - nuvoton,nct7718
+>                - nxp,sa56004
+> +              - smsc,emc1428
+
+[Severity: Medium]
+Are we confusing the maximum temperature threshold limits with the maximum
+offset limit here?
+
+By adding smsc,emc1428 to this block, it inherits a maximum value of 127875
+for temperature-offset-millicelsius. In the emc1403.c driver's
+emc1403_set_temp() function, temperature thresholds are clamped using
+val =3D clamp_val(val, -128000, 127875) for the emc1428. However, these are
+bounds for thresholds (tempX_max, tempX_min, tempX_crit), not temperature
+offsets.
+
+The emc1403 driver doesn't seem to support an offset register. Should these
+compatibles be added to the block that explicitly sets
+temperature-offset-millicelsius: false instead?
+
+>                - winbond,w83l771
+>      then:
+>        patternProperties:
+[ ... ]
+> @@ -191,6 +221,21 @@ allOf:
+>              temperature-offset-millicelsius:
+>                maximum: 127937
+> =20
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - smsc,emc1402
+> +              - smsc,emc1403
+> +              - smsc,emc1404
+> +    then:
+> +      patternProperties:
+> +        "^channel@([0-2])$":
+> +          properties:
+> +            temperature-offset-millicelsius:
+> +              maximum: 255875
+
+[Severity: Medium]
+Does this block also incorrectly apply temperature threshold maximums to the
+offset property?
+
+In the emc1403.c driver's emc1403_set_temp() function, temperature threshol=
+ds
+for these devices are clamped using val =3D clamp_val(val, 0, 255875). This
+limit applies to threshold registers rather than the offset register.
+
+If the hardware lacks offset support, should
+temperature-offset-millicelsius be disabled for these compatibles as well?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603141033.1113=
+00-1-clamor95@gmail.com?part=3D1
 
