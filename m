@@ -1,240 +1,151 @@
-Return-Path: <devicetree+bounces-306293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306290-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id narEDk45IGo3ywAAu9opvQ
-	(envelope-from <devicetree+bounces-306293-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:25:18 +0200
+	id JH0yCAQ5IGoeywAAu9opvQ
+	(envelope-from <devicetree+bounces-306290-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:24:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6FA463888A
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:25:17 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF64263885E
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:24:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=oMDyDiLK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306293-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-306293-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=intel.com header.s=Intel header.b=lHVVnnKS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306290-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306290-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 546E0300A481
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 14:20:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3C5133059A5B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 14:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 806FB399D0D;
-	Wed,  3 Jun 2026 14:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25B0438836C;
+	Wed,  3 Jun 2026 14:20:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012023.outbound.protection.outlook.com [40.107.209.23])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 327FB397AE5;
-	Wed,  3 Jun 2026 14:20:30 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780496432; cv=fail; b=F13K+61hK2EieQWm4lAExVAZZammTxmeeiVJHQ05gCk3y+AzVnJDo7GIYq9tF3+Ki4XXcfIP8kQfZ+EvTZrSL500+tHnU+LEXLv1nFUjLdcdQccTxwezeIy5HbA2ZjEaItIUzwkfBsi5Hz3PoBKJ6GBJTbRZh6MJ5wIfPxAuLg8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780496432; c=relaxed/simple;
-	bh=7u5y44qkCPKS2QEmnPV+gAif3DpuenX/ILxWkIF4jr8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dDZMfYY2SqsH/PROF158xpIcxktakNrXa+zvuHTRHvVgBG2tIK0t+hkxBlGCcc/CGprAA7/OBUUEyjgLKSZk0KMvkiqcDu3d5XNyv7+NU7hNaNvYE4s+Dh8rCWEr40q3mROHLaZzpXymWT+WAuogze4blFfDT1W3eF2l0Xm4JGY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=oMDyDiLK; arc=fail smtp.client-ip=40.107.209.23
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LW/HcWw/BTfivMIO0yPT24A6W2t4nyv8/An+MAi/hVzRJVIsq9yQ2LlQn/ToSxVark8nnChvuHrN51WoVmORhhO5I+VXUwREGDm/MwAAISEMxPB8cSEnGnaYaSAYwBYriiR6++0BATRAiZKRFEbg5vzVQ0iTyH4yHt5UD9yaYm8xGQ2HiVxXzlH7b5FnZBNcEsV2aZaznMhVUiUGGAf+RdmV9kLucUY5kbHbp9itns6f+2143hnMn9rFxdYJX6dVhWZ9z58AGxyeJgEz2vtlDqeog5GV0nydc8zXMqPc6DS3MlhbD2RSB2Eo52QfwPCd2O7PTe/KSnR6M91/u05ZUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZWK0U4itrA6btPQBRadQr7/Iom0BJ6NrXpvZ55m40x0=;
- b=KygsQYoOux/YnVc1RisUEEFGzXelGN4W/L0za12Z1FYg3kcfxoX67UXMzJDK8IW65HJ0EOxCXVgu9GSAx3l2CMBUSt2DcD1XVcsDISY8E25WPDbx6asUZcekYcK436+h5fu0NG4WcZxsPalwT1c7otcUo0d73RB8VTX6zcYX3Eq80FAJBnlfLjGWnXSLy+HDsEbLIOCsmjrfbr8A1LSnfITn69JNj/vIzfjdLcUDZfv2x10gbyafa07GPK8MffoQHJ5Dw2Bsmhj+a2y+LW2ZLgZ7iXUHfRhALTliC5TDPq4tvW0h4jR3+ZX4LxqJw3WC7dpuEbzl7j3iGRIMCWGAQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZWK0U4itrA6btPQBRadQr7/Iom0BJ6NrXpvZ55m40x0=;
- b=oMDyDiLK8SDNSJdHbe5bUwOD2PzvucymcOSfCWG0Dous+Mbe6S9UrKPhfzCmi8t66i9gKwy/lIQ5fCXtZ11PF6idPqWlm6a+5arOrZQRljp0a1zDGMnngSeXm3eHkpgrs0SnEwIhoD1YnbesQOVQIanMBLfA72ZsHel69aL1qxU=
-Received: from BN9PR03CA0065.namprd03.prod.outlook.com (2603:10b6:408:fc::10)
- by SN7PR12MB6670.namprd12.prod.outlook.com (2603:10b6:806:26e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Wed, 3 Jun 2026
- 14:20:27 +0000
-Received: from BL6PEPF00020E65.namprd04.prod.outlook.com
- (2603:10b6:408:fc:cafe::7f) by BN9PR03CA0065.outlook.office365.com
- (2603:10b6:408:fc::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.7 via Frontend Transport; Wed, 3
- Jun 2026 14:20:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- BL6PEPF00020E65.mail.protection.outlook.com (10.167.249.26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.5 via Frontend Transport; Wed, 3 Jun 2026 14:20:27 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 3 Jun
- 2026 09:20:17 -0500
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 3 Jun
- 2026 09:20:16 -0500
-Received: from localhost (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41 via Frontend
- Transport; Wed, 3 Jun 2026 09:20:15 -0500
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@amd.com>, <git@amd.com>
-CC: <mikko.rapeli@linaro.org>, Conor Dooley <conor+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, "open
- list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
-	<devicetree@vger.kernel.org>, "moderated list:ARM/ZYNQ ARCHITECTURE"
-	<linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH 2/2] arm: dts: xilinx: drop bias-high-impedance on SDIO CD/WP pins
-Date: Wed, 3 Jun 2026 16:19:53 +0200
-Message-ID: <f8f0aa0d0a732127b5cb725871d06a7739f0a499.1780496388.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <e01c8e60e1d9ed68c347f1a3741f89149109d8b7.1780496388.git.michal.simek@amd.com>
-References: <e01c8e60e1d9ed68c347f1a3741f89149109d8b7.1780496388.git.michal.simek@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7189C386440;
+	Wed,  3 Jun 2026 14:20:00 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780496402; cv=none; b=IomFkmtpF+h6KsTM3XpcBwvSmI2gohtG9AlPwGaxoZPIVT1li1em+/cfHE4+rMtlmX+Pcd0cNHV0zrM9okgnXnIuFxCOAgt8cVpousyVpLku10R6Ugp13VWKJfDCKvynJe8xBAXyEDXwZhNEENjv7ML9EtcICtj3BKz26x3LvR0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780496402; c=relaxed/simple;
+	bh=vwsFzcfP/4JAioQo/Nb7KCVYo0sn23L12Vil+WJYSDQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VC74Mf1aA24XVEmVOSFuntDikBoIYyB0ucQz4sK+SYMVJAgCOA+I0SI7X1pwcF9C7T0corzvG5pJolccxSdd3vlxCz0pQzolaZBZ5SIvXYyAkBk+QkZ1VHPqV/aDZKFLbP5wCMeE0pVTvDwIHUVkBnq8XnPQX8tV9vdgG99Mlh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lHVVnnKS; arc=none smtp.client-ip=192.198.163.12
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1780496400; x=1812032400;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vwsFzcfP/4JAioQo/Nb7KCVYo0sn23L12Vil+WJYSDQ=;
+  b=lHVVnnKSMZymsGPguGHUkG4XAkpk7z0eE6+I1pXBFOnMqaXE+jBtuHIi
+   7osHWh7+42LG/Ki4b4ZcibHb6tkWpCDHlwa/9EakUDAudbOQ/9wnjrLQr
+   LU/D2tfTnHP8CcMpe0laxe9I+z4qjOgLhHWrL2uj0hTBuIm64ZYqYxSoY
+   OvRGx36QVER4c1PjDID7pCT/+mfajdYwOS0h2qX3OtvX/tcQBj+c6Sv3t
+   LbC+tEUVKgnz/rfqlZLhFUw121hLima5P0zKqEi6Rxb/YvR2X/Ue5Q+3e
+   mujE6igxLlBIcmsO+cur057qx28q9MN69+T/S5kxwZ7ToQ6ZjZM8rzIYX
+   g==;
+X-CSE-ConnectionGUID: F/LbJyOGQGeQE51/me2x9w==
+X-CSE-MsgGUID: gZVCcrxkRlKrpu6il28uRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="85162025"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; 
+   d="scan'208";a="85162025"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2026 07:20:00 -0700
+X-CSE-ConnectionGUID: LoSveQ9VTW+tmjlePSRlKg==
+X-CSE-MsgGUID: 5Nn22IyPSTyv6aezcUX4uw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; 
+   d="scan'208";a="239778637"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost) ([10.245.244.250])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2026 07:19:56 -0700
+Date: Wed, 3 Jun 2026 17:19:54 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Petar Stepanovic <pstepanovic@axiado.com>
+Cc: Akhila Kavi <akavi@axiado.com>,
+	Prasad Bolisetty <pbolisetty@axiado.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] Subject: [PATCH 0/3] iio: adc: Add Axiado SARADC
+ driver
+Message-ID: <aiA4CocrAmUCKDKn@ashevche-desk.local>
+References: <20260528-axiado-ax3000-ax3005-saradc-v1-0-345dd5f6608a@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2080; i=michal.simek@amd.com; h=from:subject:message-id; bh=7u5y44qkCPKS2QEmnPV+gAif3DpuenX/ILxWkIF4jr8=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWQpWIi+cZ27IPuLa8yHSRVTc1X32LHzXf2j3Xf8RdnEp Tej5KryO0pZGMQ4GGTFFFmmM+k4rPl2banY8sh8mDmsTCBDGLg4BWAiXusZ/opn3z4//a+ZqNn6 zOk10uHC4XsM82zruCWfttueZrqjZMzIsLJkOccZXeuUCw9l7N9o/ZDPPMocvKblgd+OTSGbz9l msgEA
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E65:EE_|SN7PR12MB6670:EE_
-X-MS-Office365-Filtering-Correlation-Id: be2d2bd6-f233-4232-30dc-08dec17b4282
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700016|82310400026|376014|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info:
-	kh6RxClzqPjm/Ao8OzwmRXVsyPj0FMl24ePCMrwJqcO6oDdHCHI1szKS5Yph3O0jaaNf5tRof51wJEs/95qWCiHjr7qcDvFzm/lq6glkDwLRTpQBKhmgeai1cNcd+ChStFdV0KCKOIDfdnC5I8kn6CuE9/SG62ZxVezzRWug3DsE9ICPTguAMeMuyPJNM+tCvTEwFGW+9BUFSpnA7hOKYpkoUlrm01FNmwXE1oFQUYKvHZSfrI0lSsrZdR0mWQ74IeSEqzVqU/gPJvROxhLCR/8/PZGpI0SIPhtySM6p2wNS/om7U/O+YHsVK8sdGqps74qIYc+Byra82YUJdSpA4Fjw0qAa1d07gc0CZfGgbQknNX08Q1HZ1UtivPAcQC5nzl3bJ5wIAOFOzVndAQtNzQr5uTvueE8J6p+euWuuMRUa5r4385EXOKoQ5pGTHoqNvBIBF9i4CAjBN1wo4qkj6QjiQ7SDt0z3MHmIk86tqffujbPCFTKrlHpeanMEct8OgkhFSsiyynyab94nimMNDXBpMCOzcvxeiMAwtSgYWWunkGKbu3JVJgUl0SISaoVItqR8831/T2xiWS2/RG2GHmKm7wVpvENLjARUH5J6jWhQQUBnDH6Nc50wPAC45+x1IHufoTKM/9efxY4zidnCRIFScHkbVeNXMb97aDo0FP+PvgTP2bqjACiGGiT3z2TXznqyYOWWdJNN3CcUQXsKGF5RAcRsDQJS/XwYplryLE0=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(82310400026)(376014)(18002099003)(22082099003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	MHxqQ98ynKVKr1iEGqHUICXRG7Zibmy372OabjqmV+Ap8ij3kDTeqv/VVfjzKXZNZUb2psSAQRhLdMUFQ0f8IVTjaG6vyVsX1BgfCDK1Ceeywl5GiqQO8nErwrrxYEgFeld0pwaWbbKtxSlWtIs728fJjmo55G/eGKOF8Pxlr2IS6LcNtS7NbuW2KSZAenlqG7zxULShxvTcYepN/RqRtFc4vfg3JUo6PBfYcXE/Rrq0/twAdu68qlK0q25VZ/jAAcyszg1Z+zZymunaMrC0XKNjh6KnBdzEBT2T+xX6uDdSu5xAkhjGjJMj30wqIQvS9NE12QNZ+djMbFULx8dZAQECaCHl1hzndenN0JQIoDZ+DvYAuMQb/6ENjMrOLYGBp1+QmMwoy3Gj76PsRUYiaaRAaac7TqP+YCiCIWENWSVzeqhJA2IJwoHYxu/e/9o6
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 14:20:27.3714
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: be2d2bd6-f233-4232-30dc-08dec17b4282
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF00020E65.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6670
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260528-axiado-ax3000-ax3005-saradc-v1-0-345dd5f6608a@axiado.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306290-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:pstepanovic@axiado.com,m:akavi@axiado.com,m:pbolisetty@axiado.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hshah@axiado.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:monstr@monstr.eu,m:michal.simek@amd.com,m:git@amd.com,m:mikko.rapeli@linaro.org,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[michal.simek@amd.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-306293-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michal.simek@amd.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:from_mime,intel.com:dkim,ashevche-desk.local:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B6FA463888A
+X-Rspamd-Queue-Id: AF64263885E
 
-Zynq-7000 boards used the same invalid combination of bias-high-impedance
-and bias-pull-up on SDIO card-detect and write-protect pin groups. Keep
-only bias-pull-up, as in the arm64 ZynqMP fix.
+On Thu, May 28, 2026 at 01:10:22AM -0700, Petar Stepanovic wrote:
+> This series adds support for the SAR ADC controller found on Axiado
+> AX3000 and AX3005 SoCs.
+> 
+> The controller is a 10-bit ADC. AX3000 has sixteen input channels and
+> AX3005 has eight input channels. The driver uses SoC match data to
+> select the number of available channels for each compatible.
+> 
+> The driver supports single-shot voltage reads through the IIO subsystem
+> and uses the reference voltage regulator for scale calculation.
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+Always explain:
+- why do we need a brand new driver?
+- where can we read the datasheet (Link)?
 
- arch/arm/boot/dts/xilinx/zynq-ebaz4205.dts | 1 -
- arch/arm/boot/dts/xilinx/zynq-zc702.dts    | 2 --
- arch/arm/boot/dts/xilinx/zynq-zc706.dts    | 2 --
- 3 files changed, 5 deletions(-)
+No need to resend for that right now, just reply here
+(also do not forget to include in a new version).
 
-diff --git a/arch/arm/boot/dts/xilinx/zynq-ebaz4205.dts b/arch/arm/boot/dts/xilinx/zynq-ebaz4205.dts
-index 14f644156a6f..19b564019502 100644
---- a/arch/arm/boot/dts/xilinx/zynq-ebaz4205.dts
-+++ b/arch/arm/boot/dts/xilinx/zynq-ebaz4205.dts
-@@ -99,7 +99,6 @@ conf-cd {
- 			groups = "gpio0_34_grp";
- 			io-standard = <3>;
- 			slew-rate = <0>;
--			bias-high-impedance;
- 			bias-pull-up;
- 		};
- 	};
-diff --git a/arch/arm/boot/dts/xilinx/zynq-zc702.dts b/arch/arm/boot/dts/xilinx/zynq-zc702.dts
-index 6955637c5b1a..36e919aea84c 100644
---- a/arch/arm/boot/dts/xilinx/zynq-zc702.dts
-+++ b/arch/arm/boot/dts/xilinx/zynq-zc702.dts
-@@ -324,7 +324,6 @@ mux-cd {
- 
- 		conf-cd {
- 			groups = "gpio0_0_grp";
--			bias-high-impedance;
- 			bias-pull-up;
- 			slew-rate = <0>;
- 			power-source = <1>;
-@@ -337,7 +336,6 @@ mux-wp {
- 
- 		conf-wp {
- 			groups = "gpio0_15_grp";
--			bias-high-impedance;
- 			bias-pull-up;
- 			slew-rate = <0>;
- 			power-source = <1>;
-diff --git a/arch/arm/boot/dts/xilinx/zynq-zc706.dts b/arch/arm/boot/dts/xilinx/zynq-zc706.dts
-index 3b803c698473..1ce35eaa607b 100644
---- a/arch/arm/boot/dts/xilinx/zynq-zc706.dts
-+++ b/arch/arm/boot/dts/xilinx/zynq-zc706.dts
-@@ -237,7 +237,6 @@ mux-cd {
- 
- 		conf-cd {
- 			groups = "gpio0_14_grp";
--			bias-high-impedance;
- 			bias-pull-up;
- 			slew-rate = <0>;
- 			power-source = <1>;
-@@ -250,7 +249,6 @@ mux-wp {
- 
- 		conf-wp {
- 			groups = "gpio0_15_grp";
--			bias-high-impedance;
- 			bias-pull-up;
- 			slew-rate = <0>;
- 			power-source = <1>;
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
 
-base-commit: 6218e588ded718ad365fed5fa7fb151a85abe5dc
-branch: zynqmp/dt
+
 
