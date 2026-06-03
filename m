@@ -1,154 +1,199 @@
-Return-Path: <devicetree+bounces-306057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306058-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2v1eO1zhH2rRrgAAu9opvQ
-	(envelope-from <devicetree+bounces-306057-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:10:04 +0200
+	id LyPvIK/fH2pQrgAAu9opvQ
+	(envelope-from <devicetree+bounces-306058-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:02:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9DD6358A6
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:10:04 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A36B635796
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:02:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=ngqUzRym;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306057-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306057-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UxNeeFaF;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306058-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306058-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7B2B1301ECD0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 07:59:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7B4423006806
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA68B403EB1;
-	Wed,  3 Jun 2026 07:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652673955EA;
+	Wed,  3 Jun 2026 08:02:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8BD3FF881;
-	Wed,  3 Jun 2026 07:59:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 549032D1911;
+	Wed,  3 Jun 2026 08:02:05 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780473577; cv=none; b=VrJoHgEYXWPJmPl7ipS0MUNzQiU35DinfVZrc9GQe+6w0QbaFy27JJ4Qd3yHD6sOw/mMqhJIaFxz/UtLMqACC8XRDyhRcCOqla6ghT28YAJ3XeHFtqYFy8SucDDbnb7lY+74iZcu103AtyLHffZa6le1Q3Ql8Qy5SNgaAdJaSMM=
+	t=1780473726; cv=none; b=HS2xkvwaXtlmpePaqUyk/egVwxttALmr1fFxHP1SeXTRmPzu9a4cWkIUNlTmVGi4AJ7AKF5qNIIJcq0L8zc6nqwwLgTCr+qFeume1LKZnH4E9ZnhgDNiESW7tBpY7fa4z/eExYbffWED5455KtbP5jxOSRcZqhbToXBAaDUOasM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780473577; c=relaxed/simple;
-	bh=g9R6Pj7IedGiVjGt0NYiN3746tmR1kvMrqdl7k6vDVY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PEu0yfMZnzHXKHTp8WjACZjYIppvIJb1n3chiyQr01fXKYG2tWq5wSrwdHHRepje8tt1T3QMhX6t/mle68D46Y2toNAqPU2J2ncjFJUCAAtJWRezDa9fcv3CyE6NsE90c/8irbS757QamPpBmRi8HkYZnpRVOtjtqwbd/xsWG20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ngqUzRym; arc=none smtp.client-ip=198.175.65.16
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1780473577; x=1812009577;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=g9R6Pj7IedGiVjGt0NYiN3746tmR1kvMrqdl7k6vDVY=;
-  b=ngqUzRymW9x2jHSnbFoKcfyLsI3Xc7dPpnj4S6z4+yWIX7g1SLmBj4sG
-   rt2cB0ygRdFxB7QQW2rEeVjSA3FIZW1oA8u9y+yRL+BfwPbDA9PHZGoDd
-   4PUe6P3wdYKBmC7cq5Wu4MzdNGJtxv1ORt91rrp5FKVHZmb8jfyNMhuqU
-   bpWQGpNoxQmEyjS5m+ywIH4OPMn9XYgKNPHLiZYt4kxOGaMucjZ1u+3u3
-   8U6wASUPyGohyPWGwns3iTDuCfd+dLpJ27QmA9YQ7eSkKrDbSanBtgVRN
-   SlSkdjjquqDI4ZrVmcOp43coMSL7ScmJPE58sCZ/w08jiDlnbhgHPTnCq
-   g==;
-X-CSE-ConnectionGUID: agSXjQD6RvqGhpqTZEtg0A==
-X-CSE-MsgGUID: qp0O/t/vSt2bCmQc8BH3CQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="81454380"
-X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; 
-   d="scan'208";a="81454380"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2026 00:59:37 -0700
-X-CSE-ConnectionGUID: petaq8DTTq2v4Q4wLo954Q==
-X-CSE-MsgGUID: 3vFwIrwwTXOZ009Dy6GzBg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; 
-   d="scan'208";a="243296934"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.116])
-  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2026 00:59:33 -0700
-Date: Wed, 3 Jun 2026 10:59:30 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jic23@kernel.org, nuno.sa@analog.com,
-	Michael.Hennerich@analog.com, dlechner@baylibre.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, pop.ioan-daniel@analog.com,
-	marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v2 0/4] iio: adc: Add support for LTC2378 and similar ADCs
-Message-ID: <ah_e4ovBsXQ-BVcw@ashevche-desk.local>
-References: <cover.1779976379.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1780473726; c=relaxed/simple;
+	bh=NOZFpu3nLdRcLnC7S4Qp+4saKzUpXtWHo716rz9R6nk=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=gWT8F5x4+vR1aTcRAM+vwBR+a/EIwnruQRMzt5EA+dpdpHA0BGlw5NgusN2UkZFckXzS0PIjymwJW9BKas4fY+JVJ7PkyrzyGi84YQRmFtR4ObRs7tQz+Hm6WDLQuMX2X5QZFWKyVxeGxiGtR2USOslE8HtBqjnGQrvcgIHWPOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UxNeeFaF; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E2481F00893;
+	Wed,  3 Jun 2026 08:02:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780473725;
+	bh=1SgAuiHTq+gaVC0enPP1oUiuz66/OMy2UaQ5VvbiniU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=UxNeeFaF2eaMUS2SmTjWtaJBK5eVH6iwJ0BoIzWeN2lsS5CPH2e/cJVV05K17h/JD
+	 95iD8AS7Ycm5CzIRjR9QQ3jXN3YWTMcIK38YxgELlmVZlm+YrE0o70eSzgS5V9SwHt
+	 oy9PW+ZrfiV03xHntTY71dSZIECGpWAphJRW5+x/HV+AcYmR4XuxD7zvVe0LXK5Pe8
+	 SR5bgrTSWAiibbQ/uzs3jgYnK3QKbFG+K4pogV0TOSXHh1z9WDE/TrFtaV5t7lbMV1
+	 fPVq+Bh9pC6kCY5vN4mWCpEoGz7llGBEet8qPizVtWgHwQanPP6mLEGBcWMoLNxU99
+	 pCoawcWbKbaVQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH RESEND v4 4/8] dt-bindings: can: fsl,flexcan: add NXP
+ S32N79 SoC support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Ciprian Costea" <ciprianmarian.costea@oss.nxp.com>
+Cc: conor+dt@kernel.org, robh@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, Frank.Li@kernel.org
+In-Reply-To: <20260603071342.641874-5-ciprianmarian.costea@oss.nxp.com>
+References: <20260603071342.641874-5-ciprianmarian.costea@oss.nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 03 Jun 2026 08:02:04 +0000
+Message-Id: <20260603080204.9E2481F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1779976379.git.marcelo.schmitt@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,gmail.com];
-	TAGGED_FROM(0.00)[bounces-306057-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:marcelo.schmitt@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jic23@kernel.org,m:nuno.sa@analog.com,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pop.ioan-daniel@analog.com,m:marcelo.schmitt1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:marceloschmitt1@gmail.com,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306058-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,nxp.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
+	FORGED_RECIPIENTS(0.00)[m:ciprianmarian.costea@oss.nxp.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:from_mime,intel.com:dkim,ashevche-desk.local:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4D9DD6358A6
+X-Rspamd-Queue-Id: 1A36B635796
 
-On Thu, May 28, 2026 at 12:02:53PM -0300, Marcelo Schmitt wrote:
-> This patch series adds support for LTC2378 and similar low noise, low power,
-> high speed, successive approximation register (SAR) ADCs. These ADCs are similar
-> among each other, varying mainly on the amount of precision bits, maximum sample
-> rate, and input configuration (either fully differential or pseudo-differential).
-> 
-> The initial support patch enables single-shot sample read with a GPIO connected
-> to the CNV pin.
-> 
-> The second support patch enables high-speed data captures with SPI offloading.
-> The setup is similar to AD4030, with a specialized PWM generator being used both
-> for SPI offload triggering and conversion start signaling.
-> 
-> The last support patch enables running buffered data captures without SPI offloading.
-> 
-> Some structures and variables are introduced earlier to reduce diff in latter patches.
-> 
-> The initial version of the LTC2378 driver was developed by Ioan-Daniel. Though,
-> despite of the many changes I made to the code, I've kept him as module author
-> to provide credit for his work.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-No datasheet link, no explanation why the brand new driver is needed.
-No need to resend, just answer the above questions.
+Pre-existing issues:
+- [High] Concurrent execution of separate IRQ handlers silently corrupts th=
+e lockless skb_irq_queue in the RX offload core.
+--
 
-> Link to v1: https://lore.kernel.org/linux-iio/cover.1779117444.git.marcelo.schmitt1@gmail.com/
+commit 1b40c6c47df0cbe3a237b4923882ceb85a965615
+Author: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
--- 
-With Best Regards,
-Andy Shevchenko
+dt-bindings: can: fsl,flexcan: add NXP S32N79 SoC support
 
+Add NXP S32N79 SoC compatible string and interrupt properties.
+On S32N79, FlexCAN IP is integrated with two interrupt lines:
+one for the mailbox interrupts (0-127) and one for signaling
+bus errors and device state changes.
 
+> diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b=
+/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> index f81d56f7c12a5..d098a44c2b9c2 100644
+> --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+
+[ ... ]
+
+> @@ -173,11 +174,38 @@ allOf:
+>              - const: mb-1
+>        required:
+>          - interrupt-names
+> -    else:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nxp,s32n79-flexcan
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: Message Buffer interrupt for mailboxes 0-127
+> +            - description: Bus Error and Device state change interrupt
+
+[Severity: High]
+This is a pre-existing issue, but can the concurrent execution of these sep=
+arate
+IRQ handlers silently corrupt the lockless skb_irq_queue in the RX offload =
+core?
+
+Since multi-IRQ platforms (like the newly added S32N79) map different FlexC=
+AN
+events to distinct hardware IRQ lines, the interrupt handlers can be dispat=
+ched
+concurrently on different CPUs.
+
+For example, CPU1 could be executing flexcan_irq_mb() while CPU2 is executi=
+ng
+flexcan_irq_boff():
+
+CPU1:
+drivers/net/can/flexcan/flexcan-core.c:flexcan_irq_mb() {
+    ...
+    handled =3D flexcan_do_mb(dev, mb_irq);
+    ...
+}
+
+CPU2:
+drivers/net/can/flexcan/flexcan-core.c:flexcan_irq_boff() {
+    ...
+    handled =3D flexcan_do_state(dev);
+    ...
+}
+
+Both of these paths eventually call into the RX offload core to enqueue
+packets:
+
+drivers/net/can/dev/rx-offload.c:can_rx_offload_queue_timestamp() {
+    ...
+    __skb_queue_add_sort(&offload->skb_irq_queue, skb, can_rx_offload_compa=
+re);
+    ...
+}
+
+Because __skb_queue_add_sort() and __skb_queue_tail() are lockless queue
+operations, won't concurrent insertions from multiple CPUs corrupt the
+doubly-linked list pointers and lead to a kernel panic on subsequent access=
+es?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603071342.6418=
+74-1-ciprianmarian.costea@oss.nxp.com?part=3D4
 
