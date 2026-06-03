@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-306069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306071-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Jv8yGknnH2p7sAAAu9opvQ
-	(envelope-from <devicetree+bounces-306069-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:35:21 +0200
+	id Q5wjI8rqH2qDsQAAu9opvQ
+	(envelope-from <devicetree+bounces-306071-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:50:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5939635BEE
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:35:20 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 888D9635DDC
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:50:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=cue4EPr+;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306069-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306069-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=HI7RDZwm;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306071-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306071-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 561FC3075C3F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:25:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8E1B730968C1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A64E41B365;
-	Wed,  3 Jun 2026 08:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00637403EB0;
+	Wed,  3 Jun 2026 08:25:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 039F3400DF8
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 08:25:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7AB40F8F8
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 08:25:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780475110; cv=none; b=niR3W0pD/wzcVnqdHAolkMz1h34hSBa3zX3xhxpFs71mWsQ1/RixXgfkqSKUhvJCMbV1bPCtu4s9LD2YCRHcoJ3ONSxbVDq2RiX9hF5wsg4dhWX0piBKDp1DPgpN9uzOc4Sy7lBa2MrobqkYIYq2UdE/smm3PFEsAKWgfOgFrFU=
+	t=1780475111; cv=none; b=N09svEGAnqrx8OTjNytwl9qURgSu8I2+4hk35xgjDG88rMeyZc8wtR3fPHQF09m/Gu/Apglt0eSpbo0VDUuKFwrsIuydCWJf5fbnLTcdGUJYbf86Mg/dlGi4lprAHxJ7ZGI3Xna0SuLbYp5j1FHX9GiI5kH67m45rxGJuLExg90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780475110; c=relaxed/simple;
-	bh=H7Apo/wyT1cuOzi9mmTzmIGJyBfo7WIHLat/+zpVFzg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=F6c6EdEmsIuKyVitGy4w/TGq1rJNEm7m8j1AhGaOtse70OUB8Z6lFPzxpb5VUvzFekMMixQOrmXNYFb03hu9wqApIZnhDULxq7zpzbhYvzAlF6b0bxZNoLKHfrVCIgRkWkFxkxLjfppYHCrMgebonSEqpzXlUP2cgIL6sQRRYcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cue4EPr+; arc=none smtp.client-ip=209.85.221.51
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-45ef41adbc1so3493962f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 01:25:08 -0700 (PDT)
+	s=arc-20240116; t=1780475111; c=relaxed/simple;
+	bh=sd0V4niM58Am9WGtW7yTYh/KrAJ6uZarN8BiStmlIDs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=WF53NQwTBWti9OAWO/ohs3+vKk3+qcNZcpgu7AbQ9WyA2fLQfqUsa4oTig2Q+VLBt3Y2nle9c37lS0dqSVx/hzssPi5rP0p/3MnyOweEJptfayBAfvkmEZ+x28L6gDzeHzR8dnk7m9hemEuPn2os2SgjLZvXF8aFyhkfAS6v9iY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HI7RDZwm; arc=none smtp.client-ip=209.85.128.51
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-490ae94a89eso24330815e9.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 01:25:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780475107; x=1781079907; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zPqZJh4lrGWaEtR1Sz6JxGrxryGpEZ6DtkLfnuyqJQU=;
-        b=cue4EPr+oKZRTHXsrrJLrFx8F149cWHiSjayCJxbNBwcZucVkjiryx0oRISEELOYpC
-         qoR8I4uKcDieWv7R0fajlJEM0U4dwg7DvkLtIIwq8pDeoNokkHJUwr85PWjKPC/K9Amz
-         kszFTYLIS0cmBYLH5HFiAaCGDKQTetIv/QiVnlvkadAEy+AlQrTW6+XD6ZO9dWjky/Nc
-         +ybNQOQNuGpX+KA17fKE/5QVmpOCaOwH/LA6MTJxi/QQghAAetFPX9O7CdF4R4LKv8ru
-         ++oF2884RudyAPmNXQ08K9Dr2imv8VGor/CR6piQ0xp6CiixJClI+f2iSWEqzKp6b8Em
-         aiRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780475107; x=1781079907;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1780475108; x=1781079908; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zPqZJh4lrGWaEtR1Sz6JxGrxryGpEZ6DtkLfnuyqJQU=;
-        b=KMvaD0Jhh8jx/mw8rhmqOunqnhvVZlxtvVua9SpX6yqSDIuDCdvd9NsjmtV/qSglPI
-         p2uSLTsw5tLRZcePGE7tIp8MSjP3P2kyduOuYAmKLOPop3n2KV//Q3Y9w8n6TfryP76q
-         CRzlm47rzCfOy78pKBWBddFoeEYv9qW3YnL0u27i4PQUJ8/GdW5fTrAPrwA1kupwxy4d
-         MG52DWeGKiD19O5FmDoRedcLILHj3cS8aKScHXrYLXQBuJXrt+gpO+RhHHTwLlkNtuI4
-         98KYecHhCFknTHHC7iZ1IBnvT5aBTUj8HTcY+ahoNCVA9hjJIsKQ0ED0MPM8AQnfy9kf
-         J7RQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+Tlv6nCUe9V4zwSI5zvu31tFfwYi/vkpyBtR9XyQtlQYZcxz9idp+I0fiu+gwh19lUke039Aq0HV9n@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBPzN4cJGdnWk2PBVFm8WIUO4bpOvfy5dR0warUxwuoLl2dkW2
-	O2i2tUxbWF2OWrNwWXGyeg+4rP33M9UEcOAL2K8y95uOkZtyaIRmuigQ
-X-Gm-Gg: Acq92OF8S4uZx8OLnxjs/v7BwpPTgDTYZ7VXyTrWxGFbDreqMm+oJnvk6j/gObhHpUr
-	TTUSVpN/iuMvY8kNoSJW2vf6IuRB9kzPohfMS6cxtcgyWJwYBXQuUeKPLUQPFZzI5Kfle1GvEv7
-	DUr632/5nzHeD7wEKa8+p1ZOlqlK0O2lLjjskfrQOW3fmLLYzo40g8kNb9IAknrE1xvCobtngHZ
-	XGKGsq2Qguq5FFEUCllPIQteDPNHty89tUDLB5DxVD1eI4Rw4Ybi37UqYi0YrylKutmethXKEQa
-	n1Uc/B/t/5MXzPMseA3DfxaDNrALpkqU/ICvAmmQ7F9tjALwQgL0cUlp04GaeiDhCl+TWd8qvyz
-	HSnjHGtJqTV6SN+SlyxhBLS7vLJkO+Jf8+YYMQDq0T6LjEuyi78sMJa1Wzbbv7FSP/V6fIUHuI7
-	B2EfwQiduR+fxv6enxoE9OO/mleY6yO+kCaGQbm7/gxwN4RBc85DcdwxX40PUIEljBwynJMthY4
-	cdpsAsj+4jGkZWJ72jvfjbP+dDAzZNAGzvHiYmLvOU1QCwA
-X-Received: by 2002:a05:600c:6290:b0:490:b9d3:a9ce with SMTP id 5b1f17b1804b1-490b9d3aa4emr14885625e9.30.1780475107253;
-        Wed, 03 Jun 2026 01:25:07 -0700 (PDT)
+        bh=Tkvod7hGaP12ovakGTLdAVDUjFqJVukCmyxNpLyjWHA=;
+        b=HI7RDZwmcPrqakwQcdipdLYefKVNcy++3z1wlLlmAm0gR/TgZX6t+b0L6rEPrHbp6K
+         G2NwUFOO/frlSFBv6Fwf7tFgm/+OdKO/Il3MLuHxGV5RythC6/ztG489DOu7BnxB18sR
+         xQ0QCWBzS/u/4Ud4EfnEdHivRcqLdBx3oaGaUfjxvsHgTNqYzto4OxCGJzaW26aY9wkc
+         IkOpBVXLzSUHBvJqL6El0gDVxGHyCN9O3NcZ1Qc5QP5Digs+hY2gBQ/FwpEyp2PVSxrE
+         IWPko7p2VsotvUF9lMWuShu36OMckFd7wI7wJkLoglqh34/kIolihjZml8Nj9YgpwMqf
+         AxtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780475108; x=1781079908;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Tkvod7hGaP12ovakGTLdAVDUjFqJVukCmyxNpLyjWHA=;
+        b=r+rKQQD+r9Zpm63sBvqcMIPnL5bp9wpeXL7xwqtNVaNcuEpZMi1sesqOUUBL3pMRfT
+         i3vZ4xiqv4wl4wPIE9yPZ0I9CRa+HFhgA2yw75Hh/B6CsL6zaiNtz3mt3m3nNBjXEMWs
+         9SZMTKxndtVlApUiOsLTxnJ/JT4HKDQ//CL6Df+Ao7IuYoyZxqrxaZc9DJqqxib2MXYx
+         HA95ApPynPFyumS2+njQHQrK9TcJ4NehGkS0QyS/BPHMcdaWp3By40VtQF+51GC+4Sar
+         EvjfcmXn994ZyI6fQMmKYvqy4GOhaj5dNhBJNfmqj7+j9+I/RB6+LSKTYCH9mOiSzNok
+         YoGQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/OP606dYaP4TK0SkXG74CZiz8l/QWz4PQCy5H6VA46ABKN+9sh0Nr0oyM/TvLjvZ9aBIHWxzAigNhB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyW/k4+D/2Grb9DmuEIW7km0v+3t1Ley87/iABulLJr1cgSo9DL
+	aMpULSsJkiZ3XbIsJ07n1kqokHDR8T84t/wRouiwFkmWj7tlJxshbgc/
+X-Gm-Gg: Acq92OH2qea034cNKajgpB/Y8apRPHmfbZgqfrHMo1pFpnBUwK1vCT0L8tCpkM10eIP
+	iOTDpYTmKAknmBJnVe7PdJaOs20jcB/5Q+Sw+7BZhvGBK2fXUGEW7v9eD7NMB2lrXZ8amrh3hEG
+	HNXiPOLJXDBGe0RxzYZ/LBvVPhEHS+n/iHwjTS3SMBV+roihCeCKl1L8oR/aFrjFsyXYLL2EJ7z
+	lOmHhqXGF4paZyK0+3yITgZyYtvOl/KgI6MvyvsTZ35qCPbK6TqMimcXzdjYNMZ+nrbD/ifZlun
+	IITiSBUTzuAq9IjapuowYNa6UkJWSGvjF8C+ClvlFOH2mxKji7g0yO2d5jtPzKPsH/WHeBP/O6i
+	9vmmLZTPUzNopXEHYF2rW6xyn1XR8JVbFI2Zr4Iebb1jZic2nfyCeCKiRBccXgRUppDAnP71IOB
+	9vfuUQjzW+SCpmrPzTDHNzkX0r/XV0Uv2juJ3o4zTUPKpze5rx62/iQaYBiZAaBpwB9ErZOUsn8
+	ZZYNjju3B65di7eoVgVdhWsOZYun3Q9HlP/z8DA3awi30Mo
+X-Received: by 2002:a05:600c:8184:b0:490:b3f1:e41b with SMTP id 5b1f17b1804b1-490b60e20b2mr36144035e9.26.1780475108116;
+        Wed, 03 Jun 2026 01:25:08 -0700 (PDT)
 Received: from Lord-Beerus.station (net-93-144-65-244.cust.vodafonedsl.it. [93.144.65.244])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490b63d8205sm33175305e9.11.2026.06.03.01.25.06
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490b63d8205sm33175305e9.11.2026.06.03.01.25.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 01:25:06 -0700 (PDT)
+        Wed, 03 Jun 2026 01:25:07 -0700 (PDT)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: linux-kernel@vger.kernel.org,
@@ -90,10 +92,12 @@ Cc: pierluigi.p@variscite.com,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH v3 0/5] arm64: dts: imx93-var-som-symphony: align DTS with hardware revision
-Date: Wed,  3 Jun 2026 10:24:59 +0200
-Message-ID: <cover.1780474803.git.stefano.r@variscite.com>
+Subject: [PATCH v3 1/5] arm64: dts: imx93-var-som-symphony: add TPM support
+Date: Wed,  3 Jun 2026 10:25:00 +0200
+Message-ID: <0018706953ce5c0ab87d1e9f361973429bf0457f.1780474803.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1780474803.git.stefano.r@variscite.com>
+References: <cover.1780474803.git.stefano.r@variscite.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -108,14 +112,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-306069-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306071-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
@@ -131,40 +135,59 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,variscite.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,variscite.com:mid,variscite.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C5939635BEE
+X-Rspamd-Queue-Id: 888D9635DDC
 
-This series updates the i.MX93 VAR-SOM Symphony device tree to match the
-latest carrier board hardware revision.
+From: Stefano Radaelli <stefano.r@variscite.com>
 
-The changes add support for onboard peripherals and complete the board
-configuration with the required GPIO, pinctrl and PWM settings.
+Add the ST33KTPM2XI2C TPM device on the Symphony carrier board.
 
+The TPM reset line is driven through a PCAL6408 GPIO expander, so add
+the expander on the I2C bus and describe the TPM reset GPIO.
+
+Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
+---
 v2->v3:
  - Use reset-gpios for the TPM instead of a GPIO hog
- - Add ADC1 support
 
 v1->v2:
  - Rename pca6408 label to pcal6408 to match the compatible
  - Clarify that the TPM enable line is a board-level GPIO hog
 
-Stefano Radaelli (5):
-  arm64: dts: imx93-var-som-symphony: add TPM support
-  arm64: dts: imx93-var-som-symphony: enable UART7
-  arm64: dts: imx93-var-som-symphony: keep RGB_SEL low
-  arm64: dts: imx93-var-som-symphony: enable TPM3 PWM
-  arm64: dts: imx93-var-som-symphony: enable ADC
+ .../boot/dts/freescale/imx93-var-som-symphony.dts | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
- .../dts/freescale/imx93-var-som-symphony.dts  | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
-
-
-base-commit: b3c1d1631f097619f8091f0293e027c4301285d6
+diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
+index c0842fb3cfa3..c736127c7115 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
+@@ -208,6 +208,21 @@ &lpi2c1 {
+ 	sda-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
+ 	status = "okay";
+ 
++	pcal6408: gpio@21 {
++		compatible = "nxp,pcal6408";
++		reg = <0x21>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		status = "okay";
++	};
++
++	st33ktpm2xi2c: tpm@2e {
++		compatible = "st,st33ktpm2xi2c", "tcg,tpm-tis-i2c";
++		reg = <0x2e>;
++		label = "tpm";
++		reset-gpios = <&pcal6408 4 GPIO_ACTIVE_LOW>;
++	};
++
+ 	/* Capacitive touch controller */
+ 	ft5x06_ts: touchscreen@38 {
+ 		compatible = "edt,edt-ft5206";
 -- 
 2.47.3
 
