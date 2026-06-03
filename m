@@ -1,232 +1,369 @@
-Return-Path: <devicetree+bounces-306305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306294-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Wv2RGpo6IGqcywAAu9opvQ
-	(envelope-from <devicetree+bounces-306305-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:30:50 +0200
+	id 5PO7HDY9IGpFzAAAu9opvQ
+	(envelope-from <devicetree+bounces-306294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:41:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0CFD63899C
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:30:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1A8E638B50
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 16:41:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b="h0m/aYQ8";
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=aKULIrBa;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306305-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306305-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=amd.com header.s=selector1 header.b=scfNJ8JW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306294-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306294-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 93AE8304C8B5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 14:23:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B6E4B309E344
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 14:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DB0D48A2DC;
-	Wed,  3 Jun 2026 14:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84F6539B482;
+	Wed,  3 Jun 2026 14:20:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013021.outbound.protection.outlook.com [40.93.201.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC58448A2C7
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 14:21:33 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780496496; cv=none; b=aRfZ+hSL+4qkB99rLXvq6Ktmkt0Ehk+sZxHiDs2Wq0pcOZnaPE3KE9A58WrcH1nhnREIEjW1UlnJ9L0OTDkCoHpvcmLGfE1CJy4uJSjPpBF+27RFcjrDxavSQd3NyE3MBzF8yy7x5FOmgjPt+82AwC0jdWQfL/9kbIOnKphMT/s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780496496; c=relaxed/simple;
-	bh=ZedtRlFClaBXevVNFnYB8UGxbyP20S9HuW/op1IPHAM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Bim6nNuV+3SUfi+ks1x3reHiP+Dmvjc1hypyXttQeuV2fgDP9jrm0Xy/7BAzQ0S/IkNq7PoSROrgPxaQMPlki8V4d3l9jBfihPc9oVcJpWlCM7aTAA6IkXVAdKuo1rtSp9AB4IEN6UZ9bLHZ2M9gD07aQvw3L/Tr/tsycPgEJr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=h0m/aYQ8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aKULIrBa; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 653CW1iN1199920
-	for <devicetree@vger.kernel.org>; Wed, 3 Jun 2026 14:21:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	z4Gm/K+T3sc4qmyuI/6DYikh3FBs9pCLd7ruh8jMyfQ=; b=h0m/aYQ8LGz3nWUC
-	5B+xKAFVUnyzkM4SoWnQVCR4I6S1fYeZEtdIvzuarM0yLYakynr3kB50+Rpw3jtY
-	/nyHIIfH9Hb7YTmzllSUh6JlKMctL93Pgn4Q7xoAmGm/523jcANoyfBg+cBicIXo
-	Y7pd+tOKH58L1CAdZmry5uNjhh51DMI+hJVOizXskskeysjFujB9770I0eJLL8wj
-	sa77vsgSgQ55uLhMI82PqujiygQFeWiTunziGZpCD6NuzkpYn52wD1eaqsJpjL2Y
-	h1LoBu9GRpcDwY4CfyYS3hQHEfQANDhuCFApKgv4t/lt6ojUhgdbeISpe1t7KWCE
-	mV4gaQ==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ejckw2dwv-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 14:21:32 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-36d97415004so7793319a91.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 07:21:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780496492; x=1781101292; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z4Gm/K+T3sc4qmyuI/6DYikh3FBs9pCLd7ruh8jMyfQ=;
-        b=aKULIrBa9wmjAApESLtqpzZb3eL1iQAmW5BIvu+X0MC88jHh7wPtvch0ettIxL4qo6
-         J8OlmRohjd6sFYVJBMlihKT59p3t+58bpEqp/rIYncTFjGSVXvplGCj1c/c3aOoszEDg
-         PnhxUpPYGNTSF/9DpUIHlL6oODL8xDyCkJNmlv+VfBSHOZcBOS7jIz4a7CvmDJh/ioTu
-         CaMoQQ3+1mfSqmhl+eDJJUu/x4MMNUs+BDEyP16n7e4IKWI6xoaMjwUC+ZZjZ5If3/4K
-         dYg/bMuVbLPT1EYM5tlxlhxdP6M1kVdLZDlLN9gNGNnRPXn83ZhtC7dDEj9ZCVD8Tled
-         m1lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780496492; x=1781101292;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=z4Gm/K+T3sc4qmyuI/6DYikh3FBs9pCLd7ruh8jMyfQ=;
-        b=nHfpU2mQhgeq4A3QxYdHF7K9gD2rtWVbx58TnNg0A02SDObStm89v46blhwRltmTR3
-         udMncQ5g2ur1ZxEgqTDUafo5JqrAMu6b1a5SYKI+UkM3l/MCE+pV28l8rCIzTFh5wwbi
-         bTDLYKMOxlhNqnM29cXxCpIl810FdCqKqnfhwo/nxie/80mCIGcwHbFalm2Da5ehjYmJ
-         sDztlOMuD9Fwav57RZJFB0/h4KHPyPRbY8XBdFlyf1rBHpM098UVXXTOoXmfCRdofCnE
-         JgpdSkzx9jj1PVZSWhepPMDbc1newsD6edn4Rq0ZpNRR/4vMWTKvsoo5SszFArSSxZt0
-         IEZw==
-X-Forwarded-Encrypted: i=1; AFNElJ9O6ZJUuc8VWT661s0DGRve7JGbcTVKkC9mFA/cQ4Tu4jIE1zfcChdcTv21+758aNQEGyWi3gDcm+rF@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFlpEOYdht1K54rm/CAXrj52VXwqZ3KtjtdXP4JGfkQWX0wEJO
-	dM0+g66VBMzLa4j7cDmiZ+vIbTQJdJo/VA4pJmwbQuL1og/aTnRojiloazIvAbaCi8aZdw6K2pE
-	l26ETS9udDhgkNZ0PAklAX8vAMPhhu6znjw4NqaHv6taYlfHkneDgNWjzFQ1ifk7L
-X-Gm-Gg: Acq92OExHKEU+9mPxNXc5qd/Qglz5WFiYHErIjRVvQGiFDirXeBhIKfuOPeKnqiqaEs
-	mp3S6wqGtGaZyDI6mWkzU4yyUwgpuN/BEOztYoQsyDEedo9HZ95HR5fEOVXdQm9h7phnwegctDM
-	RweIshCARxhvhC80tB6x0Vdz068TAEgSwdmBYLigabEtcvBrpY0Z8UMlvwdjncojL7zLJNJ5d/T
-	NuoKh/mmLXiyKkSae0fhx8JgyT78I44qAMKJHSi2bY1X6lgk4fVYyVDrN1Gz9zyycDQvGjHtzja
-	PFt/Oa7kRTauRXbwUWibiYzd4sgrkZFOqztwUALg6DzXbn6Y5jV9nRGi0CCangC3Iik0lNTJotU
-	M3RGZcX95UK340SMfDLMYiloajKCqIbEUgXmejT1Dw2n7YRBbgMpB6ibVq4Og/n7DfQ==
-X-Received: by 2002:a17:90b:51c2:b0:36b:4d63:4a96 with SMTP id 98e67ed59e1d1-36e3247617amr3743115a91.1.1780496491847;
-        Wed, 03 Jun 2026 07:21:31 -0700 (PDT)
-X-Received: by 2002:a17:90b:51c2:b0:36b:4d63:4a96 with SMTP id 98e67ed59e1d1-36e3247617amr3743089a91.1.1780496491404;
-        Wed, 03 Jun 2026 07:21:31 -0700 (PDT)
-Received: from hu-bvisredd-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c164f6d37esm41514955ad.9.2026.06.03.07.21.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 07:21:31 -0700 (PDT)
-From: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-Date: Wed, 03 Jun 2026 19:48:50 +0530
-Subject: [PATCH v7 12/12] arm64: dts: qcom: glymur-crd: Enable iris video
- codec node
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E824839890A;
+	Wed,  3 Jun 2026 14:20:30 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780496433; cv=fail; b=O98PSCdujBTT9k9koKdO5ETCm0ljr1+vwNuhSlSmHk/6G/DT77rS4t22Wz5gSGw3hXKLMY1jjFPSQdVFknTILCrj+R0WK0Ix3PkIrz2Ztc3VmMUotSM8RCLA1CsYa3E0TaKemNt+ZTJUFhR6hndVUIHJKlLGFjuvwVgcxNnau/c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780496433; c=relaxed/simple;
+	bh=fRs2CllGGqoGbfKeyzY+Xc+NAMO99W9soVX19IHTUXU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YefE3AmvRf5UGnRHOsLT1+UsfUfoei8OgLstv5AVhUPVuKJauVFA4zAyS0VRtBA7KJqPCjVhyNu8UJkAVD7Ly0U05y+er05XBzzEBinrGQStJcV8p+lHEoSbFLCsMdXE8PAKJ9hOKw3bA/BirUA1bV6ZwR5jI+uztuTOGnUNurg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=scfNJ8JW; arc=fail smtp.client-ip=40.93.201.21
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YLkPqbmRzA0KaXGQgfmtwLawpy6nlhhhccT/gbeyFuxpSjHRq04rmewLzXNNk1UqevZWFmfMNMV9NKwGWWF6pbVKB5MRq1gqCrKYJeDn0gGBzBZBPrYi1tVBCNuUmQoiy/Vx4bUv5qcPDF4Aq+eIhBeN6YvE0XQkYkIcYS9IUQ2qw+AJiQjgSbjKoUnVRVFhR9AK09ZDYdzqBswc4gvPxSxPQlrIdIqzcFam/4ZojXugwE5oTRtbFapud8boN5YVJSA/Lx7blm19+kMAuOxKse02RwyX8KyhC+hR17Osz79t/gonGzL0U5zggzzWncGGD98J8nozMDHprturNtwg2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7AW+vyG7Zy5sugCSrnQQ/bGv+ZjbD6txqKZsU9lVcH8=;
+ b=qdHrONyCUFeDLaHEKg71jabb48lBbSYOOzVRn9jT1qZx0X82p7X1xsBl5XRYDEyITiMp0q1tQ2beEpcX8ayWjR/3oXi4PqcoSPPmNZpP2/N2/kp7rDAvYlKAj1UUx1Iz/VeoY9gnTKeW+ha/xK2eNn9gdaGeHdsP3T3YeOtfQNfvelid9ETvjG9osy3wKpyjOOlhDefjZP6HTEiEQKenSXpvoIlxjz4TMchcLT3JVmAq5IunaEIIS5xh6Pq23Lhd2hDMrhts9pv63bXBjIFVBnBuIJ11LosMTQaqx44Sp0z8awlowQ6dlftdpfLI3gJSZf8vQIdMc20JmwlyGb/0jg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7AW+vyG7Zy5sugCSrnQQ/bGv+ZjbD6txqKZsU9lVcH8=;
+ b=scfNJ8JWcesrciSdwaGOzBwzkkexmrhtFBkEboz8+74XLAB5W691D1OyhrbnjymcRpcMENIphzY1MD3LUCVaMh4oBotyYaNbjbYkoXonmik8sfqOYgJVQYDhDEb4QIuRL6b7ult0sk7P9YTiIFJ98MdQxnyeboAr2EMStf/9e8Y=
+Received: from SN6PR08CA0010.namprd08.prod.outlook.com (2603:10b6:805:66::23)
+ by SJ0PR12MB6733.namprd12.prod.outlook.com (2603:10b6:a03:477::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Wed, 3 Jun 2026
+ 14:20:26 +0000
+Received: from SA2PEPF0000150B.namprd04.prod.outlook.com
+ (2603:10b6:805:66:cafe::d9) by SN6PR08CA0010.outlook.office365.com
+ (2603:10b6:805:66::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.7 via Frontend Transport; Wed, 3
+ Jun 2026 14:20:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SA2PEPF0000150B.mail.protection.outlook.com (10.167.242.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Wed, 3 Jun 2026 14:20:26 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 3 Jun
+ 2026 09:20:08 -0500
+Received: from localhost (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41 via Frontend
+ Transport; Wed, 3 Jun 2026 09:20:07 -0500
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@amd.com>, <git@amd.com>
+CC: <mikko.rapeli@linaro.org>, Conor Dooley <conor+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, "open
+ list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+	<devicetree@vger.kernel.org>, "moderated list:ARM/ZYNQ ARCHITECTURE"
+	<linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH 1/2] arm64: dts: xilinx: drop bias-high-impedance on SDIO CD/WP pins
+Date: Wed, 3 Jun 2026 16:19:52 +0200
+Message-ID: <e01c8e60e1d9ed68c347f1a3741f89149109d8b7.1780496388.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260603-glymur-v7-12-afaa55d11fe0@oss.qualcomm.com>
-References: <20260603-glymur-v7-0-afaa55d11fe0@oss.qualcomm.com>
-In-Reply-To: <20260603-glymur-v7-0-afaa55d11fe0@oss.qualcomm.com>
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org,
-        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780496410; l=880;
- i=busanna.reddy@oss.qualcomm.com; s=20260216; h=from:subject:message-id;
- bh=ZedtRlFClaBXevVNFnYB8UGxbyP20S9HuW/op1IPHAM=;
- b=j6KLzRXja9vw21nECiRDIymu9bT8tQkMHvQods9ahk1D42LUixH/CxeLS/SQpISGW74WdmXD6
- 6drwsQqNiu6A5EHUvmo7hBgLTSczmKwFmTd3bag+LS6ZEe2eaPj7UfW
-X-Developer-Key: i=busanna.reddy@oss.qualcomm.com; a=ed25519;
- pk=9vmy9HahBKVAa+GBFj1yHVbz0ey/ucIs1hrlfx+qtok=
-X-Proofpoint-ORIG-GUID: Hq1aLSKRql8sBkGttK19HXOk4QhloNIs
-X-Authority-Analysis: v=2.4 cv=edUNubEH c=1 sm=1 tr=0 ts=6a20386c cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=EUspDBNiAAAA:8 a=Dn0IJEph4XI5J7oltBAA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjAzMDEzOCBTYWx0ZWRfXwA3DeU58sSYq
- OPhIog7MFgSfCcv1DCn0TwjOA6eZ+qu23yw3k8N2h8zzC2zymJcAIn94keDk+iYRW+ax5trUlzO
- sC+kNL06Fs22AaQ/ZIxUstfc9lQo6soM/1tb+wSRxlxmreZqukiLYvz5tznu3L2yGaZhWAJexGf
- sfDfInPKKVJaF9e4G4x8cLwUs+2DAct5N7F4KLfWj83dfK8TSvdicuLHGnhcQMzeitz8MIa8p+r
- R+lVw1J3ZsQ+rEKFVdtOoTsjRlatm7qib8V33RpB0MaJ+SpNWjulr9DYaZYCwN4ByMcAbWvHiRZ
- ix3OhDe9nguEfpMRwVq5T92xtSup3ypfQ7YrkaJxZ4qpAi/mzy9VYrGjZEv9zHcBzx7zop7TtlN
- X5aq+IpzIQJQzfQKIa3DRTxbYjeE88I3VObbSFMFBozRslBh8Q7yB3TcZxbFinyx0kz3vwj+55P
- whQ3APWHSj9l9zWbEzQ==
-X-Proofpoint-GUID: Hq1aLSKRql8sBkGttK19HXOk4QhloNIs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-03_05,2026-05-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 malwarescore=0 suspectscore=0 impostorscore=0
- spamscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606030138
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7719; i=michal.simek@amd.com; h=from:subject:message-id; bh=fRs2CllGGqoGbfKeyzY+Xc+NAMO99W9soVX19IHTUXU=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWQpWAis17n4/9vpW381Tn9d6Fp+LLv72EmW2QKdqZ4cP Zx2xu2vO0pZGMQ4GGTFFFmmM+k4rPl2banY8sh8mDmsTCBDGLg4BWAi150Y/lfd1N3e6id95AG7 4IqPfycpL5k9Y9IGBrF5VvMf7d/e47WM4Z/GXg0WiZ6zSVxHQ9wPn1DRE5Ts3rhNvfkw17o5/F4 uyYwA
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF0000150B:EE_|SJ0PR12MB6733:EE_
+X-MS-Office365-Filtering-Correlation-Id: fb117da5-51b5-4ba5-e431-08dec17b41f3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|82310400026|36860700016|6133799003|56012099006|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	4ZavO2G0VVmXFzuIVvec1+WBUFaMp68W69ij9CrP3tHC1tSahoK54kWCkTHGnrwMwxEAtWGNrOkYsIY3nP2bhPMxQb6PMeG58vh8bJ0lLMtKzsvkIiK59erpghR/sm8SMjVzv3DcO2MG32AmCrINTatK0JzD8rLbyfaoN/IUyyHTZBV2Cbj6Aud98ijoXwV8Z7LFNBVTTcgdDvhJf6XhkrU0uA2VBGfKxOlwxpzyBHYkw+LsFAoKCYH60Ji1ss9OpvwplpRakOlZkaEexAdwQ+zC664U1Ng8XpDSma6GNPAkWipD6TJ1EHuzTHEFihETX+oA+PR3kPoSmsWXIqU4pZsZkACJZ9lULqpVHWNN6R9gzdo0pT8w2FxkrX0RNqn/Hv/Tu4+zAkfwOujO6ohl2lARHFpC0k3HldmBti2T1Owygp7pDsjW7p/eBt5lo3rjfiJ03XiKHYKMON5JBJpRomRm+3ocSIQKcitXuHQ8y7KOHZR+R9d9RwqeS/WDVnN1hhijW5E7gy/YVOMKy3QYTdxl+rfE5BBFB1yuc/pDmg5usSR8zEN4pvP4xhCygL5OY1stXpb734ERTpYScusrJZv9rv413szEeiZamRylsi9qlwDvQ0Dv6Vt0I8m4cfmxMBoneNTB8xlF8OnBwe00NmDXyBRvprraUPeD1yEG8Jj5eEpCDQbdpDvzkt1UNVRxM3T6AyLTwPSGjL8DiPMJfJGG97iLQBnSwiAZztza9eM=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(6133799003)(56012099006)(11063799006)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	iCkMVQkhQnoLwDsELbBjAu7LmUuDAY0BCQnnoKtBWOsVzrx28l8z+klSFCbD03okq9gV1udC+cJDXar1yVFvFOUj0IITSErXu96GLRLNT616CsMYp37EqMxqCDpW+fuVzueO7/4l/kvitQ7L5KbczWB39/LxpHjZ9/ZS0opRBQibnu9oQvsm18kOVBl+RJ8EL6aow2qxhxE64gSTqls+vItdL9+k1XMczguuqc9RcL8mRsjRQZYnd48QIIqhoucUoiA+RS6i0gGDgqW90JRwtV4lEeJHblO35p5eyo3PgnVay+gAhWEW69CPiJ52MYJwLNrugY1IRzJp1MQiqWLdWhNoRXfQyqLiK+E+gDZ9klcNnODi4flPDNv43VrIp2QJ+frfbDCz0qalskslUP03GD7scGo9ibWg/QWc8nDHENQVHCca3IpxmhT81SmE8CVH
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 14:20:26.4466
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fb117da5-51b5-4ba5-e431-08dec17b41f3
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SA2PEPF0000150B.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6733
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-306305-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,linux.dev,kernel.org,8bytes.org,arm.com,gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:vikash.garodia@oss.qualcomm.com,m:dikshita.agarwal@oss.qualcomm.com,m:abhinav.kumar@linux.dev,m:bod@kernel.org,m:mchehab@kernel.org,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:stanimir.k.varbanov@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:iommu@lists.linux.dev,m:devicetree@vger.kernel.org,m:busanna.reddy@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:stanimirkvarbanov@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[busanna.reddy@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:monstr@monstr.eu,m:michal.simek@amd.com,m:git@amd.com,m:mikko.rapeli@linaro.org,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[michal.simek@amd.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-306294-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[busanna.reddy@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[michal.simek@amd.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DKIM_TRACE(0.00)[amd.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B0CFD63899C
+X-Rspamd-Queue-Id: E1A8E638B50
 
-The iris hardware block is described in the glymur SoC DTSI, and enabling
-it here allows the media iris driver to probe and use the video codec
-functionality.
+Since commit 9c105255108b ("pinctrl: pinconf-generic: perform basic
+checks on pincfg properties"), the generic pinconf parser logs an error
+when a pin configuration node specifies more than one bias mode.
+Several ZynqMP boards described SDIO card-detect and write-protect pins
+with both bias-high-impedance and bias-pull-up, which triggers at
+pinctrl probe:
 
-Reviewed-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+  generic pinconfig core: /firmware/zynqmp-firmware/pinctrl/.../conf-cd:
+    cannot have multiple bias configurations
+
+On ZynqMP, bias-high-impedance enables tri-state while bias-pull-up
+enables the internal pull resistor; these are mutually exclusive bias
+settings and only pull-up is needed for CD/WP inputs. Drop the redundant
+bias-high-impedance property and keep bias-pull-up.
+
+Reported-by: Mikko Rapeli (Linaro) <mikko.rapeli@linaro.org>
+Closes: https://bugzilla.kernel.org/show_bug.cgi?id=221586
+Signed-off-by: Michal Simek <michal.simek@amd.com>
 ---
- arch/arm64/boot/dts/qcom/glymur-crd.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/glymur-crd.dts b/arch/arm64/boot/dts/qcom/glymur-crd.dts
-index c98dfb3941fa..9445badeb18b 100644
---- a/arch/arm64/boot/dts/qcom/glymur-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/glymur-crd.dts
-@@ -198,6 +198,12 @@ ptn3222_1: redriver@47 {
- 	};
- };
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso   | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso   | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts | 4 ----
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts | 2 --
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts      | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts      | 2 --
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts      | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts      | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts      | 2 --
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts      | 1 -
+ 10 files changed, 16 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+index 923a70d750bf..44834bf1c19c 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+@@ -374,7 +374,6 @@ conf {
  
-+&iris {
-+	firmware-name = "qcom/vpu/vpu36_p4_s7.mbn";
-+
-+	status = "okay";
-+};
-+
- &mdss {
- 	status = "okay";
- };
-
+ 		conf-cd {
+ 			groups = "sdio1_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+index 563e750b0e08..49732de5fa4b 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+@@ -365,7 +365,6 @@ conf {
+ 
+ 		conf-cd {
+ 			groups = "sdio1_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+index 6aff22d43361..f57987dad50f 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+@@ -270,7 +270,6 @@ mux-cd {
+ 
+ 		conf-cd {
+ 			groups = "sdio0_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+@@ -283,7 +282,6 @@ mux-wp {
+ 
+ 		conf-wp {
+ 			groups = "sdio0_wp_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+@@ -310,7 +308,6 @@ mux-cd {
+ 
+ 		conf-cd {
+ 			groups = "sdio1_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+@@ -323,7 +320,6 @@ mux-wp {
+ 
+ 		conf-wp {
+ 			groups = "sdio1_wp_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+index 53aa3dca1dca..737d445dc16b 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+@@ -270,7 +270,6 @@ mux-cd {
+ 
+ 		conf-cd {
+ 			groups = "sdio0_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+@@ -283,7 +282,6 @@ mux-wp {
+ 
+ 		conf-wp {
+ 			groups = "sdio0_wp_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+index 4ec8a400494e..41f312a82bb4 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+@@ -320,7 +320,6 @@ mux-cd {
+ 
+ 		conf-cd {
+ 			groups = "sdio0_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+index e172a30e7b21..a5bc521ab679 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+@@ -896,7 +896,6 @@ mux-cd {
+ 
+ 		conf-cd {
+ 			groups = "sdio1_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+@@ -909,7 +908,6 @@ mux-wp {
+ 
+ 		conf-wp {
+ 			groups = "sdio1_wp_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+index fe8f151ed706..32509083e54f 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+@@ -359,7 +359,6 @@ mux-cd {
+ 
+ 		conf-cd {
+ 			groups = "sdio1_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+index 3ee8ab224722..96699be8430f 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+@@ -371,7 +371,6 @@ mux-cd {
+ 
+ 		conf-cd {
+ 			groups = "sdio1_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index 7f6c87d4d77e..52441e5c8739 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -895,7 +895,6 @@ mux-cd {
+ 
+ 		conf-cd {
+ 			groups = "sdio1_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+@@ -908,7 +907,6 @@ mux-wp {
+ 
+ 		conf-wp {
+ 			groups = "sdio1_wp_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+index 428b5558fbba..b34e4c93d249 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+@@ -750,7 +750,6 @@ mux-cd {
+ 
+ 		conf-cd {
+ 			groups = "sdio1_cd_0_grp";
+-			bias-high-impedance;
+ 			bias-pull-up;
+ 			slew-rate = <SLEW_RATE_SLOW>;
+ 			power-source = <IO_STANDARD_LVCMOS18>;
 -- 
-2.34.1
+2.43.0
 
+base-commit: 6218e588ded718ad365fed5fa7fb151a85abe5dc
+branch: zynqmp/dt
 
