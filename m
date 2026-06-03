@@ -1,1181 +1,169 @@
-Return-Path: <devicetree+bounces-306358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306355-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RLFfDSFQIGpd0wAAu9opvQ
-	(envelope-from <devicetree+bounces-306358-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 18:02:41 +0200
+	id efhHOmxOIGr50gAAu9opvQ
+	(envelope-from <devicetree+bounces-306355-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 17:55:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01C82639863
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 18:02:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0C663975C
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 17:55:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=MZDO2Tb8;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306358-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306358-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Azmlu0kA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306355-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306355-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 53D2731033D5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 15:13:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 34B3630F15AB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 15:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3C903D1CCA;
-	Wed,  3 Jun 2026 15:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E37B53A7F69;
+	Wed,  3 Jun 2026 15:12:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010057.outbound.protection.outlook.com [52.101.61.57])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FDA63CBE75;
-	Wed,  3 Jun 2026 15:12:59 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780499581; cv=fail; b=sZxbgofQci1YAkagRJndt/DKKCtU6z2Rxt3VC+aqntdYYZiVBVGMIBJRlVSYMy7JSIQfvCSIP0fVEM8bTifUcDQ5C84GfsrWhLsm9FzPSooeerQrfNhQ2BmPQqobBWqqkX+ASy0aAGI1E5PQkK52Z+euiTpYR+xBI3XfbKJiQm0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780499581; c=relaxed/simple;
-	bh=49ffXyKs9yRPH58SpYKmtR6Rolc2PSZG0RLUaOEaJKs=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lkB490dU9ytQp6FgXGdysMVR/TaA5II4LHeH12BK2gqJ5FazGPDWxIt5b59MP3MOEeP6/GPC3HYMutIfkQurUKr9lFo5T5vrLaf5httjKB4fh1CvhehQ+jHMxbfF6Pb4PzywVbluiDkfpL9PxliayXEcKD6rkrSXR9lDBCE71Go=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=MZDO2Tb8; arc=fail smtp.client-ip=52.101.61.57
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hbbolZd6xFDhidMPWihIHYCFBbBauK+djwYdfJ9CIWRTMBv71nD9fav6OrjrjGsiIPmxiwCBPqHIZFQ1sGRmPvHExLY0B42Kct1x6Xtu2+BQJUywfJpexVnBvdGO2/+5lYz/PGSh9JdBO8y1l1GlNPILj1lMKUI9tzX23GrFx9ZQR70JGbFh4NZgvNCdoYZqsprFd3zX9eR7Dxozr9UBh2EswYtuq5CCv4WFjR2y9r7XLUqZL/87lRRRvaTN63U4hvfVZSnXLCsLWgQc0zTNvlWqmm4MtL+9eMjC5COwRartQ+klCggpYDd/JZHPJinnWSWltgxKTwqPwhgeC8GK2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Xw59Z/Nb3T/vlAiU1NqUFpKqnFmFWk+Q67Ew0AQIA0E=;
- b=vPUoLn01nIB9gwKdfVlJXBa2xZEthWTGbcMYUWzlyUAmGcwszgv+7dmXdC0Lzs3FgFbN2LqAcF8MJeC41f8HlxBCmFlZJeEVlykcUV0MtJ6SYC2CLCN4YZ2Y26c1GBuVJs4LvFsC+x7MSCipCmIuXIAO6z56dqy19La58JqyWPoFBy7mRy+L3Qri2w706G7uT4jXLr89tv9wTvVwd+puIbGE5jzA9IX5+hg362y/keJGABTp15UzRfy4bYEYRmBWzQZ/mU8ml09MKH8ZYrvXvE9cS0g78d3lMlUWzdQ1c9jcaowjxcLXRuHjJSsmcakomEt/Z4lOo7F37BjlJb5A7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Xw59Z/Nb3T/vlAiU1NqUFpKqnFmFWk+Q67Ew0AQIA0E=;
- b=MZDO2Tb853ASCJiwLqPkKMx1Bto8N3otQzXyOrXq8HZ7v/yUty8mYXRWfq9nt5OXJhLJ6KkYQ4iET3bIzGnqGblASVXVfhaEBYpVBVq/DmK2c3+Xb3UuDx8vRIbNZB5koOEeO58Fdg9Y5P45lXk9MBgGQxqRA9eA4zvfcMkaDZY=
-Received: from BN9PR03CA0204.namprd03.prod.outlook.com (2603:10b6:408:f9::29)
- by SA3PR12MB7805.namprd12.prod.outlook.com (2603:10b6:806:319::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.13; Wed, 3 Jun 2026
- 15:12:51 +0000
-Received: from BN2PEPF0000449E.namprd02.prod.outlook.com
- (2603:10b6:408:f9:cafe::35) by BN9PR03CA0204.outlook.office365.com
- (2603:10b6:408:f9::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.7 via Frontend Transport; Wed, 3
- Jun 2026 15:12:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN2PEPF0000449E.mail.protection.outlook.com (10.167.243.149) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.5 via Frontend Transport; Wed, 3 Jun 2026 15:12:50 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 3 Jun
- 2026 10:12:40 -0500
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 3 Jun
- 2026 10:12:38 -0500
-Received: from localhost (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41 via Frontend
- Transport; Wed, 3 Jun 2026 10:12:38 -0500
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@amd.com>, <git@amd.com>
-CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, "open list:OPEN FIRMWARE
- AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated
- list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v3 5/5] arm64: versal-net: Switch Versal NET to firmware clock interface
-Date: Wed, 3 Jun 2026 17:12:10 +0200
-Message-ID: <c7007b07b00ff00affda9fa67a40667284acb330.1780499520.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1780499520.git.michal.simek@amd.com>
-References: <cover.1780499520.git.michal.simek@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D4C352036
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 15:12:38 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780499559; cv=none; b=Btb0XfiTqHQcrmi1JmBX2gJdWZ5nDSB4kzz1jCa3aiKKKgLumXuQ4DNAZWH/ocy0tFgI+3t5AHdEfiVl9c9wun11hGHF5VMhyKZMzVaxTBHDzN9wb0osU5m9YdO9UqZmIwpWBI9O4mS49i6RDdSv5jy/Lvns3VSyLnQXwVvgPfY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780499559; c=relaxed/simple;
+	bh=mEDPuxMpSUeuNsblkztjGAYI3C/ClwPU0CmZM6UQbDE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=M/s6CJdtBvfkSekQIgA9WPrFFZ9SLgWWDor0krf+Dv0qlZFq83tS5jT+7cYuKH9mokzHswUgiS3k1IwIC4BELbK0YaRprsg6+slINzwNJP0b6tAtF9a0Qz8qfwOCL9K1WDJWBwhZhKfL/i+a0tYl2b/g1SfcKhzNvyJgaGo6fz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Azmlu0kA; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 455621F00893;
+	Wed,  3 Jun 2026 15:12:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780499558;
+	bh=lLu+UnTtPhJV4GYDiwJGg8aoMwozwh4lLKh8s+EGGBw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Azmlu0kAkct4YVUhtGap3kGLf3juf2/peuA9HEIGW5Jscc4FMmd1nLO5UHzXgQPYK
+	 /bgx22peR2PmMrdgMCUBIjw5Hh0R/yDqn5GaS9B/JSNzLHPr61iI0XUjkkPa/J7pQl
+	 6NUL8YStFU/TiGBeL8KO4mAtwUNL8+/g2kuXe07evNf0uAe2DRwkKhjJqKPrFsR/pO
+	 ZPqiR7+n6S6P5H/zclkf/ECODcUQnp+j0YCvK5Oae/dxVMIFdfFIHgz3+d6Okw95z3
+	 tNGgyEweISrKd4jtKUYkzBfjJeC3Kd18OIAUGz2sKy3dq7hw/GhJmwTtGNqCedFt76
+	 zUuAjL4YqogTw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: display: msm: qcm2290: Add Shikra MDSS
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Nabige Aala" <nabige.aala@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260603-shikra-display-v1-1-aeac1b94faa7@oss.qualcomm.com>
+References: <20260603-shikra-display-v1-1-aeac1b94faa7@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 03 Jun 2026 15:12:37 +0000
+Message-Id: <20260603151238.455621F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=29087; i=michal.simek@amd.com; h=from:subject:message-id; bh=49ffXyKs9yRPH58SpYKmtR6Rolc2PSZG0RLUaOEaJKs=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWQpuHi1HAm5rKcy5c9usxM6nFM/spn1nLgt4fZY+LDlS S3m/9oHOkpZGMQ4GGTFFFmmM+k4rPl2banY8sh8mDmsTCBDGLg4BWAiC+sZ/lf9KVQQqFutwXNm 2ow7O8OyZac3hBeZ8IhJn9bkbUzg1WZk2Bx500EqZWvsjGM8j090tiYcnrd8iqvrfH/317KNBws qeQA=
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF0000449E:EE_|SA3PR12MB7805:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71f78b2f-24bc-4df8-fdd3-08dec1829417
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700016|376014|82310400026|22082099003|18002099003|5023799004|11063799006|56012099006|3023799007;
-X-Microsoft-Antispam-Message-Info:
-	SbwCW5H7Vy26ExMVGRSCz0CnXaNo+7/VTATb6WqFz+UIDD/R/vVdYbT/TrcWHhqot3/m77mkliHZ4ZT/A6vW2ym+JTAzCrfraWPKQXp/BBxb5Bp9acSqa/AYSDSNAaxLqj+m8W6HqZ1jvLzjWs2NBUMSTrF0ZRVQ5/JZB77XVmcwsTqUVx3F/DO07erz6lNibWzjsZH880I2wQu3ONWON5UVAk9Tt8adG8pNhGAbI7quF6aS5IEvnXsOQ/ZGE4KfvTn8jDXdqJUj9nb1y+FfIlTTGQrTTmXkphfb0Dm8GLrGucvwZKF7hxg8h7dByYlzmaQ/DhHeGT2cC7NuQDxmwLqdTlGa7y088k9KuBi7kDnHObyE9amg5re9bXZGgxzJjXDhJdlwhiEjiyyCiuKdnHOCPhmnxAYiI1h4v0S4fjcKQdEN2xIoH2vCHV+L77ApAD8XwyiCJVWpwMsmwy5fmqa/OUubBw0MZ4lP3YAaF9DcEmaHjyC4UNBnhV7nF7Wo3xDgUDP44mz7/dHDeQSHeFOB4eOz/XgcPV4CSdRZQ9vs7dSKlU4fCxnVWJKarU4yBGmF+z4YbaBAkcZb2ESp2UJG17dum6TxjH37IrOl14D+SSFvTjFt+8ocAmouDloUYJa1czxYslvUkql846yg2uEPcaKZrSBVokFWDnApkL3ROm+F1hPw6DTfT/MyqXCkaNRUoFOgE3H+CKjx0XIBBTMznjgDaCswC/2r8oNlsYQ=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(376014)(82310400026)(22082099003)(18002099003)(5023799004)(11063799006)(56012099006)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	gRg7ClGT37IFsyaV4YPmIQacRc0OXGudK6envMmRRMKBM/AxysGbjA/9ee6mhAdRU/4ug7cpnE0mbAuC2w8aBj+0f+7J27jsA1VObxI/XmiY6MHQY6V2mvJ/wkm4N4Cr9S4nwRqB0xSHZWRYKQEGYWw0QLk89oybfM4z0rogzDO20+QPWihyEIFPaBm0s00SNWq57OTkqAmeoBPVoFDeXq4OmYAs92XNlqWePBnOCw7Sj5zpKxjPRhlxgWQugUNZgbab9iImRq3c/KpPSYWAKv2gq2WyvvUU6saXCHZkb1+Sy/l3J2kvhEA0IvbA9dHkdTxM5H73Df89RyKEsDWL0EN6uyTnap/2vx2Mu9SRtAIYlRvnT6Yr8hVlyKKMGOhf4ryrNsVBECgV7MSsxJw29ZcnFRaBh7LibTJdxjzO58vmWwbmXA1FSiuuHR/0H7AP
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 15:12:50.7263
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71f78b2f-24bc-4df8-fdd3-08dec1829417
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN2PEPF0000449E.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7805
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:monstr@monstr.eu,m:michal.simek@amd.com,m:git@amd.com,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[michal.simek@amd.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-306358-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306355-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:nabige.aala@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michal.simek@amd.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email,vger.kernel.org:from_smtp];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:email,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 01C82639863
+X-Rspamd-Queue-Id: EC0C663975C
 
-Switch Versal NET from using fixed clocks to the firmware-based clock
-interface (versal-net-clk.dtsi). This enables proper clock management
-through the platform firmware instead of relying on static fixed-clock
-definitions.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Missing 'allOf' conditional block update for new compatible stri=
+ng `qcom,shikra-dsi-ctrl`.
+--
 
-Add DT macro headers for Versal NET and base Versal clocks, power
-domains and mandatory resets required by the clock dtsi.
+commit b5545b2692efb6a451931fc9c3057819063bbe07
+Author: Nabige Aala <nabige.aala@oss.qualcomm.com>
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
+dt-bindings: display: msm: qcm2290: Add Shikra MDSS
 
----
+This commit introduces the Shikra MDSS and DSI hardware device tree binding=
+s.
+It adds the qcom,shikra-mdss, qcom,shikra-dpu, and qcom,shikra-dsi-ctrl
+compatible strings to existing binding files, sharing the hardware definiti=
+ons
+used by the QCM2290 and related displays.
 
-Changes in v3:
-- Remove interrupt from zynqmp-power - Versal NET is using event framework
-  instead. No interrupt is required.
-- Remove unused GEM{0,1}_REF_{R,T}X macros
-- Update commit message
-- s/zynqmp/versal-net/ in subject
-- Update copyrights
-- Make all macro values lower case
-- Fix guarding macro names
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller=
+-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-m=
+ain.yaml
+> index dbc0613e427ed..a2f3e91104af3 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.y=
+aml
+> @@ -33,6 +33,7 @@ properties:
+>                - qcom,sdm660-dsi-ctrl
+>                - qcom,sdm670-dsi-ctrl
+>                - qcom,sdm845-dsi-ctrl
+> +              - qcom,shikra-dsi-ctrl
 
-Changes in v2:
-- use clock-<HZ> node name for fixed clocks
-- Reuse existing versal-net-clk.dtsi file
+[Severity: Medium]
+Is it a regression that qcom,shikra-dsi-ctrl was omitted from the allOf
+if-then conditional block further down in this file?
 
- .../arm64/boot/dts/xilinx/versal-net-clk.dtsi | 345 +++++++++++++-----
- arch/arm64/boot/dts/xilinx/xlnx-versal-clk.h  | 123 +++++++
- .../boot/dts/xilinx/xlnx-versal-net-clk.h     |  74 ++++
- .../boot/dts/xilinx/xlnx-versal-net-power.h   |  38 ++
- .../boot/dts/xilinx/xlnx-versal-net-resets.h  |  53 +++
- .../arm64/boot/dts/xilinx/xlnx-versal-power.h |  55 +++
- .../boot/dts/xilinx/xlnx-versal-resets.h      | 106 ++++++
- 7 files changed, 695 insertions(+), 99 deletions(-)
- create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-clk.h
- create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-net-clk.h
- create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-net-power.h
- create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-net-resets.h
- create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-power.h
- create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h
+Since Shikra shares the 6-clock requirement ('byte', 'byte_intf', 'pixel',
+'core', 'iface', 'bus') with related platforms like SM6115, it seems it
+should be included in the allOf block that enforces this:
 
-diff --git a/arch/arm64/boot/dts/xilinx/versal-net-clk.dtsi b/arch/arm64/boot/dts/xilinx/versal-net-clk.dtsi
-index b7a8a1a512cb..d3a27da90090 100644
---- a/arch/arm64/boot/dts/xilinx/versal-net-clk.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/versal-net-clk.dtsi
-@@ -1,231 +1,378 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * dts file for Xilinx Versal NET fixed clock
-+ * dts file for Xilinx Versal NET with PM
-  *
-- * (C) Copyright 2022, Xilinx, Inc.
-- * (C) Copyright 2022 - 2025, Advanced Micro Devices, Inc.
-+ * Copyright (C) 2022, Xilinx, Inc.
-+ * Copyright (C) 2022 - 2026, Advanced Micro Devices, Inc.
-  *
-  * Michal Simek <michal.simek@amd.com>
-  */
- 
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include "xlnx-versal-net-clk.h"
-+#include "xlnx-versal-net-power.h"
-+#include "xlnx-versal-net-resets.h"
-+
- / {
--	clk60: clk60 {
-+	ref_clk: clock-33333333 {
- 		compatible = "fixed-clock";
-+		bootph-all;
-+		clock-frequency = <33333333>;
-+		clock-output-names = "ref_clk";
- 		#clock-cells = <0>;
--		clock-frequency = <60000000>;
- 	};
- 
--	clk100: clk100 {
-+	rtc_clk: clock-32768 {
- 		compatible = "fixed-clock";
-+		bootph-all;
-+		clock-frequency = <32768>;
-+		clock-output-names = "rtc_clk";
- 		#clock-cells = <0>;
--		clock-frequency = <100000000>;
- 	};
- 
--	clk125: clk125 {
--		compatible = "fixed-clock";
-+	can0_clk: can0-clk {
-+		compatible = "fixed-factor-clock";
-+		clocks = <&versal_net_clk CAN0_REF_2X>;
-+		clock-div = <2>;
-+		clock-mult = <1>;
-+		clock-output-names = "can0_clk";
- 		#clock-cells = <0>;
--		clock-frequency = <125000000>;
- 	};
- 
--	clk150: clk150 {
--		compatible = "fixed-clock";
-+	can1_clk: can1-clk {
-+		compatible = "fixed-factor-clock";
-+		clocks = <&versal_net_clk CAN1_REF_2X>;
-+		clock-div = <2>;
-+		clock-mult = <1>;
-+		clock-output-names = "can1_clk";
- 		#clock-cells = <0>;
--		clock-frequency = <150000000>;
- 	};
- 
--	clk160: clk160 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <160000000>;
-+	firmware {
-+		versal_net_firmware: versal-net-firmware {
-+			compatible = "xlnx,versal-net-firmware", "xlnx,versal-firmware";
-+			bootph-all;
-+			method = "smc";
-+			#power-domain-cells = <1>;
-+
-+			versal_net_reset: reset-controller {
-+				compatible = "xlnx,versal-net-reset";
-+				#reset-cells = <1>;
-+			};
-+
-+			versal_net_clk: clock-controller {
-+				compatible = "xlnx,versal-net-clk", "xlnx,versal-clk";
-+				bootph-all;
-+				clocks = <&ref_clk>, <&ref_clk>, <&ref_clk>;
-+				clock-names = "ref", "pl_alt_ref", "alt_ref";
-+				#clock-cells = <1>;
-+			};
-+
-+			versal_net_power: power-management {
-+				compatible = "xlnx,zynqmp-power";
-+				mboxes = <&ipi_mailbox_pmu1 0>,
-+					 <&ipi_mailbox_pmu1 1>;
-+				mbox-names = "tx", "rx";
-+			};
-+		};
- 	};
- 
--	clk200: clk200 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <200000000>;
-+	zynqmp-ipi {
-+		compatible = "xlnx,zynqmp-ipi-mailbox";
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-+		xlnx,ipi-id = <2>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ipi_mailbox_pmu1: mailbox@eb3f0440 {
-+			compatible = "xlnx,zynqmp-ipi-dest-mailbox";
-+			reg = <0 0xeb3f0440 0 0x20>,
-+			      <0 0xeb3f0460 0 0x20>,
-+			      <0 0xeb3f0280 0 0x20>,
-+			      <0 0xeb3f02a0 0 0x20>;
-+			reg-names = "local_request_region", "local_response_region",
-+				    "remote_request_region", "remote_response_region";
-+			#mbox-cells = <1>;
-+			xlnx,ipi-id = <1>;
-+		};
- 	};
-+};
- 
--	clk250: clk250 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <250000000>;
--	};
-+&cpu0 {
-+	clocks = <&versal_net_clk ACPU_0>;
-+};
- 
--	clk300: clk300 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <300000000>;
--	};
-+&cpu100 {
-+	clocks = <&versal_net_clk ACPU_0>;
-+};
- 
--	clk450: clk450 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <450000000>;
--	};
-+&cpu200 {
-+	clocks = <&versal_net_clk ACPU_0>;
-+};
- 
--	clk1200: clk1200 {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <1200000000>;
--	};
-+&cpu300 {
-+	clocks = <&versal_net_clk ACPU_0>;
-+};
- 
--	firmware {
--		versal_net_firmware: versal-net-firmware {
--			compatible = "xlnx,versal-net-firmware", "xlnx,versal-firmware";
--			bootph-all;
--			method = "smc";
--		};
--	};
-+&cpu10000 {
-+	clocks = <&versal_net_clk ACPU_1>;
- };
- 
--&adma0 {
--	clocks = <&clk450>, <&clk450>;
-+&cpu10100 {
-+	clocks = <&versal_net_clk ACPU_1>;
- };
- 
--&adma1 {
--	clocks = <&clk450>, <&clk450>;
-+&cpu10200 {
-+	clocks = <&versal_net_clk ACPU_1>;
- };
- 
--&adma2 {
--	clocks = <&clk450>, <&clk450>;
-+&cpu10300 {
-+	clocks = <&versal_net_clk ACPU_1>;
- };
- 
--&adma3 {
--	clocks = <&clk450>, <&clk450>;
-+&cpu20000 {
-+	clocks = <&versal_net_clk ACPU_2>;
- };
- 
--&adma4 {
--	clocks = <&clk450>, <&clk450>;
-+&cpu20100 {
-+	clocks = <&versal_net_clk ACPU_2>;
- };
- 
--&adma5 {
--	clocks = <&clk450>, <&clk450>;
-+&cpu20200 {
-+	clocks = <&versal_net_clk ACPU_2>;
- };
- 
--&adma6 {
--	clocks = <&clk450>, <&clk450>;
-+&cpu20300 {
-+	clocks = <&versal_net_clk ACPU_2>;
- };
- 
--&adma7 {
--	clocks = <&clk450>, <&clk450>;
-+&cpu30000 {
-+	clocks = <&versal_net_clk ACPU_3>;
-+};
-+
-+&cpu30100 {
-+	clocks = <&versal_net_clk ACPU_3>;
-+};
-+
-+&cpu30200 {
-+	clocks = <&versal_net_clk ACPU_3>;
-+};
-+
-+&cpu30300 {
-+	clocks = <&versal_net_clk ACPU_3>;
- };
- 
- &can0 {
--	clocks = <&clk160>, <&clk160>;
-+	clocks = <&can0_clk>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_CAN_FD_0>;
- };
- 
- &can1 {
--	clocks = <&clk160>, <&clk160>;
-+	clocks = <&can1_clk>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_CAN_FD_1>;
- };
- 
- &gem0 {
--	clocks = <&clk125>, <&clk125>, <&clk125>, <&clk125>, <&clk250>;
-+	clocks = <&versal_net_clk LPD_LSBUS>,
-+		 <&versal_net_clk GEM0_REF>, <&versal_net_clk GEM0_TX>,
-+		 <&versal_net_clk GEM0_RX>, <&versal_net_clk GEM_TSU>;
-+	power-domains = <&versal_net_firmware PM_DEV_GEM_0>;
- };
- 
- &gem1 {
--	clocks = <&clk125>, <&clk125>, <&clk125>, <&clk125>, <&clk250>;
-+	clocks = <&versal_net_clk LPD_LSBUS>,
-+		 <&versal_net_clk GEM1_REF>, <&versal_net_clk GEM1_TX>,
-+		 <&versal_net_clk GEM1_RX>, <&versal_net_clk GEM_TSU>;
-+	power-domains = <&versal_net_firmware PM_DEV_GEM_1>;
- };
- 
- &gpio0 {
--	clocks = <&clk100>;
-+	clocks = <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_GPIO>;
- };
- 
- &gpio1 {
--	clocks = <&clk100>;
-+	clocks = <&versal_net_clk PMC_LSBUS_REF>;
-+	power-domains = <&versal_net_firmware PM_DEV_GPIO_PMC>;
- };
- 
- &i2c0 {
--	clocks = <&clk100>;
-+	clocks = <&versal_net_clk I3C0_REF>;
-+	power-domains = <&versal_net_firmware PM_DEV_I2C_0>;
- };
- 
- &i2c1 {
--	clocks = <&clk100>;
-+	clocks = <&versal_net_clk I3C1_REF>;
-+	power-domains = <&versal_net_firmware PM_DEV_I2C_1>;
- };
- 
- &i3c0 {
--	clocks = <&clk100>;
-+	clocks = <&versal_net_clk I3C0_REF>;
-+	power-domains = <&versal_net_firmware PM_DEV_I2C_0>;
- };
- 
- &i3c1 {
--	clocks = <&clk100>;
-+	clocks = <&versal_net_clk I3C1_REF>;
-+	power-domains = <&versal_net_firmware PM_DEV_I2C_1>;
- };
- 
--&ospi {
--	clocks = <&clk200>;
-+&adma0 {
-+	clocks = <&versal_net_clk ADMA>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_ADMA_0>;
- };
- 
--&qspi {
--	clocks = <&clk300>, <&clk300>;
-+&adma1 {
-+	clocks = <&versal_net_clk ADMA>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_ADMA_1>;
- };
- 
--&rtc {
--	/* Nothing */
-+&adma2 {
-+	clocks = <&versal_net_clk ADMA>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_ADMA_2>;
- };
- 
--&sdhci0 {
--	clocks = <&clk200>, <&clk200>, <&clk1200>;
-+&adma3 {
-+	clocks = <&versal_net_clk ADMA>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_ADMA_3>;
- };
- 
--&sdhci1 {
--	clocks = <&clk200>, <&clk200>, <&clk1200>;
-+&adma4 {
-+	clocks = <&versal_net_clk ADMA>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_ADMA_4>;
-+};
-+
-+&adma5 {
-+	clocks = <&versal_net_clk ADMA>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_ADMA_5>;
-+};
-+
-+&adma6 {
-+	clocks = <&versal_net_clk ADMA>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_ADMA_6>;
-+};
-+
-+&adma7 {
-+	clocks = <&versal_net_clk ADMA>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_ADMA_7>;
-+};
-+
-+&qspi {
-+	clocks = <&versal_net_clk QSPI_REF>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_QSPI>;
-+};
-+
-+&ospi {
-+	clocks = <&versal_net_clk OSPI_REF>;
-+	power-domains = <&versal_net_firmware PM_DEV_OSPI>;
-+};
-+
-+&rtc {
-+	clocks = <&rtc_clk>;
-+	clock-names = "rtc";
-+	power-domains = <&versal_net_firmware PM_DEV_RTC>;
- };
- 
- &serial0 {
--	clocks = <&clk100>, <&clk100>;
-+	clocks = <&versal_net_clk UART0_REF>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_UART_0>;
- };
- 
- &serial1 {
--	clocks = <&clk100>, <&clk100>;
-+	clocks = <&versal_net_clk UART1_REF>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_UART_1>;
-+};
-+
-+&sdhci0 {
-+	clocks = <&versal_net_clk SDIO0_REF>, <&versal_net_clk LPD_LSBUS>,
-+		 <&versal_net_clk SD_DLL_REF>;
-+	power-domains = <&versal_net_firmware PM_DEV_SDIO_0>;
-+};
-+
-+&sdhci1 {
-+	clocks = <&versal_net_clk SDIO1_REF>, <&versal_net_clk LPD_LSBUS>,
-+		 <&versal_net_clk SD_DLL_REF>;
-+	power-domains = <&versal_net_firmware PM_DEV_SDIO_1>;
- };
- 
- &spi0 {
--	clocks = <&clk200>, <&clk200>;
-+	clocks = <&versal_net_clk SPI0_REF>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_SPI_0>;
- };
- 
- &spi1 {
--	clocks = <&clk200>, <&clk200>;
-+	clocks = <&versal_net_clk SPI1_REF>, <&versal_net_clk LPD_LSBUS>;
-+	power-domains = <&versal_net_firmware PM_DEV_SPI_1>;
- };
- 
- &ttc0 {
--	clocks = <&clk150>;
-+	clocks = <&versal_net_clk TTC0>;
-+	power-domains = <&versal_net_firmware PM_DEV_TTC_0>;
-+};
-+
-+&ttc1 {
-+	clocks = <&versal_net_clk TTC1>;
-+	power-domains = <&versal_net_firmware PM_DEV_TTC_1>;
-+};
-+
-+&ttc2 {
-+	clocks = <&versal_net_clk TTC2>;
-+	power-domains = <&versal_net_firmware PM_DEV_TTC_2>;
-+};
-+
-+&ttc3 {
-+	clocks = <&versal_net_clk TTC3>;
-+	power-domains = <&versal_net_firmware PM_DEV_TTC_3>;
- };
- 
- &usb0 {
--	clocks = <&clk60>, <&clk60>;
-+	clocks = <&versal_net_clk USB0_BUS_REF>, <&versal_net_clk USB0_BUS_REF>;
-+	power-domains = <&versal_net_firmware PM_DEV_USB_0>;
-+	resets = <&versal_net_reset VERSAL_RST_USB_0>;
- };
- 
- &dwc3_0 {
--	clocks = <&clk60>;
-+	clocks = <&versal_net_clk USB0_BUS_REF>;
- };
- 
- &usb1 {
--	clocks = <&clk60>, <&clk60>;
-+	clocks = <&versal_net_clk USB1_BUS_REF>, <&versal_net_clk USB1_BUS_REF>;
-+	power-domains = <&versal_net_firmware PM_DEV_USB_1>;
-+	resets = <&versal_net_reset VERSAL_RST_USB_1>;
- };
- 
- &dwc3_1 {
--	clocks = <&clk60>;
-+	clocks = <&versal_net_clk USB1_BUS_REF>;
- };
- 
- &wwdt0 {
--	clocks = <&clk150>;
-+	clocks = <&versal_net_clk FPD_WWDT0>;
-+	power-domains = <&versal_net_firmware PM_DEV_FPD_SWDT_0>;
- };
- 
- &wwdt1 {
--	clocks = <&clk150>;
-+	clocks = <&versal_net_clk FPD_WWDT1>;
-+	power-domains = <&versal_net_firmware PM_DEV_FPD_SWDT_1>;
- };
- 
- &wwdt2 {
--	clocks = <&clk150>;
-+	clocks = <&versal_net_clk FPD_WWDT2>;
-+	power-domains = <&versal_net_firmware PM_DEV_FPD_SWDT_2>;
- };
- 
- &wwdt3 {
--	clocks = <&clk150>;
-+	clocks = <&versal_net_clk FPD_WWDT3>;
-+	power-domains = <&versal_net_firmware PM_DEV_FPD_SWDT_3>;
- };
- 
- &lpd_wwdt0 {
--	clocks = <&clk150>;
-+	clocks = <&versal_net_clk LPD_WWDT0>;
-+	power-domains = <&versal_net_firmware PM_DEV_LPD_SWDT_0>;
- };
- 
- &lpd_wwdt1 {
--	clocks = <&clk150>;
-+	clocks = <&versal_net_clk LPD_WWDT1>;
-+	power-domains = <&versal_net_firmware PM_DEV_LPD_SWDT_1>;
- };
-diff --git a/arch/arm64/boot/dts/xilinx/xlnx-versal-clk.h b/arch/arm64/boot/dts/xilinx/xlnx-versal-clk.h
-new file mode 100644
-index 000000000000..d0c4abf78f30
---- /dev/null
-+++ b/arch/arm64/boot/dts/xilinx/xlnx-versal-clk.h
-@@ -0,0 +1,123 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2019 - 2022, Xilinx, Inc.
-+ * Copyright (C) 2022 - 2026, Advanced Micro Devices, Inc.
-+ */
-+
-+#ifndef _XLNX_VERSAL_CLK_H
-+#define _XLNX_VERSAL_CLK_H
-+
-+#define PMC_PLL					1
-+#define APU_PLL					2
-+#define RPU_PLL					3
-+#define CPM_PLL					4
-+#define NOC_PLL					5
-+#define PLL_MAX					6
-+#define PMC_PRESRC				7
-+#define PMC_POSTCLK				8
-+#define PMC_PLL_OUT				9
-+#define PPLL					10
-+#define NOC_PRESRC				11
-+#define NOC_POSTCLK				12
-+#define NOC_PLL_OUT				13
-+#define NPLL					14
-+#define APU_PRESRC				15
-+#define APU_POSTCLK				16
-+#define APU_PLL_OUT				17
-+#define APLL					18
-+#define RPU_PRESRC				19
-+#define RPU_POSTCLK				20
-+#define RPU_PLL_OUT				21
-+#define RPLL					22
-+#define CPM_PRESRC				23
-+#define CPM_POSTCLK				24
-+#define CPM_PLL_OUT				25
-+#define CPLL					26
-+#define PPLL_TO_XPD				27
-+#define NPLL_TO_XPD				28
-+#define APLL_TO_XPD				29
-+#define RPLL_TO_XPD				30
-+#define EFUSE_REF				31
-+#define SYSMON_REF				32
-+#define IRO_SUSPEND_REF				33
-+#define USB_SUSPEND				34
-+#define SWITCH_TIMEOUT				35
-+#define RCLK_PMC				36
-+#define RCLK_LPD				37
-+#define WDT					38
-+#define TTC0					39
-+#define TTC1					40
-+#define TTC2					41
-+#define TTC3					42
-+#define GEM_TSU					43
-+#define GEM_TSU_LB				44
-+#define MUXED_IRO_DIV2				45
-+#define MUXED_IRO_DIV4				46
-+#define PSM_REF					47
-+#define GEM0_RX					48
-+#define GEM0_TX					49
-+#define GEM1_RX					50
-+#define GEM1_TX					51
-+#define CPM_CORE_REF				52
-+#define CPM_LSBUS_REF				53
-+#define CPM_DBG_REF				54
-+#define CPM_AUX0_REF				55
-+#define CPM_AUX1_REF				56
-+#define QSPI_REF				57
-+#define OSPI_REF				58
-+#define SDIO0_REF				59
-+#define SDIO1_REF				60
-+#define PMC_LSBUS_REF				61
-+#define I2C_REF					62
-+#define TEST_PATTERN_REF			63
-+#define DFT_OSC_REF				64
-+#define PMC_PL0_REF				65
-+#define PMC_PL1_REF				66
-+#define PMC_PL2_REF				67
-+#define PMC_PL3_REF				68
-+#define CFU_REF					69
-+#define SPARE_REF				70
-+#define NPI_REF					71
-+#define HSM0_REF				72
-+#define HSM1_REF				73
-+#define SD_DLL_REF				74
-+#define FPD_TOP_SWITCH				75
-+#define FPD_LSBUS				76
-+#define ACPU					77
-+#define DBG_TRACE				78
-+#define DBG_FPD					79
-+#define LPD_TOP_SWITCH				80
-+#define ADMA					81
-+#define LPD_LSBUS				82
-+#define CPU_R5					83
-+#define CPU_R5_CORE				84
-+#define CPU_R5_OCM				85
-+#define CPU_R5_OCM2				86
-+#define IOU_SWITCH				87
-+#define GEM0_REF				88
-+#define GEM1_REF				89
-+#define GEM_TSU_REF				90
-+#define USB0_BUS_REF				91
-+#define UART0_REF				92
-+#define UART1_REF				93
-+#define SPI0_REF				94
-+#define SPI1_REF				95
-+#define CAN0_REF				96
-+#define CAN1_REF				97
-+#define I2C0_REF				98
-+#define I2C1_REF				99
-+#define DBG_LPD					100
-+#define TIMESTAMP_REF				101
-+#define DBG_TSTMP				102
-+#define CPM_TOPSW_REF				103
-+#define USB3_DUAL_REF				104
-+#define OUTCLK_MAX				105
-+#define REF_CLK					106
-+#define PL_ALT_REF_CLK				107
-+#define MUXED_IRO				108
-+#define PL_EXT					109
-+#define PL_LB					110
-+#define MIO_50_OR_51				111
-+#define MIO_24_OR_25				112
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/xilinx/xlnx-versal-net-clk.h b/arch/arm64/boot/dts/xilinx/xlnx-versal-net-clk.h
-new file mode 100644
-index 000000000000..4a6add03c173
---- /dev/null
-+++ b/arch/arm64/boot/dts/xilinx/xlnx-versal-net-clk.h
-@@ -0,0 +1,74 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2022, Xilinx, Inc.
-+ * Copyright (C) 2022 - 2026, Advanced Micro Devices, Inc.
-+ */
-+
-+#ifndef _XLNX_VERSAL_NET_CLK_H
-+#define _XLNX_VERSAL_NET_CLK_H
-+
-+#include "xlnx-versal-clk.h"
-+
-+#define CAN0_REF_2X	0x9e
-+#define CAN1_REF_2X	0xac
-+#define FPD_WWDT0	0xb5
-+#define FPD_WWDT1	0xb6
-+#define FPD_WWDT2	0xb7
-+#define FPD_WWDT3	0xb8
-+#define LPD_WWDT0	0xb9
-+#define LPD_WWDT1	0xba
-+#define ACPU_0		0x98
-+#define ACPU_1		0x9b
-+#define ACPU_2		0x9a
-+#define ACPU_3		0x99
-+#define I3C0_REF	0x9d
-+#define I3C1_REF	0x9f
-+#define USB1_BUS_REF	0xae
-+#define LPD_WWDT	0xad
-+
-+/* Remove Versal specific node IDs */
-+#undef APU_PLL
-+#undef RPU_PLL
-+#undef CPM_PLL
-+#undef APU_PRESRC
-+#undef APU_POSTCLK
-+#undef APU_PLL_OUT
-+#undef APLL
-+#undef RPU_PRESRC
-+#undef RPU_POSTCLK
-+#undef RPU_PLL_OUT
-+#undef RPLL
-+#undef CPM_PRESRC
-+#undef CPM_POSTCLK
-+#undef CPM_PLL_OUT
-+#undef CPLL
-+#undef APLL_TO_XPD
-+#undef RPLL_TO_XPD
-+#undef RCLK_PMC
-+#undef RCLK_LPD
-+#undef WDT
-+#undef MUXED_IRO_DIV2
-+#undef MUXED_IRO_DIV4
-+#undef PSM_REF
-+#undef CPM_CORE_REF
-+#undef CPM_LSBUS_REF
-+#undef CPM_DBG_REF
-+#undef CPM_AUX0_REF
-+#undef CPM_AUX1_REF
-+#undef CPU_R5
-+#undef CPU_R5_CORE
-+#undef CPU_R5_OCM
-+#undef CPU_R5_OCM2
-+#undef CAN0_REF
-+#undef CAN1_REF
-+#undef I2C0_REF
-+#undef I2C1_REF
-+#undef CPM_TOPSW_REF
-+#undef USB3_DUAL_REF
-+#undef MUXED_IRO
-+#undef PL_EXT
-+#undef PL_LB
-+#undef MIO_50_OR_51
-+#undef MIO_24_OR_25
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/xilinx/xlnx-versal-net-power.h b/arch/arm64/boot/dts/xilinx/xlnx-versal-net-power.h
-new file mode 100644
-index 000000000000..4f73593c966b
---- /dev/null
-+++ b/arch/arm64/boot/dts/xilinx/xlnx-versal-net-power.h
-@@ -0,0 +1,38 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2022, Xilinx, Inc.
-+ * Copyright (C) 2022 - 2026, Advanced Micro Devices, Inc.
-+ */
-+
-+#ifndef _XLNX_VERSAL_NET_POWER_H
-+#define _XLNX_VERSAL_NET_POWER_H
-+
-+#include "xlnx-versal-power.h"
-+
-+#define PM_DEV_USB_1				(0x182240d7U)
-+#define PM_DEV_FPD_SWDT_0			(0x182240dbU)
-+#define PM_DEV_FPD_SWDT_1			(0x182240dcU)
-+#define PM_DEV_FPD_SWDT_2			(0x182240ddU)
-+#define PM_DEV_FPD_SWDT_3			(0x182240deU)
-+#define PM_DEV_TCM_A_0A				(0x183180cbU)
-+#define PM_DEV_TCM_A_0B				(0x183180ccU)
-+#define PM_DEV_TCM_A_0C				(0x183180cdU)
-+#define PM_DEV_RPU_A_0				(0x181100bfU)
-+#define PM_DEV_LPD_SWDT_0			(0x182240d9U)
-+#define PM_DEV_LPD_SWDT_1			(0x182240daU)
-+
-+/* Remove Versal specific node IDs */
-+#undef PM_DEV_RPU0_0
-+#undef PM_DEV_RPU0_1
-+#undef PM_DEV_OCM_0
-+#undef PM_DEV_OCM_1
-+#undef PM_DEV_OCM_2
-+#undef PM_DEV_OCM_3
-+#undef PM_DEV_TCM_0_A
-+#undef PM_DEV_TCM_1_A
-+#undef PM_DEV_TCM_0_B
-+#undef PM_DEV_TCM_1_B
-+#undef PM_DEV_SWDT_FPD
-+#undef PM_DEV_AI
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/xilinx/xlnx-versal-net-resets.h b/arch/arm64/boot/dts/xilinx/xlnx-versal-net-resets.h
-new file mode 100644
-index 000000000000..edc5841df214
---- /dev/null
-+++ b/arch/arm64/boot/dts/xilinx/xlnx-versal-net-resets.h
-@@ -0,0 +1,53 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2022, Xilinx, Inc.
-+ * Copyright (C) 2022 - 2026, Advanced Micro Devices, Inc.
-+ */
-+
-+#ifndef _XLNX_VERSAL_NET_RESETS_H
-+#define _XLNX_VERSAL_NET_RESETS_H
-+
-+#include "xlnx-versal-resets.h"
-+
-+#define VERSAL_RST_USB_1			(0xc1040c6U)
-+
-+/* Remove Versal specific reset IDs */
-+#undef VERSAL_RST_ACPU_0_POR
-+#undef VERSAL_RST_ACPU_1_POR
-+#undef VERSAL_RST_OCM2_POR
-+#undef VERSAL_RST_APU
-+#undef VERSAL_RST_ACPU_0
-+#undef VERSAL_RST_ACPU_1
-+#undef VERSAL_RST_ACPU_L2
-+#undef VERSAL_RST_RPU_ISLAND
-+#undef VERSAL_RST_RPU_AMBA
-+#undef VERSAL_RST_R5_0
-+#undef VERSAL_RST_R5_1
-+#undef VERSAL_RST_OCM2_RST
-+#undef VERSAL_RST_I2C_PMC
-+#undef VERSAL_RST_I2C_0
-+#undef VERSAL_RST_I2C_1
-+#undef VERSAL_RST_SWDT_FPD
-+#undef VERSAL_RST_SWDT_LPD
-+#undef VERSAL_RST_USB
-+#undef VERSAL_RST_DPC
-+#undef VERSAL_RST_DBG_TRACE
-+#undef VERSAL_RST_DBG_TSTMP
-+#undef VERSAL_RST_RPU0_DBG
-+#undef VERSAL_RST_RPU1_DBG
-+#undef VERSAL_RST_HSDP
-+#undef VERSAL_RST_CPMDBG
-+#undef VERSAL_RST_PCIE_CFG
-+#undef VERSAL_RST_PCIE_CORE0
-+#undef VERSAL_RST_PCIE_CORE1
-+#undef VERSAL_RST_PCIE_DMA
-+#undef VERSAL_RST_L2_0
-+#undef VERSAL_RST_L2_1
-+#undef VERSAL_RST_ADDR_REMAP
-+#undef VERSAL_RST_CPI0
-+#undef VERSAL_RST_CPI1
-+#undef VERSAL_RST_XRAM
-+#undef VERSAL_RST_AIE_ARRAY
-+#undef VERSAL_RST_AIE_SHIM
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/xilinx/xlnx-versal-power.h b/arch/arm64/boot/dts/xilinx/xlnx-versal-power.h
-new file mode 100644
-index 000000000000..c3450675658a
---- /dev/null
-+++ b/arch/arm64/boot/dts/xilinx/xlnx-versal-power.h
-@@ -0,0 +1,55 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2019 - 2022, Xilinx, Inc.
-+ * Copyright (C) 2022 - 2026, Advanced Micro Devices, Inc.
-+ */
-+
-+#ifndef _XLNX_VERSAL_POWER_H
-+#define _XLNX_VERSAL_POWER_H
-+
-+#define PM_DEV_RPU0_0				(0x18110005U)
-+#define PM_DEV_RPU0_1				(0x18110006U)
-+#define PM_DEV_OCM_0				(0x18314007U)
-+#define PM_DEV_OCM_1				(0x18314008U)
-+#define PM_DEV_OCM_2				(0x18314009U)
-+#define PM_DEV_OCM_3				(0x1831400aU)
-+#define PM_DEV_TCM_0_A				(0x1831800bU)
-+#define PM_DEV_TCM_0_B				(0x1831800cU)
-+#define PM_DEV_TCM_1_A				(0x1831800dU)
-+#define PM_DEV_TCM_1_B				(0x1831800eU)
-+#define PM_DEV_USB_0				(0x18224018U)
-+#define PM_DEV_GEM_0				(0x18224019U)
-+#define PM_DEV_GEM_1				(0x1822401aU)
-+#define PM_DEV_SPI_0				(0x1822401bU)
-+#define PM_DEV_SPI_1				(0x1822401cU)
-+#define PM_DEV_I2C_0				(0x1822401dU)
-+#define PM_DEV_I2C_1				(0x1822401eU)
-+#define PM_DEV_CAN_FD_0				(0x1822401fU)
-+#define PM_DEV_CAN_FD_1				(0x18224020U)
-+#define PM_DEV_UART_0				(0x18224021U)
-+#define PM_DEV_UART_1				(0x18224022U)
-+#define PM_DEV_GPIO				(0x18224023U)
-+#define PM_DEV_TTC_0				(0x18224024U)
-+#define PM_DEV_TTC_1				(0x18224025U)
-+#define PM_DEV_TTC_2				(0x18224026U)
-+#define PM_DEV_TTC_3				(0x18224027U)
-+#define PM_DEV_SWDT_LPD				(0x18224028U)
-+#define PM_DEV_SWDT_FPD				(0x18224029U)
-+#define PM_DEV_OSPI				(0x1822402aU)
-+#define PM_DEV_QSPI				(0x1822402bU)
-+#define PM_DEV_GPIO_PMC				(0x1822402cU)
-+#define PM_DEV_I2C_PMC				(0x1822402dU)
-+#define PM_DEV_SDIO_0				(0x1822402eU)
-+#define PM_DEV_SDIO_1				(0x1822402fU)
-+#define PM_DEV_RTC				(0x18224034U)
-+#define PM_DEV_ADMA_0				(0x18224035U)
-+#define PM_DEV_ADMA_1				(0x18224036U)
-+#define PM_DEV_ADMA_2				(0x18224037U)
-+#define PM_DEV_ADMA_3				(0x18224038U)
-+#define PM_DEV_ADMA_4				(0x18224039U)
-+#define PM_DEV_ADMA_5				(0x1822403aU)
-+#define PM_DEV_ADMA_6				(0x1822403bU)
-+#define PM_DEV_ADMA_7				(0x1822403cU)
-+#define PM_DEV_AI				(0x18224072U)
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h b/arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h
-new file mode 100644
-index 000000000000..fe00f4a0ba65
---- /dev/null
-+++ b/arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h
-@@ -0,0 +1,106 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2020 - 2022, Xilinx, Inc.
-+ * Copyright (C) 2022 - 2026, Advanced Micro Devices, Inc.
-+ */
-+
-+#ifndef _XLNX_VERSAL_RESETS_H
-+#define _XLNX_VERSAL_RESETS_H
-+
-+#define VERSAL_RST_PMC_POR			(0xc30c001U)
-+#define VERSAL_RST_PMC				(0xc410002U)
-+#define VERSAL_RST_PS_POR			(0xc30c003U)
-+#define VERSAL_RST_PL_POR			(0xc30c004U)
-+#define VERSAL_RST_NOC_POR			(0xc30c005U)
-+#define VERSAL_RST_FPD_POR			(0xc30c006U)
-+#define VERSAL_RST_ACPU_0_POR			(0xc30c007U)
-+#define VERSAL_RST_ACPU_1_POR			(0xc30c008U)
-+#define VERSAL_RST_OCM2_POR			(0xc30c009U)
-+#define VERSAL_RST_PS_SRST			(0xc41000aU)
-+#define VERSAL_RST_PL_SRST			(0xc41000bU)
-+#define VERSAL_RST_NOC				(0xc41000cU)
-+#define VERSAL_RST_NPI				(0xc41000dU)
-+#define VERSAL_RST_SYS_RST_1			(0xc41000eU)
-+#define VERSAL_RST_SYS_RST_2			(0xc41000fU)
-+#define VERSAL_RST_SYS_RST_3			(0xc410010U)
-+#define VERSAL_RST_FPD				(0xc410011U)
-+#define VERSAL_RST_PL0				(0xc410012U)
-+#define VERSAL_RST_PL1				(0xc410013U)
-+#define VERSAL_RST_PL2				(0xc410014U)
-+#define VERSAL_RST_PL3				(0xc410015U)
-+#define VERSAL_RST_APU				(0xc410016U)
-+#define VERSAL_RST_ACPU_0			(0xc410017U)
-+#define VERSAL_RST_ACPU_1			(0xc410018U)
-+#define VERSAL_RST_ACPU_L2			(0xc410019U)
-+#define VERSAL_RST_ACPU_GIC			(0xc41001aU)
-+#define VERSAL_RST_RPU_ISLAND			(0xc41001bU)
-+#define VERSAL_RST_RPU_AMBA			(0xc41001cU)
-+#define VERSAL_RST_R5_0				(0xc41001dU)
-+#define VERSAL_RST_R5_1				(0xc41001eU)
-+#define VERSAL_RST_SYSMON_PMC_SEQ_RST		(0xc41001fU)
-+#define VERSAL_RST_SYSMON_PMC_CFG_RST		(0xc410020U)
-+#define VERSAL_RST_SYSMON_FPD_CFG_RST		(0xc410021U)
-+#define VERSAL_RST_SYSMON_FPD_SEQ_RST		(0xc410022U)
-+#define VERSAL_RST_SYSMON_LPD			(0xc410023U)
-+#define VERSAL_RST_PDMA_RST1			(0xc410024U)
-+#define VERSAL_RST_PDMA_RST0			(0xc410025U)
-+#define VERSAL_RST_ADMA				(0xc410026U)
-+#define VERSAL_RST_TIMESTAMP			(0xc410027U)
-+#define VERSAL_RST_OCM				(0xc410028U)
-+#define VERSAL_RST_OCM2_RST			(0xc410029U)
-+#define VERSAL_RST_IPI				(0xc41002aU)
-+#define VERSAL_RST_SBI				(0xc41002bU)
-+#define VERSAL_RST_LPD				(0xc41002cU)
-+#define VERSAL_RST_QSPI				(0xc10402dU)
-+#define VERSAL_RST_OSPI				(0xc10402eU)
-+#define VERSAL_RST_SDIO_0			(0xc10402fU)
-+#define VERSAL_RST_SDIO_1			(0xc104030U)
-+#define VERSAL_RST_I2C_PMC			(0xc104031U)
-+#define VERSAL_RST_GPIO_PMC			(0xc104032U)
-+#define VERSAL_RST_GEM_0			(0xc104033U)
-+#define VERSAL_RST_GEM_1			(0xc104034U)
-+#define VERSAL_RST_SPARE			(0xc104035U)
-+#define VERSAL_RST_USB_0			(0xc104036U)
-+#define VERSAL_RST_UART_0			(0xc104037U)
-+#define VERSAL_RST_UART_1			(0xc104038U)
-+#define VERSAL_RST_SPI_0			(0xc104039U)
-+#define VERSAL_RST_SPI_1			(0xc10403aU)
-+#define VERSAL_RST_CAN_FD_0			(0xc10403bU)
-+#define VERSAL_RST_CAN_FD_1			(0xc10403cU)
-+#define VERSAL_RST_I2C_0			(0xc10403dU)
-+#define VERSAL_RST_I2C_1			(0xc10403eU)
-+#define VERSAL_RST_GPIO_LPD			(0xc10403fU)
-+#define VERSAL_RST_TTC_0			(0xc104040U)
-+#define VERSAL_RST_TTC_1			(0xc104041U)
-+#define VERSAL_RST_TTC_2			(0xc104042U)
-+#define VERSAL_RST_TTC_3			(0xc104043U)
-+#define VERSAL_RST_SWDT_FPD			(0xc104044U)
-+#define VERSAL_RST_SWDT_LPD			(0xc104045U)
-+#define VERSAL_RST_USB				(0xc104046U)
-+#define VERSAL_RST_DPC				(0xc208047U)
-+#define VERSAL_RST_PMCDBG			(0xc208048U)
-+#define VERSAL_RST_DBG_TRACE			(0xc208049U)
-+#define VERSAL_RST_DBG_FPD			(0xc20804aU)
-+#define VERSAL_RST_DBG_TSTMP			(0xc20804bU)
-+#define VERSAL_RST_RPU0_DBG			(0xc20804cU)
-+#define VERSAL_RST_RPU1_DBG			(0xc20804dU)
-+#define VERSAL_RST_HSDP				(0xc20804eU)
-+#define VERSAL_RST_DBG_LPD			(0xc20804fU)
-+#define VERSAL_RST_CPM_POR			(0xc30c050U)
-+#define VERSAL_RST_CPM				(0xc410051U)
-+#define VERSAL_RST_CPMDBG			(0xc208052U)
-+#define VERSAL_RST_PCIE_CFG			(0xc410053U)
-+#define VERSAL_RST_PCIE_CORE0			(0xc410054U)
-+#define VERSAL_RST_PCIE_CORE1			(0xc410055U)
-+#define VERSAL_RST_PCIE_DMA			(0xc410056U)
-+#define VERSAL_RST_CMN				(0xc410057U)
-+#define VERSAL_RST_L2_0				(0xc410058U)
-+#define VERSAL_RST_L2_1				(0xc410059U)
-+#define VERSAL_RST_ADDR_REMAP			(0xc41005aU)
-+#define VERSAL_RST_CPI0				(0xc41005bU)
-+#define VERSAL_RST_CPI1				(0xc41005cU)
-+#define VERSAL_RST_XRAM				(0xc30c05dU)
-+#define VERSAL_RST_AIE_ARRAY			(0xc10405eU)
-+#define VERSAL_RST_AIE_SHIM			(0xc10405fU)
-+
-+#endif
--- 
-2.43.0
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - qcom,milos-dsi-ctrl
+              - qcom,msm8998-dsi-ctrl
+              ...
+              - qcom,sm6115-dsi-ctrl
 
+Without updating that block, won't dt_binding_check fall back to loose
+top-level constraints and silently permit invalid Shikra device trees to pa=
+ss
+validation?
+
+>                - qcom,sm6115-dsi-ctrl
+>                - qcom,sm6125-dsi-ctrl
+>                - qcom,sm6150-dsi-ctrl
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603-shikra-dis=
+play-v1-0-aeac1b94faa7@oss.qualcomm.com?part=3D1
 
