@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-306073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306074-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fyajNF7nH2qjsAAAu9opvQ
-	(envelope-from <devicetree+bounces-306073-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:35:42 +0200
+	id EhHkHeXoH2oCsQAAu9opvQ
+	(envelope-from <devicetree+bounces-306074-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:42:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 536F8635C0C
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:35:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73520635CBF
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:42:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Jl1NqSbp;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306073-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306073-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="FWfv/gUt";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306074-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306074-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9A310308B7AB
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:25:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A7B6D31197BC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9A6423A9A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA894426EB7;
 	Wed,  3 Jun 2026 08:25:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9446542188F
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 08:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628C2423146
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 08:25:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780475112; cv=none; b=V8vmq9aOdU7v4cHG5VUnxM/+EUkhbayySkCK9qg5MrmIiaffkH5CTtayMz4rb2Uh3EsKOqH26s9FasFsTF4MEqwWimhjz+XzOnGGMXgMgyEqYg2wBrXSoBYGPDn2vnsF9og1T7TfPot/B63k950hLESjefROZNft3fFx4FL1HhQ=
+	t=1780475113; cv=none; b=FzQwpAjRdTdi3giFpCg+Y3qsFoCW1Ps1jVJsSt645PganF6eQxPdaSFSDKrqt2PwsFhoNYXRRZHhzE3F9G6HQSVZjYGISkH+WRUgzmQPUacXEztwnXHLuReZk7z3g8WOadi8RZWRCw0uuKido625mX8sOVy+lbuYkCmUVY3sgZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780475112; c=relaxed/simple;
-	bh=VYwzH4XdiKHvxjnXr7YQady8HCkkBmaZVHex/S+NpyQ=;
+	s=arc-20240116; t=1780475113; c=relaxed/simple;
+	bh=LZNgjFG9EBOVSjjHWPD7UZZD7Fr0Nzu8jQlkaEa1S00=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=XmNr5rAa1HGbOGZpceCjze1j/6uVNjZUsWsT9HyW3tUogx3N5Au9pakPAwiK4n+rV+dQGPyemyTSQg/5E5QA+QbfkgAPL8/W7v6uFzbQyXieMDqpqC2JUDEX4lANlFOehQTWA5oDRbkE521uG13WDQTMwODuVWLce2tcfzjPXy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jl1NqSbp; arc=none smtp.client-ip=209.85.128.49
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4903d730b1fso112048095e9.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 01:25:11 -0700 (PDT)
+	 MIME-Version; b=t9+ajI/TrYuDk35NHz8W4ZwFOpw7NkIHI0sod7sr0Ap1gC3g9ZIwK/xWiVWqbkJUnRNOsw0Di/AUpyRCJtP5zI9ddQDF3a4kBPW2YtDBO2dRp3vX3NLRqkKHYG7VJah8PedcOEXVW5TNiWMlRxhvfTA/XIYsneovapCYQrSqzcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FWfv/gUt; arc=none smtp.client-ip=209.85.128.54
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4903997fcb5so125033795e9.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 01:25:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780475110; x=1781079910; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1780475111; x=1781079911; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OxV53FKG4HWP7RwRAnssIRH6mwl9ZfX/I+1CZeHHk4Y=;
-        b=Jl1NqSbpUiH9HFJezgptT14qPB3owbVrVirWWk/zp0O+upmmVwz5us/upyV0bWZYCT
-         Cd1pC2QaXZecTk2zEIVYmT2lTT7LCu/zRzzIQ+vef0zFtyGRLCHdAPjKIhsKlVBcjhg9
-         qWnTMJZXDeoUeEFKP3Xv9R3YrN05tBhN4s+EUQORsQPXIAMcvJnanWTd/OBAvyvGABif
-         QhbtgglH+pdPpHxbkRGdU2JTh3Xu/YQ5uD5rzJadezNlQ30n3Q46vyZzMBJb0cuYNBQe
-         VF34jgC6HrcuN00wX4BsWdAZKUnuD4N6/O0j6UCIPi5QREzHTIxzetfmwmnEtS3seSy1
-         sB0A==
+        bh=/0tFFJBB/axW0BcqywiPixOQX9mP9lGcY4jX95Arkc0=;
+        b=FWfv/gUtKMnRDTqM82hd+axKqY/nt5L0hSb8nCDd/wXjA4f/JV4ecKijYEUh1kAgz6
+         K+xVVVLdC/cy6TdYvvxjUdEtHWNf3CaK6CvjbScypARLFahIreL6CqODuaK+B0SokylV
+         YtrTcKFoyYzUpMOkhcAPnXJz4myfuhuq/Rw5FjI1y8s+4HXiOe2UneCXxrlrmn7FRmjc
+         1WIxQNuK6GN+vnW/tbKFV8/K9FOieguNQIbnJt7Iezx5bHO/i90UEvVzSdyRUOW2O5Yx
+         dvXYt4xp6zmk+nfk3okvR+I3wsMghFJHGJtWkLFaczk2/pX0CjriKYBceATjTDnWohI3
+         ytxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780475110; x=1781079910;
+        d=1e100.net; s=20251104; t=1780475111; x=1781079911;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=OxV53FKG4HWP7RwRAnssIRH6mwl9ZfX/I+1CZeHHk4Y=;
-        b=cp+c2N1n8oakvjRjh3LpKlYEC4e0GyEKa6Pdyngbve1bTkZBtUEPMBQK/8axPiK544
-         Zoqq1I/6QSqbp+Wlupjs1xg1vLcs1qURgzMSppKpBSpSBzj4nzoaHFhBt3rnoUM8Hfp9
-         u/35R5n9DpZ5y+2B2QKP9/i5BxAY+H6pTYotKrEnr63OMSJBj2xlJneIRbDQ7evn5NkT
-         JnfQ4g9EVGiZClhfkVMoUYreCAXvYcjup4pecOr6XsXvuZ44NxJB65mB877t4zmU7JGG
-         hf4RbS4cJygTXwyr2ObuRHW0BbbvwkxXSz5G6ypHTNnMho90w/Y/Fffy4KGMpYIunWvs
-         YQzA==
-X-Forwarded-Encrypted: i=1; AFNElJ9gkOhhp0adJDwxPunQ8PW7uoX/FFqOi84m4O6hsar8sDKZ5gtIuHt9RZLaZSEB16PwKUp8A7We2G4Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnctnWCBMxAjSNgsXJPtnmsufp/OQgMx2dLlm/V/PSYEjVyDF+
-	RSB4sCN5yGXfsqsgwpcw0Flt6Hf6cvWRlVu4pIiTUtO/D0e57BWmjAvP0SQ7Sg==
-X-Gm-Gg: Acq92OEo33wXOBEZoeKMt0FlL7Jx05wb2isMFXJzYNYxPPEZMpytigg/YTkPOn1f+w2
-	eETm1gMvK9XweN4tGk2menI7rKJQ3tvm1DoqlcdWGSWFE8ezt3cKtGDoGlSNdazgDP3iskVyyer
-	MIdJMYQy1VNTPhHgQY3mQjw8rnTlKt81UkttVzW3ecGBf08rE1N/VyMxuXMHZGfBkjWTCh5VQC2
-	MqocIuR7BdkYI/WNkhd370dxR03zD/Y/Iuz+b3sDc0WIL0dt41+F5NJdreeQnZfRXCJGn5UYV4O
-	mukCl+nQLrMHW5rx9d0jGt3LY75OByrnEtyXCJrUCUjOsjL3MRi1duV1VIhQNPoYWp6HrzYhkUZ
-	jCkueXKHTWTnfIXKCY53Ro5/PjULhFuvJR0ei8bnEAwo2/HVgpPqtIcJ0K3VpTEA2SgerSaZrSy
-	R+EsB8PzlsDFNFLQXKwfpPoETnAtZAVIhpMyzRLHz3sf+aSZ57lfl8KlxYK1FUzqaA3kp2Atbbz
-	JicvE8jveTtSvNQRg07Ex99TED01rc8+zpK5OAOVxuS2ANQPbn+dxXZbA4=
-X-Received: by 2002:a05:600c:1392:b0:490:52fb:12dd with SMTP id 5b1f17b1804b1-490b5e8cb8amr34882915e9.10.1780475109767;
-        Wed, 03 Jun 2026 01:25:09 -0700 (PDT)
+        bh=/0tFFJBB/axW0BcqywiPixOQX9mP9lGcY4jX95Arkc0=;
+        b=iuiRp5ivDCK44WIyDF6LNs2VTb8kt8JtyrJiK6d4WDU9baD0Pr2pw4qQrlA15SpMhO
+         C9aC+RL/LKRd6vjkwus/CygbuTZyLVP3lCCyLl1UedHxHf4D2bTSKhElL+3SZ3NwUd2n
+         82q/bLIGpObQky8w0Sg5KffSGUC6AHUOx1VB8cvg13NBiN7uzdGJZpidB06t6jJ6Kkln
+         B58/McxAESwb5VBoLNzakRZCykRY8yeggxEvO438wf7DTIKzmelU2QsGfzJNsZDf0lXS
+         lW2Ekr9fKY0t+8U+4JqJe5d1xZUZ7rXyGBIDlMnw96hIjt3BceGEwyffzRVcOy0duXNg
+         CHwg==
+X-Forwarded-Encrypted: i=1; AFNElJ/9tOVNhxSGi3A5IpIkRux2vlBgzQv0ACSuQo3hLhupN5jzyVMpP8jwh+WT6DUWcLJQzVe/nPUVu0g4@vger.kernel.org
+X-Gm-Message-State: AOJu0YymzKNflcvZhB9MKi0j4ugY8BH7OiSFulcck/FqjUUR0YRCgx6T
+	Qi0gLvgOXbeYEeEzjS8cDr3qZMaqMtcEIWfLXm+FcrEyNmJGJ0Ac+4An
+X-Gm-Gg: Acq92OGCcnY1AeJTbyeVIU3aU+YFoMV/JQwcQ0a4ac7XH6syJ722TsnCzFbPXhJKwNo
+	p2S2d2zQAj6CNCUiQux7snlE0DqSkFh1anPxJXTCvk3gQ+ZEzkw5zFD7704F1sxBSURsrCZgfNP
+	oZ+swX5IsX2fYL/oOKWuzbZppg5dL61JGw6EydeiQWAARR7RozHuhpU/RsD3S5r//eGbn/EvIed
+	P21O99y/bttjQg7eVUxXV4jcT3mrpBqyEfMonMozevZU5l5N6+P0ZoF5Yh3+px72tmruwEYZocO
+	v+Z6J5bVFTpG2QLstDytxrVrH4KGfb8ApzyDV1Dzz32CbyWcgufE7K7QatN4s711jZqTC7t/jq7
+	b7dUibR9eRe9vnbcSm+Skrd0o8FKPY41hmFRrsT9HZLvcjsVbSqzoe0sDCIQhLgG+G8Ymi/MMrL
+	bKp0B3EiBM7Qx8bXqJ4TN7LCuT950lZHI6zKDIX1GWvrYGh/6pvp+PUOFvbpBmOLDNC4r+yDi1/
+	Irk2k9aTy7x8enYmuVtFQPDsPPwfmycpp3ruYsnUfoU6wXY
+X-Received: by 2002:a05:600c:c174:b0:490:b258:3576 with SMTP id 5b1f17b1804b1-490b5d1cf1bmr38390695e9.7.1780475110617;
+        Wed, 03 Jun 2026 01:25:10 -0700 (PDT)
 Received: from Lord-Beerus.station (net-93-144-65-244.cust.vodafonedsl.it. [93.144.65.244])
         by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490b63d8205sm33175305e9.11.2026.06.03.01.25.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 01:25:09 -0700 (PDT)
+        Wed, 03 Jun 2026 01:25:10 -0700 (PDT)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: linux-kernel@vger.kernel.org,
@@ -92,9 +92,9 @@ Cc: pierluigi.p@variscite.com,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH v3 3/5] arm64: dts: imx93-var-som-symphony: keep RGB_SEL low
-Date: Wed,  3 Jun 2026 10:25:02 +0200
-Message-ID: <0a3e17a7497616a1f83159b98a8e5ffa429f0acd.1780474803.git.stefano.r@variscite.com>
+Subject: [PATCH v3 4/5] arm64: dts: imx93-var-som-symphony: enable TPM3 PWM
+Date: Wed,  3 Jun 2026 10:25:03 +0200
+Message-ID: <39bfb7ce8a40d041f2f23344eadeb641a1cf9275.1780474803.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1780474803.git.stefano.r@variscite.com>
 References: <cover.1780474803.git.stefano.r@variscite.com>
@@ -112,14 +112,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-306073-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306074-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
@@ -135,20 +135,18 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,variscite.com:mid,variscite.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,variscite.com:mid,variscite.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 536F8635C0C
+X-Rspamd-Queue-Id: 73520635CBF
 
 From: Stefano Radaelli <stefano.r@variscite.com>
 
-Keep the RGB_SEL line driven low on the Symphony carrier board.
-
-This avoids leaving the line floating and ensures the board remains in
-the expected display configuration.
+Enable TPM3 on the Symphony carrier board and add the pinctrl states for
+the PWM output and sleep configuration.
 
 Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
@@ -158,28 +156,46 @@ v2->v3:
 v1->v2:
  - 
 
- arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../dts/freescale/imx93-var-som-symphony.dts  | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-index 77377127c18c..c835394468ef 100644
+index c835394468ef..56f8744c861a 100644
 --- a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
 +++ b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-@@ -215,6 +215,14 @@ pcal6408: gpio@21 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		status = "okay";
+@@ -320,6 +320,13 @@ &lpuart7 {
+ 	status = "okay";
+ };
+ 
++&tpm3 {
++	pinctrl-0 = <&pinctrl_tpm3>;
++	pinctrl-1 = <&pinctrl_tpm3_sleep>;
++	pinctrl-names = "default", "sleep";
++	status = "okay";
++};
 +
-+		/* RGB_SEL */
-+		lvds-brg-enable-hog {
-+			gpio-hog;
-+			gpios = <7 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+			line-name = "lvds_brg_en";
-+		};
+ &usbotg1 {
+ 	dr_mode = "otg";
+ 	hnp-disable;
+@@ -442,6 +449,18 @@ MX93_PAD_PDM_BIT_STREAM1__GPIO1_IO10            0x31e
+ 		>;
  	};
  
- 	st33ktpm2xi2c: tpm@2e {
++	pinctrl_tpm3: tpm3grp {
++		fsl,pins = <
++			MX93_PAD_GPIO_IO24__TPM3_CH3			0x51e
++		>;
++	};
++
++	pinctrl_tpm3_sleep: tpm3sleepgrp {
++		fsl,pins = <
++			MX93_PAD_GPIO_IO24__GPIO2_IO24			0x51e
++		>;
++	};
++
+ 	pinctrl_uart1: uart1grp {
+ 		fsl,pins = <
+ 			MX93_PAD_UART1_RXD__LPUART1_RX			0x31e
 -- 
 2.47.3
 
