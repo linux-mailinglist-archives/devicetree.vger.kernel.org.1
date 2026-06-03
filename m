@@ -1,199 +1,140 @@
-Return-Path: <devicetree+bounces-306058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306060-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LyPvIK/fH2pQrgAAu9opvQ
-	(envelope-from <devicetree+bounces-306058-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:02:55 +0200
+	id Yh1qOO/hH2r3rgAAu9opvQ
+	(envelope-from <devicetree+bounces-306060-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:12:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A36B635796
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:02:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 241E76358FB
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:12:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UxNeeFaF;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306058-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306058-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=herrie.org header.s=transip-a header.b=c43LUuV1;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306060-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306060-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7B4423006806
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:02:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 350FA305D5D1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:03:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652673955EA;
-	Wed,  3 Jun 2026 08:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3360F408012;
+	Wed,  3 Jun 2026 08:03:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from outbound1.mail.transip.nl (outbound1.mail.transip.nl [149.210.149.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 549032D1911;
-	Wed,  3 Jun 2026 08:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C1A408002;
+	Wed,  3 Jun 2026 08:03:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780473726; cv=none; b=HS2xkvwaXtlmpePaqUyk/egVwxttALmr1fFxHP1SeXTRmPzu9a4cWkIUNlTmVGi4AJ7AKF5qNIIJcq0L8zc6nqwwLgTCr+qFeume1LKZnH4E9ZnhgDNiESW7tBpY7fa4z/eExYbffWED5455KtbP5jxOSRcZqhbToXBAaDUOasM=
+	t=1780473789; cv=none; b=giKHwZb/Rasn92cY1A3QmgT0jEjPNLwF6hLcYGMzo8hnbZKSdCe+pbYKFgI5K9Vni2Tgk1A/8DIUcBuLiuH+bm+4wHuBRL7nMc6cypCK0ra5k4HrIW3fDS8XznnODyewCQDPRi+8Zti8WzdTSBOFl1X3mng2DPrbZiYykCni6W4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780473726; c=relaxed/simple;
-	bh=NOZFpu3nLdRcLnC7S4Qp+4saKzUpXtWHo716rz9R6nk=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=gWT8F5x4+vR1aTcRAM+vwBR+a/EIwnruQRMzt5EA+dpdpHA0BGlw5NgusN2UkZFckXzS0PIjymwJW9BKas4fY+JVJ7PkyrzyGi84YQRmFtR4ObRs7tQz+Hm6WDLQuMX2X5QZFWKyVxeGxiGtR2USOslE8HtBqjnGQrvcgIHWPOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UxNeeFaF; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E2481F00893;
-	Wed,  3 Jun 2026 08:02:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780473725;
-	bh=1SgAuiHTq+gaVC0enPP1oUiuz66/OMy2UaQ5VvbiniU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=UxNeeFaF2eaMUS2SmTjWtaJBK5eVH6iwJ0BoIzWeN2lsS5CPH2e/cJVV05K17h/JD
-	 95iD8AS7Ycm5CzIRjR9QQ3jXN3YWTMcIK38YxgELlmVZlm+YrE0o70eSzgS5V9SwHt
-	 oy9PW+ZrfiV03xHntTY71dSZIECGpWAphJRW5+x/HV+AcYmR4XuxD7zvVe0LXK5Pe8
-	 SR5bgrTSWAiibbQ/uzs3jgYnK3QKbFG+K4pogV0TOSXHh1z9WDE/TrFtaV5t7lbMV1
-	 fPVq+Bh9pC6kCY5vN4mWCpEoGz7llGBEet8qPizVtWgHwQanPP6mLEGBcWMoLNxU99
-	 pCoawcWbKbaVQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RESEND v4 4/8] dt-bindings: can: fsl,flexcan: add NXP
- S32N79 SoC support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Ciprian Costea" <ciprianmarian.costea@oss.nxp.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, Frank.Li@kernel.org
-In-Reply-To: <20260603071342.641874-5-ciprianmarian.costea@oss.nxp.com>
-References: <20260603071342.641874-5-ciprianmarian.costea@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 08:02:04 +0000
-Message-Id: <20260603080204.9E2481F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780473789; c=relaxed/simple;
+	bh=Agw9l21ZtDb/MAz5yYuOB8V3CbVUpSoO0z5f/WfepzE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C+nty1RtgYNFQUza/0yV+Kdvgha7zP9cvBKld/Y9wDAe5ngseNA4aXPaThYTDQCfejL+o0H/KNaXBsrkMKg4puETrnmxzpxlWIaLCPfr0FW4nuo/LXu2lFNoHJxANxe4ULzDfgawuSrtrIYh7KIhDK7dmiIpLIR1X59NgQqYy0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=c43LUuV1; arc=none smtp.client-ip=149.210.149.72
+Received: from submission2.mail.transip.nl (unknown [10.100.4.71])
+	by outbound1.mail.transip.nl (Postfix) with ESMTP id 4gVgDK18Q9zRjgD;
+	Wed,  3 Jun 2026 10:02:57 +0200 (CEST)
+Received: from herrie-desktop.. (180-93-184-31.ftth.glasoperator.nl [31.184.93.180])
+	by submission2.mail.transip.nl (Postfix) with ESMTPA id 4gVgDJ3sKGzJjhXx;
+	Wed,  3 Jun 2026 10:02:56 +0200 (CEST)
+From: Herman van Hazendonk <github.com@herrie.org>
+To: lee@kernel.org,
+	robh@kernel.org
+Cc: krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Herman van Hazendonk <github.com@herrie.org>
+Subject: [PATCH 0/1] dt-bindings: mfd: add ti,lm8502 LED + haptic controller
+Date: Wed,  3 Jun 2026 10:02:55 +0200
+Message-ID: <20260603080256.853037-1-github.com@herrie.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: ClueGetter at submission2.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=transip-a; d=herrie.org; t=1780473776; h=from:subject:to:cc:date:
+ mime-version; bh=XpxoOXypKujHEFaS0dmObAuWtYIwFBV0BkETqy+dGpk=;
+ b=c43LUuV1/zBi3lzbPy1NQKTu48jENmH3wb8eiBEbOmvSO7nwmYwtJHuCT35EMI70N5p2z7
+ tKWUFdYtB4DzqGubB4WIVQt4nPjcWRUvOVvpOXKQrOVw7zbQ5IUy0OTGxYWszV8Z/PeFw8
+ 7Q2u1/x8pf2UFDI4F1lFikRqCYVsnFmA/yoa10cta8T1nOsxG15ZiuQcdPPae+OD+Jt+tn
+ xLvk1gnnL2zEbkBxxivEt9vS2c8mCWRzsog/oGRAGGoFJPP05Qrmz1tmQdhG/dMSt5NDsI
+ olyngxJs1xLhtCQ9JPOC0YK6+OQP2xwrNSkjyh+jm1yst8PxW4DHdwdJUZNyOQ==
+X-Report-Abuse-To: abuse@transip.nl
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306058-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,nxp.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns];
-	FORGED_RECIPIENTS(0.00)[m:ciprianmarian.costea@oss.nxp.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-306060-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:github.com@herrie.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[herrie.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[herrie.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,herrie.org:mid,herrie.org:dkim,herrie.org:from_mime,herrie.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1A36B635796
+X-Rspamd-Queue-Id: 241E76358FB
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+Add a YAML binding for the TI LM8502, an I2C combo LED + haptic
+controller used in the HP TouchPad (MSM8x60 / APQ8060) tablet.
 
-Pre-existing issues:
-- [High] Concurrent execution of separate IRQ handlers silently corrupts th=
-e lockless skb_irq_queue in the RX offload core.
---
+The LM8502 exposes ten constant-current LED outputs (D1..D10) and an
+internal H-bridge for driving a vibrator motor. Pin D10 is shared
+between the tenth LED channel and the haptic output; the haptic child
+driver mux's D10 to the H-bridge path at each FF_RUMBLE event.
 
-commit 1b40c6c47df0cbe3a237b4923882ceb85a965615
-Author: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+The device is modelled as an MFD with two child sub-nodes:
 
-dt-bindings: can: fsl,flexcan: add NXP S32N79 SoC support
+  ti,lm8502-leds   - LED-class outputs D1..D10 (per-LED reg +
+                     led-max-microamp properties)
+  ti,lm8502-haptic - EV_FF / FF_RUMBLE input device for the
+                     internal H-bridge, with optional
+                     ti,invert-direction property
 
-Add NXP S32N79 SoC compatible string and interrupt properties.
-On S32N79, FlexCAN IP is integrated with two interrupt lines:
-one for the mailbox interrupts (0-127) and one for signaling
-bus errors and device state changes.
+The MFD core driver was already sent separately:
+  "[PATCH v2 0/1] mfd: lm8502: add core MFD driver for TI LM8502"
+  Message-ID: <20260603040026.398009-1-github.com@herrie.org>
 
-> diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b=
-/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> index f81d56f7c12a5..d098a44c2b9c2 100644
-> --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+Child drivers (leds-lm8502, input-lm8502-haptic) will follow as
+separate series once the binding and core are accepted.
 
-[ ... ]
+Herman van Hazendonk (1):
+  dt-bindings: mfd: add ti,lm8502 combo LED + haptic controller
 
-> @@ -173,11 +174,38 @@ allOf:
->              - const: mb-1
->        required:
->          - interrupt-names
-> -    else:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nxp,s32n79-flexcan
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          items:
-> +            - description: Message Buffer interrupt for mailboxes 0-127
-> +            - description: Bus Error and Device state change interrupt
+ .../devicetree/bindings/mfd/ti,lm8502.yaml    | 160 ++++++++++++++++++
+ 1 file changed, 160 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,lm8502.yaml
 
-[Severity: High]
-This is a pre-existing issue, but can the concurrent execution of these sep=
-arate
-IRQ handlers silently corrupt the lockless skb_irq_queue in the RX offload =
-core?
+-- 
+2.43.0
 
-Since multi-IRQ platforms (like the newly added S32N79) map different FlexC=
-AN
-events to distinct hardware IRQ lines, the interrupt handlers can be dispat=
-ched
-concurrently on different CPUs.
-
-For example, CPU1 could be executing flexcan_irq_mb() while CPU2 is executi=
-ng
-flexcan_irq_boff():
-
-CPU1:
-drivers/net/can/flexcan/flexcan-core.c:flexcan_irq_mb() {
-    ...
-    handled =3D flexcan_do_mb(dev, mb_irq);
-    ...
-}
-
-CPU2:
-drivers/net/can/flexcan/flexcan-core.c:flexcan_irq_boff() {
-    ...
-    handled =3D flexcan_do_state(dev);
-    ...
-}
-
-Both of these paths eventually call into the RX offload core to enqueue
-packets:
-
-drivers/net/can/dev/rx-offload.c:can_rx_offload_queue_timestamp() {
-    ...
-    __skb_queue_add_sort(&offload->skb_irq_queue, skb, can_rx_offload_compa=
-re);
-    ...
-}
-
-Because __skb_queue_add_sort() and __skb_queue_tail() are lockless queue
-operations, won't concurrent insertions from multiple CPUs corrupt the
-doubly-linked list pointers and lead to a kernel panic on subsequent access=
-es?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603071342.6418=
-74-1-ciprianmarian.costea@oss.nxp.com?part=3D4
 
