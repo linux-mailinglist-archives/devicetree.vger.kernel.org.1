@@ -1,224 +1,225 @@
-Return-Path: <devicetree+bounces-306472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306476-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VVM0NUt7IGqZ4AAAu9opvQ
-	(envelope-from <devicetree+bounces-306472-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 21:06:51 +0200
+	id gh5FH1t/IGpp4QAAu9opvQ
+	(envelope-from <devicetree+bounces-306476-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 21:24:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1A6A63AC16
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 21:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8232D63AD2C
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 21:24:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fNHwFCVV;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306472-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306472-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=ti.com header.s=selector1 header.b=pKjW4uVr;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306476-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306476-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ti.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0BF973008606
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 19:06:48 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6616D3024EDE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 19:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58D83502A3;
-	Wed,  3 Jun 2026 19:06:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3AEF48B39A;
+	Wed,  3 Jun 2026 19:23:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011058.outbound.protection.outlook.com [52.101.57.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9867930148A
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 19:06:45 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780513606; cv=none; b=qcV66Ah4OHI5q93QoJOX11y/ODpORQa1OBDK08DSN8yvZdpV3N6QUWwHTLjxbhK16U+nZpPQNk5d0F+pttYqbjY68RggInhSLeONEOu6oM78Mr0IXwHv0ykEoYTlT7n4oLct6PdRKQOFqwDC7psDjZQfBJj+W1Sn5qhSDQMQ5jA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780513606; c=relaxed/simple;
-	bh=DISXBdAFKl4RJPct2X5KGmbShED/G7puj+Jvox3Nl1w=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=oill4tEeO8D1EgRQJZGOUsD0y+rZ94MKRzr/ggluVgtkyTNo6geMxgG6gM5BB/QKcqySC9j2hKgvW8t1Q0kxTR0IPyxBRiptDUJniOScVJLHU96PMnQiSJZoTEg/T7cE0/AuTCHbRWRjpKhkM/PMHNazNk0bEATTSnKM8nZMzIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fNHwFCVV; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C0B31F00893;
-	Wed,  3 Jun 2026 19:06:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780513605;
-	bh=vYGtiaxUU2O9SeRCaFvnHMK28cpIQmx7FnFS8wYa8JY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=fNHwFCVVmxf6ZfAhpLhj3Lfzx6M0xTYFyvn6HUi2gSdNNGQVl6FbDlq/UkQloOGu/
-	 Hfelvfeo8aoiFqgJJDJURncsa/E3h7OzPH2vI9YU2JWs8WnFRLZn6HNjF37MWdLMbw
-	 QfE5lQCwNkljssGfCHLVJj09Jl+D5JYT9EozCjQPt19l/TEJOToAW4Fv/ywo5mxQeA
-	 zuCq57Ltrg+rNkiJza5lK0dqFKwlySU507CR3W7Otf9SoHyBCTybJipMpSqvUgvUBz
-	 pyDnOi6xuNr82+xLHhlw2O+KISSmqUA8m7h8FTx+wjzfWzvLHp6u+XTESM+J5TIrKP
-	 En80S+nHbOElA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 11/11] iio: adc: hx711: add support for HX710B
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Piyush Patle" <piyushpatle228@gmail.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260603184859.89693-12-piyushpatle228@gmail.com>
-References: <20260603184859.89693-12-piyushpatle228@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 19:06:44 +0000
-Message-Id: <20260603190644.9C0B31F00893@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC8D481248;
+	Wed,  3 Jun 2026 19:23:41 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780514623; cv=fail; b=u2YEZciUd3a5caVc7eOuiGKO+rOCav4fN5YwoMpo5dySuJQND+te1YUwXL1yFVhzCTOUHQCry8TMGWnObpyjOhyByIBMcyp+zddoUH3GKyKF120rQxrM/cUeDagib+4HohUWHkRgTKIt/OF7XPUWMbrgr4H0QF5oU9dYjn3/9SY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780514623; c=relaxed/simple;
+	bh=Jl+xiD41cZGkv9K1ml/wD6GsCdTkF7AJCogPysRc98I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lf5dh559VQ/E9dZdO5NOt+0tpTGvfoXdkESKw8LDzNNdijj68/dI97ftZ9k435z6EEjksurgTm9JXl2YjAlULqASn4awYsmdVCjSka8yBcx5LYmbQEtUmi2hydnC6+dxkeA4G344CMKPXxU0Mjhgj5lX6EuGHK40B28oSaETvPQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pKjW4uVr; arc=fail smtp.client-ip=52.101.57.58
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=w9Z9Xk0PSBrkcy0ho/QL+ZKxpQa3jmyoyi+8csGcM9ONfeX5eiKr/hW2HdzUSrAmESSnXFwnk8A+/rVzv6PRqe7AF31VPBL1WmzSQa/8RyUb+sj5AXghtp+Szf95RNSIYEU6H39LpR0uUTw85wrlkqguD4zrrT2NBj4sBe/iATD2vcQ3BWmY+cIbb7Aj0X+6OQpZ7wd5SEgI4RbChzFMWuzHD1xdIJb2CdYA4olOhLg7J/QrsAhg6RaHYfsvN3EsP4I68xultA5VZ+qYBmpKDTc++k9zQ4hsxrFW6uJmt3XXmjzmUAahqYTRaQIqEgWNWPzpwTMZ3UL3+fQUIgYpaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mA0RhPBApekQeKhZDmYSmI2y5UuqHThAUm2Ab/gek40=;
+ b=Xk6cFvUoUDgFe30jIR9AuElRK7ptgFvhQ07rM1ogb4UbtChMW2U0ZJTptSig+F55QejoMce3wJUHW9OKUDcLF0agBc4bftHhEdpq9mbjGbGw6oJINGjGys3Fbh8V5CrtrBJuFMgdqYOC8Rmxu8wjiWKOtGcPeEVHjWuDv38lUEijm2lO52rQ6DC5udXicskQ1sLPmAzxomdSyM0SV5Xh3PMxiZ205WwuKvCLsFZFq6C0/2HgA1Dw9wouz3ycUhUXRSgiLJyQUnq5XLy+49T7L9zatQ3SL3YbNcqNW7qjjR8IlteYx7dgdvUc6BPQ8IEdhh3XFEMxcgHuPauL/cPobA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=microchip.com smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mA0RhPBApekQeKhZDmYSmI2y5UuqHThAUm2Ab/gek40=;
+ b=pKjW4uVrActS4251v8bMYov7CyyHNkyazLGchPwiTRK9UO/REhEMDj2OdmuqikWj0KYcETG558ogS4ApCXYVeuwI9ctWcJAHMpHEJEtrTBEsGNHgH8eiLcFW+K1sjiXkoIerINIUa4IvP5M3nSvLIZcbG99djSyYx+b46yNtqJ8=
+Received: from MW4PR03CA0266.namprd03.prod.outlook.com (2603:10b6:303:b4::31)
+ by CY8PR10MB6562.namprd10.prod.outlook.com (2603:10b6:930:5a::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Wed, 3 Jun 2026
+ 19:23:38 +0000
+Received: from MWH0EPF000C6187.namprd02.prod.outlook.com
+ (2603:10b6:303:b4:cafe::a4) by MW4PR03CA0266.outlook.office365.com
+ (2603:10b6:303:b4::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.7 via Frontend Transport; Wed, 3
+ Jun 2026 19:23:36 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ MWH0EPF000C6187.mail.protection.outlook.com (10.167.249.119) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Wed, 3 Jun 2026 19:23:34 +0000
+Received: from DFLE212.ent.ti.com (10.64.6.70) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 3 Jun
+ 2026 14:23:05 -0500
+Received: from DFLE202.ent.ti.com (10.64.6.60) by DFLE212.ent.ti.com
+ (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Wed, 3 Jun
+ 2026 14:23:05 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE202.ent.ti.com
+ (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Wed, 3 Jun 2026 14:23:05 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 653JN5Mp2372249;
+	Wed, 3 Jun 2026 14:23:05 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>, Bryan Brattlof
+	<bb@ti.com>, Jason Kridner <jkridner@gmail.com>, Robert Nelson
+	<robertcnelson@gmail.com>, Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v6 0/3] arm64: dts/bindings: Add support for BeagleBadge
+Date: Wed, 3 Jun 2026 14:23:02 -0500
+Message-ID: <20260603192305.1347908-1-jm@ti.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C6187:EE_|CY8PR10MB6562:EE_
+X-MS-Office365-Filtering-Correlation-Id: 354ca2df-aaf4-4670-17fa-08dec1a59b20
+X-LD-Processed: e5b49634-450b-4709-8abb-1e2b19b982b7,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|36860700016|376014|7416014|3023799007|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	jaV6BkWpdQ8KDNfCfZ5lYAgV0rpSRNwscHnBV96LQwOwfCC5fWmFu64+UMjZac4cfoOtIoFmfceGppGxW5w6iLacHI3EF9AyPXB0WYXiwhs0wgfevXBZO3XzPu1eMB4ECb10lpSY9nIhweauLpGBQpUKQIaE0wfoBY4tbJ1BHDkdu4zuxBJds/hK2j/VRZcg0bMikm6JHModYX6VbeXFPgRfCtgCPjEFJBtV7qOf1sA1x+6b/PhLzXxQUUTc5Jh/9ncGdj5S9dT0eJv8qAaa58LMG9JzJcIPhtpMhhg1CwT6W/5w1PIwd9GG20pIPxZ6Q5p72R5UxflNOo6Nu1IWleOuPK7A5hD4pvC4l84XAbnyUFPf2KioImDb2uDPAUMqNmGdYdwe6gJvTDYJwljBOati7wTNyex3P/OVJ15t38prPTQ9PFuIfrZEXHll2lAlWKxM33RCjf46iR7nqFJwi008shVOH6F7+JQJOYcSJ/7/QFT4o5ydH2FQN9OwnHqcha2+cLZRYZTlmDBcoWeRvbV060pptlP5Ru0OhCg9/YMQF3ZZF4euXIGgjt82ld0hPLUh8fqp5zZNDeK3SSAtWX7mdNqNXqr0XCN3Zk3Wu9PPwe4BoLMkkjjRk0MKCGge+rQRTSZ0CESLqJT7I7IHmbNT0pwHXtT5wjvS3rN/uywgh3r3qnf19NhJ5zAOj/FT
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(7416014)(3023799007)(18002099003)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	bJiJensHrOYmRdQoq+zO+MaLlatRb+DKsUtHS29yzpyprRySvqlvoOWbaSmGIaos4f1om9k4kTWdH4XcHPDZOPqLaeTcHe8czn8d8IMpz6RMW7fP3IgvYnbEcg8F69DdLYmB9tdH6IpzQew+fa5uoADsyIQgqHVUqf+ucV32AXARDBHEINwAut0JzvhlQ/hA8e2ZLjWTrjTQkdnoGFGHRI4j4O9U78aqj9Zte1LxhvWODouankRnC79UzN0XViA+gwlrb9Lu/RNMdDFbWPJwzbmZZNghzIvIe2xFQrJTUPgs10gCjSREY31cdfbkQ+L8jLi65ELyVB0x1VGhKaNDy74URLkRT85vecO9WHsEz6ipHzCIxEtv5zD7RKlkmw26lEFj9INSE+ryuSI4BKFMavN6B1RvivkIv0coVMNi8SJzkkeKsGk4jjLJMgh74UR1
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 19:23:34.8258
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 354ca2df-aaf4-4670-17fa-08dec1a59b20
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MWH0EPF000C6187.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR10MB6562
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306472-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:piyushpatle228@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jm@ti.com,m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:afd@ti.com,m:bb@ti.com,m:jkridner@gmail.com,m:robertcnelson@gmail.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306476-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER(0.00)[jm@ti.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,vger.kernel.org,ti.com,gmail.com,microchip.com];
+	DKIM_TRACE(0.00)[ti.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,ti.com:mid,ti.com:from_mime,ti.com:dkim];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D1A6A63AC16
+X-Rspamd-Queue-Id: 8232D63AD2C
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+Hi,
 
-New issues:
-- [High] The triggered buffer loop unconditionally performs physical hardwa=
-re reads for all active channels, including the IIO soft timestamp channel.=
- For the HX711, `hx711_reset_read()` returns `-EINVAL` for the timestamp ch=
-annel; this patch introduces a new `if (ret < 0)` check that catches this e=
-rror, prints a failure, and aborts the trigger entirely, completely breakin=
-g buffer capture when the timestamp is enabled. For the newly added HX710B,=
- the driver incorrectly interprets the timestamp channel as having `differe=
-ntial =3D 0`, performing a ~100ms blocking dummy hardware read and then wri=
-ting the result to `hx711_data->buffer.channel[j++]` at index 2, which viol=
-ates the `u32 channel[2]` array bounds and risks UBSAN kernel panics.
+BeagleBoard.org BeagleBadge[1] is a compact, affordable open source
+hardware [2] single board computer based on the Texas Instruments AM62L3
+SoC designed for IoT and embedded applications. Add base support for
+the same.
 
-Pre-existing issues:
-- [High] The driver allows `IIO_CHAN_INFO_RAW` sysfs reads to proceed concu=
-rrently with triggered buffer captures due to a missing `iio_device_claim_d=
-irect()` call, which causes hardware state machine corruption and data loss.
---
+SD boot:
+Link: https://gist.github.com/jmenti/e9e95848336fda0e4b5acb37f2fe64a0
 
-commit 4a57ad17002849c3ffed8137401cf0ed7fd81778
-Author: Piyush Patle <piyushpatle228@gmail.com>
+This patch series adds:
+- Device tree bindings update for am62l3-badge
+- Device tree source for BeagleBadge board
+- Defconfig: drivers for BeagleBadge
 
-iio: adc: hx711: add support for HX710B
+Changelog since v5:
+DTS
+- Fixed aliases/chosen nodes
+- Sort Makefile items alphabetically
+- Use dual license: GPL-2.0-only or MIT
 
-Add support for the AVIA HX710B ADC, which shares the HX711 GPIO
-interface but uses trailing PD_SCK pulses to select the active mode.
-Model the HX710B with variant-specific channel tables and IIO info,
-track the active channel across conversions, and use the fixed gain
-value when computing scale.
+v5
+Link: https://lore.kernel.org/all/20260526235417.1326187-1-jm@ti.com/
+v4
+Link: https://lore.kernel.org/all/20260515153541.294698-1-jm@ti.com/
+v3
+Link: https://lore.kernel.org/all/20260513233447.2713737-1-jm@ti.com/
+V2
+Link: https://lore.kernel.org/all/20260508230341.1891450-1-jm@ti.com/
+V1
+Link: https://lore.kernel.org/all/20260501233148.4180391-1-jm@ti.com/
 
-> diff --git a/drivers/iio/adc/hx711.c b/drivers/iio/adc/hx711.c
-> index 5c326f01c5543..e90780dfd34e5 100644
-> --- a/drivers/iio/adc/hx711.c
-> +++ b/drivers/iio/adc/hx711.c
+Patch series depends on:
+Link: https://lore.kernel.org/all/20260513231154.2703292-1-jm@ti.com/
 
-[ ... ]
+[1] https://www.beagleboard.org/boards/beaglebadge
+[2] https://github.com/beagleboard/BeagleBadge/blob/main/design/BeagleBadge_RevA_V0.7_SCH_251107.pdf
 
-> @@ -322,6 +379,9 @@ static int hx711_read_raw(struct iio_dev *indio_dev,
->  		if (*val < 0)
->  			return *val;
->  		return IIO_VAL_INT;
+Judith Mendez (3):
+  dt-bindings: arm: ti: Add am62l3-beaglebadge
+  arm64: dts: ti: Add k3-am62l3-beaglebadge
+  arm64: defconfig: Enable drivers for BeagleBadge
 
-[Severity: High]
-This is a pre-existing issue, but does hx711_read_raw() allow
-IIO_CHAN_INFO_RAW sysfs reads to proceed concurrently with triggered
-buffer captures?
+ .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+ arch/arm64/boot/dts/ti/Makefile               |   1 +
+ .../boot/dts/ti/k3-am62l3-beaglebadge.dts     | 657 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   5 +
+ 4 files changed, 664 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am62l3-beaglebadge.dts
 
-Since there is no iio_device_claim_direct() call to serialize against
-the active IIO buffer, a concurrent sysfs read might acquire the lock
-between trigger samples.
+-- 
+2.54.0
 
-Because the hardware relies on the trailing pulses of the previous read
-to set the channel and gain for the next conversion, could an interleaved
-sysfs read clock out data intended for the buffer and reset the hardware,
-corrupting the data stream for userspace?
-
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		*val =3D hx711_data->samp_freq;
-> +		return IIO_VAL_INT;
->  	case IIO_CHAN_INFO_SCALE:
->  		*val =3D 0;
->  		mutex_lock(&hx711_data->lock);
-
-[ ... ]
-
-> @@ -399,20 +459,26 @@ static irqreturn_t hx711_trigger(int irq, void *p)
->  	struct iio_dev *indio_dev =3D pf->indio_dev;
->  	struct hx711_data *hx711_data =3D iio_priv(indio_dev);
->  	int i, j =3D 0;
-> +	int ret;
-> =20
->  	mutex_lock(&hx711_data->lock);
-> =20
->  	memset(&hx711_data->buffer, 0, sizeof(hx711_data->buffer));
-> =20
->  	iio_for_each_active_channel(indio_dev, i) {
-> -		hx711_data->buffer.channel[j] =3D
-> -			hx711_reset_read(hx711_data, &indio_dev->channels[i]);
-> -		j++;
-> +		ret =3D hx711_reset_read(hx711_data, &indio_dev->channels[i]);
-> +		if (ret < 0) {
-> +			dev_err_ratelimited(hx711_data->dev,
-> +					    "read failed: %d\n", ret);
-> +			goto out_unlock;
-> +		}
-> +		hx711_data->buffer.channel[j++] =3D ret;
-
-[Severity: High]
-Does this new error check accidentally cause a regression by aborting the
-trigger entirely when the IIO soft timestamp channel is enabled?
-
-iio_for_each_active_channel() iterates over the active_scan_mask, which
-includes the timestamp channel.
-
-For the HX711, it appears hx711_reset_read() will return -EINVAL for the
-timestamp channel. Would this new check catch that and completely abort
-the capture without pushing data?
-
-Furthermore, for the newly added HX710B, hx710b_trailing_pulses() seems
-to evaluate !chan->differential as true for the timestamp channel. Would
-this result in a hardware read that writes to hx711_data->buffer.channel[2],
-overflowing the bounds of the u32 channel[2] array?
-
->  	}
-> =20
->  	iio_push_to_buffers_with_timestamp(indio_dev, &hx711_data->buffer,
->  							pf->timestamp);
-> =20
-> +out_unlock:
->  	mutex_unlock(&hx711_data->lock);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603184859.8969=
-3-1-piyushpatle228@gmail.com?part=3D11
 
