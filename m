@@ -1,196 +1,167 @@
-Return-Path: <devicetree+bounces-306334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306327-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NfJeKNtBIGpszQAAu9opvQ
-	(envelope-from <devicetree+bounces-306334-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 17:01:47 +0200
+	id c8pyATlFIGq7zgAAu9opvQ
+	(envelope-from <devicetree+bounces-306327-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 17:16:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18AE638E4B
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 17:01:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AD8A639071
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 17:16:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ryoOVDNA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306334-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306334-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="MKF/wZDX";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306327-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306327-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C96F6309E4CE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 14:44:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2ADB1314C3A2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 14:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32518492183;
-	Wed,  3 Jun 2026 14:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC9948B37A;
+	Wed,  3 Jun 2026 14:37:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A19248C419
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 14:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9785848AE1E;
+	Wed,  3 Jun 2026 14:37:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780497466; cv=none; b=ahQb5XiiTbY/hMrCDGWqUy+IcQZgBZvfOQYYqh8XLXzCcaJLxGsSLlrnz0b508pacbLd5S4ravId4yecetWCe9tst1dsk1eMAYD7qTjQLZljOPhGivOe57fA6IS5SBbqN/arvRzafCoBmGkB1M76encM2znzViMiSr6uNBU3vSc=
+	t=1780497458; cv=none; b=nqDctFav54jkH8VJ9l9QhT/YFNpN/kEmuh0m5K9Hf2L/Xla6GZWA0moYwUdKel/0u373mLvzTzCaD/JOBxQBjbFKsNy44WKHoKtjc/uamLbVG40w/+EVp6LDSsV/nJSSFnl1ntcAuIkmPtKX0ZrrJOD1VsMlAMDuG7jdYRUz+TQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780497466; c=relaxed/simple;
-	bh=tapJulvq9sZNzCtmbZgAjkSubCFsjmsf/ax+SbMxIuk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jLHDg+f5KJ5NJORPZLmBta1Ye5hnR0GkoIQn4qgYHVgNw2WEfP/63wWAELp6fEeDwG17qxkVGkNqIycsfq5ENZ08KEt/zTEcQv+Xf+5Llvvjm7/6Ugs+4fNxGOqeBpH6oLOTQ0NFn23ZH1tTV+IGr5uwFiJUzj5vR+UZx/rmf+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ryoOVDNA; arc=none smtp.client-ip=209.85.128.46
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4903f7a90d1so117566165e9.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 07:37:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780497462; x=1781102262; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2r42H6aMK4b6UNRgIksoOLm8aN27wEuwsly03FlTjcQ=;
-        b=ryoOVDNAYXL0jB59+hntfvuLGKACc7D8/gI0xdAv88FDydMIabb6tg1cSJBD3nmMKh
-         vnNyVwX347Ygx8dAh9rjBFtFtAT/rRYJkEHlfMb00cIlKcFRT1w1N82WUARQFnhyL9NK
-         Tb9DRGtb3Fl3aTGDhTr7FUj7IFX+os63FuehZGXDyeQAx0F2gmFyn1NRBYTAMOtNkpEk
-         iJ2UHP4bnA/72WIDEhQHScXb6dS8liqnTCLztDtPKy4xZNrloHk2sq3FmVrKHL9OcnWn
-         loSYvEEYMyVl44iRC+BBOniCSUR28aBkYlUkXn/ci6dFmoxL63PB38IH+W5unJEHO6q3
-         mRbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780497462; x=1781102262;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2r42H6aMK4b6UNRgIksoOLm8aN27wEuwsly03FlTjcQ=;
-        b=rc/6yxxhJNgNpxEabct3d3O0QHVdT6JnrLXIGCk02C2Q9v4z0JpimiQkolDfEWn1qV
-         9Hwn5RFACg9kDl1zUQm8XD50xSApRtB4j812Nl0L1YAXE1cdqe1HDIBSE/U+psjS9JrA
-         jLojhD48N+Hzs6axRgGKqEdoMXNwNcfWWHAA6Rv5Bi+8SdMbur8k0n+RfWeDSb6IeD98
-         ADeHrahqt9I1RZGsORndRBWN33NZhhqiCv5GMn9gIdeLYT2RQlGHoOSSxo/GUNWIrnJR
-         sefZbCLyZ/Z+g9lIY46OsJUqAbp4ah6S1NG4PE7FDT+ccMFLW1Y2SnFiluE4oM4kfwEb
-         QC9g==
-X-Forwarded-Encrypted: i=1; AFNElJ+CtCnOkd/jDTzX11gDBUCqFcnYa+1V9vrbDfxfSd6k9ZXrQvmFVZBKbN6z/CF/KjQlRRJdcdk9el0B@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeU8/lWHK5i4o/Romocseh3ZXYkYdD2ru30/b3dklxlrYuG8Cx
-	2Wj4hb7cuyTJ9dBTZaAmvHBzZlIWQQVpQxX9Int6TXOrozQ1enPHG/Tl
-X-Gm-Gg: Acq92OHN4gVTeifOKxVV0QY1IkOT1bsKCjir7kq/2bY9A1m9lTEzgCTyM5szHx9yYBY
-	+iu9hTlZNDxxSAxfHiTAgv9PXclVwltFE5semofhi/x16kOwJuDCGhgYtDw2OKJ2eSZkGTBsh0Y
-	KpWskchKgujtpPCV47hiFDP7H45PetP6rrsb+WF4i3Xn3Kg2OpdcHoo52doHMtfG1gy7HnChMYt
-	VKbUbA5ieCxg9YftgSKjEJ/MR2L64MF45KrmUhKQn0ZiggU/s/0D5kW/Tw45ladgQ4VvGOh10yF
-	LzJIKEUOuW6tCDHNVS0vUKxKjt2fzb69PWqlX9NyWEjAAgMXJgh9LEoUe2Qn8ZOHCQkyvvCAxLv
-	9F/BEpfjfucNivjTiXAi5fRXguL0XGwnJUNCkEktwkQ471/Bl+8xfGjSyMec8/XPHIvLv56l3Nr
-	R0YqufogcRlnNIz6mf5SJIDK7GfEI6Pq68gEms2Sm+n1lYUNi7BORfdNWIWor3PeK+USAH11DV6
-	unFaOva09CT+msP8dAWEQ88XG0STQJNhnB/nSsX9EY4oJcz
-X-Received: by 2002:a05:600c:c163:b0:490:b5d0:598e with SMTP id 5b1f17b1804b1-490b5fe9575mr65008075e9.21.1780497461900;
-        Wed, 03 Jun 2026 07:37:41 -0700 (PDT)
-Received: from Lord-Beerus.station (net-93-144-65-244.cust.vodafonedsl.it. [93.144.65.244])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490b6150bfcsm120267855e9.3.2026.06.03.07.37.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 07:37:41 -0700 (PDT)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH v3 14/14] arm64: dts: freescale: imx8mp-var-som: add I2C1 bus recovery GPIOs
-Date: Wed,  3 Jun 2026 16:37:21 +0200
-Message-ID: <aa740b2d684362627b46d35912c979c01f8c2c36.1780497188.git.stefano.r@variscite.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1780497188.git.stefano.r@variscite.com>
-References: <cover.1780497188.git.stefano.r@variscite.com>
+	s=arc-20240116; t=1780497458; c=relaxed/simple;
+	bh=NfJbAy4OBwcVFYMOA4sgxeb8rArf6+jwZ/siQJpguXM=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ryqzYaegkWNkq4k781t2+NtBoFF0aMal4ZLW7YXEvWwVpbF6AB6iwCEJyDNNlv1pjdcfGJ4tOqBhxUJWmqmkU/x5XuchDgC2FM/t+7ndNsZ68yxDUXzZik0i8/CY86WmyzfGOltKc9i5s4qrdGiOtepkCRbjAyGjH0YjioY4AAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MKF/wZDX; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DA891F0089E;
+	Wed,  3 Jun 2026 14:37:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780497456;
+	bh=BCkv78E9W9JqhXuURih8bfzqud6sOSCP/yCrSo3GrRU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=MKF/wZDX/apSEdEDyfGXWUE09UrNNsu3dSu25Dv0RQIx6Ww6SMiRaQfSmwvV4PWkm
+	 GqEz+mP0AXI/6pG4nwBw00PacOcJLYw2VS0yztQ5NPgmyr0Mv4+rVDHOdXDpt6Kydn
+	 zIMwvZaFqsgpvlZHNfdAOSMRUc+IjqigQvLxidSEQmez7byREmAVtxZzBQ18kag3vj
+	 FBj5t0eZCO9fXzV/RlXXz639siTRmZOoK9BMVZ44RFDHDoYtMnSUYsgTHfsuM2nHcM
+	 UZer+Uk5hUwa7U7WBdHXEMlKwZ3/2DZhYqvS9fd+ARzSGT8fdSwHQqAUu3Ndi/5vK/
+	 kladeYUr6uZtg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v1 3/3] hwmon: (emc1403) Add regulator support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Svyatoslav Ryhel" <clamor95@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org
+In-Reply-To: <20260603141033.111300-4-clamor95@gmail.com>
+References: <20260603141033.111300-4-clamor95@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 03 Jun 2026 14:37:35 +0000
+Message-Id: <20260603143735.8DA891F0089E@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	URIBL_MULTI_FAIL(0.00)[sea.lore.kernel.org:server fail,smtp.kernel.org:server fail,lists.linux.dev:server fail,sashiko.dev:server fail,vger.kernel.org:server fail];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-306327-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-306334-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:clamor95@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,variscite.com:mid,variscite.com:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A18AE638E4B
+X-Rspamd-Queue-Id: 4AD8A639071
 
-From: Stefano Radaelli <stefano.r@variscite.com>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-Add the GPIO pinctrl state and GPIO descriptors required for I2C1 bus
-recovery on the VAR-SOM-MX8M-PLUS.
+Pre-existing issues:
+- [High] The driver fails to probe for `emc1402` and related variants becau=
+se its enum value is 0, causing it to be mistaken for missing match data.
+--
 
-This allows the I2C controller to recover the bus if SDA or SCL are held
-low by a device.
+commit 68609b63ba3fac21c7beeccd770258031aea8a06
+Author: Svyatoslav Ryhel <clamor95@gmail.com>
 
-Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
----
-v2->v3:
- - 
+hwmon: (emc1403) Add regulator support
 
- arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+This commit adds support for the VCC power supply regulator to the emc1403
+sensor driver. It enables the regulator during device probe to ensure the
+sensor starts up and functions correctly.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-index 49467b48d0b0..61786eee0e82 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-@@ -180,8 +180,11 @@ led@1 {
- 
- &i2c1 {
- 	clock-frequency = <400000>;
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c1>;
-+	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+	scl-gpios = <&gpio2 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio2 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	status = "okay";
- 
- 	pmic@25 {
-@@ -415,6 +418,13 @@ MX8MP_IOMUXC_SD1_DATA5__I2C1_SDA				0x400001c2
- 		>;
- 	};
- 
-+	pinctrl_i2c1_gpio: i2c1gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06				0x1c2
-+			MX8MP_IOMUXC_SD1_DATA5__GPIO2_IO07				0x1c2
-+		>;
-+	};
-+
- 	pinctrl_pmic: pmicgrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SPDIF_RX__GPIO5_IO04				0x1c0
--- 
-2.47.3
+> diff --git a/drivers/hwmon/emc1403.c b/drivers/hwmon/emc1403.c
+> index ac84200be71aa..dfdd3982efb7f 100644
+> --- a/drivers/hwmon/emc1403.c
+> +++ b/drivers/hwmon/emc1403.c
+[ ... ]
+> @@ -660,6 +661,12 @@ static int emc1403_probe(struct i2c_client *client)
+>  {
+>  	struct thermal_data *data;
+>  	struct device *hwmon_dev;
+> +	int ret;
+> +
+> +	ret =3D devm_regulator_get_enable(&client->dev, "vcc");
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "Failed to enable regulator\n");
+> =20
+>  	data =3D devm_kzalloc(&client->dev, sizeof(struct thermal_data),
+>  			    GFP_KERNEL);
 
+[Severity: High]
+This is a pre-existing issue, but does this probe function incorrectly fail
+for the emc1402 chip variant?
+
+In drivers/hwmon/emc1403.c, the emc1403_chip enum defines emc1402 as the
+first element, giving it a value of 0:
+
+enum emc1403_chip { emc1402, emc1403, emc1404, emc1428 };
+
+When emc1403_probe() executes later in this function, i2c_get_match_data()
+returns 0 for the emc1402 chip. The subsequent check:
+
+    data->chip =3D (enum emc1403_chip)i2c_get_match_data(client);
+    if (!data->chip)
+        return dev_err_probe(&client->dev, -ENODEV, "Unknown device!\n");
+
+will evaluate to true since data->chip is 0, causing the probe to abort
+with -ENODEV. Will this inadvertently break support for the emc1402 sensor
+family?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603141033.1113=
+00-1-clamor95@gmail.com?part=3D3
 
