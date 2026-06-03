@@ -1,198 +1,459 @@
-Return-Path: <devicetree+bounces-306103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306100-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id E3U1EUvtH2olsgAAu9opvQ
-	(envelope-from <devicetree+bounces-306103-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 11:00:59 +0200
+	id p9ymMM7sH2r2sQAAu9opvQ
+	(envelope-from <devicetree+bounces-306100-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:58:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87B05635F30
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 11:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 182F7635EDB
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 10:58:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=alex-min.fr header.s=fm3 header.b=NP31gjgb;
-	dkim=pass header.d=messagingengine.com header.s=fm1 header.b="M JJu0O9";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306103-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306103-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kw9+S6fW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306100-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306100-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 50B12307E9A2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:59:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB43E3007AF2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 08:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B38E3439019;
-	Wed,  3 Jun 2026 08:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A657425CEE;
+	Wed,  3 Jun 2026 08:58:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a7-smtp.messagingengine.com (fout-a7-smtp.messagingengine.com [103.168.172.150])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C8040910D;
-	Wed,  3 Jun 2026 08:59:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0319F402453;
+	Wed,  3 Jun 2026 08:58:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780477190; cv=none; b=r/48zY1OExHfR6H/DfiyqW7NUqHdngHi3jkttTXhjpCnbMKvKX698Fspj/6WHhryQ36umJGJU2Sbx50Yec7+8CKo4ALQ+cWtNE9QTaHO2e9Tt+MFvc7CiNmd8ibFexDkKBRjb4IABR8s1HgMCBQd9CPEv++RF4KW5vw57dYzTS8=
+	t=1780477132; cv=none; b=lUeZNO/q7UzulWjDCsv5smJ8hgZqmBLDregcIZV4En1vg2f6Id77AzpVyXJXNEnagY/Q2CrfC1DQVmnGexZV1wraA6cvZbeO3B88bHAhWLTnQoFIv5Oc1ImfPFXldtep6C7R0DISVdGBNLUuh5G6t5O8KqrApkxeRp3zy09rhNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780477190; c=relaxed/simple;
-	bh=ztF4BT8IElW1EAM/iUON2PhtHHt3jm5Fed4urA0d4bY=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=CgoVW/ez4XMaUzJDdHMfQvp1SGDHnI6rM9W6hqZWaOzm6wXlK/ztN/IEosf0JqiV9qKvX3RY95//kWScX0IEkS8G6EW42KWRHEtA2NlJJtaCnfjLvKdGrZYvL10ZSbkuxizZUFX9eFueP/j7p617c/fLxMFx+dzHxWREEGsv7dI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alex-min.fr; spf=pass smtp.mailfrom=alex-min.fr; dkim=pass (2048-bit key) header.d=alex-min.fr header.i=@alex-min.fr header.b=NP31gjgb; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=MJJu0O99; arc=none smtp.client-ip=103.168.172.150
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfout.phl.internal (Postfix) with ESMTP id 8062AEC0143;
-	Wed,  3 Jun 2026 04:59:48 -0400 (EDT)
-Received: from phl-imap-03 ([10.202.2.93])
-  by phl-compute-04.internal (MEProxy); Wed, 03 Jun 2026 04:59:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alex-min.fr; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1780477188;
-	 x=1780563588; bh=R1Luc/aCcjuMXa/T7EwpzALBWVDdnlVy5kkRX84+U+c=; b=
-	NP31gjgbIgevccQrrzt+pHO6DNbMEDXbovqL00yLhEcwsVcOiopH3zkpkQQcSYy7
-	70vc7AMKe4l2d2hAbJech94LF9Wg/cwk6RJqbyGQL6z8gMjKl3hPhdMsj37U2RJE
-	sX4dZrw9Cf+J0c8uuQ2trzjABgoqaz/FHf/JkHUuIqsMsEMI6Yj0fupIpKs0zwH7
-	rEQcjcVjAWrLRRImy+0na+cYtNAFIKBLBpwVpJ4dFmv1IWNECX+K5ibVuO+vYxUU
-	+B7Ffa4d4LsnVD/14p/IvaM1R1iFU8vgpWTo80Y5+UqCEU5+MxqgFtVjNAY+XS95
-	Je6SKaK5m+5SSIzjnHPjFQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1780477188; x=
-	1780563588; bh=R1Luc/aCcjuMXa/T7EwpzALBWVDdnlVy5kkRX84+U+c=; b=M
-	JJu0O99bA2f7xQ418KgOl/UV31AmRfJfsjegbRJjA/u8EHt2AuljdpF3QtVomOEE
-	XCaWdSoNve/2zCAj926ODXmm9XM75U0MP7tmS3rx5LyALgxDEUK3Y0tnYdJF/5ED
-	Wh/HX4C+WIfFXPjvuOKRcHrXIRZxhuMZWew9FFPs22fWjEQPAFfd9uU+vu0hSeFJ
-	tD01AloNAbPH+G8mGOkIp24EXYgJIqMH4JAivtXOj6fYLVlzszZxgt4wLMqpuWd8
-	mtG6eCHQo/lmdmFoyN1rrdtAJKpzywO56YTK3xR/TWxhETBY5Yg8oSj7BrRgjQ/8
-	g3Ossyo27KUw3CYue34JQ==
-X-ME-Sender: <xms:A-0fag7oca7qikHhl0CUlyQ_53SWDB-q2wFdji-Vs03jMoC-a-HxQA>
-    <xme:A-0fass1c4lY-jFyIIejqJycqgwJMLoAy1EUXIga89fG-BiCUSKY83woRZSoHpxGr
-    Of2QSTrH7Z9URV9VTKpsGSXG7igZNIqMB7HsL4dhVCYN4FM9TQgiQ>
-X-ME-Proxy-Cause: dmFkZTFEF1p3KY1NI3DS2ef3AXrVnrQiXettYjJNovNV+TA2YH9EdcHk0MqZ3oV56NdzN0
-    dTAKPjcvgZhId6ng7Q7btgM/a1BfqL5ySqk7elTgQKa6D+uaqSDBpMabDcWgOSZqAe4cbS
-    KNKPcsz1ZMoTzI/Xn1nfYU/M0xfTbeacep83OJnEB6HVMbAeTovgL7l9dX03eghfWf4nCE
-    G2pMY0/IjA92D/9AHm9m7xCGQ9o1y+1XWy12Ns4tw+sii6/EmcIKAUNdcQheVNVYdPiOK8
-    EEQ9MAd5Jp8FJkSva58L7zgj7h9FZCxttbf2IoK8Jr8GNq7hUL/LVYiWloIUc99h99lJG2
-    3MUxtLAdX4qJmjgBVLj5jn/A439aoTViYV6hd4sqfI6FXF3NG9mgrWW4WXTdsgW05Gjftp
-    lkELPwCAn0DJ+qgJ13sER550EkSkx8YQNPVa513pWyf2BbY6IciWnRdqN+uDV/0trW9Mty
-    2crlmLnb5W2h1kfMDpmCj96YPZnRhCujfsWaGjr773QDoVm/dYA+Ti/H1VH0vaQywnusZW
-    3GCRuJhL3yfTGzqgZrcTikg+RcsOQMmAepSe8TDpzmuOE+b1+Fz0HCk63f/CGKL1Vmi1JR
-    RjIdhP4zB43gz+ZB21Deq+fFZIwJTmymzKZMw1aBSnS45EtrHwIphvc+tHbg
-X-ME-Proxy: <xmx:A-0falU_FTpjDg238smBDQJz02CoF2cadVuCUA6R8agbzy-yipebNg>
-    <xmx:A-0faglmKlwi37cTbjl1oSNIrLtSzIOLY6YL91Puqg3ASxvLZmrWpA>
-    <xmx:A-0faoDazQIU68o916ZPKciFCPk7o5VJVAUIhbUBVuh45lFpABJrlA>
-    <xmx:A-0fal8aPpF2IdqYVglSw29VfVI4GlkkDiIYe2knCXa3xRORw56mKQ>
-    <xmx:BO0fav02tdSAa5_psnn6ISbiQ3n-1LGZL7gAoC72F8j1om3cVFyLJAPF>
-Feedback-ID: i72694427:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id ACAD018E0074; Wed,  3 Jun 2026 04:59:47 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1780477132; c=relaxed/simple;
+	bh=RRmgsr+/Ucs7yo3QcqE55nJgC6ix5tpCFR/cNzak9ho=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=JM+y0e0b9+nnSWCknlScBOH5CnKn8kpn6AINwN6mZcj8qiyrJZwG47UY/BYHa5Sef8pPtznY6Ub7MpIdOri2j2Vx4WG/XukVdPDo3yB4JIuDP0QzpLmVu8fb/s+NJBRPkBdiDvLu3k3t3D65pxw7RHI4exOpVGkripV8u9ct078=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kw9+S6fW; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 969FC1F00893;
+	Wed,  3 Jun 2026 08:58:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780477130;
+	bh=BNbwL43Qsz2CVMZ22XmUyYOvT+3Ab3Xbi5sCvX1on+A=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=kw9+S6fW6C7GPrRrBgDrSfiRdJbbhpBlIJFdfplNpUl9us7YnX7JXRjFmkTXTniO6
+	 Re3/zvUQ7XbnNbDxdEk2bRp9mgw/thwQPnvBsF2MWrPBRfF2aavF4ugppESu6NgqK7
+	 AFQ5L6p6PMfwif/Sy77HlNCompXq1QyJMm8CEvuk7t3Oa1B9f/e3uwb0EIkeIcSFUA
+	 L0IubhfEUU77YL6olmT294EPuzuGY/c19BVX1SU3Z8LbmmlhEOdgP6oawyKfwGWcgU
+	 DWAfi4dN6kvwFR3ER6oioym/6LBFxvXU58oZnINJ+Z4TAxhGNXQb2J4GF/OMcssY0r
+	 wZo2xe6KqyLtg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 02/14] media: mediatek: vcodec: add driver to support
+ vcp
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Kyrie Wu" <kyrie.wu@mediatek.com>
+Cc: conor+dt@kernel.org, linux-media@vger.kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260603084045.17488-3-kyrie.wu@mediatek.com>
+References: <20260603084045.17488-3-kyrie.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 03 Jun 2026 08:58:50 +0000
+Message-Id: <20260603085850.969FC1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-ThreadId: A511MZycEBGs
-Date: Wed, 03 Jun 2026 10:58:24 +0200
-From: "MINETTE Alexandre" <contact@alex-min.fr>
-To: "David Heidelberg" <david@ixit.cz>, "Linus Walleij" <linusw@kernel.org>
-Cc: "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "MyungJoo Ham" <myungjoo.ham@samsung.com>,
- "Chanwoo Choi" <cw00.choi@samsung.com>,
- "Guru Das Srinagesh" <linux@gurudas.dev>,
- "Rob Clark" <robin.clark@oss.qualcomm.com>, "Joerg Roedel" <joro@8bytes.org>,
- "Will Deacon" <will@kernel.org>, "Robin Murphy" <robin.murphy@arm.com>,
- "Kees Cook" <kees@kernel.org>, "Tony Luck" <tony.luck@intel.com>,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, iommu@lists.linux.dev,
- phone-devel@vger.kernel.org
-Message-Id: <48cfedcb-a9f5-402e-9973-f5c175fd2740@app.fastmail.com>
-In-Reply-To: <4b797a3f-01c9-4b02-be98-7b82099c2e0e@ixit.cz>
-References: <20260519-mainline-send-v1-sending-v3-0-3dd7aa125353@alex-min.fr>
- <20260519-mainline-send-v1-sending-v3-3-3dd7aa125353@alex-min.fr>
- <CAD++jLm=BxHsPJ4rgqwY8SvaefZUO+Pfv8E8xizqPsdJZw5weA@mail.gmail.com>
- <298550eb-1bdf-4d7c-8111-8b8f0b5dc056@app.fastmail.com>
- <4b797a3f-01c9-4b02-be98-7b82099c2e0e@ixit.cz>
-Subject: Re: [PATCH v3 3/8] pinctrl: qcom: Register functions before enabling pinctrl
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.15 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[alex-min.fr:s=fm3,messagingengine.com:s=fm1];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	XM_UA_NO_VERSION(0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,mediatek.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid,sashiko.dev:url];
+	TAGGED_FROM(0.00)[bounces-306100-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[alex-min.fr];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[contact@alex-min.fr,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_RECIPIENTS(0.00)[m:david@ixit.cz,m:linusw@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:myungjoo.ham@samsung.com,m:cw00.choi@samsung.com,m:linux@gurudas.dev,m:robin.clark@oss.qualcomm.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:kees@kernel.org,m:tony.luck@intel.com,m:gpiccoli@igalia.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:iommu@lists.linux.dev,m:phone-devel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:kyrie.wu@mediatek.com,m:conor+dt@kernel.org,m:linux-media@vger.kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-306103-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[contact@alex-min.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[alex-min.fr:+,messagingengine.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,alex-min.fr:dkim,alex-min.fr:from_mime,alex-min.fr:email,vger.kernel.org:from_smtp,messagingengine.com:dkim,app.fastmail.com:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 87B05635F30
+X-Rspamd-Queue-Id: 182F7635EDB
 
-Thanks David.
+Thank you for your contribution! Sashiko AI review found 15 potential issue=
+(s) to consider:
+- [Critical] The untrusted firmware-provided message ID is used directly as=
+ an array index without bounds checking, enabling arbitrary out-of-bounds m=
+emory accesses.
+- [High] The Kconfig symbol MTK_VCP_RPROC used in a select statement does n=
+ot exist in the kernel tree.
+- [High] The driver fails to stop the message processing kthread, unregiste=
+r the IPC mailbox, and unregister the notifier during module removal, leadi=
+ng to a Use-After-Free and kernel panic.
+- [High] Inverted logic in `check_vcp_loaded()` causes a 15-second busy-loo=
+p and kernel log spam when the VCP driver is not loaded.
+- [High] The kernel message processing thread permanently exits upon encoun=
+tering an unregistered message ID, causing a Denial of Service for all subs=
+equent IPC.
+- [High] The per-IPI mutex for `VCP_IPI_CORE_DECODER` is never initialized,=
+ leading to a kernel panic when locked.
+- [High] Negative error codes are assigned to the boolean array `ipi_id_ack=
+`, which truncates them to `true` (1) and silently masks IPC failures.
+- [High] Failing to unwind previously registered callbacks on the error pat=
+h in `mtk_vcodec_vcp_load_firmware` leaves dangling references.
+- [High] A stale ACK from a timed-out IPC message can cause subsequent IPC =
+messages to prematurely succeed without waiting.
+- [Medium] Failure to create the IPC processing kthread is silently ignored.
+- [Medium] The driver bus-spins the CPU with `mdelay(1)` while holding a mu=
+tex, causing significant latency spikes.
+- [Medium] The message processing kthread uses `wait_event_interruptible()`=
+ without including `kthread_should_stop()` in the wake condition, guarantee=
+ing a deadlock if `kthread_stop()` is called.
+- [Medium] The VCP device handle is retrieved but never released, leaking t=
+he reference.
+- [Low] The code uses undefined macros and headers, guaranteeing compilatio=
+n failure.
+- [Low] Dead code in `mtk_vcodec_vcp_msg_ipi_send()` checks for impossible =
+negative return values from `wait_event_timeout()`.
+--
 
-I initially considered adding a Fixes: tag, but I do not have a commit I
-can point to. This looks like a latent ordering issue in the
-Qualcomm pinctrl probe path and could have happened at any time until no=
-w.=20
+commit a24833f019af1320e17d5afbc734268e762b3e20
+Author: Yunfei Dong <yunfei.dong@mediatek.com>
 
-The failure became visible on APQ8064 boards such as this jflte, and I a=
-lso
-have a report that the same change helps flo/deb, but I do not want to
-add a misleading Fixes tag as we don't really know which commit really t=
-riggered the race condition.
---=20
-  MINETTE Alexandre
-  contact@alex-min.fr
+media: mediatek: vcodec: add driver to support vcp
 
-Mar 19 mai 2026, =C3=A0 23:03, David Heidelberg a =C3=A9crit=E2=80=AF:
-> On 19/05/2026 10:48, MINETTE Alexandre wrote:
->> Thanks a lot Linus!
->>=20
->> This patch is required for my Samsung Galaxy S4 GT-I9505 to boot but =
-I also
->> have confirmation from another contributor that the same pinctrl patch
->> helped boot the ASUS Nexus 7 (2013), codenamed flo, which is also bas=
+The processor is changed from scp to vcp in mt8196 platform.
+Adding new firmware interface to communicate kernel with vcp
+for the communication method is changed.
+
+> diff --git a/drivers/media/platform/mediatek/vcodec/Kconfig b/drivers/med=
+ia/platform/mediatek/vcodec/Kconfig
+> index bc8292232530b..d23dad5c78ce3 100644
+> --- a/drivers/media/platform/mediatek/vcodec/Kconfig
+> +++ b/drivers/media/platform/mediatek/vcodec/Kconfig
+> @@ -21,6 +24,7 @@ config VIDEO_MEDIATEK_VCODEC
+>  	select V4L2_MEM2MEM_DEV
+>  	select VIDEO_MEDIATEK_VCODEC_VPU if VIDEO_MEDIATEK_VPU
+>  	select VIDEO_MEDIATEK_VCODEC_SCP if MTK_SCP
+> +	select VIDEO_MEDIATEK_VCODEC_VCP if MTK_VCP_RPROC
+
+[Severity: High]
+Does this select statement reference a missing config symbol? According to =
+the
+Kconfig subsystem guidelines, referencing a non-existent config symbol in a
+select statement leaves the intended target unselectable or causes silent
+failures. A search across the kernel tree shows that MTK_VCP_RPROC is never
+defined.
+
+> diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_=
+vcp.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
+> new file mode 100644
+> index 0000000000000..2f3bfcd97958a
+> --- /dev/null
+> +++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
+> @@ -0,0 +1,505 @@
+[ ... ]
+> +#include <linux/remoteproc/mtk_vcp_public.h>
+> +#include <linux/firmware/mediatek/mtk-vcp-ipc.h>
+
+[Severity: Low]
+Does the mtk_vcp_public.h header exist in the kernel tree? Relying on
+undeclared headers will lead to direct build errors.
+
+[ ... ]
+> +static int mtk_vcodec_vcp_msg_process_thread(void *arg)
+> +{
+[ ... ]
+> +	do {
+> +		ret =3D wait_event_interruptible(fw->vcp->msg_queue.wq,
+> +					       atomic_read(&fw->vcp->msg_queue.cnt) > 0);
+
+[Severity: Medium]
+Will this wait condition prevent the kthread from properly stopping if
+kthread_stop() is called during driver unload? Since kthread_should_stop()
+is not included in the wait condition, waking the thread for teardown could
+cause it to immediately go back to sleep.
+
+[ ... ]
+> +		obj =3D &msg_node->ipi_data;
+> +		msg =3D (struct vdec_vpu_ipi_ack *)obj->share_buf;
+[ ... ]
+> +		mtk_vcodec_vcp_ipi_lock(fw->vcp, obj->id);
+> +		handler =3D fw->vcp->ipi_desc[obj->id].handler;
+
+[Severity: Critical]
+Can this code cause an out-of-bounds memory access? The untrusted
+firmware-provided obj->id is used directly as an array index without bounds
+checking. A compromised or buggy firmware returning an ID >=3D VCP_IPI_MAX
+could cause the kernel to access arbitrary memory.
+
+> +		if (!handler) {
+> +			dev_err(&fw->pdev->dev, "invalid ack ipi handler id =3D %d\n", obj->i=
+d);
+> +			mtk_vcodec_vcp_ipi_unlock(fw->vcp, obj->id);
+> +			mtk_vcodec_vcp_free_msg_node(fw, msg_node);
+> +			return -EINVAL;
+> +		}
+
+[Severity: High]
+Should this return -EINVAL instead be a continue? Returning an error here
+aborts the while loop and permanently terminates the kthread context. All
+subsequent VCP IPC messages will time out, completely breaking the decoder
+until the driver is reloaded.
+
+[ ... ]
+> +static int mtk_vcodec_vcp_msg_ipi_send(struct mtk_vcodec_fw *fw, int id,=
+ void *buf,
+> +				       unsigned int len, unsigned int wait)
+> +{
+> +	struct mtk_vcp *vcp =3D fw->vcp;
+[ ... ]
+> +	mutex_lock(&vcp->ipi_mutex);
+> +	feature_id =3D VDEC_FEATURE_ID;
+> +	mailbox_id =3D IPI_OUT_VDEC_1;
+> +
+> +	timeout_jiffies =3D jiffies + msecs_to_jiffies(VCP_SYNC_TIMEOUT_MS);
+
+[Severity: Low]
+Is VCP_SYNC_TIMEOUT_MS defined anywhere in the kernel tree? Relying on an
+undeclared macro will cause compilation failures.
+
+> +	while (!vcp_device->ops->vcp_is_ready(feature_id)) {
+> +		if (time_after(jiffies, timeout_jiffies)) {
+> +			vcp->ipi_id_ack[id] =3D -EINVAL;
+
+[Severity: High]
+Does assigning a negative error code to ipi_id_ack mask IPC failures?
+Because ipi_id_ack is defined as a boolean array in struct mtk_vcp,
+negative error codes like -EINVAL will truncate to true (1). Since the
+function returns this value at the end, callers expecting standard negative
+error codes might incorrectly assume the IPC succeeded.
+
+> +			ret =3D -EINVAL;
+> +			goto error;
+> +		}
+> +		mdelay(1);
+> +	}
+
+[Severity: Medium]
+Is it safe to use mdelay(1) in a loop while holding a mutex? Because the
+code holds vcp->ipi_mutex, it is in a sleepable context. Using mdelay() here
+bus-spins the CPU for up to the timeout duration, wasting CPU cycles and
+causing significant latency spikes.
+
+[ ... ]
+> +wait_ack:
+> +	/* wait for VCP's ACK */
+> +	ret =3D wait_event_timeout(*msg_wq, *msg_signaled, msecs_to_jiffies(IPI=
+_TIMEOUT_MS));
+> +	if (!ret || retry_cnt > 5) {
+> +		vcp->ipi_id_ack[id] =3D VCODEC_IPI_MSG_STATUS_FAIL;
+> +		dev_err(&fw->pdev->dev, "wait ipi ack timeout! %d %d\n", ret, vcp->ipi=
+_id_ack[id]);
+> +	} else if (ret =3D=3D -ERESTARTSYS) {
+> +		dev_err(&fw->pdev->dev, "wait ipi ack err (%d)\n", vcp->ipi_id_ack[id]=
+);
+> +		retry_cnt++;
+> +		goto wait_ack;
+> +	} else if (ret < 0) {
+> +		dev_err(&fw->pdev->dev, "wait ipi ack fail ret %d %d\n", ret, vcp->ipi=
+_id_ack[id]);
+> +		vcp->ipi_id_ack[id] =3D VCODEC_IPI_MSG_STATUS_FAIL;
+> +	}
+
+[Severity: Low]
+Are the checks for -ERESTARTSYS and negative return values dead code?
+wait_event_timeout() strictly returns a positive value (remaining jiffies)
+or 0 (timeout). It never returns negative error codes.
+
+[ ... ]
+> +	*msg_signaled =3D false;
+> +	mutex_unlock(&vcp->ipi_mutex);
+
+[Severity: High]
+Should msg_signaled be cleared before sending the IPC message instead of
+after? If a previous IPC request times out, and the firmware delivers a late
+ACK, the ISR sets the flag to true. The next call to send a message would
+then see the flag as already true and return immediately without waiting,
+potentially reading stale data.
+
+[ ... ]
+> +static int check_vcp_loaded(struct mtk_vcodec_fw *fw)
+> +{
+> +	struct device *dev =3D &fw->pdev->dev;
+> +	struct device_driver *drv;
+> +
+> +	drv =3D driver_find("mtk-vcp", &platform_bus_type);
+> +	if (!drv) {
+> +		dev_err(dev, "find mtk-vcp driver failed, need to reload.");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_vcodec_vcp_get_vcp_device(struct mtk_vcodec_fw *fw)
+> +{
+> +	struct device *dev =3D &fw->pdev->dev;
+> +	int retry =3D 0, retry_cnt =3D 10000;
+> +	phandle vcp_phandle;
+> +
+> +	while (try_then_request_module(check_vcp_loaded(fw), "mtk-vcp")) {
+> +		if (++retry > retry_cnt) {
+> +			dev_err(dev, "failed to load mtk-vcp module");
+> +			return -EPROBE_DEFER;
+> +		}
+> +		usleep_range(1000, 2000);
+> +	}
+
+[Severity: High]
+Does this loop inadvertently busy-wait based on an inverted condition?
+check_vcp_loaded() returns -EINVAL when the driver is not found.
+try_then_request_module() evaluates non-zero values as true. Consequently,
+if the driver is missing, this evaluates as true, skipping the module reque=
+st
+and keeping the while loop running for up to 10,000 iterations while floodi=
+ng
+the kernel log.
+
+[ ... ]
+> +	fw->vcp->vcp_device =3D mtk_vcp_get_by_phandle(vcp_phandle);
+> +	if (!fw->vcp->vcp_device) {
+> +		dev_err(dev, "get vcp device failed\n");
+> +		return -ENODEV;
+> +	}
+
+[Severity: Medium]
+Is the reference acquired by mtk_vcp_get_by_phandle() ever released?
+APIs retrieving a device by phandle increment the reference count, but there
+is no corresponding put operation in the teardown or release code, which
+permanently pins the remote processor driver in memory.
+
+[ ... ]
+> +static int mtk_vcodec_vcp_load_firmware(struct mtk_vcodec_fw *fw)
+> +{
+[ ... ]
+> +	ret =3D mtk_vcp_mbox_ipc_register(vcp_get_ipidev(vcp_device), mailbox_i=
+d,
+> +					mtk_vcodec_vcp_msg_ack_isr, fw, &fw->vcp->share_data);
+[ ... ]
+> +	fw->vcp->vcp_notify.notifier_call =3D mtk_vcodec_vcp_notifier;
+> +	fw->vcp->vcp_notify.priority =3D 1;
+> +	vcp_device->ops->vcp_register_notify(feature_id, &fw->vcp->vcp_notify);
+> +
+> +	if (!fw->vcp->is_register_done) {
+> +		ret =3D vcp_device->ops->vcp_register_feature(vcp_device, feature_id);
+> +		if (ret < 0) {
+> +			dev_err(&fw->pdev->dev, "%d register to vcp fail(%d)\n", feature_id, =
+ret);
+> +			return -EINVAL;
+> +		}
+
+[Severity: High]
+Should the error path deregister the IPC mailbox and notifier?
+Returning directly leaves dangling pointers in the remote processor subsyst=
+em
+pointing to the driver's memory, which could cause a use-after-free.
+
+> +		fw->vcp->is_register_done =3D true;
+> +	}
+> +
+> +	fw->vcp->is_init_done =3D true;
+> +
+> +	mutex_init(&fw->vcp->ipi_desc[ipi_id].lock);
+> +	mutex_init(&fw->vcp->ipi_mutex);
+
+[Severity: High]
+Is the per-IPI mutex for VCP_IPI_CORE_DECODER initialized anywhere?
+Here, ipi_id is hardcoded to VCP_IPI_LAT_DECODER (0). If the core decoder
+attempts to register or process an IPI message, it will lock an uninitializ=
 ed
->> on APQ8064.
->>=20
->
-> Hello Alex,
->
-> if what you wrote about asus-flo/deb is true, then this patch should h=
-ave=20
-> `Fixes: ` tag, as I remember it was booting with few limited patches ~=
-5 years=20
-> back then (only one serious was hack for proper clock bringup).
->
-> David
->
-> --=20
-> David Heidelberg
+mutex.
+
+> +	kthread_run(mtk_vcodec_vcp_msg_process_thread, fw, "vcp_vdec_msq_thread=
+");
+
+[Severity: Medium]
+Should the return value of kthread_run() be verified? If thread creation
+fails, the driver will complete initialization successfully but permanently
+hang on the first IPC communication because no thread exists to process ACK=
+s.
+
+[ ... ]
+> +static void mtk_vcodec_vcp_release(struct mtk_vcodec_fw *fw)
+> +{
+> +	struct mtk_vcp_device *vcp_device =3D fw->vcp->vcp_device;
+> +	struct device *dev =3D &fw->pdev->dev;
+> +	int ret, feature_id;
+> +
+> +	if (!fw->vcp->vcp_device) {
+> +		dev_err(dev, "vcp device is null\n");
+> +		return;
+> +	}
+> +
+> +	if (!fw->vcp->is_register_done)
+> +		return;
+> +
+> +	feature_id =3D VDEC_FEATURE_ID;
+> +	ret =3D vcp_device->ops->vcp_deregister_feature(vcp_device, VDEC_FEATUR=
+E_ID);
+> +	if (ret < 0) {
+> +		dev_err(dev, "deregister feature_id(%d) fail(%d)\n", feature_id, ret);
+> +		return;
+> +	}
+> +
+> +	fw->vcp->is_register_done =3D false;
+> +}
+
+[Severity: High]
+Does this release function adequately stop the kthread, unregister the IPC
+mailbox, and unregister the notifier? When the driver is unbound and the
+devm_kzalloc managed memory is freed, the still-running kthread and remote
+callbacks will access freed memory, causing a kernel panic.
+
+> diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_=
+vcp.h b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.h
+> new file mode 100644
+> index 0000000000000..1072c37078f42
+> --- /dev/null
+> +++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.h
+[ ... ]
+> +struct mtk_vcp {
+[ ... ]
+> +	struct mtk_vcp_ipi_desc ipi_desc[VCP_IPI_MAX];
+> +	bool ipi_id_ack[VCP_IPI_MAX];
+
+[Severity: High]
+Should ipi_id_ack be an integer type instead of a bool?
+The code assigns negative error constants to this array upon failure.
+Those non-zero values truncate to true (1), masking any IPC errors and
+preventing callers from receiving accurate error codes.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603084045.1748=
+8-1-kyrie.wu@mediatek.com?part=3D2
 
