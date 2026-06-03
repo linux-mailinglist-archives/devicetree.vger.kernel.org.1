@@ -1,242 +1,182 @@
-Return-Path: <devicetree+bounces-306104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306106-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ohyeI13xH2r0sgAAu9opvQ
-	(envelope-from <devicetree+bounces-306104-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 11:18:21 +0200
+	id fVGuNcXxH2optAAAu9opvQ
+	(envelope-from <devicetree+bounces-306106-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 11:20:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E74263613B
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 11:18:20 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0345636194
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 11:20:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XfM3kdVz;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306104-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306104-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dmFDoASZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306106-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306106-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 095BF300251B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 09:03:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A7472305304C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 09:05:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87B536309B;
-	Wed,  3 Jun 2026 09:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F3B36EA82;
+	Wed,  3 Jun 2026 09:05:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DC243403F8;
-	Wed,  3 Jun 2026 09:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB6736A36E;
+	Wed,  3 Jun 2026 09:05:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780477411; cv=none; b=eEDWiV7FU+uwFVH241eVExktMW+Dy9Sh+7fbr0q8ui5GISveX/Rm1mCTU6lTvPOOZH/muOqS5agbMSaJqFnygaHrd/tG0vUgn1YXcEzSw2MRMbyyzb37UR2XfQeiYn4B2whx5X80NHlmbttdFdBSw+qucs5YZibvdeqkaiHhw8s=
+	t=1780477503; cv=none; b=qXrGWnKct0RBMVnIWHIgJaRJM4Y9tk1FkvExd7tPUOSWmA10bGICpLQg36hCtvROFr+nYRR+cGzgbP8f85sA9tL5fCxBJmWUEBsIQcuvQLfZ8ZsQ9zAMRgqkpzWw1y4Z9c70Z51kd6lRNRj+OYSMik2eO1C5U8rKuGcUBMSKWa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780477411; c=relaxed/simple;
-	bh=Cn4HqPEzDSKR1VFwEsa1F7fqAGHoPRocDLTYVL+3LSw=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=QNCm4nTx+aLVP2kxW2L4KK9MdGPQXJB4GfMLDJNzozKj9a21euig79G6vFspMqkYQz3sf46qlZ1ruMlyQw6Emki24bgWN22D9bdj+Sfa2SBTRIpgb2xq6GEM1AlFY8omzKMlLgFIUxvjAwD2B6cQemP5zSwyFSbuwWe9HUbv1zg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XfM3kdVz; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C4B21F00893;
-	Wed,  3 Jun 2026 09:03:29 +0000 (UTC)
+	s=arc-20240116; t=1780477503; c=relaxed/simple;
+	bh=HxldAff/4Pxj6IFeKMxms8dDi0QFV22v2tPe8P6kMLY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ucwOmzmtSyGOegWwIz3/BushP2Pp2jHitjeXQsYPuUNeZtds+sQc+cRS9fLbO7LVIt3pKbbcGiICbD2VfxT0NKTiiDF5/RWMUwhv22q4t3ChLAL3cJtIPWL5ZfnQKbWbEBFsHV40tI4EeC9U945cwgBwtTG9XRSZjzYFGhg4yEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dmFDoASZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E53E1F00893;
+	Wed,  3 Jun 2026 09:04:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780477410;
-	bh=fhVQNZwpYP4K7hTWOnVpXeyvnNRq1RJzmb44ElB8KJM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=XfM3kdVz25wn30leUWbR/YQJVxUOr9LqMMvCxP2pl/TlFKUPOPQuV19T18WHrbxET
-	 hYOL36JU+fewX+ySOSkROLkFPcr/eZFU/3q9Wnl1fKOu+XQzcm7zMfjK/DhyDlmlUe
-	 UdjH6S+2SsdJ8hSYTDADxjyyl0XJ8ZGVTZLSTDWdj5qgzRp07ZNNBPX+P6z3qGHlb7
-	 P8VXokCEvNsaBPB4D3cRUgKxWUnFHqN4T20WoVjP+yHS25k0nrlM2kw+qFUZeEC6nP
-	 vcXYE2D+zcjgN30O/bssAjlil0drbrDwMJ/BpZmYTsrjxcyLMyNlUFb7hlWTyov2Ho
-	 vrUMba2QiuAyg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 11/14] dt-bindings: media: mediatek: vcodec: add
- decoder dt-bindings for mt8196
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Kyrie Wu" <kyrie.wu@mediatek.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, linux-media@vger.kernel.org
-In-Reply-To: <20260603084045.17488-12-kyrie.wu@mediatek.com>
-References: <20260603084045.17488-12-kyrie.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 09:03:29 +0000
-Message-Id: <20260603090329.7C4B21F00893@smtp.kernel.org>
+	s=k20260515; t=1780477502;
+	bh=eRTBLDMmxO3KN70i0D2BO9g1Dk3UAuQDRb5bZ2lLMHI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=dmFDoASZ2KMqTeROIdjxiiKy2lHUHeOiYkxtz/Y1+bx6R18wv8namMZUTHitw9Fpv
+	 udW7h38kMUFOPp2pG6kqgloJZEvX9YZvKx1MJNBK25TKrpIyz8Oaocrpjx31H1ZJr8
+	 zvm+RaJloclFKWwIlRz8+uWNcdnBZPigr2myt5XcZbincJQmaNyswwgfSNThhtg9kz
+	 B69RHklNH6xiR8rEzeiAv8V3VIqJ8uzwgN9Ytjk5lV4/VMBUuEeJhmclyDF7WvT9Y3
+	 JqOcHiqDEKhzTX/poYidQXYDs8aVIxi/EJAFY5Eq28OSCXRx8jd9kK6zx/YZy4tUdN
+	 PTFTagtwohu3w==
+Message-ID: <1f9bd9fc-e482-494a-b923-abfa01c510c6@kernel.org>
+Date: Wed, 3 Jun 2026 11:04:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 7/8] ARM: dts: qcom: pm8921: Add USB ID extcon
+To: MINETTE Alexandre <contact@alex-min.fr>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Guru Das Srinagesh
+ <linux@gurudas.dev>, Linus Walleij <linusw@kernel.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, iommu@lists.linux.dev,
+ phone-devel@vger.kernel.org
+References: <20260427-mainline-send-v1-sending-v2-0-dcaa9178007b@alex-min.fr>
+ <20260427-mainline-send-v1-sending-v2-7-dcaa9178007b@alex-min.fr>
+ <20260428-jumping-discerning-oarfish-d2caf1@quoll>
+ <50c433df-d737-45da-93dc-76d365052a6c@app.fastmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <50c433df-d737-45da-93dc-76d365052a6c@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,mediatek.com:email];
-	TAGGED_FROM(0.00)[bounces-306104-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:kyrie.wu@mediatek.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-media@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-306106-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:contact@alex-min.fr,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:myungjoo.ham@samsung.com,m:cw00.choi@samsung.com,m:linux@gurudas.dev,m:linusw@kernel.org,m:robin.clark@oss.qualcomm.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:kees@kernel.org,m:tony.luck@intel.com,m:gpiccoli@igalia.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:iommu@lists.linux.dev,m:phone-devel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8E74263613B
+X-Rspamd-Queue-Id: E0345636194
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [Critical] The VCP message queue processing thread uses the untrusted `ob=
-j->id` directly as an array index without bounds checking, leading to out-o=
-f-bounds memory access and potential arbitrary code execution.
-- [High] The VCP message queue kthreads spawned during firmware load are le=
-aked, leading to a fatal Use-After-Free kernel panic on driver unbind.
-- [High] The `ipi_id_ack` array stores negative error codes into `bool` ele=
-ments, truncating them to `1`, and is never reset on success, which breaks =
-error handling and permanently poisons the IPC state.
-- [Medium] The patch adds the MT8196 compatible string but completely omits=
- the corresponding hardware constraints mentioned in the commit message, br=
-eaking device tree validation for this SoC.
---
-
-commit f686f0ab8d134aa32615f005292674ee98cf9fb9
-Author: Yunfei Dong <yunfei.dong@mediatek.com>
-
-dt-bindings: media: mediatek: vcodec: add decoder dt-bindings for mt8196
-
-This commit adds the device tree binding compatible string for the MT8196
-decoder. The commit message outlines hardware changes, including 12 clock
-inputs, 2 power domains, and the use of VCP instead of SCP.
-
-> The MT8196 decoder differs from previous generations in several
-> key aspects, most notably in its use of VCP instead of SCP.
-> Additionally, the MT8196 enhances codec capabilities by supporting
-> HEVC Main10 profile decoding. To accommodate these hardware changes,
-> the binding constraints specify a total of 12 clock inputs,
-> consisting of 9 decoder clocks and 3 VCP interface clocks,
-> along with 2 power domains covering both the decoder and VCP
-> subsystems.
-
-[Severity: Medium]
-The commit message mentions that the binding constraints specify a total of=
- 12
-clock inputs, 2 power domains, and the use of VCP instead of SCP. However,
-are these constraints actually added in this patch?
-
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subd=
-ev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-s=
-ubdev-decoder.yaml
-> index bf8082d87ac03..74e1d88d30568 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-deco=
-der.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-deco=
-der.yaml
-> @@ -76,6 +76,7 @@ properties:
->        - mediatek,mt8186-vcodec-dec
->        - mediatek,mt8188-vcodec-dec
->        - mediatek,mt8195-vcodec-dec
-> +      - mediatek,mt8196-vcodec-dec
-
-Looking at the diff, it appears only the compatible string is added. The
-required conditional blocks and property constraints for the clocks, power
-domains, and the mediatek,vcp property seem to be missing. Would this cause
-valid MT8196 device tree files to falsely fail schema validation?
-
-I also have some questions regarding the VCP message queue handling in the
-related C driver files.
-
-In drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c:
-
-[Severity: High]
-Does this code leak the vcp_enc_msq_thread kthread?
-
-mtk_vcodec_fw_vcp.c:mtk_vcodec_vcp_load_firmware() {
-    ...
-    kthread_run(mtk_vcodec_vcp_msg_process_thread, fw, "vcp_enc_msq_thread"=
-);
-    ...
-}
-
-It seems the task_struct pointer returned by kthread_run() is discarded, so
-kthread_stop() cannot be called later in mtk_vcodec_vcp_release().
-
-If the thread is leaked, could this lead to a use-after-free crash on driver
-unbind? The leaked thread appears to block indefinitely on the waitqueue in=
-side
-the devres-managed fw->vcp struct:
-
-mtk_vcodec_fw_vcp.c:mtk_vcodec_vcp_msg_process_thread() {
-    ...
-    ret =3D wait_event_interruptible(fw->vcp->msg_queue.wq,
-                                   atomic_read(&fw->vcp->msg_queue.cnt) > 0=
-);
-    ...
-}
+On 03/06/2026 10:39, MINETTE Alexandre wrote:
+> Thanks for the feedback, Krzysztof.
+> 
+> Do you mean that the PM8921 USB ID handling should be exposed by the
+> PM8921 parent node itself, so USB consumers would reference the PMIC
+> directly, e.g.:
+> 
+>   	extcon = <&muic>, <&pm8921>;
+> 
+> I am fine with that model, but it would require more driver changes: the
+> current extcon driver binds to a separate platform device, while the
+> PM8921 parent node is already handled by the PM8xxx MFD driver.
+> 
+> Is that the direction you would prefer for v4?
 
 
-[Severity: Critical]
-Can an invalid firmware payload trigger an out-of-bounds memory access here?
+Unfortunately, I do not get what you refer to. There is no context - no
+comments from me.
 
-mtk_vcodec_fw_vcp.c:mtk_vcodec_vcp_msg_process_thread() {
-    ...
-    mtk_vcodec_vcp_ipi_lock(fw->vcp, obj->id);
-    handler =3D fw->vcp->ipi_desc[obj->id].handler;
-    ...
-    handler(msg, obj->len, fw->vcp->ipi_desc[obj->id].priv);
-    ...
-}
-
-The obj->id value comes from the firmware IPC message payload. If this value
-exceeds the VCP_IPI_MAX bound, it looks like it could directly index outside
-the ipi_desc array, fetching an unvalidated function pointer and immediately
-executing it. Should we add a bounds check for obj->id?
-
-
-[Severity: High]
-Are standard negative error codes truncated in this structure?
-
-drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.h:struct mt=
-k_vcp {
-    ...
-    bool ipi_id_ack[VCP_IPI_MAX];
-    ...
-}
-
-Because ipi_id_ack is declared as a boolean array, assigning negative error
-codes to it will truncate them to 1 (true).
-
-Additionally, it seems the flag is never reset to false on success:
-
-mtk_vcodec_fw_vcp.c:mtk_vcodec_vcp_msg_ipi_send() {
-    ...
-    return vcp->ipi_id_ack[id];
-}
-
-If a single error or timeout sets this flag to true, won't all subsequent
-successful IPC sends falsely report failure because they read the stale true
-state?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603084045.1748=
-8-1-kyrie.wu@mediatek.com?part=3D11
+Best regards,
+Krzysztof
 
