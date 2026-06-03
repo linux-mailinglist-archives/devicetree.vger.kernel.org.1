@@ -1,141 +1,262 @@
-Return-Path: <devicetree+bounces-306149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306150-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QMt/Jl8IIGq5uQAAu9opvQ
-	(envelope-from <devicetree+bounces-306149-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 12:56:31 +0200
+	id TJPdAiMMIGoDvAAAu9opvQ
+	(envelope-from <devicetree+bounces-306150-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 13:12:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4AAC636C23
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 12:56:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66899636E0E
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 13:12:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HQSW2Ldx;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306149-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306149-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aCq1gE4E;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306150-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306150-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1B0DB30958CE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 10:54:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AB5B33123A81
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 11:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4904405869;
-	Wed,  3 Jun 2026 10:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285FC44CF2E;
+	Wed,  3 Jun 2026 11:01:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1D93D4108;
-	Wed,  3 Jun 2026 10:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D996D407592;
+	Wed,  3 Jun 2026 11:01:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780484087; cv=none; b=pJbou3Jm+v1KOUwijbAOwsysG+2ZA8FyZAMWzSOveA4ZX+0ptYbG9wndFckqZnzhjqN3svq96CTtbV3tvGfeAsnxKX19A+3AW2FWYFKvGHsUfud7iVAEyLD9W+gKgb5intkhJu3X07UDrFkO14n7yGbRj9uicixR3JXA+iT0IJM=
+	t=1780484485; cv=none; b=KTg+VC3UZHNvQZUcbC+okUNmIhrH1V+qPTvksk7vft8eQaU/dfa+wLEtYctd7R6olgCCkoNKkbGCdWEUGut9CTPkuPdAjrBhKkPW03b8x5PFCrKCFG2Js5McsZuGgTSZM6K6oRAyQyhqfZ6CouWsl9/vJV4v8yMG3KOojQSKsw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780484087; c=relaxed/simple;
-	bh=fM3lVMoWRNs3P+Z8HysbOxgd9rT1/qMXGot5Kn+63OU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=K2g7D1iwhXvEo7MW/VecZcvDBmAih7hl2DTiP9Vfw7d686aGqaTz++DPUMB0XtVkAeIeNMEQ/xiq1sImgVgniZ9NcKYFVRzOQyHDQsWReeVb/wAcOyHbbYA2Ea3sSQd/OXYnUw8zRNb7TTMyKbaoaDb3+3oYyD2TOP6vLQnSkQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HQSW2Ldx; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F1F31F00893;
-	Wed,  3 Jun 2026 10:54:42 +0000 (UTC)
+	s=arc-20240116; t=1780484485; c=relaxed/simple;
+	bh=olXcyto2y0hNmKyhM1+hLEFVSuUEYUpRrGLf2iRrqPM=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=UDV0wvsvgH4ENoenKtTDPjsaIfJ7dV4wUKDWWek26ukDIrrUvG9jcudw7OBhQhzKeUZgs4Vy3sqDlLqSLY5ZrQ7fiGfET2A9LF/P5hWPQjwyEUb9HW/UUE1jL6dzBebkWEFC1AsO3oUn6Pt9vv6AP9zJBwZG+HErn3TaLHcRqNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aCq1gE4E; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 541FB1F00893;
+	Wed,  3 Jun 2026 11:01:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780484086;
-	bh=SagKm0C+mLWJRzJo5yiqGPYEzpXXDxrNz+NqSO0sSkI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=HQSW2Ldx1czdQqiE7HC/gkmWGHkfmTYFYXNaiWQvZ6EjgnO0ie/05RIvQKVxVBJy0
-	 XF/4JSGJOLFl7v279nSVV1lNBRsI4f4j8u3chSS8XHnoxuLsK35/E1lOEjkJhNDCOH
-	 206TAL/orTdY2J0VL7dDpZ8YKUMz3GNdi85tL15QRjjHMc9oGsiywJiBXM7yd3o4m0
-	 00V+BGUJ9KxTn3Y09VHbsE5By6mq0GMNh2QNs8Z6+tigJFmsW2zHf7MA0jEfB9X7D+
-	 sH39PUUzBVLq02+W/2mzWZJd/BhK2kNxOQgE8+G6jkn5fUYqIQ5CKfCph+3NOTwoj7
-	 xUh0WlhBTPc+Q==
-Date: Wed, 3 Jun 2026 11:54:39 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Taha Narimani <tahanarimani3443@gmail.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, David
- Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "open list:IIO SUBSYSTEM AND DRIVERS"
- <linux-iio@vger.kernel.org>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE
- TREE BINDINGS" <devicetree@vger.kernel.org>, open list
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 RFC v3] dt-bindings: iio: adc: add ad7816/7/8 digital
- temperature sensor / ADC
-Message-ID: <20260603115439.4f0a2264@jic23-huawei>
-In-Reply-To: <20260602-pork-unsightly-fd091c88e5a3@spud>
-References: <20260530165917.55767-1-tahanarimani3443@gmail.com>
-	<20260602-pork-unsightly-fd091c88e5a3@spud>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1780484483;
+	bh=ipbvZ982F1A42hFuMQBnrDar5vsOoLmsPhsUvz2IYOU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=aCq1gE4Er85yZfO6rSdD5+Do1iQF2+ut2hdqU4NH3F30mT8ldMYYVRScq4WewwgTd
+	 1I2iSfnmFxEAaWDXU6wk8euUUVMXFH4ZssRJEj4eY3UHpzvUyI0bvXRF9EZ5C/LiZi
+	 xG+hVrxyhUoJym7183bMLjb/U/ADhX8GcKKJtiF5Q8v23VnJzjvR0i7De7VcZ2W2e2
+	 C138K3x9H5L4Q/QGWbUm1bV3QDS+mTKA6Dt9DOGLOZw1lTzsvNnN/6R6XlAoy7D+WO
+	 lfZp4p3zagwxgjhKQmTW8ItO5cG471juwoBAj/gLTXDPwhNNnM2n6wLvIkoUa+ZSQH
+	 +Beyc/IJKaPcg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 03/14] media: mediatek: vcodec: add driver to support
+ vcp encoder
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Kyrie Wu" <kyrie.wu@mediatek.com>
+Cc: conor+dt@kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260603084045.17488-4-kyrie.wu@mediatek.com>
+References: <20260603084045.17488-4-kyrie.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 03 Jun 2026 11:01:22 +0000
+Message-Id: <20260603110123.541FB1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mediatek.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid];
+	TAGGED_FROM(0.00)[bounces-306150-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_ALL(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:tahanarimani3443@gmail.com,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:kyrie.wu@mediatek.com,m:conor+dt@kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-306149-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,metafoo.de,analog.com,baylibre.com,kernel.org,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[jic23-huawei:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,checkpatch.pl:url]
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E4AAC636C23
+X-Rspamd-Queue-Id: 66899636E0E
 
-On Tue, 2 Jun 2026 18:05:44 +0100
-Conor Dooley <conor@kernel.org> wrote:
+Thank you for your contribution! Sashiko AI review found 6 potential issue(=
+s) to consider:
 
-> On Sat, May 30, 2026 at 04:59:15PM +0000, Taha Narimani wrote:
-> > Document the Analog Devices AD7816, AD7817, and AD7818 digital
-> > temperature sensor and ADC bindings in YAML format.
-> > 
-> > Please note that the driver for this device is currently in drivers/staging.
-> > This patch is sent as an RFC to clean up and standardize the device tree
-> > bindings prior to any major driver refactoring.
-> > 
-> > While reviewing the AD7816/7/8 datasheet to correctly document the properties,
-> > it was noted that the current staging driver attempts to request a 'busy' GPIO
-> > for both AD7816 and AD7817. However, the AD7816 is an 8-pin device and does
-> > not possess a BUSY pin (only the 16-pin AD7817 has it). Therefore, in this
-> > binding, busy-gpios is strictly limited to adi,ad7817.
-> > 
-> > This resolves the checkpatch.pl warnings regarding undocumented DT
-> > compatible strings.
-> > 
-> > Signed-off-by: Taha Narimani <tahanarimani3443@gmail.com>  
-> 
-> This seems probably okay, but I'm not willing to ack it as an RFC.
+Pre-existing issues:
+- [Critical] Untrusted coprocessor input `obj->id` is used directly as an a=
+rray index without bounds checking, causing out-of-bounds memory access and=
+ potential arbitrary code execution.
+- [High] The kthread_run() task pointer is discarded, causing a memory leak=
+ and a fatal use-after-free when the device is unbound.
+- [High] The msg_signaled flag is not reset before waiting, allowing a stal=
+e, delayed ACK to trigger a false positive for a subsequent IPC message.
+- [High] The driver registers an IPC mailbox and a notifier but fails to un=
+register them during device teardown, leading to a Use-After-Free.
+- [High] The message processing thread exits permanently upon receiving an =
+unhandled message ID, hanging the entire driver.
+- [High] The driver fails to initialize the `ipi_desc` mutex for the CORE d=
+ecoder, leading to lockdep warnings and potential crashes.
+--
 
-You will get to see it again in the series moving the driver out of staging
-so wait until then.
+commit 7793240a286886003391171d60e17e6a2e3e89f8
+Author: Yunfei Dong <yunfei.dong@mediatek.com>
 
-Looks fine to me as well.
+media: mediatek: vcodec: add driver to support vcp encoder
+
+Encoder also need to call vcp interface to communicate with vcp,
+add driver to support encoder.
+
+> diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_=
+vcp.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
+> --- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
+> +++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vcp.c
+> @@ -226,8 +228,13 @@ static int mtk_vcodec_vcp_msg_ipi_send(struct mtk_vc=
+odec_fw *fw, int id, void *b
+>  	}
+> =20
+>  	mutex_lock(&vcp->ipi_mutex);
+> -	feature_id =3D VDEC_FEATURE_ID;
+> -	mailbox_id =3D IPI_OUT_VDEC_1;
+> +	if (fw->fw_use =3D=3D ENCODER) {
+> +		feature_id =3D VENC_FEATURE_ID;
+> +		mailbox_id =3D IPI_OUT_VENC_0;
+> +	} else {
+> +		feature_id =3D VDEC_FEATURE_ID;
+> +		mailbox_id =3D IPI_OUT_VDEC_1;
+> +	}
+
+[Severity: High]
+This is a pre-existing issue, but does mtk_vcodec_vcp_msg_ipi_send()
+properly handle stale delayed ACKs?
+
+If wait_event_timeout() times out later in this function, it appears it sets
+the msg_signaled flag to false and returns. However, if a delayed ACK arriv=
+es
+afterward, the worker thread will set the flag to true.
+
+Since mtk_vcodec_vcp_msg_ipi_send() does not re-initialize the msg_signaled
+flag to false before sending the next IPC message, could a subsequent wait
+immediately return success without actually waiting for the new message to
+be acknowledged?
+
+[ ... ]
+
+> @@ -383,6 +397,20 @@ static int mtk_vcodec_vcp_load_firmware(struct mtk_v=
+codec_fw *fw)
+>  	mutex_init(&fw->vcp->ipi_desc[ipi_id].lock);
+>  	mutex_init(&fw->vcp->ipi_mutex);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but are all the ipi_desc mutexes
+properly initialized?
+
+Here, mutex_init() is only called for a single ipi_id. If this path is taken
+for the decoder, it initializes the lock for VCP_IPI_LAT_DECODER, but it om=
+its
+VCP_IPI_CORE_DECODER.
+
+When the decoder client later registers its CORE handler,
+mtk_vcodec_vcp_ipi_register() will attempt to acquire the lock. Could locki=
+ng
+the uninitialized CORE mutex lead to lockdep splats or undefined behavior?
+
+> =20
+> +	if (fw->fw_use =3D=3D ENCODER) {
+> +		kthread_run(mtk_vcodec_vcp_msg_process_thread, fw, "vcp_enc_msq_thread=
+");
+> +
+
+[Severity: High]
+This is a pre-existing issue, but is it safe to discard the task pointer
+returned by kthread_run()?
+
+If the pointer is not saved, kthread_stop() cannot be called in
+mtk_vcodec_vcp_release() during device teardown. Because the fw structure
+is allocated with devm_kzalloc, the memory will be automatically freed when
+the driver unbinds.
+
+Could this cause a use-after-free when the unstopped thread wakes up
+and accesses the freed fw->vcp structures?
+
+[Severity: Critical]
+This is a pre-existing issue, but does mtk_vcodec_vcp_msg_process_thread()
+validate the obj->id from the coprocessor?
+
+Looking at the thread function, it appears the ID from the IPC payload is
+used directly as an array index:
+
+handler =3D fw->vcp->ipi_desc[obj->id].handler;
+
+If a compromised or malicious coprocessor sends an out-of-bounds ID, could
+this read out-of-bounds function pointers and execute them when calling
+handler(), leading to arbitrary kernel code execution?
+
+[Severity: High]
+This isn't a bug introduced by this patch, but how does
+mtk_vcodec_vcp_msg_process_thread() handle invalid message IDs?
+
+If the handler is null for a message, the function executes return -EINVAL;
+instead of using continue; to process the next message.
+
+Does this permanently terminate the kthread loop? If the thread exits,
+wouldn't all subsequent valid IPC messages be queued but never processed,
+permanently hanging active decode or encode instances?
+
+[ ... ]
+
+> @@ -438,8 +466,8 @@ static void mtk_vcodec_vcp_release(struct mtk_vcodec_=
+fw *fw)
+>  	if (!fw->vcp->is_register_done)
+>  		return;
+> =20
+> -	feature_id =3D VDEC_FEATURE_ID;
+> -	ret =3D vcp_device->ops->vcp_deregister_feature(vcp_device, VDEC_FEATUR=
+E_ID);
+> +	feature_id =3D fw->fw_use =3D=3D ENCODER ? VENC_FEATURE_ID : VDEC_FEATU=
+RE_ID;
+> +	ret =3D vcp_device->ops->vcp_deregister_feature(vcp_device, feature_id);
+>  	if (ret < 0) {
+>  		dev_err(dev, "deregister feature_id(%d) fail(%d)\n", feature_id, ret);
+>  		return;
+
+[Severity: High]
+This is a pre-existing issue, but does this release function completely
+tear down the IPC mailbox and notifier?
+
+The driver registers an IPC mailbox via mtk_vcp_mbox_ipc_register() and a
+notifier via vcp_register_notify() in mtk_vcodec_vcp_load_firmware().
+However, these do not appear to be unregistered here during teardown.
+
+Because fw->vcp is managed by devm_kzalloc, could this leave dangling
+callbacks in the IPC or notifier frameworks that might trigger a
+use-after-free if an event arrives after the device is unbound?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603084045.1748=
+8-1-kyrie.wu@mediatek.com?part=3D3
 
