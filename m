@@ -1,417 +1,251 @@
-Return-Path: <devicetree+bounces-305992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-305980-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ydXJApDOH2qZqAAAu9opvQ
-	(envelope-from <devicetree+bounces-305992-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:49:52 +0200
+	id UmInG1/JH2qkpwAAu9opvQ
+	(envelope-from <devicetree+bounces-305980-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:27:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C71A634D22
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:49:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF3D634A50
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 08:27:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=norik.com header.s=default header.b=Xa55WF9p;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305992-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-305992-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=Q+X5c+ot;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-305980-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-305980-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BA6953047352
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 06:48:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A297302F398
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 06:22:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D7A3955CE;
-	Wed,  3 Jun 2026 06:48:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74FC3F4DDF;
+	Wed,  3 Jun 2026 06:22:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013045.outbound.protection.outlook.com [52.101.72.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133953932E8;
-	Wed,  3 Jun 2026 06:48:39 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780469323; cv=none; b=A53/40k2kzV3F0eKq9tuY3RJZGB6AG1wqTEf4cWzkU03+i7/ZfxAbGX2q2cWZ73yjJhvWxIc8yULz+OjbUFMz+fxfSbbh7G27LMg/prQz8AsdjvOTtPP73RUf8hJDl1xMTk70vQSVUd3nO+QcrImYC0ai1XkewMHm7AH3F8ydmc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780469323; c=relaxed/simple;
-	bh=R6mYurVSngnDC42d0BRjIhMQ+eUy9yfltEFAqUJDvVs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s269s7zgk+U3uOandVyCuWsxZdKQym6rGypqaO+Nl13vHhI3mIB80bfbnfOmHxREljVTX/2x1f0slPq1mcLDFeLQ+EEZa0ercbz5lHEKwTCcG3vSbePTxgE2TiS7NPllPVb6XIoyplkkfkM5bvzlM9K2/EO0jaulegOobJiROyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=Xa55WF9p; arc=none smtp.client-ip=46.19.12.180
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
-	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=dbX87z8LjPJwQt55Q5pDLHPc+DkK4Jni9A43QZIbxnk=; b=Xa55WF9p5Oja3fEwvjBjL+hgxr
-	p2b9jhSDVWiE/Ig+Rs2H6HQZ65AnMMPbI6TIFsGZEOIR+rSz5nas0fpKXtIWwuC2MMbXV/ZZ6fm8V
-	avPmC5j+84WHT60jNFWxpQDfdhBappDEmzOBBzKyR7BT7laWwmkAC3oEAtKXVqn/HLZMTNrjz6v6U
-	mN5ysrSrfQII2OFtzIpc2QqjPQZ7KR2eEtjvkA/kix6VRiFNt5iw2eFLzJJBeclErZnFVkUy+i3Wv
-	0fH9k3IEiHUxtH5Jf8AUNzqdlFXyQ9GzxqBkvm1FvPbYe5fo7wQH7mWJ6FCsSI1b+dI6mgCAs8PEK
-	rjjtEgLg==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:48996 helo=florijan-nb..)
-	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.4)
-	(envelope-from <florijan.plohl@norik.com>)
-	id 1wUeuu-00000009fV2-32RJ;
-	Wed, 03 Jun 2026 08:17:28 +0200
-From: Florijan Plohl <florijan.plohl@norik.com>
-To: Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: imx@lists.linux.dev,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53B40391E7E;
+	Wed,  3 Jun 2026 06:22:19 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780467740; cv=fail; b=NJ6y2d9CVPxCVlE/verWcKiO9IoROJcY9P1OfeUuGRw5FTzpG8oxfChsniWfiq+B/pkIN/nERQ+jIRYc6esF1iFoVOjJNjE5ekLf2nlAkNF6asH40vjzfsfyZRrOpiCs5ZNOOYouFFoICK+mtT/2j9gx8Jzi3gQg+/8AkeQ/RTk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780467740; c=relaxed/simple;
+	bh=UUX2AQZoqVvr1kJajfr3XtLK1VVRhO9glx3O3OQzoiw=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=OWajlEW9FtiLfgn+QP0tgY5TpRuExYBKIIRBj9O4VmZUvz8cxJsxFqeX1NFmqCkY/WEu/3uUlb2g/8AjiCr7VyZFJ6w/S706fnLCnTJSCCHP5N7z53hAIs3e0hDXTIY9CP7MXMl/EmVO96dLRtP3ONLKqtUvHh954L5lVwIw258=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=Q+X5c+ot; arc=fail smtp.client-ip=52.101.72.45
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ITelHt/Dlactkc2VocHAvDt/R//z2rbNRsIrJgy7iGWeS+SAFZBWeOzTNAIyAVgxo4kSHQDKcyv9ONYTVrA6pVRsi1N1mrnT7lzuLImlikdmxROpbwEsbK/7EjDqK8xiGQrJhE06puJaKS9eWPKG40ehCZ9WdPk8MIQago3R/xRMHhifad7vHUS2qhdmK/cLKzJUzod1OT3YXXEDf8RNOflnxqE6PmvAvscR/vagyErg0vOyqxiMKELusOy/sezBJbMR/prOal7n0Lv6kJ8AE8pbjriICUXFHasCkfDMYWSyUZPhTQ78LVtXq9TI3trPYpSuLybVJzVDGVdjMx6SvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WNrz8O+DKJMeDpCP0o5zRwZfo8TFuydf8s9R099zxUE=;
+ b=Y8Tgx2lDJrrtYwoPi9VXHJ1rbLWWnk+H8V3GT8FZEKkI0ZP6xxo9iIRKrNRh/GRloxB1PwqkQV9IMANJeP2oaUu63gQgwGxqhMHBt+8WG2axhSLSCdShGbHv8a5nvAylcFrsgdc4CaZCPySLWzkZIyV5GrQnxTJHfn8KTiPdVrwUCrR6jxNbVicHLknG9ALAqJHOdJzv3vrd5wLEZbVaV6mZrpItQ6DmEjMqtBD4tqtzB/sHwjyvPNCXnFXB4u/irewo75qnAKYosWYVlF4jBpfqdt1aJYx4XBFEqXbEK1eo0Y3BBd8GrKJdLxXLovf1HpmoEgk90ZuypQdEKOunxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WNrz8O+DKJMeDpCP0o5zRwZfo8TFuydf8s9R099zxUE=;
+ b=Q+X5c+ot718HGPJ8NelEe9fqVKygJLJuT9PyXNWhfBR9vVdVS8mcJKABbFZNaCo/EWHA61Kvsn+3Utbk+cJdzxbaALp7dfahjq872HtffVTe6DCLqRyV6JCE3Bp4VtivfN0Kbysz/vBdZ5x5+0fv0K+1FZNtfvUorD1j1oSVFryOkYWp8NtJLas8FT5dLy01ncygdh5NVy2VqBTMyQz32Ri2qoVm/r2YppK9gkYq+aro12GazKnU988nPj0hmz+sCjc+Haey+nXbWUWBBSwNdT8Ddc01Fv7mWKCk4A6A7iw2aQTptzrOg64lTNm6z1xcuRD4enaLPLF8fFqaz9d4aw==
+Received: from PAXPR04MB8096.eurprd04.prod.outlook.com (2603:10a6:102:1c7::19)
+ by PA2PR04MB10311.eurprd04.prod.outlook.com (2603:10a6:102:413::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Wed, 3 Jun 2026
+ 06:22:16 +0000
+Received: from PAXPR04MB8096.eurprd04.prod.outlook.com
+ ([fe80::68be:f721:5000:3f2d]) by PAXPR04MB8096.eurprd04.prod.outlook.com
+ ([fe80::68be:f721:5000:3f2d%6]) with mapi id 15.21.0092.006; Wed, 3 Jun 2026
+ 06:22:16 +0000
+From: hongxing.zhu@oss.nxp.com
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	bhelgaas@google.com,
+	frank.li@nxp.com,
+	l.stach@pengutronix.de,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com
+Cc: linux-pci@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de
-Subject: [PATCH v3] arm64: dts: imx{91,93}-phyboard-segin: Add peb-av-18 overlays
-Date: Wed,  3 Jun 2026 08:15:01 +0200
-Message-ID: <20260603061726.2908262-1-florijan.plohl@norik.com>
-X-Mailer: git-send-email 2.43.0
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/3] Add root port reset to support link recovery
+Date: Wed,  3 Jun 2026 14:25:07 +0800
+Message-Id: <20260603062510.3767610-1-hongxing.zhu@oss.nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MA5P287CA0316.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:21a::13) To PAXPR04MB8096.eurprd04.prod.outlook.com
+ (2603:10a6:102:1c7::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cp2.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: florijan.plohl@norik.com
-X-Authenticated-Sender: cp2.siel.si: florijan.plohl@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8096:EE_|PA2PR04MB10311:EE_
+X-MS-Office365-Filtering-Correlation-Id: cbd361d6-f349-4bd3-5e38-08dec13874f7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|19092799006|376014|7416014|921020|6133799003|3023799007|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info:
+	E+BagWV7SH3iGSyaPjgtbOxYNbRsWu5+2VEqb3sjJCsL4PRQlf1z5yfsTJe9ZmvbFldizpYBFmZ8yeM2T0vtUyrwRbAjzoIWfGEnLB/7OoVvt9XxJXRj1nzppxSAR25sPqOqrcJDTBF/S2HefdYKJkUoMJz8kZB8czrBRrWhfa9z/LBnyVqlX2haqQ76oeBLzibvjEle5pq0h+AgpJGwNhgndJ19qcRDXkSr1xqoBhKlP/uXizVHSwngcC7M8fmTatvb5J+jCOuJTcPRs3hYabmQaeTfwoKhy/y8ik7OGC2J0NjBS4K/FF9S68w3/JAPRg95fK/LNaUUhQQ7VkAvTGtAFD+vLbI/4G14Zfb829l5w4PI8kY+U5yjptAoqEWhDa5aWaVKTI5vB0Gpg+746GJ7FNHrm2/JciXlNMCSRobAQaoVnDpjcFSQZDZTlaFQ/IE2R2VA9mX2pOdZDIgJ9mK2dBA6bFlYWWmVfMp/3FAHOWh/u8OxdYvuXNOlV8nP9LbVaACfbEYRoS3wCXCJ/goKkCBRB34CIQ1FWrqr9uu8rbEdumNhNJJ55oFIkyFmn0h4rX8eH6pxG0nQ+yVQ1hvdqWRN3tVWLhU/lEEHbHAU+ZV3GQ5l39iEqXIzToIxqeCRdYF91QuUJ+u7BVmUEKbGHEdhpusFH+eEeH0GPKcffBtRLaxPdB/3rnjsQ4CF77GWeF2LuHmGBAZ7x/CrrzKz5QujS0uGzjN8o507uOo=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8096.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(376014)(7416014)(921020)(6133799003)(3023799007)(18002099003)(56012099006)(11063799006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?5wQcCk5TQImVR3fVX013DbVnqrr9r0cWQYnZkEnhKy5DJbXnl1rhYqTMMODt?=
+ =?us-ascii?Q?Z0KHC2+Ok4QlrcQ4Hl8SMQDSDVBG1Q9qL4Ve7sBqrFQIcZtCcPKlrukzsowq?=
+ =?us-ascii?Q?hwKs2zrx+gi3WoDgeGBZTy+rwDXv8r71elEPm8lUzei1/PxmtyOYWB3SUBOb?=
+ =?us-ascii?Q?JBaqRWAlgcliOpFVvGu6RIaFSVGxX9P+oG7DJlYOqhJ84RFsB7qwMGMiq02C?=
+ =?us-ascii?Q?FLePzxRhrc6b8PyHQt44RCLAqML9AYBzcX6dfPL67SKahncXiMoa1Y0vZVS7?=
+ =?us-ascii?Q?i95x0NX8PiVzoGQWvz/GAusSl53DxfwTpApi7j7wiKB7zEMWJ7EZCJEkUhF+?=
+ =?us-ascii?Q?wAY05QtI3Ml9vRSbRj5MpxgxfHx2/OHtRVLTIdF4/XJ9gOtHPbzjX+/IjL5Z?=
+ =?us-ascii?Q?v6p2dEfrQz84ue4lS9x4wlOZCceUBTHJ/2a9Qfuv0FbJNlfHx9YXQPkoYrhc?=
+ =?us-ascii?Q?fhj/anCfgNroO5lVTf6lH5fIyzZiX6CxRPTQhcFAbfAWq2Ti91g7O3+HfSd2?=
+ =?us-ascii?Q?iP6OqzwImI16AZjLUZlxVXXsmd3DH5EYqwehkyiR+VsWr+TYPjqjp43aOCta?=
+ =?us-ascii?Q?MPMEQyL1M567M9wri0NvRLkwV52PT5nXjl8IM+v/Hwvpl6Rca0qmY0sUZ66w?=
+ =?us-ascii?Q?A/pffi7cy6FvvrHJ23FnhfwvXNpTUEGqIya/IeNUc0Hs5OERiVlgBK2/bPFs?=
+ =?us-ascii?Q?16ifH1DcAO0K+mZ/SRxfdRCEvlo7Kq+4vKV2k8fufgYrzQAWeiC2K20rliDR?=
+ =?us-ascii?Q?fhpe+yfl0zHeJY5VWEgICsivA1J1YeJnuUKgFSQFN11y40r473Ig9Zu30S26?=
+ =?us-ascii?Q?Vd+ssK96W4mfLTdqvjJpMOt7fhFPq7nZxp1jkhovwxJp5Vy3VIXNXEIaX5cX?=
+ =?us-ascii?Q?cV//+XteVAemRGN3ldVgG3q5FblWdMypq9ll5qV1KwbJMDERxgTWbEhlZkqR?=
+ =?us-ascii?Q?dJqNVu8qmWczvDqXWKsN+JVzpLACDze7ZQE1wjn15YmI8ybbn5ZXEfQbDOO+?=
+ =?us-ascii?Q?leSo0MrQHIwdP7PgPZYgJvPplyYtEpQM0ohLuuOIZAOEKWewOpAoXuNXgOIO?=
+ =?us-ascii?Q?WzkwfKs9DtnPYhLzDp4Fy9Ws5PKtjn2j6KS3cpQzbcznP79eBqDjbYVcB5a4?=
+ =?us-ascii?Q?a5K0YtetqOVErRsIDvV/sOAaNITHAbCb8O41YWze83H72RPU07OcFVW6ox/d?=
+ =?us-ascii?Q?624MtiOqEoVA3yAv+tbmKiD+0GJ2Qo6oN2l4jV7T4x4iclt90nipC4PYBXnx?=
+ =?us-ascii?Q?tVF2bxgdnKHE6mfOu7vfRBusf7F3xaTmvPbvB6p64fAYmKE+A4nzp17mxpxa?=
+ =?us-ascii?Q?2GRWd5+OWsQXHzws3NkBr/dqHiwgJbOECig1mrcV8gRwS1u5qSdhSkHfaDmH?=
+ =?us-ascii?Q?DLNDiBPLc1zTnBxWXfB1ps/0qQr7hocwP+iz4Pa9xFGFyzZKesj9Ksv5kTW2?=
+ =?us-ascii?Q?5slRhYbKzngPIh93GRAWTAJ98ak1Kc1tAH1KCXdnTZO22HZUgNRdjAg08EMK?=
+ =?us-ascii?Q?d+YBnxt/tSKb/OmojFZ9VVDNs+AQfrv25fzMu4IACuCRAKkX2vY5Z1vozncJ?=
+ =?us-ascii?Q?6NAExP/C/uCTZcbEuMdbULYAuYYcyj+hB/xMZ6UrvEi3FpnnRsuqFrS9YDt4?=
+ =?us-ascii?Q?G2A/XIio7cqklLwC80ryBZkHLc6R9wS7Lv8YnUHu+KBeCiBmddI4hOU1VVbF?=
+ =?us-ascii?Q?c2ebL94KpiAQnsJmvibpAJ93q9+ouTKzzoripHMWqCw7UEFRujAhk6JKc++6?=
+ =?us-ascii?Q?AU7v9LsW09AA544Pgb1Ek1sqlviP39G1hLO7lbsRKKscdnj1I9Hb?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cbd361d6-f349-4bd3-5e38-08dec13874f7
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8096.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 06:22:16.1142
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vqU4DmcKVbyzXx1NwX0/rpFQ3d9TPpfBRolxmozFRrUIU4ovGuGUYq8cSjq/hXYuGlz/DKUFZkY7iRknIXJ8pRreEV98WA9PvfHzQ6ULSIPEEayqqF7FQcYUAHXy7/pz
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10311
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.54 / 15.00];
+X-Spamd-Result: default: False [3.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[norik.com:s=default];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:upstream@lists.phytec.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DMARC_NA(0.00)[norik.com];
-	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org];
-	HAS_X_GMSV(0.00)[florijan.plohl@norik.com];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	HAS_X_AS(0.00)[florijan.plohl@norik.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[florijan.plohl@norik.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	HAS_X_SOURCE(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-305980-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bhelgaas@google.com,m:frank.li@nxp.com,m:l.stach@pengutronix.de,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-pci@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,google.com,nxp.com,pengutronix.de,gmail.com];
+	FORGED_SENDER(0.00)[hongxing.zhu@oss.nxp.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[florijan.plohl@norik.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-305992-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[hongxing.zhu@oss.nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[norik.com:-];
+	FROM_NO_DN(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_X_ANTIABUSE(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,norik.com:mid,norik.com:from_mime,norik.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[i.mx:url,NXP1.onmicrosoft.com:dkim,oss.nxp.com:from_mime,oss.nxp.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9C71A634D22
+X-Rspamd-Queue-Id: BCF3D634A50
 
-Add overlay for the PHYTEC Audio/Video adapter module PEB-AV-18 on
-phyBOARD-Segin-i.MX91/93 boards. The supported AC220 display is
-Powertip PH800480T032-ZHC19 panel with a backlight and Ilitek
-touch-screen controller.
+Based on the following patch-set[1] issued by Mani.
+Add support for resetting the Root Port for i.MX PCIe to enable link recovery.
 
-Signed-off-by: Florijan Plohl <florijan.plohl@norik.com>
----
+[1] [PATCH v8 0/5] PCI: Add support for resetting the Root Ports in a platform specific way
+
+PCIe links can go down due to various unexpected circumstances. This patch series
+adds root port reset support for link recovery on i.MX PCIe controllers when the
+optional "intr" interrupt is present.
+
+When a link down event is detected, the root port reset uninitializes and
+reinitializes the PCIe controller, then restarts the PCIe link.
+
+On i.MX95 platforms, link events and PME share the same interrupt line.
+Link event interrupts cannot use only an IRQ thread handler because the PME
+driver uses request_irq() to bind the PME interrupt directly with only the
+IRQF_SHARED flag set.
+
+To address this, we register one handler with IRQF_SHARED for link event
+interrupts and manipulate the enable bits of link events to ensure the same
+interrupt source is triggered only once at a time.
+
+Additionally, this series adds 'intr', 'aer', and 'pme' interrupt entries to
+the i.MX6Q PCIe binding to support PCIe event-based interrupts for general
+controller events, Advanced Error Reporting, and Power Management Events
+respectively.
+
+Changes in v6:
+- Use conditional constraints (if/then schema) to specify that these three
+optional interrupts are only valid for the i.MX95 variant, while other
+variants like imx6q should not have them.
+- Change lnk_intr data type from u32 to int to properly handle negative
+error codes returned by platform_get_irq_byname_optional().
+- Replace platform_get_irq_byname() with platform_get_irq_byname_optional()
+to suppress unnecessary error messages when the optional link event IRQ is
+not present in the device tree.
+- To avoid inadvertently clear the pending W1C status bit, clear the W1C
+bit firstly, then do the regmap_clear_bits().
+
+Changes in v5:
+- Update the commit message of the first dt-binding patch for clarity.
+- Add explicit comment explaining that writing 1 to IMX95_LINK_DOWN_INT_STS
+clears the bit
+
+Changes in v4:
+- Set these new added three interrupts as optional interrupt.
+
 Changes in v3:
-- Link to v2: https://lore.kernel.org/all/20260409090432.130489-1-florijan.plohl@norik.com/
-- rebase on top of v7.1-rc6
+- Don't add a new if:block; Drop the maxItems constraint of the interrupts
+  property for i.MX95 PCIe.
+- Add constraints for the interrupts property for other variants.
+- Regarding the ABI break: add descriptions explaining why these new
+  interrupts are mandatory and required by i.MX95 PCIe.
 
 Changes in v2:
-- Link to v1: https://lore.kernel.org/all/20260402070826.970012-1-florijan.plohl@norik.com/
-- Improve commit message to clarify what PEB-AV-18 is
-- Move imx91-phyboard-segin-peb-av-18 dtb entry next to
-  the other imx91 phyboard-segin definition in Makefile
-- Introduce common imx91-93-phyboard-segin-peb-av-18.dtsi
-- Adjust drive-strength values
+- Constrain the new added three interrupt entries to be valid only for the
+  i.MX95 variant using conditional schemas
 
- arch/arm64/boot/dts/freescale/Makefile        |  6 ++
- .../imx91-93-phyboard-segin-peb-av-18.dtsi    | 93 +++++++++++++++++++
- .../imx91-phyboard-segin-peb-av-18.dtso       | 57 ++++++++++++
- .../imx93-phyboard-segin-peb-av-18.dtso       | 57 ++++++++++++
- 4 files changed, 213 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 711e36cc2c99..e87cf999e0a5 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -442,6 +442,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm-s.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin.dtb
-+
-+imx91-phyboard-segin-peb-av-18-dtbs += imx91-phyboard-segin.dtb imx91-phyboard-segin-peb-av-18.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin-peb-av-18.dtb
-+
- dtb-$(CONFIG_ARCH_MXC) += imx91-tqma9131-mba91xxca.dtb
- 
- imx91-tqma9131-mba91xxca-lvds-tm070jvhg33-dtbs := imx91-tqma9131-mba91xxca.dtb imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtbo
-@@ -474,6 +478,7 @@ imx93-phyboard-nash-jtag-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-jta
- imx93-phyboard-nash-peb-wlbt-07-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-peb-wlbt-07.dtbo
- imx93-phyboard-nash-pwm-fan-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-nash-pwm-fan.dtbo
- imx93-phyboard-segin-peb-av-02-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-av-02.dtbo
-+imx93-phyboard-segin-peb-av-18-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-av-18.dtbo
- imx93-phyboard-segin-peb-eval-01-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-eval-01.dtbo
- imx93-phyboard-segin-peb-wlbt-05-dtbs += imx93-phyboard-segin.dtb imx93-phyboard-segin-peb-wlbt-05.dtbo
- imx93-phycore-rpmsg-dtbs += imx93-phyboard-nash.dtb imx93-phyboard-segin.dtb imx93-phycore-rpmsg.dtbo
-@@ -481,6 +486,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-jtag.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-peb-wlbt-07.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-nash-pwm-fan.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-av-02.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-av-18.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-eval-01.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin-peb-wlbt-05.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-phycore-rpmsg.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi b/arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi
-new file mode 100644
-index 000000000000..53d5cbcd798b
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx91-93-phyboard-segin-peb-av-18.dtsi
-@@ -0,0 +1,93 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2026 PHYTEC Messtechnik GmbH
-+ *
-+ * Author: Florijan Plohl <florijan.plohl@norik.com>
-+ */
-+
-+#include <dt-bindings/clock/imx93-clock.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <5>;
-+		power-supply = <&reg_vcc_3v3_con>;
-+		pwms = <&pwm7 0 5000000 0>;
-+	};
-+
-+	panel {
-+		compatible = "powertip,ph800480t032-zhc19";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_panel>;
-+
-+		backlight = <&backlight>;
-+		enable-gpios = <&gpio4 29 GPIO_ACTIVE_HIGH>;
-+		power-supply = <&reg_vcc_3v3_con>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&dpi_to_panel>;
-+			};
-+		};
-+	};
-+
-+	pwm7: pwm-7 {
-+		compatible = "pwm-gpio";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pwm7>;
-+		gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
-+		#pwm-cells = <3>;
-+	};
-+
-+	reg_vcc_3v3_con: regulator-vcc-3v3-con {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC3V3_CON";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+	};
-+};
-+
-+&dpi_bridge {
-+	status = "okay";
-+};
-+
-+&dpi_to_panel {
-+	remote-endpoint = <&panel_in>;
-+	bus-width = <18>;
-+};
-+
-+&lcdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lcdif>;
-+	assigned-clocks = <&clk IMX93_CLK_VIDEO_PLL>;
-+	assigned-clock-rates = <27272728>;
-+	status = "okay";
-+};
-+
-+&lpi2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touchscreen@41 {
-+		compatible = "ilitek,ili2130";
-+		reg = <0x41>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_touchscreen>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpio4 1 GPIO_ACTIVE_LOW>;
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		wakeup-source;
-+	};
-+};
-+
-+&media_blk_ctrl {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso
-new file mode 100644
-index 000000000000..35edf9b0fb0f
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx91-phyboard-segin-peb-av-18.dtso
-@@ -0,0 +1,57 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2026 PHYTEC Messtechnik GmbH
-+ *
-+ * Author: Florijan Plohl <florijan.plohl@norik.com>
-+ */
-+
-+#include "imx91-pinfunc.h"
-+#include "imx91-93-phyboard-segin-peb-av-18.dtsi"
-+
-+&iomuxc {
-+	pinctrl_lcdif: lcdifgrp {
-+		fsl,pins = <
-+			MX91_PAD_GPIO_IO00__MEDIAMIX_DISP_CLK		0x57e
-+			MX91_PAD_GPIO_IO01__MEDIAMIX_DISP_DE		0x51e
-+			MX91_PAD_GPIO_IO02__MEDIAMIX_DISP_VSYNC		0x51e
-+			MX91_PAD_GPIO_IO03__MEDIAMIX_DISP_HSYNC		0x51e
-+			MX91_PAD_GPIO_IO04__MEDIAMIX_DISP_DATA0 	0x51e
-+			MX91_PAD_GPIO_IO05__MEDIAMIX_DISP_DATA1		0x51e
-+			MX91_PAD_GPIO_IO06__MEDIAMIX_DISP_DATA2		0x51e
-+			MX91_PAD_GPIO_IO07__MEDIAMIX_DISP_DATA3		0x51e
-+			MX91_PAD_GPIO_IO08__MEDIAMIX_DISP_DATA4		0x51e
-+			MX91_PAD_GPIO_IO09__MEDIAMIX_DISP_DATA5		0x51e
-+			MX91_PAD_GPIO_IO10__MEDIAMIX_DISP_DATA6		0x51e
-+			MX91_PAD_GPIO_IO11__MEDIAMIX_DISP_DATA7		0x51e
-+			MX91_PAD_GPIO_IO12__MEDIAMIX_DISP_DATA8		0x51e
-+			MX91_PAD_GPIO_IO13__MEDIAMIX_DISP_DATA9		0x51e
-+			MX91_PAD_GPIO_IO14__MEDIAMIX_DISP_DATA10	0x51e
-+			MX91_PAD_GPIO_IO15__MEDIAMIX_DISP_DATA11	0x51e
-+			MX91_PAD_GPIO_IO16__MEDIAMIX_DISP_DATA12	0x51e
-+			MX91_PAD_GPIO_IO17__MEDIAMIX_DISP_DATA13	0x51e
-+			MX91_PAD_GPIO_IO18__MEDIAMIX_DISP_DATA14	0x51e
-+			MX91_PAD_GPIO_IO19__MEDIAMIX_DISP_DATA15	0x51e
-+			MX91_PAD_GPIO_IO20__MEDIAMIX_DISP_DATA16	0x51e
-+			MX91_PAD_GPIO_IO21__MEDIAMIX_DISP_DATA17	0x51e
-+		>;
-+	};
-+
-+	pinctrl_panel: panelgrp {
-+		fsl,pins = <
-+			MX91_PAD_CCM_CLKO4__GPIO4_IO29			0x1133e
-+		>;
-+	};
-+
-+	pinctrl_pwm7: pwm7grp {
-+		fsl,pins = <
-+			MX91_PAD_CCM_CLKO3__GPIO4_IO28			0x1133e
-+		>;
-+	};
-+
-+	pinctrl_touchscreen: touchscreengrp {
-+		fsl,pins = <
-+			MX91_PAD_ENET1_MDIO__GPIO4_IO1			0x11e
-+			MX91_PAD_ENET1_RD2__GPIO4_IO12			0x1133e
-+		>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso
-new file mode 100644
-index 000000000000..11f7d7502be4
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin-peb-av-18.dtso
-@@ -0,0 +1,57 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2026 PHYTEC Messtechnik GmbH
-+ *
-+ * Author: Florijan Plohl <florijan.plohl@norik.com>
-+ */
-+
-+#include "imx93-pinfunc.h"
-+#include "imx91-93-phyboard-segin-peb-av-18.dtsi"
-+
-+&iomuxc {
-+	pinctrl_lcdif: lcdifgrp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO00__MEDIAMIX_DISP_CLK		0x57e
-+			MX93_PAD_GPIO_IO02__MEDIAMIX_DISP_VSYNC		0x51e
-+			MX93_PAD_GPIO_IO01__MEDIAMIX_DISP_DE		0x51e
-+			MX93_PAD_GPIO_IO03__MEDIAMIX_DISP_HSYNC		0x51e
-+			MX93_PAD_GPIO_IO04__MEDIAMIX_DISP_DATA00	0x51e
-+			MX93_PAD_GPIO_IO05__MEDIAMIX_DISP_DATA01	0x51e
-+			MX93_PAD_GPIO_IO06__MEDIAMIX_DISP_DATA02	0x51e
-+			MX93_PAD_GPIO_IO07__MEDIAMIX_DISP_DATA03	0x51e
-+			MX93_PAD_GPIO_IO08__MEDIAMIX_DISP_DATA04	0x51e
-+			MX93_PAD_GPIO_IO09__MEDIAMIX_DISP_DATA05	0x51e
-+			MX93_PAD_GPIO_IO10__MEDIAMIX_DISP_DATA06	0x51e
-+			MX93_PAD_GPIO_IO11__MEDIAMIX_DISP_DATA07	0x51e
-+			MX93_PAD_GPIO_IO12__MEDIAMIX_DISP_DATA08	0x51e
-+			MX93_PAD_GPIO_IO13__MEDIAMIX_DISP_DATA09	0x51e
-+			MX93_PAD_GPIO_IO14__MEDIAMIX_DISP_DATA10	0x51e
-+			MX93_PAD_GPIO_IO15__MEDIAMIX_DISP_DATA11	0x51e
-+			MX93_PAD_GPIO_IO16__MEDIAMIX_DISP_DATA12	0x51e
-+			MX93_PAD_GPIO_IO17__MEDIAMIX_DISP_DATA13	0x51e
-+			MX93_PAD_GPIO_IO18__MEDIAMIX_DISP_DATA14	0x51e
-+			MX93_PAD_GPIO_IO19__MEDIAMIX_DISP_DATA15	0x51e
-+			MX93_PAD_GPIO_IO20__MEDIAMIX_DISP_DATA16	0x51e
-+			MX93_PAD_GPIO_IO21__MEDIAMIX_DISP_DATA17	0x51e
-+		>;
-+	};
-+
-+	pinctrl_panel: panelgrp {
-+		fsl,pins = <
-+			MX93_PAD_CCM_CLKO4__GPIO4_IO29			0x1133e
-+		>;
-+	};
-+
-+	pinctrl_pwm7: pwm7grp {
-+		fsl,pins = <
-+			MX93_PAD_CCM_CLKO3__GPIO4_IO28			0x1133e
-+		>;
-+	};
-+
-+	pinctrl_touchscreen: touchscreengrp {
-+		fsl,pins = <
-+			MX93_PAD_ENET1_MDIO__GPIO4_IO01			0x11e
-+			MX93_PAD_ENET1_RD2__GPIO4_IO12			0x1133e
-+		>;
-+	};
-+};
--- 
-2.43.0
+[PATCH v6 1/3] dt-bindings: imx6q-pcie: Add optional intr/aer/pme
+[PATCH v6 2/3] arm64: dts: imx95: Add dma, intr, aer and pme
+[PATCH v6 3/3] PCI: imx6: Add root port reset to support link
+
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml |  29 +++++++++++++++++++++
+arch/arm64/boot/dts/freescale/imx95.dtsi                  |  16 +++++++++---
+drivers/pci/controller/dwc/pci-imx6.c                     | 123 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+3 files changed, 164 insertions(+), 4 deletions(-)
 
 
