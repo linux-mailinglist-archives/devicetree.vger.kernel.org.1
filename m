@@ -1,73 +1,71 @@
-Return-Path: <devicetree+bounces-306428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306430-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JN7EEM9aIGpQ1wAAu9opvQ
-	(envelope-from <devicetree+bounces-306428-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 18:48:15 +0200
+	id CCtNM5leIGof2AAAu9opvQ
+	(envelope-from <devicetree+bounces-306430-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 19:04:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A59F3639E7F
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 18:48:14 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0EEF63A057
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 19:04:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="MF/0kdZd";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306428-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306428-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=C7BrbTck;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306430-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306430-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7861B3036E54
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 16:40:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DC9FD3014429
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 16:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4374F3E9C1A;
-	Wed,  3 Jun 2026 16:40:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45A373E6388;
+	Wed,  3 Jun 2026 16:43:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D1EF3DA5B4;
-	Wed,  3 Jun 2026 16:40:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ED812D238F;
+	Wed,  3 Jun 2026 16:43:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780504822; cv=none; b=gArXqTU7Hh4HF6aqWLSlMexQvkMMZMOXyLtSv7gExgeG5cd8u9wJJuBiEoaUgq3lpEJX61JTD0zg/vu73/DUihqyj/e6eA5UeduXJmWzW5HVJi2V5gV6jn0TcbXUPKIgVa9DH9oht4JPuGEOvo0S18IkYqk4miH8LXdgF1cXIM4=
+	t=1780504998; cv=none; b=IfZxZq6zHigkd+1hqyCt3AZYrGnerD9pjshzDhgrviiSPDxBr4csX94Prd+kxiOQdy1J73mmyJuakv3Sa5wnVZg4axkDrf/vsk64T65Y/eFMeZKDX3Pp6Pw0gax3hR54xJ9vyHo+Y3N9lCQMafPEcUsKTodRis3rnlNLXpatCag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780504822; c=relaxed/simple;
-	bh=luc4L6XhnT5LeMOhHEbjH+HurAt5HycuPtqvc7Gzf1g=;
+	s=arc-20240116; t=1780504998; c=relaxed/simple;
+	bh=dntpDrMGqALzXTr+vxV/nyexYipxCv7gzTVl+1ltPdo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tz1XbOixbPkYLRIq/wa+cJLrFsowiiFsVzxMRo0H/5LbsfOI7zUdRG7acPRYhFVdHaXDuG1xc10LJplhRK+lATbGkl0LNlrp7/UgichAx6plsciGApLQR2w4IIBKTt8li5AsTYbjfWwni20qT39vcyHYnrW/rKhaW41znHxtu6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MF/0kdZd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D35DE1F00893;
-	Wed,  3 Jun 2026 16:40:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FEzLPK5XYO27U2sc3gCEfAUW4FGGBtfQkLJf8IZ9gUf0kSGQ7mphJ3vUQpaztMPclUqamrEu/uT5jGpLAJaXsh8YxHCJl8XWwso7ieLBDL83/Tl2jUk/HEJxoPp0ybOledT+madGOmxkGp/DJr6HjR4sQRx1hCD9Iny2zNnqwyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C7BrbTck; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 955271F00898;
+	Wed,  3 Jun 2026 16:43:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780504821;
-	bh=luc4L6XhnT5LeMOhHEbjH+HurAt5HycuPtqvc7Gzf1g=;
+	s=k20260515; t=1780504996;
+	bh=Z4JstCrvgUHq+IUxWBlO/QMKc5rWKAgnPJ1UKfXNnss=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=MF/0kdZdsTn0ndmOwHBtYvNd9WB3YZ/gujPrpBgp8Cc3chrki7SHBBuctzf3/wq55
-	 tzub1mNw9M2c6YNkjtqJHxdTU3d66x+gwYX6YimJNJtPfBPX8gGDFX0jLdpEw+G7jz
-	 ppBjus1OthH9JzY+nFRolUHeXgyG73FlALmTvWwS/RrdVSRk2q28MO4TWwP8c/8U2j
-	 dZS6X7BCovo64YOazj/wBcx7p4sYa/YPCuQUkcH14aKlVl3LErL8b6hjTK8xiW94FP
-	 JasSEsKJ9TgxdEFgN1RHQahxdf/KX6/X2RXW4bcUBzDNuaywhNXMWjrOwtUhN1K5aP
-	 3jZKJ92hLF0Wg==
-Date: Wed, 3 Jun 2026 17:40:15 +0100
+	b=C7BrbTckQvXcWoV7k+AEBCsEVHxBwBKyRVbQMNUucK6Up4k+mlR/D2B+ty9bTqLC6
+	 TXyYpg2iAmZbYrcSf/IMx42niQl+mHUvOCBb0t+zktt8WMQQcFeeZ+L8BsSY4TYrFe
+	 SMxLlsrDm6jSETCY+mtmezh1ig1ZWzqM8StHwFWddZgXGWQRMy7Lzaz1dLLvobS5Ii
+	 dA0lkSooslWUAphAp8eOjJTAjX54a8pnk1nPZ0IJK6im27QMOvdGhM7NfhvaKPvaXt
+	 s7dJq2RJ1BZSMP41cVQv4yxHtDPtyuHL388CA2+C9GMN7wvIH310E7UgCTsSDcd20Z
+	 it1IkgBNDLRfQ==
+Date: Wed, 3 Jun 2026 17:43:11 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Santhosh Kumar K <s-k6@ti.com>, broonie@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, richard@nod.at,
-	vigneshr@ti.com, pratyush@kernel.org, mwalle@kernel.org,
-	takahiro.kuwano@infineon.com, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mtd@lists.infradead.org, praneeth@ti.com, u-kumar1@ti.com,
-	a-dutta@ti.com
-Subject: Re: [PATCH v3 01/13] spi: dt-bindings: allow spi-max-frequency to
- specify a frequency pair
-Message-ID: <20260603-balance-encounter-94f69e1577f3@spud>
-References: <20260527175527.2247679-1-s-k6@ti.com>
- <20260527175527.2247679-2-s-k6@ti.com>
- <20260528-clergyman-kindling-20971775ba78@spud>
- <eaa75113-2b89-468d-aca8-932bc7e33a7d@ti.com>
- <87cxy92llq.fsf@bootlin.com>
- <20260602-aptly-bunkbed-1bd3a8d63d54@spud>
- <875x3zzkji.fsf@bootlin.com>
- <20260603-neatly-twine-e89b923f5cb6@spud>
- <87o6hry4d4.fsf@bootlin.com>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Paul Walmsley <pjw@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Bartosz Golaszewski <brgl@kernel.org>, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
+Subject: Re: [PATCH v3 03/21] dt-bindings: pinctrl: Add
+ starfive,jhb100-sys0-pinctrl
+Message-ID: <20260603-groin-valid-a1d4445f7a6b@spud>
+References: <20260603055347.66845-1-changhuang.liang@starfivetech.com>
+ <20260603055347.66845-4-changhuang.liang@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,9 +73,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jfR/k67CoFQAEo41"
+	protocol="application/pgp-signature"; boundary="nFVpdkwrvTMCfj3J"
 Content-Disposition: inline
-In-Reply-To: <87o6hry4d4.fsf@bootlin.com>
+In-Reply-To: <20260603055347.66845-4-changhuang.liang@starfivetech.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -86,17 +84,17 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306428-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306430-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_RECIPIENTS(0.00)[m:miquel.raynal@bootlin.com,m:s-k6@ti.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:richard@nod.at,m:vigneshr@ti.com,m:pratyush@kernel.org,m:mwalle@kernel.org,m:takahiro.kuwano@infineon.com,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:praneeth@ti.com,m:u-kumar1@ti.com,m:a-dutta@ti.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:changhuang.liang@starfivetech.com,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kernel@esmil.dk,m:pjw@kernel.org,m:aou@eecs.berkeley.edu,m:palmer@dabbelt.com,m:alex@ghiti.fr,m:p.zabel@pengutronix.de,m:brgl@kernel.org,m:linux-gpio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:lianfeng.ouyang@starfivetech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
@@ -111,75 +109,45 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,spud:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,spud:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A59F3639E7F
+X-Rspamd-Queue-Id: C0EEF63A057
 
 
---jfR/k67CoFQAEo41
+--nFVpdkwrvTMCfj3J
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 03, 2026 at 06:29:27PM +0200, Miquel Raynal wrote:
->=20
-> >> >> > The non-PHY frequency is a controller limitation/capability rathe=
-r than
-> >> >> > a flash characteristic, so it seems more appropriate to keep it i=
-n the
-> >> >> > controller driver as Conor suggested.
-> >> >>=20
-> >> >> The non tuned frequency is the maximum frequency one could use
-> >> >> reliably. It is not controller specific. It is mostly board specifi=
-c,
-> >> >> and to some extend may also be chip specific.
-> >> >>=20
-> >> >> The tuned frequency is the maximum frequency one could use reliably
-> >> >> after line a controller or chip specific training procedure. It is
-> >> >> also the result of an aggregated set of non discoverable hardware
-> >> >> limitations:
-> >> >> - board routing
-> >> >> - chip capability
-> >> >> - controller capability
-> >> >
-> >> > Right, and this I guess is what scuppers letting the controller driv=
-er
-> >> > sort the configuration out itself and leaving the property as-is.
-> >> > It could be that the speed in spi-max-frequency is lower than the "b=
-ase
-> >> > speed" of the controller but because of board routing or device
-> >> > capability that the tuned mode is still required, right?
-> >>=20
-> >> I do not actually expect any tuned mode/frequency to be mandatory.
-> >
-> > I think you misunderstood my use of "required", I meant that the new
-> > property/information was needed in the scenario I described, not that it
-> > should be a required property in a binding.
->=20
-> Yes I misunderstood the term indeed. However I still fail to catch what
-> you meant here, I'm sorry. Would you mind rephrasing?
+On Tue, Jun 02, 2026 at 10:53:29PM -0700, Changhuang Liang wrote:
 
-I was talking about a scenario where you want to use the tuned mode to
-achieve the maximum rate because of the device and/or board configuration,
-but the rate is below the point where the controller would need tuning.
-Say the controller needs tuning above 8 Hz but the conditions require
-tuning to achieve more than 5 Hz. In this example, if the device can do
-6 Hz, spi-max-frequency (in the current form) would be set to 6 Hz, and
-the controller would not enable the tuned mode, leading to problems
-because the inflection point determined from the controller compatible
-of 8 Hz would not have been reached.
+> +          slew-rate:
+> +            enum: [ 0, 1 ]
+> +            default: 0
+> +            description: |
+> +                0: slow (half frequency)
 
---jfR/k67CoFQAEo41
+Half frequency? Slew rates are usually measured in volts per second, not
+hertz. Do you know what the slew rates actually are and could put them
+in here as the real units? Or is it just "slow" and "fast" in your docs
+with no precise numbers?
+
+I've got no questions other than this, so once this question is sorted,
+I'll be happy to ack all the bindings provided they're effectively the
+same.
+
+> +                1: fast
+
+--nFVpdkwrvTMCfj3J
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiBY7wAKCRB4tDGHoIJi
-0gfaAP0RkM4eZhjmrtl+tS3WyfzVSDCbOdy5h+wDJtvyjB/fyAEA5L95wFVM8cTS
-9cLHUtafen8uIvPf2HFXeFNdH9wCjwM=
-=/26Q
+iHQEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiBZnwAKCRB4tDGHoIJi
+0vpAAPiFQ0YARyxgZCQaUynrtzsvBAbt0yy5kxy2vpklo/C5AQDWjzznOIi1/0El
+tLNQlHJKrwJ3v5PG6RXO8m1+IwCdBA==
+=GdZR
 -----END PGP SIGNATURE-----
 
---jfR/k67CoFQAEo41--
+--nFVpdkwrvTMCfj3J--
 
