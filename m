@@ -1,258 +1,162 @@
-Return-Path: <devicetree+bounces-306209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306210-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fprxHYUfIGrTwAAAu9opvQ
-	(envelope-from <devicetree+bounces-306209-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:35:17 +0200
+	id OcmnAH4cIGojwAAAu9opvQ
+	(envelope-from <devicetree+bounces-306210-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:22:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D0826378F8
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:35:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 871C2637717
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:22:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AJJbVF0J;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306209-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306209-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=linaro.org header.s=google header.b=WoOVKHkc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306210-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-306210-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F3383300E17E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 12:21:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EFE91301AA47
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 12:22:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30F93CF02C;
-	Wed,  3 Jun 2026 12:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B5023D45D4;
+	Wed,  3 Jun 2026 12:22:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFCF4395AD3
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 12:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C29193A16AB
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 12:22:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780489293; cv=none; b=Fmf267+9AkGHotU2p5yQRjDF0Lf2vsQ4ts0W2ocOSfjc36SQQeDMx4diaYWLkmdBiMbwaCevjjgTEMtNlYl6X18ceNa0n1JjRgRXsz8Q3iotqB5pTULF//L0uM7ky5WhW72yoGt+uYyZURAMKpxGLuKtaZ3C0SzjMGhzeKxa+xA=
+	t=1780489337; cv=none; b=I7NTPOmTih4cgGA4yV8oFYgEciCNxt7KDBP7/HhsEWQbqY//yikdU41ZQm9QuNDcBNJW9sID7g42pjw7vpiWoN78xZV8/cQBsN3gv4nxYfAUp7gcjQO24Tc+NIPniSgssdOjW+8jYovbRBRGFtBhl7OOguTrS5vULn1/zmcdeEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780489293; c=relaxed/simple;
-	bh=Ij6ebVvCkmso5cH2H4ztjK1lDCD4XYNO58CyQr2gOXQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=awXlYWbGijJn5MEG6F7vjJUPfBC6+G7ln7i78shBVVSDjh/XQf+9cMfWkZCjdnX8QDCryvVowjTUW/MDvKuN2O4bdH81FIiViggvXME4s2IWkvJnH82jh00127iNZqcksVfKdy/c3/usxfEf8GcT9h/zVOMA9FvaDPPVau2Fvss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AJJbVF0J; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99DE01F00893;
-	Wed,  3 Jun 2026 12:21:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780489292;
-	bh=JTYtIX+uJFZgrZO0fgEM4Cl9qSRm+lSN+DO/pDz7VTo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=AJJbVF0JVPfDLfbySEDUV72XsZbtR2/wL1i6EJnNhDHhGah/dK+IB/oebpXiVWPbw
-	 MjDvbrhQCXjk4oCo4mUFeMGo5bOEhqOPpFm3GFR7yvbqX9IJlkcIuKIetglbfcqPJD
-	 4JV2KzdYcE/U57hGdgiyBUV7zEQajd8xDArAqCWjgEhOJJ5UADfWBXnJ/8qwNH3kLm
-	 drWBYHAklv+nB70gVXnU2e8iXfiiQP8g6nn+cnwThbyronq/gDJoPzBh4d0qcIesx5
-	 3v0m/YxRfH6x9+FfPkYY6g6M+OHSU/XaCYM8EzbkpL2rDbVoO5RFW0zi+N4NYoOWtg
-	 QXVRHAc9qb4zQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] clk: amlogic: Add A9 peripherals clock
- controller driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jian Hu via B4 Relay" <devnull+jian.hu.amlogic.com@kernel.org>
-Cc: neil.armstrong@linaro.org, robh@kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, conor+dt@kernel.org
-In-Reply-To: <20260603-a9_peripherals-v2-2-ee1b8c0a1e6c@amlogic.com>
-References: <20260603-a9_peripherals-v2-2-ee1b8c0a1e6c@amlogic.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 12:21:31 +0000
-Message-Id: <20260603122131.99DE01F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780489337; c=relaxed/simple;
+	bh=Oj1OP5B0k7dqDDl5yO9rCbKPUffT1+gV4fG7tK/igTw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=c27osvQfxOf7YGx+8jskud/zQS6V9gXe7e2AWIulzwUgD507fl0Wk2K+f2KhI2pGc54f5bTbx8+DZSSswpqabMfmp12M7iDiuoi4hm+40JQOOLf8DDnqPR/LxTDOIzHTXjw4VM/jGDvv5Joqqf5MvRNh2PIcKRFlyWN4aMnnvXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WoOVKHkc; arc=none smtp.client-ip=209.85.208.46
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-68ed5b52767so406580a12.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 05:22:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1780489334; x=1781094134; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LR+NPsTQNV2+0FxZsktMoZucngyJOnTRFU/6OwaVMIY=;
+        b=WoOVKHkcQGpRVrTCg87fLUidTriCeQ6ESGeQoToDmsC0AwOL5K2gX6HIK2K+yzUD6u
+         mhklh5fiVrTXQrv0zTOZC9KtMFc5WXnuidsNtkppqoffSXJytFsIURmPvuw+FHEn3KFP
+         +yucxIjO9ZxN4sce+1G6YzEBFwbTBn0pKC+a/h3O0IwSG/TQ+5KdW8/Sni8lIxtKSes+
+         gTV5Ud1znpur+lJAcUhuj55TmYcBBW1xrwPULBTOyBWKPUqJcfWxwXXOi0kTmloZ0a4B
+         dftnovvabnl6GRocCFMP4dcQqdDCTnGlwUcrnnrLT2LkrI3F34a3LuI/C6xdhV4nUbXG
+         S3kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780489334; x=1781094134;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LR+NPsTQNV2+0FxZsktMoZucngyJOnTRFU/6OwaVMIY=;
+        b=J10Ym0ppukQ4VH6KFxJV4wxUSBO9KQ0772p4/mZWTabYzGdmssS1Yf3KoKTLB7eNky
+         I/ZHt2DGa8MsLK9aUy2dkXA2AA3Z9t70lQiTu6TeiWgnrYo3XdEvr4ZypSS0yKOeJG6U
+         emHw/rzIidawG+fIADr2Fee+T1thM5gsj9z8ODLB9hMoak/pxrHt3IBQna6iMKrzE36o
+         4olnnXxPTn4G09OkIJQ6fYP+TFRzvknegStJGa43Eam6JKgCVEQc/a49QBEFIyya6RDD
+         ryMQmyYbowSMDZp+oZDgvmNqZ3EDKQ2zZkc3IGHLCaXQiyhNb+tm54PoFTfSsXjFHf6H
+         wcmA==
+X-Forwarded-Encrypted: i=1; AFNElJ/P/YCLUS0Ijs/CXUIDrlGqQErzOdq5PMzHpNGPbPHU7SRWcGpNKhHxC6ydOrPmAkZ91UyP2tm4keBM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/ZCK0P+3mDB3MZCecUtJUcEUFQsJOFxpJ+XS/vAjt9XmpXzfS
+	+4PMIkWA/E94Q/5bQkuZ6AIU+G0zbEEdOso00WEiIByojYekraWobEmHJpD2Cdh8udg=
+X-Gm-Gg: Acq92OG8pTh9UKd7+u+rJ39UveDZkzoABQX+eQYpGfiWJ6CQP2V6cv12XHnXZ+2w8AE
+	O4f8KTi0SlgcWDXAQxQcejfj1BEf6dtI9ovnfVjzwUkNvF1OXvit8YH3kkng3/2nkbQtGyCLJp3
+	QlFVjgAfPzw9O0QKVG+UAjV+0yrCi4/dWVdN9BtabNQ4Yo5ItLfp/iU/YKeJY+oIuUc1W4tiaQX
+	fAE+b6m49I8cORCvd0+kZ0gsitswdq1H11b76wlLeJ44AneyOxoAwWZ4YSDk28WofrRnCGXkmrA
+	cSPNpEwZ6zQaqR+Jd+1pjmdPBnVUhVDDJQtvrhc+nvgdDH4SiSHS4UwUI1xfdXc29u6uTFf20x0
+	oZ8jsAMZSdVEYzDa4Queq6e1RPU5e/QjA5MjJk7SjazyJc8036FrKApWjB45p7XjZudDl+vyFwu
+	93O2ho7fRkI4VRZNpj/lEYqXOQdsLj9psPA1M4NuPtmhMnsA==
+X-Received: by 2002:a05:6402:348e:b0:689:816a:5367 with SMTP id 4fb4d7f45d1cf-68e6be91165mr1508878a12.0.1780489333977;
+        Wed, 03 Jun 2026 05:22:13 -0700 (PDT)
+Received: from [192.168.0.101] ([109.77.42.178])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-68e65851786sm1064884a12.17.2026.06.03.05.22.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Jun 2026 05:22:12 -0700 (PDT)
+Message-ID: <f6c91099-0002-4580-a5e8-5611b089024b@linaro.org>
+Date: Wed, 3 Jun 2026 13:22:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/2] phy: qcom-mipi-csi2: Add a CSI2 MIPI DPHY driver
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Bryan O'Donoghue
+ <bod@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260523-x1e-csi2-phy-v8-0-a85668459521@linaro.org>
+ <20260523-x1e-csi2-phy-v8-2-a85668459521@linaro.org>
+ <54904b61-222d-4600-ad4c-c03a9952d337@linaro.org>
+ <be3e1abe-5148-4247-930b-2e23164eea73@linaro.org>
+ <c6aetoiz3dcedlxwjmt5cqh2mngswtmanf6p4s2molemnviwdc@btotpaqwcsoy>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <c6aetoiz3dcedlxwjmt5cqh2mngswtmanf6p4s2molemnviwdc@btotpaqwcsoy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-306210-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306209-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto,amlogic.com:email];
-	FORGED_RECIPIENTS(0.00)[m:devnull+jian.hu.amlogic.com@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-amlogic@lists.infradead.org,m:conor+dt@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:vladimir.zapolskiy@linaro.org,m:vkoul@kernel.org,m:kishon@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:bod@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,jian.hu.amlogic.com,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linaro.org:mid,linaro.org:from_mime,linaro.org:dkim,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6D0826378F8
+X-Rspamd-Queue-Id: 871C2637717
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
-- [High] The divider and gate definitions for the `gen` clock overlap on bi=
-t 11 in the `GEN_CLK_CTRL` register.
-- [High] The `a9_hdmitx1_pixel` clock incorrectly references `a9_hdmitx_pix=
-el_sel.hw` as its parent instead of its own multiplexer `a9_hdmitx1_pixel_s=
-el.hw`.
-- [High] The `usb_48m_pre` multiplexer is missing a value translation table=
-, mapping the 6th parent to an unconnected hardware channel.
-- [Low] The Kconfig symbol `COMMON_CLK_A9_PERIPHERALS` implies a non-existe=
-nt symbol `COMMON_CLK_A9_PLL`.
-- [Low] The `COMPILE_TEST` option is used incorrectly in the Kconfig `defau=
-lt` statement and is missing from `depends on`.
---
+On 03/06/2026 13:10, Dmitry Baryshkov wrote:
+>> Documentation shows clock lane at lane 7.
+>>
+>> Truthfully it makes no sense that the clock lane would genuinely be locked
+>> to lane 7 but the documentation does seem to suggest it.
+>>
+>> Yes in fact I agree. clock-lanes can be reintroduced if someone can show
+>> hardware that supports/depends on it.
+> Konrad and I checked, Hamoa supports using other lanes as a clock lane.
 
-commit bae2f7359df3d153442d5e8943999c98d3682a16
-Author: Jian Hu <jian.hu@amlogic.com>
-Subject: clk: amlogic: Add A9 peripherals clock controller driver
+Are you sure about that ?
 
-Add the peripherals clock controller driver for the Amlogic A9 SoC family.
+ipcat I thought designated lane 7 specifically as clk-lane i.e. named it 
+CLK_LN of some description.
 
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -132,6 +132,21 @@ config COMMON_CLK_A1_PERIPHERALS
->  	  device, A1 SoC Family. Say Y if you want A1 Peripherals clock
->  	  controller to work.
-> =20
-> +config COMMON_CLK_A9_PERIPHERALS
-> +	tristate "Amlogic A9 SoC peripherals clock controller support"
-> +	depends on ARM64
-> +	default ARCH_MESON || COMPILE_TEST
-
-[Severity: Low]
-Is the COMPILE_TEST directive intended to be here? Placing COMPILE_TEST in =
-the
-default expression enables this driver by default on all ARM64 architectures
-when compile testing is active. Should it instead use
-"depends on ARM64 || COMPILE_TEST" and "default ARCH_MESON"?
-
-> +	select COMMON_CLK_MESON_REGMAP
-> +	select COMMON_CLK_MESON_CLKC_UTILS
-> +	select COMMON_CLK_MESON_DUALDIV
-> +	select COMMON_CLK_MESON_VID_PLL_DIV
-> +	imply COMMON_CLK_SCMI
-> +	imply COMMON_CLK_A9_PLL
-
-[Severity: Low]
-Does COMMON_CLK_A9_PLL exist in the tree? Kconfig will silently ignore
-non-existent implied symbols, which might mean a missing patch or typo.
-
-> +	help
-
-[ ... ]
-
-> diff --git a/drivers/clk/meson/a9-peripherals.c b/drivers/clk/meson/a9-pe=
-ripherals.c
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/clk/meson/a9-peripherals.c
-> @@ -0,0 +1,1927 @@
-
-[ ... ]
-
-> +/* Channel 5 and 6 are unconnected. */
-> +static u32 a9_usb_250m_parents_val_table[] =3D { 0, 1, 2, 3, 4, 7 };
-> +static const struct clk_parent_data a9_usb_250m_parents[] =3D {
-> +	{ .fw_name =3D "fdiv4", },
-> +	{ .fw_name =3D "fdiv3", },
-> +	{ .fw_name =3D "fdiv5", },
-> +	{ .fw_name =3D "fdiv2", },
-> +	{ .fw_name =3D "fdiv7", },
-> +	{ .fw_name =3D "fdiv2p5", }
-> +};
-> +
-> +static A9_COMP_SEL(usb_250m, USB_CLK_CTRL, 9, 0x7, a9_usb_250m_parents,
-> +		   a9_usb_250m_parents_val_table);
-> +static A9_COMP_DIV(usb_250m, USB_CLK_CTRL, 0, 7);
-> +static A9_COMP_GATE(usb_250m, USB_CLK_CTRL, 8, 0);
-> +
-> +static const struct clk_parent_data a9_usb_48m_pre_parents[] =3D {
-> +	{ .fw_name =3D "fdiv4", },
-> +	{ .fw_name =3D "fdiv3", },
-> +	{ .fw_name =3D "fdiv5", },
-> +	{ .fw_name =3D "fdiv2", },
-> +	{ .fw_name =3D "fdiv7", },
-> +	{ .fw_name =3D "fdiv2p5", }
-> +};
-> +
-> +static A9_COMP_SEL(usb_48m_pre, USB_CLK_CTRL, 25, 0x7, a9_usb_48m_pre_pa=
-rents,
-> +		   NULL);
-
-[Severity: High]
-Does usb_48m_pre need a value translation table as well? It shares the same
-parent list as usb_250m, where the 6th parent (fdiv2p5) maps to hardware va=
-lue
-7 because channels 5 and 6 are unconnected. By passing NULL here, selecting
-fdiv2p5 writes value 5 to the register, connecting it to a dead channel.
-
-> +static A9_COMP_DIV(usb_48m_pre, USB_CLK_CTRL, 16, 7);
-> +static A9_COMP_GATE(usb_48m_pre, USB_CLK_CTRL, 24, 0);
-
-[ ... ]
-
-> +static A9_COMP_SEL(gen, GEN_CLK_CTRL, 12, 0x1f, a9_gen_parents,
-> +		   a9_gen_parents_val_table);
-> +static A9_COMP_DIV(gen, GEN_CLK_CTRL, 0, 12);
-> +static A9_COMP_GATE(gen, GEN_CLK_CTRL, 11, 0);
-
-[Severity: High]
-Can these definitions cause conflicts? The divider for the gen clock has a
-width of 12 (bits 0-11), while the gate is defined at bit 11 of the same
-register.
-
-If the divider is updated, it might unintentionally toggle the gate, and
-toggling the gate might corrupt the most significant bit of the divider.
-
-[ ... ]
-
-> +static struct clk_regmap a9_hdmitx1_pixel_sel =3D {
-> +	.data =3D &(struct clk_regmap_mux_data){
-> +		.offset =3D HDMI_CLK_CTRL,
-> +		.mask =3D 0xf,
-> +		.shift =3D 24,
-> +		.table =3D a9_vid_parents_val_table,
-> +	},
-> +	.hw.init =3D CLK_HW_INIT_PARENTS_HW("hdmitx1_pixel_sel", a9_vid_parents
-> +			, &clk_regmap_mux_ops, 0),
-> +};
-> +
-> +static struct clk_regmap a9_hdmitx1_pixel =3D {
-> +	.data =3D &(struct clk_regmap_gate_data){
-> +		.offset =3D VID_CLK_CTRL2,
-> +		.bit_idx =3D 12,
-> +	},
-> +	.hw.init =3D CLK_HW_INIT_HW("hdmitx1_pixel", &a9_hdmitx_pixel_sel.hw,
-
-[Severity: High]
-Should this reference a9_hdmitx1_pixel_sel.hw instead? It appears to be bou=
-nd
-to the primary HDMI TX selector (a9_hdmitx_pixel_sel.hw). This would tie the
-secondary HDMI output to the primary multiplexer.
-
-> +				  &clk_regmap_gate_ops, CLK_SET_RATE_PARENT),
-> +};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603-a9_periphe=
-rals-v2-0-ee1b8c0a1e6c@amlogic.com?part=3D2
+---
+bod
 
