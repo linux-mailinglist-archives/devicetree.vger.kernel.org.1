@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-306230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306234-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1kYLD/UmIGrExgAAu9opvQ
-	(envelope-from <devicetree+bounces-306230-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:07:01 +0200
+	id 3ILkGu8nIGpexwAAu9opvQ
+	(envelope-from <devicetree+bounces-306234-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:11:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF01B637E0E
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:07:00 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DE3F637EA1
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:11:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=eLhrpkLz;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306230-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306230-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linaro.org header.s=google header.b=CnFDO00c;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306234-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306234-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 960EA30EF98D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 13:00:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D197C3083894
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 13:00:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA10F481221;
-	Wed,  3 Jun 2026 13:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4E348124A;
+	Wed,  3 Jun 2026 13:00:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26EB1480DC7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2EB0480DD0
 	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 13:00:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780491625; cv=none; b=B/24HYD6ttRBAP/7VENrvVis/Zek75g3MJZz0SmhSl539xa+QfcOtSdaWBt05uEJ+wh0yKtvmp4CHWfWAQIa4ayYex7WTeCPC1gWIxq9HNr649xnRWDKRGutWu7u/ThL7mJ1/+gWw8WH7+fE5nXm52CJO3Lmf+VzscKLvu97igA=
+	t=1780491626; cv=none; b=B9OcUcYxmHmDdxvZFriFyeJIJkSkeI0/5DXppXhGXq85cDzO0eL5kRBRdz691qrY4jsn+Kg5Mxgn3WoQF3sN8tm+4/J9iwI/Y3JCSfXEcSQcoRLX7IHEvkbXaC3JYHIQs7wGKg5pn4MTQYfBfIZyOiZh/Iw3I9PFQaeU69bzNsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780491625; c=relaxed/simple;
-	bh=BuCPimd0wnIGZnAHNo8kq3fbLznVxR/5ajKR3GVVTto=;
+	s=arc-20240116; t=1780491626; c=relaxed/simple;
+	bh=cWhAhaDFLAoUDdG0hR8RPClQQZ34eSbbH9qVOO1JS/c=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=L6pe7ynt61sxwnr/27I8XAZOnN3Y0urD5ZAJ/2b7+NUPPK+kS2vK5+6nX8zZ0FQCVi+pB7pQGUqtAYIt6viHp8WwmjQiUUzvySibue2cwjisO+p7aapk4FW07cmhp0nr7xPNmlT8WGtJ8J7OAlYnrJzo1HJI1mebqmeHG5yZ06o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eLhrpkLz; arc=none smtp.client-ip=209.85.128.47
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-490ace40f4bso38748875e9.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 06:00:21 -0700 (PDT)
+	 In-Reply-To:To:Cc; b=Oe0nW89lUVx0iVZJjajWHGVmvl5SJ3aABdIH/uJhE6abCE7QWJaM/dMzar2vxsTxeRvzDWwKS4ljIqd8FwUY8JDn/s/6oA+3ftU393wNrbZVltgWVtVB6M26yt++2PEvcxZYct3KR+UWzQkKR5OH6xdNC1rQlZWtfz1/pxXq8cY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CnFDO00c; arc=none smtp.client-ip=209.85.128.49
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4903d730b1fso115558945e9.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 06:00:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1780491620; x=1781096420; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1780491621; x=1781096421; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Sk5k1GMtYr/HULN9/BDkc9qWrRFDftSIlp3dBX3ccaI=;
-        b=eLhrpkLzrMhpBdXJxSskzpA+dYNMjGSqQfyYFqyiowQZIeRUVXPB0uIBk3jXq2SCm2
-         2k6OORU+0vzcoYmcUemsCW3ul9SHVj0NSjk/2sD7lPWMm5ztBM+UbK3WyFDX4UQUrMDi
-         GRKKxmBJRGJvrSi/8ZcyNhGZdvKjHRWVfBoiEcpaXIYma7urvPGqWgde+veYcFt6GjXQ
-         J3d76/oPA3EP9rWn9oXqEVsHu5/3rZ/eyyHxMF5v3hKnRCOYRfv5yRIEM5kujy2B/Ma6
-         e+5ovPhP2Hjkh2RSqpWLN6hWRYrRnOquk5UZiP4wrDt0REWxEoXyxX8hAxv7Ilagunv2
-         /FpA==
+        bh=SDntjNasVGG8hcuxF4CdQbpDwBoTb2ZE5Gcryz3TjxU=;
+        b=CnFDO00cJc/quJ1sGG42UA/Is6igTz/TVST2fimRM7HL9pgljiG3GuuCROFQXGFDXa
+         eA9hA90gcs1PMoi7/ViGNNQoORCblIofSzUlnk6R49N+ibOlvbA8m4ueJ6RDbzAz2yoE
+         bBTibEes7ftgKk/yDuGukiHnGpjnOovOPhW8i3vUUUcfg1sGyz9FLY13z4ylV7bqCYkB
+         tkJ+erg2zw92uYe14Xp/hLOjgViXcZWrmVZvwCw4u0vYbPHNw4zyYAFccd+n3f5BYdFQ
+         U480hAB8YsXcyAotERC2dHyJlh8d4QAZQQyb/Mlhlpgr/I7JynKBP5O4/TFkUBL8n8Ng
+         be6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780491620; x=1781096420;
+        d=1e100.net; s=20251104; t=1780491621; x=1781096421;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Sk5k1GMtYr/HULN9/BDkc9qWrRFDftSIlp3dBX3ccaI=;
-        b=C0u2OlHXRxYON74jm5GT64sFLYdPDRSIuR/RsfBMt0+S++BXUSwt0rdJNF4seKYkaM
-         qVoBSNgseq5YpdpxhhgFrGiiz+eSiY8f4JU2ewEg+vDDNlRdk5flrjd3gNkGYM5cQB7A
-         J0AS2KyYq79/1yAQ7NXaWUCAvvjSyU2xNAnY8qnpwZmxXaDqCKsr3kqDRBBcBHicPoPS
-         t8CI4HzcJY/IzQPyOWcRikqlEBKmKGoSo3ODqsEl11NJECkSF0YDdqHSMETkcv2SFdbm
-         zXzGkphm1fkgJp1XnU9DWbFmsSMUrtCxmyK6iaHtWF1hCyAkXNMyZ2oQ/ocRqbpdkXeF
-         mB+Q==
-X-Forwarded-Encrypted: i=1; AFNElJ9IgUjJXPLR72lzuDjdOc5HrkH7zafMOvHPf3Ep2KtUEnxMqNvLzKs9GAOrbJZ2CTp1v8qL1I6Y5DKz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+v1zXqoVXckU6MvODgd/iKNffAv3RpbAwioburc+EHf1C6Y2l
-	rJ/VLWmyZg8n3tTW8P9FO5Zg42uQKpMIF/q1UKXbVx88lMt8+K9e+07l8SKtzmuUikE=
-X-Gm-Gg: Acq92OFDkHyG5mDAmzRIofhlJvUXwS6YNmakmrSQc0voZ3VPe8GmG/9Ynkk8YxIHplu
-	BGy1ZbxkiQJxceKCc0p0gW61lvinvol8IpX0xa92g8p46MxD65127hkxczk+k1FijinokXILw7H
-	SNGq2ocbFHyakrgjr0m5uvAfaU1WBWE4iT7rdha7JcIx811fXT6Mm6jjbvWOttJL4xsBL/xx5n8
-	aDZrXJKQZgvYzyN+ciGwUpIikPuIwRZr+La3fZB5ExwM4l+Bnf0mBGalqzjmMAber7WPwpnU8UC
-	tr3YLVpH45MPdhHFto6WDLGA1aPth58Hrp6rxZv2UELiUGAPBPTNuHr3QwAPkQ6JyKr9WmYiCot
-	Wv8kBk65IJ38hBJbPbFncy1glgtgac2fLQYnGtXH+CudpEp6YbTVGrweCy7Iy2vgsUsUXoBHqJy
-	v1m9v2HjjqTUgEhhq4ogtDBw38uDrqPHH1bxm4gRQ1H4p2Wv6KTxf2o+5s47KzkSSS/V1BSt9Ya
-	Cz5S1+ZZbUu6hA=
-X-Received: by 2002:a05:600c:35ca:b0:490:5527:3be2 with SMTP id 5b1f17b1804b1-490b60e3d76mr59120555e9.32.1780491620405;
-        Wed, 03 Jun 2026 06:00:20 -0700 (PDT)
+        bh=SDntjNasVGG8hcuxF4CdQbpDwBoTb2ZE5Gcryz3TjxU=;
+        b=SZewkkmgDKaFGjzMiWwIgx5ZlDjyjgqzVjmbWU0QR8ZVJir8N7NRnSEKkFgvlyHJMb
+         Tihn7UdP36xLS7pa7yzFHiyrQH210YAyfeo0ugQzN0KDXdw5M/Oi37LygOJCytNWKTe2
+         Yej6CTMHFUoVXkGotF6Mx2ZY2EMzE/GBj9/LaWjeJ9MxrXKd786brqYN0z8zUME6dhK1
+         acJYY43jt//E8fkqembCysFhM0i75doGo73q99HBgsByeH3LxLbSFhjbsmTQCQJ+dHzB
+         RJ4iJkrafBr77u0EU+qRDmmq8giLogEKOje1lDYcFwd+TqZBnoGyREcsl8wpF67L+TWQ
+         s87Q==
+X-Forwarded-Encrypted: i=1; AFNElJ9/F4BW39Gn22dqP5Bb6Moz9c3J8AzNB1Fmwns7V0fs2lxr0ttBl3abMwQfvHiDitVQXwKPq1Xj6RVm@vger.kernel.org
+X-Gm-Message-State: AOJu0YyC3fekKG+9HjB53J6T/irBJVwK3jF06bsQ/CsH/vg5uFAWK6Zk
+	SZi9Ez3iEtX+kAQXqHoaEET+64WTnZn55IVSjbwYERU6fohrs6BmhheC5kYCqoH7F1Y=
+X-Gm-Gg: Acq92OGLMARKPJcSR5cUsRVIrGAOf5CMrSG9ha4/GHSzfYqjU0VH8QpfJijZsgOLhzd
+	rdNdBNfsRYaIX90NJJ6ki19HC0MoQWdJqy1hzNNRSX3u+S68f5G4r0zOSkCzVqDAFS3IZ8mF4zj
+	YF+xmnGpolbcB2jeX+ifIjK56o94jC9GzXfTp1vfQ0WEpi6vSJZHsPcY5wXsPxTAmCWKcUDJmpZ
+	o19uxTPwsHdd4Sp6oN3zqsT2e/auJtNMMHG9c7TUSwxsHLhixVwWHpB0eGqKn4tV7V8sM2DDKsM
+	KM5tGAn4mlJHHeWgiNyFyUn4XB0lnABiQBvu/ZODG56WaVGYJowfJqo/xaxs8ljip+cjmxdgQ3h
+	lU5rHl6nwKncAY2v8li5GBzX/C6AU1WHRsQZNdnRKKelLW01iv/6y9/ftCs1XVqtrKJOQlrqVLy
+	vWZEuWFsIYXm86KYLGLQsWfnGfzNJ/05TqiBZ8/KlCi64Magr/BB3PPrLFP3JNqebaQGV3WyZ4I
+	aJuOMe0g0grv6E=
+X-Received: by 2002:a05:600c:8b2e:b0:490:50c5:8153 with SMTP id 5b1f17b1804b1-490b5e73ed4mr49003975e9.2.1780491621044;
+        Wed, 03 Jun 2026 06:00:21 -0700 (PDT)
 Received: from ta2.c.googlers.com (213.53.77.34.bc.googleusercontent.com. [34.77.53.213])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490b0e88fdesm149179045e9.14.2026.06.03.06.00.19
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490b0e88fdesm149179045e9.14.2026.06.03.06.00.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 06:00:19 -0700 (PDT)
+        Wed, 03 Jun 2026 06:00:20 -0700 (PDT)
 From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Wed, 03 Jun 2026 13:00:18 +0000
-Subject: [PATCH v8 3/5] MAINTAINERS: Add entry for Samsung Exynos ACPM
- thermal driver
+Date: Wed, 03 Jun 2026 13:00:19 +0000
+Subject: [PATCH v8 4/5] arm64: dts: exynos: gs101: Add thermal management
+ unit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260603-acpm-tmu-v8-3-0f1810a356e6@linaro.org>
+Message-Id: <20260603-acpm-tmu-v8-4-0f1810a356e6@linaro.org>
 References: <20260603-acpm-tmu-v8-0-0f1810a356e6@linaro.org>
 In-Reply-To: <20260603-acpm-tmu-v8-0-0f1810a356e6@linaro.org>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
@@ -107,14 +107,13 @@ Cc: jyescas@google.com, linux-kernel@vger.kernel.org,
  linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-hardening@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+ Tudor Ambarus <tudor.ambarus@linaro.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780491617; l=989;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780491617; l=7066;
  i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=BuCPimd0wnIGZnAHNo8kq3fbLznVxR/5ajKR3GVVTto=;
- b=DDZhmy4QEP4ZUJ3uSYAEbuRQYdLBa/kBCUb/9RRroulU8b4Zq9zpGbgR2jB1y/YeZYSXwq35u
- DpIMVH9L39wDoT0TXUDdgkEeWc0sFgtrSbGO061VKn883T2zS0XCYWP
+ bh=cWhAhaDFLAoUDdG0hR8RPClQQZ34eSbbH9qVOO1JS/c=;
+ b=ogaFOarH37mKKfZkKdM3JA6Ux75FZWCi5G1lm2w1RD+KSFoJrZ6p4E85O5NzxQnlgCIPF3ltT
+ fTsN47poVh8Due6kgJIn4pdlJIj7wlqzaOQW/XRMu6bvTRqLvcc6k9b
 X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
  pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 X-Rspamd-Action: no action
@@ -123,21 +122,21 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-306230-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306234-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FREEMAIL_TO(0.00)[kernel.org,intel.com,arm.com,gmail.com,linaro.org,samsung.com];
-	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bzolnier@gmail.com,m:krzk@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:peter.griffin@linaro.org,m:andre.draszik@linaro.org,m:alim.akhtar@samsung.com,m:jyescas@google.com,m:linux-kernel@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:tudor.ambarus@linaro.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bzolnier@gmail.com,m:krzk@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:peter.griffin@linaro.org,m:andre.draszik@linaro.org,m:alim.akhtar@samsung.com,m:jyescas@google.com,m:linux-kernel@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:tudor.ambarus@linaro.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[tudor.ambarus@linaro.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -150,37 +149,257 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:mid,linaro.org:dkim,linaro.org:from_mime,linaro.org:email,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:from_mime,linaro.org:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BF01B637E0E
+X-Rspamd-Queue-Id: 5DE3F637EA1
 
-Add a MAINTAINERS entry for the Samsung Exynos ACPM thermal driver.
+Add the Thermal Management Unit (TMU) support for the Google GS101 SoC.
+
+Describe the TMU using a consolidated SoC node that includes memory
+resources for interrupt identification and a phandle to the ACPM IPC
+interface for functional control.
+
+Define thermal zones for the little, mid, and big CPU clusters, including
+associated trip points and cooling-device maps to enable thermal
+mitigation.
 
 Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/exynos/google/gs101-tmu.dtsi | 136 +++++++++++++++++++++++
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi     |  18 +++
+ 2 files changed, 154 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e8218c2749b7..6a8521270daf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23661,6 +23661,14 @@ F:	drivers/clk/samsung/clk-acpm.c
- F:	drivers/firmware/samsung/exynos-acpm*
- F:	include/linux/firmware/samsung/exynos-acpm-protocol.h
- 
-+SAMSUNG EXYNOS ACPM THERMAL DRIVER
-+M:	Tudor Ambarus <tudor.ambarus@linaro.org>
-+L:	linux-kernel@vger.kernel.org
-+L:	linux-samsung-soc@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml
-+F:	drivers/thermal/samsung/acpm-tmu.c
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101-tmu.dtsi b/arch/arm64/boot/dts/exynos/google/gs101-tmu.dtsi
+new file mode 100644
+index 000000000000..b27d1a539ec2
+--- /dev/null
++++ b/arch/arm64/boot/dts/exynos/google/gs101-tmu.dtsi
+@@ -0,0 +1,136 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Google GS101 TMU configurations device tree source
++ *
++ * Copyright 2020 Samsung Electronics Co., Ltd.
++ * Copyright 2020 Google LLC.
++ * Copyright 2026 Linaro Ltd.
++ */
 +
- SAMSUNG EXYNOS MAILBOX DRIVER
- M:	Tudor Ambarus <tudor.ambarus@linaro.org>
- L:	linux-kernel@vger.kernel.org
++#include <dt-bindings/thermal/thermal.h>
++
++/ {
++	thermal-zones {
++		cpucl2-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tmu_top 0>;
++
++			trips {
++				big_switch_on: big-switch-on {
++					temperature = <80000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				big_mitigate: big-mitigate {
++					temperature = <90000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				big_hot: big-hot {
++					temperature = <100000>;
++					hysteresis = <5000>;
++					type = "hot";
++				};
++
++				big_critical: big-critical {
++					temperature = <105000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&big_mitigate>;
++					cooling-device = <&cpu6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpucl1-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tmu_top 1>;
++
++			trips {
++				mid_switch_on: mid-switch-on {
++					temperature = <80000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				mid_mitigate: mid-mitigate {
++					temperature = <90000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				mid_hot: mid-hot {
++					temperature = <100000>;
++					hysteresis = <5000>;
++					type = "hot";
++				};
++
++				mid_critical: mid-critical {
++					temperature = <105000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++				     trip = <&mid_mitigate>;
++					cooling-device = <&cpu4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++			       };
++			};
++		};
++
++		cpucl0-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++			thermal-sensors = <&tmu_top 2>;
++
++			trips {
++				little_switch_on: little-switch-on {
++					temperature = <80000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				little_mitigate: little-mitigate {
++					temperature = <90000>;
++					hysteresis = <5000>;
++					type = "passive";
++				};
++
++				little_hot: little-hot {
++					temperature = <100000>;
++					hysteresis = <5000>;
++					type = "hot";
++				};
++
++				little_critical: little-critical {
++					temperature = <105000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&little_mitigate>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++	};
++};
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+index 86933f22647b..b6866ef99fb3 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+@@ -74,6 +74,7 @@ cpu0: cpu@0 {
+ 			compatible = "arm,cortex-a55";
+ 			reg = <0x0000>;
+ 			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL0>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&ananke_cpu_sleep>;
+ 			capacity-dmips-mhz = <250>;
+@@ -86,6 +87,7 @@ cpu1: cpu@100 {
+ 			compatible = "arm,cortex-a55";
+ 			reg = <0x0100>;
+ 			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL0>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&ananke_cpu_sleep>;
+ 			capacity-dmips-mhz = <250>;
+@@ -98,6 +100,7 @@ cpu2: cpu@200 {
+ 			compatible = "arm,cortex-a55";
+ 			reg = <0x0200>;
+ 			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL0>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&ananke_cpu_sleep>;
+ 			capacity-dmips-mhz = <250>;
+@@ -110,6 +113,7 @@ cpu3: cpu@300 {
+ 			compatible = "arm,cortex-a55";
+ 			reg = <0x0300>;
+ 			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL0>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&ananke_cpu_sleep>;
+ 			capacity-dmips-mhz = <250>;
+@@ -122,6 +126,7 @@ cpu4: cpu@400 {
+ 			compatible = "arm,cortex-a76";
+ 			reg = <0x0400>;
+ 			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL1>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&enyo_cpu_sleep>;
+ 			capacity-dmips-mhz = <620>;
+@@ -134,6 +139,7 @@ cpu5: cpu@500 {
+ 			compatible = "arm,cortex-a76";
+ 			reg = <0x0500>;
+ 			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL1>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&enyo_cpu_sleep>;
+ 			capacity-dmips-mhz = <620>;
+@@ -146,6 +152,7 @@ cpu6: cpu@600 {
+ 			compatible = "arm,cortex-x1";
+ 			reg = <0x0600>;
+ 			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL2>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&hera_cpu_sleep>;
+ 			capacity-dmips-mhz = <1024>;
+@@ -158,6 +165,7 @@ cpu7: cpu@700 {
+ 			compatible = "arm,cortex-x1";
+ 			reg = <0x0700>;
+ 			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL2>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&hera_cpu_sleep>;
+ 			capacity-dmips-mhz = <1024>;
+@@ -639,6 +647,15 @@ watchdog_cl1: watchdog@10070000 {
+ 			status = "disabled";
+ 		};
+ 
++		tmu_top: thermal-sensor@100a0000 {
++			compatible = "google,gs101-tmu-top";
++			reg = <0x100a0000 0x800>;
++			clocks = <&cmu_misc CLK_GOUT_MISC_TMU_TOP_PCLK>;
++			interrupts = <GIC_SPI 769 IRQ_TYPE_LEVEL_HIGH 0>;
++			samsung,acpm-ipc = <&acpm_ipc>;
++			#thermal-sensor-cells = <1>;
++		};
++
+ 		trng: rng@10141400 {
+ 			compatible = "google,gs101-trng",
+ 				     "samsung,exynos850-trng";
+@@ -1862,3 +1879,4 @@ timer {
+ };
+ 
+ #include "gs101-pinctrl.dtsi"
++#include "gs101-tmu.dtsi"
 
 -- 
 2.54.0.1013.g208068f2d8-goog
