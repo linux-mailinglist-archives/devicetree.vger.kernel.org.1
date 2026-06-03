@@ -1,155 +1,213 @@
-Return-Path: <devicetree+bounces-306198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306199-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PH3sFhobIGrovwAAu9opvQ
-	(envelope-from <devicetree+bounces-306198-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:16:26 +0200
+	id MytqAjQeIGp/wAAAu9opvQ
+	(envelope-from <devicetree+bounces-306199-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:29:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE593637682
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:16:25 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C03637820
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:29:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fpqD51Qd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306198-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306198-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YuFv3aeo;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306199-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306199-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CFDDC32C14A9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 12:05:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 429C830C6CEB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 12:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7041F46AEEF;
-	Wed,  3 Jun 2026 12:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CAFF46AF25;
+	Wed,  3 Jun 2026 12:08:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5792C46AED3;
-	Wed,  3 Jun 2026 12:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C1063B3891;
+	Wed,  3 Jun 2026 12:08:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780488289; cv=none; b=gNsSrTLPMZb0SEWuwXKznfS8RbH5wMX/0UaShQ2sgKpcsvU+9y9KjpMDTdjdsBOTKLENz34CkxteZfJOLzP7DAtN5fWZ8x15xapYncoAOmzYfRIOdsTOhgcuxccvYA66v18ph2hvYlJwJ0IU2pMbL5gbBJRYHeR0wTufjHQYXkM=
+	t=1780488526; cv=none; b=eaB6VwZH0nmXCqAp13JcnFsb3sAHURwegFjYgVtXu8GdEVeVu4Py0d+eBeKNBQdUJa4mHOTfEC7cNTe+8nWPOxtyhjnTjW1WDSz8pEXYboRyuToSjLUDxtxQpYOJPE1rh3F4CKXLS5RNS0Hyu5bweZg8r5SbrWboq0xlF4R2rZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780488289; c=relaxed/simple;
-	bh=tmzM3aIRokwYAmw4P0SVJnKcLqZxDOUfE89jumiT9U4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=A5MbQkm/TUfgb3k9mZoM8P1GWoImHpxHVmpLoMSba/gxFTEHPIEjHZ79D8xFL4h0BWLZwyxa6HfeSzy6xs8yFYRg2vrq9qPDWAa7qvJcfIfyzr30C3ul1A+KpSlZvZps/UtXB0/LO9+bu/EZ7WOZFEuT68b+Ggo48C7FkC9nKLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fpqD51Qd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEA0D1F00893;
-	Wed,  3 Jun 2026 12:04:46 +0000 (UTC)
+	s=arc-20240116; t=1780488526; c=relaxed/simple;
+	bh=+Z3LJbqMdB1/pubFkCbyOzArzx4j7FsU+htL71UYJTY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=i1TFg5TS7jPq+zYh1aO5nKxqn9GerReAGgemZ5nMS1X1E/oVA+4nSOB3PN52SlaG8d2E1n6ZPuor8e1Svl9xv+3ve3zKDxHdJBfIm6pQ9e7ZuSmHBV8mkcu7AsGzirr/otcWNP39gR65qDqQ5GFXVqvuvpcZdMN57ZdVnh7VxgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YuFv3aeo; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1A0C1F00893;
+	Wed,  3 Jun 2026 12:08:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780488288;
-	bh=xsm4QVSqvdKpc9KMVJ/nHMhqv3iq6OfD4f2lFZGwn3w=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=fpqD51QdXRvIB8WMX7sGtp+dw1UlVYhLqTMJP1YSqujSOR32HX9/pIhHyWG42Lvxc
-	 QEkh3KHeUrlSEAi25n/+VGJHFa6fwav9ExBMIt9gfma6B61sKbVFaaMbSgBdQyVFrH
-	 g6l3obnlx4EwuYVl5YbWgN9xr/vHvdTWdpEpruEnFidW6yAGWAZNY4WxBTWfAc6b6V
-	 qklPi5B72wbn5Yngp8nJ/oo7WU7DH08H5L0OfTvDvpidkfS2nqug8V9+yItqSbm41Y
-	 ZAxhkNTltrZ6+Gj3eF+DkPNCFNwVePO1Gs726raZ34if4U7wPlJOyFL/xDlXlyssBI
-	 TVnoHQCAJe9EQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v1 10/12] arm64: dts: imx8mp-var-som-symphony: keep
- RGB_SEL low
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Stefano Radaelli" <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, Frank.Li@kernel.org, robh@kernel.org, imx@lists.linux.dev
-In-Reply-To: <642c165fa5ce0951352d7d164ae7d871120e8631.1780487415.git.stefano.r@variscite.com>
-References: <642c165fa5ce0951352d7d164ae7d871120e8631.1780487415.git.stefano.r@variscite.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 12:04:46 +0000
-Message-Id: <20260603120446.DEA0D1F00893@smtp.kernel.org>
+	s=k20260515; t=1780488524;
+	bh=B96vpYrwUCDd8STmPrmAJlLy99SdCRv4DLQWSqvzipU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=YuFv3aeonbCNwOXlRwKdtmsQrCDOWKwvMEJ1EH/vxR12FEYIMnot2aHb1FW6y97gX
+	 0QIUpIPrBIfXvg1e4uNy5kX15Gm2gPuvdG2nBxt0QWAvL2OjL2b+esaI21O1kpMGdH
+	 b2jCN5YBVvVXMinKOlhCaKbEXB5JbTe0k+9rCvAvCcBi8ufE7kqmnOYK4fXHsiSkXz
+	 UJBquLz7rZOrLjbPhs4+O3/dEgKeUqLoPu1FNCfyr5jGf8Zz3HJBsdP0zgSADBu1eU
+	 kBhsYkrl0R40SQ1WPIqyMttixJcQWbcI5F9tRzsa/6mCBQhYft+uYjrAtXyLpNgZoc
+	 KC8b580OgSOaQ==
+Date: Wed, 3 Jun 2026 13:08:33 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: rodrigo.alencar@analog.com, Michael Auchter <michael.auchter@ni.com>,
+ linux@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, Michael
+ Hennerich <Michael.Hennerich@analog.com>, David Lechner
+ <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook
+ <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH 06/12] iio: dac: ad5686: consume optional reset signal
+Message-ID: <20260603130833.007c1526@jic23-huawei>
+In-Reply-To: <ah_k9A9535Vz6PCw@nsa>
+References: <20260602-ad5686-new-features-v1-0-691e01883d27@analog.com>
+	<20260602-ad5686-new-features-v1-6-691e01883d27@analog.com>
+	<ah_k9A9535Vz6PCw@nsa>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306198-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,smtp.kernel.org:mid,sashiko.dev:url,variscite.com:email,lists.linux.dev:replyto];
+	FORGED_RECIPIENTS(0.00)[m:noname.nuno@gmail.com,m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:nonamenuno@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:stefano.radaelli21@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:imx@lists.linux.dev,m:stefanoradaelli21@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-306199-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,jic23-huawei:mid,analog.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AE593637682
+X-Rspamd-Queue-Id: 80C03637820
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The gpio-hog DT node is named 'lvds-brg-enable-hog' while the line-=
-name and comments refer to 'rgb_sel'. This mismatch creates confusion regar=
-ding the hardware's actual configuration and may be a copy-paste error.
---
+On Wed, 3 Jun 2026 09:28:26 +0100
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-commit 1f0ff0206f69fa2f47bd286b774f7b26db9168ed
-Author: Stefano Radaelli <stefano.r@variscite.com>
+> On Tue, Jun 02, 2026 at 05:33:53PM +0100, Rodrigo Alencar via B4 Relay wr=
+ote:
+> > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> >=20
+> > Add RESET pin GPIO support through an optional reset control, which is
+> > local to the probe function. Also, include delays for power-up time and
+> > reset pulse width.
+> >=20
+> > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> > ---
+> >  drivers/iio/dac/ad5686.c | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> >=20
+> > diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
+> > index 4a8c587ff116..345ca2436332 100644
+> > --- a/drivers/iio/dac/ad5686.c
+> > +++ b/drivers/iio/dac/ad5686.c
+> > @@ -8,12 +8,14 @@
+> >  #include <linux/array_size.h>
+> >  #include <linux/bitfield.h>
+> >  #include <linux/bitops.h>
+> > +#include <linux/delay.h>
+> >  #include <linux/dev_printk.h>
+> >  #include <linux/errno.h>
+> >  #include <linux/export.h>
+> >  #include <linux/kstrtox.h>
+> >  #include <linux/module.h>
+> >  #include <linux/regulator/consumer.h>
+> > +#include <linux/reset.h>
+> >  #include <linux/sysfs.h>
+> >  #include <linux/wordpart.h>
+> > =20
+> > @@ -471,6 +473,7 @@ int ad5686_probe(struct device *dev,
+> >  		 const struct ad5686_chip_info *chip_info,
+> >  		 const char *name, const struct ad5686_bus_ops *ops)
+> >  {
+> > +	struct reset_control *rstc;
+> >  	struct ad5686_state *st;
+> >  	struct iio_dev *indio_dev;
+> >  	int ret, i;
+> > @@ -506,6 +509,16 @@ int ad5686_probe(struct device *dev,
+> >  		return dev_err_probe(dev, -EINVAL,
+> >  				     "invalid or not provided vref voltage\n");
+> > =20
+> > +	rstc =3D devm_reset_control_get_optional_exclusive(dev, NULL);
+> > +	if (IS_ERR(rstc))
+> > +		return dev_err_probe(dev, PTR_ERR(rstc),
+> > +				     "Failed to get reset control\n"); =20
+>=20
+> On top of what Andy stated, I'm fairly sure
+> devm_reset_control_get_optional_exclusive() returns with the GPIO
+> asserted.
 
-arm64: dts: imx8mp-var-som-symphony: keep RGB_SEL low
+We've been getting reports on that not being the case from Sashiko
+and when I last looked into one of those it definitely isn't documented
+as doing so and I got the impression it is a reset controller specific
+thing.  Do we are fine here because the gpio reset controller reset_gpio_pr=
+obe()
+includes:
+	priv->reset =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+	if (IS_ERR(priv->reset))
+		return dev_err_probe(dev, PTR_ERR(priv->reset),
+				     "Could not get reset gpios\n");
+Which I guess puts it in to reset?
 
-This commit drives the RGB_SEL line low on the Symphony carrier board.
-It ensures the board remains in the expected display configuration rather
-than leaving the line floating.
+So do we assume gpio reset or not for this sort of driver that specifies
+in the binding reset-gpios. Now if the following is implying we need
+a deasserted to asserted transition (maybe?) then we'd need to force
+a deassert first.
 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts b/=
-arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
-> index df4409af26a26..d796c32f50cc6 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
-> @@ -191,6 +191,14 @@ pcal6408: gpio@21 {
->  		reg =3D <0x21>;
->  		#gpio-cells =3D <2>;
->  		gpio-controller;
-> +
-> +		/* RGB_SEL */
-> +		lvds-brg-enable-hog {
+Btw I used claude to explore this and it hallucinated the reverse polarity
+providing otherwise correct code for what was in reset_gpio_probe() but
+oddly editing that one line.  I was being lazy and using the web UI rather
+than a version with access to my git tree so maybe it scraped some
+buggy code from a downstream tree.  Anyhow watch out for subtle garbage!
+It also took a few requests to get it to figure out the logical nature
+of the GPIO signals rather than assuming they were controlling whether
+the line was high or low directly.
 
-[Severity: Low]
-This isn't a bug, but is the node name lvds-brg-enable-hog intentional here?
+Jonathan
 
-The comment and line-name both refer to rgb_sel. Naming the node
-lvds-brg-enable-hog creates a mismatch that looks like it might be a
-leftover from a copy-paste.
 
-> +			gpio-hog;
-> +			gpios =3D <7 GPIO_ACTIVE_HIGH>;
-> +			output-low;
-> +			line-name =3D "rgb_sel";
-> +		};
->  	};
+>=20
+> > +
+> > +	udelay(5); /* power-up time */
+> > +	reset_control_assert(rstc);
+> > +	udelay(1); /* reset pulse: comfortably bigger than the spec */
+> > +	reset_control_deassert(rstc);
+> > +
+> >  	/* Initialize masks to all ones */
+> >  	st->pwr_down_mask =3D ~0;
+> >  	st->pwr_down_mode =3D ~0;
+> >=20
+> > --=20
+> > 2.43.0
+> >=20
+> >  =20
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1780487415.gi=
-t.stefano.r@variscite.com?part=3D10
 
