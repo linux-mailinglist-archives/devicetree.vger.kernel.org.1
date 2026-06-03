@@ -1,196 +1,312 @@
-Return-Path: <devicetree+bounces-306251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306253-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CsAvE48qIGpUyAAAu9opvQ
-	(envelope-from <devicetree+bounces-306251-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:22:23 +0200
+	id j+SvJaUsIGq2yAAAu9opvQ
+	(envelope-from <devicetree+bounces-306253-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:31:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97F1E638008
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4473363812F
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:31:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=L0e1Srm9;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306251-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306251-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=c0FcG77Z;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306253-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306253-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7CA9F32242AC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 13:14:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 30D1131BD9D9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 13:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC14348A2DF;
-	Wed,  3 Jun 2026 13:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9AA30E0F5;
+	Wed,  3 Jun 2026 13:15:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E9A481AB6
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 13:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94756282F39
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 13:15:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780492394; cv=none; b=Z0tHhZ5ZGyVrIFBkftBrhrxTjJN5sol36vg/iErkgxg29k+YZJoUl6LpljfYZqd8sLHVrkiwwE8QfY0XKxtlStSgHC8HwPwryWqDw48H85XXIAypwZ+4sjjJsS70Ki2lni0luo8f3M70s4puoJM0VYfx9SBmeSnqnL03uuWoJqA=
+	t=1780492512; cv=none; b=c5n4RbcFBmVOAZuNjpDDDIKCmpsRCJ7/myFyxJCzgKPv4K3k8OHM/X3dl6fwzG4wbnBwdBwfQ2szUgHom/UxzPo+/TinzJq4TWU+9Ahn25foNA/f9YPkhaX8uL3R5HIeHU0KQj+k72v+gHnvLJ2CI0mAS64BRX2d237kNwvtRJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780492394; c=relaxed/simple;
-	bh=Sp+VruQEzl3HcXZu88N2hYyC3gVZFm6gEAemuO8HUqE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gXVevVTsmS8hxuTJP01dYkPRitqnDFJ4Lh0QUssFQ6lemwU2i5MoEivtY1LiXtfaUAv3CKfWWxHRYm0M+UV9S9WZ7d/WDy+seECQuGpvvyUdjKoZlRBUjG8SymG/keTmkO7d9shLiFnvr9hU+eZRBahv5LGMltekimcdyR94vJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L0e1Srm9; arc=none smtp.client-ip=209.85.221.47
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-45eec22fab7so3510660f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 06:13:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780492387; x=1781097187; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CKKJfzXLLkRH7XSkPhI5X70VU7gNsq42WXvtDW5Ht6c=;
-        b=L0e1Srm9cGhbqdSG9C+yv3WVaikzBA2k8H0PI/KnTkjHC4EZGvtM9+oYfqHS405Z93
-         symfKDAs8lyw5nz/GcD75enuWnvMSE95YW/Gu48pqlnKMpNMTzWnVzDKLXlJmF6mOnTB
-         peGDFGmQjbbCvpwU+1serCnXYjYZNuh65aQPMomcN6RzwkGBwTq2Go+FoJSC5Q1BW1We
-         XC4Av8r0yXoc78eCknSOUhI9+kxT1rqzKDtPI8HHhH6A1J5vP+RN+4sWkXn2P8X+7GrS
-         fV++CXbIUWXO3Qg4+yslZAh2yrjMVp15hdHL0HBC7pHHWmfNtZVGGZ55ZhehHcqk56Ou
-         4Bjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780492387; x=1781097187;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=CKKJfzXLLkRH7XSkPhI5X70VU7gNsq42WXvtDW5Ht6c=;
-        b=FEzaLFX5IMNfM/IX8Bk3T6e8vraa2NvF0ZXMwNPtZ3w+Mf9xesnUDOSWu4Ep9HoMqS
-         /NBpc41MihXRoque/kQkJUlw8qRHrEddeKbe9m4NWbtnzaj7JPeBtOwAyyXq4V9Suf4c
-         uCgA0LqlFIbPwLpVHn8f3bqkHQgSxs5F/le2v8JR7n/RxgG9aV695/HBf9VmUQtiATHQ
-         ZIKNezykkj3gEXRmY6TcXgT4yhb/2BANc/iKho5jTX3FUIFy8iGfnMHXmyw++1TGqf6X
-         BqGKFMpBYK4yf3FFST6TSngo241OzdELNtYpKxCa6L0w0ZZ4YBi2fmhir3o6hkfpIH3F
-         atTg==
-X-Forwarded-Encrypted: i=1; AFNElJ/x29+soke17tDkAGS3cRLjkCkF42EkSCiFRVlQvN97MBgw8/JFqoqfhbfSu8mwjd0WK5K9UASA8JF4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOCelkdC8bWdnPA6/dUv7GB9BJ3liXTaX1GqIpvAgCRLTrMb7H
-	74YFfxVeVeZ/FaF6Iv6jzoR3ovRqyB+Q7SrRQJvTH/mnUsHhZaAdw0gP
-X-Gm-Gg: Acq92OGrHTL3PsdX+2kAbyTqroxuM/Y3/HPp15ZoOtIvlU/rgvBFzWK2NU/0wS+WW9U
-	dCa0n/6b/52eu4ASFEoGokxXSmzAKuyQdWKIukKCmEcsncTfbDRQV8TCos8Yd3pAFe1NwmS0+qM
-	w0G1RpAf1CIt/CnQLR8cnGtOnEKpHxwJvNhlGLbnTw/NKs27z/tfSDLnp0nQCykpZcyUqCPROWw
-	I5suW9xL+Esw0txm+an+7mYiTgoDTOkKrDLf8PXgmTxBIewqqbAF3mU/GalCPYy197gD8XuLpwp
-	jPoC/RMEAVsT/NVQcnnXGa29OazWXxOtU0JDRpasleLKhFsGqXm9VXIeNMnJkz0YDuEIYv4E/zJ
-	gjnrffPwY+xNMhrgNlSTSSUK4Nv0eXNovu92eytZGrGlC+UgR5Q5GIE1N+7zc+rUxeruolYY45k
-	yKHpwyUuEQrQjqXo0ZLIvxavisD/TvO5emXiwflRTw4lkJ9vqO+HvJHMU44u/4uVAV2g07VK+dg
-	zZCbWsfXOWtK5Z8oc4g0BZZl+uKCSSCxDJI9+fb+0hXfwue
-X-Received: by 2002:a5d:4384:0:b0:44d:1338:46b4 with SMTP id ffacd0b85a97d-460217924aamr3428115f8f.9.1780492386487;
-        Wed, 03 Jun 2026 06:13:06 -0700 (PDT)
-Received: from Lord-Beerus.station (net-93-144-65-244.cust.vodafonedsl.it. [93.144.65.244])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f3444fesm8361306f8f.20.2026.06.03.06.13.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 06:13:06 -0700 (PDT)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH v2 12/12] arm64: dts: freescale: imx8mp-var-som: add I2C1 bus recovery GPIOs
-Date: Wed,  3 Jun 2026 15:12:50 +0200
-Message-ID: <54a90899d068a4281cf57d2b17bee4616a75f6a2.1780492180.git.stefano.r@variscite.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1780492180.git.stefano.r@variscite.com>
-References: <cover.1780492180.git.stefano.r@variscite.com>
+	s=arc-20240116; t=1780492512; c=relaxed/simple;
+	bh=9Ka28VBnBHbOCZs2xk+dhQ9dZNrYGTpmWTmOpy9Y5Ak=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=gfhNDbC08llesjzxGxRUwTWMpkm+mh0U8r1MUJEs/YPNbCKRyDJ8RIqdZNdR8KP/7NFKlAKP3UsTF1plqV2yW1gYNAmde4GZqRdsBuLnttNU/ZIfhxaj4HP5t+K0fT4xu43N3CZ7tLnhqlSNJ1qH1Guvjqw8XT2h4qwuB43dg3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c0FcG77Z; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDB461F00898;
+	Wed,  3 Jun 2026 13:15:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780492511;
+	bh=nQNQ9YkLFQtxS5oxLy9KTjWwLnIm9mOVDOGfHDePJ7U=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=c0FcG77Z43Yd3oG4yVuqTkZY0fcHrTbffhRck/njgRsHGenvrMfnsf2DRqyCtr01g
+	 V6sextLEgdfSQZFMwXx+86Qi5BV2v5sKvqjbzYrW4g0KilpxLHBgBpG+mRt1TrkCcL
+	 9rKKNL0UpDqZUJWxI08P2o2AOjdS6LNOSIH8JdgSN4G0O1Ukbk1/lcT3IbJW/4HeSr
+	 3z8/bqZpsYhAN3niTSdIYzfFjc+9LRqrfcEtYs6jYTqOQOygCC3xbZzeFm3VUDlEyl
+	 T+fbhKTU6uuuwIMI9tKEkhWdqLBnCYgNFPISeFkCMU8xoh5f90JwFfSrBnRWsgD8Fi
+	 FB7ltXTi+JLnQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/2] drm/panel: Add BOE BF068MWM-TD0 panel driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Alexander Koskovich" <akoskovich@pm.me>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260603-asteroids-panel-support-v1-2-109c6ac81c8f@pm.me>
+References: <20260603-asteroids-panel-support-v1-2-109c6ac81c8f@pm.me>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 03 Jun 2026 13:15:10 +0000
+Message-Id: <20260603131510.BDB461F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-306251-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306253-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:akoskovich@pm.me,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,variscite.com:mid,variscite.com:email]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,pm.me:email,lists.linux.dev:replyto,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 97F1E638008
+X-Rspamd-Queue-Id: 4473363812F
 
-From: Stefano Radaelli <stefano.r@variscite.com>
+Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+s) to consider:
+- [High] State corruption due to un-restored MIPI_DSI_MODE_LPM flag on erro=
+r path
+- [High] Uninitialized core DSC parameters result in malformed PPS payload
+- [High] Concurrent unprotected bitwise modification of dsi->mode_flags
+- [High] DCS commands sent to unpowered hardware due to missing state check
+- [Medium] Resource leak on failure to setup DCS PPS or compression mode
+- [Medium] Race condition exposing incomplete panel configuration during pr=
+obe
+- [Low] Missing Kconfig dependency for DRM_DISPLAY_DSC_HELPER
+--
 
-Add the GPIO pinctrl state and GPIO descriptors required for I2C1 bus
-recovery on the VAR-SOM-MX8M-PLUS.
+commit f349a000202648026372e12253353f6e49977419
+Author: Alexander Koskovich <akoskovich@pm.me>
+Subject: drm/panel: Add BOE BF068MWM-TD0 panel driver
 
-This allows the I2C controller to recover the bus if SDA or SCL are held
-low by a device.
+Add the panel driver for BOE BF068MWM-TD0 support found in the Nothing
+Phone (3a).
 
-Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
----
-v1->v2:
- - 
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index d592f4f4b939a..1e257657ef9ec 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+[ ... ]
+> @@ -56,6 +56,17 @@ config DRM_PANEL_BOE_BF060Y8M_AJ0
+>  	  uses 24 bit RGB per pixel. It provides a MIPI DSI interface to
+>  	  the host and backlight is controlled through DSI commands.
+> =20
+> +config DRM_PANEL_BOE_BF068MWM_TD0
+> +	tristate "BOE BF068MWM-TD0 panel"
+> +	depends on OF
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
 
- arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+[Severity: Low]
+Since the driver invokes drm_dsc_pps_payload_pack(), should this config
+select DRM_DISPLAY_DSC_HELPER to prevent potential build failures when the
+DSC helper subsystem isn't enabled?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-index 49467b48d0b0..61786eee0e82 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-@@ -180,8 +180,11 @@ led@1 {
- 
- &i2c1 {
- 	clock-frequency = <400000>;
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c1>;
-+	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+	scl-gpios = <&gpio2 6 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio2 7 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	status = "okay";
- 
- 	pmic@25 {
-@@ -415,6 +418,13 @@ MX8MP_IOMUXC_SD1_DATA5__I2C1_SDA				0x400001c2
- 		>;
- 	};
- 
-+	pinctrl_i2c1_gpio: i2c1gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06				0x1c2
-+			MX8MP_IOMUXC_SD1_DATA5__GPIO2_IO07				0x1c2
-+		>;
-+	};
-+
- 	pinctrl_pmic: pmicgrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SPDIF_RX__GPIO5_IO04				0x1c0
--- 
-2.47.3
+> +	help
+> +	  Say Y here if you want to enable support for BOE BF068MWM-TD0
+> +	  6.77" AMOLED modules. The panel has a 1080x2392 resolution and
+> +	  uses 30 bit RGB per pixel. It provides a MIPI DSI interface to
+> +	  the host and backlight is controlled through DSI commands.
+> +
+>  config DRM_PANEL_BOE_HIMAX8279D
+>  	tristate "Boe Himax8279d panel"
+>  	depends on OF
+> diff --git a/drivers/gpu/drm/panel/panel-boe-bf068mwm-td0.c b/drivers/gpu=
+/drm/panel/panel-boe-bf068mwm-td0.c
+> new file mode 100644
+> index 0000000000000..bbf7aed196161
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-boe-bf068mwm-td0.c
+[ ... ]
+> +static int boe_bf068mwm_td0_prepare(struct drm_panel *panel)
+> +{
+> +	struct boe_bf068mwm_td0 *ctx =3D to_boe_bf068mwm_td0(panel);
+> +	struct device *dev =3D &ctx->dsi->dev;
+> +	struct drm_dsc_picture_parameter_set pps;
+> +	int ret;
+> +
+> +	ret =3D regulator_bulk_enable(ARRAY_SIZE(boe_bf068mwm_td0_supplies), ct=
+x->supplies);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enable regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	boe_bf068mwm_td0_reset(ctx);
+> +
+> +	ret =3D boe_bf068mwm_td0_on(ctx);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
+> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +		regulator_bulk_disable(ARRAY_SIZE(boe_bf068mwm_td0_supplies), ctx->sup=
+plies);
+> +		return ret;
+> +	}
+> +
+> +	drm_dsc_pps_payload_pack(&pps, &ctx->dsc);
+> +
+> +	ret =3D mipi_dsi_picture_parameter_set(ctx->dsi, &pps);
+> +	if (ret < 0) {
+> +		dev_err(panel->dev, "failed to transmit PPS: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret =3D mipi_dsi_compression_mode(ctx->dsi, true);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to enable compression mode: %d\n", ret);
+> +		return ret;
+> +	}
 
+[Severity: Medium]
+Will this error path leave the regulators enabled and the reset gpio unasse=
+rted?
+
+If mipi_dsi_picture_parameter_set() or mipi_dsi_compression_mode() fails, t=
+he
+function returns early but does not seem to clean up the hardware resources
+enabled earlier in the prepare routine, potentially leading to a resource l=
+eak
+while leaving the hardware powered.
+
+> +
+> +	msleep(28);
+> +
+> +	return 0;
+> +}
+[ ... ]
+> +static int boe_bf068mwm_td0_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi =3D bl_get_data(bl);
+> +	u16 brightness =3D backlight_get_brightness(bl);
+> +	int ret;
+> +
+> +	dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
+
+[Severity: High]
+Could this unprotected bitwise modification of dsi->mode_flags lead to data
+races?
+
+Since userspace can adjust backlight concurrently with display modeset
+operations, altering these flags without synchronization might corrupt the
+DSI mode state if read or written to by other threads.
+
+> +
+> +	ret =3D mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
+
+[Severity: High]
+Does this code send DSI commands to hardware that might be powered off?
+
+The backlight update_status callback doesn't appear to check if the panel h=
+as
+been prepared before sending DCS commands, which could result in bus timeou=
+ts
+and controller errors if triggered via sysfs while unpowered.
+
+[Severity: High]
+If mipi_dsi_dcs_set_display_brightness_large() fails, will the
+MIPI_DSI_MODE_LPM flag remain permanently cleared?
+
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
+> +
+> +	return 0;
+> +}
+[ ... ]
+> +static int boe_bf068mwm_td0_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev =3D &dsi->dev;
+> +	struct boe_bf068mwm_td0 *ctx;
+> +	int ret;
+[ ... ]
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	/* This panel only supports DSC; unconditionally enable it */
+> +	dsi->dsc =3D &ctx->dsc;
+
+[Severity: Medium]
+Is it safe to register the panel via drm_panel_add() before the DSC
+parameters are configured and before attaching to the DSI host?
+
+This exposes the panel globally while it's still structurally incomplete,
+potentially leading to a race condition if another driver attempts to resol=
+ve
+the panel early.
+
+> +
+> +	ctx->dsc.dsc_version_major =3D 1;
+> +	ctx->dsc.dsc_version_minor =3D 1;
+> +	ctx->dsc.slice_height =3D 13;
+> +	ctx->dsc.slice_width =3D 540;
+> +
+> +	ctx->dsc.slice_count =3D 1080 / ctx->dsc.slice_width;
+> +	ctx->dsc.bits_per_component =3D 10;
+> +	ctx->dsc.bits_per_pixel =3D 8 << 4; /* 4 fractional bits */
+> +	ctx->dsc.block_pred_enable =3D true;
+
+[Severity: High]
+Will the absence of pic_width, pic_height, and rate control parameters here
+result in a malformed PPS payload?
+
+The drm_dsc_config struct is zero-initialized by devm_drm_panel_alloc().
+Because these fields are omitted during probe, drm_dsc_pps_payload_pack()
+will construct a zero-dimension PPS payload later, which may break display
+compression.
+
+> +
+> +	ret =3D mipi_dsi_attach(dsi);
+> +	if (ret < 0) {
+> +		drm_panel_remove(&ctx->panel);
+> +		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
+> +	}
+> +
+> +	return 0;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603-asteroids-=
+panel-support-v1-0-109c6ac81c8f@pm.me?part=3D2
 
