@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-306240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306242-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VlP/EDUrIGplyAAAu9opvQ
-	(envelope-from <devicetree+bounces-306240-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:25:09 +0200
+	id t6yjIBEsIGqfyAAAu9opvQ
+	(envelope-from <devicetree+bounces-306242-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:28:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD4D5638040
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:25:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D71136380CC
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:28:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ZuCcP9lC;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306240-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306240-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=X3kA1dy6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306242-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306242-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3E9A43123347
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 13:13:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A52DE31CDFF9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 13:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1824D48165C;
-	Wed,  3 Jun 2026 13:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97560481A89;
+	Wed,  3 Jun 2026 13:13:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1DC481237
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 13:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AF0C48125D
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 13:12:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780492380; cv=none; b=Nb87NavaDD8G2B5DI1vkHm4dMy3hJsw+9KupF8ZnVjPGDOv5PSTZ6KYiCJUhtfq86TEXFAxueMe8vwEww03bf9DuAnTQkBuOqc8TZSZ0MzZ2zRJqRSj79pgesveGXgZZqC3I54l0CMODxQ7h7ye2Bbj6jIE9OugvSN6owbkqJas=
+	t=1780492384; cv=none; b=Bl3Hwks1PH79u1OhpLyWM4/kstU9qxexvD3+AbOO5YaG6nQhw4tUtYV2blLN7gyAlMWD8twKyleUuKdJ+FIgdr0TL8wRVgc0y34m33qIx56npcFJcpHzp/dbYai4Hv0MW0e8CnolPqHeuNkOECQodAOIwdY0kAG/YF4S5mzAY80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780492380; c=relaxed/simple;
-	bh=WVscJC/fx1xSpj32I+N9plejP2D/twXwc+e6YBbMyOE=;
+	s=arc-20240116; t=1780492384; c=relaxed/simple;
+	bh=CqAtrMIAuTr+WyduzWNqSyX4HgxvH4WS0Z4W7V7NMwk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hjqRZhOrXpkko8M/c5I4s5b8ETjG1itwY6rmGAR0zzAlAwRMvNH+prHGp7LpX5CTJ0GexRnbcKgd6fdM5ayx04kyVWLKy2VHvkjwvLqW/MdYJtl/P2LBcyXgTqHjRrMVf7OakU2y6VhtHq1V3Oe1QgGDIK9jJtaMoxk20xVIGRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZuCcP9lC; arc=none smtp.client-ip=209.85.221.46
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-46019edc13dso1060283f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 06:12:57 -0700 (PDT)
+	 MIME-Version; b=UMvYl9BFF5LluzIgvCATepjS7dOmdhNvS+RqbQob4dgTYVmvTnq7oFmQDNdgjsuOEL5c7GD5BR5kGcR9mkzzU93OSOn6EA2lw1MX1IYRIRqC177iFb0e6T4h6gmqXvUcIyyEQzLjq80JUbhPyI1V8R3f4LXOfUbZkLEUzuXe4k4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X3kA1dy6; arc=none smtp.client-ip=209.85.167.52
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5aa6c66e6c5so2325306e87.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 06:12:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780492376; x=1781097176; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1780492377; x=1781097177; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=6L+XCOUCzdHOAi6HIhPFjvoFV9l5V9yicUXKuwNTGww=;
-        b=ZuCcP9lCYd78u9qQ+sRAhX5v7I7GB19gB6S6TUIgiR7d303UznTsdpG52nx0zxPmZS
-         Mb4eVZyRUl1DMa6X74uQvt2Qt4cKRm80lC4Ls3WYOj9i5hSbwRJVUWw4bOkYXGHh7Kg0
-         yzqqP0HtDRmLVt4E9A7IDTttIiDAxGiD9L7/TUoebGXYNMnE1HXqjuscUZC+DS/CLy9D
-         oRRy0xqayLSgX0t8sRSKoOaF+e65Neae0w3WXpBGbU0tdoxQ67F61sH9vnqqTieBtmhb
-         u++TINuTMD5FUZvZ13MTgLeIFTH0xiNz2Nw5a3e5nxgkXeZJj8x0GTuuzXIyb+zBVj7B
-         h2aQ==
+        bh=LItmvUsB8D4hbVjxhrNTZcvzqIugkVhfkUtCucFdaKU=;
+        b=X3kA1dy6bbjgE1rLir8uTtZ8/ubRVvDwwdfeEaCHWZeJiotlsuMsaIhEEQQCBzuusO
+         3hUSg65vDENL+/AqhamXD+bIExVArOAp8N/aWDaxjzBktn2UnhxA1uocUh0deE4l8hFB
+         tCM+dcOVu28pIkl5oL8XftoNp+rm8LrnmS+/8g6k+/TuB5xVD4VuEgeNv2gYlSqNfxHt
+         RCQWICVdEd8o5I40cjZhexXmP1xgaJY0VGgvkFhEQNaFGUDfN7Jb7QgHVnqUxl4u75iI
+         VHnQ4FDzJbZpoJzgXHBTaoq2p2C8zCLYMRFI23I5SwFwjbS/AE8Ew0i5ARaF4kbTuTku
+         PwaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780492376; x=1781097176;
+        d=1e100.net; s=20251104; t=1780492377; x=1781097177;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=6L+XCOUCzdHOAi6HIhPFjvoFV9l5V9yicUXKuwNTGww=;
-        b=e/sPiGHyYqvbbR6zqumG1pFjv2T7WM5oTw47C0GkrQLpy6UYacNTOYP8trVvNYsrdK
-         v0HkPAgUAY3zGcs8sBTH46oVji1u7+TdHGJHs6ZCo3XKrZiE7kn1r2bq8rUM2W5t/THZ
-         gkW1K6vZH8XvCd4Xdf16SIEkNy6iBU2wPzFLjtY3Ex+aBrEsK5zctDgEsxIvl6I2tsPE
-         vDPqHb9bycxVO0HrHUlFARtEVu52FrpQQf5IGS/t2rvwnxcpchB757qd0tPmWTQuXOav
-         TjJXT+AFQdg0HWxZy+zG/QRm+aXaGr76Hah2v2dSG5hSPWT0HIZKhiyC5DUBj8dYqbqS
-         BTig==
-X-Forwarded-Encrypted: i=1; AFNElJ9e0xG1fLT+aams5Y42QJeSWJZYIULG8ZISSy+VaxNV+lHzFJIA4j92MAVuPBgiZ7dy3F2NzqXN6X59@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyw52lW+DBoigSINYljUzM4iUqsbtfkKxw24Zc+z2nTciXQBaml
-	PQ4j7mylpzRatR/7FibjFTjr7tOogQrl2KRSLxAle8Q1WoA1B1oEQaVS
-X-Gm-Gg: Acq92OEFeCL5xKikX7cXLsD/db3xg9EawkIpKIiuD0L3R1D9o72N5k8pNNSDDFfZBUG
-	C0lo35WogmOSYfmDhAakBR+oE7gypo83m7YzvnkashAvW+go2tCmwesLn47QGLoOQepo8H7ad5w
-	qKCKfLz3qqGzJo9R1y0kKMV3wLbTwdVdRIrjZ4JEdybRKQbgIfrj5hqVyInl2FLDG2vj3GHfSom
-	T/4YGyGPadHIvasY2OfWL3yGO9oYPxs/xFFhaAgz6Xj6zVGyn68l/7SvUw0p0d+5lbUxYVGGTjy
-	t/OJNNF1IajCjDAFsYnPl1GAcALmTsOjSt5j3P3f7d/93Qj5iXwjrgRA2wTfDVQ6Ie2brjiypyJ
-	cXzjfYZrvuR+OFGPvPVX/tyYzVjlpAdVSngYv+fBiNskTbRm6Luk8FhXhqD1aUxOc+Z+jHWlYTq
-	YTXUB0hOzb+P1S5gTx61pnDeemv/1K+pJhhITV4hdwKc8XFESP2NY/0fm8j0djXaimRAxQHGbZF
-	dPy89KpAIYZUsD9Qzig8ltnn+57xC0Gvvoh81B5PiRfhPE6
-X-Received: by 2002:a05:6000:4b11:b0:43b:5b25:67f8 with SMTP id ffacd0b85a97d-46021726505mr4743494f8f.20.1780492375917;
-        Wed, 03 Jun 2026 06:12:55 -0700 (PDT)
+        bh=LItmvUsB8D4hbVjxhrNTZcvzqIugkVhfkUtCucFdaKU=;
+        b=WTRMpZxjx0NRp5CVAmawF3sxA1mX4hgPyarX+zoNDrV9WoUGw0+80RZrlWYziP5esr
+         UkUAPee3Lsf1OLLqOWWfIvnQJptFk/F8oZl/hePf2Qi6uoaszewtsoDAYF79RsaM84Nd
+         pBZCW1lm4FAky6lI8B5HAmg3sjx0nibQGFX/QxOtNhJ+MrDx7WcPBJ/EoI1AXCQ2//pX
+         J4QuJdVtT03zfbvPHy0Bg6Weja44rry36gm8jzqw8KEMknZz+iS+wLuN89uVdoW+nG36
+         Cag4Yw1oDQj4GgwE1uzKZ7bGjFzFPaPZmJPby7mHtxWhCSE6fjHq2VU+LRo14pYjgvjb
+         YvCQ==
+X-Forwarded-Encrypted: i=1; AFNElJ84Uj2uA0oNjC2evdgvFGLaz/rglb2Z1sH5FkCGMww6SnmZE7mYk9X57IvXwuU0dq++Q9EChwYPMzYc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIanpTwAFho0VUZE/He1WaF5l7VfkYlPVVb20pA/hsnZwCDxp7
+	MyzJl9tBDFymgsyp+qTklMVjOzabOrKwLlnFLxlfyYm4GfJDSesCl+fE
+X-Gm-Gg: Acq92OFeC/278oQzMJEJFOSN9qlEmRBEXwb9m/w2/zTSJq9DjhJ+HdAcMe9XBxs64QB
+	+KIKjPdzUMUJHFyeNJ633gnkbKyl7uwDj9ilSna7SZ+B0DJuPEcPmi2XycEwiyB6GSpvR2qCL35
+	J0W7ziMJprqWK7SY/irQAidHPivofqc6PHajxW1nb1n6snR4kZM8mkhLpUG5vTAL/4WXGvJPMFi
+	RcHb1/j7RgU6eAC6fSy8DMax4c86RA46sWjnVYrVtjWcdJ173JZYeMi2a1/OA8ZcuyZqU9wvVFs
+	I+d7IWrwgCnuc8tdWEdvrcJNNoPJ9/+qrD1UvVCfcCFK4ePRjc0xM2ihBlFaWLGIUrTv3S/q3wJ
+	q9TjRAUYc04HOjul24ZcMLb8vZceXMI7clQl+vyUYjcg3mfj25VXqSd6BUSMVMjUgDMNy9Cvj7m
+	uPGsR5/6X38txjAJBD3p7i3KbCJJzq37hMnSK5lCQuwI8x6AE5+K0lIesF7qRwfZdj0+r5piyrM
+	wotQI9kYGqYQn0c3q7JkagEaXopSS8d3D/XvT9B0eeTFOgGDRVP59xoRW8=
+X-Received: by 2002:a05:6512:40cf:10b0:5aa:6e86:55e5 with SMTP id 2adb3069b0e04-5aa7c09b9c5mr1017427e87.13.1780492376896;
+        Wed, 03 Jun 2026 06:12:56 -0700 (PDT)
 Received: from Lord-Beerus.station (net-93-144-65-244.cust.vodafonedsl.it. [93.144.65.244])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f3444fesm8361306f8f.20.2026.06.03.06.12.55
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f3444fesm8361306f8f.20.2026.06.03.06.12.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 06:12:55 -0700 (PDT)
+        Wed, 03 Jun 2026 06:12:56 -0700 (PDT)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: linux-kernel@vger.kernel.org,
@@ -92,9 +92,9 @@ Cc: pierluigi.p@variscite.com,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH v2 02/12] arm64: dts: imx8mp-var-som-symphony: enable USB support
-Date: Wed,  3 Jun 2026 15:12:40 +0200
-Message-ID: <7d8b29b9a29b1976cafc3d279482012efae1a994.1780492180.git.stefano.r@variscite.com>
+Subject: [PATCH v2 03/12] arm64: dts: imx8mp-var-som-symphony: add TPM support
+Date: Wed,  3 Jun 2026 15:12:41 +0200
+Message-ID: <2e7ff00b61aaa855aaa2c6d9ad6e98eb673bacf5.1780492180.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1780492180.git.stefano.r@variscite.com>
 References: <cover.1780492180.git.stefano.r@variscite.com>
@@ -112,14 +112,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-306240-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306242-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
@@ -135,150 +135,86 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[variscite.com:mid,variscite.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,variscite.com:mid,variscite.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AD4D5638040
+X-Rspamd-Queue-Id: D71136380CC
 
 From: Stefano Radaelli <stefano.r@variscite.com>
 
-Enable the USB controllers on the Symphony carrier board.
+Add the ST33KTPM2XI2C TPM device on the Symphony carrier board.
 
-Add the PTN5150 Type-C controller for USB role switching, enable the USB3
-PHYs and controllers, configure the I2C bus used by the Type-C
-controller, and set the first USB port in OTG mode and the second port
-in host mode.
+Enable the I2C4 bus, add the PCAL6408 GPIO expander used by the TPM and
+describe the TPM reset line.
 
 Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
 v1->v2:
- - Update PTN5150 interrupt trigger type
+ - 
 
- .../dts/freescale/imx8mp-var-som-symphony.dts | 80 ++++++++++++++++++-
- 1 file changed, 79 insertions(+), 1 deletion(-)
+ .../dts/freescale/imx8mp-var-som-symphony.dts | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
-index 25f707012f62..76928b005826 100644
+index 76928b005826..6c19a63ce405 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
 +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
-@@ -72,8 +72,11 @@ reg_usdhc2_vqmmc: regulator-usdhc2-vqmmc {
- 
- &i2c3 {
- 	clock-frequency = <400000>;
--	pinctrl-names = "default";
-+	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c3>;
-+	pinctrl-1 = <&pinctrl_i2c3_gpio>;
-+	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	status = "okay";
- 
- 	/* GPIO expander */
-@@ -95,6 +98,22 @@ usb3-sata-sel-hog {
- 			line-name = "usb3_sata_sel";
- 		};
+@@ -116,6 +116,31 @@ typec_dr_sw: endpoint {
  	};
-+
-+	/* USB Type-C Controller */
-+	typec@3d {
-+		compatible = "nxp,ptn5150";
-+		reg = <0x3d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ptn5150>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <5 IRQ_TYPE_NONE>;
-+
-+		port {
-+			typec_dr_sw: endpoint {
-+				remote-endpoint = <&usb3_drd_sw>;
-+			};
-+		};
-+	};
  };
  
++&i2c4 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default", "gpio", "sleep";
++	pinctrl-0 = <&pinctrl_i2c4>;
++	pinctrl-1 = <&pinctrl_i2c4_gpio>;
++	pinctrl-2 = <&pinctrl_i2c4_gpio>;
++	scl-gpios = <&gpio5 20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio5 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	status = "okay";
++
++	pcal6408: gpio@21 {
++		compatible = "nxp,pcal6408";
++		reg = <0x21>;
++		#gpio-cells = <2>;
++		gpio-controller;
++	};
++
++	st33ktpm2xi2c: tpm@2e {
++		compatible = "st,st33ktpm2xi2c", "tcg,tpm-tis-i2c";
++		reg = <0x2e>;
++		label = "tpm";
++		reset-gpios = <&pcal6408 4 GPIO_ACTIVE_LOW>;
++	};
++};
++
  &snvs_pwrkey {
-@@ -108,6 +127,52 @@ &uart2 {
  	status = "okay";
  };
- 
-+&usb3_0 {
-+	status = "okay";
-+};
-+
-+&usb3_1 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3_0 {
-+	adp-disable;
-+	dr_mode = "otg";
-+	hnp-disable;
-+	snps,dis-u1-entry-quirk;
-+	snps,dis-u2-entry-quirk;
-+	srp-disable;
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		usb3_drd_sw: endpoint {
-+			remote-endpoint = <&typec_dr_sw>;
-+		};
-+	};
-+};
-+
-+&usb_dwc3_1 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usb3_phy0 {
-+	fsl,phy-comp-dis-tune-percent = <115>;
-+	fsl,phy-pcs-tx-deemph-3p5db-attenuation-db = <33>;
-+	fsl,phy-pcs-tx-swing-full-percent = <100>;
-+	fsl,phy-tx-preemp-amp-tune-microamp = <1800>;
-+	fsl,phy-tx-vboost-level-microvolt = <1156>;
-+	fsl,phy-tx-vref-tune-percent = <122>;
-+	status = "okay";
-+};
-+
-+&usb3_phy1 {
-+	fsl,phy-tx-preemp-amp-tune-microamp = <1800>;
-+	fsl,phy-tx-vref-tune-percent = <116>;
-+	status = "okay";
-+};
-+
- /* SD-card */
- &usdhc2 {
- 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-@@ -129,12 +194,25 @@ MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA                                 0x400001c2
+@@ -201,6 +226,20 @@ MX8MP_IOMUXC_I2C3_SDA__GPIO5_IO19				0x1c2
  		>;
  	};
  
-+	pinctrl_i2c3_gpio: i2c3gpiogrp {
++	pinctrl_i2c4: i2c4grp {
 +		fsl,pins = <
-+			MX8MP_IOMUXC_I2C3_SCL__GPIO5_IO18				0x1c2
-+			MX8MP_IOMUXC_I2C3_SDA__GPIO5_IO19				0x1c2
++			MX8MP_IOMUXC_I2C4_SCL__I2C4_SCL					0x400001c2
++			MX8MP_IOMUXC_I2C4_SDA__I2C4_SDA					0x400001c2
++		>;
++	};
++
++	pinctrl_i2c4_gpio: i2c4gpiogrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_I2C4_SCL__GPIO5_IO20				0x1c2
++			MX8MP_IOMUXC_I2C4_SDA__GPIO5_IO21				0x1c2
 +		>;
 +	};
 +
  	pinctrl_pca9534: pca9534grp {
  		fsl,pins = <
  			MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15                             0xc0
- 		>;
- 	};
- 
-+	pinctrl_ptn5150: ptn5150grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO05__GPIO1_IO05				0x10
-+		>;
-+	};
-+
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX                            0x40
 -- 
 2.47.3
 
