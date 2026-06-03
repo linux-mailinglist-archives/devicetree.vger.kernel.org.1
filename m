@@ -1,63 +1,81 @@
-Return-Path: <devicetree+bounces-306267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306180-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ciWDKLExIGq1yQAAu9opvQ
-	(envelope-from <devicetree+bounces-306267-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:52:49 +0200
+	id 9EAVHdYZIGolvwAAu9opvQ
+	(envelope-from <devicetree+bounces-306180-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:11:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E18163844C
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 15:52:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF307637599
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 14:11:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fIPa35Hl;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306267-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306267-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="NL/O1bMl";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306180-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306180-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3159B3002B7F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 13:46:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3BF67303AAB3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 11:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C165730C17D;
-	Wed,  3 Jun 2026 13:46:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D39746AECF;
+	Wed,  3 Jun 2026 11:57:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDEDF2EBB89;
-	Wed,  3 Jun 2026 13:46:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 308133D7D77
+	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 11:57:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780494370; cv=none; b=sCvu1b0T7D+MnlgRKV9ogOvgJADXpBAmkiTrCc0RLUAxANiv/0TVdekBEhz22EIS5qtBE/rAkTUPBDNLQCnPS5Fep3oRGiO2EmoFX1e3mhWrRKIi2qOtSAE9pmq1WdsOA5uoJ1ozJDFaTxYcZkH082Q/WLM5rclzBHaeuNH6ZYU=
+	t=1780487871; cv=none; b=MdibNREMIlKH/6pFqfT85vF7ZK4N6U+2nf5xovXl+I+QeV/oxvkNneeNaxf54VlYnX0hjyoL1jPFqCNSFEAGcHWZPt1k49cKZ+vH5ZZgtV4IR/0ORVR3+OOkAP/0qt/IlfWFDTMcIPA+GmvdEXEaL7RQmxy1nHCj3VNGL+EiGsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780494370; c=relaxed/simple;
-	bh=iTS7peFxzwtnF5frmKtWAItro1LS4Pw0CPImeT2U50o=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=CKqEQ8+1wpOBb1GEpOsdl0tr2h892TXUnjBYHw+Y35Xya6ZJ1QbZHc9Fzppmq+y3bJ1zozMH4Xo6wCU9iR5Nh0vCACyreLcsYHUlQUG4Dm7hndusYOODApIIYP8FByMhG/dnvhmDIGzuquqpPKMVbalx1t2rgsWTOhjGNQf5XUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fIPa35Hl; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22B1E1F00893;
-	Wed,  3 Jun 2026 13:46:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780494369;
-	bh=AT+eITPFZBNH4pWD+B7ApKZiUCMee3eICNlohkpDMj4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=fIPa35HlkF/7U/7A6r84ENA+zrqhZQrakZbVU/VqR4ilCoMIwyh5UMgdjW5WTUS5K
-	 NzGHV2pztiY6n+U1dNdy/BNHm4LTYQTyI4LvO4+yvyJSwKNZ5i4Ei1aAWP0Cud16TZ
-	 7JBwi82A7uFcD6wnNaASVc5i2qFZ4HI2R91U/rJlsiLGTOATg59q/DUHj1JMgi88D9
-	 /v0nOjDP7ia1t8wC5ng7bcAIhQIeU5CFpinUKfu0W/oZZZd5aXiOFnToc+Fny9vXo8
-	 kXKXRAWlxbie2W/hk0ktCq23hAMz5cepy9W0JeBPoFzP8m+mt4uPzS0f9OjKwaLa7e
-	 7uZnGY2VaL8aQ==
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, 
- david.rhodes@cirrus.com, rf@opensource.cirrus.com, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, chancel.liu@oss.nxp.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-sound@vger.kernel.org, patches@opensource.cirrus.com
-In-Reply-To: <20260603095041.3906558-1-chancel.liu@oss.nxp.com>
-References: <20260603095041.3906558-1-chancel.liu@oss.nxp.com>
-Subject: Re: [PATCH v2 0/2] ASoC: cs42xx8: Add SPI bus support for
- CS42448/CS42888 codec
-Message-Id: <178048783925.10172.17263652686786901191.b4-ty@b4>
-Date: Wed, 03 Jun 2026 12:57:19 +0100
+	s=arc-20240116; t=1780487871; c=relaxed/simple;
+	bh=DjUT5aBftEoRVGB+npU3/j0yKiFQnkBpVVQvAeO5wKo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=szzw94V+FiDOatpk6LDbqvoyWLnvMgNn05w5aLUJ4bwmIXJU2B71S4pHgvyQiU+sZeH7nxuNwkVf4waRwZqEZbrP+UsR8CPdVLWtnF3+umK+B++sckCgd0pKBhrcv8Bxr982/f8tmLc0x4aGsiWCIkgUDYNDdRlfSJw6a/SYhZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NL/O1bMl; arc=none smtp.client-ip=209.85.215.181
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-c85a2cd51e7so219369a12.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 04:57:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780487869; x=1781092669; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k28+kaUswliCdDHq3RJFU26Ptqjhc+SLCKZBma4M7JU=;
+        b=NL/O1bMlk4QJ2sE8mQiHiU/FI3VARjgA0CIPz3ZBDuVyj+o9mhLNGJ3Bbjwq60qTWc
+         dv8oAGHiYz4yL1dxlNIv6QQnE2ymSm5DPppCn165wuJLGwAdpvunHaz+doTgOCka9IiY
+         fIpu/zs5J6GNrN1EG23TITm6uuWM8qvcjA0gwLluU52qp/5K4OwQRuRyDWOa7NS+ssqa
+         G4nKwrDclUvUH/CYTb/j57SzOU+di6hKaQHiT62L3tUEVQlX/FPHaDHMwFG8ZYBBc91k
+         RH+jnRCLBN/FwzXJMjj86yorp4yBoyxVaIOEtQtRXM5cbfZ0gxFma3vSGJ+zoNRlPK3s
+         UeSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780487869; x=1781092669;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k28+kaUswliCdDHq3RJFU26Ptqjhc+SLCKZBma4M7JU=;
+        b=jrJZ67IznECtzukS0EvAtLqiekWsLx5ljRfAwp+4ZHeKz5F7MlcsATmspQMhIT6OaF
+         S0JAW+SfVj54Nk6MB62WvFxz9oq9pFUPxyRaqeqNQ5gUfD6X3QbeY9eSdT9CQF+o/U2K
+         Xn/1Q32TYTJ+WT7pvUCMtNRlOjix73AN2jKLYcmmtiuX9MtoDen2pxZr8goutATQtJ2J
+         D5Qy1oTD5FwW68lQw9XaaLWDW1qnN6mHpvyDmvM4X+mG5b9amTLBh1q4l1ZN7QEllT7f
+         4bmnsinugMh6PvJpAocCY+QFBuibNl8UTqb7IxuhbP6jAGFZFu8T5/TSxq/SqzeInx22
+         pmzw==
+X-Gm-Message-State: AOJu0YynUn0GPQ+jjL2ItTEqeIWGgJQm3aqmP7DRnaSL3fwWFGTSlGfw
+	hjTmuXpcMW4NqSEUoxA5ehtSzwtI4XkRVRWyq86SPcgD/jblQHSamUx4
+X-Gm-Gg: Acq92OFeNQFAen4nH+73qT6O5WyIGdkihlw/BuR8ThLt+sT5Ckij5wFsp9htbaW4PPA
+	i/CihsI6ArnDqYeMbhDjLeoH4WH5kPdndXCljyGmm4GL9LEH0ikAhzuF9s9xIOsFudTsMhWC+ik
+	BlentYXf5hChJFFbLvPdWeILslEycY+Xao9PFPXKV8cINhHyi/PVDVCdYpXFcLi2aM972v1XpqP
+	fYc7WpKkK/SxAr35J4e/G3f7d9z5xMQpbEY0ep5qcbMAelajsdz2qtm2TvXCVdsCuXkNXGpZXVm
+	iILbiIMi6wBRRsyp+EC2YfqLEX1+LAJoFXZNCNINS1L7lPGKKnvCE3qGyAOJmGgCzeYoUxH6iJf
+	+6RdxFOYvxFBNZhYkMoS5inirrtFi2871WCtJRcqcbp/0mHlEeL8OAbyle8RSwJm+Ygl5/j19wE
+	QyaYQ7X6R4OFJGPBlpI0rj0+cTWW0JdjU4d/jWMomUSqg=
+X-Received: by 2002:a05:6a00:1916:b0:83e:f208:b11d with SMTP id d2e1a72fcca58-84282f381e5mr1983863b3a.6.1780487869275;
+        Wed, 03 Jun 2026 04:57:49 -0700 (PDT)
+Received: from [192.168.1.4] ([2401:4900:881d:447d:455f:e104:1ee9:e49d])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84282221470sm3132067b3a.6.2026.06.03.04.57.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jun 2026 04:57:48 -0700 (PDT)
+From: Bhargav Joshi <j.bhargav.u@gmail.com>
+Date: Wed, 03 Jun 2026 17:27:39 +0530
+Subject: [PATCH] dt-bindings: arm: omap: ti,omap-dmm: Convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,93 +84,170 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1476; i=broonie@kernel.org;
- h=from:subject:message-id; bh=iTS7peFxzwtnF5frmKtWAItro1LS4Pw0CPImeT2U50o=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqIDAesWeEYjmOZhPkOwZTNpo1yURrck4PHihTG
- XtjxsY+Tm+JATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaiAwHgAKCRAk1otyXVSH
- 0NP8B/9F8LzWEFUQjfcf7SsIRP/A7Hi9P57gHFyLJ6LrVkt6AyEIQVWzNNulTOSFa+ArWRLuIzC
- vHaVgd5Os6FbR4XeMmbZUDA46CVbJoObpwdkbULLNnc4yuTgVdlEyQCrRWicYYUcnTkmwizCZ4v
- mF3CURjQ3v8c0usxHukmbkpZPT7MYieXmVHRKEp6fKA+wmIykmhKG0rP5rreTWK5TWPWjJBNLtI
- EalA0RstVeZMzFWxGwZcQSa+d90rG4VwABNJ4+aQXYyaehBZXzqQ29KppeJt/vib1bguZ28d3uI
- PVcfQXZ4JF3ui/8CkAn4mNCOMrRR/l0AXS4brTdoMp0+cDNN
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Message-Id: <20260603-ti-omap-dmm-v1-1-ef491c4699d9@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDU2MD3ZJM3fzcxALdlNxc3WRzEzMzyzQDg+Q0IyWgjoKi1LTMCrBp0bE
+ QfnFpUlZqcgnICKXaWgCIp2NRbwAAAA==
+X-Change-ID: 20260530-ti-omap-dmm-c74669f00cf2
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ goledhruva@gmail.com, m-chawdhry@ti.com, daniel.baluta@gmail.com, 
+ simona.toaca@nxp.com, j.bhargav.u@gmail.com
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780487865; l=3673;
+ i=j.bhargav.u@gmail.com; h=from:subject:message-id;
+ bh=DjUT5aBftEoRVGB+npU3/j0yKiFQnkBpVVQvAeO5wKo=;
+ b=91zrxjqErYzbjHVg/nfgNCPicq0FT0Z6dYt/V702pgmCu3YfH51KxJeCMDSUAhJoSkIPSWTbN
+ XjBd/wCaP+4AVBH4/hikcIPkn2iRGsG/jnPDO6Q56xORaBlIlAhWmay
+X-Developer-Key: i=j.bhargav.u@gmail.com; a=ed25519;
+ pk=IqNDwUZKECEA+n8wXctFLBbYL9NhFstZNbOznm/nX1k=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306267-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,perex.cz,suse.com,cirrus.com,opensource.cirrus.com,kernel.org,oss.nxp.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:david.rhodes@cirrus.com,m:rf@opensource.cirrus.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:chancel.liu@oss.nxp.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-sound@vger.kernel.org,m:patches@opensource.cirrus.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,ti.com,nxp.com];
+	TAGGED_FROM(0.00)[bounces-306180-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:goledhruva@gmail.com,m:m-chawdhry@ti.com,m:daniel.baluta@gmail.com,m:simona.toaca@nxp.com,m:j.bhargav.u@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:danielbaluta@gmail.com,m:jbhargavu@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[jbhargavu@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jbhargavu@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0E18163844C
+X-Rspamd-Queue-Id: DF307637599
 
-On Wed, 03 Jun 2026 18:50:39 +0900, chancel.liu@oss.nxp.com wrote:
-> ASoC: cs42xx8: Add SPI bus support for CS42448/CS42888 codec
-> 
-> From: Chancel Liu <chancel.liu@nxp.com>
-> 
-> The existing cs42xx8 driver only supported I2C control interface.
-> Add SPI bus support for the Cirrus Logic CS42448/CS42888 Audio CODEC.
-> 
-> [...]
+Convert the TI OMAP Dynamic Memory Manager (DMM) dt binding
+from text format to DT schema.
 
-Applied to
+During conversion following changes were made:
+- Make the 'ti,hwmods' property optional and mark it deprecated as it is
+  no longer used, it is kept to support legacy dtbs.
+- Add the missing required property 'interrupts' to example node.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.2
+Signed-off-by: Bhargav Joshi <j.bhargav.u@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/omap/dmm.txt | 22 ---------
+ .../devicetree/bindings/arm/omap/ti,omap-dmm.yaml  | 53 ++++++++++++++++++++++
+ 2 files changed, 53 insertions(+), 22 deletions(-)
 
-Thanks!
+diff --git a/Documentation/devicetree/bindings/arm/omap/dmm.txt b/Documentation/devicetree/bindings/arm/omap/dmm.txt
+deleted file mode 100644
+index 8bd6d0a238a8..000000000000
+--- a/Documentation/devicetree/bindings/arm/omap/dmm.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-OMAP Dynamic Memory Manager (DMM) bindings
+-
+-The dynamic memory manager (DMM) is a module located immediately in front of the
+-SDRAM controllers (called EMIFs on OMAP). DMM manages various aspects of memory
+-accesses such as priority generation amongst initiators, configuration of SDRAM
+-interleaving, optimizing transfer of 2D block objects, and provide MMU-like page
+-translation for initiators which need contiguous dma bus addresses.
+-
+-Required properties:
+-- compatible:	Should contain "ti,omap4-dmm" for OMAP4 family
+-		Should contain "ti,omap5-dmm" for OMAP5 and DRA7x family
+-- reg:		Contains DMM register address range (base address and length)
+-- interrupts:	Should contain an interrupt-specifier for DMM_IRQ.
+-- ti,hwmods:	Name of the hwmod associated to DMM, which is typically "dmm"
+-
+-Example:
+-
+-dmm@4e000000 {
+-	compatible = "ti,omap4-dmm";
+-	reg = <0x4e000000 0x800>;
+-	ti,hwmods = "dmm";
+-};
+diff --git a/Documentation/devicetree/bindings/arm/omap/ti,omap-dmm.yaml b/Documentation/devicetree/bindings/arm/omap/ti,omap-dmm.yaml
+new file mode 100644
+index 000000000000..0b375385a7ee
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/omap/ti,omap-dmm.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/omap/ti,omap-dmm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OMAP Dynamic Memory Manager (DMM)
++
++maintainers:
++  - Bhargav Joshi <j.bhargav.u@gmail.com>
++
++description:
++  The dynamic memory manager (DMM) is a module located immediately in front of
++  the SDRAM controllers (called EMIFs on OMAP). DMM manages various aspects of
++  memory accesses such as priority generation amongst initiators, configuration
++  of SDRAM interleaving, optimizing transfer of 2D block objects, and provide
++  MMU-like page translation for initiators which need contiguous dma bus
++  addresses.
++
++properties:
++  compatible:
++    enum:
++      - ti,omap4-dmm
++      - ti,omap5-dmm
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  ti,hwmods:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: Name of the hwmod associated to DMM, which is typically "dmm"
++    deprecated: true
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    dmm@4e000000 {
++      compatible = "ti,omap4-dmm";
++      reg = <0x4e000000 0x800>;
++      interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
++      ti,hwmods = "dmm";
++    };
 
-[1/2] ASoC: dt-bindings: cirrus,cs42xx8: Add SPI bus support
-      https://git.kernel.org/broonie/sound/c/596f8d649444
-[2/2] ASoC: cs42xx8: Add SPI bus support for CS42448/CS42888 codec
-      https://git.kernel.org/broonie/sound/c/3158f585f4f2
+---
+base-commit: 8fde5d1d47f69db6082dfa34500c27f8485389a5
+change-id: 20260530-ti-omap-dmm-c74669f00cf2
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+--  
+Bhargav
 
 
