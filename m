@@ -1,155 +1,159 @@
-Return-Path: <devicetree+bounces-306010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306021-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nyVBFfPUH2qMqgAAu9opvQ
-	(envelope-from <devicetree+bounces-306010-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 09:17:07 +0200
+	id PN6ZJ0TYH2rDqwAAu9opvQ
+	(envelope-from <devicetree+bounces-306021-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 09:31:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC08763518B
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 09:17:06 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D69D63539B
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 09:31:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306010-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306010-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=herrie.org header.s=transip-a header.b=tu6SXJeN;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306021-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306021-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 38D1E30DE20D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 07:14:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 150E230C69AC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 07:15:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97EE73FBEDF;
-	Wed,  3 Jun 2026 07:14:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1593139B970;
+	Wed,  3 Jun 2026 07:15:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from outbound3.mail.transip.nl (outbound3.mail.transip.nl [136.144.136.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0BEB3FADFD
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 07:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA4E37C930;
+	Wed,  3 Jun 2026 07:15:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780470840; cv=none; b=XKYnGXKFNWQ20Q193Ws2bI6zKlpmdV63ROwfkBXJsN8gVh2KVX/X7m4VXyBw/iqrZTbjGPx8Fd/zS0GwS8xtOqnjxXL46/mDWpUTBbvB2U/ZLFOquiS6R7/vvyNewPrXtH9lIo4QnIp5lDReP2USA+lwjwEfVYadfhe2O8zSZi8=
+	t=1780470935; cv=none; b=q+q29pz/9dkSRiWBxgj40hF7+6GUwzp27YlxWswSL8pzkDQEMg9XVQLEyyU3cFtatfP9NeUUBFprT+BMylffEAb3mCEop9D5IL7mBJNn0AaEhfTT9yDQ65nEq5DK7HqrIQkUa8TyUj8BfLoGjc+5qzGkflnI5toEG2SGSkPN9/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780470840; c=relaxed/simple;
-	bh=PCWXLFfrvNilpK8ZEoTfdntslW6sKXMO4gpjttz/CDc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z5MS8kplNgGz451bmkv5h1QaWiWMI4fp75+jSjoToFIF6WcHqxWzlY+7nYJ83iSNO1WvS62TtWvkCGttXewWse7r/z+ZzWacE/HGupMaLu9+8I/Ldl1vN7wMDIJORN0lCwvAd5HD8KM8ZofEnaYpYW/ehWkQnNOThjWrDRUQ8Yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-963f63fe025so718542241.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 00:13:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780470838; x=1781075638;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eVTm+HVXfWH2P4Im0jsyjBGPpAwX0VIXYMfcrROvkZ4=;
-        b=IEud7S/KzqjKuRbqJW3wRqwRK2PZSrOSCqznfgUsLNuy+d2Rphf0PwojBBZceNt56I
-         XIuQ6CYP5riJMQWRq0OooQ3f2dM2ukfJc15vzTVFFithxxL1y3zyk3xcy2bKLyj80xhR
-         c1iAnMRQL15DDAJPycw+te2ReZqbrRUbZj69LO9/qP65nPMzMjyU3uS+oHkYljMepV8t
-         rIjq0Jw/kGXJZBr2hePEU+d5G4s43HwNdirFiVqo4BckzbHQhbYQsgp0Zv297qPY9tVI
-         iaURjBoeoUIWFpT1CvYd0IkRuNs1+T56QvhNrPL/nZQN4CDbknBMw83dVagDuhJCESd8
-         2Keg==
-X-Forwarded-Encrypted: i=1; AFNElJ8OkfDKdLVNppgxdoofhmdrm13I0OI0eeuET1i1PFCWSrt+jzBzC1ao0tjOJ9SHFPHe6Hvkc/v8kvdi@vger.kernel.org
-X-Gm-Message-State: AOJu0YzE6ZehX/697oX9C8hR6uMAUEjCL68hypZ5RjFvDzBGlnnOnOev
-	j+8ld66A6tpiaH02MNy+/JD8x05/aZYieqpAFOE3PCPvLI1Zyni59f+vviTHOVHym4k=
-X-Gm-Gg: Acq92OE6+FOrIOWR3yNwJ3fxX2t316/s7LEmutvaf/VRfuFGh7qsbjgGQCClI1D6CtY
-	QAmzOh7V1v74Pf6FA/MKuXZINRjew8A06HzbQobZiuSc+NtfHaUdDlHGXsDYNBqbCkgXk0RATZo
-	FRyWqkkcOCC/CQN3PfJ9Y/2u3jHxg+DC5kiOqUKJOZUOki95L3RAvolk42vB/v5cjFhhWowoITR
-	mOhstYJ4aVv3eJzm6IM0Xi0/YbDHNP2qgVflKhtob0pq5a98/Rp44+hxz0b+ouANhmEz0rOd9Lw
-	DdGBuW7xUcC3v3pvtZXsLmOLbmg4EEptJbIS7x4R/8Qw3y0Nor93VzQAW63AwAq6BRtfihSTbiC
-	g8HhXMwVD2/cTyciGby9nXEzRb7xMxijqwKGo7kc457w9YAr8GklPI8rHZ04DSaGdDRWJUGxJXA
-	1/i1tWjCke1fUK9reLLmUb2PZADYxCe8LKfwwJ6hhtadf5FCUjATm4dHb/HoJ/FOzyUHvifx0=
-X-Received: by 2002:a67:e701:0:b0:635:1bc8:3568 with SMTP id ada2fe7eead31-6ec460bdfd7mr693185137.23.1780470837734;
-        Wed, 03 Jun 2026 00:13:57 -0700 (PDT)
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-6eb66965b8bsm1627868137.12.2026.06.03.00.13.54
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jun 2026 00:13:55 -0700 (PDT)
-Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-6c3099b11a9so1874229137.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 00:13:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ//P8/FNv9mEG4wGnEO2wJ2Vj1uHuI1bbTuyXhSUcJ82o24rn14NXHzRTJ9OPatIB6n892/wm3VbMe5@vger.kernel.org
-X-Received: by 2002:a67:e701:0:b0:635:1bc8:3568 with SMTP id
- ada2fe7eead31-6ec460bdfd7mr693156137.23.1780470834442; Wed, 03 Jun 2026
- 00:13:54 -0700 (PDT)
+	s=arc-20240116; t=1780470935; c=relaxed/simple;
+	bh=5rJLmehv28yHT0ypBzvBIo10EXIGQTIx2wLs7Ssr6w0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L6JrL7G999lGTNIJpoKYOen3bWK7VatXd8abq2mLeJXeUu/IpLDWZqb4eIqkNINwwGSbHX6iy5BmCR7kH301QsGezMEYFdcfq6+dg8cbsFoT9APNXRPOqy4/Vl/NVPH9IGqj2A5+jq47mwiIcoIs1iPrqUxqTmVYDw9IG42pt6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=tu6SXJeN; arc=none smtp.client-ip=136.144.136.12
+Received: from submission9.mail.transip.nl (unknown [10.103.8.160])
+	by outbound3.mail.transip.nl (Postfix) with ESMTP id 4gVf9P0069znJLQ;
+	Wed,  3 Jun 2026 09:15:20 +0200 (CEST)
+Received: from herrie-desktop.. (180-93-184-31.ftth.glasoperator.nl [31.184.93.180])
+	by submission9.mail.transip.nl (Postfix) with ESMTPA id 4gVf9N24GJz3NZKgZ;
+	Wed,  3 Jun 2026 09:15:20 +0200 (CEST)
+From: Herman van Hazendonk <github.com@herrie.org>
+To: sre@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Herman van Hazendonk <github.com@herrie.org>
+Subject: [PATCH 0/2] power: supply: max8903: add GPIO-controlled input current-limit
+Date: Wed,  3 Jun 2026 09:15:17 +0200
+Message-ID: <20260603071519.807604-1-github.com@herrie.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260603065731.93243-1-biju.das.jz@bp.renesas.com> <TY3PR01MB11346485C16AFB6299B1711FD86132@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346485C16AFB6299B1711FD86132@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 3 Jun 2026 09:13:42 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVFScg51Uj2_C9YmwAOfG1+pmGiHgEr1=s0UD=OwPb-uQ@mail.gmail.com>
-X-Gm-Features: AVHnY4KTaTymKCx0LSLs6RhnIwDGw4kaIZ2uRjB878pxxG4jPILkeBa1s_xqOpY
-Message-ID: <CAMuHMdVFScg51Uj2_C9YmwAOfG1+pmGiHgEr1=s0UD=OwPb-uQ@mail.gmail.com>
-Subject: Re: [PATCH v17 00/17] Add Renesas RZ/G3L SD/eMMC support
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: "biju.das.au" <biju.das.au@gmail.com>, Ulf Hansson <ulfh@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	"magnus.damm" <magnus.damm@gmail.com>, "wsa+renesas" <wsa+renesas@sang-engineering.com>, 
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: ClueGetter at submission9.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=transip-a; d=herrie.org; t=1780470920; h=from:subject:to:cc:date:
+ mime-version; bh=6Yz+cmiP1HMDegbpmFhnrL2p3f/rJ9xArQXe3nE2oEM=;
+ b=tu6SXJeNNzsO+57Mb4fdaTm3qVoVyK+OvWYXsV/sT/vpxS0H2udKRyxQ812V9CxOYZUrOU
+ NDg7q8ApaEEdK5LMcbyxkRUxRO+aa4vVt8J1ve0HXaDTyJBQK/yeD1tMqk5zXIN0KRBZLl
+ wYADt/Kgk+YfmKUI8HXOe62SnOP08QoCcfEWq39yhfoFL8rwe0zvvhfg4nKlbwHt2yzEVc
+ h3b31+9Hu2XS/n7wHUaye2IXlmmMJf4q+LcxYGYj4stzhCzFJigYNEh1apseFE9WjIogsf
+ tw/uP/zkErWJDRpJ4LfIXV1QI23rFwwg1TakiNyJl49qvKCE82DaxJCpjH1L+Q==
+X-Report-Abuse-To: abuse@transip.nl
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,glider.be,pengutronix.de,sang-engineering.com,vger.kernel.org,bp.renesas.com];
-	TAGGED_FROM(0.00)[bounces-306010-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_RECIPIENTS(0.00)[m:biju.das.jz@bp.renesas.com,m:biju.das.au@gmail.com,m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:p.zabel@pengutronix.de,m:magnus.damm@gmail.com,m:wsa+renesas@sang-engineering.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:bijudasau@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-306021-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sre@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:github.com@herrie.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[herrie.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[herrie.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
 	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:from_mime,linux-m68k.org:email,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,renesas.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,herrie.org:mid,herrie.org:from_mime,herrie.org:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BC08763518B
+X-Rspamd-Queue-Id: 8D69D63539B
 
-Hi Biju,
+The MAX8903 charger exposes two hardware pins for input current control:
+IDC (DC path, pin 11) and IUSB (USB path, pin 7). On many boards these
+are driven by GPIO lines to a resistor mux or logic selector, letting
+software select the input current limit. The driver currently has no
+mechanism to set POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT at all.
 
-On Wed, 3 Jun 2026 at 09:00, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Please ignore this series as by mistake instead of patch series 2
-> I mentioned it as Patch series 17.
->
-> I will fix the issue soon.
+This series adds that capability via two optional DT property groups:
 
-How? I am afraid the next revision must be v18, not to confuse b4?
+  DC path: "dc-current-limit-gpios" + "dc-current-limit-mapping"
+  A 1..4-GPIO array drives a resistor mux connected to the MAX8903 IDC
+  pin. The IDC pin programs the step-down DC input current limit from
+  0.5 A to 2 A (R_IDC = 6000V/I_DC_MAX) when the DCM mode pin is
+  logic-high. The mapping table (uint32-matrix of {microamps,
+  gpio_bit_pattern} pairs) lists every step the board supports. The
+  driver picks the largest step at or below the requested limit.
 
-Gr{oetje,eeting}s,
+  USB path: "usb-current-limit-gpios" + "usb-current-limit-values"
+  A single GPIO drives the MAX8903 IUSB pin. Logic-low selects 100 mA,
+  logic-high selects 500 mA per the MAX8903 spec. The two microamp
+  values are described in DT so boards with non-standard IUSB thresholds
+  can override them. Requests below the lower value are rejected with
+  -EINVAL rather than silently programming a higher-than-requested limit.
 
-                        Geert
+The dispatch between the two paths is guarded by a new mutex (source_lock)
+that is also taken in the IRQ handlers that update the "source online"
+flags, preventing a race between set_property and a concurrent DOK/UOK
+IRQ flip. The IRQs are already requested IRQF_ONESHOT so the sleepable
+mutex is the appropriate primitive.
+
+Motivation: the HP TouchPad carries a MAX8903B charger with two TLMM GPIO
+lines feeding a four-step IDC resistor mux (500 mA, 1 A, 1.5 A, 2 A DC
+input current limit) and a third TLMM line driving IUSB for the 100 mA /
+500 mA USB limit. Without this series, the charger always draws its
+hardware-default current irrespective of what the USB host negotiated.
+
+Both patches are purely additive; platforms that don't provide the new DT
+properties continue to behave exactly as before.
+
+Herman van Hazendonk (2):
+  dt-bindings: power: supply: maxim,max8903: add DC and USB input
+    current-limit controls
+  power: supply: max8903: add DC and USB input current-limit GPIO
+    controls
+
+ .../bindings/power/supply/maxim,max8903.yaml  |  58 +++
+ drivers/power/supply/max8903_charger.c        | 369 +++++++++++++++++-
+ 2 files changed, 416 insertions(+), 11 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.43.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
