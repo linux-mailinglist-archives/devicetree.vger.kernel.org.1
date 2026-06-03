@@ -1,140 +1,189 @@
-Return-Path: <devicetree+bounces-306105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306107-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0nU7Nn3vH2p5sgAAu9opvQ
-	(envelope-from <devicetree+bounces-306105-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 11:10:21 +0200
+	id 8sadNy/wH2qdsgAAu9opvQ
+	(envelope-from <devicetree+bounces-306107-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 11:13:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 731CF636021
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 11:10:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B0FB636067
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 11:13:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="aJyQ/xW/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306105-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306105-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Jl+On8uF;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306107-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306107-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7728304D26D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 09:04:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C6483009509
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 09:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32615370AFC;
-	Wed,  3 Jun 2026 09:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E374E374197;
+	Wed,  3 Jun 2026 09:07:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F0736BCDD;
-	Wed,  3 Jun 2026 09:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E932D12F3;
+	Wed,  3 Jun 2026 09:07:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780477479; cv=none; b=sQPehqAdfVDCDIbCnBgAdyiuzdrFujFYCmpO3Bq0dqqwnZX8VNTmWaOf2XW166sNAqWmf+fLwk1fA2tAVDib5p9PBrtq/4YRxoarHL+alnLk8ar7vS0UpZN3aQMR09kC9Ib97kupI063IrOeNyD/IE7mZ+S1SRNwAzPw+ymwHiM=
+	t=1780477651; cv=none; b=gFyQLDsiU/KR49hBpMZK38FDBWtrGGw2J2hfCHkEVN8ibfRm3/kpkMdWgQ80pvZUW4CV3y3h6fpIKBCQH1qRtiJQWMcfhYBdc3BU5K/h6VriWwV8/UTZm74QhVCotO1SUm2RxQ1R+U0Y8Nn6vWW9eeTFTbbp/ZAX2karBLznQdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780477479; c=relaxed/simple;
-	bh=IIqWNvuaCFfyXb7RpNiIEodF4oOXvycYLVDdIB/K0tE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=msGZ0tLtNltk4rnECsLLwJ/jVyO56peVFpv5vWFe2CGNluBciYcAKBtyPqVw66Ihdo8I/1Ubu7C3OFp7sHu5f9f39Q8fxMF0OIyuJsXLt0/SQyqoOzWR2bsrDjsMw28N3/+LiXfScJADYMd1eQSlmMn+IAiW9wN4uBWe2lPf+TI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aJyQ/xW/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FA4E1F00893;
-	Wed,  3 Jun 2026 09:04:36 +0000 (UTC)
+	s=arc-20240116; t=1780477651; c=relaxed/simple;
+	bh=nctRHHM91Q3KfGygv1sBqhdOIKga/wuB4pkU3G09zXE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=t0plavQx7vvUIdMNrIws94ss0Ge4j9nmHwVFXeYGAHX44yOoam7F/8ojco30vvoCIE69hGQq1VuREm7hq4v4t1jIrym99Hx4DFMq8OqelxoFGLaxnbcx8tP1jV160S25okS1d8WKslty4mWhlpN2mhjUpdp76KSf+Ptw5rHE8J0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jl+On8uF; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4036F1F00893;
+	Wed,  3 Jun 2026 09:07:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780477478;
-	bh=IIqWNvuaCFfyXb7RpNiIEodF4oOXvycYLVDdIB/K0tE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=aJyQ/xW/+yUWGJUaRhUBL3xWCEZwCGL+JkBZ0ppz/i4NNTt05nVcSjqOZaSJwAO0V
-	 Od5mmEoIdaP4GQ4BCnSY52sd6ofV+w7y+P4tJAIRxQT2jt19jFgF75XfaxRkXyZi1H
-	 pJzunLoIOBSQxSj9uFN7jemWHJg7mSP9QPUc20LKYn/K9i2OMx01Zx4PkdUQ5+fMyo
-	 eYrLrNAGU5EzXwAdLnLVKhd1SNaTZuW9xEbWdKBr+cX3EKiwC4a+0V7ysPx9lleEnJ
-	 7As0RsY0gjKTY0UGtmnE+w0v8YwbS6LEQyuJz8CU+El9uf9kYpSvsdpe4KKbJmV4jF
-	 Ky9Fz4P896thg==
-Date: Wed, 3 Jun 2026 10:04:33 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Chi-Wen Weng <cwweng.linux@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	cwweng@nuvoton.com
-Subject: Re: [PATCH 1/2] dt-bindings: spi: Add for Nuvoton MA35D1 SoC QSPI
- Controller
-Message-ID: <bc0f42c0-b85c-4239-93a4-429193338f99@sirena.org.uk>
-References: <20260603043551.1062112-1-cwweng.linux@gmail.com>
- <20260603043551.1062112-2-cwweng.linux@gmail.com>
+	s=k20260515; t=1780477650;
+	bh=DQTwL5So4VqJUGhWgGKdh4W3c6TR4XvB1Lfu7Mv4d1o=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Jl+On8uFAF8grUALQmbWmkrSYYrQ5IDDqDS0cOIS1Iw4xeXFKdybsZkYJ2nB1oswg
+	 MeY7llwQ9ZsKyV3JqYM+eQuAvoxK5qPfXbm0MF4CQN0lIO4sXx4eefCLbKxRYbisv5
+	 ev+xS56+3zLygRxSVjUYdnnm/8cIwI3pKKYe/RSl/CAQsJtvR9d32SZ7MiiR/a1r5B
+	 PHyfV3Gi050EydNqMMCKOhcKjuV0HwhjRIt1h6+5TQgb7pEBrBZasoHONRlzZC7DG4
+	 SH9faUiNJRFWkYWateWjAte7JUArF4GrPIi8Mf8F/vQBAEwevTMaz5j+89/ft2zY+9
+	 +QYUqh1dR9Zmw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 13/14] media: mediatek: decoder: fill av1 buffer size
+ with picinfo
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Kyrie Wu" <kyrie.wu@mediatek.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, linux-media@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260603084045.17488-14-kyrie.wu@mediatek.com>
+References: <20260603084045.17488-14-kyrie.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 03 Jun 2026 09:07:29 +0000
+Message-Id: <20260603090730.4036F1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Sb6ZY9Vyc+0GIO+z"
-Content-Disposition: inline
-In-Reply-To: <20260603043551.1062112-2-cwweng.linux@gmail.com>
-X-Cookie: micro:
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306105-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mediatek.com:email,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,smtp.kernel.org:mid];
+	TAGGED_FROM(0.00)[bounces-306107-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:cwweng.linux@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cwweng@nuvoton.com,m:cwwenglinux@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:kyrie.wu@mediatek.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:linux-media@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sirena.org.uk:mid]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 731CF636021
+X-Rspamd-Queue-Id: 3B0FB636067
 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] The C plane buffer size (`vref->c.size`) is completely missing ini=
+tialization for reference frames, leaving it as zero in the shared hardware=
+ structure.
+--
 
---Sb6ZY9Vyc+0GIO+z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+commit a2c9dc4836cf2314c45a5c3f24634d8cb307be25
+Author: Yunfei Dong <yunfei.dong@mediatek.com>
 
-On Wed, Jun 03, 2026 at 12:35:50PM +0800, Chi-Wen Weng wrote:
-> Signed-off-by: Chi-Wen Weng <cwweng.linux@gmail.com>
+media: mediatek: decoder: fill av1 buffer size with picinfo
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+The buffer size of y and c plane has been calculated in vcp/scp,
+and this commit fills each frame buffer size directly using picinfo.
 
---Sb6ZY9Vyc+0GIO+z
-Content-Type: application/pgp-signature; name="signature.asc"
+> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1=
+_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av=
+1_req_lat_if.c
+> --- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_la=
+t_if.c
+> +++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_av1_req_la=
+t_if.c
+> @@ -1811,18 +1811,19 @@ static int vdec_av1_slice_setup_core_buffer(struc=
+t vdec_av1_slice_instance *inst
+>  {
+>  	struct vb2_buffer *vb;
+>  	struct vb2_queue *vq;
+> -	int w, h, plane, size;
+> +	int plane;
+>  	int i;
+> =20
+>  	plane =3D instance->ctx->q_data[MTK_Q_DATA_DST].fmt->num_planes;
+> -	w =3D vsi->frame.uh.upscaled_width;
+> -	h =3D vsi->frame.uh.frame_height;
+> -	size =3D ALIGN(w, VCODEC_DEC_ALIGNED_64) * ALIGN(h, VCODEC_DEC_ALIGNED_=
+64);
+> =20
+>  	/* frame buffer */
+>  	vsi->fb.y.dma_addr =3D fb->base_y.dma_addr;
+> +
+> +	vsi->fb.y.size =3D instance->ctx->picinfo.fb_sz[0];
+> +	vsi->fb.c.size =3D instance->ctx->picinfo.fb_sz[1];
+> +
+>  	if (plane =3D=3D 1)
+> -		vsi->fb.c.dma_addr =3D fb->base_y.dma_addr + size;
+> +		vsi->fb.c.dma_addr =3D fb->base_y.dma_addr + vsi->fb.y.size;
+>  	else
+>  		vsi->fb.c.dma_addr =3D fb->base_c.dma_addr;
 
------BEGIN PGP SIGNATURE-----
+[ ... ]
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmof7iAACgkQJNaLcl1U
-h9DynQf/bCLcSynH3iL4U78NkMHh291CZ97AEcRUiIFy65RAzaofPIvhPKHslR9b
-EBr4EebxnhZ5GCPwCK1ZnoMt5Dne0Y0zEXixdN3DzuNwLtY3PpxDj2yQhBKG1crw
-VhElpG/aZilMjg4GWHWHo04BUc3eSG2FssD/xWuSSoFjoCMb8B+BLiJJrb2jNEpN
-GmBPNCoS9cygrJLHkWvbJ5ixmgFjDqgpKtEo1zyhp82W1KfwUPwxShk3YDxR1Nqt
-rZRUC6NKYsHYTeNoYlaCapLc60hQwAWyIP81/oTUMVLm+j7q5IrgaCf6TGYha48G
-xnhrOQfPiQpMmTg85oNO12HN5+0iCw==
-=M+zJ
------END PGP SIGNATURE-----
+> @@ -1845,8 +1846,9 @@ static int vdec_av1_slice_setup_core_buffer(struct =
+vdec_av1_slice_instance *inst
+>  		}
+> =20
+>  		vref->y.dma_addr =3D vb2_dma_contig_plane_dma_addr(vb, 0);
+> +		vref->y.size =3D vsi->fb.y.size;
+>  		if (plane =3D=3D 1)
+> -			vref->c.dma_addr =3D vref->y.dma_addr + size;
+> +			vref->c.dma_addr =3D vref->y.dma_addr + vsi->fb.y.size;
+>  		else
+>  			vref->c.dma_addr =3D vb2_dma_contig_plane_dma_addr(vb, 1);
+>  	}
 
---Sb6ZY9Vyc+0GIO+z--
+[Severity: High]
+Are we missing an assignment for vref->c.size here?
+
+Earlier in vdec_av1_slice_setup_core_buffer(), vsi->fb.c.size is explicitly
+initialized, but here for the reference frames only vref->y.size is assigne=
+d.
+
+Because the underlying vsi structure is backed by zero-initialized memory,
+the C plane size for all reference frames will be left as zero.
+
+Could this missing initialization cause visual corruption or trigger a
+coprocessor fault when the firmware uses these reference buffer sizes for D=
+MA
+configuration and bounds checking?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603084045.1748=
+8-1-kyrie.wu@mediatek.com?part=3D13
 
