@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-306131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306132-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 17BcGmL8H2p1tgAAu9opvQ
-	(envelope-from <devicetree+bounces-306131-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 12:05:22 +0200
+	id 6L9VHIz8H2qCtgAAu9opvQ
+	(envelope-from <devicetree+bounces-306132-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 12:06:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4A0E636666
-	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 12:05:21 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 072EF636680
+	for <lists+devicetree@lfdr.de>; Wed, 03 Jun 2026 12:06:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=T0wE9Zft;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306131-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306131-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Yi3xzra+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306132-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306132-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 652AA3032756
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 10:00:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 78837300491A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jun 2026 10:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC2535676E;
-	Wed,  3 Jun 2026 10:00:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95143FE37C;
+	Wed,  3 Jun 2026 10:06:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0ED8449EB2
-	for <devicetree@vger.kernel.org>; Wed,  3 Jun 2026 10:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 977DC26738C;
+	Wed,  3 Jun 2026 10:06:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780480810; cv=none; b=B1t9oJ5AV/h+AfiFdqWRe3LBbryvjAAXWM91u1Kq+fX9bZ2KKaFSgnYrEczQaqJfrCyOpsvQY/sO17EMAHT91eXhZvL24dKTzQwuQeM+CDFJWppdBCrMjw7ffT6QaTKxQMR4vHqBh5YQx6eXSKcxnYWT+lAdjyB1qF+4Jx+RNxU=
+	t=1780481161; cv=none; b=tAKuZf2sGCh3Fwi/rLd/VDMse0il1Zl2PJ8XqW7IgTtBJfKETJxXG4RApxIx+T6WRCkdV6iXCPiuGpa3W+7b81npVMug1jwP+N6OWuEwIS/EPLNR21FTVORsjLgXE+flcZWE/k0VLdRXpJtuDu0A/7lyukIX7X1XMK6TKqErEPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780480810; c=relaxed/simple;
-	bh=Gc3W7gnu38kBjeQxYRWqB9dtLxcsm3u2zCydK9qDpBY=;
+	s=arc-20240116; t=1780481161; c=relaxed/simple;
+	bh=6HjbUT9bsljwmSLXkP40sQEsNLLDgsJcLkMB7Nnlo8o=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=X1ccU0P434LGfmJ75vNUDoG6HJ4yK6/LIEYCp5WZX1D7DwBmPq7NDkqNcX3b/v+saty+tNRU00sTRTe3HTpuSQ4Lt8+PQVFHsYuSWgk8W0R3Keb2ViLI2t5ap1caEZz2yVLHJhWilmoVyvrFuqazk2PIViWxVwUMP0+EdzkSI7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T0wE9Zft; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CF491F00893;
-	Wed,  3 Jun 2026 10:00:08 +0000 (UTC)
+	 Message-Id; b=u4I8nqHAeLy5TaXNgWmuCuayFg05HDgtSfPJ1eJOTr43RW1G2WLBUWkGk/pZqSURHvTieF0qDNv2HhFMIvO7N/ZvnfIkE/gIQ6qPdLgjipXVf+XyXhVFtww8W+3a3APsuUuteJlgzW72qQ8IaTT5ubY1xrcl6QM4ItS57xprzXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yi3xzra+; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E7E21F00893;
+	Wed,  3 Jun 2026 10:05:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780480808;
-	bh=myEbd3fjy7vndpEIDZ/HRwh1E7ChcTtNbpFn3Y7tJ7g=;
+	s=k20260515; t=1780481160;
+	bh=vApJdtU702bBFrXzOILMTcWi7/tOUDGXtSppt97x8Os=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=T0wE9ZftiwCs3Gu97pExD48mYXdbjQHJTLLiHtYgJn0mOyC55tkbA7P1HZLkVJFsS
-	 qQqVvUxCoQZ5NXU/x5fTr8RI+bMLQUiW8FCX3yHfwugT8j9GWbhrWiFlVmvZvz4auR
-	 qwRyU/53nBz6jEKPwzaAj9Xf9Elouxk+GkXa+K82iFBRSghBjWJfmTFKm3NxkpNKUX
-	 v09NwNDFff8qQw3vb7AIAQf/JWYyFn4VLya+ckwW2SPqpAHHk41kv6ARZinDt1s7Cj
-	 LoSzkuCaPX5KJNju2XTXICsqqA/9ZKN7Vvkco0SHyQ20fZ41s46WKP7/c67rTeY4ru
-	 aRA/rRusR+gag==
+	b=Yi3xzra+KZppRd7RWW3urhqQGIp4IkGqfBKIxt8P7jrXzudpfo+ERBymrm+Bm2Tim
+	 E+ymT3yW2wxpvUeNvzR4Nzl7smZKbsAyryQQx88ejax6bC+PhfISJOwYqxlNxNmDu3
+	 NjvT7WtNAoFrUqVW4clAQTupo6b1v2h1fGMhNfZWQPQU+ROJCqySao+c0vUZOWMTLb
+	 5Bfx5qZkU2LfbSPHaFT4dUmK/yzos6TwZK1xhfpp94h8YuddIoqiG0q8WhweYtBEZR
+	 tldMLe0hPJSYeTAqO2OagSyila+KHrtB0hLCDe1m2vi6dCYzDmtj4SP3EllB0LNn6R
+	 JnGtuOf//LlMg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/2] ASoC: dt-bindings: cirrus,cs42xx8: Add SPI bus
- support
+Subject: Re: [PATCH v4 2/4] arm64: dts: freescale: add initial device tree
+ for TQMa8MPQS with i.MX8MP
 Reply-To: sashiko-reviews@lists.linux.dev
-To: chancel.liu@oss.nxp.com
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260603095041.3906558-2-chancel.liu@oss.nxp.com>
-References: <20260603095041.3906558-2-chancel.liu@oss.nxp.com>
+To: "Alexander Stein" <alexander.stein@ew.tq-group.com>
+Cc: Frank.Li@kernel.org, imx@lists.linux.dev, wsa+renesas@sang-engineering.com, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260603093621.2504490-2-alexander.stein@ew.tq-group.com>
+References: <20260603093621.2504490-2-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 03 Jun 2026 10:00:07 +0000
-Message-Id: <20260603100008.2CF491F00893@smtp.kernel.org>
+Date: Wed, 03 Jun 2026 10:05:59 +0000
+Message-Id: <20260603100559.6E7E21F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,104 +69,117 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-306132-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306131-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:alexander.stein@ew.tq-group.com,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:wsa+renesas@sang-engineering.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:chancel.liu@oss.nxp.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,smtp.kernel.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smtp.kernel.org:mid,vger.kernel.org:from_smtp,tq-group.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B4A0E636666
+X-Rspamd-Queue-Id: 072EF636680
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Low] Conflicting GPIO cell counts for the '&gpio' phandle in the newly a=
-dded SPI example.
+- [High] Incorrect `reset-gpios` polarity on `dp_bridge` will permanently d=
+isable the device.
+- [Medium] Missing `interrupts` property for the DisplayPort bridge despite=
+ hardware routing.
 --
 
-commit f4759f9ac7c7f10e085045f8fabd1df333354abf
-Author: Chancel Liu <chancel.liu@nxp.com>
+commit ec4a92e3f2baae5d65ed787df020c8a40c851231
+Author: Paul Gerber <paul.gerber@tq-group.com>
 
-ASoC: dt-bindings: cirrus,cs42xx8: Add SPI bus support
+arm64: dts: freescale: add initial device tree for TQMa8MPQS with i.MX8MP
 
-This commit adds SPI control interface support to the CS42448/CS42888 codec
-bindings, which can operate at up to 6MHz. It updates the schema with SPI
-properties and provides a new SPI example configuration.
+This adds support for TQMa8MPQS module on MB-SMARC-2 board.
 
-> diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml =
-b/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
-> --- a/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
-> +++ b/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpqs.dtsi b/arch/a=
+rm64/boot/dts/freescale/imx8mp-tqma8mpqs.dtsi
+> new file mode 100644
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpqs.dtsi
 
 [ ... ]
 
-> @@ -86,3 +90,22 @@ examples:
->            reset-gpios =3D <&gpio 1>;
->        };
->      };
+> +&i2c3 {
+> +	clock-frequency =3D <384000>;
+> +	pinctrl-names =3D "default", "gpio";
+> +	pinctrl-0 =3D <&pinctrl_i2c3>;
+> +	pinctrl-1 =3D <&pinctrl_i2c3_gpio>;
+> +	scl-gpios =3D <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	sda-gpios =3D <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	status =3D "okay";
 > +
-> +    spi {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +      cs-gpios =3D <&gpio 8 0>;
+> +	dp_bridge: dp-bridge@f {
+> +		compatible =3D "toshiba,tc9595", "toshiba,tc358767";
+> +		reg =3D <0xf>;
+> +		pinctrl-names =3D "default";
+> +		pinctrl-0 =3D <&pinctrl_tc9595>;
+> +		clock-names =3D "ref";
+> +		clocks =3D <&clk_dp>;
+
+[Severity: Medium]
+Is this node missing the interrupt properties for the Hot Plug Detect signa=
+l?
+
+The pinctrl node pinctrl_tc9595 configures GPIO5_IO21 (DP_HPD_INT), but
+without the interrupt-parent and interrupts properties here, the tc358767
+driver won't be able to request the hardware IRQ.
+
+Will this cause the driver to silently fall back to 10-second software
+polling for HPD and link training events instead of using the hardware
+interrupt?
+
+> +		reset-gpios =3D <&expander0 4 GPIO_ACTIVE_HIGH>;
+
+[Severity: High]
+Will this reset-gpios polarity leave the device permanently held in reset?
+
+The tc358767 driver initializes the reset GPIO to logical 0, pulses it to
+logical 1 to assert, and returns it to logical 0 to deassert. Since this
+is specified as GPIO_ACTIVE_HIGH, the final logical 0 maps to a physical
+LOW signal.
+
+If this pin controls the bridge's Enable or active-low Reset, won't holding
+it physically LOW leave the bridge permanently disabled? Does this need to =
+be
+GPIO_ACTIVE_LOW so the driver's logical 0 maps to a physical HIGH instead?
+
+> +		toshiba,hpd-pin =3D <0>;
+> +		status =3D "disabled";
 > +
-> +      codec@0 {
-> +          compatible =3D "cirrus,cs42888";
-> +          reg =3D <0>;
-> +          spi-max-frequency =3D <6000000>;
-> +          clocks =3D <&codec_mclk 0>;
-> +          clock-names =3D "mclk";
-> +          VA-supply =3D <&reg_audio>;
-> +          VD-supply =3D <&reg_audio>;
-> +          VLS-supply =3D <&reg_audio>;
-> +          VLC-supply =3D <&reg_audio>;
-> +          reset-gpios =3D <&gpio 1>;
+> +		ports {
 
-[Severity: Low]
-Will this cause a dt_binding_check failure due to a cell size mismatch?
-
-The cs-gpios property uses 2 argument cells for the &gpio phandle, but
-reset-gpios uses 1 argument cell for the exact same &gpio label.
-
-A single device tree node can only have a single #gpio-cells value. When
-dt_binding_check auto-generates a dummy node for the unresolved &gpio
-reference, it will infer a #gpio-cells value that conflicts with one of
-these references.=20
-
-Should a different label (e.g., &gpio2) be used for cs-gpios, or should
-reset-gpios be updated to use 2 cells?
-
-> +      };
-> +    };
+[ ... ]
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603095041.3906=
-558-1-chancel.liu@oss.nxp.com?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603093621.2504=
+490-1-alexander.stein@ew.tq-group.com?part=3D2
 
