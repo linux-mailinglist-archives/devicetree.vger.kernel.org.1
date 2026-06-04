@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-306641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306642-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9cVHOboiIWoL/gAAu9opvQ
-	(envelope-from <devicetree+bounces-306641-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 09:01:14 +0200
+	id h0DuKzcjIWou/gAAu9opvQ
+	(envelope-from <devicetree+bounces-306642-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 09:03:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0B4C63D720
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 09:01:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE8463D786
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 09:03:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=cjGOpfXe;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306641-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306641-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=EgqTRQgS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306642-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-306642-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 33D3B3046724
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:57:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 44E0F30EF65F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:57:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5DDB3E0080;
-	Thu,  4 Jun 2026 06:56:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79C0F3E024B;
+	Thu,  4 Jun 2026 06:56:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC6B3DE42B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2143A3DEAC0
 	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 06:56:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780556188; cv=none; b=Wy398VfP5qnLl0WF9eTsncgDhQCV6pnFZq7E0XlBwS3L5DYkkRotup5xzN/KkyxZAdRRHsATi9/JQM9gq4ULAX4QRMFUimjR96lRdnYC8g46jhIc3CDI1ZbQvvoQXeU1M5IvRUSYARirEossk0RBvH0nZKevjPGGFONI+eyR5y0=
+	t=1780556189; cv=none; b=QcHT12P2dzTSonfUihEp022IFCBvv9ej1w5BzGkHB+4b8zOPQDsyVWv9Rkb3Nvd9lGmnICKGc+L2SHCxfLvn4EtY7x/kQJei53CesQYCb/9QNFw81a/jitgzfyx1ECGN4RV1almep28Nueu3a4K4iSIR/CU6UTHzxhM8k7Y4sUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780556188; c=relaxed/simple;
-	bh=mfMhw8X6rqSkNtHrkXfGwY4WQE9ume16xTTOiihtOCs=;
+	s=arc-20240116; t=1780556189; c=relaxed/simple;
+	bh=U/NkWV1nmCpb+qhJ27AMxYa8WdmwjXZO71aitOsqXrA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=X0owNZOHGsmrzAT4BqIyVGz/lGUPsOA9lAQ852Ci9NkUeECw9CZAP8IsaSUhSr4p95gJehAuSKZwlwg6K2bpj47rx7GBMSTFv+94IO4NQA5U79ThbmnH5XEagYOaqkEpJ9D7KPv90Sw8bvarPfrILHN3kq+C9ZMQXZsh8NX4uDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cjGOpfXe; arc=none smtp.client-ip=209.85.208.41
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-68bd167797dso481129a12.0
+	 MIME-Version; b=GpFwrRMtKsWkSdfge6njb/6fhs4WCl58gRxHvjWwPXID7iV2UgaRjyo8ZI+S0VLBOEq8VOvxZ5vit3adpjN2BHHpEMJkiM7dZRHwDg7DbPxJPFyUnPLayIdqaFq2iuwbGZNYyyAT4PBe1u0B9Sf/xCnwOQ/wiPE5sczZTDeHdxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EgqTRQgS; arc=none smtp.client-ip=209.85.218.46
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-beb1bee8c16so42066966b.0
         for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 23:56:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20251104; t=1780556185; x=1781160985; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XUjdA7Q98BNOHlYv37Q+eVdFjAnQXSNmLGsjPptNwdk=;
-        b=cjGOpfXemYwxnRHxTPQLsSrl4rfNP4BhYCP/sfSrilr7Swjy28UX2MJbL1Hw1EANBi
-         O2XSi3sZUXb+diEdQo0Fg8o9dKi6qh8DVXsH6nc8hCjcpnQ3KbqVkEI8wDzUBBmusSZ3
-         tCNZDQJWCqhUU5cFHJ0c0fm+om2Qsxb9EuF5Q9z0j0t1uitmnpu1A/lMwbLwMDy6x2Mq
-         JEoz2vk8Y/dQW5jM7ngGu8qaDJ8PA4BRt9NRIbDBdF3qWhdO9GRSyWOLG1GtoJW56Ci1
-         TcPj8mlLWHmcv//iuD6XnuN3ofQq+1uoBkt435QrTU7p3Qj5vbR4AIJpMrUK9TAdZJ5q
-         XOBw==
+        bh=IAwXO83VuDCKcmp6yvkIKlFD6KbkKJbbg2C3v5fhKN4=;
+        b=EgqTRQgSOJIrrMFuQRYqujnffHEQgJZeWuwrf49CSAPaEIzYJIqCGkuFZGPuB7l12o
+         UEcaFn2/fJ6WXJ1MBY96tiP/37PHY0rNBRJAhlP9k12lT4Gqo3mSROKKcXv0Wu2dQJ9q
+         O3q+RV+7+ow0Wv8QTrMSjZ+p7D7ogUIaRBu3oWf2Vwy6g4UHzxC0rDj3lzUyc0lXQXCW
+         4gVorwU8f9Muy7AiactGangkJGL4F0c4tM68gO2UpgErIj6rvh9jHOqIjH6jRpTEMXfC
+         26cGFCKy8njid8S4IO5VpiFk3l2TqDHmstu/K1L+z+wuqku9HtJ9UyD+h5NQJfBSW4bN
+         WnTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20251104; t=1780556185; x=1781160985;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=XUjdA7Q98BNOHlYv37Q+eVdFjAnQXSNmLGsjPptNwdk=;
-        b=H8b8oW+S5xQQl2cqs4gidQuXgmRYqpY1VjRfjrF+lTthAOwPQZI12AxjSjEEgPqfYa
-         Tc2bxWxrFvIE8u2i19yiakrjKG8BYfw8ITj91jH6cFQWPRpVxyrLGmWCORA24bXJ1Rln
-         CRNyWzNc8cti8xLPqXchshfnVwO7HxFA/8y85EA0LBd8dAqmGjwe8RcdLtFi+nb/JtXV
-         Env8zZnaVSfcxcCXJmRfwzW69swQul8FCUnSLxbU0qAxe6c2hqRknHa8xHrLbh/mC/OP
-         fWBUKiPJT9oarfY0PIEL1Ys3juf9Hl6nIS+aCHxqDDCwwbOCUFuugFkqz8OCj5XF+lkk
-         +QEg==
-X-Gm-Message-State: AOJu0Yy9FpDWT3Q9IdJFgV8i0I0GEAgpxxGPSN9UaT7fcDsSidPljPK4
-	X2JY9nbJR0C6ajPCb0n3t97xM3LAGyKpInuLIKVu82/MuEBlSIgD8nCd
-X-Gm-Gg: Acq92OHG17JUAv93/+B0VjFKC6LDZ7gjTk5V/w/sPcNReipuUWY1i4oa3GVJYHR4oEm
-	hISfnOJO68EIeJ/GEyZ8nEA3DKCUvrM0BhlzsUt9R1VwQxaywn+Ru2l8MQCIT9ULeZ2ofvvG3GC
-	sbizcw4aA/41iLf9KOvb/wxY2sd75QowdiIAkla/orTBpZb1vVdlmCzJ0YJ+l8hgX+IjDoofFFt
-	916NR5WbmESr66uyhdaDxp/TFTswsAqGMpVJ1vqS80usyDQrAic79jt/gk9WaNAldP70XR2VWB6
-	/zMLPIkP8YrNd0pr1bx+EjjoLMlIxCSFMPftZ0aK5hDiBuOSLgZanCVNWXQLqr8QA3cb8X6aY5y
-	ePV7HcUnub65DrAlhaJ6Afw3Ga500XMbDjkMl67cC+lIhHexSjDRp3nADew9vJUZKKXds0AUg8W
-	gYLIjZUVbUzUYiksbQ0U7cxOU=
-X-Received: by 2002:a17:907:9629:b0:bed:f7d3:6211 with SMTP id a640c23a62f3a-bf0af9f6ed1mr314039666b.45.1780556184392;
-        Wed, 03 Jun 2026 23:56:24 -0700 (PDT)
+        bh=IAwXO83VuDCKcmp6yvkIKlFD6KbkKJbbg2C3v5fhKN4=;
+        b=KYxGaWgMyjINdS/AF+0OBQo2opkmvf/DD60dWyjW4Z/1vhMlA+W8ZxenCzVXp9QiU6
+         Z/Fvy0uoiORXj0uSMRmJ7bBoEt2pE8A+6rEIb9CuuVqqfKQBDSQCDxSGpWm2sBhp+LVq
+         asPslirj9mYk4x1e0ZaBwhvKT8ke8ZScCpmalaqxnCww6WQvxDPuXb827bACCnhwb+Wz
+         DXWufE1A+wAb0XhTISrnXeXvuYN/kE+m3GqZ1GP2Jr5Z8/FNealnvdJVaDE02TH+59D5
+         zOzd+Rv9O2erBadbINF2/U71LsnfV+7FK/pOtrOwFCmTEOsTTlNkjulgZF0UoSXWqSrm
+         qE1w==
+X-Gm-Message-State: AOJu0YyZrrGgTM01kqJ6PWxblfBNqyKdBFLNXiSatOXh+GGBPGMrwZXu
+	MO/+LE/uz6xwBGzouEVaDaUVvfTE0lgbgFMKAXkNOZQo6AYoRO6qM/2O
+X-Gm-Gg: Acq92OFaEV5JFTykVvpKnI9FiPznMG/bWjVZ/Yw7SpqAftXOVa0AgdzgIhuhqSb22ls
+	u4TSaYqjJnvvN8ckNjfnCyY+c9/VXerBYzMuyw0YTg41bRmA2fT9VnP18FzfLHZ6jGQ/Z9UHqfp
+	TEIn+//PcHUatYQwyMI0rb4aUcJf7NELEcUgUhUNJ0mHg1EVfNS1BGOpdD1leN9eFKZQiMCpoEe
+	WX7YdRxidbY++r4Hip7smOqfsUdzu8KggR98P1Ykp0wYc/fBV+xcDdSymdZS0cmGFc3m9KZq472
+	BOhwQ+WfSz/AUKhkkMwF8yY4sjA5Cb9NbrFm7qsmNLMGyHoo+I7C8oGZpA0o5jJI2UZXhOKY09J
+	JP2dlSl/VKMfsArOAVWpHWg9xRPlufko7s4LDTHO1lcXOpy2BquIDSShnJvCwgC9rB7GNR2KOyv
+	YVO+LGa94BrTVSFKDW50SukYk=
+X-Received: by 2002:a17:907:180d:b0:bd5:1605:e1c3 with SMTP id a640c23a62f3a-bf1d159be66mr118137366b.1.1780556185381;
+        Wed, 03 Jun 2026 23:56:25 -0700 (PDT)
 Received: from xeon ([188.163.112.61])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bf051c83c93sm264113866b.16.2026.06.03.23.56.23
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bf051c83c93sm264113866b.16.2026.06.03.23.56.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 23:56:23 -0700 (PDT)
+        Wed, 03 Jun 2026 23:56:24 -0700 (PDT)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -85,9 +85,9 @@ To: Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org,
 	linux-tegra@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 09/10] ARM: tegra: tf701t: Configure UART-B line used for GPS
-Date: Thu,  4 Jun 2026 09:55:55 +0300
-Message-ID: <20260604065556.137614-10-clamor95@gmail.com>
+Subject: [PATCH v1 10/10] ARM: tegra: tf701t: Add chosen node
+Date: Thu,  4 Jun 2026 09:55:56 +0300
+Message-ID: <20260604065556.137614-11-clamor95@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260604065556.137614-1-clamor95@gmail.com>
 References: <20260604065556.137614-1-clamor95@gmail.com>
@@ -106,11 +106,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306641-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306642-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[kernel.org,nvidia.com,gmail.com];
@@ -119,7 +119,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:clamor95@gmail.com,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -133,33 +133,33 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A0B4C63D720
+X-Rspamd-Queue-Id: 6DE8463D786
 
-Set UART-B line to use hsuart since it has GPS device linked to it.
+Add chosen node since some bootloaders may require it and add stdout link
+to UART-D to simplify getting kernel log via console.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
- arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts b/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
-index df4ccb332301..fa4e3def9ec8 100644
+index fa4e3def9ec8..c18c40a5e63d 100644
 --- a/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
 +++ b/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
-@@ -1283,6 +1283,11 @@ drive-gma {
+@@ -26,6 +26,10 @@ aliases {
+ 		serial2 = &uartb; /* GPS */
  	};
  
- 	serial@70006040 {
-+		compatible = "nvidia,tegra114-hsuart", "nvidia,tegra30-hsuart";
-+		reset-names = "serial";
-+		/delete-property/ reg-shift;
-+		status = "okay";
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
 +
- 		/* GPS */
- 	};
- 
+ 	firmware {
+ 		trusted-foundations {
+ 			compatible = "tlm,trusted-foundations";
 -- 
 2.53.0
 
