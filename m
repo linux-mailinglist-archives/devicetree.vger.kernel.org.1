@@ -1,201 +1,175 @@
-Return-Path: <devicetree+bounces-306974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306976-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MBRpIpypIWpKKwEAu9opvQ
-	(envelope-from <devicetree+bounces-306974-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 18:36:44 +0200
+	id oRnjJViqIWp9KwEAu9opvQ
+	(envelope-from <devicetree+bounces-306976-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 18:39:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEB2F641E46
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 18:36:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 049BE641ECB
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 18:39:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HuseX9g3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306974-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306974-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=linaro.org header.s=google header.b=LYizWBKw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306976-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306976-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 713C93003EEB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 16:29:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 40BC1301DCEE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 16:31:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42930317162;
-	Thu,  4 Jun 2026 16:29:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECCAE3B52FA;
+	Thu,  4 Jun 2026 16:31:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290F433A9FF;
-	Thu,  4 Jun 2026 16:29:01 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780590546; cv=none; b=JthqyjTNlovNwRBXyeCcw9He3Ac2o8/M5e/FHEq3xkmm9s8OkG2TkMggZtyBGBtGX0ONBLkCsBBEa+m4/hU7tbvFq3yu+I02YAgMG5Mv0b0V7KOcRa58CD2xTZ9TZix8oM+iD3sQ6dwW0nrRxzuy76x6SLYKjwtwxaUVqdWsU0M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780590546; c=relaxed/simple;
-	bh=MDyqratiLi05/uyBtnVhplm4LWe2ncyRf8w2liNJtvw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gapgsCUGRXdxUwiX7/tQGSFm9/EvVMycrU1XFch1i+MO1KEJjaE8KTuOmmwQU6vOwoemaadtAfhGIH7txz4Sm6z3yKqnZ7N/FifPiMOzGm8fFzY6G3j94z833+zVZo/48E1xpSwrv4WSjisD6VtB7IdS5DhkRmO0x7C3fxXfPWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HuseX9g3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E5E31F00893;
-	Thu,  4 Jun 2026 16:29:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780590541;
-	bh=s7vqTQyEXNNXtpVsO2TTPhoidp7pJW7kCKN/X/mQRWI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=HuseX9g3x2esz5tWdSRaffD0vdC5Ld4Dz9yENuKR1qheyFwvr6EkcttK7Lci4Cdpx
-	 SuS+4bz3pbrLrAD4vIQyF0JjWW/Jt90QnfbclwemsCLyoXgQxwhBUgxNEzlCXJuLYA
-	 0VO38/S5jnHzodKuVrf646Sjod273AFYjwJbIebFsWO/KKwYPo7HP2LpNzESDSVlIA
-	 RTphQjJa1E5FLAyEMWR1oHtgO0Zjx7xSfyaSp7jEs0AWN+tHPTeZ0sZiGnYajETvy+
-	 DONBiEQ3h5qMYKspX8UNK2/D+i8IRwXNWRD4bsPbSQH/H3YWJnc+0f5XKJYHHgNC2M
-	 cq/3zGLswFt/A==
-Date: Thu, 4 Jun 2026 17:28:58 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Guodong Xu <docular.xu@gmail.com>
-Cc: sashiko-reviews@lists.linux.dev, kvm@vger.kernel.org,
-	devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v3 08/15] riscv: Add Zic64b to cpufeature and hwprobe
-Message-ID: <20260604-activate-antidote-ebb9197b286f@spud>
-References: <20260603-rva23u64-hwprobe-v2-v3-8-5529a7b28384@gmail.com>
- <20260602232800.768311F00893@smtp.kernel.org>
- <CA+Ck9FbKRM0wjJMg1fQpdwmow8cf_zTfir7V6+T=CRxU+vomdg@mail.gmail.com>
- <20260604-rice-protegee-3a0b8e4cb609@spud>
- <u52q565xhv5s7gz3wbh4heplhbm4pv732s5kqvf4deiw6ceb4t@n4bnpzu5kabs>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D4423B4E95
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 16:31:12 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780590673; cv=pass; b=QABfjEdm0Z4aEoHdObvTaT2ZGh7iCX+dhrCOqT4wPOEYYMpJ8J8IPH9DL/ueKmDb9cJk6D1OGaxL5KKU/gM7yxOtTDwdLkhPYeamPFzKbwgmRySUCyi/iCFhcegQqLnc5IZNseOPd+dJGAV7F4ooJYOLxXGoUJikrEI9fJuHz/Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780590673; c=relaxed/simple;
+	bh=bYQz5WGjsDPNgjJtpHPvb9PJr7MMreR1r3TlgYR8Xgc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fkgbFLk3DVtywS4kzGMjTqAv4ZFHwdy6p3zqx43HZKZ4ywMMp66ZF0rmHn/Cpr8YBseNvBxtlrJ0V2CODOK3sGXEuumVS7mEZladRWbDJLphlc8jOGlQWj0nYXDLDvV0u7QbWAIkg3sZEH7Th37Xiyup9WyNZ+f3Qr7DSwGludk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LYizWBKw; arc=pass smtp.client-ip=209.85.208.48
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-68cc6c7df99so1310679a12.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 09:31:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780590671; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JTvmXemsOMzyTwMFP3CxyKxgkKbnm7ha3QSPck4KM60qP3W0CQAeKk/ZoEXEUDTR5D
+         MDEdMG7MXvtPQAbxXAZtCh8aQh9RC5jU7OBJ1jmsVqRTELuLBzaryBvPG8MspV5b5isx
+         UfEb8r4zXfOv1eUcSsHx3WB1mpQd4gJ5bxEjCJZi7VrwuYXm6BRpgLr6yqpChpOnPx+1
+         TlKXk7JQsACL5h1fy4UPSo5TQugd1b6ffEGS/2svWnxiPYVV25ZIUiHLSLaLGU5awi4F
+         e3udLyYR6xRzmGW5qyUfa6woW4xBv2wce64G5xOG1yw2y0vb4Y65gqpb2EGzc3gflBIi
+         wLWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=bYQz5WGjsDPNgjJtpHPvb9PJr7MMreR1r3TlgYR8Xgc=;
+        fh=JNbcGu99Ng5WB9STYhKurqs6pxuf3NNBWzzIdxy6644=;
+        b=VY0pBw5VXy2JfLgHkgtxpkpRIzRCyuOjNUvEFeH5JA9NCX+2BOafn6ST2UWKb2BpAv
+         FNJJpAUKVb5//21/Gjxx1QE7BOsme9n8+q2MAF7BPie54DAwW6p8DgWk7NF75Ch+cqkM
+         MWPHF+wXXP9cU3MLHiQVouYHvhy9wPTfrP52HyktuqQYwAj9efP6vGQWrjkOD3DwP7NP
+         vkKuqAofkcHY7NPv859vgQpowrMj+Io8wxOhY0rGwwq90zDsLbDyY/dWDXiuae3hZ45B
+         AVa79fZfHpIjerFzZ7KrDtsJwgCmk9uhpkTm4V30TF93AvHNzD6ImovObFeq0njBj58I
+         uu3Q==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1780590671; x=1781195471; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bYQz5WGjsDPNgjJtpHPvb9PJr7MMreR1r3TlgYR8Xgc=;
+        b=LYizWBKwjoen9RbPlZkKqVX9HO4ohwNYKnGU+2Q+9RjwmmNdoOktu4fQ5uxRDDajqB
+         JqvjdzC53gLKc+JjhUzLqrcRERtB4d1WOkPgm/YeY18fypdqw8x4vfGp30qDadQFg+mz
+         3menY9qVtgPdGY3X5rl6F639jENH31rWDQQcJzfsLyqg8cD+EtYv7kKJliuvNEbdZqhS
+         aqdvEPZY13QDBE3KtMnin02ngDuXdHXs4Aj/y7mBKBgixCgVmSKkgsEs9z/tSMDYdAN5
+         PZspOYoGtFfvUL9v1bvQSMq9dXRTaon4BybuK0CmCpAfUFbHN5URmAZ835d3n0w9JhWf
+         3i6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780590671; x=1781195471;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bYQz5WGjsDPNgjJtpHPvb9PJr7MMreR1r3TlgYR8Xgc=;
+        b=oy9CGmYwYOO4zcoT0Pf5AEsftgkQuWF0zmAm8NRYnFOwn1cTzBwoDA3+/Oh7uzIk9M
+         aGyT9mESwi7NpLCwJeIyvSJiFDQZIZXAOPS+r9ZobukO3/H75iRbfIZ0bYjtv3gzDkEn
+         MfcuLZQTagQiQ7Xo3QL77iOBhS1Af+dN2uI+iozkh85CvG75D8/HDs2j2045aYjLUW6T
+         axngWazQMMOmZIfVvAqb9pm0xMSS2GWxxnkknWLsGumz68ZQc0TdfzEcKG+eEN4wWdFI
+         egNE+ufckuxobKzIXdOk4mc42o6Xfv+4PuGwVqcBe1dAKH3j1XDBEf7Taa4fc/KUNXhX
+         PLgg==
+X-Forwarded-Encrypted: i=1; AFNElJ9NiC76uzsoQnwoR+gpsEEROIVxqZtoYLq2kmhWlfNRkI0whnQ9aYGlZWK6mo8I25n3GwzO7Jzj1ToO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7D1FQm5cFcgeSRpSQAmQPqShtOy2JUvOZN2RSIleSDhmprJiN
+	1PJYgT17tE7K3mggZHygaIaLwJ+cHlJLiuBhvB0Jatqd1/7NB6sGAlX5LOXY0atSN66l8XGhUnK
+	UfPcpYQ1zdTxCyaI0liOEu6pPQFwCLhPTRqkVMxgEcg==
+X-Gm-Gg: Acq92OESHHO5VmNwGAE0sBawWrm4ejkGcNMNv6ymZSFa1YqH7zex5uu0MWXcMrdbSw6
+	mHYDPxno1f5W7X39royfT55rXVr8r5Qsc0+Nb67LFQML6JidukmsPOC8N6K72yw21kbNJ4Fn8xM
+	FMEB9M096e57naer0ooUi9zFrqgGFzT4JTTTQhA0E6KSrCWLE+Xq2Le6eFSpD9z1gRibvWP+LKQ
+	JGEjkxeMr+1FMW7DXrICSKlEqfyLJkEsVOah4UxI7GNp8TsYbSjFy9I7YLJDzYLTcN+AGNd476Z
+	LI4X2pLCFbbSkhrwv+RCQTPD54lXbEN4PZP6WGA0Tmpr0EL8
+X-Received: by 2002:a05:6402:3215:b0:68b:539c:d269 with SMTP id
+ 4fb4d7f45d1cf-68e710ebc51mr4808114a12.12.1780590670971; Thu, 04 Jun 2026
+ 09:31:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="UqEY10bqswxCer84"
-Content-Disposition: inline
-In-Reply-To: <u52q565xhv5s7gz3wbh4heplhbm4pv732s5kqvf4deiw6ceb4t@n4bnpzu5kabs>
+References: <20260603-acpm-tmu-v8-0-0f1810a356e6@linaro.org> <20260603-acpm-tmu-v8-2-0f1810a356e6@linaro.org>
+In-Reply-To: <20260603-acpm-tmu-v8-2-0f1810a356e6@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 4 Jun 2026 17:30:59 +0100
+X-Gm-Features: AVHnY4Jq-Cm1FpMQ9NjMzo61aJ4t188OLXQIR-HELOPptilenf70Fcb7QJeV21c
+Message-ID: <CADrjBPoHXi5hp9T=z97k4LKNKQUEnJdN4sSz5g+NgKAGC6jguQ@mail.gmail.com>
+Subject: Re: [PATCH v8 2/5] thermal: samsung: Add Exynos ACPM TMU driver GS101
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, jyescas@google.com, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-hardening@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:tudor.ambarus@linaro.org,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bzolnier@gmail.com,m:krzk@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:andre.draszik@linaro.org,m:alim.akhtar@samsung.com,m:jyescas@google.com,m:linux-kernel@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306976-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:docular.xu@gmail.com,m:sashiko-reviews@lists.linux.dev,m:kvm@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:docularxu@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-306974-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,arm.com,gmail.com,linaro.org,samsung.com,google.com,vger.kernel.org,lists.infradead.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,spud:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email,linaro.org:dkim,linaro.org:from_mime,linaro.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EEB2F641E46
+X-Rspamd-Queue-Id: 049BE641ECB
 
+On Wed, 3 Jun 2026 at 14:00, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>
+> Add driver for the Thermal Management Unit (TMU) managed via the Alive
+> Clock and Power Manager (ACPM), found on Samsung Exynos SoCs such as
+> the Google GS101.
+>
+> The TMU on the GS101 utilizes a hybrid management model shared between
+> the Application Processor (AP) and the ACPM firmware. The driver
+> maintains direct memory-mapped access to the TMU interrupt pending
+> registers to identify thermal events, while delegating functional
+> tasks - such as sensor initialization, threshold configuration, and
+> temperature acquisition, to the ACPM firmware via the ACPM IPC
+> protocol.
+>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> ---
 
---UqEY10bqswxCer84
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jun 04, 2026 at 09:31:36PM -0400, Guodong Xu wrote:
-> On 2026-06-04 10:17, Conor Dooley wrote:
-> > On Thu, Jun 04, 2026 at 02:42:22PM +0800, Guodong Xu wrote:
-> > > On Wed, Jun 3, 2026 at 7:28=E2=80=AFAM <sashiko-bot@kernel.org> wrote:
-> > > >
-> > > > > @@ -154,6 +154,23 @@ static int riscv_ext_zicbop_validate(const s=
-truct riscv_isa_ext_data *data,
-> > > > >       return 0;
-> > > > >  }
-> > > > >
-> > > > > +static int riscv_ext_zic64b_validate(const struct riscv_isa_ext_=
-data *data,
-> > > > > +                                  const unsigned long *isa_bitma=
-p)
-> > > > > +{
-> > > > > +     /*
-> > > > > +      * Zic64b mandates 64-byte naturally aligned cache blocks; =
-cross-check the
-> > > > > +      * cbom/cbop/cboz block-size device-tree properties to avoi=
-d inconsistency.
-> > > > > +      */
-> > > > > +     if (riscv_cbom_block_size !=3D 64 ||
-> > > > > +         riscv_cbop_block_size !=3D 64 ||
-> > > > > +         riscv_cboz_block_size !=3D 64) {
-> > > >
-> > > > [Severity: Medium]
-> > > > Will this check erroneously disable Zic64b if a platform does not i=
-mplement
-> > > > all three CBO extensions?
-> > >=20
-> > > Zic64b is mandatory in RVA22/RVA23, which also mandate Zicbom,
-> > > Zicbop and Zicboz, so all three block sizes must be present on any Zi=
-c64b
-> > > platform.
-> >=20
-> > Where do you get that conclusion from? That's not how we treat any other
-> > extension defined in the profiles spec. My understanding was that even
-> > if things are defined in the profiles spec that they're fair game for
-> > independent use.
->=20
-> Ok, I get your point. Agree, Zic64b/Zicbom/cbop/cboz can be implemented
-> on each hart independently (at least spec doesn't say no). With this in
-> mind, the validation of Zic64b should be like this:
->=20
->     if ((riscv_cbom_block_size && riscv_cbom_block_size !=3D 64) ||
->        (riscv_cbop_block_size && riscv_cbop_block_size !=3D 64) ||
->        (riscv_cboz_block_size && riscv_cboz_block_size !=3D 64))
-
-Or you could check for the extension instead of the left-hand sides
-here, but I think that becomes more complex because you need to start
-returning EPROBE_DEFER sometimes etc.
-
->     return -EINVAL;
->=20
-> This will allow :
-> 1. A Zic64b hart with 0, 1, 2, or 3 CBO extension and block_size 64
->    passes the validation.
-
-I'm not too worried about the 0 case here, people shouldn't be using
-zic64b if they don't have a corresponding extension after all.
-
-> 2. A Zic64b hart with CBO extensions but block_size is not 64
->    fails the validation
->=20
-> Thanks for the catch.
->=20
-> I will fix that in v4.
-
-btw, can you fix your system time? It's like 12 hours in the future and
-that impacts the timestamps on emails you send.
-
-Cheers,
-Conor.
-
---UqEY10bqswxCer84
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiGnygAKCRB4tDGHoIJi
-0jalAP9FtdZ57Gi9zqLt2uUSAeF6mH9GDBRQVZs/amLehpDPIwD/bbvLTDnhX8Nh
-QU4AIz0bQgcQ6NL0WZG49D7VpBxZCQY=
-=ctqz
------END PGP SIGNATURE-----
-
---UqEY10bqswxCer84--
+Acked-by: Peter Griffin <peter.griffin@linaro.org>
 
