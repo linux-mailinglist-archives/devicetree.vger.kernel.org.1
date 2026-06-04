@@ -1,143 +1,188 @@
-Return-Path: <devicetree+bounces-306769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306771-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id f7bQLzdeIWrAFAEAu9opvQ
-	(envelope-from <devicetree+bounces-306769-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:15:03 +0200
+	id +3kBAb9fIWowFQEAu9opvQ
+	(envelope-from <devicetree+bounces-306771-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:21:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E8BF63F558
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:15:03 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47CEE63F603
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:21:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306769-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306769-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VZ4LecXb;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306771-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306771-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4E82E303ADD2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 11:07:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 91CF530055F7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 11:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD22409103;
-	Thu,  4 Jun 2026 11:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50EE840B6DC;
+	Thu,  4 Jun 2026 11:12:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF45C40961A
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 11:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 266E1409E07;
+	Thu,  4 Jun 2026 11:12:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780571252; cv=none; b=NWSBDfl5Oke7sZglNhkmnNnoZw9+Dqe2jFsZvf6+BEb/2+ywWLwj+p7F3ZB2HWvEpIG5g/9CxolETpOL5y99q9htvaJMH+W5wcpPU6opHYJbb40LoLC+uPiaEILe1L01ju+o0ENG5uuclLTU23g2R8of4PvjlteNlpSHQV4N/Bs=
+	t=1780571560; cv=none; b=DXnv+aQ7Svlb+NOnDSROLa1nHXlbvNJ/r+aGA6SMUggTcB9hbakofAGPRCndmENuXqIm0816sKiL0WZnIDsG/P2drAKGB8DJnE86pqlrYHWE7i32AcZgx2TujjDfnZY05/bvYpA+PZ/rV01a+irDNmEcrlBehrB7Lsj2RD6OUpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780571252; c=relaxed/simple;
-	bh=m3EVhKuHhihMKDIb4q7QUoYR/Lso17Rn5p1IoK+IwW4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CK7qbA6HQDjvWLJGCrikMfXHY2GDW5zvuAMoskfBzBk/yW44ekZ5qVZBKcFVlOigZaa0i/dNGwzOt1t8vXOyeOFZYf7cNlc+BfMWUqoFwvtdHjnz4+poB/f6uGujMHDmRPcQMWEXJrzh7GbIGLclOBSvXaT9KuB0FjR6COos5iI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <jre@pengutronix.de>)
-	id 1wV5v0-0000OO-Lh; Thu, 04 Jun 2026 13:07:22 +0200
-From: Jonas Rebmann <jre@pengutronix.de>
-Date: Thu, 04 Jun 2026 13:06:58 +0200
-Subject: [PATCH 2/2] leds: pwm-multicolor: Introduce default-intensity
- property
+	s=arc-20240116; t=1780571560; c=relaxed/simple;
+	bh=I88HAvooNXAVPw8et8v7wZotnTTMMoPuZDI3XrkfNDM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ST/1DWLJNZo1JoG6k35RakZUtuZAVa5oAzKtr0bXmQbJD52XObfxqs+e2tSTg9AY7ZfciB2lOdF0ZvaDtujzmMab5QBa9W8YN1TZ546oQzsuC5Y553SDy88JiDznOxBsUxU+P23h4jej5ms5OjAFlwtOi4UqaGXsUvLJYNplooA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VZ4LecXb; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A1891F00893;
+	Thu,  4 Jun 2026 11:12:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780571558;
+	bh=sZQ6a4Dsms3if87ljXUV9N/jMfWtTZ5A6QMP9+mvWcM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=VZ4LecXbsqHS1ifoNGgx4ZZDqRtVBGq4jk6Weo/TXACMfPjSQ+flOlvRxTPi6+R9h
+	 tgr8wcZlTCTcWcJS4eYjwVLbcuc+hMEl87mMK5ZAq01lRuWqoXGeNS/Pf53IDmtks7
+	 cPYyJu8xJmugv0GjCGl+xdSfMiufgvhXaw+nA93E3FRosHZxICcEi/spQO28FmmYGo
+	 4wV++uWOnVQxQlugw/Ljcj1AJX1Eu6F/ZBYBXGhjgqcYJGweDEOpXFY0WuUtcME0L7
+	 C3DxG7j7YqyI9xMmXgy221Bxb5ZHCo5+6IxOKaBRDsbL0Vg8+sftXqpqlQoZbZW2X4
+	 ZuTUUaJpFiZVg==
+Message-ID: <dc1c2c1c-73f1-43a9-a157-7cd362faf89f@kernel.org>
+Date: Thu, 4 Jun 2026 14:12:34 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260604-multicolor-default-v1-2-b07bff431537@pengutronix.de>
-References: <20260604-multicolor-default-v1-0-b07bff431537@pengutronix.de>
-In-Reply-To: <20260604-multicolor-default-v1-0-b07bff431537@pengutronix.de>
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jacek Anaszewski <jacek.anaszewski@gmail.com>, 
- Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-Cc: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel@pengutronix.de, Jonas Rebmann <jre@pengutronix.de>
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1213; i=jre@pengutronix.de;
- h=from:subject:message-id; bh=m3EVhKuHhihMKDIb4q7QUoYR/Lso17Rn5p1IoK+IwW4=;
- b=owGbwMvMwCV2ZcYT3onnbjcwnlZLYshSjMmMfvFO23AT67WXwf7bvgUL/Knob5dwSD7d5nCBh
- 5Eh3fNORykLgxgXg6yYIkusmpyCkLH/dbNKu1iYOaxMIEMYuDgFYCIc3gz/cxW+6xvEz33TeOX4
- IXbzUG5Zpk/n0zwFD5i+W+Dzs2WJPcM/m6w18r1iMxqZV63eaNve3Mgq7RzZw8+VtPyFDVeglwA
- bAA==
-X-Developer-Key: i=jre@pengutronix.de; a=openpgp;
- fpr=0B7B750D5D3CD21B3B130DE8B61515E135CD49B5
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::ac
-X-SA-Exim-Mail-From: jre@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 9/9] arm64: dts: renesas: rzg3s-smarc-som: Enable I3C
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: geert+renesas@glider.be, linusw@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
+ claudiu.beznea@tuxon.dev, linux-renesas-soc@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20260522102251.1723392-1-claudiu.beznea@kernel.org>
+ <20260522102251.1723392-10-claudiu.beznea@kernel.org>
+ <ahBMKWrKQDko3cG8@shikoro> <fb892151-33e5-4bb2-9a01-9abebe0f3b39@kernel.org>
+ <ahXQnt4MTVoBB9bF@shikoro>
+Content-Language: en-US
+From: Claudiu Beznea <claudiu.beznea@kernel.org>
+In-Reply-To: <ahXQnt4MTVoBB9bF@shikoro>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jacek.anaszewski@gmail.com,m:sven.schwermer@disruptive-technologies.com,m:pavel@ucw.cz,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kernel@pengutronix.de,m:jre@pengutronix.de,m:krzk@kernel.org,m:conor@kernel.org,m:jacekanaszewski@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,disruptive-technologies.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-306769-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[jre@pengutronix.de,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306771-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[claudiu.beznea@kernel.org,devicetree@vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jre@pengutronix.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:wsa+renesas@sang-engineering.com,m:geert+renesas@glider.be,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:claudiu.beznea@tuxon.dev,m:linux-renesas-soc@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:claudiu.beznea.uj@bp.renesas.com,m:wsa@sang-engineering.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[glider.be,kernel.org,gmail.com,tuxon.dev,vger.kernel.org,bp.renesas.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0E8BF63F558
+X-Rspamd-Queue-Id: 47CEE63F603
 
-Like all LED drivers, pwm-multicolor supports turning on an LED on boot
-by setting linux,default-trigger, e.g. to "default-on". pwm-multicolor
-however scales the brightness of the color-component sub-LEDs with their
-individual intensity value. Since these intensities are
-zero-initialized, on boot a trigger is invisible until colors are set
-from userspace.
+Hi, Wolfram,
 
-Fix linux,default-trigger for pwm-multicolor by allowing for nonzero
-default-intensities but default to 0 for backwards-compatibility.
+On 5/26/26 19:55, Wolfram Sang wrote:
+> Hi Claudiu,
+> 
+>> Could you please let me know what do you consider we should do here? Do you
+>> think we could drop these pin controller setting and do some particular I3C
+>> controller settings instead?
+> 
+> My original thought was: If it was a boolean state which is active when
+> suspending and disabled when resuming, then we wouldn't need a customer
+> specific binding for it and just do this in the suspend/resume functions
+> of the pin-controller...
+> 
+> ... BUT ...
+> 
+> reading more about this in the manual, just raises more questions for
+> me.
+> 
+>> The output is fixed at Hi-Z and no data is transmitted to the inside even if
+>> data is input from outside. “Standby mode” is available when using I2C mode
+>> only. (Not available when using I3C mode).
+>>
+>> The current driver proposal don't take into account the IP mode when setting
+>> STBN though
+>> pinctrl_pm_select_sleep_state()/pinctrl_pm_select_default_state() to keep
+>> the code simpler, relying on the "Not available when using I3C mode" part of
+>> the note, and considering setting it when the IP is in I3C mode is harmless.
+> 
+> This is one question I also had: What does "not available" actually
+> mean? Did you confirm with HW guys that it is really harmles?
+> 
+> I also wonder about the intended use-case of this mode. "no data is
+> transmitted to the inside even if data is input from outside" doesn't
+> really sound like a mode intended when the whole SoC goes to sleep. Why
+> or how would input be even transmitted to the inside if everything is in
+> a deep-sleep state? I could also imagine that this mode is rather used
+> to hide from the bus for a while for some corner-case reason.
+> 
+> And finally: does this really save energy? Could you measure a benefit?
+> Maybe there is nothing driven at all in the sleep state? Then, nothing
+> is gained? Not clear from the datasheet.
+> 
+> Because the datasheet is so sparse with information and because it
+> doesn't say how STBN is intended to be used, I would argue we should
+> skip it until we know what it is for and how it is used. If we know this
+> somewhen, we can still add this in a second step.
+> 
+> But for now, enabling I3C realiably is the first step, and for that we
+> surley need the POC bit to select the voltage. This is easily
+> understandable and straightforward to do. So, my suggestion is to pick
+> this low-hanging fruit now and reach for the other one once we have more
+> information about it.
 
-Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
----
- drivers/leds/rgb/leds-pwm-multicolor.c | 2 ++
- 1 file changed, 2 insertions(+)
+This is what I've got from the HW team:
 
-diff --git a/drivers/leds/rgb/leds-pwm-multicolor.c b/drivers/leds/rgb/leds-pwm-multicolor.c
-index e0d7d3c9215c..3e515df40583 100644
---- a/drivers/leds/rgb/leds-pwm-multicolor.c
-+++ b/drivers/leds/rgb/leds-pwm-multicolor.c
-@@ -95,6 +95,8 @@ static int iterate_subleds(struct device *dev, struct pwm_mc_led *priv,
- 		}
- 
- 		subled[priv->mc_cdev.num_colors].color_index = color;
-+		fwnode_property_read_u32(fwnode, "default-intensity",
-+					 &subled[priv->mc_cdev.num_colors].intensity);
- 		priv->mc_cdev.num_colors++;
- 	}
- 
+The purpose of STBN is to control the standby state on the I2C side. It is not 
+intended to control transitions to a low power consumption mode such as VBAT mode.
+
+In I2C mode, enabling standby mode places the device in a non-communicating 
+standby state while maintaining the I2C configuration. The outputs are set to 
+Hi-Z, internal transmission is stopped, and communication is disabled. As a 
+result, the bus is effectively not actively driven.
+
+In I3C mode, standby control via STBN is ignored even if configured. STBN can 
+therefore remain set to 1 while the clock is turned on and off. In I2C mode as 
+well, it is acceptable to keep STBN = 1 while toggling the clock on and off. It 
+is also possible to change the STBN setting while the clock remains enabled.
+
+Standby mode is not intended for power consumption control, but rather for 
+placing the I2C interface into a standby (non-communicating) state.
 
 -- 
-2.54.0.129.g3edf2eeba9
+Thank you,
+Claudiu
 
 
