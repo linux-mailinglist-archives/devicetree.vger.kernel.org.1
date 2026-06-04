@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-307084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307085-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kmIwKr75IWrURAEAu9opvQ
-	(envelope-from <devicetree+bounces-307084-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 00:18:38 +0200
+	id AEvHCfT5IWrbRAEAu9opvQ
+	(envelope-from <devicetree+bounces-307085-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 00:19:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 370A9643C4B
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 00:18:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FD5F643C54
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 00:19:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lunn.ch header.s=20171124 header.b=2dBSWT2E;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307084-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307084-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=lunn.ch header.s=20171124 header.b=1r3AjNxb;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307085-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307085-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=lunn.ch;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 35D983052FCB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 22:13:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1BA6F300421B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 22:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC6033F8A1;
-	Thu,  4 Jun 2026 22:13:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B118233F8A1;
+	Thu,  4 Jun 2026 22:14:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACCDA2EEE90;
-	Thu,  4 Jun 2026 22:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC8B3BBFBA;
+	Thu,  4 Jun 2026 22:14:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780611219; cv=none; b=SpGHmQ+D5OiDKL8GRROX00vqDtxfFqqSpwTMKerAQ14sq4AtHZILDQbRYoL+Ij9byULVd1L3fwQYA/OidsFZ/ddilp+lRRAupVTDFUof5Z5KRKaxuCVgIPu4j0hcEUDGL/7nqKo1lACWAPHKU5XAM9lu1zXMMpEXBsWuIbfn5VY=
+	t=1780611285; cv=none; b=WosJATjzalXqInloxCVBBLMKjYZ5GMLeC1NLu+NLQJN6hWej6S7OIJlTf9vn44ce1L+zhsw28K+NEtnh8vl6M16eWOmT+7FCrdlcX2IHVNHL5nD8Gof9+1U6RFB+Lt6DJ7WnWTmSjJciPzV44VL6okh8dO32ku6pnYy7s5aFU74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780611219; c=relaxed/simple;
-	bh=VBPzNNhKg/gxgevw9Vu7BeyTNnOknUjKtkIaoQ0qFUg=;
+	s=arc-20240116; t=1780611285; c=relaxed/simple;
+	bh=DJU3WwzHM/t/1TtfWso8Gs5DRfFWh4auZXPnHcgEJ1I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QjEnaa2bx/KME0I7/2EumJKNuwMR9OwVf72XGolOLdQDTAbB3Sh9kdpojKL1bJgpZbaKU5brlMgki6r4GiLk2PINf3Z5VngOFK35fCJ7wOx8wRzxEk5gCB8VklCZBFqu8XZ07tub/geXNwBuigyUQjR0YtCSl3fg/t7BvUX4eHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2dBSWT2E; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=g3+2qvLouogg2ZNfW05yMblLblAy9CoLmTk5DAvAfICIEMwZ6eWn3L1BlgaG9mmwKa4ixHImkydV80zTJkr331214qLojNnr/7XPbgFHhyvjMvfa5fwoL4e9SWS7FasWpTmDWvlKbfLb3zbmWWKUhmG01X0a5omY6GNK9CtW6G0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=1r3AjNxb; arc=none smtp.client-ip=156.67.10.101
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=c1PTdC9lXCxKPecUug8orxQ1I8i9oybZdggOXybuF2c=; b=2dBSWT2Erl8bH1W14lQ4z/tzlW
-	xOsL5jj92/VqRaLSDi27QR3X/CiVUJs0LMHmaUlPrBnAxFHufLXL4FXN/5EF7GWXMIC+VoncsL9OV
-	168ZwQ3MvVwqyyH7i+yy7yXVIEeawy7qpg+6qatpq4UG5T5jHx8Ss5GDTV2WarsO2CTM=;
+	bh=oRqeObDIRluq87BQIlCpukh5tm+v+E13HSYTiQxf2BM=; b=1r3AjNxbviNojUCDosy9nyHGQk
+	xvJQAs6y57I4dZoxse7BR4dcX42Mq8xODbhc9PbCUkjoYXcRCDYYEGEe9LC0UoCye20bRjTZBscoM
+	MgiQWFro1NNpFu1QKK0l8xupm4rJWyp12JSX5PuQrW34eI8eLPpcW8VJzGNcV9XGwOI4=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1wVGJU-0066yJ-Ej; Fri, 05 Jun 2026 00:13:20 +0200
-Date: Fri, 5 Jun 2026 00:13:20 +0200
+	id 1wVGKa-0066zP-NU; Fri, 05 Jun 2026 00:14:28 +0200
+Date: Fri, 5 Jun 2026 00:14:28 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: ciprian.regus@analog.com
 Cc: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
@@ -61,11 +61,11 @@ Cc: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
 	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
 	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 05/13] net: ethernet: oa_tc6: Export standard
- defined registers
-Message-ID: <171a1424-eb9b-440a-ba3c-2f6296727a44@lunn.ch>
+Subject: Re: [PATCH net-next v3 06/13] net: ethernet: oa_tc6: Add the OA_TC6_
+ prefix to standard registers
+Message-ID: <3016abe2-f9ee-48c4-be48-c6c34dbdce7e@lunn.ch>
 References: <20260604-adin1140-driver-v3-0-5debdb3173c4@analog.com>
- <20260604-adin1140-driver-v3-5-5debdb3173c4@analog.com>
+ <20260604-adin1140-driver-v3-6-5debdb3173c4@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,7 +74,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260604-adin1140-driver-v3-5-5debdb3173c4@analog.com>
+In-Reply-To: <20260604-adin1140-driver-v3-6-5debdb3173c4@analog.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -85,7 +85,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307084-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307085-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,vger.kernel.org];
@@ -109,15 +109,14 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 370A9643C4B
+X-Rspamd-Queue-Id: 6FD5F643C54
 
-On Thu, Jun 04, 2026 at 07:32:50PM +0300, Ciprian Regus via B4 Relay wrote:
+On Thu, Jun 04, 2026 at 07:32:51PM +0300, Ciprian Regus via B4 Relay wrote:
 > From: Ciprian Regus <ciprian.regus@analog.com>
 > 
-> Move defines for standard Open Alliance TC6 register addresses and
-> subfields in the oa_tc6's header and add entries for the PHYID and
-> CONFIG2. As such, other ethernet drivers that rely on oa_tc6 can use
-> them directly.
+> The OA TC6 standard registers are currently exported in a header file.
+> Add the OA_TC6_ prefix to the register address and subfield mask macros
+> to avoid future naming conflicts.
 > 
 > Signed-off-by: Ciprian Regus <ciprian.regus@analog.com>
 
