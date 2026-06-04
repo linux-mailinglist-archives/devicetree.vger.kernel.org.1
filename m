@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-306730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306733-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Qz1jGjJOIWqvCwEAu9opvQ
-	(envelope-from <devicetree+bounces-306730-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 12:06:42 +0200
+	id P9F/CDlOIWq1CwEAu9opvQ
+	(envelope-from <devicetree+bounces-306733-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 12:06:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03DC263ECE9
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 12:06:42 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0517863ECF9
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 12:06:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=WqOzcc6C;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306730-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306730-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=AKrTzwxF;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306733-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-306733-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CD41B30A1343
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 10:00:20 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 27BB1310BE4C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 10:00:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB673F7873;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 744F63FBEB8;
 	Thu,  4 Jun 2026 09:59:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32ABF3E558A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37A4B3E638F;
 	Thu,  4 Jun 2026 09:59:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780567183; cv=none; b=AhV5bZUr8blbX98DZPfOVOe3dcx3EeOpygiiPTWgKHbylIB0tsbEciCtvCMkCQ43Z1bA4b2RJtBGHqNKHaPkDJtCBeWBOxTRO1fYCHrqjGjLBXBNSBCe/y3qL63Y5+gWQVE+6jt67vqB1U8Y0sgjxCPYsIFf9BIKNqEiLlI6R/U=
+	t=1780567183; cv=none; b=OqVuvKbzhwqJDN5fgU6mybNoEIA+ToBkI46MaJHe2fB7j/bHZIkkbm/H9h09hQgWeOJJA/ORaVFgh21RliWfScSY1v7sA+1/0Hs08b+ZWL64RPrwUnLJhLdTudGjPlIeK3ekmYQoTspup9WEpv9/UBw/4RpF9dkPfu6HDbtGuGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1780567183; c=relaxed/simple;
-	bh=HL85O5ywfizEHOr8eGwBRTKm83kTNoC//I2DIxVkQDI=;
+	bh=j0yde657AyQhx2FMzyIpckgkxnZYNH3r8JEq8/bisoc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=E3CI7rGFrgmXsmXxB8sP5no26km9W9NySkZjRMFE3poCgbq+3QLEl1FMCUfw+kckJDO1wmyS69xb14hZL5uF3ehD8QTriBB3V7EUUysH3cqIJyMxGXVdLdfow+Zk9FUTkU4wLpuSjFTsZj4W/8QKZ0wUDuMAetA0oLY7mLg5znI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WqOzcc6C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id F0786C2BCF5;
-	Thu,  4 Jun 2026 09:59:42 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=s3BpdNF5GVEEqXqIESihzIBiuBBMRLtzedMwDLD3WrYw/WqYauxJ5w+gmKmenFf0hM+AEb5g01EW9umRyQq0Tz4dYFKlMHtUEmUyeixlnGVgAdaZWLeDYHSeuPjLM2ppejWAV0db5EY5XGX1ZR+L1DbXXivpQvyxJ9HoLmj4hf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKrTzwxF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0CBCDC2BCF7;
+	Thu,  4 Jun 2026 09:59:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1780567183;
-	bh=HL85O5ywfizEHOr8eGwBRTKm83kTNoC//I2DIxVkQDI=;
+	bh=j0yde657AyQhx2FMzyIpckgkxnZYNH3r8JEq8/bisoc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=WqOzcc6CRNs9pTo4OibKaTBjYpEzaU4mUHhVQg+nPFVILZtYMlfx77smaZ2M4AzP7
-	 PBMOHU2XERhWdpit3CEtnq/8TpWkVwDvRwfp6WFQtgVMafnTQQ+azZeTdj92y9NthL
-	 dLsxw1x15bJfGb609bWtmJrQXCd1jTnuImbikEtuiAMg2ja1MARf8/tCiuqiWFVv2m
-	 A6In7Oa0h7dwfKIX6vZEffT1vWR6htwbswKhqmVzLsD1AOY6TW+U/qHg7zBd8fEYm9
-	 TQbQiwxzEn7/HgS3iepmMK/kWd1EPywAWhX/mDXugrefA1s7Q23Uh8zEi8ibxel8QM
-	 YngmueHLYbjdA==
+	b=AKrTzwxFm7rkHxpo1B7HpNYbGno7IUrpXrTkWd4k2+/5WrQEXHos6UJIG2Fxzk32b
+	 /YIiDAP7MFZ1cKkaZ9Dw2hot+vL8RdHMa+BzCkNRcs93hYahC7E0KulDKfoKrZM1TV
+	 jFrd6giyLEBD5NQrVjpUlqv2ybQRmhelFZUM8gMlDSAuhxQx6ArYDckCNBAZqNzcGn
+	 YdPGbHxHZaiboN3tL7OKG8zPXLu8e+Wv2oPr7gQrR8A+sYi8fEv+HpDdNzLKVobRWw
+	 me+/TGPgeHiM9pXTgASEEJetgeOOtJZXHnZzOmf5G9mUCLte4vE4S1tIiL0ybhqbSB
+	 kxYSRbQMiAt3A==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E5444CD6E4A;
-	Thu,  4 Jun 2026 09:59:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 014A9CD6E72;
+	Thu,  4 Jun 2026 09:59:43 +0000 (UTC)
 From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Date: Thu, 04 Jun 2026 10:58:57 +0100
-Subject: [PATCH v16 03/14] lib: vsprintf: use _parse_integer() instead of
+Date: Thu, 04 Jun 2026 10:58:58 +0100
+Subject: [PATCH v16 04/14] lib: kstrtox: add initial value to
  _parse_integer_limit()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -61,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260604-adf41513-iio-driver-v16-3-1a7d09143bc2@analog.com>
+Message-Id: <20260604-adf41513-iio-driver-v16-4-1a7d09143bc2@analog.com>
 References: <20260604-adf41513-iio-driver-v16-0-1a7d09143bc2@analog.com>
 In-Reply-To: <20260604-adf41513-iio-driver-v16-0-1a7d09143bc2@analog.com>
 To: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
@@ -80,11 +80,11 @@ Cc: Jonathan Cameron <jic23@kernel.org>,
  Shuah Khan <skhan@linuxfoundation.org>, 
  Rodrigo Alencar <rodrigo.alencar@analog.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780567181; l=1516;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780567181; l=2039;
  i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
- bh=HnHwwNxnBXJiolG9zBUbHrPgMO46GbC/RCE69yuI1/o=;
- b=3u1uRjndj72I3RRHTZ/96+S5fBdcevBkPJrFmkplGDrC66PxSMptJrMQzvs3ikSOT33yDJUVy
- BzLeid1vQuCBCSTB+g+s34w96MbUahV9/dUD4qRnl5Xc8gpL2nkjmgy
+ bh=E5LdU8JOCTVd77KslWCd6DlpfzZCyFPV4Z1fW685/A4=;
+ b=cN8sRipwhFQl1XXm6PbB5GabZgWh4kkqLQz+4qpJUL9BD0fzRI4ASVs4V7JRshsmhxVUlG/Ql
+ ZJUUmAHcvOACpegWpB0ivzTtQtcCHU1FsTfwaW8s5QrVyOEjKwtJV4e
 X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
  pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
 X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
@@ -97,12 +97,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[22];
-	TAGGED_FROM(0.00)[bounces-306730-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
+	TAGGED_FROM(0.00)[bounces-306733-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -123,51 +123,67 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,intel.com:email,analog.com:mid,analog.com:email,analog.com:replyto,suse.com:email]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:mid,analog.com:email,analog.com:replyto,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 03DC263ECE9
+X-Rspamd-Queue-Id: 0517863ECF9
 
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-Use _parse_integer() that allows optional arguments to be explicitly
-initialised.
+Add init parameter to _parse_integer_limit() that defines an initial
+value for the accumulated result when parsing an 64-bit integer. The
+new function prototype is adjusted so that the _parse_integer() macros
+stay consistent allowing for one more argument, which defaults to 0.
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Acked-by: Petr Mladek <pmladek@suse.com>
 Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
 ---
- lib/kstrtox.h  | 3 +++
- lib/vsprintf.c | 2 +-
- 2 files changed, 4 insertions(+), 1 deletion(-)
+ lib/kstrtox.c | 4 ++--
+ lib/kstrtox.h | 9 ++++++---
+ 2 files changed, 8 insertions(+), 5 deletions(-)
 
+diff --git a/lib/kstrtox.c b/lib/kstrtox.c
+index 0399856713c1..cc6869a97bf2 100644
+--- a/lib/kstrtox.c
++++ b/lib/kstrtox.c
+@@ -50,12 +50,12 @@ const char *_parse_integer_fixup_radix(const char *s, unsigned int *base)
+  */
+ noinline
+ unsigned int _parse_integer_limit(const char *s, unsigned int base, unsigned long long *p,
+-				  size_t max_chars)
++				  size_t max_chars, unsigned long long init)
+ {
+ 	unsigned long long res;
+ 	unsigned int rv;
+ 
+-	res = 0;
++	res = init;
+ 	rv = 0;
+ 	while (max_chars--) {
+ 		unsigned int c = *s;
 diff --git a/lib/kstrtox.h b/lib/kstrtox.h
-index 00cf3255bdd2..ff84fe434a00 100644
+index ff84fe434a00..73dee79fd8ed 100644
 --- a/lib/kstrtox.h
 +++ b/lib/kstrtox.h
-@@ -12,6 +12,9 @@ unsigned int _parse_integer_limit(const char *s, unsigned int base, unsigned lon
- #define _parse_integer0(s, base, res, ...)						\
- 	_parse_integer_limit(s, base, res, INT_MAX)
+@@ -7,13 +7,16 @@
+ #define KSTRTOX_OVERFLOW	(1U << 31)
+ const char *_parse_integer_fixup_radix(const char *s, unsigned int *base);
+ unsigned int _parse_integer_limit(const char *s, unsigned int base, unsigned long long *res,
+-				  size_t max_chars);
++				  size_t max_chars, unsigned long long init);
  
-+#define _parse_integer1(s, base, res, max_chars, ...)					\
-+	_parse_integer_limit(s, base, res, max_chars)
+ #define _parse_integer0(s, base, res, ...)						\
+-	_parse_integer_limit(s, base, res, INT_MAX)
++	_parse_integer_limit(s, base, res, INT_MAX, 0)
+ 
+ #define _parse_integer1(s, base, res, max_chars, ...)					\
+-	_parse_integer_limit(s, base, res, max_chars)
++	_parse_integer_limit(s, base, res, max_chars, 0)
 +
++#define _parse_integer2(s, base, res, max_chars, init, ...)				\
++	_parse_integer_limit(s, base, res, max_chars, init)
+ 
  #define _parse_integer(s, base, res, ...)						\
  	CONCATENATE(_parse_integer, COUNT_ARGS(__VA_ARGS__))(s, base, res, __VA_ARGS__)
- 
-diff --git a/lib/vsprintf.c b/lib/vsprintf.c
-index 9f359b31c8d1..e6cf5f62738d 100644
---- a/lib/vsprintf.c
-+++ b/lib/vsprintf.c
-@@ -86,7 +86,7 @@ static unsigned long long simple_strntoull(const char *startp, char **endp, unsi
- 	cp = _parse_integer_fixup_radix(startp, &base);
- 	prefix_chars = cp - startp;
- 	if (prefix_chars < max_chars) {
--		rv = _parse_integer_limit(cp, base, &result, max_chars - prefix_chars);
-+		rv = _parse_integer(cp, base, &result, max_chars - prefix_chars);
- 		/* FIXME */
- 		cp += (rv & ~KSTRTOX_OVERFLOW);
- 	} else {
 
 -- 
 2.43.0
