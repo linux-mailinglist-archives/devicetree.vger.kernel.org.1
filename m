@@ -1,227 +1,203 @@
-Return-Path: <devicetree+bounces-306652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306654-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id v5jxEwAmIWrc/gAAu9opvQ
-	(envelope-from <devicetree+bounces-306652-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 09:15:12 +0200
+	id u/dGLeonIWpI/wAAu9opvQ
+	(envelope-from <devicetree+bounces-306654-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 09:23:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4DBB63D8E6
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 09:15:10 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D8A363D982
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 09:23:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WbWAgpNA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306652-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306652-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=analog.com header.s=DKIM header.b=sqZGi2Pu;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306654-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306654-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=analog.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 97BF13029CC7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 07:10:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 51319301A1E9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 07:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 448E23DEAD6;
-	Thu,  4 Jun 2026 07:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECFF3DDDA5;
+	Thu,  4 Jun 2026 07:14:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15F61F9C0
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 07:10:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09D4313E10;
+	Thu,  4 Jun 2026 07:14:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780557020; cv=none; b=Z+pp7TX+fCqbEIPFwJF2d45M6lNZm/A71/c17C3fyHQV2Sk+BNeniWNVRq2bEvqT5NlyCTaHHoDljGyzI+9mqcOqC7vdYtttRn52nIYvlgI61E2cktxJZN4k4bbB7qyJVkH891uMNEQ7yGrKvwnUzv0ZQVnovVcQCNwIjy0VcCA=
+	t=1780557266; cv=none; b=QnfSIAlsUfzJk/ZOya+1F2DuzKdCsDRq60o5DB6R+dqXx/H5nJ51IfLAZLV5v46HUL1FFUQvBw/afN/0cYPSGdjdtX2syuRbObhzEWg4RydKLloOfBP4pkonHtEk1SF4+DzcGv0nTX34oqMz6pL0MV0Qv8fxX+SM+Ebicr4w7Oo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780557020; c=relaxed/simple;
-	bh=PGhuYCPnbLLcb2x7AiYqdIDqFt7utMcUf8vz9KvF9Ik=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=h0TpkAFubc+NK/KXyUjKmqncMrBVPMtQcTXsAxz7bmu71LJ536eZLSw2oxTjIA+U++VreBpB3EsT0PPtELbjmlzQrHe4HlbPbTk+FvyCcsKVCBVLuLwwrN+Clvm+2A89v7Qdlm31p8xFi70qCcrWoF8xt3kOXlj1WLry+0UtmZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WbWAgpNA; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD6F51F00898;
-	Thu,  4 Jun 2026 07:10:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780557019;
-	bh=vP23zJEK9Hl3llTTtMKVEFUchmBQXd327ZzN9iQN0Aw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=WbWAgpNADppomRCyrfr5LEUAAJAKHrUTjTin2xYbQdBMY8pcVI4LJab1hpMHcG2sf
-	 qnd+wSSShcWZzwqYnWwWKhV7vxxu1IlNzNetC2p3tYRcl98nAwQ/9KOV+2yIFUovO7
-	 66APwZVV5899pfv9KPLFG5xD7TLDvaH+UvSe4GbXmfzJxt9G1lqwRUR0ONbQ8ihxE8
-	 4G9/6+XtKtOChAYvYcYMj5+5vS4ajaAqUdZ6oWR3eNzz4aZmBRaF9y9ZqEmZImQsXi
-	 isMQUR/KdigYvXTFvtcBtLU/IWEVmGRErVD3CczbpfeMIZmXZk+oJ9Hqv6AIDb4lhI
-	 HyuUh1yHiW6qg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v1 06/10] ARM: tegra: tf701t: Tune MMC devices
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Svyatoslav Ryhel" <clamor95@gmail.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260604065556.137614-7-clamor95@gmail.com>
-References: <20260604065556.137614-7-clamor95@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 04 Jun 2026 07:10:18 +0000
-Message-Id: <20260604071018.BD6F51F00898@smtp.kernel.org>
+	s=arc-20240116; t=1780557266; c=relaxed/simple;
+	bh=Qm4GGW0O1kj9XjdB6AHET+MekqWNJGT/1PW8iTPZlrw=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=EvLZVBfk5PBhrsBxlXnaLOctw80WfTC6gAe3RYAMO9u9Cger9lAhIbUgARqg7gm1G3Vg0Tmn1JKeWM0Qitklce9LdXJJpqn/TVuAkpz9ZADnokRRtOukj5ToAL6XZDEQCMl1/rVWiU6FTaghUG5gxaI44l8LC8h+3VYgNfJOghw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=sqZGi2Pu; arc=none smtp.client-ip=148.163.135.77
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6543hpHO3245948;
+	Thu, 4 Jun 2026 03:14:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=unDSgL0ETchCIrjpISMEZvq6oow
+	2Ut1jX6G8bxJJXlc=; b=sqZGi2PuL4rqJMetzmAIZKBkPPzWgbVJRomW1tZV/vy
+	L3WABvgmmD8MEXIY1ux50QbG4IyD3PGTRRrOGj2nYZZaouc6PjYJj9TDG4izwKBB
+	xaLO86WjeZM1pxCKp1OyrGakVGTMFuNHGhOkkwTwExIewXMK2gBJIqHIEanKKDwR
+	qo0u1TOiuLjBxaOt/jXz1iBngLD+06If3xobnmHmKMND5egq0/Bms6b1m/5SeQBK
+	iijsqVeFRQjcf272ygBsITMWXj6uzVcyuyQGTqA20C+8jmymIex6e8xHWCH75EON
+	UjjelVQLHsycabeLJqIdw4jrjdy+41W3LWD7+2jMlGA==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4ek1q9gncr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 04 Jun 2026 03:14:16 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 6547EFfc042099
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 4 Jun 2026 03:14:15 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Thu, 4 Jun 2026 03:14:15 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Thu, 4 Jun 2026 03:14:15 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Thu, 4 Jun 2026 03:14:15 -0400
+Received: from analog.ad.analog.com ([10.66.6.191])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 6547Dv9L020350;
+	Thu, 4 Jun 2026 03:14:00 -0400
+From: Kim Seer Paller <kimseer.paller@analog.com>
+Subject: [PATCH 0/3] iio: dac: ad3530r: Add support for AD3532R/AD3532
+Date: Thu, 4 Jun 2026 15:13:42 +0800
+Message-ID: <20260604-iio-ad3532r-support-v1-0-c3552f9031de@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKYlIWoC/yXMMQ6DMAxA0asgz7VkAgTRq1QMFAy4A4lsQEiIu
+ ze04xv+P8FYhQ2e2QnKu5iEJSF/ZNDP3TIxypAMjpwnTyWKBOyGoiqcom0xBl2xrhryNTdUcg6
+ pjMqjHL/rq/3btveH+/VewXV9AY0VlYB3AAAA
+X-Change-ID: 20260604-iio-ad3532r-support-759067e904e1
+To: Jonathan Cameron <jic23@kernel.org>,
+        David Lechner
+	<dlechner@baylibre.com>,
+        =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+        "Andy
+ Shevchenko" <andy@kernel.org>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux@analog.com>, <devicetree@vger.kernel.org>,
+        Kim Seer Paller
+	<kimseer.paller@analog.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780557237; l=1495;
+ i=kimseer.paller@analog.com; s=20250213; h=from:subject:message-id;
+ bh=Qm4GGW0O1kj9XjdB6AHET+MekqWNJGT/1PW8iTPZlrw=;
+ b=TGKos1j+J3iWL+ns4eOeEmLJsnwXOTinKZU56Hi8yJtL8GXz7g+LYyv4axWq6JbRNHsRiuiut
+ VvdgpmNIUvvCW9y4ikk8aj1FfGJHDdsBDRqRwwMBBTqD2QUALjQ2rLg
+X-Developer-Key: i=kimseer.paller@analog.com; a=ed25519;
+ pk=SPXIwGLg4GFKUNfuAavY+YhSDsx+Q+NwGLceiKwm8Ac=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=fZGdDUQF c=1 sm=1 tr=0 ts=6a2125c8 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=0sLvza09kfJOxVLZPwjg:22 a=Z0pTeXoby7EwIRygza74:22 a=gAnH3GRIAAAA:8
+ a=6-YLjScE4UsAHGhbFlwA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA0MDA2OSBTYWx0ZWRfX7SdOys/1OO4b
+ vVxgTiYb2gvngKMLdEU4Wh2xq81I27MKQLjWOQLgMlF7fHlYPVqKrU2yD4UoLLtD8ZPrwnhcRvN
+ 3gkow8tgulTHNxdxn8KGuonF7AVMO7cjpuWG6fecipEHNRkeCrorMH1d3M9tlzJlz+Jgfyul6Rv
+ nZRbBJHdw1muEIlB/z+pzzfNOltNEQpD7WceCE9oIVZfxDx1eUgxbnTJg+DjvtWys9mqVl7hYyo
+ uCd4sTV45TpSkuvn12BUcnAr3OYRQIDAnZeB1e55c5226lz1UB7B238bXYw5vNGE/31j4eov4JC
+ 5S3Rp8KedO7DIHOakxs8M282sefTWC9gE7UEPqe03DtR7MjDk3i6x6rx33q6OIRtGr4frjFTXRL
+ FQUB1p0Pc0qMGoIJy8Ox+rDVXOkA0zKoh6ADxSwiJuaGip7UVx/FWABj574fZpAvnvTb5dNqRp5
+ 1I1j7swz7hcbH+/1xow==
+X-Proofpoint-GUID: I2tv23R9xhH-0X7w6jEoJEzsNhpFLz6z
+X-Proofpoint-ORIG-GUID: I2tv23R9xhH-0X7w6jEoJEzsNhpFLz6z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-04_02,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0
+ clxscore=1011 impostorscore=0 priorityscore=1501 suspectscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606040069
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306652-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:clamor95@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-306654-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:Michael.Hennerich@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux@analog.com,m:devicetree@vger.kernel.org,m:kimseer.paller@analog.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,analog.com:mid,analog.com:dkim,analog.com:from_mime,analog.com:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER(0.00)[kimseer.paller@analog.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[analog.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kimseer.paller@analog.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto,smtp.kernel.org:mid]
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E4DBB63D8E6
+X-Rspamd-Queue-Id: 1D8A363D982
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] Replacing the dedicated fixed regulator (`vdd_2v9_usd`) with a sta=
-tic `power-gpios` property on the MicroSD slot breaks SD card power cycling=
-, permanently trapping the card in 1.8V mode after soft reboots.
-- [High] Enabling 1.8V SDR104 mode on an I/O regulator explicitly documente=
-d as unstable at 1.8V risks data corruption.
-- [High] Removing `mmc-ddr-1_8v` from the eMMC node drops support for eMMC =
-DDR52 mode, causing a potential performance regression.
-- [Low] The `mmc-ddr-1_8v` property is incorrectly applied to the MicroSD c=
-ard node, failing to enable SD UHS-I DDR50 mode.
---
+This series adds support for the AD3532R/AD3532, a 16-channel, 16-bit
+voltage output DAC, to the existing ad3530r driver.
 
-commit 78c4925ea5d1e41f4aa23b26404a535575996cfc
-Author: Svyatoslav Ryhel <clamor95@gmail.com>
+The AD3532R uses a dual-bank register architecture (bank 0 at 0x1000
+for channels 0-7, bank 1 at 0x3000 for channels 8-15), which required
+refactoring the register access paths. A table-driven register bank
+approach is introduced where per-chip register address arrays in
+chip_info are iterated by helper functions, replacing the single-register
+setup calls for existing variants and scaling naturally to the AD3532R's
+dual-bank layout.
 
-ARM: tegra: tf701t: Tune MMC devices
-   =20
-Set WiFi sdmmc device to SDR104 and improve power sequence. Set uSD sdmmc
-device to SDR104 and reconfigure its power supply. Set eMMC sdmmc device
-to HS200.
+The series also adds AD3532R-specific powerdown modes (1kohm_to_gnd,
+10kohm_to_gnd, three_state) and a new ABI entry for the 10kohm_to_gnd
+powerdown mode.
 
-> diff --git a/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts b/arch/arm=
-/boot/dts/nvidia/tegra114-asus-tf701t.dts
-> index 3e2bc611e2f7a..73276f2aa7fe4 100644
-> --- a/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
-> +++ b/arch/arm/boot/dts/nvidia/tegra114-asus-tf701t.dts
-> @@ -1645,9 +1645,9 @@ ldo8 {
-> =20
->  					vddio_usd: ldo9 {
->  						regulator-name =3D "vddio_usd";
-> -						/* min voltage of 1.8v is not stable */
-> -						regulator-min-microvolt =3D <2900000>;
-> +						regulator-min-microvolt =3D <1800000>;
+Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+---
+Kim Seer Paller (3):
+      iio: ABI: add DAC 10kohm_to_gnd powerdown mode
+      dt-bindings: iio: dac: add support for AD3532R/AD3532
+      iio: dac: ad3530r: Add support for AD3532R/AD3532
 
-[Severity: High]
-Is it safe to remove this hardware instability warning and lower the voltage
-to 1.8V?
+ Documentation/ABI/testing/sysfs-bus-iio            |   1 +
+ .../devicetree/bindings/iio/dac/adi,ad3530r.yaml   |  16 +-
+ drivers/iio/dac/Kconfig                            |   4 +-
+ drivers/iio/dac/ad3530r.c                          | 315 +++++++++++++++++++--
+ 4 files changed, 302 insertions(+), 34 deletions(-)
+---
+base-commit: ae696dfa47c30016cd429b9db5e70b259b8f509e
+change-id: 20260604-iio-ad3532r-support-759067e904e1
 
-Enabling sd-uhs-sdr104 on the MicroSD node forces 1.8V signaling at high
-frequencies. Operating high-speed SD transfers over a voltage rail known to
-be unstable might lead to voltage droops, random card disconnects, read/wri=
-te
-I/O errors, and filesystem corruption.
+Best regards,
+--  
+Kim Seer Paller <kimseer.paller@analog.com>
 
-[ ... ]
-
-> @@ -2396,14 +2394,18 @@ wifi@1 {
->  	/* MicroSD card */
->  	mmc@78000400 {
->  		status =3D "okay";
-> -
->  		bus-width =3D <4>;
-> +
->  		cd-gpios =3D <&gpio TEGRA_GPIO(V, 2) GPIO_ACTIVE_LOW>;
-> +		power-gpios =3D <&gpio TEGRA_GPIO(K, 1) GPIO_ACTIVE_HIGH>;
-> +
-> +		sd-uhs-sdr104;
-> +		mmc-ddr-1_8v;
-
-[Severity: Low]
-Is this the correct property for a MicroSD card?
-
-The mmc-ddr-1_8v property is specific to eMMC devices. The SD card
-initialization logic does not check this capability for enabling DDR modes.
-
-To advertise and enable UHS-I DDR50 support for an SD card, should this be
-sd-uhs-ddr50?
-
-> =20
->  		nvidia,default-tap =3D <0x3>;
->  		nvidia,default-trim =3D <0x3>;
-> =20
-> -		vmmc-supply =3D <&vdd_2v9_usd>;
-> +		vmmc-supply =3D <&vcore_emmc>;
-
-[Severity: High]
-Will replacing the dedicated fixed regulator (vdd_2v9_usd) with a static
-power-gpios property prevent the SD card from being power cycled?
-
-The vcore_emmc regulator cannot be toggled independently since it is held
-active by the non-removable eMMC. Looking at sdhci_tegra_probe() in
-drivers/mmc/host/sdhci-tegra.c, power-gpios is acquired as GPIOD_OUT_HIGH
-and is not toggled dynamically:
-
-    tegra_host->power_gpio =3D devm_gpiod_get_optional(&pdev->dev, "power",=
- GPIOD_OUT_HIGH);
-
-Without the ability to drop VDD to 0V during mmc_power_cycle(), won't the SD
-card be trapped in 1.8V mode after warm reboots or error recovery? The SD
-specification requires dropping VDD to 0V to reset the card's internal I/O
-state from 1.8V back to 3.3V.
-
->  		vqmmc-supply =3D <&vddio_usd>;
->  	};
-> =20
-> @@ -2413,7 +2415,7 @@ mmc@78000600 {
->  		bus-width =3D <8>;
-> =20
->  		non-removable;
-> -		mmc-ddr-1_8v;
-> +		mmc-hs200-1_8v;
-
-[Severity: High]
-Could removing mmc-ddr-1_8v cause a performance regression by dropping
-support for eMMC DDR52 mode?
-
-These modes are not mutually exclusive. For Tegra114, the host driver relies
-entirely on the mmc-ddr-1_8v property to set MMC_CAP_1_8V_DDR, as
-soc_data_tegra114 in drivers/mmc/host/sdhci-tegra.c does not set
-NVQUIRK_ENABLE_DDR50.
-
-If HS200 initialization or tuning fails, wouldn't the eMMC fall back to
-legacy High Speed (SDR) mode at half the bandwidth instead of DDR52 without
-this property?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260604065556.1376=
-14-1-clamor95@gmail.com?part=3D6
 
