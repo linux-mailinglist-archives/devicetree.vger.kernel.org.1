@@ -1,183 +1,250 @@
-Return-Path: <devicetree+bounces-306674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306675-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 77EpHQYxIWqPAQEAu9opvQ
-	(envelope-from <devicetree+bounces-306674-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 10:02:14 +0200
+	id cuvJJNwyIWplAgEAu9opvQ
+	(envelope-from <devicetree+bounces-306675-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 10:10:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DADD63DD1A
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 10:02:13 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B53D163DDF0
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 10:10:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SmkMlDup;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306674-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306674-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306675-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306675-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E26B03027B5C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 07:51:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B240B30069A1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 08:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9063DC4C6;
-	Thu,  4 Jun 2026 07:50:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5886437FF5E;
+	Thu,  4 Jun 2026 08:05:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 720AB3CF04F;
-	Thu,  4 Jun 2026 07:50:49 +0000 (UTC)
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F7830F803;
+	Thu,  4 Jun 2026 08:04:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780559450; cv=none; b=M/abQuafEWrHoPtpLE7hKzSds8OzcRsGg7CQ7GLLMUK0g1pn53GJCQILRoPvPHAI7WM+XyIMlpVBExNRDziYnvOwDKlouXiFVzGuEaZ2gaoVAmhjf4fmzidOW18eFhKw2OYoSr65tNf3tYHmwRYEunml+XM4hoCX2oZa/glVWng=
+	t=1780560303; cv=none; b=DX28WWF+jbH5GrWF3h8Z8Co0b0AXVjN8LcsdjR4FH6dNmw7R97lsnchu4ie9WiivXyNYaNHqR/KvY3GTBn4oGXsdiCYjyYSBUTNqaiNU/oeQ1/7Sk9z54mB3LhdBJMa5iCYHKgvT6qhu3LtOPt66SU17WEFiLMlKfmU+jDbeqSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780559450; c=relaxed/simple;
-	bh=W2oYleXACh7TurlO3lAhx+mXs0ax4vUBLyH+ZxHL3mA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QHeHh3CDHxWSg4I75u9g7+m9LmMvo9ko83GoM4jM8LVFqC68kzqrf/KQDOuQhSGh3GVn7oxSCv3V67VbTFEpy5jxlFHc3dZTZgq1kDCaZbH90POsyXa43uR/LAcIfkmDrWGqaPnUjbPtGdCAkKo1wktPCRHw0wzqDvbJuvtKyso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SmkMlDup; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F6FB1F00893;
-	Thu,  4 Jun 2026 07:50:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780559449;
-	bh=eVkpopmXEjzkmtW+mdfdXA6VqhjM+b3ISZeK539v+kY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=SmkMlDupiqF8dHSJsGfq1EwOMIHu28niCfq6MAsZ+JPfbPMqjLe4KPsq6z0tH/cLU
-	 UlQJFszadhv9rEztEJBT7QGdO4UJ6Cz8F44aD6c1zRpqISNce3qmEOpyRWpoyPva6+
-	 Wy5Mg1FC952tTdN6DjwEqUxQ6UQ675WQDA1MzHBZzoVQfwSXV69LBIFrErm4xKRPy+
-	 qi6Aolr35lX2wRcMbbLqfH2YxI55g2S7hM0ZJcKHOENT4Zs5frGRhqy4DmZb9jQ9lQ
-	 ioxm4mo2xvDmflGvHgFRDb4RUoa2sxwWxQVgiD7WL6kAMVUbYhYH/4cWBGYO5FDXYB
-	 mmmA1U9lKnQyA==
-Date: Thu, 4 Jun 2026 09:50:46 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v9 2/6] net: airoha: Remove private net_device
- pointer in airoha_gdm_dev struct
-Message-ID: <aiEuVrrgp9RjieOV@lore-desk>
-References: <20260603-airoha-eth-multi-serdes-v9-2-5d476bc2f426@kernel.org>
- <20260604060124.ACAD11F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780560303; c=relaxed/simple;
+	bh=0on7KgXTCbXFB5fp0WgrAbVTMyLruSnY2LYZISNfaA0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=S7j57K6bsg6J1CDJFS/G+dn68MsxINGHTudP369LpxRO4q76BUIlQclLuiojajrIfR+C5hyU9IG1PJNpWhklqr9/o4FgmXkB/pWy7/S0y1tcQREZpklr8rzljRMUNoeT0tplEWjRMRbEgSIrjukj0y+mqPNUYVx6pvhoBXOFAiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
+Received: from E0005156LT.eswin.cn (unknown [10.12.96.79])
+	by app1 (Coremail) with SMTP id TAJkCgA3y2+WMSFq85khAA--.18886S2;
+	Thu, 04 Jun 2026 16:04:40 +0800 (CST)
+From: hehuan1@eswincomputing.com
+To: linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	luyulin@eswincomputing.com,
+	Huan He <hehuan1@eswincomputing.com>
+Subject: [PATCH v6 0/2] Add driver support for ESWIN EIC7700 PVT controller
+Date: Thu,  4 Jun 2026 16:04:30 +0800
+Message-ID: <20260604080430.126-1-hehuan1@eswincomputing.com>
+X-Mailer: git-send-email 2.47.1.windows.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="h5pRc1ONNFQaQBzX"
-Content-Disposition: inline
-In-Reply-To: <20260604060124.ACAD11F00893@smtp.kernel.org>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgA3y2+WMSFq85khAA--.18886S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Jw4UJFy3XryUZr1UJrWxtFb_yoW7tFW8pr
+	W8WryYkF4DXrWSqrWDt3W09rWfJan3JF43Ar4fWw18Z3W5K34jvFWxK3WYvFyDZrn5X3ZI
+	qa4jqw47C3WqyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUmjgxUUUUU=
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ningyu@eswincomputing.com,m:linmin@eswincomputing.com,m:pinkesh.vaghela@einfochips.com,m:luyulin@eswincomputing.com,m:hehuan1@eswincomputing.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306675-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[eswincomputing.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306674-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:netdev@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	R_DKIM_NA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:mid,eswincomputing.com:from_mime,eswincomputing.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3DADD63DD1A
+X-Rspamd-Queue-Id: B53D163DDF0
 
+From: Huan He <hehuan1@eswincomputing.com>
 
---h5pRc1ONNFQaQBzX
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add support for the ESWIN EIC7700 PVT (Voltage, Temperature) sensor
 
-> Thank you for your contribution! Sashiko AI review found 1 potential issu=
-e(s) to consider:
->=20
-> Pre-existing issues:
-> - [High] Potential deadlock in airoha_update_hw_stats() due to use of spi=
-n_lock() instead of spin_lock_bh().
-> --
->=20
-> commit d33fdec52e6f77bf6de4ab248729e1a868e78dc6
-> Author: Lorenzo Bianconi <lorenzo@kernel.org>
->=20
-> net: airoha: Remove private net_device pointer in airoha_gdm_dev struct
->=20
-> This commit removes the redundant net_device pointer from the
-> airoha_gdm_dev struct. The code now relies on the netdev_from_priv()
-> routine to retrieve the net_device pointer. This is a refactoring change
-> with no logical modifications.
->=20
-> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/eth=
-ernet/airoha/airoha_eth.c
-> > index 6574901ebd19b..57a16de0a2ec7 100644
-> > --- a/drivers/net/ethernet/airoha/airoha_eth.c
-> > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
->=20
-> [ ... ]
->=20
-> [Severity: High]
-> This isn't a bug introduced by this patch, but I noticed a potential
-> deadlock in airoha_update_hw_stats():
->=20
-> drivers/net/ethernet/airoha/airoha_eth.c:airoha_update_hw_stats() {
-> 	...
-> 	spin_lock(&port->stats.lock);
-> 	...
-> }
->=20
-> Does this code risk a deadlock? The ndo_get_stats64 callback
-> (airoha_dev_get_stats64) can be executed in softirq context, while this
-> lock is also acquired from process context (e.g., via ethtool) without
-> disabling softirqs.
->=20
-> If a softirq interrupts the process context reader holding the lock on the
-> same CPU, wouldn't it spin forever trying to acquire the same lock? Should
-> spin_lock_bh() be used here instead to prevent this?
+Features:
+The driver supports monitoring of voltage and temperature parameters
+through the hardware monitoring subsystem. It provides an access to the
+sampled Temperature and Voltage.
 
-As pointed out during previous iterations of the series, I do not think thi=
-s is
-a real issue since ndo_get_stats64() callback can't be run in softirq conte=
-xt.
-Moreover, the reported issue has not been introduced by this series.
+Test:
+Tested this patch on the SiFive HiFive Premier P550 (which uses the ESWIN
+EIC7700 SoC).
 
-Regards,
-Lorenzo
+Updates:
 
->=20
-> --=20
-> Sashiko AI review =B7 https://sashiko.dev/#/patchset/20260603-airoha-eth-=
-multi-serdes-v9-0-5d476bc2f426@kernel.org?part=3D2
+  Changes in v6:
+  - Fix the !CONFIG_PM probe error path by disabling the clock if IRQ
+    request fails before the PM cleanup action is registered
+  - Replace pm_runtime_put_noidle() with pm_runtime_put() in the IRQ
+    handler to avoid a runtime PM reference-count race with the read path
+  - Remove the unused pvt_clear_data() devres action and its associated
+    devm_add_action() registration
 
---h5pRc1ONNFQaQBzX
-Content-Type: application/pgp-signature; name=signature.asc
+  Changes in v5:
+  - Update eswin,eic7700-pvt.yaml
+    - Drop the label enum constraint and remove label from the required
+      list
+    - Add '#thermal-sensor-cells' to the required list
+    - Rename the example node to the generic sensor@... form
+    - Update the binding description to describe one temperature sensor
+      and one voltage sensor
+  - Update eic7700-pvt.c
+    - Register the hwmon device with the fixed name "pvt"
+    - Remove label-based instance identification from the driver
+    - Fix CONFIG_PM=n support by keeping the clock enabled when runtime PM
+      is unavailable
+    - Add pm_runtime_force_suspend() in the cleanup path to avoid leaving
+      the device active during unbind
+    - Switch system sleep callbacks to pm_runtime_force_suspend() and
+      pm_runtime_force_resume()
+    - Guard ISR register accesses with pm_runtime_get_if_active()
+    - Add synchronize_irq() on the timeout path to avoid stale completion
+      races
+    - Remove temp_offset support because the raw trim register does not
+      match the hwmon ABI
+    - Align the commit message with the implementation (one temperature
+      sensor, one voltage sensor)
 
------BEGIN PGP SIGNATURE-----
+  Changes in v4:
+  - Update eswin,eic7700-pvt.yaml
+    - Delete reviewed-by tag of Conor Dooley, because the label enum
+      constraint is introduced
+  - Update eic7700-pvt.c and eic7700-pvt.h
+    - Remove the unused LVT/ULVT/SVT process-monitoring channels
+    - Remove the probe-time power check since the PVT block is always
+      powered on EIC7700 and the extra verification is unnecessary
+    - Stop requesting the interrupt as shared and use the dedicated PVT IRQ
+      only
+    - Reorder probe initialization so the interface is initialized before
+      the clock is disabled, avoiding register accesses with the clock gated
+    - Fix runtime PM reference handling on error paths by balancing
+      pm_runtime_get_noresume() with pm_runtime_put_noidle()
+    - Add pm_runtime_put_noidle() handling for failed pm_runtime_get_sync()
+      calls in hwmon read/write paths
+    - Switch the PM callback registration from pm_sleep_ptr() to pm_ptr()
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaiEuVgAKCRA6cBh0uS2t
-rO9MAP0cY5zQexQo1pHNxDD5B87+A/+WhoCaWvg8xGusiLH0cwD8DHaH6dGUBCoS
-ElkTy4Vc38fkS90hcHDrqMSMY1HOKQA=
-=hEBu
------END PGP SIGNATURE-----
+  Changes in v3:
+  - Update eswin,eic7700-pvt.yaml
+    - Remove redundant label property description and use 'label: true' to
+      reference the definition in hwmon-common.yaml
+    - Replace 'additionalProperties: false' with
+      'unevaluatedProperties: false'
+    - Remove the description for '#thermal-sensor-cells'
+  - Update eic7700-pvt.c and eic7700-pvt.h
+    - Fix clock reference count imbalance with Runtime PM:
+      Replace devm_clk_get_enabled() with devm_clk_get() and manually
+      manage clock enable/disable to avoid double-disable in remove() when
+      Runtime PM is active. Clock is now enabled only during probe for
+      eic7700_pvt_check_pwr(), then disabled before enabling Runtime PM,
+      which takes full control of the clock thereafter
+    - Add detailed comment explaining the spurious interrupt risk in
+      eic7700_pvt_check_pwr()
+    - Replace wait_for_completion_interruptible() with
+      wait_for_completion_timeout() to prevent infinite wait
 
---h5pRc1ONNFQaQBzX--
+  Changes in v2:
+  - Update eswin,eic7700-pvt.yaml
+    - Reference the hwmon-common.yaml file
+    - Remove the clock-names and reset-names properties
+    - Move additionalProperties: false after the required block
+    - Remove one example node to avoid redundancy
+  - Update eic7700-pvt.c and eic7700-pvt.h
+    - Remove unused sensor macros (PVT_SENSOR_FIRST, PVT_SENSOR_LAST,
+      PVT_SENSORS_NUM)
+    - Drop the unnecessary hwmon-sysfs.h header
+    - Replace dynamic sensor info allocation with a static array and unify
+      sensor labels
+    - Remove unused hwmon_temp_type attribute
+    - Eliminate redundant validation checks
+    - Remove mutex and related locking, relying on hwmon core
+      serialization
+    - Replace per-sensor caches and completions with a single data cache
+      and completion object
+    - Remove pvt->sensor tracking. ISR no longer depends on the currently
+      selected sensor
+    - Move devm_add_action() registration after init_completion() for
+      safer cleanup, and update cleanup function (pvt_clear_data)
+    - Replace devm_reset_control_get_optional_exclusive() with
+      devm_reset_control_get_exclusive_deasserted()
+    - Replace eic7700_pvt_remove() with eic7700_pvt_disable_pm_runtime()
+      and move it after PM runtime enable to avoid resource leaks on probe
+      failure and remove clock disable and reset assert from
+      eic7700_pvt_disable_pm_runtime() as it is already handled by devm_*
+      framework
+    - Remove redundant clock presence check in runtime_resume
+
+  - Link to v1: https://lore.kernel.org/all/20260109090718.442-1-hehuan1@eswincomputing.com/
+
+Huan He (2):
+  dt-bindings: hwmon: Add Eswin EIC7700 PVT sensor
+  hwmon: Add Eswin EIC7700 PVT sensor driver
+
+ .../bindings/hwmon/eswin,eic7700-pvt.yaml     |  63 +++
+ drivers/hwmon/Kconfig                         |  12 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/eic7700-pvt.c                   | 495 ++++++++++++++++++
+ drivers/hwmon/eic7700-pvt.h                   |  99 ++++
+ 5 files changed, 670 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml
+ create mode 100644 drivers/hwmon/eic7700-pvt.c
+ create mode 100644 drivers/hwmon/eic7700-pvt.h
+
+-- 
+2.25.1
+
 
