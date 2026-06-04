@@ -1,268 +1,155 @@
-Return-Path: <devicetree+bounces-306605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306601-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CkHaH0AWIWoy/AAAu9opvQ
-	(envelope-from <devicetree+bounces-306605-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:08:00 +0200
+	id 6VKaJu0VIWoV/AAAu9opvQ
+	(envelope-from <devicetree+bounces-306601-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:06:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E747363D26E
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:07:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E10D463D24A
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:06:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=LcYO6OFt;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306605-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306605-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=H2q79PpH;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306601-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306601-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0BCEE305FB26
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:01:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B2CD23005D1B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 243163D5676;
-	Thu,  4 Jun 2026 06:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBE23D47AC;
+	Thu,  4 Jun 2026 06:01:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC2483D45EA
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 06:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7103BFAE7
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 06:01:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780552903; cv=none; b=rozrCGwyRC2UGhbxB4XkMY9JRQdI2t7QcNHg3TvigG3+xZgwu0IXVj1f6zVFSZcJsFI8BUk/jtomJSaqjUzjTp9ah/R13wTqnvpDXEaxOEamFgo0hRawMWaDppC+3G40vm56hpzb0K8rmzVNgYH4csh2Zucc5iriAtvMSaE+k4c=
+	t=1780552886; cv=none; b=GrS8mXiDXqZktV5bltCXcuvIrT9ytVS0uKghyJQPLisovgRnbI/x4J3StADcMhzryhNRfFET56Iuq1sA7Kg7s/clfYUEqFoxiSuMYMex2K8E0n/uatnpaAefZql7lN9GRZIeyNgWtGrZbfIdPGT6uRLI+2Rj80TD8OgXcYVwCqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780552903; c=relaxed/simple;
-	bh=GPcu4EJEbQ66YIl1AFF/3SAr9vb6VsAorD6jLaSvXLw=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=p7cMK2skoDPXYUR+UoBpyAozU/Jf5zMpoG3ElkKMscQ0lbAlYMUgN0kwbkltokHiP+35RvlhWKU18u5n9n9HfMs4thoiRj6tySlfN+HhtqFUDipv4xRqAoPTpPdudDE+84K3sMaYABJ/hmCINxQR6QET0tEd8wJitp17eMin36I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LcYO6OFt; arc=none smtp.client-ip=209.85.210.171
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-842273a2c4dso223579b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 23:01:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780552901; x=1781157701; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=NtaAcXvkd+ZHvkxzFNtCE7f1OoHFsi4VoYohL3Cqqs4=;
-        b=LcYO6OFtRMvApI3BJRBbR4+o5M7c+RmvfRKyKuSaCozYQgZn2MB9D7r+3f4TQN3cUc
-         XaD23IF5IYNnN2qthWO0+xLzVNiBlQCpihZcYRta5g1yvB/Qn93IxqebXRdNJ4N+CK/y
-         RKQ6X8FLy+75quN3JVecImcSRHXoG2SG0uEsO8M79dmNFRSGv2+P6N9pTq3lCUGcGVbU
-         vryb4nFS6DWrRIgOq1HQrQUn99bGFiE7d1AHB6rmcGqAUdAevkR+oScCsu7K/8hviIoq
-         8ZYy0G/OYsOrets9P/o4VMSQ/PdbBqA76sNj0SMmzXwWKZ6bfHFF0EXNnHmg2e3rk8HG
-         sP5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780552901; x=1781157701;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NtaAcXvkd+ZHvkxzFNtCE7f1OoHFsi4VoYohL3Cqqs4=;
-        b=sloRYWh4gMgr6M7GzoHWPqL2tblOqAyFri+0LlIDimUXdlmtiFPS3ArHO0CZpDyzXe
-         ux+RyGDA7WNZCGZvjMn8kPeL+92KgXT19YibU+tpPtVG5B/xTj43NXy36d1Q+MSB+z+v
-         TZWsguMpmlbsRKP8eDECZGHZ2ZFg4is6JAMl2wra+bndjWC+T1OUHRpWsxKFA/fIl5OS
-         TWBissCaRBNPjFmOFyIedU7WXIhu6bem9ehlzFFVMHusoegC7gPP7NZQy08HiFWTTmQE
-         zcqPnqL/dns6BdyIx94frqAYDvhuo3kCm126tIslYg9Xr7ubppXumJ50kOUpycgvDPZZ
-         7pYQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+I2T1YEDXRiEmyr2v4qwHFvAg+D4VXP/3yK3BuojdKyQEBW9S/A/fAvRp5zbc1gFI9evQMD0KXGVaT@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTU6vZUdYUP5Q14lTst2BM3jFH8MNklj2Q13EGOakE5dQa2uug
-	tdoogl2kK6sJutOQJXbO6y8soGqSLfNPIFjw4GkPL/oyS1Z/8UaKviaS
-X-Gm-Gg: Acq92OGpIBRWh4h8PvN8JleeuwLG0IptVG0I/mLTsdUDtCkaWX+jjR6V5TdfSvwBGUM
-	9hHfxSCWT7XIxdcu5Mq8VJn4DnD9VIDAZAFfoXQz61lLyxLwBgzu+KBmim1PkST2oon8x5FQj23
-	EIGpfpRtj87WcW50pggKYe4iph5abmPLq+hgNOmsghuQ73SsOC2ey6v3uM5nC8Hy8kXH2MMwgRH
-	7FTVR3IwUuCz6lfkO+/Q9z9n8as0Y7s37i9VddNGbcCsT6TyfYlByy7DcvREX6yS9fz6o5l8mCA
-	eItxzgBiPVs0VWk11mDTmcizd3RPf5wbgsxCJvvxU8n+Pvz5n5KIckhV5SQgk+StLQMV/6ij5sh
-	4rb21mIplFVWWrIyqoABhzcWnfdtlxStTCM+WQ1p3Mqujeaj9AOfF8wRSNYt6Sr+kpE7OpVwzii
-	L6+DPY6OmkFw900/u61lfQsi77RpJoHhy63y2Fn+B2IHMJIH6JIAJzz1Cg3ay+wX90hmx9TM0Ro
-	Ec4b5GsqxusVfKEk5QJ
-X-Received: by 2002:a05:6a00:3687:b0:83e:f208:b0f8 with SMTP id d2e1a72fcca58-84284fad484mr6307177b3a.47.1780552900943;
-        Wed, 03 Jun 2026 23:01:40 -0700 (PDT)
-Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8428706fa9asm4178130b3a.45.2026.06.03.23.01.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Jun 2026 23:01:40 -0700 (PDT)
-From: Zi-Yu Chen <zychennvt@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Zi-Yu Chen <zychennvt@gmail.com>
-Subject: [PATCH] arm64: dts: nuvoton: ma35d1: add CAN nodes
-Date: Thu,  4 Jun 2026 14:01:04 +0800
-Message-Id: <20260604060104.1662700-1-zychennvt@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1780552886; c=relaxed/simple;
+	bh=qPheofKixSze/Y0mOV6JporlRTlqKhJXcmprfr6C63k=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ig/PjZw4RsuGCHagMYZa0FPQQqhbg5UrjqA9TU/CNlG6DdS5V4nt/0pjMYY9ceaknaxz05OGsV+WNI4xhYMwiNF9RolWXidZ9hAhs4uWPRn5G07JB+LlncA+vNqFkqRaQIC919dIzIhjXshH7jl6t6UE3cSBpTMp/PoUmTOxGFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H2q79PpH; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACAD11F00893;
+	Thu,  4 Jun 2026 06:01:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780552884;
+	bh=yCg1xI6zGA/m0FPAvLZV/At+1tbXAGnTcZSD7P2FA9c=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=H2q79PpHAUNQ0JAJVC53AZaPTgCyHRugHrUbyLNkjNnHxOgiwSdjY7xjTmFxPP28n
+	 24Ep2rYC2Hup27NIy+uX1nvR++dKo/zP5ICM0vlcptNiqvMnoV4JrpVBn64urOjyP6
+	 1Ts1yLLmHm8AxwVXqNQV0He3VEU/zvHChosptHI4P1iBCBOGE7z5fmdrAp9l0JHePd
+	 2mGxynyc5P/hebbqbS4BgC4uP6BtJY4188gjsshTXAxU+hGFK3Vx12NESGnj1koXPc
+	 4nP0u95BcFuHYiFDficL+xkCyMXgHjTQ6/NErJ8KRbe+63RmtXlF46uXGiM7FfnMbv
+	 cqTqrzh1HdU4g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH net-next v9 2/6] net: airoha: Remove private net_device
+ pointer in airoha_gdm_dev struct
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Lorenzo Bianconi" <lorenzo@kernel.org>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260603-airoha-eth-multi-serdes-v9-2-5d476bc2f426@kernel.org>
+References: <20260603-airoha-eth-multi-serdes-v9-2-5d476bc2f426@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 04 Jun 2026 06:01:24 +0000
+Message-Id: <20260604060124.ACAD11F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[nuvoton.com,lists.infradead.org,vger.kernel.org,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306605-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:zychennvt@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-306601-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lorenzo@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E747363D26E
+X-Rspamd-Queue-Id: E10D463D24A
 
-Add controller nodes for the four Bosch M_CAN blocks found on the
-Nuvoton MA35D1 SoC.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-Additionally, configure pinctrl and enable CAN1 and CAN3 on the
-MA35D1 SOM board.
+Pre-existing issues:
+- [High] Potential deadlock in airoha_update_hw_stats() due to use of spin_=
+lock() instead of spin_lock_bh().
+--
 
-Signed-off-by: Zi-Yu Chen <zychennvt@gmail.com>
----
- .../boot/dts/nuvoton/ma35d1-som-256m.dts      | 26 ++++++++
- arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 60 +++++++++++++++++++
- 2 files changed, 86 insertions(+)
+commit d33fdec52e6f77bf6de4ab248729e1a868e78dc6
+Author: Lorenzo Bianconi <lorenzo@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-index f6f20a17e501..1b8ea14d3446 100644
---- a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-+++ b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-@@ -37,6 +37,18 @@ clk_hxt: clock-hxt {
- 	};
- };
- 
-+&can1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1>;
-+};
-+
-+&can3 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can3>;
-+};
-+
- &clk {
- 	assigned-clocks = <&clk CAPLL>,
- 			  <&clk DDRPLL>,
-@@ -56,6 +68,20 @@ &clk {
- };
- 
- &pinctrl {
-+	can-grp {
-+		pinctrl_can1: can1-pins {
-+			nuvoton,pins = <11 14 4>,
-+				       <11 15 4>;
-+			bias-disable;
-+		};
-+
-+		pinctrl_can3: can3-pins {
-+			nuvoton,pins = <11 10 3>,
-+				       <11 11 3>;
-+			bias-disable;
-+		};
-+	};
-+
- 	uart-grp {
- 		pinctrl_uart0: uart0-pins {
- 			nuvoton,pins = <4 14 1>,
-diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-index e51b98f5bdce..584dd8d44701 100644
---- a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-@@ -244,6 +244,66 @@ gpion: gpio@340 {
- 			};
- 		};
- 
-+		can0: can@403c0000 {
-+			compatible = "bosch,m_can";
-+			reg = <0x0 0x403c0000 0x0 0x200>, <0x0 0x403c0200 0x0 0x2000>;
-+			reg-names = "m_can", "message_ram";
-+			interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "int0", "int1";
-+			clocks = <&clk HCLK3>, <&clk CAN0_GATE>;
-+			clock-names = "hclk", "cclk";
-+			assigned-clocks = <&clk APLL>, <&clk CAN0_DIV>;
-+			assigned-clock-rates = <200000000>, <50000000>;
-+			bosch,mram-cfg = <0x0 4 4 32 32 32 8 8>;
-+			status = "disabled";
-+		};
-+
-+		can1: can@403d0000 {
-+			compatible = "bosch,m_can";
-+			reg = <0x0 0x403d0000 0x0 0x200>, <0x0 0x403d0200 0x0 0x2000>;
-+			reg-names = "m_can", "message_ram";
-+			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "int0", "int1";
-+			clocks = <&clk HCLK3>, <&clk CAN1_GATE>;
-+			clock-names = "hclk", "cclk";
-+			assigned-clocks = <&clk APLL>, <&clk CAN1_DIV>;
-+			assigned-clock-rates = <200000000>, <50000000>;
-+			bosch,mram-cfg = <0x0 4 4 32 32 32 8 8>;
-+			status = "disabled";
-+		};
-+
-+		can2: can@403e0000 {
-+			compatible = "bosch,m_can";
-+			reg = <0x0 0x403e0000 0x0 0x200>, <0x0 0x403e0200 0x0 0x2000>;
-+			reg-names = "m_can", "message_ram";
-+			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "int0", "int1";
-+			clocks = <&clk HCLK3>, <&clk CAN2_GATE>;
-+			clock-names = "hclk", "cclk";
-+			assigned-clocks = <&clk APLL>, <&clk CAN2_DIV>;
-+			assigned-clock-rates = <200000000>, <50000000>;
-+			bosch,mram-cfg = <0x0 4 4 32 32 32 8 8>;
-+			status = "disabled";
-+		};
-+
-+		can3: can@403f0000 {
-+			compatible = "bosch,m_can";
-+			reg = <0x0 0x403f0000 0x0 0x200>, <0x0 0x403f0200 0x0 0x2000>;
-+			reg-names = "m_can", "message_ram";
-+			interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "int0", "int1";
-+			clocks = <&clk HCLK3>, <&clk CAN3_GATE>;
-+			clock-names = "hclk", "cclk";
-+			assigned-clocks = <&clk APLL>, <&clk CAN3_DIV>;
-+			assigned-clock-rates = <200000000>, <50000000>;
-+			bosch,mram-cfg = <0x0 4 4 32 32 32 8 8>;
-+			status = "disabled";
-+		};
-+
- 		uart0: serial@40700000 {
- 			compatible = "nuvoton,ma35d1-uart";
- 			reg = <0x0 0x40700000 0x0 0x100>;
--- 
-2.34.1
+net: airoha: Remove private net_device pointer in airoha_gdm_dev struct
 
+This commit removes the redundant net_device pointer from the
+airoha_gdm_dev struct. The code now relies on the netdev_from_priv()
+routine to retrieve the net_device pointer. This is a refactoring change
+with no logical modifications.
+
+> diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ether=
+net/airoha/airoha_eth.c
+> index 6574901ebd19b..57a16de0a2ec7 100644
+> --- a/drivers/net/ethernet/airoha/airoha_eth.c
+> +++ b/drivers/net/ethernet/airoha/airoha_eth.c
+
+[ ... ]
+
+[Severity: High]
+This isn't a bug introduced by this patch, but I noticed a potential
+deadlock in airoha_update_hw_stats():
+
+drivers/net/ethernet/airoha/airoha_eth.c:airoha_update_hw_stats() {
+	...
+	spin_lock(&port->stats.lock);
+	...
+}
+
+Does this code risk a deadlock? The ndo_get_stats64 callback
+(airoha_dev_get_stats64) can be executed in softirq context, while this
+lock is also acquired from process context (e.g., via ethtool) without
+disabling softirqs.
+
+If a softirq interrupts the process context reader holding the lock on the
+same CPU, wouldn't it spin forever trying to acquire the same lock? Should
+spin_lock_bh() be used here instead to prevent this?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603-airoha-eth=
+-multi-serdes-v9-0-5d476bc2f426@kernel.org?part=3D2
 
