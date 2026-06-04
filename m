@@ -1,165 +1,252 @@
-Return-Path: <devicetree+bounces-306701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306705-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id k8EeCg5BIWoYCAEAu9opvQ
-	(envelope-from <devicetree+bounces-306701-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:10:38 +0200
+	id h/slFF9BIWo0CAEAu9opvQ
+	(envelope-from <devicetree+bounces-306705-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:11:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADBB963E5F0
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:10:37 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B142563E635
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:11:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VrtUb5ZB;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306701-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-306701-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=p3a6ujdW;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=D5JRFZMI;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306705-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306705-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 83DFC3155105
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 08:58:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1505F317ABD3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 09:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7AA53F6C3D;
-	Thu,  4 Jun 2026 08:58:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84F33F5BCE;
+	Thu,  4 Jun 2026 09:02:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8EC73F6C23;
-	Thu,  4 Jun 2026 08:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 924513F65FF
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 09:02:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780563497; cv=none; b=sW/A9aG3EW6+hDGJHZb+DO4IpNOSVuNaMgKNGMUhy64bZcgcimJWx6iMprTAPUXmSg+RQ5CvCnk9pxDPuhfquFmrg63p96I5cO59m4Txnj5ShTyzYTL2K6uJPsdlR1UTkSTOSvgfLHd9rfdBWN1plNiXqXVpHyusPK6HH+VNKc8=
+	t=1780563721; cv=none; b=DMleSA2NhE7RoH8Cajo5wEp5sJcZH0YmrBzvfnHtrA+CXENZi/ZiGa0X0CMLnCo1AiJMYiqAGFZUVEr3u5sRIsAaKRCdl/ag6Wdb4iv354ROvT1J9vKUB0+VZ6qcF3Ae7coMwyR1K9n5rKgVW4Y/EmdtVpj/8BLYohuy4Ko7SeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780563497; c=relaxed/simple;
-	bh=Oqw/BTCOa4qOEyv2l2dqeSFwZ0yug7JH+UYGmIjLZNs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=agTGcyIUtcviuAHIYZCiIQ+VUuXY/w5CYhHrHmbbDsSh4PqM59AShENS3feU42FvTEtEtyHLwhM+8XjkgQs2ColM9lGOY1MDSrv3s9o3zFu2qloWWRtFqd54XkrvXmPwYnQxLC2M+s7Navs8xb/ZQyMPLmsjYOVB32vMN7GQ9Fo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VrtUb5ZB; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B11B1F00898;
-	Thu,  4 Jun 2026 08:58:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780563496;
-	bh=Oqw/BTCOa4qOEyv2l2dqeSFwZ0yug7JH+UYGmIjLZNs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=VrtUb5ZByRFiEFpZbrtRgmfNuv36YbTyPsQBNkllK7Qky3PEBUSDGTtyingVW4rzw
-	 wniw0homTKR7hKmjD7BPqSbRSsHVM6HISvLe4tmV0rwnOVzrtV6zNK6O/V/BeCEV0U
-	 UqH12BDhN7woIDNfu0uuWWk2sPnIm5+XCthrHgN08MOYz00l0LY5KS29ugwjxj1lLD
-	 tNt1ajpYluj4t+uwoCWjUYKk278IIrOaEFOhvTnQB6+wMArEdPIMFfo6CAUTgqUGVR
-	 n859YBTDEkLN8hzklqdEMoEI5c5rqc1/Lb7gcr5J9Lc6scWRJqbWNKnoJP161BtF/j
-	 RWKf07FUXqhkw==
-Date: Thu, 4 Jun 2026 09:58:12 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: SP_ISW1_AT@novatek.com.tw, andi.shyti@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	ben_huang@novatek.com.tw, toby_chui@novatek.com.tw,
-	shihpei_hsu@novatek.com.tw
-Subject: Re: [PATCH 1/3] MAINTAINERS: Add entry for Novatek NT726xx SoC i2c
- driver.
-Message-ID: <20260604-grievance-esophagus-a607a9d734eb@spud>
-References: <20260604060411.355675-1-SP_ISW1_AT@novatek.com.tw>
- <f6cce361-47ef-4488-ac1e-5f60d3cd578b@kernel.org>
+	s=arc-20240116; t=1780563721; c=relaxed/simple;
+	bh=uPk6FtmVWMI7jTXHIH/rPB8H7e/eCSP33+M3NBqIOF0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PVjJcZNShPI0PaFMXghLdtEnin51dv8I5ZA0po8swdaUOMiTaxcEfIjiEs7NhRom+OrMs2LrgZ2QOBYaSCVidbt8R4rZr6X/bCTcPlittH4ojTYSOM/ushSHH8EBwWmB8tOy/t5wJOwOhtL02HQENEexghTrJBWjjEQRuYIk4g8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=p3a6ujdW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=D5JRFZMI; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65452SA31039343
+	for <devicetree@vger.kernel.org>; Thu, 4 Jun 2026 09:02:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UmVGnrCXAkShVpVSqIoifGKYR2VrcsjStPpiVothuy8=; b=p3a6ujdWj/i6PMLX
+	EJ4CI54NxwYkTB6FNwKcs5sxZcdjmW2pUME8VlRMWLl5zj756B/2Exc1j9xWYf5f
+	/rwUvH4II0SDerry2erIY9rJgNOPkvpmVVHGCwiI5rLarZ+/dPRHfPAsdEiiqu3b
+	ig6JOetF3CSgm5P6nEtyo2S44rV+QSJIB7qDRzubHGuC3hP2kZt/ZmRTP6l9crSu
+	y7tXNx9eb6WcvsplETvE9KCh76Yy5Ckak9ia+LGkPazqR5p0O1gl1LvS2EJ/EV+0
+	un4ip97ZLOqRYpjSLpv/pI21q2wvQkgeigd2PVtqWQ6vWybBZrRj8U8pqN06oDd1
+	2zU3Mw==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ejtj8jhr0-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 09:02:00 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2c0c3315d31so6515145ad.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 02:01:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1780563719; x=1781168519; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UmVGnrCXAkShVpVSqIoifGKYR2VrcsjStPpiVothuy8=;
+        b=D5JRFZMIofrJDYnja7uLSnAymJ6FwuXQdDqdkVlLE6X7Irvefj5Ikw+3lXKHu7tucq
+         1UP+DVlSWHh0nxGN+Kyq/Pd19r6KDng0Uc4ae4dkoHCuSGv7cW3k50ZPcUNUQol0e996
+         1vlWWVliX/6e8aCVrLfS7KDHdQLi3AkO8KlEM5LRE270BKwGBs1Y4E8nSzZPGfl15mYx
+         fZfIZLveErX3aNNgrCvaSzfcAUXdIR63Cd0JKUCAs0A1GAY/oxfyNW89QAQwmgqYZEUX
+         e9H0LPU0Fs854Zsa9AIs1E4zIIoR6961KJ7h0ei8MTBHO97UnBnAzSFwLJKHYM/ztPWW
+         C/Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780563719; x=1781168519;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UmVGnrCXAkShVpVSqIoifGKYR2VrcsjStPpiVothuy8=;
+        b=rl5Gbuj5Z/e/rQR0HZ+ghTQoofx7R62+A2nvb19P95oKJH8aNBN2hIWpQ+3tSC68lA
+         9+LNdD9EJ9zajLq3I6iLk8zoV9XxNCvTceEdoSAAJTTuDnOVMrKd08Jj+E5Ppvz1L2Io
+         36LOabDro6LcAaG5h2P81UCM1rKTUaVDz0zYacJImlUsMeJ9VLmC3PvH9FKVkTuMAQ7i
+         lK34mzfACRngydAx7N4tRhJc6vtMCLiqazwtC47XhvyBciWHESYsp+DZm9P4JmtyWrb4
+         gzG+P4r1Gy9wNJvUBaCs0UgtTLzVJmWUnry7J/my69BlWm9rFFbCJGwLSPu631xPIjxb
+         X7eg==
+X-Gm-Message-State: AOJu0YzVGbXU2gf1QQoYvCDdin+YvuP1VsgHjgBdjDf1QktfDbVT1/6q
+	sDfeJxAeUTPy+RS7pd6SJtp1O6CdMVQ50Gbg4gy0n/6YAbRbZ9+E6Z9SgPxoG+vJ/FUnMKvKENj
+	nTGccjAlQ0Cs2RypIOB6STWThu/0Rq2nDcCVJJtZK+sZh87UNoWe8dIIayXNa/A+4
+X-Gm-Gg: Acq92OHdanqlyI8uJz6heLjZUWIPrtDqF97IukQHpBVlwC/tN5MWlIViKBEpDGDZSeA
+	NWw8dBgcof87dczmXf5LKMWhgE4asrMVDhvpxAGGwcwSUwBEgbHyFkd9k1fKOLmvqXAiD6S6SrW
+	s8Cyb2qHqeD1jxAxcASh63iNoZHyxe8/11Kay8SNmHB8iRi7GeuGQkwGT0QUc8tSR3vKd9yr1sy
+	46XqwDovCSKd+1Yl4TSvdP9UpZ5XyAotSgKCHcwDog/ytBrBZWpIAG7LbaQxY/nWWiBJmYbZjlI
+	Cs1dKCfeQKA0bW/ekeX/fL8SSL8FUu40GajBor4Mnz/4tkboKDve9YixhZC2e8c6ChofwxQx9u4
+	NXhSVhVfG3v7K8t5NJuecp5Jo0l28chWmm67ChBos9oDVLcSSZGN6DHU+cbAjoHvj+OJUCEy9eR
+	O2
+X-Received: by 2002:a17:903:41c6:b0:2c0:af09:f3d9 with SMTP id d9443c01a7336-2c1644d1700mr75453395ad.36.1780563719029;
+        Thu, 04 Jun 2026 02:01:59 -0700 (PDT)
+X-Received: by 2002:a17:903:41c6:b0:2c0:af09:f3d9 with SMTP id d9443c01a7336-2c1644d1700mr75453015ad.36.1780563718551;
+        Thu, 04 Jun 2026 02:01:58 -0700 (PDT)
+Received: from [10.151.37.217] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c16629cd24sm66003285ad.57.2026.06.04.02.01.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jun 2026 02:01:58 -0700 (PDT)
+Message-ID: <af6a1de0-47f6-4ede-aacc-d5411f295e5c@oss.qualcomm.com>
+Date: Thu, 4 Jun 2026 14:31:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OH38BFenAuLHnwQx"
-Content-Disposition: inline
-In-Reply-To: <f6cce361-47ef-4488-ac1e-5f60d3cd578b@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq5424: Move PHYs and PERST# to
+ Root Port node
+To: sashiko-reviews@lists.linux.dev
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+References: <20260602-move_perst_to_rp-v1-2-8ee5b80316da@oss.qualcomm.com>
+ <20260602165241.5D8821F00898@smtp.kernel.org>
+Content-Language: en-US
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <20260602165241.5D8821F00898@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: mDyEcl1urfsf1LGtF6XRRQjM0QbGTcb9
+X-Proofpoint-GUID: mDyEcl1urfsf1LGtF6XRRQjM0QbGTcb9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA0MDA4NiBTYWx0ZWRfX6I3MNMJYusse
+ N3uO1EfkaVPzisw22XoVMhGuqGsUUNYS7TuKyPnhostwsjBxicLmlSyXrTtsfDBaeMhqH727/+j
+ qurKV6Kvx4HA3emPRYRTBdsmPz28E0JhJ2j4jOpD9609ovA+sihdAWw8vKklHo7IeIJOfN9apnr
+ /qe7fQr15mCDwAUzMDgSHjt+umk6j0Py9gZoc2o1GsVhpOl+zQZ1GPDdezhDp+SJGa4uFKG/T7G
+ SUKU3aADNEDngmrrjaMtFZXf7knQyBqHEALC0ohkZTVJ3U/oMC5aE2dhdVdoRT5nS5pHvA+NGK8
+ soWXZ4bUk6bimdmeNMn8aSh7GdekBbUI/01DWyxeSoaN76CoSvsDJTNTZp0qoJNTl9WxZY3lYk5
+ NARCQ8rMIg/a0IogCu86Kg1yJw4pFoYx2yrff0iQSPgbdO2MlxjTH4Nw8SPb7zCNWJusv+TA1rs
+ uLvS1m/qQEhpWJBP4OA==
+X-Authority-Analysis: v=2.4 cv=f4p4wuyM c=1 sm=1 tr=0 ts=6a213f08 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=yqHa0Pl9yY5Qe_7Dn7UA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-04_02,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 suspectscore=0 phishscore=0 bulkscore=0 clxscore=1015
+ adultscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605210000
+ definitions=main-2606040086
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:SP_ISW1_AT@novatek.com.tw,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ben_huang@novatek.com.tw,m:toby_chui@novatek.com.tw,m:shihpei_hsu@novatek.com.tw,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-306701-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306705-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_NONE(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[novatek.com.tw:email,spud:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ADBB963E5F0
+X-Rspamd-Queue-Id: B142563E635
 
 
---OH38BFenAuLHnwQx
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 6/2/2026 10:22 PM, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+>
+> Pre-existing issues:
+> - [Critical] Legacy device trees fail to probe with -EBUSY because the 'perst' GPIO descriptor is requested twice without being released.
+> --
+>
+> commit f286f42842ba6bb45e869489bbe2830fdd9be93c
+> Author: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+>
+> arm64: dts: qcom: ipq5424: Move PHYs and PERST# to Root Port node
+>
+> This commit updates the device tree to define PHYs and the PERST#
+> (reset-gpios) under the PCIe Root Port node instead of the main controller
+> node. This aligns with the new binding style.
+>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+>> index de71b72ae6dcc..be8657239c46b 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+>> @@ -86,8 +86,6 @@ &pcie2 {
+>>   	pinctrl-0 = <&pcie2_default_state>;
+>>   	pinctrl-names = "default";
+>>   
+>> -	perst-gpios = <&tlmm 31 GPIO_ACTIVE_LOW>;
+>> -
+> [Severity: Critical]
+> This is a pre-existing issue, but does moving these properties expose a
+> probe failure on legacy device trees?
 
-On Thu, Jun 04, 2026 at 09:26:56AM +0200, Krzysztof Kozlowski wrote:
-> On 04/06/2026 08:04, SP_ISW1_AT@novatek.com.tw wrote:
-> > CONFIDENTIALITY NOTICE: This message, including attachments, contains=
-=20
-> > information which may be confidential and privileged, and is intended o=
-nly for=20
-> > use by the addressees designated above. Unless you are the intended rec=
-ipient,=20
-> > any use, copying, disclosure, or distribution is prohibited. If you hav=
-e=20
-> > received the message in error, please immediately delete the message an=
-d destroy=20
->=20
-> So can I review it or not?
+Along with this change, "phys" property also moved to Root Port node. So 
+qcom_pcie_parse_legacy_binding() will not be called for this platform.
 
-Given the state of the binding patch, you probably don't want to review
-it anyway!
+>
+> When parsing a legacy DT, qcom_pcie_parse_ports() successfully requests the
+> "perst" GPIO:
+>
+> drivers/pci/controller/dwc/pcie-qcom.c:qcom_pcie_parse_ports() {
+> ...
+> 	pcie->reset = devm_gpiod_get_optional(dev, "perst",
+> 					      GPIOD_OUT_HIGH);
+> 	if (IS_ERR(pcie->reset))
+> 		return PTR_ERR(pcie->reset);
+> ...
+> }
+>
+> But it then returns -ENODEV due to the lack of a "phys" property on the child
+> node. The probe function then falls back to qcom_pcie_parse_legacy_binding(),
+> which attempts to request the same "perst" GPIO again:
+>
+> drivers/pci/controller/dwc/pcie-qcom.c:qcom_pcie_parse_legacy_binding() {
+> ...
+> 	reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
+> 	if (IS_ERR(reset))
+> 		return PTR_ERR(reset);
+> ...
+> }
+>
+> Because the first request was never released using devm_gpiod_put(), will
+> the second devm_gpiod_get_optional() fail with -EBUSY and fatally abort the
+> probe, breaking backwards compatibility for older platforms?
 
->=20
-> Patch is obviously incorrect, but not sure if I am not breaking your
-> confidentiality rules.
->=20
-> > all copies thereof and notify the sender by reply email.=E6=9C=AC=E9=83=
-=B5=E4=BB=B6=E5=8F=8A=E4=BB=BB=E4=BD=95=E9=99=84=E4=BB=B6=E5=9D=87=E5=B1=AC=
-=E6=A9=9F=20
-> > =E5=AF=86=EF=BC=8C=E5=83=85=E4=BE=9B=E5=85=B6=E4=B8=8A=E6=8C=87=E5=AE=
-=9A=E5=9C=B0=E5=9D=80=E4=B9=8B=E6=94=B6=E4=BB=B6=E4=BA=BA=E4=BD=BF=E7=94=A8=
-=E3=80=82=E9=99=A4=E9=9D=9E=E6=82=A8=E6=98=AF=E6=8C=87=E5=AE=9A=E4=B9=8B=E6=
-=94=B6=E4=BB=B6=E4=BA=BA=EF=BC=8C=E5=90=A6=E5=89=87=E8=AB=8B=E5=8B=BF=E4=BD=
-=BF=E7=94=A8=E3=80=81=E8=A4=87=E8=A3=BD=E3=80=81=E6=8F=AD=E9=9C=B2=20
-> > =E6=88=96=E6=95=A3=E5=B8=83=E6=9C=AC=E9=83=B5=E4=BB=B6=E4=B9=8B=E4=BB=
-=BB=E4=BD=95=E9=83=A8=E4=BB=BD=E3=80=82=E8=8B=A5=E6=82=A8=E9=8C=AF=E8=AA=A4=
-=E5=9C=B0=E6=94=B6=E5=88=B0=E6=AD=A4=E9=83=B5=E4=BB=B6=EF=BC=8C=E8=AB=8B=E7=
-=AB=8B=E5=8D=B3=E5=9B=9E=E8=A6=86=E9=9B=BB=E5=AD=90=E9=83=B5=E4=BB=B6=E9=80=
-=9A=E7=9F=A5=E5=AF=84=E4=BB=B6=E4=BA=BA=EF=BC=8C=E4=B8=A6=E8=AB=8B=20
-> > =E5=AE=8C=E5=85=A8=E5=88=AA=E9=99=A4=E4=B8=94=E9=8A=B7=E6=AF=80=E6=9C=
-=AC=E9=83=B5=E4=BB=B6=E5=8F=8A=E5=85=B6=E8=A4=87=E6=9C=AC=E3=80=82
+This is already fixed with[1] which is not available in linux-next yet.
 
---OH38BFenAuLHnwQx
-Content-Type: application/pgp-signature; name="signature.asc"
+[1] 
+https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/?h=controller/dwc-qcom&id=1a23bcb452d95f099e530414504c0d99ee076b3f
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiE+IwAKCRB4tDGHoIJi
-0j9oAQD8t2bqErB10S9guhRMT8guD9pstkggxN4KH+ehUhSwGAEAuRyg6J3JBBI5
-xUrDk2oG/xY/CXH2F41HW7RicGaCwAw=
-=c9N8
------END PGP SIGNATURE-----
-
---OH38BFenAuLHnwQx--
+>
+> [ ... ]
+>
 
