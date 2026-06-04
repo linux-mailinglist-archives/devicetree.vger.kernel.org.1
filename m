@@ -1,235 +1,208 @@
-Return-Path: <devicetree+bounces-306850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306852-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Key9GkaCIWq9HgEAu9opvQ
-	(envelope-from <devicetree+bounces-306850-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:48:54 +0200
+	id /dGFNd6CIWraHgEAu9opvQ
+	(envelope-from <devicetree+bounces-306852-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:51:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA9E564081B
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:48:53 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEECD640884
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:51:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ti.com header.s=selector1 header.b=vYiNs4Tt;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306850-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306850-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=ti.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306852-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306852-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 83C6A3025291
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 13:31:27 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2405F309A87C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 13:35:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9294447ECF5;
-	Thu,  4 Jun 2026 13:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 466A647DD48;
+	Thu,  4 Jun 2026 13:35:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com (mail-westcentralusazon11010013.outbound.protection.outlook.com [40.93.198.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE9847ECE4;
-	Thu,  4 Jun 2026 13:29:47 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780579789; cv=fail; b=GgfaGotrGZVzJGnZ+5FOhEAcgpkbtHSbiuP3eg/rt9dA35S/66yAwuMu198aRYYV2fpiG7ZZLNmFoiMjpHYNwvXPsMAnbxY9ZEaqhrI2vL6s5xNWuqc+57cFmMp6iXxDQvv8znJHWiZLqf4VmPodpzXGtll2W29RhohIaNU0fgE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780579789; c=relaxed/simple;
-	bh=QduDFGkhVG7l5Cwv77fOewR1zYqTJHP2BTQMigLPCq4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=myW4paaj9k5eU5tHYV5jtLhVsHlAaf5YR3u3c+DEHx/+hrfeGVxwIYsU7gxToNaNAxcTvzQ+l6Xi0hWYHU1y7S+bkI9wb6f7pEnNjCFKeDDnqXKIrV656L25i21rtz1REvrG1t/I+hjDOpxLKOdAWEAA2QYIlG12ju8juaOrKS4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vYiNs4Tt; arc=fail smtp.client-ip=40.93.198.13
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=m0N80djnCG8EMxaFkYJ67CYfDorYxAO4/IfdLWjbOdsdl2MufBrG0U9iWkDD3NyYLzxWlC1g4gydabeGlzciDyzhVKKaqajTuN1XjaRvvhw5P5Xbkju8UqnqS6UFQ8GLcp8Ouy/r3nbuQxoVYutcnhrOGCLbCVDi8iNSk/DTr3K6CrWYa7mlUdeRrB8zx0CnG490oHz3Y/p+PieIUylJMH+UQGcFeid0lGpAs+7oDV+paudW8yIQ0JRwg25IW8jaYhzyhnASyH6AkZYjocziBgQtFZSrjxe5QN4hKucrcscXjujuTzsjj06APqZrdkJfkFysy0TynYhFUSNp7Y0lKA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2QZdPuiF3s/K/hP6adyb62JYNxigoWxMG1szuuNaHkc=;
- b=UnxkCHnF6l6P7eYW0iALO4EWGAI0v98Y5XmEOAXTWBn+6DjRFurKYT0aLvS3hNgbryiAxi48Ww306176Xr6h9DwpJKuSzXiC1S7/cqnxW15S2thHeHX5fvE13LmNmbXWhitdhD5FVT4shXRu8CwHnDhoI0vogLmj6/YxCRo6pHyRMXxyodDMtDhJVmyfpZYqNpAwld2b5PkEk9J35lg26ves2mVYxyrlT1XsfchaFkR7C5j+/iwtiK3vod+H/k385NlCE6fiXL5pgZ0UAEU0E3dntSBX1FJNbKBeToc/ND1IZlHjDLoY8y+QTiX9oEq42c6IlfKBcGREqvOrGGJYbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2QZdPuiF3s/K/hP6adyb62JYNxigoWxMG1szuuNaHkc=;
- b=vYiNs4Tt9ia2xNkGDO1uJNlMtnceurxK3UXd1MZLeASODsUzPB7J7EvmwKtNJJrnfyI87bW+dpqX7+G4ADXxmhGJPY/KtRksDhW3aRBXwNBb0XwZ4JTJJjYuaESvRsBTSt8rS/nIcyio3uQOkuknnmoOsuygjABRTJAPeIUXMJ8=
-Received: from MN2PR05CA0057.namprd05.prod.outlook.com (2603:10b6:208:236::26)
- by SA2PR10MB4747.namprd10.prod.outlook.com (2603:10b6:806:110::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Thu, 4 Jun 2026
- 13:29:45 +0000
-Received: from BL6PEPF0001AB58.namprd02.prod.outlook.com
- (2603:10b6:208:236:cafe::66) by MN2PR05CA0057.outlook.office365.com
- (2603:10b6:208:236::26) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.8 via Frontend Transport; Thu, 4
- Jun 2026 13:29:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
-Received: from flwvzet201.ext.ti.com (198.47.21.195) by
- BL6PEPF0001AB58.mail.protection.outlook.com (10.167.241.10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.5 via Frontend Transport; Thu, 4 Jun 2026 13:29:43 +0000
-Received: from DFLE210.ent.ti.com (10.64.6.68) by flwvzet201.ext.ti.com
- (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Thu, 4 Jun
- 2026 08:29:42 -0500
-Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE210.ent.ti.com
- (10.64.6.68) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Thu, 4 Jun
- 2026 08:29:42 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE206.ent.ti.com
- (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
- Transport; Thu, 4 Jun 2026 08:29:42 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 654DTf8t3453466;
-	Thu, 4 Jun 2026 08:29:41 -0500
-Message-ID: <203d82b2-216e-4f5d-aa3d-f653228d397a@ti.com>
-Date: Thu, 4 Jun 2026 08:29:41 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C1447DD55
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 13:35:32 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780580135; cv=none; b=FGLo/nM8lC4HIrYysvfs+fWRrM8hw6deJS+AckeHSJLhjOa8ljlMMfq3fuafNIFXrzLlQ39RuvyXUrYzIKDngfCEb9/OvpXbCltxowdbnTxgtOXN/7QpLYTEvLJxo65PqmSqjF86MatzNUGlrXhD5PLkP3zPSn+rpmttLE/loGo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780580135; c=relaxed/simple;
+	bh=DlMJy/HbD7sdsoaWTVD2xSFGx5uxnG9kR+usD6eKtlc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GiksLECqSsZrCh2K/HAINFeskk/BxD7pY51TI3A47Qpdq9MREbLsiyeNCcJVFkqRHSFPlxKMLc00gmscbsYsdtfopv4tG8LQ/arkI1Nfy2tY0VSqwFVtZ3cN8Vbw9BB9bayw6NlCpqS4SvOvuQxBQom8d87crfwDSuirT1r26yQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.46
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-963a722ed58so481199241.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 06:35:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780580132; x=1781184932;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QeesPihQRAsowNF4S9BH5xHDdN+c+plhMp2PuD8yPAU=;
+        b=WU1230UqnDsNy2E0pVe8bB2/hWjgPou00glzauBvKUJ1NG8xFkfAN0xKJTkTNknjTo
+         49fBbfnzVOSeN5yF0eJtsqqWXCmTiUXOp7/Mdn/tIftMfg06soWmLAESI991f7dMoIFp
+         aGJY0HILPOoyjhf25Q0cheI7IlOEJx0heKNuyhCA5Xnrg8+MV4pEX1iAOdUFOtO3HDVu
+         AK9XiEBBNkVc+jiayyPVp5ixSMhNbSfmflaGt1hegmw3BSvZSbZ6AdYX18MIWrcsiFv1
+         3EtnTbQDT2FySMwKclhy7lKFZsptg6yokjhigl+0SVaKV66Xisn1/6FCSHWaqyAkznMi
+         Zw/w==
+X-Forwarded-Encrypted: i=1; AFNElJ90s45NiVDmCpukdTIYTOJ92emE7FsEbaj5wlWCZPtXlN3aNQwQafCMn/T95B11WTEV95YOwKcG+XDp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcByNl8mAklRDxkqXA1KplB8HkNtpnF4tAhR7KHlaSno3gl87m
+	pobJBB7QDw6+ezyhJgnMDRzDZTlSkjUkNc7dbHwZy74US8qGM5k9uHN/t5CEGDMqF9c=
+X-Gm-Gg: Acq92OG2w+ZciFL+t9eDH350xsPLJoXLK3lwSNb3UEQzs7J/+eeGB82m4qEeAEGwlxu
+	gR+dpMYHbcW/x9W6+Of2sVYpvf4iiMWL0/qzf0JfHznj/1jn72ZsthBwhnSxocERNeEUw07C5qT
+	ufM2lM1lqNUQ7B56COWXJGlhYiMSKtRao9fwaV7ZqRo1FmLJs7zPIa/w3nkl6Mgwd6q+e806aaK
+	fORSUj1z4f7Gc9Q17pUcJZrJK4daJf2HZBWUlkAfpBIfHGC5ETkpWazHqLOkVMofVficVQ+b7K5
+	5OgoCfswaThGAePiHXQ31NJLH7O/3vQwb7/MG8NaBdt1ox0ZsNeYNhxm+JlhLMgMKtAvEuEaA0s
+	slQYJMoAM5Ayw7GDzhRXnF/2mn19gXQJb7x/mB31TEXvKZnJZa4bsFqMTHwry95datAMl6Yha8v
+	uZcYXUqF3m2vXalrxE1C8+jXbpcv7Dmu32S+joK8i5WM7d+ZJb1ZGBUMjtcKDjURnODiJWyJ52Z
+	mw=
+X-Received: by 2002:a05:6102:5092:b0:6c4:5bdb:5e34 with SMTP id ada2fe7eead31-6ec18a97150mr5102321137.0.1780580131942;
+        Thu, 04 Jun 2026 06:35:31 -0700 (PDT)
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com. [209.85.221.176])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-6eb649b5513sm4870828137.8.2026.06.04.06.35.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jun 2026 06:35:31 -0700 (PDT)
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-5873983d19eso659407e0c.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 06:35:31 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/RLz75lw13WgXWA9NqD2tTXdowPp5MUW8Aop+QEdfZdKfmJzljGcu++fN1Jv7OdWL+hun3L9XyeH7v@vger.kernel.org
+X-Received: by 2002:a05:6123:142:b0:588:2fc:f169 with SMTP id
+ 71dfb90a1353d-5a6e90e544amr5469012e0c.13.1780580130987; Thu, 04 Jun 2026
+ 06:35:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: ti: k3-am67a-beagley-ai: Add overlay
- for IMX219 on CSI0
-To: Nishanth Menon <nm@ti.com>, Jai Luthra <jai.luthra@ideasonboard.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Robert Nelson <robertcnelson@gmail.com>,
-	Devarsh Thakkar <devarsht@ti.com>, Tomi Valkeinen
-	<tomi.valkeinen@ideasonboard.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20260515-beagley-cameras-v2-0-f6acb66c9995@ideasonboard.com>
- <20260515-beagley-cameras-v2-3-f6acb66c9995@ideasonboard.com>
- <20260529150119.dqzzruc7xqliftwp@bullhorn>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20260529150119.dqzzruc7xqliftwp@bullhorn>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB58:EE_|SA2PR10MB4747:EE_
-X-MS-Office365-Filtering-Correlation-Id: 316b6f94-fa86-458f-8492-08dec23d56f5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|7416014|36860700016|13003099007|22082099003|18002099003|5023799004|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info:
-	gq2d/GemulBTXe3/pXa0FVUE/YsKZjJcTzDAJAM9mjrurG+HYDY2jUBJbJSCuvSJqgWbbbmI/c2TCagQT8Q50ibLrxmLP2VH7npkxvYUfhUl7jA5J255pF8LcpPXdsb8eiQHPgiV7HgPBuzy9OkB/eY2kAZ+8UTuFR+Zw7orcb0UbA/NX3Jmvc8a17V2JiMB3Ecx+hGvfWsM2TQAJcjT45EkrqgFHwqw2nfWXZPrm7+LHVHRR/gX+ejpu2baN46Hsdb3QxyjE0aAkbnSKwcYWoq5C3LP6ZzhWF3iaVLl0XIZQyuiWu+tV9NLH2tcEfm1ccslCR1bY5mflwhM3wyQV4UjiNK0TcWfhllqHP7PCkDDs3XqaL92ouahW40dIm5FCOJYtIfvMbju+ArowckvnECCtf1ZvFBkzncrx260qtgb2UDtoZ0PG2U68bbKLhURI7U305PaCOltBlbPXFa4TJaFxwl02H6ItmkyZSfbNsXgPqSL/ENj37RDYBtKBng3YV6NwRrGX0T2q4a1RozipEiDB4QmNpGhvkGUSqdwBerY30u6sKZCc6y05AOWOfDazajbXezDmP3iVvGm/QFq0J5ppP7gR2tfkwDX2M8Ao6M8B9IAJlP8HD/UZoxoMQoycC0u1tyLTOxtjCT+xhzA+y9VgNLlO8q8gAv/rb50zWeuY6CKsGDC+hFDNaImxmZZ
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(7416014)(36860700016)(13003099007)(22082099003)(18002099003)(5023799004)(4143699003)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	8ATxqa74a+ctuapL15k+LHEYobWomREs2gnn/bzCQ4pZhcSsNgB0kZjJVP1ljvbIm1Oo6qtsb0ajdULymit68EEcCKAciIqouiicSkkDxnhJan/fcmoM5E8RRN2m4ocbaGeVnQIZHOe1NYS0mRt+uaaPsjTo9Y4dpXNdjKSVUwfrK8q6vV8b9nDMH0iIaO9pruqY5XCI5dcMAeFXl2yX8/f66VTM0ESeaWdmoCppBNsNzZGL6B6lmuPz7FtGQdEKt6WYclvy+2s4nyjRBYFBM8R4n7xlnWkWtopobNLA6qYsFSB1yMo8kl/cDlVCYn0hpW1wTLgOIpNbewFgcGRNTUiWQA6BfBFfHs0vObkaNZnTMNztPOiGEsVH+4VdMJs+XipVg4bNW4ApDtAVfbwxl/CekXag7y0hNV4iLCdLMQAVt4u069ukby1kt9IPgOnn
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2026 13:29:43.9799
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 316b6f94-fa86-458f-8492-08dec23d56f5
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF0001AB58.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4747
+References: <20260528134752.79813-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260528134752.79813-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260528134752.79813-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 4 Jun 2026 15:35:19 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWjdRLmnXduVv6uu8oxB6orxqxrANKDDm8xGjU7C0qQGw@mail.gmail.com>
+X-Gm-Features: AVVi8CdIzcWNzyVXA_Tw_6icOkxcSEk37xtaCQR10UrJHR4-KQNi5o_SyT4ZfIA
+Message-ID: <CAMuHMdWjdRLmnXduVv6uu8oxB6orxqxrANKDDm8xGjU7C0qQGw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: rzt2h-n2h-evk: Configure ETH pins
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-1.46 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306850-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,ti.com:mid,ti.com:dkim,ti.com:from_mime,ti.com:url,ideasonboard.com:email];
-	FORGED_SENDER(0.00)[afd@ti.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:nm@ti.com,m:jai.luthra@ideasonboard.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:robertcnelson@gmail.com,m:devarsht@ti.com,m:tomi.valkeinen@ideasonboard.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[ti.com,kernel.org,gmail.com,ideasonboard.com,lists.infradead.org,vger.kernel.org];
-	DKIM_TRACE(0.00)[ti.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[afd@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com,renesas.com];
+	TAGGED_FROM(0.00)[bounces-306852-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,mail.gmail.com:mid,vger.kernel.org:from_smtp,linux-m68k.org:from_mime,linux-m68k.org:email,glider.be:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BA9E564081B
+X-Rspamd-Queue-Id: EEECD640884
 
-On 5/29/26 10:01 AM, Nishanth Menon wrote:
-> On 06:46-20260515, Jai Luthra wrote:
->> RPi v2 Camera (IMX219) is an 8MP camera that can be used with BeagleY AI
->> through the 22-pin CSI-RX connectors. Add a DT overlay to enable use of
->> this camera sensor through the CSI0 connector.
->>
->> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
->> ---
->>   arch/arm64/boot/dts/ti/Makefile                    |   4 +
->>   .../dts/ti/k3-am67a-beagley-ai-csi0-imx219.dtso    | 121 +++++++++++++++++++++
-> 
-> Oh man..
-> https://lore.kernel.org/linux-arm-kernel/20240702164403.29067-1-afd@ti.com/
-> comes to memory.. Afd - what ever happened to that?
-> 
+Hi Prabhakar,
 
-Good question, others have taken over the torch for the most part. Nice
-little talk[0] I found on some current status updates for the topic.
+On Thu, 28 May 2026 at 15:48, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Update the gmac1 (ETH3) and gmac2 (ETH2) pin configurations on the
+> RZ/T2H and RZ/N2H EVK boards to comply with the electrical specifications
+> defined in Table 58.11 of the hardware user manual.
+>
+> While restructuring the nodes into pin groups, fix a copy-paste comment
+> typo in the RZ/N2H device tree where the ETH3_TXD1 pin mux configuration
+> was mistakenly labeled as ETH3_TXD0.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-They even mention my little proof of concept around the 19min mark :D but
-kinda just dismiss it as it doesn't support hotplug, which is a requirement
-for their usecase. But my solution doesn't support hotplug because DT
-doesn't support hotplug. And to add that kind of support to DT they are
-pushing to change the DTC[1], the FDT format[2] (which hasn't changed in 19
-years and is the basis for claiming DT is a firmware/"ABI"), and make an
-alternative to DT overlays called "addon DTs"..
+Thanks for your patch!
 
-What I proposed was something that can work today without any changes
-to existing DT infra. My only goal being to prevent needless duplication
-in overlays like we see here where you have a new overlay for each
-connector the device could be connected to. Just look at our evil vendor
-tree to see what this problem can look like, go here[3] and search "fpdlink".
-We have 14(!) overlays for just one camera sensor (IMX390) with the only
-difference between each being a single line to select the FPD-Link port
-where the sensor is connected.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.3.
 
-Jai, I see you have already posted v3 of this series, but could you take
-a look at what I've proposed here[4] and see if this could be used to make
-a single IMX219 overlay that would work for both CSI ports? If you can
-pull that off then we avoid the combinatorial explosion of an overlay
-for each port on each board for each camera sensor.
+> --- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> @@ -258,23 +258,54 @@ can0_pins: can0-pins {
+>          *
+>          * SW2[8] ON - use pins P33_2-P33_7 and P34_0-P34_5 for Ethernet port 3
+>          */
+> -       gmac1_pins: gmac1-pins {
+> -               pinmux = <RZT2H_PORT_PINMUX(33, 2, 0xf)>, /* ETH3_TXCLK */
+> -                        <RZT2H_PORT_PINMUX(33, 3, 0xf)>, /* ETH3_TXD0 */
+> -                        <RZT2H_PORT_PINMUX(33, 4, 0xf)>, /* ETH3_TXD1 */
+> -                        <RZT2H_PORT_PINMUX(33, 5, 0xf)>, /* ETH3_TXD2 */
+> -                        <RZT2H_PORT_PINMUX(33, 6, 0xf)>, /* ETH3_TXD3 */
+> -                        <RZT2H_PORT_PINMUX(33, 7, 0xf)>, /* ETH3_TXEN */
+> -                        <RZT2H_PORT_PINMUX(34, 0, 0xf)>, /* ETH3_RXCLK */
+> -                        <RZT2H_PORT_PINMUX(34, 1, 0xf)>, /* ETH3_RXD0 */
+> -                        <RZT2H_PORT_PINMUX(34, 2, 0xf)>, /* ETH3_RXD1 */
+> -                        <RZT2H_PORT_PINMUX(34, 3, 0xf)>, /* ETH3_RXD2 */
+> -                        <RZT2H_PORT_PINMUX(34, 4, 0xf)>, /* ETH3_RXD3 */
+> -                        <RZT2H_PORT_PINMUX(34, 5, 0xf)>, /* ETH3_RXDV */
+> -                        <RZT2H_PORT_PINMUX(26, 1, 0x10)>, /* GMAC1_MDC */
+> -                        <RZT2H_PORT_PINMUX(26, 2, 0x10)>, /* GMAC1_MDIO */
+> -                        <RZT2H_PORT_PINMUX(34, 6, 0x2)>, /* ETH3_REFCLK */
+> -                        <RZT2H_PORT_PINMUX(27, 2, 0x0)>; /* IRQ3 */
+> +       gmac1_pins: gmac1-group {
+> +               txclk-pins {
+> +                       pinmux = <RZT2H_PORT_PINMUX(33, 2, 0xf)>; /* ETH3_TXCLK */
+> +                       drive-strength-microamp = <11800>;
+> +                       slew-rate = <1>;
+> +                       input-schmitt-disable;
+> +               };
+> +
+> +               txd-en-pins {
+> +                       pinmux = <RZT2H_PORT_PINMUX(33, 3, 0xf)>, /* ETH3_TXD0 */
+> +                                <RZT2H_PORT_PINMUX(33, 4, 0xf)>, /* ETH3_TXD1 */
+> +                                <RZT2H_PORT_PINMUX(33, 5, 0xf)>, /* ETH3_TXD2 */
+> +                                <RZT2H_PORT_PINMUX(33, 6, 0xf)>, /* ETH3_TXD3 */
+> +                                <RZT2H_PORT_PINMUX(33, 7, 0xf)>; /* ETH3_TXEN */
+> +                       drive-strength-microamp = <11800>;
+> +                       slew-rate = <1>;
+> +               };
+> +
+> +               rx-pins {
 
-Andrew
+I guess you want me to sort all subnodes while applying? ;-)
 
-[0] https://www.youtube.com/watch?v=C8dEQ4OzMnc
-[1] https://lore.kernel.org/devicetree-compiler/20260112142009.1006236-1-herve.codina@bootlin.com/
-[2] https://lore.kernel.org/devicetree-compiler/20260409115426.352214-1-herve.codina@bootlin.com/
-[3] https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/arch/arm64/boot/dts/ti?h=ti-linux-6.18.y
-[4] https://lore.kernel.org/linux-arm-kernel/20240702164403.29067-1-afd@ti.com/
+Gr{oetje,eeting}s,
 
-> other than the dsi mux, painful to see so much duplication..
-> 
-> Other than that, there is the previous comment (ordering etc, repeated
-> here). I also suggest people put the url of the board/part that the
-> overlay is supposed to refer to when creating overlays.. at least, some
-> sort of canonical link so folks are'nt confused in a future date.
-> 
-> 
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
