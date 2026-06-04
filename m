@@ -1,696 +1,243 @@
-Return-Path: <devicetree+bounces-306929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306920-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HOtWOMqQIWoCJAEAu9opvQ
-	(envelope-from <devicetree+bounces-306929-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:50:50 +0200
+	id /2OBA6qRIWpMJAEAu9opvQ
+	(envelope-from <devicetree+bounces-306920-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:54:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8574C641108
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:50:50 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 553BC6411A3
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:54:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=T0WJ2Ylx;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306929-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306929-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UNwXYX42;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306920-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306920-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F34B131017BF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 14:41:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EF0C53046E92
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 14:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4BAD48035A;
-	Thu,  4 Jun 2026 14:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D48F47F2DE;
+	Thu,  4 Jun 2026 14:40:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9932133BBA2
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 14:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3463B3B27F9;
+	Thu,  4 Jun 2026 14:40:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780584091; cv=none; b=NB4fORYXBvP6TZElrAh6GsyHqOblsVYGvAEGweoHdxTNFZ6D0lSwEJjLH5xY+G5YKfhs2/Pl2jnkWM8/RqLA6G/8oPrhtsi+CjCt+QqEW9Do1LVdZDPiNuNLkDddOG5Kl6aJhn99RJrSvK08ZcknTaCcYgKCwsNaj7hyFZpJYGo=
+	t=1780584009; cv=none; b=Ar8URW+8H2xAPMBCMIez7FW/kRyR00KRvTPyNmb0NFii/XWqf1npA2XbeTCZ8yqo/G+N/3D8LEGiYk3gaqlrolqE/PE5TMo2s7IsBVX8vOzGZ9876X+1OEQlDgctIXglYKQsS8Os4/u9T04jppp+XnxTuRZVg+MQepd+CRFPu04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780584091; c=relaxed/simple;
-	bh=uJ+5v7tTBaGA2EN6w68xDGS98Bl8lz+gbPuPJeapzds=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EyjUgld1JDWj6eQl7TdFemnyWEXJ37Sgv5LDXSfmhn00+1I2vsuMg44S7NgzYVFfEe5mTKJRmkQEmkQYdyt9bOo/Iocfx55U6JNUcSlhqndU1Hy8UX4d97OI3Q5S6ouaLL/RydkccYcvZ5CBOaCOKfEN8hIP8MzD46RlUzZ5RIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jms.id.au; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T0WJ2Ylx; arc=none smtp.client-ip=209.85.210.172
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-842307472d4so291725b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 07:41:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780584089; x=1781188889; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UxhpIhSWykTBqWelmCLAKEvyzrcEJTlmonazORQ68/w=;
-        b=T0WJ2Ylx32Ac1V/6PphnHW88PzctjiTkjjMLhuwMZVDhvrKS2iAznff0g9DiSte2ok
-         Dl40MZhIQNRejHzlsirB+DMF/JOLD9diupJzkRV/J2OZkX11C/wzOvoA0dlefJ0SY8Gc
-         PrzKArc64k/v6zZFWzE5staU6TvuTdCZv0V5xY1dFIgyEblzRyjec3AE1CMyqcCpbQFb
-         167df8mDm5qc0+b2Iaagcg8jNSaSVKiNf/sXAKcYqlOXLmj6pa5NLvzfnXr0tE/7LXdU
-         efc+TLf2gfs4C2cF7GL1P22vw3PWiu4NCAWXlft52P0FHk14IS2zSjqREORNZhxUT+GU
-         06XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780584089; x=1781188889;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UxhpIhSWykTBqWelmCLAKEvyzrcEJTlmonazORQ68/w=;
-        b=IrKj/VaK/AHPGEkdIg/rzhvcKJpY7UXxM8rnpdqu1pypIzfw6AsEdPy9BlXRBDWGkL
-         lP67x6EvSSnQnZfXyEimBM9dhiTd40Hdk+S0bTDTbS5k2FhQQMhjl0RNtQepsMtMQW/G
-         m+vf90ygt582Cxpt4o0a5iqWwYDRFls9jYCkviTWQowFFkHns4LRqPqpvpyNGuIDbRYo
-         8TeYXOnD/Wwh6SYuuJhX98x6hOWVkJEHeywZs7PuqTHoH8BV5bx2MJjzSENQQNDRY3vX
-         V5TWgVizUu9wyWOp74RLChYwDzeIsLHG/qGskymztFtXD5/WkscGcpPTWVjcD3EP0bHw
-         5NuA==
-X-Forwarded-Encrypted: i=1; AFNElJ+Jn3wx6/MzFdH/uJ2FIlX/amiWoH0sGtqW3cRcFKiwY0wbQfFjhZquP+EuImIZrp4ptiVBQWWTVJml@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsvKhb0g22pWN3EwMedNjKND/NzFxO3iKWetZmm6wiMxWU4/4Y
-	21i9zvJfY7etkutnrP++M+yPKluUKblEWiptnSAtaKCck97LSlnwkB4F
-X-Gm-Gg: Acq92OHMaz+qK7DniFbsKh71chi92uri3W9pnYotY5/pHwno9A7pk0FhlPWMkT7PkhQ
-	RYEAuk8vnw0x3B9j2vcCxbLVg4cBO+nDBDa3rOmziRSYEm8ArhtN9CNrNteY3Fy0y9YNVGYquhE
-	GcqaBDYDMxBEx2l0m5ZYV1gMWmV+iDQaOGT9nNilp4dyC3YA7o6eR4ifXpnxWoGWAp3XSCzNz+u
-	GBDRCAn43pZ1/lbaxTHRTfWoh1/DcWk2fDJgKVXnxCDBLX3zWRuj/6zvx3yThhVfcp9rl0f3C/M
-	OZJXf2dBAlS1IDM7g/qWTRNKs7OGMjLoaZS4OF99Uz+TiBGHIYdftBDAur6qXt/UN9YEcAvHygO
-	7rs07DZDYFDC2dUoXIyvgiwD6K4Oy67Una2Tl+HHMVhVuyPzAiCjHiA6kb4Exy07UxTM9fjAftN
-	cjNXUPNoOu09YQUM4e3VnSy4jAlg7Rlp65NKJ9VOUufCpzeMYRQZKEsbA8DbTaGe1IOeyfVamlI
-	4C4382I0Q5jkirYXPjUkF9FSGkwkkFcHOgYD33mfVJsJgfagZsSpq1YlTmWrRWJ
-X-Received: by 2002:a05:6a00:3403:b0:842:48ae:1d56 with SMTP id d2e1a72fcca58-84284f37c67mr8070696b3a.35.1780584088833;
-        Thu, 04 Jun 2026 07:41:28 -0700 (PDT)
-Received: from donnager-debian.. ([45.124.203.15])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84282372868sm7279753b3a.17.2026.06.04.07.41.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jun 2026 07:41:28 -0700 (PDT)
-Sender: "joel.stan@gmail.com" <joel.stan@gmail.com>
-From: Joel Stanley <joel@jms.id.au>
-To: Paul Walmsley <pjw@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>
-Cc: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
-	Anup Patel <anup@brainfault.org>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Michael Ellerman <mpe@kernel.org>,
-	Drew Fustini <fustini@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 7/7] riscv: dts: tenstorrent: Add Atlantis platform
-Date: Fri,  5 Jun 2026 00:09:53 +0930
-Message-ID: <20260604143957.668047-8-joel@jms.id.au>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260604143957.668047-1-joel@jms.id.au>
-References: <20260604143957.668047-1-joel@jms.id.au>
+	s=arc-20240116; t=1780584009; c=relaxed/simple;
+	bh=CJFJ6penCucd/jGjppKuWojc5tbvGvTR3dG5FuwKvdU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=c7K87mji0i5C+rrpzTEpu4e8IGjhWYvnjTruAp1xMaDT7YuNIl9sCyKkg1sBId2dMQvILYybxRyv+tJbYGh67LIWitgk4FuXrfku2h28xYoQRyD6GE2JKs3amjf4BkD+DIL3qAcVjVysiiNcTz6VT+2HGgAhoppC4V/a+omSulQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UNwXYX42; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A6121F00893;
+	Thu,  4 Jun 2026 14:40:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780584007;
+	bh=xGqmFYbdZAHVWZeBeb0i49r9flNLb7Ay5Xu5Jx0vVjc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=UNwXYX42B7xsNlLeqBzg5TdR94tNpxLW0YCNdMvDxFBzS/mZkK7UcSGdj8yuqU1QU
+	 zWESw+hmmYlU7TYrg98LKdwbfQW/QU+/Nbt255ng4IzNLMXBvSkdURwhfTdL61Y86V
+	 Sg5pwhY4aEy8jQEwyxZzKDDQfK9dsouvTffU55KVCUngw7cSX0oGcLqeHO/lEbXvKE
+	 MRKJi+3HZHMWkzFO1aKc6bdTFUdpCchrWlUJ3xXeQeKGHyHe1OSzMsV4tKlwYFP1iQ
+	 AMUb6w0jS2Zr3USnKKFUJuVLcWBxbY5Y1gBlN5MPudXRMxf3OiSSDmk+lc643pYzWz
+	 KiMtcE6ECrMfg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v13 18/22] media: i2c: maxim-serdes: add MAX9296A driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Dumitru Ceclan via B4 Relay" <devnull+dumitru.ceclan.analog.com@kernel.org>
+Cc: conor+dt@kernel.org, robh@kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260604-gmsl2-3_serdes-v13-18-9d8a4919983b@analog.com>
+References: <20260604-gmsl2-3_serdes-v13-18-9d8a4919983b@analog.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 04 Jun 2026 14:40:06 +0000
+Message-Id: <20260604144007.3A6121F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto,smtp.kernel.org:mid];
+	TAGGED_FROM(0.00)[bounces-306920-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-306929-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[joel@jms.id.au,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:pjw@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:palmer@dabbelt.com,m:asrinivasan@oss.tenstorrent.com,m:anup@brainfault.org,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:npiggin@gmail.com,m:mpe@kernel.org,m:fustini@kernel.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DMARC_NA(0.00)[jms.id.au];
-	FREEMAIL_CC(0.00)[oss.tenstorrent.com,brainfault.org,eecs.berkeley.edu,ghiti.fr,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:devnull+dumitru.ceclan.analog.com@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joel@jms.id.au,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dumitru.ceclan.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,jms.id.au:mid,jms.id.au:from_mime,jms.id.au:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8574C641108
+X-Rspamd-Queue-Id: 553BC6411A3
 
-Add initial support for the Tenstorrent Atlantis platform, based on the
-Atlantis SoC featuring 8x RVA23-compliant Tenstorrent Ascalon-XG cores.
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
 
-The evb machine represents an internal bringup vehicle with just the
-interrupt controllers and a UART. This will be replaced in time with a
-full featured machine once details are available.
+New issues:
+- [High] Unconditional hardware link reset during `select_links` breaks con=
+current streaming.
 
-Co-developed-by: Drew Fustini <fustini@kernel.org>
-Signed-off-by: Drew Fustini <fustini@kernel.org>
-Signed-off-by: Joel Stanley <joel@jms.id.au>
----
-v2:
- - Update mtimer compatible
- - Add Drew's co-developed-by
- - Correct aplic num-sources count
----
- arch/riscv/boot/dts/tenstorrent/Makefile      |   1 +
- .../boot/dts/tenstorrent/atlantis-evb.dts     |  33 ++
- .../boot/dts/tenstorrent/atlantis-soc.dtsi    | 471 ++++++++++++++++++
- 3 files changed, 505 insertions(+)
- create mode 100644 arch/riscv/boot/dts/tenstorrent/atlantis-evb.dts
- create mode 100644 arch/riscv/boot/dts/tenstorrent/atlantis-soc.dtsi
+Pre-existing issues:
+- [High] Race condition and potential use-after-free in I2C bus notifier un=
+registration.
+- [High] Missing restoration of I2C `select_links` mask permanently isolate=
+s other active links.
+--
 
-diff --git a/arch/riscv/boot/dts/tenstorrent/Makefile b/arch/riscv/boot/dts/tenstorrent/Makefile
-index 2c81faaba462..92d8bb1a683f 100644
---- a/arch/riscv/boot/dts/tenstorrent/Makefile
-+++ b/arch/riscv/boot/dts/tenstorrent/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_TENSTORRENT) += blackhole-card.dtb
-+dtb-$(CONFIG_ARCH_TENSTORRENT) += atlantis-evb.dtb
-diff --git a/arch/riscv/boot/dts/tenstorrent/atlantis-evb.dts b/arch/riscv/boot/dts/tenstorrent/atlantis-evb.dts
-new file mode 100644
-index 000000000000..06259cca8357
---- /dev/null
-+++ b/arch/riscv/boot/dts/tenstorrent/atlantis-evb.dts
-@@ -0,0 +1,33 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/dts-v1/;
-+
-+#include "atlantis-soc.dtsi"
-+
-+/ {
-+	model = "Tenstorrent Atlantis development platform";
-+	compatible = "tenstorrent,atlantis-evb", "tenstorrent,atlantis";
-+
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x00000000 0x0 0x80000000>,
-+		      <0x1 0x80000000 0x0 0x80000000>;
-+	};
-+
-+	aliases {
-+		serial0 = &uart1;
-+	};
-+
-+	chosen {
-+		bootargs = "earlycon console=ttyS0";
-+		stdout-path = "serial0";
-+	};
-+};
-+
-+&uart1 {
-+	/delete-property/ clocks;
-+	clock-frequency = <5000000>;
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/tenstorrent/atlantis-soc.dtsi b/arch/riscv/boot/dts/tenstorrent/atlantis-soc.dtsi
-new file mode 100644
-index 000000000000..2513f0dcc62e
---- /dev/null
-+++ b/arch/riscv/boot/dts/tenstorrent/atlantis-soc.dtsi
-@@ -0,0 +1,471 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/dts-v1/;
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/clock/tenstorrent,atlantis-prcm-rcpu.h>
-+
-+/ {
-+	model = "Tenstorrent Atlantis";
-+	compatible = "tenstorrent,atlantis";
-+
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		timebase-frequency = <1000000000>;
-+
-+		cpu0: cpu@0 {
-+			compatible = "tenstorrent,ascalon-xg", "tenstorrent,ascalon", "riscv";
-+			device_type = "cpu";
-+			reg = <0>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "zicbom", "zicbop", "zicboz", "ziccamoa", "ziccif",
-+					       "zicclsm", "ziccrse", "zicntr", "zicond", "zicsr",
-+					       "zifencei", "zihintntl", "zihintpause", "zihpm",
-+					       "zimop", "za64rs", "zawrs", "zfa", "zfbfmin", "zfh",
-+					       "zfhmin", "zca", "zcb", "zcmop", "zba", "zbb",
-+					       "zbs", "zkr", "zkt", "zvbb", "zvbc", "zvfbfmin",
-+					       "zvfbfwma", "zvfh", "zvfhmin", "zvkt", "sha",
-+					       "shcounterenw", "shgatpa", "shtvala", "shvsatpa",
-+					       "shvstvala", "shvstvecd", "smaia", "smmpm", "smnpm",
-+					       "smrnmi", "smstateen", "ssaia", "ssccptr",
-+					       "sscofpmf", "sscounterenw", "ssnpm", "ssstateen",
-+					       "sstc", "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <128>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <0x40000>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
-+			mmu-type = "riscv,sv57";
-+
-+			cpu0_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu1: cpu@1 {
-+			compatible = "tenstorrent,ascalon-xg", "tenstorrent,ascalon", "riscv";
-+			device_type = "cpu";
-+			reg = <1>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "zicbom", "zicbop", "zicboz", "ziccamoa", "ziccif",
-+					       "zicclsm", "ziccrse", "zicntr", "zicond", "zicsr",
-+					       "zifencei", "zihintntl", "zihintpause", "zihpm",
-+					       "zimop", "za64rs", "zawrs", "zfa", "zfbfmin", "zfh",
-+					       "zfhmin", "zca", "zcb", "zcmop", "zba", "zbb",
-+					       "zbs", "zkr", "zkt", "zvbb", "zvbc", "zvfbfmin",
-+					       "zvfbfwma", "zvfh", "zvfhmin", "zvkt", "sha",
-+					       "shcounterenw", "shgatpa", "shtvala", "shvsatpa",
-+					       "shvstvala", "shvstvecd", "smaia", "smmpm", "smnpm",
-+					       "smrnmi", "smstateen", "ssaia", "ssccptr",
-+					       "sscofpmf", "sscounterenw", "ssnpm", "ssstateen",
-+					       "sstc", "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <128>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <0x40000>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
-+			mmu-type = "riscv,sv57";
-+
-+			cpu1_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu2: cpu@2 {
-+			compatible = "tenstorrent,ascalon-xg", "tenstorrent,ascalon", "riscv";
-+			device_type = "cpu";
-+			reg = <2>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "zicbom", "zicbop", "zicboz", "ziccamoa", "ziccif",
-+					       "zicclsm", "ziccrse", "zicntr", "zicond", "zicsr",
-+					       "zifencei", "zihintntl", "zihintpause", "zihpm",
-+					       "zimop", "za64rs", "zawrs", "zfa", "zfbfmin", "zfh",
-+					       "zfhmin", "zca", "zcb", "zcmop", "zba", "zbb",
-+					       "zbs", "zkr", "zkt", "zvbb", "zvbc", "zvfbfmin",
-+					       "zvfbfwma", "zvfh", "zvfhmin", "zvkt", "sha",
-+					       "shcounterenw", "shgatpa", "shtvala", "shvsatpa",
-+					       "shvstvala", "shvstvecd", "smaia", "smmpm", "smnpm",
-+					       "smrnmi", "smstateen", "ssaia", "ssccptr",
-+					       "sscofpmf", "sscounterenw", "ssnpm", "ssstateen",
-+					       "sstc", "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <128>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <0x40000>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
-+			mmu-type = "riscv,sv57";
-+
-+			cpu2_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu3: cpu@3 {
-+			compatible = "tenstorrent,ascalon-xg", "tenstorrent,ascalon", "riscv";
-+			device_type = "cpu";
-+			reg = <3>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "zicbom", "zicbop", "zicboz", "ziccamoa", "ziccif",
-+					       "zicclsm", "ziccrse", "zicntr", "zicond", "zicsr",
-+					       "zifencei", "zihintntl", "zihintpause", "zihpm",
-+					       "zimop", "za64rs", "zawrs", "zfa", "zfbfmin", "zfh",
-+					       "zfhmin", "zca", "zcb", "zcmop", "zba", "zbb",
-+					       "zbs", "zkr", "zkt", "zvbb", "zvbc", "zvfbfmin",
-+					       "zvfbfwma", "zvfh", "zvfhmin", "zvkt", "sha",
-+					       "shcounterenw", "shgatpa", "shtvala", "shvsatpa",
-+					       "shvstvala", "shvstvecd", "smaia", "smmpm", "smnpm",
-+					       "smrnmi", "smstateen", "ssaia", "ssccptr",
-+					       "sscofpmf", "sscounterenw", "ssnpm", "ssstateen",
-+					       "sstc", "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <128>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <0x40000>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
-+			mmu-type = "riscv,sv57";
-+
-+			cpu3_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu4: cpu@4 {
-+			compatible = "tenstorrent,ascalon-xg", "tenstorrent,ascalon", "riscv";
-+			device_type = "cpu";
-+			reg = <4>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "zicbom", "zicbop", "zicboz", "ziccamoa", "ziccif",
-+					       "zicclsm", "ziccrse", "zicntr", "zicond", "zicsr",
-+					       "zifencei", "zihintntl", "zihintpause", "zihpm",
-+					       "zimop", "za64rs", "zawrs", "zfa", "zfbfmin", "zfh",
-+					       "zfhmin", "zca", "zcb", "zcmop", "zba", "zbb",
-+					       "zbs", "zkr", "zkt", "zvbb", "zvbc", "zvfbfmin",
-+					       "zvfbfwma", "zvfh", "zvfhmin", "zvkt", "sha",
-+					       "shcounterenw", "shgatpa", "shtvala", "shvsatpa",
-+					       "shvstvala", "shvstvecd", "smaia", "smmpm", "smnpm",
-+					       "smrnmi", "smstateen", "ssaia", "ssccptr",
-+					       "sscofpmf", "sscounterenw", "ssnpm", "ssstateen",
-+					       "sstc", "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <128>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <0x40000>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
-+			mmu-type = "riscv,sv57";
-+
-+			cpu4_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu5: cpu@5 {
-+			compatible = "tenstorrent,ascalon-xg", "tenstorrent,ascalon", "riscv";
-+			device_type = "cpu";
-+			reg = <5>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "zicbom", "zicbop", "zicboz", "ziccamoa", "ziccif",
-+					       "zicclsm", "ziccrse", "zicntr", "zicond", "zicsr",
-+					       "zifencei", "zihintntl", "zihintpause", "zihpm",
-+					       "zimop", "za64rs", "zawrs", "zfa", "zfbfmin", "zfh",
-+					       "zfhmin", "zca", "zcb", "zcmop", "zba", "zbb",
-+					       "zbs", "zkr", "zkt", "zvbb", "zvbc", "zvfbfmin",
-+					       "zvfbfwma", "zvfh", "zvfhmin", "zvkt", "sha",
-+					       "shcounterenw", "shgatpa", "shtvala", "shvsatpa",
-+					       "shvstvala", "shvstvecd", "smaia", "smmpm", "smnpm",
-+					       "smrnmi", "smstateen", "ssaia", "ssccptr",
-+					       "sscofpmf", "sscounterenw", "ssnpm", "ssstateen",
-+					       "sstc", "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <128>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <0x40000>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
-+			mmu-type = "riscv,sv57";
-+
-+			cpu5_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu6: cpu@6 {
-+			compatible = "tenstorrent,ascalon-xg", "tenstorrent,ascalon", "riscv";
-+			device_type = "cpu";
-+			reg = <6>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "zicbom", "zicbop", "zicboz", "ziccamoa", "ziccif",
-+					       "zicclsm", "ziccrse", "zicntr", "zicond", "zicsr",
-+					       "zifencei", "zihintntl", "zihintpause", "zihpm",
-+					       "zimop", "za64rs", "zawrs", "zfa", "zfbfmin", "zfh",
-+					       "zfhmin", "zca", "zcb", "zcmop", "zba", "zbb",
-+					       "zbs", "zkr", "zkt", "zvbb", "zvbc", "zvfbfmin",
-+					       "zvfbfwma", "zvfh", "zvfhmin", "zvkt", "sha",
-+					       "shcounterenw", "shgatpa", "shtvala", "shvsatpa",
-+					       "shvstvala", "shvstvecd", "smaia", "smmpm", "smnpm",
-+					       "smrnmi", "smstateen", "ssaia", "ssccptr",
-+					       "sscofpmf", "sscounterenw", "ssnpm", "ssstateen",
-+					       "sstc", "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <128>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <0x40000>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
-+			mmu-type = "riscv,sv57";
-+
-+			cpu6_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		cpu7: cpu@7 {
-+			compatible = "tenstorrent,ascalon-xg", "tenstorrent,ascalon", "riscv";
-+			device_type = "cpu";
-+			reg = <7>;
-+			riscv,isa-base = "rv64i";
-+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "b", "v", "h",
-+					       "zicbom", "zicbop", "zicboz", "ziccamoa", "ziccif",
-+					       "zicclsm", "ziccrse", "zicntr", "zicond", "zicsr",
-+					       "zifencei", "zihintntl", "zihintpause", "zihpm",
-+					       "zimop", "za64rs", "zawrs", "zfa", "zfbfmin", "zfh",
-+					       "zfhmin", "zca", "zcb", "zcmop", "zba", "zbb",
-+					       "zbs", "zkr", "zkt", "zvbb", "zvbc", "zvfbfmin",
-+					       "zvfbfwma", "zvfh", "zvfhmin", "zvkt", "sha",
-+					       "shcounterenw", "shgatpa", "shtvala", "shvsatpa",
-+					       "shvstvala", "shvstvecd", "smaia", "smmpm", "smnpm",
-+					       "smrnmi", "smstateen", "ssaia", "ssccptr",
-+					       "sscofpmf", "sscounterenw", "ssnpm", "ssstateen",
-+					       "sstc", "sstvala", "sstvecd", "ssu64xl", "svade",
-+					       "svinval", "svnapot", "svpbmt";
-+			riscv,cbom-block-size = <64>;
-+			riscv,cbop-block-size = <64>;
-+			riscv,cboz-block-size = <64>;
-+			i-cache-block-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <128>;
-+			d-cache-block-size = <64>;
-+			d-cache-size = <0x40000>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l2_cache>;
-+			mmu-type = "riscv,sv57";
-+
-+			cpu7_intc: interrupt-controller {
-+				compatible = "riscv,cpu-intc";
-+				#interrupt-cells = <1>;
-+				interrupt-controller;
-+			};
-+		};
-+
-+		l2_cache: l2-cache {
-+			compatible = "cache";
-+			cache-block-size = <64>;
-+			cache-level = <2>;
-+			cache-size = <0xc00000>;
-+			cache-sets = <512>;
-+			cache-unified;
-+		};
-+	};
-+
-+	clocks {
-+		osc_24m: clock-24m {
-+			compatible = "fixed-clock";
-+			clock-frequency = <24000000>;
-+			clock-output-names = "osc_24m";
-+			#clock-cells = <0>;
-+		};
-+	};
-+
-+	soc {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		compatible = "simple-bus";
-+		interrupt-parent = <&aplic_s>;
-+		ranges;
-+
-+		imsic_m: interrupt-controller@a0000000 {
-+			compatible = "tenstorrent,atlantis-imsics", "riscv,imsics";
-+			riscv,num-ids = <255>;
-+			riscv,guest-index-bits = <6>;
-+			reg = <0x0 0xa0000000 0x0 0x200000>;
-+			interrupts-extended = <&cpu0_intc 11>, <&cpu1_intc 11>,
-+					      <&cpu2_intc 11>, <&cpu3_intc 11>,
-+					      <&cpu4_intc 11>, <&cpu5_intc 11>,
-+					      <&cpu6_intc 11>, <&cpu7_intc 11>;
-+			msi-controller;
-+			#msi-cells = <0>;
-+			interrupt-controller;
-+			#interrupt-cells = <0>;
-+		};
-+
-+		mtimer: timer@a2180000 {
-+			compatible = "tenstorrent,atlantis-aclint-mtimer", "riscv,aclint-mtimer";
-+			interrupts-extended = <&cpu0_intc 7>, <&cpu1_intc 7>,
-+					      <&cpu2_intc 7>, <&cpu3_intc 7>,
-+					      <&cpu4_intc 7>, <&cpu5_intc 7>,
-+					      <&cpu6_intc 7>, <&cpu7_intc 7>;
-+			reg = <0x0 0xa2180000 0x0 0x8000 0x0 0xa2188000 0x0 0x8000>;
-+		};
-+
-+		imsic_s: interrupt-controller@a4000000 {
-+			compatible = "tenstorrent,atlantis-imsics", "riscv,imsics";
-+			riscv,num-ids = <255>;
-+			riscv,guest-index-bits = <6>;
-+			reg = <0x0 0xa4000000 0x0 0x200000>;
-+			interrupts-extended = <&cpu0_intc 9>, <&cpu1_intc 9>,
-+					      <&cpu2_intc 9>, <&cpu3_intc 9>,
-+					      <&cpu4_intc 9>, <&cpu5_intc 9>,
-+					      <&cpu6_intc 9>, <&cpu7_intc 9>;
-+			msi-controller;
-+			#msi-cells = <0>;
-+			interrupt-controller;
-+			#interrupt-cells = <0>;
-+		};
-+
-+		aplic_m: interrupt-controller@cc000000 {
-+			compatible = "tenstorrent,atlantis-aplic", "riscv,aplic";
-+			msi-parent = <&imsic_m>;
-+			riscv,delegation = <&aplic_s 1 96>;
-+			riscv,children = <&aplic_s>;
-+			reg = <0x0 0xcc000000 0x0 0x4000000>;
-+			riscv,num-sources = <128>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			#address-cells = <0>;
-+		};
-+
-+		prcm_rcpu: clock-controller@d0000000 {
-+			compatible = "tenstorrent,atlantis-prcm-rcpu";
-+			reg = <0x00 0xd0000000 0x00 0x10000>;
-+			clocks = <&osc_24m>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			assigned-clocks = <&prcm_rcpu CLK_RCPU_ROOT>, <&prcm_rcpu CLK_NOCC_CLK>;
-+			assigned-clock-parents = <&prcm_rcpu CLK_RCPU_ROOT>,
-+						 <&prcm_rcpu CLK_NOC_PLL>;
-+		};
-+
-+		uart0: serial@d4100000 {
-+			compatible = "snps,dw-apb-uart";
-+			interrupts = <38 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&prcm_rcpu CLK_UART0_PCLK>;
-+			reg = <0x0 0xd4100000 0x0 0x10000>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			status = "disabled";
-+		};
-+
-+		uart1: serial@d4110000 {
-+			compatible = "snps,dw-apb-uart";
-+			interrupts = <39 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&prcm_rcpu CLK_UART1_PCLK>;
-+			reg = <0x0 0xd4110000 0x0 0x10000>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			status = "disabled";
-+		};
-+
-+		uart2: serial@d4120000 {
-+			compatible = "snps,dw-apb-uart";
-+			interrupts = <40 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&prcm_rcpu CLK_UART2_PCLK>;
-+			reg = <0x0 0xd4120000 0x0 0x10000>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			status = "disabled";
-+		};
-+
-+		uart3: serial@d4130000 {
-+			compatible = "snps,dw-apb-uart";
-+			interrupts = <41 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&prcm_rcpu CLK_UART3_PCLK>;
-+			reg = <0x0 0xd4130000 0x0 0x10000>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			status = "disabled";
-+		};
-+
-+		uart4: serial@d4140000 {
-+			compatible = "snps,dw-apb-uart";
-+			interrupts = <42 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&prcm_rcpu CLK_UART4_PCLK>;
-+			reg = <0x0 0xd4140000 0x0 0x10000>;
-+			reg-shift = <2>;
-+			reg-io-width = <4>;
-+			status = "disabled";
-+		};
-+
-+		aplic_s: interrupt-controller@e8000000 {
-+			compatible = "tenstorrent,atlantis-aplic", "riscv,aplic";
-+			msi-parent = <&imsic_s>;
-+			riscv,num-sources = <128>;
-+			reg = <0x0 0xe8000000 0x0 0x4000000>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			#address-cells = <0>;
-+		};
-+	};
-+};
--- 
-2.47.3
+commit bf07e545a3c441399f342386db38d37ea5e3b979
+Author: Cosmin Tanislav <demonsingur@gmail.com>
 
+    media: i2c: maxim-serdes: add MAX9296A driver
+
+This commit introduces the MAX9296A driver for Quad GMSL2 Deserializers.
+It adds support for multiple Maxim deserializer chips and integrates them
+with the common Deserializer framework.
+
+> diff --git a/drivers/media/i2c/maxim-serdes/max9296a.c b/drivers/media/i2=
+c/maxim-serdes/max9296a.c
+> new file mode 100644
+> index 0000000000000..3dcdb63dbb9ee
+> --- /dev/null
+> +++ b/drivers/media/i2c/maxim-serdes/max9296a.c
+
+[ ... ]
+
+> +static int max9296a_select_links(struct max_des *des, unsigned int mask)
+> +{
+> +	struct max9296a_priv *priv =3D des_to_priv(des);
+> +	int ret;
+> +
+> +	if (des->info->num_links =3D=3D 1)
+> +		return 0;
+> +
+> +	if (!mask) {
+> +		dev_err(priv->dev, "Disable all links unsupported\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret =3D regmap_update_bits(priv->regmap, MAX9296A_GMSL1_EN,
+> +				 MAX9296A_GMSL1_EN_LINK_EN,
+> +				 FIELD_PREP(MAX9296A_GMSL1_EN_LINK_EN, mask));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D regmap_update_bits(priv->regmap, MAX9296A_CTRL0,
+> +				 MAX9296A_CTRL0_AUTO_LINK |
+> +				 MAX9296A_CTRL0_LINK_CFG |
+> +				 MAX9296A_CTRL0_RESET_ONESHOT,
+> +				 FIELD_PREP(MAX9296A_CTRL0_LINK_CFG, mask) |
+> +				 FIELD_PREP(MAX9296A_CTRL0_RESET_ONESHOT, 1));
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (priv->info->has_per_link_reset) {
+> +		ret =3D max9296a_reset_link(priv, 1);
+> +		if (ret)
+> +			return ret;
+> +	}
+
+[Severity: High]
+Does this regression unconditionally reset the hardware links regardless of=
+ the
+mask?
+
+Link 0 is reset via MAX9296A_CTRL0_RESET_ONESHOT, and Link 1 is reset via
+max9296a_reset_link(priv, 1).
+
+Since select_links() can be called dynamically to isolate I2C communications
+(such as when a new camera is probed via the ATR), does this reset break
+concurrent multi-camera operation by dropping other active streams?
+
+[ ... ]
+
+
+While reviewing how this driver interacts with the common framework, I noti=
+ced
+a couple of pre-existing issues in drivers/media/i2c/maxim-serdes/max_des.c
+that might need your attention.
+
+[Severity: High]
+This is a pre-existing issue, but I noticed a potential race condition and
+use-after-free when unregistering the I2C bus notifier.
+
+drivers/media/i2c/maxim-serdes/max_des.c:max_des_i2c_mux_deinit() {
+    ...
+	i2c_mux_del_adapters(priv->mux);
+	bus_unregister_notifier(&i2c_bus_type, &priv->i2c_nb);
+}
+
+The child I2C adapters are deleted and their memory freed before the I2C bus
+notifier is unregistered. Could an unrelated I2C device binding during this
+window trigger max_des_i2c_mux_bus_notifier_call()?
+
+Since the notifier compares the newly bound client->adapter against the fre=
+ed
+des->links[i].adapter pointers, if memory is reallocated and addresses matc=
+h,
+could the driver perform I2C operations on an unrelated bus, potentially
+corrupting hardware state or crashing?
+
+
+[Severity: High]
+This is another pre-existing issue, but could the lack of state restoration
+here permanently isolate other active links?
+
+drivers/media/i2c/maxim-serdes/max_des.c:max_des_init_link_ser_xlate() {
+    ...
+	ret =3D des->ops->select_links(des, BIT(link->index));
+	if (ret)
+		return ret;
+
+	ret =3D max_ser_wait_for_multiple(adapter, addrs, ARRAY_SIZE(addrs),
+					&current_addr);
+    ...
+}
+
+During I2C ATR attachment, this restricts I2C communication to a specific l=
+ink
+to modify serializer addresses, but the function returns without restoring =
+the
+select_links mask to include all enabled links.
+
+Because hardware address translation (ATR) relies on the deserializer
+forwarding commands to all active links concurrently, does this leave the
+other links permanently disconnected from I2C control and break access to
+previously probed cameras?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260604-gmsl2-3_se=
+rdes-v13-0-9d8a4919983b@analog.com?part=3D18
 
