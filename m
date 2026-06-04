@@ -1,155 +1,272 @@
-Return-Path: <devicetree+bounces-307037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307042-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VDzkB5bdIWqQPwEAu9opvQ
-	(envelope-from <devicetree+bounces-307037-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 22:18:30 +0200
+	id 3WfKL6ffIWo6QAEAu9opvQ
+	(envelope-from <devicetree+bounces-307042-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 22:27:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4FC643321
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 22:18:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D1E643500
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 22:27:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=XJAO3cPT;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307037-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307037-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=PtnlGLV2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307042-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307042-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2A9623022939
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 20:17:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B0F23048551
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 20:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 015793C81B6;
-	Thu,  4 Jun 2026 20:17:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72C13DCDAB;
+	Thu,  4 Jun 2026 20:20:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F25B35B650
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 20:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ECD63C416B
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 20:20:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780604275; cv=none; b=GZ2QXHfdIoqEnc39SRAEm6/XeL7ODKiePOIDCH48jviji6jKJSQixWSznIkoQTiy83uZ8nZxELe3PEOW5TLrDV17Ya3ujEbKdkkJv9GELQnVNy22qzYo+hX65q0orGo88ya35YFnq1dS62VZ/ac5xMYjS6xQq9aF47IICZg88DQ=
+	t=1780604454; cv=none; b=dOjKDF4qm1q7i8n7IhlOdDo/K7UtGCR3qUqQL/iuQLO7V3yA1kdNDJaCq/AGBW9SsmIfCrbFFKybP81wfMYaYF0eydNYkz5P+VbNy+8g4emOC1WSkl/k0NEEFyfMRM3paxZIDIgN4Zquhz9nL6Lk0bLq+GKomd7F4wxksKZmfZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780604275; c=relaxed/simple;
-	bh=5USPnixnroDY2Ii176W0lkmp5qUYAY3f8YiS24Bm3zM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pz9JnVV3EoOVObWcV66JZP34oxbsjRIT9aPvYoAxQrTwizlsnOA39jjS9WpowpqRmTU8+pW5nDN6G/IqDG+Fvx50N+tWg55wYzRLe4xsMK2rF3EdcGg2wyAGLqSHJsw1cSQaiB5Uc49fcFkTE6qrH+IKgrSPIQi/+nFYTBScOUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=XJAO3cPT; arc=none smtp.client-ip=194.117.254.33
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=DqGT
-	LZeMUHe7mZh6wHehvpuUwVazb5ezhmruKOpiiHY=; b=XJAO3cPTK5IeKDlxxO3u
-	/+NCKM+BH+aIl115LTWq8jeE1E8t3P7eTKbitOBNMrdKcz/S6wCP/RHgsxMK+lVl
-	Z2b+hZ8j/O6V0ANbtxmyk4c6fFnx800qxFqlv3y0JMkcAA3VUn8Uv9o0wVjyNSmL
-	KigfcB2wsoiRCwSZcpCq539Zv4JNFuj52qLzSdsKt1ug7sMk8EszDrNVsB5fMdXH
-	h51z819ReIxPeZJ+SikU/ucFGz7a6Fy/iycGtQbKYsZsqdTgn9Ujt/o9HT2v3C0b
-	wmQraQ12JJN3muH9cFM/3FgF06YDvgVw6ZAuzrkrLJu1eya+y3E27buWs7hNYriy
-	WA==
-Received: (qmail 3752435 invoked from network); 4 Jun 2026 22:17:49 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 4 Jun 2026 22:17:49 +0200
-X-UD-Smtp-Session: l3s3148p1@pGDrPHNToLxtKDDL
-Date: Thu, 4 Jun 2026 22:17:48 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Claudiu Beznea <claudiu.beznea@kernel.org>
-Cc: geert+renesas@glider.be, linusw@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com,
-	claudiu.beznea@tuxon.dev, linux-renesas-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH 9/9] arm64: dts: renesas: rzg3s-smarc-som: Enable I3C
-Message-ID: <aiHdbC2wxXpdqBd9@shikoro>
-References: <20260522102251.1723392-1-claudiu.beznea@kernel.org>
- <20260522102251.1723392-10-claudiu.beznea@kernel.org>
- <ahBMKWrKQDko3cG8@shikoro>
- <fb892151-33e5-4bb2-9a01-9abebe0f3b39@kernel.org>
- <ahXQnt4MTVoBB9bF@shikoro>
- <dc1c2c1c-73f1-43a9-a157-7cd362faf89f@kernel.org>
+	s=arc-20240116; t=1780604454; c=relaxed/simple;
+	bh=FqHvX9O1zkuY1T3DJEz0v7d4sZWj17CD+sgaaE0/jz4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gMDfVygT0mlHcwxQDq2ZkGb6pvbAGpFdg/XNy9XRlf1sys3hGETiOkqONnxTa09R3KA7oo+TwTsKZ8Xg6js2OSA5WMtHKDiMM+dwJWhH0ZDnbS2mze28+7I/lFx41NHkc3DXY97d3c9XC1lMxnkhFUjhnbz3HwiF3mAtIPyvA6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PtnlGLV2; arc=none smtp.client-ip=209.85.210.43
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7e6c047c6bfso798983a34.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 13:20:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780604452; x=1781209252; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9oEuLk7XB9tvetuqp5vhLFFB3pUTzFDIh+xJJF43t34=;
+        b=PtnlGLV2XuWAYQS/tMHEBSL3ejc2Ujy+DBzYRXQHWxQNqOelCRI72cVpBB5B2fAUDO
+         O/NT9CpcKLh9qnJs5dqYOfLBV2r/0NAq1ARdVIuPWfKPY4kD7zrHbFUIjBg7nJpv1DmU
+         702OA5dvGiifMeEHbIKJrKJvrxwdduWzxo78Lf+j+wM58qh+OM5mcx3lokjQnu1Qe31S
+         XY5Js8bQckyH+h/CS10iKwOHQM3F4ipH4313zHDb5Trgbnu4oibs3v57KsR7ZKldTbpa
+         wEs+QpmU4InMOgKX3lLzP+dsODGtcF+T1UZNjDY46uHidnk18PTc6Zs7Q6iAUTMH/A+0
+         hZzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780604452; x=1781209252;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9oEuLk7XB9tvetuqp5vhLFFB3pUTzFDIh+xJJF43t34=;
+        b=LXJ/kYj0vz0ZlZ/0PtOIZqAcdPbdiZHVgLWGIdX1756YTwGVczPvjzqPYjXBElG/Xb
+         1Nz6zaBMzLfuqFNKtclLtFb8J1aKVJAFZHjZjAV+Sb10z7fbgtvbBQh7FWtH77spGdVZ
+         ZLYHgn/xU9tLOeoecTfVkvzw10YmsxLQkcDVW/rjGxuBhmSDj83crQMu1BNnciRL6V/q
+         4iVFBfBUBYF36Rl18Q55bgZzxeoWwIj2f5GT9xMLv+E1XQHDdAyd/8LHJigjc3EDL+8R
+         fje6Lk5L3313PULafzsSSqu0eL37tA72JnD0MKz+45DnuUFFcdWcfqCsL+RDVsVnY5SI
+         NYqg==
+X-Forwarded-Encrypted: i=1; AFNElJ+0QAXp2Ka592+NoiHm86emRrZ4m/kygw+QfVkLxfQAcLZfdlXia9+b0G38wVXCV+llz0ddFIPyztwH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9uhWmqaEeE2uHE+26haZHjAy3cKSdXew6XfkLSyICVyGI4JQj
+	Ho9sIGlhX2P4+JuffSb68oKqbQtG+0jYlvdi7XmL2raCeDQofFFV+Sq5
+X-Gm-Gg: Acq92OFHJpDAXuq4Y250TYy9CJUponk7KNPoNE77OhxARBD8t9Sw4YnKCEsnXe8eVvI
+	2mBNftEG/ZobzKIZrSSuzmcfRoXqs125esKxra4xvYlLQL5TEbIJCrvRebtIPYrc2mQR0pkDNoa
+	U1llujhYHHjILt/Y/1WujwX1+R4sKBpvz1MALNrbyDLO1DoVGIoPEjG4G9Bzc06EaqtjFs8mQrg
+	sDFs2yYU61NMUK0Vz5RT+Ln+F3Dz6RqgEWTEyHfbEqU+5xEG57yYs9z7iim1Ew2BthSGhkxebsd
+	4WzG4cbhZt0Y7Z6FMtQjOGO4G5wKjh6PkC0xCJeYJW+1WIvZql3Hzyrb+1Gbtgj9UO2PfmZ4/bt
+	7DlPyLmHrXnVuRWdTKy7tXyo6RHlJJBh6YqRxalcDJPdjnz4ydPtCYi7efq2mCFtD8b1Ce0jPoQ
+	yrTGtCUZL6H45R+T8pkX5s6JBhFJYalQE=
+X-Received: by 2002:a05:6830:2643:b0:7e6:fed6:3c33 with SMTP id 46e09a7af769-7e70caa9215mr135327a34.22.1780604452284;
+        Thu, 04 Jun 2026 13:20:52 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e6e796c675sm4541800a34.24.2026.06.04.13.20.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Jun 2026 13:20:51 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-iio@vger.kernel.org
+Cc: andy@kernel.org,
+	nuno.sa@analog.com,
+	dlechner@baylibre.com,
+	jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	andriy.shevchenko@intel.com,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V10 0/9] Add Invensense ICM42607
+Date: Thu,  4 Jun 2026 15:18:22 -0500
+Message-ID: <20260604201832.60656-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qvGIMNYVtV8rCBXY"
-Content-Disposition: inline
-In-Reply-To: <dc1c2c1c-73f1-43a9-a157-7cd362faf89f@kernel.org>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-307042-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:claudiu.beznea@kernel.org,m:geert+renesas@glider.be,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:claudiu.beznea@tuxon.dev,m:linux-renesas-soc@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:claudiu.beznea.uj@bp.renesas.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-307037-lists,devicetree=lfdr.de,renesas];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DMARC_NA(0.00)[sang-engineering.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jic23@kernel.org,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:andriy.shevchenko@intel.com,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[glider.be,kernel.org,gmail.com,tuxon.dev,vger.kernel.org,bp.renesas.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,shikoro:mid,vger.kernel.org:from_smtp,sang-engineering.com:from_mime,sang-engineering.com:dkim]
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CB4FC643321
+X-Rspamd-Queue-Id: 11D1E643500
 
+From: Chris Morgan <macromorgan@hotmail.com>
 
---qvGIMNYVtV8rCBXY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Add support for the ICM42607 IMU. This sensor shares the same
+functionality but a different register layout with the existing
+ICM42600.
 
-Hi Claudiu,
+This driver should work with the ICM42607 and ICM42607P over both I2C
+and SPI, however only the ICM42607P over I2C could be tested.
 
-> Standby mode is not intended for power consumption control, but rather for
-> placing the I2C interface into a standby (non-communicating) state.
+Changes Since V1:
+ - Instead of creating a new driver, merged with the existing inv_icm42600
+   driver. This necessitated adding some code to the existing driver to
+   permit using a different register layout for the same functionality.
+ - Split changes up a bit more to decrease the size of the individual
+   patches. Note that patch 0004 is still pretty hefty; if I need to split
+   further I may need to create some temporary stub functions.
+ - Used guard() and PM_RUNTIME_ACQUIRE_AUTOSUSPEND() on the new functions
+   per Jonathan's recommendations.
 
-As I suspected before, to hide from the bus. Linux doesn't support that,
-so we can skip this bit IMHO.
+Changes Since V2:
+ - Went back to using a new driver on advice from Invensense engineer.
+ - Further split changes up into smaller chunks of functionality. Note
+   still that the largest patch is approximately 900 lines, and that while
+   the driver compiles cleanly at each commit it is not able to drive the
+   hardware until the commit that adds the Interrupt (as it also adds the
+   Makefile).
+ - Change the error to a warning when the devicetree binding does not match
+   the hardware ID.
+ - Dropped the ack on the devicetree bindings, as I am creating a new file
+   (for a new driver) instead of modifying the existing one.
 
-Happy hacking,
+Changes Since V3:
+ - Numerous small fixes (too many to list here). Thank you to everyone who
+   provided feedback.
+ - Split power management additions into an additional commit to break
+   things up further.
+ - Consolidated devicetree documentation in existing
+   invensense,icm42600.yaml file.
+ - Removed most of the FIELD_PREP from header file to c files to make code
+   easier to read.
+ - Changed scale values to 2D arrays for Gyro and Accelerometer.
+ - Removed IIO_CHAN_INFO_CALIBBIAS attribute.
 
-   Wolfram
+Changes Since V4:
+ - Additional numerous small fixes, thank you again for all the feedback.
+ - Dropped power control API and instead run device in low noise mode.
+ - Split devicetree bindings into two distinct changes.
+ - Reordered adding of enums and structs to main header file so that they
+   are only brought in when needed.
+ - Stopped using enum for driver data and instead am using pointer to
+   device specific driver data.
 
+Changes Since V5:
+ - Corrected use of "dev_warn_probe" to just "dev_warn".
+ - Fixed some return scenarios which would unconditionally return 0
+   when an error was present.
+ - Corrected use of max() to min() for bounds checking. max() was
+   incorrect.
+ - Fixed using "st->conf.accel.odr" in the gyroscope function. It
+   should have been "st->conf.gyro.odr" which it now is.
+ - Additional small fixes suggested by "sashiko.dev".
+ - Added a regmap cache. I used the datasheet to try and determine
+   which registers might change without explicit writes.
 
---qvGIMNYVtV8rCBXY
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes Since V6:
+ - Corrected additional errors identified by sashiko.dev, mostly
+   fixing potential deadlocks, missing calls for pm runtime, and
+   potential overflow issues.
 
------BEGIN PGP SIGNATURE-----
+Changes Since V7:
+ - Dropped Wake on Movement patches, since some of the functionality
+   was only available for a device on which I cannot test.
+ - Dropped support for SPI 3-Wire mode, since it complicated the
+   bus setup (and I lack the hardware to test such features anyway).
+ - Fixed a few additional bugs identified by sashiko.dev bot.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmoh3WEACgkQFA3kzBSg
-KbZD8g/6AsqOQ+LHt+PVp68Wk6LgkRF901h/EvOexy/tREHjWUtSAKQjaM4RUIzk
-F80+yoBROP5T8gRFl7l9qsrGR12fwHRc4zX0YiCHisyhE1uTEYQLJfoJX8Roy2YS
-Ou4XiKl0G5ytkYHIR9YDeyt5021P6eEvbASZs5P7/2hPNEax7KVXrKRVopjERWqe
-hzgbWqC8flqQTOBCSsZPnyunG9Ed70x/iIWwEIFgNDlOcKSZXItLYJc2fz+xNhL9
-F3l7kgE7jBKSHqbT/ayyO8FamPIISvnZ2Yl/i10HKpgjDEQW7Iqfefh10nTw7IOh
-RnewP3edmULxOzy2DeeOHuteCeVqQmaWyVhXBxWoyBhLQY7mg1ZPFlt9xP5G9RGo
-zS0nIcpD89ttlWqkjTY59j0eIrquKjVK+R2DuExv5I98GPi97G9WHLaaqHp7mAQ3
-8M35UHwBjLV3qS8g/Z30r+NGRSNBTZyjzMH795B1MnPlnhFh1sAiAot+5ta9vwkS
-ZMsWciBIQeD1qQSPfPHyfZLnPTG2dTESHx/vXYQt/1sAecC206Ns3OBzguZLn0e+
-/d4QF060IG3Bp6szVGpO6DIjew+9tpKpxeBnDdOe9l8zZxQ/zjnbyL7zyvxJ23F4
-gEePXhggiXCmRo9U/RrGqGVvSXmhYdqxMQP1bt58ZkMMRkLjQoE=
-=9Shs
------END PGP SIGNATURE-----
+Changes Since V8:
+ - Added back IRQ dropped accidentally when dropping wake on movement
+   patches.
+ - Dropped "Reviewed-By" tag on patch 2 because of substantial changes
+   made to devicetree binding documentation.
+ - Additional small fixes as suggested.
 
---qvGIMNYVtV8rCBXY--
+Changes Since V9:
+ - Removed interrupts (and buffers) from the driver. I previously was
+   unable to detect deadlocks because it turns out my IRQ was not even
+   wired correctly in my device.
+ - Updated devicetree binding commits to make interrupts optional for
+   users of the icm42607 driver.
+
+Chris Morgan (9):
+  dt-bindings: iio: imu: icm42600: Add mount-matrix to icm42600
+  dt-bindings: iio: imu: icm42600: Add icm42607 binding
+  iio: imu: inv_icm42607: Add inv_icm42607 Core Driver
+  iio: imu: inv_icm42607: Add I2C and SPI For icm42607
+  iio: imu: inv_icm42607: Add PM support for icm42607
+  iio: imu: inv_icm42607: Add Temp Support in icm42607
+  iio: imu: inv_icm42607: Add Accelerometer for icm42607
+  iio: imu: inv_icm42607: Add Gyroscope to icm42607
+  arm64: dts: rockchip: Add icm42607p IMU for RG-DS
+
+ .../bindings/iio/imu/invensense,icm42600.yaml |  20 +-
+ .../dts/rockchip/rk3568-anbernic-rg-ds.dts    |   8 +-
+ drivers/iio/imu/Kconfig                       |   1 +
+ drivers/iio/imu/Makefile                      |   1 +
+ drivers/iio/imu/inv_icm42607/Kconfig          |  30 +
+ drivers/iio/imu/inv_icm42607/Makefile         |  13 +
+ drivers/iio/imu/inv_icm42607/inv_icm42607.h   | 421 ++++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_accel.c | 465 +++++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_core.c  | 539 ++++++++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_gyro.c  | 437 ++++++++++++++
+ .../iio/imu/inv_icm42607/inv_icm42607_i2c.c   |  95 +++
+ .../iio/imu/inv_icm42607/inv_icm42607_spi.c   | 107 ++++
+ .../iio/imu/inv_icm42607/inv_icm42607_temp.c  |  82 +++
+ .../iio/imu/inv_icm42607/inv_icm42607_temp.h  |  33 ++
+ 14 files changed, 2250 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/iio/imu/inv_icm42607/Kconfig
+ create mode 100644 drivers/iio/imu/inv_icm42607/Makefile
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607.h
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_gyro.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_i2c.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_spi.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_temp.c
+ create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_temp.h
+
+-- 
+2.43.0
+
 
