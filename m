@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-306777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306779-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id n+ngNOdgIWqQFQEAu9opvQ
-	(envelope-from <devicetree+bounces-306777-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:26:31 +0200
+	id j0RyBvdgIWqUFQEAu9opvQ
+	(envelope-from <devicetree+bounces-306779-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:26:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 662AB63F694
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:26:31 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C7BD63F69E
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:26:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=realtek.com header.s=dkim header.b=dWU7W28m;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306777-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306777-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=realtek.com header.s=dkim header.b=a3qQzpHO;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306779-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306779-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=realtek.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A666E310BCC4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 11:19:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 801013086796
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 11:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10D49410D1A;
-	Thu,  4 Jun 2026 11:19:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBB541C2EA;
+	Thu,  4 Jun 2026 11:19:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77AE6403E96;
-	Thu,  4 Jun 2026 11:19:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D295413230;
+	Thu,  4 Jun 2026 11:19:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780571946; cv=none; b=Q7U3ycnPWxvLG/T92rqOFY34QA+91+V8hkKyQoooRbNwQVQu2UNoOCJNkVSaBfY2/rcibbLJfmcwN5I9mjqKxB21420/JBQinscdYANT3THQ4dTmFXMIkm52PM+02ZQHonKIPh9nhqfMRf4zL9DYezpiFlBK7+eQpCnxNNCpjbY=
+	t=1780571948; cv=none; b=iR4tZBwplHvDvNdl1arXhcfxcHqHnY+xNrMqudF3MYuSHvznHsOKqHLvg6auWqIAH0sG9yMCR5ZznAH9kJQlBTqC9ymI35tBcVNWwJ33Ot4PXnlnvsxyrIhOdYif+e4ktebMML55l13c7ngYP4CZnxOJrVhhIQ4up24es5sSCUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780571946; c=relaxed/simple;
-	bh=u517BEwQRTLE01P0mJFfmff+0nMkj7k3ExoYJzgThMo=;
+	s=arc-20240116; t=1780571948; c=relaxed/simple;
+	bh=dLgbHU1TIrBnFuzvHr8FQBlwZDVyOkN8JtITv/7d1O0=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VlZNrCZqSMcpxbF9e16qpttfW19FrU2u7uMTA2jce8soby4OZSkBY/9zWjCARDyRXc5Rtj5906hKviPNiQWigRYGbw42Ny4XWGGgTZP6jseW2aspDfQZoTId+z2Q55Y3cgNr4woo4q0Y8ZvRyXuUlGYKwgXYGC5nOQzQ7CVokkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=dWU7W28m; arc=none smtp.client-ip=211.75.126.72
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 654BILTF0299932, This message is accepted by code: ctloc85258
+	 MIME-Version:Content-Type; b=ZgUg1oaB6LtAaVJbbkKzhLwK9OC9Fi8I5bd0SRWyjKUFxDK7udJWDkQu71O60S2NLM/zkbngFbPBsUnz+/iR0E0R/LhMlKuHfBJKUxpr+RkoDCbawM1RdoSYt+38TTyd5X7gRQ8yqgE+wL/2fgdUTZ7VYweSW0lPwQbMVeqzuJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=a3qQzpHO; arc=none smtp.client-ip=211.75.126.72
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 654BIMHe8299934, This message is accepted by code: ctloc85258
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1780571902; bh=kp3CXR9786IlCOU/M2dXnjgdAwiYVzueeangPNGEtds=;
+	t=1780571902; bh=2y39ejFgo5oVqse/gOT1R7NkdhQZHGhNBtJddbK8aJg=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
 	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=dWU7W28mk3hUn247ZGwKCpLbiI0R+gXsdptVw+RDpZIpB91NYlTw3DwI2K6YpeOTs
-	 iKDeqoaAUKyC1ppRT3Zc7IcRrEo/iY5+JZUmZCQx687L3rX3OLdNEzMtkkluwaEGXX
-	 lSfKISLoxhKsOedBHFrJYOVaRQhQjJ/vSwLPanNydaqACENyAKKyo3AAjCWFMVxlMu
-	 JWIkQX1uTw/pSDnjwrVMuMkT0joSdH9NSkQIGoOy6wyzbRiAtvpra53/Nh5aoC92wd
-	 gNKawUSnOuKE85xhP6xCI7evl7OtNhmU7ohy1nurlC8pAAkc3hyBMFBmjQUBuOlV6I
-	 d+o20mUU25afQ==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.28/5.94) with ESMTPS id 654BILTF0299932
+	b=a3qQzpHOR6LLe8Io4EzYeehsALA0XODKOOztzxBXJR7J+GApOjbZ/q10P+/hbNULD
+	 jT+dXFq/rpSw5VZ5NnHcBUltURiK35p9h0sg9IBxdAAPTF35VrMTBSXcCIFv53uJtL
+	 8K9PPqc3TsUGVbXXZXkxSyTqcuHt3PPQXyEfAgfy1tKWcmCkmA7L1qoHVfNfvX/Qo5
+	 fvI5oTkK56LpFXEhlOruSR/2ZkqS728nj9BOJYMPYomhw2FnwSjBgwvGC4+3fUCvs4
+	 BGubevlLsexNLE21/8TwQYGki6SvmokWGQPfeMse0jJVbXBnL3nxhwTtgkULGOrSis
+	 LAMtnu4IwJIyQ==
+Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
+	by rtits2.realtek.com.tw (8.15.2/3.28/5.94) with ESMTPS id 654BIMHe8299934
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 4 Jun 2026 19:18:21 +0800
+	Thu, 4 Jun 2026 19:18:22 +0800
 Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 4 Jun 2026 19:18:21 +0800
+ 15.2.2562.17; Thu, 4 Jun 2026 19:18:22 +0800
 Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
  RTKEXHMBS06.realtek.com.tw (10.21.1.56) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
@@ -68,9 +68,9 @@ CC: <eleanor.lin@realtek.com>, <cy.huang@realtek.com>,
 	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>,
 	<linux-realtek-soc@lists.infradead.org>
-Subject: [PATCH 1/3] dt-bindings: soc: realtek: Add Realtek DHC I/O level detector
-Date: Thu, 4 Jun 2026 19:18:18 +0800
-Message-ID: <20260604111821.975624-2-eleanor.lin@realtek.com>
+Subject: [PATCH 2/3] soc: realtek: Add driver for DHC I/O level detector
+Date: Thu, 4 Jun 2026 19:18:19 +0800
+Message-ID: <20260604111821.975624-3-eleanor.lin@realtek.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260604111821.975624-1-eleanor.lin@realtek.com>
 References: <20260604111821.975624-1-eleanor.lin@realtek.com>
@@ -88,13 +88,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306777-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306779-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tychang@realtek.com,m:eleanor.lin@realtek.com,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:james.tai@realtek.com,m:afaerber@suse.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
@@ -106,117 +106,269 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,devicetree.org:url,vger.kernel.org:from_smtp,realtek.com:mid,realtek.com:dkim,realtek.com:from_mime,realtek.com:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,realtek.com:mid,realtek.com:dkim,realtek.com:from_mime,realtek.com:email,glider.be:email];
 	TO_DN_NONE(0.00)[];
 	DKIM_TRACE(0.00)[realtek.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 662AB63F694
+X-Rspamd-Queue-Id: 6C7BD63F69E
 
 From: Tzuyi Chang <tychang@realtek.com>
 
-Add device tree binding documentation for the Realtek DHC I/O level
-detector.
+Add driver support for the Realtek DHC I/O level detector.
 
-This hardware block is responsible for detecting the I/O signaling
-levels (e.g., 1.8V or 3.3V) of various interfaces (RGMII, SDIO, eMMC,
-etc.) and applying the corresponding pad configurations via pinctrl
-states.
+The driver reads hardware registers to determine the current I/O voltage
+levels (e.g., 1.8V or 3.3V) for specific IP blocks. Based on the
+detection results, it selects and applies the appropriate pinctrl states
+to ensure the correct pad configurations are used.
 
 Signed-off-by: Tzuyi Chang <tychang@realtek.com>
 Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
 ---
- .../realtek/realtek,rtd1625-io-detect.yaml    | 77 +++++++++++++++++++
- 1 file changed, 77 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/realtek/realtek,rtd1625-io-detect.yaml
+ MAINTAINERS                         |   1 +
+ drivers/soc/Kconfig                 |   1 +
+ drivers/soc/Makefile                |   1 +
+ drivers/soc/realtek/Kconfig         |  21 ++++
+ drivers/soc/realtek/Makefile        |   2 +
+ drivers/soc/realtek/rtd-io-detect.c | 152 ++++++++++++++++++++++++++++
+ 6 files changed, 178 insertions(+)
+ create mode 100644 drivers/soc/realtek/Kconfig
+ create mode 100644 drivers/soc/realtek/Makefile
+ create mode 100644 drivers/soc/realtek/rtd-io-detect.c
 
-diff --git a/Documentation/devicetree/bindings/soc/realtek/realtek,rtd1625-io-detect.yaml b/Documentation/devicetree/bindings/soc/realtek/realtek,rtd1625-io-detect.yaml
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 9ec290e38b44..6121eb4f904e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3379,6 +3379,7 @@ F:	arch/arm/boot/dts/realtek/
+ F:	arch/arm/mach-realtek/
+ F:	arch/arm64/boot/dts/realtek/
+ F:	drivers/pinctrl/realtek/
++F:	drivers/soc/realtek/
+ 
+ ARM/RISC-V/RENESAS ARCHITECTURE
+ M:	Geert Uytterhoeven <geert+renesas@glider.be>
+diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig
+index a2d65adffb80..d63b9d4dc042 100644
+--- a/drivers/soc/Kconfig
++++ b/drivers/soc/Kconfig
+@@ -20,6 +20,7 @@ source "drivers/soc/microchip/Kconfig"
+ source "drivers/soc/nuvoton/Kconfig"
+ source "drivers/soc/pxa/Kconfig"
+ source "drivers/soc/qcom/Kconfig"
++source "drivers/soc/realtek/Kconfig"
+ source "drivers/soc/renesas/Kconfig"
+ source "drivers/soc/rockchip/Kconfig"
+ source "drivers/soc/samsung/Kconfig"
+diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
+index c9e689080ceb..8678b1001183 100644
+--- a/drivers/soc/Makefile
++++ b/drivers/soc/Makefile
+@@ -26,6 +26,7 @@ obj-y				+= nuvoton/
+ obj-y				+= pxa/
+ obj-y				+= amlogic/
+ obj-y				+= qcom/
++obj-y				+= realtek/
+ obj-y				+= renesas/
+ obj-y				+= rockchip/
+ obj-$(CONFIG_SOC_SAMSUNG)	+= samsung/
+diff --git a/drivers/soc/realtek/Kconfig b/drivers/soc/realtek/Kconfig
 new file mode 100644
-index 000000000000..badf27212dfd
+index 000000000000..4c5796c7f9f7
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/realtek/realtek,rtd1625-io-detect.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2026 Realtek Semiconductor Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/realtek/realtek,rtd1625-io-detect.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/soc/realtek/Kconfig
+@@ -0,0 +1,21 @@
++# SPDX-License-Identifier: GPL-2.0-only
++#
++# Realtek SoC drivers
++#
++menu "Realtek SoC drivers"
++        depends on ARCH_REALTEK || COMPILE_TEST
 +
-+title: Realtek DHC I/O Level Detector
++config RTD_IO_LEVEL_DETECT
++	tristate "Realtek DHC I/O Level Detector"
++	depends on PINCTRL_RTD
++	select MFD_SYSCON
++	default ARCH_REALTEK
++	help
++	  Enable support for the Realtek DHC I/O level detector.
 +
-+maintainers:
-+  - Tzuyi Chang <tychang@realtek.com>
++	  This driver handles the auto-detection of I/O signaling levels
++	  (such as 1.8V and 3.3V) and dynamically configures the pad states
++	  for specific IP blocks.
 +
-+description: |
-+  The Realtek DHC I/O Level Detector is a hardware block that detects I/O
-+  signaling levels (such as 1.8V or 3.3V) to determine the correct pad
-+  configurations for specific IP blocks.
++endmenu
 +
-+properties:
-+  compatible:
-+    const: realtek,rtd1625-io-detect
+diff --git a/drivers/soc/realtek/Makefile b/drivers/soc/realtek/Makefile
+new file mode 100644
+index 000000000000..c307e5bdb52d
+--- /dev/null
++++ b/drivers/soc/realtek/Makefile
+@@ -0,0 +1,2 @@
++# SPDX-License-Identifier: GPL-2.0-only
++obj-$(CONFIG_RTD_IO_LEVEL_DETECT) += rtd-io-detect.o
+diff --git a/drivers/soc/realtek/rtd-io-detect.c b/drivers/soc/realtek/rtd-io-detect.c
+new file mode 100644
+index 000000000000..84ef8ea23cb5
+--- /dev/null
++++ b/drivers/soc/realtek/rtd-io-detect.c
+@@ -0,0 +1,152 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Realtek DHC I/O Level Detect driver
++ *
++ * Copyright (c) 2026 Realtek Semiconductor Corp.
++ */
 +
-+  pinctrl-names:
-+    items:
-+      - const: rgmii_1v8
-+      - const: rgmii_3v3
-+      - const: sdio_1v8
-+      - const: sdio_3v3
-+      - const: csi_1v8
-+      - const: csi_3v3
-+      - const: sd_1v8
-+      - const: sd_3v3
-+      - const: uart1_1v8
-+      - const: uart1_3v3
-+      - const: aio_1v8
-+      - const: aio_3v3
-+      - const: emmc_1v8
-+      - const: emmc_3v3
++#include <linux/mfd/syscon.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/pinctrl/consumer.h>
++#include <linux/platform_device.h>
++#include <linux/property.h>
++#include <linux/regmap.h>
 +
-+  realtek,iso-pinctrl:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Pinctrl phandle containing I/O detection registers.
++struct rtd_io_detect_desc_info {
++	const char *name;
++	const char *state_1v8;
++	const char *state_3v3;
++	unsigned int reg_offset;
++	unsigned int en_offset;
++	unsigned int status_offset;
++};
 +
-+required:
-+  - compatible
-+  - pinctrl-names
-+  - realtek,iso-pinctrl
++struct rtd_io_detect_descs {
++	const struct rtd_io_detect_desc_info *info;
++	int num_descs;
++};
 +
-+additionalProperties: false
++struct rtd_io_detect_data {
++	const struct rtd_io_detect_descs *descs;
++	struct regmap *base;
++	struct device *dev;
++};
 +
-+examples:
-+  - |
-+    io-detect {
-+        compatible = "realtek,rtd1625-io-detect";
-+        pinctrl-names = "rgmii_1v8", "rgmii_3v3",
-+                        "sdio_1v8", "sdio_3v3",
-+                        "csi_1v8", "csi_3v3",
-+                        "sd_1v8", "sd_3v3",
-+                        "uart1_1v8", "uart1_3v3",
-+                        "aio_1v8", "aio_3v3",
-+                        "emmc_1v8", "emmc_3v3";
-+        pinctrl-0 = <&rgmii_vsel_1v8_pins>;
-+        pinctrl-1 = <&rgmii_vsel_3v3_pins>;
-+        pinctrl-2 = <&sdio_vsel_1v8_pins>;
-+        pinctrl-3 = <&sdio_vsel_3v3_pins>;
-+        pinctrl-4 = <&csi_vsel_1v8_pins>;
-+        pinctrl-5 = <&csi_vsel_3v3_pins>;
-+        pinctrl-6 = <&sd_vsel_1v8_pins>;
-+        pinctrl-7 = <&sd_vsel_3v3_pins>;
-+        pinctrl-8 = <&uart1_vsel_1v8_pins>;
-+        pinctrl-9 = <&uart1_vsel_3v3_pins>;
-+        pinctrl-10 = <&aio_vsel_1v8_pins>;
-+        pinctrl-11 = <&aio_vsel_3v3_pins>;
-+        pinctrl-12 = <&emmc_vsel_1v8_pins>;
-+        pinctrl-13 = <&emmc_vsel_3v3_pins>;
-+        realtek,iso-pinctrl = <&iso_pinctrl>;
-+    };
++#define RTD_IO_DETECT_DESC(_name, _reg_off, _en_off, _st_off) \
++	{ \
++		.name = #_name, \
++		.state_1v8 = #_name "_1v8", \
++		.state_3v3 = #_name "_3v3", \
++		.reg_offset = _reg_off, \
++		.en_offset = _en_off, \
++		.status_offset = _st_off, \
++	}
++
++static const struct rtd_io_detect_desc_info rtd1625_io_detect_desc[] = {
++	RTD_IO_DETECT_DESC(rgmii, 0x1a0, 8, 1),
++	RTD_IO_DETECT_DESC(sd, 0x1a0, 9, 2),
++	RTD_IO_DETECT_DESC(csi, 0x1a0, 10, 3),
++	RTD_IO_DETECT_DESC(sdio, 0x1a0, 11, 4),
++	RTD_IO_DETECT_DESC(uart1, 0x1a0, 12, 5),
++	RTD_IO_DETECT_DESC(aio, 0x1a0, 13, 6),
++	RTD_IO_DETECT_DESC(emmc, 0x1a0, 14, 7),
++};
++
++static const struct rtd_io_detect_descs rtd1625_io_detect_descs = {
++	.info = rtd1625_io_detect_desc,
++	.num_descs = ARRAY_SIZE(rtd1625_io_detect_desc),
++};
++
++static void detect_io_set(struct pinctrl *pinctrl,
++			  const struct rtd_io_detect_desc_info *desc,
++			  struct rtd_io_detect_data *data)
++{
++	struct pinctrl_state *state_1v8;
++	struct pinctrl_state *state_3v3;
++	unsigned int val;
++	int ret;
++
++	state_1v8 = pinctrl_lookup_state(pinctrl, desc->state_1v8);
++	if (IS_ERR(state_1v8)) {
++		dev_err(data->dev, "Failed to lookup %s state: %ld\n",
++			desc->state_1v8, PTR_ERR(state_1v8));
++		return;
++	}
++
++	state_3v3 = pinctrl_lookup_state(pinctrl, desc->state_3v3);
++	if (IS_ERR(state_3v3)) {
++		dev_err(data->dev, "Failed to lookup %s state: %ld\n",
++			desc->state_3v3, PTR_ERR(state_3v3));
++		return;
++	}
++
++	regmap_update_bits(data->base, desc->reg_offset,
++			   BIT(desc->en_offset), BIT(desc->en_offset));
++
++	regmap_read(data->base, desc->reg_offset, &val);
++
++	ret = pinctrl_select_state(pinctrl,
++				   (val & BIT(desc->status_offset)) ? state_3v3 : state_1v8);
++	if (ret)
++		dev_err(data->dev, "Failed to select pinctrl state\n");
++}
++
++static int rtd_io_detect_probe(struct platform_device *pdev)
++{
++	struct rtd_io_detect_data *data;
++	struct device *dev = &pdev->dev;
++	struct device_node *pinctrl_np;
++	struct pinctrl *pinctrl;
++	int i;
++
++	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	pinctrl_np = of_parse_phandle(dev->of_node, "realtek,iso-pinctrl", 0);
++	if (!pinctrl_np) {
++		dev_err(dev, "Failed to find ISO pinctrl node\n");
++		return -ENODEV;
++	}
++
++	data->base = device_node_to_regmap(pinctrl_np);
++	of_node_put(pinctrl_np);
++
++	if (IS_ERR(data->base))
++		return dev_err_probe(dev, PTR_ERR(data->base), "Failed to get regmap\n");
++
++	data->descs = device_get_match_data(dev);
++	if (!data->descs)
++		return -EINVAL;
++
++	pinctrl = devm_pinctrl_get(dev);
++	if (IS_ERR(pinctrl))
++		return dev_err_probe(dev, PTR_ERR(pinctrl), "Failed to get pinctrl\n");
++
++	data->dev = dev;
++
++	for (i = 0; i < data->descs->num_descs; i++)
++		detect_io_set(pinctrl, &data->descs->info[i], data);
++
++	return 0;
++}
++
++static const struct of_device_id rtd_io_detect_of_matches[] = {
++	{ .compatible = "realtek,rtd1625-io-detect", .data = &rtd1625_io_detect_descs },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, rtd_io_detect_of_matches);
++
++static struct platform_driver rtd_io_detect_driver = {
++	.driver = {
++		.name = "rtd_io_level_detect",
++		.of_match_table = rtd_io_detect_of_matches,
++	},
++	.probe = rtd_io_detect_probe,
++};
++module_platform_driver(rtd_io_detect_driver);
++
++MODULE_DESCRIPTION("Realtek DHC SoC I/O Level Detect driver");
++MODULE_LICENSE("GPL");
++
 -- 
 2.43.0
 
