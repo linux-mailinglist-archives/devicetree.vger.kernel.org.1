@@ -1,252 +1,244 @@
-Return-Path: <devicetree+bounces-306705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306707-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id h/slFF9BIWo0CAEAu9opvQ
-	(envelope-from <devicetree+bounces-306705-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:11:59 +0200
+	id xsw7JLhBIWpHCAEAu9opvQ
+	(envelope-from <devicetree+bounces-306707-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:13:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B142563E635
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4087763E66B
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:13:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=p3a6ujdW;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=D5JRFZMI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306705-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306705-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=flmktFXU;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306707-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306707-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1505F317ABD3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 09:02:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7C8BD30B56DB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 09:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84F33F5BCE;
-	Thu,  4 Jun 2026 09:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 824263F6C48;
+	Thu,  4 Jun 2026 09:03:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 924513F65FF
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 09:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54EC83F6603;
+	Thu,  4 Jun 2026 09:03:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780563721; cv=none; b=DMleSA2NhE7RoH8Cajo5wEp5sJcZH0YmrBzvfnHtrA+CXENZi/ZiGa0X0CMLnCo1AiJMYiqAGFZUVEr3u5sRIsAaKRCdl/ag6Wdb4iv354ROvT1J9vKUB0+VZ6qcF3Ae7coMwyR1K9n5rKgVW4Y/EmdtVpj/8BLYohuy4Ko7SeA=
+	t=1780563794; cv=none; b=VLJR7zdSeedUmeGmJrkp8RvWtRoFB+QtM9Zd7slmdwfXDa3TwDXxoUsgSvyEwoyHG/OsFLZt00ZMDuQtHSA8uHbCPIlOkoW5ZfLkQfllijco9SviykiPRW5+7GonRC6GLDAqDhw/EMxhEKwFLc1svTU/1VqPvcAaHRWhqKajtg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780563721; c=relaxed/simple;
-	bh=uPk6FtmVWMI7jTXHIH/rPB8H7e/eCSP33+M3NBqIOF0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PVjJcZNShPI0PaFMXghLdtEnin51dv8I5ZA0po8swdaUOMiTaxcEfIjiEs7NhRom+OrMs2LrgZ2QOBYaSCVidbt8R4rZr6X/bCTcPlittH4ojTYSOM/ushSHH8EBwWmB8tOy/t5wJOwOhtL02HQENEexghTrJBWjjEQRuYIk4g8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=p3a6ujdW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=D5JRFZMI; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65452SA31039343
-	for <devicetree@vger.kernel.org>; Thu, 4 Jun 2026 09:02:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UmVGnrCXAkShVpVSqIoifGKYR2VrcsjStPpiVothuy8=; b=p3a6ujdWj/i6PMLX
-	EJ4CI54NxwYkTB6FNwKcs5sxZcdjmW2pUME8VlRMWLl5zj756B/2Exc1j9xWYf5f
-	/rwUvH4II0SDerry2erIY9rJgNOPkvpmVVHGCwiI5rLarZ+/dPRHfPAsdEiiqu3b
-	ig6JOetF3CSgm5P6nEtyo2S44rV+QSJIB7qDRzubHGuC3hP2kZt/ZmRTP6l9crSu
-	y7tXNx9eb6WcvsplETvE9KCh76Yy5Ckak9ia+LGkPazqR5p0O1gl1LvS2EJ/EV+0
-	un4ip97ZLOqRYpjSLpv/pI21q2wvQkgeigd2PVtqWQ6vWybBZrRj8U8pqN06oDd1
-	2zU3Mw==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ejtj8jhr0-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 09:02:00 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2c0c3315d31so6515145ad.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 02:01:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780563719; x=1781168519; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UmVGnrCXAkShVpVSqIoifGKYR2VrcsjStPpiVothuy8=;
-        b=D5JRFZMIofrJDYnja7uLSnAymJ6FwuXQdDqdkVlLE6X7Irvefj5Ikw+3lXKHu7tucq
-         1UP+DVlSWHh0nxGN+Kyq/Pd19r6KDng0Uc4ae4dkoHCuSGv7cW3k50ZPcUNUQol0e996
-         1vlWWVliX/6e8aCVrLfS7KDHdQLi3AkO8KlEM5LRE270BKwGBs1Y4E8nSzZPGfl15mYx
-         fZfIZLveErX3aNNgrCvaSzfcAUXdIR63Cd0JKUCAs0A1GAY/oxfyNW89QAQwmgqYZEUX
-         e9H0LPU0Fs854Zsa9AIs1E4zIIoR6961KJ7h0ei8MTBHO97UnBnAzSFwLJKHYM/ztPWW
-         C/Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780563719; x=1781168519;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UmVGnrCXAkShVpVSqIoifGKYR2VrcsjStPpiVothuy8=;
-        b=rl5Gbuj5Z/e/rQR0HZ+ghTQoofx7R62+A2nvb19P95oKJH8aNBN2hIWpQ+3tSC68lA
-         9+LNdD9EJ9zajLq3I6iLk8zoV9XxNCvTceEdoSAAJTTuDnOVMrKd08Jj+E5Ppvz1L2Io
-         36LOabDro6LcAaG5h2P81UCM1rKTUaVDz0zYacJImlUsMeJ9VLmC3PvH9FKVkTuMAQ7i
-         lK34mzfACRngydAx7N4tRhJc6vtMCLiqazwtC47XhvyBciWHESYsp+DZm9P4JmtyWrb4
-         gzG+P4r1Gy9wNJvUBaCs0UgtTLzVJmWUnry7J/my69BlWm9rFFbCJGwLSPu631xPIjxb
-         X7eg==
-X-Gm-Message-State: AOJu0YzVGbXU2gf1QQoYvCDdin+YvuP1VsgHjgBdjDf1QktfDbVT1/6q
-	sDfeJxAeUTPy+RS7pd6SJtp1O6CdMVQ50Gbg4gy0n/6YAbRbZ9+E6Z9SgPxoG+vJ/FUnMKvKENj
-	nTGccjAlQ0Cs2RypIOB6STWThu/0Rq2nDcCVJJtZK+sZh87UNoWe8dIIayXNa/A+4
-X-Gm-Gg: Acq92OHdanqlyI8uJz6heLjZUWIPrtDqF97IukQHpBVlwC/tN5MWlIViKBEpDGDZSeA
-	NWw8dBgcof87dczmXf5LKMWhgE4asrMVDhvpxAGGwcwSUwBEgbHyFkd9k1fKOLmvqXAiD6S6SrW
-	s8Cyb2qHqeD1jxAxcASh63iNoZHyxe8/11Kay8SNmHB8iRi7GeuGQkwGT0QUc8tSR3vKd9yr1sy
-	46XqwDovCSKd+1Yl4TSvdP9UpZ5XyAotSgKCHcwDog/ytBrBZWpIAG7LbaQxY/nWWiBJmYbZjlI
-	Cs1dKCfeQKA0bW/ekeX/fL8SSL8FUu40GajBor4Mnz/4tkboKDve9YixhZC2e8c6ChofwxQx9u4
-	NXhSVhVfG3v7K8t5NJuecp5Jo0l28chWmm67ChBos9oDVLcSSZGN6DHU+cbAjoHvj+OJUCEy9eR
-	O2
-X-Received: by 2002:a17:903:41c6:b0:2c0:af09:f3d9 with SMTP id d9443c01a7336-2c1644d1700mr75453395ad.36.1780563719029;
-        Thu, 04 Jun 2026 02:01:59 -0700 (PDT)
-X-Received: by 2002:a17:903:41c6:b0:2c0:af09:f3d9 with SMTP id d9443c01a7336-2c1644d1700mr75453015ad.36.1780563718551;
-        Thu, 04 Jun 2026 02:01:58 -0700 (PDT)
-Received: from [10.151.37.217] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c16629cd24sm66003285ad.57.2026.06.04.02.01.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Jun 2026 02:01:58 -0700 (PDT)
-Message-ID: <af6a1de0-47f6-4ede-aacc-d5411f295e5c@oss.qualcomm.com>
-Date: Thu, 4 Jun 2026 14:31:55 +0530
+	s=arc-20240116; t=1780563794; c=relaxed/simple;
+	bh=c/piY+AY945C6/neUKktYurg8n7+r2eYl0yl1CQnH+Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nEdpx8zVgEIWWDx8vM3B72wTPrLkovgj3VX06RqShqtQrxFJ0foIWy+sb9QrZkAIeUDX5IXbGEcAmmNgWUPgwgl26oEq9uBNQPbfcjHaJlbSIPbn8/NbMvZOdRrlus2iEbChjk8v40Ak5VnGaCke1hDcR+lzzdqmVX6eRK8Pv/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=flmktFXU; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80DEB1F00898;
+	Thu,  4 Jun 2026 09:03:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780563793;
+	bh=5NgVYz8mg529VbAbrxG2hIdI3hbwzt2cjoRa0F0fEfc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=flmktFXURmioN/esLune5uS8HxjWqK/KZvGc3p1Qy3H5omOf1oseWeDh+16bIumE2
+	 aROFv7IZZC8DMz5dbF2cZyqWFR1EBxPqI3uocNeCcshJqZuURJhpjoleCsdS5VXIEt
+	 n6GGD9Bx48gkIZwYYXTwF5mjXi4GamjLfIBcTeECXczRXcGhHSK8XybkGMs0kFUSqG
+	 NNYrWmMZhNqcGQVKJifAltYzbg9803MJSQSg3SvkbEf65OopYoOR/oYwEDlKP4SKYK
+	 1Sfjmegfe+9xUaAQaUAnI13YSB/rv2EPyZ0ezLX90zinaCIroyAznDA1NevCHgaz1c
+	 3o+mJ5m6oeZWA==
+Date: Thu, 4 Jun 2026 10:03:04 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Wadim Mueller <wafgo01@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Maxwell Doose <m32285159@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: iio: flow: add Sensirion SLF3S
+ liquid flow sensor
+Message-ID: <20260604100304.11d0e003@jic23-huawei>
+In-Reply-To: <1dbd3ab3-de6c-44dd-8100-e8ee60f558c8@kernel.org>
+References: <20260530205435.37326-1-wafgo01@gmail.com>
+	<20260530205435.37326-3-wafgo01@gmail.com>
+	<20260601-banana-narwhal-of-music-0b4d3a@quoll>
+	<20260601150959.49bbf125@jic23-huawei>
+	<1dbd3ab3-de6c-44dd-8100-e8ee60f558c8@kernel.org>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq5424: Move PHYs and PERST# to
- Root Port node
-To: sashiko-reviews@lists.linux.dev
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-References: <20260602-move_perst_to_rp-v1-2-8ee5b80316da@oss.qualcomm.com>
- <20260602165241.5D8821F00898@smtp.kernel.org>
-Content-Language: en-US
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-In-Reply-To: <20260602165241.5D8821F00898@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: mDyEcl1urfsf1LGtF6XRRQjM0QbGTcb9
-X-Proofpoint-GUID: mDyEcl1urfsf1LGtF6XRRQjM0QbGTcb9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA0MDA4NiBTYWx0ZWRfX6I3MNMJYusse
- N3uO1EfkaVPzisw22XoVMhGuqGsUUNYS7TuKyPnhostwsjBxicLmlSyXrTtsfDBaeMhqH727/+j
- qurKV6Kvx4HA3emPRYRTBdsmPz28E0JhJ2j4jOpD9609ovA+sihdAWw8vKklHo7IeIJOfN9apnr
- /qe7fQr15mCDwAUzMDgSHjt+umk6j0Py9gZoc2o1GsVhpOl+zQZ1GPDdezhDp+SJGa4uFKG/T7G
- SUKU3aADNEDngmrrjaMtFZXf7knQyBqHEALC0ohkZTVJ3U/oMC5aE2dhdVdoRT5nS5pHvA+NGK8
- soWXZ4bUk6bimdmeNMn8aSh7GdekBbUI/01DWyxeSoaN76CoSvsDJTNTZp0qoJNTl9WxZY3lYk5
- NARCQ8rMIg/a0IogCu86Kg1yJw4pFoYx2yrff0iQSPgbdO2MlxjTH4Nw8SPb7zCNWJusv+TA1rs
- uLvS1m/qQEhpWJBP4OA==
-X-Authority-Analysis: v=2.4 cv=f4p4wuyM c=1 sm=1 tr=0 ts=6a213f08 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=yqHa0Pl9yY5Qe_7Dn7UA:9 a=QEXdDO2ut3YA:10
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-04_02,2026-05-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 suspectscore=0 phishscore=0 bulkscore=0 clxscore=1015
- adultscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605210000
- definitions=main-2606040086
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306705-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:wafgo01@gmail.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:m32285159@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-306707-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,analog.com,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[jic23-huawei:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sensirion.com:url,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B142563E635
+X-Rspamd-Queue-Id: 4087763E66B
+
+On Wed, 3 Jun 2026 16:29:10 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> On 01/06/2026 16:09, Jonathan Cameron wrote:
+> > On Mon, 1 Jun 2026 13:53:23 +0200
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >   
+> >> On Sat, May 30, 2026 at 10:54:31PM +0200, Wadim Mueller wrote:  
+> >>> Document the bindings for the Sensirion SLF3S family of digital
+> >>> liquid-flow sensors on I2C.  The family currently covers the
+> >>> SLF3S-0600F, SLF3S-1300F and SLF3S-4000B variants.
+> >>>
+> >>> The driver auto-detects the variant from the product-information
+> >>> register at probe time; the per-variant compatible strings exist
+> >>> for documentation and dt_binding_check purposes.    
+> >>
+> >> Here...
+> >>  
+> >>> +description:
+> >>> +  Family of digital liquid-flow sensors from Sensirion with I2C
+> >>> +  interface.  All family members share the same register map; sub-types
+> >>> +  differ only in the flow scale factor and the calibrated measurement
+> >>> +  range, both of which are detected at probe time via the
+> >>> +  product-information register.    
+> >>
+> >> And here...
+> >>  
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    enum:
+> >>> +      - sensirion,slf3s-0600f
+> >>> +      - sensirion,slf3s-1300f
+> >>> +      - sensirion,slf3s-4000b    
+> >>
+> >> And here something else. Confusing. Didn't you say device variants are
+> >> auto-detectable? So you have only one compatible sensirion,slf3s.  
+> > 
+> > And then future fallback compatibles can never work. 
+> > Basically as far as I have ever been able to establish this is why
+> > generic compatibles are almost always the wrong way to go.
+> > 
+> > If we get a future part with an unknown ID and don't have these existing
+> > specific compatibles, then we have no way to specify which one it is  
+> 
+> But why would you have future part with unknown ID?
+
+That's what manufacturers do on a very frequent basis.  They tweak something
+that has no affect on the interface or channel scaling etc and release a new part
+with a different ID.  Can be something like a part suited to different operating
+conditions, or with a different supply tolerance.
+
+> 
+> The device is slf3s with variants. All of known variants have an
+> interface to detect the actual variant. There is no indication that this
+> won't work - why would company remove the ID register?
+
+They won't remove the ID, but they will put other values in it to
+indicate new revisions of a part - often entirely backwards compatible
+- sometimes with extra features that we don't use until the driver is updated.
 
 
-On 6/2/2026 10:22 PM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
->
-> Pre-existing issues:
-> - [Critical] Legacy device trees fail to probe with -EBUSY because the 'perst' GPIO descriptor is requested twice without being released.
-> --
->
-> commit f286f42842ba6bb45e869489bbe2830fdd9be93c
-> Author: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
->
-> arm64: dts: qcom: ipq5424: Move PHYs and PERST# to Root Port node
->
-> This commit updates the device tree to define PHYs and the PERST#
-> (reset-gpios) under the PCIe Root Port node instead of the main controller
-> node. This aligns with the new binding style.
->
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->> index de71b72ae6dcc..be8657239c46b 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->> +++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
->> @@ -86,8 +86,6 @@ &pcie2 {
->>   	pinctrl-0 = <&pcie2_default_state>;
->>   	pinctrl-names = "default";
->>   
->> -	perst-gpios = <&tlmm 31 GPIO_ACTIVE_LOW>;
->> -
-> [Severity: Critical]
-> This is a pre-existing issue, but does moving these properties expose a
-> probe failure on legacy device trees?
+> 
+> But even if this happens, then it would be change of device interface,
+> thus you cannot use generic compatible and you will have a new dedicated
+> compatible.
 
-Along with this change, "phys" property also moved to Root Port node. So 
-qcom_pcie_parse_legacy_binding() will not be called for this platform.
+We've had this discussion a number of times for whether an ID register difference
+alone makes a device non compatible, and the answer from DT review has always been
+a firm no and that it is incorrect to reject an unknown ID if the dt-compatible
+is known.  The compromise that people were happy with was an info print if
+such a mismatch is detected as it might indicate an incompatible part replacement
+and a broken DT.
 
->
-> When parsing a legacy DT, qcom_pcie_parse_ports() successfully requests the
-> "perst" GPIO:
->
-> drivers/pci/controller/dwc/pcie-qcom.c:qcom_pcie_parse_ports() {
-> ...
-> 	pcie->reset = devm_gpiod_get_optional(dev, "perst",
-> 					      GPIOD_OUT_HIGH);
-> 	if (IS_ERR(pcie->reset))
-> 		return PTR_ERR(pcie->reset);
-> ...
-> }
->
-> But it then returns -ENODEV due to the lack of a "phys" property on the child
-> node. The probe function then falls back to qcom_pcie_parse_legacy_binding(),
-> which attempts to request the same "perst" GPIO again:
->
-> drivers/pci/controller/dwc/pcie-qcom.c:qcom_pcie_parse_legacy_binding() {
-> ...
-> 	reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
-> 	if (IS_ERR(reset))
-> 		return PTR_ERR(reset);
-> ...
-> }
->
-> Because the first request was never released using devm_gpiod_put(), will
-> the second devm_gpiod_get_optional() fail with -EBUSY and fatally abort the
-> probe, breaking backwards compatibility for older platforms?
+Probably 80%+ of IIO bindings with fallback compatibles do not have
+matching "who am I" register values.  This is incredibly common.
 
-This is already fixed with[1] which is not available in linux-next yet.
+> 
+> If the device is actually "slf3s-0600f" (because slf3s is a family),
+> then I am fine with using that as the fallback. Specific front
+> compatibles are also fine in such case.
 
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/?h=controller/dwc-qcom&id=1a23bcb452d95f099e530414504c0d99ee076b3f
+Yes, it's a part in the family. Each of the compatibles here has a
+separate datasheet:
 
->
-> [ ... ]
->
+https://sensirion.com/media/documents/C4F8D965/66F56F53/LQ_DS_SLF3S-0600F_Datasheet.pdf
+https://sensirion.com/media/documents/6971528D/63625D22/Sensirion_Datasheet_SLF3S-1300F.pdf
+etc
+
+(wonderfully inconsistent file naming ;)
+
+> 
+> 
+> 
+> > compatible with.  Given these are providing scaling info that means we
+> > can't realistically support such a future part with a fallback at all.
+> > 
+> > That would only be possible if there was feature level discovery. A single
+> > whoami register with no structure to the value is useless for this.  
+> 
+> The whoami register defines all the features, no? What would feature
+> discovery improve? ID register is simply logical OR of some feature set,
+> still uniquely identifying the features set/variant.
+
+Would be lovely if true. Sadly almost never true. They are typically just
+the next number in a list of parts released. There is no direct information
+on feature set encoded in that value, we have to have a look up table in
+the driver to translate to feature set. (Not relevant here but sometimes
+manufacturers forget to change the number and we get different feature
+sets with the same ID and no discoverability)
+
+If they were an OR of features that would be great.
+
+The thing is a little structured in this case
+
+0x07         Liquid flow sensor
+0x  03       Product family (e.g. SLF3x)
+0x    03     Subtype (e.g. SLF3S-0600F)
+0x      02   Revision number (changes with minor firmware or hardware revisions)
+
+But both the product family and subtype are numbers to feed into look up tables
+(maybe revision number as well)
+
+Jonathan
+
+
+> 
+> 
+> Best regards,
+> Krzysztof
+
 
