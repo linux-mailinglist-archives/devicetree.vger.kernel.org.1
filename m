@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-306609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306607-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OpM4GFMYIWqE/AAAu9opvQ
-	(envelope-from <devicetree+bounces-306609-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:16:51 +0200
+	id CN7mEs0WIWpD/AAAu9opvQ
+	(envelope-from <devicetree+bounces-306607-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:10:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69F563D345
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:16:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9832D63D2AC
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:10:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=novatek.com.tw header.s=dk header.b=AmlSaAs7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306609-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306609-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=novatek.com.tw header.s=dk header.b=Iky6JfDG;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306607-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306607-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=novatek.com.tw;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 57DDE300E702
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:09:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4BC2301C3E1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C503D522C;
-	Thu,  4 Jun 2026 06:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463E83C2BB9;
+	Thu,  4 Jun 2026 06:05:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ms2.novatek.com.tw (ms2.novatek.com.tw [210.202.87.108])
+Received: from ms1.novatek.com.tw (ms2.novatek.com.tw [210.202.87.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9118C385D77;
-	Thu,  4 Jun 2026 06:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4745531F9BD;
+	Thu,  4 Jun 2026 06:04:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780553389; cv=none; b=tn+ACCJ5Z2Zo9B/1ueKGmE9D75A25yq+IP5UxTOg5QUvDtV8kHVYZ2U+V+hRPz1FjRuEZm6gtwPBnIeG8q6/0y3uP8ODWiuX2gXzs2Uc7Kol4Dg4AW17bDXOOw83PKa70xUqJ7YwIjCi+CvugOlHw/ucfTBP/Rxm++Q+c9o2LuY=
+	t=1780553101; cv=none; b=Dy7LtV44vQ/vwf95TrzJbgvkvE07HvqIxGbMCi39UUNGClFDKoF/L7+ojYTY3rvZNFyJABc/NehRVKEXLJFamZeVbaNqKTYkL3SxaVmseMzn5F2RQs4LXsW3CVILyf81FANOGVVJetaAFSaxD5XNtEEnvdXoRf+82jfdYZLuccQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780553389; c=relaxed/simple;
-	bh=NGPTomif3FTYkoOVzQ+HSaFxYKyET4DbjbxXd5YWgl8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=XQH+Au46nVIRgAhPcOOAi5/Hr0t+Hb5UCtZcmxTNdtBwWeEHydEQnZpa8AfxvartmgQBPyDkNa448BFq4avjiU/Pi0zKtyb/LkwKYN5PLZ1okPdnkoCWNzeo2sHGfYfImTtzHya2xkS0Z9N+WKSYKvriiHn0leDkVG3OLBl7NSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=novatek.com.tw; spf=pass smtp.mailfrom=novatek.com.tw; dkim=pass (1024-bit key) header.d=novatek.com.tw header.i=@novatek.com.tw header.b=AmlSaAs7; arc=none smtp.client-ip=210.202.87.108
-X-UUID: 3588a9885fdb11f1ae774f059c8739df-20260604
+	s=arc-20240116; t=1780553101; c=relaxed/simple;
+	bh=v6868ycCn/yidRR0dRG3qmqGg2jAXpuJIh2VaUnQDk8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hbKWdE/BT2fD9hHnxSoKEOv2v0TEH8fVHbMHB5IuonaxX5Fk1spT2OsS8LzZPAyFcQCivRaNN2gjeWI7YbfD/3Eoe/ge+IEPp67VllEfNzNETRIBcEf078ll3Zy2j9lxcAAm4q+klSYcHN5gtPIDs1KLf19manCov5wxr/uCGhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=novatek.com.tw; spf=pass smtp.mailfrom=novatek.com.tw; dkim=pass (1024-bit key) header.d=novatek.com.tw header.i=@novatek.com.tw header.b=Iky6JfDG; arc=none smtp.client-ip=210.202.87.108
+X-UUID: 40af6cb65fdb11f1ae774f059c8739df-20260604
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=novatek.com.tw; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From; bh=9A9DDAYfvci8sclt9bYZlTK4GhB9lh6b/odeLxlGLXw=;
-	b=AmlSaAs7iX0ga5edairkhQbq9OGM165Kthj6+nVS3NoMB9tHEHDQNYPdUAHKa2LE50Zyy/t38095WWy4e3B8fK3EBMpza8Pxu2MJwkzR6e+OMC60yz2qWXLfB/UL5cSuUNCgM6I5Wb+xRt6NW9k+iSB5AqyBreNgK8MBVGPq75U=;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From; bh=aRt305Bvj1tODwrQnSNjQ4fhnxXXhcpvaUofFEoxQFE=;
+	b=Iky6JfDGtAQlnogNluKYMhZKPzoq49CCtE+ZTZ1N5fZA2qDLUp3uIDfpW89K+UhTSYeQ6/Nxi3JFWWtgrycKSGJ3h2DBTxKvN8a1ShBySBE6gPJH3Bo2tKFVaMNt/uYuD5xIzGySupQ27UfoU8u4e/Uu4WZjTmm76hpuXfVRyNQ=;
 X-Spam-Fingerprint: 0
 X-GW-Reason: 11101
 X-Policy-Incident: 576k57WE5L+h566x5a+E6YCB6Z2e5a6i5oi26IiH5L6b5oeJ5ZWG6YO15Lu255m95ZCN5Zau
 X-Content-Feature: 
-	ica/max.line-size 101
+	ica/max.line-size 140
 	xyz/abc 14
-	audit/email.address 5
-	dict/prolog 1
+	audit/email.address 3
+	dict/job 2
+	dict/prolog 2
 	meta/cnt.alert 1
-X-UUID: 3588a9885fdb11f1ae774f059c8739df-20260604
+X-UUID: 40af6cb65fdb11f1ae774f059c8739df-20260604
 Received: from spmgt1 [(172.20.13.10)] by ms2.novatek.com.tw
 	(envelope-from <sp_isw1_at@novatek.com.tw>)
 	(Generic MTA)
-	with ESMTP id 275877755; Thu, 04 Jun 2026 14:04:12 +0800
+	with ESMTP id 1743302658; Thu, 04 Jun 2026 14:04:31 +0800
 Received: from oabuild50.novatek.com.tw (oabuild50.novatek.com.tw [172.20.13.160])
-	by spmgt1 (Postfix) with ESMTP id 840141B315E;
-	Thu,  4 Jun 2026 14:04:12 +0800 (CST)
+	by spmgt1 (Postfix) with ESMTP id 3BC2E1B315E;
+	Thu,  4 Jun 2026 14:04:31 +0800 (CST)
 Received: by oabuild50.novatek.com.tw (Postfix, from userid 1005)
-	id EC303C60082; Thu,  4 Jun 2026 14:04:11 +0800 (CST)
+	id A3940C60082; Thu,  4 Jun 2026 14:04:30 +0800 (CST)
 From: SP_ISW1_AT@novatek.com.tw
 To: andi.shyti@kernel.org,
 	robh@kernel.org,
@@ -68,10 +70,12 @@ Cc: SP_ISW1_AT@novatek.com.tw,
 	ben_huang@novatek.com.tw,
 	toby_chui@novatek.com.tw,
 	shihpei_hsu@novatek.com.tw
-Subject: [PATCH 1/3] MAINTAINERS: Add entry for Novatek NT726xx SoC i2c driver.
-Date: Thu,  4 Jun 2026 14:04:11 +0800
-Message-Id: <20260604060411.355675-1-SP_ISW1_AT@novatek.com.tw>
+Subject: [PATCH 2/3] dt-bindings: i2c: add Novatek NT726xx SoC i2c controller
+Date: Thu,  4 Jun 2026 14:04:30 +0800
+Message-Id: <20260604060430.355733-1-SP_ISW1_AT@novatek.com.tw>
 X-Mailer: git-send-email 2.26.1
+In-Reply-To: <20260604060411.355675-1-SP_ISW1_AT@novatek.com.tw>
+References: <20260604060411.355675-1-SP_ISW1_AT@novatek.com.tw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: multipart/mixed;
-	boundary="__=_Part_Boundary_008_1748873648.1670885090"
+	boundary="__=_Part_Boundary_002_1601237780.428716608"
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [1.14 / 15.00];
 	MIME_BASE64_TEXT_BOGUS(1.00)[];
@@ -95,7 +99,7 @@ X-Spamd-Result: default: False [1.14 / 15.00];
 	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306609-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306607-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[SP_ISW1_AT@novatek.com.tw,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS(0.00)[m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:SP_ISW1_AT@novatek.com.tw,m:ben_huang@novatek.com.tw,m:toby_chui@novatek.com.tw,m:shihpei_hsu@novatek.com.tw,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -115,11 +119,11 @@ X-Spamd-Result: default: False [1.14 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[novatek.com.tw:mid,novatek.com.tw:dkim,novatek.com.tw:from_mime,novatek.com.tw:email,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,devicetree.org:url,novatek.com.tw:mid,novatek.com.tw:dkim,novatek.com.tw:from_mime,novatek.com.tw:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B69F563D345
+X-Rspamd-Queue-Id: 9832D63D2AC
 
---__=_Part_Boundary_008_1748873648.1670885090
+--__=_Part_Boundary_002_1601237780.428716608
 Content-Type: text/html;
 	charset="utf-8"
 Content-Transfer-Encoding: base64
@@ -153,27 +157,42 @@ MjM0MzY7JiMyMDg0MDsmIzIxMDM0OyYjMzg1MDA7JiMxOTk4ODsmIzM3NTU5OyYjMjc1ODQ7JiMy
 NjQxMjsmIzM3MTA5OyYjMjAyMTQ7JiMyMTQ1MDsmIzIwODU0OyYjMzUwNzk7JiMyNjQxMjsmIzEy
 MjkwOzxzcGFuDQpsYW5nPUVOLVVTPjxvOnA+PC9vOnA+PC9zcGFuPjwvc3Bhbj4NCjwhLS19LS0+
 
---__=_Part_Boundary_008_1748873648.1670885090
+--__=_Part_Boundary_002_1601237780.428716608
 Content-Type: 
 Content-Transfer-Encoding: base64
 
-RnJvbTogQmVuIEh1YW5nIDxCZW5fSHVhbmdAbm92YXRlay5jb20udHc+DQoNCkFkZCBlbnRyeSBm
-b3IgbWFpbnRlbmFuY2Ugb2YgTm92YXRlayBOVDcyNnh4IFNvQyBpMmMgZHJpdmVyLg0KDQpTaWdu
-ZWQtb2ZmLWJ5OiBCZW4gSHVhbmcgPEJlbl9IdWFuZ0Bub3ZhdGVrLmNvbS50dz4NCi0tLQ0KIE1B
-SU5UQUlORVJTIHwgNyArKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKQ0K
-DQpkaWZmIC0tZ2l0IGEvTUFJTlRBSU5FUlMgYi9NQUlOVEFJTkVSUw0KaW5kZXggOWVjMjkwZTM4
-YjQ0Li43YTc3YTE2OTBmMTUgMTAwNjQ0DQotLS0gYS9NQUlOVEFJTkVSUw0KKysrIGIvTUFJTlRB
-SU5FUlMNCkBAIC0xOTAxNCw2ICsxOTAxNCwxMyBAQCBUOglnaXQgZ2l0Oi8vZ2l0Lmtlcm5lbC5v
-cmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L25vbGliYy9saW51eC1ub2xpYmMuZ2l0DQogRjoJ
-dG9vbHMvaW5jbHVkZS9ub2xpYmMvDQogRjoJdG9vbHMvdGVzdGluZy9zZWxmdGVzdHMvbm9saWJj
-Lw0KIA0KK05PVkFURUsgTlQ3MjZYWCBJMkMgQ09OVFJPTExFUiBEUklWRVINCitNOglCZW4gSHVh
-bmcgPGJlbl9odWFuZ0Bub3ZhdGVrLmNvbS50dz4NCitMOglsaW51eC1pMmNAdmdlci5rZXJuZWwu
-b3JnDQorUzoJTWFpbnRhaW5lZA0KK0Y6CURvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9pMmMvbm92YXRlayxudDcyNnh4LWkyYy55YW1sDQorRjoJZHJpdmVycy9pMmMvYnVzc2VzL2ky
-Yy1udDcyNnh4LmMNCisNCiBOT1ZBVEVLIE5WVC1UUyBJMkMgVE9VQ0hTQ1JFRU4gRFJJVkVSDQog
-TToJSGFucyBkZSBHb2VkZSA8aGFuc2dAa2VybmVsLm9yZz4NCiBMOglsaW51eC1pbnB1dEB2Z2Vy
-Lmtlcm5lbC5vcmcNCi0tIA0KMi40MC4xDQo=
+RnJvbTogQmVuIEh1YW5nIDxCZW5fSHVhbmdAbm92YXRlay5jb20udHc+DQoNCkFkZCBkZXZpY2Ug
+dHJlZSBkb2N1bWVudGF0aW9uIGZvciBOb3ZhdGVrIE5UNzI2eHggU29DIGkyYyBjb250cm9sbGVy
+Lg0KDQpTaWduZWQtb2ZmLWJ5OiBCZW4gSHVhbmcgPEJlbl9IdWFuZ0Bub3ZhdGVrLmNvbS50dz4N
+Ci0tLQ0KIC4uLi9iaW5kaW5ncy9pMmMvbm92YXRlayxudDcyNnh4LWkyYy55YW1sICAgICB8IDQ3
+ICsrKysrKysrKysrKysrKysrKysNCiAxIGZpbGUgY2hhbmdlZCwgNDcgaW5zZXJ0aW9ucygrKQ0K
+IGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJj
+L25vdmF0ZWssbnQ3MjZ4eC1pMmMueWFtbA0KDQpkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9ub3ZhdGVrLG50NzI2eHgtaTJjLnlhbWwgYi9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL25vdmF0ZWssbnQ3MjZ4eC1pMmMueWFtbA0K
+bmV3IGZpbGUgbW9kZSAxMDA2NDQNCmluZGV4IDAwMDAwMDAwMDAwMC4uMDgyNmVlOWVjODMxDQot
+LS0gL2Rldi9udWxsDQorKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJj
+L25vdmF0ZWssbnQ3MjZ4eC1pMmMueWFtbA0KQEAgLTAsMCArMSw0NyBAQA0KKyMgU1BEWC1MaWNl
+bnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KKyVZQU1MIDEu
+Mg0KKy0tLQ0KKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvaTJjL25vdmF0ZWss
+bnQ3MjZ4eC1pMmMueWFtbCMNCiskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1z
+Y2hlbWFzL2NvcmUueWFtbCMNCisNCittYWludGFpbmVyczoNCisgIC0gQmVuIEh1YW5nIDxiZW5f
+aHVhbmdAbm92YXRlay5jb20udHc+DQorICAtIEphc29uIEpKIFd1IDxqYXNvbl9qal93dUBub3Zh
+dGVrLmNvbS50dz4NCisNCit0aXRsZTogTm92YXRlayBOVDcyNnh4IFNvQyBJMkMgbWFzdGVyIGNv
+bnRyb2xsZXINCisNCithbGxPZjoNCisgIC0gJHJlZjogL3NjaGVtYXMvaTJjL2kyYy1jb250cm9s
+bGVyLnlhbWwjDQorDQorcHJvcGVydGllczoNCisgIGNvbXBhdGlibGU6DQorICAgIGNvbnN0OiBu
+b3ZhdGVrLG50NzI2eHhfaTJjDQorDQorICBudnQsaHdtb2RzOg0KKyAgICBkZXNjcmlwdGlvbjog
+TmFtZSBvZiBlYWNoIGkyYyBwaW4sIG11c3QgYmUgbmFtZWQgd2l0aCAiaTJjWCIgKFggaXMNCisg
+ICAgICAgICAgICAgICAgIGFuIGludGVnZXIgc3RhcnRpbmcgZnJvbSAwKQ0KKyAgICBtaW5JdGVt
+czogMQ0KKw0KKyAgYnVzLWVuYWJsZToNCisgICAgZGVzY3JpcHRpb246IGVuYWJsZSB0aGlzIGky
+YyBwaW4gZnVuY3Rpb24gb3Igbm90DQorICAgIG1heEl0ZW1zOiAxDQorDQorICByZWc6DQorICAg
+IG1heEl0ZW1zOiA0DQorDQorICBpbnRlcnJ1cHRzOg0KKyAgICBtYXhJdGVtczogMw0KKw0KKyAg
+Y2xvY2stZnJlcXVlbmN5Og0KKyAgICBkZXNjcmlwdGlvbjogT3BlcmF0aW9uIGNsb2NrIGZyZXF1
+ZW5jeSBvZiBpMmMgaW4ga0h6LiBEZWZhdWx0IGlzIDEwMGtIei4NCisgICAgZGVmYXVsdDogMTAw
+DQorICAgIG1heEl0ZW1zOiAxDQorDQorcmVxdWlyZWQ6DQorICAtIGNvbXBhdGlibGUNCisgIC0g
+YnVzLWVuYWJsZQ0KKyAgLSBudnQsaHdtb2RzDQorICAtIHJlZw0KKyAgLSBpbnRlcnJ1cHRzDQor
+DQordW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQ0KLS0gDQoyLjQwLjENCg==
 
---__=_Part_Boundary_008_1748873648.1670885090--
+--__=_Part_Boundary_002_1601237780.428716608--
 
 
