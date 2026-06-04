@@ -1,267 +1,160 @@
-Return-Path: <devicetree+bounces-306787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306825-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nHIaHWJiIWoJFgEAu9opvQ
-	(envelope-from <devicetree+bounces-306787-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:32:50 +0200
+	id 57S9NMB1IWpCGwEAu9opvQ
+	(envelope-from <devicetree+bounces-306825-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 14:55:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D845263F734
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:32:49 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0E8464017A
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 14:55:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="UN1/IL3j";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306787-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306787-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=rock-chips.com header.s=default header.b="IxM8Rb/I";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306825-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306825-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=rock-chips.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E8947300B04D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 11:29:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B73463002B75
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 12:48:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7B53B3BF1;
-	Thu,  4 Jun 2026 11:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E7D47AF66;
+	Thu,  4 Jun 2026 12:48:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m15597.qiye.163.com (mail-m15597.qiye.163.com [101.71.155.97])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32A793976AD
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 11:29:06 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780572547; cv=pass; b=M9eFIftGKA5Ov0GlKfCU3btf8IhmzH3fH4ZQbxkXohGvOVDJn+1asoNgaFzpw4irxKG4kvVwM2WTEcTyZu6bEyySpgi1p56Ne4uz5OkpnnUR/j2eF4PaNk7VJP/tdY0otqo9/vfJehbyJagKAxyf7dY9F1pJPqjKwXLXIwV7VHk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780572547; c=relaxed/simple;
-	bh=Cs65A+JiYKTwhggzuBKtKB2P9R9J58E7uSqXp6o8aV0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=e53fAHe+OlRT6U0dNOdpuShmhqj+ri8cakjCJAukjz24g/VISWsulo0GZwKssdyW+9RhJJBIuHFFwWD5VhuUXUq6krMQjEdpHxNo1sm6hLLU5VWqglmOOhr5PHeITa8d8hR+eVw07gwDSo+ec4pvi3Z/7Xj9I13lwN8VIeIoR0w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UN1/IL3j; arc=pass smtp.client-ip=209.85.128.181
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-7e2fd65f968so5116727b3.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 04:29:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780572545; cv=none;
-        d=google.com; s=arc-20240605;
-        b=LZMrgWBEJ6XjjnA18eK1MkzAtGZirOWONN+WGecJEm7ypxnLQ7q+d1LDySMtTpiw6O
-         7fBabXShHEfyKStOK++O0BC977DBX87+jTaWnEn/pq3kh+x1OonugkGYHfZCeiGXRPdR
-         LRkJkoyQndnHSaAfBAJQK6vShPV7Pvr4dM2fBQU09Udy1y9wVzVLG57D5arzSNzmLqbW
-         upAGPBZS4hnUirmHuxbESSByuAPpm01Eh1winyneXIsYDf0ZJY6A22a+SyeYRJ9zD4P0
-         Qmun7cxn4OrSnEAI6kzefjr+iXWrBSg0FS00VsAPN2sp3cd6VGqX2k+Irx1AYXAcuDq9
-         uSCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=zkqHmuiBI8YhYei9Sr8euhfLvyfF9S8OG07NhMelJTQ=;
-        fh=Tbh7tJPpd+8QUDn5dXN/Y+BN1kW4j46Fc5bd3Y4ar24=;
-        b=YK8InVZp9HR8ncodW7mU/yXEsLfIFMfk07QyuHxbz9Qy/7TW0pF8AYvl3buPpPosjo
-         pOg1Gzsn0CYg2zlXaDXnPKro9yGHw37a4t5BMUUWDlhw5rxVKSWoz32fwzPRqX6sblOB
-         bCUAOEmJ94K/eQ3/YLn8Yii5NI/iwFXkSNFAEP7iVgus8l3ma3lDRpcE3zuGVHRBW1jJ
-         mPF1sdsFEPBoYfR4s/I2niFGVbvl0Rfk+y/+ul2Tna6e4NtqUmT7+UG3qONXR7jzyV+c
-         Qli8PjXX1pIfPQ6W4+z5NN0P4zFNaThnR1/Nh66LvQWTXmUN35e5c0m0qxlVv9wL+PAI
-         Xg7g==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780572545; x=1781177345; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zkqHmuiBI8YhYei9Sr8euhfLvyfF9S8OG07NhMelJTQ=;
-        b=UN1/IL3j5LZm7sW+nwmRff6Wv3jN9ve190Fjm/u1/cwXsKVK6LSABUZSPtUULvbroo
-         mJuAiaVlYuX3j9kSzUGvg/xbcbsxbKW2tDSDL7ur6BGc/wq/XK49/VL8NPTV59Ydb6aI
-         B0BCopC9KQtSGmF1DPxv6fSekULoJ4wCsrGgW2eG0KLLgK82R/V/SzcS5oAxNuKErQbF
-         PZCzT413X5WSHd3jbRWvpscFdlw1qDiLjVqoja1vOGvPbkrsbD83wlUUHzidmGzv1P4Q
-         UJXGuXge8fWfvwC29jKaKHaQPk/QS9wp50/iRB9whgZThu2Fr4MRPrDY1aaNX8EIwCt2
-         BVLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780572545; x=1781177345;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=zkqHmuiBI8YhYei9Sr8euhfLvyfF9S8OG07NhMelJTQ=;
-        b=Bu7iEfkzDiboUZkkYXgR3jSYuNa7gp51cJYEuyBb6rphKnghZxQ14wkG10JgqseCT1
-         oAWjWyqJ7pSxNCQ3EBOGT8rxd44d3813vvENcWvyuqaY1iJrMj6uj6PeEEnp1gdzYopV
-         mi44ELwH59hif6lZ1E60udmQlZViSVLxxFjU3LETarlWv3cEXO5Erj/CigxoZnHkToDz
-         yENNTciq5cyXHK7JBbXNDFK1C2jkrfeDLBnm9yFleJFd4Lfbv5pUPonlVl3tS0SGKQb6
-         NmL2Zqso+UiuKY8zhr5MDd04yT82zxE1orCGpzn4rtgTop3DeCrj19neLPzI2ERTNnEy
-         f/qw==
-X-Forwarded-Encrypted: i=1; AFNElJ9vCEpVJj5L9BVyGlv0D0RxfC5q0zjQlDZC3duYAvfdOkgTPWu7RHKagPMXav/qiUggyv5LtC+Mgmk1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKWHqrFY4URIyWn3d08wUwByGI2iXTmoC4lOxhutJK3mnUs82K
-	LFFN4dxc23LHDcAWKHLB5igxgz1xw7nBPzA8o706LFe+9MWpFdJoaBRXa66uSNFs5lW7nRiH4pP
-	4bNdKkD1RfcReGWTOQ0OXN2gferrOt+HmFA==
-X-Gm-Gg: Acq92OFutG9/h3Of519QqbpDX3CecBv4W3Oc0BrCe+9XwYtqkwHCa53hl+EMWub19ER
-	MpSJS+gowIxMJowsrE3BtZgNtMvx0gNKZtm+mlHfuqjb4j5ZaWXGauKARTpHZ8UK8OQTqMuKoP3
-	a7R8ele96KbKaIqhI6nGXmXxqJ1wv0s3jtc2Cl1nL1zEhNaTHug0YGd/opWwESZa+9dF+Jaz4bZ
-	Ons0F9rHBC2qDEElvmBsNfFq+GLR/Gjlzdmfco92yhL3W12ixh67vC20v+IedfTcolRN9EWIzBe
-	UGMAndlm+p/n0CQ=
-X-Received: by 2002:a05:690c:2606:b0:7e9:9f7e:9ee with SMTP id
- 00721157ae682-7ea490a99d0mr66374177b3.12.1780572545209; Thu, 04 Jun 2026
- 04:29:05 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7573447A0B2;
+	Thu,  4 Jun 2026 12:48:27 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780577313; cv=none; b=lPhpDq0aYDf/r9OXgtJ6gk1eSaQrcEWbP2ym5PlbZ6ekPcpBq4KvZYtlKY1kZBk3YJCL8qrsishgfcVVHDAi0Qb8Sa6UMx8iJJhNZPcxRbyRBR0uNs1TrvCLvR9w4hPLZRykX8M0r5LEb1GltIMhl6gAwT3z0v/nYGcKmKtO9h8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780577313; c=relaxed/simple;
+	bh=Z7ZjuWCseYufeftIaFPtaxwDGdS/Yzj0JhHbc9oq6xY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=r1fxA7BKK/5WsYBHcsTKH6hqHqe1Wf/9/oVNXhLeDlJaViUn5y/kgsQwDfCWWu4nb/b3NzpReES11bECWqOfr1UbnPH+PkE+gIgUi5z3kLUkq6DubQI76VoUklgh6DRjWUTzHmo2RSktyKAkTv+aKzASyhbyo12Ttzff4t8vbJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=IxM8Rb/I; arc=none smtp.client-ip=101.71.155.97
+Received: from [172.16.12.77] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 4114f0229;
+	Thu, 4 Jun 2026 19:32:31 +0800 (GMT+08:00)
+Message-ID: <c3b829f2-8f8f-4b76-bbd6-977ee49e32d1@rock-chips.com>
+Date: Thu, 4 Jun 2026 19:32:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260603152709.941788-1-ekffu200098@gmail.com> <20260603224959.GA2317076-robh@kernel.org>
-In-Reply-To: <20260603224959.GA2317076-robh@kernel.org>
-From: Sang-Heon Jeon <ekffu200098@gmail.com>
-Date: Thu, 4 Jun 2026 20:28:53 +0900
-X-Gm-Features: AVHnY4LO6QJQipS3aUPHD8bByFhy1AUIIWVhGSjhngAjWhQfjfW51RG8Y4NfyIo
-Message-ID: <CABFDxMHtBeqVRevZr8T4ZbGNKa+0OciMDM+c+yN2aaXbRH7GAQ@mail.gmail.com>
-Subject: Re: [PATCH] of: reserved_mem: prevent OOB when too many dynamic
- regions are defined
-To: Rob Herring <robh@kernel.org>
-Cc: saravanak@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 03/12] drm/bridge: synopsys: dw-dp: Simplify driver
+ data setting
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Damon Ding <damon.ding@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>,
+ Alexey Charkov <alchark@gmail.com>, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kernel@collabora.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20260501-synopsys-dw-dp-improvements-v2-0-d7e7f6bac77f@collabora.com>
+ <20260501-synopsys-dw-dp-improvements-v2-3-d7e7f6bac77f@collabora.com>
+Content-Language: en-US
+From: Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20260501-synopsys-dw-dp-improvements-v2-3-d7e7f6bac77f@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9e9268059309d8kunmba51a6264c1bb
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaSxkYVkIeQh4ZGUNNQxhDGlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=IxM8Rb/I2HY1HFLeGgoTCxr9yMRWq2uCjku9+lyH/eib/AzBDiclBkhnEdoRyaaPTlFEUfrz/eWpdvhOjsfiFG59EBa8a0xBqZ2z8mm1cMQNjrlANczPs4s9KDMWCWIUhYEsabXYKnzCDej+y/axSmo7vmX89rHtVB+LDW95RbM=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=WPG/AsGIP40sCtd85f/8cpoPt3ZPqI9/+Lllb2HF/3o=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:saravanak@kernel.org,m:devicetree@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:dmitry.baryshkov@oss.qualcomm.com,m:luca.ceresoli@bootlin.com,m:cristian.ciocaltea@collabora.com,m:damon.ding@rock-chips.com,m:lumag@kernel.org,m:alchark@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:kernel@collabora.com,m:linux-arm-kernel@lists.infradead.org,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306787-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[ekffu200098@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[collabora.com,rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,oss.qualcomm.com,bootlin.com];
+	FORGED_SENDER(0.00)[andy.yan@rock-chips.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	TAGGED_FROM(0.00)[bounces-306825-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ekffu200098@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree];
+	FROM_NEQ_ENVFROM(0.00)[andy.yan@rock-chips.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[collabora.com,rock-chips.com,kernel.org,gmail.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,mail.gmail.com:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,collabora.com:email,vger.kernel.org:from_smtp,rock-chips.com:mid,rock-chips.com:dkim,rock-chips.com:from_mime,rock-chips.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D845263F734
+X-Rspamd-Queue-Id: D0E8464017A
 
-On Thu, Jun 4, 2026 at 7:50=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Jun 04, 2026 at 12:27:09AM +0900, Sang-Heon Jeon wrote:
-> > On boot, fdt_scan_reserved_mem() saves each dynamically-placed
-> > /reserved-memory subnode into a local array of size
-> > MAX_RESERVED_REGIONS.
-> >
-> > If the device tree declares more than MAX_RESERVED_REGIONS
-> > dynamically-placed regions, fdt_scan_reserved_mem() writes past the
-> > end of the local array.
-> >
-> > Add a bounds check that logs an error and skips the excess regions,
-> > restoring the original behavior.
-> >
-> > Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved me=
-mory regions are processed")
-> > Signed-off-by: Sang-Heon Jeon <ekffu200098@gmail.com>
-> > ---
-> > QEMU-based test results
-> >
-> > - With 65(MAX_RESERVED_REGIONS + 1) dynamically-placed region DTB
-> >
-> > 1) AS-IS (before-fix)
-> > [    0.000000] OF: reserved mem: 0x000000043ffff000..0x000000043fffffff=
- (4 KiB) map non-reusable rgn00
-> > [    0.000000] OF: reserved mem: 0x000000043fffe000..0x000000043fffefff=
- (4 KiB) map non-reusable rgn01
-> >
-> > ...
-> >
-> > [    0.000000] OF: reserved mem: 0x000000043ffc1000..0x000000043ffc1fff=
- (4 KiB) map non-reusable rgn62
-> > [    0.000000] OF: reserved mem: 0x000000043ffc0000..0x000000043ffc0fff=
- (4 KiB) map non-reusable rgn63
-> > [    0.000000] OF: reserved mem: not enough space for all defined regio=
-ns.
-> > [    0.000000] Kernel panic - not syncing: stack-protector: Kernel stac=
-k is corrupted in: fdt_scan_reserved_mem+0x5f0/0x610
-> > [    0.000000] CPU: 0 UID: 0 PID: 0 Comm: swapper Not tainted 7.1.0-rc1=
--00022-gcf5d7a55d3b6 #6 PREEMPT
-> > [    0.000000] Hardware name: linux,dummy-virt (DT)
-> > [    0.000000] Call trace:
-> > [    0.000000]  show_stack+0x18/0x24 (C)
-> > [    0.000000]  dump_stack_lvl+0x34/0x8c
-> > [    0.000000]  dump_stack+0x18/0x24
-> > [    0.000000]  vpanic+0x47c/0x4dc
-> > [    0.000000]  do_panic_on_target_cpu+0x0/0x1c
-> > [    0.000000]  __stack_chk_fail+0x20/0x24
-> > [    0.000000]  fdt_scan_reserved_mem+0x5f0/0x610
-> > [    0.000000]  early_init_fdt_scan_reserved_mem+0x50/0x124
-> > [    0.000000]  arm64_memblock_init+0x188/0x2b8
-> > [    0.000000]  setup_arch+0x24c/0x5f4
-> > [    0.000000]  start_kernel+0x70/0x848
-> > [    0.000000]  __primary_switched+0x88/0x90
-> > [    0.000000] ---[ end Kernel panic - not syncing: stack-protector: Ke=
-rnel stack is corrupted in: fdt_scan_reserved_mem+0x5f0/0x610 ]---
-> >
-> > 2) TO-BE (after-fix)
-> > [    0.000000] OF: reserved mem: not enough space for all dynamic regio=
-ns.
-> > [    0.000000] OF: reserved mem: 0x000000043ffff000..0x000000043fffffff=
- (4 KiB) map non-reusable rgn00
-> > [    0.000000] OF: reserved mem: 0x000000043fffe000..0x000000043fffefff=
- (4 KiB) map non-reusable rgn01
-> >
-> > ...
-> >
-> > [    0.000000] OF: reserved mem: 0x000000043ffc1000..0x000000043ffc1fff=
- (4 KiB) map non-reusable rgn62
-> > [    0.000000] OF: reserved mem: 0x000000043ffc0000..0x000000043ffc0fff=
- (4 KiB) map non-reusable rgn63
-> >
-> > ---
-> > Hello,
-> >
-> > I found a bug introduced by a previous patch, so I am sending this
-> > fix as quickly as possible after testing. Although we are at the end
-> > of the 7.1 -rc cycle, I do not want to rush this patch.
-> >
-> > Thank you as always for the thoughtful review.
-> >
-> > Best Regards,
-> > Sang-Heon Jeon
-> > ---
-> >  drivers/of/of_reserved_mem.c | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.=
-c
-> > index ce1d5530ec0f..4efd521adee0 100644
-> > --- a/drivers/of/of_reserved_mem.c
-> > +++ b/drivers/of/of_reserved_mem.c
-> > @@ -346,6 +346,12 @@ int __init fdt_scan_reserved_mem(void)
-> >               err =3D __reserved_mem_reserve_reg(child, uname);
-> >               if (!err)
-> >                       count++;
-> > +
-> > +             if (dynamic_nodes_cnt =3D=3D MAX_RESERVED_REGIONS) {
-> > +                     pr_err("not enough space for all dynamic regions.=
-\n");
->
-> It would be more useful to print the node name(s) that we skip.
+Hello,
 
-Sounds good. There is a similar log in fdt_init_reserved_mem_node().
-How about printing node name there as well? If you agree, I can do it
-here or in a separate patch, whatever you prefer.
+On 5/1/26 06:20, Sebastian Reichel wrote:
+> There is no need to get the platform device just for setting up
+> the driver data. Simplify the logic.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-> Sashiko's analysis looks correct to me.
+    Reviewed-by: Andy Yan <andy.yan@rock-chips.com>
+> ---
+>   drivers/gpu/drm/rockchip/dw_dp-rockchip.c | 3 +--
+>   1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
+> index 150c2da8fee5..52e956bffb12 100644
+> --- a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
+> @@ -74,7 +74,6 @@ static const struct drm_encoder_helper_funcs dw_dp_encoder_helper_funcs = {
+>   
+>   static int dw_dp_rockchip_bind(struct device *dev, struct device *master, void *data)
+>   {
+> -	struct platform_device *pdev = to_platform_device(dev);
+>   	const struct dw_dp_plat_data *plat_data;
+>   	struct drm_device *drm_dev = data;
+>   	struct rockchip_dw_dp *dp;
+> @@ -87,7 +86,7 @@ static int dw_dp_rockchip_bind(struct device *dev, struct device *master, void *
+>   		return -ENOMEM;
+>   
+>   	dp->dev = dev;
+> -	platform_set_drvdata(pdev, dp);
+> +	dev_set_drvdata(dev, dp);
+>   
+>   	plat_data = of_device_get_match_data(dev);
+>   	if (!plat_data)
+> 
 
-You're right, I missed some cases. I'll fix it.
-
-> Rob
-
-Thanks for reviewing.
-
-Best Regards,
-Sang-Heon Jeon
 
