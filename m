@@ -1,292 +1,193 @@
-Return-Path: <devicetree+bounces-306792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306795-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WbUrJkpqIWpaGAEAu9opvQ
-	(envelope-from <devicetree+bounces-306792-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 14:06:34 +0200
+	id y1kMEJRqIWpzGAEAu9opvQ
+	(envelope-from <devicetree+bounces-306795-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 14:07:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ED3E63FB2C
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 14:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FE0063FB61
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 14:07:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=netcube.li header.s=s1 header.b=fcRZBKX+;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306792-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306792-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=netcube.li;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=linaro.org header.s=google header.b=hTy7MeMb;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306795-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306795-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CF457305A892
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 11:53:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6E57C3020A6F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 11:57:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA61407590;
-	Thu,  4 Jun 2026 11:53:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98FA5426D16;
+	Thu,  4 Jun 2026 11:57:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A9F41B343;
-	Thu,  4 Jun 2026 11:53:24 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780574006; cv=none; b=rjTrmtO+wD2Dz73GBxSNQiq7jyrZRvGWizVJL0VWO8Kak5p2Tk/pXQ9C35SZ1aY54xtjv+6YCDr9xHPCztOAIOYA6YlyhsGxb/dbObLzswe1CfWb3LLMzYHSPDEB/7t5pHtiUMxSe0pYXXQALsPahKMuNrPHYAMMvbmq3m3nh6w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780574006; c=relaxed/simple;
-	bh=W1L7lM7ONfZVZduFgqKNqCLCyNE31WGvZ657G3Z6HQk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NCvw7jMmMgC0/AuOlsTW2R5YefOfsvDV/ljkH7jtHLlFIddY7IasY5MxbzkGLpFwprTgrdnSaB6t3kWGpRaqNxvsMKDNzrOaW8+Fx82Xu5/D/alEFDY0HUaCyKoNKGPfhhoI19trPqpGGhkaVDqCJ6tobf0LNQLEve0xR7f1490=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=fcRZBKX+; arc=none smtp.client-ip=173.249.15.149
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding:In-Reply-To:References;
-	bh=PMXI3AsiaIZvGy6ZmQ2drOYiduPnjH0X2ReiBFm1rns=;
-	b=fcRZBKX+aHuUMs8bqNVVXdKJSg23d4Karw0mjYOyudzNYgMFb8rjj9zyZHB6pzOx+blIrUYt77hI100yF6CxbMsgHtpo8lLVutz7rk2PKXEVyB1cHqz3aL2beFYa5vnTD6OI3YX1b6UgWrnS/WsfXhij/Jo9giSghS0lIE43dDk=
-Received: from lukas-hpz440workstation.lan.sk100508.local (194-166-56-114.hdsl.highway.telekom.at [194.166.56.114])
-	by mail.netcube.li with ESMTPA
-	; Thu, 4 Jun 2026 13:53:12 +0200
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Maxime Ripard <mripard@kernel.org>
-Cc: Lukas Schmid <lukas.schmid@netcube.li>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v1 3/3] ARM: dts: sunxi: add support for NetCube Systems OpenNMC (dobermann)
-Date: Thu,  4 Jun 2026 13:52:34 +0200
-Message-ID: <20260604115241.1358528-4-lukas.schmid@netcube.li>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260604115241.1358528-1-lukas.schmid@netcube.li>
-References: <20260604115241.1358528-1-lukas.schmid@netcube.li>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01EB0426EAA
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 11:57:23 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780574247; cv=pass; b=uymvDLeEy6epOwxp1QX1cN/u7e0SwuZ/R5dWQQt4xx9KxYrkifB5WT9A04Y53Hkw6Yc8L0SDdLuQ9RFGWfOOOcbpo4jnCSP4mWGrPRdNRdUe8H7oSVWwMLocjUm+YH+Ion6t7NVNrSbSvKN20xTiYkq2Afqf5kYc8SU3YalVHDw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780574247; c=relaxed/simple;
+	bh=I1IsJZ9VsoHWf+kU/vnao0WS/4NFd54dWmBswkYEDVY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nw1NsHLtnQNHhst5hz5JE8w50Hd+gggRKiFsaq7fMGpj34np3A8/6ZOvOh+gOWimEiTNv7DcLGJjHJXwlcQWMcYsGA+ZAgdb3+Wf7qVVuPSuSjLfvKJSQjCQHtMITwikvNuWIzK17Py/C/VcO+BEJ+weF+6ztTF262ve0mQl/vU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hTy7MeMb; arc=pass smtp.client-ip=209.85.218.46
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-bebbc325000so79653666b.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 04:57:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780574242; cv=none;
+        d=google.com; s=arc-20240605;
+        b=faMYC4c6K+GGvmm4hpP/Eds0Mn6uxxa3zuUMZpbWtebgqHkLEmUyyA1AL2kHp1s/Ye
+         pn3cUn5xR2tpSnz4cBMYU5GsLS3MvaqPQXGS6qgBbbJYiSkHZQOTIaWurO/7vv9WlMim
+         7sh0fKQqeSEINwHvKCwOexjKTBhLMBmqY6C+Ws003A5gT42QW2s+L2WgGvhToWYB6Mff
+         Rd39panz4WisIbS6Al+wy9/xd1jMhqa1zOWnWE0hbwvSIgA6XxxfVOpNCTK2aezGtYPc
+         XY0loNpbjQHXiByGjMRhn0DYEj81VsOTLura0E30OJi43X5N8Sokf01lUfOft/cP95kQ
+         4IRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=IyEzb+3XRdRyr37ys5CCQqDn980bHp2Leeui4PMQv/0=;
+        fh=ErVLenDBHpVYh82bqyjDL1Hqr1vH6bWkkHogPIcQfAs=;
+        b=jVS1ra7vQvfxUuphTIym6xYIUTNM5maNPDvfiC7WLxPSE9D6GP2jAFLRT/J4T44CC2
+         gpx5pVKHQLxqBazbr4/aMr9ZmH1e4Sr9zIywxZZe82oyo9HdsxSzahVdYGUbBTUioFW+
+         Omd+dpfIeRGH3jUjQtOHfTQ7Er6DJIqNQ5v1/jz6ltmjQ6Sfj5FcyrSDDgidAGTch4mr
+         g83k/bE3BxxNacUXrNrXCNFnBKcyJ+P/agO1CgibcVXNgO855o8bcXguRT7AX062AHOC
+         EBNkxJEkHr4pM4aVBzPDKwn0iam6GumshqoKS3gUppSkkiFsjgDbJPDjO4DsoCe4hYse
+         UxGg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1780574242; x=1781179042; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=IyEzb+3XRdRyr37ys5CCQqDn980bHp2Leeui4PMQv/0=;
+        b=hTy7MeMbnVM3tT14eYkrmRvhzoLBHk6oVol6dlf+voq95pO2jPFQaEZHC+4DaD/HZ0
+         PpWMuam0iN2y34grNNjEVPPubmwqGa0GlvFNatE6LGgXpM8IJj+H3w/qnmP/xxP47zUo
+         eeas9jBzN9DIJSbUSlD3uthIHkbCOmOVYaVHsuA+qdg57PkOjK31aRlHCh1sejJM23bC
+         V5Cm3Kq6HvMkbpqx2txmTwenaMn8x6pdtyzMSPC7D4244mf/sWYRq3aVaFgTqutcPmHn
+         bzgAsSc1w8Slxox7+6rJBDwAyU4QylG71APoAMgTvEbOKE2nTvPgw5tFofy2nOmPCGI3
+         8b2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780574242; x=1781179042;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IyEzb+3XRdRyr37ys5CCQqDn980bHp2Leeui4PMQv/0=;
+        b=j2f972OHxe/KTRo3p2kMHZq1XERTE6PCDpTp5emyrkYErqKvqAJ33V3GUFJ/3hwrZr
+         8pJoAYIPG7F3D3LE14qhsOyW5J06uV9csr8gHBILvre9X9gbNAeDU/A7MgaH4MVVX+qc
+         avM3/KFdcjKsRY/8xxiwYv28X0/w8biWGLga8qAYpsGt4rIOQhiCLMdToBHJGhCU583e
+         e2ZxLAzgz/UGw4at0VjqCKZ6HHQNMHOZPtgChwzaGukCbCQTm2wZOcAGm4jsKjZ7awUl
+         Adlnyk/4uPSGs5LxwuixMrY/4cmU3iiBr487iN+QNBV+ww4yGaAYuiRdQqBy4IF3dOeF
+         pDlg==
+X-Forwarded-Encrypted: i=1; AFNElJ90I3kJjO8MB2C0UXnNoKoO3XJbIsZQL6ttPskcAjCHBWgam26aaTPXPSfvE3Gxu8ueNpsa45jHpVnt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMXUqtD/93BwAfQrCQPriFh3+Gyp2/q6feAa43jN8hOTdv0Eh5
+	JrFXyLEtup7nkm5bMh2FSkNpCAKLh0lgUjj7NfdxNoJfT6JHrdipeR+OcR6/IB8WmQaScEoZHDJ
+	eysltyk1TrxcEXZ8kd1KaeKWxbp2wXuKzkADvrUvjPw==
+X-Gm-Gg: Acq92OEyeAOnbBOt4EF/VcZwNwit+YeVHYIuuwJkXSVRcN+wJiYnEdaRiUfQ7dx74yE
+	kpO17PzLbULC0kHZf4p/0EssmeAIbLZ/2fd5Ogkt88wNnvuPvw0bJyQaDsKYDhRPNjQ33WwkBY1
+	BRHhwYWCRF5wVvS5nuUbKo/IoJKmRxDTDfXrx3HQr4iZo46KVduBjmxTyVJa6CskQS4qtYEsLto
+	zPGHt4HskfvCm4YqDqzZSA6NwhKzV9jGOjs/7HdrJmFxZdcEmBx6ohCCw5N1lJ5NzK6AKpKXsBi
+	ExnWZI5JtTaIB8r+7TEdOtGjOLl9tckrx2Om2BUDeXYcwXOw
+X-Received: by 2002:a17:907:cb89:b0:bec:fa92:d370 with SMTP id
+ a640c23a62f3a-bf0b32b528bmr439481266b.33.1780574242197; Thu, 04 Jun 2026
+ 04:57:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260603-acpm-tmu-v8-0-0f1810a356e6@linaro.org> <20260603-acpm-tmu-v8-3-0f1810a356e6@linaro.org>
+In-Reply-To: <20260603-acpm-tmu-v8-3-0f1810a356e6@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 4 Jun 2026 12:57:10 +0100
+X-Gm-Features: AVHnY4KWKy6Zaqr6HchCfbtUy4GGigvt_YXk_Yu2tFv0GUwKJqXP0QbORP7VN80
+Message-ID: <CADrjBPrb+3pFPFRnufY+wYvu_d4NH5a0ZXLXEju9HB1=Tc3rVQ@mail.gmail.com>
+Subject: Re: [PATCH v8 3/5] MAINTAINERS: Add entry for Samsung Exynos ACPM
+ thermal driver
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, jyescas@google.com, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-hardening@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[netcube.li,none];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[netcube.li:s=s1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306792-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:mripard@kernel.org,m:lukas.schmid@netcube.li,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-306795-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[lukas.schmid@netcube.li,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_RECIPIENTS(0.00)[m:tudor.ambarus@linaro.org,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bzolnier@gmail.com,m:krzk@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:andre.draszik@linaro.org,m:alim.akhtar@samsung.com,m:jyescas@google.com,m:linux-kernel@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
-	DKIM_TRACE(0.00)[netcube.li:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukas.schmid@netcube.li,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,arm.com,gmail.com,linaro.org,samsung.com,google.com,vger.kernel.org,lists.infradead.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,netcube.li:mid,netcube.li:dkim,netcube.li:from_mime,netcube.li:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:from_mime,linaro.org:email,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2ED3E63FB2C
+X-Rspamd-Queue-Id: 7FE0063FB61
 
-NetCube Systems OpenNMC is an open replacement for APC SmartSlot Management
-Cards. It is based on the Nagami System-on-Module. It breaks out the
-following interfaces:
+On Wed, 3 Jun 2026 at 14:00, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>
+> Add a MAINTAINERS entry for the Samsung Exynos ACPM thermal driver.
+>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> ---
 
-- 10/100 Mbps Ethernet
-- USB Type-C OTG using a TUSB320 (usb0)
-- USB Type-C Console Port using a CH340 (uart3)
-- USB Type-A Host with internal CH334 USB-Hub (usb1)
-- MicroSD Slot with Card-Detect (mmc0)
-- WiFi/Bluetooth using the modules built-in ESP32
-- SmartSlot serial interface (uart4)
-- DS3232 RTC with CR1220 Battery Backup
-- Extension connector providing SPI,I2C,USB,CAN,UART for future use.
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
-Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
----
- .../sun8i-t113s-netcube-dobermann.dts         | 149 ++++++++++++++++++
- 1 file changed, 149 insertions(+)
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dts
-
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dts b/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dts
-new file mode 100644
-index 000000000000..97dd4b950dd8
---- /dev/null
-+++ b/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dts
-@@ -0,0 +1,149 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2026 Lukas Schmid <lukas.schmid@netcube.li>
-+ */
-+
-+/dts-v1/;
-+#include "sun8i-t113s-netcube-nagami.dtsi"
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "NetCube Systems OpenNMC (dobermann)";
-+	compatible = "netcube,dobermann", "netcube,nagami",
-+		     "allwinner,sun8i-t113s";
-+
-+	aliases {
-+		serial2 = &uart4; // UART on SmartSlot
-+		rtc0 = &ds3232;
-+		rtc1 = &rtc; // not battery backed
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led_heartbeat_green: led-heartbeat-green {
-+			gpios = <&pio 6 14 GPIO_ACTIVE_HIGH>; /* PG14 */
-+			linux,default-trigger = "heartbeat";
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+	};
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	tusb320: typec@60 {
-+		compatible = "ti,tusb320";
-+		reg = <0x60>;
-+		interrupts-extended = <&pio 3 22 IRQ_TYPE_LEVEL_LOW>;  /* PD22 */
-+	};
-+
-+	ds3232: rtc@68 {
-+		compatible = "dallas,ds3232";
-+		reg = <0x68>;
-+	};
-+};
-+
-+/* microSD Card Slot on the board */
-+&mmc0 {
-+	vmmc-supply = <&reg_vcc3v3>;
-+	disable-wp;
-+	bus-width = <4>;
-+	cd-gpios = <&pio 6 15 GPIO_ACTIVE_LOW>; /* PG15 */
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	gpio-line-names = "", "", "", "", // PA
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "SMART_TX", "SMART_RX", // PB
-+			  "EXT_IO3", "EXT_IO2", "CONSOLE_TX", "CONSOLE_RX",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "eMMC_CLK", "eMMC_CMD", // PC
-+			  "eMMC_D2", "eMMC_D1", "eMMC_D0", "eMMC_D3",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "", // PD
-+			  "", "", "", "",
-+			  "", "USB_SEC_EN", "EXT_SPI_nCS", "EXT_SPI_SCK",
-+			  "EXT_SPI_MOSI", "EXT_SPI_MISO", "EXT_IO5", "EXT_IO4",
-+			  "SMART_SEL", "", "", "",
-+			  "I2C3_SCL", "I2C3_SDA", "TUSB320_nINT", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "ETH_CRSDV", "ETH_RXD0", "ETH_RXD1", "ETH_TXCK", // PE
-+			  "ETH_TXD0", "ETH_TXD1", "ETH_TXEN", "",
-+			  "ETH_MDC", "ETH_MDIO", "I2C3_nINT", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "uSD_D1", "uSD_D0", "uSD_CLK", "uSD_CLK", // PF
-+			  "uSD_D3", "uSD_D2", "TUSB320_ID", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "ESP_CLK", "ESP_CMD", "ESP_D0", "ESP_D1", // PG
-+			  "ESP_D2", "ESP_D3", "ESP_TXD", "ESP_RXD",
-+			  "ESP_nBOOT", "ESP_nRST", "I2C2_SCL", "I2C2_SDA",
-+			  "EXT_IO1", "EXT_IO0", "LED_HEARTBEAT", "SD_DETECT",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "";
-+};
-+
-+/* SmartSlot serial */
-+&uart4 {
-+	pinctrl-0 = <&uart4_pb_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	extcon = <&tusb320 0>;
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>; /* PF6 */
-+	status = "okay";
-+};
--- 
-2.47.3
-
-
+>  MAINTAINERS | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e8218c2749b7..6a8521270daf 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -23661,6 +23661,14 @@ F:     drivers/clk/samsung/clk-acpm.c
+>  F:     drivers/firmware/samsung/exynos-acpm*
+>  F:     include/linux/firmware/samsung/exynos-acpm-protocol.h
+>
+> +SAMSUNG EXYNOS ACPM THERMAL DRIVER
+> +M:     Tudor Ambarus <tudor.ambarus@linaro.org>
+> +L:     linux-kernel@vger.kernel.org
+> +L:     linux-samsung-soc@vger.kernel.org
+> +S:     Supported
+> +F:     Documentation/devicetree/bindings/thermal/google,gs101-tmu-top.yaml
+> +F:     drivers/thermal/samsung/acpm-tmu.c
+> +
+>  SAMSUNG EXYNOS MAILBOX DRIVER
+>  M:     Tudor Ambarus <tudor.ambarus@linaro.org>
+>  L:     linux-kernel@vger.kernel.org
+>
+> --
+> 2.54.0.1013.g208068f2d8-goog
+>
 
