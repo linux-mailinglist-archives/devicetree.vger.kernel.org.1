@@ -1,311 +1,268 @@
-Return-Path: <devicetree+bounces-306600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306605-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id R08UL64VIWoP/AAAu9opvQ
-	(envelope-from <devicetree+bounces-306600-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:05:34 +0200
+	id CkHaH0AWIWoy/AAAu9opvQ
+	(envelope-from <devicetree+bounces-306605-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:08:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8EC63D22F
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:05:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E747363D26E
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:07:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=fr82q52W;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=ezDGFx2g;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306600-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306600-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=LcYO6OFt;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306605-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306605-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 981BD3048143
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:01:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0BCEE305FB26
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:01:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C0F3C2784;
-	Thu,  4 Jun 2026 06:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 243163D5676;
+	Thu,  4 Jun 2026 06:01:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E26913AFAE0
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 06:01:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC2483D45EA
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 06:01:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780552868; cv=none; b=VsDuPXBG1s+EgJ6ZBlrI/HU95wZ0zYst6hGzfkHmBy41X/lRR4owQoDeNGs1glQxnDquf9NrPuUvS8dRTukSDtOdRGvbVdKxZUFNBkml2bBmHB+jk01wlvZ13DJs70n3aM/4jYtk0GQOnzPV7c0FslB61BbWEFHLhBDQu6XmUmY=
+	t=1780552903; cv=none; b=rozrCGwyRC2UGhbxB4XkMY9JRQdI2t7QcNHg3TvigG3+xZgwu0IXVj1f6zVFSZcJsFI8BUk/jtomJSaqjUzjTp9ah/R13wTqnvpDXEaxOEamFgo0hRawMWaDppC+3G40vm56hpzb0K8rmzVNgYH4csh2Zucc5iriAtvMSaE+k4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780552868; c=relaxed/simple;
-	bh=MvMbsSGoBafGYAqgnlT2r4yR/KgHACSna2mBXP8Ehb4=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=qnDvN0nh8/6yT5CIY7WE90CiGXJnlsOHve7HbAcIeUdryylQk8fiJEVM4aW7rrMmeOgSsX9ZNlj/P/MxLJil+AwV/pL1flqnTAGY36L7MdELgJifC+SS1Nzo22SmkptAX3BSrcFOlrLh5s2U41/o1o0GDIG98gpl5b/xRRk8lZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fr82q52W; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ezDGFx2g; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6540ntF3313660
-	for <devicetree@vger.kernel.org>; Thu, 4 Jun 2026 06:01:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9Rxy84CQtSfLdf5SWlBRH0Dm+BYAxOch+/SAQBO+pwA=; b=fr82q52WQjC9rp8l
-	y1YLPntQJ6LDvPOhZFNfgKMWw8M3pI6lLs3N04QggFm8IWzIrFG2h3HnB9xVOIqE
-	XniqPWq6uuCW9kUm41E+4F8W6JtHuNZbfkBBZTU6q/aVrjBlRNfGk8P7LOBSLaV7
-	RDX/CL4u4OFvzHfGVCVzbSqbvlAAF8A/tQHfIt9VMkB5JQNXz17Z1vX4uvWCURqJ
-	69inmbiUJ2mIhcQDS6z0igVBFj7WZEFL03qybSwlsmR4EKfE0Lxd0nLuAe4DVQ58
-	JUiOSYrzWy88teNRTDThSA4UrNIQaQg39Fdeyq30M0OsPihyaMDWdRhkZUWZyAQj
-	6nIqvg==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ejy5v0vwf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 06:01:05 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2c0c36f4b76so4275495ad.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 23:01:05 -0700 (PDT)
+	s=arc-20240116; t=1780552903; c=relaxed/simple;
+	bh=GPcu4EJEbQ66YIl1AFF/3SAr9vb6VsAorD6jLaSvXLw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=p7cMK2skoDPXYUR+UoBpyAozU/Jf5zMpoG3ElkKMscQ0lbAlYMUgN0kwbkltokHiP+35RvlhWKU18u5n9n9HfMs4thoiRj6tySlfN+HhtqFUDipv4xRqAoPTpPdudDE+84K3sMaYABJ/hmCINxQR6QET0tEd8wJitp17eMin36I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LcYO6OFt; arc=none smtp.client-ip=209.85.210.171
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-842273a2c4dso223579b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 23:01:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780552865; x=1781157665; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9Rxy84CQtSfLdf5SWlBRH0Dm+BYAxOch+/SAQBO+pwA=;
-        b=ezDGFx2gurJgPZlnOz6bi5hn081b/S2BBYY9/xKVB6MI9O3dgQhGkYSxWZG9lTrLE2
-         clGKhaqfoM2fcK0rCJEK0DeLJQQp5bMepHPZDFAFwemAkHjYAJ0A6LmhodrSB5tsuz4p
-         pfZ6Nt2mDcIsejhxETA2HJqcptozoBDEiTThrDXCltmfkh7GNWHoCPk1RFb/yzBFceG6
-         FS3zOYLqYsMX4Mbv5tbsXMsBUjhTyr68m8joQbLJiWMG5aNAZ4XXnwhq/kM68zXllLUn
-         G3eHGsWmPumcnpaouALJkF3XcPo1FdQiVFiT0H+6Lmrk/iN7yc62O1D1kF3kRxkkA/vM
-         w/vw==
+        d=gmail.com; s=20251104; t=1780552901; x=1781157701; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NtaAcXvkd+ZHvkxzFNtCE7f1OoHFsi4VoYohL3Cqqs4=;
+        b=LcYO6OFtRMvApI3BJRBbR4+o5M7c+RmvfRKyKuSaCozYQgZn2MB9D7r+3f4TQN3cUc
+         XaD23IF5IYNnN2qthWO0+xLzVNiBlQCpihZcYRta5g1yvB/Qn93IxqebXRdNJ4N+CK/y
+         RKQ6X8FLy+75quN3JVecImcSRHXoG2SG0uEsO8M79dmNFRSGv2+P6N9pTq3lCUGcGVbU
+         vryb4nFS6DWrRIgOq1HQrQUn99bGFiE7d1AHB6rmcGqAUdAevkR+oScCsu7K/8hviIoq
+         8ZYy0G/OYsOrets9P/o4VMSQ/PdbBqA76sNj0SMmzXwWKZ6bfHFF0EXNnHmg2e3rk8HG
+         sP5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780552865; x=1781157665;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Rxy84CQtSfLdf5SWlBRH0Dm+BYAxOch+/SAQBO+pwA=;
-        b=FX6+TPgnCFA/EeA5BOW+b6BBCiITWDBuy+QZBE2Bsfp7sbxqWvf/rN/k3cIUfWwteu
-         OhaEx/67+nXC8EzcXptWF3Ys5ROjpdiQ4/AvRc1zIqkCgTsV/YjGrA4eKVP+921SVDIk
-         GPD34gAlGuPZKayDhPtedgK5JOw+8Zj2OwHMsnRA37eWZqcC/PVBsD9Pu5qhlCbyVYW4
-         tLudtxXQjL0Zj02vJv9ciiVucNubUNH6MrxWVmKECwmGpZAJVP2Qqn6YjyfTicZTY27w
-         HzlEf/2nJQcyLLxykfZNNReJJvpUwWdfhp+iT8Zjt1GEe6wRj7PAs3Nt4fqQwZpVEzhX
-         cWKg==
-X-Forwarded-Encrypted: i=1; AFNElJ9vfwBdmfb0GE9G2X9hCVZpfHv6LjpwxERIrUSGKGL8Gqe8yWFGk//kQl94Vz3k3toSqsTWjrt3TflT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxVQV7awBHZYwVNJLTrvnvXeMFyhuA6nZGA0ivYQmYilN+i1D4
-	Z5ttWBAB4vgjB54PySGanHndCLsogCjCCsO0ZF0UpZHM0A2oDlwEVS7F9UTs3sEKeYhCL16nn7J
-	RiZoLQxrNe8ZxzN6PkpAsnwUttbS5lcePbWB0DEDzyj81ngrgUsKYifEI2KLajNCk
-X-Gm-Gg: Acq92OEmp/tECJvy/DDsv/QVuqujpcB5lQolt6jGO+7K84xy5/3Ho3t23xxls9U/qKX
-	Oc9VVo+jU3C1Nc4VjDWOrZ0bApHQv2vQ+mr8NPmVXrqwfJcavq0MNzYf2xpBDXR5EOUkvA7Eyo1
-	BkYDmNBt4R9t1oInP9Xn31kmoik/+rQC1Pfyvm2I+fJ0U4dXv8VLCUx0SyroPnpXXXxLHPCx92W
-	gBZiLob6v6Zi50V2le7jSrgl9E/Au3GpR9li0svi8gQAUkiARWpIex4D1X30iKUg6vzeK6SoWEP
-	TnCi5v46n1z5lRaeVsejMRR/rmqvp3DRfvZzzDnXA+lOQ9o1HcnVr2MQhjS545Envwq2mhmgjv5
-	rBddDvJ/HEj2fDMVen+KoSsex0Q21WaAN2tih+qPAe4BXzvLgby0y5oS89/oR06qE
-X-Received: by 2002:a17:902:b58c:b0:2b9:e82f:bfef with SMTP id d9443c01a7336-2c163fa4e05mr46112415ad.21.1780552864481;
-        Wed, 03 Jun 2026 23:01:04 -0700 (PDT)
-X-Received: by 2002:a17:902:b58c:b0:2b9:e82f:bfef with SMTP id d9443c01a7336-2c163fa4e05mr46111905ad.21.1780552863956;
-        Wed, 03 Jun 2026 23:01:03 -0700 (PDT)
-Received: from [10.206.105.200] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c164f6d395sm61450955ad.17.2026.06.03.23.00.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Jun 2026 23:01:02 -0700 (PDT)
-Message-ID: <2e4ff886-af8d-b9cb-75f0-ad9bc081bf9b@oss.qualcomm.com>
-Date: Thu, 4 Jun 2026 11:30:56 +0530
+        d=1e100.net; s=20251104; t=1780552901; x=1781157701;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NtaAcXvkd+ZHvkxzFNtCE7f1OoHFsi4VoYohL3Cqqs4=;
+        b=sloRYWh4gMgr6M7GzoHWPqL2tblOqAyFri+0LlIDimUXdlmtiFPS3ArHO0CZpDyzXe
+         ux+RyGDA7WNZCGZvjMn8kPeL+92KgXT19YibU+tpPtVG5B/xTj43NXy36d1Q+MSB+z+v
+         TZWsguMpmlbsRKP8eDECZGHZ2ZFg4is6JAMl2wra+bndjWC+T1OUHRpWsxKFA/fIl5OS
+         TWBissCaRBNPjFmOFyIedU7WXIhu6bem9ehlzFFVMHusoegC7gPP7NZQy08HiFWTTmQE
+         zcqPnqL/dns6BdyIx94frqAYDvhuo3kCm126tIslYg9Xr7ubppXumJ50kOUpycgvDPZZ
+         7pYQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+I2T1YEDXRiEmyr2v4qwHFvAg+D4VXP/3yK3BuojdKyQEBW9S/A/fAvRp5zbc1gFI9evQMD0KXGVaT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTU6vZUdYUP5Q14lTst2BM3jFH8MNklj2Q13EGOakE5dQa2uug
+	tdoogl2kK6sJutOQJXbO6y8soGqSLfNPIFjw4GkPL/oyS1Z/8UaKviaS
+X-Gm-Gg: Acq92OGpIBRWh4h8PvN8JleeuwLG0IptVG0I/mLTsdUDtCkaWX+jjR6V5TdfSvwBGUM
+	9hHfxSCWT7XIxdcu5Mq8VJn4DnD9VIDAZAFfoXQz61lLyxLwBgzu+KBmim1PkST2oon8x5FQj23
+	EIGpfpRtj87WcW50pggKYe4iph5abmPLq+hgNOmsghuQ73SsOC2ey6v3uM5nC8Hy8kXH2MMwgRH
+	7FTVR3IwUuCz6lfkO+/Q9z9n8as0Y7s37i9VddNGbcCsT6TyfYlByy7DcvREX6yS9fz6o5l8mCA
+	eItxzgBiPVs0VWk11mDTmcizd3RPf5wbgsxCJvvxU8n+Pvz5n5KIckhV5SQgk+StLQMV/6ij5sh
+	4rb21mIplFVWWrIyqoABhzcWnfdtlxStTCM+WQ1p3Mqujeaj9AOfF8wRSNYt6Sr+kpE7OpVwzii
+	L6+DPY6OmkFw900/u61lfQsi77RpJoHhy63y2Fn+B2IHMJIH6JIAJzz1Cg3ay+wX90hmx9TM0Ro
+	Ec4b5GsqxusVfKEk5QJ
+X-Received: by 2002:a05:6a00:3687:b0:83e:f208:b0f8 with SMTP id d2e1a72fcca58-84284fad484mr6307177b3a.47.1780552900943;
+        Wed, 03 Jun 2026 23:01:40 -0700 (PDT)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8428706fa9asm4178130b3a.45.2026.06.03.23.01.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jun 2026 23:01:40 -0700 (PDT)
+From: Zi-Yu Chen <zychennvt@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Zi-Yu Chen <zychennvt@gmail.com>
+Subject: [PATCH] arm64: dts: nuvoton: ma35d1: add CAN nodes
+Date: Thu,  4 Jun 2026 14:01:04 +0800
+Message-Id: <20260604060104.1662700-1-zychennvt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-From: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: milos: Add Iris VPU v2.0
-To: Alexander Koskovich <akoskovich@pm.me>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260529-milos-iris-v2-0-7a763d7195ae@pm.me>
- <20260529-milos-iris-v2-3-7a763d7195ae@pm.me>
-Content-Language: en-US
-In-Reply-To: <20260529-milos-iris-v2-3-7a763d7195ae@pm.me>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA0MDA1NCBTYWx0ZWRfX0p25hZVrOeks
- GgryizOW0JAjdPD1aJNBR7eRAY1LF0JsZHNYqS2LdP7vWC+90iwzavIhCWWu6XLYYKMi+jdrCTN
- 1/h/sEsZ8M+da6kKmOfaTPXjspA2RgCcY1BoDqm0IFombhXijuK7ZXbD76LkQrjU/466rPnuuZ0
- wsgbf+iizTpVaL/L09B0WKrchBQd0KJv97sALcrPmtlW8ah6XfUaQtDi9WZbS6o85dow4KDSWyS
- OYmV9JkGdA8d6gxfhHuKaA6+XQJmC3vtGNuztfeD6h2fl3bR5X+mb4hd83rcjYQfJdJu6SlUsZf
- yLoYexv39no+6pjXuGVIZTOJTFo/j226N/8qzVbLQ0ucu5j62v/Jrzrfmwmc7BkZ3c03Wcq98Xy
- 1OOVtTi8NUOwLk8pSN7qUf/+a1/TFeJKQGhteSuREc5ZLeLv/Ekx0OJEqG5S227031K+gZGScDE
- 28IE/XnDZguU6Scd8xA==
-X-Proofpoint-ORIG-GUID: VjdDFoTteO_DUSoufUjp_m6M8AS5X8ZH
-X-Authority-Analysis: v=2.4 cv=afRRWxot c=1 sm=1 tr=0 ts=6a2114a1 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=EUspDBNiAAAA:8 a=cPBJnOxHEKv7ehhu7hMA:9 a=T0nNOjck6VvS5lE6:21
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-GUID: VjdDFoTteO_DUSoufUjp_m6M8AS5X8ZH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-04_02,2026-05-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 impostorscore=0 suspectscore=0 spamscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606040054
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306600-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,vger.kernel.org:from_smtp,pm.me:email];
-	FORGED_SENDER(0.00)[busanna.reddy@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS(0.00)[m:akoskovich@pm.me,m:vikash.garodia@oss.qualcomm.com,m:dikshita.agarwal@oss.qualcomm.com,m:abhinav.kumar@linux.dev,m:bod@kernel.org,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-media@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[busanna.reddy@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[nuvoton.com,lists.infradead.org,vger.kernel.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306605-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:zychennvt@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0D8EC63D22F
+X-Rspamd-Queue-Id: E747363D26E
 
+Add controller nodes for the four Bosch M_CAN blocks found on the
+Nuvoton MA35D1 SoC.
 
-On 5/30/2026 2:28 AM, Alexander Koskovich wrote:
-> Add devicetree nodes for the Iris codec (VPU 2.0) found on the Milos
-> platform.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
-> ---
->  arch/arm64/boot/dts/qcom/milos.dtsi | 85 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 85 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/milos.dtsi b/arch/arm64/boot/dts/qcom/milos.dtsi
-> index 4a64a98a434b..94a3c51d1d0f 100644
-> --- a/arch/arm64/boot/dts/qcom/milos.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/milos.dtsi
-> @@ -7,6 +7,7 @@
->  #include <dt-bindings/clock/qcom,milos-dispcc.h>
->  #include <dt-bindings/clock/qcom,milos-gcc.h>
->  #include <dt-bindings/clock/qcom,milos-gpucc.h>
-> +#include <dt-bindings/clock/qcom,milos-videocc.h>
->  #include <dt-bindings/clock/qcom,rpmh.h>
->  #include <dt-bindings/clock/qcom,sm8650-tcsr.h>
->  #include <dt-bindings/dma/qcom-gpi.h>
-> @@ -1835,6 +1836,90 @@ usb_1_dwc3_hs: endpoint {
->  			};
->  		};
->  
-> +		iris: video-codec@aa00000 {
-> +			compatible = "qcom,milos-iris";
-> +			reg = <0x0 0x0aa00000 0x0 0xf0000>;
-> +
-> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH 0>;
-> +
-> +			power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
-> +					<&videocc VIDEO_CC_MVS0_GDSC>,
-> +					<&rpmhpd RPMHPD_CX>,
-> +					<&rpmhpd RPMHPD_MX>;
-> +			power-domain-names = "venus",
-> +					     "vcodec0",
-> +					     "cx",
-> +					     "mx";
-> +
-> +			operating-points-v2 = <&iris_opp_table>;
-> +
-> +			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
-> +				 <&videocc VIDEO_CC_MVS0C_CLK>,
-> +				 <&videocc VIDEO_CC_MVS0_CLK>;
-> +			clock-names = "iface",
-> +				      "core",
-> +				      "vcodec0_core";
-> +
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-> +					 &cnoc_cfg SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>,
-> +					<&mmss_noc MASTER_VIDEO QCOM_ICC_TAG_ALWAYS
-> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-> +			interconnect-names = "cpu-cfg",
-> +					     "video-mem";
-> +
-> +			memory-region = <&video_mem>;
-> +
-> +			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
-> +				 <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
-> +			reset-names = "bus",
-> +				      "core";
-> +
-> +			iommus = <&apps_smmu 0x1960 0>,
-> +				 <&apps_smmu 0x1967 0>;
-> +
-> +			dma-coherent;
-> +
-> +			/*
-> +			 * IRIS firmware is signed by vendors, only enable on
-> +			 * boards where the proper signed firmware is available.
-> +			 */
-> +			status = "disabled";
-> +
-> +			iris_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-240000000 {
-> +					opp-hz = /bits/ 64 <240000000>;
-> +					required-opps = <&rpmhpd_opp_svs>,
-> +							<&rpmhpd_opp_svs>;
+Additionally, configure pinctrl and enable CAN1 and CAN3 on the
+MA35D1 SOM board.
 
-This doesn't seem to fully address Dikshita comment from v1 — I believe the
-suggestion was to update for the mx rail only.
+Signed-off-by: Zi-Yu Chen <zychennvt@gmail.com>
+---
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      | 26 ++++++++
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 60 +++++++++++++++++++
+ 2 files changed, 86 insertions(+)
 
-> +				};
-> +
-> +				opp-338000000 {
-> +					opp-hz = /bits/ 64 <338000000>;
-> +					required-opps = <&rpmhpd_opp_svs>,
-> +							<&rpmhpd_opp_svs>;
-> +				};
-> +
-> +				opp-366000000 {
-> +					opp-hz = /bits/ 64 <366000000>;
-> +					required-opps = <&rpmhpd_opp_svs>,
-> +							<&rpmhpd_opp_svs>;
-> +				};
-> +
-> +				opp-444000000 {
-> +					opp-hz = /bits/ 64 <444000000>;
-> +					required-opps = <&rpmhpd_opp_svs_l1>,
-> +							<&rpmhpd_opp_svs_l1>;
-> +				};
-> +
-> +				opp-552000000 {
-> +					opp-hz = /bits/ 64 <552000000>;
-> +					required-opps = <&rpmhpd_opp_nom>,
-> +							<&rpmhpd_opp_nom>;
-> +				};
-> +			};
-> +		};
-> +
->  		videocc: clock-controller@aaf0000 {
->  			compatible = "qcom,milos-videocc";
->  			reg = <0x0 0x0aaf0000 0x0 0x10000>;
->
+diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
+index f6f20a17e501..1b8ea14d3446 100644
+--- a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
++++ b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
+@@ -37,6 +37,18 @@ clk_hxt: clock-hxt {
+ 	};
+ };
+ 
++&can1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_can1>;
++};
++
++&can3 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_can3>;
++};
++
+ &clk {
+ 	assigned-clocks = <&clk CAPLL>,
+ 			  <&clk DDRPLL>,
+@@ -56,6 +68,20 @@ &clk {
+ };
+ 
+ &pinctrl {
++	can-grp {
++		pinctrl_can1: can1-pins {
++			nuvoton,pins = <11 14 4>,
++				       <11 15 4>;
++			bias-disable;
++		};
++
++		pinctrl_can3: can3-pins {
++			nuvoton,pins = <11 10 3>,
++				       <11 11 3>;
++			bias-disable;
++		};
++	};
++
+ 	uart-grp {
+ 		pinctrl_uart0: uart0-pins {
+ 			nuvoton,pins = <4 14 1>,
+diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+index e51b98f5bdce..584dd8d44701 100644
+--- a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
++++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
+@@ -244,6 +244,66 @@ gpion: gpio@340 {
+ 			};
+ 		};
+ 
++		can0: can@403c0000 {
++			compatible = "bosch,m_can";
++			reg = <0x0 0x403c0000 0x0 0x200>, <0x0 0x403c0200 0x0 0x2000>;
++			reg-names = "m_can", "message_ram";
++			interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "int0", "int1";
++			clocks = <&clk HCLK3>, <&clk CAN0_GATE>;
++			clock-names = "hclk", "cclk";
++			assigned-clocks = <&clk APLL>, <&clk CAN0_DIV>;
++			assigned-clock-rates = <200000000>, <50000000>;
++			bosch,mram-cfg = <0x0 4 4 32 32 32 8 8>;
++			status = "disabled";
++		};
++
++		can1: can@403d0000 {
++			compatible = "bosch,m_can";
++			reg = <0x0 0x403d0000 0x0 0x200>, <0x0 0x403d0200 0x0 0x2000>;
++			reg-names = "m_can", "message_ram";
++			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "int0", "int1";
++			clocks = <&clk HCLK3>, <&clk CAN1_GATE>;
++			clock-names = "hclk", "cclk";
++			assigned-clocks = <&clk APLL>, <&clk CAN1_DIV>;
++			assigned-clock-rates = <200000000>, <50000000>;
++			bosch,mram-cfg = <0x0 4 4 32 32 32 8 8>;
++			status = "disabled";
++		};
++
++		can2: can@403e0000 {
++			compatible = "bosch,m_can";
++			reg = <0x0 0x403e0000 0x0 0x200>, <0x0 0x403e0200 0x0 0x2000>;
++			reg-names = "m_can", "message_ram";
++			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "int0", "int1";
++			clocks = <&clk HCLK3>, <&clk CAN2_GATE>;
++			clock-names = "hclk", "cclk";
++			assigned-clocks = <&clk APLL>, <&clk CAN2_DIV>;
++			assigned-clock-rates = <200000000>, <50000000>;
++			bosch,mram-cfg = <0x0 4 4 32 32 32 8 8>;
++			status = "disabled";
++		};
++
++		can3: can@403f0000 {
++			compatible = "bosch,m_can";
++			reg = <0x0 0x403f0000 0x0 0x200>, <0x0 0x403f0200 0x0 0x2000>;
++			reg-names = "m_can", "message_ram";
++			interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "int0", "int1";
++			clocks = <&clk HCLK3>, <&clk CAN3_GATE>;
++			clock-names = "hclk", "cclk";
++			assigned-clocks = <&clk APLL>, <&clk CAN3_DIV>;
++			assigned-clock-rates = <200000000>, <50000000>;
++			bosch,mram-cfg = <0x0 4 4 32 32 32 8 8>;
++			status = "disabled";
++		};
++
+ 		uart0: serial@40700000 {
+ 			compatible = "nuvoton,ma35d1-uart";
+ 			reg = <0x0 0x40700000 0x0 0x100>;
+-- 
+2.34.1
+
 
