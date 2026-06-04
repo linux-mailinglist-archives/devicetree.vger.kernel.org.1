@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-306749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306751-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XXzyOthPIWpXDAEAu9opvQ
-	(envelope-from <devicetree+bounces-306749-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 12:13:44 +0200
+	id VA+8IYtSIWqKDQEAu9opvQ
+	(envelope-from <devicetree+bounces-306751-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 12:25:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B9F963EE5B
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 12:13:44 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84F2563EFD6
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 12:25:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=lf02ons9;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306749-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306749-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="JY4tSe/2";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306751-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306751-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 718BE30B29F5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 10:07:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E382030E8289
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 10:09:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB13376479;
-	Thu,  4 Jun 2026 10:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F0F3A5E99;
+	Thu,  4 Jun 2026 10:09:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 356BE30DEA6
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 10:07:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F930390989
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 10:09:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780567621; cv=none; b=rsFZVEIZnvWUjpjuzOKwl0zWDq2hDF03r12vdalKnek3cTv10+gbfRqXEas+OfzlE297H+9YhXH/niQISmOsmQthxEbXIJDBiKL706v2DDUUbHVGmKJqFUAAAvisKbz3WygX1n40YKQrId35MhiRLx3VuaDF/LkqxYYm17Y0jig=
+	t=1780567778; cv=none; b=QqO2JJDwqJndKM/IbJ1xf3SseSAvOSKgECWR4OSvnUxJEy3AD6NjGd4KhhpzK2nt/o/Ev+8hehqW8kwJ5wgc1PiFj073GqcVbFSkTFxhMYz0La3zFfrRdch+5Hyi4sfmitxwL20B/iRE0UcexAslbiR4rGieI40Qy9tmLhgrYvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780567621; c=relaxed/simple;
-	bh=aWQNwrGhLrvNTQcedUnw5Zv25r/4ZU4XEGrfG6DmwE8=;
+	s=arc-20240116; t=1780567778; c=relaxed/simple;
+	bh=B2CnKvGteEd3Ogga1Fg7bneFO20MG2+ueysH7w2tBBY=;
 	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F0/amiNvoTIY/QbTkebzFeyQARV2USvbWHahdeFMIZh2kxF5m9dwfX16+pmCNwjino8tLkz2D4rv8nHmy3jLc/UQ5jFoOPBJA/kRLd6ukEh+8HtadlmVS7x/Juo07nlPDs1fgmckOLwaEk7FF9fTQsEmIgdrTRcNVC7fGpQIP3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lf02ons9; arc=none smtp.client-ip=209.85.128.46
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4903997fcb5so4397785e9.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 03:07:00 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NdZ1zZ4/yvy7hX8RIi3Hysp/3wbLjFbrdxE6oTc14RIozsU9TRIHOjmefcqYZP+gyCFF+lkgtyhuXk8N6x3VDEFyT1YlCmPhSteqKOFxDUzdRNw9cSedenrAWUyICQppJzqGhHWtJM4ipbvoQOFGh5UI+JfF4cCAT/woI6cdC8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JY4tSe/2; arc=none smtp.client-ip=209.85.208.42
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6870ad8072eso457237a12.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 03:09:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780567619; x=1781172419; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1780567776; x=1781172576; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SNSiTxO5U+OGmSsX5QsPHvILMfiW6g2hJB0TI+2zqrs=;
-        b=lf02ons9EPlxYHI8acFUzS9EKkvjAwyd7l9jN69qEXMAUVpyPxuiiR1NFZEmULEqQh
-         afc/eNmeeULukc7MiGLpKM7BjbYnGOiQygoa4hzCxB46POrftHMuq0Z9rIV9MU5nFhiA
-         1YzPDXqw2/tWz+WmpkyBmNqMvtnuntxwEyEFW/HtokTu1pFdGutddJoY7yTnlV5d4aEf
-         ePE0fO0adgpjngIJZqVgmaYrr01yjj+BParMG9q5DIy0X0dQyK5SXP0pvFo2WSYaaQ0p
-         gI7YeHGv3yVROA+w6oP7cTC0wlU9Z46d6OGHr9L0ZqDbk0rqLqx8zDQ2ji7NuZ0xxe0P
-         4oCg==
+        bh=3GPJ5N+yj+5C24kf/hzt0wYoGPWLbKx8pufh7NjXz1U=;
+        b=JY4tSe/246+USi8aySI278Od4y/o+RB8O057qGMWXJZKZiq7d+4sA7niTg7Fcv2FrQ
+         hPdsB677cImBHagtDXv+0xLl/x7t1VCMRJOTEB9MVe8pIiE533+VF9yzjJ/9Zelmp1bT
+         zVvUELeDW2aHV7/OrfHHqZ5qjS7fRdpfmvDo9wYUuRjzYITAV4lVZ/s/05S5R8LcqVZr
+         usA0gR+BqYWcSUvIxksSPbeqIagDL03hHr/UjZyjV2PuFeclfv12Wfz4G47hxd/Vacv8
+         dYaq+37yP7pPK/8bAsZIDsQYSKWk6B2bVsuPEYB/Fe6eFkhKCmMZOkMFe+R3T/M6Jjce
+         umNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780567619; x=1781172419;
+        d=1e100.net; s=20251104; t=1780567776; x=1781172576;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SNSiTxO5U+OGmSsX5QsPHvILMfiW6g2hJB0TI+2zqrs=;
-        b=qBd/e5U/3q5ZNaTAeuSK6UXotpsbpyUxVhKN6Zp1Pi80l+6jkttRa4Olot78CnWfW/
-         Nu4ERP5k7EVwdV8/bsbOXFVfHWQFMUPUit250qyFhZd90IZ+asbI17Kw4hdSrrDO3vcv
-         o5X9pxOf8VSGLtrT9jNLQgS06tA41WGjNlaKG49mFlYKUXJAntFz2ujxbZhK0zPpO2w2
-         i9okq4NeyhBG712bIBh0x+1hO4LBx/LtFlQWBDPzh7gtTGZEjGUHNvrIhBXtUTH3ameA
-         S8wudRIGqolP+Y0w+kgwEtx6WXFpEoBHWDQlBvQxbc0lKfjr1FoJ2IUAqaq2eOYILM1f
-         tsTg==
-X-Forwarded-Encrypted: i=1; AFNElJ+EMUuCDM6Cvu2KMJGjiNla//KQSLYM5vETiaDl35KUz5pXUxgOXH+rUpwAM840TPkiRuJ5BHrjKqFG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBaILifewnZXOHJ1AMPIdWOGb/0Sg4tfMT6aoQ0It2Kzf2rUO1
-	mdZt0tT9P3fPlpGnRCLbKXFCektoH+6EF8j2kITe3wb31yc549G648AB
-X-Gm-Gg: Acq92OHWDMf4PDKuyogrFJL/jwA7dNT4uYCVZvXQMBOPjUPOfOaaamayP6sOmmlm4/W
-	mX+hLvVE9OYna+H/7ENpz3t6eBk6ZbOGNITBgn+Yhc3rFoIoeRRwTWgevI3UfnceOSiXDg6Yeuz
-	WCh/wNWPPpkisxoF3ucz5TodX1+1AdBvPy4Cf58e33ZQv0umVkm0J0fNOviOBi4qTcNtBLgrZG0
-	VO2dx6qkDbWUSCTzJChraxqJBIlDjXpkVPE1XYoV8SZwW7H470eblgS6Oz8xCdqRA5Lkz++kKwO
-	z9skQTTYVuuRFX8IL77khn98aowOWJ2YB/kyo/essqOXqACSaY/AWDtz7IU2ZrpFG4FrT6N85Jj
-	Lq8hmeMa+sUJr1am2NiNrSfIMKycumjzLMPVXeWaTB8iC+xh1YKHPmBJ00xB9I3yDkCgcB404qM
-	wwsO319g5ohqS6jBWZw1eiO6B7I87uKq6U3TQqxzYwcoUeuCVmbRo1VtuSsd6Fn3El1oDOhBsYn
-	jDtR7OaTq/Y3wMoajdqvAO0q14J/m05qA/MvrdQ+4O3VL0CbZY4x9gRYHOX
-X-Received: by 2002:a05:600c:4695:b0:490:bd1d:472a with SMTP id 5b1f17b1804b1-490bd1d4865mr44724635e9.15.1780567618417;
-        Thu, 04 Jun 2026 03:06:58 -0700 (PDT)
+        bh=3GPJ5N+yj+5C24kf/hzt0wYoGPWLbKx8pufh7NjXz1U=;
+        b=Mn7lAcOIJuMsc/rs/UryQgaMq5powYLRXMFTtftfHXvbowu0fgRZoW9qxofzjigRrb
+         lBWzuZxK97QePAvx+reU4TjXFEhxCZrBTzaFOZgi36QdZU+2nJxyl25Z91L6JT+5rLfN
+         sB6MLmxfCvHYKr6pDW9VR5xEG4UkEgsrhEGCKISWCEUOEw/7L+toXft+/wAT65kmjtCz
+         tRqwsFDyyixMBn9g/VNjPFSkmzYe42dt8dlr8NDEMUsoPWFZRPLxVhmM6IUYsiBWeoqQ
+         D+gNUnenAURrixy6XsI/KKXqCUlGICyexoEz42YbhLwVrqbss4P9/8Y07/kyI2vLQaGT
+         lnaw==
+X-Forwarded-Encrypted: i=1; AFNElJ80cBod4HDJ661ULkXLKzQzvaPtH/PJ3oJV64Dfm4Ni/sq0YJ7ka/1Yeh8jy4Gfd1aXMeUpKBvqnwMu@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMxoCXiIpeHkRznJc+8NCCtoDi9b9XGWMq5+glSwqIsS6ZBOYl
+	OXGJKhd2XdTbxdtlvgTW7wiZwV5BOdGwEa1TSDFq7IHQp5Mm7Mv0yHIA
+X-Gm-Gg: Acq92OEw5MH65TyFZy19NJU0KVvQMlXZP4BNTrJmkO8TKrkicRINeLo/77LS1Ob+/4K
+	3ZjwgBPu9+WRlC9Je3VOfLCwJCc3/t0VaRItePpETSDAq+0wru4qkM9zjV+EicUyRpC7XyDj8pm
+	V+ky6DGUR+sELqhTRwGNbsFZrDCq1/0zmt63f7HVIz+2U4HuhEFn4fX3IRXpOVeryWD+8D1CDTV
+	sSAbOTF6Emy/qRWRzHMhSjw/7id6/5sx9fB+dWBxOvXj+OS5UT+dMjD0rr+uRMR4Y0Ig4Mu1cim
+	bgX+mFZfkyKXvabYCnVPp4b3c6cbiW+8GCJEG8/kHvCqjar0l1Ivn15khMnJg/FgFc7d/6Llvst
+	6idHSeFmtZbQ+S8SRtWONq47xBRVCNVoqf0EUsrXozP68/nYTnKMMc5It/xoNEIPs+uoQCol9rB
+	2ES17YFQfzsPIBGr9y/NBOfZ35lnkaL8f9cdslXkkPrI2LK4K8py7baflB4FcgwbyXqz8RosFrC
+	eggVzWjlkwRKxvTCo+nXXL2r1tDVQ7vFpUpKS8RniEn0j80Qw==
+X-Received: by 2002:a05:6402:5d85:b0:67c:34bb:1bd1 with SMTP id 4fb4d7f45d1cf-68f0edd16c2mr1002189a12.1.1780567775983;
+        Thu, 04 Jun 2026 03:09:35 -0700 (PDT)
 Received: from RDEALENC-L01.ad.analog.com (24.206.116.131.netskope-rdns.com. [24.206.116.131])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc39eb04sm62966765e9.6.2026.06.04.03.06.56
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-68e65851786sm2239274a12.17.2026.06.04.03.09.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jun 2026 03:06:57 -0700 (PDT)
+        Thu, 04 Jun 2026 03:09:34 -0700 (PDT)
 From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
 X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Thu, 4 Jun 2026 11:06:55 +0100
+Date: Thu, 4 Jun 2026 11:09:33 +0100
 To: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
 	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
 	linux@analog.com
@@ -91,11 +91,11 @@ Cc: Jonathan Cameron <jic23@kernel.org>,
 	Steven Rostedt <rostedt@goodmis.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
 	Rasmus Villemoes <linux@rasmusvillemoes.dk>, Sergey Senozhatsky <senozhatsky@chromium.org>, 
 	Shuah Khan <skhan@linuxfoundation.org>
-Subject: Re: [PATCH v16 03/14] lib: vsprintf: use _parse_integer() instead of
+Subject: Re: [PATCH v16 04/14] lib: kstrtox: add initial value to
  _parse_integer_limit()
-Message-ID: <a5nlyycxfhwpzczlmud3gjh5qxlugwkow4dyqhtgtjrzjf5q5x@mnmcic2da75r>
+Message-ID: <rvx36i2ydmwhbbkdgbvh26uqchyoptzuu7tleuyarqn2skzkxz@owzwp62mzkdo>
 References: <20260604-adf41513-iio-driver-v16-0-1a7d09143bc2@analog.com>
- <20260604-adf41513-iio-driver-v16-3-1a7d09143bc2@analog.com>
+ <20260604-adf41513-iio-driver-v16-4-1a7d09143bc2@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,7 +104,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260604-adf41513-iio-driver-v16-3-1a7d09143bc2@analog.com>
+In-Reply-To: <20260604-adf41513-iio-driver-v16-4-1a7d09143bc2@analog.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -112,12 +112,12 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306749-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306751-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[22];
 	FORGED_SENDER(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
@@ -136,41 +136,39 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8B9F963EE5B
+X-Rspamd-Queue-Id: 84F2563EFD6
 
 On 26/06/04 10:58AM, Rodrigo Alencar via B4 Relay wrote:
-> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 > 
-> Use _parse_integer() that allows optional arguments to be explicitly
-> initialised.
+> Add init parameter to _parse_integer_limit() that defines an initial
+> value for the accumulated result when parsing an 64-bit integer. The
+> new function prototype is adjusted so that the _parse_integer() macros
+> stay consistent allowing for one more argument, which defaults to 0.
 
 ...
 
-> diff --git a/lib/kstrtox.h b/lib/kstrtox.h
-> index 00cf3255bdd2..ff84fe434a00 100644
-> --- a/lib/kstrtox.h
-> +++ b/lib/kstrtox.h
-> @@ -12,6 +12,9 @@ unsigned int _parse_integer_limit(const char *s, unsigned int base, unsigned lon
->  #define _parse_integer0(s, base, res, ...)						\
->  	_parse_integer_limit(s, base, res, INT_MAX)
-
-removed the semicolon here...
-
+>  noinline
+>  unsigned int _parse_integer_limit(const char *s, unsigned int base, unsigned long long *p,
+> -				  size_t max_chars)
+> +				  size_t max_chars, unsigned long long init)
+>  {
+>  	unsigned long long res;
+>  	unsigned int rv;
 >  
-> +#define _parse_integer1(s, base, res, max_chars, ...)					\
-> +	_parse_integer_limit(s, base, res, max_chars)
+> -	res = 0;
+> +	res = init;
 
-and here, as per sashiko's feedback:
-https://sashiko.dev/#/patchset/20260602203706.103449-1-andriy.shevchenko%40linux.intel.com?part=1
-https://sashiko.dev/#/patchset/20260602203706.103449-1-andriy.shevchenko%40linux.intel.com?part=2
+This might generate conflict, as the code around have changed in linux-next.
+It is an easy fix though.
 
-> +
->  #define _parse_integer(s, base, res, ...)						\
->  	CONCATENATE(_parse_integer, COUNT_ARGS(__VA_ARGS__))(s, base, res, __VA_ARGS__)
+>  	rv = 0;
+>  	while (max_chars--) {
+>  		unsigned int c = *s;
 
 -- 
 Kind regards,
