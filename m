@@ -1,181 +1,160 @@
-Return-Path: <devicetree+bounces-306824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306827-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id C7R3Khh0IWrVGgEAu9opvQ
-	(envelope-from <devicetree+bounces-306824-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 14:48:24 +0200
+	id FR1XH8Z1IWpEGwEAu9opvQ
+	(envelope-from <devicetree+bounces-306827-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 14:55:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A1B164009B
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 14:48:24 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFEB2640186
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 14:55:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GBPnN6hu;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306824-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306824-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306827-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306827-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D199D300EEAE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 12:46:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0745E3112F36
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 12:49:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F24AB47AF66;
-	Thu,  4 Jun 2026 12:46:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6741A47A0D7;
+	Thu,  4 Jun 2026 12:49:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83C547A0D0;
-	Thu,  4 Jun 2026 12:46:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F098547B413
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 12:49:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780577214; cv=none; b=RB4i9VbRvMcfpadCqxdKcjLO/sy6Py5gUjv4KqV0npFLnJvTm7MxoNDmtELUGE83az7ddRiXJ9PQohJDWXxg4VLPydDfXaNTw/wZ3ar81Rb4MArKhKR/nyot8mrzP5kC8KWurdrQ5OTeLdGwrHF2PTTFMeGBxmsRV6+a63R1ReM=
+	t=1780577370; cv=none; b=VdrspsSbgUf31vEJubpv0vGgi89rMv3OlrE/usqeKmjnpfHtQV89qAuUkPJXXKVTDfVtouhXHT9UUHbcfL975yAK2f6njLdfcBGjAu5coUzWds1IMbM4mM3HOddcQAUkEbde6/s2VF2WMx+P6E8H79gbYFtZ84pahbN8QZSRt/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780577214; c=relaxed/simple;
-	bh=uAuTB1mIG403yOwiMgTZoEu7jOZ5Qyq3OezaxG1kZbI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cNp/bj74idiMe7XTU2PF+S3XAKexqGFEHaFEgwLbySkGmYU49FpA/AQgeBt2ift41LzJRW/rCzb2oJXzegzWuKu1/nAsdp/adfONp6kIB4zkMqiVFGZACyLlhimNXih3Oh4+RF3h9ib4Z2ZqPqUlkwGWmM+ZJ099z4DZb/Od+Zg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GBPnN6hu; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6EAF1F00898;
-	Thu,  4 Jun 2026 12:46:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780577213;
-	bh=q4M6IHPPqvn7BslwxjdmNphfnRaoMyhtXgwnSO3ihJY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=GBPnN6huj8Pg8QQ1QcaBjZgwaTZMFYJPpV8UYlabfPVA99kgrOMAEL3Xp8KdwFnkL
-	 LAhnscfkUYlw4nnHy/Z/YLrBTlIlbRawH1npeTgbs51eMWbkaCxvegrsBfn8HWSkn+
-	 gJFPc36hO8JD6EFrU8AmkUktSIukhR9Li541P+y96jN44lFnedybpFVFIbcWazKyOs
-	 S5VMiQ1ggxIqOaGyAIat5KUztuBgBfZne3KCTKtFHPzkQztiW9mXQEXzefFHmbIIyd
-	 vfKWE6rtQpB1wlDxF2A+nhuH0PoyvWTAtP9AWzxLd9JF0vjw1xwyM2uMqaBPfmtSAb
-	 nTPTMpaUSrZ3g==
-Message-ID: <0967fc45-20cf-4181-a607-2474099c5291@kernel.org>
-Date: Thu, 4 Jun 2026 14:46:44 +0200
+	s=arc-20240116; t=1780577370; c=relaxed/simple;
+	bh=/us1vr8a5z11BxNxG8w0EOK4mYuoD8wxJHeVXKELP2Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tWbzpoJMlrSYnCjqQyX4TArfXWnVaVLZ6Tfd+Sol/Uwjqf6mDGr41Z6OB/BbjvLDigUZnS3beliCzPj1+0HTmolb+lZODVsZoKFQ1zmA7OqJ7tzeiYuCDbDH3THDXsbJln1/mFuEzuCoQHYWh+5cKr7zSleE87tB8K7ad5rKwWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.54
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-6cfcad4f979so602401137.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 05:49:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780577368; x=1781182168;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jXcg6gYzrpbGrQNaU5i/n/QDTFmGYgHfcoYdrRVlWKk=;
+        b=jJxLt5UIw+/OLwX4fYgOMsEdHlhmXm8teOPyO+1V9umz7TK17HjzRarmgS7dN7+bzR
+         PIKxkK+Tx7PPw0IlPwP7RneJWF0GjUIEnUPq1QknJe4Xs7CT3dhQOHZhPLfdAcfTyT0t
+         +LC5IJXlNpV1NQWW/KoQhr3AHYXpyypFkjC+Sr7Hvk/gbe1qoIKeFHYBUlHBaeo2wnFf
+         M8QiqyQ4znVaUo5pccyQf4isSwQAc6Z74oX6FXkFocM1ABpHh54nZAbo1h1VUfiwRxns
+         cwgko5dvlDiOXG/gMort6cAQzl5KZbopor4Tgs4+qS1rmkiKGyjvRQU8qKtwwTvT4se3
+         zJMQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/xY0HjJPuzS5sisVJ1axhknH3E/0x8ihVLQnpeSrrNNtXqtzCsCzXCQry5MIaAEjRhAxsoALz5kL5C@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxa+LJLZq+fCK4rJVPTDOvJduhp7nHphp9eA2do0fJtzFkt/3uo
+	KVFi19ekSvQ8YzaW/+EvMdQDuNM9WHw78EAe83SpCWMcUVH+OTK7JS6QopqfpdFKO2Q=
+X-Gm-Gg: Acq92OGHnZqrFw+Cr9quxEfkSjDg4UftRLz/FsEENRiv9Yb/XN0P6U+wBd5F8yR639N
+	Hz+NruuM8w3rwmM2VKMIGk9ZstG20+VRzdcqKfUJ+zCjpiTlNvhahtekBs+wDNiigydwmDZ95nj
+	CjuPEgVKnlBXhxHuKkWFe5SrWCLdDbvt/vCxetEP9KQmRSxUnmHPO2eJivWvq+IkdJ8l352g4mj
+	N/ZuIkGph3WjHQ3Mso6exrGqcZ+WsZh1rbDD4+lKFBEtD2Ttvh6rI0OaS9aPHZFMxw80gijCRFD
+	VQqjMyNkui/W4RwLB60JNNbuKejZVV26WNR1s6oGRuwohERDzH4+r5hPNZXwA8JyRip76xkqVYh
+	kCKg/I5BLOXDrOZ/o2NfslMMPXe043RF0iG2JBVhf2F1L8LIFWLraT7NRrgBFaCM3476d39wge/
+	rdosJ84aIpaa45xvoQgJ/Omp2E+r3wrQpulsYftBZk0pSJzthm2nbP5KlZLCBWUG8yhlhDbQt6X
+	PaSy28ipQ==
+X-Received: by 2002:a05:6102:5091:b0:6cc:a388:1c7d with SMTP id ada2fe7eead31-6ec444bee17mr4621634137.16.1780577367923;
+        Thu, 04 Jun 2026 05:49:27 -0700 (PDT)
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-6eb649b710csm4770859137.7.2026.06.04.05.49.26
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jun 2026 05:49:26 -0700 (PDT)
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-6cfcad4f979so602372137.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 05:49:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9bdVEzRfjMpadDY4OQJngooiVSLPCcx/nDAn/arz14+8Cth/ZGo3ZwgkdD/54UEe/pjcPSVvQEE8XJ@vger.kernel.org
+X-Received: by 2002:a05:6102:c06:b0:650:967f:fb32 with SMTP id
+ ada2fe7eead31-6ec2978d496mr5106431137.3.1780577366377; Thu, 04 Jun 2026
+ 05:49:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: arm: sunxi: Add NetCube Systems
- OpenNMC (dobermann)
-To: Lukas Schmid <lukas.schmid@netcube.li>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Maxime Ripard <mripard@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20260604115241.1358528-1-lukas.schmid@netcube.li>
- <20260604115241.1358528-2-lukas.schmid@netcube.li>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260604115241.1358528-2-lukas.schmid@netcube.li>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260525110603.4018170-1-john.madieu.xa@bp.renesas.com> <20260525110603.4018170-9-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20260525110603.4018170-9-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 4 Jun 2026 14:49:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW0-pf_jcKTfLCDrwj_ezqrLyO169Pp_cQFzipHnG0oqg@mail.gmail.com>
+X-Gm-Features: AVVi8CcDFx5qXSuegazwE2easrqw_MlaWBK-wBRkmOsQBF_Kpu53lNXiO8RHuTA
+Message-ID: <CAMuHMdW0-pf_jcKTfLCDrwj_ezqrLyO169Pp_cQFzipHnG0oqg@mail.gmail.com>
+Subject: Re: [PATCH v4 8/8] arm64: dts: renesas: r9a09g047e57-smarc: add
+ DA7212 audio codec support
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	bmasney@redhat.com, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, john.madieu@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306824-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:lukas.schmid@netcube.li,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:mripard@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[netcube.li,kernel.org,gmail.com,sholland.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-306827-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:john.madieu.xa@bp.renesas.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:bmasney@redhat.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:john.madieu@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,m:johnmadieu@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,redhat.com,bp.renesas.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,vger.kernel.org:from_smtp,linux-m68k.org:from_mime,linux-m68k.org:email,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,glider.be:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3A1B164009B
+X-Rspamd-Queue-Id: DFEB2640186
 
-On 04/06/2026 13:52, Lukas Schmid wrote:
-> The OpenNMC is an open replacement for APC SmartSlot management cards
-> based on the Nagami System-on-Module.
-> 
-> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
-> ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> index e6443c266fa1..8e2c9b8fe121 100644
-> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-> @@ -600,6 +600,7 @@ properties:
->            - enum:
->                - netcube,nagami-basic-carrier
->                - netcube,nagami-keypad-carrier
-> +              - netcube,dobermann
+On Mon, 25 May 2026 at 13:07, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> RZ/G3E SMARC board has a DA7212 audio codec connected via I2C1 for
+> sound input/output using SSI3/SSI4 where:
+>
+>  - The codec receives its master clock from the Versa3 clock
+>    generator present on the SoM
+>  - SSI4 shares clock pins with SSI3 to provide a separate data
+>    line for full-duplex audio capture.
+>
+> Enable audio support on RZ/G3E SMARC2 EVK boards with a DA7212 audio codec.
+>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 
-Don't break alphabetical order.
+LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+Gr{oetje,eeting}s,
 
-Best regards,
-Krzysztof
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
