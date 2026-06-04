@@ -1,213 +1,201 @@
-Return-Path: <devicetree+bounces-306919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306922-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GOhPFD+QIWrdIwEAu9opvQ
-	(envelope-from <devicetree+bounces-306919-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:48:31 +0200
+	id NLnMK72QIWr/IwEAu9opvQ
+	(envelope-from <devicetree+bounces-306922-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:50:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83F7E641098
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44E156410F4
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:50:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=jms.id.au header.s=google header.b=iwMuui7t;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306919-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306919-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=MZwPJ4KO;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306922-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306922-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 14C6030DA743
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 14:39:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6A04630F7509
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 14:41:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3AD47ECC5;
-	Thu,  4 Jun 2026 14:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C60F478870;
+	Thu,  4 Jun 2026 14:40:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC522374739
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 14:39:18 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780583960; cv=pass; b=kmsPHbwyCmz9N78TajOpeqSNyO89lCL6ixC2Oto/xrKO6387Irtg4AixPfifS3Y16O+wbMk2uvVOzzMQShekgE7eq2LdEKGlxE/oFxSg7whXk6UQlMxqhKmZrCHpy+xrysNrzc8NCxa7aIVHMPm12+x2ykkS60jAOnl0+be0Dqk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780583960; c=relaxed/simple;
-	bh=0MSVNyCuBqvCYf5n2NZNVK8vSeLxbRbm7dWsfVvvAhM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CZ5ULH60bIaOWLssmGmTCufLwQ5hk+7Wx7W0KenuAV0I3M6yp+oPU1/yHSl6Vf3vnQwLBudYoEZK2+EXdnNlWvSTijfJtiGP4dThk1NKBLRGV8rc60zXU1sKoww4NpvctbQxMAvwV1cGjDeGNKbptzMab/is8ZHnujR3Ccla5RU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jms.id.au; spf=pass smtp.mailfrom=gmail.com; dkim=pass (1024-bit key) header.d=jms.id.au header.i=@jms.id.au header.b=iwMuui7t; arc=pass smtp.client-ip=209.85.128.175
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-7e87602f26aso8643657b3.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 07:39:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780583958; cv=none;
-        d=google.com; s=arc-20240605;
-        b=jIGbN1+EpP3EidwnMlV3tfowOUWScPPfdM+3lmK9lcmicbu003pPI89aY4qh5HW4eh
-         IEyKQ7huEjKqzU+4l663kgO35Qjycvxf641PvZsgxFucsvDrRoNkBnovZCeUQgTHK/Gl
-         WhpoUGpwwi7MPzvnjMxTa5RMa+RE0kE7glltz3EoltMIDYDGV9r4/sl/RZl6EVYQtxUp
-         isqwE8gADTGrE/ULdmDSZbRcF6NcewjE9XKvAnN5Zei+FiMiHlEbPPrjlSXFWgwhFzC3
-         DP3+b+4wHgG+Bk3UbzBIoKh3A0/Oqc88q8cM0+s9Tpbr9SddjeKiEwSSrs4a6Gub+yrs
-         hpcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=KyQNq22zTHoCpyrA6QRDxZ9CuxarMcDHHStBIe3Zk+8=;
-        fh=ZN9oOUsyyeM4zGf3M4cHucpr6xK2Hc/vNj5B0dK5Is4=;
-        b=aOzDMrzNX4ahrnBS40ZbtXZo5iITxiYLnRF4DW8GjlQEGiedn5RbUuv+t5NmxeeBtG
-         DHEADiDDWMVNUNlIo2yJkAOA7G4DSjtoZ6Lfz43oZ1bQxBRV1iIn7kva8ElcTA2qRQWC
-         K50cw52GN13Fagul/+NYv2bIes2a2R83kIUXvLDDWOCdqShU8a+0AkzCHYbGD464obhQ
-         Q5fjwKblf8BRLJfHn8vbaXzNCyNFXRqEo7GjHXRDnYvqHKgb+a+sAgFm5EvRePWUnweW
-         u4gnMmr0yrgbWT/CNxltQG882wIVUvUxsjP0dfNQSgAfiutxjKzf0SatsThyV+MvcR2i
-         I0EA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D817B13B293
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 14:40:51 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780584053; cv=none; b=Gkl8tf8cfesTCjVIXbX2hdxS13yxQw4tn+l2pE03LUWK1jTIJlGnrY+fQbZyZVMA20jp7xZoQgfeKc5YJSoZUCzQlfRUg3UCsqjGOSyi+zdDy6+XamXHo+HJpnAZ2LFPWRhrDRt07wzJg8eeKDeTsXHrew/qkYklyJmsml2Yu0Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780584053; c=relaxed/simple;
+	bh=cCQQTR9BQTegjjCAlHWxg4CufTI52gL9cLg5/LUcxPA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OaAvEj1LLALZa/MLm+hfehSPqbniT6vQbL77mPs93WCSvfQYNYP6VfxXpKR9e/3tSSLxHbwtRR/ohv7wy6oG5gKMp/QpwKUiYTwp+8yVl3L/Wa+wEt6ZkGvAXqBQe9t4CgX53ToNHDF54kYDX2voG9uoQEk9dzEbQhAO5ebny0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jms.id.au; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MZwPJ4KO; arc=none smtp.client-ip=209.85.215.175
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-c8588ec1b44so632443a12.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 07:40:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google; t=1780583958; x=1781188758; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KyQNq22zTHoCpyrA6QRDxZ9CuxarMcDHHStBIe3Zk+8=;
-        b=iwMuui7tsRLocypv2j7If43w5h16Mt6jLpv2eOB5nn5AJ8cqpKHvmfPnLc5XWsrD0P
-         zvAiELBjHzKcO1TZac12UgAR3pPbdaARgMY5aiORHvpy666o8YczZ17rLcT9nxoZcUQ8
-         AJjwP1pbQzhw6zHFfqKQdjQ1M7j6rinPWCQt0=
+        d=gmail.com; s=20251104; t=1780584051; x=1781188851; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=MYjvVyEwufg+Sp1o9wIFatQQ1kTSx89J6iGBCB8C5c8=;
+        b=MZwPJ4KOS1VbjpTBCRDkIM70Ek7VEDqWv3wwPJ5EzaScLcGeqcUyZGLxTE7Btp7OWP
+         3CuQRO4Bg1BCexQn3/CPe+gzwLIIaR9WAWxtPdek+HZb8b5g5ap5XMtjN+sr3ebzO0VL
+         7hwmiIFXpj134f4AOX//rOYdyG36BDRSxGgRy9srKoTvklLi8Y8RM/1axZowIoYq8y3v
+         5GUpE88pGNo1jttNAENZAm5fLvJzmlhE8TuBBoOXg9Rli0F2C+j268tdPraij48lgWRa
+         uaSZRUeKn4f5XYcFk4ieHRX4aWv6u8VeNHfNxpHyHdeAfVRZaY1BeYu/fAmbzRT5K5e4
+         GPXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780583958; x=1781188758;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20251104; t=1780584051; x=1781188851;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KyQNq22zTHoCpyrA6QRDxZ9CuxarMcDHHStBIe3Zk+8=;
-        b=BW2NIw+AbtsKWORZBDPh9BQ5+UCoNOc/PNLZ/xeNS5w3E6npw0aMTotMqVgT1Apq0e
-         3Tp+FjNmimuumzgzvLywtHUt4RG5x9ZFhyY6WRZX9KbmU6TqiDBQ9iR65/EbqDxs0gxb
-         oVw5jA2vemZKfJX7O2VAfK0bhJbI1QKu0OthfcPwlV7vkoUPmunXsr3s0nRtgdGCrfZZ
-         8gBvYQn4OISbFak0SSI6C3NglDW/BPBciW7nsf7BWHSn/pxo1/Uk+Sa6UuyVJNVgxqM0
-         SNSgqS/RZGWbewSEhmT7bLjeWuyk2DNXXgUEgegymIk8+E8wHw+trT3OY7DaraPWOBjh
-         G5Rw==
-X-Forwarded-Encrypted: i=1; AFNElJ9zBUj4JUoMRLSa9XKXvHb9gU71vQXwqWC8rzb3TAPFiE239Q104c+uCsFywxzfeHCKelnbvhfNItX4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4WlQ5eYObhrhK4vVlVcAyS+8p2QZZtJREO9yzfSln9dGHMAko
-	JPosLm53fU5vj9hz0004UaUCyljJxa2fhVLNAmVli7VWT6FVm4pVeDrUiG/7F1KEes2sI4PzSew
-	xzInbAFht0B33msdG3LkPxwqUIU45BeE=
-X-Gm-Gg: Acq92OG4uH0tD/lFbYoCtT0FSxggQ1ShI4i7A4YMqIjr74YzT+5CckmfFonFmK21KFY
-	n7HHDlgVTcY/0dv5WoriXEJVEuHflRLeFsn9dLoHiTk5OdNl5foHtZgyh1YP3s+2748+0w23WSd
-	mOnhL6m2hWm2KlUyUrlRTtowb595HDK5zppYCkaLi6cB+6WJPKonHv1UwruXUn18BFV/PPnXY2s
-	+u1NacJEmWEDOL5tzzlo+0plhnZFXnEVC/m9vvFNmsYoqa8njYkorsCWahH46z8/yXlcLVOiWQJ
-	yf7fKpsrfxHORQmQ+QupsWAlnL2jgonQ68NrB8/Zo1SxqS72hrHgMguT1Y2DGo+NkEDIZLE+DZH
-	/rQAdy6LXTHbvfhNGSdjpECb0n1N1bbsnYMQ=
-X-Received: by 2002:a05:690c:6aca:b0:798:5213:d90e with SMTP id
- 00721157ae682-7eb8d2aa5b6mr29552117b3.25.1780583957632; Thu, 04 Jun 2026
- 07:39:17 -0700 (PDT)
+        bh=MYjvVyEwufg+Sp1o9wIFatQQ1kTSx89J6iGBCB8C5c8=;
+        b=gaMI/sDxbGt3OH9KQAha28W+JXcyGig9RV8zbygdVYaVohTJmBMgvIagezt6Qz/pwx
+         E7SAVqekMiN0e3HYkv2lUM7gFB/b44GxLcEx3nua54Y57KCcBHW16XRLch2Be73dl82p
+         4NhlymBLTSLTVN5hNQT2elNdMaEJMbzfilaYxDCaXVne4AxJzUzkpHiif8sacTzDZv13
+         bYOGVIRIiYEU1oPP4WyUgKJWzUlDj2Hl0aYMmJvJY9CjIyXiBnP2nfdfsi8N0AMuQXFz
+         tTulfSOFkIgcuALyQ2QVEOQhNyJ7SMoOGO7nfKIHHvhwfb2Ii0vIDkULp7S9hZgZoPLJ
+         TxCA==
+X-Forwarded-Encrypted: i=1; AFNElJ85SZTaeylhre2pv+zhl3w0TV7rjnMwD6hTmn6t1sP6/+v5lIWvGAu7JACozDIsqLEmE+RDu2jrIHIk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBIlrEZMGANyz/apMJ51eYAUEDBdNaLBqrLBIjjFGpCG+SMWZn
+	lyVD2hGn/Er9uyFJ9ZIqIzzjCY7UAAxGXgB3Ctaw64C+wTAuwPSSiuCA
+X-Gm-Gg: Acq92OFPz8VTB6rB3dzESSuR1x5gbilAp+AMiELYfrQ8T/fCW0kNKEaS3cD32ib3c40
+	WHMzM7LjnJ/NhLQmuWDZ8Y/c2pU+N5L9Bf9cGHTBTawDw8sgIq8Z34bzbH0Ehyloml+uHI47DSb
+	XqXMFkfYWriq99+WBsrVHZUXOX4zQ77KDAeKBsP9vAcIg0jYvwL5Azi0SFoGC6yR+VG7frIEMyq
+	TsiuBOIIeJJZdZuewx5z//SXlYEfQym4hj8de9waHQMmt/cvqchbuSG7+bvURSouR+YXwVHx22t
+	gytvLzDXA3RYNqARvuuII9Xk3yhFiJmdytqnPV3ldd8NElTHuMafjmZA6IKFnsQdZ8K+sNey30b
+	A5rYqKb4CGhG6ykdTFUECVzD1UUpOBLbfeecgItyTjLrmPmCIUef82nmWknqzelJIEh2Zd8yIzX
+	9tkxKC6FE/NjpoAtrNu/bCoH9sdEQUivNdDJ0nWIpKqQGdhUUuQURxxB9a1i4qT+Cw0zepRLdK/
+	8Qp8Z4GeNhJFckbWmGc/pjnucGv8ltg7JOVJJueNuqQ9Y/x8uP0Z47XPIOWUqc/
+X-Received: by 2002:a05:6a00:4fc1:b0:82c:9e00:f958 with SMTP id d2e1a72fcca58-84284a8c87fmr7952955b3a.0.1780584050963;
+        Thu, 04 Jun 2026 07:40:50 -0700 (PDT)
+Received: from donnager-debian.. ([45.124.203.15])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84282372868sm7279753b3a.17.2026.06.04.07.40.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Jun 2026 07:40:50 -0700 (PDT)
+Sender: "joel.stan@gmail.com" <joel.stan@gmail.com>
+From: Joel Stanley <joel@jms.id.au>
+To: Paul Walmsley <pjw@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>
+Cc: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
+	Anup Patel <anup@brainfault.org>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Michael Ellerman <mpe@kernel.org>,
+	Drew Fustini <fustini@kernel.org>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/7] riscv: dts: tenstorrent: Add Atlantis platform 
+Date: Fri,  5 Jun 2026 00:09:46 +0930
+Message-ID: <20260604143957.668047-1-joel@jms.id.au>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260603074222.593243-1-joel@jms.id.au> <20260603074222.593243-5-joel@jms.id.au>
- <20260603-tadpole-slept-8b6eeae9cd47@spud>
-In-Reply-To: <20260603-tadpole-slept-8b6eeae9cd47@spud>
-From: Joel Stanley <joel@jms.id.au>
-Date: Fri, 5 Jun 2026 00:09:06 +0930
-X-Gm-Features: AVHnY4IpYYxRTj3rx2pop7nqyDgzfgVuavgDjhbxh2LAlMZ1aHHhJtAB9F9dAbM
-Message-ID: <CACPK8Xf=Ec16jR+J399Pqi=O=2GgFjkZOPFo0AKaAA+58R6-gQ@mail.gmail.com>
-Subject: Re: [PATCH 4/7] dt-bindings: timer: Add RISC-V ACLINT bindings
-To: Conor Dooley <conor@kernel.org>
-Cc: Paul Walmsley <pjw@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Anup Patel <anup@brainfault.org>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@kernel.org>, Drew Fustini <fustini@kernel.org>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_DKIM_ALLOW(-0.20)[jms.id.au:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	SUBJECT_ENDS_SPACES(0.50)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:pjw@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:palmer@dabbelt.com,m:anup@brainfault.org,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:npiggin@gmail.com,m:mpe@kernel.org,m:fustini@kernel.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[joel@jms.id.au,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-306919-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DMARC_NA(0.00)[jms.id.au];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306922-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[joel@jms.id.au,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:pjw@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:palmer@dabbelt.com,m:asrinivasan@oss.tenstorrent.com,m:anup@brainfault.org,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:npiggin@gmail.com,m:mpe@kernel.org,m:fustini@kernel.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[jms.id.au:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joel@jms.id.au,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,brainfault.org,eecs.berkeley.edu,ghiti.fr,gmail.com,lists.infradead.org,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_CC(0.00)[oss.tenstorrent.com,brainfault.org,eecs.berkeley.edu,ghiti.fr,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
+	DMARC_NA(0.00)[jms.id.au];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url,vger.kernel.org:from_smtp,infradead.org:email,jms.id.au:dkim,jms.id.au:from_mime,jms.id.au:email,riscv.org:url]
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[joel@jms.id.au,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,jms.id.au:from_mime,jms.id.au:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 83F7E641098
+X-Rspamd-Queue-Id: 44E156410F4
 
-On Wed, 3 Jun 2026 at 18:53, Conor Dooley <conor@kernel.org> wrote:
->
-> On Wed, Jun 03, 2026 at 05:12:16PM +0930, Joel Stanley wrote:
-> > Document the bindings for the RISC-V ACLINT.
-> >
-> > Signed-off-by: Drew Fustini <fustini@kernel.org>
-> > Signed-off-by: Joel Stanley <joel@jms.id.au>
-> > ---
-> >  MAINTAINERS                                   |  1 +
-> >  .../bindings/timer/riscv,aclint-mtimer.yaml   | 52 +++++++++++++++++++
-> >  2 files changed, 53 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 2fb1c75afd16..43dd9873bbc5 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -23005,6 +23005,7 @@ M:    Joel Stanley <jms@oss.tenstorrent.com>
-> >  L:   linux-riscv@lists.infradead.org
-> >  S:   Maintained
-> >  T:   git https://github.com/tenstorrent/linux.git
-> > +F:   Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml
-> >  F:   Documentation/devicetree/bindings/clock/tenstorrent,atlantis-prcm-rcpu.yaml
-> >  F:   Documentation/devicetree/bindings/riscv/tenstorrent.yaml
-> >  F:   arch/riscv/boot/dts/tenstorrent/
-> > diff --git a/Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml b/Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml
-> > new file mode 100644
-> > index 000000000000..192ff3fcf79f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml
-> > @@ -0,0 +1,52 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/timer/riscv,aclint-mtimer.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: RISC-V Advanced Core Local Interruptor (ACLINT)
-> > +
-> > +maintainers:
-> > +  - Joel Stanley <jms@oss.tenstorrent.com>
-> > +
-> > +description:
-> > +  This RISC-V ACLINT specification defines a set of memory mapped devices which
-> > +  provide inter-processor interrupts (IPI) and timer functionalities for each
-> > +  HART on a multi-HART RISC-V platform. The specification can be found at
-> > +  https://github.com/riscvarchive/riscv-aclint/
->
-> This is a draft specification, so having a "riscv,aclint-mtimer"
-> compatible is not appropriate. Ordinarily I would say that you should be
-> able to do this once frozen, but this spec is archived and unlikely to
-> have that happen.
+Add initial support for the Tenstorrent Atlantis platform, based on the
+Atlantis SoC featuring 8x RVA23-compliant Tenstorrent Ascalon-XG cores.
 
-I've reworked the binding to reference the privileged spec, which is
-ratified and has a section on the timer registers:
+The series adds a bare bones device tree with the CPU, interrupt
+controllers and a UART. This will be replaced in time with a full
+featured machine once details are available.
 
- https://docs.riscv.org/reference/isa/priv/machine.html#3-1-2-1-machine-timer-mtime-and-mtimecmp-registers
+Patches 1, 2, 3, 5, and 6 add compatibles or extensions to existing
+bindings.
 
-I'll post a v2 now for review.
+Patch 4 adds a new binding document for the aclint timer device.
 
-Cheers,
+The series has been boot tested on QEMU[1] and internal development
+platforms.
 
-Joel
+[1] https://lore.kernel.org/qemu-riscv/20260603065859.592063-1-joel@jms.id.au/
+
+Thanks to Anup and Connor for the reviews on v1.
+
+v1:
+https://lore.kernel.org/linux-riscv/20260603074222.593243-1-joel@jms.id.au/
+
+Changes since v1:
+- Rework mtimer bindings, fix reg property, update compatible and use
+  priv spec as reference
+- Drop Drew's sob from bindings patches I wrote
+- Add Drew's co-developed-by to dts patch
+- Correct aplic num-sources
+
+Drew Fustini (1):
+  dt-bindings: riscv: add Smrnmi extension description
+
+Joel Stanley (6):
+  dt-bindings: aplic: Add Tenstorrent Atlantis compatible
+  dt-bindings: imsics: Add Tenstorrent Atlantis compatible
+  dt-bindings: riscv: cpus: Add Tenstorrent Ascalon
+  dt-bindings: timer: Add RISC-V ACLINT mtimer bindings
+  dt-bindings: riscv: Add Tenstorrent Atlantis platform
+  riscv: dts: tenstorrent: Add Atlantis platform
+
+ MAINTAINERS                                   |   1 +
+ .../interrupt-controller/riscv,aplic.yaml     |   1 +
+ .../interrupt-controller/riscv,imsics.yaml    |   1 +
+ .../devicetree/bindings/riscv/cpus.yaml       |   5 +
+ .../devicetree/bindings/riscv/extensions.yaml |   6 +
+ .../bindings/riscv/tenstorrent.yaml           |   4 +
+ .../bindings/timer/riscv,aclint-mtimer.yaml   |  56 +++
+ arch/riscv/boot/dts/tenstorrent/Makefile      |   1 +
+ .../boot/dts/tenstorrent/atlantis-evb.dts     |  33 ++
+ .../boot/dts/tenstorrent/atlantis-soc.dtsi    | 471 ++++++++++++++++++
+ 10 files changed, 579 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml
+ create mode 100644 arch/riscv/boot/dts/tenstorrent/atlantis-evb.dts
+ create mode 100644 arch/riscv/boot/dts/tenstorrent/atlantis-soc.dtsi
+
+-- 
+2.47.3
+
 
