@@ -1,293 +1,301 @@
-Return-Path: <devicetree+bounces-306778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306780-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1PiINt9hIWrbFQEAu9opvQ
-	(envelope-from <devicetree+bounces-306778-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:30:39 +0200
+	id K6OTK0VgIWpdFQEAu9opvQ
+	(envelope-from <devicetree+bounces-306780-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:23:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C7A63F6DC
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:30:38 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E4F263F63A
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:23:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=realtek.com header.s=dkim header.b=HKOdra+G;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306778-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306778-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=realtek.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cSo2CUdD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306780-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-306780-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 503C83005143
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 11:19:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7D9FC307E2CD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 11:23:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96B941B365;
-	Thu,  4 Jun 2026 11:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DFE04279ED;
+	Thu,  4 Jun 2026 11:22:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06F5E410D13;
-	Thu,  4 Jun 2026 11:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F32B426EAA;
+	Thu,  4 Jun 2026 11:22:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780571948; cv=none; b=RbQl++N/wI0TrqeIEceBwOGtiy2gtQdL/6C14SejLynJ9SRqa+4mWbHAtOyTJArmtSgRROnFrUD1tbrdCCp7IcwgKKubQWRNSoQgloPjmrw4GbXU1erZOAqeCmLCflrZCzTJYHSeteUM12BtzXiXWF+5n76le21y/J9sPzWAWYo=
+	t=1780572147; cv=none; b=kOwAT7rHXXjVL5ENI05oqym+QTPlukZPAz5dHqzS7G5ebcaSzOKyQXDrkV+R53XLZHly8I6u89uq0JuV6xUKhEnCEAMs0K8B4wrNq9/mRjnlj6NBwf89PDJ/u5uZvLaRtIYcsdbH9yn0h6kIE/Fbz2vF88AM7FXNdMRPepbEltk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780571948; c=relaxed/simple;
-	bh=WWZXFHOe1zHIKiwWpfp5Ack469/wvslYeTJVH83HCeE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=apFGJCD2bxmA8Bp7NoY2oUmYSatsONHCZLEVBRIviewAd4LcxcPZuP0pHG3ngpveD7iQfviAGeeF6OoYXpobRPaNesEvppjTgcHPZhSAlKm3wiohXLj8qSNMRU8ME+Jj7gvwJWjqIsNKQ7VhOOU5f13wFl9l3H96CtIeBcmqMAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=HKOdra+G; arc=none smtp.client-ip=211.75.126.72
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 654BIM070299936, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1780571902; bh=AyhrgWDIug9AoQBuogx+uuVQlmm7DjfRSlnDmW0s7jY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=HKOdra+Gm5katShwCxqIlUQ9mucRuISJWDFyFqinwDqmai8wzifimb6T7/uBTj085
-	 bhkuPbeBG7aR4o4ljzyEQa19ShzBoemF0uQH1aNgopcKIFsPPMlwJfDRV8APFDZP6C
-	 Gkie12/evrzPhF/+9u9gP2Ukk8SRHncJk57ucOhHmwYjG6AcuvKCCFZ7uqL42jLzeV
-	 EjH3WICYTj7W73RQhN/sYDmfz2dPh+hag1c6xLdhmwqZt2RdlahqXvReJhYHR2BDYc
-	 nnUvR8awiZVq7ryUV0SsALfbRfBtuE+bQ9LgOS7gsJnhOjpduVvcY2GvRZ8reQjgMo
-	 IEXMCEyv7W+1g==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.28/5.94) with ESMTPS id 654BIM070299936
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 4 Jun 2026 19:18:22 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 4 Jun 2026 19:18:22 +0800
-Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS06.realtek.com.tw (10.21.1.56) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Thu, 4 Jun 2026 19:18:22 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS05.realtek.com.tw
- (10.21.1.55) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Thu, 4 Jun 2026 19:18:21 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<tychang@realtek.com>
-CC: <eleanor.lin@realtek.com>, <cy.huang@realtek.com>,
-	<stanley_chang@realtek.com>, <james.tai@realtek.com>, <afaerber@suse.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<linux-realtek-soc@lists.infradead.org>
-Subject: [PATCH 3/3] arm64: dts: realtek: Add I/O level detector
-Date: Thu, 4 Jun 2026 19:18:20 +0800
-Message-ID: <20260604111821.975624-4-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260604111821.975624-1-eleanor.lin@realtek.com>
-References: <20260604111821.975624-1-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1780572147; c=relaxed/simple;
+	bh=rCU4Gxie0eVTTkpbXv9dbym1eyR074y2+nE+wP0mWpA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CmDVKgHp7LhNjXn+UJdAHad0C3J/zE7tneHHatzBPb2Qs09M5nm4xudtpVRZBzIn1ZrV3b1N2SydUbMKhUi9Fo7PGvlPlHevf3EaIvdmuxOijajq5AIt444YgiOtg6O91QjizkaCaMx9URg7oKQL3k7Z/AqxDAANU9zzY+TWZTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cSo2CUdD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8A1E1F00893;
+	Thu,  4 Jun 2026 11:22:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780572146;
+	bh=YqaIARxLCsfRvEuwDJUVGQSwsaKgqQhBSuWQAJzCQKk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=cSo2CUdDtSwzmTl4SbVCV01/t4l/Dudj/mefXIyBNYHuoH+icLvBi9SQb+9o+kZ2S
+	 nmvIFxh0hlcjyNbQ2MraUCqzHCYMkE9ubDoLAZTxJ9vccqnSnzZQUq1LHYSGxbAeYG
+	 ClKYYxFAaf41z5JyDl4nXBgFkoKQQOqIBYFAldPR6LPfWGJqjh/iFanLJZ1gTPvzw3
+	 y3xB5w2XKlKjbLsamDMgG4pR3A9zpwQolINbR3O5Sf/z1mjlrwVL3LqLLduXIkr9Fy
+	 IEXRPY7JdAoDxt6C8rbNa3Mj1aRIPjxW+V4+1B6BWXpUxIbEH4ta4sMMRnW+2U6tDE
+	 8C59L3MG3QqYg==
+Message-ID: <200a6c34-3321-4c2c-9746-52348e700cd9@kernel.org>
+Date: Thu, 4 Jun 2026 13:22:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] dt-bindings: iio: flow: add Sensirion SLF3S liquid
+ flow sensor
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Wadim Mueller <wafgo01@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Maxwell Doose <m32285159@gmail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260530205435.37326-1-wafgo01@gmail.com>
+ <20260530205435.37326-3-wafgo01@gmail.com>
+ <20260601-banana-narwhal-of-music-0b4d3a@quoll>
+ <20260601150959.49bbf125@jic23-huawei>
+ <1dbd3ab3-de6c-44dd-8100-e8ee60f558c8@kernel.org>
+ <20260604100304.11d0e003@jic23-huawei>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260604100304.11d0e003@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306778-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tychang@realtek.com,m:eleanor.lin@realtek.com,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:james.tai@realtek.com,m:afaerber@suse.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306780-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:wafgo01@gmail.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:m32285159@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,analog.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,realtek.com:mid,realtek.com:dkim,realtek.com:from_mime,realtek.com:email];
-	TO_DN_NONE(0.00)[];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D2C7A63F6DC
+X-Rspamd-Queue-Id: 5E4F263F63A
 
-Add io-level-detector node with pinctrl configurations for 1.8V/3.3V
-voltage selection on RGMII, SDIO, CSI, SD, UART1, AIO, and eMMC.
+On 04/06/2026 11:03, Jonathan Cameron wrote:
+> On Wed, 3 Jun 2026 16:29:10 +0200
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> On 01/06/2026 16:09, Jonathan Cameron wrote:
+>>> On Mon, 1 Jun 2026 13:53:23 +0200
+>>> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>   
+>>>> On Sat, May 30, 2026 at 10:54:31PM +0200, Wadim Mueller wrote:  
+>>>>> Document the bindings for the Sensirion SLF3S family of digital
+>>>>> liquid-flow sensors on I2C.  The family currently covers the
+>>>>> SLF3S-0600F, SLF3S-1300F and SLF3S-4000B variants.
+>>>>>
+>>>>> The driver auto-detects the variant from the product-information
+>>>>> register at probe time; the per-variant compatible strings exist
+>>>>> for documentation and dt_binding_check purposes.    
+>>>>
+>>>> Here...
+>>>>  
+>>>>> +description:
+>>>>> +  Family of digital liquid-flow sensors from Sensirion with I2C
+>>>>> +  interface.  All family members share the same register map; sub-types
+>>>>> +  differ only in the flow scale factor and the calibrated measurement
+>>>>> +  range, both of which are detected at probe time via the
+>>>>> +  product-information register.    
+>>>>
+>>>> And here...
+>>>>  
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - sensirion,slf3s-0600f
+>>>>> +      - sensirion,slf3s-1300f
+>>>>> +      - sensirion,slf3s-4000b    
+>>>>
+>>>> And here something else. Confusing. Didn't you say device variants are
+>>>> auto-detectable? So you have only one compatible sensirion,slf3s.  
+>>>
+>>> And then future fallback compatibles can never work. 
+>>> Basically as far as I have ever been able to establish this is why
+>>> generic compatibles are almost always the wrong way to go.
+>>>
+>>> If we get a future part with an unknown ID and don't have these existing
+>>> specific compatibles, then we have no way to specify which one it is  
+>>
+>> But why would you have future part with unknown ID?
+> 
+> That's what manufacturers do on a very frequent basis.  They tweak something
+> that has no affect on the interface or channel scaling etc and release a new part
+> with a different ID.  Can be something like a part suited to different operating
+> conditions, or with a different supply tolerance.
 
-Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
----
-This patch depends on this pinctrl node patch [1].
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/commit/?id=50d92732d10e
----
- arch/arm64/boot/dts/realtek/kent-pinctrl.dtsi | 108 ++++++++++++++++++
- arch/arm64/boot/dts/realtek/kent.dtsi         |  28 +++++
- 2 files changed, 136 insertions(+)
- create mode 100644 arch/arm64/boot/dts/realtek/kent-pinctrl.dtsi
+and it will have a different, known that time ID. How could be "unknown"?
 
-diff --git a/arch/arm64/boot/dts/realtek/kent-pinctrl.dtsi b/arch/arm64/boot/dts/realtek/kent-pinctrl.dtsi
-new file mode 100644
-index 000000000000..ec7e33034b96
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/kent-pinctrl.dtsi
-@@ -0,0 +1,108 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+/*
-+ * Copyright (c) 2022-2026 Realtek Semiconductor Corp.
-+ */
-+
-+&iso_pinctrl {
-+	aio_vsel_1v8_pins: aio-vsel-1v8-pins {
-+		pins = "gpio_98", "gpio_99", "gpio_100", "gpio_101", "gpio_102", "gpio_103",
-+		       "gpio_104", "gpio_105", "gpio_106", "gpio_107", "gpio_108", "gpio_109",
-+		       "gpio_110", "gpio_111", "gpio_112";
-+		power-source = <0>;
-+		input-threshold-voltage-microvolt = <1800000>;
-+	};
-+
-+	aio_vsel_3v3_pins: aio-vsel-3v3-pins {
-+		pins = "gpio_98", "gpio_99", "gpio_100", "gpio_101", "gpio_102", "gpio_103",
-+		       "gpio_104", "gpio_105", "gpio_106", "gpio_107", "gpio_108", "gpio_109",
-+		       "gpio_110", "gpio_111", "gpio_112";
-+		power-source = <1>;
-+		input-threshold-voltage-microvolt = <3300000>;
-+	};
-+
-+	csi_vsel_1v8_pins: csi-vsel-1v8-pins {
-+		pins = "csi_vdsel";
-+		function = "csi_1v8";
-+	};
-+
-+	csi_vsel_3v3_pins: csi-vsel-3v3-pins {
-+		pins = "csi_vdsel";
-+		function = "csi_3v3";
-+	};
-+
-+	rgmii_vsel_1v8_pins: rgmii-vsel-1v8-pins {
-+		pins = "rgmii_vdsel";
-+		function = "rgmii_1v8";
-+	};
-+
-+	rgmii_vsel_3v3_pins: rgmii-vsel-3v3-pins {
-+		pins = "rgmii_vdsel";
-+		function = "rgmii_3v3";
-+	};
-+
-+	sdio_vsel_1v8_pins: sdio-vsel-1v8-pins {
-+		pins = "gpio_45", "gpio_46", "gpio_47", "gpio_48", "gpio_49", "gpio_50";
-+		power-source = <0>;
-+	};
-+
-+	sdio_vsel_3v3_pins: sdio-vsel-3v3-pins {
-+		pins = "gpio_45", "gpio_46", "gpio_47", "gpio_48", "gpio_49", "gpio_50";
-+		power-source = <1>;
-+	};
-+
-+	uart1_vsel_1v8_pins: uart1-vsel-1v8-pins {
-+		pins = "gpio_8", "gpio_9", "gpio_10", "gpio_11";
-+		power-source = <0>;
-+		input-threshold-voltage-microvolt = <1800000>;
-+	};
-+
-+	uart1_vsel_3v3_pins: uart1-vsel-3v3-pins {
-+		pins = "gpio_8", "gpio_9", "gpio_10", "gpio_11";
-+		power-source = <1>;
-+		input-threshold-voltage-microvolt = <3300000>;
-+	};
-+};
-+
-+&main2_pinctrl {
-+	emmc_vsel_1v8_pins: emmc-vsel-1v8-pins {
-+		pins = "emmc_rst_n",
-+			"emmc_dd_sb",
-+			"emmc_clk",
-+			"emmc_cmd",
-+			"emmc_data_0",
-+			"emmc_data_1",
-+			"emmc_data_2",
-+			"emmc_data_3",
-+			"emmc_data_4",
-+			"emmc_data_5",
-+			"emmc_data_6",
-+			"emmc_data_7";
-+		power-source = <0>;
-+	};
-+
-+	emmc_vsel_3v3_pins: emmc-vsel-3v3-pins {
-+		pins = "emmc_rst_n",
-+			"emmc_dd_sb",
-+			"emmc_clk",
-+			"emmc_cmd",
-+			"emmc_data_0",
-+			"emmc_data_1",
-+			"emmc_data_2",
-+			"emmc_data_3",
-+			"emmc_data_4",
-+			"emmc_data_5",
-+			"emmc_data_6",
-+			"emmc_data_7";
-+		power-source = <1>;
-+	};
-+
-+	sd_vsel_1v8_pins: sd-vsel-1v8-pins {
-+		pins = "gpio_40", "gpio_41", "hif_clk", "hif_data", "hif_en", "hif_rdy";
-+		power-source = <0>;
-+	};
-+
-+	sd_vsel_3v3_pins: sd-vsel-3v3-pins {
-+		pins = "gpio_40", "gpio_41", "hif_clk", "hif_data", "hif_en", "hif_rdy";
-+		power-source = <1>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
-index 8d4293cd4c03..f18b975c3593 100644
---- a/arch/arm64/boot/dts/realtek/kent.dtsi
-+++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-@@ -125,6 +125,32 @@ psci: psci {
- 		method = "smc";
- 	};
- 
-+	io_level_detector: io-level-detector {
-+		compatible = "realtek,rtd1625-io-detect";
-+		pinctrl-names = "rgmii_1v8", "rgmii_3v3",
-+				"sdio_1v8", "sdio_3v3",
-+				"csi_1v8", "csi_3v3",
-+				"sd_1v8", "sd_3v3",
-+				"uart1_1v8", "uart1_3v3",
-+				"aio_1v8", "aio_3v3",
-+				"emmc_1v8", "emmc_3v3";
-+		pinctrl-0 = <&rgmii_vsel_1v8_pins>;
-+		pinctrl-1 = <&rgmii_vsel_3v3_pins>;
-+		pinctrl-2 = <&sdio_vsel_1v8_pins>;
-+		pinctrl-3 = <&sdio_vsel_3v3_pins>;
-+		pinctrl-4 = <&csi_vsel_1v8_pins>;
-+		pinctrl-5 = <&csi_vsel_3v3_pins>;
-+		pinctrl-6 = <&sd_vsel_1v8_pins>;
-+		pinctrl-7 = <&sd_vsel_3v3_pins>;
-+		pinctrl-8 = <&uart1_vsel_1v8_pins>;
-+		pinctrl-9 = <&uart1_vsel_3v3_pins>;
-+		pinctrl-10 = <&aio_vsel_1v8_pins>;
-+		pinctrl-11 = <&aio_vsel_3v3_pins>;
-+		pinctrl-12 = <&emmc_vsel_1v8_pins>;
-+		pinctrl-13 = <&emmc_vsel_3v3_pins>;
-+		realtek,iso-pinctrl = <&iso_pinctrl>;
-+	};
-+
- 	soc@0 {
- 		compatible = "simple-bus";
- 		ranges = <0x0 0x0 0x0 0x40000>, /* boot code */
-@@ -184,3 +210,5 @@ gic: interrupt-controller@ff100000 {
- 		};
- 	};
- };
-+
-+#include "kent-pinctrl.dtsi"
--- 
-2.43.0
+> 
+>>
+>> The device is slf3s with variants. All of known variants have an
+>> interface to detect the actual variant. There is no indication that this
+>> won't work - why would company remove the ID register?
+> 
+> They won't remove the ID, but they will put other values in it to
+> indicate new revisions of a part - often entirely backwards compatible
+> - sometimes with extra features that we don't use until the driver is updated.
+> 
+> 
+>>
+>> But even if this happens, then it would be change of device interface,
+>> thus you cannot use generic compatible and you will have a new dedicated
+>> compatible.
+> 
+> We've had this discussion a number of times for whether an ID register difference
+> alone makes a device non compatible, and the answer from DT review has always been
+> a firm no and that it is incorrect to reject an unknown ID if the dt-compatible
 
+True, but this is not the case here. That incompatible device would
+simply not use this compatible, thus it will not start the probe.
+
+
+> is known.  The compromise that people were happy with was an info print if
+> such a mismatch is detected as it might indicate an incompatible part replacement
+> and a broken DT.
+> 
+> Probably 80%+ of IIO bindings with fallback compatibles do not have
+> matching "who am I" register values.  This is incredibly common.
+> 
+>>
+>> If the device is actually "slf3s-0600f" (because slf3s is a family),
+>> then I am fine with using that as the fallback. Specific front
+>> compatibles are also fine in such case.
+> 
+> Yes, it's a part in the family. Each of the compatibles here has a
+> separate datasheet:
+> 
+> https://sensirion.com/media/documents/C4F8D965/66F56F53/LQ_DS_SLF3S-0600F_Datasheet.pdf
+> https://sensirion.com/media/documents/6971528D/63625D22/Sensirion_Datasheet_SLF3S-1300F.pdf
+> etc
+> 
+> (wonderfully inconsistent file naming ;)
+> 
+>>
+>>
+>>
+>>> compatible with.  Given these are providing scaling info that means we
+>>> can't realistically support such a future part with a fallback at all.
+>>>
+>>> That would only be possible if there was feature level discovery. A single
+>>> whoami register with no structure to the value is useless for this.  
+>>
+>> The whoami register defines all the features, no? What would feature
+>> discovery improve? ID register is simply logical OR of some feature set,
+>> still uniquely identifying the features set/variant.
+> 
+> Would be lovely if true. Sadly almost never true. They are typically just
+> the next number in a list of parts released. There is no direct information
+> on feature set encoded in that value, we have to have a look up table in
+> the driver to translate to feature set. (Not relevant here but sometimes
+> manufacturers forget to change the number and we get different feature
+> sets with the same ID and no discoverability)
+
+I did not mean there is direct information. I meant that you can create
+such map, so basically it is defining all features.
+
+> 
+> If they were an OR of features that would be great.
+> 
+> The thing is a little structured in this case
+> 
+> 0x07         Liquid flow sensor
+> 0x  03       Product family (e.g. SLF3x)
+> 0x    03     Subtype (e.g. SLF3S-0600F)
+> 0x      02   Revision number (changes with minor firmware or hardware revisions)
+> 
+> But both the product family and subtype are numbers to feed into look up tables
+> (maybe revision number as well)
+
+The values don't matter. What only matters is that each is unique, you
+can map it to a real device (and its datasheet) and features are
+decodable from the datasheet.
+
+Best regards,
+Krzysztof
 
