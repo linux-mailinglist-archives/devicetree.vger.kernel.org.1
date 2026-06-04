@@ -1,158 +1,206 @@
-Return-Path: <devicetree+bounces-307021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307023-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id m8VbBVDJIWoWNgEAu9opvQ
-	(envelope-from <devicetree+bounces-307021-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 20:52:00 +0200
+	id Y5QjK4fHIWqUNQEAu9opvQ
+	(envelope-from <devicetree+bounces-307023-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 20:44:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83F83642B39
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 20:51:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2443B642A47
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 20:44:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=doHo2H8Y;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307021-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307021-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=herrie.org header.s=transip-a header.b="Iq2N4/ID";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307023-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307023-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 865F43031001
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 18:44:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 84348301CC6D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 18:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BDEE386557;
-	Thu,  4 Jun 2026 18:44:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C003C1F41;
+	Thu,  4 Jun 2026 18:44:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from outbound4.mail.transip.nl (outbound4.mail.transip.nl [136.144.136.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D87D2DA756;
-	Thu,  4 Jun 2026 18:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBB239EF3D;
+	Thu,  4 Jun 2026 18:44:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780598640; cv=none; b=s7gWReCkhzaugkHjsKYXKBj/+ykyAcx+MS/BdzjE26OqZ5gGpi5Wziimym9j/AJxSI3DbWmNck2T3o5LovpnMxFMo453lo9yMW//cMPXWn59qt3tWwqp9UUI2n9Wl4Lm2xvMD3fKhOZED8PC0WQFpQn+iPFWBYY1rn0QTXYJxmU=
+	t=1780598655; cv=none; b=Mt0C3xWwTiKUYY7WzhOmaouHQORZ7CPbcLy4mf9bM40gmhplWKy9iBe82C4xksaeZkYBBteQIPzM1CU7j/UGdAojYAjJ07u4+9zDxrPiwsy5bhZ3ExoaGafhVZ1mpzoXdk7t515hFIFL5NqE+ELoXLuWg40l+GqRk3v/3shsvqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780598640; c=relaxed/simple;
-	bh=eSI7P83VnxscIAOiacHg+IRreTRG4OO8MztvRHY2KKE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DRBRZgDqYyk75Jsc666wZDLeBRNcS9bRUdtk59I56k+J+bhwymXFUtXXA/c8cflwdPrp4SHvR4DJHRyYZercRZqYGY0wt8DETtsA3p09HzkUO7pT0C7+CJjMCZmYqbDPdHazZVJKMAt8W8rT590nJhMhxcjqHkp/AzWqTQSu60o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=doHo2H8Y; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86D741F00893;
-	Thu,  4 Jun 2026 18:43:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780598638;
-	bh=VqSS10h2AUJUcCZwvdHE2yhkHcXcmUxZJ3hTKVbdwVU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=doHo2H8YcwaAU0h5DPYQIJ+o+v7I9xaPz6+X9MirSvMzYiCbeiIm/jISGNgS5v9Ch
-	 1C+15fZQP0L+2WhokPDB2jOFfEclZQvcLF5yi5F90vkoD+MVUn5PNiK9wBTwx4vgr6
-	 glb2TcxN6oEHp9flZzsjS4yKnnkozacgVK6ST6GX06mdIkEOgAv3+knn5fMCIV4x+/
-	 qj3NpT+e1UG+EmeXTpTa5iyupVPYbjqDTp7xrb4L1J+v6UIjZtocvDgHchIoJniPO+
-	 Oe8C0x6EERFbH6+djXsRdDwYQga+befhFHw8zSe2u4/6+r+8zJp9tUxDuYFL64qPVP
-	 n/393bGOHexbg==
-Date: Thu, 4 Jun 2026 13:43:57 -0500
-From: Rob Herring <robh@kernel.org>
-To: sashiko-reviews@lists.linux.dev
-Cc: Damon Ding <damon.ding@rock-chips.com>, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: display: bridge: analogix-dp: Add
- data-lanes support for endpoint
-Message-ID: <20260604184357.GA988009-robh@kernel.org>
-References: <20260604085220.2862986-2-damon.ding@rock-chips.com>
- <20260604090639.D40751F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780598655; c=relaxed/simple;
+	bh=yTTK8VtoRBYVbAh8BEyW+596U/dAce9FYmrXs0nOn+g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Rou0Sfie9/TcU+IP+ZSx8/0POg+FvprEXJGK7HdKlH5kXWzVnlrz7VjXMBetOe78ig+Xk6l5rKnMadE5SOgd96uKcV17pEHfObEilCxPJ3XnHpHsFcZ6r265Sbi/L19qEe3nBtT+m1KOheNKkbePd6MknGJr1NEuaOqjR9pp4AM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=Iq2N4/ID; arc=none smtp.client-ip=136.144.136.2
+Received: from submission0.mail.transip.nl (unknown [10.100.4.69])
+	by outbound4.mail.transip.nl (Postfix) with ESMTP id 4gWYPY3jgLzwPYn;
+	Thu,  4 Jun 2026 20:44:01 +0200 (CEST)
+Received: from herrie-desktop.. (180-93-184-31.ftth.glasoperator.nl [31.184.93.180])
+	by submission0.mail.transip.nl (Postfix) with ESMTPA id 4gWYPX46Q8zZyxrx;
+	Thu,  4 Jun 2026 20:44:00 +0200 (CEST)
+From: Herman van Hazendonk <github.com@herrie.org>
+To: djakov@kernel.org
+Cc: dmitry.baryshkov@oss.qualcomm.com,
+	konrad.dybcio@oss.qualcomm.com,
+	odelu.kukatla@oss.qualcomm.com,
+	raviteja.laggyshetty@oss.qualcomm.com,
+	luca.weiss@fairphone.com,
+	abel.vesa@oss.qualcomm.com,
+	jie.gan@oss.qualcomm.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Herman van Hazendonk <github.com@herrie.org>
+Subject: [PATCH v2 0/2] interconnect: qcom: add MSM8x60 NoC driver
+Date: Thu,  4 Jun 2026 20:43:58 +0200
+Message-ID: <20260604184400.801543-1-github.com@herrie.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260604090639.D40751F00893@smtp.kernel.org>
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: ClueGetter at submission0.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=transip-a; d=herrie.org; t=1780598641; h=from:subject:to:cc:date:
+ mime-version; bh=xONqXCRPpfu0N8QcFXhHqD/ouGS1shZfT4TapA+CFNk=;
+ b=Iq2N4/IDz4bDYQ2QeMZ1+XLVUyhlYFs8e79h/lPtGIPtIzWsSE+wAOTouc9jTHMzNRkxov
+ jiSWcTWNa8obzG7zt15XQ8JjeZve5NG6fHvHcNpSs5dHuvzn3tFJNXAEixlWKY3GTsomnM
+ URRa9Z7YVeIleKeiQOOVwyoTPDPSsBsxOa4Cw3ui9moS3v43+y4IZcm9VffRbECo4jrJ31
+ QApAJwRxOD2JAG45Zf/QSHrZEDxXRcVPk7DJ8cAKKxyhvddUKefV9DOPN+2clEYP+pHzRg
+ gdJLAojeDkhXUB91k3ZR4pKTSXs91LsbXffMqunR8UVpm/o+Nv5G0IJ7YH9H5A==
+X-Report-Abuse-To: abuse@transip.nl
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307021-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:damon.ding@rock-chips.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-307023-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:djakov@kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:odelu.kukatla@oss.qualcomm.com,m:raviteja.laggyshetty@oss.qualcomm.com,m:luca.weiss@fairphone.com,m:abel.vesa@oss.qualcomm.com,m:jie.gan@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:github.com@herrie.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[herrie.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[herrie.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 83F83642B39
+X-Rspamd-Queue-Id: 2443B642A47
 
-On Thu, Jun 04, 2026 at 09:06:37AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] The `data-lanes` property is defined strictly for the `endpoint` node name, causing schema validation to fail or miss constraints if applied to valid unit-addressed nodes like `endpoint@0`.
-> --
-> 
-> commit c6792a12ea4c785878c85982c6a4537b6a1901d6
-> Author: Damon Ding <damon.ding@rock-chips.com>
-> 
-> dt-bindings: display: bridge: analogix-dp: Add data-lanes support for endpoint
->     
-> This commit adds data-lanes property support to the port@1 endpoint in
-> the analogix-dp bridge binding to allow physical lane mapping configuration.
-> It also updates the Rockchip eDP DT node example to demonstrate its usage.
-> 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,dp.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,dp.yaml
-> > index 62f0521b09245..ecf206871cdde 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/analogix,dp.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,dp.yaml
-> > @@ -42,13 +42,22 @@ properties:
-> >      properties:
-> >        port@0:
-> 
-> [ ... ]
-> 
-> >        port@1:
-> > -        $ref: /schemas/graph.yaml#/properties/port
-> > -        description:
-> > -          Port node with one endpoint connected to a dp-connector node.
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        unevaluatedProperties: false
-> > +        description: Port node with one endpoint connected to sink device node.
-> > +        properties:
-> > +          endpoint:
->              ^^^^^^^^
-> [Severity: Medium]
-> Does restricting this to the exact node name 'endpoint' cause validation
-> issues for unit-addressed nodes?
-> 
-> Because JSON Schema strictly matches object keys, a node named endpoint@0
-> under port@1 will bypass this block, meaning the video-interfaces $ref
-> and data-lanes validation constraints are never applied.
+v2 addresses Jie's, Sashiko's and Dmitry's review of v1:
 
-That could be an issue...
+Binding (PATCH 1/2):
+ - Add the dt-binding schema (qcom,msm8660.yaml).  v1 only shipped
+   the ID header (Jie flagged the missing schema).  The schema
+   covers all four compatibles, per-fabric clock-name lists
+   (bus/bus_a/ebi1/ebi1_a for AFAB; bus/bus_a/smi/smi_a for MMFAB;
+   bus/bus_a for SFAB and DFAB) with descriptions for each clock
+   (Dmitry), the required qcom,rpm phandle, and
+   #interconnect-cells = <1>.
 
-> Should this use patternProperties: "^endpoint(@[0-9a-f]+)?$": instead
-> of properties: endpoint: to ensure unit-addressed endpoint nodes don't
-> bypass these constraints?
+ - Drop the SFPB/CFPB mention from the header commit message;
+   those fabrics aren't modelled by the driver (Sashiko Low).
 
-But no, this is fine as-is because it defines that only a single 
-endpoint is valid and we'd need to fix everywhere as this is a common 
-pattern.
+Driver (PATCH 2/2):
+ - Fix the bandwidth aggregation in msm8660_icc_set() (Sashiko
+   High).  v1 walked provider->nodes and re-summed n->avg_bw
+   across all nodes, which double-counts: the framework already
+   writes each path's bw to every node it traverses, so summing
+   here gives e.g. master_bw + slave_bw for the same flow.  v2
+   takes the max per-node rate across the provider (matches the
+   qcom_icc_bus_aggregate() convention in icc-rpm.c).
 
-Rob
+ - Switch to dynamic ICC node IDs via icc_node_create_dyn() and
+   pointer-based linking via icc_link_nodes(), matching the
+   icc-rpmh-style pattern (Dmitry).  Drop the internal MSM8660_*
+   enum entirely; struct msm8660_icc_node now carries a struct
+   icc_node *node and a flexible link_nodes[] array of qnode
+   pointers.
+
+ - Expand the DEFINE_QNODE macro (Dmitry); each of the 63 qnodes
+   is now an explicit static struct definition, with forward
+   declarations grouped at the top.
+
+ - Use dev_err_ptr_probe() in msm8660_get_rpm()'s deferred-probe
+   paths (Dmitry).
+
+ - Limit the clock-bulk-get fallback to -ENOENT only (Dmitry);
+   propagate every other error including -EPROBE_DEFER instead
+   of "any non-DEFER continues without clock scaling".
+
+ - Kconfig: depend on MFD_QCOM_RPM=y so a built-in interconnect
+   provider can't link against a modular RPM (Sashiko Low).
+
+ - struct msm8660_icc_node: const char *name (Sashiko Low).
+
+On-device validation (HP TouchPad / APQ8060):
+  All four fabric providers probe cleanly:
+
+    qnoc-msm8660 soc:interconnect@0: RPM fabric ARB enabled
+                 (4 masters, 4 slaves, 2 tiered)             [AFAB]
+    qnoc-msm8660 soc:interconnect@1: RPM fabric ARB enabled
+                 (17 masters, 9 slaves, 2 tiered)            [SFAB]
+    qnoc-msm8660 soc:interconnect@2: RPM fabric ARB enabled
+                 (14 masters, 4 slaves, 3 tiered)            [MMFAB]
+    qnoc-msm8660 soc:interconnect@3: MSM8660 interconnect provider
+                 registered                                  [DFAB]
+    mmcc-msm8660: MMSS fabric: unhalted all master ports (0-13)
+    msm_hsusb 12500000.usb: USB HS: Setting interconnect
+                 bandwidth avg=61440 peak=61440 kBps
+
+  interconnect_summary shows the expected per-node aggregation
+  (e.g. slv_ebi_ch0 sums MMC + MDP + DMA + USB consumer requests)
+  and msm8660_icc_set() then derives a single fabric clock rate
+  from the per-node max rather than the per-node sum (the v1
+  double-count is gone in v2).
+
+The companion DTS patches that enable the providers for the
+HP TouchPad will be sent separately to the ARM/DTS tree.
+
+Herman van Hazendonk (2):
+  dt-bindings: interconnect: qcom: add msm8660 NoC
+  interconnect: qcom: add MSM8x60 NoC driver
+
+ .../bindings/interconnect/qcom,msm8660.yaml   |  157 ++
+ drivers/interconnect/qcom/Kconfig             |   14 +
+ drivers/interconnect/qcom/Makefile            |    2 +
+ drivers/interconnect/qcom/msm8660.c           | 1619 +++++++++++++++++
+ .../dt-bindings/interconnect/qcom,msm8660.h   |  156 ++
+ 5 files changed, 1948 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,msm8660.yaml
+ create mode 100644 drivers/interconnect/qcom/msm8660.c
+ create mode 100644 include/dt-bindings/interconnect/qcom,msm8660.h
+
+
+base-commit: 944125b4c454b58d2fe6e35f1087a932b2050dff
+-- 
+2.43.0
+
 
