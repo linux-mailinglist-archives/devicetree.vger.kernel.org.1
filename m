@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-306601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306603-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6VKaJu0VIWoV/AAAu9opvQ
-	(envelope-from <devicetree+bounces-306601-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:06:37 +0200
+	id BgGrGQMWIWoa/AAAu9opvQ
+	(envelope-from <devicetree+bounces-306603-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:06:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10D463D24A
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:06:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC6F163D255
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:06:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=H2q79PpH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306601-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306601-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=h6eafnCE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306603-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306603-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B2CD23005D1B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:01:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C6AEF300C01B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:01:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBE23D47AC;
-	Thu,  4 Jun 2026 06:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11323D45EA;
+	Thu,  4 Jun 2026 06:01:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7103BFAE7
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 06:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3173D47B1
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 06:01:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780552886; cv=none; b=GrS8mXiDXqZktV5bltCXcuvIrT9ytVS0uKghyJQPLisovgRnbI/x4J3StADcMhzryhNRfFET56Iuq1sA7Kg7s/clfYUEqFoxiSuMYMex2K8E0n/uatnpaAefZql7lN9GRZIeyNgWtGrZbfIdPGT6uRLI+2Rj80TD8OgXcYVwCqw=
+	t=1780552887; cv=none; b=gGCi0sJUMkQ7pEJhgvxf4XtU/wLqRmuKVHkkJnH8By8ET46KFJyt71Cu8JuSqLsuEC4DggGHpQ0DJrGJPuZvxVlalXVAoG+TTOtF+IFd88LZnXRYL6JOlRX4+pv+R0C5k1izXLbLCYGekC4gzN/iGF/tQo6qzHiP5e1vpXIRBcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780552886; c=relaxed/simple;
-	bh=qPheofKixSze/Y0mOV6JporlRTlqKhJXcmprfr6C63k=;
+	s=arc-20240116; t=1780552887; c=relaxed/simple;
+	bh=NoN9zKwyYNW+0LrpAbiU31JZqrMspX2em6rmHNEeBYU=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ig/PjZw4RsuGCHagMYZa0FPQQqhbg5UrjqA9TU/CNlG6DdS5V4nt/0pjMYY9ceaknaxz05OGsV+WNI4xhYMwiNF9RolWXidZ9hAhs4uWPRn5G07JB+LlncA+vNqFkqRaQIC919dIzIhjXshH7jl6t6UE3cSBpTMp/PoUmTOxGFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H2q79PpH; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACAD11F00893;
-	Thu,  4 Jun 2026 06:01:24 +0000 (UTC)
+	 Message-Id; b=Weq+fWlQ1RKWoBauCjkNLja6XCYnanbQ7QxFAuBpjXxiIMBYv0I5YOJB9dM+l+jjKdP6CBn3ypIghUiFH85SLqqKovTmb4Z90DoIpkogoOFHe6uvZthSc/ezhJvQGXMAa9uHqFGrW0FIssfsIXhEEFRAFMiPoUNL/wlohYj6CV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h6eafnCE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DF2B1F00899;
+	Thu,  4 Jun 2026 06:01:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780552884;
-	bh=yCg1xI6zGA/m0FPAvLZV/At+1tbXAGnTcZSD7P2FA9c=;
+	s=k20260515; t=1780552886;
+	bh=d8Y03SjKEoAfKd3vj8Xbe6RKzagARZFcuDJ1EMLbzfE=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=H2q79PpHAUNQ0JAJVC53AZaPTgCyHRugHrUbyLNkjNnHxOgiwSdjY7xjTmFxPP28n
-	 24Ep2rYC2Hup27NIy+uX1nvR++dKo/zP5ICM0vlcptNiqvMnoV4JrpVBn64urOjyP6
-	 1Ts1yLLmHm8AxwVXqNQV0He3VEU/zvHChosptHI4P1iBCBOGE7z5fmdrAp9l0JHePd
-	 2mGxynyc5P/hebbqbS4BgC4uP6BtJY4188gjsshTXAxU+hGFK3Vx12NESGnj1koXPc
-	 4nP0u95BcFuHYiFDficL+xkCyMXgHjTQ6/NErJ8KRbe+63RmtXlF46uXGiM7FfnMbv
-	 cqTqrzh1HdU4g==
+	b=h6eafnCEe2iNaiXdS/NhWIlCqir8tTC3IHlocPVR28KSWp5QN+r9x8pl1Ex5sLwAB
+	 Y6BqrG0bWms8DN7UT3+8AH8Loy2x+D4veMzGAVXxA1j0gppB/UmlK4PjLmyf4dRSDV
+	 EUI7OhGBL5wJUC6/vXjxwi7Uk6HBwfPymb+0p7HPHCL1I7WoXZ8TtTqPIibxHMCm9O
+	 yYq0aAV8aROo3RSqYgqFky6YtlXyK2pyslm/KDZHLIY07s7zx+Lr9oFNqYwN3UxAtP
+	 apUCMtNFHyHWdRQZJrCm+cxFv/LwRwUEBlbIXWws/1jnsndIriFPGVYo/R6T+OIrVy
+	 d3MI5byQLMMbA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v9 2/6] net: airoha: Remove private net_device
- pointer in airoha_gdm_dev struct
+Subject: Re: [PATCH net-next v9 6/6] net: airoha: Support multiple LAN/WAN
+ interfaces for hw MAC address configuration
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Lorenzo Bianconi" <lorenzo@kernel.org>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260603-airoha-eth-multi-serdes-v9-2-5d476bc2f426@kernel.org>
-References: <20260603-airoha-eth-multi-serdes-v9-2-5d476bc2f426@kernel.org>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260603-airoha-eth-multi-serdes-v9-6-5d476bc2f426@kernel.org>
+References: <20260603-airoha-eth-multi-serdes-v9-6-5d476bc2f426@kernel.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 04 Jun 2026 06:01:24 +0000
-Message-Id: <20260604060124.ACAD11F00893@smtp.kernel.org>
+Date: Thu, 04 Jun 2026 06:01:25 +0000
+Message-Id: <20260604060126.0DF2B1F00899@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +69,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -77,11 +77,11 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-306601-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306603-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:lorenzo@kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:lorenzo@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -97,59 +97,121 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E10D463D24A
+X-Rspamd-Queue-Id: AC6F163D255
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] Potential deadlock in airoha_update_hw_stats() due to use of spin_=
-lock() instead of spin_lock_bh().
+- [High] The MAC address MSB validation introduces a configuration deadlock=
+, permanently preventing MAC address MSB updates when multiple interfaces a=
+re registered.
+- [High] Unconditional overwrite of `ref_addr` in the interface evaluation =
+loop breaks MSB validation and corrupts hardware L2 bounds.
 --
 
-commit d33fdec52e6f77bf6de4ab248729e1a868e78dc6
+commit ca5c4a90447cc1f9bdc3a2831da1cfe304652070
 Author: Lorenzo Bianconi <lorenzo@kernel.org>
 
-net: airoha: Remove private net_device pointer in airoha_gdm_dev struct
+net: airoha: Support multiple LAN/WAN interfaces for hw MAC address configu=
+ration
 
-This commit removes the redundant net_device pointer from the
-airoha_gdm_dev struct. The code now relies on the netdev_from_priv()
-routine to retrieve the net_device pointer. This is a refactoring change
-with no logical modifications.
+The EN7581 and AN7583 SoCs provide registers to configure hardware LAN/WAN
+MAC addresses. This commit extends the logic to derive the correct minimum
+and maximum values for MAC LSB bounds when multiple interfaces are configur=
+ed.
 
 > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ether=
 net/airoha/airoha_eth.c
-> index 6574901ebd19b..57a16de0a2ec7 100644
+> index 64ee526da2414..8f2608293bb72 100644
 > --- a/drivers/net/ethernet/airoha/airoha_eth.c
 > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
-
+> @@ -71,20 +71,76 @@ static void airoha_qdma_irq_disable(struct airoha_irq=
+_bank *irq_bank,
 [ ... ]
+> -static void airoha_set_macaddr(struct airoha_gdm_dev *dev, const u8 *add=
+r)
+> +static int airoha_set_macaddr(struct airoha_gdm_dev *dev, const u8 *addr)
+>  {
+> +	u8 ref_addr[ETH_ALEN] __aligned(2);
+>  	struct airoha_eth *eth =3D dev->eth;
+> -	u32 val, reg;
+> +	u32 reg, val, lmin, lmax;
+> +	int i;
+> +
+> +	eth_zero_addr(ref_addr);
+> +	lmin =3D (addr[3] << 16) | (addr[4] << 8) | addr[5];
+> +	lmax =3D lmin;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(eth->ports); i++) {
+> +		struct airoha_gdm_port *port =3D eth->ports[i];
+> +		int j;
+> +
+> +		if (!port)
+> +			continue;
+> +
+> +		for (j =3D 0; j < ARRAY_SIZE(port->devs); j++) {
+> +			struct airoha_gdm_dev *iter_dev;
+> +			struct net_device *netdev;
+[ ... ]
+> +			if (netdev->reg_state !=3D NETREG_REGISTERED)
+> +				continue;
+> +
+> +			ether_addr_copy(ref_addr, netdev->dev_addr);
+> +			val =3D (netdev->dev_addr[3] << 16) |
+> +			      (netdev->dev_addr[4] << 8) | netdev->dev_addr[5];
+> +			if (val < lmin)
+> +				lmin =3D val;
+> +			if (val > lmax)
+> +				lmax =3D val;
+> +		}
+> +	}
 
 [Severity: High]
-This isn't a bug introduced by this patch, but I noticed a potential
-deadlock in airoha_update_hw_stats():
+Does this loop unconditionally overwrite ref_addr with the last evaluated
+interface? If there are multiple interfaces with mismatched MSBs (e.g., from
+random boot MACs), it seems ref_addr will only retain the MSB of the final
+interface.
 
-drivers/net/ethernet/airoha/airoha_eth.c:airoha_update_hw_stats() {
-	...
-	spin_lock(&port->stats.lock);
-	...
-}
+Could this cause the validation check below to incorrectly pass if the new
+MAC matches the last interface's MSB but not the earlier ones, while
+erroneously accumulating LSBs from mismatched interfaces into lmin and
+lmax?
 
-Does this code risk a deadlock? The ndo_get_stats64 callback
-(airoha_dev_get_stats64) can be executed in softirq context, while this
-lock is also acquired from process context (e.g., via ethtool) without
-disabling softirqs.
+> +
+> +	if (!is_zero_ether_addr(ref_addr) && memcmp(ref_addr, addr, 3)) {
 
-If a softirq interrupts the process context reader holding the lock on the
-same CPU, wouldn't it spin forever trying to acquire the same lock? Should
-spin_lock_bh() be used here instead to prevent this?
+[Severity: High]
+Can this validation check create a configuration deadlock?
+
+Since the driver requires all LAN or WAN interfaces to share the same
+MAC address 3-byte MSB, and userspace APIs configure interfaces sequentially
+via ndo_set_mac_address, changing the first interface's MSB will always fail
+this check against the remaining interfaces.
+
+How can a user successfully configure a unified custom MAC MSB across all
+devices if the interfaces are assigned random MAC addresses at boot with
+different MSBs?
+
+> +		/* According to the HW design, hw mac address MSBs must be
+> +		 * the same for each net_device with the same LAN/WAN
+> +		 * configuration.
+> +		 */
+> +		struct net_device *netdev =3D netdev_from_priv(dev);
+> +
+> +		dev_warn(eth->dev,
+> +			 "%s: wrong mac addr, MSBs must be %02x:%02x:%02x\n",
+> +			 netdev->name, ref_addr[0], ref_addr[1],
+> +			 ref_addr[2]);
+> +		dev_warn(eth->dev, "FE hw forwarding won't work properly\n");
+> +
+> +		return -EINVAL;
+> +	}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260603-airoha-eth=
--multi-serdes-v9-0-5d476bc2f426@kernel.org?part=3D2
+-multi-serdes-v9-0-5d476bc2f426@kernel.org?part=3D6
 
