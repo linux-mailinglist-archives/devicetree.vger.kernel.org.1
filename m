@@ -1,245 +1,422 @@
-Return-Path: <devicetree+bounces-306856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306854-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 41PSEm6DIWoTHwEAu9opvQ
-	(envelope-from <devicetree+bounces-306856-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:53:50 +0200
+	id 0aXoI4aCIWrEHgEAu9opvQ
+	(envelope-from <devicetree+bounces-306854-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:49:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D2A6640900
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:53:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 003FD640838
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:49:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bp.renesas.com header.s=selector1 header.b=vIC0qgdm;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306856-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306856-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=renesas.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=suse.com header.s=google header.b=At7uDi71;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306854-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-306854-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=suse.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 951D03001FB5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 13:39:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 27BBC3007953
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 13:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DDA47DD5D;
-	Thu,  4 Jun 2026 13:39:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 490C747B410;
+	Thu,  4 Jun 2026 13:36:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011016.outbound.protection.outlook.com [40.107.74.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84FBB4014A1;
-	Thu,  4 Jun 2026 13:39:20 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780580362; cv=fail; b=MLfAImNWQy9cStyG4p8lbgfMVImQK+CaarPq9q1tWMoO7ZFa5vJb6Li5PT/FueswbStFgHmc84iFMo4xDyp3mvCwPdFbkKdiI9qOxAg/gSBgRdOAwUCS1JSpXlnZWUeFif6sQ3Q1Zgorq4Ltdq+w5sswmwylOVBDktJHq+ukHhc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780580362; c=relaxed/simple;
-	bh=aEbO4Q9bffa23+997pzoMk3XQjbc+WxxXFJMWmp0AF0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Es4UWHnQdhOi7hZXJ392orfxD/tTEahKga9FOhv5xse34TPomw1O3SOtnRdG4b533HTgW0UFI2KWBBOey1nq626VYRHUNE1KAq09pqhnOX/SqufuwvT76zoGZZ8zK89LkR0tb+cBpXKsM6J2jQP9GsA8QsAZNlwNfyt4bc14QQM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=vIC0qgdm; arc=fail smtp.client-ip=40.107.74.16
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iVGtvowy5Vfn3tUCezzRL27R7Z89rTQDghWIGCgBL+JLsGYLN+I3W6DvdWPD5qF5D0AQ6hIjLQJ0Z7UnQVBUUd7aZarFuOXrz260QPz78+2JxtWVvOGnzFJDwR6W6gRXS/53DXN1D8exK1GWggV3Qqbfjye3feRkGFIIXNU8AkzKOEYF/2UoAe07i9UnzSVoqkTy8i1k8yGeNRXmny4Ys4bn4n4Dh8f/AmfLT90YVuLB7+v1+8uoGtZBM6/U5KRRTRnohEebKrgWJCRCuk4MwoI1aEpt/+6/TIAg/p4fhbGKLtrBRM+kysSZ4qzecrwLoFiLFimH1/axKmdkZcFPEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aEbO4Q9bffa23+997pzoMk3XQjbc+WxxXFJMWmp0AF0=;
- b=j7QmVwTrokznF11FuWjT/MHOI+44CeJD1aNQ+ZdBAQkyITV+tsv/6Uroo0jLBUBZMI1uXOyGs46LAXV3dXb1XTVM++gTbkd+EDJPOshWygrxpBzhC6oSL/K7Cx6lE7OMAm6vrAM3KhWALUydmcabhbQD+r0N+B59O1GC35M0I4EtYhzb/brrbct2YO4cIQ+J5pUWux+QPFziomx4yhWaNe8DM7V9kMETc8bDpbQvkjk/IDJEZVYmNdgwk/KJUDPOkuZ4rXzOCa1V/3rHwD1afI3AVJkm/AxH3DxLv2WX6yBKgt8HaIpWI7c839QTj5lywzBAhUihG9BBB8Cik9E0dw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aEbO4Q9bffa23+997pzoMk3XQjbc+WxxXFJMWmp0AF0=;
- b=vIC0qgdm1MRTqpbw500EJ+V+9kUK8sMxn5uNpdAeUIkhGcvJ7ehCkxYjseNkALvqfcKurEOqVeJgimqi4hSX97sZXPV8KvCkhK6gNZs554C6fF/3HNznQ79wVLdHlw7uex7pFhrGTWza8lCs1PJDp5A1zE6qGODCWTR8hsujppo=
-Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com (2603:1096:405:35b::6)
- by TY4PR01MB12765.jpnprd01.prod.outlook.com (2603:1096:405:1ea::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Thu, 4 Jun 2026
- 13:39:08 +0000
-Received: from TY6PR01MB17377.jpnprd01.prod.outlook.com
- ([fe80::f373:26d6:86c4:6aa3]) by TY6PR01MB17377.jpnprd01.prod.outlook.com
- ([fe80::f373:26d6:86c4:6aa3%6]) with mapi id 15.21.0092.006; Thu, 4 Jun 2026
- 13:39:08 +0000
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: geert <geert@linux-m68k.org>
-CC: "lgirdwood@gmail.com" <lgirdwood@gmail.com>, "broonie@kernel.org"
-	<broonie@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, magnus.damm <magnus.damm@gmail.com>, Kuninori Morimoto
-	<kuninori.morimoto.gx@renesas.com>, "linux-sound@vger.kernel.org"
-	<linux-sound@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, "john.madieu@gmail.com"
-	<john.madieu@gmail.com>
-Subject: RE: [PATCH] ASoC: dt-bindings: sound: renesas,r9a09g047: Fix
- dma-names list and ports schema
-Thread-Topic: [PATCH] ASoC: dt-bindings: sound: renesas,r9a09g047: Fix
- dma-names list and ports schema
-Thread-Index: AQHc85eU3NHjY0I8i0G5THlzMCFe7rYuTvuAgAAYdIA=
-Date: Thu, 4 Jun 2026 13:39:08 +0000
-Message-ID:
- <TY6PR01MB17377755340C075DE87D3F6A7FF102@TY6PR01MB17377.jpnprd01.prod.outlook.com>
-References: <20260603202805.3530046-1-john.madieu.xa@bp.renesas.com>
- <CAMuHMdVHSyaD9JBgCuC-saw8SV2WvN2H+hnMX8Nw6LJmoNQmXQ@mail.gmail.com>
-In-Reply-To:
- <CAMuHMdVHSyaD9JBgCuC-saw8SV2WvN2H+hnMX8Nw6LJmoNQmXQ@mail.gmail.com>
-Accept-Language: en-US, en-GB
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY6PR01MB17377:EE_|TY4PR01MB12765:EE_
-x-ms-office365-filtering-correlation-id: d8696a16-0dba-4a71-82da-08dec23ea720
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700021|3023799007|18002099003|22082099003|4143699003|11063799006|56012099006;
-x-microsoft-antispam-message-info:
- EQwSAVUOfKT8OO04xn424LWb41NUizqOqCanQQMR8oQkzOGsOHR0yFfoFrkguFJANylxI7popw970eG0fkEmJMbjSa2HCLbHFjjQdSfJ1tiAvAQRfCZ2hSszzG2603RtnBLWdfq9z+uyfGSasgFPABCESWx+XGiiLT1MixFIGoucXzj7OH8iTvWdc97yCijU7jUmWgBrgVOx3KuITfautQLohy8URc8Jvnf03y/umFO4LUQfKtJN97RDEjWXUCR+GoB8de6h8pQHQdRm2grm/b/YwpR9MpdVodopeRR5oEXPjUD0L2cEgrviQgwbgUlKwxOehh9QnenZapeXv7WaoQEQRYwqVZCxm5AfNDov22un/ZPS+PwGyG0UcUeOjF5yqibdi9z657X9PnLh76lYmplDxSaWxRQDqd0/Kt4HcTVY0m9FVRXXW8znODSoh183UICrU8sGT7MgZrgZ03zCKMuzvpjpJw9RTljk2+CZLZj86Omt9yV5itQ+Fv9BCPJcMgqy/uPysyEKu/DB77W6mPRr6Q/mRyo3R9EJVix19YX4QkyFQGijD3OqJyFhqicUy7dwNPjoHFRZUyP/aLzPwynf8AEVL87yxREH3JvMIG+rRGQJGeeJaV1qsM7qsgbbj6UnofqMv3OIvU9x1X/e/ZADIHed+u/oUTh5syeeCoVsoawu7b4njLQQyQzEzT2fXpB9GOlxj5NPEn+ZcB0dKJh/3QEIBn+zJrb5n6TX2LyiqzLKakm5EQg9ZEKmCjnd
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY6PR01MB17377.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700021)(3023799007)(18002099003)(22082099003)(4143699003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?TUMvQXFHRzFiUVRSenRyR0wrRGVyOVRHbFFIS0hocUNiUVVFcnF5cnhNWjJB?=
- =?utf-8?B?OVUwWXgrY1lUbmlmYXJmRm9JakcwR1I3cjJNWEdOK2IxR3BvMHJsNjF3SS9H?=
- =?utf-8?B?RUpFU3dlTzNMUzJxRWc1bEVwbGZHcjV0ZU5XdDl3V2x1c3pIQTVIb3duTzA1?=
- =?utf-8?B?ZTlNUFdqbWhDSDRDS0tianRHZVFTL3d0aHdIY2pYT01idmJkMmFoWVBkaklt?=
- =?utf-8?B?V3FlaVRXZE1MODRYelhoUG84akdKazVZOFo2TjlqQXpYaHRjdUFzbG9LSnBF?=
- =?utf-8?B?YUhEbGhTRDRtMytlaXNKWDllOUdiMWw0QjdHb3FkVzJheVNjNkZpbjBBK2pB?=
- =?utf-8?B?b1g3M0NESmR1SXZML25YZ3JnQW45RSs3M293SlR4dDY4cWl2NmhpMVhsTis4?=
- =?utf-8?B?LytMV29JaVI4WUVsMmdWdHg3WW9zRmVUOXhnRlRZenFnNmNqOGtGc0VUQ2tX?=
- =?utf-8?B?ZjBCaHBiWFNaZVlwRDk5bDNseDNYQ0xreG1TSVhJem5rZER0MnFmb2NNSG5p?=
- =?utf-8?B?Y2twNjBpL2toWDIxSVkwQmpYTE9wd1NtM3RhcGgrbVZrTWRIbUdTOUdSM3Z1?=
- =?utf-8?B?QmFFM0NNN2JEUG5mOC8vdW5tUnVwSnhuK1lVR2pKbVg3aTJhY00zZktJSUdC?=
- =?utf-8?B?NkxJcnduRzBWWTYrek9Keno0TjlYNGZCNlBpNnRDTTNFSy80Ly93RHpzUUh0?=
- =?utf-8?B?MXlXNjFQdDFpenNaTE9nazQvcGsxSnp5Y3JmQlZrSFBkaHIrUGxFbXJ3QzlN?=
- =?utf-8?B?bkxYczBINnIzRzZ3bTBqNCsrVHZHeEdIZmpJZWduVFV1QzA1OVJyUDFHL0ti?=
- =?utf-8?B?aUV4akowbGpMOWVma2hxQzF1NjNXai9WaWVvNjZrZ3U1SnhiVG5VQWdFQ0Fa?=
- =?utf-8?B?WDVxazB6T0JuVGpnL0RKblZxbStYaFU2OHVKL2l1THk5S0ZjV3hXZ3dlTVgv?=
- =?utf-8?B?Q0o2WjUraW9KYnM1bzl5ZW5aMGdUNHdMS1FhOEx2aC9zdy9pWWRwNWpPajRy?=
- =?utf-8?B?dXVWQzQ2UjRta056T2dBL1JySEtjTnNOYjY5UTNGVjExRng0SkVVdXJ1eXl6?=
- =?utf-8?B?UWVoa1FoUFg4cFRWSUNhK0ljUEg3WnZqcE1uK1RiaHEzc3VYS3J2S0dLWjY4?=
- =?utf-8?B?TXJHdGRTcUM2dEtUdnBpVHVYTnhoMEM3eWVXU0x3Zno5OEhlYkpzQWVCUFNF?=
- =?utf-8?B?UHBuUVY5UTYvRzM4T2lTc3czaytzTEJPazdNVVRzZ09BNWRHaDFwanRqR1Fq?=
- =?utf-8?B?cnRlNnE4SWdwR1M1YVErMkp1elFyZXBUdThYbGpuOHlyUXVMMnBsL0VxL1Fk?=
- =?utf-8?B?VmNJZ1Z3bVZQMUJtYXhzZ1RSdlRmUStRS2ZWYm04WVFHSVB4VW1RU21oWGdn?=
- =?utf-8?B?WlgwNjBoSWxvd0FoQ0NhOVZkV2VpMEJLK0VzcUVjZ1JLMi9NOFJhK2lXQzlG?=
- =?utf-8?B?RVV6SEI5QnJIaVh0MTZKalp5RzNqOG9DcHFZQTFUSTlpVk54VXE3NlJQUTN6?=
- =?utf-8?B?WmhISGRjUElZOTI0TTkxczVkQUZlcU9SYytFcS9HR2V3ZmJHQmtUaFFDWWFY?=
- =?utf-8?B?bXB3SE5rdHhpOFU5elpDL0kxSi8weFBRUDJEaGdoemtRQ1l5SEdpc216c3gy?=
- =?utf-8?B?ZmdNMU1WN2NIaHM1RTFjRnI2R211YTBLbFdvOERYclJ1QWNGSXRQeXZ4YW8z?=
- =?utf-8?B?djBwcTNaLzZqSFg2S2hJUkE4SUhSM0krMFN6SzMvb2VUY0JPVmp5V0FCV0pE?=
- =?utf-8?B?SGlvZythdCtqamVtMlpvSEY1bGdLZHZOOTFXNlEwc0pBN01HRXk0ZlEycHlC?=
- =?utf-8?B?OEw2cm0rRzJCYmtEN0pGS1FTU0h4aTJyczhDR0pWSDM2YVFlekdRRldpeld5?=
- =?utf-8?B?VC8zelc3MlVia0x1aXp0S2JXNm1WVXFiVHRqcWhBSUxqMUxrcTZwMytyK2lj?=
- =?utf-8?B?alVTaVZYcTlqemQxTHBKcC9XYzRjT3JUS29YTkwrS0doYTh2azUwT3k5Y2M3?=
- =?utf-8?B?TWhOa05NUDNBcy81eHdtYXRON25FVTZrMGpZZ0o0VzlINDVPQ3o0aHJZa3BO?=
- =?utf-8?B?U0loZlV1MFlvN0I5ZUYwZy8xWFFtZ0JtVlpyTnFGMlRkUStRMHEyU2lMRUtW?=
- =?utf-8?B?U3pZNE81b1hGY1o5WHBBT0FuQUZCVGE0cnQ0QUlaeWRqaE0wR1pEcExWUDBq?=
- =?utf-8?B?YUdRR2VEeC9NbWJqY3lVelBhdkhFMUZ6TTdUVXNYS1VwV1R5WEplRDUwMHpq?=
- =?utf-8?B?QzBDZWJEdnAzSDdtM3ZhQ0F3L3pyV2lnTXdzWGhkQmJGbngxb0svQ3VnUzVQ?=
- =?utf-8?B?SDBlelBRSEU1bWVJRHhkYXNuR282SUxvc3U1YzlxQ08wcXdPOGVFUT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7808E477E42
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 13:36:26 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780580188; cv=none; b=DPhxrVwNgNvt6SbD9e9fP4rvMNzDEND42c87fr6RsC2qF+Qh3ZCWQ23O1HXy5Z0ONRdlsVBQq+k8vwq9QElmqRIv7YbSeD83aUSRasBK5OHtHB8aHmtTtaIVtbrcIQOUYABweQh1HDUgnTPJbEgCE2iRD12O5r3iO77i/wqAPEc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780580188; c=relaxed/simple;
+	bh=BxsTUewbsv2I+gfWh6SizCCW8tttS8dvRtp/YVKPd90=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bgiqlfwR2Y2LMjf4XNMcrvYNWyp+wEjLEyi7kVq+KFX0hn0aIkxQHEQRBevnyFbac+PWEjZOJXyJxtWpEDSzGDmn1akFblpwDCmwj/lKTpI0jLDMjAczqfJ/Y7j4JXMaRKj+VcMCjzyFkjfOaMKtCkItFbNEQ2R8C+aVOTBYR1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=At7uDi71; arc=none smtp.client-ip=209.85.128.51
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-490b613a17bso7232235e9.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 06:36:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1780580185; x=1781184985; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=v6GdKVvECywjXiT0mRrreIU+7xtDE0HxPtley59ewis=;
+        b=At7uDi71P2HCtL5gFy41UzG7ALjLmcyPb3mXBXJU9WuJxUgYZVL92W4c6sfb8CoTlP
+         tpHsToZk4FXBoWpDz7G3PFzxvB9re30iqQQFs8IrkYSpalT7VLyBBEjtqGxNMJT7LPxZ
+         uvkalLmHBsOUaCYRY+VrO9gzEIzm0YTg9SN35yJdD8bBxyzrfo8D5HA2C8h3JIaWtdE7
+         ibRLPkr/vfW1iN8y7AXd6YdpYfjSmmd6F6TrPvOKaTa77/+xbSJ0mPpNPVqphHhnUXlX
+         SuIBtyB4/YF0WA7IDWmNK15wmLbHyr0upmkjAxKqNi+idPoIN/AiT8c2G7fefgIXYGeV
+         m8oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780580185; x=1781184985;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v6GdKVvECywjXiT0mRrreIU+7xtDE0HxPtley59ewis=;
+        b=GrGBfOn2nzyLeUlMoN/FyIMVwBgI1e9RjcRV/ronsvBx9RJ0Zbr71PB4hkpHkSHUp5
+         7reyQaeLERGTcmHN0Lc/0TS6q9GBJE9eFlVuFpp2kEFpKxdDhv6hEoo3EEkouTraxUk4
+         l8uqXfAgEXY9nHTCEaO+ENLho55u8B45ICeR7lKiNiCOOLh3i/T6RT72GkFHgOqflsVf
+         8Sc95IQ6nJjLTG5yK7k7q7aF1KreDRHmj/+xPERuI7Qb4x1VCrzghlcTz4H4sFdfu0CZ
+         cBYZMduzTgKaeiSmNAPFTA8WyVDLtgUIUQKEKJqpxf2lKvynjfXreuaIazm4pmAVE9LL
+         svYQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+b8WxCBQr7aOLlRgNmMH3+A4trfDJDMZPDdqXLpE7JPDKiAjGbrwDF+iUrWt2sD0VFw5Ce4B/qXhSH@vger.kernel.org
+X-Gm-Message-State: AOJu0YymRQbAoeCp+BZl5cIU+ypyxxnLkKHIzf2+Sd0qWjqePi7zCbLA
+	Agul2Dtr9+hnOUADea/Lx3Tp2BH4F/SRHZ8JAu1pDImSXIQUASU9C0Gt4gv88LHXtO2QRTnHpmq
+	H0MAMg5g=
+X-Gm-Gg: Acq92OELGE966IBGZzgn+BnStZaOfZUmhCZfza7ILCmjJXnzshj1ynxgAVx+N8IZ2cx
+	v2hzNaMzU8LtQs0rfuGKtNoF1+QXRHF25pZc4APEx/k/6GguJCR6A2koOpoR+NuU+dKJ9tEySeO
+	2FC3JJhWvb7gzTgwqectYzf9hBIMDpdmRZHssTY+t074UhffnqX14q1jIGq5wTW7m8zh7NmCckq
+	nNasOMJPLmfP4GMTFIM2tKjfdG+82XCe4WVWjnglhhAFWZgGKyL28Dp4VRuGwvpQmeLMW70HHH/
+	WH2tTsDawdPaqFGh4tuBLH6p23LDTBWhBSTiWFwCuA0Lcq7QzZoJFH2ngrbhbF3vXlEz8RiAGay
+	ySV+c/RUV1qCSV7EN4F44vJKDO6398g05kTsu4U5AGsRQbpWTh1OzNkWZiEzNrgSYz7mBVzatV1
+	cm3NVL2J2zQ+lq+jvenamAPEiyyme/I/Lrma30Z3Ts9Q==
+X-Received: by 2002:a05:600c:638d:b0:489:2005:b36e with SMTP id 5b1f17b1804b1-490b5ecc90bmr142484515e9.19.1780580184781;
+        Thu, 04 Jun 2026 06:36:24 -0700 (PDT)
+Received: from localhost ([195.94.146.6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490be1f69bcsm53001575e9.8.2026.06.04.06.36.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Jun 2026 06:36:24 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Thu, 4 Jun 2026 15:39:44 +0200
+To: sashiko-reviews@lists.linux.dev
+Cc: Andrea della Porta <andrea.porta@suse.com>, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, robh@kernel.org
+Subject: Re: [PATCH v4 2/3] pwm: rp1: Add RP1 PWM controller driver
+Message-ID: <aiGAINsTG8VZLn28@apocalypse>
+References: <8eef956a5eb473f051bbda89ec4c9991c1b47de2.1780498640.git.andrea.porta@suse.com>
+ <20260603154716.1B5C41F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY6PR01MB17377.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8696a16-0dba-4a71-82da-08dec23ea720
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jun 2026 13:39:08.0651
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eEdiQm/ZkSzkchxNs31zR8AODKIc/2g5UElApOy+qJNtfQr0etevasrwAmp1sRK6mGv2CChXMyrl6cZbaooG2NUbznrVeDwPMvYd69YP/aQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB12765
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260603154716.1B5C41F00893@smtp.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306856-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-306854-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:geert@linux-m68k.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:kuninori.morimoto.gx@renesas.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:john.madieu@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,m:johnmadieu@gmail.com,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:andrea.porta@suse.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,renesas.com,vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[suse.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,renesas.com:email,linux-m68k.org:email]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,apocalypse:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3D2A6640900
+X-Rspamd-Queue-Id: 003FD640838
 
-SGkgR2VlcnQsDQoNClRoYW5rIHlvdSBmb3IgeW91ciByZXZpZXcuDQoNCj4gLS0tLS1PcmlnaW5h
-bCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydEBsaW51eC1t
-NjhrLm9yZz4NCj4gU2VudDogRG9ubmVyc3RhZywgNC4gSnVuaSAyMDI2IDE0OjEwDQo+IFRvOiBK
-b2huIE1hZGlldSA8am9obi5tYWRpZXUueGFAYnAucmVuZXNhcy5jb20+DQo+IENjOiBsZ2lyZHdv
-b2RAZ21haWwuY29tOyBicm9vbmllQGtlcm5lbC5vcmc7IHJvYmhAa2VybmVsLm9yZzsNCj4ga3J6
-aytkdEBrZXJuZWwub3JnOyBjb25vcitkdEBrZXJuZWwub3JnOyBtYWdudXMuZGFtbQ0KPiA8bWFn
-bnVzLmRhbW1AZ21haWwuY29tPjsgS3VuaW5vcmkgTW9yaW1vdG8NCj4gPGt1bmlub3JpLm1vcmlt
-b3RvLmd4QHJlbmVzYXMuY29tPjsgbGludXgtc291bmRAdmdlci5rZXJuZWwub3JnOw0KPiBkZXZp
-Y2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGlu
-dXgtcmVuZXNhcy0NCj4gc29jQHZnZXIua2VybmVsLm9yZzsgam9obi5tYWRpZXVAZ21haWwuY29t
-DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0hdIEFTb0M6IGR0LWJpbmRpbmdzOiBzb3VuZDogcmVuZXNh
-cyxyOWEwOWcwNDc6IEZpeCBkbWEtDQo+IG5hbWVzIGxpc3QgYW5kIHBvcnRzIHNjaGVtYQ0KPiAN
-Cj4gSGkgSm9obiwNCj4gDQo+IE9uIFdlZCwgMyBKdW4gMjAyNiBhdCAyMjoyOCwgSm9obiBNYWRp
-ZXUgPGpvaG4ubWFkaWV1LnhhQGJwLnJlbmVzYXMuY29tPg0KPiB3cm90ZToNCj4gPiBFeHByZXNz
-IHRoZSBkdmMvc3JjL3NzaXUgZG1hLW5hbWVzIGFzIGFuIGl0ZW1zIGxpc3QgcmF0aGVyIHRoYW4g
-YW4NCj4gPiBhbGxPZi13cmFwcGVkIHNpbmdsZSBzY2hlbWEsIGFuZCBkcm9wIHRoZSBub3ctcmVk
-dW5kYW50IG1heEl0ZW1zLiBGaXgNCj4gPiB0aGUgcG9ydHMgY29udGFpbmVyIHRvIHJlZmVyZW5j
-ZSBncmFwaC55YW1sJ3MgcG9ydHMgZGVmaW5pdGlvbiBpbnN0ZWFkDQo+ID4gb2YgcG9ydC1iYXNl
-IChhIHBvcnRzIGNvbnRhaW5lciBpcyBub3QgaXRzZWxmIGEgcG9ydCksIGtlZXBpbmcNCj4gPiBw
-b3J0LWJhc2Ugb24gdGhlIHBvcnRATiBjaGlsZHJlbiwgYW5kIGNvbnN0cmFpbiBlYWNoIHBsYXli
-YWNrL2NhcHR1cmUNCj4gPiBwaGFuZGxlLWFycmF5IGVudHJ5IHRvIGEgc2luZ2xlIHBoYW5kbGUu
-DQo+ID4NCj4gPiBXaGlsZSBhdCBpdCwgZHJvcCB0aGUgdW51c2VkIHRvcC1sZXZlbCAjYWRkcmVz
-cy1jZWxscy8jc2l6ZS1jZWxscw0KPiA+IHNpbmNlIG5vIGNoaWxkIG5vZGUgdXNlcyBhIHVuaXQg
-YWRkcmVzcyBhbmQgdGhlIHBvcnRzIG5vZGUgcHJvdmlkZXMNCj4gPiBpdHMgb3duLCByZXF1aXJl
-IGludGVycnVwdHMvZG1hcy9kbWEtbmFtZXMgb24gdGhlIHNyYyBzdWItbm9kZXMgdG8NCj4gPiBt
-YXRjaCB0aGUgc3NpL3NzaXUgc3ViLW5vZGVzIGFuZCB0aGUgZHJpdmVyLCBwaW4gY2xvY2tzIGFu
-ZCByZXNldHMgdG8NCj4gPiB0aGVpciBmaXhlZCBjb3VudHMgKDQ3IGFuZCAxNCkgdG8gbWF0Y2gg
-dGhlIGNsb2NrLW5hbWVzL3Jlc2V0LW5hbWVzDQo+ID4gbGlzdHMsIGFuZCBwdXQgY29tcGF0aWJs
-ZSBhbmQgcmVnIGZpcnN0IGluIHRoZSBleGFtcGxlLg0KPiA+DQo+ID4gRml4ZXM6IGE4NmZkM2My
-MDIxOCAoIkFTb0M6IGR0LWJpbmRpbmdzOiBzb3VuZDogQWRkIERUIGJpbmRpbmcgZm9yDQo+ID4g
-UlovRzNFIHNvdW5kIikNCj4gPiBTaWduZWQtb2ZmLWJ5OiBKb2huIE1hZGlldSA8am9obi5tYWRp
-ZXUueGFAYnAucmVuZXNhcy5jb20+DQo+IA0KPiBUaGFua3MgZm9yIHlvdXIgcGF0Y2ghDQo+IA0K
-PiA+IC0tLQ0KPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5kL3Jl
-bmVzYXMscjlhMDlnMDQ3LXNvdW5kLnlhbWwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3Mvc291bmQvcmVuZXNhcyxyOWEwOWcwNDctc291bmQuDQo+ID4gKysrIHlh
-bWwNCj4gDQo+ID4gQEAgLTMyMCw2ICszMzMsOCBAQCBleGFtcGxlczoNCj4gPiAgICAgICAgICAg
-ICAgPDB4MTNjMzEwMDAgMHgxZjAwMD4sDQo+ID4gICAgICAgICAgICAgIDwweDEzYzUwMDAwIDB4
-MTAwMDA+Ow0KPiA+ICAgICAgICByZWctbmFtZXMgPSAic2N1IiwgImFkZyIsICJzc2l1IiwgInNz
-aSIsICJhdWRtYXBwIjsNCj4gPiArICAgICAgI3NvdW5kLWRhaS1jZWxscyA9IDwxPjsNCj4gPiAr
-ICAgICAgI2Nsb2NrLWNlbGxzID0gPDA+Ow0KPiA+ICAgICAgICBjbG9ja3MgPSA8JmNwZyAyNDU+
-LA0KPiA+ICAgICAgICAgICAgICAgICA8JmNwZyAzODU+LCA8JmNwZyAzODY+LA0KPiA+ICAgICAg
-ICAgICAgICAgICA8JmNwZyAzODc+LCA8JmNwZyAzODg+LA0KPiANCj4gV2hhdCBoYXBwZW5lZCB0
-byB0aGUgZmlyc3QgY2xvY2sgY2VsbHMgKENQR19NT0QpPw0KDQpNeSBiYWQuIE5leHQgdmVyc2lv
-biBvZiB0aGlzIHBhdGNoIHdpbGwgYWxzbyByZS1lc3RhYmxpc2ggaXQuDQoNClJlZ2FyZHMsDQpK
-b2huLg0KDQo=
+On 15:47 Wed 03 Jun     , sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 8 potential issue(s) to consider:
+> - [High] Missing `pwmchip_remove()` on the `of_syscon_register_regmap()` error path leaves a dangling PWM chip.
+> - [High] When disabling a PWM channel, the driver fails to clear the polarity bit, causing the output to erroneously remain HIGH if it was previously inverted.
+> - [High] Registering a devm-managed regmap with the permanent syscon registry creates a teardown asymmetry.
+> - [High] Hardware channel control registers (`CHAN_CTRL`) are not restored across system suspend/resume.
+> - [Medium] Non-monotonic period limit checking in `rp1_pwm_round_waveform_tohw()` causes larger requested periods to result in smaller hardware periods.
+> - [Medium] Calculating `period_length_ns` from hardware state suffers from a 32-bit integer overflow before casting to u64, resulting in a zero period.
+> - [Medium] Calculating inverted polarity duty length underflows if the hardware is configured for a 100% duty cycle.
+> - [Medium] Returning a positive integer (1) from `round_waveform_tohw` incorrectly propagates as an error.
+> --
+> 
+> commit 90d2019e94496c6949f2d04c2605c6a197b16d6a
+> Author: Naushir Patuck <naush@raspberrypi.com>
+> 
+> pwm: rp1: Add RP1 PWM controller driver
+> 
+> The Raspberry Pi RP1 southbridge features an embedded PWM controller
+> with 4 output channels, alongside an RPM interface to read the fan
+> speed on the Raspberry Pi 5. Add the supporting driver.
+> 
+> > diff --git a/drivers/pwm/pwm-rp1.c b/drivers/pwm/pwm-rp1.c
+> > new file mode 100644
+> > index 0000000000000..052c3ae770569
+> > --- /dev/null
+> > +++ b/drivers/pwm/pwm-rp1.c
+> [ ... ]
+> > +static int rp1_pwm_round_waveform_tohw(struct pwm_chip *chip,
+> > +				       struct pwm_device *pwm,
+> > +				       const struct pwm_waveform *wf,
+> > +				       void *_wfhw)
+> > +{
+> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
+> > +	u64 period_ticks, duty_ticks, offset_ticks;
+> > +	struct rp1_pwm_waveform *wfhw = _wfhw;
+> > +	u64 clk_rate = rp1->clk_rate;
+> > +	int ret = 0;
+> > +
+> > +	if (!wf->period_length_ns) {
+> > +		wfhw->enabled = false;
+> > +		return 0;
+> > +	}
+> > +
+> > +	period_ticks = mul_u64_u64_div_u64(wf->period_length_ns, clk_rate, NSEC_PER_SEC);
+> > +
+> > +	/*
+> > +	 * The period is limited to U32_MAX - 1
+> > +	 * to allow 100% duty cycle.
+> > +	 */
+> > +	if (period_ticks > U32_MAX) {
+> > +		period_ticks = U32_MAX - 1;
+> 
+> [Severity: Medium]
+> Does this limit check break monotonicity for large periods?
+> 
+> If the requested period translates to U32_MAX, this condition is false and
+> the period becomes U32_MAX - 1.
+> 
+> If it translates to U32_MAX + 1, it becomes U32_MAX - 1, which is then
+> subtracted by 1 later, yielding U32_MAX - 2. This makes a larger requested
+> period result in a smaller actual hardware period.
+
+Ack. I will set period_ticks = U32_MAX in that if.
+
+> 
+> > +	} else if (!period_ticks) {
+> > +		period_ticks = 2;
+> > +		ret = 1;
+> > +	}
+> 
+> [Severity: Medium]
+> Is returning a positive integer here intentional?
+> 
+> The PWM core subsystem expects round_waveform_tohw callbacks to return 0 on
+> success or a negative error code on failure. Returning 1 could propagate as
+> an error up to consumer drivers, breaking operation for very small periods.
+
+It should return 1 in case the if any value is rounded, which in this case 
+is the period.
+
+> 
+> > +
+> > +	duty_ticks = mul_u64_u64_div_u64(wf->duty_length_ns, clk_rate, NSEC_PER_SEC);
+> [ ... ]
+> > +static int rp1_pwm_round_waveform_fromhw(struct pwm_chip *chip,
+> > +					 struct pwm_device *pwm,
+> > +					 const void *_wfhw,
+> > +					 struct pwm_waveform *wf)
+> > +{
+> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
+> > +	const struct rp1_pwm_waveform *wfhw = _wfhw;
+> > +	u64 clk_rate = rp1->clk_rate;
+> > +	u32 ticks;
+> > +
+> > +	*wf = (struct pwm_waveform){ };
+> > +
+> > +	if (!wfhw->enabled)
+> > +		return 0;
+> > +
+> > +	wf->period_length_ns = DIV_ROUND_UP_ULL((u64)(wfhw->period_ticks + 1) * NSEC_PER_SEC,
+> > +						clk_rate);
+> 
+> [Severity: Medium]
+> Could this encounter a 32-bit integer overflow?
+> 
+> Since wfhw->period_ticks is a 32-bit integer, the addition of 1 happens in
+> 32-bit space before the cast to u64.
+> 
+> If the hardware register was configured to 0xffffffff by the bootloader for
+> a 100% duty cycle, 0xffffffff + 1 wraps around to 0, producing a period of 0.
+> 
+> Should the cast be placed before the addition?
+
+Ack. 0xffffffff should be deemed as a non valid value though.
+
+> 
+> > +
+> > +	if (!wfhw->inverted_polarity) {
+> > +		wf->duty_length_ns = DIV_ROUND_UP_ULL((u64)wfhw->duty_ticks * NSEC_PER_SEC,
+> > +						      clk_rate);
+> > +	} else {
+> > +		ticks = wfhw->period_ticks + 1 - wfhw->duty_ticks;
+> > +		wf->duty_length_ns = DIV_ROUND_UP_ULL((u64)ticks * NSEC_PER_SEC, clk_rate);
+> 
+> [Severity: Medium]
+> Will this subtraction underflow if the hardware is configured for a 100%
+> duty cycle?
+> 
+> The driver allows duty_ticks to exceed period_ticks + 1 to achieve a 100%
+> duty cycle.
+
+The driver is not allowing this since tohw() has this: 
+
+duty_ticks = min(duty_ticks, period_ticks);
+
+Anyway, if fromhw() is called first and the bootloader has configured 0xffffffff
+in the period register, should it returns an error? The period should always be
+at most U32_MAX-1.
+
+> 
+> If inverted polarity is active and duty_ticks is strictly larger than
+> period_ticks + 1, this unsigned 32-bit subtraction will wrap around to a
+> massive integer, corrupting the duty_length_ns.
+> 
+
+This should not happen for the reasono stated above. I'll add the correct cast
+anyway for the sake of completion.
+
+> > +		wf->duty_offset_ns = wf->period_length_ns - wf->duty_length_ns;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int rp1_pwm_write_waveform(struct pwm_chip *chip,
+> > +				  struct pwm_device *pwm,
+> > +				  const void *_wfhw)
+> > +{
+> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
+> > +	const struct rp1_pwm_waveform *wfhw = _wfhw;
+> > +	u32 value, ctrl;
+> > +
+> > +	/* early exit if disabled */
+> > +	regmap_read(rp1->regmap, RP1_PWM_GLB_CTRL, &ctrl);
+> > +	if (!wfhw->enabled) {
+> > +		ctrl &= ~RP1_PWM_GLB_CTRL_CHANNEL_ENABLE(pwm->hwpwm);
+> > +		goto exit_disable;
+> > +	}
+> 
+> [Severity: High]
+> Does skipping the polarity update here cause the output to erroneously
+> remain HIGH while disabled?
+> 
+> The early exit skips the read-modify-write block that updates
+> RP1_PWM_CHAN_CTRL_POLARITY.
+> 
+> The driver notes state that when disabled, the output is driven to 1 if
+> polarity is inversed. If a channel previously configured with inverted
+> polarity is disabled, it seems it will continually output a HIGH signal,
+> violating the PWM framework expectation.
+
+I'm not sure whether an inverted polarity pin shoudl stay low when disabled.
+After all, the inactive state for a reversed pin is high.
+
+> 
+> > +
+> > +	/* set period and duty cycle */
+> > +	regmap_write(rp1->regmap,
+> [ ... ]
+> > +static int rp1_pwm_probe(struct platform_device *pdev)
+> > +{
+> [ ... ]
+> > +	chip->ops = &rp1_pwm_ops;
+> > +
+> > +	platform_set_drvdata(pdev, chip);
+> > +
+> > +	ret = pwmchip_add(chip);
+> > +	if (ret) {
+> > +		dev_err_probe(dev, ret, "Failed to register PWM chip\n");
+> > +		goto err_disable_clk;
+> > +	}
+> > +
+> > +	ret = of_syscon_register_regmap(np, rp1->regmap);
+> > +	if (ret) {
+> > +		dev_err_probe(dev, ret, "Failed to register syscon\n");
+> > +		goto err_disable_clk;
+> > +	}
+> 
+> [Severity: High]
+> Is there a missing call to pwmchip_remove() on this error path?
+> 
+> If of_syscon_register_regmap() fails, the function jumps to err_disable_clk
+> and returns an error.
+> 
+> Since the chip was allocated with devm_pwmchip_alloc(), devres will free
+> the memory, but the PWM subsystem will retain pointers to the freed chip in
+> its IDR mapping, potentially leading to a use-after-free.
+
+Ack.
+
+> 
+> [Severity: High]
+> Also, does registering a devm-managed regmap with the permanent syscon
+> registry create a teardown asymmetry?
+> 
+> The regmap is allocated with devm_regmap_init_mmio(). If the underlying
+> device is hotplug removed, devres will automatically free the regmap memory.
+> 
+> However, the syscon framework does not provide an unregister function,
+> leaving it with a dangling pointer in its static list that could cause a
+> use-after-free upon subsequent lookups.
+
+The device is not hotpluggable and the driver cannot be unloaded/unbounded, so
+there should be no dangling pointer around.
+
+> 
+> > +
+> > +	return 0;
+> > +
+> > +err_disable_clk:
+> > +	clk_disable_unprepare(rp1->clk);
+> > +
+> > +	return ret;
+> > +}
+> [ ... ]
+> > +static int rp1_pwm_resume(struct device *dev)
+> > +{
+> > +	struct pwm_chip *chip = dev_get_drvdata(dev);
+> > +	struct rp1_pwm *rp1 = pwmchip_get_drvdata(chip);
+> > +	int ret;
+> > +
+> > +	ret = clk_prepare_enable(rp1->clk);
+> > +	if (ret) {
+> > +		dev_err(dev, "Failed to enable clock on resume: %pe\n", ERR_PTR(ret));
+> > +		return ret;
+> > +	}
+> > +
+> > +	rp1->clk_enabled = true;
+> > +
+> > +	return 0;
+> > +}
+> 
+> [Severity: High]
+> Should the hardware channel control registers (CHAN_CTRL) be restored across
+> resume?
+> 
+> When the system suspends, the southbridge may lose power and reset its
+> registers. During probe, these registers are initialized with required
+> configuration bits like MODE_TE_MS and FIFO_POP_MASK.
+> 
+> This resume function merely re-enables the clock. Because the regmap is not
+> configured to cache and restore registers, a subsequent write might update
+> only the polarity bit, leaving the channel mode at 0 and breaking PWM
+> output.
+
+AFAIK the RP1 is never powered-off, so just shutting down the clock should be ok
+and no register are reset to default.
+
+Regards,
+Andrea
+
+> 
+> -- 
+> Sashiko AI review · https://sashiko.dev/#/patchset/cover.1780498640.git.andrea.porta@suse.com?part=2
 
