@@ -1,126 +1,189 @@
-Return-Path: <devicetree+bounces-307093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307094-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fWpFLQz/IWquRQEAu9opvQ
-	(envelope-from <devicetree+bounces-307093-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 00:41:16 +0200
+	id nNmUD0L+IWqSRQEAu9opvQ
+	(envelope-from <devicetree+bounces-307094-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 00:37:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23E9A643D3F
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 00:41:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76B9643D25
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 00:37:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lunn.ch header.s=20171124 header.b=TDsKoQNW;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307093-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307093-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=lunn.ch;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=FvpxPuvd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307094-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307094-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D5578300B462
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 22:36:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B908C301B170
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 22:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3312F33F8B1;
-	Thu,  4 Jun 2026 22:36:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB28366DB9;
+	Thu,  4 Jun 2026 22:37:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0795D2D8385;
-	Thu,  4 Jun 2026 22:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE6872617
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 22:37:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780612584; cv=none; b=vCCIEqgRBN1mF63mK13K41imbX95Z9NKCRdmynJ88DNY8wGPXiltwlh5l777GdBos0dkFmVGtJX92+Ej+L8X3EemLFVmjJ8s34bCVt89FzTEBHp6TJajDr6KVQRfNR/3zU7w7v8ntnA+ELN9i+5D1Z3wbmeb2nWmOcQNkEhysXA=
+	t=1780612671; cv=none; b=UNMvbT8fUCl2ds4vU9zLccNp+8PbXnMBqLcn5q/rdeM1m07v9aa07WZXg868133q30IGfy0jzjRonTwXFKcJP2hdZZOm8LtZM05DbyJzkOTyorh7/oD7cpnppsIJ8oPVlPwlTjGX/J5MqHX6SgADT679gM1AEyK3YcSBzitSoTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780612584; c=relaxed/simple;
-	bh=FASZAE8pLVKgSfcse/Ffyl8vQPYNS73BJL2Bwj7CI98=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FHIqw8rvjz64loAef3GwfyHYA0L7MmnplvwX5ekxp62wWoQcoGu1YlAkWO8WPn1VZnKAzGG6GgryPN85s2qvsYKexZnRDQkFQoI1bQaIoiOUyrQYUcZhaahjZp0eqWNsDwgEwpHOzpIHSxM/PuG3OmdOKuOfJKLeMTZw1iul3pg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=TDsKoQNW; arc=none smtp.client-ip=156.67.10.101
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=8uaGBLq/GFMtTnS/E+NOEB+QPoQ9U+u85hXs+ixNIoo=; b=TDsKoQNWjRFgQUXr9cYhoYw+iS
-	732B25+f9tq1Z62SUW/KAhheIBCoUOIYyqksrLdPg6aVJLSIy9GkPLCIXDZpeIYYbB2VFEpQsxsYw
-	9G9J/U7aTFSvv/s6dtuoH0MHjsAQBL+YGdSfBOUYn2GcXrmYno02IJgDOFnmlbbQyChs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1wVGfb-0067Av-W0; Fri, 05 Jun 2026 00:36:11 +0200
-Date: Fri, 5 Jun 2026 00:36:11 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: ciprian.regus@analog.com
-Cc: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 13/13] net: ethernet: adi: Add a driver for
- the ADIN1140 MACPHY
-Message-ID: <1a530f22-9534-4e21-a55c-9ba160f782bb@lunn.ch>
-References: <20260604-adin1140-driver-v3-0-5debdb3173c4@analog.com>
- <20260604-adin1140-driver-v3-13-5debdb3173c4@analog.com>
+	s=arc-20240116; t=1780612671; c=relaxed/simple;
+	bh=wJxkHSt4+uNnpf6l5+6ajY9tYSWVGS4iEgWKAK5VKP4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=QdfeOrTvQAn1FaYXtfAB4McikxdQg7ER4l5gdrt0tMRU4ijGJaT5r1kWWPmiqOYaCx09gmnkj5IA54/SjeNoGEwwgeb7iCRD7t1yn912miO/L83Muj8VRMRKNy7M3XSAUHpC9VwvKRhAgT1eNuukBbLiZyIZrcxg2uBbsqtC/Dg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FvpxPuvd; arc=none smtp.client-ip=209.85.128.54
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-490c0c92cffso4912055e9.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 15:37:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780612669; x=1781217469; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=pGK6nyQiO5fRhl198UMuPRvqMBmif9tHjKq3IyAKSuc=;
+        b=FvpxPuvdEcZNkPZGOmsxbmyUQj8+OX0umvR7izy5MTyhiV7s7P6x7YtjdVC8MkCAjN
+         aLrb9hWhdgJZ0z33Fi4jb0dKmey3ZAA+tliAlHBnMWCSaVIjIgsPqJHq+yZ+hv/zrp/G
+         eUAgQBdaqgMWR0nEweE8hn1M8UdT6ps6pneHxCvsg0IkxEbndSzo2FveL8EASl7a0Kju
+         CuZLlMly2fFk0VmDb+bgZxAfXQGpVpGm8Bv0r9iZJ1fhGg61yQdXPPAhYqDvuqoW96Ep
+         HaphEUlP2ld0dUBB/09IExXt3si2ODKZisuI6+kV2OJ+aHaYzrln+GKz7JavOrx6HhPm
+         w3jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780612669; x=1781217469;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pGK6nyQiO5fRhl198UMuPRvqMBmif9tHjKq3IyAKSuc=;
+        b=M9C01Fq8xLMu4ZID7b7N8uxnF7IR0O3zXZ4cSaQ99YrUnEcSDe0v+k7NcocjMnlEiW
+         HoCyfCXzH2vjC/fCG1ySE4TnDaDTDNrbEOQ4PsjssANKDanH2b1+4GJHCiR6MBxbWY+9
+         8yZYlVVw6/JfrAv0gstuiHi8g9Y3bmNsbAdHPo6+DOl82Dyuc5tdrBVQFY39PT3WYRho
+         zqBuQ+3G4/3DZcCQRknYMEfq8DKy9zOkvCk9j0lk3uOcEV0qY4z/YfAdZsa1NJPkt/Nr
+         lLiTZTePeOJYJQu28TUje4o4RvPnESgOX7Q6XA8aGNEpRvFsJ/YWsSEZCYg/BTpINuC3
+         NQ3g==
+X-Forwarded-Encrypted: i=1; AFNElJ+/10gwFi5T+o5NpmbJQAMCnlEbNeDMAMEnrXjT8sMM/2WkwcEKsPm2zAw9546RaRk0YwDaH1v+/Wcr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFiFA2zVh44aElHk3I1C5yX+fYMGDBtySR1ZMb7KCmqg6IPPul
+	vzDNeVq8Y2YDxQSgpnrCTuHZfVq1Q7pRbQxAS13V7H+jTqeYw2yUwbLyNyibVjAq
+X-Gm-Gg: Acq92OHBsf568tWevjRbI2u3bGQfLC+vTMYdcYbIOW7xwqR6TL0oO/DI/BrJggL9khT
+	kZg3ZMKSC7cTEF0ETQXolGknxxHqESXpR2pY3714voaWv3+sPLaJXsZIaRxAQs3p5XrzOQTBwMs
+	E+Oq/fyh9WBblzOLdxgvoTHJkRgp+Z547xtJAu78DyDop+o1LP2HJZ2eVEPgeQd+9sPClBtC5rv
+	jBMLi2WpuGiVgp0NYK+Pa+MxnouqTaxhTO2aFZL6m9sbG8LbpjzPtxL9SfATg7GGyIxhhvwNDmh
+	71c2rbnE5TogOmIqc0pJnaSdFM39n/qOeN/2B0rII3fNzi33IR/wCzqMEZup359WRXMEnt73uI6
+	d7TicxRXbj6yiK1rYZQbdod34aLey3GtBJ2jUv/RBB0IG1PDu+LsOlku1BuCKRYAfcGwBsqGH3S
+	jvTiF7HJiGqoLEUXBxamVDcthrreuEwoIgGdGQGOUwklgRKl0g0DPyMqbm6JeHm5CrNTQL4ESGR
+	A13PazAR8BNPg==
+X-Received: by 2002:a05:600c:6994:b0:490:3f7a:108b with SMTP id 5b1f17b1804b1-490c25de6f1mr7829425e9.16.1780612668566;
+        Thu, 04 Jun 2026 15:37:48 -0700 (PDT)
+Received: from giga-mm-11.home (72.92.4.85.dynamic.cust.swisscom.net. [85.4.92.72])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490c1e20b0asm13827345e9.1.2026.06.04.15.37.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Jun 2026 15:37:47 -0700 (PDT)
+Message-ID: <36c392676bc5cd69de5e8ca2cabe5ccbbced7517.camel@gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: allwinner: A133: add support for
+ Baijie Helper A133 board
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Paul Kocialkowski <paulk@sys-base.io>, linux-sunxi@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Date: Fri, 05 Jun 2026 00:37:40 +0200
+In-Reply-To: <20260518235432.07537260@ryzen.lan>
+References: <20260510201644.4143710-1-alexander.sverdlin@gmail.com>
+		<20260510201644.4143710-4-alexander.sverdlin@gmail.com>
+		<agr9m_tidBr6Cu2h@collins>
+		<04da68168f92b196cce4d49c766fc62702bf6472.camel@gmail.com>
+	 <20260518235432.07537260@ryzen.lan>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.60.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260604-adin1140-driver-v3-13-5debdb3173c4@analog.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307093-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307094-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andre.przywara@arm.com,m:paulk@sys-base.io,m:linux-sunxi@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_RECIPIENTS(0.00)[m:ciprian.regus@analog.com,m:parthiban.veerasooran@microchip.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:devicetree@vger.kernel.org,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FROM_NEQ_ENVFROM(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:from_mime,lunn.ch:dkim,vger.kernel.org:from_smtp]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 23E9A643D3F
+X-Rspamd-Queue-Id: A76B9643D25
 
-> +	ret = oa_tc6_write_register_mms(priv->tc6, OA_TC6_VEND_MMS1,
-> +					ADIN1140_MAC_P1_LOOP_ADDR_REG, 0x0);
+Hi Andre,
 
-Looking at this, don't you think it is a bit odd writing a _MAC_
-register to a _VEND_ MMS? Having consistent naming will help spot dumb
-typos where you mix up registers and MMS's. It is an error i've made
-in the past, and now try to make more obvious by using consistent
-naming schemes.
+On Mon, 2026-05-18 at 23:54 +0200, Andre Przywara wrote:
+> > > > +&reg_dcdc2 {
+> > > > +	regulator-always-on;
+> > > > +	regulator-min-microvolt =3D <500000>;
+> > > > +	regulator-max-microvolt =3D <1300000>;=C2=A0=20
+> > >=20
+> > > Should be:
+> > > =C2=A0	regulator-min-microvolt =3D <900000>;
+> > > =C2=A0	regulator-max-microvolt =3D <1300000>;=C2=A0=20
+> >=20
+> > 0.81..1.2v according to A133 Datasheet Revision 1.1 Jul.14, 2020?
+>=20
+> Do you have the CPU OPPs for this board? Do they slightly
+> overclock/over-volt the core? We have seen this for some other boards.
+> But you could go with the safer 810mV...1200mV range, and we adjust
+> this when needed.
 
-    Andrew
+I'm not sure how to interpret this, if it helps, vendor BSP has:
 
+root@HelperA133:~# hexdump -Cv /proc/device-tree/opp_l_table/opp@1512000000=
+/
+clock-latency-ns  name              opp-hz            opp-microvolt-b0  opp=
+-microvolt-b1  opp-microvolt-b2  opp-microvolt-b3 =20
+root@HelperA133:~# hexdump -Cv /proc/device-tree/opp_l_table/opp@1512000000=
+/opp-microvolt-b0
+00000000  00 12 01 60                                       |...`|
+root@HelperA133:~# hexdump -Cv /proc/device-tree/opp_l_table/opp@1512000000=
+/opp-microvolt-b1
+00000000  00 11 3e 10 00 11 3e 10  00 11 65 20              |..>...>...e |
+root@HelperA133:~# hexdump -Cv /proc/device-tree/opp_l_table/opp@1512000000=
+/opp-microvolt-b2
+00000000  00 10 c8 e0                                       |....|
+root@HelperA133:~# hexdump -Cv /proc/device-tree/opp_l_table/opp@1512000000=
+/opp-microvolt-b3
+00000000  00 10 7a c0                                       |..z.|
+root@HelperA133:~# hexdump -Cv /proc/device-tree/opp_l_table/compatible=20
+00000000  61 6c 6c 77 69 6e 6e 65  72 2c 73 75 6e 35 30 69  |allwinner,sun5=
+0i|
+00000010  2d 6f 70 65 72 61 74 69  6e 67 2d 70 6f 69 6e 74  |-operating-poi=
+nt|
+00000020  73 00                                             |s.|
+
+At least 1512MHz is possible (but datasheet says 1.6GHz, so probably no ove=
+rclocking yet).
+
+--=20
+Alexander Sverdlin.
 
