@@ -1,296 +1,264 @@
-Return-Path: <devicetree+bounces-306998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306995-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 80QyI3OuIWqnLAEAu9opvQ
-	(envelope-from <devicetree+bounces-306998-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 18:57:23 +0200
+	id lZCIAVexIWp8LQEAu9opvQ
+	(envelope-from <devicetree+bounces-306995-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 19:09:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D186421DF
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 18:57:23 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDFBC64233B
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 19:09:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bytedance.com header.s=google header.b=ER5Pl6lg;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306998-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-306998-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=bytedance.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CqoVroeq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306995-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306995-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DFBFB30894F3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 16:44:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 47C92302F013
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 16:43:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3A83480953;
-	Thu,  4 Jun 2026 16:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B89347CC83;
+	Thu,  4 Jun 2026 16:43:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFA0747D955
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 16:44:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE9B34DB46
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 16:43:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780591458; cv=none; b=rFZVY1dhcVI67BCKHueLWeasNpQHttSwdFGqtB0dOtmIrtPUZcqRHBjbhzIMsXKAxnWMO+eMMGIFFMwdGsXKQO80NvS4w0orVfXGpq983/V6mUqqjqhuITdDjFfZHMQ1SLbr+nWkZC78iPaYJ2Q1Ta2jEp72Fjp+HCTR6kE+Pys=
+	t=1780591424; cv=none; b=rv9p9wrSixJS/vk/+e/voHvnujdizUDUhpoxq8JiiRCBCx3/QgmO3/EtsVtuOw8Z3GGPyuS5HHJqa3YZNr6jim34aihd6aNIaOdJtGVgSONt5vwHwslKBqbxPVazJfQU+npuKbKIDCYnrjsQjoNZozGVRfypMPyEblAIpBtEmuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780591458; c=relaxed/simple;
-	bh=Aw78agkf6iR3IZDh6wVERI1aeGWmj4gzG03chuIaRK8=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=Zb1UyHogLXdY+uu1ne8VQRj9UFiD4o0dkN1I1pi5xA+zLg5lBTZDX7TixCQsthpq/mQlDc2wYInne9U/XdZ0BpB8OxwQ1/zEI0so3UMPGCYbN9rs7bBDzlco+RuUnfCONVdCtorAgSDYDvIZglsTlAy/SS1ccNmMxV9Cw1c5Rys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=ER5Pl6lg; arc=none smtp.client-ip=209.85.215.172
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-c858d69bde9so464598a12.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 09:44:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1780591456; x=1781196256; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FiXqIV/0AvKBIe6e5IQfr/FZZ4j1GotnIRcH2PcdqiA=;
-        b=ER5Pl6lgdq5dXEctBZXLpCSGywuLHmzUrfWX6sOYPOHsdmLT8NpSXxFh6JtSzJgaNq
-         ZBj5GADPmv+4O74S+KJhKqdO12L32TFmm7Aj8TYKG86SEVCY5goE6+gvIQoyv4Pms5WC
-         l7wtxuIlFsS8XTo/DVM1uuQNlm1XH/fq4U2YgedxKUae6EFwa/SMS116rJeXpaQJ/9Fs
-         ubrP4O/StkBgnuJkrjb9HnUIm5qLExsLxBItwbnqKm2y4YPGCGJK+cMMjZAdQaJk91na
-         gBJbwrN6WaKkWDB3vczBunsJs3xZ/xsztWwoaROb7V/SRaSgSPb9sTY+qkN1D+OhGWV7
-         EO+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780591456; x=1781196256;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FiXqIV/0AvKBIe6e5IQfr/FZZ4j1GotnIRcH2PcdqiA=;
-        b=sGqUrDBmpy8l3NWGpTOzYN1lIfyCnWZ29+3sUYbOjcacQ2T6SKnDiJCZAjDuSjzrJP
-         tBjy8FDscLaDVG1rqaVzIEJwv2rYSFV4MpuzNWgtk112ZNJlGfNNgCp5HIlHQuNGppcm
-         dQTq1EBv3o8zFFploxLhznXrw6eIqx5Tuycu9CjHL9+5UmFcgnrrVyNdSNijfrL+6GvA
-         sUrq3H2U6P7L6w4CWxUEwVeSY8fI6Gl7AXv5e1jfzGbh5pC+PXNrqAS8IcKDQWjm3Qlk
-         c+bpJFo8YzmLNwjbrnh6hTcn+eN+toS50CStet17CgnfY91I0564bunUrUhTxsMhLE6k
-         8uIg==
-X-Forwarded-Encrypted: i=1; AFNElJ9Z6aqwPcJPNnGJj2peDSGIEw8lMpZThUsnN+gzqxlSiQ1kMCzuCN4ZN9n8c/5hmXVlDARtYrhsWD77@vger.kernel.org
-X-Gm-Message-State: AOJu0YzghpqpfJ2K8ZFPkqOKmOonBC6PnNCM8nBC9orgoI8ouZzSu3xo
-	rWHDLl2AekJ+hNAMxqylrr7fbiNb5J5+kYmZG50geC+LlRUh4sPNkEK7DqqKHvW02E4=
-X-Gm-Gg: Acq92OFD7THTQIm7kN6OCJxM3slrPWJcuwrVcGv+kYC0IPeyI9IkBOTym8AHrYVBKww
-	Cqz5JyKin7kWv7TZ9olS/sG7lvbZMj2VhwwgrDB06nRjQvo2xlO0qp0eSs9QUMpMGlZixalG05X
-	vBsxvk7u++AXczMUJihYgkc84HQDJW34ECK+mLePi/zzH+gQnb7eBoovYXyQ1ici6MP0cMNUtPh
-	th8+na0Btbghetnys0/HP23TqSmHaxAcmXjiYyYRbbaDEIVrq57HVnVTm4ZrSN35FbNuwdktZgH
-	VtZ4VZFJbr9T+66qrZiqS0H2L/wtL/HQY27q//jw4/VSRcQNT7HuosdnrKrGvR4p46HOQV98aef
-	MUy+ghoiY6HqWZPybocEnzFygZuPg9atKiDdH4F9hemC4X4CG12zm0PVAUn+a9rbwh9pLiEsCC/
-	+mNTFGDXZvXjjXuqCPtpbhRmDMle1cd7GX9eGj5J6mk2shH88QqZ4lBYI6irbKEVF9uUeM0LBwF
-	w==
-X-Received: by 2002:a05:6a00:2351:b0:842:5b85:63a0 with SMTP id d2e1a72fcca58-84284f9364amr9010422b3a.46.1780591455747;
-        Thu, 04 Jun 2026 09:44:15 -0700 (PDT)
-Received: from smtpclient.apple ([139.177.225.251])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84282375f2dsm7274576b3a.19.2026.06.04.09.44.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 04 Jun 2026 09:44:14 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1780591424; c=relaxed/simple;
+	bh=dlrSghPK1tw4KHZayLxIOYiqxVABFq0RbqOVGbZ/sgE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rk86yEDQxr/2IQcf/qJEBf/ZPwnqtuYYD+rGDiV3rKMFR3Kb9ycj4BdjGtK/qqTVEi2e81UNAHsZQqRk95L+MgBixBNuqmM3yg/cJD2OEvSuCeDi4Xc8Awbb6NE+7oNB+N17SdysY2BFN5W+fggdI4LQIT3dTq8RuuMEntwRgHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CqoVroeq; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 279021F00893;
+	Thu,  4 Jun 2026 16:43:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780591422;
+	bh=HLCWcs/na7YJynx39JPn6MJEQr7kg0k6sXWmzUfmZ58=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=CqoVroeqkoPZXwFvExF3urqgSSPcEenmAjd1Zmtfr7/t1rg3sYsSKMW8NWWKiG6tX
+	 syAd1uEaKqNJlwoTe5OOV1AYnA2mWb9mYf07EXl1S4z+u8Rlsx3kjSGQMlKw/i3Wjr
+	 CG4EqSnjLVR3DKZzT2jD8PvNKgENVS6xgI65RK+yoxHwn7ZyiHgwInRcY3r02dFMQe
+	 VnYyFclxZwUAe0i3LcKFkecfiDQkq1E6qYWL1ZCgWWXwbSEdUtZOFh2+PNAiJOWLi+
+	 mdwwZ+zPnpT9cuyVA0DPOSfL0DEw7lGzzV13VDsTNhywMGqav/WpCfRi/m2Gz26dti
+	 eadTKkPXD3oqg==
+Date: Thu, 4 Jun 2026 17:43:38 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Joel Stanley <joel@jms.id.au>
+Cc: Paul Walmsley <pjw@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
+	Anup Patel <anup@brainfault.org>, Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Michael Ellerman <mpe@kernel.org>,
+	Drew Fustini <fustini@kernel.org>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/7] dt-bindings: timer: Add RISC-V ACLINT mtimer
+ bindings
+Message-ID: <20260604-refill-atonable-efa4867a6e89@spud>
+References: <20260604143957.668047-1-joel@jms.id.au>
+ <20260604143957.668047-5-joel@jms.id.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.300.41.1.7\))
-Subject: Re: [PATCH v3 08/15] riscv: Add Zic64b to cpufeature and hwprobe
-From: Qingwei Hu <qingwei.hu@bytedance.com>
-In-Reply-To: <u52q565xhv5s7gz3wbh4heplhbm4pv732s5kqvf4deiw6ceb4t@n4bnpzu5kabs>
-Date: Fri, 5 Jun 2026 00:43:22 +0800
-Cc: Conor Dooley <conor@kernel.org>,
- sashiko-reviews@lists.linux.dev,
- kvm@vger.kernel.org,
- devicetree@vger.kernel.org,
- robh@kernel.org,
- conor+dt@kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <6940420B-C9C3-4D60-AB7F-7FBC4B93D855@bytedance.com>
-References: <20260603-rva23u64-hwprobe-v2-v3-8-5529a7b28384@gmail.com>
- <20260602232800.768311F00893@smtp.kernel.org>
- <CA+Ck9FbKRM0wjJMg1fQpdwmow8cf_zTfir7V6+T=CRxU+vomdg@mail.gmail.com>
- <20260604-rice-protegee-3a0b8e4cb609@spud>
- <u52q565xhv5s7gz3wbh4heplhbm4pv732s5kqvf4deiw6ceb4t@n4bnpzu5kabs>
-To: Guodong Xu <docular.xu@gmail.com>
-X-Mailer: Apple Mail (2.3864.300.41.1.7)
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Sy7c6x+d+Pr/tvI9"
+Content-Disposition: inline
+In-Reply-To: <20260604143957.668047-5-joel@jms.id.au>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bytedance.com,quarantine];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[bytedance.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306998-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-306995-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:sashiko-reviews@lists.linux.dev,m:kvm@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:docular.xu@gmail.com,m:docularxu@gmail.com,s:lists@lfdr.de];
-	DKIM_TRACE(0.00)[bytedance.com:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:joel@jms.id.au,m:pjw@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:palmer@dabbelt.com,m:asrinivasan@oss.tenstorrent.com,m:anup@brainfault.org,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:npiggin@gmail.com,m:mpe@kernel.org,m:fustini@kernel.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[qingwei.hu@bytedance.com,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[qingwei.hu@bytedance.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,oss.tenstorrent.com,brainfault.org,eecs.berkeley.edu,ghiti.fr,gmail.com,lists.infradead.org,vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,bytedance.com:mid,bytedance.com:dkim,bytedance.com:from_mime,bytedance.com:email]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,devicetree.org:url,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,riscv.org:url,infradead.org:email,tenstorrent.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 46D186421DF
+X-Rspamd-Queue-Id: EDFBC64233B
 
 
+--Sy7c6x+d+Pr/tvI9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On Jun 5, 2026, at 09:31, Guodong Xu <docular.xu@gmail.com> wrote:
+On Fri, Jun 05, 2026 at 12:09:50AM +0930, Joel Stanley wrote:
+> The mtimer hardware is described in The RISC-V Instruction Set Manual,
+> Volume II Privileged Architecture, 3.2.1. Machine Timer (mtime and
+> mtimecmp) Registers.
 >=20
-> On 2026-06-04 10:17, Conor Dooley wrote:
->> On Thu, Jun 04, 2026 at 02:42:22PM +0800, Guodong Xu wrote:
->>> On Wed, Jun 3, 2026 at 7:28=E2=80=AFAM <sashiko-bot@kernel.org> =
-wrote:
->>> >
->>> > > @@ -154,6 +154,23 @@ static int riscv_ext_zicbop_validate(const =
-struct riscv_isa_ext_data *data,
->>> > >       return 0;
->>> > >  }
->>> > >
->>> > > +static int riscv_ext_zic64b_validate(const struct =
-riscv_isa_ext_data *data,
->>> > > +                                  const unsigned long =
-*isa_bitmap)
->>> > > +{
->>> > > +     /*
->>> > > +      * Zic64b mandates 64-byte naturally aligned cache blocks; =
-cross-check the
->>> > > +      * cbom/cbop/cboz block-size device-tree properties to =
-avoid inconsistency.
->>> > > +      */
->>> > > +     if (riscv_cbom_block_size !=3D 64 ||
->>> > > +         riscv_cbop_block_size !=3D 64 ||
->>> > > +         riscv_cboz_block_size !=3D 64) {
->>> >
->>> > [Severity: Medium]
->>> > Will this check erroneously disable Zic64b if a platform does not =
-implement
->>> > all three CBO extensions?
->>>=20
->>> Zic64b is mandatory in RVA22/RVA23, which also mandate Zicbom,
->>> Zicbop and Zicboz, so all three block sizes must be present on any =
-Zic64b
->>> platform.
->>=20
->> Where do you get that conclusion from? That's not how we treat any =
-other
->> extension defined in the profiles spec. My understanding was that =
-even
->> if things are defined in the profiles spec that they're fair game for
->> independent use.
+> The ACLINT was a standalone spec that made it to v1.0-rc4, but was never
+> ratified. As explained by Anup:
 >=20
-> Ok, I get your point. Agree, Zic64b/Zicbom/cbop/cboz can be =
-implemented
-> on each hart independently (at least spec doesn't say no). With this =
-in
-> mind, the validation of Zic64b should be like this:
+> > Only the timer defined by ACLINT specification is relevant but the
+> > RISC-V privileged specification already provides a high-level
+> > definition of mtime and mtimecmp MMIO registers (see section "Machine
+> > Timer (mtime and mtimecmp) Registers").
+> >
+> > Due to the above reasons, we dropped our plans to ratify ACLINT
+> > specification in-favor of AIA IMSIC and RISC-V Privileged
+> > specification.
 >=20
->    if ((riscv_cbom_block_size && riscv_cbom_block_size !=3D 64) ||
->       (riscv_cbop_block_size && riscv_cbop_block_size !=3D 64) ||
->       (riscv_cboz_block_size && riscv_cboz_block_size !=3D 64))
->    return -EINVAL;
+> Link: https://lists.riscv.org/g/tech-aia/topic/connections_between_aia_an=
+d/107177435
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+> ---
+> v2:
+>  - Use priv spec as reference
+>  - Add soc name to tenstorrent compatible
+>  - Fix reg property description
+> ---
+>  MAINTAINERS                                   |  1 +
+>  .../bindings/timer/riscv,aclint-mtimer.yaml   | 56 +++++++++++++++++++
+>  2 files changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/riscv,aclint-=
+mtimer.yaml
 >=20
-> This will allow :
-> 1. A Zic64b hart with 0, 1, 2, or 3 CBO extension and block_size 64
->   passes the validation.
-> 2. A Zic64b hart with CBO extensions but block_size is not 64
->   fails the validation
->=20
-> Thanks for the catch.
->=20
-> I will fix that in v4.
->=20
-> BR,
-> Guodong
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2fb1c75afd16..43dd9873bbc5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -23005,6 +23005,7 @@ M:	Joel Stanley <jms@oss.tenstorrent.com>
+>  L:	linux-riscv@lists.infradead.org
+>  S:	Maintained
+>  T:	git https://github.com/tenstorrent/linux.git
+> +F:	Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml
+>  F:	Documentation/devicetree/bindings/clock/tenstorrent,atlantis-prcm-rcp=
+u.yaml
+>  F:	Documentation/devicetree/bindings/riscv/tenstorrent.yaml
+>  F:	arch/riscv/boot/dts/tenstorrent/
+> diff --git a/Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.=
+yaml b/Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml
+> new file mode 100644
+> index 000000000000..1d645570b191
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/riscv,aclint-mtimer.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/riscv,aclint-mtimer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RISC-V Advanced Core Local Interruptor (ACLINT) Machine-level Tim=
+er
+> +
+> +maintainers:
+> +  - Joel Stanley <jms@oss.tenstorrent.com>
+> +
+> +description:
+> +  The RISC-V machine-level timer exposes the memory-mapped mtime and per=
+-hart
+> +  mtimecmp registers defined in The RISC-V Instruction Set Manual, Volum=
+e II
+> +  Privileged Architecture, 3.2.1. Machine Timer (mtime and mtimecmp) Reg=
+isters.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - tenstorrent,atlantis-aclint-mtimer
+> +          - qemu,aclint-mtimer
+> +      - const: riscv,aclint-mtimer
 
-Hi Guodong,
+Guess your v3 beat my reply to v2, but what I didn't want was the
+riscv,aclint-mtimer compatible not the reference to the spec that you
+actually implemented.
+pw-bot: changes-requested
 
-Thanks for working on this.
+And that reminded me, there's a thead,c900-aclint-mtimer binding already
+in the kernel, can't you piggy-back off that file instead of making a
+new one?
 
-This overlaps with my earlier Zic64b cpufeature patch[1].
+Cheers,
+Conor.
 
-One detail about the validation: I also don't think Zic64b should =
-require all
-cbom/cbop/cboz block sizes to be present and 64 bytes. I asked about
-the intended Zic64b/Zicbo* relationship on the RISC-V unprivileged list,
-and Greg confirmed that Zic64b does not imply support for any CMO
-extensions[2]. It only has meaning for whichever CMO extensions are
-implemented.
-
-So I think the validation should only check the CBO block sizes for CMO
-extensions that are actually present, rather than requiring all of
-cbom/cbop/cboz to be 64 bytes.
-
-Since the Zic64b cpufeature support in this patch overlaps with my
-earlier patch, if you keep this work in your series and base it on that
-patch, could you please put my sign-off credit for the Zic64b cpufeature =
-part?
-
-For example:
-
-Signed-off-by: Qingwei Hu <qingwei.hu@bytedance.com>
-
-[1] Link: =
-https://lore.kernel.org/all/20260528141630.2741710-1-qingwei.hu@bytedance.=
-com/
-[2] Link: =
-https://lists.riscv.org/g/tech-unprivileged/topic/question_about_zic64b_an=
-d/119631059
-
-Best regards,
-Qingwei Hu
-
->=20
->>=20
->>>=20
->>> And architecturally, all the block sizes are one quantity: under =
-Zic64b
->>> that value is 64, so the three must all read 64.
->>>=20
->>> Anything else is a misconfigured DT, and the kernel should not trust
->>> the zic64b it claims.
->>>=20
->>> BR,
->>> Guodong
->>>=20
->>> >
->>> > If a hardware platform implements Zic64b but omits an optional =
-extension
->>> > like Zicbop, the riscv,cbop-block-size property might be absent =
-from the
->>> > device tree, leaving riscv_cbop_block_size initialized at 0.
->>> >
->>> > This unconditional check evaluates 0 !=3D 64 as true, which would =
-spuriously
->>> > trigger this error path and disable the valid Zic64b extension.
->>> >
->>> > Should this validation only enforce the 64-byte size if the =
-corresponding
->>> > block size variable is non-zero, indicating the extension is =
-actually present?
->>> >
->>> > > +             pr_err("Zic64b detected in ISA string, disabling =
-as the cache block size is not 64 bytes\n");
->>> > > +             return -EINVAL;
->>> > > +     }
->>> > > +
->>> > > +     return 0;
->>> > > +}
->>> >
->>> > --
->>> > Sashiko AI review =C2=B7 =
-https://sashiko.dev/#/patchset/20260603-rva23u64-hwprobe-v2-v3-0-5529a7b28=
-384@gmail.com?part=3D8
->=20
->=20
+> +
+> +  reg:
+> +    items:
+> +      - description: MTIMECMP registers, one per hart
+> +      - description: MTIME register
+> +
+> +  reg-names:
+> +    items:
+> +      - const: mtimecmp
+> +      - const: mtime
+> +
+> +  interrupts-extended:
+> +    minItems: 1
+> +    maxItems: 4095
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    timer@ac000000 {
+> +      compatible =3D "tenstorrent,atlantis-aclint-mtimer", "riscv,aclint=
+-mtimer";
+> +      reg =3D <0xac000000 0x8000>, <0xac008000 0x8000>;
+> +      reg-names =3D "mtimecmp", "mtime";
+> +      interrupts-extended =3D <&cpu1intc 7>,
+> +                            <&cpu2intc 7>,
+> +                            <&cpu3intc 7>,
+> +                            <&cpu4intc 7>;
+> +    };
+> +...
+> --=20
+> 2.47.3
 >=20
 
+--Sy7c6x+d+Pr/tvI9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiGrOgAKCRB4tDGHoIJi
+0n3DAQDqwd8w6WYcGP265FQJmzgpRZ/y83mWE+vmPMWn9v/aJwD/aR5rzrRqco27
+ymXGgzNkkU0EUvOsIzhr+EAV1+MpKws=
+=kAHu
+-----END PGP SIGNATURE-----
+
+--Sy7c6x+d+Pr/tvI9--
 
