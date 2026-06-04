@@ -1,212 +1,258 @@
-Return-Path: <devicetree+bounces-306557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306547-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SriqOcfeIGrI8gAAu9opvQ
-	(envelope-from <devicetree+bounces-306557-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 04:11:19 +0200
+	id 4YXqLzDZIGrO8QAAu9opvQ
+	(envelope-from <devicetree+bounces-306547-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 03:47:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC4063C655
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 04:11:19 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3AD463C43A
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 03:47:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306557-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-306557-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=starfivetech.com (policy=quarantine);
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=L9KE8GwL;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306547-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306547-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8843D30297B4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 02:10:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 731823006214
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 01:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BFBE288C0E;
-	Thu,  4 Jun 2026 02:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F050279DC8;
+	Thu,  4 Jun 2026 01:47:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2116.outbound.protection.partner.outlook.cn [139.219.17.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E8541B4224;
-	Thu,  4 Jun 2026 02:10:17 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780539021; cv=fail; b=s5qSBbJM4qlchHAvxdUC28F4WMTA0myQs9BxzhQa5ArHc1V/gGSsf2cljxK4e3O6pRQuzCJudvDQMzqqdxa25fmkL9mtuBwbfaEGVB8YgtNnQ9Tvteo/Z2cif4UmIEjejTvfed4vqo1a8gIu8lk7jVplvpa7MVHbIoWLgU+Bgzk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780539021; c=relaxed/simple;
-	bh=ZGN88Mg8HyqLMvzsaExyTrpKGQbbcK3ecjFce/FxiRc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Ui6DbdQkKnjIrs1V7b/VkAYwfEhVoomN0ry0NYCwlE+25ATvxYXNt2sOcrRhmAnUtzeS0T/bzwdS1CvYFs0l+aiZhZy6fkf8TlpCdawQ2JyDn4DYL7L33i2cD9w00qqjUhN9Vdqf8aXGdmfuhZvHfkw9zMxV7hhBzHyk7NQL1+0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.116
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=etYmupaaIGWkV0uGDZXkFht2DKVSnfItVFdbaP+50QU+jayxJd/1AGM6/IlCdT9u2/8og+BpLd2ojjHbWCdm/Zsn9bwRAOb7G47QZPCLLiZ92TU4fyhGKO0S3YJ9VmiTG2EVwzUPAum6/c6qrJygwFQVWEeqYoR0yk9sp4Up1qjkmxnYfoHMhANTJH9cXmcBrurJnCPyDEVXhApBg6c6sdPS9hFf7P0Q6aZUfpKWa3r5lbbDGJblZVp24Jl5iu/CM4+eAcRIk1LF4q4W9b3zx+oV7F+p+l0FFs4E8y/PK9ZO7x5PkEglbQiiypnLfGJKJoNQL62EbpRjBcP4BJZGFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1SwlBrsDshKVkGkQpFT5G8DbmmYXdviiRXqzU4btQyg=;
- b=LQ8aOrVpl0VXevkM6r7c00fDQ0aBf432cCHziPVP6apObOKYXcUcSQ3TZiZ2UVadMCuAbKBzVzmiIs+vtFfVc03BRu/TUy+NI+ZN0Qq+l9chEV/FhkmJhJ2+4Limx9gE4ck4vY2JBvFT9XZn1jiWXOqTxb9rZh/YfPsALqTzUNYR2Lm+5d8SpBfAK8eSQzqT54bN+lP8J8FoEoAJ/9GlzYcHoQyScCj2EazkensKmWoMr7B14YLKUVXVkYVtSuf5HO6Arn1CihXnGD5+vyzK/QTpeslmfcr0Bj+13NxuuDtwKtD3XrHzPshHOll1muQY0EpNdr1YcFa4/Tfn8dlZaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:17::6) by ZQ4PR01MB1267.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:16::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Thu, 4 Jun 2026
- 01:37:00 +0000
-Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- ([fe80::e7d4:256c:b066:850d]) by
- ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
- with mapi id 15.21.0092.006; Thu, 4 Jun 2026 01:37:00 +0000
-From: Changhuang Liang <changhuang.liang@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>, Paul Walmsley <pjw@kernel.org>,
-	Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Alexandre Ghiti <alex@ghiti.fr>, Philipp Zabel <p.zabel@pengutronix.de>,
-	Bartosz Golaszewski <brgl@kernel.org>, "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, Lianfeng Ouyang
-	<lianfeng.ouyang@starfivetech.com>
-Subject: Re: [PATCH v3 03/21] dt-bindings: pinctrl: Add
- starfive,jhb100-sys0-pinctrl
-Thread-Topic: [PATCH v3 03/21] dt-bindings: pinctrl: Add
- starfive,jhb100-sys0-pinctrl
-Thread-Index: AQHc8x1i0QxsrZUKB0iH+Mtg4VCWKbYtCeWAgACVJWA=
-Date: Thu, 4 Jun 2026 01:37:00 +0000
-Message-ID:
- <ZQ4PR01MB12022B5C460A34260ABFCE9FF2102@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
-References: <20260603055347.66845-1-changhuang.liang@starfivetech.com>
- <20260603055347.66845-4-changhuang.liang@starfivetech.com>
- <20260603-groin-valid-a1d4445f7a6b@spud>
-In-Reply-To: <20260603-groin-valid-a1d4445f7a6b@spud>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1267:EE_
-x-ms-office365-filtering-correlation-id: b5833999-4197-4d14-0719-08dec1d9c5f5
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700021|56012099006|4143699003|18002099003|22082099003;
-x-microsoft-antispam-message-info:
- bVTVwPdnHI9RuFD3pWO8mNfNa6H8oy9wal/W8ZFt1zHJqu9tTbbyiotJdm79vqDOunPbsNj7xw8NxHO41MCkh4cGseuW7FTWpIbZaffo/8bQRrLMT5DnEqJmbTLflbtAMOeMGTR/yWa88970UGCNFF7KGtL23wknHsPoa+QuzVCZ8Y9GmkgKF5RcncDzVqL1nHJJN67wTQwj9lkVDGsI+nILT24QhhTJ+CmEmyeI700dSxSPBlJAs5Kr7uD1JcD4nlBo22++N2LnHZGmERUhdzhpPloECYX6qb9bAr2nqZN4BBFEU/xp8iua6TQwl7jkvLaLzg4PnYha9/prkU9XP6XFb9ONpuXKxmdxorkBRP6ALRRWenMDm/JJoNvilimvxMBzGLo6+F+j6a5w2+q/hgJdaqqinKKL2U+tXXB2GaFTgB6hTeiaDAxrBD+fdgvS63MCtV0LLL8Q8pNeQELnrkw7t94JOzVp1F5AU9xCbxur3M+smkG7Reldcemw2dueBtY0dPuDCI2oq+UM+1IUI6KUZcLLDHhf4y2pbawhafk+tWX41yx0A3SYvWEb6RsY
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700021)(56012099006)(4143699003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?BB9m94dKs7aZIHhP7fOWCGjAm4jTHjofM//Jfl4oAz5oWc6HX2aZgOEOghXJ?=
- =?us-ascii?Q?jbkIYwQ/E9TPpBleFNgQamxizy46/djLmZ/lwt5uSd5FbALLtyEzzWBI91so?=
- =?us-ascii?Q?4MF0cJcXJdO0MOwAB8yCLgkMxM4Tdtwm2sngAj1V1pGyN3E/BSP6Y+RuZ9ev?=
- =?us-ascii?Q?iSE1ClWIYmTJ7NkY59An++rbY50wCKUQordGsDMrZW5iOPd8a2d3cjyij8y1?=
- =?us-ascii?Q?aofe1ULRDrpChB3QT0Ujx6lyomWGOab3sKX/P9YK5XU3kIDL6Wg7Rjs2OqMr?=
- =?us-ascii?Q?sXp6yrVbTQFjec1P34MWNWQr1egbjI5nEuGP35kmAt9L1zDpNpuJk1ZR0LXH?=
- =?us-ascii?Q?DlEo3Yc6iPrdMtw1fRTEqQxmmZZ9wfB4/ORu2bxmMUDdhF3Ko29HxpmumFZa?=
- =?us-ascii?Q?PiORcMEQa1ivOcz3QTx4odS+JMav4O09X8fykXrYL+oB/YkrF3K0A1GC0OHx?=
- =?us-ascii?Q?pQxVsLbW6BYlP06D2TNfQdWLH4pk2KkyyhEvPKXVpC44tXZRk3LINGbcKcKf?=
- =?us-ascii?Q?1HHpMwP1qwZT5FrQZ8bX0+TotNom1z2oT1F5BcYAlLmE1bjZ8CBU3ijHGgrf?=
- =?us-ascii?Q?ivLY7AsSi93x5mv11QWtvibBvEczA1KVlWlRjeCyeSerAp1ozY2Ui6YWUHOC?=
- =?us-ascii?Q?ndh0lOmZjxSkCkJ80W8Ilq1ykMX8k0TrSwsInbrNg+MK27q4tAhHSxUdTfIT?=
- =?us-ascii?Q?F+Pp8g6F9WmsG+dkYryOWkuRJSvn5ellV6DJUJEkxT0tDJfXh1d8/VEkdQs5?=
- =?us-ascii?Q?Iwp2Vm9xRdN7WsGujZxZ/SAjPcDmTbpyFatSU08YF9+Ush35MXnlMnJCckDq?=
- =?us-ascii?Q?9/l2cHR0QeQqgGI2mn59PidKQryFL9avKg0zJmFj5SLlp4+9GGHLDY8Prl0y?=
- =?us-ascii?Q?nZs9IFLHwtwwcnULmVnkDEq/3uxnKwDh2i7xenB4YHLqFItjg7txPFGUx4Al?=
- =?us-ascii?Q?nyKKTxatEa7NdzVT0Dyqln9L3qAVTMBEOiaNPI67aE/LsGoLjmhnjIzVQrJ6?=
- =?us-ascii?Q?T+zQEHZ2LrjueGcpo+vaZBzorkDDD8Df784s+WQPTo/a+NqYRKfhTEhmoWe9?=
- =?us-ascii?Q?X892XGG+8hjn1dhGwWk9526bFg87oSJFhEMsLXyVOnIwqaOKsB6/NyjjEVYF?=
- =?us-ascii?Q?7WZ3rjdsYXE2vx24qROOJubtBEeKjh/2/4w3BGNAEvxucSyjObEzp8jipaH1?=
- =?us-ascii?Q?g5xINK95kByx+yqaIqRHe5YU4Jp41KO3X8EF/rWpPxwTkTGVtNiqT/TasqHv?=
- =?us-ascii?Q?FN1jZRlwwn+zlpqjXOQOWyrjX4/Gt8/Dd31Si/BGRk7o+rPsyiXN8WpDXdZG?=
- =?us-ascii?Q?EWXCKNBfa3v1rJIYxaunwpXO5YULleqXU3jfSI9hF+TtgBIsvCQfD/mlxw1t?=
- =?us-ascii?Q?WNX/XdoXFpXODSziGTUm19GlyFGfDt9VMuBQ+G7PXQSvt/+dWSKLGNcXdtel?=
- =?us-ascii?Q?srdhUYWVxpJE6OEJ7Q9trKhRw6mfUOp8k4nDqP7htSmrVGxvRWdG8EZswiY0?=
- =?us-ascii?Q?dpge/mJDMBhbA5t6ww3Yk1RgdLIKHG+Ufffh4Gv98d4w7SYDPVAgAnJrqgdv?=
- =?us-ascii?Q?mrhxsuqcbr9LFWlr7asXC0Uaz0nlg3p9rYzRfLwax3cbuweU5qxDCdG1xcZU?=
- =?us-ascii?Q?gmt3fvC8nNUtNe2N90As/AMVB9eFYR5SEJdQop1yCjzML4j8d9rDSJpUkyL1?=
- =?us-ascii?Q?Dfa4rf9eHQx8IoM+ooww94voqMZTonXDJUYktg3IHnKjJbLU2+8eO/N3R4Zy?=
- =?us-ascii?Q?BLF11ZRSH6SfhRxXbaoxy4H6vMaLXMo=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5AC2749DC;
+	Thu,  4 Jun 2026 01:47:15 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780537636; cv=none; b=J3UEB+h090J0XOMAab8L2sZYB425kP1/lk1vFiA0L/ykdDvZN6c9M+nJ7tt+cgI/tBWMSY/hxGmoabTB3aR5D4+mJIZD6gFH9jNPr97RDui5izpbfZcqtoa3RmRnd78dwoDhcTFNJGxChEa3O+T5qXDZCB5dezm8SDHyRUMBq1M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780537636; c=relaxed/simple;
+	bh=UMwyZf/uKr+FZ8yBlfVfuUbz6t9g0HNZRLt+heTYhIk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mu9G51+fXitRnbSOGhEr1mZ0ntaa5KdJWbqBDhcNb/ruaN1JfYerbpbBHLacwbl3NCtHvTEZ79luMRxeZLcfsg+Xr/2JFqzjrbDuXdywSwcNOt7w2jFBWSEsUBult508O1NRUlPoS/5BTV5+cD58Nm//Dg5vNpg+CHvQBfhXc18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L9KE8GwL; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B462B1F00898;
+	Thu,  4 Jun 2026 01:47:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780537635;
+	bh=B1/4QNZrjCVuXvK5agPN2ARKZz6GtIJ7tiYvtXOug94=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=L9KE8GwLkuM+TtfWZd1UYzDn2pG4LUYkRe3PoIH6R63B87VzB793SUBqiAptWLFtV
+	 fGfC2Cc3xMboII64HEAIRpzs5qvOIDzT7HrfVOozK4tCKb9Dg/M4CZlAxavWtSkHNe
+	 /fLwi1wVN9Gt5zMiiqahnRkgOytqA4nEDBJXycbz83R6nRRL2kH/bT3mCoJTjSLXW4
+	 w2rgae/UttLLJK7oa2iXDWHA0Qc3dYlzVc4InCNlZqLE9yttgmCl6Emp8/82GLIwot
+	 eCngV0FnT6GFwhJ/QMK0ov3tpf7eLyfF9KmgciEGloKvcqiCHlq0YVgZmkocpw6wW1
+	 Dkslbh8Gcls+A==
+Date: Wed, 3 Jun 2026 20:47:13 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ninad Naik <ninadnaik07@gmail.com>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, me@brighamcampbell.com,
+	linux-kernel-mentees@lists.linux.dev, skhan@linuxfoundation.org
+Subject: Re: [PATCH] regulator: dt-bindings: mt6311: Convert to DT schema
+Message-ID: <20260604014713.GA2331501-robh@kernel.org>
+References: <20260531165712.729635-1-ninadnaik07@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5833999-4197-4d14-0719-08dec1d9c5f5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jun 2026 01:37:00.6059
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: I3sXz8f9m47fmKQoV6Ia2WR1o3ClW2xoUrMVsNaqn/nHtAPN78IEsh9a294WUNhOrjoaYiYoN+2U3LFYnVIfm/IdaPpuMZTySZE4rcrrVqI+RphCJ28NWU9iA5MIDuH7
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1267
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260531165712.729635-1-ninadnaik07@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306557-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306547-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ninadnaik07@gmail.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:me@brighamcampbell.com,m:linux-kernel-mentees@lists.linux.dev,m:skhan@linuxfoundation.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kernel@esmil.dk,m:pjw@kernel.org,m:aou@eecs.berkeley.edu,m:palmer@dabbelt.com,m:alex@ghiti.fr,m:p.zabel@pengutronix.de,m:brgl@kernel.org,m:linux-gpio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:lianfeng.ouyang@starfivetech.com,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,collabora.com,vger.kernel.org,lists.infradead.org,brighamcampbell.com,lists.linux.dev,linuxfoundation.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,starfivetech.com:from_mime,ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn:mid]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2AC4063C655
+X-Rspamd-Queue-Id: C3AD463C43A
 
-Hi, Conor
+On Sun, May 31, 2026 at 10:27:12PM +0530, Ninad Naik wrote:
+> Convert mediatek,mt6311 to DT schema.
+> 
+> Signed-off-by: Ninad Naik <ninadnaik07@gmail.com>
+> ---
+>  .../regulator/mediatek,mt6311-regulator.yaml  | 72 +++++++++++++++++++
+>  .../bindings/regulator/mt6311-regulator.txt   | 35 ---------
+>  2 files changed, 72 insertions(+), 35 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6311-regulator.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/mt6311-regulator.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6311-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6311-regulator.yaml
+> new file mode 100644
+> index 000000000000..a51db46b0f41
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6311-regulator.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6311-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek MT6311 Regulator
+> +
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +
+> +description: |
 
-Thanks for the review.
+Don't need '|' if no formatting.
 
-> On Tue, Jun 02, 2026 at 10:53:29PM -0700, Changhuang Liang wrote:
->=20
-> > +          slew-rate:
-> > +            enum: [ 0, 1 ]
-> > +            default: 0
-> > +            description: |
-> > +                0: slow (half frequency)
->=20
-> Half frequency? Slew rates are usually measured in volts per second, not =
-hertz.
-> Do you know what the slew rates actually are and could put them in here a=
-s
-> the real units? Or is it just "slow" and "fast" in your docs with no prec=
-ise
-> numbers?
+> +  The MediaTek MT6311 is an I2C power management IC that provides one step-down
+> +  converter and one low-dropout regulator. The regulators are named VDVFS and
+> +  VBIASN, respectively.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6311-regulator
+> +
+> +  reg:
+> +    description: I2C slave address.
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    type: object
+> +    description: List of regulators provided by this controller.
+> +
+> +    patternProperties:
+> +      "^(VDVFS|VBIASN)$":
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        description: |
+> +          Regulator nodes.
 
-Yes, there are no precise numbers in our documentation. I will remove "(hal=
-f frequency)" in the next version.
+Drop. That's obvious with the $ref.
 
-> I've got no questions other than this, so once this question is sorted, I=
-'ll be
-> happy to ack all the bindings provided they're effectively the same.
->=20
-> > +                1: fast
+> +        unevaluatedProperties: false
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - regulators
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      mt6311: pmic@6b {
 
-Best Regards,
-Changhuang
+Drop unused label.
+
+> +        compatible = "mediatek,mt6311-regulator";
+> +        reg = <0x6b>;
+> +
+> +        regulators {
+> +          mt6311_vcpu_reg: VDVFS {
+
+Drop unused label.
+
+> +            regulator-name = "VDVFS";
+> +            regulator-min-microvolt = <600000>;
+> +            regulator-max-microvolt = <1400000>;
+> +            regulator-ramp-delay = <10000>;
+> +          };
+> +
+> +          mt6311_ldo_reg: VBIASN {
+
+Drop unused label.
+
+> +            regulator-name = "VBIASN";
+> +            regulator-min-microvolt = <200000>;
+> +            regulator-max-microvolt = <800000>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/regulator/mt6311-regulator.txt b/Documentation/devicetree/bindings/regulator/mt6311-regulator.txt
+> deleted file mode 100644
+> index 84d544d8c1b1..000000000000
+> --- a/Documentation/devicetree/bindings/regulator/mt6311-regulator.txt
+> +++ /dev/null
+> @@ -1,35 +0,0 @@
+> -Mediatek MT6311 Regulator
+> -
+> -Required properties:
+> -- compatible: "mediatek,mt6311-regulator"
+> -- reg: I2C slave address, usually 0x6b.
+> -- regulators: List of regulators provided by this controller. It is named
+> -  to VDVFS and VBIASN.
+> -  The definition for each of these nodes is defined using the standard binding
+> -  for regulators at Documentation/devicetree/bindings/regulator/regulator.txt.
+> -
+> -The valid names for regulators are:
+> -BUCK:
+> -  VDVFS
+> -LDO:
+> -  VBIASN
+> -
+> -Example:
+> -	mt6311: pmic@6b {
+> -		compatible = "mediatek,mt6311-regulator";
+> -		reg = <0x6b>;
+> -
+> -		regulators {
+> -			mt6311_vcpu_reg: VDVFS {
+> -				regulator-name = "VDVFS";
+> -				regulator-min-microvolt = < 600000>;
+> -				regulator-max-microvolt = <1400000>;
+> -				regulator-ramp-delay = <10000>;
+> -			};
+> -			mt6311_ldo_reg: VBIASN {
+> -				regulator-name = "VBIASN";
+> -				regulator-min-microvolt = <200000>;
+> -				regulator-max-microvolt = <800000>;
+> -			};
+> -		};
+> -	};
+> -- 
+> 2.54.0
+> 
+> 
 
