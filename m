@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-306916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306917-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DfFmOxqQIWrLIwEAu9opvQ
-	(envelope-from <devicetree+bounces-306916-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:47:55 +0200
+	id c17XJxCQIWrIIwEAu9opvQ
+	(envelope-from <devicetree+bounces-306917-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:47:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A368C64107A
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 430F564106D
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 16:47:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EIDJZA7l;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306916-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306916-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="e/8TOUJ0";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306917-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306917-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5355C30EF644
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 14:37:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 50DBD31036A5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 14:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DF3331F9AB;
-	Thu,  4 Jun 2026 14:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C9147F2DE;
+	Thu,  4 Jun 2026 14:37:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49186421A0A;
-	Thu,  4 Jun 2026 14:37:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900424657D8;
+	Thu,  4 Jun 2026 14:37:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780583868; cv=none; b=gZgboCh9PnklSj2XccEMHsyyKw8aolxNGwVjPUEOyohObW16o1k3sx0XyzVr8MP6uIzQtUl5Gh/hNvdnBhYPBgBBPUV67pdbWtAxRkyMHKf3KOHz9CrtKwNX1kTODSluPD0mIGTZnGBngf/t81BM4cMsJmr6UTUSItqk1oEvILA=
+	t=1780583869; cv=none; b=SQ9SvwzVVOeV4j0jJ7gWvCwkO2akSbFmiBl2khEwl94LdwZ7aMvGS3wcZ34z+MEWlNKQVb2wQtaG6Oa9WHRKCnXOujeVteDs/zIjIGMDRHdKoYl75v0hhHGewOirAyUaXBCtpQJ7IB5kzhhr/Nvru5l+vb3noQjLZxoLURm08qU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780583868; c=relaxed/simple;
-	bh=6rpNKwEWirGe4zw+hchD5zm3isud23TmbdZq31HbjmM=;
+	s=arc-20240116; t=1780583869; c=relaxed/simple;
+	bh=+HMa/juRjEph66e+l9jx8gZX39UzzOgATc34XlZHpvQ=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=cniRYFZu77/4H9JoXa6bKKeYnpEZdvRNHy9QW/OhGvdVJ33fv85GO9ZGVToceQX7TyvmDZe860+sNMXh4qwIcq+GBn3dSCaphbSmnzBQcePT24/9u7CKf0Pm33Oq7eHZR+2t6mGEwvTq/te/o7oZhgDcg4HNhXlOeUqm1kBvdvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EIDJZA7l; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 025C71F00893;
-	Thu,  4 Jun 2026 14:37:46 +0000 (UTC)
+	 Message-Id:Subject; b=jePD46Qde5ZSz6B3zVKoyGjzZvhZHNKFmg1Shm/6gjYwc7jA7zGkujYvSJkjBa8OqdQZcRvcDv3lwRHo28Jg2y5n729Q55VpqG8NuINIVfAOe6hjCCph5rk2ixf8m5fL12d5kJfwZ2VsCXqugGDBB9JCbPFu0uB+buW+ohy/uTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e/8TOUJ0; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3E3C1F00898;
+	Thu,  4 Jun 2026 14:37:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780583867;
-	bh=mal6PLuH3+nCvKz9UQzGUlPZGIlcU127254AslQXThs=;
+	s=k20260515; t=1780583868;
+	bh=oapD75nniXimjWwYwNEEdqGGrV/k7/qAO5GNe+z3/go=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=EIDJZA7lhILwNwkAQHRsNjfTAyGJnS8RFeIloHAhu9e9nLvQFQg6/XYzwesm69vmp
-	 dNxxSSERpa4pBzk0Zps2J8GPPXezylj4oAJ0Qxrit8HDwjMcxZ8WGzmPDfiJZ/Kqtb
-	 r3ncursllB8gI5iEporMtawRMTt7bXySi2PxzQJdnCwWLI88QuyqHzfryHr/q0ReTC
-	 tQSemYO1l+26xYQAFhuEgB1H9S905su9ravfK9TF7G0kdh0G7KVUKiJBUSiZ6UL731
-	 0LXBg1Z2UHW3gXvafyq7byeOcIwxgP7mK+ajztbzFVf26hdlPsm4lFcNR7+z29DWip
-	 PV0bobrlR6fjg==
-Date: Thu, 04 Jun 2026 09:37:46 -0500
+	b=e/8TOUJ07cNkVFn+yZTPyAGlFBRfzyaSfWGFQwd3P0eEe38ARDVoihgGe6k2lySAp
+	 dioyRJrN1/f5G9HNjzP1zDjS3/JBj0m4/wUkyR1XNM8bVLso5d1C9NKMDYS/PbdNGW
+	 IdpdO6EuN/osvHUXMQEIb1WI0i4lMAKmf5oElNSfljdKxZNeru+o/9J3JraZWT71dh
+	 7k4uUYdvZEFBMczf+RDcqiA6EZdFmxzk6FrxgcZ/S+7pFPa0aKkjReOLlPnPWDkkRH
+	 ToTtilf6ql8LlYSvNo0Fgr8bu8U1anOTcVHHnb8D+qblpwbK28Dcv+9VKhPTA67fjs
+	 prrq6ARup0vkQ==
+Date: Thu, 04 Jun 2026 09:37:47 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -56,64 +56,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzk+dt@kernel.org, shihpei_hsu@novatek.com.tw, conor+dt@kernel.org, 
- toby_chui@novatek.com.tw, devicetree@vger.kernel.org, 
- ben_huang@novatek.com.tw, linux-i2c@vger.kernel.org, 
- linux-kernel@vger.kernel.org, andi.shyti@kernel.org
-To: SP_ISW1_AT@novatek.com.tw
-In-Reply-To: <20260604060430.355733-1-SP_ISW1_AT@novatek.com.tw>
-References: <20260604060411.355675-1-SP_ISW1_AT@novatek.com.tw>
- <20260604060430.355733-1-SP_ISW1_AT@novatek.com.tw>
-Message-Id: <178058386530.470828.9428918291987591263.robh@kernel.org>
-Subject: Re: [PATCH 2/3] dt-bindings: i2c: add Novatek NT726xx SoC i2c
- controller
+Cc: Pavel Machek <pavel@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
+ Sven Schwermer <sven.schwermer@disruptive-technologies.com>, 
+ kernel@pengutronix.de, devicetree@vger.kernel.org, 
+ linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org
+To: Jonas Rebmann <jre@pengutronix.de>
+In-Reply-To: <20260604-multicolor-default-v1-1-b07bff431537@pengutronix.de>
+References: <20260604-multicolor-default-v1-0-b07bff431537@pengutronix.de>
+ <20260604-multicolor-default-v1-1-b07bff431537@pengutronix.de>
+Message-Id: <178058386626.470860.7786918322035913068.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Add default-intensity property
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306916-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306917-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk+dt@kernel.org,m:shihpei_hsu@novatek.com.tw,m:conor+dt@kernel.org,m:toby_chui@novatek.com.tw,m:devicetree@vger.kernel.org,m:ben_huang@novatek.com.tw,m:linux-i2c@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:andi.shyti@kernel.org,m:SP_ISW1_AT@novatek.com.tw,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:pavel@kernel.org,m:lee@kernel.org,m:krzk+dt@kernel.org,m:jacek.anaszewski@gmail.com,m:conor+dt@kernel.org,m:pavel@ucw.cz,m:sven.schwermer@disruptive-technologies.com,m:kernel@pengutronix.de,m:devicetree@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jre@pengutronix.de,m:krzk@kernel.org,m:jacekanaszewski@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,ucw.cz,disruptive-technologies.com,pengutronix.de,vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,devicetree.org:url,pengutronix.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A368C64107A
+X-Rspamd-Queue-Id: 430F564106D
 
 
-On Thu, 04 Jun 2026 14:04:30 +0800, SP_ISW1_AT@novatek.com.tw wrote:
-> From: Ben Huang <Ben_Huang@novatek.com.tw>
+On Thu, 04 Jun 2026 13:06:57 +0200, Jonas Rebmann wrote:
+> Document the default-intensity property to set a default color on
+> multicolor LEDs.
 > 
-> Add device tree documentation for Novatek NT726xx SoC i2c controller.
+> Update pwm-multicolor to support it and update the example to turn the
+> LED red on boot.
 > 
-> Signed-off-by: Ben Huang <Ben_Huang@novatek.com.tw>
+> Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
 > ---
->  .../bindings/i2c/novatek,nt726xx-i2c.yaml     | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml
+>  Documentation/devicetree/bindings/leds/common.yaml             | 10 ++++++++++
+>  .../devicetree/bindings/leds/leds-pwm-multicolor.yaml          |  4 ++++
+>  2 files changed, 14 insertions(+)
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -121,14 +127,12 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml: nvt,hwmods: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml: bus-enable: missing type definition
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml: properties:clock-frequency: 'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	from schema $id: http://devicetree.org/meta-schemas/cell.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.example.dtb: led-controller (pwm-leds-multicolor): multi-led:led-red: 'linux,default-intensity' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/leds/leds-pwm-multicolor.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260604060430.355733-1-SP_ISW1_AT@novatek.com.tw
+See https://patchwork.kernel.org/project/devicetree/patch/20260604-multicolor-default-v1-1-b07bff431537@pengutronix.de
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
