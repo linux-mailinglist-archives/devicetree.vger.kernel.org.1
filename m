@@ -1,170 +1,153 @@
-Return-Path: <devicetree+bounces-306853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306855-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id a2hvBI2CIWrGHgEAu9opvQ
-	(envelope-from <devicetree+bounces-306853-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:50:05 +0200
+	id /Ut7EjqDIWr4HgEAu9opvQ
+	(envelope-from <devicetree+bounces-306855-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:52:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id F220E64083B
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 428D76408B3
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 15:52:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lR9HVUdB;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306853-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306853-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306855-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306855-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DB0FA3054A6C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 13:36:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D8A1A30A910E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 13:37:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273FB46AEFB;
-	Thu,  4 Jun 2026 13:36:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C8D147DD56;
+	Thu,  4 Jun 2026 13:37:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDA3447DD6F
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 13:36:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7032047AF6E
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 13:37:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780580180; cv=none; b=izpvAddxc2JrPnP5SaRDPl5Y0roWezwnROVDoUdEknZlikVBAZeFgeobHyNxlr776GOSMxvq9Y0CvbXtOitJJdi/XcvvYzzUYRqwj9ZJ1KDYVOkxV550gnEjjf2BaRstVvZe8QtJI2pgMM/XzIitqrxZdLf0tS/B01unX8fyrIo=
+	t=1780580243; cv=none; b=tHMY3M+8o8J2yS/9/qJ/MKfXFSLZiEh5L2GSJ1qq3mWsuFctUmB5zBY5x0AnOLtsEBAAUPn0U6044wiN/ZF9NKqqhOE8zkdTG7bcMKJQynIsFuNrFTDRPJfdltrGlZHQMalMkWbMccFnk0wGJZmhntpk6QYuF52i7Idx0TK3fXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780580180; c=relaxed/simple;
-	bh=2RJMnE1ETA7SWgaFInwNfc0aXxj+1cwrRmUdIZ60Y3Y=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=bVMkyHZRdo2050ReYFWgzDf7RAC3KNJMV6gfGqTK6PFcHGzbS4v96xROxLtuYQjwhi2RJRL997nnoIP38Tki9YhkcD/KtyzYpOnA6J/tySRUj/K/rlDevrQalx9ZKxYmySE5UHJRsNlPnC6n4AHxfkq4eivJ3FYNKfjz7gibXGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lR9HVUdB; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56C5D1F00893;
-	Thu,  4 Jun 2026 13:36:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780580175;
-	bh=5FoksGRft1STwQBiyc58tWnhxHixCdo8qTSG2S9Utlw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=lR9HVUdBvD5DI78VC77yGzo4Izuie/AWLByk3PukLJbfSWbBm+KShLZ3/AZlUEpjr
-	 bprYROsSA0nSANzOi3HI1rygkW7FFZuJWDt4pYIh3w0DYtMmRXvG5aUGoeYXGacycB
-	 btfZ+6gMP6/J38l5hgSHye5oEXxlraN+mLjpgDURwHa5ZQEQ+UduJL9MAoJLPBriVp
-	 P3LfuXWWxZYgQjwp79J8zcaHOXWJaaYqdADLiMsyePylpLF350dA+ZIMN5Y/1ow5Bi
-	 oOhZ66WoAmCiWsKakgmUp9aFHnPX3P1sJ7M4Jyulm7GiQ1O7UM+2R/ANJE6Vli6STo
-	 ps2Ctdcc/Y12A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 5/9] clk: eyeq: Prefix the PLL registers with the PLL
- type
-Reply-To: sashiko-reviews@lists.linux.dev
-To: =?utf-8?b?QmVub8OudCBNb25pbg==?= <benoit.monin@bootlin.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260604-clk-eyeq7-v8-5-53f618174cf6@bootlin.com>
-References: <20260604-clk-eyeq7-v8-5-53f618174cf6@bootlin.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 04 Jun 2026 13:36:13 +0000
-Message-Id: <20260604133615.56C5D1F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780580243; c=relaxed/simple;
+	bh=UgIbMUc6XbhuclV25YQJD4R3U81Nf51u8wUxbex7Fwg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LhgF8IXE0jDLTbpVlrZnvRfZ0Bp+4u55n4eLE6zHVov8p1wg08lkMUq68sM9TrpemFYCB/ESme/SsxiIF9HG+iB1B8PZ2bAje8HsmmtBqqPlDFZhnjXljt0EOJkMPr6sFrF5+HCxKgYeWDlFjamW7VC7Gjh+mo50ddrlOkBcptE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.48
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-6cfdce656bfso248906137.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 06:37:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780580241; x=1781185041;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Sbc9H6Sodchbzo9eJFs/pRevavF6zt3cn3QmUq2TwY4=;
+        b=bUwmZfP5fZRzN33eh5QA1p5/9ExXJQshhGmwhykG/lyEX+4v8dbRrFEy7yQEwSOYtD
+         Ye3YDlXwZuDbkZq3tJBKSz3YhX6OmBkZwjVMNMsvaOTpQjIKzjPDTtKFKskvC1hMtPqj
+         Yu7Q586TH5PV6VZl3TeyjT8Uc56irJ1S4lvFeKls6DdE+TiiBFPI934M7HJUzEyj3J2K
+         nIu9E2hMpTu90VIank9jMZ1Lcx7j85qfKfUkBxIQCCUZQ5SN+hG2SiKZeEIuTRoASz26
+         0Y+PfcoN4ymM9Cf/v3STKwYxpoyCNzOVGJBckMpOpyKKHbXVPHnXtY9mrmabc8LxbKL0
+         es0Q==
+X-Forwarded-Encrypted: i=1; AFNElJ+Ea66lsYr5pJkkxjsVck/cQcVQ1cqxGiQm//fL9J0oOyVJAssixS4dgKRuXBfjOlHQ/HKxnKhOQPPu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8s10ODezQY4zCvKYRbjr9z8+Z6zJfWoBeoNhH8t5LqK5nROhJ
+	3dZFgf+IeC2p+T6SN2Fa7Dta1m4+0BPey5mO6R35mfxXdYo8boGk8ReIri83Vc94VRo=
+X-Gm-Gg: Acq92OHVOGuLQslpF4OLSb86b/mw4TNmXop7sr2OhUJ6IqNtwrVS1YyrLLiKqGXIFmI
+	oXjISbrmfADH5YRj8XAjbw8PLq+5CaQPouLa9bFJJZxFb9HagpGV+ZW4hgWaSTnx00ZiOwr8tFj
+	xoZmnJdqbPGsM52dnGNqwGco/N80ITUCLxUI+mzyO6pqzXyiBZw8oQMvHGTSyeiNlI3bRsvCbF5
+	Nb1KTwIIMGEbCauTSM5Pso5NdRpb+Wiv9fMfGAHfwr9G8Y6td/vwuCMrrMzzRdCD4aYPOpoGBLj
+	rbqpt1JWYjgwbFU0f7KoB7326536vsdoJdIcIqa+WXSuQL/yyYC2qw7jOHWuOg/CtFEkwr0ThXD
+	LMRs3QRbE7wXv0VUcVFtZ6HGw8nhM5KQSjfKbNZDek7b0C977WVl/XiVf83L8ELMt8InTZhAWad
+	7hTv+l2dn/oZ8076R73mfwpGimwt3T0RdKA+sjmIyh5V6AUJKNXpDPTIi820TRm8DJt7hdXbc=
+X-Received: by 2002:a05:6102:4b07:b0:6cf:37fe:2cb with SMTP id ada2fe7eead31-6ec4b36f743mr3806815137.27.1780580236448;
+        Thu, 04 Jun 2026 06:37:16 -0700 (PDT)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-96413d48caesm4804487241.0.2026.06.04.06.37.16
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jun 2026 06:37:16 -0700 (PDT)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-963b04fd87aso232354241.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 06:37:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9dyHOdTECM5TNm371wcNyz1HGd80Jz0kyscOnkZe/qj04KS+1AYvop2Mo1vohaD4abnrZwilOif5I6@vger.kernel.org
+X-Received: by 2002:a05:6102:5812:b0:6d4:ba3e:bf97 with SMTP id
+ ada2fe7eead31-6ec2a7e2ef7mr4555261137.4.1780580230878; Thu, 04 Jun 2026
+ 06:37:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260528134752.79813-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260528134752.79813-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260528134752.79813-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 4 Jun 2026 15:36:59 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU8p4ms+enMYSzOU1nceh_w7UfwvTuLwk+5OUOhfej_jQ@mail.gmail.com>
+X-Gm-Features: AVVi8CfjLgrPCeJLjfD6K3yH-jwvL8Dw6l53_F7pY4rGyGZ55Qm2c4WwhIt32_Y
+Message-ID: <CAMuHMdU8p4ms+enMYSzOU1nceh_w7UfwvTuLwk+5OUOhfej_jQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: renesas: rzt2h-n2h-evk: Configure SCI0 pins
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com,renesas.com];
+	TAGGED_FROM(0.00)[bounces-306855-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306853-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:benoit.monin@bootlin.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,bootlin.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,vger.kernel.org:from_smtp,linux-m68k.org:from_mime,linux-m68k.org:email,mail.gmail.com:mid,glider.be:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F220E64083B
+X-Rspamd-Queue-Id: 428D76408B3
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+On Thu, 28 May 2026 at 15:48, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Configure the drive strength, slew rate, and Schmitt trigger settings for
+> the sci0 pin group shared by the RZ/T2H and RZ/N2H EVK boards.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Pre-existing issues:
-- [High] Using readq() on addresses that are not 8-byte aligned will trigge=
-r hardware alignment faults on 64-bit architectures.
---
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.3.
 
-commit bf5bd431a86c5690b223e75ad314eb6d7388384c
-Author: Beno=C3=AEt Monin <benoit.monin@bootlin.com>
+Gr{oetje,eeting}s,
 
-clk: eyeq: Prefix the PLL registers with the PLL type
+                        Geert
 
-This commit renames the PLL registers to make room for other PLL types
-present in the eyeQ7H. It also moves the register access inside the
-parsing function to deduplicate code across call sites.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> diff --git a/drivers/clk/clk-eyeq.c b/drivers/clk/clk-eyeq.c
-> --- a/drivers/clk/clk-eyeq.c
-> +++ b/drivers/clk/clk-eyeq.c
-
-[ ... ]
-
-> @@ -162,34 +162,40 @@ static void eqc_pll_downshift_factors(unsigned long=
- *mult, unsigned long *div)
->  	*div >>=3D shift;
->  }
-> =20
-> -static int eqc_pll_parse_registers(u32 r0, u32 r1, unsigned long *mult,
-> -				   unsigned long *div, unsigned long *acc)
-> +static int eqc_pll_parse_fracg(void __iomem *base, unsigned long *mult,
-> +			       unsigned long *div, unsigned long *acc)
->  {
->  	unsigned long spread;
-> +	u32 r0, r1;
-> +	u64 val;
-> =20
-> -	if (r0 & PCSR0_BYPASS) {
-> +	val =3D readq(base);
-
-[Severity: High]
-This is a pre-existing issue, but will this readq() trigger a hardware
-alignment fault on ARM64?
-
-The PLL registers passed as the base address (such as 0x02C, 0x034, 0x03C,
-and 0x044) are 4-byte aligned, but not 8-byte aligned. On ARM64 platforms
-like EyeQ6, performing a 64-bit load instruction via readq() on unaligned
-device memory violates architectural rules and typically causes a
-synchronous external abort.
-
-Would it be safer to replace this with two readl() calls to avoid
-alignment issues?
-
-> +	r0 =3D val;
-> +	r1 =3D val >> 32;
-> =20
-> -	if (!(r0 & PCSR0_PLL_LOCKED))
-> +	if (r0 & FRACG_PCSR0_BYPASS) {
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260604-clk-eyeq7-=
-v8-0-53f618174cf6@bootlin.com?part=3D5
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
