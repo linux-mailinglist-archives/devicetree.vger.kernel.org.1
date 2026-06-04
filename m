@@ -1,201 +1,188 @@
-Return-Path: <devicetree+bounces-306698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306750-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Zln8KcY8IWqiBgEAu9opvQ
-	(envelope-from <devicetree+bounces-306698-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 10:52:22 +0200
+	id fnlKMchQIWquDAEAu9opvQ
+	(envelope-from <devicetree+bounces-306750-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 12:17:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A8563E2CF
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 10:52:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9572D63EEFF
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 12:17:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=huawei.com header.s=dkim header.b=Blv0Q6d5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306698-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-306698-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=hisilicon.com (policy=quarantine);
+	dkim=pass header.d=rock-chips.com header.s=default header.b="SRoNSX3/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306750-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306750-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=rock-chips.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B2CE5300C7F7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 08:48:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A714430E8799
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 10:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670F03CC7FD;
-	Thu,  4 Jun 2026 08:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58A893AF65E;
+	Thu,  4 Jun 2026 10:09:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout05.his.huawei.com (canpmsgout05.his.huawei.com [113.46.200.220])
+Received: from mail-m49195.qiye.163.com (mail-m49195.qiye.163.com [45.254.49.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9990638F65F;
-	Thu,  4 Jun 2026 08:48:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15343AA9DA;
+	Thu,  4 Jun 2026 10:09:05 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780562920; cv=none; b=L+Bjl+Zq7U31pG2lUE93ROwQoKwBghfgEPkHguIVFUpPgJf/4GzIOj2Us02kw044N9n4OWXJ6t1MvwtbXVxVXNJSRWKHVAuD5UjFo45Se3f/bUjRsUQSx0gKdhzd4yVpetSXu10SpKSsa/LuNEZqtP2H8nd1TYoCICjIgRWqo8s=
+	t=1780567750; cv=none; b=Z5dN4vEtKLOQAwusbSN0BjVqp1EgewoRie0s3fZSx8+DJmmhRN2ldMFG2Ptbv5cdAtTi2DUxCfHHlJnppKuHEiRntgyk3yMvBT/onp8z6bl/YDRlcCrpi1LWcp15OL0JITmDuh9fdfvt0pB7jVwvUdrobYXcLiUopK3wx4n7A9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780562920; c=relaxed/simple;
-	bh=x7GaYiqMTWI/bcabYGbp7H9giCfeL76lqyy7FI5AAOA=;
-	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
-	 In-Reply-To:Content-Type; b=Faknayv2Zc0BrpRwBxHx4I1+rKfgpxNHK0eTteeEkOeAB+RNQ6tPhvdRevK/n5ApVIXWVLNo2MtxsweSMvLg+NETEWCdFKFw3EZ/oyGLZevjuS/RwS6bkvBShG/DEH/QyT91lyr6e8EtMDkxYDQbuAb/j/ZT5ctzbTppAtOiR8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=Blv0Q6d5; arc=none smtp.client-ip=113.46.200.220
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=Kh0tuMr6VTEn44mFd/E8yc0V3r7gVRubTW/7QOQfE5Y=;
-	b=Blv0Q6d5R7jbsGsvojmckBh+EF5Lec6wid6lkHa1RQhtrR4gA9FAvTBM+v2y/u5YUysfOptN0
-	85r53KV1+ejSxhuiB7wKEPE5/SkcFBSXmvTF6u9Qg1v+2Fq8FACrzQjvUgAzmpiQqvggOVgEPUX
-	MSTIBavKImJStLwigiDiBlU=
-Received: from mail.maildlp.com (unknown [172.19.162.197])
-	by canpmsgout05.his.huawei.com (SkyGuard) with ESMTPS id 4gWJ1K4WZQz12LJg;
-	Thu,  4 Jun 2026 16:40:37 +0800 (CST)
-Received: from dggemv706-chm.china.huawei.com (unknown [10.3.19.33])
-	by mail.maildlp.com (Postfix) with ESMTPS id C56C140569;
-	Thu,  4 Jun 2026 16:48:32 +0800 (CST)
-Received: from kwepemq100003.china.huawei.com (7.202.195.72) by
- dggemv706-chm.china.huawei.com (10.3.19.33) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Thu, 4 Jun 2026 16:48:32 +0800
-Received: from [10.67.113.213] (10.67.113.213) by
- kwepemq100003.china.huawei.com (7.202.195.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Thu, 4 Jun 2026 16:48:32 +0800
-Message-ID: <6A213BDF.9060202@hisilicon.com>
-Date: Thu, 4 Jun 2026 16:48:31 +0800
-From: Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+	s=arc-20240116; t=1780567750; c=relaxed/simple;
+	bh=TToKOJ8HzMEDviNXuVgVbvMEw1AdrwUnjdP5ZDmoOOQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=uWxB2yHbEuR2n6O6qg/e/+r7qWziQ88Qxc6RS6ZIQg594tfRvZGTHn5Ec4ynGsH9L5TQekVAuecav+KudnQB9Z/v9SFoP+T7K3Ch1NLcmmisTX4zWfyzpjArpoqPZzH+hFxX1hp5ytWcBUUN9ut88pJir4WjxtaDsCJxag/GDNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=SRoNSX3/; arc=none smtp.client-ip=45.254.49.195
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 410f6c9c2;
+	Thu, 4 Jun 2026 16:53:13 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: hjc@rock-chips.com,
+	heiko@sntech.de,
+	andy.yan@rock-chips.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	nicolas.frattaroli@collabora.com,
+	cristian.ciocaltea@collabora.com,
+	sebastian.reichel@collabora.com,
+	dmitry.baryshkov@oss.qualcomm.com,
+	luca.ceresoli@bootlin.com,
+	dianders@chromium.org,
+	m.szyprowski@samsung.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v5 0/4] Add eDP lane mapping support
+Date: Thu,  4 Jun 2026 16:52:16 +0800
+Message-Id: <20260604085220.2862986-1-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-To: Akash Sukhavasi <akash.sukhavasi@gmail.com>
-CC: <krzk+dt@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <xuwei5@hisilicon.com>
-Subject: Re: [PATCH] arm64: dts: hisilicon: hi3660-hikey960: move role-switch
- endpoint into connector
-References: <20260520215325.55353-1-akash.sukhavasi@gmail.com> <aiBVHbRX3wxUNFs2@gmail.com>
-In-Reply-To: <aiBVHbRX3wxUNFs2@gmail.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
- kwepemq100003.china.huawei.com (7.202.195.72)
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9e91d62fd503a8kunm52a01cd04098d9
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaShhMVhlISU9DGUNIGUIeGFYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=SRoNSX3/Rkz5sDt4b7lrzl0FSMCFZz5YiIMR9Q8KMs5FNWV5tBgNNZAXmqJWx9ncaADyIWRJ3lZd0zTTh5x2Io0pNKosGErrfCQF1RxMepfFHBgT0pEQRPxJ8hQsqF5Ag6PvGu0nhEiksBYp7qY4aT+opIZci6Rqbc2nM9hE49A=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=6/XfbGUuZBZ8YijYz/NsVn8w/usuYLa6S7gqMFXiOrk=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_QUARANTINE(1.50)[hisilicon.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),quarantine];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-306698-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:nicolas.frattaroli@collabora.com,m:cristian.ciocaltea@collabora.com,m:sebastian.reichel@collabora.com,m:dmitry.baryshkov@oss.qualcomm.com,m:luca.ceresoli@bootlin.com,m:dianders@chromium.org,m:m.szyprowski@samsung.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:damon.ding@rock-chips.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,huawei.com:dkim,vger.kernel.org:from_smtp,hisilicon.com:from_mime,hisilicon.com:mid];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:akash.sukhavasi@gmail.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:xuwei5@hisilicon.com,m:akashsukhavasi@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
+	FORGED_SENDER(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[xuwei5@hisilicon.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[huawei.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-306750-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xuwei5@hisilicon.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,rock-chips.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 49A8563E2CF
+X-Rspamd-Queue-Id: 9572D63EEFF
 
-Hi Akash,
+This series adds configurable eDP physical lane mapping support via
+device tree data-lanes property.
 
-On 2026/6/4 2:54, Akash Sukhavasi wrote:
-> On Wed, May 20, 2026 at 04:53:25PM -0500, Akash Sukhavasi wrote:
->> The rt1711h Type-C controller on the HiKey960 has the USB role-switch
->> endpoint placed as a top-level 'port' node, outside the connector
->> subnode. This triggers two dtbs_check warnings against
->> richtek,rt1711h.yaml:
->>
->>   - 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
->>   - connector:ports: 'port@0' is a required property
->>
->> Move the role-switch endpoint into the connector's port@0, which is
->> where usb-connector.yaml expects it. Update the DWC3 remote-endpoint
->> phandle accordingly.
->>
->> The TCPM core (tcpm.c) looks up the role switch starting from the
->> connector fwnode via fwnode_usb_role_switch_get(). With the endpoint
->> inside the connector's port@0, it is found through the primary lookup
->> path rather than the device-level fallback.
->>
->> Cross-compiled for arm64. Verified with dt_binding_check and
->> dtbs_check. Not runtime-tested on hardware.
->>
->> Signed-off-by: Akash Sukhavasi <akash.sukhavasi@gmail.com>
->> ---
->>  .../boot/dts/hisilicon/hi3660-hikey960.dts      | 17 +++++++----------
->>  1 file changed, 7 insertions(+), 10 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
->> index c6056a85c..27fb08d34 100644
->> --- a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
->> +++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
->> @@ -550,6 +550,12 @@ usb_con: connector {
->>  			ports {
->>  				#address-cells = <1>;
->>  				#size-cells = <0>;
->> +				port@0 {
->> +					reg = <0>;
->> +					usb_con_hs: endpoint {
->> +						remote-endpoint = <&dwc3_role_switch>;
->> +					};
->> +				};
->>  				port@1 {
->>  					reg = <1>;
->>  					usb_con_ss: endpoint {
->> @@ -558,15 +564,6 @@ usb_con_ss: endpoint {
->>  				};
->>  			};
->>  		};
->> -		port {
->> -			#address-cells = <1>;
->> -			#size-cells = <0>;
->> -
->> -			rt1711h_ep: endpoint@0 {
->> -				reg = <0>;
->> -				remote-endpoint = <&dwc3_role_switch>;
->> -			};
->> -		};
->>  	};
->>  
->>  	adv7533: adv7533@39 {
->> @@ -683,7 +680,7 @@ port {
->>  		#size-cells = <0>;
->>  		dwc3_role_switch: endpoint@0 {
->>  			reg = <0>;
->> -			remote-endpoint = <&rt1711h_ep>;
->> +			remote-endpoint = <&usb_con_hs>;
->>  		};
->>  
->>  		dwc3_ss: endpoint@1 {
->> --
-> 
-> Hi Wei,
-> 
-> Friendly ping on this one.
-> Also, is the hikey960 board still actively taking fixes?
-> 
+Lane mapping is mainly used for below scenarios:
+1. Correct PCB lane swap and differential line routing crossover
+   without hardware changes;
+2. Adapt mismatched lane pin definitions between SoC and eDP panel;
+3. Support multiple panel hardware variants on the same board
+   by configuring data-lanes in device tree only.
 
-Sorry for the late reply!
-Fine to me and applied to the HiSilicon arm64 dt tree.
-Thanks!
+The series includes driver implementation and device tree binding
+updates to support custom lane mapping configuration from endpoint
+node, and keeps default linear lane order if no configuration is given.
 
-Best Regards,
-Wei
+Patch 1: Add endpoint data-lanes property to analogix-dp binding
+Patch 2: Add DRM DP helper API to validate DP lane counts
+Patch 3: Add validation for samsung,lane-count property as preparation
+Patch 4: Implement lane mapping in analogix_dp driver
+
+Damon Ding (4):
+  dt-bindings: display: bridge: analogix-dp: Add data-lanes support for
+    endpoint
+  drm/dp: Add helper to validate DP lane counts
+  drm/bridge: analogix_dp: Add validation for samsung,lane-count
+    property
+  drm/bridge: analogix_dp: Add support for optional data-lanes mapping
+
+ .../bindings/display/bridge/analogix,dp.yaml  | 19 ++++--
+ .../rockchip/rockchip,analogix-dp.yaml        |  1 +
+ .../drm/bridge/analogix/analogix_dp_core.c    | 64 ++++++++++++++++++-
+ .../drm/bridge/analogix/analogix_dp_core.h    |  4 +-
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.c | 15 ++---
+ .../gpu/drm/bridge/analogix/analogix_dp_reg.h |  4 ++
+ include/drm/display/drm_dp_helper.h           |  6 ++
+ 7 files changed, 97 insertions(+), 16 deletions(-)
+
+---
+
+Changes in v2:
+- Add lane mapping application scenarios in commit message.
+- Remove redundant deprecated property 'data-lanes' for eDP node.
+- Update port@1 $ref to /schemas/graph.yaml#/$defs/port-base.
+
+Changes in v3:
+- Squash [PATCH v2 2/3] into [PATCH v2 1/3].
+- Add unevaluatedProperties: false to both the port@1 and endpoint
+  nodes.
+
+Changes in v4:
+- Add validation for samsung,lane-count property as preparation.
+
+Changes in v5:
+- Add DRM DP helper API to validate DP lane counts.
+- Apply DRM DP helper API to check the validity of samsung,lane-count
+  property.
+- Add Acked-by and Reviewed-by tags.
+
+-- 
+2.34.1
+
 
