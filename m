@@ -1,225 +1,220 @@
-Return-Path: <devicetree+bounces-306708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306709-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uNG2K7BCIWqSCAEAu9opvQ
-	(envelope-from <devicetree+bounces-306708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:17:36 +0200
+	id APlVIv5BIWpZCAEAu9opvQ
+	(envelope-from <devicetree+bounces-306709-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:14:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6CD663E710
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:17:35 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 362BF63E6A6
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 11:14:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lPE307I3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306708-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306708-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b="FJ/+XyA7";
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=WkLu6D+s;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306709-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-306709-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 256EF300A582
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 09:04:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EA1BB3020122
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 09:05:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077843F0ABC;
-	Thu,  4 Jun 2026 09:04:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE073C1976;
+	Thu,  4 Jun 2026 09:05:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67AE3AFAE0
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 09:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529C43F5BFE
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 09:05:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780563860; cv=none; b=oiMjkPfqvbwPUwmX5cHpykc9nbBcZhKCIX+xUkLxh88Ey5jWvgReL2mO86MWaXNMQxLbbNJg6YGUcL83gzj7jMuwsPMTc6HY/EhiYYH6cL2XtagdLLIPMa/pH0bfv2EunePvZSxxqLzwXyYgL+LT61UU8AdklU+7c7SRn87Be7Q=
+	t=1780563950; cv=none; b=tN9Q6yN+nWgq4BVgQrCsT/ChlUlyU6YKIEvoj8yyCv9Css3Lmg+cg3+ovzJHVcPq57dNlthp+ePh/+7nvBdr2Io7DCIA/d9CSdIK0sLfID7h1gpyg3NQmTHSs6xpg2hvf3znqEKpZKXwxQSi8Bvn7ASqd51vLiRiC8P+t0k+WXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780563860; c=relaxed/simple;
-	bh=kCgSuh1ligH+kXnF8CZB9D0PKPCEdn10TlgVuEmjMCs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=GfTSWRVYsCoM2hXyTLEFMLJD0I0CemtRSYKNp1XCS0wLU3RBe6oovo4FkOPUOcJ8bL42ZeXdq6o4KbLzMsnlPufW+alkdhKybPNZejzYPH2vikWiK2EbebIhNqQoZHgZT5r+vci5zBAJ0tx5c5frw5+SDVTYno3CoCgx84bVQeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lPE307I3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3003E1F00893;
-	Thu,  4 Jun 2026 09:04:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780563859;
-	bh=+fLXV4pvkD+MbfAV1J1L+L3bo7Dsh9tsoeEEPsNbQyc=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=lPE307I3m0d/ILEy0r17KTgqtKH3Pgf/x+Nn25Wt16hBhR4qd5qEBGoVsfZu+klkh
-	 Q/8a52mw6fMC8aveKfTPSQ3XgCVgWIwcAK5RH4+kwa1zH/D67+GIgyb3LFP388t77T
-	 MjOnm6XacCrY7v6db1ZWjNX/x84+SFIzyKoNwruhY6MsCwo8owRj6hnEHGs3tE7hun
-	 /yukH4wvMjvKGSgVyRXnxQIei/OOdUwCqrH9Hh7dTHHR3j72EWRz6+FySCU8IggNNg
-	 4GkEsEefXUyak0yjCpMTR2IQsm1A7JaniaivCmeH29r36a7aLO8bpV5D6zRPkHbT6X
-	 v1zKTcVY/mkQg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 4/4] drm/bridge: analogix_dp: Add support for
- optional data-lanes mapping
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Damon Ding" <damon.ding@rock-chips.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20260604085220.2862986-5-damon.ding@rock-chips.com>
-References: <20260604085220.2862986-5-damon.ding@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 04 Jun 2026 09:04:18 +0000
-Message-Id: <20260604090419.3003E1F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780563950; c=relaxed/simple;
+	bh=BaKUM2UywPsrZfjC3kDRqaq/kXfkQJdiHLSSxwmanmM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=duq7s26Cw9KgTU2JsTvtfQnClaYCSsXbaoNRtrStKlbxNR/1KDGtXe4Lf7rt4f2KnD1ssN+waEiku/mWAcKdkKlEUnjibjWG9XpSZe2BUfFlRAHe9TSj/JtKsbXbcmBzRcokKP9FWDsWaYPtD70QkoY6wiR+1vbUSjz3p9O2aMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FJ/+XyA7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WkLu6D+s; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6548Nul0313885
+	for <devicetree@vger.kernel.org>; Thu, 4 Jun 2026 09:05:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=Iz8FTTBe1U3WzTPujE7PtVwMCPkGgJwjXDv
+	f44rXKjE=; b=FJ/+XyA7UyXEUcoAfTkYHKRGhTy++zgGzmIEsSgJoHO0OlmBWHM
+	DpSVKj9/boz2X77ECCeIE+sTgzSrwL5wsVYWc3BB/xr4swjJ3o0QJh9bLxatC6Js
+	R+/B+BLGxHDX2VkVEonJ0ue6u5lKK+/GszjF08Bd8A32+yLeNXgBUcDYfunE8SRD
+	/rSP42O5QYxQdT0hE0k4LVS3CcQwwjoIDm/xV44BCMdu0d8Krs7DhaMVBCGIm/gC
+	owcFrXPSYh7gqi54Su4lQYySF32KVfGxER16jLp0E8XLbjjvx/3O9UzhSHMGMWS8
+	APxB2KJqrMJ9WycDu9hLoIqiJf2Qrj+fVVA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ejy5v1jsy-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 09:05:48 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2c0c1e08848so8224035ad.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 02:05:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1780563947; x=1781168747; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Iz8FTTBe1U3WzTPujE7PtVwMCPkGgJwjXDvf44rXKjE=;
+        b=WkLu6D+stmDYX54OQnPs7aZB0dg9aIYvA3SvXlbjMSqCjPAlZLJXkxHhkPRFKfOguC
+         dulpkvaizDt9/do3rAsh+oQqqbnqdjG3GqUcqB5l+/LFg3gtx+gU3DDeK9akMoQ26Q1l
+         /yQ+GLTLdZyqq91hqKVbHpq8Xa0neETZ68Psfo0GjpcF/PM9kFZHaetKLDLbYr+K+fpA
+         YacGeLaVFneZUl4weKVahKoCLJS0FkJOoScF3vsUhEpaWe9y46KtmCq4j2wEepTdZJie
+         18w5+gCR4CsMgF1hMYJ47T++B6D310Hb2WDocQTU1yCYj9Jdh6dDgLvjy1LK+TY2iNhd
+         +vgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780563947; x=1781168747;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Iz8FTTBe1U3WzTPujE7PtVwMCPkGgJwjXDvf44rXKjE=;
+        b=g1vBTrMUct5nDCsYVyubAy1NfaCwtfe/LsJqehq31PhINOQsC+qFFavAUClfvOnbal
+         eP7cwBG0flNiJju2dGKbIuCL3xOCSB8dud8wGgT9m1XUPAxnD350345IruwUCupiD9iQ
+         kxHHIlC4RaH7ju7hplNmZ468DFynO2UmBduxt6GEuKvGOHhj2i/13m1f8udMEdCFN+Ez
+         lclPf/QgODt0OCUxkIRFTSW7IxNErFr/JqQ+hzXpcTUc5RWp+sGIpTswS/5UCotVfkUM
+         2ZOAUn0aEBW44WrC3TdO1r0fmAI3KIkQvOXip/BXXJKW0EX7CBvjEUOO93+5el51UKUW
+         2sTg==
+X-Forwarded-Encrypted: i=1; AFNElJ/OJULke67wZ4/kDQVkgJBVp+Hs/9s2E5FhEyqn+kMXbzE5wLQw52kB2ZQ/aMP/QKldltlpnXFFxNxr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjjRxU8X90nvb72Xz+1vb3Nl3mCWbd2xem2mVfjQMzaBJaSQVz
+	cpiG2yrioIRrJmlB1LYnvaMSEVyM9vRxtBTnsU/dJSABYVwUvjQc4q5U6aDAIu6WMNNzTO4Ix0Q
+	QVJ41u2y32uubAJlrEPp5LEA9EyHrF+6KlqwmLIyDOpqklpY9jX3iOXXfIE1rWn2t
+X-Gm-Gg: Acq92OGqROYEeHs/Jc4UeLBKBDHguzdo/RfF0FidTYdgFT9aXW2pUrC9tXJBgz0s/h6
+	PbLD4J85hVspL7GAaGYAbKeh4ngxTqNq0CN1B5RAVMzrOfp4x6grfdnY0IphblrqjBR0nwy1Zrb
+	ppb+g+h++irBxUMjc/QsVcaIC+c6Ps61NTGII1cW8FMVb3DmiIYVNx4frr9bBDbcEKf0IBIBwKX
+	pS0Lg0wHYfaaqfVb+ekManh8EMHJeevUkQkoQySSrjCcc5Mmx5qB00yEXuGHRAxGBSfXptjYDxJ
+	W3PBBX0H5Ga2vaoAPFMaUVLI1r94IxniIqvlA7x2+grm/yNzYb58O3hGw+g3V64Imlid89qomCr
+	BiI1e219AOUNQRj5NtgxK9x/S+Mgbxyrfhx56EB9Ib+4VRLw+95O5hIBChIrVatKt0h7XiwCEgk
+	xwIAu87O2E/phPgygAF78YDUeFO2aMVRWZuUYSzUVBjRoPwXaGy3NxSVFtEJdXQw==
+X-Received: by 2002:a17:903:2f0d:b0:2ba:bfb5:9cc with SMTP id d9443c01a7336-2c1640aab54mr69291805ad.26.1780563947327;
+        Thu, 04 Jun 2026 02:05:47 -0700 (PDT)
+X-Received: by 2002:a17:903:2f0d:b0:2ba:bfb5:9cc with SMTP id d9443c01a7336-2c1640aab54mr69291555ad.26.1780563946848;
+        Thu, 04 Jun 2026 02:05:46 -0700 (PDT)
+Received: from hu-varada-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c164f8429fsm63211845ad.18.2026.06.04.02.05.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Jun 2026 02:05:46 -0700 (PDT)
+From: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+To: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+Subject: [PATCH v2] dt-bindings: usb: qcom,snps-dwc3: Add ipq5210 to USB DWC3
+Date: Thu,  4 Jun 2026 14:35:28 +0530
+Message-Id: <20260604090528.735236-1-varadarajan.narayanan@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA0MDA4NiBTYWx0ZWRfX0HO3KgVSYYTU
+ R14neTwzAjdvHnHSvoa79kAAFN8IfyTvPs8zCNrdBNB5Zj/vq6d3eqPEAh+dWHwdna0aXJ/Srbv
+ udQ+7VCMqJy9FucXgtnmtzOhchZPeZnnv3m8TbOHQVG5KBof53dEp7/Aq7uq/SXi99y1vIFsdz0
+ QVS/8CT4JlGZNiNPvWH62oF0ssu5SCGNf9S6KkbPP0F6wJ9YAhZAvm9HxDMOInuZEPjaDclwxDI
+ ei9amsuAeIV81AZkCIO1m8NO3prUwy3QdMfyLVZH17xJilGLd5CZ3JRgE75h8nIak0UV+bKGkBF
+ Jn8zgEsLlpokzgJdGM5E5wKLhZnvZLxrCbM/Ul2QjL28CplrQ5AblgXunxEp1MaNgJbeOh3zCPn
+ O0KzyD857Msyy0V5kLkjR+rH9eWbYjvm493k6ym1v5/l0gWdWVP4tWg5Qmt6SfXWJGnVegQHfti
+ 77hW+tBjtACWTUIylzw==
+X-Proofpoint-ORIG-GUID: UPeU0shnf_J_k9fAg-bYeAGfwPjxYuyO
+X-Authority-Analysis: v=2.4 cv=afRRWxot c=1 sm=1 tr=0 ts=6a213fec cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=pdNo10f9niJiPu__wPQA:9 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-GUID: UPeU0shnf_J_k9fAg-bYeAGfwPjxYuyO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-04_02,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 impostorscore=0 suspectscore=0 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606040086
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-306709-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306708-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,smtp.kernel.org:mid,vger.kernel.org:from_smtp,rock-chips.com:email];
-	FORGED_RECIPIENTS(0.00)[m:damon.ding@rock-chips.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:quic_wcheng@quicinc.com,m:linux-arm-msm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:varadarajan.narayanan@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,qualcomm.com:email,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[varadarajan.narayanan@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[varadarajan.narayanan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A6CD663E710
+X-Rspamd-Queue-Id: 362BF63E6A6
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The logic-to-physical lane mapping is mathematically inverted when=
- programming the hardware, breaking support for asymmetric lane swap config=
-urations.
-- [Medium] Inconsistent endpoint resolution when reading the data-lanes pro=
-perty.
---
+IPQ5210 includes a Qualcomm DWC3 USB controller supported by the existing
+binding. Add its compatible string to the schema and include it in the
+matching conditional constraints.
 
-commit b6abf6d746df1b04ca60b36cd37e77da204d915a
-Author: Damon Ding <damon.ding@rock-chips.com>
+Signed-off-by: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+---
+v2: Separated out from phy related patches
+    Moved from deprecated qcom,dwc3.yaml to qcom,snps-dwc3.yaml.
+    Included ipq5210 in clocks and interrupts constraints.
 
-drm/bridge: analogix_dp: Add support for optional data-lanes mapping
-   =20
-Parse the optional 'data-lanes' device tree property to support
-custom physical lane mapping configuration. If no valid configuration
-is found, fall back to the default lane map automatically.
+v1: https://lore.kernel.org/linux-arm-msm/20260515-usb2phy-v1-3-5f8338d466bf@oss.qualcomm.com/
+---
+ Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers=
-/gpu/drm/bridge/analogix/analogix_dp_core.c
-> index f23c2ae6e10d0..2dfe7de5d3101 100644
-> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-> @@ -1234,6 +1234,59 @@ static const struct drm_bridge_funcs analogix_dp_b=
-ridge_funcs =3D {
+diff --git a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+index 8201656b41ed..932d7aea43c5 100644
+--- a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
+@@ -29,6 +29,7 @@ properties:
+           - qcom,glymur-dwc3-mp
+           - qcom,ipq4019-dwc3
+           - qcom,ipq5018-dwc3
++          - qcom,ipq5210-dwc3
+           - qcom,ipq5332-dwc3
+           - qcom,ipq5424-dwc3
+           - qcom,ipq6018-dwc3
+@@ -203,6 +204,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - qcom,ipq5210-dwc3
+               - qcom,ipq5424-dwc3
+               - qcom,ipq9574-dwc3
+               - qcom,kaanapali-dwc3
+@@ -497,6 +499,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - qcom,ipq5210-dwc3
+               - qcom,ipq5424-dwc3
+               - qcom,ipq9574-dwc3
+     then:
+-- 
+2.34.1
 
-[ ... ]
-
-> +static int analogix_dp_dt_parse_lanes_map(struct analogix_dp_device *dp)
-> +{
-> +	struct video_info *video_info =3D &dp->video_info;
-> +	struct device_node *endpoint;
-> +	u32 tmp[LANE_COUNT4];
-> +	u32 map[LANE_COUNT4] =3D {0, 1, 2, 3};
-> +	bool used[LANE_COUNT4] =3D {false};
-> +	int num_lanes;
-> +	int ret, i;
-> +
-> +	memcpy(video_info->lane_map, map, sizeof(map));
-> +
-> +	num_lanes =3D drm_of_get_data_lanes_count_ep(dp->dev->of_node, 1, 0, 1,
-> +						   video_info->max_lane_count);
-> +	if (num_lanes < 0)
-> +		return -EINVAL;
-> +
-> +	endpoint =3D of_graph_get_endpoint_by_regs(dp->dev->of_node, 1, -1);
-
-[Severity: Medium]
-Will this result in reading from an inconsistent endpoint if port 1 has
-multiple endpoints?
-
-The call to drm_of_get_data_lanes_count_ep() above explicitly passes 0
-for the endpoint reg, but this call uses -1. If there are multiple
-endpoints, this could return the first one it finds rather than endpoint@0,
-which might lead to reading the lane map from a different endpoint than
-the one used for the count.
-
-> +	if (!endpoint)
-> +		return -EINVAL;
-> +
-> +	ret =3D of_property_read_u32_array(endpoint, "data-lanes", tmp, num_lan=
-es);
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c b/drivers/=
-gpu/drm/bridge/analogix/analogix_dp_reg.c
-> index 38fd8d5014d29..45c7652645a13 100644
-> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
-> @@ -48,16 +48,15 @@ void analogix_dp_stop_video(struct analogix_dp_device=
- *dp)
->  	writel(reg, dp->reg_base + ANALOGIX_DP_VIDEO_CTL_1);
->  }
-> =20
-> -void analogix_dp_lane_swap(struct analogix_dp_device *dp, bool enable)
-> +void analogix_dp_lane_mapping(struct analogix_dp_device *dp)
->  {
-> +	u32 *lane_map =3D dp->video_info.lane_map;
->  	u32 reg;
-> =20
-> -	if (enable)
-> -		reg =3D LANE3_MAP_LOGIC_LANE_0 | LANE2_MAP_LOGIC_LANE_1 |
-> -		      LANE1_MAP_LOGIC_LANE_2 | LANE0_MAP_LOGIC_LANE_3;
-> -	else
-> -		reg =3D LANE3_MAP_LOGIC_LANE_3 | LANE2_MAP_LOGIC_LANE_2 |
-> -		      LANE1_MAP_LOGIC_LANE_1 | LANE0_MAP_LOGIC_LANE_0;
-> +	reg =3D lane_map[0] << LANE0_MAP_SHIFT;
-> +	reg |=3D lane_map[1] << LANE1_MAP_SHIFT;
-> +	reg |=3D lane_map[2] << LANE2_MAP_SHIFT;
-> +	reg |=3D lane_map[3] << LANE3_MAP_SHIFT;
-
-[Severity: High]
-Does this logic mathematically invert the lane mapping for asymmetric
-configurations?
-
-The device tree data-lanes property specifies a mapping from logical to
-physical lanes, so that lane_map[logical_lane] =3D physical_lane.
-However, when programming the hardware, it expects the logical lane index
-to be placed into the bit-field corresponding to the physical lane.
-
-Here, the code shifts the physical lane number by the logical lane's
-bit-shift, effectively programming the logical lane into the physical lane's
-field. This happens to work by coincidence for symmetric mappings like
-<3 2 1 0> or <0 1 2 3>, but it will corrupt asymmetric configurations
-like <1 2 3 0>.
-
-Should the logical lane index instead be shifted into the physical lane's
-bit-field? For example, using reg |=3D i << (lane_map[i] * 2).
-
-> =20
->  	writel(reg, dp->reg_base + ANALOGIX_DP_LANE_MAP);
->  }
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260604085220.2862=
-986-1-damon.ding@rock-chips.com?part=3D4
 
