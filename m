@@ -1,183 +1,268 @@
-Return-Path: <devicetree+bounces-306623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306626-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ovLUElIgIWpk/QAAu9opvQ
-	(envelope-from <devicetree+bounces-306623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:50:58 +0200
+	id r+FqLW4hIWrJ/QAAu9opvQ
+	(envelope-from <devicetree+bounces-306626-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:55:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3CB563D572
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:50:57 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3DA163D63F
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 08:55:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=herrie.org header.s=transip-a header.b=NO+qczqf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306623-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306623-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=WZzfpumJ;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=IgO5crr1;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306626-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306626-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1DB8630611F1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:49:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 12FDF301A931
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 06:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B6B3CC7FB;
-	Thu,  4 Jun 2026 06:49:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C8B3DA5BB;
+	Thu,  4 Jun 2026 06:51:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound5.mail.transip.nl (outbound5.mail.transip.nl [136.144.136.9])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52893C2B9D;
-	Thu,  4 Jun 2026 06:49:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3382E3CC9E8
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 06:51:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780555782; cv=none; b=EJxOnjlfa3Z633w0D5N0bdYirYi29V4YpyCIJCgocuBj0S7no+7yvP+b4TKRBnwX3/+wbhlXPN80r6P/iRE0kFGCQTLS4QXjbo4AFFl3Lc74zkeabJZAM0hNn6ltHZ9uvzBQxEFeqwl/grs7ixAYf+nma74/RhQVDkXDBolm0Wg=
+	t=1780555865; cv=none; b=EteB7EqJd30VCxYYMAd4sabhOmsjFRcC5pS6b2fGJyiRsLzV2KapZoX9J6PJyrMrixQTYdteftK/rwi9K13moxuYwVW2vAVHgxC0P3WAVAI0+ipR2RVrbdYnhoiw5Z7boAhowoYrbyDD5aP8U76JgiyRUAEss2O5LKxWzsR5ijw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780555782; c=relaxed/simple;
-	bh=GDlQAT3cYToEReNmcajQLtUR7McouHtDMrrAESWLUvo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lSsZYOPVp5yZBS/G6Xc4Mfo9mrVl62uzRx+64pwQsHwkWQueOAc0WrAJfCyJeCIZBGolczAMxjB9J6N9QjLBZrsEuMeVVkNiDHadK73hfqhOtrDMnUzeEu5YKR7YRvhWDp1QOepSPgpIbjFwgxkCFOEYsxl05Tcjf0ooDzPJq80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=NO+qczqf; arc=none smtp.client-ip=136.144.136.9
-Received: from submission3.mail.transip.nl (unknown [10.100.4.72])
-	by outbound5.mail.transip.nl (Postfix) with ESMTP id 4gWFY3741xzHX9t;
-	Thu,  4 Jun 2026 08:49:27 +0200 (CEST)
-Received: from herrie-desktop.. (180-93-184-31.ftth.glasoperator.nl [31.184.93.180])
-	by submission3.mail.transip.nl (Postfix) with ESMTPA id 4gWFY33JmLzf52bQ;
-	Thu,  4 Jun 2026 08:49:27 +0200 (CEST)
-From: Herman van Hazendonk <github.com@herrie.org>
-To: linux-iio@vger.kernel.org
-Cc: jic23@kernel.org,
-	dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	Herman van Hazendonk <github.com@herrie.org>
-Subject: [PATCH v2 2/2] iio: light: isl29018: support cover-glass gain compensation via DT
-Date: Thu,  4 Jun 2026 08:49:25 +0200
-Message-ID: <20260604064925.3097108-3-github.com@herrie.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260604064925.3097108-1-github.com@herrie.org>
-References: <20260604054723.2983181-1-github.com@herrie.org>
- <20260604064925.3097108-1-github.com@herrie.org>
+	s=arc-20240116; t=1780555865; c=relaxed/simple;
+	bh=UG0ZvM4vow4j04FZ0ZuaDuDoHfARFyoWZe4jipZwpNk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YYqlOYF6RIovalec0LIlHbD4sFR61qJDv44u8+MNSl7srrhJR12k9vc9yBay8ZCMs/Os0cdA7TryXvnKbnCn5TjmUPJWtmArwXrAhBAwY5PZndLtWRaOz8+fEcRoHMyARzoA0uF2UP3uR0kVbIfEZaFiBeACiyW2hrUrbG3vtZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WZzfpumJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IgO5crr1; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65424qT52368077
+	for <devicetree@vger.kernel.org>; Thu, 4 Jun 2026 06:51:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=peKwpELzZL6vKrTtvqgHNH
+	vqCTkajJ4VLkel09qRyoA=; b=WZzfpumJslrKR8wQf/hVO+NUcgCUuTH3Z5fuHE
+	aOWui3NUSnDHVETzohGpr5B+IsoN9XOuLerbTblWJmYWkEdt5c85t/f41+bdF6uo
+	ibUVsky3LedchjHmCNyx2nsb2OCH28e59OGJxGTubeR/DxYeRROAqUQPkPONsvB5
+	dlVmW+l2UbZoihhQ/64hIJEuOggJeKsQxRt0X/AW10FlmGpofuQg8cBiOIgdrLLn
+	hhWmoASZlhVqdCC9xdJG6dkw3V7qmcIz3Lh5jWJTL0kus2FVTvsTkb6g/xXDqwIm
+	8aDRdCRjbIzHIxCQnsD4qnRkRL0RPSTzh83ORwq9//FvEYYA==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ejj3gmdtt-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 06:51:03 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-8424aac207eso388862b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jun 2026 23:51:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1780555862; x=1781160662; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=peKwpELzZL6vKrTtvqgHNHvqCTkajJ4VLkel09qRyoA=;
+        b=IgO5crr1fCYnwnpNltaFglJLsM4W4GRwC3icKQkrmrEl2JLfJ+RBKIJb0ke57jSfp5
+         +Jm51Bxhp4UPYRgur/Gb5J00U9NR7cix+uvrCNukK0PV5esV34ORPMo/EpC43M9vkwHT
+         aN4UpIGaeda7iKZLsHybkRiTtOwHQKYMqu07ldIiaeU3gRIiNfuhlXShk82VpyPtm18I
+         SvhJl9DiYqcDKYHsG2ySDj8gLuXkq3/XwKQCNUdqodgIiNTb/lUemSdfqCWCsor7IzWo
+         18mPLziq/LPYJA5/zbWVqinDuLvquO4A1FekPC9BJrZfKosAekcIDjV20qDC1iT09rae
+         oYTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780555862; x=1781160662;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=peKwpELzZL6vKrTtvqgHNHvqCTkajJ4VLkel09qRyoA=;
+        b=IsJaL4QRY/Q9Bq7qzLI02/Dxn/9szDw+DCjpOXxBIOvfsdX7Aic/CLMA0OD1cBQfok
+         Yhd5OebhSH2sCi9mgIAix8TF3wcZ+QeBeX8EkzHU4OU3p2rF0ZIW3emcSgqFw5FoGHrQ
+         VbKxVEQRlQBj7amIi9jkkrGItK7Oi0TQuaK01TCQnOSUdPmXUmGcg8PHCYQu7gzCzKtH
+         k6oq4fufANgv7CQL5ZWS6zjlbMLhOuBRv8xLZqmrudTWWxLjFKS60ifNjmPr1MjDmqH/
+         zp35ev1iAv+6yCNHxtYmC01eR5CZpiV3Qaa+3Yqdd4YwunMe2AeRlW8zfZCA0ed+7ibQ
+         SlKg==
+X-Forwarded-Encrypted: i=1; AFNElJ8tQ+rVstY8Bt1lGcu+lVyHVlfgVx3e5irYWQ/Yrjp5eULYXlETYfF3X1UYqKPmzTT8zjD6NePwFstF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzH/GgOsgA99I175x/6eEgZ4pq2lPC8Vg7UXzk0yZwvEVxl4dhQ
+	ETYKWEsG2Aa5RJyuIw9kXjOp1yD1equVCbbo8s4fepdSGZgktENdfEa8jx1pm0arzp024LKZycO
+	cKd5Vn5dC/ET7mv6SC19T6E79C+yQJmJRioeSi3TCvakmdHwvLwCFulNAut/nIosL
+X-Gm-Gg: Acq92OEBjrX9ZQkI7XyNT80zpzs+71is1xVcNuaviKLZlz9jkf6DySOqos44hTxOzRu
+	HuYn13DEUivmByRbFD1v0gMlZHH9w3ccLoPqEQ09T7jzopAQgbTWh1uGibaC5DSXFSbWzfzgohU
+	Q+o3davytp1RRRWIFv8cQZ5fIm9pfHERjDhXaKwluqop7mKRwrRxysXT633a3Wx0R+A7Un39uph
+	wBmesemgb1FGWNWonLkrVOzJA7D/Uzu7Gl5orNysP+gcbTnxx4r8MSjVDeKIP12k0UCF4CzFsR6
+	XOwwXzgch/JMv2W+u6U3bdriJH2FQzrC861C8ILX31K9LXwWqRaG6O9pLPTmbDhimma30tgAKmY
+	e/KiFn8VwcEaLeeF/Vqjz/iZdSsqayTwOHCGzMq4MPhRpnIwHn5W/lVmbMn7iI/7eJA==
+X-Received: by 2002:a05:6a00:198d:b0:842:2382:a0ea with SMTP id d2e1a72fcca58-84284e6dddfmr6738468b3a.14.1780555862123;
+        Wed, 03 Jun 2026 23:51:02 -0700 (PDT)
+X-Received: by 2002:a05:6a00:198d:b0:842:2382:a0ea with SMTP id d2e1a72fcca58-84284e6dddfmr6738433b3a.14.1780555861520;
+        Wed, 03 Jun 2026 23:51:01 -0700 (PDT)
+Received: from hu-ptalari-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-842823512b0sm5365894b3a.15.2026.06.03.23.50.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Jun 2026 23:51:00 -0700 (PDT)
+From: Praveen Talari <praveen.talari@oss.qualcomm.com>
+Subject: [PATCH v3 0/4] Enable SPI on SA8255p Qualcomm platforms
+Date: Thu, 04 Jun 2026 12:20:34 +0530
+Message-Id: <20260604-enable-spi-on-sa8255p-v3-0-43984eac4c67@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: ClueGetter at submission3.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=herrie.org; t=1780555767; h=from:subject:to:cc:
- references:in-reply-to:date:mime-version;
- bh=RhMKmD2Z6+m6kTA0DtUwgKczmGIiIRM7SHsvV8llQjI=;
- b=NO+qczqfzugtoPHTVJH/he0y2R42sRVz9F405bFmADkGP+eMvbiTfdeyozhaYjIqHAEDgH
- 28h0I14RfGZdkOm3U/umXaMK6VBpd7JSyUBGRrIH3KhZeKFSf4Xs74J2lAmheGVabNZU7D
- Xjr3Mmjijxcy/LQ2+PT/Rr8fK4b9MfQbdeZDH/TMxxVosyo2hvm7u1lIm4hw3h21bcZy5h
- wpa9cK2ArGQ2zXSK/KbktEkQN2RqQ7FFMmME7iR4m2IEvTm71n1uSBDLeX+WRQH6sadaOE
- rxSx1EFCKTW+Z4cGalvFh4/rqcGfiryGFIDSjnmdh0fyhgcM5JqOk2CvMv5PLA==
-X-Report-Abuse-To: abuse@transip.nl
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADogIWoC/3WPy4rDMAxFf6V4PQq2EruP1fzH0IWSqo2HxM5YS
+ ZhS8u91OgNdlG4EB6Rzr25KOHkWddjcVOLZi48hQ/mxUU1L4cLgT5kVanTa4h44UN0xyOAhBhD
+ aobUD7IxzTITomlrl2yHx2f8+vF/HP5ap/uZmXGXrxjnFHsY2MT39xqDZa1NWhbHoXOXAwJBoZ
+ g7FSB0l/xlFip+Juib2fZHHqmq9jDFdHz/MuEb+1y31m7ozggaztdsqh9YnV756j8uy3AHAtRP
+ pHgEAAA==
+X-Change-ID: 20260529-enable-spi-on-sa8255p-8166eaa226cb
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Praveen Talari <praveen.talari@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        bjorn.andersson@oss.qualcomm.com
+Cc: linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mukesh.savaliya@oss.qualcomm.com, aniket.randive@oss.qualcomm.com,
+        chandana.chiluveru@oss.qualcomm.com, jyothi.seerapu@oss.qualcomm.com,
+        chiluka.harish@oss.qualcomm.com, Nikunj Kela <quic_nkela@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780555855; l=3060;
+ i=praveen.talari@oss.qualcomm.com; s=20251114; h=from:subject:message-id;
+ bh=UG0ZvM4vow4j04FZ0ZuaDuDoHfARFyoWZe4jipZwpNk=;
+ b=uUF9ZSk89C79ieWxvHnLKPsaek1RNloAP8IA31omZuktkm4ThBn2/1O614O6C9Nw2CttZ1tCt
+ hFgyPFtycoPAF5Bm7T0jA8kUVwfPt91mI+cjo60s1s+zRa/H/RDciU+
+X-Developer-Key: i=praveen.talari@oss.qualcomm.com; a=ed25519;
+ pk=NGK/88fjyHXgfhIKwag7+uIytOmyOypvZ/hDFaYPEss=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA0MDA2NCBTYWx0ZWRfX3TDy7ReOZ1eX
+ 4A1InrVq9VtAojII8Nq8YU6J/ALZtuw/RcuebTz5q4AnCkHfhXzzDcx+W3fud6XipaLcTcW7GcZ
+ +OUqqX4v/Ilnphu4PjHE+jMbEXeddqskce6PjUYai/FblS8aJaqPfBPsBoNzLZIW/sn74WmXP1R
+ 9jeM6Zs0RFIkAszUjuQ/9b7+lEGyXM+YqbovtnSsEv4TLvP7HWlpO1ku3ZsppTOKZGo5wijBfOE
+ uNtwozeLPNwQDSVh0wo2mzmLGtjJt9+9qdc6+FSvU0q+cmjhyX3wlYKRug8wSkTdLPhmMON4x0M
+ NZLrEEMpUQEwMTQvcrhio3/6wsXvu4mCZ/lWnufwKyPECYW6RB9PCYtbunJJfIiMWLE3a1QUp1j
+ 7DjLrYLnVtnVJvhum0oKwz7z9bWOJc0Q/8P63a+a3YDLBAww5DIDtSUiunhUZwu5SmMlECzDS5+
+ 6ECWMK6MO2Fj6JpZx6g==
+X-Proofpoint-GUID: HrwNrHxHT_xi7tkrsHMD3j98zc4LFxjq
+X-Proofpoint-ORIG-GUID: HrwNrHxHT_xi7tkrsHMD3j98zc4LFxjq
+X-Authority-Analysis: v=2.4 cv=UvhT8ewB c=1 sm=1 tr=0 ts=6a212057 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=63TTwLHdKWWIMIjarKcA:9
+ a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-04_02,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 malwarescore=0 lowpriorityscore=0
+ clxscore=1015 suspectscore=0 spamscore=0 impostorscore=0 adultscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2605210000
+ definitions=main-2606040064
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-306623-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:github.com@herrie.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_SENDER(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-306626-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[herrie.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:praveen.talari@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:bjorn.andersson@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mukesh.savaliya@oss.qualcomm.com,m:aniket.randive@oss.qualcomm.com,m:chandana.chiluveru@oss.qualcomm.com,m:jyothi.seerapu@oss.qualcomm.com,m:chiluka.harish@oss.qualcomm.com,m:quic_nkela@quicinc.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[praveen.talari@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,vger.kernel.org:from_smtp,qualcomm.com:email,qualcomm.com:dkim,msgid.link:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[praveen.talari@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DKIM_TRACE(0.00)[herrie.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,herrie.org:mid,herrie.org:dkim,herrie.org:from_mime,herrie.org:email]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C3CB563D572
+X-Rspamd-Queue-Id: E3DA163D63F
 
-Boards that mount the sensor under a tinted or coated cover glass need
-to compensate for the optical loss before downstream consumers can map
-the reading onto a useful lux range. The driver already exposes a
-runtime knob through in_illuminance0_calibscale, but every user has to
-re-apply it after every reboot (or rely on a board-specific udev rule),
-and a power-of-two cover gain like 100x is a hardware constant of the
-board rather than a policy choice that belongs in userspace.
+The Qualcomm automotive SA8255p SoC relies on firmware to configure
+platform resources, including clocks, interconnects and TLMM.
+The driver requests resources operations over SCMI using power
+and performance protocols.
 
-Add an "isil,cover-comp-gain" device-tree property that seeds calibscale
-at probe, mirroring the pattern tsl2563.c already uses for the same
-class of problem (amstaos,cover-comp-gain). The default stays 1 so
-existing systems are unaffected, and userspace can still re-tune via
-the sysfs attribute afterwards.
+The SCMI power protocol enables or disables resources like clocks,
+interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
+such as resume/suspend, to control power states(on/off).
 
-Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
+The SCMI performance protocol manages SPI frequency, with each
+frequency rate represented by a performance level. The driver uses
+geni_se_set_perf_opp() API to request the desired frequency rate.
+
+As part of geni_se_set_perf_opp(), the OPP for the requested frequency
+is obtained using dev_pm_opp_find_freq_floor() and the performance
+level is set using dev_pm_opp_set_opp().
+
+Praveen Talari (4):
+  spi: dt-bindings: describe SA8255p
+  spi: qcom-geni: Use geni_se_resources_init() for resource
+    initialization
+  spi: qcom-geni: Use resources helper APIs in runtime PM functions
+  spi: qcom-geni: Enable SPI on SA8255p Qualcomm platforms
+
+.../bindings/spi/qcom,sa8255p-geni-spi.yaml   | 63 ++++++++++++++
+ drivers/spi/spi-geni-qcom.c                   | 83 ++++++++-----------
+ 2 files changed, 97 insertions(+), 49 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/qcom,sa8255p-geni-spi.yaml
+
 ---
- .../devicetree/bindings/iio/light/isl29018.yaml     | 13 +++++++++++++
- drivers/iio/light/isl29018.c                        |  9 +++++++++
- 2 files changed, 22 insertions(+)
+Changes in v3:
+- Added the OPP rate restoration in resume callback.
+- Added missed dma-names in example node.
+- Link to v2: https://patch.msgid.link/20260530-enable-spi-on-sa8255p-v2-0-17574601bd63@oss.qualcomm.com
 
-diff --git a/Documentation/devicetree/bindings/iio/light/isl29018.yaml b/Documentation/devicetree/bindings/iio/light/isl29018.yaml
-index 0ea278b07d1c..92ea2742bbd3 100644
---- a/Documentation/devicetree/bindings/iio/light/isl29018.yaml
-+++ b/Documentation/devicetree/bindings/iio/light/isl29018.yaml
-@@ -34,6 +34,19 @@ properties:
-   vcc-supply:
-     description: Regulator that provides power to the sensor
- 
-+  isil,cover-comp-gain:
-+    description: |
-+      Multiplier applied to the ambient-light reading at startup to
-+      compensate for optical loss in the board's cover glass. Boards
-+      that mount the sensor under a tinted or coated window typically
-+      need a value between a few and a few hundred. The value seeds
-+      in_illuminance0_calibscale, so it can still be retuned at
-+      runtime through sysfs.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 65535
-+    default: 1
-+
- required:
-   - compatible
-   - reg
-diff --git a/drivers/iio/light/isl29018.c b/drivers/iio/light/isl29018.c
-index eafdfd9c4635..6d2f1e9f59b5 100644
---- a/drivers/iio/light/isl29018.c
-+++ b/drivers/iio/light/isl29018.c
-@@ -728,7 +728,16 @@ static int isl29018_probe(struct i2c_client *client)
- 	mutex_init(&chip->lock);
- 
- 	chip->type = dev_id;
-+	/*
-+	 * Allow boards that mount the sensor behind tinted / coated cover
-+	 * glass to bake the optical-loss compensation into firmware via
-+	 * "isil,cover-comp-gain", following the precedent set by
-+	 * tsl2563.c. The value seeds calibscale (default 1), so userspace
-+	 * can still retune through in_illuminance0_calibscale.
-+	 */
- 	chip->calibscale = 1;
-+	device_property_read_u32(&client->dev, "isil,cover-comp-gain",
-+				 &chip->calibscale);
- 	chip->ucalibscale = 0;
- 	chip->int_time = ISL29018_INT_TIME_16;
- 	chip->scale = isl29018_scales[chip->int_time][0];
--- 
-2.43.0
+Changes in v2:
+- Rebased patches on latest linux-next.
+- Link to v1: https://lore.kernel.org/all/20260112190134.1526646-1-praveen.talari@oss.qualcomm.com/
+
+To: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+To: bjorn.andersson@oss.qualcomm.com
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-spi@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: mukesh.savaliya@oss.qualcomm.com
+Cc: aniket.randive@oss.qualcomm.com
+Cc: chandana.chiluveru@oss.qualcomm.com
+Cc: jyothi.seerapu@oss.qualcomm.com
+Cc: chiluka.harish@oss.qualcomm.com
+
+---
+Praveen Talari (4):
+      spi: dt-bindings: describe SA8255p
+      spi: qcom-geni: Use geni_se_resources_init() for resource initialization
+      spi: qcom-geni: Use resources helper APIs in runtime PM functions
+      spi: qcom-geni: Enable SPI on SA8255p Qualcomm platforms
+
+ .../bindings/spi/qcom,sa8255p-geni-spi.yaml        | 64 ++++++++++++++++
+ drivers/spi/spi-geni-qcom.c                        | 86 ++++++++++------------
+ 2 files changed, 104 insertions(+), 46 deletions(-)
+---
+base-commit: f7af91adc230aa99e23330ecf85bc9badd9780ad
+change-id: 20260529-enable-spi-on-sa8255p-8166eaa226cb
+
+Best regards,
+--  
+Praveen Talari <praveen.talari@oss.qualcomm.com>
 
 
