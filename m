@@ -1,61 +1,93 @@
-Return-Path: <devicetree+bounces-307031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307032-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xQGgI/3TIWo6PQEAu9opvQ
-	(envelope-from <devicetree+bounces-307031-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 21:37:33 +0200
+	id 8BjGBdrTIWosPQEAu9opvQ
+	(envelope-from <devicetree+bounces-307032-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 21:36:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8B1F642F56
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 21:37:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C550642F26
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 21:36:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="JKPD11o/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307031-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307031-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=IMHoEVth;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307032-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307032-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5CC57307C920
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 19:33:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D056430179FB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 19:34:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0EF03C343A;
-	Thu,  4 Jun 2026 19:33:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C0A3A4F36;
+	Thu,  4 Jun 2026 19:34:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F15D72623;
-	Thu,  4 Jun 2026 19:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054A5384CC4;
+	Thu,  4 Jun 2026 19:34:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780601618; cv=none; b=JxzbFe77UpJiSPqEXT4v2nKrGlUwlicwf4HUfn7h6nIpV7lJUvNlbtyPDf/lLE+PmVdW3n6JGuBv3oRBXPqS+RmgHrUqXFcmw7Qy7Fi4wJAZagwoBSyuDoHrFAsHnjX+mQi9OkzuNVuGtp5G1lBm8c9NZeL0SogQTBLBEt2dpBQ=
+	t=1780601669; cv=none; b=rrPdrIsDsd0GbIAxaWE1ifnvQ411yL95W3j9EQpdOZ9pIvFSe6dDMy3gZIXejbSncs7zt2XJn1Q8AqvoR+csbugUFVm7HTIOLzPGflnjcViNLpsN5Nhj9xF5fD/TLfxiO6SM7sKl47WVlG1fJCHMLUUb1wNpbpxGj/+V03E9PkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780601618; c=relaxed/simple;
-	bh=tapovurhsuNwdFtiLZEjabmJvLQN+amiqTTH35i2pEc=;
+	s=arc-20240116; t=1780601669; c=relaxed/simple;
+	bh=12DkrUFEEAAtOum6+3gFzi79Ed1Qv0TIjS/Hzgl1lm4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HqXjmwV96wwqmmarEI5kk8BLZK4xV40kJUshYxUFPilBs7+10a5rqI6Xldq0/uX14EPrt/SpljLghNpyCLQkI+kwW4Rb3ERA0/P30Ij/FvVV5Dk84OgArLywjXX4vscnKKz0Ey6vmf3bJQo6EoY0dEJAPNRyiF2iHHGZ+eM+ZEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JKPD11o/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF9FD1F00893;
-	Thu,  4 Jun 2026 19:33:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780601617;
-	bh=X3LZgbWaMPIFfnmNXMUw7DOQbRziUNGX+uylYYHTSls=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=JKPD11o/zOQLphOweliTavjegMBRPwjI41iKabJ+cm90Ku6b5H2tos4Jz1rxGzV+g
-	 WmWglbrhRq4kfV9pfyPfBQvejIQFIAJ5rVSPYNBJwbb5DvQlUZ36x1MdeXeVpn7n56
-	 hrnIOO8hbyg/UDfZBE+zc0L0ikBowBtftepsoxH9bsALeok65EAp70cIrt1zvsbXgN
-	 8/cj3Ft7nIlzq4nG74GSrlzTeKaQ+GsQcF0+LnRpMtE6h2qGMuy8sq0BWgNXgqZEQs
-	 UUMlWBguySQ7jn4jdis7XyoQ+ICJoLvApb31ljWOyH64+izvfR7QBOKxcaNetkA3/n
-	 4ueB0b/kxQtDQ==
-Date: Thu, 4 Jun 2026 14:33:36 -0500
-From: Rob Herring <robh@kernel.org>
-To: Wandun Chen <chenwandun1@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	saravanak@kernel.org
-Subject: Re: [PATCH 2/2] of: reserved_mem: add config to extend dynamic
- reserved memory regions
-Message-ID: <20260604193336.GB1057262-robh@kernel.org>
-References: <20260604073611.3954433-1-chenwandun1@gmail.com>
- <20260604073611.3954433-3-chenwandun1@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=L2Lpj4w3DRQoVbUqxSrGKpO1iPtSe1iTBporgQmrj3S+lub9EWfHY9RkHJKUwXvcnhxK4pZiaFpbacMMYOfTpCcR5q+JSL4myBxplaPIyK7oxcilbPUpkJwN7WVPdhiHGtjEQynRnRg30VaMOYf/5ZZdlLX/zMZd4B24XkgF9tQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IMHoEVth; arc=none smtp.client-ip=198.175.65.9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1780601668; x=1812137668;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=12DkrUFEEAAtOum6+3gFzi79Ed1Qv0TIjS/Hzgl1lm4=;
+  b=IMHoEVth7USEmMr6PQ9Wvv6TroefSWoOCUHI0i8cVsTpH23PrOVGx5aS
+   Kgz6VCAOnjbjApxORU0PsXzyn0DH4Pn8E4RG2pBYUbE6odT72oJOURAIr
+   2gOmMIaUgvOPAIkGJnhPrpD+hWz8T1K7P0zCcLVJRH5mNw0NpAES7uLt5
+   Y1vVgfrZlwmNEwQY9AUzlboC7okVJmb6w6G4LuqntjDsYQGzPLM7HabWl
+   vpptytJLZZ54WlHVa7jiGVc1qXR+8zuYfJhZNOI0ZXDsMI0zT7EQDCQF+
+   r4VjrfumQ9QxBP/lQynj2KsUV4SHPiV9ZQ5vhYJeqC6aVcHnltkNy7h8W
+   g==;
+X-CSE-ConnectionGUID: ynqHUVtQQXmluos1pNiFBw==
+X-CSE-MsgGUID: dH0iL1p/Ta2VUO7BuoJCwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="104097763"
+X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; 
+   d="scan'208";a="104097763"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2026 12:34:27 -0700
+X-CSE-ConnectionGUID: CLVe/pXJQnKVtpdUr0ErLQ==
+X-CSE-MsgGUID: 0U7Sd7sRSoq1E465xy3W2A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,187,1774335600"; 
+   d="scan'208";a="241649693"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.47])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2026 12:34:22 -0700
+Date: Thu, 4 Jun 2026 22:34:20 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux@analog.com,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Petr Mladek <pmladek@suse.com>,
+	Steven Rostedt <rostedt@goodmis.org>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v16 03/14] lib: vsprintf: use _parse_integer() instead of
+ _parse_integer_limit()
+Message-ID: <aiHTPPGVHqWrGcSc@ashevche-desk.local>
+References: <20260604-adf41513-iio-driver-v16-0-1a7d09143bc2@analog.com>
+ <20260604-adf41513-iio-driver-v16-3-1a7d09143bc2@analog.com>
+ <a5nlyycxfhwpzczlmud3gjh5qxlugwkow4dyqhtgtjrzjf5q5x@mnmcic2da75r>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,80 +96,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260604073611.3954433-3-chenwandun1@gmail.com>
+In-Reply-To: <a5nlyycxfhwpzczlmud3gjh5qxlugwkow4dyqhtgtjrzjf5q5x@mnmcic2da75r>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307031-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:chenwandun1@gmail.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:saravanak@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-307032-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:455.rodrigo.alencar@gmail.com,m:rodrigo.alencar@analog.com,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:akpm@linux-foundation.org,m:pmladek@suse.com,m:rostedt@goodmis.org,m:linux@rasmusvillemoes.dk,m:senozhatsky@chromium.org,m:skhan@linuxfoundation.org,m:455rodrigoalencar@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ashevche-desk.local:mid,linux.intel.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E8B1F642F56
+X-Rspamd-Queue-Id: 8C550642F26
 
-On Thu, Jun 04, 2026 at 03:36:11PM +0800, Wandun Chen wrote:
-> From: Wandun Chen <chenwandun@lixiang.com>
-> 
-> Nowadays, the dynamic reserved memory regions is 64 by default, If
-> the count of reserved memory regions defined in DTS bigger than 64,
-> only 64 reserved memory can be handled properly.
-> 
-> So add a config to configure the actual dynamic reserved memory
-> regions count instead of modify the code.
-> 
-> Signed-off-by: Wandun Chen <chenwandun@lixiang.com>
-> ---
->  drivers/of/Kconfig           | 11 +++++++++++
->  drivers/of/of_private.h      |  2 +-
->  drivers/of/of_reserved_mem.c |  2 +-
->  3 files changed, 13 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> index 50697cc3b07e..d6496ec3765c 100644
-> --- a/drivers/of/Kconfig
-> +++ b/drivers/of/Kconfig
-> @@ -99,6 +99,17 @@ config OF_IRQ
->  config OF_RESERVED_MEM
->  	def_bool OF_EARLY_FLATTREE
->  
-> +config OF_RESERVED_MEM_DYNAMIC_REGIONS
-> +	int "Maximum count of the dynamic reserved memory regions"
-> +	depends on OF_RESERVED_MEM
-> +	default 64
-> +	range 1 256
+On Thu, Jun 04, 2026 at 11:06:55AM +0100, Rodrigo Alencar wrote:
+> On 26/06/04 10:58AM, Rodrigo Alencar via B4 Relay wrote:
 
-My opinion on making this a config option is well documented. That's the 
-primary reason we split dynamic regions.
+...
 
-How many do you need and why do you need so many regions? Seems like an 
-abuse of reserved memory. 
+> >  #define _parse_integer0(s, base, res, ...)						\
+> >  	_parse_integer_limit(s, base, res, INT_MAX)
+> 
+> removed the semicolon here...
+> 
+> > +#define _parse_integer1(s, base, res, max_chars, ...)					\
+> > +	_parse_integer_limit(s, base, res, max_chars)
+> 
+> and here, as per sashiko's feedback:
+> https://sashiko.dev/#/patchset/20260602203706.103449-1-andriy.shevchenko%40linux.intel.com?part=1
+> https://sashiko.dev/#/patchset/20260602203706.103449-1-andriy.shevchenko%40linux.intel.com?part=2
 
-Rob
+Legit, thanks for updating!
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
