@@ -1,47 +1,46 @@
-Return-Path: <devicetree+bounces-306768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-306770-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wHtKM9hdIWqmFAEAu9opvQ
-	(envelope-from <devicetree+bounces-306768-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:13:28 +0200
+	id oCijL9pdIWqnFAEAu9opvQ
+	(envelope-from <devicetree+bounces-306770-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:13:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F48763F53A
-	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:13:28 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B38163F53D
+	for <lists+devicetree@lfdr.de>; Thu, 04 Jun 2026 13:13:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306768-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-306768-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-306770-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-306770-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4CD6130C0738
+	by tor.lore.kernel.org (Postfix) with ESMTP id C938530C0E80
 	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 11:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E40F409612;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D3240961D;
 	Thu,  4 Jun 2026 11:07:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB8EE409136
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB84F3E2751
 	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 11:07:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780571252; cv=none; b=lyXoR4StPNVQpJNJoD1LbXKpo3sDVdiyemEpfoT0xz+4ln0ND9TtRJEHVI3LVQMhw+2qnmcDD0Uf85okOC692yfjhvLkwEzZQlHFrpTByqJ2P2JxRTCr/B15k6pcrLATPNCrJS+E8s0L0mdilTL3slQOonflVB8LSTh60jQIJPA=
+	t=1780571252; cv=none; b=RsvQh7xWs4OvlsSLHySdyKqnG2aoW+uLICXotl662znUU+7AJkrLJluQaVc9xIRVYkWb8fxYfnTDtDHulfgN++SV5lqB5Ez5UNrCkAMgoZjycFSSRZy/q9SVDCn9qOd3QvUUYTbaz2pRr0kZQJAaZNiFHT6M0IAGjfZxKcyS1g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1780571252; c=relaxed/simple;
-	bh=r61IsFZ3swYwz17mLPEb7M6IRDu0lmNu/FPvdX3aGJ4=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=C5Bb2VQA0kNhys8vtylwhwwEzWkrvAyYqyye4oHCIc+u/41KVAHaaL2liQqc0VOJX+v6LU74u1BkVzgc9/ls4VR7JB6K44GJUwpmJqhWrwIuCq1vlWtldaGtUOPcRb7/bmIsNPDKCcFEIZtI9LZEiLaAkDPQljet7O9Q1hLphPk=
+	bh=UI19ptAfbs+/bxokWYB04OjuLUR0nA8sE9SP4yeoLAs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Lub01Vt+f62Nfl2v+CN1h13nzDF6geUxeLu9GwsxjlRbjGE40CB5Z5UPON4UZwrOrH3WpRe7gc+8W5wV/NyoxL9KzFLlgGcmcdkZlaWP2tm8QjmsltV8IGBLRsL5IGuveVrGQNfHDT+W5JZAg4fyZFY4usl6YS0tOOt/bUb+etQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <jre@pengutronix.de>)
-	id 1wV5v0-0000OO-HM; Thu, 04 Jun 2026 13:07:22 +0200
+	id 1wV5v0-0000OO-JM; Thu, 04 Jun 2026 13:07:22 +0200
 From: Jonas Rebmann <jre@pengutronix.de>
-Subject: [PATCH 0/2] leds: pwm-multicolor: Fix default-trigger by allowing
- default-intensity
-Date: Thu, 04 Jun 2026 13:06:56 +0200
-Message-Id: <20260604-multicolor-default-v1-0-b07bff431537@pengutronix.de>
+Date: Thu, 04 Jun 2026 13:06:57 +0200
+Subject: [PATCH 1/2] dt-bindings: leds: Add default-intensity property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,10 +49,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAFFcIWoC/yXMQQ6DIBRF0a2QP5YE0DroVowDhKf9jYoBbZoY9
- y7q8Azu3SkhMhK9xU4RP04c5gxdCHIfOw+Q7LPJKFOrWlVy2saVXRhDlB69zZJao+zgPNTLUg6
- XiJ7/97RpH6et+8Kt14mO4wSqqXbHdgAAAA==
-X-Change-ID: 20260604-multicolor-default-11e3becde05a
+Message-Id: <20260604-multicolor-default-v1-1-b07bff431537@pengutronix.de>
+References: <20260604-multicolor-default-v1-0-b07bff431537@pengutronix.de>
+In-Reply-To: <20260604-multicolor-default-v1-0-b07bff431537@pengutronix.de>
 To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -63,12 +61,12 @@ Cc: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  kernel@pengutronix.de, Jonas Rebmann <jre@pengutronix.de>
 X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1181; i=jre@pengutronix.de;
- h=from:subject:message-id; bh=r61IsFZ3swYwz17mLPEb7M6IRDu0lmNu/FPvdX3aGJ4=;
- b=owGbwMvMwCV2ZcYT3onnbjcwnlZLYshSjMnIKFnkvsaU1+r6hbWG0a4nf68X3S6dKH9i9zR2f
- tHgr/ZLOkpZGMS4GGTFFFli1eQUhIz9r5tV2sXCzGFlAhnCwMUpABMp3M7I8N2Gp3uyO99C4TqV
- HwlLolbcuPtjwZTsR9f2tpixaX+1OMjwP+NQ+97pkU8VOPh+KFQv+6GawX1N+bd3TJyYqJBg3/1
- lXAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2359; i=jre@pengutronix.de;
+ h=from:subject:message-id; bh=UI19ptAfbs+/bxokWYB04OjuLUR0nA8sE9SP4yeoLAs=;
+ b=owGbwMvMwCV2ZcYT3onnbjcwnlZLYshSjMnQm7TuP8OUFb0Lub/29k18ZNfWvkNCy3hVu/SB/
+ eZCGfm7OkpZGMS4GGTFFFli1eQUhIz9r5tV2sXCzGFlAhnCwMUpABPZncXI8M3O+KDeXOsvlYeE
+ /CuKnt5zv+D3Y3Hz4pjigIO6RWue2zH8L+9b72vW41N5zFeqj5Gz76/k7JMqn5h8ipfJak9jjvv
+ HBQA=
 X-Developer-Key: i=jre@pengutronix.de; a=openpgp;
  fpr=0B7B750D5D3CD21B3B130DE8B61515E135CD49B5
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::ac
@@ -79,7 +77,7 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -89,7 +87,7 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,disruptive-technologies.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-306768-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-306770-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[jre@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -103,41 +101,75 @@ X-Spamd-Result: default: False [0.04 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7F48763F53A
+X-Rspamd-Queue-Id: 3B38163F53D
 
-Typically using linux,default-trigger allows turning LEDs on on initialization
-or triggering on e.g. a kernel panic regardless of how early.
+Document the default-intensity property to set a default color on
+multicolor LEDs.
 
-While supported in pwm-multicolor, this was not usable because the
-individual color components multiplication factor (intensity), defaulted
-all to 0 (black) and the LED remains off regardless of its overall
-"brightness" value.
-
-Allow setting defaults for each component's intensity to make the other
-"default-" properties actually usable here.
-
-Update binding documentation accordingly.
+Update pwm-multicolor to support it and update the example to turn the
+LED red on boot.
 
 Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
 ---
-Jonas Rebmann (2):
-      dt-bindings: leds: Add default-intensity property
-      leds: pwm-multicolor: Introduce default-intensity property
-
  Documentation/devicetree/bindings/leds/common.yaml             | 10 ++++++++++
  .../devicetree/bindings/leds/leds-pwm-multicolor.yaml          |  4 ++++
- drivers/leds/rgb/leds-pwm-multicolor.c                         |  2 ++
- 3 files changed, 16 insertions(+)
----
-base-commit: ba3e43a9e601636f5edb54e259a74f96ca3b8fd8
-change-id: 20260604-multicolor-default-11e3becde05a
+ 2 files changed, 14 insertions(+)
 
-Best regards,
---  
-Jonas Rebmann <jre@pengutronix.de>
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index f4e44b33f56d..159a89f77982 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -73,6 +73,16 @@ properties:
+       - keep
+     default: off
+ 
++  default-intensity:
++    description:
++      The initial intensity of the LED color component. Used only during
++      initialization. Defaults to 0. As the intensity of each sub-LED is
++      multiplied with the overall brightness, without this property on a
++      sub-LED is effectively initialized at minimum brightness regardless of
++      its linux,default-trigger and default-brightness attributes.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0
++
+   linux,default-trigger:
+     description:
+       This parameter, if present, is a string defining the trigger assigned to
+diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+index a31a202afe5c..05cc83f4bb82 100644
+--- a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+@@ -45,6 +45,8 @@ properties:
+ 
+           color: true
+ 
++          default-intensity: true
++
+         required:
+           - pwms
+           - color
+@@ -63,12 +65,14 @@ examples:
+ 
+         multi-led {
+             color = <LED_COLOR_ID_RGB>;
++            linux,default-trigger = "default-on";
+             function = LED_FUNCTION_INDICATOR;
+             max-brightness = <65535>;
+ 
+             led-red {
+                 pwms = <&pwm1 0 1000000>;
+                 color = <LED_COLOR_ID_RED>;
++                linux,default-intensity = <65535>;
+             };
+ 
+             led-green {
+
+-- 
+2.54.0.129.g3edf2eeba9
 
 
