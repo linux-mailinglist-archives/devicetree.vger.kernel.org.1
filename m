@@ -1,223 +1,249 @@
-Return-Path: <devicetree+bounces-307476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307477-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uA9SOTnxImopfgEAu9opvQ
-	(envelope-from <devicetree+bounces-307476-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 17:54:33 +0200
+	id 159dNd3xImpBfgEAu9opvQ
+	(envelope-from <devicetree+bounces-307477-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 17:57:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D993764982F
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 17:54:32 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57D3164987E
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 17:57:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=chromium.org header.s=google header.b=R9nw5l46;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307476-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307476-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=chromium.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=RreD1ojS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307477-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307477-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0FE6C303E2CD
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 15:44:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2CE74306EA7F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 15:48:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EDAC3A7F5F;
-	Fri,  5 Jun 2026 15:44:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71916399CED;
+	Fri,  5 Jun 2026 15:48:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92F123603DD
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 15:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA28A383C8D
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 15:48:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780674279; cv=none; b=XM0aJHg6b5vE2+iUmRZNWdBqaK+zrsdjOi6NMWCXHtH4hzKEsnp24ES9Mzl4obbZ7fEGo7sOy/Te/m1VXp/1+IIEXoI3JTOzTCAYCZR3laE+3bv3VOD9S0mtnLl9n5CvlRPGRB5tmG8SeaKUay1dCaB2EZnHku+AFuBlRFG4bjc=
+	t=1780674489; cv=none; b=cCbB8YrUtRhIUITM7O1Uz7FyGIxeDRsekGVnGUomHhrcSsoPru+OipmPAaPAmOzE60nFtw9evjvgLr3fZ4TjEItGadAr6TzYbTW2ZW8SuOpCK6oL4CNycSpHD6s5m7vZNS+xqOU3PQF1Bz721m1TYPoZwJTFO29y6OxvszVcoVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780674279; c=relaxed/simple;
-	bh=QTha33AcsGXLqeJoB7ThtoiTamYthYSeoS5Y5QadO/o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZPR+F5NeXbma3WIJuRs7t9VUg6nkUGfuljNYv0hIYQQ8fRhpYrq0yghpJQwPp6wI5VydMwU5HZ4+gfF09Bnk7C8N44GcAWmx+4RwP2qTl+0iYTBg87PMOICBWY4JqcTEJAxVgXJSVZgBtW84m/Occd6xdTR2FsCG7p2uz6jqHBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=R9nw5l46; arc=none smtp.client-ip=209.85.222.41
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-9639fa0636bso1683170241.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 08:44:38 -0700 (PDT)
+	s=arc-20240116; t=1780674489; c=relaxed/simple;
+	bh=+Zytpm9FXTTuYrQ6mlBrz/G+YKHNBxOZR5sKcsiQPHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pMh7r6XHiJL1iwaSm4X1sg39YHJH0H7/L1IxKuRKSGoxnsg52yKEYT17A+uASRd++HhcmO1OO1pvJ1JNgeD7ulYr4Zp1PbLmkRhStFMdJSlZE4XU+/2f4f1FANl8+dOkTtI/UDNPNjw7BATFhAFM0mH7FE2qUA1Jr3CEEMVU02g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RreD1ojS; arc=none smtp.client-ip=209.85.221.44
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-45ef82204c6so1168795f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 08:48:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1780674277; x=1781279077; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CZktE3L5rKfoN1/el6TuB/5aSd1JOfP8XWyiHhYJAdA=;
-        b=R9nw5l46H+BQQonVeXJJRK/O9oZZ3tUL4d3XDdxUCDgcOMGlq+6dxiswq3hGQEl/36
-         7MJXwahoPO4W/HMoLWRw27eGeALHWCaRb8JZTz5l+0b97RTl4TebknOdX9HAxWK9SMrX
-         2jXKhEm64NgcaAruxBmhFq5LUJSgo9jxyP3Uc=
+        d=gmail.com; s=20251104; t=1780674486; x=1781279286; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YIe9PJTXxBHQ0XX31cWOxKtFhK/4Vta8bzAs10DDqbM=;
+        b=RreD1ojSSvFRxLANmDwpf73LEaNmskuGnORFmXWq/K39Nqhn4H5NLwHHhyg/NGgwCE
+         8kioymVffyFHJssUZVmaGG1B5gWHuvzdiOKfnk/wLXhib9QIxnnUAhVesvSGBbp32oiG
+         jtMeDVlm91hQ8i0+wmoN5EtcqvDUcrmFHuMqEFP95HvHAY6g276aZPnIx/Kr47vICIss
+         7kp5QPj/EndCJHfR3xtqWJw+1Y3GpoBouOXFHzG+p9sdklzt2V/696G8kso71WeziGvg
+         +Vl0DfqTzA/8Mc7msouSI0Cgf0xs9YvFXoxlK3IlsjVQueewCOL8vnPGg13FS6DNu+kT
+         wzng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780674277; x=1781279077;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=CZktE3L5rKfoN1/el6TuB/5aSd1JOfP8XWyiHhYJAdA=;
-        b=RY5JpKIJEPuWBvoJhi73IxGsj01kEmUqYTrZ331U7AyPRMufmy8FUxNz43lgVEgAfe
-         zRG4SjprpNFf+E5WpMqZDOq//9FNUdL4emkaxw7Bd9lZjydXrlbnSsj8IgBfjiQdWcPt
-         JQEytuXGroq4ozodu1haIFZrynGIzkV9LJ6DYUGP735S0NZKIYR4ZL78LbEcHBqBIpsx
-         2Lc7uQ857JCiNWkjtDEsve63+vm3u+GrMI9Oao5gGajinO1p1E2jBZGEvqu9h+FRhu3N
-         YchAPxnD+fpHyr5WJFKl075u7vmPy0O53BZswv8mApUOzhMP5VNarQVbI8gx79EL5lvH
-         meww==
-X-Forwarded-Encrypted: i=1; AFNElJ84ul14uOb+MnjtBSBprGbMKKr9ssIFCNYUWypiJgHZ6krGIRQflIDxLdUK05fx3VDZNRM4VE2LDjEB@vger.kernel.org
-X-Gm-Message-State: AOJu0YyC7mh0E1jGBxOV9idTwKDE9UQLVsnaXQugNe1AR1LVbqCiudru
-	ZWTju2nvlCDWAgTP8P0F2xd6rQn0Y1UIF9BBeIHCF0dsytOKBu1zdipROOxMPGVRYdH04XvoIHN
-	41ik=
-X-Gm-Gg: Acq92OHWC26iy2Prfn/Oy/NR8IGelS6+kKAXs4ZJRTJxF3xpT7KMvaIlIUZRk2x+7JC
-	PdYStJh/zqBJXArQiF1vtAdibPbSYRfrUdLg/7KZproE08HQHb+S9RNbAej5wlQvq9jQF3ky/JJ
-	a8+GD7CCEutz5jwYDr5SG1oFYxB/C+0RHheql6BnX7hh8KuZp+Ww2h3KFI2Dr4csRJan+hDIJJv
-	V3ORk8/AUFtvAxZ7xPBCPmiglgdMot6q6qSqXXVqR5G+deGndVxF93sbTCMtObz155y6jxz9dwt
-	vTR3Dv6vPv1462cRsrCSwaJgus6EWG1bMf6oTKlgqaxzRz0NFb3tYuMMZ22x5GD/+bvpk60EH7C
-	BhqCvvDQswGSpgkPOvPapFuBJDBloyfT+q2AOmEx+0lv7hQL3riSJCTQoMUja+p/zLKr/oxgnsr
-	FhGOdq6KANqKBNeJQ/a6sJVDJyYAilx9S7bOjYqN1NSDSg70IJazI6idgXI2oZ/otewth+A9kl
-X-Received: by 2002:a05:6102:688f:b0:634:2450:7998 with SMTP id ada2fe7eead31-7002e27166amr1149533137.4.1780674277585;
-        Fri, 05 Jun 2026 08:44:37 -0700 (PDT)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-6eb5745d325sm7978547137.4.2026.06.05.08.44.35
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20251104; t=1780674486; x=1781279286;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YIe9PJTXxBHQ0XX31cWOxKtFhK/4Vta8bzAs10DDqbM=;
+        b=SX43szxfmoH8zmt8b1oTPdcq5TiOqBN9SG8dZCIy88WDfdNtmk0muK27MB7wfjYftT
+         ufAq09Q/nkpwTOBx8ZdC5rDXmuG06aLF7h5/nFwHyFAl3QzAUyuQorm0tiDQSklo8/sS
+         rn/H9cOQVeLfEsj2CV472R0E6HnphB/PUa+LsLyynIyjA7U1xpKCDzPyBWztZ+DDKtEz
+         l/BlbZQ6lMgR5KukBl9j10T0nKPRLSp4jWp+y/JspbEA3xm0cBI/6kdPMtoa3AjBpq6o
+         GJ2tGDkzPuf57wJY1eUTsNAfqVPLT5Wr+hzpaThxXk5JA5O1HR4WnmFyuccGKjbgc9zs
+         l7cQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+8JhIz2bfzjsSdgfde8q34iLl8o3YxSKr40iih/XQrdvkgkSCfJscydpb4yDsInFL+YnTDAxFb4Fvd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxu0khss+DNIOB/Ih+sSQdToJsjZ7/JBXQHXtbg/VSIAFuXbtpx
+	xGU5ACTDPXcDzczgRWpngduLriCyXdhBCXcB4oxaEOrqcAQFIg2dtYxF
+X-Gm-Gg: Acq92OHS2GPRVdxOb3E4js4jJva38PthODvYit14rWDxWS3NZN+hDCL5F2RZwvUSJdz
+	BU1/1q5s6pCeWAieItjUKq3jmseddfYNOkI9qUmeG8Y9jLIAw8AlAxTEdwLsUmGzDPRjjmOWJBh
+	OouW4PxyzrfSu7vhJtZtIVyhSv+uiW23qAJOQ9wANhWu+qqxfv9UjXmeOg7jI/hqWtDXSGShoI2
+	jZHX5z6nLdr3Te3tyNyCcySvSOQS3KeWdfwHPl/v/hAuu4+XgMQsru7r1BfvHdvLQYZciOnEd74
+	/ozW9wy3gf860syrQGfUyYUUB2nMFekqXV+4CG9Y1zQ2F/NIqMoLboK4v1WtrzWUYzl2VHolVfp
+	UPF7Lz+WFanfmVcJrXJkxNcbiUxfH5De9qv4oaeJDN1+axP0kwqIA2wtvilUkOVbn+nvFNxmIqv
+	Wo3al7ahqRd8PB479Hc1u0x/uEcpFLwWJriOc7A9GmletO5amdSwBzgYXKNDXoUFn/6wCWFrXX/
+	+3szF4itdAGFVLqEk0cO/ChJkds63Fj/am9oKDUxyV0WvsTXZYh+ogTEYGvxd9i8wifBH61O7/z
+X-Received: by 2002:adf:ef88:0:b0:460:1e9d:31a5 with SMTP id ffacd0b85a97d-46030631ba3mr5236539f8f.35.1780674485919;
+        Fri, 05 Jun 2026 08:48:05 -0700 (PDT)
+Received: from ?IPV6:2003:ea:8f14:5400:d967:4840:e11f:4ad4? (p200300ea8f145400d9674840e11f4ad4.dip0.t-ipconnect.de. [2003:ea:8f14:5400:d967:4840:e11f:4ad4])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f2dc412sm27730653f8f.4.2026.06.05.08.48.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Jun 2026 08:44:35 -0700 (PDT)
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-9639fa0636bso1683152241.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 08:44:35 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+IsbQm1gt8Er3R9IwHRyg0UHTsGLkBC9ov7/Jqk+zlaXQvFg/EMMzC8mDgwI6zZxTasXYDTpOaKijE@vger.kernel.org
-X-Received: by 2002:a05:6102:8347:10b0:6b4:d9ba:d9d2 with SMTP id
- ada2fe7eead31-7002d6be5e9mr1035796137.6.1780674274409; Fri, 05 Jun 2026
- 08:44:34 -0700 (PDT)
+        Fri, 05 Jun 2026 08:48:05 -0700 (PDT)
+Message-ID: <b7cc8eba-ff6e-417d-8e74-b3bb24e08a26@gmail.com>
+Date: Fri, 5 Jun 2026 17:48:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260604-topic-yoga_submission-v1-0-57c70c23d0d6@oss.qualcomm.com>
- <20260604-topic-yoga_submission-v1-1-57c70c23d0d6@oss.qualcomm.com>
- <CAD=FV=UaPKiGSL6mhVdywp67skSr2B7977f3kZ23FFHaD=95RQ@mail.gmail.com> <20260605152825.GA3740391-robh@kernel.org>
-In-Reply-To: <20260605152825.GA3740391-robh@kernel.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Fri, 5 Jun 2026 08:44:21 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U7jz-xwA+-Fic2thZaK6eCDhc-PZ1fqpCMAUmy3V3Y+Q@mail.gmail.com>
-X-Gm-Features: AVVi8CdDy3XFBVBoorpIXJgEbshGHoXa78jsg55oeGuqaaVdEdPTZn0YzBf-fxQ
-Message-ID: <CAD=FV=U7jz-xwA+-Fic2thZaK6eCDhc-PZ1fqpCMAUmy3V3Y+Q@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: display: panel: samsung,atna33xc20: Add ATNA40HQ08-0
-To: Rob Herring <robh@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: add Realtek r8169 family PCIe
+ Ethernet
+To: ricardo@pardini.net, nic_swsd@realtek.com,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20260605-rk3588-dts-rtl-eth-describe-dt-alias-v3-0-8a8857b39daf@pardini.net>
+ <20260605-rk3588-dts-rtl-eth-describe-dt-alias-v3-1-8a8857b39daf@pardini.net>
+Content-Language: en-US
+From: Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <20260605-rk3588-dts-rtl-eth-describe-dt-alias-v3-1-8a8857b39daf@pardini.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-307477-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-307476-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[hkallweit1@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:ricardo@pardini.net,m:nic_swsd@realtek.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:sebastian.reichel@collabora.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[dianders@chromium.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dianders@chromium.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[chromium.org:+];
+	FROM_NEQ_ENVFROM(0.00)[hkallweit1@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:from_mime,chromium.org:dkim,mail.gmail.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,realtek.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D993764982F
+X-Rspamd-Queue-Id: 57D3164987E
 
-Hi,
+On 05.06.2026 13:49, Ricardo Pardini via B4 Relay wrote:
+> From: Ricardo Pardini <ricardo@pardini.net>
+> 
+> Add a binding for fixed/soldered Realtek PCIe Ethernet controllers
+> driven by the r8169 driver (RTL8125/8126/8127/8168 and variants).
+> 
+> The "pciVVVV,DDDD" compatibles are the Open Firmware PCI Bus Binding
+> spelling, auto-derived from PCI-SIG vendor/device IDs, but they still
+> need a binding when used in a board DT - analogous to "usbVVVV,PPPP"
+> compatibles documented in their own bindings (e.g. microchip,lan95xx)
+> so board DTs attaching properties (fixed MAC, nvmem cell, ...) to
+> these PCI function nodes can be validated.
+> 
 
-On Fri, Jun 5, 2026 at 8:28=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
->
-> > > --- a/Documentation/devicetree/bindings/display/panel/samsung,atna33x=
-c20.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/panel/samsung,atna33x=
-c20.yaml
-> > > @@ -25,6 +25,8 @@ properties:
-> > >                - samsung,atna40ct06
-> > >                # Samsung 14" WQXGA+ (2880x1800 pixels) eDP AMOLED pan=
-el
-> > >                - samsung,atna40cu11
-> > > +              # Samsung 14" WQXGA+ (2880x1800 pixels) eDP AMOLED pan=
-el
-> > > +              - samsung,atna40hq08
-> >
-> > Sure. I'll repeat the same comment I made the last time someone landed
-> > a change to this file [1] in the hopes that maybe someone will post a
-> > patch one day:
-> >
-> > <repeat>
-> > Given how many of these we're up to now, I'm starting to wonder if we
-> > should come up with a generic compatible like we did with "edp-panel"
-> > and then we can stop having to merge CLs like this. All of these
-> > Samsung OLED eDP panels have the same power up sequence and once we do
-> > that then we can read them via EDID or via DP AUX bus to identify
-> > which specific panel we have and if they need additional tweaking,
-> > just like we do with "edp-panel". Do DT folks have any opinion about
-> > that? Coming up with a name would be a pain since I wouldn't want to
-> > assert that all future Samsung OLED eDP panels will have the same
-> > powerup sequence. Maybe "samsung,amoled-edp-panel-v1" even though that
-> > sounds terrible and there's no known need for a "-v2"?
-> > </repeat>
->
-> If things are the same, then perhaps there should be a fallback
-> compatible. Or just reuse an existing compatible.
+The of node seems to be created by of_pci_make_dev_node(). But this
+function is called for bridges only in pci_bus_add_device().
+So where is the node created in your case? Did you test node creation?
 
-Right, there already is a fallback comparible. This patch is just
-adding a string to the enum that has the fallback compatible
-"samsung,atna33xc20". So someone using this new panel will use:
+> Suggested-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
+> ---
+>  .../devicetree/bindings/net/realtek,r8169.yaml     | 54 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 55 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/realtek,r8169.yaml b/Documentation/devicetree/bindings/net/realtek,r8169.yaml
+> new file mode 100644
+> index 0000000000000..6923211ff4c93
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/realtek,r8169.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/realtek,r8169.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek r8169 family PCIe Ethernet Controllers
+> +
+> +maintainers:
+> +  - Heiner Kallweit <hkallweit1@gmail.com>
+> +
+> +description:
+> +  PCI function node properties for fixed/soldered Realtek Ethernet
+> +  controllers driven by the r8169 driver.
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - pci10ec,8125  # RTL8125 2.5GbE
+> +      - pci10ec,8126  # RTL8126 5GbE
+> +      - pci10ec,8127  # RTL8127
+> +      - pci10ec,8161  # RTL8168 variant
+> +      - pci10ec,8162  # RTL8168 variant
+> +      - pci10ec,8168  # RTL8168/8111 GbE
 
-compatible =3D "samsung,atna40hq08", "samsung,atna33xc20"
+This list reflects just some of the PCI id's handled by r8169.
+Any specific reason for this exact selection?
 
-My point was that listing specific panel isn't really valuable here.
-Though the "samsung" power sequence isn't completely compatible with
-the generic "eDP panel" power sequence (which is why they have
-separate drivers), just like generic "eDP panel"s we can query the
-panel ID if there are any per-panel quirks.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  local-mac-address: true
+> +  mac-address: true
+> +  nvmem-cells: true
+> +  nvmem-cell-names: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pcie {
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +
+> +        ethernet@0,0 {
+> +            compatible = "pci10ec,8125";
+> +            reg = <0x10000 0 0 0 0>;
+> +            local-mac-address = [00 00 00 00 00 00];
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index b539be153f6a4..6341de4fadb6c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -134,6 +134,7 @@ M:	Heiner Kallweit <hkallweit1@gmail.com>
+>  M:	nic_swsd@realtek.com
+>  L:	netdev@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/net/realtek,r8169.yaml
+>  F:	drivers/net/ethernet/realtek/r8169*
+>  
+>  8250/16?50 (AND CLONE UARTS) SERIAL DRIVER
+> 
 
-So the question is: should we stop adding specific panels and just
-always list "samsung,atna33xc20" for all Samsung panels with a
-compatible power sequence, is it worth it to add a more generic name,
-or should we really keep listing all these individual panels for no
-real gain.
-
-
-> I can in no way
-> prevent someone from using 'foo-panel' in their DT when the h/w is
-> actually a foobar panel if the differences are transparent to s/w. (But
-> I will reject a quirk property later on when foobar turns out to be
-> different than foo.)
-
-It's more a question of what guidance we tell people. Here, Konrad is
-trying to do "the right thing" by listing his specific panel and then
-using the fallback. I'm saying "listing the specific panel isn't
-gaining you anything" and I'd rather not have to review / apply these
-pointless additions to the bindings.
-
-...but I can imagine people will be upset if I tell them to list
-"samsung,atna33xc20" for all compatible Samsung AMOLED panels. It
-would be nicer to come up with some sort of generic name?
-
--Doug
 
