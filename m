@@ -1,162 +1,221 @@
-Return-Path: <devicetree+bounces-307354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307096-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id m9S3LTy0ImqacQEAu9opvQ
-	(envelope-from <devicetree+bounces-307354-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 13:34:20 +0200
+	id /98SFloLImqARwEAu9opvQ
+	(envelope-from <devicetree+bounces-307096-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 01:33:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4198647C13
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 13:34:19 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB67C643F56
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 01:33:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="Jlc/jpAG";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307354-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-307354-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="Wc7CO9e/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307096-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307096-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id ACBF53020C23
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 11:27:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E1963302ACCE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 23:33:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99494D8DBA;
-	Fri,  5 Jun 2026 11:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63FF22D8DC2;
+	Thu,  4 Jun 2026 23:33:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A064E4D8D8C;
-	Fri,  5 Jun 2026 11:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265182EEE94
+	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 23:33:21 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780658832; cv=none; b=rqVD+BsTugIjzwHKsJZvFS8o3zaI5gYiQ5tPp8Tv9YqfkLYRngg2JKT8Y77YcKbSz2deVnmplcByFaTf2Z25RUckfmESPp49NoawoFmf3nqtBkqrABdnIbg/ay7qupKlZ53joDbEPcM4FDMM8HXgw26g13MvyvQ9MuaOMfuWGSk=
+	t=1780616003; cv=none; b=N8mJMRYdpgXW0+WCRZ1TrZ3FkUZMC9IFIc8gN912kOCDzYZzUtL75JKjiicX9dHRs2Ukmt5Pqkq0/tI8Jjiuo6hHOwR4/sFyIT9hE1Sz6iUK8QNJsBDJrkGyPxEoTzVhBqaxQUArXVLNhUh7XdN6Quj1+5wMUg+4FUKfapotOFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780658832; c=relaxed/simple;
-	bh=tNC7e8ph+K4ynpxRT/iomFLlYWBmIw2Q5j/JyJ+hhKs=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Dh2LD+qG4vzjR7mknPazxbitbIn9LkbSI2QejuesS5I4oCGnj2xNMSFZY+xeAK1G8jkrC6GuEEqLLe9zP7b7KtH+1YfNZ2Dq20EIVKwrCR6BczpQgoBpH3FdFus6rT2AVT/NJhVj3fsAuuj3G5PT1Tar2VRMOqU0Hsu2TxlGV9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jlc/jpAG; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DB421F00898;
-	Fri,  5 Jun 2026 11:27:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780658831;
-	bh=yC0by5lCDY/lPJ1EPwJSYtDAQwVWWf0Ed5URy2sHQJE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=Jlc/jpAGvJnHR8zcA9jCl8FcV4IdLsujotn6KHFQV991DtXP0G9bbAtPZYT4XEDvE
-	 s2P+vW2wWFTzbTitvk282Aq1aJ3ABXIO+w+B4F7Hbu+iwv2besV2zlQZHzA+kWmODb
-	 DZ2HZXPP3YHFHv/FhIAD+tTf3o3vydk35CnBmtqIdqOF5iIdhwsBryPG//RrXy1l3w
-	 AAUWJDy6VjVxXl4kwd3zZheU4vODRIbtYBktJbizd0wGPgr/n5Xr5Pdff2YTGYhMOT
-	 aVwt9oDjuG+IbD0QxlcYWHi8e5IT7bSMJkg6d+DnCXhUVIfwYtLeK5mpayc35T4xZe
-	 +NOlLKHoAVjPw==
-Date: Fri, 05 Jun 2026 06:27:10 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1780616003; c=relaxed/simple;
+	bh=Lb+xLGteN8rGNFfXJPGYAlrX4zLjvvSOH8R+LOVRa9Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sT2WDekeHji3yONIhOIG3HQrb7nIK7PmMU6fVW1TxtEtHM1DPB7JsTD4tp6dDInkWYD7M1KJxwIXxav16eiDh7LjJP0zNkV2gXn2RQewbIUPw23tKf2RhKsV1mqenZx9twGLXYskzcSgvS8PfWlZaAKaSI08ZyOGjQcTsmA5PVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wc7CO9e/; arc=none smtp.client-ip=209.85.215.178
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-c858b392697so641122a12.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 16:33:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780616001; x=1781220801; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iGFlwyuNaR2/Raijzn5hJY/deT6FrQc+hecXmcS90Nw=;
+        b=Wc7CO9e/1SVK/5UNc/UMJQQXwXKmIl1vdT8lkXps89RnnRKVLa8uUmXcU+CCljUSeZ
+         iXj7nsWrdoiXLd4EbMObF4D0oEIXkv43lP1tHT8bEPlb61JdfqWW048iGhEAbwqCGGOy
+         x26LUUlFQRwKUkwX8uVySXgRiC1r7nyfZpbdoFQpXtLGCyXfdG5eWxhRGgaJdkeXbKaP
+         23u6OVCjSlzSTVFLtxWM0SIRN1RHcYopbDiH3rAfgk/6CQAtmBy/p/Ur21naCJxddy0G
+         4nVnGBUjs/XJy1KjqmXYIYWGpQrLkB+l3vjuQ4gjIP1SvL/G6cQiBPzSha02F7yuZ5cD
+         2ANQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780616001; x=1781220801;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iGFlwyuNaR2/Raijzn5hJY/deT6FrQc+hecXmcS90Nw=;
+        b=ls05bC9uKmIOiNZ/sYWv2jZd87XmIbB5/GvdXbyjMgU+alKA3pRQUML49V2p8v8hoI
+         Ere3TlfN9iGHUHy7nUaM70XtoT0twDTox1TqT7z8KfWAEWXsUB0renD1VoyRt7W791ch
+         6PT22uJ963sECPB3h96Nm9N1VCnVbjVPTJCyehZYMXDqtT/75yLZwRuB/Cp4IhyjzNvo
+         EtbUUXrYLxNZO7iGDfzhQXgBt7yWGfS4NhXfaeQGxHzfyoxCXCfbnCBbllrl5o+Gjtuc
+         UR8DhmBmqncn4fsohddwa1bmUfGjFLZslO4HoDcQcdvkzv0+kOvlTW9uFjeNxrUmDaVV
+         KRSg==
+X-Forwarded-Encrypted: i=1; AFNElJ/uEKii55VzYEn5qYqYoJHiFo3Kq8SkRmg4+cM+3I8neAruvT9wZ5AzQVtBgzixswhTcNfIvoqW0CUK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7NvA0AgP+Cx8MjEf3731/b6SeB9Ev2sn1EJElnoFQCHYY68GO
+	sce9L9xUW56QC75Vub9Yr7TlHMkOv151xFFYci1e8L3IZ30zxHKFqE35
+X-Gm-Gg: Acq92OGmsr6qCWfATjVKet0OGZEro89LWA/0iuPmBWtz/bcSilv949KZ57rEVPxfTij
+	hYWM2Mc8BTjn/7g/Gui1UTyvB6zRfs8pszUykAy2sIeKceLZb8X64YA7BdjutxAldnCCrAxO2EX
+	qk8pSZEbk5ELK7O1nCmifPeSh4EY05y29lQSXcgjJcdHkl+b+vD9Zeqsxxij6n0atsmlUfBzJKE
+	ZYYc4stW2aCFsbZpPxzoQrWDkSo2Dc60yP/8HbQjSuacs3KgpTR/doE2i18B67Pn9XmzQursZWu
+	4rnaprYcqiZrUwKOhUs80NQ8YJpQVqguLc0l9HF7NLGmUF0xyeCcdIWrDQb40KnUCHJIa9+7pqD
+	TP94POQ/fqdEMVy0Unr/9WGmT4qVdrmZna7vdk3bW1FM8rWNk/t2aBIKwmCdC2dt1WZ9MoN7gft
+	PvKmAXkA==
+X-Received: by 2002:a05:6a21:9d4c:b0:398:89b6:1b41 with SMTP id adf61e73a8af0-3b4cd066bc8mr1219019637.32.1780616001275;
+        Thu, 04 Jun 2026 16:33:21 -0700 (PDT)
+Received: from localhost ([2a12:a305:4::305d])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c85df0a505fsm6146958a12.20.2026.06.04.16.33.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Jun 2026 16:33:20 -0700 (PDT)
+Date: Fri, 5 Jun 2026 07:32:42 -0400
+From: Guodong Xu <docular.xu@gmail.com>
+To: Qingwei Hu <qingwei.hu@bytedance.com>
+Cc: Conor Dooley <conor@kernel.org>, sashiko-reviews@lists.linux.dev, 
+	kvm@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v3 08/15] riscv: Add Zic64b to cpufeature and hwprobe
+Message-ID: <a2o7tkslomyf43dcs4tultdmrzcjgvkjh736l7lqemasljhs2j@tyixe5krxw6z>
+References: <20260603-rva23u64-hwprobe-v2-v3-8-5529a7b28384@gmail.com>
+ <20260602232800.768311F00893@smtp.kernel.org>
+ <CA+Ck9FbKRM0wjJMg1fQpdwmow8cf_zTfir7V6+T=CRxU+vomdg@mail.gmail.com>
+ <20260604-rice-protegee-3a0b8e4cb609@spud>
+ <u52q565xhv5s7gz3wbh4heplhbm4pv732s5kqvf4deiw6ceb4t@n4bnpzu5kabs>
+ <6940420B-C9C3-4D60-AB7F-7FBC4B93D855@bytedance.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- Srinivas Kandagatla <srini@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>
-To: Harendra Gautam <harendra.gautam@oss.qualcomm.com>
-In-Reply-To: <20260605103739.3557573-3-harendra.gautam@oss.qualcomm.com>
-References: <20260605103739.3557573-1-harendra.gautam@oss.qualcomm.com>
- <20260605103739.3557573-3-harendra.gautam@oss.qualcomm.com>
-Message-Id: <178065883033.3171433.8446753794680185025.robh@kernel.org>
-Subject: Re: [PATCH 2/13] dt-bindings: sound: Add Qualcomm QAIF binding
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <6940420B-C9C3-4D60-AB7F-7FBC4B93D855@bytedance.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [3.84 / 15.00];
+	DATE_IN_FUTURE(4.00)[11];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-307096-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307354-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:srini@kernel.org,m:krzk+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:broonie@kernel.org,m:lgirdwood@gmail.com,m:harendra.gautam@oss.qualcomm.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[docularxu@gmail.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:qingwei.hu@bytedance.com,m:conor@kernel.org,m:sashiko-reviews@lists.linux.dev,m:kvm@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[docularxu@gmail.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp,qualcomm.com:email]
+	FREEMAIL_FROM(0.00)[gmail.com]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B4198647C13
+X-Rspamd-Queue-Id: BB67C643F56
 
+Hi, Qingwei
 
-On Fri, 05 Jun 2026 16:07:28 +0530, Harendra Gautam wrote:
-> Add a Devicetree binding for the Qualcomm Audio Interface (QAIF) CPU DAI
-> controller used on the Shikra audio platform.
-> 
-> QAIF moves PCM data between system memory and external serial audio
-> interfaces through the AIF path, and between memory and the internal Bolero
-> digital codec through the CIF path. The controller needs a binding so
-> platform Devicetree files can describe its MMIO region, DMA IOMMU stream,
-> clocks, interrupt, DAI cells and per-interface AIF configuration.
-> 
-> Describe the single register region, one EE interrupt, the required GCC
-> LPASS and audio core clocks, the DMA IOMMU mapping, and 'aif-interface@N'
-> child nodes used for static PCM, TDM or MI2S configuration.
-> 
-> Signed-off-by: Harendra Gautam <harendra.gautam@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/sound/qcom,qaif.yaml  | 353 ++++++++++++++++++
->  1 file changed, 353 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,qaif.yaml
-> 
+On 2026-06-05 00:43, Qingwei Hu wrote:
+>
+>
+>> Ok, I get your point. Agree, Zic64b/Zicbom/cbop/cboz can be implemented
+>> on each hart independently (at least spec doesn't say no). With this in
+>> mind, the validation of Zic64b should be like this:
+>>
+>>    if ((riscv_cbom_block_size && riscv_cbom_block_size != 64) ||
+>>       (riscv_cbop_block_size && riscv_cbop_block_size != 64) ||
+>>       (riscv_cboz_block_size && riscv_cboz_block_size != 64))
+>>    return -EINVAL;
+>>
+>> This will allow :
+>> 1. A Zic64b hart with 0, 1, 2, or 3 CBO extension and block_size 64
+>>   passes the validation.
+>> 2. A Zic64b hart with CBO extensions but block_size is not 64
+>>   fails the validation
+>>
+>> Thanks for the catch.
+>>
+>> I will fix that in v4.
+>>
+>> BR,
+>> Guodong
+>
+>Hi Guodong,
+>
+>Thanks for working on this.
+>
+>This overlaps with my earlier Zic64b cpufeature patch[1].
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Thanks, and you're right that your patch predates mine. Your validation
+was also correct (at least resonate with what I planned to do in v4)
+from the start.
 
-yamllint warnings/errors:
+>
+>and Greg confirmed that Zic64b does not imply support for any CMO
+>extensions[2]. It only has meaning for whichever CMO extensions are
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/sound/qcom,qaif.example.dts:28:18: fatal error: dt-bindings/clock/qcom,shikra-audiocorecc.h: No such file or directory
-   28 |         #include <dt-bindings/clock/qcom,shikra-audiocorecc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:140: Documentation/devicetree/bindings/sound/qcom,qaif.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1662: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+I'll add a link to quote this in v4. Great info. Thanks for checking
+with them.
 
-doc reference errors (make refcheckdocs):
+>implemented.
+>
+>Since the Zic64b cpufeature support in this patch overlaps with my
+>earlier patch, if you keep this work in your series and base it on that
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260605103739.3557573-3-harendra.gautam@oss.qualcomm.com
+Yes, I'd like to, and I prefer, take the your patch into this series, and
+credit you properly. In this series, I also added dt-binding, documentation
+and howprobe, and make it consumed by rva23u64 detection.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+>patch, could you please put my sign-off credit for the Zic64b cpufeature part?
+>
+>For example:
+>
+>Signed-off-by: Qingwei Hu <qingwei.hu@bytedance.com>
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Yes, since your work came first, I'm happy for you to be the author of the
+cpufeature patch, with me as Co-developed-by:
 
-pip3 install dtschema --upgrade
+     From: Qingwei Hu <qingwei.hu@bytedance.com>
+     ...
+     ...
+     Signed-off-by: Qingwei Hu <qingwei.hu@bytedance.com>
+     Co-developed-by: Guodong Xu <docular.xu@gmail.com>
+     Signed-off-by: Guodong Xu <docular.xu@gmail.com>
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Let me know whether this works for you.
 
+Thank you for pointing me to your existing patch.
+
+BR,
+Guodong
+
+>
+>[1] Link: https://lore.kernel.org/all/20260528141630.2741710-1-qingwei.hu@bytedance.com/
+>[2] Link: https://lists.riscv.org/g/tech-unprivileged/topic/question_about_zic64b_and/119631059
+>
+>Best regards,
+>Qingwei Hu
 
