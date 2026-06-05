@@ -1,221 +1,260 @@
-Return-Path: <devicetree+bounces-307096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307359-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /98SFloLImqARwEAu9opvQ
-	(envelope-from <devicetree+bounces-307096-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 01:33:46 +0200
+	id yGYuONy1ImoFcgEAu9opvQ
+	(envelope-from <devicetree+bounces-307359-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 13:41:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB67C643F56
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 01:33:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41549647CD7
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 13:41:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="Wc7CO9e/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307096-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307096-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Wmq3kPUV;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307359-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307359-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E1963302ACCE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jun 2026 23:33:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F30BB301B91E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 11:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63FF22D8DC2;
-	Thu,  4 Jun 2026 23:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A3B4D2ECA;
+	Fri,  5 Jun 2026 11:34:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265182EEE94
-	for <devicetree@vger.kernel.org>; Thu,  4 Jun 2026 23:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2DAF3E51D3
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 11:34:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780616003; cv=none; b=N8mJMRYdpgXW0+WCRZ1TrZ3FkUZMC9IFIc8gN912kOCDzYZzUtL75JKjiicX9dHRs2Ukmt5Pqkq0/tI8Jjiuo6hHOwR4/sFyIT9hE1Sz6iUK8QNJsBDJrkGyPxEoTzVhBqaxQUArXVLNhUh7XdN6Quj1+5wMUg+4FUKfapotOFw=
+	t=1780659280; cv=none; b=jWKF5VjLDdh8wu9iidyos/a3UObQA5jCuSSO1ax6XfNdWzCNuLXoNt5iU5QYw4fyivfDCCATTToN50ycb3REEE4UCLkaQi59rw1s5ZWR6OTvJ9mYYThZjot39rq6XY8TtT0LGym+2d4XGmRPOlE24LgCql22e1a15SzVnlMWcS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780616003; c=relaxed/simple;
-	bh=Lb+xLGteN8rGNFfXJPGYAlrX4zLjvvSOH8R+LOVRa9Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sT2WDekeHji3yONIhOIG3HQrb7nIK7PmMU6fVW1TxtEtHM1DPB7JsTD4tp6dDInkWYD7M1KJxwIXxav16eiDh7LjJP0zNkV2gXn2RQewbIUPw23tKf2RhKsV1mqenZx9twGLXYskzcSgvS8PfWlZaAKaSI08ZyOGjQcTsmA5PVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wc7CO9e/; arc=none smtp.client-ip=209.85.215.178
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-c858b392697so641122a12.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 16:33:21 -0700 (PDT)
+	s=arc-20240116; t=1780659280; c=relaxed/simple;
+	bh=RTjhxEGvOy+F+VQ/siDtUUts+dyofnFoSYDC7g4FuG4=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cFVW1lRWl8CFzfNC3f4HCmBezKeLNQ1IcF/f3Ei47qMcCGQFCLHBJjnelSKeShaUge4zwDEgv7xkDWGVf1VLI2fwGjWlFQRVuSWU88OvnMrvBu8DzyXy6lJsGVU36oJJdkKMbLTfFYXnDGVyhDhVWOh0kD34sJfZna8V+RE+4mo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wmq3kPUV; arc=none smtp.client-ip=209.85.221.41
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-45ef5146b56so1869000f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 04:34:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780616001; x=1781220801; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1780659277; x=1781264077; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iGFlwyuNaR2/Raijzn5hJY/deT6FrQc+hecXmcS90Nw=;
-        b=Wc7CO9e/1SVK/5UNc/UMJQQXwXKmIl1vdT8lkXps89RnnRKVLa8uUmXcU+CCljUSeZ
-         iXj7nsWrdoiXLd4EbMObF4D0oEIXkv43lP1tHT8bEPlb61JdfqWW048iGhEAbwqCGGOy
-         x26LUUlFQRwKUkwX8uVySXgRiC1r7nyfZpbdoFQpXtLGCyXfdG5eWxhRGgaJdkeXbKaP
-         23u6OVCjSlzSTVFLtxWM0SIRN1RHcYopbDiH3rAfgk/6CQAtmBy/p/Ur21naCJxddy0G
-         4nVnGBUjs/XJy1KjqmXYIYWGpQrLkB+l3vjuQ4gjIP1SvL/G6cQiBPzSha02F7yuZ5cD
-         2ANQ==
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hJRmfaxPaWcnCvs7QB4gUgP5UAYanEHUPfa/m1ombOs=;
+        b=Wmq3kPUV9UQPwUwMfcEXS9nkcfIrne1+VxRzzjUKdhZSQLt92iAY6nYOEznZG/ER34
+         DI+Ud3o2CrPMIs80JfWzrStGQL2ggC+z8+t/N0Z9zJtlWanXANkgmfUTohUzM0ZeWDtu
+         GlweRSmz9jODSRyF7mOAblmcPhpdIfjohDSeviSD+UKuZ2V1LPE2w7QjwBhhowwetEB0
+         LqDEmOuK7vAJdyDpzNLW4ZjT6MX+Ffq5dqimPRyIZQW61NZ0z06mJK/GcMfaDN5mpcJO
+         mWKElBxtngM5oQCC8uS34uksuJNFEZ7I6AIRQZnOUN+L2qyOZaeFzBx0bx3cqYg8tiIR
+         vkDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780616001; x=1781220801;
+        d=1e100.net; s=20251104; t=1780659277; x=1781264077;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=iGFlwyuNaR2/Raijzn5hJY/deT6FrQc+hecXmcS90Nw=;
-        b=ls05bC9uKmIOiNZ/sYWv2jZd87XmIbB5/GvdXbyjMgU+alKA3pRQUML49V2p8v8hoI
-         Ere3TlfN9iGHUHy7nUaM70XtoT0twDTox1TqT7z8KfWAEWXsUB0renD1VoyRt7W791ch
-         6PT22uJ963sECPB3h96Nm9N1VCnVbjVPTJCyehZYMXDqtT/75yLZwRuB/Cp4IhyjzNvo
-         EtbUUXrYLxNZO7iGDfzhQXgBt7yWGfS4NhXfaeQGxHzfyoxCXCfbnCBbllrl5o+Gjtuc
-         UR8DhmBmqncn4fsohddwa1bmUfGjFLZslO4HoDcQcdvkzv0+kOvlTW9uFjeNxrUmDaVV
-         KRSg==
-X-Forwarded-Encrypted: i=1; AFNElJ/uEKii55VzYEn5qYqYoJHiFo3Kq8SkRmg4+cM+3I8neAruvT9wZ5AzQVtBgzixswhTcNfIvoqW0CUK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7NvA0AgP+Cx8MjEf3731/b6SeB9Ev2sn1EJElnoFQCHYY68GO
-	sce9L9xUW56QC75Vub9Yr7TlHMkOv151xFFYci1e8L3IZ30zxHKFqE35
-X-Gm-Gg: Acq92OGmsr6qCWfATjVKet0OGZEro89LWA/0iuPmBWtz/bcSilv949KZ57rEVPxfTij
-	hYWM2Mc8BTjn/7g/Gui1UTyvB6zRfs8pszUykAy2sIeKceLZb8X64YA7BdjutxAldnCCrAxO2EX
-	qk8pSZEbk5ELK7O1nCmifPeSh4EY05y29lQSXcgjJcdHkl+b+vD9Zeqsxxij6n0atsmlUfBzJKE
-	ZYYc4stW2aCFsbZpPxzoQrWDkSo2Dc60yP/8HbQjSuacs3KgpTR/doE2i18B67Pn9XmzQursZWu
-	4rnaprYcqiZrUwKOhUs80NQ8YJpQVqguLc0l9HF7NLGmUF0xyeCcdIWrDQb40KnUCHJIa9+7pqD
-	TP94POQ/fqdEMVy0Unr/9WGmT4qVdrmZna7vdk3bW1FM8rWNk/t2aBIKwmCdC2dt1WZ9MoN7gft
-	PvKmAXkA==
-X-Received: by 2002:a05:6a21:9d4c:b0:398:89b6:1b41 with SMTP id adf61e73a8af0-3b4cd066bc8mr1219019637.32.1780616001275;
-        Thu, 04 Jun 2026 16:33:21 -0700 (PDT)
-Received: from localhost ([2a12:a305:4::305d])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c85df0a505fsm6146958a12.20.2026.06.04.16.33.20
+        bh=hJRmfaxPaWcnCvs7QB4gUgP5UAYanEHUPfa/m1ombOs=;
+        b=RdK8x6SAxP75NGAJE3g1o4VNFS7QFjyqk/m6A8YWB9ZdYEtz1pnSyXWVN5Nis27QH7
+         ifDYCZbby6BEb5amTYOgiwVBosoStHwKjj4+/KhHp9HJyKNGI4HWnhVYGQ4fK46jasO/
+         kDNqK7EWMP24a4OpAgw7eOQt1gRJG27gJKaTtKLWww1pjXH4ZT4eHwq3sBNWTvobK6mX
+         vxOMfMByrM1BGil5C3QPdtxB0Ch1QUgHEg1QXAifuGw5klR3sgABWUhIIE5KtDY42dfm
+         snHdnpr7cg3yhTymU6XdzwWpNWrpFTEF92JxFTW/MqibU7E/6H4L0nYQh5gU9dqc0PCu
+         Mdxg==
+X-Forwarded-Encrypted: i=1; AFNElJ82zkp/CFCwTiu56qhrz968uybgsYw37cQf3ZmO/CnuUeuxcUZpZY/yOlszHNZggteVQIYOJzPXepaU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsQi3eix7dlDEMWSAaAm3xlvkqmpuMx0aJW4jSFZz6DVL/yTyz
+	LqBT/u1QGzTMvDam/l5nvqRWo4gO6L6mWaHWIxDps3DpYUtY8RjKdkQu
+X-Gm-Gg: Acq92OG1NEfHQHuRCYrDTi3lbAcCy1R57koh7uM7DZoz3ubn/RGzwhYuEAhetSpviz0
+	3imxNi3yhQz1cB7mFlZjtbiUuCf/u5uW6luk99IRDpyCOXQmrP9kzq0/LAiHZxOUIm6l65gZixt
+	q3ZDkljUC9Uwui7JGy6XTHgn+yd0Go/RIdkH1M7tY67+evkJnK/XSaqUwHTLgsS7QdjRdcBq83q
+	SCeAJnIEQRJSSW3WqicfOoXwxpJoVv5fzkuuIJj0LxXOB3ImQ2pSEzme8EurNUqT26YoKkEslCI
+	fb073hwBcVGnC6I6FvhiSmQRXnSj+gJqjAFxihs+MpeHINHv7vB/n1m7KzXMyUNDZEZQb3eeCdf
+	bVUoUiEj297+ohR+4o4j0ZppRmvitqP+82S+gnLRbeCXJPc++kLcd/LYi/ViqqwaNqQNH3SZVqA
+	KWpL1kz56rTL7ODxGdX/1ducIG96J3mZ0LDZs8ETKkQPfcUxto5z50PwmuDtOnJyZ1wLRm7I+yx
+	YoKf+uCNxIVi/n3IfxficbcOQijmjJCLV0+BC8roDzx78RWj4lmtTTptH84
+X-Received: by 2002:a05:6000:491a:b0:45e:dc0a:bcb with SMTP id ffacd0b85a97d-46032db42fcmr3878302f8f.22.1780659277189;
+        Fri, 05 Jun 2026 04:34:37 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.131.netskope-rdns.com. [24.206.116.131])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46028a6dce6sm17068219f8f.30.2026.06.05.04.34.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Jun 2026 16:33:20 -0700 (PDT)
-Date: Fri, 5 Jun 2026 07:32:42 -0400
-From: Guodong Xu <docular.xu@gmail.com>
-To: Qingwei Hu <qingwei.hu@bytedance.com>
-Cc: Conor Dooley <conor@kernel.org>, sashiko-reviews@lists.linux.dev, 
-	kvm@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v3 08/15] riscv: Add Zic64b to cpufeature and hwprobe
-Message-ID: <a2o7tkslomyf43dcs4tultdmrzcjgvkjh736l7lqemasljhs2j@tyixe5krxw6z>
-References: <20260603-rva23u64-hwprobe-v2-v3-8-5529a7b28384@gmail.com>
- <20260602232800.768311F00893@smtp.kernel.org>
- <CA+Ck9FbKRM0wjJMg1fQpdwmow8cf_zTfir7V6+T=CRxU+vomdg@mail.gmail.com>
- <20260604-rice-protegee-3a0b8e4cb609@spud>
- <u52q565xhv5s7gz3wbh4heplhbm4pv732s5kqvf4deiw6ceb4t@n4bnpzu5kabs>
- <6940420B-C9C3-4D60-AB7F-7FBC4B93D855@bytedance.com>
+        Fri, 05 Jun 2026 04:34:36 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Fri, 5 Jun 2026 12:34:31 +0100
+To: Jonathan Cameron <jic23@kernel.org>, 
+	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, Michael Auchter <michael.auchter@ni.com>, 
+	linux@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH 10/12] iio: dac: ad5686: add triggered buffer support
+Message-ID: <i3wvatdosla3cszhhtizgoetcbknl56be3mpipzdxqx2jzvch2@l4hzeer5zoa7>
+References: <20260602-ad5686-new-features-v1-0-691e01883d27@analog.com>
+ <20260602-ad5686-new-features-v1-10-691e01883d27@analog.com>
+ <20260603134151.7cf1654b@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6940420B-C9C3-4D60-AB7F-7FBC4B93D855@bytedance.com>
+In-Reply-To: <20260603134151.7cf1654b@jic23-huawei>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.84 / 15.00];
-	DATE_IN_FUTURE(4.00)[11];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307096-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307359-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[docularxu@gmail.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:qingwei.hu@bytedance.com,m:conor@kernel.org,m:sashiko-reviews@lists.linux.dev,m:kvm@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:devnull+rodrigo.alencar.analog.com@kernel.org,m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[docularxu@gmail.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BB67C643F56
+X-Rspamd-Queue-Id: 41549647CD7
 
-Hi, Qingwei
+On 26/06/03 01:41PM, Jonathan Cameron wrote:
+> On Tue, 02 Jun 2026 17:33:57 +0100
+> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
+> 
+> > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> > 
+> > Implement trigger handler by leveraging the LDAC gpio to update all DAC
+> > channels at once when it is available. Also, the multiple channel writes
+> > can be flushed at once with the sync() operation.
 
-On 2026-06-05 00:43, Qingwei Hu wrote:
->
->
->> Ok, I get your point. Agree, Zic64b/Zicbom/cbop/cboz can be implemented
->> on each hart independently (at least spec doesn't say no). With this in
->> mind, the validation of Zic64b should be like this:
->>
->>    if ((riscv_cbom_block_size && riscv_cbom_block_size != 64) ||
->>       (riscv_cbop_block_size && riscv_cbop_block_size != 64) ||
->>       (riscv_cboz_block_size && riscv_cboz_block_size != 64))
->>    return -EINVAL;
->>
->> This will allow :
->> 1. A Zic64b hart with 0, 1, 2, or 3 CBO extension and block_size 64
->>   passes the validation.
->> 2. A Zic64b hart with CBO extensions but block_size is not 64
->>   fails the validation
->>
->> Thanks for the catch.
->>
->> I will fix that in v4.
->>
->> BR,
->> Guodong
->
->Hi Guodong,
->
->Thanks for working on this.
->
->This overlaps with my earlier Zic64b cpufeature patch[1].
+...
 
-Thanks, and you're right that your patch predates mine. Your validation
-was also correct (at least resonate with what I planned to do in v4)
-from the start.
+> > +static irqreturn_t ad5686_trigger_handler(int irq, void *p)
+> > +{
+> > +	struct iio_poll_func *pf = p;
+> > +	struct iio_dev *indio_dev = pf->indio_dev;
+> > +	struct iio_buffer *buffer = indio_dev->buffer;
+> > +	struct ad5686_state *st = iio_priv(indio_dev);
+> > +	u16 val[AD5686_MAX_CHANNELS] = { };
+> > +	int ret, ch, i = 0;
+> > +	bool async_update;
+> > +	u8 cmd;
+> > +
+> > +	ret = iio_pop_from_buffer(buffer, val);
+> > +	if (ret)
+> > +		goto out;
+> > +
+> > +	mutex_lock(&st->lock);
+> > +
+> > +	async_update = st->ldac_gpio && bitmap_weight(indio_dev->active_scan_mask,
+> > +						      iio_get_masklength(indio_dev)) > 1;
+> > +	if (async_update) {
+> > +		/* use ldac to update all channels simultaneously */
+> > +		cmd = AD5686_CMD_WRITE_INPUT_N;
+> > +		gpiod_set_value_cansleep(st->ldac_gpio, 0);
+> > +	} else {
+> > +		cmd = AD5686_CMD_WRITE_INPUT_N_UPDATE_N;
+> > +	}
+> > +
+> > +	iio_for_each_active_channel(indio_dev, ch) {
+> > +		ret = st->ops->write(st, cmd, indio_dev->channels[ch].address, val[i++]);
+> > +		if (ret)
+> > +			goto cleanup;
+> > +	}
+> > +
+> > +	if (st->ops->sync)
+> > +		ret = st->ops->sync(st); /* flush all pending transfers */
+> > +
+> > +cleanup:
 
->
->and Greg confirmed that Zic64b does not imply support for any CMO
->extensions[2]. It only has meaning for whichever CMO extensions are
+It turns out that this label is not really needed. When sync() op is available
+it must be called regardless of write failure, so the bus data can reset its
+state. Then moving "cleanup" up would just make it useless.
 
-I'll add a link to quote this in v4. Great info. Thanks for checking
-with them.
+> > +	if (async_update)
+> 
+> Error paths are always fun.  Do we care about setting ldac_gpio to 1 if
+> we failed to write the channel values?  That will set any that did successfully
+> update, but not all of them.  Note I'm not sure on the right answer for this.
+> There may not be one!
 
->implemented.
->
->Since the Zic64b cpufeature support in this patch overlaps with my
->earlier patch, if you keep this work in your series and base it on that
+I would not see a problem with that, as there is no much we can do with errors
+in a interrupt handler.
 
-Yes, I'd like to, and I prefer, take the your patch into this series, and
-credit you properly. In this series, I also added dt-binding, documentation
-and howprobe, and make it consumed by rva23u64 detection.
+> 
+> > +		gpiod_set_value_cansleep(st->ldac_gpio, 1);
+> > +
+> > +	mutex_unlock(&st->lock);
+> > +out:
+> > +	iio_trigger_notify_done(indio_dev->trig);
+> We get this pattern so often (though not always).  Feels like maybe
+> we should put some effort into a generic opt in solution for this.
+> 
+> A job for another day but options that come to mind.
+> 1) (hideous) a flag
+> 2) Maybe an alternative callback. thread_always_complete or
+>    something like that.  Pain to wire through all the calls though
+>    and injecting the necessary wrapper isn't great either.
+>    Implementation wise would be a case of popping in a wrapper function
+>    in iio_trigger_attach_poll() call to request_threaded_irq().
+> 3) Maybe a helper macro?  Bit ugly as we'd need one to generate
+>    the wrapper function and another to use the same name for
+>    the registration function.
+> 
+> Hmm. Those are all ugly (maybe 2 is ok ish).  Suggestions welcome!
 
->patch, could you please put my sign-off credit for the Zic64b cpufeature part?
->
->For example:
->
->Signed-off-by: Qingwei Hu <qingwei.hu@bytedance.com>
+using a cleanup.h? with something like:
 
-Yes, since your work came first, I'm happy for you to be the author of the
-cpufeature patch, with me as Co-developed-by:
+	static inline void iio_trigger_always_done(struct iio_poll_func **ppf)
+	{
+		iio_trigger_notify_done((*ppf)->indio_dev->trig);
+	}
 
-     From: Qingwei Hu <qingwei.hu@bytedance.com>
-     ...
-     ...
-     Signed-off-by: Qingwei Hu <qingwei.hu@bytedance.com>
-     Co-developed-by: Guodong Xu <docular.xu@gmail.com>
-     Signed-off-by: Guodong Xu <docular.xu@gmail.com>
+	static irqreturn_t ad5686_trigger_handler(int irq, void *p)
+	{
+		struct iio_poll_func *pf __cleanup(iio_trigger_always_done) = p;
+		/* ... */
 
-Let me know whether this works for you.
+		ret = iio_pop_from_buffer(buffer, val);
+		if (ret)
+			return IRQ_HANDLED;
 
-Thank you for pointing me to your existing patch.
+		/* ... */
 
-BR,
-Guodong
+		return IRQ_HANDLED;
+	}
 
->
->[1] Link: https://lore.kernel.org/all/20260528141630.2741710-1-qingwei.hu@bytedance.com/
->[2] Link: https://lists.riscv.org/g/tech-unprivileged/topic/question_about_zic64b_and/119631059
->
->Best regards,
->Qingwei Hu
+> 
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+
+-- 
+Kind regards,
+
+Rodrigo Alencar
 
