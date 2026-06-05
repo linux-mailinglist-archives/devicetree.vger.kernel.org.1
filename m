@@ -1,200 +1,207 @@
-Return-Path: <devicetree+bounces-307363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307411-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JZQAMYS2ImozcgEAu9opvQ
-	(envelope-from <devicetree+bounces-307363-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 13:44:04 +0200
+	id 9dwrGuPDImqbdQEAu9opvQ
+	(envelope-from <devicetree+bounces-307411-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:41:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28960647D43
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 13:44:04 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF2B6648404
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:41:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=kGq55n9y;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307363-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307363-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=fail ("headers rsa verify failed") header.d=antispam.mailspamprotection.com header.s=default header.b=Nf4n3md+;
+	dkim=fail ("headers rsa verify failed") header.d=valla.it header.s=default header.b=hWWMhmjp;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307411-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307411-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=valla.it (policy=none);
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 04C4A3049959
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 11:38:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 150EB301DAC8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 12:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC77B4D90B2;
-	Fri,  5 Jun 2026 11:38:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E6F30D3ED;
+	Fri,  5 Jun 2026 12:27:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from delivery.antispam.mailspamprotection.com (delivery.antispam.mailspamprotection.com [185.56.87.2])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47654D8D9D
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 11:38:05 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780659487; cv=none; b=owJkLi2kIX07QN2KYCn26omSGcCxOrBCvhLxfrKtcXe6EXUmOaEu7xjhvjC7DhscyRynHtx97021HSfzFU5aOJxoR9gAwxS6buIbWH8yilub++shZWUTt40IQ6Zh4LdiBnUBwdFyM2152vS2QD+3rPOCJsmWJJqhCP14FH/S9CA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780659487; c=relaxed/simple;
-	bh=7+PuTcFr4lv1Emq9smWBnZ+5CR1n6JckIWsQMdS8GdA=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A18834388A;
+	Fri,  5 Jun 2026 12:27:43 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780662468; cv=pass; b=V3duXycbVPs+Sqb0hg4ua3/1rlwkm6QL2Vol/Mdmhlh4Yqars1MA8p/ohJu6tGjFNUGNvSnovs0NHG6wY9+z8Hjm2Xyj10ZocMgUBErfK/TbLLhXeeszUqDrEhi7QszWbkmD8q1mWnurz6p2e/wy4KPlhAjACV292ZHwFtq1Kv4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780662468; c=relaxed/simple;
+	bh=XNHtznNb9YuK+Ys5xRmERxuX6qwUALEMw5FejOZwa8M=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O1BMBWr1ZapiTl4ShTRIZ9qCtTrGfBWNivToaI28ShoYfkGaM/kU3xAvjgSncfje8ANigPe/aPt97DT9q4jLE8rOTfbrM/bdES4vhDkZoUlBTAlXRxMsPRIQpJJA/U8ZVfA028P5pvU7+uD1lxq4lLTnY+HOW5MjZCJiz4X+0ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kGq55n9y; arc=none smtp.client-ip=209.85.221.42
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-45ef4223be7so1015835f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 04:38:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780659484; x=1781264284; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CFbJYflDDV02dtarv4YB5PHu3EiVcrVU9/w1VgU1PjM=;
-        b=kGq55n9yVRkwibr8hIjUU2uX+jY+pyOnmFoO8e12Kg1O1K2A4hp+aRKt9oze21sDuk
-         ZValtRPHAczPNrSpAVQCS2HE9ci72S5PMzHh6QMX3MCUsEv6Q/qASsZBSfAQ4desi+4D
-         p1JY/f3pNoFQF6cXDiEVxSEyav4fpKjs1PwF0T7x5FnquATv/Gv4WA1dlCBC0WpsRVXg
-         6W3tYKA2Tw+sWYnWf/P7Qt0mLNo7ue9eRf4kkvq8Tw4pBpeejGAep43ljUETN0SZid8A
-         gXvdxa5Gld/+psb0YAZoOpe/8jlg2ldUKdeJxBPgILOUbii5BW7nOSqqpDMC5na7cCG1
-         3c4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780659484; x=1781264284;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=CFbJYflDDV02dtarv4YB5PHu3EiVcrVU9/w1VgU1PjM=;
-        b=V3zELTfH3jwj33g1aCKGkvL2L/46Bts7CLqFE4/WLuhdUMmb0MP2xMHsTGxah2FBz/
-         77GGqOfTrOqUUg+dXTFAKTgxXAS6IayFtWAlCfS1nCNLUzcPDp5xZMDYO5jTPeWkYQk7
-         4uOMyZQqtpQM/2Wv/Xr/Sm0Gv3xghW0BCfv4/N7QQPvRc9EH8/rwXtglT8Rn4VUzPf+d
-         Kmj31QU4YIDBlJijhwqgm1L11SXv5pGB8SxMMpQYT1LHdZsyDG4QGvdPfF0IzKKscxod
-         AOqSCajvo/hdhZUxbL+rFOOJI55CmhnKuTdCX6pfgLt5O1OeLb5lPVJ64rEJuUpXYZGl
-         0sEw==
-X-Forwarded-Encrypted: i=1; AFNElJ+qUsbQJK9AmWBBuIRY0xFaYLe9f4mSJMaN/Q5lo5mzwn0BzsGRJdO0CTR8DU4WQxtPnx1i2qU4Fu1Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmBOBaKdYdmfdTTRcj2ZdFUwy66BbeXgr/+WXcDZXG2qbElaBH
-	eJ2eYTUxcfEFGWSu7pDRvKVK5unCzSqg9FVCYKc7e5xVDf3m+lCSKVyR
-X-Gm-Gg: Acq92OFxvgeYTgE1xFzozVhcGaUEo8B+zUbaKPTxDeVAbiMrw9wSjZ2kyHaYRgC0lvc
-	LjM1sUgjrlxd0I2DYxyGQnlLsJbfnvpGyykZmdY7kdA90bLZ/GV4RChjJwcFY8yddFpFaYV44UM
-	ACIYb+rGo+1X35AI72OK+AgnuhxBRiS28ukYAUCfvtqlzODUootskQFCCmSCvaJSv4Tt2PQ066P
-	b4lVBrh3ytl6F5s++lYR920Zlkrhc0s2k5bd3gnSD7yFezCmOuscf+fcudJ8b7IqsJJrzMMadJy
-	twWrzbMQHlA0hrDdOF8NrpjIpwJiVbtWm6PjThoaXTajALaeS++t+kuSTCzvL3RnL/0mo/a6npJ
-	PPs29/mI2Mz6xRMJn6Yd1/29mVYGKu0B/hytvK2Ic6d4vqopIVVTPY0tUL1pwFVw9xVRBXYPJyP
-	oGMgZ+fA7z8uVvJVuT+qP4tA8Nq5wSx3fLChgs8PknJ0+FiaSu0KtMf34MDieQ
-X-Received: by 2002:a05:6000:a91:b0:460:1755:160e with SMTP id ffacd0b85a97d-46030757dd4mr3877576f8f.33.1780659484157;
-        Fri, 05 Jun 2026 04:38:04 -0700 (PDT)
-Received: from SMW024614.wbi.nxp.com ([128.77.115.158])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46028a6dcbdsm15262439f8f.7.2026.06.05.04.38.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jun 2026 04:38:03 -0700 (PDT)
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Peng Fan <peng.fan@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Daniel Baluta <daniel.baluta@oss.nxp.com>,
-	Francesco Dolcini <francesco@dolcini.it>
-Cc: linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/4] arm64: dts: freescale: imx95-15x15-frdm: remove some rmem regions
-Date: Fri,  5 Jun 2026 04:36:20 -0700
-Message-ID: <20260605113621.1479-4-laurentiumihalcea111@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260605113621.1479-1-laurentiumihalcea111@gmail.com>
-References: <20260605113621.1479-1-laurentiumihalcea111@gmail.com>
+	 MIME-Version:Content-Type; b=KRlUGgMk43hC3sr/Kydv/J7TPY9WyQvmzjOdqq1jNjdqKielIB0Ft5To0KDDf4VWH6EWPF+2tVyzL7n0UFyrE6eEHT2+5ItOHTuREVoDq4CBKQVN2qjJQ+LXIR1HkKaCPxseIM5xwEBQDfx+sDO6W+/FydFHtA9NZlv6l+A8tHo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valla.it; spf=pass smtp.mailfrom=valla.it; dkim=pass (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.b=Nf4n3md+; dkim=pass (1024-bit key) header.d=valla.it header.i=@valla.it header.b=hWWMhmjp; arc=pass smtp.client-ip=185.56.87.2
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-3q75.prod.antispam.mailspamprotection.com; s=arckey; t=1780662464;
+	 b=NitIPqFgbfXb0o259pKfC5OPthZauRUak4CTjFxESuKt9kfL0fGWzy9OnGtwliyGOTcULcvGR8
+	  K4mLwt0gafn6hPyXgk1LW/hD2//IVGRopnmHQeswKc5ebsZMw8j91wtJcDmnGOJSI81P3eET4X
+	  8y4vj9MJWax3aR6XdeVudqF7JifKXbCkEwcXoHZ348aBcYLUGeqvVOySt0PMLD7RVG8p02jsLs
+	  7rKOsj400DsnWp0HUJOXaEicLGDvFOD59GJRkktf3LZzV+ZsS7ndt3zjOqoRzSBLFWFkm3kKZk
+	  49VOJ+TbLYejnBQPHedOdDOh9+NmiSSIfzAY2uqlqqU3ug==;
+ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-3q75.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-3q75.prod.antispam.mailspamprotection.com; s=arckey; t=1780662464;
+	bh=XNHtznNb9YuK+Ys5xRmERxuX6qwUALEMw5FejOZwa8M=;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+	  Message-ID:Date:Subject:Cc:To:From:DKIM-Signature:DKIM-Signature;
+	b=BLteGgyHE1u/0GB5kGhAiBc5SH2+pVZaACceYhkqOwkHCZ04LjJaGkM2561paxAKv3CbuwCtlu
+	  fOAAHV0gLpSeBQkAPPgzxypRb0SEiOj/kIf0T+R2+vsXfmr9t+ixZ6o1AmFSjIOVfIQBdd3d9b
+	  Dm9egMvU6YgeoLFT4FDJ4jNvbFDt9ak504QkVRJk2fmQ9Xe1koavIvLullj6D4JjH/HN8XYZVT
+	  hNrhpTqVH/GaP4IetLIAdbLqrGzldXP20mc+9dhyLF+GDYrOrYwAIyxryl2nYZVyK1cYlwodcj
+	  5QKGUR8LQxz6kCYnQrAZ7QjgLk6XunZuM+A22LgZ1ourDw==;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
+	:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:Reply-To:List-Unsubscribe;
+	bh=F927iQO2yHy5r4ReVfNbFmhFmycUVmgAeB7fBG6rev8=; b=Nf4n3md+bEvNHFEDbwvwmsNN5j
+	M64nYlSNHEnT7wdAlIRnuG3ZPCkRi6BdNPRb+UAHTd92xdDfpPZGRSFB8jjNnaSfEG11kvnF5jzW7
+	Hi2uIy1yKRewXnfOvlUQI/WjZmG/UL7Pnsl1Kf4t7z9GuhGFMcceSgJ9SJJ82iShvWRM=;
+Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
+	by instance-europe-west4-3q75.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.4)
+	(envelope-from <francesco@valla.it>)
+	id 1wVTeG-00000009oW7-1Ynh;
+	Fri, 05 Jun 2026 12:27:41 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
+	s=default; h=Date:Subject:Cc:To:From:list-help:list-unsubscribe:
+	list-subscribe:list-post:list-owner:list-archive;
+	bh=F927iQO2yHy5r4ReVfNbFmhFmycUVmgAeB7fBG6rev8=; b=hWWMhmjpCi3qq3Fr1kFkjljgGg
+	Vj11SCwNaX7NdXLQ3qtQU0cIeMp5zUEHjseLafSbXct8roL3XC0mULS233X6ryPzSD3EvxZNa3D6Z
+	4wc4QhGzrtSUV1P56thuHX00CZKOx2WPSbw7LmpqnTIcF/4mX+jvQKGyYGzMmdtsRT5o=;
+Received: from [95.248.69.182] (port=62513 helo=bywater.localnet)
+	by esm19.siteground.biz with essmtpa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.3)
+	(envelope-from <francesco@valla.it>)
+	id 1wVSqb-00000000Bzf-1M8X;
+	Fri, 05 Jun 2026 11:36:21 +0000
+From: Francesco Valla <francesco@valla.it>
+To: Joseph Guo <qijian.guo@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ steven.yang@nxp.com
+Subject: Re: [PATCH] arm64: dts: imx93-11x11-frdm: enable additional devices
+Date: Fri, 05 Jun 2026 13:36:20 +0200
+Message-ID: <_j4Ik3AsS5yfKb4Y7cSB1w@valla.it>
+In-Reply-To: <aiKP3EgdrCbqtUH0@lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com>
+References:
+ <20260115-imx93_devices-v1-1-b2c840cafa2e@valla.it>
+ <aiKP3EgdrCbqtUH0@lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - esm19.siteground.biz
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - valla.it
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-SGantispam-id: 77b55c899ef279f5221f9be05f414dcb
+X-AntiAbuse: ID - 77b55c899ef279f5221f9be05f414dcb
+AntiSpam-DLS: false
+AntiSpam-DLSP: 
+AntiSpam-DLSRS: 
+AntiSpam-TS: 1.0
+CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
+CFBL-Feedback-ID: 1wVTeG-00000009oW7-1Ynh-feedback@antispam.mailspamprotection.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_DKIM_REJECT(1.00)[antispam.mailspamprotection.com:s=default,valla.it:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[valla.it : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307363-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.hauer@pengutronix.de,m:peng.fan@nxp.com,m:festevam@gmail.com,m:daniel.baluta@oss.nxp.com,m:francesco@dolcini.it,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,pengutronix.de,nxp.com,gmail.com,oss.nxp.com,dolcini.it];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_FROM(0.00)[bounces-307411-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:qijian.guo@nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:daniel.baluta@nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:steven.yang@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[francesco@valla.it,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	HAS_X_SOURCE(0.00)[];
+	HAS_X_ANTIABUSE(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[francesco@valla.it,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[antispam.mailspamprotection.com:-,valla.it:-];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,nxp.com:email]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,valla.it:mid,valla.it:from_mime,valla.it:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 28960647D43
+X-Rspamd-Queue-Id: AF2B6648404
 
-From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+Hi Joseph,
 
-Remove some of the remoteproc reserved memory regions, which are currently
-not being used for anything. These will be added in the DT overlay
-enabling remoteproc support for this board.
+On venerd=C3=AC 5 giugno 2026 10:59:08 Ora legale dell=E2=80=99Europa centr=
+ale Joseph Guo=20
+wrote:
+> On Thu, Jan 15, 2026 at 06:11:34PM +0100, Francesco Valla wrote:
+> > Enable additional devices on the i.MX93 FRDM board:
+> >   - CAN port and associated transceiver
+> >   - Bluetooth portion of the IW612 chipset
+> >   - WiFi SDIO port
+> >   - user buttons
+> >=20
+> > The WiFi portion of the on-board IW612 chipset is still not supported
+> > upstream, but since SDIO is a discoverable bus it will be probed once it
+> > is.
+> >=20
+> > Signed-off-by: Francesco Valla <francesco@valla.it>
+> > ---
+[...]
 
-Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
----
- .../boot/dts/freescale/imx95-15x15-frdm.dts   | 21 -------------------
- 1 file changed, 21 deletions(-)
+>=20
+> Hi Francesco,
+>=20
+> Do you ever tried bluetooth feature? The bluetooth failed to scan with
+> 'device-wakeup-gpios' property.
+>=20
+> Regards,
+> Joseph
+>
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-index 0f43e3be7058..f9b0e266754d 100644
---- a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-@@ -188,16 +188,6 @@ linux_cma: linux,cma {
- 			linux,cma-default;
- 		};
- 
--		vdev0vring0: memory@88000000 {
--			reg = <0 0x88000000 0 0x8000>;
--			no-map;
--		};
--
--		vdev0vring1: memory@88008000 {
--			reg = <0 0x88008000 0 0x8000>;
--			no-map;
--		};
--
- 		vdev1vring0: memory@88010000 {
- 			reg = <0 0x88010000 0 0x8000>;
- 			no-map;
-@@ -208,17 +198,6 @@ vdev1vring1: memory@88018000 {
- 			no-map;
- 		};
- 
--		vdevbuffer: memory@88020000 {
--			compatible = "shared-dma-pool";
--			reg = <0 0x88020000 0 0x100000>;
--			no-map;
--		};
--
--		rsc_table: memory@88220000 {
--			reg = <0 0x88220000 0 0x1000>;
--			no-map;
--		};
--
- 		vpu_boot: memory@a0000000 {
- 			reg = <0 0xa0000000 0 0x100000>;
- 			no-map;
--- 
-2.43.0
+Yes, Bluetooth was tested using bluetoothctl, I just briefly re-tested it
+with latest master branch (7.1.0-rc6).
+
+Can you clarify what you mean with "The bluetooth failed to scan
+with 'device-wakeup-gpios' property."?
+
+Thank you
+
+Regards,
+
+=46rancesco
+
 
 
