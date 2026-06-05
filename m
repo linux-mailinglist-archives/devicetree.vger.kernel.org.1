@@ -1,292 +1,144 @@
-Return-Path: <devicetree+bounces-307521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307522-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 82/wClkgI2rAjAEAu9opvQ
-	(envelope-from <devicetree+bounces-307521-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 21:15:37 +0200
+	id V7lCLHIiI2ojjQEAu9opvQ
+	(envelope-from <devicetree+bounces-307522-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 21:24:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBE1564AE1F
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 21:15:36 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CC6664AEBF
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 21:24:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=netcube.li header.s=s1 header.b=g1Y36T3p;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307521-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307521-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=netcube.li;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lB6+UtPI;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307522-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307522-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 394AC304B8A3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 19:15:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BE1CF3031C20
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 19:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF8E423A85;
-	Fri,  5 Jun 2026 19:14:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2A54071FC;
+	Fri,  5 Jun 2026 19:24:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B57340F8DD;
-	Fri,  5 Jun 2026 19:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE404071E9;
+	Fri,  5 Jun 2026 19:24:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780686885; cv=none; b=hrlTQKNFBlCpd1JYI6wPmDzb/d0JuwEMqqJsNER9pfdd3w76L0EMSXv1bwTS3Bls0ZKUCG/ORtNQV6HITqgQF96+Z24snDb20nhFbuOZThtWckOBIKi0p9jOnBOWbfQ2wr72++Rc6iltW9CTiwhZLDdcKQj0l1YewwXyUwPN228=
+	t=1780687471; cv=none; b=btaD+bB1UB640+pXv50SfhOPe0xcACF3RXlU4ZeVeBF6koEbcInv0O6do71aWUdZNwTLFNhJzk5wAMGCW9ypkCtKYVEmdzzfXZ2fqb8oH65TtuVWVD3kUDmgyYprw3rP/hQ68tM+/G7zkwnN1Bz987VqI1Di7BBBHybKxm2u3zM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780686885; c=relaxed/simple;
-	bh=3kxLjxHrpsxtBRx7GY/HQPyaHGv49pC17f+9Hjl/710=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PzEZ0YZ4NdN79t8lqxVIZPSCy+F7WWKmezn7On70e8p95moqp+3xDFykPUAZx6ujT2Yi7u8afHHllJuTzaSL03UvaqOSgCZWzXl/P6IRwfSitakr64bZWpzN9aePaPFKDHS6l93G+DKoe6qBSZfE5xLoc1eczLWO0UvbUSAyWks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=g1Y36T3p; arc=none smtp.client-ip=173.249.15.149
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding:In-Reply-To:References;
-	bh=KE3Yd9aBqiM7+6VuFaFQ2f9ptin36tpfS9P+PDSGCTQ=;
-	b=g1Y36T3pY5Jk1Rdx82z6b8iQ0fn9NoJRI1L3eo/v0e8UVPZD6k0lLeZeV5bteDQQWU6iGVKrSzRxR2G5+eRNynyp74sntChz5BRRsnPFfXYv/qdFH+vz2qZulfdzGGBVCuiEz1KXRUJY1zzA08x7zSphURnV3bGOqIjHno6ehMM=
-Received: from lukas-hpz440workstation.lan.sk100508.local (194-166-56-114.hdsl.highway.telekom.at [194.166.56.114])
-	by mail.netcube.li with ESMTPA
-	; Fri, 5 Jun 2026 21:14:06 +0200
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Maxime Ripard <mripard@kernel.org>
-Cc: Lukas Schmid <lukas.schmid@netcube.li>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v2 3/3] ARM: dts: sunxi: add support for NetCube Systems OpenNMC (dobermann)
-Date: Fri,  5 Jun 2026 21:13:15 +0200
-Message-ID: <20260605191322.1920944-4-lukas.schmid@netcube.li>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260605191322.1920944-1-lukas.schmid@netcube.li>
-References: <20260605191322.1920944-1-lukas.schmid@netcube.li>
+	s=arc-20240116; t=1780687471; c=relaxed/simple;
+	bh=ypeRvsYBr6OaQZkz/nyNqmaf/JAoyJ+P1lxhvoCp5Nc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=PxALaIZBZhp6DUBHZSH3HXyW9Gj9975Q37ZHC8RFHyoeyhhPuM+qtXp9RZorMtF9DyNTNIhqIUFH9ffvtVu91KtAtH+jVmnaMLWKDsNcGMZlQif8Vm8bg4XldZX6hyHDXZeOYXxlGulXO3pD/80UwqvJa3KATRnSx2BaPjO8reo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lB6+UtPI; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAE861F00899;
+	Fri,  5 Jun 2026 19:24:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780687470;
+	bh=ypeRvsYBr6OaQZkz/nyNqmaf/JAoyJ+P1lxhvoCp5Nc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=lB6+UtPI1gDdy/Q9wD/aF3eOgRGXJErddP6nbUoV5Az19/wmu2akv+Uv11fIQFBdP
+	 4NF6aIOYeulurrfIzhTK9wfp/lQp9D/VYkrSJIlbG0xwAC1RivPsoK+ldsTs4JRbMy
+	 bxdnPZFYu70mFQPEf/lVyNDH/mTXpekQE/Whybzcjqc0bZR1TkmXMgZB4LtOuvnReu
+	 iTni78MtMmV6nJxP+6pZ9FKOoVc43Xe2M8F29zS+j9elfHeIGY4yQj2uLXp7+fWUxh
+	 XUnX8fQ+b57ATBtwAq05ehmAFpMkrMY8i+CzF6mALLFvxV7XQwMiSvNdTjFFetKHpU
+	 nJIqEbgRRraQA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 3/3] ARM: dts: sunxi: add support for NetCube Systems
+ OpenNMC (dobermann)
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Lukas Schmid" <lukas.schmid@netcube.li>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, linux-sunxi@lists.linux.dev, robh@kernel.org
+In-Reply-To: <20260605191322.1920944-4-lukas.schmid@netcube.li>
+References: <20260605191322.1920944-4-lukas.schmid@netcube.li>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 05 Jun 2026 19:24:29 +0000
+Message-Id: <20260605192429.CAE861F00899@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[netcube.li,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[netcube.li:s=s1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307521-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:mripard@kernel.org,m:lukas.schmid@netcube.li,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[lukas.schmid@netcube.li,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
-	DKIM_TRACE(0.00)[netcube.li:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukas.schmid@netcube.li,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307522-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,smtp.kernel.org:mid,netcube.li:email,vger.kernel.org:from_smtp,sashiko.dev:url];
+	FORGED_RECIPIENTS(0.00)[m:lukas.schmid@netcube.li,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:linux-sunxi@lists.linux.dev,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,netcube.li:mid,netcube.li:dkim,netcube.li:from_mime,netcube.li:email,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BBE1564AE1F
+X-Rspamd-Queue-Id: 4CC6664AEBF
 
-NetCube Systems OpenNMC is an open replacement for APC SmartSlot Management
-Cards. It is based on the Nagami System-on-Module. It breaks out the
-following interfaces:
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The newly added device tree file `sun8i-t113s-netcube-dobermann.=
+dts` is missing from the `arch/arm/boot/dts/allwinner/Makefile`. As a resul=
+t, the DTB will not be compiled.
+--
 
-- 10/100 Mbps Ethernet
-- USB Type-C OTG using a TUSB320 (usb0)
-- USB Type-C Console Port using a CH340 (uart3)
-- USB Type-A Host with internal CH334 USB-Hub (usb1)
-- MicroSD Slot with Card-Detect (mmc0)
-- WiFi/Bluetooth using the modules built-in ESP32
-- SmartSlot serial interface (uart4)
-- DS3232 RTC with CR1220 Battery Backup
-- Extension connector providing SPI,I2C,USB,CAN,UART for future use.
+commit 72bddd5a378aaecf47418f6e924b30fb31105d2f
+Author: Lukas Schmid <lukas.schmid@netcube.li>
 
-Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
----
- .../sun8i-t113s-netcube-dobermann.dts         | 149 ++++++++++++++++++
- 1 file changed, 149 insertions(+)
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dts
+ARM: dts: sunxi: add support for NetCube Systems OpenNMC (dobermann)
 
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dts b/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dts
-new file mode 100644
-index 000000000000..d7765caffe2a
---- /dev/null
-+++ b/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dts
-@@ -0,0 +1,149 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2026 Lukas Schmid <lukas.schmid@netcube.li>
-+ */
-+
-+/dts-v1/;
-+#include "sun8i-t113s-netcube-nagami.dtsi"
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "NetCube Systems OpenNMC (dobermann)";
-+	compatible = "netcube,dobermann", "netcube,nagami",
-+		     "allwinner,sun8i-t113s";
-+
-+	aliases {
-+		serial2 = &uart4; // UART on SmartSlot
-+		rtc0 = &ds3232;
-+		rtc1 = &rtc; // not battery backed
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led_heartbeat_green: led-heartbeat-green {
-+			gpios = <&pio 6 14 GPIO_ACTIVE_HIGH>; /* PG14 */
-+			linux,default-trigger = "heartbeat";
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+	};
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	tusb320: typec@60 {
-+		compatible = "ti,tusb320";
-+		reg = <0x60>;
-+		interrupts-extended = <&pio 3 22 IRQ_TYPE_LEVEL_LOW>;  /* PD22 */
-+	};
-+
-+	ds3232: rtc@68 {
-+		compatible = "dallas,ds3232";
-+		reg = <0x68>;
-+	};
-+};
-+
-+/* microSD Card Slot on the board */
-+&mmc0 {
-+	vmmc-supply = <&reg_vcc3v3>;
-+	disable-wp;
-+	bus-width = <4>;
-+	cd-gpios = <&pio 6 15 GPIO_ACTIVE_LOW>; /* PG15 */
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&pio {
-+	gpio-line-names = "", "", "", "", // PA
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "SMART_TX", "SMART_RX", // PB
-+			  "EXT_IO3", "EXT_IO2", "CONSOLE_TX", "CONSOLE_RX",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "eMMC_CLK", "eMMC_CMD", // PC
-+			  "eMMC_D2", "eMMC_D1", "eMMC_D0", "eMMC_D3",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "", // PD
-+			  "", "", "", "",
-+			  "", "USB_SEC_EN", "EXT_SPI_nCS", "EXT_SPI_SCK",
-+			  "EXT_SPI_MOSI", "EXT_SPI_MISO", "EXT_IO5", "EXT_IO4",
-+			  "SMART_SEL", "", "", "",
-+			  "I2C2_SCL", "I2C2_SDA", "TUSB320_nINT", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "ETH_CRSDV", "ETH_RXD0", "ETH_RXD1", "ETH_TXCK", // PE
-+			  "ETH_TXD0", "ETH_TXD1", "ETH_TXEN", "",
-+			  "ETH_MDC", "ETH_MDIO", "I2C3_nINT", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "uSD_D1", "uSD_D0", "uSD_CLK", "uSD_CMD", // PF
-+			  "uSD_D3", "uSD_D2", "TUSB320_ID", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "ESP_CLK", "ESP_CMD", "ESP_D0", "ESP_D1", // PG
-+			  "ESP_D2", "ESP_D3", "ESP_TXD", "ESP_RXD",
-+			  "ESP_nBOOT", "ESP_nRST", "I2C3_SCL", "I2C3_SDA",
-+			  "EXT_IO1", "EXT_IO0", "LED_HEARTBEAT", "SD_DETECT",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "";
-+};
-+
-+/* SmartSlot serial */
-+&uart4 {
-+	pinctrl-0 = <&uart4_pb_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	extcon = <&tusb320 0>;
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>; /* PF6 */
-+	status = "okay";
-+};
--- 
-2.47.3
+This commit adds device tree support for the NetCube Systems OpenNMC
+(dobermann) board. It configures the various interfaces broken out by
+the Nagami SoM, including Ethernet, USB, SD card, and RTC.
 
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dt=
+s b/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dts
+> new file mode 100644
+> index 0000000000000..d7765caffe2a2
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-dobermann.dts
 
+[Severity: Medium]
+Should this new device tree file be registered in
+arch/arm/boot/dts/allwinner/Makefile?
+
+Without adding sun8i-t113s-netcube-dobermann.dtb to the
+dtb-$(CONFIG_MACH_SUN8I) list, will the kernel build system actually
+compile this new device tree?
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260605191322.1920=
+944-1-lukas.schmid@netcube.li?part=3D3
 
