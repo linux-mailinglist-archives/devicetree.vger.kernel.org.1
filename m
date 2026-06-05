@@ -1,171 +1,228 @@
-Return-Path: <devicetree+bounces-307189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307185-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 20D3I5VlImogWgEAu9opvQ
-	(envelope-from <devicetree+bounces-307189-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 07:58:45 +0200
+	id fOt+BI5lImoeWgEAu9opvQ
+	(envelope-from <devicetree+bounces-307185-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 07:58:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AD646455BC
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 07:58:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 223086455B2
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 07:58:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=163.com header.s=s110527 header.b=DbmCziOv;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307189-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307189-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=163.com;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=JsihRXox;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=ixgAuXyl;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307185-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307185-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 51C7E3014242
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 05:58:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B9C58302335B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 05:54:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA1F3FF8A7;
-	Fri,  5 Jun 2026 05:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69FC33FC5DF;
+	Fri,  5 Jun 2026 05:54:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B935B3FE667;
-	Fri,  5 Jun 2026 05:58:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B8EA3D9021
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 05:54:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780639101; cv=none; b=cqMNkyCl0bYCa1Q93pc75p9Pxk5KU255xVAM5Y44RoxSPqowrKtLdLFB9wKl6foSt37kUGIRXPQvyaPiMWuFlBW/RDiBsMKcW5Hz57vIhSUfe32/1p4NlY6Xe0dlNwLn0lEK3leng5UzZildJYk03yH+B8r9TFmDyl3RPbZyyMw=
+	t=1780638871; cv=none; b=m2Lbk6YJQW4QQd3yo/pmVL3mey71IRCUcnCOLRms4Gejp1KPEJxeiDceqJrtULYBC1Ay8OZ17HC0BX2Oi5sBCjujCeGyydFbBX80ZPJbnGEyJqpaJUWkzdOdcqL+bMWmZoVsDxxth8TFOzJEPwjai8D4gM54m8yNqbQkFjj+iQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780639101; c=relaxed/simple;
-	bh=BAcxVz7Dy+1NQW4ajsjRQaUxXlrsy4JR4V4XNqrr+OA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=c1kE6Iu9ctHvmprrx4q6g27vDircpejkw7EZ9XkC/VKy2tmeBY4/yydAw9bnVN77mLSvUQi7mW+NW2jlnBpbTBKJjsDjFjXaZCxl3PZc4N1ti3DjavwiAoLhd+JleQK4/ersfZMR0yJilN9O2YuXzhDpYjoV09bbkjELjjgTvPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=DbmCziOv; arc=none smtp.client-ip=117.135.210.3
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=GD
-	2Kr06zQNFkIwrVrOalWnuCkNJUXETOOuvMASHG1wc=; b=DbmCziOv5IknDVlK99
-	daj1ffrq+HwEfO5hUp3zaUPHJ4mWsF+C0X1NdDeCRGSFmnlioqmZ+X+YV/rurLl9
-	mBh+mTkxRqhtKkkPog+n9w1wGobIRA0raergS38laMxKw/+RLEz+nlQ58ctS4w4i
-	6LLVuZ74B58zsqIPOawbfVo34=
-Received: from haiyue-pc.localdomain (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id PCgvCgAXkGE7ZSJqxsLwAQ--.65168S4;
-	Fri, 05 Jun 2026 13:57:18 +0800 (CST)
-From: Haiyue Wang <haiyuewa@163.com>
-To: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-aspeed@lists.ozlabs.org
-Cc: Haiyue Wang <haiyuewa@163.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Hans Verkuil <hverkuil+cisco@kernel.org>,
-	Jammy Huang <jammy_huang@aspeedtech.com>,
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/ASPEED MACHINE SUPPORT),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v4 2/2] ARM: dts: aspeed: add 'resets' to video node
-Date: Fri,  5 Jun 2026 13:52:43 +0800
-Message-ID: <20260605055712.118501-3-haiyuewa@163.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260605055712.118501-1-haiyuewa@163.com>
-References: <20260605055712.118501-1-haiyuewa@163.com>
+	s=arc-20240116; t=1780638871; c=relaxed/simple;
+	bh=ET/xmjqblmnRoz0s6RIdv44pnT8vwh6Cj2PRnUsuUVU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hpua7yhB8vYjAVFc/RS13gYpPi0IwCz3RrfTsHEE1w/qHY6HGWcmvqCLRLh/8qyjJ/3KoA1mgNsDXSoJJ8ZfiJYLR7OmeW1vQ8FPFWo+vSQSZgzEMZ/4U5Grv9j1gKT980Sv/dg7CkGs6NRIRPv0JekigcCCaM/VNyiQy4glZ3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JsihRXox; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ixgAuXyl; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65518X7K1958779
+	for <devicetree@vger.kernel.org>; Fri, 5 Jun 2026 05:54:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6WHvQWVrMY7Q6I7Q5CHZQhZsKVw1kfb0gB8Hxtv9NhU=; b=JsihRXoxNQ19qXF9
+	n8Zmut16mdVZZ3L0RXq9fRHVpMdrGN3noW60TwDsCeDaE5aoKxqwlbR5s7PdW1dN
+	76xuUmJ4KZwJa2GyytFUU9AYw2LJxsON29Hq6volUj62yo6f4ripvoK8MRvoUxyk
+	9jI0tdVqsuCtARDStxKs67nYaBL0O4+eY50nNc0l2VmiPWd9oQsHNk9QV0HMogAo
+	GC2Sl+0lbNRisbq4XqkDn10cs5UOhenBltdtpmvnhR95BkylwGsxpHImL34O3IOz
+	qvjaQqM8/VZlApOTYJEzjrcvPW3SDn/SvWIKVU4mUBVptvXsKkFRuYnkdS7hVHIS
+	Y4Ggeg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ekckpu303-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 05:54:29 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2bf1845bddfso18521515ad.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 22:54:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1780638868; x=1781243668; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6WHvQWVrMY7Q6I7Q5CHZQhZsKVw1kfb0gB8Hxtv9NhU=;
+        b=ixgAuXylIA29SE8P/xLcU/d82Eb6u1vEUFU5lwf8wfC+Ip/o/2xCYnL51FkfVhMmrR
+         kootcNLl0QJv9xXng2xVsGJVGTfIn/R2OzvrqwbSB8cPE7s2EXYXLtM4MK4VV8+8oZNI
+         cfIzmFPZdeZ48MGJNvDo/Zz70LY+aWzo943E0zde70sCzkUg4SzdxrHjSXrVRuBAB2wm
+         EjNX3u9nWvC5PcZ4Fl8jNLzKx5HU3HrPNTic78fvE28Rp0RWlntroZQnZLKpUi2BwGBH
+         WpaYBaLTOxUW0uynjws1+4X94bnj+hVudhuaAnf0ZO7LSrpE4hOjchcm/wb9mPNuLCEa
+         DfpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780638868; x=1781243668;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6WHvQWVrMY7Q6I7Q5CHZQhZsKVw1kfb0gB8Hxtv9NhU=;
+        b=Q2T78k7md7DlEsaD3yPiqgyF7+DBAEZU4+z6qvXIVFJIS6gSQpErt0gLXmF3IAPGiv
+         mWy8N8Ix2o1dOb8g8rscpWb7idXy1eSTj9lm9uAgtHpck8pvZngQ8JC1CfsQuiowqakh
+         m7duJ5lCJR2gCTFjJXSFxK/wADhZjoXJuvq+Cz6KixvaOgU09h/j27EnDnuvRvV6n54y
+         XP5fHawtmasGLL49FQRByeMbjdvvstKwqH16iU4kplkYj/tWn36BTzGc7iaLyakjhnpX
+         vnUNgUC7/QcEhPTLV5KdN4h6pkB3nt5LJCJl4OVZV/08+7KSz+Q6OGj+mhjM1qEyCdE6
+         8XHQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/7tPTIFxjTWUUqC5Rsq1ldo6sVAg1oP5EmTGD2F2A/Zo+8B8UppqzgpWvTCUh+u0Zyq7eJvgnEk6U1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwP8j9/1zB7/wpnXdQC31XKkl0tMcDkuhl0HGnL/l+mNseGEQxR
+	M9S61/L3x7yPtCLkp5OHV5iztAcGhHm3BvQp+XHLehr0vWnHJVXaLgxQz1Nd88hY/+PLJOSYVUL
+	omcKTCXGheBlnm4iqEBr+AesBSwR9EgjDleYUkq99/3B3bpLRwTV10Nin201x9exb
+X-Gm-Gg: Acq92OH1gmIgyjV+OcoRbkNaA3vD1l/CnRHdL87y3FCrg/37XC2CFpFW9nln0TISIwz
+	STnpt0FtB03Qa5YMigsa0bwh12RcmWaJ4GR33WOb3WIV3bWRtkh9Yx4LIcimIRz2REfa4QhOVca
+	R36X+eOM3hA6qsMBj9chmgtUU3OKLgzqUB7iwfz6HcTpIKQblLlNrvuTLoO+6J8uSspVJ5Ab2Jx
+	JikjptKwoGPEEeoAmxIzp3nbmSaeqKfIM8eyRwdbtvH7C0Jt0TdfOH7+ZnY8DNVmCy/f+kz7UKx
+	jRArC3CHVG14y3Hvi+uWt2NynnQ84oOErXjrVsaSeHnpI37xGi1mw2LiHsTfbGyHpQ7f4nJ1O2m
+	bUCIbuksbmR7Vd1QoHC0dEo+tsbY+uCaze5rUr7TkZqYr2mmIzWjNDgNj/X4eCIg+LaqAFt4iwk
+	tHis0gef17h411DBiPRdouoc4K+3g=
+X-Received: by 2002:a17:902:e78c:b0:2b0:c59f:3b58 with SMTP id d9443c01a7336-2c1e80ff880mr19922675ad.9.1780638868291;
+        Thu, 04 Jun 2026 22:54:28 -0700 (PDT)
+X-Received: by 2002:a17:902:e78c:b0:2b0:c59f:3b58 with SMTP id d9443c01a7336-2c1e80ff880mr19922345ad.9.1780638867887;
+        Thu, 04 Jun 2026 22:54:27 -0700 (PDT)
+Received: from [10.133.33.164] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c16629c08bsm79168795ad.61.2026.06.04.22.54.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jun 2026 22:54:27 -0700 (PDT)
+Message-ID: <c88b955b-5aaa-472e-a928-eae8bbc7feb5@oss.qualcomm.com>
+Date: Fri, 5 Jun 2026 13:54:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:PCgvCgAXkGE7ZSJqxsLwAQ--.65168S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7Zr48Kr18WFy5Kw1UtF43Wrg_yoW8ury5pa
-	y7Cr4kX3ySgF45t34UGFyDKr1DAay5JF4rKrsIk34UXry3X3sYqr1ftrsag34UXrs5uw1S
-	gF1xXr9Fqw1DXaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zE3xhJUUUUU=
-X-CM-SenderInfo: 5kdl53xhzdqiywtou0bp/xtbCzh+L9moiZT+z1QAA3Y
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] pinctrl: qcom: Introduce Pinctrl for the upcoming
+ Maili SoC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Linus Walleij
+ <linusw@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20260522-maili-pinctrl-v1-0-0a6636f5c277@oss.qualcomm.com>
+ <20260530-primitive-encouraging-quail-ee8af1@quoll>
+ <c7b5f9cb-09a4-448f-8f49-bdc9570d6b29@oss.qualcomm.com>
+ <87b24725-1c78-4830-a61c-e486c4cd4f3f@kernel.org>
+Content-Language: en-US
+From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+In-Reply-To: <87b24725-1c78-4830-a61c-e486c4cd4f3f@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: veWeUszNYFXdUZi0RzUIYBH_cIgmcUwT
+X-Proofpoint-ORIG-GUID: veWeUszNYFXdUZi0RzUIYBH_cIgmcUwT
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA1MDA1NCBTYWx0ZWRfX6WhoDQlSLKb3
+ RDL875uG9/p2ovUw94Ww5qEQlOC6GbmCM2toGeZROUXnXSI6TbnIVMnRnRmRTMpOl/IW6+1L68R
+ zNGPT2VfBbOawJyqeQ8EzarSBm4SUtd+XyGg2A4LwqBFyt4U56q+7AuYQiEd8ogM4Hk673JYsbW
+ mW0lM4d1dg2KJwZgHJiVEW5DnsCdoW7ovFiGrXJG4K8Uqmp2smnvRWP/buu2Cq1WKNjPmmyWhQX
+ 7SEnE4HIQxWfNH87yx7ZvOGGCzu9qHejVqX70F+iiYF15JEYXcM9LslgBhSqbIB5fV4zmz+U/y1
+ /Zi4OMobEtIoQZ15TQL9F6EB+RjUcyYqVctZhWhRkqnZHwjaVRB8xbh4jO5H8H2H28N8FtWshBz
+ X0gD0cot7ohsa4q161JhDxzm00AwNJiQ9836wt4P1itVw9BWeYZzr3pEsxFd9fERBV3tJ95DGy2
+ mx6lHPhgcltbN9TyJVw==
+X-Authority-Analysis: v=2.4 cv=H9jrBeYi c=1 sm=1 tr=0 ts=6a226495 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=B0G_J6igUEDZZdstlRkA:9 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-04_07,2026-05-28_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 adultscore=0 phishscore=0 bulkscore=0
+ lowpriorityscore=0 spamscore=0 clxscore=1015 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606050054
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
-	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-aspeed@lists.ozlabs.org,m:haiyuewa@163.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:hverkuil+cisco@kernel.org,m:jammy_huang@aspeedtech.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:hverkuil@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[haiyuewa@163.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307185-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[163.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-307189-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[163.com,kernel.org,jms.id.au,codeconstruct.com.au,aspeedtech.com,lists.infradead.org,vger.kernel.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DKIM_TRACE(0.00)[163.com:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:andersson@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:aiqun.yu@oss.qualcomm.com,m:tingwei.zhang@oss.qualcomm.com,m:trilok.soni@oss.qualcomm.com,m:yijie.yang@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[jingyi.wang@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[haiyuewa@163.com,devicetree@vger.kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,vger.kernel.org:from_smtp];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jingyi.wang@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7AD646455BC
+X-Rspamd-Queue-Id: 223086455B2
 
-The aspeed video (be compatible for ast2400, ast2500, ast2600) now needs
-the reset DTS handle specified, otherwise it will fail to load:
 
-[    4.809494] aspeed-video 1e700000.video: irq 57
-[    4.809977] aspeed-video 1e700000.video: Unable to get reset
-[    4.810341] aspeed-video 1e700000.video: probe with driver aspeed-video failed with error -2
 
-Fixes: e83f8dd668ea ("media: aspeed: Fix dram hang at res-change")
-Signed-off-by: Haiyue Wang <haiyuewa@163.com>
----
- arch/arm/boot/dts/aspeed/aspeed-g4.dtsi | 1 +
- arch/arm/boot/dts/aspeed/aspeed-g5.dtsi | 1 +
- arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 1 +
- 3 files changed, 3 insertions(+)
+On 6/1/2026 4:38 PM, Krzysztof Kozlowski wrote:
+> On 01/06/2026 08:15, Jingyi Wang wrote:
+>>
+>>
+>> On 5/30/2026 6:42 PM, Krzysztof Kozlowski wrote:
+>>> On Fri, May 22, 2026 at 12:42:07AM -0700, Jingyi Wang wrote:
+>>>> Introduce Top Level Mode Multiplexer dt-binding and driver for the
+>>>> upcoming Qualcomm Maili SoC.
+>>>
+>>> This is the first patch where such name appears, so same comments as
+>>> before for other cases - describe what is Maili somewhere.
+>>>
+>>
+>> Hi Krzysztof,
+>>
+>> Maili is similar to Hawi which is not announced yet, so we refer to Hawi
+>> to use "upcoming Qualcomm Maili SoC" to describe it, shall we expose details
+>> now or add info after announcement?
+> 
+> Just briefly or how much you can describe above.
+> 
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi
-index c3d4d916c69b..1547e28d77e2 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi
-+++ b/arch/arm/boot/dts/aspeed/aspeed-g4.dtsi
-@@ -242,6 +242,7 @@ video: video@1e700000 {
- 					 <&syscon ASPEED_CLK_GATE_ECLK>;
- 				clock-names = "vclk", "eclk";
- 				interrupts = <7>;
-+				resets = <&syscon ASPEED_RESET_VIDEO>;
- 				status = "disabled";
- 			};
- 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
-index 39500bdb4747..793570ca2518 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
-+++ b/arch/arm/boot/dts/aspeed/aspeed-g5.dtsi
-@@ -296,6 +296,7 @@ video: video@1e700000 {
- 					 <&syscon ASPEED_CLK_GATE_ECLK>;
- 				clock-names = "vclk", "eclk";
- 				interrupts = <7>;
-+				resets = <&syscon ASPEED_RESET_VIDEO>;
- 				status = "disabled";
- 			};
- 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-index 189bc3bbb47c..3adf48987a17 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-@@ -428,6 +428,7 @@ video: video@1e700000 {
- 					 <&syscon ASPEED_CLK_GATE_ECLK>;
- 				clock-names = "vclk", "eclk";
- 				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+				resets = <&syscon ASPEED_RESET_VIDEO>;
- 				status = "disabled";
- 			};
- 
--- 
-2.54.0
+I have added a description in:
+https://lore.kernel.org/all/20260604-maili-soc-binding-v2-0-21b5e9bd1aa5@oss.qualcomm.com/
+
+I think it might not be necessary to respin this pinctrl series and one-line bindings(e.g. SMMU)?
+Please let me know if you have any concerns.
+
+Thanks,
+Jingyi
+
+> Best regards,
+> Krzysztof
 
 
