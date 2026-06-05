@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-307273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307274-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pLtoH46bImp3awEAu9opvQ
-	(envelope-from <devicetree+bounces-307273-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:49:02 +0200
+	id NwdALwKZImrXagEAu9opvQ
+	(envelope-from <devicetree+bounces-307274-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:38:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8433F647062
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:49:01 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9CF4646EC0
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:38:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=PqKe8T4q;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307273-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-307273-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VzaGVqca;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307274-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307274-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id CCDAC30D9EFA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 09:20:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E8D9C30E8843
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 09:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0F0940B39C;
-	Fri,  5 Jun 2026 09:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E01114183C8;
+	Fri,  5 Jun 2026 09:21:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D11040B392;
-	Fri,  5 Jun 2026 09:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBA64183C6;
+	Fri,  5 Jun 2026 09:21:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780651111; cv=none; b=R0sndjK5LhVcpTLFTrlugvt4ywlt3eh0BanE1q2lbL6P/Damf5aPioJLfuTz7kma8eGlM62yV0kja7XKw9gT9A+muNrCbaNrjxcEoCtv2nkQUF5r+YwhjQQx41QWba+lY8/tFrhT3XMbIQhrlazKmsg9CDohzrzE5sbpd3dLdK4=
+	t=1780651268; cv=none; b=M1oA71zmydX/nukBNrXNYRy6Buzr0Hf3WIpjIkoTi6B7o9MEiiSUMe280HMTRdDZzrjEBi330TCPpLO8kachC1GThNXGty/jjMrGkeBuV7pYPKcCtgEQ9l7fhHWKc/oUzyPXNaCfLLryytjinbZh8vZgqU23WD6V1OLq3d8qxSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780651111; c=relaxed/simple;
-	bh=ItkIAnz77Ht0V8s0D4hwlXvYE6YSU3G0RhJD7/KyKms=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KnMWtTPQ0hg5r5+QiFpt3ejmsmdAHRf1NIDWPQ9GXl8peG4VzhQMfzqkyGo0p4kO3ZQuqQE7x2C+2wgETdnbsr4Ig0lwVvvsziTTZ3jROE08cT7bMs2jmrDsgWWXBQDdMS6z5tQ/sx/gWt0i0MXAnrWuBOcTkrusqS1tIcv04EU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PqKe8T4q; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E46C61F00893;
-	Fri,  5 Jun 2026 09:18:25 +0000 (UTC)
+	s=arc-20240116; t=1780651268; c=relaxed/simple;
+	bh=2YM6yBg2LNmMdYIZnNwy+Qweazhy0nANSLeg2Pl/zgE=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=H8quD92UYlWcSfsiYo4a5uuXiyEGjqleWlS+xdwvCIUuRUg9lbjbgaY2cruCi7cqkTH27xYiWEkrXYX78Ebvd45hpHQkB4kPCAHrFumSctXwzIMqnbYfNIeR8kx4suNnXClPhHbsKMKwT28ICHaw6zAyn6NxipeZMMYY+kzjfiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VzaGVqca; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 340701F00893;
+	Fri,  5 Jun 2026 09:21:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780651110;
-	bh=eqX3jUpHIogQmCNm4Nvjf21Tcfqt7WTpDhp1du4BbYM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=PqKe8T4q/jag/P+1p/RNY7o1OccadN9fagxWNtbiXxaBf1v1j9LKVxBBMSpfonx8P
-	 Ob/39kHxu0W1q0axx1PoE1FKRT3QmSaP60L5KirHzblMvNwJwEiowzJWpAk/oHgQPN
-	 dRDEhByIBUc92HLnQeYEIpyQLt4t/dwW5rcIh+fh91uz/MHbKjhEQxCsL9X53ReG+P
-	 3JAt4YqP+2UwxyC2p3DIq16fXrOUvJhhUBTvl1JzMyG1uC4c8sN6H3W7v2bP4Wuj33
-	 uHgZt5HH4ePWrPCLb4bFM1J5HEiawBc4CJhtigOx3EtmN6QOP8L6Np3Aq61H6tRcrt
-	 dmFMIeSwTchBw==
-Message-ID: <17528d9a-738c-48fe-ac24-b8d90875a74f@kernel.org>
-Date: Fri, 5 Jun 2026 11:18:23 +0200
+	s=k20260515; t=1780651267;
+	bh=XEUAsGMtdNzDgndj69FsKblOuBRL8Ku3HxYE6FoW0zc=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To;
+	b=VzaGVqca9K38zjtsHRyzZdq20PcHwzQepcSLW3OUimCaF1ULdcYptPZ+X/I11YKYN
+	 QdvFEod9CpwP0XSDNaNslKOO1IAcVFvOHl4oOJIIavKXpsPsvmq5/4rewbSsc1PwLb
+	 DzW2Kxz0VXtKLHPRytWTkHtw4UnjIr7j3y22NSPzBXN8SRkLd8bgjhS/jBE1Xu4M2x
+	 BUJ4LNdvviyz4mMBnNPKf1jaTSED2Y21oGGX9VEn9PRdCZRsDSbAdDPzPQglvxb0qQ
+	 8kAv/fEGowYA2YXdohLt75PjBQHL3xT+5gG0qBg64MmzR4AaoWQ9RN2tKuYhJSI4ME
+	 Sz3RO8+XGYzBQ==
+Message-ID: <b005d5cc-3b9b-47a6-b6fe-91ace2db4089@kernel.org>
+Date: Fri, 5 Jun 2026 11:21:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,6 +57,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 1/5] dt-bindings: soc: cix,sky1-system-control: add
  audss system control
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: joakim.zhang@cixtech.com, mturquette@baylibre.com, sboyd@kernel.org,
  bmasney@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, p.zabel@pengutronix.de, gary.yang@cixtech.com
@@ -65,7 +66,7 @@ Cc: cix-kernel-upstream@cixtech.com, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20260605032225.523669-1-joakim.zhang@cixtech.com>
  <20260605032225.523669-2-joakim.zhang@cixtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <17528d9a-738c-48fe-ac24-b8d90875a74f@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -110,7 +111,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260605032225.523669-2-joakim.zhang@cixtech.com>
+In-Reply-To: <17528d9a-738c-48fe-ac24-b8d90875a74f@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
@@ -119,11 +120,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307273-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307274-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:joakim.zhang@cixtech.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:gary.yang@cixtech.com,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
@@ -133,7 +134,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	TO_DN_NONE(0.00)[];
@@ -145,113 +146,56 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,cixtech.com:email,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:url,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8433F647062
+X-Rspamd-Queue-Id: B9CF4646EC0
 
-On 05/06/2026 05:22, joakim.zhang@cixtech.com wrote:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - cix,sky1-system-control
-> -          - cix,sky1-s5-system-control
-> -      - const: syscon
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - cix,sky1-system-control
-> +              - cix,sky1-s5-system-control
-> +          - const: syscon
-> +      - items:
-> +          - const: cix,sky1-audss-system-control
-> +          - const: simple-mfd
-> +          - const: syscon
->  
->    reg:
->      maxItems: 1
-> @@ -27,6 +32,11 @@ properties:
->    '#reset-cells':
->      const: 1
->  
-> +  clock-controller:
-> +    $ref: /schemas/clock/cix,sky1-audss-clock.yaml#
-> +    description:
-> +      AUDSS internal clock provider (cix,sky1-audss-system-control only).
+On 05/06/2026 11:18, Krzysztof Kozlowski wrote:
+> On 05/06/2026 05:22, joakim.zhang@cixtech.com wrote:
+>>    compatible:
+>> -    items:
+>> -      - enum:
+>> -          - cix,sky1-system-control
+>> -          - cix,sky1-s5-system-control
+>> -      - const: syscon
+>> +    oneOf:
+>> +      - items:
+>> +          - enum:
+>> +              - cix,sky1-system-control
+>> +              - cix,sky1-s5-system-control
+>> +          - const: syscon
+>> +      - items:
+>> +          - const: cix,sky1-audss-system-control
+>> +          - const: simple-mfd
+>> +          - const: syscon
+>>  
+>>    reg:
+>>      maxItems: 1
+>> @@ -27,6 +32,11 @@ properties:
+>>    '#reset-cells':
+>>      const: 1
+>>  
+>> +  clock-controller:
+>> +    $ref: /schemas/clock/cix,sky1-audss-clock.yaml#
+>> +    description:
+>> +      AUDSS internal clock provider (cix,sky1-audss-system-control only).
+> 
+> Are you sure this patch builds? Your cover letter should explain merging
 
-Are you sure this patch builds? Your cover letter should explain merging
-dependencies/strategy/constraints in the first chapter. You start with
-THE MOST important information.
+I am sure it does not...
 
-You need to disallow node for other variants.
+I recommend switching to compatible-style of defining subnodes in parent
+schema which would decouple patches.
 
+example:
+https://elixir.bootlin.com/linux/v7.1-rc6/source/Documentation/devicetree/bindings/display/msm/qcom,sm8750-mdss.yaml#L41
 
-> +
->  required:
->    - compatible
->    - reg
-> @@ -40,3 +50,22 @@ examples:
->        reg = <0x4160000 0x100>;
->        #reset-cells = <1>;
->      };
-> +  - |
-> +    #include <dt-bindings/reset/cix,sky1-audss-system-control.h>
-> +
-> +    audss_syscon: system-controller@7110000 {
-> +        compatible = "cix,sky1-audss-system-control", "simple-mfd", "syscon";
-> +        reg = <0x7110000 0x10000>;
-> +        #reset-cells = <1>;
-> +
-> +        clock-controller {
-> +            compatible = "cix,sky1-audss-clock";
-> +            power-domains = <&smc_devpd 0>;
-> +            #clock-cells = <1>;
-> +            clocks = <&scmi_clk 0>, <&scmi_clk 1>, <&scmi_clk 2>,
-> +                     <&scmi_clk 3>, <&scmi_clk 4>, <&scmi_clk 5>;
-> +            clock-names = "audio_clk0", "audio_clk1", "audio_clk2",
-> +                          "audio_clk3", "audio_clk4", "audio_clk5";
-> +            resets = <&src 0>;
-> +        };
-> +    };
-> diff --git a/include/dt-bindings/reset/cix,sky1-audss-system-control.h b/include/dt-bindings/reset/cix,sky1-audss-system-control.h
-> new file mode 100644
-> index 000000000000..2ebc5c4f10cd
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/cix,sky1-audss-system-control.h
-> @@ -0,0 +1,27 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +/*
-> + * Copyright 2026 Cix Technology Group Co., Ltd.
-> + */
-> +#ifndef DT_BINDING_RESET_CIX_SKY1_AUDSS_SYSTEM_CONTROL_H
-> +#define DT_BINDING_RESET_CIX_SKY1_AUDSS_SYSTEM_CONTROL_H
-> +
-> +#define AUDSS_I2S0_SW_RST_N	0
-
-Most likely _N is redundant here. Consumers will ignore it completely
-and this is binding used by consumers, not by reset controller.
-
-> +#define AUDSS_I2S1_SW_RST_N	1
-> +#define AUDSS_I2S2_SW_RST_N	2
-> +#define AUDSS_I2S3_SW_RST_N	3
-> +#define AUDSS_I2S4_SW_RST_N	4
-> +#define AUDSS_I2S5_SW_RST_N	5
-> +#define AUDSS_I2S6_SW_RST_N	6
-> +#define AUDSS_I2S7_SW_RST_N	7
-> +#define AUDSS_I2S8_SW_RST_N	8
-> +#define AUDSS_I2S9_SW_RST_N	9
-> +#define AUDSS_WDT_SW_RST_N	10
-> +#define AUDSS_TIMER_SW_RST_N	11
-> +#define AUDSS_MB0_SW_RST_N	12
-> +#define AUDSS_MB1_SW_RST_N	13
-> +#define AUDSS_HDA_SW_RST_N	14
-> +#define AUDSS_DMAC_SW_RST_N	15
-> +
-> +#define SKY1_AUDSS_SW_RESET_NUM	16
-
-Drop, not a binding.
-
-> +
-> +#endif
+> dependencies/strategy/constraints in the first chapter. You start with
+> THE MOST important information.
+> 
+> You need to disallow node for other variants.
+> 
+>
 
 
 Best regards,
