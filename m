@@ -1,156 +1,170 @@
-Return-Path: <devicetree+bounces-307548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307549-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zTudDipBI2owmQEAu9opvQ
-	(envelope-from <devicetree+bounces-307548-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 23:35:38 +0200
+	id llmQHJxAI2q+mAEAu9opvQ
+	(envelope-from <devicetree+bounces-307549-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 23:33:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DD3B64B6EE
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 23:35:37 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 101BC64B6A7
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 23:33:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="Adl2XUf/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307548-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307548-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=O2gBKJMx;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307549-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307549-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1BF6E3020C05
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 21:27:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B856A30215A0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 21:29:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB23481232;
-	Fri,  5 Jun 2026 21:25:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192B43D331A;
+	Fri,  5 Jun 2026 21:29:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBA76480DD2
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 21:25:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02D644071F9;
+	Fri,  5 Jun 2026 21:29:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780694735; cv=none; b=c9xisN+tmoOe8d8jCGsEbImVHEJc2ywiKuGsfpZ40yDshJDwNZphUiRkfXzLeIMWnd85lPVXVn3EgMLwKe5mEEJY3DJzGHKV1EORCa77szKOwRMw/u+uEtWZ3d+9UWxyMpX3VfVXUl9iTbyphFN1acW0K52LwrVdN5+Yx7pS43k=
+	t=1780694970; cv=none; b=haFcVb8ONq8+S1Ev4J7+LIEAD50VuodSqnlpNCv70HEVQUYh1LGqOYUKY78dGJmbig0o4E0c0kzHAh4qDKT/zP1ZnKFYWcdTTZgD6M+hBYvSICeDi6WovM8hthgXjbJj+VsJ5qF4k+CKhHqjZUIaIgeH9WSoASYXxONhH0xZaMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780694735; c=relaxed/simple;
-	bh=9urqaBXMRvdeKmTitin4n24CTwpU6Hx/UTxyGnxq+lc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=WOCJYwmKRrryXC6Xx74D9MjJXoHZA/yx27CSFlN9VXkb4gymRYYFEJmlmQtCMh66M2tkp1SSGsVym41ZkQ2OTy+4cEl7d5xfqpqogRTqBOtSHiTiCkjOQlzQeNYY451L6iQJmKKzx3Fs7MxnQE4c/xaFdz2MaqpVZr809IfcH64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Adl2XUf/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75D231F00893;
-	Fri,  5 Jun 2026 21:25:33 +0000 (UTC)
+	s=arc-20240116; t=1780694970; c=relaxed/simple;
+	bh=2KWf50awt6+PWOzqGfsckiRayFkdP15qzZBLba2lUVY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=eIkZJM4wGDyyje8ZL43IJeqrqI7RF7oa02yH0XEYD+P2+MONLmmb4+ptHTppx77ZVj2yckEJMveHNYuyvjl/rxhjnr0ceLhqs/O/4gayALM481pWeSrR+ONST/Wt85h4mV3Bf0RLcYDl+Wb1u6RmFR5o7x/tgNMRlIfRgkO4CxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2gBKJMx; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C11D1F00893;
+	Fri,  5 Jun 2026 21:29:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780694733;
-	bh=1i7DG+oE+Jvh+dFd9b7fGMC8VHle/z7ECBioH8hhsJo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Adl2XUf/i9UbFL2Vd4zcDLv29HZc6v6S6QcHizS8OfdBql4QuA3a61nnZ6sN57xbl
-	 /8Z2kulb4F9GvP25SY9zYWoJIi9waL2o8rOJcfZJYoyem0Oh0dGFRe6gwSIrworFge
-	 dVY+0mszz5846mgOPVctOoqpQcJyLVG+NdbYG9rvWa4fPhMncLLuE69JosbpVTgx4j
-	 Hq3pdfkBRJ9RY0OZZ5pPtaofHXl63k3HKhWa4pFFG7oBowoIxHj4vdF78xXFToitu6
-	 Lg6ELtpP6RP3L+eMIoPfJm197knpgP3p4Z9xb09Gzxcje99t4O6yF67uL1HkTf7rE8
-	 5Z4d1TQ3n7WMQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/7] dt-bindings: interrupt-controller:
- realtek,rtl-intc: Allow 2 interrupt cells
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Markus Stockhausen" <markus.stockhausen@gmx.de>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260605211646.2101652-2-markus.stockhausen@gmx.de>
-References: <20260605211646.2101652-2-markus.stockhausen@gmx.de>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 05 Jun 2026 21:25:33 +0000
-Message-Id: <20260605212533.75D231F00893@smtp.kernel.org>
+	s=k20260515; t=1780694968;
+	bh=DcggTgsolLSUNA/DEK7Z2qW7ZFvhwm16TwbPdXE5VG8=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject;
+	b=O2gBKJMxeZHllrkj33LYj93AkovV1OYYfOY5xDb4U/Y8qzdqM8q08G5GbIm/tLozg
+	 xtgwDkr36+BgJvakus/JUTgqcprymmdtN4nqk3az1pPfUpYSm+r7FlDfwTk3y+K2B7
+	 vqbLhveLDDqWo+XuGqG9i8jQJKZ2GJMVt9Xil/zz4eJk3xgwXKFhCDToreAjf04Poo
+	 1n/VnumaSyrMTJ0e1meTXfZKOmY8jZ4bOEbJ5qy24h+ygqDAOP0xwJ0X7NBwuFH62j
+	 6ea2Th8FG7pLON/gFQ39zNdb46eSVjUIwuxPPd01lLclDpz2mbw0Tdi0PvNoQyhjAY
+	 N4eNNNTsXQUpA==
+Date: Fri, 05 Jun 2026 16:29:27 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ biju.das.jz@bp.renesas.com, lgirdwood@gmail.com, magnus.damm@gmail.com, 
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ john.madieu@gmail.com, geert+renesas@glider.be, krzk+dt@kernel.org, 
+ kuninori.morimoto.gx@renesas.com, broonie@kernel.org, conor+dt@kernel.org
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20260605200526.683577-1-john.madieu.xa@bp.renesas.com>
+References: <20260605200526.683577-1-john.madieu.xa@bp.renesas.com>
+Message-Id: <178069496769.286078.10840905064274842451.robh@kernel.org>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: sound: renesas,r9a09g047: Fix
+ dma-names and ports schema
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307548-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:markus.stockhausen@gmx.de,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,bp.renesas.com,gmail.com,glider.be,kernel.org,renesas.com];
+	TAGGED_FROM(0.00)[bounces-307549-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:lgirdwood@gmail.com,m:magnus.damm@gmail.com,m:linux-sound@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:john.madieu@gmail.com,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:kuninori.morimoto.gx@renesas.com,m:broonie@kernel.org,m:conor+dt@kernel.org,m:john.madieu.xa@bp.renesas.com,m:magnusdamm@gmail.com,m:johnmadieu@gmail.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmx.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,gmx.de:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2DD3B64B6EE
+X-Rspamd-Queue-Id: 101BC64B6A7
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The cell-count property `#interrupt-cells` uses an `enum` constr=
-aint instead of a `const` constraint, violating dt-bindings subsystem rules.
---
 
-commit 11a7c1b034a74e6212dca3ea81cd1ec7e513c49c
-Author: Markus Stockhausen <markus.stockhausen@gmx.de>
+On Fri, 05 Jun 2026 20:05:26 +0000, John Madieu wrote:
+> Replace the allOf-wrapped enum in the dvc/src/ssiu dma-names with a plain
+> scalar items schema bounded by minItems/maxItems and point the ports
+> container at graph.yaml's ports definition instead of port-base (a ports
+> container is not itself a port).
+> 
+> While at it, drop the unused top-level #address-cells/#size-cells since no
+> child node uses a unit address and the ports node provides its own, require
+> interrupts/dmas/dma-names on the src sub-nodes to match the ssi/ssiu
+> sub-nodes and the driver, and pin clocks and resets to their fixed counts
+> (47 and 14) to match the clock-names/reset-names lists. In the example, put
+> compatible and reg first, include renesas,r9a09g047-cpg.h, and restore the
+> CPG_MOD cell on the clock specifiers.
+> 
+> Fixes: a86fd3c20218 ("ASoC: dt-bindings: sound: Add DT binding for RZ/G3E sound")
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+> ---
+> 
+> Changes:
+> 
+> v2:
+>  - dma-names: drop the per-position items list in favour of a scalar items
+>    schema with minItems/maxItems. The list form forced exactly N entries,
+>    and a scalar items schema needs both bounds to satisfy string-array.yaml
+>    (Rob Herring, sashiko-bot).
+>  - Example: restore the CPG_MOD cell on the clock specifiers and add the
+>    renesas,r9a09g047-cpg.h include (Geert Uytterhoeven).
+> 
+> v1:
+>  - https://lore.kernel.org/r/20260603202805.3530046-1-john.madieu.xa@bp.renesas.com
+> 
+>  .../sound/renesas,r9a09g047-sound.yaml        | 100 +++++++++---------
+>  1 file changed, 50 insertions(+), 50 deletions(-)
+> 
 
-dt-bindings: interrupt-controller: realtek,rtl-intc: Allow 2 interrupt cells
+My bot found errors running 'make dt_binding_check' on your patch:
 
-This commit updates the #interrupt-cells property to accept either 1 or 2
-cells to support explicit hardware interrupt routing to multiple parent CPU
-interrupt lines.
+yamllint warnings/errors:
 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/realt=
-ek,rtl-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/r=
-ealtek,rtl-intc.yaml
-> --- a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-=
-intc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-=
-intc.yaml
-> @@ -32,8 +32,9 @@ properties:
-> =20
->    "#interrupt-cells":
->      description:
-> -      SoC interrupt line index.
-> -    const: 1
-> +      First cell is the SoC interrupt line index. Optional second cell
-> +      specifies the parent interrupt index to route to.
-> +    enum: [1, 2]
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.example.dtb: sound@13c00000 (renesas,r9a09g047-sound): ports:port@0:endpoint:capture:0: [6, 7, 8] is too long
+	from schema $id: http://devicetree.org/schemas/sound/renesas,r9a09g047-sound.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.example.dtb: sound@13c00000 (renesas,r9a09g047-sound): ports:port@0:endpoint:playback:0: [3, 4, 5] is too long
+	from schema $id: http://devicetree.org/schemas/sound/renesas,r9a09g047-sound.yaml
 
-[Severity: Medium]
-Does this change violate the subsystem requirements for cell-count properti=
-es?
+doc reference errors (make refcheckdocs):
 
-The device tree binding subsystem rules require that each cell-count proper=
-ty
-must have a const constraint matching the hardware (for example, const: 2).
-Changing this constraint to use an enum instead of a const can lead to
-incomplete or unreliable schema validation during dt_binding_check, as
-downstream node references rely on a fixed cell count constraint to validate
-interrupt specifiers properly.
+See https://patchwork.kernel.org/project/devicetree/patch/20260605200526.683577-1-john.madieu.xa@bp.renesas.com
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260605211646.2101=
-652-1-markus.stockhausen@gmx.de?part=3D1
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
