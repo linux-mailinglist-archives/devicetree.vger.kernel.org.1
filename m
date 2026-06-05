@@ -1,238 +1,257 @@
-Return-Path: <devicetree+bounces-307254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307256-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QAXnFsSIImpFZwEAu9opvQ
-	(envelope-from <devicetree+bounces-307254-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 10:28:52 +0200
+	id a5jxCCSKImqQZwEAu9opvQ
+	(envelope-from <devicetree+bounces-307256-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 10:34:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A427064664C
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 10:28:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 386DD6466E1
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 10:34:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HCVCUyiL;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307254-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307254-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307256-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307256-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 759B63090F7A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 08:16:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1EB3D30B1380
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 08:23:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F893C555C;
-	Fri,  5 Jun 2026 08:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0720D3C988B;
+	Fri,  5 Jun 2026 08:23:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B96743AEF47
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 08:16:51 +0000 (UTC)
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.168.213])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF5A37B003;
+	Fri,  5 Jun 2026 08:23:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780647413; cv=none; b=YQqtxwABnhjIY3oLyA2JWU0Q4UK6IdJhzyLRx5bsMjZEMf5omXlJBXHYk1cpjoseDpz0Xi1FfKhnjPz7r8K2FhfpgqD0LF/zwX4LEVgUN19jg91OI+0ICrb1vmikP4NiupfExz16c3ay/8+J0ZV7rj8zRLG63ZeTD/EGJyGF2fI=
+	t=1780647788; cv=none; b=oqtKdxAtHUKO0U2bGtB9Plj+4KStdJcwjF1bi/xx78NtnZ8DpcNQLUsB7RX9WfHB5doTLb5Ckv5sYrgRHv/kWRQbP45E7XLLSNerfXgcwbT5wS7Z+0BB6+CN5HFBtMk3RUw80eu1YFH84jxl9errxO4SOIPOL2RnJIhvPRfoXi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780647413; c=relaxed/simple;
-	bh=OtWIY4Ddc2HLVEWUG/mQdWkk76EX9VLGt0hSYOSMLeQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=X1kbIJuU9iSksi7WMIlEOrGw1KlWFplODu2htgBH4fSUZmLQZIG9k0YelPLmlkpGhVM+xb5Kctl6lBGDfGlCqTs6PKVmb6BWdKJE+wMfxus5UIzuac2uNnRr5sgRS57VFRMbK85/P3eQelmT9dIcNs+v4EYDKJNnpDw4ClB66og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HCVCUyiL; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DA0D1F00899;
-	Fri,  5 Jun 2026 08:16:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780647411;
-	bh=0WJiKK0Z6BMLEiifpMMJ7ex2vHhj89OhIIg2ixzpvYo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=HCVCUyiLYswTtwKvPvOVuZzY6zmjtmznnT1AFUCevjdIrm2vAVdJonR9dRwgojLoH
-	 rsiuXCB2B7Jgus2cvdk/HPcn//VYwaNkOrRgpXUr26XncElzVdiseAmnvnbR9u+YJi
-	 6Tn4tQij+Dby1sCq1Y4pvCxquThsfxkp5FOo3rp6XXoU32+5a4R7oEXAuPhTy7JdIj
-	 D2Ce5ukG6yQaEe9r8Gu4a/iyeuU4xHKyB8n/B+cBEZhO7glGaWxHIC16eidS9oK0+l
-	 bVwm5rDWjh9xMRo/KYrekbKFaqBhpn30Y0tdDf4RhmUEGaVcZRW9ZxcxUI+f4Km18C
-	 l3M7XMR2rwmjQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v5 4/5] net: dsa: microchip: Support Microchip
- KSZ8995XA / KS8995XA
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Linus Walleij" <linusw@kernel.org>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260604-ks8995-to-ksz8-v5-4-98baeb45e665@kernel.org>
-References: <20260604-ks8995-to-ksz8-v5-4-98baeb45e665@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 05 Jun 2026 08:16:50 +0000
-Message-Id: <20260605081651.3DA0D1F00899@smtp.kernel.org>
+	s=arc-20240116; t=1780647788; c=relaxed/simple;
+	bh=Q3VEabBAwTRu3bC94XG7+/5RGVcMyLNzvrhkOmgJMbc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=toPXAeTMWBmBU7Sv6lZcVIvXWf50ulOhLgBSIoR31IOONaUlEbSNdSFktJLS+Bhu3crowLdeQBdLj+1+MXAzwY3xel/SDyzKc7LCaB+iQn0cHl4EI0TVypx+YFOqLqkv9aWSdrURFHbDdxK7epsB9cAme4KCY/55+LckfHwwoIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.168.213
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app1 (Coremail) with SMTP id TAJkCgCnPHFWhyJqw1siAA--.55022S2;
+	Fri, 05 Jun 2026 16:22:47 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	ben-linux@fluff.org,
+	ben.dooks@codethink.co.uk,
+	p.zabel@pengutronix.de,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	xuxiang@eswincomputing.com,
+	wangguosheng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v7 0/2] Update designware pwm driver
+Date: Fri,  5 Jun 2026 16:22:42 +0800
+Message-Id: <20260605082242.1541-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgCnPHFWhyJqw1siAA--.55022S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3ArW5Xw1DKF1fJrW3uw15Jwb_yoWxJr4kpa
+	y8GrWakrWkWryxXan7X3W8uFyYqan3JF4jgw1fJ3W7Zws0yayUXrZY9F15tF9Fvr1kXa4Y
+	ya4fG3W29a4jyaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUSLvNUUUUU=
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ukleinek@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ben-linux@fluff.org,m:ben.dooks@codethink.co.uk,m:p.zabel@pengutronix.de,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ningyu@eswincomputing.com,m:linmin@eswincomputing.com,m:xuxiang@eswincomputing.com,m:wangguosheng@eswincomputing.com,m:pinkesh.vaghela@einfochips.com,m:dongxuyang@eswincomputing.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307256-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[eswincomputing.com];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-307254-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A427064664C
+X-Rspamd-Queue-Id: 386DD6466E1
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [Medium] The switch reset sequence for KSZ8995XA writes to a read-only st=
-atus register and an undefined CPU port register instead of performing a PH=
-Y reset.
-- [Medium] The driver assigns `port_mirror_add` and `port_mirror_del` for K=
-SZ8995XA, which lacks mirroring support, leading to reserved bit corruption.
-- [Low] The `supports_mii` array incorrectly advertises MII support for int=
-ernal PHY ports on the KSZ8995XA.
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
+
+There is already a patch [1] for the DesignWare PWM driver,
+which is posted by Ben and still under review.
+Based on this patch, this series is a continuation of [1]
+to add support for IP versions 2.11a and later, which
+includes support for "Pulse Width Modulation with 0%
+and 100% Duty Cycle".
+
+Supported chips:
+ESWIN EIC7700 series SoC.
+
+Test:
+Tested this patch on the Sifive HiFive Premier P550 (which uses the EIC7700
+SoC).
+
+[1] https://lore.kernel.org/lkml/20230907161242.67190-1-ben.dooks@codethink.co.uk/
+
+Updates:
+  Changes in v7:
+  - YAML:
+    - Dropped Conor's Acked-by due to significant schema changes.
+    - Rename patch 1 from "dt-bindings: pwm: dwc: add optional reset" to
+      "dt-bindings: pwm: dwc: Add eswin compatible and resets property".
+    - Update the commit message to explain why the EIC7700 supports only
+      one reset.
+    - Add contstraints 'minItems: 1' and 'maxItems: 1' for the resets
+      property of eswin,eic7700-pwm.
+    - Add an example for eswin,eic7700-pwm.
+
+  - Link to v6: https://lore.kernel.org/all/20260424094529.1691-1-dongxuyang@eswincomputing.com/
+
+  Changes in v6:
+  - YAML:
+    - Drop properties resets and its items description for eswin,eic7700-pwm.
+
+  - Link to v5: https://lore.kernel.org/all/20260423083644.1168-1-dongxuyang@eswincomputing.com/
+
+  Changes in v5:
+  - YAML:
+    - Add 'eswin,eic7700-pwm' compatible string.
+    - Add the items description for the resets property and set minItems to 1.
+    - Require resets property with exactly 1 reset for eswin,eic7700-pwm compatible.
+  - Driver:
+    - Add support for 'eswin,eic7700-pwm' compatible.
+    - Add structure dwc_pwm_plat_data to manage the API for obtaining resets.
+
+  - Link to v4: https://lore.kernel.org/all/20260415094908.1539-1-dongxuyang@eswincomputing.com/
+
+  Changes in v4:
+  - YAML:
+    - Change maxItems from 1 to 2. As there is a corresponding reset signal
+      for each clock domain, the effective maxItems of the resets property
+      is set to 2.
+    - Update the YAML commit message to describe the hardware.
+  - Driver:
+    - Replace devm_reset_control_get_optional_exclusive() with
+      devm_reset_control_array_get_optional_exclusive(). Since the number
+      of reset signals has increased from one to two, we need to use the
+      array API to acquire them.
+
+  - Link to v3: https://lore.kernel.org/all/20260402091718.1608-1-dongxuyang@eswincomputing.com/
+
+  Changes in v3:
+  - YAML:
+    - Added a clear justification for the optional resets property. It is
+      required to support proper controller initialization when no PWM
+      channel is active at boot time, while allowing the driver to skip
+      reset deassertion if any channel is already enabled.
+  - Driver:
+    - Update the boundary value check of tmp in __dwc_pwm_configure_timer()
+      for DWC_TIM_CTRL_0N100PWM_EN.
+    - Replace 'sizeof(struct dwc_pwm_drvdata)' with
+      'struct_size(data, chips, 1)'.
+    - Drop devm_clk_get_enabled() in favor of devm_clk_get() with explicit
+      clk_prepare_enable() and clk_disable_unprepare() allowing runtime PM
+      to manage clock state.
+    - Replace devm_reset_control_get_optional_exclusive_deasserted() with
+      devm_reset_control_get_optional_exclusive() and issue a full reset via
+      reset_control_reset() only when no PWM channel is active at probe time.
+    - Detect bootloader-enabled PWM channels by reading the enable bit, and
+      initialize runtime PM as active for those channels by calling
+      pm_runtime_set_active() and pm_runtime_get_noresume().
+    - Remove autosuspend as it is not required for this driver.
+    - Use explicit pm_runtime_enable() and pm_runtime_disable() instead of
+      the managed devm_pm_runtime_enable() variant to ensure correct cleanup.
+    - On device removal, recheck the channel enable status. If any channel
+      remains active, call pm_runtime_put_noidle() before disabling clocks
+      via clk_disable_unprepare().
+      Resume device before register access during removal if it is runtime
+      suspended, and re-suspend it afterward.
+    - If device is suspended, resume it before register access during system
+      resume/suspend.
+    - Use pm_ptr() instead of pm_sleep_ptr() for correct PM operation.
+
+  - Link to v2: https://lore.kernel.org/all/20260306093000.2065-1-dongxuyang@eswincomputing.com/
+
+  Changes in v2:
+  - YAML:
+    - Remove eswin,eic7700-pwm.yaml. Use snps,dw-apb-timers-pwm2.yaml.
+      The description in snps,dw-apb-timers-pwm2.yaml is better.
+    - Add the resets property as optional, as defined in the databook.
+    - Remove snps,pwm-full-range-enable as no additional property is needed.
+  - Driver:
+    - Change the file from pwm-dwc-eic7700.c to pwm-dwc-of.c from [1].
+    - Define DWC_TIM_VERSION_ID_2_11A 2.11a as the baseline version.
+    - Enable the 0% and 100% duty cycle mode by setting dwc->feature if
+      the version read from the TIMERS_COMP_VERSION register is later
+      than or equal to DWC_TIM_VERSION_ID_2_11A.
+    - Use the DIV_ROUND_UP_ULL() to calculate width in the .apply and
+      .get_state.
+    - Additionally, Power Management (PM) support has been added to the
+      pwm-dwc-of.c driver.
+    - Drop the headers that are not used.
+    - Use devm_clk_get_enabled() instead of devm_clk_get().
+    - Drop of_match_ptr.
+    - Fix build error with 1ULL << 32.
+      Reported-by: kernel test robot <lkp@intel.com>
+      Closes: https://lore.kernel.org/oe-kbuild-all/202512061720.j31AsgM7-lkp@intel.com/
+
+  - Link to v1: https://lore.kernel.org/all/20251205090411.1388-1-dongxuyang@eswincomputing.com/
+  - Link to v9: https://lore.kernel.org/lkml/20230907161242.67190-1-ben.dooks@codethink.co.uk/
+
+Xuyang Dong (2):
+  dt-bindings: pwm: dwc: Add eswin compatible and resets property
+  pwm: dwc: add of/platform support
+
+ .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml |  38 +-
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-dwc-core.c                    | 101 +++--
+ drivers/pwm/pwm-dwc-of.c                      | 346 ++++++++++++++++++
+ drivers/pwm/pwm-dwc.h                         |  25 +-
+ 6 files changed, 488 insertions(+), 33 deletions(-)
+ create mode 100644 drivers/pwm/pwm-dwc-of.c
+
 --
+2.34.1
 
-commit 6b2a4a6f73e02d485d9019f443f2944affb0ec9e
-Author: Linus Walleij <linusw@kernel.org>
-
-net: dsa: microchip: Support Microchip KSZ8995XA / KS8995XA
-
-This adds support for the Microchip KSZ8995XA also known as the
-Micrel KS8995XA switch to the KSZ driver.
-
-> diff --git a/drivers/net/dsa/microchip/ksz8.c b/drivers/net/dsa/microchip=
-/ksz8.c
-> index 0f84b2e7d25d8..0b02588e22fc1 100644
-> --- a/drivers/net/dsa/microchip/ksz8.c
-> +++ b/drivers/net/dsa/microchip/ksz8.c
-
-[ ... ]
-
-> @@ -137,7 +138,18 @@ static int ksz8_pme_pwrite8(struct ksz_device *dev, =
-int port, int offset, u8 dat
-> =20
->  static int ksz8_reset_switch(struct ksz_device *dev)
->  {
-> -	if (ksz_is_ksz88x3(dev)) {
-> +	if (ksz_is_ksz8995xa(dev)) {
-> +		unsigned int port;
-> +
-> +		/* KSZ8995XA is "reset" by stopping the switch and starting it */
-> +		ksz_cfg(dev, REG_SW_ID_1, SW_START_SWITCH, false);
-> +		usleep_range(10, 100);
-> +		ksz_cfg(dev, REG_SW_ID_1, SW_START_SWITCH, true);
-> +
-> +		/* Often boot loaders have fun with ports, so reset them */
-> +		for (port =3D 0; port < dev->info->port_cnt; port++)
-> +			ksz_port_cfg(dev, port, 0x0f, BIT(4), true);
-
-[Severity: Medium]
-Does this sequence correctly perform a PHY reset for the KSZ8995XA?
-
-On this chip, offset 0x0F resolves to 0x1F for Port 0 (Port Status 1),
-which is a read-only register, making this write ineffective. Furthermore,
-for the CPU port (port 4), this writes to 0x5F, which falls into the
-undocumented/reserved register space.
-
-Could this use a different offset for the soft reset?
-
-[ ... ]
-
-> @@ -2416,6 +2507,34 @@ const struct ksz_dev_ops ksz88xx_dev_ops =3D {
->  	.pme_pwrite8 =3D ksz8_pme_pwrite8,
->  };
-> =20
-> +/*
-> + * Restricted operations for KSZ8995XA, so many things are not supported
-> + * by this old switch that we need diet DSA operations.
-> + */
-> +const struct dsa_switch_ops ksz8995xa_switch_ops =3D {
-> +	.get_tag_protocol	=3D ksz8995xa_get_tag_protocol,
-
-[ ... ]
-
-> +	.port_fast_age		=3D ksz8_flush_dyn_mac_table,
-> +	.port_mirror_add	=3D ksz8_port_mirror_add,
-> +	.port_mirror_del	=3D ksz8_port_mirror_del,
-
-[Severity: Medium]
-Since the KSZ8995XA hardware does not support port mirroring, could
-advertising these mirror operations lead to unintended side effects?
-
-When called, ksz8_port_mirror_add() and ksz8_port_mirror_del() write
-to bits 7, 6, and 5 of P_MIRROR_CTRL (0x01). On the KSZ8995XA, these
-bits are reserved, as only the lower 5 bits are used for VLAN membership.
-
-> +	.port_change_mtu	=3D ksz8_change_mtu,
-> +	.port_max_mtu		=3D ksz_max_mtu,
-> +	/* TODO: add .port_get/set_apptrust() when we implement priority */
-> +};
-
-[ ... ]
-
-> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/mic=
-rochip/ksz_common.c
-> index 57c8abfe0147d..ac27beb3054bd 100644
-> --- a/drivers/net/dsa/microchip/ksz_common.c
-> +++ b/drivers/net/dsa/microchip/ksz_common.c
-
-[ ... ]
-
-> @@ -1485,6 +1499,21 @@ const struct ksz_chip_data ksz_switch_chips[] =3D {
->  		.internal_phy =3D {true, true, true, true, false},
->  	},
-> =20
-> +	[KSZ8995XA] =3D {
-> +		.chip_id =3D KSZ8995XA_CHIP_ID, /* Also known as KS8995XA */
-> +		.dev_name =3D "KSZ8995XA",
-> +		.cpu_ports =3D 0x10,	/* can be configured as cpu port */
-> +		.port_cnt =3D 5,		/* total cpu and user ports */
-> +		.num_tx_queues =3D 4,
-> +		.num_ipms =3D 4,
-> +		.ops =3D &ksz8995xa_dev_ops,
-> +		.switch_ops =3D &ksz8995xa_switch_ops,
-> +		.phylink_mac_ops =3D &ksz88x3_phylink_mac_ops,
-> +		.regs =3D ksz8995xa_regs,
-> +		.supports_mii =3D {true, true, true, true, true},
-
-[Severity: Low]
-Is it intentional to advertise MII support for all ports here?
-
-Since ports 0-3 are internal PHYs and do not expose an external MII
-interface (unlike the CPU port 4), this sets PHY_INTERFACE_MODE_MII in
-config->supported_interfaces for these ports via ksz_phylink_get_caps().
-
-Other similar chips like the KSZ8895 use {false, false, false, false, true}
-to reflect that only the CPU port uses an external MII.
-
-> +		.internal_phy =3D {true, true, true, true, false},
-> +	},
-> +
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260604-ks8995-to-=
-ksz8-v5-0-98baeb45e665@kernel.org?part=3D4
 
