@@ -1,338 +1,179 @@
-Return-Path: <devicetree+bounces-307439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307441-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id c4yaEhDSImo1eAEAu9opvQ
-	(envelope-from <devicetree+bounces-307439-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 15:41:36 +0200
+	id fXCeNkDXImoreQEAu9opvQ
+	(envelope-from <devicetree+bounces-307441-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 16:03:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 994F5648999
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 15:41:35 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C96A648B2C
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 16:03:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307439-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307439-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iR76Fxbc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307441-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307441-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DBB043014C3E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 13:39:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9FC89304862C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 14:02:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71872279DB1;
-	Fri,  5 Jun 2026 13:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D16F350A18;
+	Fri,  5 Jun 2026 14:02:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F362EEE73
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 13:39:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F9B340DB8
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 14:02:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780666754; cv=none; b=VzQl1+vgia75d7R6XK3A58j58KqNSOsZImJNI+ereAFkububE9P42qBF2i6go0214P8LvmOnhQF1HTZeqKrdFiWcZIYGpbrZLRdOXhMTJ9so+I7qjZepVzWlq8iqBAStg3FEA8DHg+3oRDj9CYLIZF+WJtisFUigmYQTQIJ2kYM=
+	t=1780668167; cv=none; b=csgF64PrfGqyWh0DY36UhNEsoboIsyngNMfLqCxHawJtVdElQRJFeaMRMJhOuP13jEx3pwAdJWT4EjBhy91NABjp/4fYMeSzB9A0NmEiIwFcWIy+ZQsjlJIzLbnv2S5F+ErEkUxmwjuaMdeQ1/uCJbwlgjJiMTlp4KYe41abCiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780666754; c=relaxed/simple;
-	bh=neuVlX5E09C2CCGMgZEk9w7Fn/XLCZt+ud6kGcA9fkQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mQLFd85LGJwhKaJLb8c1Wf7tVDHBgRpOqEifuxdZWkuXD7OxaybYfX1FGWDsf2SqmJ0Ogu7KWq3xaZbZEjb2HP+i+KAI9vWg/db+PPfZpadQ8OeXJLerh16S5g1lUmqcmNfIXskT6f8po3kQSKFGKJV/PRTElZlSQLh26/0mRdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-59dc1714d44so614686e0c.3
-        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 06:39:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780666752; x=1781271552;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ng6MztXRVUw+6gX3lTf5HZ3/GBPHOvI81OwZahcGNXA=;
-        b=IZbLR+bEJP69pfHqwW6GJsyi9iUxAJcu8N0qIO6y8zEYMJpYy8LwcWEEw/JovzauXB
-         P7RNrjydVc2nZHZ4ZSTvQPooBWi3Nvxm2x2ISS02HqpUZWS1fBo5a/v+nc+2yWcwvRAT
-         3oAcdoBU8Y3wZpUydYD8KoYaLv85JbRdT7i8jV9nMXgYZknv+WqFLqfDh7jmsAnPeepF
-         krpkr+zQ+yu/Khw1R7vg5fZ1jQ2J2mrq5SpPaoHoZZb7i0c4Rii1lm/WqeW973jdwGCc
-         ikjV+c7SxGaogGDVd4MApUxPYG6hFPmr4afSGOe7HnlvgWFZiBMjQIQ/B/e/3ar/mWU6
-         rLEg==
-X-Forwarded-Encrypted: i=1; AFNElJ9Pk7n5sTCC0RQhLhjOXf2PZxMaX4fFoPEufoB1eIz+T0MRG1ggd7eBif3P+BfIHGIvwrMt/r5stuNs@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgtKGPbidK3eDizUygntmwN792YPTUa8ETfp60oqBpnoiu5jll
-	RPeliPJRqIeLB8hOAibtMfQue1fyfanq2PMZXLNQw42kD0YXCObzU8WWdYEizUpv
-X-Gm-Gg: Acq92OENlSgYom8ZvLjSjGL9MO4G+YuLObv5Q4tkw2ytt7G3JPbpEJDi24OOHWuSgY5
-	rSXW3OEKLFI7157TWHT1pSBb35XnnQyUCPT5KDy0gLAT7NTm3MwriJpV9tD4ZT5+GqsIEhmaunn
-	CHQjlRILRgmwTfXCGdpNx/vK0G3HHuM/mIXI57Cuc1pwNxIlgGdNS5mtJc8WfOpCDCtGearXlqw
-	VDulV3HAXek38cg097qkwj/xbbSA28Yib6+cDhd+MEDrlPFDLaMLgp7KiYteigcW3syap84u6e/
-	iwAJU+pFYqS6cH1d/49EKdyC0uTUD5UgJEf4s6dQtbMqNvdA17XtCeUHXLxBKAmG5fmosnvLlld
-	8ufle75aUjufWAIc9EmrhtdSeFphLfcw0xav94pwj8b/TUow8C2K9EAc72oIKZoLabvBOsEjVS+
-	WA+VCEpTnOr2kfFNcfkMkHKr79evDRf6yNXdfMCXAUBonYzz95crk0+CbQ9plGoc8acsMQ9lGMT
-	dvipZnEJIyu7Q==
-X-Received: by 2002:a05:6102:e0c:b0:62f:357a:3297 with SMTP id ada2fe7eead31-6feef474e29mr1770087137.5.1780666751901;
-        Fri, 05 Jun 2026 06:39:11 -0700 (PDT)
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com. [209.85.221.172])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-6eb5745d325sm7640126137.4.2026.06.05.06.39.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Jun 2026 06:39:11 -0700 (PDT)
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-59d541955f8so623220e0c.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 06:39:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/q/rODU3tJBolE5Oimzci+efPOxou4LGdvfZMpcD6z4KmbKx7a4PENINISBrtTMOSxXkPyWFXUJ5ot@vger.kernel.org
-X-Received: by 2002:a05:6122:2895:b0:5a1:19d4:a363 with SMTP id
- 71dfb90a1353d-5ac4da02fb1mr1517139e0c.3.1780666750627; Fri, 05 Jun 2026
- 06:39:10 -0700 (PDT)
+	s=arc-20240116; t=1780668167; c=relaxed/simple;
+	bh=AV+WL8mMqsmvfSygNRSeuMcfwWhxeMoNTJseaBWO4ow=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I8e/SqiA0Bzi9Gxjt8Rx0YQwO9U6tM2CjZGZMX7V0BK6PmHwK+k0EOP8NstLSRyWyrtHSXZfOOcCkagT11PP5sIARVMUbpyezb3d0pkyRnJPiCKTh/ftiW61Cat6DbJce7JqB5Jb0FKHICdQifxertFHqxhahXDpRxyeBGx3N3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iR76Fxbc; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 198A51F00893;
+	Fri,  5 Jun 2026 14:02:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780668166;
+	bh=uPcrV+iYaTLbAEiIZUrUU2DpWbYkJH1btO4i9xeqtSA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=iR76FxbcFBYTrnVAclYOopg77TV28mE8QOYq8HXlCrev9cXDK4aFowUSS/u2Hhw+N
+	 B8h4L1VrSrBhbdBTWIZPnpDdc8bJmx0ZyEprGYu+g9wJTLdyOCWo7d1VOmcfmdUsbN
+	 kbfj+vLTewS0ue9h4TUdyLxjxn0SQrRzdpLqEe5PdJBsopyYJCNzmLmoCXOLyUvNuy
+	 1cze0/NY75rbpBcodfEcgUUmzihJgeqZysNUcVQZdDMfx4pqwYFBnDerf7m8y0EguN
+	 c3lr+rEMoIKdD5P5xJUubbBG/BsXe1lSQ8u6QtV2nqqtVTnoU/uhNjDYCGUWv8ZHq9
+	 mEOp49pkyHtHA==
+Message-ID: <f3fd53dc-7010-4b3d-a33c-4d1d32d3a1a6@kernel.org>
+Date: Sat, 6 Jun 2026 00:02:41 +1000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260511191910.1945705-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260511191910.1945705-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20260511191910.1945705-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 5 Jun 2026 15:38:59 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXh6YhDp7nEra3GbrR9hkhqqj15UXnv0DHeei=mj56XJQ@mail.gmail.com>
-X-Gm-Features: AVVi8CesdJciMHdsefYeL2Id77B4Nq_zyNVq-BWBcQxt_zUG2CODWutZURFB3Cs
-Message-ID: <CAMuHMdXh6YhDp7nEra3GbrR9hkhqqj15UXnv0DHeei=mj56XJQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] clk: renesas: r9a09g077: Add LCDC and PLL3 clock
- support for RZ/T2H display pipeline
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 7/7] riscv: dts: tenstorrent: Add Atlantis platform
+To: Conor Dooley <conor@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: Paul Walmsley <pjw@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
+ Anup Patel <anup@brainfault.org>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Nicholas Piggin <npiggin@gmail.com>,
+ Drew Fustini <fustini@kernel.org>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20260604143957.668047-1-joel@jms.id.au>
+ <20260604143957.668047-8-joel@jms.id.au>
+ <20260604-pacifier-sludge-196f47ab3c11@spud>
+Content-Language: en-US
+From: Michael Ellerman <mpe@kernel.org>
+In-Reply-To: <20260604-pacifier-sludge-196f47ab3c11@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	TAGGED_FROM(0.00)[bounces-307439-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-307441-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[kernel.org,dabbelt.com,oss.tenstorrent.com,brainfault.org,eecs.berkeley.edu,ghiti.fr,gmail.com,lists.infradead.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:joel@jms.id.au,m:pjw@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:palmer@dabbelt.com,m:asrinivasan@oss.tenstorrent.com,m:anup@brainfault.org,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:npiggin@gmail.com,m:fustini@kernel.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[mpe@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mpe@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linux-m68k.org:from_mime,linux-m68k.org:email,vger.kernel.org:from_smtp,renesas.com:email,mail.gmail.com:mid]
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 994F5648999
+X-Rspamd-Queue-Id: 4C96A648B2C
 
-Hi Prabhakar,
+On 5/6/26 2:47 am, Conor Dooley wrote:
+> On Fri, Jun 05, 2026 at 12:09:53AM +0930, Joel Stanley wrote:
+>> Add initial support for the Tenstorrent Atlantis platform, based on the
+>> Atlantis SoC featuring 8x RVA23-compliant Tenstorrent Ascalon-XG cores.
+>>
+>> The evb machine represents an internal bringup vehicle with just the
+>> interrupt controllers and a UART. This will be replaced in time with a
+>> full featured machine once details are available.
+...
+>> diff --git a/arch/riscv/boot/dts/tenstorrent/atlantis-evb.dts b/arch/riscv/boot/dts/tenstorrent/atlantis-evb.dts
+>> new file mode 100644
+>> index 000000000000..06259cca8357
+>> --- /dev/null
+>> +++ b/arch/riscv/boot/dts/tenstorrent/atlantis-evb.dts
+>> @@ -0,0 +1,33 @@
+>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>> +/dts-v1/;
+>> +
+>> +#include "atlantis-soc.dtsi"
+>> +
+>> +/ {
+>> +	model = "Tenstorrent Atlantis development platform";
+>> +	compatible = "tenstorrent,atlantis-evb", "tenstorrent,atlantis";
+>> +
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+>> +
+>> +	memory@0 {
+>> +		device_type = "memory";
+>> +		reg = <0x0 0x00000000 0x0 0x80000000>,
+>> +		      <0x1 0x80000000 0x0 0x80000000>;
+>> +	};
+>> +
+>> +	aliases {
+>> +		serial0 = &uart1;
+>> +	};
+>> +
+>> +	chosen {
+>> +		bootargs = "earlycon console=ttyS0";
+> 
+> FYI, this should not be in here.
 
-On Mon, 11 May 2026 at 21:19, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add the clock definitions and PLL logic required to supply the LCDC
-> (VSPD/FCPVD/DU) blocks on the RZ/T2H (R9A09G077) SoC. The RZ/T2H display
-> subsystem depends on a dedicated PLL (PLL3) and a set of new derived
-> clocks.
->
-> Introduce a new PLL clock type and implement rate recalculation,
-> programming and locking sequences for PLL3 using the RZ/T2H specific
-> divider and VCO limits. Add the corresponding muxes and divider entries,
-> expose the LCDC core clock, and register the LCDC module clock using the
-> correct PCLK parent.
->
-> This enables the RZ/T2H clock driver to generate the display pipeline
-> clocking tree needed by the DU and VSP-based composition engines, allowing
-> upcoming display support to be integrated without duplicating CPG logic.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+It should be there if you want a working console :)
 
-Thanks for your patch!
+I know it's a "rule" to not include bootargs, but this system has no 
+boot loader, so not setting bootargs just means the DTS is no use to anyone.
 
-> --- a/drivers/clk/renesas/Kconfig
-> +++ b/drivers/clk/renesas/Kconfig
-> @@ -218,10 +218,12 @@ config CLK_R9A09G057
->  config CLK_R9A09G077
->         bool "RZ/T2H clock support" if COMPILE_TEST
->         select CLK_RENESAS_CPG_MSSR
-> +       select CLK_RZV2H
+>> +		stdout-path = "serial0";
+>> +	};
+>> +};
+>> +
+>> +&uart1 {
+>> +	/delete-property/ clocks;
+> 
+> Why are you doing this? Looks kinda suspect!
 
-That includes a lot. Perhaps spin off the required functionality in a
-separate file, like CLK_RCAR_CPG_LIB?
-That would impact the MODULE_IMPORT_NS("RZV2H_CPG") in
-drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c, too, though.
+On the bringup system the uart has a fixed clock, I don't know exactly why.
 
->
->  config CLK_R9A09G087
->         bool "RZ/N2H clock support" if COMPILE_TEST
->         select CLK_RENESAS_CPG_MSSR
-> +       select CLK_RZV2H
->
->  config CLK_SH73A0
->         bool "SH-Mobile AG5 clock support" if COMPILE_TEST
-> diff --git a/drivers/clk/renesas/r9a09g077-cpg.c b/drivers/clk/renesas/r9a09g077-cpg.c
-> index f777601a23b9..48052e7b93fd 100644
-> --- a/drivers/clk/renesas/r9a09g077-cpg.c
-> +++ b/drivers/clk/renesas/r9a09g077-cpg.c
+>> +	clock-frequency = <5000000>;
+>> +	status = "okay";
+>> +};
+Having said that, I think we talked about making this DTS match the qemu 
+model rather than the internal bringup system. So if we do that then 
+this will change.
 
-> @@ -66,11 +73,26 @@
->  #define DIVSCI2ASYNC   CONF_PACK(SCKCR3, 10, 2)
->  #define DIVSCI3ASYNC   CONF_PACK(SCKCR3, 12, 2)
->  #define DIVSCI4ASYNC   CONF_PACK(SCKCR3, 14, 2)
-> +#define LCDCDIVSEL     CONF_PACK(SCKCR3, 20, 4)
-> +
-> +#define PLL3EN         FIELD_PREP_CONST(OFFSET_MASK, (0xc0))
-> +
-> +#define CPG_PLLEN              BIT(0)
+Thanks for the reviews.
 
-CPG_PLL_EN_EN, for consistency with CPG_PLL_MON_LOCK below?
-
-> +#define CPG_PLL3_VCO_CTR0(x)   ((x) + 0x4)
-> +#define CPG_PLL3_VCO_CTR0_PDIV GENMASK(21, 16)
-> +#define CPG_PLL3_VCO_CTR0_MDIV GENMASK(9, 0)
-> +#define CPG_PLL3_VCO_CTR1(x)   ((x) + 0x8)
-> +#define CPG_PLL3_VCO_CTR1_KDIV GENMASK(31, 16)
-> +#define CPG_PLL3_VCO_CTR1_SDIV GENMASK(2, 0)
-> +#define CPG_PLL_MON(x)         ((x) - 0x10)
-> +#define CPG_PLL_MON_LOCK       BIT(0)
-
-So all registers are calculated based on the CPG_PLL3EN register
-address...
-
->
->  enum rzt2h_clk_types {
->         CLK_TYPE_RZT2H_DIV = CLK_TYPE_CUSTOM,   /* Clock with divider */
->         CLK_TYPE_RZT2H_MUX,                     /* Clock with clock source selector */
->         CLK_TYPE_RZT2H_FSELXSPI,                /* Clock with FSELXSPIn source selector */
-> +       CLK_TYPE_RZT2H_PLL3,                    /* PLL3 Clock */
-> +       CLK_TYPE_RZT2H_LCDCDIV,                 /* LCDC divider clock */
->  };
->
->  #define DEF_DIV(_name, _id, _parent, _conf, _dtable) \
-> @@ -83,10 +105,51 @@ enum rzt2h_clk_types {
->  #define DEF_DIV_FSELXSPI(_name, _id, _parent, _conf, _dtable) \
->         DEF_TYPE(_name, _id, CLK_TYPE_RZT2H_FSELXSPI, .conf = _conf, \
->                  .parent = _parent, .dtable = _dtable, .flag = 0)
-> +#define DEF_PLL3(_name, _id, _parent, _conf) \
-> +       DEF_TYPE(_name, _id, CLK_TYPE_RZT2H_PLL3, .conf = _conf, \
-> +                .parent = _parent)
-> +#define DEF_DIV_LCDC(_name, _id, _parent, _conf, _dtable) \
-> +       DEF_TYPE(_name, _id, CLK_TYPE_RZT2H_LCDCDIV, .conf = _conf, \
-> +                .parent = _parent, .dtable = _dtable, .flag = CLK_SET_RATE_PARENT)
-
-I assume you can't reuse DEF_DIV() because you need the extra accuracy
-from interfacing with rzv2h_get_pll_divs_pars()?
-
-> +
-> +struct pll_clk {
-> +       void __iomem *reg;
-
-This is the PLLxEN register address, from which all other register
-addresses are calculated: pllen?
-
-> +       const struct rzv2h_pll_limits *limits;
-> +       struct device *dev;
-> +       struct rzv2h_pll_pars pll_parameters;
-> +       struct clk_hw hw;
-> +       unsigned long cur_rate;
-> +};
-> +
-> +#define to_pll(_hw)    container_of(_hw, struct pll_clk, hw)
-> +
-> +struct r9a09g077_lcdc_div_clk {
-> +       const struct clk_div_table *dtable;
-> +       void __iomem *reg;
-> +       struct device *dev;
-> +       struct clk_hw hw;
-> +       u32 conf;
-> +       u8 divider;
-> +};
-> +
-> +#define to_lcdc_div_clk(_hw) \
-> +       container_of(_hw, struct r9a09g077_lcdc_div_clk, hw)
-> +
-> +#define RZT2H_MAX_LCDC_DIV_TABLES      16
-> +
-> +static const struct rzv2h_pll_limits r9a09g077_cpg_pll3_limits = {
-> +       .input_fref = 48 * MEGA,
-> +       .fout = { .min = 25 * MEGA, .max = 430 * MEGA },
-> +       .fvco = { .min = 1600 * MEGA, .max = 3200 * MEGA },
-> +       .m = { .min = 0x40, .max = 0x3ff },
-> +       .p = { .min = 0x2, .max = 0x8 },
-> +       .s = { .min = 0x0, .max = 0x6 },
-> +       .k = { .min = -32768, .max = 32767 },
-> +};
->
->  enum clk_ids {
->         /* Core Clock Outputs exported to DT */
-> -       LAST_DT_CORE_CLK = R9A09G077_PCLKCAN,
-> +       LAST_DT_CORE_CLK = R9A09G077_LCDC_CLKD,
->
->         /* External Input Clocks */
->         CLK_EXTAL,
-
-> @@ -242,6 +335,8 @@ static const struct cpg_core_clk r9a09g077_core_clks[] __initconst = {
->                          FSELXSPI1, dtable_6_8_16_32_64),
->         DEF_MUX("PCLKCAN", R9A09G077_PCLKCAN, FSELCANFD,
->                 sel_clk_pll4d3_div10_div20, ARRAY_SIZE(sel_clk_pll4d3_div10_div20), 0),
-> +       DEF_DIV_LCDC("LCDCDIV", R9A09G077_LCDC_CLKD, CLK_SEL_CLK_PLL3, LCDCDIVSEL,
-
-"LCDC_CLKD"
-
-
-> +                    dtable_2_32),
->  };
->
->  static const struct mssr_mod_clk r9a09g077_mod_clks[] __initconst = {
-
-> @@ -481,6 +577,272 @@ r9a09g077_cpg_fselxspi_div_clk_register(struct device *dev,
->         return hw->clk;
->  }
->
-> +static unsigned long r9a09g077_cpg_pll3_clk_recalc_rate(struct clk_hw *hw,
-> +                                                       unsigned long parent_rate)
-> +{
-> +       struct pll_clk *pll_clk = to_pll(hw);
-> +       unsigned int ctr0, ctr1;
-
-u32
-
-> +       u8 pdiv, sdiv;
-> +       u64 rate;
-> +       u16 mdiv;
-> +       s16 kdiv;
-> +
-> +       ctr0 = readl(CPG_PLL3_VCO_CTR0(pll_clk->reg));
-> +       ctr1 = readl(CPG_PLL3_VCO_CTR1(pll_clk->reg));
-> +
-> +       pdiv = FIELD_GET(CPG_PLL3_VCO_CTR0_PDIV, ctr0);
-> +       mdiv = FIELD_GET(CPG_PLL3_VCO_CTR0_MDIV, ctr0);
-> +       kdiv = (s16)FIELD_GET(CPG_PLL3_VCO_CTR1_KDIV, ctr1);
-> +       sdiv = FIELD_GET(CPG_PLL3_VCO_CTR1_SDIV, ctr1);
-> +
-> +       rate = mul_u64_u32_shr(parent_rate, (mdiv << 16) + kdiv, 16 + sdiv);
-> +
-> +       return DIV_ROUND_CLOSEST_ULL(rate, pdiv);
-> +}
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+cheers
 
