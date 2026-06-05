@@ -1,180 +1,190 @@
-Return-Path: <devicetree+bounces-307269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307272-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id matiOLyTImrMaQEAu9opvQ
-	(envelope-from <devicetree+bounces-307269-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:15:40 +0200
+	id WAaHHTOXImp9agEAu9opvQ
+	(envelope-from <devicetree+bounces-307272-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:30:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0BA5646C48
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:15:40 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C071646DB9
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:30:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=goEy+FDm;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307269-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307269-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=mQJtLoL+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307272-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307272-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7BC293039B43
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 09:12:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E0AD130C2AED
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 09:19:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F314B8DE5;
-	Fri,  5 Jun 2026 09:12:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2583F8246;
+	Fri,  5 Jun 2026 09:18:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ECE73CF679;
-	Fri,  5 Jun 2026 09:12:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95A393F8229;
+	Fri,  5 Jun 2026 09:18:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780650774; cv=none; b=elzW3IkIszzT6tF66c6sww1YJStt9relNokTlCP1R+YyRRbR4O+n0yQq/ztJlp3+NTWCLXtsZOXU+mKupSyFwb7Su4XI1LKDgS5kamhem6cgQMw+R706Y2EK6PqADXYB43+DZ2/kmZtDoDmutcOEKxhltQ3+pFglphek9q/DrJw=
+	t=1780651093; cv=none; b=BttidaaoM7B+DHznfyZyc973qi/vNpVluEGAbsSOC8wpWNb+/JwuCuqmmyBMeyRDvN9KXnh/DxMcsmXbIFFIC4R/z2R8G3Vzkq70vdgKWidZA244srnYmZgvftO0mv+xWUkQ1LJjxWKGLTFLzHeb0SLGQAEbR5LpCMKQIGmq5Ds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780650774; c=relaxed/simple;
-	bh=JMxbxerh7Ria2S9mM6lYJztI/nZdQol+FDa7aBH3z8M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E5rj61ZHkny/rLRHsIatqUuvwehyfMH/NRzSrq3IuiHuZfnbvVv5UXyWrKXJU80XHI+uU0GCKclqWItjxq9ogfydzh9h7fDRzCkOCeWB0/wpYVUYubi+ygkot2k+IM/aRBBaMdo3LHaDru0BDGZRfBqwM2331GZWWlH5w4CJ8CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=goEy+FDm; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35A821F00893;
-	Fri,  5 Jun 2026 09:12:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780650773;
-	bh=CaabFFEF94DYE5ayisbaNypa/MQjpGeC7iY451kremk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=goEy+FDmYqAbvY8JZP3+zsUeUGNr2Ty1b2AbcCiYXrLO19Q7k+hmtM/fgdOW+rway
-	 j0TlshHMicsjdzWvuAJTVc3pZJCoXLZ7sxOtySXXxUmSO834zMa7xLLd/vlVjHUKB2
-	 RLENsyM6QxIfR0B+EG0ExMTOhW1LleeccmBqDBe6sTrplEWydfh0MvoO53rgZCASZ3
-	 rUDcWN46/NYGLYIZP6IvnIkKSwUNl1A2CZ/Wx9rR2HxSTOB1o/bsde3XQ908QQUpCn
-	 sIJkfi4aTuPeCDzULog5VReDU9aA41ycYo8POIN9JoSItyQeKFW7ULMheGMw/Sb91h
-	 huuL8xeZFbjGw==
-Message-ID: <be15f8f5-0826-4851-a5b6-788f3be3007a@kernel.org>
-Date: Fri, 5 Jun 2026 11:12:46 +0200
+	s=arc-20240116; t=1780651093; c=relaxed/simple;
+	bh=PgFIrdPiYEuUXNFSOa6IHQ/Mq4Zwsl31OM6oXB7RwCg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VH1Q7LFOr8fDKwzRChRKLzl/4X5cwF+J3kjU/qCt0KsFoie7tJ95Q5wfPrb1rXCaYqJHg6P3fuT9hgBZWR5A6VoV/dxbbLuEMMR7h+8t13qPL+8+ecm30RWFXQyv4HVd8t/FFaYGn1bWrLMliueqxTwITcjtU8J8usPjRB1L3LQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mQJtLoL+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 34540C2BCB4;
+	Fri,  5 Jun 2026 09:18:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780651093;
+	bh=PgFIrdPiYEuUXNFSOa6IHQ/Mq4Zwsl31OM6oXB7RwCg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=mQJtLoL+uuA7m56TXZEP06l9RBrc1CNIr7WtmKssC+huiMGPDhToagjY0MUdksNQM
+	 kdFFiZP/DR9XNFCPWpMhAoKYlUhURWnfqeNE7+tATzb7NUC2fr5O5kfX1sNMBMTb//
+	 CrXT/eyFdBfkqhZDw4m486w1EnJRbij99adZByq+ekimMKqper80S27JNUcnsy+a59
+	 ABv2y3rw9BMD0y5COzPfIpdcvhMzbaK40b0u+Czv462VCsPOsqml6e+/B7B5C1arxz
+	 xsMaw25D4g8bB7SaN3AVEjEotaKqaZ9auHzOOTU8CuJmLRfAC54TZ7dl06WKD1K6V5
+	 /ObFjpfOH0kqQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 03367CD6E74;
+	Fri,  5 Jun 2026 09:18:13 +0000 (UTC)
+From: Herman van Hazendonk via B4 Relay <devnull+github.com.herrie.org@kernel.org>
+Subject: [PATCH v2 0/2] power: supply: max8903: add DC and USB input
+ current-limit GPIO controls
+Date: Fri, 05 Jun 2026 11:18:11 +0200
+Message-Id: <20260605-submit-power-max8903-dc-limit-v2-0-0c5396e98f14@herrie.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] MAINTAINERS: Add entry for Novatek NT726xx SoC i2c
- driver.
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: =?UTF-8?B?QmVuIEh1YW5nKOm7g+Wjq+i7kik=?= <Ben_Huang@novatek.com.tw>,
- Conor Dooley <conor@kernel.org>, Novatek i2c <SP_ISW1_AT@novatek.com.tw>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- =?UTF-8?B?VG9ieSBDaHVpKOW+kOWNk+aclyk=?= <Toby_Chui@novatek.com.tw>,
- =?UTF-8?B?U2hpaHBlaSBIc3Uo6Kix6Kmp54+uKQ==?= <Shihpei_Hsu@novatek.com.tw>
-References: <20260604060411.355675-1-SP_ISW1_AT@novatek.com.tw>
- <f6cce361-47ef-4488-ac1e-5f60d3cd578b@kernel.org>
- <20260604-grievance-esophagus-a607a9d734eb@spud>
- <PUZPR04MB61094E3F7A824A3C8D81D8AEB7102@PUZPR04MB6109.apcprd04.prod.outlook.com>
- <0df042cb-591a-46f1-a53e-04f94bca2c1c@kernel.org> <aiHd4wpuR69tyG1V@shikoro>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aiHd4wpuR69tyG1V@shikoro>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFOUImoC/x3MTQqEMAxA4atI1hOIFYt6FZlFrFED/tHOqCDe3
+ erye4t3QhCvEqBKTvCyadBljjCfBNzAcy+obTQYMpYs5Rj+zaQ/XJddPE58FCVl2Doc9cnMVvK
+ UraMyg/hYvXR6vP/6e103LdD5yW8AAAA=
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780651091; l=3526;
+ i=github.com@herrie.org; s=20240417; h=from:subject:message-id;
+ bh=PgFIrdPiYEuUXNFSOa6IHQ/Mq4Zwsl31OM6oXB7RwCg=;
+ b=rKqMdlkUUCxwNQ6qfLr4sWLiKNWPvhisvJwNYX0JzzoZj4dDFnnCOM1dw7VgnurgXrknXc1UB
+ KUVUAUbwZRPBuOhQByJZ7B/MQKVhtGcc1UgsBp9a5u4PXWhafb2zvuh
+X-Developer-Key: i=github.com@herrie.org; a=ed25519;
+ pk=YYxdq8fb5O9vhkW3n2dCH044FPZZO5718v/du7fRhFw=
+X-Endpoint-Received: by B4 Relay for github.com@herrie.org/20240417 with
+ auth_id=809
+X-Original-From: Herman van Hazendonk <github.com@herrie.org>
+Reply-To: github.com@herrie.org
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307269-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307272-lists,devicetree=lfdr.de,github.com.herrie.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2600:3c09:e001:a7::12fc:5321:from];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:wsa+renesas@sang-engineering.com,m:Ben_Huang@novatek.com.tw,m:conor@kernel.org,m:SP_ISW1_AT@novatek.com.tw,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:Toby_Chui@novatek.com.tw,m:Shihpei_Hsu@novatek.com.tw,m:wsa@sang-engineering.com,m:krzk@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:sre@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[github.com@herrie.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.103.45.18:received,100.90.174.1:received];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,herrie.org:mid,herrie.org:email,herrie.org:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B0BA5646C48
+X-Rspamd-Queue-Id: 1C071646DB9
 
-On 04/06/2026 22:19, Wolfram Sang wrote:
-> 
->>> 	Sorry for late response.
->>>
->>> 	Please help review the modification in MAINTAINERS.
->>> 	I am still looking for internal help to remove HTML-related messages.
->>
->> It's confidential, no?
-> 
-> No need to be sarcastic, he is working on it.
-> 
+v2 addresses two rounds of reviewer feedback on v1.
 
-He didn't confirm that in reply to me. Asked for review though and I
-wasn't sarcastic here. I replied honestly why I cannot review them,
-regardless how many times I would be asked for it.
+Sebastian Reichel (1 finding):
+ - Drop usb-current-limit-values DT property. The IUSB pin is
+   silicon-fixed at 100/500 mA per the MAX8903 datasheet Pin
+   Description ("Drive IUSB logic-low to set the USB current limit
+   to 100mA. Drive IUSB logic-high to set the USB current limit to
+   500mA."), so there's nothing board-specific to expose. The two
+   values are bound to MAX8903_USB_CURRENT_LIMIT_{LOW,HIGH}_UA
+   #defines in the driver with the datasheet quote in a header
+   comment; usb-current-limit-gpios stays as the board parameter.
+
+Kernel test robot / dt-schema reviewer (8 findings):
+ - Binding: add dependentRequired so dc-current-limit-gpios and
+   dc-current-limit-mapping are required together; incomplete DTs
+   cannot pass dtschema with only one half of the pair.
+ - Binding: rename example node "charger-with-current-limit" to the
+   generic "charger" per the Devicetree Specification.
+ - Driver get_property: when DC is online the hardware draws from
+   DC regardless of USB state. Never fall through to reporting the
+   USB cap; refuse with -ENODATA when DC GPIOs aren't configured
+   rather than mis-describe the active source. The set path mirrors
+   this policy.
+ - Driver set_dc_current_limit: drop bitmap_from_arr32(values,
+   &u32_var, 32). On 64-bit, the macro reinterprets its u32* source
+   as unsigned long* and reads past the on-stack scalar; replace
+   with bitmap_zero() + values[0] = gpio_value (the lowest ndescs
+   bits, parse-time bounded to < 32).
+ - Driver set_property: reject val->intval < 0 explicitly. The
+   helpers take a u32 and a negative widen would bypass the upper
+   bounds check, silently programming the maximum permitted current.
+ - Driver IRQs: extend source_lock over the full
+   read-modify-evaluate block in max8903_dcin() and max8903_usbin().
+   With the old scope, simultaneous DC and USB plug events could
+   race in the cen enable calculation and write the wrong bit.
+ - Driver parse_dc_current_limit: switch the scratch map[] buffer
+   from devm_kcalloc to kmalloc_array + explicit kfree on every
+   return path; the buffer is only used during parse.
+ - Driver parse_dc_current_limit: reject ndescs >= 32 at parse time
+   to keep BIT(ndescs) well-defined on 32-bit. Defensive against a
+   DT that somehow slipped past dtschema's maxItems=4 cap.
+
+Tested on a HP TouchPad (APQ8060, MSM8x60 family) post-rework: all
+4 interconnect fabrics still probe; max8903_charger enumerates and
+binds; INPUT_CURRENT_LIMIT writes program the expected GPIO bit
+patterns on both the DC resistor mux (verified against on-board
+MAX8903B IDC wiring) and IUSB; USB link still up; no WARN/BUG/Oops.
+
+The DTS hookup that wires these GPIOs to the MAX8903 on the HP
+TouchPad will be sent separately to the ARM/DTS tree.
+
+Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
+---
+Herman van Hazendonk (2):
+      dt-bindings: power: supply: maxim,max8903: add DC and USB input current-limit controls
+      power: supply: max8903: add DC and USB input current-limit GPIO controls
+
+ .../bindings/power/supply/maxim,max8903.yaml       |  53 +++
+ drivers/power/supply/max8903_charger.c             | 415 ++++++++++++++++++++-
+ 2 files changed, 451 insertions(+), 17 deletions(-)
+---
+base-commit: 944125b4c454b58d2fe6e35f1087a932b2050dff
+change-id: 20260605-submit-power-max8903-dc-limit-aa6e51a6c093
 
 Best regards,
-Krzysztof
+-- 
+Herman van Hazendonk <github.com@herrie.org>
+
+
 
