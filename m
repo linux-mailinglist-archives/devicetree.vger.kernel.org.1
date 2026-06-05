@@ -1,201 +1,196 @@
-Return-Path: <devicetree+bounces-307288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307291-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sQ9RAkqgImqkbAEAu9opvQ
-	(envelope-from <devicetree+bounces-307288-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:09:14 +0200
+	id YMaANa2jImpgbQEAu9opvQ
+	(envelope-from <devicetree+bounces-307291-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:23:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA7086472E7
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:09:13 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB4864749C
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:23:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=nv0xwpfx;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=RwhSjJkQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307288-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307288-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=herrie.org header.s=transip-a header.b=sEPXu05Q;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307291-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307291-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1609B3017BC1
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 10:05:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 65F5530C303D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 10:09:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0927A3E9C14;
-	Fri,  5 Jun 2026 10:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D37CE3F44E4;
+	Fri,  5 Jun 2026 10:08:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from outbound8.mail.transip.nl (outbound8.mail.transip.nl [136.144.136.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDE623BBFA9
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 10:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68F923D8137;
+	Fri,  5 Jun 2026 10:08:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780653939; cv=none; b=hkigmp/K7x5nobJ0sJeixECyiquV65Zqyniq/1NIMAbWujlD5MYancjW3hLQP7ovPe3imcqO2mjZ3lqv4SPJPUd8BTmR1VVI1s0to0ixs3LiJxOeI5B3TJ8yKxIUXvc+FkU2J6f152l+f0tJKGezZ9sWfKoMc4YwTuvscPmE8mw=
+	t=1780654139; cv=none; b=EPWiGS+/Bz7daDAhqt/13Gosygfv5HoKOnNkhotZGXmoKcoCYvc5y3OAmV6fCIgVIYTpskMaA29eq+ib96MyEf0hP3JHexlrzBt9C+6HQYtzCugadk0v0ATFptuaDfZHuFrMdvv2lawkhFCNSNKylcuXQUAZNDDfN/IhVaOGbE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780653939; c=relaxed/simple;
-	bh=duYOw7ZH3FxY+OzRO3ZcutRr/EGTljg2RMxZkiPL1ko=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MPJQL+ekp+4ePseyNiOfBupJN+5NV71WGP3TQeNlOtNPi/w5cPdKqUXn0GjD2rylyYAhf78Bs4bB9jwoVQS3Tk88Ygo968UZTQS027qaFTjw43oJ/hI1yGFskuiDJskDryyMvVoZKqMlITDoTnJL8M/f5QM+Vlsnkx63b3Eh2wE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nv0xwpfx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RwhSjJkQ; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6556iqEo4048029
-	for <devicetree@vger.kernel.org>; Fri, 5 Jun 2026 10:05:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ezpHQhDZ3yFgmtg3b97NN8aq1Mlm0WpLkU1kGXpDSVE=; b=nv0xwpfxXAZPN6jk
-	b3iSYVrMF/kjHEc9GtvJuiksDxlbp5waTtXOXTK6FyCgbjahbuckHQEEOF8ZNImf
-	A6iWD9gP706SE2XhNBc9s3Vh5MfBk2CsaH8R+lL9zzr+gkuHdaA0gLLvQ2clnRYf
-	v3O3EAYd/zeSEB/fP2FAnqGF5jDy5wPyB7ScYJepkaCzmc+5tD1+TKVnUj64s0YP
-	Z8fVOTxijcnjIr8jRkMZD/qb7e2aLHICOgb3CXkpHBA1uRNFb+9/RUSU68lmkHkA
-	TnDgdMx+wXWVVb5HHHA/o8qCvgF4ird+CLyFLvp+9+3nRA2nzoRxMwT9LbVC8cEO
-	i/C8Dw==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eksf8gtk0-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 10:05:37 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2bf004bf8beso20388675ad.3
-        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 03:05:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780653937; x=1781258737; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ezpHQhDZ3yFgmtg3b97NN8aq1Mlm0WpLkU1kGXpDSVE=;
-        b=RwhSjJkQfczZHekHo7T0PRyAqkbp0KrOWnVpMSHbNnXcMTh3spkbPRPqALZ45bN2sg
-         JfIG9qYLSnCc7ZgmYfGRrhDozOR17TW4ZsIhNCxlQJ/6TEm/Q5lg4geRFvdSFI1oeEMW
-         BfVOMeXSyeUk+58N/x7zd8f2D57uQqkDOMwiVhY/qptmVmWU+d+dEtIy9y0I/39iHhWz
-         mxfzGmC+RLLB8Em1L2ZnKox7SCvpw1ukJneoDYf6tGc5FFt7BuWgBPLWadSUnR+8lttU
-         aa2Wk7e4bUOWUw/knJ4v7dva5GoNu1a86ioCvgvidkQkgPdcyPw2+YrS56/PfxhatvTH
-         tQvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780653937; x=1781258737;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ezpHQhDZ3yFgmtg3b97NN8aq1Mlm0WpLkU1kGXpDSVE=;
-        b=c6OMryeYROdFuy3z46F9AuB0uackyu/NQSEJipIaU3DmyWoAiroGAL/RgMi0Cm+/oF
-         kZuL5+14pdOlg8Q7sVUatsQfl87EmrgKHZmicc9p8mrrk1xXAX9iUeOoT0NcQIIyyiK3
-         PG1+UCWaV9r+lAhFoVSlIgNZZfNB7WcRlPzRQUq7rrBWIRZPvThW74RLc3XTPAtfPZb3
-         DspktEANmfJHjh5YXVk22vBNDdHEtsYvsehXwrn104crpLHqphsqOeGZlXmYPtwxkW+C
-         CA9+ZRlayvsKPNlWWQnfFd67ayB4l9rZNIVPktXv4C7jveTVasrgeevalfPzUrqkb14z
-         wgww==
-X-Forwarded-Encrypted: i=1; AFNElJ9/KE+adrWJKud858OwmNL9kCnNjSwGNtLgMmf5jsB+NzWPE7FB81DgRj/kir5lYi72jkC2fqxA2uSa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3s3VKBM4WjjebzfHmQTlR3eDGmzixFEmaRSGRf5PMXQn4xaxE
-	OCGhGeFVpXES02pYqJJ/xpwV0X4LCp6jYQFK5r9YfltSVR/xHH4kXdn2PK8QpYoGsx+ZpJR2859
-	UTy0UxsX/T5SbPPLpSgzu0h07sZC1rxXaKPue3qsOChKcq9QN2jMpV1fqk1Njkb5P
-X-Gm-Gg: Acq92OHsoCHOj10XANm7uWR0+Oz9V+p30ZQdR5qdlK0dNYf2pKih6uB5A2vRsobianI
-	Xj+WUcp5F/qak3MboEoiVNvp8owXnqDmIm1zIMFQmpQCZFituTCER1vOPIj4m6RHdIOoT3pf55m
-	F86YTxH9rt9KnegF55fnsN5I8H01IuBeMJLKHvBYlcTdebEeZG7++S4Xf70QZoamnA7/LdGgbBG
-	wvATE/FVYfcWrfyWuya+dbdmTtMvyGCta8H7D8sAWC2RcarsYxl+D+EZoCv36qDuWnHdo5jaiQi
-	8toV+KcLjCNZznst/rKyUahvbed2QtSPvVKPuOLWdbHfvfDMI686TeLKN6/AD/aipc2wtvi5ADy
-	25VMDxpszpCWwYalcuSd6i/noqSl0jN2xxI9rE6KPBzjhuXGQ8xRCOGUIwZRRiA==
-X-Received: by 2002:a17:903:248:b0:2c1:d49c:8396 with SMTP id d9443c01a7336-2c1e7b35a28mr29738835ad.1.1780653936894;
-        Fri, 05 Jun 2026 03:05:36 -0700 (PDT)
-X-Received: by 2002:a17:903:248:b0:2c1:d49c:8396 with SMTP id d9443c01a7336-2c1e7b35a28mr29738245ad.1.1780653936327;
-        Fri, 05 Jun 2026 03:05:36 -0700 (PDT)
-Received: from [10.217.198.242] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c164f96b3fsm90762885ad.29.2026.06.05.03.05.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Jun 2026 03:05:35 -0700 (PDT)
-Message-ID: <2fee6dcd-d9fb-4ee7-9844-05dd4b999f2a@oss.qualcomm.com>
-Date: Fri, 5 Jun 2026 15:35:31 +0530
+	s=arc-20240116; t=1780654139; c=relaxed/simple;
+	bh=O0r39KWtJcvvr6HrSfODHfJ63Zbmr6L7WBKTJfoeZCk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FAV3QR24KHHUOjFhL6UHWy6+mn+q6bv2kZFRIkSuaLK6b+tRsJmz7WfBCTM24VfYUIRmO20w4uI15B/V4xdVi5/2x9BUM40h0chuJK6ekm7X3YE3TbBc5ot6i39dcLP30mnQVr6jzyamMlqGq5ury8qn6oldU9Nt5L3vcXnfY+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=sEPXu05Q; arc=none smtp.client-ip=136.144.136.8
+Received: from submission4.mail.transip.nl (unknown [10.103.8.155])
+	by outbound8.mail.transip.nl (Postfix) with ESMTP id 4gWxwX6hpkzY76h8;
+	Fri,  5 Jun 2026 12:08:44 +0200 (CEST)
+Received: from herrie-desktop.. (180-93-184-31.ftth.glasoperator.nl [31.184.93.180])
+	by submission4.mail.transip.nl (Postfix) with ESMTPA id 4gWxwX28h9z3R3p03;
+	Fri,  5 Jun 2026 12:08:44 +0200 (CEST)
+From: Herman van Hazendonk <github.com@herrie.org>
+To: jic23@kernel.org,
+	linusw@kernel.org,
+	denis.ciocca@st.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	sanjayembeddedse@gmail.com,
+	maudspierings@gocontroll.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Herman van Hazendonk <github.com@herrie.org>
+Subject: [PATCH 0/3] iio: lsm303dlh-magn: endianness + boot-time fullscale selection
+Date: Fri,  5 Jun 2026 12:08:40 +0200
+Message-ID: <cover.1780652883.git.github.com@herrie.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: lemans: Remove the gold_cpu_sleep
- idle state
-To: Navya Malempati <navya.malempati@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260522-ml_cpuidle-v1-0-fd311cf33fb4@oss.qualcomm.com>
- <20260522-ml_cpuidle-v1-2-fd311cf33fb4@oss.qualcomm.com>
-Content-Language: en-US
-From: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>
-In-Reply-To: <20260522-ml_cpuidle-v1-2-fd311cf33fb4@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA1MDA5NyBTYWx0ZWRfX00dI2JdcH28k
- ip6dULQlMLikdZP2uEN6veYpoWw090kwN9PzqTxxiSv5LfQ+loO9xQjQrGh7hQUwmBI4kNg78xV
- zFTxV3P78FFnxBmakL2mVpR30cW0NmuNGd+ywuG9oygIdosIrC3pOAlyjGxh1UspNgx+SIfj+9Z
- G4AabME6mtdU9ugXWe2JwkOkSsYoAetUaj2BzO37CjOVG0mpPUZh17ButtLrQlx0S8tqvyWZjlx
- bgoRCF8nf3XU8yVPXgfE2pfXhPVBR7vD+a/7AVwShZYmpfRnE2HBopPhoJVvF0ts7r9s9vYEfe8
- a8eOBX0HaZSmn/DMd3v+NHRwvXAzFY32TjhbhO1RUAdHc0UWByqWgvInOFbsvcl+W66xHZR4O2V
- ZODf59TzggnWj0MMJPvZ6DtfRsvxZai5LLuio4XAWa4KqLyrObH1PRdCoW/FeS2i/Hpxyv8GdTA
- WYe85KA/Sifg4mKMPPQ==
-X-Authority-Analysis: v=2.4 cv=K8sS2SWI c=1 sm=1 tr=0 ts=6a229f71 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=EUspDBNiAAAA:8 a=cx_M9POd4dFOPC6vIlAA:9 a=QEXdDO2ut3YA:10
- a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-ORIG-GUID: PFcDe8-pl0FqXJN_nBgIPzLzwGF-QYYO
-X-Proofpoint-GUID: PFcDe8-pl0FqXJN_nBgIPzLzwGF-QYYO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-05_01,2026-05-28_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 lowpriorityscore=0 clxscore=1015 priorityscore=1501
- bulkscore=0 suspectscore=0 impostorscore=0 malwarescore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606050097
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: ClueGetter at submission4.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=transip-a; d=herrie.org; t=1780654124; h=from:subject:to:cc:date:
+ mime-version:content-type;
+ bh=h659qkI7QXLh60/Bn1eXJ0SYXQqI0f9z1CMZW4J+C6s=;
+ b=sEPXu05Qye/KPtUfxhPxMdWMtPTttcUGoCVAB4vFZ38AB1EOvwfWZAk0hhDYarhh+bQlbv
+ SthPbehivLxJK7dZVOQhBG/eWds3tvH2fJmhMncXLKeJGMW5hswZJ/BNjIaM006mJpnEIv
+ r18NyC3v9davit4lQvYHtnbm3Qxcyi2ZKvNuVJN+/mllb+mhpHAqr/YH58PxCrj/teHEVm
+ H/VRuNTjIN5NHtrUmSpnJ9s3//ococxyZPpNxJktPRCgX4QcgxC+qCIfGM+ea7/5EE4PR7
+ /ChaQGAbNBPuOeN5dOmu7pzf7A9ah2ug3sERfbbCVqBzNJG1yqwI+blRE4eHLw==
+X-Report-Abuse-To: abuse@transip.nl
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-307288-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307291-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[maulik.shah@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:navya.malempati@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maulik.shah@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DMARC_NA(0.00)[herrie.org];
+	FORGED_SENDER(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:linusw@kernel.org,m:denis.ciocca@st.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:sanjayembeddedse@gmail.com,m:maudspierings@gocontroll.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:github.com@herrie.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,gmail.com,gocontroll.com,vger.kernel.org,herrie.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[herrie.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[herrie.org:mid,herrie.org:from_mime,herrie.org:dkim,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AA7086472E7
+X-Rspamd-Queue-Id: 6EB4864749C
+
+This series fixes two independent issues that together prevent the
+LSM303DLH magnetometer from delivering usable readings out of the
+box on at least the HP TouchPad (apq8060), and adds a small generic
+extension to the ST sensors device-tree binding to allow boards to
+declare a non-default initial full-scale.
+
+PATCH 1/3 fixes st_sensors_core's read_axis_data() helper to honour
+the channel's declared scan_type.endianness. The helper has
+unconditionally decoded multi-byte results as little-endian since
+it was introduced. Every other in-tree ST sensor declares IIO_LE
+and was unaffected, but the LSM303DLH magnetometer publishes its
+X / Y / Z words as big-endian pairs (high byte at the lower
+register address, 0x03 / 0x05 / 0x07) and its channel specs in
+st_magn_core.c correctly declare IIO_BE. The mismatch swapped the
+high and low bytes of every magnetometer sample. The fix is generic
+and only affects the IIO_BE branch; existing IIO_LE consumers are
+untouched.
+
+PATCH 2/3 adds an optional `st,fullscale-mg` device-tree property
+to the ST sensors binding. The driver core hardcodes fs_avl[0] (the
+highest-sensitivity range) as the starting full-scale, which is the
+right default for a desk-noise floor but leaves no margin for
+boards that pick up DC bias from nearby PCB structures. The
+property lets a board declare the initial range in milligauss, with
+the driver falling back to its built-in default on absence or on an
+unsupported value. The property is purely additive and no in-tree
+DTS is affected.
+
+PATCH 3/3 parses st,fullscale-mg in the magnetometer common probe
+and selects the matching fs_avl entry. The LSM303DLH on the HP
+TouchPad picks up enough DC bias from the surrounding power planes
+that the chip-default +/-1.3 G range saturates the X axis to the
+chip's 0xF000 overflow sentinel on every sample, while Y and Z fall
+within range. Empirically any fs_avl >= 1 (+/-1.9 G and up) works;
+on tenderloin the appropriate value is 2500 mg (+/-2.5 G).
+
+Before this series, on the HP TouchPad with the magnetometer flat
+on a stable surface (sysfs in_magn_x_raw / in_magn_y_raw /
+in_magn_z_raw, 15 reads at 200 ms intervals):
+
+  X = 240             (high byte stuck at 0x00, low byte = 0xF0)
+  Y = 12032..23296    (apparent random walk over ~11 K range)
+  Z = -16128..-9728   (apparent random walk over ~6 K range)
+
+After PATCH 1/3 alone (endianness fix), the chip reports its real
+overflow sentinel for X:
+
+  X = -4096           (= 0xF000, chip's saturation marker)
+  Y =  91..103        (tight, sensible field reading)
+  Z = 173..184        (tight, sensible field reading)
+
+After the full series with st,fullscale-mg=2500 on tenderloin:
+
+  X = -384..-403      (tight, sensible field reading)
+  Y =   47..58
+  Z =   96..108
+
+Spans of 14..20 raw counts at scale 0.000670 G/LSB across all axes,
+matching expected chip noise around the ambient DC bias.
+
+PATCH 1/3 is a standalone bug fix and could be applied on its own
+even if the binding extension is rejected. PATCHES 2/3 and 3/3 form
+a unit.
 
 
+Herman van Hazendonk (3):
+  iio: common: st_sensors: honour channel endianness in read_axis_data
+  dt-bindings: iio: st,st-sensors: add st,fullscale-mg
+  iio: magnetometer: st_magn: honour st,fullscale-mg DT property
 
-On 5/22/2026 4:40 PM, Navya Malempati wrote:
-> Firmware supports both CPU power collapse (gold_cpu_sleep_0) and
-> CPU PLL/rail power collapse (gold_rail_cpu_sleep_0) idle states.
-> However, CPU power collapse mode is not utilized in favor of performance,
-> so remove it for lemans, aligning with SM8350/SM8450/SM8550/SM8650.
-> 
-> Rename gold_rail_cpu_sleep_0 from cpu-sleep-1 to cpu-sleep-0 since it is
-> now the only CPU idle state in use.
-> 
-> Signed-off-by: Navya Malempati <navya.malempati@oss.qualcomm.com>
+ .../bindings/iio/st,st-sensors.yaml           | 18 ++++++++++
+ .../iio/common/st_sensors/st_sensors_core.c   | 19 +++++++---
+ drivers/iio/magnetometer/st_magn_core.c       | 35 +++++++++++++++++++
+ 3 files changed, 67 insertions(+), 5 deletions(-)
 
-Reviewed-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+-- 
+2.43.0
 
-Thanks,
-Maulik
 
