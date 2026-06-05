@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-307294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307296-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nCO+EISkImqPbQEAu9opvQ
-	(envelope-from <devicetree+bounces-307294-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:27:16 +0200
+	id yWRlBVyjImpXbQEAu9opvQ
+	(envelope-from <devicetree+bounces-307296-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:22:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B17B647507
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:27:15 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E9C647478
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:22:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aDMz0iCQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307294-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307294-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="F82/u//5";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307296-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307296-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 605AC30FECA3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 10:12:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C45803093A72
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 10:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B43983F44D9;
-	Fri,  5 Jun 2026 10:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 591C93F58F5;
+	Fri,  5 Jun 2026 10:15:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5A23D9695;
-	Fri,  5 Jun 2026 10:12:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D04A4192E9;
+	Fri,  5 Jun 2026 10:15:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780654365; cv=none; b=FXGr9fhlrL6WfL4DPN1emFm6EOcXg/yslzgpO7l+/aLUsHUPbbRzIwMcMmL/wA83Vf+USKIQOfumkj4Gx32R8gXtBJOKhdubiOlP0mO4v9HN/d0DxKG2EHEdQwxTz2XUphiIc5is5FegJXYTn46g5rqS5fvyrGiAQFQqThiCuZ8=
+	t=1780654510; cv=none; b=BtS4+YaaXHsTyV2z5RzwelhORLLz2KAkwMv+8RSi+Id5uvOnVDCvzHtbytsgPFb/KAGjlk4AoqBaWvMXiXlmNm9WttPh3/ceR6LE4fSFGu+eLccZofQvr213jjr96TzVapFuMzGaWkXqLKd/YXnYQB/+66phKyoJalrpge5RzTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780654365; c=relaxed/simple;
-	bh=CIkR8cjMUVdvDHLzDkluGzPKK7bYP++kACeQWpOorjA=;
+	s=arc-20240116; t=1780654510; c=relaxed/simple;
+	bh=2vtnnUMDPCFL+1Dz3rP8KzqD3Wrs3s9xjJ2/0k7D80M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AWT7kfLHsHIbKWlOsbptGtpvByMoh+lc8eAwb4Vz2eIyleasYjREljaLpovJO4xJqxWorDRgMqMf5bdZOdcqwV35cKO+BiseaXcEkCXSqJeTVkeVPjawgwkGgHqUcLLeg1K2oG3UCzNhcqVwI5TDJr4zhNsja21eVK1OnQO9zvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDMz0iCQ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91F641F00893;
-	Fri,  5 Jun 2026 10:12:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=odC7wivfLYkGx1G/od1tvqETKWQ8t0LSnv8SUy7vi9B0gXYcEtbFmM62i8eaL/l7u91gjsTMhwb6g7qb1Dh1Nqe0g2LAZKBTVqSI76FmiChuaAIcTDbVnMtvwK5u2k4mNUlSl4rAiR8bDotx/FwiMEqyUmOt9e3HJVXSUrNxPz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F82/u//5; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2124B1F00893;
+	Fri,  5 Jun 2026 10:15:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780654364;
-	bh=zhVrqnma09BbNTp2y8kw//UOaEXkKa12YV/Uc7Xou7w=;
+	s=k20260515; t=1780654509;
+	bh=r7y2qdW5Y46qla434jE+ACDcxuUp7VYaUzScisOjV1M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=aDMz0iCQvwrMWTxQEqnGNObcI4VWqxC1fY7IqCm22urpWBhRnGAuuwU/I0kL+Rfjn
-	 NjXAni2tReo9qPoUZp87MoA0un3rdcq3kdMcaw1lLZdWsDsQvSMzpKr4JCTLhkve2e
-	 zgTJjI4Ct+poUlujBdNMp3W/YN4KWugmZI2eSxTGcYqQX1of7eSUb6GXRo6NZjEpYx
-	 bQTJXl6vTfB/UVmdOz0fAUzeUuoavAoBLMsTaQjUM/aRU7ny2OOw9Rd+8HdX4H0qgt
-	 z8UhULo0V3srwAhYilvfjrGTm7jCl93eGU+qWCdpX+BVwSAhvjYTR0OWA/8Bo3N7Fn
-	 GuCxBHK8LqtLA==
-Date: Fri, 5 Jun 2026 12:12:40 +0200
+	b=F82/u//5JDX2dTDcRFEv9je27+ld+9WY+9ZCskT7v2oJXptF382qOUzVClTmsuo+V
+	 xeHRgOMpeotK49P6LPZtnH9DZCpKTIkoV9xp2zPH4/JfizCqH3kkc5Py2+r/Hfl5ij
+	 iMXNQbp+gjntUH458ZSsJS+vCgTDmrXgY1cBvfXn84kMXV/sDadXvxQDem17HEAUgO
+	 yib3mv6czHrFlBXlPtf2fcT85vFWz79w551fanyRDlTVQFsIbaIJWdZFjzOWSt0dLT
+	 Ml7+94C0eJn8igOLHJmy/mN3LWuY6/ftO5IyTqCfNXk2MpSanrgeuFCRgbSPVxfuWr
+	 ZY7+QTyhcNZpg==
+Date: Fri, 5 Jun 2026 12:15:05 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: dongxuyang@eswincomputing.com
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, ben-linux@fluff.org, ben.dooks@codethink.co.uk, 
-	p.zabel@pengutronix.de, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com, linmin@eswincomputing.com, 
-	xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: [PATCH v7 1/2] dt-bindings: pwm: dwc: Add eswin compatible and
- resets property
-Message-ID: <20260605-scrupulous-tasteful-nuthatch-5d8ce3@quoll>
-References: <20260605082242.1541-1-dongxuyang@eswincomputing.com>
- <20260605082318.1599-1-dongxuyang@eswincomputing.com>
+To: Hrushiraj Gandhi <hrushirajg23@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 0/3] arm64: dts: rockchip: add Vicharak Axon board
+ support
+Message-ID: <20260605-supportive-exuberant-serval-cc42c0@quoll>
+References: <20260601162143.170030-1-hrushirajg23@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +64,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260605082318.1599-1-dongxuyang@eswincomputing.com>
+In-Reply-To: <20260601162143.170030-1-hrushirajg23@gmail.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -75,132 +72,45 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-307296-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307294-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:hrushirajg23@gmail.com,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:dongxuyang@eswincomputing.com,m:ukleinek@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ben-linux@fluff.org,m:ben.dooks@codethink.co.uk,m:p.zabel@pengutronix.de,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ningyu@eswincomputing.com,m:linmin@eswincomputing.com,m:xuxiang@eswincomputing.com,m:wangguosheng@eswincomputing.com,m:pinkesh.vaghela@einfochips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,quoll:mid,eswincomputing.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,quoll:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9B17B647507
+X-Rspamd-Queue-Id: B6E9C647478
 
-On Fri, Jun 05, 2026 at 04:23:18PM +0800, dongxuyang@eswincomputing.com wrote:
-> From: Xuyang Dong <dongxuyang@eswincomputing.com>
+On Mon, Jun 01, 2026 at 09:51:39PM +0530, Hrushiraj Gandhi wrote:
+> This series adds initial device tree support for the Vicharak Axon
+> single-board computer, which is based on the Rockchip RK3588 SoC.
 > 
-> EIC7700 use DesignWare IP for PWM controllers. Add ESWIN EIC7700 support
-> in snps,dw-apb-timers-pwm2.yaml.
-> 
-> The DesignWare PWM includes separate reset signals dedicated to each clock
-> domain:
-> The presetn signal resets logic in pclk domain.
-> The timer_N_resetn signal resets logic in the timer_N_clk domain.
-> The resets are active-low.
-> 
-> The generic snps,dw-apb-timers-pwm2 binding allows one or two optional
+> The Vicharak Axon is a feature-rich SBC targeting developer and embedded
+> use cases. It ships with:
 
-I don't know what is the generic binding, but it does not allow. Open
-the file: there are no resets at all, so it does not allow them. Or you
-mixed tenses here and you wanted to describe the change?
-
-The present tense describes current state of source code before applying
-the patch. The patch transform that current state, so you don't use
-present tense to show what will be future.
-
-Unless you meant here a device, not binding. I would be picky here
-except that your binding is incorrect which made me looking for answers.
-I cannot find these answers.
-
-> reset lines depending on SoC integration.
-> 
-> On EIC7700, the presetn and timer_N_resetn inputs are physically tied
-> to a single reset line, therefore exactly one reset is required.
-> 
-> Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
-> ---
->  .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml | 38 +++++++++++++++++--
->  1 file changed, 34 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> index 7523a89a1773..a4b7929f2e05 100644
-> --- a/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/snps,dw-apb-timers-pwm2.yaml
-> @@ -20,12 +20,11 @@ description:
->    instead of having to encode the IP version number in the device tree
->    compatible.
->  
-> -allOf:
-> -  - $ref: pwm.yaml#
-> -
->  properties:
->    compatible:
-> -    const: snps,dw-apb-timers-pwm2
-> +    enum:
-> +      - snps,dw-apb-timers-pwm2
-> +      - eswin,eic7700-pwm
->  
->    reg:
->      maxItems: 1
-> @@ -43,6 +42,12 @@ properties:
->        - const: bus
->        - const: timer
->  
-> +  resets:
-> +    minItems: 1
-> +    items:
-> +      - description: Interface bus reset
-> +      - description: PWM timer logic reset
-> +
->    snps,pwm-number:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: The number of PWM channels configured for this instance
-> @@ -54,6 +59,22 @@ required:
->    - clocks
->    - clock-names
->  
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: eswin,eic7700-pwm
-> +    then:
-> +      properties:
-> +        resets:
-> +          minItems: 1
-
-Drop
-
-> +          maxItems: 1
-
-So you want to add resets for the existing variant claiming that they
-were missing? Probably we should tell you that earlier, although the
-patch was going odd directions, but you need to split it. First you fix
-existing devices with explanation why. Then you add new compatible with
-constraint for one reset.
-
+Slow down, please. One patchset per 24h.
 
 Best regards,
 Krzysztof
