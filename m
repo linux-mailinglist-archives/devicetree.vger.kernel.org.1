@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-307130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307149-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lYteL28sImrfTQEAu9opvQ
-	(envelope-from <devicetree+bounces-307130-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 03:54:55 +0200
+	id +3emLE4/ImoBUQEAu9opvQ
+	(envelope-from <devicetree+bounces-307149-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 05:15:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A3746448BE
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 03:54:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 035DA644CF5
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 05:15:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=rock-chips.com header.s=default header.b=g8ev1URP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307130-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307130-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=rock-chips.com header.s=default header.b=Y3Bvc45C;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307149-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307149-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=rock-chips.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E8B46307BF30
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 01:42:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9B4923015C80
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 03:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C669F1EF091;
-	Fri,  5 Jun 2026 01:42:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5039E3E3D8F;
+	Fri,  5 Jun 2026 03:15:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49245.qiye.163.com (mail-m49245.qiye.163.com [45.254.49.245])
+Received: from mail-m49215.qiye.163.com (mail-m49215.qiye.163.com [45.254.49.215])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C9863AA19B;
-	Fri,  5 Jun 2026 01:41:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E494915C14F;
+	Fri,  5 Jun 2026 03:15:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780623722; cv=none; b=r8KgA8Y4nv/L44f9XCVF346N4eim3Di9p7hnGuQuSfkO2lQwR7LvbeBdaF8qNyXNscp2+1DjmVFtaQ29v1zF06FHZ4/5ZYrTLM9KEaubSfEDQUbvdGmfd+pijAmSRtaJ70f3OIs4Q70KcVaKzV4Us+s8zhlUrw/fi1fR8ljJNOw=
+	t=1780629322; cv=none; b=HQBLN9069R8qa81Ib89A8l69RClCDkhPfr1xBQMzsOsJhoizsac3tKfonVLYTDI7Q2Dh5wOrF80byiBO7wfOT1uYEAb/ym6z7ilNkP98kmETUmfkCi02QoEzI+vEkQwj88/N3UbI80KPhvCbTJ0lZPxx0nuFEUl4bqMHFJHGbFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780623722; c=relaxed/simple;
-	bh=uJYvNCr/c5HUn21+r8FWHHDGyHEvQ8Kp+jDg4Zohvuo=;
+	s=arc-20240116; t=1780629322; c=relaxed/simple;
+	bh=KlSOQOMOtb8TK9P6Ea3DGVv/R2NSDERpT5EWmqMpOdg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U+Kaf4S1uQOxdEeo4OmKZuJPfhi2QfYWtHEwkX3Fv4/kafVG1uF5jtN+vLxmi2BgIcL/HBAtra411HfuHUeNhjxp3GZpUguMg+fNl5QXY7RMG+sz88greCUob+dDS+B45jDE4LglUbq8/MUPTIKAFgUbQ4gkdBoWO0AKi7fH61o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=g8ev1URP; arc=none smtp.client-ip=45.254.49.245
-Received: from [172.16.12.90] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 412733262;
-	Fri, 5 Jun 2026 09:36:30 +0800 (GMT+08:00)
-Message-ID: <3d99569e-9c3a-49d1-93fb-1335382523e9@rock-chips.com>
-Date: Fri, 5 Jun 2026 09:36:28 +0800
+	 In-Reply-To:Content-Type; b=mcn13MBTacf2K2R5oL17i1dnt7jI1JPFic0AF7cUGusgRYP6IvZyM2kNcKLj4YIhEG0J/nndwZSyx7aPqfrN3H3Y+1oU06Hebo3WZBV+X4vhYUeavg8cQLdr2PUKcefNwGWpYFFRHS1q01as89johjC7fdEPxELncha7+wm6kqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Y3Bvc45C; arc=none smtp.client-ip=45.254.49.215
+Received: from [172.16.12.90] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 412827f77;
+	Fri, 5 Jun 2026 09:59:26 +0800 (GMT+08:00)
+Message-ID: <e44b506e-e9d2-48e3-acea-ab28b7be9b37@rock-chips.com>
+Date: Fri, 5 Jun 2026 09:59:24 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,51 +46,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v3 0/9] accel: rocket: Add RK3568 NPU support
+Subject: Re: [RFC PATCH v3 6/9] iommu/rockchip: Clear AUTO_GATING bit 1 on the
+ RK356x v1 IOMMU
 To: Midgy BALON <midgy971@gmail.com>
-Cc: tomeu@tomeuvizoso.net, ogabbay@kernel.org, heiko@sntech.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joro@8bytes.org,
- will@kernel.org, robin.murphy@arm.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- linux-kernel@vger.kernel.org
+Cc: Simon Xue <xxm@rock-chips.com>, tomeu@tomeuvizoso.net,
+ ogabbay@kernel.org, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+ dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev, linux-kernel@vger.kernel.org
 References: <20260604135255.62682-1-midgy971@gmail.com>
+ <20260604135255.62682-7-midgy971@gmail.com>
 Content-Language: en-US
 From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20260604135255.62682-1-midgy971@gmail.com>
+In-Reply-To: <20260604135255.62682-7-midgy971@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9e956cb64203a7kunmae8f212e3422d
+X-HM-Tid: 0a9e9581b64203a7kunm811ff8bb36f5c
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1kYFggdWUFKV1ktWUFJV1kPCRoVCBIfWUFZQ0wfSVZLHUpPGBlJTR
-	gdT01WFRQJFhoXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0
-	tIVUpLSU9PT0hVSktLVUpCS0tZBg++
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZTUtDVk1PTUMZSk1LSElDTlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
+	9PT0hVSktLVUpCS0tZBg++
 DKIM-Signature: a=rsa-sha256;
-	b=g8ev1URPnB1NrgJV5kyG2ccC0Z11vTCKLanZgIdbPpNH/WcdJb7etuf0v1vH5Z8ewFZJisgwJzSBNw9D0lV0kcycsy/Y2Dt2CODLOhtPHvRztbQlKmEjudCshdaKw1b2qQtCANaxbApui4H/bao+cA21Bhx+GO+rzJmfLVfiyDI=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=HZCd1/QFQRA8WZXHUaIlNXNKsRQnvTVs8VCYQyYdCeo=;
+	b=Y3Bvc45CIW1NaueqHEUkrrc13tHP57PqG6D2cUlho677APrf8hPJYnVsf6QyD0Zk7yVvbfA0ZPSedpeaoQA52ct4LgKHetxAmjcdQmZWwmJ+EqDR7sdzv54ClZGO6nzhL/GGcQNa0SaMChUshrzbZtTRabCXibPw3II/YdwRamU=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=JhwLEVlbuMyJ2TM379GNJ3NbYdaquaVpgzGyK/FsXPQ=;
 	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:midgy971@gmail.com,m:tomeu@tomeuvizoso.net,m:ogabbay@kernel.org,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:dri-devel@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER(0.00)[chaoyi.chen@rock-chips.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:midgy971@gmail.com,m:xxm@rock-chips.com,m:tomeu@tomeuvizoso.net,m:ogabbay@kernel.org,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:dri-devel@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-307130-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307149-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[rock-chips.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -100,121 +102,78 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:mid,rock-chips.com:from_mime,rock-chips.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1A3746448BE
+X-Rspamd-Queue-Id: 035DA644CF5
 
 Hello Midgy,
 
 On 6/4/2026 9:52 PM, Midgy BALON wrote:
-> RFC, not for merge. End-to-end inference does not produce correct output
-> yet (see Status), so per the v2 discussion this is a request for design
-> feedback. It now probes, attaches, and submits cleanly on a stock
-> v7.1-rc6 tree; what remains is one hardware-internal issue.
+> On the RK356x v1 IOMMU, RK_MMU_AUTO_GATING resets to 0x3. Bit 1 enables
+> auto clock-gating of the page-table walker, so the walker's AXI master
+> loses its clock between transactions; a TLB-miss page walk then never
+> completes and the IOMMU is left stuck (PAGING_ENABLED, never IDLE).
 > 
-> The RK3568 has a single NVDLA-derived NPU core, the same IP family as the
-> RK3588 NPU the driver already supports; the register layout matches. The
-> RK3568 differences are a 32-bit NPU AXI/IOMMU (vs 40-bit) and explicit
-> PVTPLL/PMU bring-up to power and de-idle the NPU before it is reachable.
+> Clear bit 1 (keeping bit 0, the slave-port gate) once paging is enabled
+> so the walker keeps its clock. This is required for the RK3568 NPU MMU.
 > 
-> Patches:
->   1-2  rocket: per-SoC data struct, then derive DMA width and core count
->        from match data (refactors, no functional change).
->   3    rocket: RK3568 SoC data + PVTPLL/PMU/NOC bring-up.
->   4    rocket: reset the NPU before detaching the IOMMU on a job timeout
->        (the detach otherwise stalls a wedged AXI master and WARNs).
->   5    rocket: keep the IOMMU domain attached across jobs instead of
->        re-attaching per job (the per-job rk_iommu handshake on the idle
->        NPU MMU is slow and noisy).
->   6    iommu/rockchip: clear AUTO_GATING bit 1 on the RK356x v1 IOMMU so
->        the page-walker keeps its clock (else a TLB-miss walk never
->        completes).
->   7    dt-bindings: add the RK3568 NPU compatible.
->   8-9  arm64 dts: add the NPU and its IOMMU, and enable them on ROCK 3B.
+> Signed-off-by: Midgy BALON <midgy971@gmail.com>
+> ---
+>  drivers/iommu/rockchip-iommu.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> Dependency. The NPU MMU is rockchip-iommu v1 (32-bit) while the rest of
-> the RK3568 uses v2 (40-bit). They cannot coexist until the driver carries
-> per-device ops; this series is developed on top of Simon Xue's
-> "iommu/rockchip: Drop global rk_ops in favor of per-device ops" [1].
-> Without it the NPU IOMMU fails to probe on a full RK3568 boot.
->
+> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
+> index 4da80136933c4..e3d8b6e9ca12b 100644
+> --- a/drivers/iommu/rockchip-iommu.c
+> +++ b/drivers/iommu/rockchip-iommu.c
+> @@ -953,6 +953,18 @@ static int rk_iommu_enable(struct rk_iommu *iommu)
+>  
+>  	ret = rk_iommu_enable_paging(iommu);
+>  
+> +	if (!ret) {
+> +		/*
+> +		 * RK356x v1 IOMMU: RK_MMU_AUTO_GATING bit 1 enables page-walker
+> +		 * auto clock-gating; the walker's AXI master then loses its clock
+> +		 * between transactions and a TLB-miss page walk never completes,
+> +		 * leaving the IOMMU stuck (PAGING_ENABLED, never IDLE).  Clear
+> +		 * bit 1 (keep bit 0, the slave-port gate) once paging is enabled.
+> +		 */
+> +		for (i = 0; i < iommu->num_mmu; i++)
+> +			rk_iommu_write(iommu->bases[i], RK_MMU_AUTO_GATING, 0x2);
+> +	}
+> +
+>  out_disable_stall:
+>  	rk_iommu_disable_stall(iommu);
+>  out_disable_clocks:
 
-Hmmm. If I understand correctly, the NPU IOMMU should be v2 rather than
-v1, implying it should support 40-bit PAs. Nevertheless, please note that
-the upper limit for DTE is 32 bits.
+As I said, it is v2. Could you please try using the code below
+instead and see if it works? Thank you.
 
-> Power bring-up. The NPU is brought up through the power-domain layer (no
-> driver hack): the NPU power-domain keeps its clocks but drops the pm_qos
-> phandle (qos_npu sits behind the gated NPU NoC, so genpd's power-off QoS
-> save faults reading it), and vdd_npu is marked always-on so the rail is
-> up before genpd de-idles the NoC at power-on. The PMU de-idle then ACKs
-> without PVTPLL running; PVTPLL is only needed for compute.
->
-
-Can these operations not be completed via the pmdomain driver?
-If some operations are controlled by TF-A, are you using open
-source TF-A? Thank you.
-
-> Status. On v7.1-rc6 the driver probes, creates /dev/accel/accel0,
-> attaches an IOMMU domain, and submits jobs; the program controller
-> fetches and broadcasts the command list. Inference output is still wrong,
-> and the cause is split across three layers:
->   - kernel (this series): the RK3568 differences appear handled;
->   - mesa/Teflon userspace: still emits RK3588-tuned config, wrong for
->     RK3568 (to be filed separately on mesa-dev);
->   - hardware: with corrected config the NPU's DMA reads the full input
->     and weight tensors (confirmed via its DMA bandwidth counters), but
->     the MAC/output stage never completes, the job times out, and the
->     output stays at the buffer's zero-point. I have not found the missing
->     step; it is not in the command list (replaying the vendor's
->     byte-exact command list behaves the same). Pointers welcome,
->     especially from anyone with RK3568 NPU experience.
-> 
-> Known residual. On the first IOMMU attach the NPU MMU is idle with paging
-> already enabled; the rk_iommu stall/reset handshake does not complete in
-> that state and logs one burst of timeouts before the (kept) domain
-> settles. It is harmless here because the job times out regardless, but it
-> points at an idle-MMU reconfiguration corner the rk_iommu code does not
-> handle on this block.
-> 
-> [1] https://lore.kernel.org/linux-rockchip/20260310105303.128859-1-xxm@rock-chips.com/
-> 
-> Changes since v2:
->   - Tagged RFC; now tested on a stock v7.1-rc6 tree.
->   - Bring-up moved into the power-domain/DT layer (no initcall hack).
->   - Added the IOMMU detach-on-timeout and attach-once driver fixes.
->   - Split the driver patch (Heiko): soc_data / match-data / RK3568.
->   - Derive DMA width and core count from match data; drop the DT rescans.
->   - Binding describes the hardware; added the missing $ref on rockchip,pmu.
->   - Disclosed the per-device-ops IOMMU dependency.
-> 
-> Midgy BALON (9):
->   accel: rocket: Introduce per-SoC rocket_soc_data
->   accel: rocket: Derive DMA width and core count from match data
->   accel: rocket: Add RK3568 SoC support
->   accel: rocket: Reset the NPU before detaching the IOMMU on timeout
->   accel: rocket: Keep the IOMMU domain attached across jobs
->   iommu/rockchip: Clear AUTO_GATING bit 1 on the RK356x v1 IOMMU
->   dt-bindings: npu: rockchip,rk3588-rknn-core: Add RK3568
->   arm64: dts: rockchip: rk356x: Add the NPU and its IOMMU
->   arm64: dts: rockchip: rk3568-rock-3b: Enable the NPU
-> 
->  .../npu/rockchip,rk3588-rknn-core.yaml        | 18 ++++-
->  .../boot/dts/rockchip/rk3568-rock-3b.dts      | 14 +++-
->  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 38 +++++++++++
->  drivers/accel/rocket/rocket_core.c            | 22 ++++++-
->  drivers/accel/rocket/rocket_core.h            | 19 ++++++
->  drivers/accel/rocket/rocket_device.c          | 15 ++---
->  drivers/accel/rocket/rocket_device.h          |  3 +-
->  drivers/accel/rocket/rocket_drv.c             | 66 ++++++++++++++++++-
->  drivers/accel/rocket/rocket_job.c             | 35 ++++++++--
->  drivers/iommu/rockchip-iommu.c                | 12 ++++
->  10 files changed, 219 insertions(+), 23 deletions(-)
-> 
-> 
-> base-commit: 52c800fdcf11888ebeb50c3d707f782cc15b66eb
+diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
+index 0013cf196c57..89e3a83a0251 100644
+--- a/drivers/iommu/rockchip-iommu.c
++++ b/drivers/iommu/rockchip-iommu.c
+@@ -930,6 +930,7 @@ static int rk_iommu_enable(struct rk_iommu *iommu)
+        struct iommu_domain *domain = iommu->domain;
+        struct rk_iommu_domain *rk_domain = to_rk_domain(domain);
+        int ret, i;
++       u32 auto_gate;
+ 
+        ret = clk_bulk_enable(iommu->num_clocks, iommu->clocks);
+        if (ret)
+@@ -948,6 +949,10 @@ static int rk_iommu_enable(struct rk_iommu *iommu)
+                               rk_ops->mk_dtentries(rk_domain->dt_dma));
+                rk_iommu_base_command(iommu->bases[i], RK_MMU_CMD_ZAP_CACHE);
+                rk_iommu_write(iommu->bases[i], RK_MMU_INT_MASK, RK_MMU_IRQ_MASK);
++
++               auto_gate = rk_iommu_read(iommu->bases[i], RK_MMU_AUTO_GATING);
++               auto_gate |= BIT(31);
++               rk_iommu_write(iommu->bases[i], RK_MMU_AUTO_GATING, auto_gate);
+        }
+ 
+        ret = rk_iommu_enable_paging(iommu);
 
 -- 
 Best, 
