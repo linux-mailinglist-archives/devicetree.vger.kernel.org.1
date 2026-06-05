@@ -1,170 +1,281 @@
-Return-Path: <devicetree+bounces-307266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307267-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ryzFKiqSImpmaQEAu9opvQ
-	(envelope-from <devicetree+bounces-307266-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:08:58 +0200
+	id 1nUeKT2VImobagEAu9opvQ
+	(envelope-from <devicetree+bounces-307267-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:22:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697CB646B5E
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:08:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1A56646CF9
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 11:22:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=wrkk+az7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307266-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307266-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=vI0C77rl;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307267-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307267-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=mailbox.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 021D43075F59
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 09:02:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C02A630A328C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 09:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D75D4BCAA2;
-	Fri,  5 Jun 2026 09:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072DC4C0427;
+	Fri,  5 Jun 2026 09:10:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61FEE4BCAA6
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 09:01:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 287124C0409;
+	Fri,  5 Jun 2026 09:10:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780650113; cv=none; b=sUGueyz0HV6p9a6u5Il+QROFk15X1O25mhg2/DshCI16UCYay0jIp1UH+5i0uOvcEtNft+dVfjtOAq062Oegr+wMzowS5iW31YC8kXjjs/Bbdx+rzGSy2kyETkYql1BnrDp6YH3AJOjWNy0vteV9AWoOn4bhSNS/PZjAOUbvgws=
+	t=1780650634; cv=none; b=by+mVv1hQ1pvuM6Zs+iBXlOgDaA/2rYyUl0d4AQojVnA920JU3AoROPcxt8nesFP88h6Tz2w+Q/4NBQN56bAhHHUDDPZrDKzZbFeRqjEP3IPN1PTlgCPRsgWrIOr3i32RxhkwLBGfRCeHAREsDCGu2YN0VQpZRGk6EpAvGYtwoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780650113; c=relaxed/simple;
-	bh=OwNImBxZWjT7FlNBpkpifMklWVn6NT/NURd1B8Jk4Es=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YHqT9jI2iFBFknA4WXapWWhJo6QVbRFZeuozOqIGCdxSVIYDS+ke9yD2iuovxLNd/fkafpm4h8iaYXipSv/Doa40qN9apWF/sN99oiUgATDQhvG7bOG8JbXqMvLPosh0KHVWn6FIcOu80n9Z3EivhSG59XPatAj41wUd0Cxv/wo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=wrkk+az7; arc=none smtp.client-ip=185.246.85.4
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 06E754E40835;
-	Fri,  5 Jun 2026 09:01:49 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C9C395FED1;
-	Fri,  5 Jun 2026 09:01:48 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CFDB7106A2038;
-	Fri,  5 Jun 2026 11:01:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1780650108; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=5lJcCTJfAQmhLwfgf1C/wVrlTzaj9azQJ2Rtzz7Eq9k=;
-	b=wrkk+az7ArrnQbACXjeXZaBRFtDqRS/U5Ak0p+OdWAEpeB53hukob5gfIy+L4AbbaeGe8G
-	E5szLAqMC0BaFcW1BiGPrRSZopLK3u96eOV4c67pFhr3EJwxgtf2QJ380F+FuJ6ZDPKcUg
-	pRggXTnTgJi8AdEagYmR5kHUApUICtGMi32KQLXrQB5cS7omjf8z2vugQu2MRpozTy2OrN
-	5asHxH1FasCpzUpiBXoq7ie+apgWnfaq3TdxdMyFezieV4Do1O8HDwIdwMwljrqTLJv7Xo
-	fViT1S+ahWkGRtoD73MURYgCE83AqneKg3oKw94ilqe6ExOI+doC7DSaUPlYJQ==
-From: Romain Gantois <romain.gantois@bootlin.com>
-Date: Fri, 05 Jun 2026 11:01:36 +0200
-Subject: [PATCH 2/2] iio: temperature: tmp117: add TI TMP119 support
+	s=arc-20240116; t=1780650634; c=relaxed/simple;
+	bh=wmvUgqY5BZyHeFmqPz4uKT3rEQ0+QazR2avhAdS3rdo=;
+	h=Content-Type:Date:Message-Id:Cc:Subject:From:To:Mime-Version:
+	 References:In-Reply-To; b=REh6Td/1ik0Ah0mPXNDRiXNQChvIOjEt9iCLqqmmtQQAV0miBDN/h7poshWCdSi4yjwkTcvc0RDFqGqUb1SVEg9U6b7S0G9A5MhDIMYzkpCZZYgZUeCg5QuDn8JkGiT4+FMATVeuRnTYXwGW/9TNITuL/MRC8fbCfSTDP41MSY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=vI0C77rl; arc=none smtp.client-ip=80.241.56.172
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4gWwdJ6LJbz9tqP;
+	Fri,  5 Jun 2026 11:10:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1780650628;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pZu3uHIMs3CS8SP0rLKrzCVJEON6Er92uMM8TGXVtnE=;
+	b=vI0C77rlpZ/kb5L+pgPubmrB62QzwYFwz/UtAHRj2WIe5QWJcrcdlu7DJXp+bnp/mZOxPW
+	SxRfQrvUedLB+UfTzhRQlEINbsmW82fK4jS7YGqo5HGrMgiLgebZLvvOH9Vjqh/ToRynXG
+	D3B+rRbWwyqls/Fl0rMv4gORxurK1z8WaEAA7cAQ+Ebasckmi6oshlvuUm0Ip8Q8s+4P5L
+	qDlCaBMvu/zJI0UTVyQV3m+ia9Do+7DllCFdH4JJJDJP6rKQH7NEz/HqzwxP5Gynq2hisJ
+	CHtaDC81fMXVh/G28KF5Ofk9RDloHe/p7aoANWUmKQq5Ds8lfZmJLTzAtofBxw==
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 05 Jun 2026 17:09:56 +0800
+Message-Id: <DJ0ZYF5C8MMH.2GBBY188VVPSH@mailbox.org>
+Cc: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-riscv@lists.infradead.org>, <sophgo@lists.linux.dev>,
+ <hanguidong02@gmail.com>, <michael.opdenacker@rootcommit.com>,
+ "linux-riscv" <linux-riscv-bounces@lists.infradead.org>
+Subject: Re: [PATCH v5 RESEND 5/5] riscv64: dts: sophgo: add initial Milk-V
+ Duo S board support
+From: "Shuwei Wu" <shuwei.wu@mailbox.org>
+To: "Joshua Milas" <josh.milas@gmail.com>, <tglx@kernel.org>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <pjw@kernel.org>, <samuel.holland@sifive.com>, <unicorn_wang@outlook.com>,
+ <inochiama@gmail.com>, <daniel.lezcano@linaro.org>, <palmer@dabbelt.com>,
+ <aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <liujingqi@lanxincomputing.com>,
+ <alexander.sverdlin@gmail.com>, <rabenda.cn@gmail.com>, <dlan@kernel.org>,
+ <chao.wei@sophgo.com>, <anup@brainfault.org>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260605-tmp119-v1-2-349f45f17d12@bootlin.com>
-References: <20260605-tmp119-v1-0-349f45f17d12@bootlin.com>
-In-Reply-To: <20260605-tmp119-v1-0-349f45f17d12@bootlin.com>
-To: Puranjay Mohan <puranjay@kernel.org>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Wil Stark <wil_stark@keysight.com>, linux-iio@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Romain Gantois <romain.gantois@bootlin.com>
-X-Mailer: b4 0.15.2
-X-Last-TLS-Session-Version: TLSv1.3
+Mime-Version: 1.0
+References: <20260530173347.33533-1-josh.milas@gmail.com>
+ <20260530173347.33533-6-josh.milas@gmail.com>
+In-Reply-To: <20260530173347.33533-6-josh.milas@gmail.com>
+X-MBO-RS-META: ty4b5d94rbfqutfk8wi54pxq6xud5tic
+X-MBO-RS-ID: 68716531ea3f837e9e1
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-307266-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:puranjay@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:thomas.petazzoni@bootlin.com,m:wil_stark@keysight.com,m:linux-iio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:romain.gantois@bootlin.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307267-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,sifive.com,outlook.com,linaro.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lanxincomputing.com,sophgo.com,brainfault.org];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:sophgo@lists.linux.dev,m:hanguidong02@gmail.com,m:michael.opdenacker@rootcommit.com,m:linux-riscv-bounces@lists.infradead.org,m:josh.milas@gmail.com,m:tglx@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:samuel.holland@sifive.com,m:unicorn_wang@outlook.com,m:inochiama@gmail.com,m:daniel.lezcano@linaro.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:liujingqi@lanxincomputing.com,m:alexander.sverdlin@gmail.com,m:rabenda.cn@gmail.com,m:dlan@kernel.org,m:chao.wei@sophgo.com,m:anup@brainfault.org,m:joshmilas@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:alexandersverdlin@gmail.com,m:rabendacn@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[shuwei.wu@mailbox.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,rootcommit.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shuwei.wu@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,bootlin.com:mid,bootlin.com:dkim,bootlin.com:from_mime,bootlin.com:email,keysight.com:email]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 697CB646B5E
+X-Rspamd-Queue-Id: F1A56646CF9
 
-From: Wil Stark <wil_stark@keysight.com>
+Hi Joshua,
 
-Add support for the TMP119 temperature sensor, which has the same
-programming model as the TMP117.
+On Sun May 31, 2026 at 1:33 AM CST, Joshua Milas wrote:
+> This adds initial riscv support for the Milk-V Duo S board
+> [1] making it possible to boot Linux to the command line.
+>
+> Link: https://milkv.io/duo-s [1]
+>
+> Signed-off-by: Joshua Milas <josh.milas@gmail.com>
+> ---
+>  arch/riscv/boot/dts/sophgo/Makefile           |  1 +
+>  .../boot/dts/sophgo/sg2000-milkv-duo-s.dts    | 85 +++++++++++++++++++
+>  2 files changed, 86 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/sophgo/sg2000-milkv-duo-s.dts
+>
+> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/so=
+phgo/Makefile
+> index 6f65526d4193b..58cc6b70d8de4 100644
+> --- a/arch/riscv/boot/dts/sophgo/Makefile
+> +++ b/arch/riscv/boot/dts/sophgo/Makefile
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_SOPHGO) +=3D cv1800b-milkv-duo.dtb
+>  dtb-$(CONFIG_ARCH_SOPHGO) +=3D cv1812h-huashan-pi.dtb
+> +dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2000-milkv-duo-s.dtb
+>  dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2002-licheerv-nano-b.dtb
+>  dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2042-milkv-pioneer.dtb
+>  dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2042-evb-v1.dtb
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2000-milkv-duo-s.dts b/arch/ris=
+cv/boot/dts/sophgo/sg2000-milkv-duo-s.dts
+> new file mode 100644
+> index 0000000000000..8632470f43ab0
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/sophgo/sg2000-milkv-duo-s.dts
+> @@ -0,0 +1,85 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include "sg2000.dtsi"
+> +
+> +/ {
+> +	model =3D "Milk-V Duo S";
+> +	compatible =3D "milkv,duo-s", "sophgo,sg2000";
+> +
+> +	aliases {
+> +		i2c4 =3D &i2c4;
+> +		mmc0 =3D &sdhci0;
+> +		serial0 =3D &uart0;
+> +		spi3 =3D &spi3;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path =3D "serial0:115200n8";
+> +	};
+> +};
+> +
+> +&osc {
+> +	clock-frequency =3D <25000000>;
+> +};
+> +
+> +&dmac {
+> +	status =3D "okay";
+> +};
+> +
+> +&emmc {
+> +	bus-width =3D <4>;
+> +	no-1-8-v;
+> +	cap-mmc-hw-reset;
+> +	no-sd;
+> +	no-sdio;
+> +	non-removable;
+> +	status =3D "okay";
+> +};
+> +
+> +&gmac0 {
+> +	status =3D "okay";
+> +};
+> +
+> +&i2c4 {
+> +	status =3D "okay";
+> +};
+> +
+> +&mdio {
+> +	status =3D "okay";
+> +};
+> +
+> +&saradc {
+> +	status =3D "okay";
+> +};
+> +
+> +&sdhci0 {
+> +	bus-width =3D <4>;
+> +	no-1-8-v;
+> +	disable-wp;
+> +	status =3D "okay";
+> +};
+> +
+> +&sdhci1 {
+> +	bus-width =3D <4>;
+> +	cap-sdio-irq;
+> +	no-mmc;
+> +	no-sd;
+> +	non-removable;
+> +	status =3D "okay";
+> +};
+> +
+> +&spi3 {
+> +	status =3D "okay";
+> +};
+> +
+> +&uart0 {
+> +	status =3D "okay";
+> +};
+> +
+> +&usb {
+> +	dr_mode =3D "host";
+> +	status =3D "okay";
+> +};
+> +
 
-Signed-off-by: Wil Stark <wil_stark@keysight.com>
-[rgantois: Rebased from v6.6.58 to v7.1.0-rc6]
-[rgantois: Commit log]
-Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
----
- drivers/iio/temperature/tmp117.c | 4 ++++
- 1 file changed, 4 insertions(+)
+I tested this series on a Milk-V Duo S board with a RISC-V mainline kernel.
 
-diff --git a/drivers/iio/temperature/tmp117.c b/drivers/iio/temperature/tmp117.c
-index 8972083d903a2..8e9621171c516 100644
---- a/drivers/iio/temperature/tmp117.c
-+++ b/drivers/iio/temperature/tmp117.c
-@@ -38,6 +38,7 @@
- 
- #define TMP116_DEVICE_ID		0x1116
- #define TMP117_DEVICE_ID		0x0117
-+#define TMP119_DEVICE_ID		0x2117
- 
- struct tmp117_data {
- 	struct i2c_client *client;
-@@ -170,6 +171,7 @@ static int tmp117_probe(struct i2c_client *client)
- 		match_data = &tmp116_channels_info;
- 		break;
- 	case TMP117_DEVICE_ID:
-+	case TMP119_DEVICE_ID:
- 		match_data = &tmp117_channels_info;
- 		break;
- 	default:
-@@ -204,6 +206,7 @@ static int tmp117_probe(struct i2c_client *client)
- static const struct of_device_id tmp117_of_match[] = {
- 	{ .compatible = "ti,tmp116", .data = &tmp116_channels_info },
- 	{ .compatible = "ti,tmp117", .data = &tmp117_channels_info },
-+	{ .compatible = "ti,tmp119", .data = &tmp117_channels_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, tmp117_of_match);
-@@ -211,6 +214,7 @@ MODULE_DEVICE_TABLE(of, tmp117_of_match);
- static const struct i2c_device_id tmp117_id[] = {
- 	{ "tmp116", (kernel_ulong_t)&tmp116_channels_info },
- 	{ "tmp117", (kernel_ulong_t)&tmp117_channels_info },
-+	{ "tmp119", (kernel_ulong_t)&tmp117_channels_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, tmp117_id);
+The board boots successfully with sg2000-milkv-duo-s.dtb. UART works, the S=
+D
+card is detected and readable, Ethernet works after enabling the MDIO mux
+options, and the DMA, USB host, I2C4, SPI3 and SARADC nodes all probe
+successfully.
 
--- 
-2.54.0
+One thing I noticed is that the Wi-Fi SDIO device is not enumerated with th=
+e
+mainline DT. The sdhci1 host itself probes:
 
+  mmc1: SDHCI controller on 4320000.mmc [4320000.mmc] using ADMA 64-bit
+  mmc1: Failed to initialize a non-removable card
+
+and /sys/bus/sdio/devices remains empty.
+
+With the vendor image on the same board, the Wi-Fi SDIO device is detected =
+on
+the corresponding controller:
+
+  mmc1: SDHCI controller on 4320000.wifi-sd [4320000.wifi-sd] using ADMA 64=
+-bit
+  sdio vendor ID: 0xc8a1
+  sdio device ID: 0x0082
+  aicwf_sdio_chipmatch USE AIC8800D80
+  sdio ready
+
+So it looks like the SDHCI host comes up, but the SDIO device behind it is =
+not
+discovered. I may still be missing some config option.
+
+Have you seen this issue on your side? If not, could you please share the
+relevant kernel config used for your testing?
+
+--=20
+Best regards,
+Shuwei Wu
 
