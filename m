@@ -1,243 +1,184 @@
-Return-Path: <devicetree+bounces-307213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id z4/dKGdwImoqXQEAu9opvQ
-	(envelope-from <devicetree+bounces-307213-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 08:44:55 +0200
+	id iXH4FIhwImovXQEAu9opvQ
+	(envelope-from <devicetree+bounces-307215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 08:45:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2119E6459FB
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 08:44:55 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5166645A09
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 08:45:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=163.com header.s=s110527 header.b=WT7HMdhl;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307213-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307213-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=163.com;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=sH7jIIJW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307215-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307215-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB66A30EFB50
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 06:32:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6059330670A9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 06:33:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6F4409E0A;
-	Fri,  5 Jun 2026 06:31:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83E23BE17F;
+	Fri,  5 Jun 2026 06:33:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59F5C40758F;
-	Fri,  5 Jun 2026 06:31:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5AF1382289;
+	Fri,  5 Jun 2026 06:33:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780641116; cv=none; b=jA900WpbYBTy8O63xc8Scktf0FQIc3fmAnoNCjne57wZAPJ1ue1BtrmBltx9merTuJAyOZs7zhdK8WaMypQtM4nlMpcKW42yujV+CDzCpEaMaNqdbDXQr874VHkj/UstfhDscIjT2MgrhozjMcxqzDajEOJdx1AWhqQ3nG8cDfQ=
+	t=1780641185; cv=none; b=mlr2Yg8ctLtuT0QeP4bxjSb4+GL14AQ1MyJaLj8hkpQmxZGwdPP1W5Ht+vSePQDH5z9oCWNv1kHvAYI3oYNEol2tpLqGDjF5oMU6F/QHd0GTb76yZ0K6zwd9EXjLKqeH67T1Leu0Roin7XWSmkNOOuUB05kr+pQkOCB1FmTd3tg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780641116; c=relaxed/simple;
-	bh=wfZixIpM8oc/drRUVburnx4hJviXARDaeGZECaDZ1Wg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kaxiLNdp5w6hfKC70/3A3FrPNex7Sn5tGQroCMvfuibgjrzXFhJvls2a+38l5rNazxXjgoEXaJbYyvchA0/NSA3rbNHp07nbXplYGB4uXhU45519BJjjaOn+iLJsBwmL++pIFJkiEi0ZdJJ7/E8gs1FISHQDbCCZSf5XhsbvsLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=WT7HMdhl; arc=none smtp.client-ip=117.135.210.2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=Z8
-	Nptqq4wNOfaE1HQs8SON1B5R40ZYajOMIfxodq8oE=; b=WT7HMdhlLmkQJCGlf5
-	CdapN8i2810AkwUAdFkrJ+5QJUd6qiVB8Je+AeLNRn4jMc7VizHoVkKRl1YxKimj
-	nLSpLmSqe+CkX1t4HVyvbWX/6kfQPsTmmXEmt2OnjEkEoYafc9SXuXmEF1x6do6C
-	FyCEkIbnqqzFDgn4NRVMSsHEg=
-Received: from ZM.localdomain (unknown [])
-	by gzga-smtp-mtada-g0-0 (Coremail) with SMTP id _____wDnl3AjbSJqJU+5BQ--.9698S5;
-	Fri, 05 Jun 2026 14:31:11 +0800 (CST)
-From: Ziming Zhu <zmzhu0630@163.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Ziming Zhu <ziming.zhu@silergycorp.com>
-Subject: [PATCH v2 3/3] hwmon: Add documentation for SQ24860
-Date: Fri,  5 Jun 2026 14:30:42 +0800
-Message-Id: <20260605063042.91776-4-zmzhu0630@163.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260605063042.91776-1-zmzhu0630@163.com>
-References: <20260605063042.91776-1-zmzhu0630@163.com>
+	s=arc-20240116; t=1780641185; c=relaxed/simple;
+	bh=oZ+ZvFYXgt3BlDHLx3H6UKrGgUH+GXfiB8/jp4bvNtM=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=EazN1BqIcCCkXb6715A34hOvHU3JVaLWlLFPX5anbbWOHsP/rVgj68h2rotPur3UimbaxuxSInRT1fajB2bI8Byxd5n/v9KFcMGCLh81G4QNwFuvbuLRAey2Tlb1wrJKI2J0sZMn1UofSqdc0wBhmfWEOkp/qv1+Xcd75419DdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=sH7jIIJW; arc=none smtp.client-ip=185.171.202.116
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 7D854C5846E;
+	Fri,  5 Jun 2026 06:33:02 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E41095FED1;
+	Fri,  5 Jun 2026 06:33:02 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9172B106A1D96;
+	Fri,  5 Jun 2026 08:32:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1780641182; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=oZ+ZvFYXgt3BlDHLx3H6UKrGgUH+GXfiB8/jp4bvNtM=;
+	b=sH7jIIJWFPZR4hP+gJQg9HmaSqE1LeB2WEN6Po/fsKY9cA/HNSdDG0U1CgzeUcCesWx90b
+	lSCBbKqwsoc9zmbFlWtMDWn4qHzjZXHzfecQeiVqxOIfXx/dOtyaCPHB25uJMMGJSmFmzn
+	Qft13lRSJQi8vRmG9Bfg2fuLF/HWp3Dms3fdfUsP+YMydeKnTGwZwRFX9b86yMkphOlM7p
+	9x18LnAC/szhbJNdYaqZpyc7DWog5+nX8Eh2NsgnONIUpW5v0+01/3E5Ljjp/HtzAhvIMI
+	MtA3y4trl10T711ZDtIOHTAh4oWqLj0RMj4Qd53Pl7BgwXPXKoqtRxzqAwfFkg==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Santhosh Kumar K <s-k6@ti.com>,  broonie@kernel.org,  robh@kernel.org,
+  krzk+dt@kernel.org,  conor+dt@kernel.org,  richard@nod.at,
+  vigneshr@ti.com,  pratyush@kernel.org,  mwalle@kernel.org,
+  takahiro.kuwano@infineon.com,  linux-spi@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-mtd@lists.infradead.org,  praneeth@ti.com,  u-kumar1@ti.com,
+  a-dutta@ti.com
+Subject: Re: [PATCH v3 01/13] spi: dt-bindings: allow spi-max-frequency to
+ specify a frequency pair
+In-Reply-To: <20260604-shrunk-acclaim-25368d7ad63e@spud> (Conor Dooley's
+	message of "Thu, 4 Jun 2026 09:36:49 +0100")
+References: <20260527175527.2247679-2-s-k6@ti.com>
+	<20260528-clergyman-kindling-20971775ba78@spud>
+	<eaa75113-2b89-468d-aca8-932bc7e33a7d@ti.com>
+	<87cxy92llq.fsf@bootlin.com>
+	<20260602-aptly-bunkbed-1bd3a8d63d54@spud>
+	<875x3zzkji.fsf@bootlin.com> <20260603-neatly-twine-e89b923f5cb6@spud>
+	<87o6hry4d4.fsf@bootlin.com>
+	<20260603-balance-encounter-94f69e1577f3@spud>
+	<87ik7yydyv.fsf@bootlin.com>
+	<20260604-shrunk-acclaim-25368d7ad63e@spud>
+User-Agent: mu4e 1.12.7; emacs 30.2
+Date: Fri, 05 Jun 2026 08:32:56 +0200
+Message-ID: <87a4t9wl7r.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnl3AjbSJqJU+5BQ--.9698S5
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJF1DXry3Kw47urW5KFW8Crg_yoWruw4xpF
-	93GrySkw1UXrW7WFW3tw18Zr45Gay8Ar43AF1kJryrZFn8Ar1vkrnrKr13Ja4DKrn5AFWr
-	KF4UtrWUJw4jkFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UZAwsUUUUU=
-X-CM-SenderInfo: x2p2x3aqwtiqqrwthudrp/xtbCwBCKg2oibTDULAAA30
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-307213-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[zmzhu0630@163.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-307215-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:s-k6@ti.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:richard@nod.at,m:vigneshr@ti.com,m:pratyush@kernel.org,m:mwalle@kernel.org,m:takahiro.kuwano@infineon.com,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:praneeth@ti.com,m:u-kumar1@ti.com,m:a-dutta@ti.com,m:krzk@kernel.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:ziming.zhu@silergycorp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[163.com];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zmzhu0630@163.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[163.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,silergycorp.com:email,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:mid,bootlin.com:from_mime,bootlin.com:dkim,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2119E6459FB
+X-Rspamd-Queue-Id: A5166645A09
 
-From: Ziming Zhu <ziming.zhu@silergycorp.com>
+On 04/06/2026 at 09:36:49 +01, Conor Dooley <conor@kernel.org> wrote:
 
-Document the supported sysfs attributes for the Silergy SQ24860 PMBus
-hwmon driver.
+> On Thu, Jun 04, 2026 at 09:14:16AM +0200, Miquel Raynal wrote:
+>> Hi Conor,
+>>=20
+>> >> >> > Right, and this I guess is what scuppers letting the controller =
+driver
+>> >> >> > sort the configuration out itself and leaving the property as-is.
+>> >> >> > It could be that the speed in spi-max-frequency is lower than th=
+e "base
+>> >> >> > speed" of the controller but because of board routing or device
+>> >> >> > capability that the tuned mode is still required, right?
+>> >> >>=20
+>> >> >> I do not actually expect any tuned mode/frequency to be mandatory.
+>> >> >
+>> >> > I think you misunderstood my use of "required", I meant that the new
+>> >> > property/information was needed in the scenario I described, not th=
+at it
+>> >> > should be a required property in a binding.
+>> >>=20
+>> >> Yes I misunderstood the term indeed. However I still fail to catch wh=
+at
+>> >> you meant here, I'm sorry. Would you mind rephrasing?
+>> >
+>> > I was talking about a scenario where you want to use the tuned mode to
+>> > achieve the maximum rate because of the device and/or board configurat=
+ion,
+>> > but the rate is below the point where the controller would need tuning.
+>> > Say the controller needs tuning above 8 Hz but the conditions require
+>> > tuning to achieve more than 5 Hz. In this example, if the device can do
+>> > 6 Hz, spi-max-frequency (in the current form) would be set to 6 Hz, and
+>> > the controller would not enable the tuned mode, leading to problems
+>> > because the inflection point determined from the controller compatible
+>> > of 8 Hz would not have been reached.
+>>=20
+>> I don't think this is a real situation. If the "conditions", as you say
+>> (ie. PCB routing, mostly) require tuning above 5, then spi-max-frequency
+>> should be 5.
+>
+> Then tuning mode would never be used.
 
-Signed-off-by: Ziming Zhu <ziming.zhu@silergycorp.com>
----
- Documentation/hwmon/index.rst   |  1 +
- Documentation/hwmon/sq24860.rst | 96 +++++++++++++++++++++++++++++++++
- 2 files changed, 97 insertions(+)
- create mode 100644 Documentation/hwmon/sq24860.rst
+Well, this is exactly what we propose in this series, a way to indicate
+two maximum frequencies, one that just works (like before) and a higher
+frequency that is only reachable after an extra tuning procedure.
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 8b655e5d6b68..1888905cd234 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -242,6 +242,7 @@ Hardware Monitoring Kernel Drivers
-    smsc47m192
-    smsc47m1
-    sparx5-temp
-+   sq24860
-    spd5118
-    stpddc60
-    surface_fan
-diff --git a/Documentation/hwmon/sq24860.rst b/Documentation/hwmon/sq24860.rst
-new file mode 100644
-index 000000000000..f0182b955d8a
---- /dev/null
-+++ b/Documentation/hwmon/sq24860.rst
-@@ -0,0 +1,96 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver sq24860
-+=====================
-+
-+Supported chips:
-+
-+  * Silergy SQ24860
-+
-+    Prefix: 'sq24860'
-+
-+Author:
-+
-+	Ziming Zhu <ziming.zhu@silergycorp.com>
-+
-+Description
-+------------
-+
-+This driver implements support for the Silergy SQ24860 eFuse. The device is an
-+integrated circuit protection and power management device with a PMBus
-+interface.
-+
-+The device supports direct format for reading input voltage, output voltage,
-+auxiliary voltage, input current, input power, and temperature.
-+
-+The current and power measurement scale depends on the resistor connected
-+between the IMON pin and ground. The resistor value can be configured with the
-+``silergy,rimon-micro-ohms`` device tree property. See
-+``Documentation/devicetree/bindings/hwmon/pmbus/silergy,sq24860.yaml`` for details.
-+
-+Due to the specificities of the chip, all history reset attributes are tied
-+together. Resetting the history of one sensor resets the history of all sensors.
-+
-+Sysfs entries
-+-------------
-+
-+The following attributes are supported. Limits are read-write; all other
-+attributes are read-only.
-+
-+======================= ======================================================
-+in1_label               "vin"
-+in1_input               Measured input voltage.
-+in1_average             Average measured input voltage.
-+in1_min                 Minimum input voltage limit.
-+in1_lcrit               Critical low input voltage limit.
-+in1_max                 Maximum input voltage limit.
-+in1_crit                Critical high input voltage limit.
-+in1_min_alarm           Input voltage low warning alarm.
-+in1_lcrit_alarm         Input voltage low fault alarm.
-+in1_max_alarm           Input voltage high warning alarm.
-+in1_crit_alarm          Input voltage high fault alarm.
-+in1_highest             Historical maximum input voltage.
-+in1_lowest              Historical minimum input voltage.
-+in1_reset_history       Write any value to reset history.
-+
-+in2_label               "vmon"
-+in2_input               Measured auxiliary input voltage.
-+
-+in3_label               "vout1"
-+in3_input               Measured output voltage.
-+in3_average             Average measured output voltage.
-+in3_min                 Minimum output voltage limit.
-+in3_min_alarm           Output voltage low alarm.
-+in3_lowest              Historical minimum output voltage.
-+in3_reset_history       Write any value to reset history.
-+
-+curr1_label             "iin"
-+curr1_input             Measured input current.
-+curr1_average           Average measured input current.
-+curr1_max               Maximum input current warning limit.
-+curr1_crit              Critical input over-current fault limit.
-+curr1_max_alarm         Input current warning alarm.
-+curr1_crit_alarm        Input over-current fault alarm.
-+curr1_highest           Historical maximum input current.
-+curr1_reset_history     Write any value to reset history.
-+
-+power1_label            "pin"
-+power1_input            Measured input power.
-+power1_average          Average measured input power.
-+power1_max              Maximum input power warning limit.
-+power1_alarm            Input power warning alarm.
-+power1_input_highest    Historical maximum input power.
-+power1_reset_history    Write any value to reset history.
-+
-+temp1_input             Measured temperature.
-+temp1_average           Average measured temperature.
-+temp1_max               Maximum temperature warning limit.
-+temp1_crit              Critical temperature fault limit.
-+temp1_max_alarm         Temperature warning alarm.
-+temp1_crit_alarm        Temperature fault alarm.
-+temp1_highest           Historical maximum temperature.
-+temp1_reset_history     Write any value to reset history.
-+
-+samples                 Number of samples used for average values.
-+======================= ======================================================
-+
--- 
-2.25.1
+> Remember, this is a theoretical world
+> where spi-max-frequency would contain the tuned frequency and the
+> controller was using compatible-specific speed thresholds to determine
+> if tuning was required.
 
+That is not what we are proposing. I don't think indicating the "after
+tuning" frequency in a property that has long been used for an always
+reachable frequency is wise. Hence either the use of an array (the
+second entry could contain a higher frequency) or a secondary
+spi-max-frequency-whatever property.
+
+Thanks,
+Miqu=C3=A8l
 
