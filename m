@@ -1,205 +1,183 @@
-Return-Path: <devicetree+bounces-307429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307430-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Fy8GNsDOImq1dwEAu9opvQ
-	(envelope-from <devicetree+bounces-307429-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 15:27:28 +0200
+	id st9sFd/MImpXdwEAu9opvQ
+	(envelope-from <devicetree+bounces-307430-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 15:19:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30FFC64887B
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 15:27:28 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF15648771
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 15:19:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=herrie.org header.s=transip-a header.b=iuOBXaDG;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307429-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307429-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=jkXJIE+i;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307430-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307430-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 46B22300CC14
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 13:19:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 57460300B1B0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 13:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C3740E8D1;
-	Fri,  5 Jun 2026 13:18:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B0D640E8DE;
+	Fri,  5 Jun 2026 13:19:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound2.mail.transip.nl (outbound2.mail.transip.nl [149.210.149.73])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5FF440E8C0;
-	Fri,  5 Jun 2026 13:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA13C40E8D4;
+	Fri,  5 Jun 2026 13:19:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780665537; cv=none; b=UiJIapdWP0lZU5MMaB5mlJTowKDzDracyFVDTkYlBUMjXRV+XNnot5VZ+F2smPcQ44HdeG1isfjyFO+NzaO9/cU6K00OrYWFKRRxE4QYJV7sUuibJkd+jILv8u5Mwr6XWfgVZPIHwok54LTjp8WCY3KLBCBZCEdxRJFvfwNZHo8=
+	t=1780665562; cv=none; b=fjVztfSmvAM6WT7VeL/t3FHoISm7VFvc0o7our/vj6uUcqQ8LlkoDbxfy0NTf8X3/4iUGTqb76GHt9mb1GDg1pLgq9KG61il3vt/BqGGvPg0RNYvQxiImTz+sXlmO5XCslRbh7RapnLwRmke5pAbtqBD418uAwO/2mq22IFzKhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780665537; c=relaxed/simple;
-	bh=RwrbHH9+9wSryIYzjtFHFD7K/OAgolLTQNAo59cIB1A=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=EzzEoUgbmdWJS1lv0j3fzdY3E0BPd6ylA/gr0M6u+/0sIBejq1PURC/pZMFNQ7DY7Z3harB4NIAmDbb+she2sIBpKwEq9/1M9S/PUlpoEH6U7oQkOl2F3BhjaQ6t1p5WX/aBV8J4MQo6r5OSGJrQrdigZ0mAfrSBPRpi2QeqT5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=iuOBXaDG; arc=none smtp.client-ip=149.210.149.73
-Received: from submission14.mail.transip.nl (unknown [10.103.8.165])
-	by outbound2.mail.transip.nl (Postfix) with ESMTP id 4gX27l3ZG9zYdrq;
-	Fri,  5 Jun 2026 15:18:43 +0200 (CEST)
-Received: from transip.email (unknown [10.103.8.120])
-	by submission14.mail.transip.nl (Postfix) with ESMTPA id 4gX27j5kYqz3RgQtt;
-	Fri,  5 Jun 2026 15:18:41 +0200 (CEST)
+	s=arc-20240116; t=1780665562; c=relaxed/simple;
+	bh=J/BBiDOtg87dY6XX/rpTbFHNhKF1CVqcYk+STuw6bIo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CIR8A4Abjzhwz04Xqe/ZMHzqfj3rnA8bJh4IASELp2xFLfZghI9g9i8fj1wkjVAANZYuQbxEfgVY3iFtP/2rLTKAqsM3IA4ZyIgbHSy1liyyQeb3AxbNeWK33K8NCKJdcQ9k88xLPmmqtAX2qnDiLFBE5Srm4HUruPDRY+My3PM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jkXJIE+i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7B5DAC2BCB4;
+	Fri,  5 Jun 2026 13:19:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780665562;
+	bh=J/BBiDOtg87dY6XX/rpTbFHNhKF1CVqcYk+STuw6bIo=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=jkXJIE+i2tU6A8RMnyOHBN+RjXXgWqZ+4yXYlz+RzSnqGga8c7ofs2Ke6kQechjpU
+	 jQI54yH1X5NXCRMMT8ep776OzX5Q5pCu9nbLr64aFaKDvIf9LmacSh494n6OxXdNG8
+	 ukLjfWWC8Ibb7jvzMFMNJJbhj8kauZ3ob5wKKfXtmAxMWk0uhRq0VIBsU2OLZEij3C
+	 cpQ7kI36zuE7KUUIMdeJDxO0JuA3rpxpXV5kovA1EbHLHgSrcYINDOwgshk1eM5od9
+	 WWs62ZUYLHHE/IgSVeoU1+hT14e2hxmKyp56nSLcM7xSWTt/40z3EojVeR/NAY+TWj
+	 BHQLEJKd7b/lg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 55497CD6E7C;
+	Fri,  5 Jun 2026 13:19:22 +0000 (UTC)
+From: David Wales via B4 Relay <devnull+daviewales.disroot.org@kernel.org>
+Subject: [PATCH v4 0/2] Add initial device tree for Motorola Moto G (2014)
+Date: Fri, 05 Jun 2026 23:19:10 +1000
+Message-Id: <20260605-device-motorola-titan-mainline-v4-0-08a7be31f05c@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 05 Jun 2026 15:18:41 +0200
-From: me@herrie.org
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Herman van Hazendonk
- <github.com@herrie.org>, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- tomasborquez13@gmail.com, masneyb@onstation.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: light: isl29018: add
- isil,cover-comp-gain
-Reply-To: github.com@herrie.org
-Mail-Reply-To: github.com@herrie.org
-In-Reply-To: <20260605140449.1d7538ee@jic23-huawei>
-References: <20260604100617.3486541-1-github.com@herrie.org>
- <20260604100617.3486541-3-github.com@herrie.org>
- <20260604-energy-lid-e7949164431a@spud>
- <20260605140449.1d7538ee@jic23-huawei>
-User-Agent: Webmail
-Message-ID: <b6919a62f06ad8e4e80232d9b2a0e706@herrie.org>
-X-Sender: me@herrie.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Scanned-By: ClueGetter at submission14.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=herrie.org; t=1780665523; h=from:reply-to:subject:to:
- cc:references:in-reply-to:date:mime-version:content-type;
- bh=09KWYWN3aDGlrvx5eZ+tQ7JdO5jM2Se3rJrxGagpMz8=;
- b=iuOBXaDGiRGXGJzsHc1qGmOqznJVr6hvFDmx4hCZUOdCIIIAsgq6MI4zq2KnGPtQ03O6Vi
- wdV+Hzk0jWaZOMDhsedGGatDEotRQQeQ4FB9Cp/iOOxiEUyeGzV1F3dld5vCyH7IViK0r3
- 2JKajZK5BYRC7e5iFddmqRI0B2u8rwNLStv8s+LGMIdVSN6rTcY4oDRLoXcbQl8NfZybWt
- QO/62GcfjM3qXJc2qg4ybqsmnSi0W3WQUKZYd9htvBpRGYfc9Byoy9JTxbUyDLbvwfeo6i
- 96yYwLze4e01yZ+y+cmMpNAGaK0xsN3ptYNAQMrwF3hnwLFQY97J7VPDy5u/Sg==
-X-Report-Abuse-To: abuse@transip.nl
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4XOzW7CMBAE4FdBPtfVep0ftyfeA3FwnTVsBXZlm
+ wgU5d3rUCRa9ZDjSKNvZhKZElMW75tJJBo5cww1NC8b4Y42HEjyULNAwA4aaORQS47kOZaY4sn
+ KwsUGebYcThxIet91xmtsO/SiIl+JPF/vA7v9T86Xj09yZVGXxpFzpW73B6Naeo8x1Gtjo5IgS
+ RmlLaBxzmwHzinG8hrTQSxzIz7BFnAVxAq6/k1h37u+Afsf1L/BdhXUFTTeeYsGqB3gLzjP8zc
+ GGszWggEAAA==
+X-Change-ID: 20260404-device-motorola-titan-mainline-ff668f32562f
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ David Wales <daviewales@disroot.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1857;
+ i=daviewales@disroot.org; h=from:subject:message-id;
+ bh=J/BBiDOtg87dY6XX/rpTbFHNhKF1CVqcYk+STuw6bIo=;
+ b=owEBbQGS/pANAwAKAW1jV4FG9KFmAcsmYgBqIszXmtullhdX19O3o0UI3LZETYtj6yQqyAecw
+ 0GWZZfC9/aJATMEAAEKAB0WIQTXikd3yUPmOPWSLPJtY1eBRvShZgUCaiLM1wAKCRBtY1eBRvSh
+ ZuSqB/9sSAXxItl+Zc/4i1daKZqk4mpqVE8gdw5+ozK9UxosI684gM/XqmhsbjcuKxQN7dP+es0
+ oXWheuLIlSbbd0gt2oKM4iPuXs8EiZHZd4LBBUmESMBUpjW1Ehjn/GQwVQSAbIP3D0xwVIVOjps
+ 75Nx4wXqqHmhhcb2fq4o3Mf5BVF7LnbSgPaVGwh7N9q0HrDZtruR+ovKgvf4yAywSChfI9QAV6M
+ WvovgR5nkb7bgagTtZIkADj6AYqIUbdTKbtuM3G+ANkLG0EF8Bfmo8w6aCTSQ6uiNHmyRGM/b6T
+ 2Hpo9qWc3ME4mZPc+WA26IJSle3oqLpx5rJd2ndWZ9WHVfmh
+X-Developer-Key: i=daviewales@disroot.org; a=openpgp;
+ fpr=8F5BAFB15444A769DC3B61684022B817D275D037
+X-Endpoint-Received: by B4 Relay for daviewales@disroot.org/default with
+ auth_id=737
+X-Original-From: David Wales <daviewales@disroot.org>
+Reply-To: daviewales@disroot.org
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.15 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-307430-lists,devicetree=lfdr.de,daviewales.disroot.org];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307429-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[me@herrie.org,devicetree@vger.kernel.org];
-	DMARC_NA(0.00)[herrie.org];
-	FORGED_SENDER(0.00)[me@herrie.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:daviewales@disroot.org,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:conor@kernel.org,m:github.com@herrie.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tomasborquez13@gmail.com,m:masneyb@onstation.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,herrie.org,baylibre.com,analog.com,gmail.com,onstation.org,vger.kernel.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[github.com@herrie.org];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	REPLYTO_DOM_EQ_FROM_DOM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[herrie.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[daviewales@disroot.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NO_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,msgid.link:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,disroot.org:mid,disroot.org:email,disroot.org:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 30FFC64887B
+X-Rspamd-Queue-Id: DAF15648771
 
-On 2026-06-05 15:04, Jonathan Cameron wrote:
-> On Thu, 4 Jun 2026 18:01:08 +0100
-> Conor Dooley <conor@kernel.org> wrote:
-> 
->> On Thu, Jun 04, 2026 at 12:06:16PM +0200, Herman van Hazendonk wrote:
->> > Document the new optional property that seeds the ISL29018 calibration
->> > scale factor at boot from firmware, allowing boards with tinted cover
->> > glass to ship with correct luminance readings without a userspace helper.
->> >
->> > The value is a positive integer (minimum 1, maximum 65535) that is
->> > multiplied with the raw lux reading.  Userspace can still override it
->> > at runtime through in_illuminance0_calibscale.
->> >
->> > Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
->> > ---
->> >  .../devicetree/bindings/iio/light/isl29018.yaml     | 13 +++++++++++++
->> >  1 file changed, 13 insertions(+)
->> >
->> > diff --git a/Documentation/devicetree/bindings/iio/light/isl29018.yaml b/Documentation/devicetree/bindings/iio/light/isl29018.yaml
->> > index 0ea278b07d1c..92ea2742bbd3 100644
->> > --- a/Documentation/devicetree/bindings/iio/light/isl29018.yaml
->> > +++ b/Documentation/devicetree/bindings/iio/light/isl29018.yaml
->> > @@ -34,6 +34,19 @@ properties:
->> >    vcc-supply:
->> >      description: Regulator that provides power to the sensor
->> >
->> > +  isil,cover-comp-gain:
->> > +    description: |
->> > +      Multiplier applied to the ambient-light reading at startup to
->> > +      compensate for optical loss in the board's cover glass. Boards
->> > +      that mount the sensor under a tinted or coated window typically
->> > +      need a value between a few and a few hundred.
-> 
-> Is it useful to support decimal points on these values?  The userspace 
-> interface
-> does and you mention the 'right' answer might be only a few which means 
-> precision
-> at that range will be terrible - less of an issue if 100s!
-> 
-> Thanks
-> 
-> Jonathan
-> 
-Hard to say, my old HP TouchPad needs 100 as a value here (taken from 
-legacy 2.6.35
-kernel and binaries). So we probably don't need precision, but I have no 
-other
-references to substantiate.
+The Motorola Moto G (2014) is the second device in the Moto G series,
+with codename motorola-titan.
 
-Thanks
-Herman
-> 
-> 
->> 
->> > The value seeds
->> > +      in_illuminance0_calibscale, so it can still be retuned at
->> > +      runtime through sysfs.
->> 
->> Delete this, driver implementation stuff isn't relevant to the
->> devicetree binding.
->> 
->> With that gone,
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->> 
->> pw-bot: changes-requested
->> 
->> Cheers,
->> Conor.
->> 
->> > +    $ref: /schemas/types.yaml#/definitions/uint32
->> > +    minimum: 1
->> > +    maximum: 65535
->> > +    default: 1
->> > +
->> >  required:
->> >    - compatible
->> >    - reg
->> > --
->> > 2.43.0
->> >
+This series documents the motorola-titan, and adds an initial device
+tree.
+
+These patches have been previously discussed and merged into the
+downstream msm8226-mainline fork:
+https://github.com/msm8226-mainline/linux/pull/18
+
+---
+Changes in v4:
+- Remove reg_vddio_disp_default as it is not used.
+- Link to v3: https://patch.msgid.link/20260505-device-motorola-titan-mainline-v3-0-8fcfa280e5d0@disroot.org
+
+Changes in v3:
+- Add missing trailers to commits
+- Link to v2: https://patch.msgid.link/20260502-device-motorola-titan-mainline-v2-0-c791277c740a@disroot.org
+
+Changes in v2:
+- Remove active-high from reg_lcd_default.
+- Add reg_vddio_disp_default, which I somehow missed in the last version.
+  (Assuming this also shouldn't use active-high)
+- Link to v1: https://patch.msgid.link/20260423-device-motorola-titan-mainline-v1-0-e1813a028cc8@disroot.org
+
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+---
+David Wales (2):
+      dt-bindings: arm: qcom: Add Motorola Moto G2 (2014)
+      ARM: dts: qcom: Support Motorola Moto G2 (2014)
+
+ Documentation/devicetree/bindings/arm/qcom.yaml   |   1 +
+ arch/arm/boot/dts/qcom/Makefile                   |   1 +
+ arch/arm/boot/dts/qcom/msm8226-motorola-titan.dts | 350 ++++++++++++++++++++++
+ 3 files changed, 352 insertions(+)
+---
+base-commit: 028ef9c96e96197026887c0f092424679298aae8
+change-id: 20260404-device-motorola-titan-mainline-ff668f32562f
+
+Best regards,
+--  
+David Wales <daviewales@disroot.org>
+
+
 
