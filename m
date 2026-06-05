@@ -1,158 +1,142 @@
-Return-Path: <devicetree+bounces-307447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307448-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Qb6eFAHdImo6egEAu9opvQ
-	(envelope-from <devicetree+bounces-307447-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 16:28:17 +0200
+	id pzxnNvfbImoDegEAu9opvQ
+	(envelope-from <devicetree+bounces-307448-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 16:23:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D8E648D6B
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 16:28:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C77F648CFE
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 16:23:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Hw+U0HjQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307447-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307447-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=lunn.ch header.s=20171124 header.b=tqii02+1;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307448-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307448-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=lunn.ch;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 88E6A30534EE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 14:21:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DB64B30158B3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 14:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0297D376464;
-	Fri,  5 Jun 2026 14:21:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D96EC37472D;
+	Fri,  5 Jun 2026 14:23:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1081F330B2E;
-	Fri,  5 Jun 2026 14:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 799DD240611;
+	Fri,  5 Jun 2026 14:23:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780669301; cv=none; b=NpHOHb9Zv/6fLl9Mj9sb78QoNE80rSXmuzyzODzFhXpuPFjPCEAdeSnNR7bW7oftW8Ry0TknFcjOM+WR7asynAryNwWT5yxc7HBpBQa6pOaMHgeC7bgZgDr1jlEBhes7wg8NbAFvBHKmiPdloSboy8JYKJezHbMbShKbA9Y71+c=
+	t=1780669428; cv=none; b=QqZqR6DE4oAQc6qS26rqEgW6fHX3YAxS8LiUIUatf2+zstOd4iT54P+p/+0+ktNlOomC5o/3Ly7b/Ae0bK7iRG+0w8tyM3JWWDw7f7f8gve5J2ns3iB0CPJuSR6/jAhzwRdHhFkl4u3jNxy7+zXWQ5U8n7+DGuSwxFA/9HSsufk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780669301; c=relaxed/simple;
-	bh=8YL72t44yE4RHjLWnzT9Cs0Y+8NCQpiDFvM9EEwwibA=;
+	s=arc-20240116; t=1780669428; c=relaxed/simple;
+	bh=zL/lzmmfDWFwKDK6wayFDCPYUxjUxgUjqtCDO63UrME=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oGRfSPtNiQVSIOXTjBzjjTNTGn91pbw5zw3CvcYENlzG8OyZgBYffpvDvDPVNW5I8752uSJgknchxBGudPRRXsozdVYV98xy81cVBlvA6wgbE/8VyTPyAy6wlf3ziqOvtrdrr3P9XnRGiMOzqRY0fsI5S3la2C81UTZd9IX85uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hw+U0HjQ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E05A61F00893;
-	Fri,  5 Jun 2026 14:21:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780669300;
-	bh=UbSa3ODwt/Ewf2SZXpIlClLvhhn/p7bCuK3p6KqCz0Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Hw+U0HjQnNbnt9KxUAPI2UFbqmqu3tRenc4wRuIA4wMGQxLiNv4YVZAWHqFq1gcDe
-	 MLQ+UNAzqN/CwsuW1gr4oDoaSjwiVKK2GIm/woYzrfC+75a0Vb767dYlKxF5wkStYp
-	 jv6mFO3fWA1T8wZjnB1UzdSKtq+cQJliv63vU5951Z5MFesKPgsFYqqL7h6WC8vNkz
-	 WwqeammPuCJrRUVQRu1FRxMBoITkhVd2a6+QogBFqpi2N5nsTo9HqT9mcritUePk6t
-	 ChtEVP8w2gSZR/HJ13IRoDU5gWLts1b2ikA2nCv8nP+xC6Zu0CNDOjZtGkLyds0PLP
-	 3ynWeC6Spsfwg==
-Date: Fri, 5 Jun 2026 15:21:35 +0100
-From: Mark Brown <broonie@kernel.org>
-To: phucduc.bui@gmail.com
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=PvK0DqU4RjyR2Ql+as78ToyVLTnJuLLPRgthQBnr855hjyDXlpWcHVnh4fpoN4tMJx0g/1kfFCHV49HGbelwQkNX8c3ZlJEXHJzh/oBB8DKHiRzIoiy8/IWNj/6IZh+7ArX74g5NYAwVZ/xZiuzjuPKmzyEaHOFSUitt3LWSbHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=tqii02+1; arc=none smtp.client-ip=156.67.10.101
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=+UiFjH/LSoAAZHIka7f4lJYjS+IOQfYaLPHOaPjIJ8I=; b=tqii02+1PtEivWqPu92L/19Quo
+	YKVckFRAaKjOfz/TcXF27THNktSd1r0boIOdIWlznzydn+yMJbZps5DsJCbmNGuKRs2ELkS/RjoKc
+	poLGldVHwd/E6T3VXZtBtfEAbNtUcT4i9/0IC6fXnsiMas7AEkISnuIpculFtONbbcEg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wVVSR-006F80-Ut; Fri, 05 Jun 2026 16:23:35 +0200
+Date: Fri, 5 Jun 2026 16:23:35 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: george.moussalem@outlook.com
+Cc: Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 10/10] ASoC: renesas: fsi: Add SPU clock control in
- hw_startup/shutdown
-Message-ID: <68a03a72-07f3-4738-bad4-6b92bafec318@sirena.org.uk>
-References: <20260605121955.105661-1-phucduc.bui@gmail.com>
- <20260605121955.105661-11-phucduc.bui@gmail.com>
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] net: phy: at803x: add RX and TX clock management
+ for IPQ5018 PHY
+Message-ID: <36cd63f4-749e-4b09-b8a6-cbf6924dea88@lunn.ch>
+References: <20260605-ipq5018-gephy-clocks-v3-0-f232d9ca0966@outlook.com>
+ <20260605-ipq5018-gephy-clocks-v3-4-f232d9ca0966@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="pvn0gmD5q1QTwXci"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260605121955.105661-11-phucduc.bui@gmail.com>
-X-Cookie: Error in operator: add beer
+In-Reply-To: <20260605-ipq5018-gephy-clocks-v3-4-f232d9ca0966@outlook.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307447-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:phucduc.bui@gmail.com,m:kuninori.morimoto.gx@renesas.com,m:geert+renesas@glider.be,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phucducbui@gmail.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-307448-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[outlook.com];
+	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_RECIPIENTS(0.00)[m:george.moussalem@outlook.com,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:f.fainelli@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:ffainelli@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[renesas.com,glider.be,gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,oss.qualcomm.com];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,lunn.ch:mid,lunn.ch:from_mime,lunn.ch:dkim,outlook.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 90D8E648D6B
+X-Rspamd-Queue-Id: 6C77F648CFE
 
+On Fri, Jun 05, 2026 at 04:41:29PM +0400, George Moussalem via B4 Relay wrote:
+> From: George Moussalem <george.moussalem@outlook.com>
+> 
+> Acquire and manage the RX and TX clocks for the IPQ5018 PHY.
+> These clocks are required for the PHY's datapath to function correctly.
+> Gate the clocks upon link state changes for improved power management.
 
---pvn0gmD5q1QTwXci
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+>  static void ipq5018_link_change_notify(struct phy_device *phydev)
+>  {
+> +	struct ipq5018_priv *priv = phydev->priv;
+> +	int ret;
+> +
+> +	if (phydev->link) {
+> +		if (!__clk_is_enabled(priv->rx_clk)) {
 
-On Fri, Jun 05, 2026 at 07:19:54PM +0700, phucduc.bui@gmail.com wrote:
+Using __ methods is usually a bad sign.
 
-> Enable and disable the SPU clock in fsi_hw_startup() and
-> fsi_hw_shutdown() to ensure the clock is active while the
-> driver accesses hardware registers.
+The logical also seems a bit odd. In order to get link, you need to Rx
+and Tx. Or is this device able to perform autoneg, send link pulses,
+without these clocks?
 
-> +	/* enable spu clock */
-> +	if (fsi->master->clk_spu) {
-> +		scoped_guard(spinlock_irqsave, &fsi->master->lock) {
-> +			if (fsi->master->spu_count == 0) {
-> +				ret = clk_enable(fsi->master->clk_spu);
-> +				if (ret < 0)
-> +					return ret;
-> +			}
-> +				fsi->master->spu_count++;
+Maybe when we have a better understanding of the requirements, we can
+find a better way to use the CCF without needing to go to its insides.
 
-The indentation here seems wrong.  We're also using spu_count to
-separately guard the clk_prepare() in fsi_clk_prepare() which seems
-problematic, I'm having to think too hard about how this might be
-robust.
-
---pvn0gmD5q1QTwXci
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoi224ACgkQJNaLcl1U
-h9BkdAf+IjsYXqEFmaRdkBWIeWhxpQqeA1zBqSdnHnXswCKMa+XQXoMCSRIguVUi
-GSo4pY57A3x3s8EZMfy+kKVUI4t8m7bo4AdFW2IJub6hW2lBI/UMGizz/vFApu7S
-IdsQd+59S216HHJvTmm5kBBtYOmhxEHDBK38fAnStSLk9Nztx+OemR8JzCKqdfWm
-dssRjktzCSanRakdmumgmSLis/bKDTLKqs3fK+gQYbkCzmEc8Z2zyRDRxQ/vCblA
-AwVAxKLMG6WWkGVBHP/bdUlPhqPI59ZpFJMJ/r6kcWPPYjl441/ydPzw4w4jMoaz
-J9XHJwv0k6oIMFP30EbnRoQY6C3KiQ==
-=B88h
------END PGP SIGNATURE-----
-
---pvn0gmD5q1QTwXci--
+     Andrew
 
