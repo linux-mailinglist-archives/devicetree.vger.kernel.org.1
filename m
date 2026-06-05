@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-307391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307395-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KGmhNwHBImradAEAu9opvQ
-	(envelope-from <devicetree+bounces-307391-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:28:49 +0200
+	id m+QFNCXBImrmdAEAu9opvQ
+	(envelope-from <devicetree+bounces-307395-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:29:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1B7E648215
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:28:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4FA648241
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:29:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=FcjVb9CS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307391-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307391-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=nvaUTNug;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307395-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307395-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B0E6830910D1
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 12:21:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 307E230D6776
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 12:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 871523101BF;
-	Fri,  5 Jun 2026 12:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BF673126DA;
+	Fri,  5 Jun 2026 12:20:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0AE395AE7
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 12:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 318AB3BED7A
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 12:20:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780662022; cv=none; b=DDXgTyasiJT8/6BHA0gFpuqAXES+974s5gA1znpnBWVSGiYtDVpfi7uh7SOMepndXok8LNC/u8dTLiNMoz1TB7/iOv09D0dPi0ztwk/+On2lD9gMrAaLlk0D9VAACW1ZgP7F6UKMlEToXYij9kdghgC1ctQIdYXgm+/Z5tfI3Og=
+	t=1780662027; cv=none; b=LlBPn4eQQ0l4zg23PIJd4DM4AsEt9OYRppYdzVAKOcHpMz1R6x4i/jIJ8bXX70/JPvR4UTjUTAaJO8l6H8rzrXqrk6ionY0d4diNP9LH1bdcEwwUVgd42zBPJ/bTCVjCsB22iO5ti2iY0vkXSUX8JDU4N4SENjMbKA8uTsZbxvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780662022; c=relaxed/simple;
-	bh=oMzP/wOfJx1MRfMRoBSuTkFbbK2LuERI2OFuLB/LIio=;
+	s=arc-20240116; t=1780662027; c=relaxed/simple;
+	bh=fTbdpRCyfFLaOtbYVQuXBTeh5e2Blvm9k0H83//ETNE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VTplz7jQ1zrBMU590GEcp1UpCfaE1UK/nn0mKj5AYml3Y8nWJ62W3jNg+f+tL9po6OfQ2Yympvrp8EvNlXUZkOIdvBrxoyZQseAd8w7/+h2zieRXHzzFTBwik/CPi/jB0BmK8Nh8egdNgldbVWH/hKyLNzVU90yRu0GqhHQuXtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FcjVb9CS; arc=none smtp.client-ip=209.85.210.169
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-8423f1e2f8eso1442167b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 05:20:20 -0700 (PDT)
+	 MIME-Version; b=YFdTKpk2/uE0oN87KSk4kDBHof0y10C4KASjBIgU+jxzIWvI0S82Ob4E3v1sb05n/n7+0+20BtNCkNo4H/WHZkATEjHxNelepARDPv7Vq0C1k/xSzrgmpprrFc7YZFjhVApqHHj07vRWxp/ZiF/OsqsFXIrZy+vcwnAwBzwOKko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nvaUTNug; arc=none smtp.client-ip=209.85.215.178
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-c85c9e8b7e4so797659a12.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 05:20:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780662020; x=1781266820; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1780662024; x=1781266824; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FEv6Gx13HTQhXkhds+jiesB3Dn5KZs+v55Em0FBOv6I=;
-        b=FcjVb9CShOQ5fFEYe9cmZd+RqTJNjn425nsEIHP9zAxdrWTRPliTVRoVbidO/0kfPi
-         ZQ2E8CkI1t7QrhrBgHC/jPjoK1wf1hFOmiw7nS8+EKZ2lyRapOdjYCGaxPqgf/Q2mmWe
-         7uVITbzZx4DL2FDiGU3fLYgU+bcTFQLKkxR9B+9/SpPmS4IawxEDElfe5biaGM4IuZ7e
-         hSledsgOJGwXYf7lhKe5XJNtDQdKaYejOeChbZFuQa7Y8/5y8rn42BHUWtKyaSNASqYH
-         piNqj1C+4wd8Y508oWNZ6nm5tYRS7EwelEo8q6Fzf4tWIxoq3D5wrvA7WWA5mXcrnhWy
-         owaQ==
+        bh=JwW5NMDZEbB74SUEwI6Q2ihuAyLFKsCwR8MKDpGPFxY=;
+        b=nvaUTNug3ZU0SWxUO3S3khfKFoXf/Dg19CWpHNsfV7eh2walln0B0rIVbXcF9irpPk
+         3OkmwsOrQO1SMSi6AQk3mpk3tddDED7nxQqpdE90VvkklCyFQtbYnnZ6GbTnIEKJfeFj
+         lkrI64/NCFM76th/SxL0aNtpcHUtOYulxfyj0ZP+knvKgq2rXAX2zuXq/gC0YJCrhLMn
+         xmpKEiF9iyEjOxDya8xj5c4JUXXQCpDpaIEVuZ+CcaCyRLTFC5iTtgRuy5QK4V3ZREZH
+         TCFivrKluxZHcVZXPpOUZ6QjzqulCS7paNSYQfruvHSHY7Tpq9NJcxLctxsp/oKoXDTY
+         50GQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780662020; x=1781266820;
+        d=1e100.net; s=20251104; t=1780662024; x=1781266824;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=FEv6Gx13HTQhXkhds+jiesB3Dn5KZs+v55Em0FBOv6I=;
-        b=KijcDLxTxziksJk9ALGeSLpXTnX/FtkIBxKbCxMqZKtq3TEZ9ZsXQAAZAP/UrGH5sC
-         HA6xOlpQ6TjDYH2jqSqlfs2ODr23sryiZ2ZWl611fPm6eK7JjD0SPMS5lXVvuaaQK1Y6
-         HdpaKGJE+vFmL/d2uoLt06k2sbHJHSkcijaNzfMEHUQr6UqSbBxT+1f8ivCpwoET6vdl
-         bzhJuhWOpFFny2gu0ikRe+otx1eXjGU+y//n9atXNJ9M7P8lJ+KBE2rkVnZibOsGXcfz
-         9iC5fWbbu+2EB6bphOaKxfWDPGj6KVDEPmDiBZFX1+tmd8/gi3fmMiuFsrcff+aL6C2m
-         /Ftg==
-X-Forwarded-Encrypted: i=1; AFNElJ9BnBTAKcQhTv0ALMDff1YvpKMUrBggDVA8wDon1p+LYOIk16LHDrf+DH/DBpCdVeV4VMjzjLHxEbef@vger.kernel.org
-X-Gm-Message-State: AOJu0YxB7xb1LooR6qLpss7CaYnHzjZBDE6W/AwtVBTvnor9jy5iKQyW
-	lulo0j8fNhziqiTN5OpsNJgrHquJoDugnSeUrYBXrO4/1WSfBr8aEJrA
-X-Gm-Gg: Acq92OFxSHOndBSpP9mpL2A9fH4PdhmINaxrz1DL1A+u9uMwKCl0ihBbSbIzxBYrXsx
-	Kh87SuyTT34s+g00R14tf/i3sjYYOCr6BnUTxDvUA6VFTCw4vSSxhhc32Y01sQNfDMWRwreQEbt
-	nfH7391wdmCcT2mIpVMSNOYB47VrJZnrJuaa2bppIRtlSUsZpmbGf2N/XaasnNZk+lycmFmR6sK
-	ljcxC31gLuwjAhU0gM/oUKHPzKHoXS00eSrc6+VAq7tksEmJ3wsQKefoyYVVQuXL8QF0k+KEAxh
-	CQprfhb2raS0H8bH5vuC6fC6gZPKbj/JfB/F+lj7idrzoNSY0CLfNR7HlvuKD32zpaosMybuhqf
-	7FD3iMuQXDNclZzfbGrewcYWywcwGSu8/Rjm+Z6aexBJ0MKVT2KO+gXZ4NIVBCRJNXm/BPFnCCl
-	q32mLMszb65eOvlnoUcA6IyC/DyC5MovvgSTiuDqXthz4az6dVyaNIXS2QYrg9A1jDvwYb+y8c6
-	efFsDI=
-X-Received: by 2002:a05:6a00:2ea9:b0:841:d7f6:7297 with SMTP id d2e1a72fcca58-842b0f0994bmr3355005b3a.40.1780662019396;
-        Fri, 05 Jun 2026 05:20:19 -0700 (PDT)
+        bh=JwW5NMDZEbB74SUEwI6Q2ihuAyLFKsCwR8MKDpGPFxY=;
+        b=R3dvndd0axFIdCSgo887zGvXnx5e0HXcPnLiSn1RIvKMdU2vDHSec+V9wNr12GD8JM
+         /1LT/mJ3EyMFTp9z4T+kNzp3PHKn7Ek/VZ6hPigHwAThC8bC7MoOlnD6jigJD+Jhhq5X
+         6Hq/S+Po1hhKJwpo4q7IGt3dj8FSUBb7zcy0oeH0iFj21eq4BB27p5puO0/sBC7tpzLV
+         s+jIz4ROkoJWLVVzn+VsXzWPzcjA6bcu9rZgLSPHyUXbd8SMBK9OX0BsBsTfSdcazrJo
+         BCCdJyQ3/WwUsIXEL0FpBxWhVhN6cbPLHcV4/u3KZdFYZz7fPyTuRgV/+YvzTedKYmNN
+         HZOg==
+X-Forwarded-Encrypted: i=1; AFNElJ82BXwBRbamA6qPlQpOY8jN5sqmNvgGG9OkjN7WheIoy3+URzZ/Zq+lkDQhWlU0OD+VgZnzcMaRWO/c@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/IOtF7sRZuCd+8YgilftB15ohrSY7XkNDPYXmgHwhXj4SfYei
+	R+hPTxzsve1IkGbK1ytc/9VYp9yYmMup0gsVBoNlAYXmu/v8+K51FS2C
+X-Gm-Gg: Acq92OHMCKPHddxhauLTTt4lnnEvSLect8zBM8Z/jvLY5VwhPb3dEe6BJNSRRD3kiSG
+	jis+FjqBz7zLxtbTJQdSCBkuQEKnsedscwvtLqbA8xELqaOQnaUU8cbQ63gQ7ET+bjj119P/kdi
+	/nvwOK045gLSu7w3CpcArCbmcNrCyXiLHtuUt+WngkcupE8e8V4dFZ/G8/V66Khs2dB1teIcnRe
+	6h+oflZO7VC9RXsHjfzPFMaAuQS8z6rDRij3by3z5CXOQxn32fRrgV+eCWJ9BKo/T9tkAPoSN1t
+	hcgRKflERUwjcbFolceBSVLO4C4NlCgsEktcrvSYa8Wf/LIXt0CBMkFPE9vfKIqnSeOVZ8tVRMh
+	sUNHdJzoIigrnKH00tKo8mSKvwLqOW7vI8hcrnYty1lIxvWQD5fAxHoRmYYSL7HoyZrwGKWzd5V
+	bwbq2X9lFS5CimTSx44Pmc+K8CLWRzZydUTNTEH6GQnQP6I4YaOXYks5/LM4l44zFAC7PY
+X-Received: by 2002:a05:6a00:4390:b0:842:6a3b:60ea with SMTP id d2e1a72fcca58-842b0fbbb03mr3362512b3a.40.1780662024485;
+        Fri, 05 Jun 2026 05:20:24 -0700 (PDT)
 Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84282221059sm8594381b3a.7.2026.06.05.05.20.15
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84282221059sm8594381b3a.7.2026.06.05.05.20.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jun 2026 05:20:19 -0700 (PDT)
+        Fri, 05 Jun 2026 05:20:24 -0700 (PDT)
 From: phucduc.bui@gmail.com
 To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
 	Mark Brown <broonie@kernel.org>,
@@ -93,9 +92,9 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	bui duc phuc <phucduc.bui@gmail.com>
-Subject: [PATCH v4 01/10] ASoC: dt-bindings: renesas,fsi: add support multiple clocks
-Date: Fri,  5 Jun 2026 19:19:45 +0700
-Message-ID: <20260605121955.105661-2-phucduc.bui@gmail.com>
+Subject: [PATCH v4 02/10] ARM: dts: renesas: r8a7740: Add clocks for FSI
+Date: Fri,  5 Jun 2026 19:19:46 +0700
+Message-ID: <20260605121955.105661-3-phucduc.bui@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260605121955.105661-1-phucduc.bui@gmail.com>
 References: <20260605121955.105661-1-phucduc.bui@gmail.com>
@@ -113,14 +112,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-307391-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307395-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:kuninori.morimoto.gx@renesas.com,m:broonie@kernel.org,m:geert+renesas@glider.be,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phucduc.bui@gmail.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,m:phucducbui@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
@@ -137,131 +136,56 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,renesas.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A1B7E648215
+X-Rspamd-Queue-Id: 2B4FA648241
 
 From: bui duc phuc <phucduc.bui@gmail.com>
 
-The FSI on r8a7740 requires the SPU bus/bridge clock to be enabled before
-accessing its registers. Without this clock, any register access leads to
-a system hang as the FSI block sits behind the SPU bus.
-Update the binding to support multiple clocks to properly describe the
-hardware clock tree, including:
-  - SPU bus/bridge clock (spu) for register access.
-  - CPG DIV6 clocks (icka/b) as functional clock.
-  - FSI dividers (diva/b) for audio clock generation.
-  - External clock inputs (xcka/b) provided by the board.
-Both sh73a0 and r8a7740 define the SPU DIV6 clock control register at
-0xe6150084. The binding therefore documents the clocks supported by the
-FSI driver for these variants.
+Add the SPU bus clock, icka/b functional clocks, and xcka/b external
+clock inputs to the FSI device node.
+This prepares for subsequent driver changes that explicitly manage the
+SPU clock required for FSI register access on the r8a7740.
 
 Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 ---
-Changes in v4:
- - Update dt-bindings based on feedback from Krzysztof, Rob, and Geert.
- 
- 
- .../bindings/sound/renesas,fsi.yaml           | 61 +++++++++++++++++--
- 1 file changed, 56 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/renesas/r8a7740.dtsi | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/renesas,fsi.yaml b/Documentation/devicetree/bindings/sound/renesas,fsi.yaml
-index df91991699a7..b966b55ff772 100644
---- a/Documentation/devicetree/bindings/sound/renesas,fsi.yaml
-+++ b/Documentation/devicetree/bindings/sound/renesas,fsi.yaml
-@@ -9,9 +9,6 @@ title: Renesas FIFO-buffered Serial Interface (FSI)
- maintainers:
-   - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
- 
--allOf:
--  - $ref: dai-common.yaml#
--
- properties:
-   $nodename:
-     pattern: "^sound@.*"
-@@ -38,7 +35,32 @@ properties:
-     maxItems: 1
- 
-   clocks:
--    maxItems: 1
-+    minItems: 1
-+    items:
-+      - description: Main FSI module clock
-+      - description: |
-+          SPU bus/bridge clock. On R8A7740, this clock must be enabled to allow
-+          register access as the FSI block is connected behind the SPU bus.
-+      - description: CPG DIV6 functional clocks for FSI port A
-+      - description: CPG DIV6 functional clocks for FSI port B
-+      - description: FSI dividers for port A used for audio clock generation
-+      - description: FSI dividers for port B used for audio clock generation
-+      - description: External clock inputs for FSI port A provided by the board
-+      - description: External clock inputs for FSI port B provided by the board
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 8
-+    items:
-+      enum:
-+        - fck  # Main FSI module clock
-+        - spu  # optional SPU bus/bridge clock
-+        - icka # optional CPG DIV6 functional clocks for FSI port A
-+        - ickb # optional CPG DIV6 functional clocks for FSI port B
-+        - diva # optional FSI dividers for port A used for audio clock generation
-+        - divb # optional FSI dividers for port B used for audio clock generation
-+        - xcka # optional External clock inputs for FSI port A provided by the board
-+        - xckb # optional External clock inputs for FSI port B provided by the board
- 
-   power-domains:
-     maxItems: 1
-@@ -69,6 +91,31 @@ required:
- 
- unevaluatedProperties: false
- 
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,fsi2-r8a7740
-+    then:
-+      required:
-+        - clock-names
-+
-+      properties:
-+        clock-names:
-+          minItems: 2
-+          uniqueItems: true
-+          items:
-+            - const: fck
-+            - const: spu
-+            - enum: [icka, ickb, diva, divb, xcka, xckb]
-+            - enum: [icka, ickb, diva, divb, xcka, xckb]
-+            - enum: [icka, ickb, diva, divb, xcka, xckb]
-+            - enum: [icka, ickb, diva, divb, xcka, xckb]
-+            - enum: [icka, ickb, diva, divb, xcka, xckb]
-+            - enum: [icka, ickb, diva, divb, xcka, xckb]
-+
- examples:
-   - |
-     #include <dt-bindings/clock/r8a7740-clock.h>
-@@ -77,7 +124,11 @@ examples:
-             compatible = "renesas,fsi2-r8a7740", "renesas,sh_fsi2";
-             reg = <0xfe1f0000 0x400>;
-             interrupts = <GIC_SPI 9 0x4>;
--            clocks = <&mstp3_clks R8A7740_CLK_FSI>;
-+            clocks = <&mstp3_clks R8A7740_CLK_FSI>, <&spu_clk>,
-+                    <&fsia_clk>, <&fsiack_clk>, <&fsidiva_clk>,
-+                    <&fsib_clk>, <&fsibck_clk>, <&fsidivb_clk>;
-+            clock-names = "fck", "spu", "icka", "xcka", "diva",
-+                         "ickb", "xckb", "divb";
-             power-domains = <&pd_a4mp>;
- 
-             #sound-dai-cells = <1>;
+diff --git a/arch/arm/boot/dts/renesas/r8a7740.dtsi b/arch/arm/boot/dts/renesas/r8a7740.dtsi
+index d13ab86c3ab4..6f9d9bbfd159 100644
+--- a/arch/arm/boot/dts/renesas/r8a7740.dtsi
++++ b/arch/arm/boot/dts/renesas/r8a7740.dtsi
+@@ -393,7 +393,11 @@ sh_fsi2: sound@fe1f0000 {
+ 		compatible = "renesas,fsi2-r8a7740", "renesas,sh_fsi2";
+ 		reg = <0xfe1f0000 0x400>;
+ 		interrupts = <GIC_SPI 9 0x4>;
+-		clocks = <&mstp3_clks R8A7740_CLK_FSI>;
++		clocks = <&mstp3_clks R8A7740_CLK_FSI>, <&spu_clk>,
++			<&fsia_clk>, <&fsib_clk>, <&fsiack_clk>,
++			<&fsibck_clk>;
++		clock-names = "fck", "spu", "icka", "ickb", "xcka",
++				"xckb";
+ 		power-domains = <&pd_a4mp>;
+ 		status = "disabled";
+ 	};
+@@ -614,6 +618,12 @@ vou_clk: vou@e6150088 {
+ 				 <0>;
+ 			#clock-cells = <0>;
+ 		};
++		fsib_clk: fsib@e6150090 {
++			compatible = "renesas,r8a7740-div6-clock", "renesas,cpg-div6-clock";
++			reg = <0xe6150090 4>;
++			clocks = <&pllc1_div2_clk>, <&fsibck_clk>, <0>, <0>;
++			#clock-cells = <0>;
++		};
+ 		stpro_clk: stpro@e615009c {
+ 			compatible = "renesas,r8a7740-div6-clock", "renesas,cpg-div6-clock";
+ 			reg = <0xe615009c 4>;
 -- 
 2.43.0
 
