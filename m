@@ -1,342 +1,141 @@
-Return-Path: <devicetree+bounces-307508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307509-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gA45JKsVI2qwhwEAu9opvQ
-	(envelope-from <devicetree+bounces-307508-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:30:03 +0200
+	id i/VYIBgVI2qFhwEAu9opvQ
+	(envelope-from <devicetree+bounces-307509-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:27:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0320764AA0C
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:30:03 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14C7E64A9C3
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:27:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=iQMH1M+z;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307508-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307508-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=pm.me header.s=protonmail3 header.b=SdTVyal2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307509-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307509-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=pm.me;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 27B2630782E7
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 18:26:44 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5CF8A30078A4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 18:27:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADDB8384CDF;
-	Fri,  5 Jun 2026 18:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79432384CDF;
+	Fri,  5 Jun 2026 18:27:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from mail-43102.protonmail.ch (mail-43102.protonmail.ch [185.70.43.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5C233B97D;
-	Fri,  5 Jun 2026 18:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E043D352F86
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 18:27:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780684001; cv=none; b=bn247IZJD56XF5BJpnQMu1er/L1NtR6G9sNZV/kVNljyXsj/EdoI8MI6MtKsdg7v+89EqALp96xUbxpgnEqcPT1eGfPGqk/vzYK2vGUHUGn7Flpzp6EOQTLthVgKX82OgeYF5X2TpG9pkXdakkMiCaIX4jVZAlysHL7H6//qWgQ=
+	t=1780684054; cv=none; b=ZejxGpZae+FsKgaRS+og7LMJ1XP57QRtUUsxFKn9DkX8IiwHIsDrHgtlJw/n0EFoj9jBGILbGev6O6co/o/04roIB+66fDvBdR8N7hyY8NQuhuchpNaPOlFVsDcfu935X2GHmpd2r00oVjmmIfPhDGku+JmD6eN9coN6/+9tTEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780684001; c=relaxed/simple;
-	bh=RjL+gZcb8Pu5u1wQOJtlMZ0HQXrKLaYHiIu5sq1/doo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ApNdEuOGsvXTV1bCGjzKqAQxZu0YjdhJpL3Ju8RhWAtOfxsLUEC9+rO19iPVOhPQpNqshPyAND/KYgl8w/Td/BjWCW1yZ009yk/yRM6kT2FiSzogHNOSOUTNnZEzce6d4NLAS+X/NUM+0vCLduD9xEYD2nA3tJnOd3cUyRklLSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iQMH1M+z; arc=none smtp.client-ip=198.175.65.15
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1780684000; x=1812220000;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RjL+gZcb8Pu5u1wQOJtlMZ0HQXrKLaYHiIu5sq1/doo=;
-  b=iQMH1M+z/eTe0K+xcJhywTDoV/C8Jqul9PIni81U7DvrhLxaDXDbMp+9
-   x2QRiiCNscaUCVS5eUumY5Wp7cuqWHnEgIwvV423i8aOqmfIXNQIIz9Fe
-   LHKMCLqkDBsu7y4f7a9KgDbJ1E/hb771GTy5XRp1E6h9eUaMNVqqumDyE
-   N3FO9BhQPttBvPdSyTs5e2nCIrL6qaaHmXtE3hmmAnrnUVBMoty933876
-   HzmqsNaIG1VLHwQjAOBaKRaHlkgVMqRzKZcOHEP1gjaRddpW6tw9j7gDr
-   yskSYV+VGHKE3z0FUSY7BNcOrUhxwL8f0O1z3Hijf2Ba0UMblO6guwGYh
-   w==;
-X-CSE-ConnectionGUID: QYWTEIHxQMu7FYXV9PqHEg==
-X-CSE-MsgGUID: wuF6KD0JTweyS7Tb9lwboA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="85143590"
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; 
-   d="scan'208";a="85143590"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2026 11:26:40 -0700
-X-CSE-ConnectionGUID: JL9ncvhfR626JhODTejIOg==
-X-CSE-MsgGUID: wM8N52NTTFmO5KoQMSUNgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; 
-   d="scan'208";a="243811759"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.178])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2026 11:26:36 -0700
-Date: Fri, 5 Jun 2026 21:26:33 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Petar Stepanovic <pstepanovic@axiado.com>
-Cc: Akhila Kavi <akavi@axiado.com>,
-	Prasad Bolisetty <pbolisetty@axiado.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] iio: adc: add Axiado SARADC driver
-Message-ID: <aiMU2bOFgKT9NrNQ@ashevche-desk.local>
-References: <20260528-axiado-ax3000-ax3005-saradc-v1-0-345dd5f6608a@axiado.com>
- <20260528-axiado-ax3000-ax3005-saradc-v1-2-345dd5f6608a@axiado.com>
+	s=arc-20240116; t=1780684054; c=relaxed/simple;
+	bh=BCkdFJxgn2DuZm8IIX3oUhSJrZUczu3z1qbm5QpbGPQ=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=cvarlI8mUb3MxEQZt3m7fg3oYT8h/qGtbdoY+/tObDSQg/Y0KlVLev5AQuI2tKd14+STq0Aat4Egfyj7ud0VwaIFLuGvPLsJsMeARyKqpXmB3tsOjzdDgB5ZznxysEqKrPhNvaewUevuntBT3UxjqFqxfQeS8qyEQqTVd9h8o8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=SdTVyal2; arc=none smtp.client-ip=185.70.43.102
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1780684045; x=1780943245;
+	bh=8ED5nZjiqpEXlT1Wh2oVhR3GG1x+dmxiujPClGruK8k=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=SdTVyal2IxQXmfd5GV6vNZmBffgQgiMEbMuruyIEeyNmhDx4KUg3n16377b7lnaSH
+	 mg4dLvz3eCqSmKztBnvS1RMZ1M0OTwjP3IS2ogtaP+y7QG0AJCiQpYco7hlU1JWzVT
+	 DIpZaMQE1Crz/+f+9FUl7WL4BsLWDkdWCQhz3uBGJPR0ndDM727ZlCNBFf/7uYk6ZQ
+	 onQfluUBMOLkbJRhCP5UcOu59OaB0gAArwIy6Vp+IXOjPwz5U6qBl+wzSSX2fEZOPr
+	 3gHQv7YDDwuRBMRm2tBqpnqVn3vk6qeILUXirnyPA65h7tR4XRBi+KdYdzTVDccIXa
+	 YW2RlKEJWvwMw==
+Date: Fri, 05 Jun 2026 18:27:20 +0000
+To: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+From: Alexander Koskovich <akoskovich@pm.me>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
+Subject: [PATCH v2 0/2] Add support for the BOE BF068MWM-TD0
+Message-ID: <20260605-asteroids-panel-support-v2-0-44b96c6eca91@pm.me>
+Feedback-ID: 37836894:user:proton
+X-Pm-Message-ID: c7d77c00daf62b41a36e4d4449b050842f89f006
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260528-axiado-ax3000-ax3005-saradc-v1-2-345dd5f6608a@axiado.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
+	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:akoskovich@pm.me,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307509-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307508-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:pstepanovic@axiado.com,m:akavi@axiado.com,m:pbolisetty@axiado.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hshah@axiado.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
+	FORGED_SENDER(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[pm.me:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,intel.com:from_mime,intel.com:dkim]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:mid,pm.me:dkim,pm.me:from_mime,pm.me:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0320764AA0C
+X-Rspamd-Queue-Id: 14C7E64A9C3
 
-On Thu, May 28, 2026 at 01:10:24AM -0700, Petar Stepanovic wrote:
-> Add support for the SARADC controller found on Axiado AX3000 and
-> AX3005 SoCs.
-> 
-> The driver supports single-shot voltage reads through the IIO
-> subsystem. The number of available input channels is selected from
-> the SoC match data, allowing AX3000 and AX3005 variants to use the
-> same driver.
+Add the bindings and driver for the BOE BF068MWM-TD0 panel used in the Noth=
+ing
+Phone (3a).
 
-(I'll try to not duplicate what Joshua noticed already.)
+This series depends on support for DSC configurations with slice_per_pkt > =
+1,
+technically it boots up and displays stuff without it but you see artifacti=
+ng
+without it:
+https://lore.kernel.org/linux-arm-msm/20260318-dsi-dsc-slice-per-pkt-v2-0-0=
+a1b316f8250@pm.me
 
-...
+Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+---
+Changes in v2:
+- Rename binding & driver to DDIC instead of panel assembly (Neil)
+- Clean up hardware resources in prepare() on errors (Sashiko AI review)
+- Link to v1: https://lore.kernel.org/r/20260603-asteroids-panel-support-v1=
+-0-109c6ac81c8f@pm.me
 
-> +config AXIADO_SARADC
-> +	tristate "Axiado SARADC driver"
-> +	depends on ARCH_AXIADO || COMPILE_TEST
+---
+Alexander Koskovich (2):
+      dt-bindings: display: panel: Document Raydium RM69220 DDIC
+      drm/panel: Add driver for Raydium RM69220 DDIC
 
-> +	depends on OF
+ .../bindings/display/panel/raydium,rm69220.yaml    |  74 ++++
+ MAINTAINERS                                        |   6 +
+ drivers/gpu/drm/panel/Kconfig                      |  15 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-raydium-rm69220.c      | 435 +++++++++++++++++=
+++++
+ 5 files changed, 531 insertions(+)
+---
+base-commit: 15a038bc8d93f92c80d9ba6844d4f16333234f39
+change-id: 20260603-asteroids-panel-support-d55c929a89a8
 
-No, in IIO we want a good justification on non-agnostic requirements.
-Why can't this device driver be agnostic?
-
-...
-
-
-> +#include <linux/bitfield.h>
-
-+ bits.h
-
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/io.h>
-
-> +#include <linux/kernel.h>
-
-No driver should have this header to be included.
-Rare and well justified exceptions are possible
-(and no, not in this case).
-
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-
-...
-
-> +struct axiado_saradc {
-> +	void __iomem *regs;
-> +	struct clk *clk;
-> +	unsigned long clk_rate;
-
-> +	int vref_uv;
-
-_uV (yes, capital letter as per SI).
-
-> +	struct mutex lock; /* Serializes ADC conversions. */
-> +};
-
-...
-
-> +static int axiado_saradc_conversion(struct axiado_saradc *info,
-> +				    struct iio_chan_spec const *chan, int *val)
-> +{
-> +	unsigned long usecs;
-
-Missing blank line here.
-
-> +	/* Select the channel to be used and trigger conversion */
-
-> +	iowrite32(AX_SARADC_MANUAL_CTRL_EN(chan->channel),
-> +		  info->regs + AX_SARADC_MANUAL_CTRL);
-
-Why not writel()?
-
-> +
-> +	/* Hardware requires 13 conversion cycles at clk_rate */
-> +	usecs = DIV_ROUND_UP(AX_SARADC_CONV_CYCLES * 1000000, info->clk_rate);
-
-USe USEC_PER_SEC from time.h.
-
-> +	usleep_range(usecs, usecs + 10);
-> +
-> +	*val = ioread32(info->regs + AX_SARADC_DOUT) &
-> +	       GENMASK(AX_RESOLUTION_BITS - 1, 0);
-> +
-> +	/* Stop manual conversion */
-> +	iowrite32(0, info->regs + AX_SARADC_MANUAL_CTRL);
-> +	return 0;
-> +}
-
-...
-
-> +static int axiado_saradc_probe(struct platform_device *pdev)
-> +{
-> +	struct axiado_saradc *info;
-> +	const struct axiado_saradc_soc_data *soc_data;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +	u32 reg;
-> +
-> +	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*info));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	info = iio_priv(indio_dev);
-> +
-> +	info->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(info->regs))
-> +		return PTR_ERR(info->regs);
-> +
-> +	info->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-
-Why no name? It will make harder for the next generations of HW in case they
-want more than one clock to be used.
-
-> +	if (IS_ERR(info->clk))
-> +		return PTR_ERR(info->clk);
-> +
-> +	info->clk_rate = clk_get_rate(info->clk);
-> +	if (!info->clk_rate)
-> +		return dev_err_probe(&pdev->dev, -EINVAL,
-> +				     "invalid clock rate\n");
-
-> +	info->vref_uv = devm_regulator_get_enable_read_voltage(&pdev->dev,
-> +							       "vref");
-
-Having
-
-	struct device *dev = &pdev->dev;
-
-will make the code shorter and easier to read.
-
-> +	if (info->vref_uv < 0)
-> +		return dev_err_probe(&pdev->dev, info->vref_uv,
-> +				     "failed to get vref voltage\n");
-> +
-> +	soc_data = device_get_match_data(&pdev->dev);
-> +	if (!soc_data)
-> +		return dev_err_probe(&pdev->dev, -EINVAL,
-> +				     "failed to get match data\n");
-> +
-> +	mutex_init(&info->lock);
-
-
-
-> +	reg = FIELD_PREP(AX_SARADC_CH_EN_MASK,
-> +			 GENMASK(soc_data->num_channels - 1, 0)) |
-> +	      AX_SARADC_SAMPLE_16 | AX_SARADC_MODE | AX_SARADC_ENABLE;
-
-FIELD_PREP_CONST() ?
-
-> +	iowrite32(AX_SARADC_PD, info->regs + AX_SARADC_GLOBAL_CTRL);
-> +	iowrite32(reg, info->regs + AX_SARADC_GLOBAL_CTRL);
-> +
-> +	indio_dev->name = dev_name(&pdev->dev);
-> +	indio_dev->dev.parent = &pdev->dev;
-> +	indio_dev->info = &axiado_saradc_iio_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = axiado_saradc_iio_channels;
-> +	indio_dev->num_channels = soc_data->num_channels;
-> +
-> +	ret = devm_iio_device_register(&pdev->dev, indio_dev);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret,
-> +				     "failed to register IIO device\n");
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static const struct of_device_id axiado_saradc_match[] = {
-> +	{
-> +		.compatible = "axiado,ax3000-saradc",
-> +		.data = &ax3000_saradc_data,
-> +	},
-> +	{
-> +		.compatible = "axiado,ax3005-saradc",
-> +		.data = &ax3005_saradc_data,
-> +	},
-> +	{},
-
-No comma for the terminator entry.
-
-> +};
-
-...
-
-> +static struct platform_driver axiado_saradc_driver = {
-> +	.driver = {
-> +		.name = KBUILD_MODNAME,
-
-We want to have these kind of strings to be fixed.
-
-> +		.of_match_table = axiado_saradc_match,
-> +	},
-> +	.probe = axiado_saradc_probe,
-> +};
-
-> +
-
-Unnecessary blank line.
-
-> +module_platform_driver(axiado_saradc_driver);
-
--- 
-With Best Regards,
-Andy Shevchenko
+Best regards,
+--=20
+Alexander Koskovich <akoskovich@pm.me>
 
 
 
