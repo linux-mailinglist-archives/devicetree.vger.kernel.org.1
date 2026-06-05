@@ -1,57 +1,61 @@
-Return-Path: <devicetree+bounces-307509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307510-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id i/VYIBgVI2qFhwEAu9opvQ
-	(envelope-from <devicetree+bounces-307509-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:27:36 +0200
+	id T+BwEDsVI2qXhwEAu9opvQ
+	(envelope-from <devicetree+bounces-307510-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:28:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14C7E64A9C3
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:27:36 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF51664A9D6
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:28:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=pm.me header.s=protonmail3 header.b=SdTVyal2;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307509-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307509-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=pm.me header.s=protonmail3 header.b=T0OjfAo5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307510-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307510-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=pm.me;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5CF8A30078A4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 18:27:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9317430279D7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 18:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79432384CDF;
-	Fri,  5 Jun 2026 18:27:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AED2798F3;
+	Fri,  5 Jun 2026 18:27:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-43102.protonmail.ch (mail-43102.protonmail.ch [185.70.43.102])
+Received: from mail-244122.protonmail.ch (mail-244122.protonmail.ch [109.224.244.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E043D352F86
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 18:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C323A901C
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 18:27:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780684054; cv=none; b=ZejxGpZae+FsKgaRS+og7LMJ1XP57QRtUUsxFKn9DkX8IiwHIsDrHgtlJw/n0EFoj9jBGILbGev6O6co/o/04roIB+66fDvBdR8N7hyY8NQuhuchpNaPOlFVsDcfu935X2GHmpd2r00oVjmmIfPhDGku+JmD6eN9coN6/+9tTEs=
+	t=1780684059; cv=none; b=BZUOiWNbnsVbKXYNuwwQW8Fc7EuQL4Eet0t8ZIDUMeaObeoV06jKKEEUK0xSoxCh/TcXS9VhrEkJdGthZCG+U9QJoz1pH2h5IcUGyuTQLWIuJ6PpniiuyeKtR4Poc9wXp+rx4kGEBJip3u58YlQvHJTcc6B8uEMjceqmR7L0xuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780684054; c=relaxed/simple;
-	bh=BCkdFJxgn2DuZm8IIX3oUhSJrZUczu3z1qbm5QpbGPQ=;
-	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=cvarlI8mUb3MxEQZt3m7fg3oYT8h/qGtbdoY+/tObDSQg/Y0KlVLev5AQuI2tKd14+STq0Aat4Egfyj7ud0VwaIFLuGvPLsJsMeARyKqpXmB3tsOjzdDgB5ZznxysEqKrPhNvaewUevuntBT3UxjqFqxfQeS8qyEQqTVd9h8o8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=SdTVyal2; arc=none smtp.client-ip=185.70.43.102
+	s=arc-20240116; t=1780684059; c=relaxed/simple;
+	bh=PmhLka/oAIyw1nTpu65gQAy1Pd6k0shsEAEaJaJyphw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=a+CT0/5UOarYw9pXjvf261IKVAIgp2fs/272LqIGd8iVhWwoI2rCD6cL915F3c0EiWgJFR0ERY29YK4jY0YaBExDtvBTdeUCnGX1J8Fn2jGorEcp1MYmyP+W1BygGLiVUodwz6Xm4ei8YqmL9MAy4ZV+g9yxU81LBX0+n2Vi/Rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=T0OjfAo5; arc=none smtp.client-ip=109.224.244.122
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1780684045; x=1780943245;
-	bh=8ED5nZjiqpEXlT1Wh2oVhR3GG1x+dmxiujPClGruK8k=;
-	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=SdTVyal2IxQXmfd5GV6vNZmBffgQgiMEbMuruyIEeyNmhDx4KUg3n16377b7lnaSH
-	 mg4dLvz3eCqSmKztBnvS1RMZ1M0OTwjP3IS2ogtaP+y7QG0AJCiQpYco7hlU1JWzVT
-	 DIpZaMQE1Crz/+f+9FUl7WL4BsLWDkdWCQhz3uBGJPR0ndDM727ZlCNBFf/7uYk6ZQ
-	 onQfluUBMOLkbJRhCP5UcOu59OaB0gAArwIy6Vp+IXOjPwz5U6qBl+wzSSX2fEZOPr
-	 3gHQv7YDDwuRBMRm2tBqpnqVn3vk6qeILUXirnyPA65h7tR4XRBi+KdYdzTVDccIXa
-	 YW2RlKEJWvwMw==
-Date: Fri, 05 Jun 2026 18:27:20 +0000
+	s=protonmail3; t=1780684053; x=1780943253;
+	bh=tx75P+P7ozafjtRnuFZTBl8obCQW842DsBNmRgarzJE=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=T0OjfAo5HDT1ZU6MHnwOLpwxFQdZG0ZnMUVKlar7qQOEYkFYhnkIZEN6Ww5RSQb1x
+	 /PQ4RjiqSkKwcjW3LkGA46gytFLbXn7F4WFEycRhQfO3fecO47Oa/2MwVikBGI7qQm
+	 viQdiFll4zouhTeLYgzSJFmtUGaAEMA53sM89XBhaDqUPpQXv3tuh19SEbVbfD/4/a
+	 aYLi8AAUSu9tKfZ+MI4VbZYgdrvzdGg++49pE6S5Na+aOlrkAIrrsGts5MB+rIGji0
+	 AZJBQQC5xrTDInZI2uneQmC4cUHwXGozHNiHaYqjudcE3BaH+WTpga1Vz/XNjrUy02
+	 3FGCnYiKLCYcQ==
+Date: Fri, 05 Jun 2026 18:27:28 +0000
 To: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 From: Alexander Koskovich <akoskovich@pm.me>
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
-Subject: [PATCH v2 0/2] Add support for the BOE BF068MWM-TD0
-Message-ID: <20260605-asteroids-panel-support-v2-0-44b96c6eca91@pm.me>
+Subject: [PATCH v2 1/2] dt-bindings: display: panel: Document Raydium RM69220 DDIC
+Message-ID: <20260605-asteroids-panel-support-v2-1-44b96c6eca91@pm.me>
+In-Reply-To: <20260605-asteroids-panel-support-v2-0-44b96c6eca91@pm.me>
+References: <20260605-asteroids-panel-support-v2-0-44b96c6eca91@pm.me>
 Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: c7d77c00daf62b41a36e4d4449b050842f89f006
+X-Pm-Message-ID: 92ce6ad62654657bc34b31db8652216b856de177
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,12 +70,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
 	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:akoskovich@pm.me,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-307509-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307510-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
 	FORGED_SENDER(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
@@ -92,50 +96,122 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:mid,pm.me:dkim,pm.me:from_mime,pm.me:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,pm.me:mid,pm.me:dkim,pm.me:from_mime,pm.me:email,devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 14C7E64A9C3
+X-Rspamd-Queue-Id: CF51664A9D6
 
-Add the bindings and driver for the BOE BF068MWM-TD0 panel used in the Noth=
-ing
-Phone (3a).
-
-This series depends on support for DSC configurations with slice_per_pkt > =
-1,
-technically it boots up and displays stuff without it but you see artifacti=
-ng
-without it:
-https://lore.kernel.org/linux-arm-msm/20260318-dsi-dsc-slice-per-pkt-v2-0-0=
-a1b316f8250@pm.me
+Document the Raydium RM69220 DDIC and the BOE BF068MWM-TD0 6.77"
+1080x2392 AMOLED display panel used in the Nothing Phone (3a).
 
 Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
 ---
-Changes in v2:
-- Rename binding & driver to DDIC instead of panel assembly (Neil)
-- Clean up hardware resources in prepare() on errors (Sashiko AI review)
-- Link to v1: https://lore.kernel.org/r/20260603-asteroids-panel-support-v1=
--0-109c6ac81c8f@pm.me
-
----
-Alexander Koskovich (2):
-      dt-bindings: display: panel: Document Raydium RM69220 DDIC
-      drm/panel: Add driver for Raydium RM69220 DDIC
-
- .../bindings/display/panel/raydium,rm69220.yaml    |  74 ++++
- MAINTAINERS                                        |   6 +
- drivers/gpu/drm/panel/Kconfig                      |  15 +
- drivers/gpu/drm/panel/Makefile                     |   1 +
- drivers/gpu/drm/panel/panel-raydium-rm69220.c      | 435 +++++++++++++++++=
+ .../bindings/display/panel/raydium,rm69220.yaml    | 74 ++++++++++++++++++=
 ++++
- 5 files changed, 531 insertions(+)
----
-base-commit: 15a038bc8d93f92c80d9ba6844d4f16333234f39
-change-id: 20260603-asteroids-panel-support-d55c929a89a8
+ MAINTAINERS                                        |  5 ++
+ 2 files changed, 79 insertions(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/display/panel/raydium,rm6922=
+0.yaml b/Documentation/devicetree/bindings/display/panel/raydium,rm69220.ya=
+ml
+new file mode 100644
+index 000000000000..7423b192d892
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/raydium,rm69220.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/raydium,rm69220.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Raydium RM69220 based MIPI-DSI panels
++
++maintainers:
++  - Alexander Koskovich <akoskovich@pm.me>
++
++description:
++  The Raydium RM69220 is a generic DSI Panel IC used to control
++  AMOLED panels.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - boe,bf068mwm-td0
++      - const: raydium,rm69220
++
++  reg:
++    maxItems: 1
++
++  dvdd-supply:
++    description: Digital voltage rail
++
++  vci-supply:
++    description: Analog voltage rail
++
++  vddio-supply:
++    description: I/O voltage rail
++
++required:
++  - compatible
++  - dvdd-supply
++  - port
++  - reg
++  - reset-gpios
++  - vci-supply
++  - vddio-supply
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells =3D <1>;
++        #size-cells =3D <0>;
++
++        panel@0 {
++            compatible =3D "boe,bf068mwm-td0", "raydium,rm69220";
++            reg =3D <0>;
++
++            reset-gpios =3D <&tlmm 12 GPIO_ACTIVE_LOW>;
++            dvdd-supply =3D <&vreg_oled_dvdd_1p8>;
++            vci-supply =3D <&vreg_l19b>;
++            vddio-supply =3D <&vreg_l9b>;
++
++            port {
++                panel_in_0: endpoint {
++                    remote-endpoint =3D <&dsi0_out>;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c9f2780b2d31..ca2417d9d238 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -8354,6 +8354,11 @@ S:=09Maintained
+ F:=09Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml
+ F:=09drivers/gpu/drm/panel/panel-raydium-rm67191.c
+=20
++DRM DRIVER FOR RAYDIUM RM69220 PANELS
++M:=09Alexander Koskovich <akoskovich@pm.me>
++S:=09Maintained
++F:=09Documentation/devicetree/bindings/display/panel/raydium,rm69220.yaml
++
+ DRM DRIVER FOR SAMSUNG DB7430 PANELS
+ M:=09Linus Walleij <linusw@kernel.org>
+ S:=09Maintained
+
 --=20
-Alexander Koskovich <akoskovich@pm.me>
+2.53.0
 
 
 
