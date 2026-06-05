@@ -1,64 +1,91 @@
-Return-Path: <devicetree+bounces-307153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307154-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FffTFIFAImouUQEAu9opvQ
-	(envelope-from <devicetree+bounces-307153-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 05:20:33 +0200
+	id Zn6eC01BImpTUQEAu9opvQ
+	(envelope-from <devicetree+bounces-307154-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 05:23:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4831644D2F
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 05:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF5DC644D6C
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 05:23:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=herrie.org header.s=transip-a header.b=qtSZKCiJ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307153-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307153-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307154-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307154-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 41FE43010665
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 03:20:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2FC223011A5B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 03:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A20282F19;
-	Fri,  5 Jun 2026 03:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DC853F0748;
+	Fri,  5 Jun 2026 03:23:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound6.mail.transip.nl (outbound6.mail.transip.nl [136.144.136.128])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023079.outbound.protection.outlook.com [40.107.44.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFFC0317144;
-	Fri,  5 Jun 2026 03:20:21 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780629628; cv=none; b=SC2Y6oDzyPI7FGTDIB0VfkBt1m1ufnBNDlzbOGgzklouuM4304bTm456Vtw5Blg1pjdg5axYvGWKGkTcYaIzcImAkG410fVTnlrXHRqdUinUb+I8cABaJi91k16hiIGzssuozUg+MOu/o4uiAH4FK6oCGt/Bc9V24780j3N2+zE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780629628; c=relaxed/simple;
-	bh=fJsXqFFHg8y8yucKAu+V9Ezs0IZST0HWeyG5e/QFCKc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Cx08te5UXtGDutplc0pID06o7+KclmLDCu9R6dEfiWWwjAm2QRcZ3WNUxzJqIL60szV9JJDNlFurQil+zAobZOOtBTrEz3GCieV+w1tra3hyQEbPKwjx7pvqItLrmg3y46rBE72T1NneExfeh2MsPmKhYGhgFJnj3qk0CcdumIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=qtSZKCiJ; arc=none smtp.client-ip=136.144.136.128
-Received: from submission1.mail.transip.nl (unknown [10.100.4.70])
-	by outbound6.mail.transip.nl (Postfix) with ESMTP id 4gWmsH6TFbzwLHf5;
-	Fri,  5 Jun 2026 05:20:19 +0200 (CEST)
-Received: from herrie-desktop.. (180-93-184-31.ftth.glasoperator.nl [31.184.93.180])
-	by submission1.mail.transip.nl (Postfix) with ESMTPA id 4gWmsH0423zJjhYN;
-	Fri,  5 Jun 2026 05:20:18 +0200 (CEST)
-From: Herman van Hazendonk <github.com@herrie.org>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Hans Verkuil <hverkuil+cisco@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	linux-media@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F97D3EEAF7;
+	Fri,  5 Jun 2026 03:23:44 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780629830; cv=fail; b=k5Ya/XkBcq2Mspy0LQkdEP1rzZdcxaRBwn+xL/el8sZigl798h/IL8ZI2KomxwNYsUsUnR4p4BFD3Cdug4c72a+XHTT2UY1iLGn6awlEcNiwRB5dVjbcbJAo1wOaycb7afvSSW629w2zLVZL9ARC45GbWIut05dNeLYYlsfCQns=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780629830; c=relaxed/simple;
+	bh=M53gkhkGvLFTrbELzk1JNDjuYeBrXMXqaD7UijbZAn0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Usp+6uZzUGGwdELThTCAXJJclRmoq5ppoDET7Q26wts6wkLQIgnaPVuQhRj8IngEHcntRgXHUVFNswv+Dq+k5lVxihctXtgUpKv5tWoDtQzGR3YINNIjJOy0kplWc5PCfXv3J+k7tDlEHnVUqv4THfcYIgKC3eSbkMqaHAsrJ4E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.44.79
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=i7G67/FS7tFpgUoUwxjhhRhmI/0eE9uADOcyg3ce/73FDcCCL527fjP3xUbrB2F/05LeQ4rnYywn3A7m80Lo/M47BDRUdpUHgnjrH77zlU2iLudcpbJpJFYuNyFbn6LVReyBIvTL8sLVr6vvijs6EIfvWNTEJzbAWTfv5vl1O7jJ3BaDmjTm4ycEM9pmy/jblnVWWqr76bTQ5t8TJ5ACuqKw/zUfHgiA3HXGMhnGwyge4LX4/6PCnd6XfpU5gYK9TyI3rIp+KBDpXBMVguul7eUgceQV/l03uXJ/5ch2ChrByM6hSJbqDaAD9M0XlXdUNtw/v7bxTsZ/4QZxZVUUVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xf4vnI+BM8hlNUC/0YKv07dQhqAmJiiFgvzGQJ6PuUQ=;
+ b=MbhJgSwYpenuMTbzTP8KojIfkuTlkHD6y4lImeX+KDNpnTfST3cBFDHDaSmF/UusvBCrKw30YJAlnF27OjQJBvrffLhH2leWbnXSplBt2mQZE1S9iJN03bkIuPwW9VaIjG3oXOyBPujnftze2oZDsUdDJZGd+lvsLBNRKgCg38lf/i/NzAqHkz/SjXRKoM8CLGfAgrP6MgeIRonZaEI4L4XIDc9E+MmjX42a5vhLyZovtHyCVjpSkHMn7G28W/1NZR5Gqbai9uoZsfrfm6fPnwXB7fI/zrHD6HK6QhdZf8dH4kkrFW/IUExTTTqjklGe76zOqsjxK4BikYT/JAOWZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=baylibre.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI2PR01CA0005.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::23) by SI2PR06MB5170.apcprd06.prod.outlook.com
+ (2603:1096:4:1bd::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Fri, 5 Jun 2026
+ 03:23:40 +0000
+Received: from SG2PEPF000B66CB.apcprd03.prod.outlook.com
+ (2603:1096:4:191:cafe::a7) by SI2PR01CA0005.outlook.office365.com
+ (2603:1096:4:191::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.8 via Frontend Transport; Fri, 5
+ Jun 2026 03:23:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66CB.mail.protection.outlook.com (10.167.240.24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Fri, 5 Jun 2026 03:23:39 +0000
+Received: from cix (unknown [172.18.64.61])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 7E9FC408426D;
+	Fri,  5 Jun 2026 11:23:37 +0800 (CST)
+From: joakim.zhang@cixtech.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	bmasney@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	gary.yang@cixtech.com
+Cc: cix-kernel-upstream@cixtech.com,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Herman van Hazendonk <github.com@herrie.org>
-Subject: [PATCH 1/2] dt-bindings: media: i2c: add aptina,mt9m113
-Date: Fri,  5 Jun 2026 05:20:16 +0200
-Message-ID: <066f05830969d868aa8ba199d6964a17b877f34d.1780601033.git.github.com@herrie.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1780601033.git.github.com@herrie.org>
-References: <cover.1780601033.git.github.com@herrie.org>
+	linux-arm-kernel@lists.infradead.org,
+	Joakim Zhang <joakim.zhang@cixtech.com>
+Subject: [PATCH v2 0/5] Add Cix Sky1 AUDSS clock and reset support
+Date: Fri,  5 Jun 2026 11:22:20 +0800
+Message-ID: <20260605032225.523669-1-joakim.zhang@cixtech.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,204 +93,130 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: ClueGetter at submission1.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=herrie.org; t=1780629619; h=from:subject:to:cc:
- references:in-reply-to:date:mime-version;
- bh=vh6BmXicCxdLCn5/moMDoi2dKU76VHJhGFbWDzmKQJk=;
- b=qtSZKCiJGp66xSx4eDs1kNSkV0aRYebfucajT04bdP3js+maPXGxZOPWa2O6cYyUWVnO1N
- UXrzuo2R6/T2OvtTL/PJXyQrlrUQSRe3ekT0aTDAyCnf4ekO8dHoWKhFKTAAr3XcC312Hs
- r8aTcM+FAOGh1kHh2XE6WuXJsHhWAzw7ZptMxMydxrsKFg8DaKYNREGIeEwUmIpowiZYIk
- +YHiUcWrcxgGMgNDlmS+GSzod6gFh0kqXON/wfsn0i3q2B90XljDTa/7+33Hatb4JHBN1G
- c2kIa7PTvbqSl3VI2Zo6/KubC55D/26gqaEe+Bfb/6+OHZKHzytnVrQOhXsKew==
-X-Report-Abuse-To: abuse@transip.nl
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CB:EE_|SI2PR06MB5170:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 598dd0d8-5e11-4c22-a734-08dec2b1d6aa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|82310400026|36860700016|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	JmMJrxqQFmPuR3vYtShjjtUqt+mH+DTPdUkNxelM42MDalKYq0nPzBJBVxrRdGL6nKSgDZpfmCiGg3GNlM2N0TsfOIJMY0zJ6JaejuQ5xM+y+nA3arRtfU5NLf/F2Q7aZ06vIAnvStcdsYW3GdrvugJDXGpLl/zndNgk2yVYdlEGzWkxwc3Jk8qzDhyY1T1KtkqQz0xk0jhmzAQR7qwf/h+cx0kW7wARctegCriDxDUJgAST8IOCnFWjA92dNGksznI/qmlE3ronrUhWKvX+8zBnCJgDK3pWPQ7Kah1IMhSj4DEchWJ/eY/rOTUvOLSIgjcSe/FmXbbuk/1SlFRKjCZ716PkoPwHss9IPgmM7bIC6HLGsIljBZ6n7Wy0Mb7Bg0ni6n10IwpGRo4yMg96plReFHB51lcCrc5q+wbpBc6QjvJ1K6jJTFW75+RqJIzkubqWYapfkSAsiIbmh5TGkPqXzMgz3EwAt+652MdM2urDM2RSKPSru+Jv36dvpw1FEhgGxcgwtK7715IaAdBT3Gc10ABRU2YiZQy8YqARYXmGqTS/cJX5RN1Cve2Vdyzb1kEviXmBlA/3/ifC4neE8xRy1lF9BFOnMeWcg5+s8R5cgXhiPLIotlADWL/wSfqQq+qehVgZpoaHLrGuFF3nvbHs22b3aLgLMllmFtqPdZ/04auidAzSyieL3TWQE3yDMm6Ygt5v8ZpAOu0pJg9v6V1zajGNbM0nThzHCSSw/Ig=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(82310400026)(36860700016)(56012099006)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	bsh69wu+y+PIV5dTKOCIqETUkN1tXoqtvibvZinSiVHFpVZ9sXCDVjrDtdUqo8595Kx/X5JmA8I4tYQkg6gl8ONjo4CmfTSNEu6p8GdLrH/DuNu3CLxU4AVfDXE9bvQKE12RKQxZ3u9HV7tomOS/6KEnN97UBTTbBpU0yC7LV5AZD5AY0J5jW/qKN67D9p69Px+ruS2tBMx8+ju1F2K3yct7g9Ns6w7zjyDti+oda07CkiTB1I2mlY5Rac7F2wVQRUcOodswnhF/4LUEYLHwf2pUfQvfPdECttmFTYXFAyBzVrgYoaNe30WSRm10cxLiNcgpThGCQGgz4gSG0bEqnnsaLvpWmpd7//G7gkZeBdTgnswqW59sj2mKT5xiWIKqHYpXSbm4LYMKOEL3KdA+nhEq12xEgZqvlnO047v35ODGHGx1WVHUVwju8olxN9v+
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 03:23:39.8012
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 598dd0d8-5e11-4c22-a734-08dec2b1d6aa
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66CB.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR06MB5170
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-307153-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-307154-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[cixtech.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mchehab@kernel.org,m:sakari.ailus@linux.intel.com,m:hverkuil+cisco@kernel.org,m:laurent.pinchart@ideasonboard.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:github.com@herrie.org,m:hverkuil@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:gary.yang@cixtech.com,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:joakim.zhang@cixtech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
-	DMARC_NA(0.00)[herrie.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[herrie.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2600:3c09:e001:a7::12fc:5321:from];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[joakim.zhang@cixtech.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[222.71.101.198:received,100.90.174.1:received,172.18.64.61:received,40.107.44.79:received];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,cisco,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,devicetree.org:url]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E4831644D2F
+X-Rspamd-Queue-Id: BF5DC644D6C
 
-Add the binding for the Aptina (now ON Semiconductor) MT9M113 1.3
-megapixel SoC image sensor with on-die ISP. The chip is used as the
-front (user-facing) camera on the HP TouchPad tablet and connects
-to the host SoC over MIPI CSI-2.
+From: Joakim Zhang <joakim.zhang@cixtech.com>
 
-The binding describes the chip's i2c address, optional reset and
-standby GPIOs, the per-supply regulators (VDD, VDD_IO, VDDA), the
-external clock input, and the CSI-2 endpoint pads exposed via the
-"port" subnode.
+This patch set adds the clock and reset support for AUDSS. The AUDSS groups
+audio-related peripherals (HDA, I2S, DSP, DMA, mailboxes, watchdog, timer, etc.)
+behind a single Clock and Reset Unit (CRU) register block.
 
-Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
----
- .../bindings/media/i2c/aptina,mt9m113.yaml    | 127 ++++++++++++++++++
- 1 file changed, 127 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9m113.yaml
+I know the best approach would be to separate reset and clock into different
+patches for review. However, here the relationship between them as parent
+and child nodes is coupled, which makes it easier to understand and explain.
+Therefore, they are sent for review in a single patch set, and the code is
+based on the latest clk-next branch.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9m113.yaml b/Documentation/devicetree/bindings/media/i2c/aptina,mt9m113.yaml
-new file mode 100644
-index 000000000000..7fa7cb2fedf9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9m113.yaml
-@@ -0,0 +1,127 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/aptina,mt9m113.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Aptina MT9M113 1.3 Megapixel CMOS Digital Image Sensor
-+
-+maintainers:
-+  - Herman van Hazendonk <github.com@herrie.org>
-+
-+description: |-
-+  The Aptina MT9M113 is a 1.3 Megapixel CMOS digital image sensor with
-+  1280x1024 active pixels. It supports dual context operation:
-+  Context A (640x480 preview mode with binning) and Context B (1280x1024
-+  capture mode). It is programmable through an I2C interface and outputs
-+  image data over a 1-lane MIPI CSI-2 connection.
-+
-+properties:
-+  compatible:
-+    const: aptina,mt9m113
-+
-+  reg:
-+    description: I2C device address
-+    enum:
-+      - 0x3c
-+      - 0x48
-+      - 0x5d
-+
-+  clocks:
-+    description: EXTCLK clock signal (24 MHz typical)
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description:
-+      Core digital voltage supply, 1.8V
-+
-+  vddio-supply:
-+    description:
-+      I/O digital voltage supply, 1.8V or 2.8V
-+
-+  vaa-supply:
-+    description:
-+      Analog voltage supply, 2.8V
-+
-+  reset-gpios:
-+    description: |-
-+      Reference to the GPIO connected to the RESET_BAR pin, if any (active
-+      low).
-+
-+  powerdown-gpios:
-+    description: |-
-+      Reference to the GPIO connected to the STANDBY/PWDN pin, if any (active
-+      high). When asserted, the sensor enters low-power standby mode.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          bus-type:
-+            const: 4
-+            description: MIPI CSI-2 D-PHY
-+
-+          link-frequencies: true
-+          remote-endpoint: true
-+          data-lanes:
-+            minItems: 1
-+            maxItems: 1
-+
-+        required:
-+          - bus-type
-+          - link-frequencies
-+          - data-lanes
-+
-+    required:
-+      - endpoint
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - vdd-supply
-+  - vddio-supply
-+  - vaa-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/media/video-interfaces.h>
-+
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        camera@3c {
-+            compatible = "aptina,mt9m113";
-+            reg = <0x3c>;
-+
-+            clocks = <&mmcc 48>;
-+
-+            reset-gpios = <&pm8058_gpio 29 GPIO_ACTIVE_LOW>;
-+            powerdown-gpios = <&pm8058_gpio 30 GPIO_ACTIVE_HIGH>;
-+
-+            vddio-supply = <&pm8058_l15>;
-+            vdd-supply = <&pm8058_l15>;
-+            vaa-supply = <&pm8058_l14>;
-+
-+            port {
-+                mt9m113_ep: endpoint {
-+                    bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-+                    link-frequencies = /bits/ 64 <384000000>;
-+                    data-lanes = <1>;
-+                    remote-endpoint = <&csiphy1_ep>;
-+                };
-+            };
-+        };
-+    };
-+...
+ChangeLogs:
+v1->v2:
+  * remove audss_rst device node since it doesn't has resource, and
+    move to reset-sky1.c driver.
+  * remove hda related which would be sent after this patch set accepted
+  * soc componnet is okay by default from dtsi
+  * fix for audss clk driver:
+    * remove "comment "Clock options for Cixtech audss:""
+    * add select MFD_SYSCON 
+    * move lock and clk_data into struct sky1_audss_clks_priv
+    * const char *name -> const char * const * name
+    * remove CLK_GET_RATE_NOCACHE 
+    * divicer -> divider
+    * Reverse Christmas tree order
+    * return reg ? 1 : 0; -> return !!reg;
+    * return ERR_CAST(hw); -> return hw;
+    * of_device_get_match_data(dev) -> device_get_match_data() 
+    * add lock from runtime_suspend/resume
+  * loop to more mailing lists
+
+Joakim Zhang (5):
+  dt-bindings: soc: cix,sky1-system-control: add audss system control
+  reset: cix: add audss support to sky1 reset driver
+  dt-bindings: clock: cix,sky1-audss-clock: add audss clock controller
+  clk: cix: add sky1 audss clock controller
+  arm64: dts: cix: sky1: add audss system control
+
+ .../bindings/clock/cix,sky1-audss-clock.yaml  |   92 ++
+ .../soc/cix/cix,sky1-system-control.yaml      |   39 +-
+ arch/arm64/boot/dts/cix/sky1.dtsi             |   28 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/cix/Kconfig                       |   16 +
+ drivers/clk/cix/Makefile                      |    3 +
+ drivers/clk/cix/clk-sky1-audss.c              | 1129 +++++++++++++++++
+ drivers/reset/reset-sky1.c                    |   36 +-
+ include/dt-bindings/clock/cix,sky1-audss.h    |   62 +
+ .../reset/cix,sky1-audss-system-control.h     |   27 +
+ 11 files changed, 1427 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/cix,sky1-audss-clock.yaml
+ create mode 100644 drivers/clk/cix/Kconfig
+ create mode 100644 drivers/clk/cix/Makefile
+ create mode 100644 drivers/clk/cix/clk-sky1-audss.c
+ create mode 100644 include/dt-bindings/clock/cix,sky1-audss.h
+ create mode 100644 include/dt-bindings/reset/cix,sky1-audss-system-control.h
+
 -- 
-2.43.0
+2.50.1
 
 
