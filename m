@@ -1,174 +1,195 @@
-Return-Path: <devicetree+bounces-307481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307482-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WDMRKxH4ImqUfwEAu9opvQ
-	(envelope-from <devicetree+bounces-307481-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:23:45 +0200
+	id 1I4RMFP1ImoOfwEAu9opvQ
+	(envelope-from <devicetree+bounces-307482-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:12:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA4C649B9E
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:23:44 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58FB5649A5B
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:12:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b="zvphM/Ca";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307481-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-307481-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iYKkSPXe;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307482-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307482-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DE1B9300BC70
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 16:06:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5D16B304D4A0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 16:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D32943CBE77;
-	Fri,  5 Jun 2026 16:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88ACB3B6366;
+	Fri,  5 Jun 2026 16:07:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B28E3126B1;
-	Fri,  5 Jun 2026 16:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB50394462;
+	Fri,  5 Jun 2026 16:07:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780675575; cv=none; b=YLZf4R1xVPK2r4M8xjfERhTE7Hg+UKLECFpVgDZeygQi8QxBGWCaxXpEiVXasRSvYaqL+8a1aXOjcE8/l/5idzLj1iu816JiFcbmyHvYonG1riNa+30malDbyIyizWPo9is/PYhmsYzNSyzhs3iXVyukR39zv5eojfn+FWT0wtg=
+	t=1780675648; cv=none; b=RQFu3PCf0LQO1wGMAgKnpUQa6bLcNlv5lQK21kNSuDmH2bkF0WdixDd2hORhEKWGhQCofacBJb11U6sp/MmFZktQZv8ziUPaEf/TgeSFTFvKVAmBHG/R2MRlwtomXXHTBiEDMBfGddT44/2JbvPVs+0ybFuuqJPQTvfR9ZZ7I9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780675575; c=relaxed/simple;
-	bh=lbQ0ZHWF0gkTF8f1YGmLlH6N5pd9CUfqcDjT2PzWmrM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F/vlczdGkKZwvt3w1zRdmPOMaMSQR1t8M49teDjM48l0vRnucrnRMWHMTspx/VcnukmEYXf503TVFV0n5CHOmq3TXzPUqO3DGNjYLEFC9zns74gklc8DwJzvmGEL5Jb/TKqdN5kbcfL6nHBuhnzaUqVUeA+P1DAXksQnDoq2oxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zvphM/Ca; arc=none smtp.client-ip=185.171.202.116
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 6F166C58478;
-	Fri,  5 Jun 2026 16:06:11 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9FF855FED1;
-	Fri,  5 Jun 2026 16:06:11 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 50A83106A2533;
-	Fri,  5 Jun 2026 18:05:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1780675569; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=xk45BjVakQOeHi7wm8QKE6eINYQ/jNZGrkwgZV41tIw=;
-	b=zvphM/CawlI8lv+bypTyNGk5QI0aaFSd+ta/nOlof5HxsbAqYwrTcdlBWPnIuvZ2nkCCPu
-	hbcuN8XA2utGYiVw3vAMz/EUcccOZ6nAVIPhuIwnmU/ZvEKqcCf+mrXrS7xQPsGjH5VnyL
-	jfU+2CYStZaWkh9I/v2V82G2VXEFEMjU8prhXTzet2GaJQCHCWFcuFFJnXiVHMYzele/m8
-	M2jI6t+La0RoeTKiZzWM/fX9/gkeeAapQr2r4/psEj0S1ukX9nQtJ224jAudfxQR6QRZIR
-	I2AoympPGcN2+ig3zx84LnAejH56/NY9zf9b6R90qA0XuuKGwk4feZJ5SaU+tg==
-Message-ID: <c60d1819-18d7-4d4c-a997-586599323d7e@bootlin.com>
-Date: Fri, 5 Jun 2026 18:05:47 +0200
+	s=arc-20240116; t=1780675648; c=relaxed/simple;
+	bh=5dVUhFpjbYqFMj66ApW3IFadsxBJTPkevv1Cx+fV/sU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ee8JrOoQ3uhEFGk9OJy9PoPN7+SKqMrqKV/HZb7MImQeyrc/S9V8PWZ1ejkr/CPwlNFHAdNP4992Rdn++ZEwOXP4TlyrwfftWsfQeHFr/K2SMqdMBN3b4rtpoOh+AUCH3hAZ6dYq87sY9L4Bfw7Ix6zj9ID21aZLZRNO70elLoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iYKkSPXe; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A0D91F00898;
+	Fri,  5 Jun 2026 16:07:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780675647;
+	bh=/B1xxDKU9ZRX82lOlwJil3Y2ZWZ/fpaWwlXF6/X9Kpo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=iYKkSPXeGtA/d6FoEk65Jzy2Y6NY7mNNxpSZ7tAQramgf/RWhhfC8c9cgp5yKvoYN
+	 MErHO/22E+fBhCvw6CBxpVmcqUecKdEKlAr9N2w+cTUwXUKjk8hSBlosg9srYaW9t/
+	 2swDWDb39T8lmrqJf1ebdC4u9kg8q1XcHt1AGG/hSniGbFv73PmCExy2oBQJh9Wfr7
+	 fUt6HI5IfpVR4mbVlqgrG6iziFyrQMmiy7FdEBgW6p8LSBMWhZGaZU8En28EKL66rP
+	 +S/P/KudZ7azT4lSIQ7bQEbQQSwyajRPbXNoOU/Wp6x+690xPYewKV1ALzXiplMMnq
+	 svq1atY7jTK1Q==
+Date: Fri, 5 Jun 2026 17:07:22 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Herman van Hazendonk <github.com@herrie.org>
+Cc: jic23@kernel.org, linusw@kernel.org, denis.ciocca@st.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+	sanjayembeddedse@gmail.com, maudspierings@gocontroll.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: iio: st,st-sensors: add st,fullscale-mg
+Message-ID: <20260605-musket-ecosphere-2d3761964b57@spud>
+References: <cover.1780652883.git.github.com@herrie.org>
+ <e49aba850b1f48ea00089e7142c00584541001eb.1780652883.git.github.com@herrie.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 13/14] net: stmmac: tc956x: add TC956x/QPS615
- support
-To: Alex Elder <elder@riscstar.com>, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, rmk+kernel@armlinux.org.uk, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org, arnd@arndb.de,
- gregkh@linuxfoundation.org
-Cc: Daniel Thompson <daniel@riscstar.com>, mohd.anwar@oss.qualcomm.com,
- a0987203069@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
- boon.khai.ng@altera.com, chenchuangyu@xiaomi.com, chenhuacai@kernel.org,
- daniel@iogearbox.net, hawk@kernel.org, hkallweit1@gmail.com,
- inochiama@gmail.com, john.fastabend@gmail.com, julianbraha@gmail.com,
- livelycarpet87@gmail.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
- prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
- rohan.g.thomas@altera.com, sdf@fomichev.me, siyanteng@cqsoftware.com.cn,
- weishangjuan@eswincomputing.com, wens@kernel.org, netdev@vger.kernel.org,
- bpf@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260605010022.968612-1-elder@riscstar.com>
- <20260605010022.968612-14-elder@riscstar.com>
-Content-Language: en-US
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-In-Reply-To: <20260605010022.968612-14-elder@riscstar.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kSebB565KYv20uXB"
+Content-Disposition: inline
+In-Reply-To: <e49aba850b1f48ea00089e7142c00584541001eb.1780652883.git.github.com@herrie.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307481-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307482-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:elder@riscstar.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:rmk+kernel@armlinux.org.uk,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:arnd@arndb.de,m:gregkh@linuxfoundation.org,m:daniel@riscstar.com,m:mohd.anwar@oss.qualcomm.com,m:a0987203069@gmail.com,m:alexandre.torgue@foss.st.com,m:ast@kernel.org,m:boon.khai.ng@altera.com,m:chenchuangyu@xiaomi.com,m:chenhuacai@kernel.org,m:daniel@iogearbox.net,m:hawk@kernel.org,m:hkallweit1@gmail.com,m:inochiama@gmail.com,m:john.fastabend@gmail.com,m:julianbraha@gmail.com,m:livelycarpet87@gmail.com,m:mcoquelin.stm32@gmail.com,m:me@ziyao.cc,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:richardcochran@gmail.com,m:rohan.g.thomas@altera.com,m:sdf@fomichev.me,m:siyanteng@cqsoftware.com.cn,m:weishangjuan@eswincomputing.com,m:wens@kernel.org,m:netdev@vger.kernel.o
- rg,m:bpf@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:andrew@lunn.ch,m:rmk@armlinux.org.uk,m:krzk@kernel.org,m:conor@kernel.org,m:johnfastabend@gmail.com,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[48];
-	FREEMAIL_CC(0.00)[riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,kernel.org,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:github.com@herrie.org,m:jic23@kernel.org,m:linusw@kernel.org,m:denis.ciocca@st.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:sanjayembeddedse@gmail.com,m:maudspierings@gocontroll.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,st.com,baylibre.com,analog.com,gmail.com,gocontroll.com,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,riscstar.com:email,vger.kernel.org:from_smtp]
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,microchip.com:email,spud:mid,vger.kernel.org:from_smtp,herrie.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CBA4C649B9E
+X-Rspamd-Queue-Id: 58FB5649A5B
 
-Hi Alex,
 
-On 6/5/26 03:00, Alex Elder wrote:
-> From: Daniel Thompson <daniel@riscstar.com>
-> 
-> Toshiba TC956x is an Ethernet AVB/TSN bridge and is essentially a
-> small and highly-specialized SoC. TC956x includes an "eMAC" subsystem
-> that can be accessed, along with several other peripherals, via two
-> PCIe endpoint functions. There is a main driver for the endpoint that
-> decomposes things and creates auxiliary bus devices to model the SoC.
-> 
-> The eMAC consists of a Designware XGMAC, XPCS and PMA. Each eMAC is
-> supported by an MSIGEN that bridges TC956x level interrupts to PCIe
-> MSIs.
-> 
-> Add a driver for the eMAC/MSIGEN combination.
-> 
-> Co-developed-by: Alex Elder <elder@riscstar.com>
-> Signed-off-by: Alex Elder <elder@riscstar.com>
-> Signed-off-by: Daniel Thompson <daniel@riscstar.com>
+--kSebB565KYv20uXB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Jun 05, 2026 at 12:08:42PM +0200, Herman van Hazendonk wrote:
+> Add an optional st,fullscale-mg property that selects the initial
+> full-scale range of an ST MEMS sensor at probe time, expressed in
+> milligauss for magnetometers (and analogous engineering units for
+> other ST sensor families that may grow this property in the future).
+>=20
+> The property is purely additive: if absent, drivers fall back to
+> their existing chip default, and if present but unsupported by the
+> specific sensor the driver warns and falls back. No existing in-tree
+> DTS is affected.
+>=20
+> The motivating case is the LSM303DLH magnetometer on the HP TouchPad
+> (apq8060 / tenderloin) where the kernel's chip-default +/-1.3 G range
+> saturates the X axis to the chip's 0xF000 overflow sentinel out of
+> probe, because the chip is mounted close to surrounding power planes
+> and picks up enough DC bias to exceed the smallest range. The driver
+> core hardcodes fs_avl[0] as the starting range, so userspace cannot
+> recover without racing the driver to write the in_magn_x_scale sysfs
+> attribute after probe. st,fullscale-mg lets the device tree declare
+> a wider initial range up-front and avoids the race entirely.
+>=20
+> Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
 > ---
-[...]
+>  .../devicetree/bindings/iio/st,st-sensors.yaml | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/D=
+ocumentation/devicetree/bindings/iio/st,st-sensors.yaml
+> index a1a958215cdb..335f38e9f78f 100644
+> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
+> @@ -126,6 +126,24 @@ properties:
+>    mount-matrix:
+>      description: an optional 3x3 mounting rotation matrix.
+> =20
+> +  st,fullscale-mg:
 
-> +static int tc956x_lookup_max_speed(phy_interface_t phy_interface)
-> +{
-> +	switch (phy_interface) {
-> +	case PHY_INTERFACE_MODE_SGMII:
+I'd be inclined to say that this should spell out milligauss, but
+this seems reasonable enough to me.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-The SGMII definition we use in the kernel is the Cisco SGMII de-facto
-standard that only supports 10/100/1000M. Some vendors use flavours with
-names such as HS-SGMII and such, that's basically SGMII clocked at 2.5G
-with aneg disabled. It kinda becomes 2500BaseX then.
-
-So all in all, we don't support 2500M on SGMII.
-
-> +	case PHY_INTERFACE_MODE_2500BASEX:
-> +		return SPEED_2500;
+> +    description: |
+> +      Selects the initial sensor full-scale at probe time, expressed in
+> +      milligauss for magnetometers (or analogous engineering units for
+> +      other sensor families that may grow this property in the future).
+> +      The value must match one of the sensor-specific full-scale ranges
+> +      supported by the chip; if the chip does not support the requested
+> +      range the driver falls back to its built-in default.
 > +
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
+> +      This is intended for boards where the magnetometer chip picks up
+> +      enough DC bias from nearby PCB structures (power planes, ferrous
+> +      shields, etc.) that the kernel's chip-default highest-sensitivity
+> +      range saturates one or more axes to the chip's overflow sentinel,
+> +      and userspace observes that axis as permanently stuck. Declaring
+> +      a wider initial range avoids the saturation at the cost of a
+> +      slightly coarser quantisation.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+>  allOf:
+>    - if:
+>        properties:
+> --=20
+> 2.43.0
+>=20
 
-Maxime
+--kSebB565KYv20uXB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiL0OgAKCRB4tDGHoIJi
+0mWhAP0WtJXb6Y1fNVc7JRVRXauldTnWnniSpLpJ0CYwHpQAMQEA/+fXOjmXsv5D
+BLMdqhx3tRTkJljg6eJVtEavHs/5UgY=
+=yNKR
+-----END PGP SIGNATURE-----
+
+--kSebB565KYv20uXB--
 
