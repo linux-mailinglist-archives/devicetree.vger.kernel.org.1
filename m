@@ -1,205 +1,217 @@
-Return-Path: <devicetree+bounces-307436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307437-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wyY0AF/QImrsdwEAu9opvQ
-	(envelope-from <devicetree+bounces-307436-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 15:34:23 +0200
+	id lfSaIL3RImoieAEAu9opvQ
+	(envelope-from <devicetree+bounces-307437-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 15:40:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50E8B6488E7
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 15:34:22 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC55A648971
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 15:40:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nQ03DGO9;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307436-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307436-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307437-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307437-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C6D77301BF7D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 13:32:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9086D3003409
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 13:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642C823E358;
-	Fri,  5 Jun 2026 13:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 616302E54D3;
+	Fri,  5 Jun 2026 13:37:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D00E1EB1AA
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 13:32:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB5E2C21F7
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 13:37:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780666373; cv=none; b=GNevc1jC/Gk0AxH5erxR7gv+ekmSD6rC+cVqUwEg0lXrwfYAapIIJaVuUzNPkIMncr7dK7n4CeENsfOPD+W3q68a+iW5cV8XY9VNqWeEMN1DHqCEO46sdNijTqUk4GrTCzHWFkVAXekafEkR/AF4SrWaRBjYBLtBjXs/aWj91KY=
+	t=1780666678; cv=none; b=aIVeWLZ9/Fro2M2kwmNTteRjnjHCJiK0O8n/BzrNuSki4MJAqp7Faq+4TBlZSWDZvE77dZuqONQ4LiohqFDGj3l+HopKTdJt057LdCr0SmRfdwmxAX+QR7ng661nnTztofNV8b3ib35RCmVKRyISPHe/aFfp7rKeMCVFCAc6RBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780666373; c=relaxed/simple;
-	bh=y4UyHgL8uYHp6lQsJofrpUyLUrh94JNYk6G7H8G5GPs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=j6gzdH0RB6aBFNUkjz9eMvczS/h0OTVSpWO0jdyY4NzOVFBJ4Up1eb+/rdrlM313kkupF0BvrLD84u0Og6KR64tYMVwOfzJOZIQbe37PNm1ciqWA+V5Ad/860eewPdGPnNqqZkAvtWAKXj01vjcaDJXZ30yTeNmE4OwQY4uoUsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nQ03DGO9; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B50121F00893;
-	Fri,  5 Jun 2026 13:32:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780666372;
-	bh=L7FxRwOvsbBXNNR9+ucZyirewKSJ09X4RO3PruAVxCM=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=nQ03DGO9wtRd/q9Ao69L1qykFyrhyiFBEJxsTaX1jqS5swGypckgCMeMoBV/rK9li
-	 pbUb80zMtnb0aKe+otkSq9MdBfO1AQHPUDM5L8lPduB+LJX+bd8sIB9fiW983pGY42
-	 AAgIVOmZZi5iK+YBlJWtiVaA2zVnWk7bh4RDK9mnfLp6SpiGGO+SGheAY7rLl4OXUC
-	 /cri/sdPVJNGKD6OuNvX15b/c3syk+WHHWUtokOq+ENemZv6AU8NxClkyEWEpn0ToY
-	 01aV9CideecTKO0cjg8TSDPYOZ005G0qGyeZjpkCqJi6d29kd0QLAO7HghfbkYR6v6
-	 fDci6DFZ+z1ww==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 06/10] ASoC: renesas: fsi: Move fsi_clk_init()
-Reply-To: sashiko-reviews@lists.linux.dev
-To: phucduc.bui@gmail.com
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, wsa+renesas@sang-engineering.com, robh@kernel.org
-In-Reply-To: <20260605121955.105661-7-phucduc.bui@gmail.com>
-References: <20260605121955.105661-7-phucduc.bui@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 05 Jun 2026 13:32:51 +0000
-Message-Id: <20260605133251.B50121F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780666678; c=relaxed/simple;
+	bh=2aZEH0J2VU5XhjSzChfxXZtpAytXZoxQRRnO59GhRp0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BedFJwNhSAV0AQSOf+eirMDOVkyvVsjaDHH3Xec94kB3WrvF7Nwiv2KzTV4DIat5TV4oeX1+a3GXrgGn9N/oEtKI+jgMkxuQ7Otao/VMXYPMEZNRQ2OJuJTtb8eYiEkPjXdItWtM3ZnM+xoraD7YfqwFnzyicH+W0ZLNksD3mro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-59ccf81e74bso608578e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 06:37:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780666676; x=1781271476;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+mbWYv3/oYKk7SXXBsDpY1xgHffMAZJ0Tb8VCAbQ5qE=;
+        b=H/5IF0mrFAACn+aBACc+3z/zKc8XLk6nMmkwcc7iAEsQOMSE2VIT7mfQ9r3aFu2W3f
+         vLrSGhOWoCW0ZJdJUDjC+NVAiAI0eTGnRbj0gRiHtcvuVmcAHdiioD1u97TAGmqvnSRn
+         wu88QgYscWXIqWhR1H2wRKNcXE/LSkCy1qa9VzttXxsuLPBEGFvDpqeumSoWpVto+Vts
+         99frJId+z2O4FMuu4JywfmLvK+tCBL6GhAFZlpvtIxgu+h0jJdA13mYW6I2ET6EHqoMV
+         q8HN75L/9OAXEyTdgSncMw8zI7ZgVOY77QZKA+2TyNMVCiQDMFBwtKCBCRMJomn8y8Oh
+         MoYw==
+X-Forwarded-Encrypted: i=1; AFNElJ9LAF4Bl/EB9nrWsk0Y+M4V05eW5jqiSuwk5n7C9RDAHsD7Pntv1Qf3Nh7ES+azwS3BERla1XExwBn+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtLm1VWKCW5P8/2gVnObdJwqfU7fKljeH1gryVS2oC71im0Q4k
+	C1Tq4gaPHS5rzXoHnqjhCV65PHNm3+BGWWCnuI2D8cfbXEgNA0bNJrWmIFUe9hPQ
+X-Gm-Gg: Acq92OEOicIc7G7p8wiZL8AuLOfZ0Q4L0UuH+Os3w3A1GV33Y1t1F8rWNzqCNDuywOk
+	hibv8FteRCpVGOb3XMtdATnoXQct1eS67vqrpCcC4n3scQXcl9XQ+aFrUen1XsDJr6ml4NHKi/L
+	JN7qunmYaPWAHoDxVef4Z1muQF+oRuIBi781lxobJSiH9tyLLug2u4wDqGN7kYd3IAl5M12U4qy
+	8MvmYWaqaDUV6/rWxSSPCKveY0zioe9YqNoeKmy0dtHSIG+DbeUQYYydmqvnjop8tER/v39ltdY
+	mvUYedNtCwO5z50R2W3qyax8VB57yQWAuzE0NL6ibnQKneL4JmK3wyZBQmCPq6twIx8Nx8fYVAt
+	QLS7Ju20EogtZ1yachCeAjQmfzl0W4rZx0/z4r5sDV4x8mixZMac1qxf2os96PxzlGHiajerP+h
+	Q7hMMiulVHe+IoAC1vE4b253Te+V6Fk9Asv/xeWE+RBL8SkbVNnJhPntzq638AyMm2nvxl+Da2d
+	TY=
+X-Received: by 2002:a05:6122:468c:b0:573:a6f2:65f with SMTP id 71dfb90a1353d-5ac5510dc66mr1624217e0c.6.1780666675790;
+        Fri, 05 Jun 2026 06:37:55 -0700 (PDT)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-96413f91f2esm6726729241.4.2026.06.05.06.37.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Jun 2026 06:37:54 -0700 (PDT)
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-59e23d70dfaso642010e0c.2
+        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 06:37:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ878qfVi/I/Lt7uFAnHdHOosYeMw3xiovDLe4+N0lEbV69xHwTUmLfBvACleII+FuUQEzvEKsZoPeom@vger.kernel.org
+X-Received: by 2002:a05:6122:4b05:b0:5a0:9ad4:7016 with SMTP id
+ 71dfb90a1353d-5ac57e02261mr1463187e0c.10.1780666673234; Fri, 05 Jun 2026
+ 06:37:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260511191910.1945705-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260511191910.1945705-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260511191910.1945705-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 5 Jun 2026 15:37:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWVjvdX2Ve-Sf91oJoCWcO-fF-363ytO66Pr=SBA69N+g@mail.gmail.com>
+X-Gm-Features: AVVi8CftNp2l3YTCG72NkTVwV1FmtccWLHXsNjSPXXHE1Sq7KdRdjdvppMf_SNw
+Message-ID: <CAMuHMdWVjvdX2Ve-Sf91oJoCWcO-fF-363ytO66Pr=SBA69N+g@mail.gmail.com>
+Subject: Re: [PATCH 1/4] clk: renesas: rzv2h-cpg: Use per-SoC PLL reference
+ frequency for calculations
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307436-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FORGED_RECIPIENTS(0.00)[m:phucduc.bui@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:robh@kernel.org,m:phucducbui@gmail.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-307437-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux-m68k.org:from_mime,linux-m68k.org:email,vger.kernel.org:from_smtp,renesas.com:email,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 50E8B6488E7
+X-Rspamd-Queue-Id: EC55A648971
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+Hi Prabhakar,
 
-Pre-existing issues:
-- [High] The newly introduced `fsi_stream_is_working()` function creates a =
-Time-of-Check to Time-of-Use (TOCTOU) race condition because it drops the l=
-ock before returning.
-- [High] The patchset attempts to prevent system hangs from in-flight IRQs =
-when clocks are disabled, but fails because the interrupt handler still unc=
-onditionally accesses hardware registers before any stream status checks.
+On Mon, 11 May 2026 at 21:19, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Use a per-SoC PLL reference input frequency for PLL parameter
+> calculations instead of relying on the hardcoded 24MHz constant.
+>
+> Add an input_fref field to struct rzv2h_pll_limits and derive the PLL
+> reference frequency from it in rzv2h_get_pll_pars(). Fall back to the
+> existing 24MHz value when no SoC-specific input is provided.
+>
+> This allows the existing PLL divider calculation logic to be reused
+> unchanged on SoCs such as RZ/T2H, which use a 48MHz PLL reference
+> input instead of the 24MHz reference used on RZ/V2H(P), while keeping
+> current RZ/V2H(P) behaviour intact.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/drivers/clk/renesas/rzv2h-cpg.c
+> +++ b/drivers/clk/renesas/rzv2h-cpg.c
+> @@ -242,6 +242,7 @@ struct rzv2h_plldsi_div_clk {
+>  bool rzv2h_get_pll_pars(const struct rzv2h_pll_limits *limits,
+>                         struct rzv2h_pll_pars *pars, u64 freq_millihz)
+>  {
+> +       unsigned long input_fref = limits->input_fref ?: RZ_V2H_OSC_CLK_IN_MEGA;
+>         u64 fout_min_millihz = mul_u32_u32(limits->fout.min, MILLI);
+>         u64 fout_max_millihz = mul_u32_u32(limits->fout.max, MILLI);
+>         struct rzv2h_pll_pars p, best;
+
+> --- a/include/linux/clk/renesas.h
+> +++ b/include/linux/clk/renesas.h
+> @@ -53,6 +53,8 @@ static inline void rzg2l_cpg_dsi_div_set_divider(u8 divider, int target) { }
+>   * various parameters used to configure a PLL. These limits ensure
+>   * the PLL operates within valid and stable ranges.
+>   *
+> + * @input_fref: Reference input frequency to the PLL (in MHz)
+
+Iff there is a default, it should be documented here?
+
+> + *
+>   * @fout: Output frequency range (in MHz)
+>   * @fout.min: Minimum allowed output frequency
+>   * @fout.max: Maximum allowed output frequency
+> @@ -78,6 +80,8 @@ static inline void rzg2l_cpg_dsi_div_set_divider(u8 divider, int target) { }
+>   * @k.max: Maximum delta-sigma value
+>   */
+>  struct rzv2h_pll_limits {
+> +       u32 input_fref;
+> +
+>         struct {
+>                 u32 min;
+>                 u32 max;
+> @@ -156,6 +160,7 @@ struct rzv2h_pll_div_pars {
+>
+>  #define RZV2H_CPG_PLL_DSI_LIMITS(name)                                 \
+>         static const struct rzv2h_pll_limits (name) = {                 \
+> +               .input_fref = 24 * MEGA,                                \
+
+Why add this if 24 * MEGA is the default value anyway?
+Why not do the same for the two similar RZ/G3E macros?
+Perhaps the default handling and the RZ_V2H_OSC_CLK_IN_MEGA macro
+should just be dropped?
+
+>                 .fout = { .min = 25 * MEGA, .max = 375 * MEGA },        \
+>                 .fvco = { .min = 1600 * MEGA, .max = 3200 * MEGA },     \
+>                 .m = { .min = 64, .max = 533 },                         \
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
 --
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-commit 9e7d9a809265c034ddb9794125d27b1e46ac61db
-Author: bui duc phuc <phucduc.bui@gmail.com>
-
-ASoC: renesas: fsi: Move fsi_clk_init()
-
-This patch moves the fsi_clk_init() function after set_rate() functions to
-prepare for subsequent refactoring.
-
-> diff --git a/sound/soc/renesas/fsi.c b/sound/soc/renesas/fsi.c
-> index 0f350bddeb1d5..43e6772c06d5d 100644
-> --- a/sound/soc/renesas/fsi.c
-> +++ b/sound/soc/renesas/fsi.c
-
-[ ... ]
-
-While reviewing this patch, I noticed a couple of pre-existing issues in
-this file.
-
-sound/soc/renesas/fsi.c:fsi_stream_is_working()
-{
-	struct fsi_master *master =3D fsi_get_master(fsi);
-
-	guard(spinlock_irqsave)(&master->lock);
-
-	return !!(io->substream && io->substream->runtime);
-}
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does this function introduce=
- a
-Time-of-Check to Time-of-Use (TOCTOU) race condition?
-
-The fsi_stream_is_working() function checks if io->substream is active
-while holding master->lock, but immediately drops the lock using a scoped
-guard before returning.
-
-In the interrupt handler, fsi_count_fifo_err() and fsi_irq_clear_status()
-call this function and proceed to read hardware registers without holding a=
-ny
-locks if it returns true:
-
-sound/soc/renesas/fsi.c:fsi_count_fifo_err()
-{
-	if (!fsi_stream_is_working(fsi, &fsi->playback) &&
-	    !fsi_stream_is_working(fsi, &fsi->capture))
-		return;
-
-	u32 ostatus =3D fsi_reg_read(fsi, DOFF_ST);
-	...
-}
-
-If a concurrent SNDRV_PCM_TRIGGER_STOP on another CPU executes
-fsi_hw_shutdown() (which disables the SPU clock) right after
-fsi_stream_is_working() returns true but before the register accesses,
-can this lead to a fatal system hang when the interrupt handler accesses
-registers with the disabled clock?
-
-[ ... ]
-
-sound/soc/renesas/fsi.c:fsi_interrupt()
-{
-	struct fsi_master *master =3D data;
-	u32 int_st =3D fsi_irq_get_status(master);
-
-	/* clear irq status */
-	fsi_master_mask_set(master, SOFT_RST, IR, 0);
-	...
-}
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does the interrupt handler
-unconditionally access hardware registers before any stream status checks?
-
-The commit message for a previous patch claims that the IRQ handler will
-return immediately if no streams are active. However, fsi_interrupt()
-unconditionally calls fsi_irq_get_status() and fsi_master_mask_set() at
-the very beginning of the function, before any stream checks are performed.
-
-These functions read and write the INT_ST and SOFT_RST registers, which
-sit behind the SPU bus. If an in-flight IRQ executes after the SPU clock has
-been disabled, will these initial register accesses immediately hang the
-system, completely bypassing the downstream fsi_stream_is_working() checks?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260605121955.1056=
-61-1-phucduc.bui@gmail.com?part=3D6
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
