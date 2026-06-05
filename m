@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-307313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307328-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3h/rLripImrkbgEAu9opvQ
-	(envelope-from <devicetree+bounces-307313-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:49:28 +0200
+	id fGXOHoGoImqDbgEAu9opvQ
+	(envelope-from <devicetree+bounces-307328-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:44:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B287F647816
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:49:27 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16DF9647741
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 12:44:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MXFFssKd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307313-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-307313-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AbacRowP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307328-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307328-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0456D3002520
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 10:37:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4D3E33085135
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 10:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8922641363D;
-	Fri,  5 Jun 2026 10:37:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2919C4A33E7;
+	Fri,  5 Jun 2026 10:38:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E03B405C25;
-	Fri,  5 Jun 2026 10:37:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F4541363E;
+	Fri,  5 Jun 2026 10:38:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780655869; cv=none; b=UZclQiXLQcOcmMZFkbn0855h8jtEQtSciKJ366fMYTqoYRfN5h6YPs56R2iKHCxwpYnDSEddulDto7pD+GjHna34KiEG1+22YYmxwgQHjus4dcEEaSJeHcQtR1pyvs75CiCQqf36XTllwmr3v1STf2Pi8qnSJv61CuI93zboEkY=
+	t=1780655912; cv=none; b=rTboJLMCglCe3EPIE+KBzJDMp4hS4qVLDY0yXQ6cVg5CMrsc7SxuG903IQUuY17XvWqGnxB4bM2nEp4lynCMLQpbsphVricMBotpZU4jjIbHTEZHYpZ1dROhMR8rcsfkzceUgH0yXA+Bo6yeQI2ksSvyejRbcloUzcb9kMIx1Ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780655869; c=relaxed/simple;
-	bh=FIzdTczJRHmOyzHmlid1zzuPA3wHoAdl+dKfG7bIf4U=;
+	s=arc-20240116; t=1780655912; c=relaxed/simple;
+	bh=p3CjvtFaXcyQ5dyKwbjkItSdcbi8C4lM9mDca19O4q4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RLFH4Z1Rjo67wLHrKQSEoh66D67yOfOfpLeFknAAjA6Tf4yvDajPqHvhzDKoJG6cquNa1KhirdLX/n6ihdmhwXuf+oAz4foadqgZxLrvt+zcbzyuaF9WepYeaMnZfSpYLYmPIMM5HeUtW7508VXW6dOr1c41lbC+F9sBnYPP19Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MXFFssKd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 585D81F00893;
-	Fri,  5 Jun 2026 10:37:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JEuulNOkIrQx60i109eEbhW4tvS0rmt4SzF8u3uZ2U83/mQLS9b57Ck0Ite7T1xm8rpcfDYKLSYI+rT4FmKRgsperWnu0awKf4ZdBv/vMyNUhLoVcRdkJjuCpXaq7GCwTDCuMkW15Vx19opoZ6cV4ijjAPOMTB2Mn1Ow0rDq/K0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AbacRowP; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 277851F00893;
+	Fri,  5 Jun 2026 10:38:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780655867;
-	bh=7zKPX2gJZRGl22ScmucAkq8WKAzIuvDi/pQbxdTFxD8=;
+	s=k20260515; t=1780655910;
+	bh=pKeoBp5uzSwDyqz9bEufbe9IfRaXG2qRbvJ7WF/dnW0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=MXFFssKdC98J/AqcEWwQ/KPiXv5VrVNkVItvZt2mpZ4STU7mEMFsIWq/TB1qwWytY
-	 yI2Ri0Sjz/J0BoUDmCE6FiFHCQe9BXqr8yMRnvREiXGi9Rf3tZ3Fir2Emc4HDczU8p
-	 NM9jRoz6JWS/7IShW4CQWo7dBaT8K37jNRCnoc4dECyBa8Rc9h3S/IypiA8aasTL8n
-	 3ABlijYf7N1jsb8w12KYIT3b5UZOc8o8xX40OR+SiOpIIHxnQz85x0XggxW206SJ8L
-	 f2u1kogRYzIcoRQhy/nbjsQB3giLVZmxb1Lb+ILKFCgqM8F2NkYzwRbEFRyqbwxf3Q
-	 uKql4t3PCcwLA==
-Message-ID: <ffb9c16e-5a5a-45c4-8d4b-369b0a4fe314@kernel.org>
-Date: Fri, 5 Jun 2026 12:37:40 +0200
+	b=AbacRowPfktn04VADiSJk69toON3IJYAnvqnUGkl3sR59eMASLI9L3vGn96OMz8jU
+	 gy8vXhOkJqr7psVxnW/qQNZleEBxGha0SukFLNiCFnprZbmOzo+MH5w4pFhATMHKpT
+	 rMOcFrcIR7ISx+EHH88C7gUiEFN5CYVU8e32wqscs26Qg7px7VuF4hrB9d9cLbTb0G
+	 wFLwg4KJKolL12fPm2scrFY/JZIR9U9+XqLpg8dTPFzXHB3XYzfny15h5G8auM1QKU
+	 DKxfZCZZ4HGGoyO8TerRILBrUJdcU2m+TzLXuiJWhru5p6KsflQHycta1OO63UiXZ4
+	 g4qVA33fSiSfA==
+Message-ID: <cfc3ff5a-69c4-4763-af1b-eee75cfeeb3d@kernel.org>
+Date: Fri, 5 Jun 2026 12:38:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,15 +55,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: i2c: add Novatek NT726xx SoC i2c
- controller
+Subject: Re: [PATCH 1/3] MAINTAINERS: Add entry for Novatek NT726xx SoC i2c
+ driver
 To: SP_ISW1_AT@novatek.com.tw, andi.shyti@kernel.org, robh@kernel.org,
  krzk+dt@kernel.org, conor+dt@kernel.org, linux-i2c@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc: ben_huang@novatek.com.tw, toby_chui@novatek.com.tw,
  shihpei_hsu@novatek.com.tw
 References: <20260605035558.383330-1-SP_ISW1_AT@novatek.com.tw>
- <20260605035614.383387-1-SP_ISW1_AT@novatek.com.tw>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,14 +108,14 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260605035614.383387-1-SP_ISW1_AT@novatek.com.tw>
+In-Reply-To: <20260605035558.383330-1-SP_ISW1_AT@novatek.com.tw>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -124,7 +123,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307313-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307328-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS(0.00)[m:SP_ISW1_AT@novatek.com.tw,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ben_huang@novatek.com.tw,m:toby_chui@novatek.com.tw,m:shihpei_hsu@novatek.com.tw,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
@@ -137,136 +136,25 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,novatek.com.tw:email,vger.kernel.org:from_smtp,devicetree.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,novatek.com.tw:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B287F647816
+X-Rspamd-Queue-Id: 16DF9647741
 
-On 05/06/2026 05:56, SP_ISW1_AT@novatek.com.tw wrote:
-> From: Ben Huang <Ben_Huang@novatek.com.tw>
-> 
-> Add device tree documentation for Novatek NT726xx SoC i2c controller.
-> 
-> Signed-off-by: Ben Huang <Ben_Huang@novatek.com.tw>
-> Signed-off-by: Novatek i2c <SP_ISW1_AT@novatek.com.tw>
+On 05/06/2026 05:55, SP_ISW1_AT@novatek.com.tw wrote:
+> +NOVATEK NT726XX I2C CONTROLLER DRIVER
+> +M:	Ben Huang <ben_huang@novatek.com.tw>
+> +L:	linux-i2c@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml
 
-This won't work. Please see submitting patches and explanation of DCO.
-
-
-> ---
-> v2:
-
-
-Please version your patches correctly, e.g. use b4 or git format-patch
--vX, and add changelog in cover letter or under '---' of individual
-patches describing changes from previous version.
-
-
-Limited review.
-
-> - Add Novatek i2c to Signed-off-by email list.
-> - Remove confidential related statements and HTML messages.
-> - Fix the potential issues in the device tree document and
->   i2c driver source codes.
-> - Fix typos.
-> 
-> v1:
-> https://lore.kernel.org/lkml/20260604060411.355675-1-SP_ISW1_AT@novatek.com.tw/T/#t
-> ---
->  .../bindings/i2c/novatek,nt726xx-i2c.yaml     | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml b/Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml
-> new file mode 100644
-> index 000000000000..d9dfdaaec205
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/novatek,nt726xx-i2c.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/novatek,nt726xx-i2c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +maintainers:
-> +  - Ben Huang <ben_huang@novatek.com.tw>
-> +  - Jason JJ Wu <jason_jj_wu@novatek.com.tw>
-> +
-> +title: Novatek NT726xx SoC I2C master controller
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: novatek,nt726xx-i2c
-> +
-> +  reg:
-> +    maxItems: 4
-
-You need to list the items instead.
-
-> +
-> +  interrupts:
-> +    maxItems: 3
-
-You need to list the items instead.
-
-> +
-> +  clock-frequency:
-> +    description: Operation clock frequency of i2c in Hz.
-
-Drop
-
-> +    default: 100000
-> +    enum: [ 100000, 400000 ]
-> +
-> +  novatek,hwmods:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: Name of each i2c pin, must be named with "i2cX". (X is
-> +                 an integer starting from 0)
-> +    minItems: 1
-
-There is no such syntax. Please do not invent own style.
-
-Anyway, I don't understand the property - drop.
-
-> +
-> +  novatek,stbc:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Set if this i2c master controlled by stbc.
-
-No clue what does that mean. What is stbc? Acronym of something? Why
-would that be a property of a board?
-
-> +    minItems: 1
-
-Please open existing code. Do you see anywhere uint32 with minItems?
-Like anywhere? I really wonder what process lead to such code...
-
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - novatek,hwmods
-> +
-> +unevaluatedProperties: false
-
-Missing example. Please open existing bindings and look how it is done.
-do you see i2c controllers without examples?
-
-This binding has several trivial issues which means you did not really
-use existing code as starting point, did not read the docs or tutorials
-from OSS conferences. I encourage to start with these.
+There is no such file. Apply this patch and look. Please organize your
+work logically in Git history.
 
 Best regards,
 Krzysztof
