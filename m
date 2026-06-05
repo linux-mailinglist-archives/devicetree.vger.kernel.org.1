@@ -1,131 +1,136 @@
-Return-Path: <devicetree+bounces-307479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307480-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id unZzGPH0ImrzfgEAu9opvQ
-	(envelope-from <devicetree+bounces-307479-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:10:25 +0200
+	id dJMUCfL0Imr1fgEAu9opvQ
+	(envelope-from <devicetree+bounces-307480-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:10:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B98649A1D
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:10:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61C86649A1E
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:10:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lY2H0RZy;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307479-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307479-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VRmTccUp;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307480-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307480-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7F9CC30391F6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 15:59:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2CC36302F9A6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 16:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2017A3E0C4F;
-	Fri,  5 Jun 2026 15:59:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABB9E3C6A29;
+	Fri,  5 Jun 2026 16:00:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C013DCDB1;
-	Fri,  5 Jun 2026 15:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B51643D5C06;
+	Fri,  5 Jun 2026 15:59:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780675193; cv=none; b=dcVg76gqxaifP+tnk8QEFwlQxc7A1mTrIW1rV2wC8KsRnE2FxRZxo4ShZ+ahPERHIlNGs5n9nNhPOdaa8SKEYjcjmFLwao+LfuoSQrKXIxZ3UUEw4hDYFNYjRroOOUOGhtS5sE479qLPduMjTuXDOaMyO2QX1cw9xprJK87U+F4=
+	t=1780675200; cv=none; b=qPaw8KAHOUa8hvurvAMuKogxXkdNo52Dwl5Q9NdmKToaojGnzMOeVRr/HBJCuhDlOqsIjgcpDBOAP5gLXGFOhmcZSiC6Pw38yqAg47OdFOnJ5TPrUxYinIu/a54CvwoVagrBIIN4n7TKLcELaDbdcr1ToSEueNpHv7jJgcUdjME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780675193; c=relaxed/simple;
-	bh=Y08j+LDsjB9f4S1Z0ciIitcn8Jut7729W7PIZ42hO+s=;
+	s=arc-20240116; t=1780675200; c=relaxed/simple;
+	bh=yCAGbq/6JlyTZp4QI10TckEayK0yDn1kPsMjsDABZF4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E8VvZc3I++63l4ESSTtarPNjzuhh1qIXdIN+zvnFvS2KE+o1amdEKhE/Cc37Jt6HKLgfLMSuyG/6dpCOXGfg16f9YCilkXtNPm5hIIMphbKWbQ1EWeQHE7teQSu67vzAcn9Ogs+NkLuux5bX2aBzaxBvvPo95RAg8l6go9MmONE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lY2H0RZy; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 586481F00893;
-	Fri,  5 Jun 2026 15:59:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=M/xP3qwl3yrnMJEVjdmOX1v4ANHsA539y82rXu3qia59vQSqL7WQ2Uta9KZ6r7/HYXJx0Div6kgkaDnK7nCsfJQtUgGnC0z9WWa/Yo3m3Hat90LNeG80P/fj+FyI1eet2xB7tRsE4SHgV0W3ml3PJBswbKX4AyiFUHmTviEGkXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VRmTccUp; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB3551F00893;
+	Fri,  5 Jun 2026 15:59:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780675191;
-	bh=Y08j+LDsjB9f4S1Z0ciIitcn8Jut7729W7PIZ42hO+s=;
+	s=k20260515; t=1780675197;
+	bh=ObS4SJI1Hi4ANlAVGEHF39GV4a6SL8/PZg5/oxRIZLA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=lY2H0RZygrXP/jbWkHigT8mONKGyLv7i55SIKLZoGg0DGFDRt5wBh7nwK8N5VOcKG
-	 OHBce8xHxdVOwGGiXml4PSPOdOLD+LzzrWURi9dvpLOAlXe5PgqLyjZQbBRPVrq5v8
-	 uOpbcuiKvOLWrIGmmM5CTdjb2sG2ngb+xcdrQV7cGruKCc/0svvi1e4BUmZymeD09W
-	 EI5woEyBUpq0t4T4tSAYJ9W4Ksdi4qo1OQs5wPpR5uwfThvGfda8Z5ERDK7vQCN/6p
-	 ewJRRGIDMi2dvjXvdF1TduYAnj0KqfG6p2VvaKMXWLLTyVDNGwYkiBEwKE/WCqTxDF
-	 WWR0JmVU1nwUw==
-Date: Fri, 5 Jun 2026 16:59:47 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	b=VRmTccUpapuDZg1/Vo2DsF06NMWmciMkNXi/GgmSGq3xx93DqVQHxLpPk4g/WCV2U
+	 EspohMbt6QuyOFDYwEftJjiC9mwsZYm1zh5s3g/Pc0pFxvQflbAmZYMIfLguDRvKZC
+	 KdVcyQGeu6j+/RCkux/B2CP/JSz/gX06GALj81XaV4nmYmdQipIGfMFSPlPS2e5WQ0
+	 jGfhtTpvcey86tuJk/JvHD4lta2OBBcHqx41l52ANQtq+cMXyqSwl8vTarHNdfJnc7
+	 /N4o+bCi3Menj58/hh6WGqLKKa6Vyd9sI7jNHJtDqvCvram8JzqRLePprdObZ7zYEB
+	 BZ3vvnXgLpOAA==
+Date: Fri, 5 Jun 2026 10:59:56 -0500
+From: Rob Herring <robh@kernel.org>
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" <linux-media@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	laurent.pinchart@ideasonboard.com
-Subject: Re: [PATCH] dt-bindings: media: Add macros for video interface
- devices
-Message-ID: <20260605-unturned-shady-6d3ac6f41e38@spud>
-References: <20260605150309.2451456-1-kieran.bingham@ideasonboard.com>
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: net: ethernet-phy: increase max
+ clock count to two
+Message-ID: <20260605155956.GA3788055-robh@kernel.org>
+References: <20260605-ipq5018-gephy-clocks-v3-0-f232d9ca0966@outlook.com>
+ <20260605-ipq5018-gephy-clocks-v3-1-f232d9ca0966@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="p0zanEI4reQ2OAnq"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260605150309.2451456-1-kieran.bingham@ideasonboard.com>
+In-Reply-To: <20260605-ipq5018-gephy-clocks-v3-1-f232d9ca0966@outlook.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-307480-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:george.moussalem@outlook.com,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:f.fainelli@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:ffainelli@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307479-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[outlook.com];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS(0.00)[m:kieran.bingham@ideasonboard.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:laurent.pinchart@ideasonboard.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,spud:mid,vger.kernel.org:from_smtp,microchip.com:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,outlook.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D5B98649A1D
+X-Rspamd-Queue-Id: 61C86649A1E
 
+On Fri, Jun 05, 2026 at 04:41:26PM +0400, George Moussalem wrote:
+> The clocks property has a restriction to maximum one.
+> Yet, some PHYs may require more than 1 clock such as the IPQ5018 PHY
+> which requires two clocks for RX and TX. As such, increase maxItems to
+> two.
+> 
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> ---
+> Commit 350b7a258f20 introduced the clocks property with a restriction to
+> maximum 1 to the main ethernet-phy.yaml binding for Realtek to add an
+> optional external clock source. This is restrictive to all PHY bindings,
+> as some PHYs may require more than 1 clock such as the IPQ5018 PHY which
+> requires 2 clocks (for RX and TX).
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
 
---p0zanEI4reQ2OAnq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
-
---p0zanEI4reQ2OAnq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiLycwAKCRB4tDGHoIJi
-0hViAQD1EYtgtKviWpKopfkjNDPTX84bv8MP9gWdr1QxV6tZDgD+INgO5ASKd7nc
-sTvSZIaTXpvcS9IrzI4wUTzW/wGfcA8=
-=9E5c
------END PGP SIGNATURE-----
-
---p0zanEI4reQ2OAnq--
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
