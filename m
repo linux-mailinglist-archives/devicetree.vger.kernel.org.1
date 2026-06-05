@@ -1,248 +1,218 @@
-Return-Path: <devicetree+bounces-307474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307475-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oQEVBiXwImrnfQEAu9opvQ
-	(envelope-from <devicetree+bounces-307474-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 17:49:57 +0200
+	id 0XUDK8XvImrXfQEAu9opvQ
+	(envelope-from <devicetree+bounces-307475-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 17:48:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556F5649797
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 17:49:56 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC40964976F
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 17:48:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fiJts0aO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307474-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307474-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=G5APrCqN;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307475-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307475-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EC12C30BA816
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 15:37:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 057D73002D19
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 15:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F0135AC1E;
-	Fri,  5 Jun 2026 15:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6DE3A7F5F;
+	Fri,  5 Jun 2026 15:41:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F652FF17A;
-	Fri,  5 Jun 2026 15:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE77338238D
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 15:41:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780673849; cv=none; b=BdL+uwNxr2m4zfbCLX+AoFDAs9bPh5fCum3e8XzOGohycS6yER4oRF4aJinl4xAgUNT49g9wgiD629bV4bnjncstCIxseb7iaOR69WoS9UGLfsU7Ez5eV63MFq+9ieiIQEwP/YxR0f7OrMt5VRF+df7wHgX5qwDjQ2n7Xh09GnM=
+	t=1780674086; cv=none; b=Td8KSLv1HeH/z4DpHtmXBpCwN8uc1F8rZ1zzzEhdc12X/ahF2wZpE4lal7EpCpr7URD8j9qMAeZWfomwyR+z7hojEdib8B6oq0FoWqdWpHdu4N83SZMx/7axBzT32qB+E+7Qbaff2S3fmMmoeBBOeLQ99/rgAg2Qt/IHX+DzM44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780673849; c=relaxed/simple;
-	bh=Ia3OmfQkRg229yhgyXh0R1VI2VXlBYz1hzswS/rxZHE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=sN5joUKAcren7lx5rOfjhTQ1jBTgGl1TQH5LsweCBDpJG4p7tM3eN7Ye4Los5WuN2Z7COhikGx2N8n9BZJFABSIJAgM8xKRHpkQnDdqx+g259P54DVPu6y3nam9SyY2JoVcYhoHm4nAmIKiI/VeG41/G6iXp8yEZR/SWOn3nGU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fiJts0aO; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BD4B1F00893;
-	Fri,  5 Jun 2026 15:37:28 +0000 (UTC)
+	s=arc-20240116; t=1780674086; c=relaxed/simple;
+	bh=OaaKIanmal1qb+eWVdYhT8iBW6dOnSnjxt1RaM9ibaU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DMWuTUYC+rZqjxoLqeskifaMcYzgL3NOZVFEk4rr4DxJ/MgsrnURKpLEbmY4QdWrdOFrB1uhQh+pIjRSnulaKkrXB4RMSV8qV4f03BhboOxGZM7bM6tO/1lkuazga8fJSnxDMuvQmrrkwn1cnuEHnSYXls497zPr4kBlWF4PKS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G5APrCqN; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF61B1F00893;
+	Fri,  5 Jun 2026 15:41:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780673848;
-	bh=4Cbi9og2jszaDLJIh83+7TVoXinJPiUS+nFYSzC5rQg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=fiJts0aOPpH/z5HAxuoSfX/vAQBa8GTDYPovAIJJUH3YACsmDJhiJv5uu/wOJrYvW
-	 vLfWUbwS62M//PugDzQFxXFwSQ9J+pILz45fEhm5/wfcqFT+NBWLpXoDkEyxFCIRJx
-	 PfSygkQd3cENdC9DXD0szO2UdnKGTAL2dZcCUTH7E6v6LlMSi2AHnIDYpvaPE4abim
-	 Hc3rrwSvax16+Kymr1TWR4FWc8MMIq1Idb0Bq+WowXkNXHNDu8WNl2/PPwLGrOaewS
-	 YY4GfGw8BF2H/jsfsqBVnDmARTcR9wd1a7MlliOkvWuLupQLdksCJVUSSzWcCwA3yj
-	 T21RBOKzdyw3A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/2] media: i2c: imx678: Add driver for Sony IMX678
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jai Luthra" <jai.luthra@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260605-imx678-v4-2-58e57c67143d@ideasonboard.com>
-References: <20260605-imx678-v4-2-58e57c67143d@ideasonboard.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 05 Jun 2026 15:37:27 +0000
-Message-Id: <20260605153728.3BD4B1F00893@smtp.kernel.org>
+	s=k20260515; t=1780674085;
+	bh=U83+pTC7j+EimUgmgyxf0pZ5n90jSKHHzJrPFFm1BB4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=G5APrCqNi9Qex78WpAIN/zFdzt0vTqyTgliETnwQrmDjwtv7tyxjDtq+GFUNZMpUj
+	 0HwoKpC9cFsoTaQNwSCpIdobezRD/ykWmTz9rh7NwReyGC72kn8IXUL0/UdbuWrrAX
+	 DEuXeh3knDYfNxG4xJu9U2gXLs8C/LWgeN2+FchUXLkt4zt4xo39aOLMvIrS+9gYSR
+	 XkFzrxf0n31r1ACyrSny4egXGuGwY3E6GVf1HurbPZD3MKpV4lTM/+xSuPz/+DPTr5
+	 zmNvEf0fu/+QZJ73+NArrpDfbcykfi0qrT3ylj1JEzs0HL85ifkpe2X8i/k/EDLAKP
+	 5TRl+fKcWyAag==
+Date: Fri, 5 Jun 2026 16:41:20 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Michael Ellerman <mpe@kernel.org>
+Cc: Joel Stanley <joel@jms.id.au>, Paul Walmsley <pjw@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
+	Anup Patel <anup@brainfault.org>, Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Drew Fustini <fustini@kernel.org>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 7/7] riscv: dts: tenstorrent: Add Atlantis platform
+Message-ID: <20260605-unlivable-stardom-00ac93dfce5c@spud>
+References: <20260604143957.668047-1-joel@jms.id.au>
+ <20260604143957.668047-8-joel@jms.id.au>
+ <20260604-pacifier-sludge-196f47ab3c11@spud>
+ <f3fd53dc-7010-4b3d-a33c-4d1d32d3a1a6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="tj74OtE0zsoX28sD"
+Content-Disposition: inline
+In-Reply-To: <f3fd53dc-7010-4b3d-a33c-4d1d32d3a1a6@kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ideasonboard.com:email,lists.linux.dev:replyto];
-	TAGGED_FROM(0.00)[bounces-307474-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307475-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jai.luthra@ideasonboard.com,m:linux-media@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:mpe@kernel.org,m:joel@jms.id.au,m:pjw@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:palmer@dabbelt.com,m:asrinivasan@oss.tenstorrent.com,m:anup@brainfault.org,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:npiggin@gmail.com,m:fustini@kernel.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[jms.id.au,kernel.org,dabbelt.com,oss.tenstorrent.com,brainfault.org,eecs.berkeley.edu,ghiti.fr,gmail.com,lists.infradead.org,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,spud:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 556F5649797
+X-Rspamd-Queue-Id: AC40964976F
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] The sensor is inadvertently left in STREAMING mode after reading t=
-he module ID during driver probe.
-- [High] Bitwise OR is incorrectly used to accumulate negative error codes,=
- corrupting the returned errno.
-- [High] Use-After-Free or NULL pointer dereference of `sd->active_state` d=
-ue to incorrect cleanup ordering in `imx678_remove()`.
-- [Medium] Possible incorrect power-on sequence: clock is enabled after rel=
-easing reset.
---
 
-commit 1ad323ded3946b2792a6c7a76f8ee5e9e8fb96df
-Author: Jai Luthra <jai.luthra@ideasonboard.com>
+--tj74OtE0zsoX28sD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-media: i2c: imx678: Add driver for Sony IMX678
+On Sat, Jun 06, 2026 at 12:02:41AM +1000, Michael Ellerman wrote:
+> On 5/6/26 2:47 am, Conor Dooley wrote:
+> > On Fri, Jun 05, 2026 at 12:09:53AM +0930, Joel Stanley wrote:
+> > > Add initial support for the Tenstorrent Atlantis platform, based on t=
+he
+> > > Atlantis SoC featuring 8x RVA23-compliant Tenstorrent Ascalon-XG core=
+s.
+> > >=20
+> > > The evb machine represents an internal bringup vehicle with just the
+> > > interrupt controllers and a UART. This will be replaced in time with a
+> > > full featured machine once details are available.
+> ...
+> > > diff --git a/arch/riscv/boot/dts/tenstorrent/atlantis-evb.dts b/arch/=
+riscv/boot/dts/tenstorrent/atlantis-evb.dts
+> > > new file mode 100644
+> > > index 000000000000..06259cca8357
+> > > --- /dev/null
+> > > +++ b/arch/riscv/boot/dts/tenstorrent/atlantis-evb.dts
+> > > @@ -0,0 +1,33 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > > +/dts-v1/;
+> > > +
+> > > +#include "atlantis-soc.dtsi"
+> > > +
+> > > +/ {
+> > > +	model =3D "Tenstorrent Atlantis development platform";
+> > > +	compatible =3D "tenstorrent,atlantis-evb", "tenstorrent,atlantis";
+> > > +
+> > > +	#address-cells =3D <2>;
+> > > +	#size-cells =3D <2>;
+> > > +
+> > > +	memory@0 {
+> > > +		device_type =3D "memory";
+> > > +		reg =3D <0x0 0x00000000 0x0 0x80000000>,
+> > > +		      <0x1 0x80000000 0x0 0x80000000>;
+> > > +	};
+> > > +
+> > > +	aliases {
+> > > +		serial0 =3D &uart1;
+> > > +	};
+> > > +
+> > > +	chosen {
+> > > +		bootargs =3D "earlycon console=3DttyS0";
+> >=20
+> > FYI, this should not be in here.
+>=20
+> It should be there if you want a working console :)
+>=20
+> I know it's a "rule" to not include bootargs, but this system has no boot
+> loader, so not setting bootargs just means the DTS is no use to anyone.
 
-This commit adds a V4L2 subdev driver for the Sony IMX678 image sensor. It
-provides support for MIPI RAW12 output, framerate control, flip, analog
-gain, exposure control, and test patterns.
+I see! Could you note this please in the commit message?
 
-> diff --git a/drivers/media/i2c/imx678.c b/drivers/media/i2c/imx678.c
-> new file mode 100644
-> index 0000000000000..a5bdf15c503ef
-> --- /dev/null
-> +++ b/drivers/media/i2c/imx678.c
-[ ... ]
-> +static int imx678_set_framing_limits(struct imx678 *imx678,
-> +				     const struct v4l2_mbus_framefmt *format)
-> +{
-[ ... ]
-> +	ret =3D __v4l2_ctrl_modify_range(imx678->hblank, hblank, max_hblank,
-> +				       IMX678_PIX_PER_CLK, hblank);
-> +	ret |=3D __v4l2_ctrl_s_ctrl(imx678->hblank, hblank);
-> +
-> +	vblank =3D imx678->vmax - format->height;
-> +	ret |=3D __v4l2_ctrl_modify_range(imx678->vblank, vblank,
-> +					IMX678_VMAX_MAX - format->height, 2,
-> +					vblank);
-> +	ret |=3D __v4l2_ctrl_s_ctrl(imx678->vblank,
-> +				  IMX678_VMAX_DEFAULT - format->height);
-> +
-> +	ret |=3D __v4l2_ctrl_modify_range(imx678->exposure, IMX678_EXPOSURE_MIN,
-> +					imx678->vmax - IMX678_SHR_MIN, 1,
-> +					IMX678_EXPOSURE_DEFAULT);
+>=20
+> > > +		stdout-path =3D "serial0";
+> > > +	};
+> > > +};
+> > > +
+> > > +&uart1 {
+> > > +	/delete-property/ clocks;
+> >=20
+> > Why are you doing this? Looks kinda suspect!
+>=20
+> On the bringup system the uart has a fixed clock, I don't know exactly wh=
+y.
 
-[Severity: High]
-Does this code incorrectly accumulate negative error codes using a bitwise =
-OR?
+The reason I ask is less about the rate being fixed, and more why you
+need to set it like this. You've got
+clocks =3D <&prcm_rcpu CLK_UART1_PCLK>;
+and I would expect (or maybe more accurately hope) that the prcm_rcpu
+driver would be able to report the fixed rate?
 
-Since V4L2 control functions return standard errnos like -EINVAL, using
-bitwise OR corrupts the returned errno. This could cause VIDIOC_S_FMT to
-return nonsensical error codes to userspace instead of the intended errno.
+>=20
+> > > +	clock-frequency =3D <5000000>;
+> > > +	status =3D "okay";
+> > > +};
+> Having said that, I think we talked about making this DTS match the qemu
+> model rather than the internal bringup system. So if we do that then this
+> will change.
+>=20
+> Thanks for the reviews.
+>=20
+> cheers
 
-[ ... ]
-> +static int imx678_power_on(struct device *dev)
-> +{
-> +	struct i2c_client *client =3D to_i2c_client(dev);
-> +	struct v4l2_subdev *sd =3D i2c_get_clientdata(client);
-> +	struct imx678 *imx678 =3D to_imx678(sd);
-> +	int ret;
-> +
-> +	ret =3D regulator_bulk_enable(ARRAY_SIZE(imx678_supply_name),
-> +				    imx678->supplies);
-> +	if (ret) {
-> +		dev_err(&client->dev, "%s: failed to enable regulators\n",
-> +			__func__);
-> +		return ret;
-> +	}
-> +
-> +	fsleep(1); /* Tlow > 500ns */
-> +
-> +	gpiod_set_value_cansleep(imx678->reset_gpio, 0);
-> +
-> +	fsleep(1); /* T3 > 1us */
-> +
-> +	ret =3D clk_prepare_enable(imx678->xclk);
+--tj74OtE0zsoX28sD
+Content-Type: application/pgp-signature; name="signature.asc"
 
-[Severity: Medium]
-Is this power-on sequence enabling the clock after releasing the reset?
+-----BEGIN PGP SIGNATURE-----
 
-Standard initialization for IMX sensors generally requires the external clo=
-ck
-to be stable before de-asserting the reset line. Could releasing reset
-without an active clock place the sensor into an undefined state?
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiLuIAAKCRB4tDGHoIJi
+0mSrAP9aD/qgFnnd0P4iHzE4BH5EPGwhIKR11f9KCwkeSNxbTgD+MPAs45GELBYi
+8YsMOMdFv88R2o2N1bbpXcORrD8v4QM=
+=zdDM
+-----END PGP SIGNATURE-----
 
-[ ... ]
-> +static int imx678_identify_model(struct imx678 *imx678)
-> +{
-> +	struct i2c_client *client =3D v4l2_get_subdevdata(&imx678->sd);
-> +	const struct imx678_model_info *info;
-> +	enum imx678_type detected;
-> +	int ret =3D 0;
-> +	u64 val =3D 0;
-> +
-> +	info =3D device_get_match_data(&client->dev);
-> +
-> +	/*
-> +	 * This sensor's ID registers become accessible 80ms after coming out
-> +	 * of STANDBY mode.
-> +	 */
-> +	cci_write(imx678->cci, IMX678_REG_MODE_SELECT, 0, &ret);
-> +	fsleep(IMX678_MODULE_ID_DELAY);
-> +
-> +	cci_read(imx678->cci, IMX678_REG_MODULE_ID, &val, &ret);
-
-[Severity: High]
-Does this leave the sensor inadvertently in STREAMING mode after reading
-the module ID?
-
-The code writes 0 (IMX678_MODE_STREAMING) to wake the sensor, but does
-not restore IMX678_MODE_STANDBY before returning. If PM runtime is
-disabled, the sensor might stream unconditionally over the MIPI bus after
-probe.
-
-[ ... ]
-> +static void imx678_remove(struct i2c_client *client)
-> +{
-> +	struct v4l2_subdev *sd =3D i2c_get_clientdata(client);
-> +	struct imx678 *imx678 =3D to_imx678(sd);
-> +
-> +	v4l2_async_unregister_subdev(sd);
-> +	v4l2_subdev_cleanup(sd);
-> +	media_entity_cleanup(&sd->entity);
-> +	v4l2_ctrl_handler_free(imx678->sd.ctrl_handler);
-
-[Severity: High]
-Could this cleanup ordering lead to a use-after-free or NULL pointer
-dereference?
-
-Calling v4l2_subdev_cleanup() destroys sd->active_state without acquiring
-the control handler lock. Since v4l2_ctrl_handler_free() is called after,
-V4L2 controls remain accessible.=20
-
-If a concurrent VIDIOC_S_CTRL ioctl invokes imx678_set_ctrl(), it might fet=
-ch
-the freed or NULL active_state and dereference it in
-v4l2_subdev_state_get_format().
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260605-imx678-v4-=
-0-58e57c67143d@ideasonboard.com?part=3D2
+--tj74OtE0zsoX28sD--
 
