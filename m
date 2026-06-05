@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-307492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307490-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5MmOIFP8ImprgAEAu9opvQ
-	(envelope-from <devicetree+bounces-307492-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:41:55 +0200
+	id hvwEHIT8Imp5gAEAu9opvQ
+	(envelope-from <devicetree+bounces-307490-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:42:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E93F3649DCE
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:41:54 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F3CB649DDC
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 18:42:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Lrkh1WzJ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307492-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307492-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HWaSUcHi;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307490-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307490-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A5A2430AC0B2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 16:33:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6B8E03024A0E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 16:33:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4315416CF9;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C1FD309EEC;
 	Fri,  5 Jun 2026 16:33:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC8DC416D08
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 16:33:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CAE133D6D5
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 16:33:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780677198; cv=none; b=Rhmx0ySHHEP6OtaXYyYMYCZ/eXnYDG3obygwsXiUF7P3nt6E8+J4mcCiuRS2APLZ+sX8StMtqbAchffjmYC0LqI2/R/6SaBNQoU5jQMI5JdMIoefztdX6UTT9wSCSpABOyHZSLQQVlgRmT5gw3DQ9qKdAUoHGqBtPyY9aao2cu4=
+	t=1780677197; cv=none; b=YdcRfKJfEv0xSC/AYnRYQy4+vWQihsHYsKE1yFtcgZbYXUPc3EHjXMs1CkWtzM9PywZ9UTR/qMfzOkjmcqSFvFqRDezSgq9I2NQL9Zvn69ZYnHphUBd7XPs/VEwOFs1ZV/LwStnpvbpQn8FZ1JJU9V0Wx2dOW38XORyKIq38FJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780677198; c=relaxed/simple;
-	bh=aoPWNGLdpwFyJuFfCWWVkIyc2C9ALZZAq5POdTQpOLQ=;
+	s=arc-20240116; t=1780677197; c=relaxed/simple;
+	bh=diHDzqrHcJ9gk1alHJcd3boy26xQATOxGPrJmlI+vhM=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=drEhPhWrgIafJarSDmyIVUZCfNaawZ7LK7KJY3Zr+xIxdGsBdlSJlj4iAJYrPzB1XvIZciKxBj5rz2mZI+dDMOtCeAPG5djJB7XT+NnKF32yxp2PMlAOelNopMbjdL2ko4B/fE55phmlmyAm4wLt3KHUE4v22EDZvb7BYibTgyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lrkh1WzJ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BA371F00898;
+	 Message-Id; b=c7I1l+b/fm30WxrKDGh/0KrE0O2f7MjbNeXAeTS9dhEajyrZA1C7gsp3iecSDSS33kcXg3HiuNYSsnml7PnqF5qeLZduf81t/zgHgF6Sj3ITFrRKi1aZZsniYL+AiDW+l3e2eyjo5qd5lFbsMcY+PqFxZDrs3BkNhAD48LqTxEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HWaSUcHi; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C20EB1F00899;
 	Fri,  5 Jun 2026 16:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780677192;
-	bh=vRMeu8S+bQZWreXxViXtnjoYG1qvT63TV9jzO6Hess8=;
+	s=k20260515; t=1780677193;
+	bh=Trsp06jMCT6RwOWTxb9geTvy5Ku4Yn9JTiZ0jRKjY+w=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Lrkh1WzJqvAXFM8KzLLA3hRDjGKYyrBYvlK74JYGlLno3gw3e5zBIJEImetWbI0Ef
-	 jl8D2K03WiJ/BwZH1YxZOrRIza/E85HJxt0H74cIPabvPtYANvQ+8QkCAhFQC9IrE0
-	 6wDBOm6Sa662yf5RE56VHSW0Q6BjOt+T7hipL6etZ90o4nST1OLmfrsrMzPyua/g6t
-	 zKp4CP57OfZzdiLS02im4aLAKiOVC0I3E4m9XDs52MCaUpImjYD73NCJPfJKLnVj2l
-	 9oaOAdjWufedLbnDuclQoYzQGUCy2nY28rjTuBNFYlrO4rCjvIzcZriSSi9716mbNW
-	 ZPOVwl8mncxSA==
+	b=HWaSUcHiiU9jZuXSwRB9wKjdhdWOOjlO9dbHywSm5kZJRTdw92SbcElba4+x+JBk2
+	 8yK107dLJL/D0PNLQNWfAl1Cu4reeKmkf43UYttMW94iwCn2Yzfb5IHOMCvDjOyu9e
+	 +xfIGmsMRJpc/PGIKIsSwBk4IJoC33jSlA69ChELa4kPWvpYrQuFpLg1DhhqYmj2D6
+	 aO2ZIlQGXpBuJmrt7DxySQyX+37D4zGr18iwwpVZwd1FGKq2wdN5gUu7QQGCQMUeuH
+	 R9T/T4puR+r3mwyEen1TeCY76VBByy8FQjFQYHjvxyf9l0PZAuus35bmqkjTBM+cCR
+	 eo4eXW34GoDYQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v3 03/13] net: ethernet: oa_tc6: add
- OA_TC6_BROKEN_PHY quirk flag
+Subject: Re: [PATCH net-next v3 04/13] net: ethernet: oa_tc6: Export the C45
+ access functions
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Ciprian Regus via B4 Relay" <devnull+ciprian.regus.analog.com@kernel.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260604-adin1140-driver-v3-3-5debdb3173c4@analog.com>
-References: <20260604-adin1140-driver-v3-3-5debdb3173c4@analog.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260604-adin1140-driver-v3-4-5debdb3173c4@analog.com>
+References: <20260604-adin1140-driver-v3-4-5debdb3173c4@analog.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 05 Jun 2026 16:33:11 +0000
-Message-Id: <20260605163312.2BA371F00898@smtp.kernel.org>
+Date: Fri, 05 Jun 2026 16:33:12 +0000
+Message-Id: <20260605163312.C20EB1F00899@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +69,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -77,98 +77,105 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-307492-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307490-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devnull+ciprian.regus.analog.com@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:devnull+ciprian.regus.analog.com@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,ciprian.regus.analog.com,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,analog.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E93F3649DCE
+X-Rspamd-Queue-Id: 0F3CB649DDC
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
 
+New issues:
+- [Low] Missing forward declaration of `struct mii_bus` in `include/linux/o=
+a_tc6.h` makes the header not self-contained.
+
 Pre-existing issues:
-- [High] TOCTOU race in TX path can lead to a permanently stopped network q=
-ueue.
+- [High] Lockless check in `oa_tc6_start_xmit` races with the SPI thread, l=
+eaving the network transmit queue permanently stopped (TX deadlock).
 --
 
-commit 3d52460cfb1b1b89ef4ee5edf6fd1d68050769d6
+commit 03dcdcc6f016c85b284a9ab34918acf9f00e484a
 Author: Ciprian Regus <ciprian.regus@analog.com>
 
-net: ethernet: oa_tc6: add OA_TC6_BROKEN_PHY quirk flag
+net: ethernet: oa_tc6: Export the C45 access functions
 
-This commit adds the OA_TC6_BROKEN_PHY quirk flag to skip internal PHY
-initialization and management for MAC-PHY devices with hardware issues.
-Drivers can use this flag to manage the PHY themselves instead of relying
-on the framework.
+This commit exports the C45 MDIO bus access functions from the oa_tc6
+driver. It modifies the function signatures to be non-static and adds
+their declarations to the driver header file.
 
-> diff --git a/drivers/net/ethernet/oa_tc6.c b/drivers/net/ethernet/oa_tc6.c
-> index baba5aad84dfa..2a72f0c4b0095 100644
-> --- a/drivers/net/ethernet/oa_tc6.c
-> +++ b/drivers/net/ethernet/oa_tc6.c
-> @@ -134,6 +134,7 @@ struct oa_tc6 {
->  	bool rx_buf_overflow;
->  	bool int_flag;
->  	bool prot_ctrl;
-> +	enum oa_tc6_quirk_flag quirk_flags;
->  };
-> =20
->  enum oa_tc6_header_type {
+> diff --git a/include/linux/oa_tc6.h b/include/linux/oa_tc6.h
+> index 62e3d89f80ed0..2660eefa35043 100644
+> --- a/include/linux/oa_tc6.h
+> +++ b/include/linux/oa_tc6.h
+> @@ -31,3 +31,7 @@ int oa_tc6_read_registers(struct oa_tc6 *tc6, u32 addre=
+ss, u32 value[],
+>  			  u8 length);
+>  netdev_tx_t oa_tc6_start_xmit(struct oa_tc6 *tc6, struct sk_buff *skb);
+>  int oa_tc6_zero_align_receive_frame_enable(struct oa_tc6 *tc6);
+> +int oa_tc6_mdiobus_read_c45(struct mii_bus *bus, int addr, int devnum,
+> +			    int regnum);
+> +int oa_tc6_mdiobus_write_c45(struct mii_bus *bus, int addr, int devnum,
+> +			     int regnum, u16 val);
+
+[Severity: Low]
+Is a forward declaration for struct mii_bus missing in this header?
+
+Since struct mii_bus is used in the parameter list but not declared, it is
+scoped to the function prototype. Any file including this header before
+declaring struct mii_bus will produce a warning about it not being visible
+outside of this declaration.
 
 [Severity: High]
-This is a pre-existing issue and was not introduced by the patch under
-review, but is there a TOCTOU race in the TX path that could lead to a
-permanently stopped network queue?
+This is a pre-existing issue, but could the lockless check in
+oa_tc6_start_xmit() race with the SPI thread and cause a TX deadlock?
 
-If CPU1 runs oa_tc6_start_xmit() and sees tc6->waiting_tx_skb:
+Looking at oa_tc6_start_xmit() in drivers/net/ethernet/oa_tc6.c:
 
-drivers/net/ethernet/oa_tc6.c:oa_tc6_start_xmit() {
 	if (tc6->waiting_tx_skb) {
 		netif_stop_queue(tc6->netdev);
 		return NETDEV_TX_BUSY;
 	}
-}
 
-And CPU2 concurrently runs the SPI kthread which clears the SKB and tries
-to wake the queue:
+If this evaluates to true, but concurrently the SPI kthread running
+oa_tc6_try_spi_transfer() takes tx_skb_lock, moves waiting_tx_skb to
+ongoing_tx_skb, and sets waiting_tx_skb to NULL, could the queue wake up be
+missed?
 
-drivers/net/ethernet/oa_tc6.c:oa_tc6_try_spi_transfer() {
+oa_tc6_try_spi_transfer() evaluates the queue status:
+
 		if (!tc6->waiting_tx_skb && netif_queue_stopped(tc6->netdev))
 			netif_wake_queue(tc6->netdev);
-}
 
-Could the following sequence occur?
-
-1. CPU1 checks tc6->waiting_tx_skb and evaluates to true.
-2. CPU2 processes the skb and sets tc6->waiting_tx_skb to NULL.
-3. CPU2 checks netif_queue_stopped(), which is false because CPU1 hasn't
-   stopped it yet, so it skips waking the queue.
-4. CPU1 calls netif_stop_queue() and returns NETDEV_TX_BUSY.
-
-The SPI thread would then go to sleep and the network queue would remain
-permanently stopped until an asynchronous event awakens the SPI thread.
+If the kthread evaluates netif_queue_stopped() as false before
+oa_tc6_start_xmit() calls netif_stop_queue(), start_xmit will then
+unconditionally stop the queue. Since waiting_tx_skb is now NULL, the SPI
+thread will not process TX packets and wake the queue again, potentially
+deadlocking the TX path permanently unless RX traffic generates an interrup=
+t.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260604-adin1140-d=
-river-v3-0-5debdb3173c4@analog.com?part=3D3
+river-v3-0-5debdb3173c4@analog.com?part=3D4
 
