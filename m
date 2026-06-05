@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-307394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307396-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BjSSLhvBImrhdAEAu9opvQ
-	(envelope-from <devicetree+bounces-307394-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:29:15 +0200
+	id tQB2N37BImr/dAEAu9opvQ
+	(envelope-from <devicetree+bounces-307396-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:30:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB8D648228
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:29:15 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76BE3648286
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:30:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amarulasolutions.com header.s=google header.b=noL1YHEQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307394-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307394-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=amarulasolutions.com header.s=google header.b=LyyP2WTo;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307396-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307396-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=amarulasolutions.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9655330D341F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 12:21:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4986B300FA88
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 12:22:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 952F03D4126;
-	Fri,  5 Jun 2026 12:20:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F108D3290D2;
+	Fri,  5 Jun 2026 12:20:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0D73C343F
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 12:20:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E6843CEB9B
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 12:20:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780662025; cv=none; b=ipSrDtmkjmRJBU6DFlqfmsHVfGoQn54xlu2K4iz9P4aLsJzyHxTbfJfk0mV9dG3q/KuPoKx7YGfJkb+73gRgPcQ/jpd6iSNY7z92gV+gPllB37m4uvp4s8YrCvquwx4+rB9VmEGjK85nxFPf1wP8njAVm0SYweQhtHc5fRE1H5c=
+	t=1780662028; cv=none; b=c3/sDeU1UczAa64rZAKUe+MCJmJbgY3+7KcHynvprDXd9FTnzS4YUfeZXaiU9m5iZlxcSgTnCQs9qX8YRpns+VfYMgqfY9LieFbNLGwZUgS4IKuoRZZ60QraSK9d3psEtyroFscwMaDEYkFA2OVLvcuyglIf+UYnJ2p5DaSuC4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780662025; c=relaxed/simple;
-	bh=H4l2qG+pGEJgFcb/52U52UrJQhd3/X4OF9BCeqi+O+w=;
+	s=arc-20240116; t=1780662028; c=relaxed/simple;
+	bh=nrUmNmS2cqNUpeioG1YefNM9DTR1Z5DYJiGiTJGLt4k=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LQc7Uu9S2CpvXV+9jEqStuyzDjROqy18f2NvkgJTdpu9vdQq8KC9cF8TuQrj4fHrykNpHTa6sdTT+UbOzh4c/zqR5qq7+h57V5skFwd8lapz1XqeRsaK4sHdek4wmAl4UxKQxe7jz702spq1+MqAGzhSxshAEeU9vOpAWZ96S88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=noL1YHEQ; arc=none smtp.client-ip=209.85.221.49
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-45ee5cdbd28so1846184f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 05:20:23 -0700 (PDT)
+	 MIME-Version; b=OCZ8MhL/927UCfb92fXv4JAbC59zVq1gOlYCG2RhTSZvEpagGlIugKsnGlZW+05TJYPhlhKMQhQPDWGkyzeOXAhmOnIrrysgpBEsG7hyzEDvyt4R5bfFZw1qzzsK/HwmPzON0wh30pCGPkHqPBnrlbWQm+2FT0agvIl2WdX+xjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=LyyP2WTo; arc=none smtp.client-ip=209.85.128.49
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-49068493267so13931925e9.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 05:20:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1780662022; x=1781266822; darn=vger.kernel.org;
+        d=amarulasolutions.com; s=google; t=1780662024; x=1781266824; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2Cmtnz5uL0NhcEWKME+3YqiQ1Tn3C+OdDm6ovZMriaw=;
-        b=noL1YHEQyGh1uZQQyo2CmtOtum2qbN38YDYHYlb/b7kr3u9uUCsWGw1RWwjio0ZF2W
-         Qc+5uAAejPbUqo8xBR6dJjosDnYMJoT6CWjHfksyHSb0wbkgvJlqcOSGgknl6IY7fFXT
-         4Us7X0/t5aViiEBCYJ7veK5qp0Gxsyh43TFfU=
+        bh=GanFEAB/EXFN18ke4KMogfaho+mkfI6VO/zTEp1k31k=;
+        b=LyyP2WTob/LQ9YNkEJd9nu/zE3paTf/E5OcbFP703UMnClxEpp8H31blzd7k219Zp+
+         /J9WpWIvX3M/a62GlH4qPpKasX0EXiEDf0btP5nhffBV6A2yPPG2zv4tHSqb8RwS/g+C
+         LZVzJBAbOQZbvMu+NnKcTGI7mTpnvgfP/yaHI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780662022; x=1781266822;
+        d=1e100.net; s=20251104; t=1780662024; x=1781266824;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=2Cmtnz5uL0NhcEWKME+3YqiQ1Tn3C+OdDm6ovZMriaw=;
-        b=QmgXLJRx0aPkQDsrTinLaRO3hUPc5EB8lYp2rENyqpyw7QMYKt7UrkweQRsTQtl9pz
-         PouWrFx9Cg1EPoNaJGxqXh+ZldNzLzZbFPp25hLAdECB0L/Ltsij+fL7Zxuzho7dnvgW
-         +G4nPTsWb6T4J/nVGlCTkuqne7iL5lMaeTFMf7+UYz2LzGbJkAwC6zMr1Xz5p8tFhKwE
-         W2M9bTW7mbUInfBFTk5XbCY10U446RRIAgmbvy17pwIsgoQGPKorMbhQcWzRzR+8ZlM5
-         XiTO06WC/pAgVaX+RI6hN2P0WXCE8bl/N6oZGlUvwNynKFxxIdOawrnu5xIKrVK/QB7A
-         4tbA==
-X-Forwarded-Encrypted: i=1; AFNElJ9P9b9kJbLTDrZHJ+SuoClCqqMZSLQ45rEJcTS8zVmI1nGc0Q75TVTBvsbEnGAd+Cvm7hXYVpFlzg6J@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8HVLv0MSBHM2H9o0OA2a6h9ZKVk8kU2sa7TyS32k2QntmMNlL
-	A/dScxvRJZeDCybzVE/ev0iWbZGO8hr7SxN/I1Klyt2hj2oGhZFekTzKlJIXReuDrec=
-X-Gm-Gg: Acq92OE17FWkOwx/QlgeNMSvg0WeaiTEnZBLtBRV+DdIxQq94QtaAnSqefqOlghn8u0
-	sLNFCx+u7NZqlG50jnCoRf1B11veMJuNLXiogaGPDr0M8TAVzU5O4fjMjow5g416Fl8o1pekhep
-	hB88l11YMsUdnQYKhhm+dj11l22Vm302LG3kZ641JBJA/sQdpVutotpFKQ+hld+s55W1Ff5uLwl
-	KrR2Emi7DKqq6tICjc09a0j/JmD7AoYyNQTfw4M4tkD/FZKpP47mHBrINJ6kdDMvzFjIgCsV/EA
-	vus/vXpnn5ccCWYWE4TZBWlr2IiT8BxS14SwEDLzxxwTVEy+AEaEjK6hUxEZRdZnRq95Aq+fTav
-	CaUL+6NKY9+akCIHT7dkZ3rib4jYzei2H3fcTud82F42/PmyD4YhyyuH8szDMn87zIEDU7lAe9F
-	cY+CeSVL0oCvZxinVvVOrLnDvphPDim5xsSx3JvMjpRxFy1g5PjLVorCArRrqsUjDzmdG8CeBve
-	ItORAuZaR9DU0XqhKfPpufWgIVFeLNULvh8i7OAEQUori3ZOdAx1cEOAf3XVoNHHPq5AFKLjoB/
-	t8vPyGmU7CisHKh5eBBH1qbg/gMnNRkwNxs=
-X-Received: by 2002:a05:6000:240e:b0:45e:e936:5e30 with SMTP id ffacd0b85a97d-46032b71108mr3975460f8f.6.1780662022224;
-        Fri, 05 Jun 2026 05:20:22 -0700 (PDT)
+        bh=GanFEAB/EXFN18ke4KMogfaho+mkfI6VO/zTEp1k31k=;
+        b=Cea+T4NbQRzPhANYt7fRisDpe6Gw1jRhVzGsU7ubLKthL/dpZ06TQTBn3134o+rkCk
+         qrlrlpVkXcC0Gd1mHq4St/rymJrqHYkH7NIRFTxcaxQ1n0fuoXcfaNxbyCCmKhJU0u3Z
+         CscWuRcs0p5UPZRRY2f/gB/LLQmM/LRHof9GVXp5P8X1NIB88y3iWkABqZRvWy8V54zb
+         L3VR0w9gCecvaOxxuxk0Avr7y1Y8Gpr0tZjVH52bjY9gujRv/aW11mTLZ6//frx8TQIB
+         d7Wkqx4MJW2GsziR6t3+/teNxV+r1uAVl6uoni5NpvvrguCrZ/fpo7nA2Ax71/GCWnDS
+         MXqg==
+X-Forwarded-Encrypted: i=1; AFNElJ+C+D7/BbJCSeWOvXi6gVJjWc3PBKy57e0Xh9/xcubk1rQAOO3hhFy1FMvYRe4OWPpYAZwxvF/6GLx2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoagiPZQsWw7c6EyYPM1jvyn/QZQ2iODyPrNBToKSkls70urmv
+	jJOzQHUcRpxjaTvcZ+IHyiVIQV4abjyyh9mbu+G0hRI5sunX7s/IX9SjiUawl27ySI0=
+X-Gm-Gg: Acq92OFoG7XRc102VD4dLADMg2+oonG52mJBWd7Z/mozSUfP4sKumnKBMhYeB1r/IGY
+	ntWOnBgef8JvwY9dzxW+Uv+3o5YvzYuxMlmK/PV14aAbYuWge6CXtKIQ6PaYIJuo7RystJ64pP/
+	FQ2JzrjyeAzCICa0opVfxKXk9NenMS0LHhQHWBNC7o2ZiTorC3E3UlOSIIXQeDRt2KqSxEpHQz4
+	yIakkEB8leEtHKdw40jU5e0O+ueu9NZB09A1IedGK2M7ffpdBVI74dbJOabxA3dYizgq+lZZ709
+	CVuP2d/IURX6g9RAL3iKA47ivclbWAQeOLoQvumE7MBb9DSNVa+uIByR5cZOJghow47SAeayz/Q
+	tQ7bhfLe1sr2HUpCYyzDoR28FPGN0dcojmwXWa2aMzGW+mmxphSAcjD0zEK5jnNxlQNp+iVbrPE
+	FpCylrE9bjN2QILqEi9dSU/WQBooznpgDos2tdHywy8LY9D+n6dIH3F85XHTIoV8T5EZ4hQrCrW
+	p+P3nAwWFVIV5uYOwf7xpc+YMU6OHiEurw9zN3bY6dIklKOznlxpcl35R6gbO7h5VnGqL4Xj0y8
+	6/VWXUFh+PLZqDGFVepRDrAdL2qA9Hxv+iI=
+X-Received: by 2002:a05:600c:a012:b0:490:b9c3:6c49 with SMTP id 5b1f17b1804b1-490c2610c3bmr55729705e9.29.1780662023766;
+        Fri, 05 Jun 2026 05:20:23 -0700 (PDT)
 Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-82-48-44-238.retail.telecomitalia.it. [82.48.44.238])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f2dcb13sm24785883f8f.2.2026.06.05.05.20.21
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f2dcb13sm24785883f8f.2.2026.06.05.05.20.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jun 2026 05:20:21 -0700 (PDT)
+        Fri, 05 Jun 2026 05:20:23 -0700 (PDT)
 From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 To: linux-kernel@vger.kernel.org
 Cc: michael@amarulasolutions.com,
@@ -90,9 +90,9 @@ Cc: michael@amarulasolutions.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v4 11/14] arm64: dts: st: add usart1 pins for stm32mp25
-Date: Fri,  5 Jun 2026 14:18:22 +0200
-Message-ID: <20260605121957.78409-12-dario.binacchi@amarulasolutions.com>
+Subject: [PATCH v4 12/14] arm64: dts: st: support Engicam MicroGEA-STM32MP257 SoM
+Date: Fri,  5 Jun 2026 14:18:23 +0200
+Message-ID: <20260605121957.78409-13-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260605121957.78409-1-dario.binacchi@amarulasolutions.com>
 References: <20260605121957.78409-1-dario.binacchi@amarulasolutions.com>
@@ -111,14 +111,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amarulasolutions.com,none];
 	R_DKIM_ALLOW(-0.20)[amarulasolutions.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FREEMAIL_CC(0.00)[amarulasolutions.com,engicam.com,foss.st.com,kernel.org,gmail.com,vger.kernel.org,lists.infradead.org,st-md-mailman.stormreply.com];
-	TAGGED_FROM(0.00)[bounces-307394-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307396-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -133,68 +133,115 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[amarulasolutions.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amarulasolutions.com:mid,amarulasolutions.com:dkim,amarulasolutions.com:from_mime,amarulasolutions.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,st.com:url,amarulasolutions.com:mid,amarulasolutions.com:dkim,amarulasolutions.com:from_mime,amarulasolutions.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5BB8D648228
+X-Rspamd-Queue-Id: 76BE3648286
 
-Add the usart1 pins used on MicroGEA-STM32MP257-RMM board.
+Support Engicam MicroGEA-STM32MP257 SoM with:
 
+ - 8 GB eMMC Flash
+ - 2 GB LPDDR4 DRAM
+
+The SoM also provides an Ethernet MAC, but Ethernet support is not
+enabled at this stage due to a known silicon limitation documented in
+[1].
+
+This corresponds to section 2.21.2 ("ETH1 RMII mode could have CRC
+errors"), where CRC errors may occur in ETH1 RMII direct mode when
+directly connected to I/Os.
+
+The workaround requires use of the Ethernet switch (ETHSW), which
+introduces additional DT bindings and topology complexity. This is
+intended to be addressed in a separate patch series.
+
+[1] https://www.st.com/resource/en/errata_sheet/es0598-stm32mp23xx25xx-device-errata-stmicroelectronics.pdf
 Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+
 ---
 
-(no changes since v1)
+Changes in v4:
+- Drop inclusion of stm32mp25xf.dtsi, we are using stm32mp257d.
 
- arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Changes in v3:
+- Fix a typo in the URL
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-index 46c5197dcd63..a72c458b2c6e 100644
---- a/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi
-@@ -766,6 +766,39 @@ pins {
- 		};
- 	};
- 
-+	/omit-if-no-ref/
-+	usart1_pins_b: usart1-1 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('B', 8, AF6)>; /* USART1_TX */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('B', 10, AF6)>; /* USART1_RX */
-+			bias-disable;
-+		};
-+	};
+ .../dts/st/stm32mp257-engicam-microgea.dtsi   | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
+
+diff --git a/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
+new file mode 100644
+index 000000000000..5b4287e86def
+--- /dev/null
++++ b/arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
+@@ -0,0 +1,63 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2026 Amarula Solutions, Dario Binacchi <dario.binacchi@amarulasolutions.com>
++ * Copyright (C) 2026 Engicam srl
++ */
 +
-+	/omit-if-no-ref/
-+	usart1_idle_pins_b: usart1-idle-1 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('B', 8, ANALOG)>; /* USART1_TX */
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('B', 10, AF6)>; /* USART1_RX */
-+			bias-disable;
-+		};
-+	};
++/dts-v1/;
 +
-+	/omit-if-no-ref/
-+	usart1_sleep_pins_b: usart1-sleep-1 {
-+		pins {
-+			pinmux = <STM32_PINMUX('B', 8, ANALOG)>, /* USART1_TX */
-+				 <STM32_PINMUX('B', 10, ANALOG)>; /* USART1_RX */
-+		};
-+	};
++#include <dt-bindings/regulator/st,stm32mp25-regulator.h>
++#include "stm32mp257.dtsi"
++#include "stm32mp25-pinctrl.dtsi"
++#include "stm32mp25xxai-pinctrl.dtsi"
 +
- 	/omit-if-no-ref/
- 	usart2_pins_a: usart2-0 {
- 		pins1 {
++/ {
++	model = "Engicam MicroGEA STM32MP257 SoM";
++	compatible = "engicam,microgea-stm32mp257", "st,stm32mp257";
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x0 0x80000000 0x0 0x80000000>;
++	};
++};
++
++&scmi_regu {
++	scmi_vddio1: regulator@0 {
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++	scmi_vddcore: regulator@b {
++		reg = <VOLTD_SCMI_STPMIC2_BUCK2>;
++		regulator-name = "vddcore";
++	};
++	scmi_v1v8: regulator@e {
++		reg = <VOLTD_SCMI_STPMIC2_BUCK5>;
++		regulator-name = "v1v8";
++	};
++	scmi_v3v3: regulator@10 {
++		reg = <VOLTD_SCMI_STPMIC2_BUCK7>;
++		regulator-name = "v3v3";
++	};
++	scmi_vdd3v3_usb: regulator@14 {
++		reg = <VOLTD_SCMI_STPMIC2_LDO4>;
++		regulator-name = "vdd3v3_usb";
++	};
++};
++
++/* eMMC */
++&sdmmc2 {
++	pinctrl-names = "default", "opendrain", "sleep";
++	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_a>;
++	pinctrl-1 = <&sdmmc2_b4_od_pins_a &sdmmc2_d47_pins_a>;
++	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_a>;
++	non-removable;
++	no-sd;
++	no-sdio;
++	st,neg-edge;
++	bus-width = <8>;
++	vmmc-supply = <&scmi_v3v3>;
++	vqmmc-supply = <&scmi_vddio2>;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++	status = "okay";
++};
 -- 
 2.43.0
 
