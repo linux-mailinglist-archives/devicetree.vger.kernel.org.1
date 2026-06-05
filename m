@@ -1,243 +1,189 @@
-Return-Path: <devicetree+bounces-307132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307135-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZX2rIBcvImpZTgEAu9opvQ
-	(envelope-from <devicetree+bounces-307132-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 04:06:15 +0200
+	id oVNGOM4wImqpTgEAu9opvQ
+	(envelope-from <devicetree+bounces-307135-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 04:13:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00C1C644977
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 04:06:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AA116449D8
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 04:13:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=163.com header.s=s110527 header.b=GjMWQdsM;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307132-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307132-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=163.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ktCt3VFF;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307135-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307135-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 03C363038A4F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 02:06:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E819302F9A3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 02:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3989C3E3176;
-	Fri,  5 Jun 2026 02:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 681983D47DE;
+	Fri,  5 Jun 2026 02:11:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com [209.85.215.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D97B3932EE;
-	Fri,  5 Jun 2026 02:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4306930C345
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 02:10:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780625155; cv=none; b=mrlTgIWGe3izuK+FeK/rzaywvkJ7G6lFLPqC+ks9ZPSduI+HsnuWSGlQrRnJHcKSULVGtwveuPdbYrvPxUnJaHajvUv/lEK1B05ZNGmGsPqK+twU7shI72u7JN7vH9jTqDCKJStHRCX7tRo0opA570SOuUycS56TX+X0zV9hTLI=
+	t=1780625467; cv=none; b=LcJHvvgufA5Ue6qjIkEgzmjmOwcgh0qBTYtwzKdyRSgu2Sa54N6lhpLzexNzp8D35dM1xIEDEzANw7n/rH2GbYHoHJ8WqMpSxzhGwBPq11ZicRS0fko6mMcxGv9VNJtCRoo2H3+zRvaAB7BATleLgP7N09+un3gsagk8AoI/VpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780625155; c=relaxed/simple;
-	bh=ncAsXFcYB9+tI8BWusAz1SdAtp4v42J/790HGF41wik=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pH2ektN4josYh/Nz1VVHjg0JbgqVaRS8W1HGZLot26VO5doKjA5rMaPLvsO2w9hWOs377YYUulKko5yvemPpsNRoEpHO3F+9BZbPhlhOEXf0WOI/uLA5Z6q57cq3JkTICNVvAcXXNNmWYWrX67Dc7IUFV/GwpWAmYlImpY4S0Bk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=GjMWQdsM; arc=none smtp.client-ip=117.135.210.2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=X9
-	/TiF/Qz6KbmWNEuOOERR0ARs9jh9FBZxL+cbHl9U4=; b=GjMWQdsMwjMg1Rm+82
-	+BvRxCskvX+IzNA24SYHKbQh8x1uB7PicsgjynBkGfW7qhludKKHQRk00WGUHeHa
-	XSm+rLzwJTJeakFAlon4nslWSsFRi+T6jTb1+OJ3aCHxNVs1HTpqGsGdenuJl67d
-	npJMObgiOveiNkzhUfn3aPXD8=
-Received: from ZM.localdomain (unknown [])
-	by gzga-smtp-mtada-g1-0 (Coremail) with SMTP id _____wAXVW_FLiJq4ffOBQ--.62174S5;
-	Fri, 05 Jun 2026 10:05:06 +0800 (CST)
-From: Ziming Zhu <zmzhu0630@163.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Ziming Zhu <ziming.zhu@silergycorp.com>
-Subject: [PATCH 3/3] hwmon: Add documentation for SQ24860
-Date: Fri,  5 Jun 2026 10:04:50 +0800
-Message-Id: <20260605020450.89638-4-zmzhu0630@163.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260605020450.89638-1-zmzhu0630@163.com>
-References: <20260605020450.89638-1-zmzhu0630@163.com>
+	s=arc-20240116; t=1780625467; c=relaxed/simple;
+	bh=rt8QiFKCUtKyRyCjlNWltkcE+h7JQzz3Oiq6lIOH/YM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S4ubPU/tTOFbqtGT+GYua/BeEQLA5OlIZyHmJ7A0tuTjAWOXUgbgver+16bZp7Nf4fQdxsSJpbzjXgovdMoKmAUM7nP8wRL0f4NGRXBS3u4x9qSrfgLmdNMZJeQg7T2apjkcXF+BiuK0MVZOfvQj+WT8e2HvkAIqBJ5vLB5ued0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ktCt3VFF; arc=none smtp.client-ip=209.85.215.194
+Received: by mail-pg1-f194.google.com with SMTP id 41be03b00d2f7-c85825bbc4fso832396a12.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Jun 2026 19:10:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780625457; x=1781230257; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ULATv2+XYxYgQ4SMTbT2+7ryN++47TE5p2N63JMlAZU=;
+        b=ktCt3VFF+LPPU3LJ7KNs3A63FURN9L9xB9iUXTNXW0yzQr6gahxzD+ic/qqeACXVs3
+         b/9bE21L4nO1XqQiafI2PnZ3b+mNw65YoY9BDS/8RhQ3MekNq2yjSjuZ5c0iCUkPLRmu
+         MkNUhAABdUGYTP+ppfBv0QmSPWgI1ivY99UYcHr4Rt/X2aTbZa1u+RRTpCqhLdP1w7nt
+         wPXPcgrhR96r7e7y0lE8AoRfaQUYTRMw4Hk8lXSg9n2Czut1ugSS4C1nwPRRFxoH8UcN
+         ITGH8JSpjbHfcc7qcaz57tXTfrtJ+Xr2yk9sOzKiirnYji8g+owxN6dzCsEjfV1pttf8
+         EidQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780625457; x=1781230257;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ULATv2+XYxYgQ4SMTbT2+7ryN++47TE5p2N63JMlAZU=;
+        b=hKXFG/KrNUWo/RE576D6Bqmh2zkRcC5JvrCX2fzqDhrmy4vQx1FH3zFpN+gryABJnE
+         YWkm/CUdcO5gU3oYVinmnV8TW+ES2Sa+AUEYFboYBgR9FaCXVeE2WIPqLH3KVeLq+MRC
+         tecuoQ36St/veCUeujjdHH6Dmd3ubK6bM8rJF5+wmEdNKiJ/JxpObKeUjq2j5YauzHFs
+         xMHyLP6rC81LsBJswxQeYyMuDCA6UsBqLLDDx71gjDs3b1ypOnsOWb8JoC3EV4fGuia6
+         S1wICK4y3enm+kPMOldJoADkYezREeo1lxYL0UKbOGJVUXzE9mwG9lxJ9Rh3Jf1RpsuO
+         PjwQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/Fo4rwRjSdoFMhwCS1Mojhp1ydDd7mrU2zC+f8EVervloaNyZCIrx+aN5L2KWYnhi2UqXvzSvoHCn7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzY7XWBjOEtxyIjyjQvuVDTgbRg76MlqhSP8ZOxJFsAkegR3Cik
+	BXNC5tHAG4H5HImSbVsvTdkYdblde8huWRh8wOa9Ayk7t8xK59b9uQwK
+X-Gm-Gg: Acq92OH4lVkLobDNnDg5wQ1heYPfCuIRSgWtdkJjVjCs51wXOSRH4YybF268k0i/DYR
+	tZX4Cryjz1xahyG29XORgyAte3dTtULOmQRhTq5hVd8CMGSYDJtLXujIIay2isBCO7i8Qmhv2YH
+	R77C3LaRxcrj9yRFM0PVuAGdDRHnrHHLgNdEduQFboR/XLQzKRRmuF7n8rZt+GQRnrxlnKWLUiI
+	iJWObe/CHCiHbKMVCHPQbpY9I6+3MzqyuwN6MH3p9M6tSm/ljKuAYVDpieahtsZq6/Mqs0rJaTS
+	v+YpP9q5TgKWfuSDxHnKEz4qD22DiUwcSjnHQbA4iz8v84ogSI2eu/7O3li20dQkR5NJPzZ5BGf
+	rrZbiKKHFDKQtiZy3RvHs+sAm9jXMycLqpmDrxvywErDwfrUWHGXArN7Mh1HXrkiXp6BDnd9r/d
+	3dWtniSaWJqFcHr0kP/2Qq83Jmqbi57VbSJkIUhQrTDA==
+X-Received: by 2002:a05:6a00:a227:b0:82c:6683:b866 with SMTP id d2e1a72fcca58-842b0c083e3mr1205470b3a.4.1780625457100;
+        Thu, 04 Jun 2026 19:10:57 -0700 (PDT)
+Received: from [10.125.112.20] ([210.184.73.204])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8428288217bsm8833262b3a.37.2026.06.04.19.10.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Jun 2026 19:10:56 -0700 (PDT)
+Message-ID: <b8a5e883-16be-4106-97d3-d4ab69faa8bb@gmail.com>
+Date: Fri, 5 Jun 2026 10:10:52 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wAXVW_FLiJq4ffOBQ--.62174S5
-X-Coremail-Antispam: 1Uf129KBjvJXoWxJF1DXry3Kw47urW5KFW8Crg_yoWruw4UpF
-	93GrySkw1UXrW7WFW3tw18Zr45Gay8Ar43AF1kJryrZFn8Ar1vkrnrKF13Ja4DKrn5AFWr
-	KF4UtrWUJw4jkFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07Ud9N-UUUUU=
-X-CM-SenderInfo: x2p2x3aqwtiqqrwthudrp/xtbC6BLi22oiLtIJbwAA3R
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] of: reserved_mem: avoid stack buffer overflow in
+ fdt_scan_reserved_mem()
+To: Rob Herring <robh@kernel.org>
+Cc: sashiko-reviews@lists.linux.dev, devicetree@vger.kernel.org,
+ conor+dt@kernel.org
+References: <20260604073611.3954433-2-chenwandun1@gmail.com>
+ <20260604074520.D5B181F00893@smtp.kernel.org>
+ <757480ae-2d7d-40e9-9900-edd14ed3b3ac@gmail.com>
+ <20260604193041.GA1057262-robh@kernel.org>
+Content-Language: en-US
+From: Wandun <chenwandun1@gmail.com>
+In-Reply-To: <20260604193041.GA1057262-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-307132-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[zmzhu0630@163.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307135-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:sashiko-reviews@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:ziming.zhu@silergycorp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[chenwandun1@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[163.com];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zmzhu0630@163.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[163.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chenwandun1@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,silergycorp.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 00C1C644977
+X-Rspamd-Queue-Id: 2AA116449D8
 
-From: Ziming Zhu <ziming.zhu@silergycorp.com>
 
-Document the supported sysfs attributes for the Silergy SQ24860 PMBus
-hwmon driver.
 
-Signed-off-by: Ziming Zhu <ziming.zhu@silergycorp.com>
----
- Documentation/hwmon/index.rst   |  1 +
- Documentation/hwmon/sq24860.rst | 96 +++++++++++++++++++++++++++++++++
- 2 files changed, 97 insertions(+)
- create mode 100644 Documentation/hwmon/sq24860.rst
-
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 8b655e5d6b68..1888905cd234 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -242,6 +242,7 @@ Hardware Monitoring Kernel Drivers
-    smsc47m192
-    smsc47m1
-    sparx5-temp
-+   sq24860
-    spd5118
-    stpddc60
-    surface_fan
-diff --git a/Documentation/hwmon/sq24860.rst b/Documentation/hwmon/sq24860.rst
-new file mode 100644
-index 000000000000..7029f612e1b9
---- /dev/null
-+++ b/Documentation/hwmon/sq24860.rst
-@@ -0,0 +1,96 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver sq24860
-+=====================
-+
-+Supported chips:
-+
-+  * Silergy SQ24860
-+
-+    Prefix: 'sq24860'
-+
-+Author:
-+
-+	Ziming Zhu <ziming.zhu@silergycorp.com>
-+
-+Description
-+------------
-+
-+This driver implements support for the Silergy SQ24860 eFuse. The device is an
-+integrated circuit protection and power management device with a PMBus
-+interface.
-+
-+The device supports direct format for reading input voltage, output voltage,
-+auxiliary voltage, input current, input power, and temperature.
-+
-+The current and power measurement scale depends on the resistor connected
-+between the IMON pin and ground. The resistor value can be configured with the
-+``sy,rimon-micro-ohms`` device tree property. See
-+``Documentation/devicetree/bindings/hwmon/pmbus/silergy,sq24860.yaml`` for details.
-+
-+Due to the specificities of the chip, all history reset attributes are tied
-+together. Resetting the history of one sensor resets the history of all sensors.
-+
-+Sysfs entries
-+-------------
-+
-+The following attributes are supported. Limits are read-write; all other
-+attributes are read-only.
-+
-+======================= ======================================================
-+in1_label               "vin"
-+in1_input               Measured input voltage.
-+in1_average             Average measured input voltage.
-+in1_min                 Minimum input voltage limit.
-+in1_lcrit               Critical low input voltage limit.
-+in1_max                 Maximum input voltage limit.
-+in1_crit                Critical high input voltage limit.
-+in1_min_alarm           Input voltage low warning alarm.
-+in1_lcrit_alarm         Input voltage low fault alarm.
-+in1_max_alarm           Input voltage high warning alarm.
-+in1_crit_alarm          Input voltage high fault alarm.
-+in1_highest             Historical maximum input voltage.
-+in1_lowest              Historical minimum input voltage.
-+in1_reset_history       Write any value to reset history.
-+
-+in2_label               "vmon"
-+in2_input               Measured auxiliary input voltage.
-+
-+in3_label               "vout1"
-+in3_input               Measured output voltage.
-+in3_average             Average measured output voltage.
-+in3_min                 Minimum output voltage limit.
-+in3_min_alarm           Output voltage low alarm.
-+in3_lowest              Historical minimum output voltage.
-+in3_reset_history       Write any value to reset history.
-+
-+curr1_label             "iin"
-+curr1_input             Measured input current.
-+curr1_average           Average measured input current.
-+curr1_max               Maximum input current warning limit.
-+curr1_crit              Critical input over-current fault limit.
-+curr1_max_alarm         Input current warning alarm.
-+curr1_crit_alarm        Input over-current fault alarm.
-+curr1_highest           Historical maximum input current.
-+curr1_reset_history     Write any value to reset history.
-+
-+power1_label            "pin"
-+power1_input            Measured input power.
-+power1_average          Average measured input power.
-+power1_max              Maximum input power warning limit.
-+power1_alarm            Input power warning alarm.
-+power1_input_highest    Historical maximum input power.
-+power1_reset_history    Write any value to reset history.
-+
-+temp1_input             Measured temperature.
-+temp1_average           Average measured temperature.
-+temp1_max               Maximum temperature warning limit.
-+temp1_crit              Critical temperature fault limit.
-+temp1_max_alarm         Temperature warning alarm.
-+temp1_crit_alarm        Temperature fault alarm.
-+temp1_highest           Historical maximum temperature.
-+temp1_reset_history     Write any value to reset history.
-+
-+samples                 Number of samples used for average values.
-+======================= ======================================================
-+
--- 
-2.25.1
+On 6/5/26 03:30, Rob Herring wrote:
+> On Thu, Jun 04, 2026 at 05:18:09PM +0800, Wandun wrote:
+>>
+>> On 6/4/26 15:45, sashiko-bot@kernel.org wrote:
+>>> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+>>> - [Medium] The newly added bounds check for `dynamic_nodes_cnt` is placed outside the block that evaluates whether a node is actually a dynamically-placed region, leading to spurious error logs.
+>>> --
+>>>
+>>> commit 6a79f526de5e1185b7c79fb469545f4094fb402f
+>>> Author: Wandun Chen <chenwandun@lixiang.com>
+>>>
+>>> of: reserved_mem: avoid stack buffer overflow in fdt_scan_reserved_mem()
+>>>
+>>> This commit adds bounds checking on dynamic_nodes_cnt to prevent a
+>>> potential stack buffer overflow in fdt_scan_reserved_mem().
+>>>
+>>> Link: https://sashiko.dev/#/patchset/20260604015332.3669384-1-chenwandun1%40gmail.com?part=1 [1]
+>>>
+>>>> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+>>>> --- a/drivers/of/of_reserved_mem.c
+>>>> +++ b/drivers/of/of_reserved_mem.c
+>>> [ ... ]
+>>>
+>>>> @@ -341,6 +341,12 @@ int __init fdt_scan_reserved_mem(void)
+>>>>    		err = __reserved_mem_reserve_reg(child, uname);
+>>>>    		if (!err)
+>>>>    			count++;
+>>>> +
+>>>> +		if (dynamic_nodes_cnt >= MAX_RESERVED_REGIONS) {
+>>>> +			pr_err_once("Reserved memory: reached MAX_RESERVED_REGIONS(%d)\n",
+>>>> +				    MAX_RESERVED_REGIONS);
+>>>> +			continue;
+>>>> +		}
+>>> [Severity: Medium]
+>>> Will this bounds check trigger spurious error logs for statically-placed
+>>> regions?
+>> Yes, it indeed, will fix in v2.
+> I now have the same change (and same problems) in another submission:
+>
+> https://lore.kernel.org/all/20260603152709.941788-1-ekffu200098@gmail.com/
+>
+> See my comment there.
+Thanks for pointing out the other submission. Since the same fix is 
+already being worked on, I'll drop this patch. Best regards, Wandun
+>
+> Rob
 
 
