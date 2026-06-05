@@ -1,278 +1,224 @@
-Return-Path: <devicetree+bounces-307406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307408-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Crt8Nk7CImo9dQEAu9opvQ
-	(envelope-from <devicetree+bounces-307406-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:34:22 +0200
+	id 0cGAO6PCImpRdQEAu9opvQ
+	(envelope-from <devicetree+bounces-307408-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:35:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0FFB64832F
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:34:21 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACC11648365
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:35:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="MY2qtI/B";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307406-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-307406-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=riscstar-com.20251104.gappssmtp.com header.s=20251104 header.b=tUMtqLec;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307408-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307408-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=riscstar.com (policy=none);
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 975023037CEE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 12:24:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8DA833055975
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 12:25:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 082392EEE60;
-	Fri,  5 Jun 2026 12:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3AE1FF1B4;
+	Fri,  5 Jun 2026 12:25:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E44395AE6;
-	Fri,  5 Jun 2026 12:21:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3491030568D
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 12:25:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780662106; cv=none; b=D6CDARlf5Y8oXZm72S6ZmhF4lziqXe3KBdr8hmIVacfCQcJ5a83ANxlhz2XS7kW092gncVARiQzvDr+IpWNDEjxPKjbIiN7YhirneI2qLuPfDZm4Qxk6FiIetrgbLpNafvjzdVX7d9JwEi4sidYWhy17XKbYH1jOzmFK4Rbg5a4=
+	t=1780662332; cv=none; b=THPaAbRsWQi3UGnZcJl173SNka5n3M4x/qcAPNh2zdu6i5D+iapsTop914S02Q/s+xI708GV5q8Bd0fnF9J4zfFIizH049ALdGotwBUA59b8FiG6BHQLl0ld3fmMHfGuV4OcCZpnrjQEqrY+EDzk/fAep+5zyJw250GLo5cC6bE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780662106; c=relaxed/simple;
-	bh=EzEe99BGdyE+IhKLX+p1ohqWbUKxgEYjpzUORcc5RaU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aJBiA8l5qnKo7i3Za7Vc1E8zifyuQ4JPX8ttt3i1U8uZq2/k1lx/vLFKixcJ8ajfI+p5lYH6/0AF0t984e/StDLT/CMDArZfShr0Ic0fYZ/jv6k0bOXIlFlqOAdmfQonHRMB2PfPWrT8EpozvPh7Lqs2EuxxbhukB8An2piWV7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MY2qtI/B; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 308121F00893;
-	Fri,  5 Jun 2026 12:21:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780662104;
-	bh=7WAq7cf2ANmWbzJBA5YA+wI49o+hMb7RctwEcT8Zm50=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=MY2qtI/BwyQXzx4c+p5h8MrAksH2VWQGMM63IFqCu5gRygNQtjnLdq8B4xQx8zEBF
-	 ei0FcbYgojKDNytvNBhm5VZ+wNfgi2biWbhtCpLtqAz69wIeDxR/a8kjmih1cNW8Rk
-	 Kp/Cpzcp3I9KFXTCaPUYKgrvOT60P7gwPbXvlzvOwJNzsRo2OzK9VPegwTP3WuZu88
-	 gqsuLzrtn106hoaqd6sYSG0qgJ/H6sS6NaNcHz1Q66GxQaR4aCmeKzhBPXH7Bth8qG
-	 jExzEGiGw9QzYLVwYIqk/qe7MMOptGA7auFLmGl/PU4AYyDyWziKhCjKM5SX2u6PCt
-	 o09Bu5B2BCnBw==
-Date: Fri, 5 Jun 2026 13:21:35 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Wadim Mueller <wafgo01@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Maxwell Doose <m32285159@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: flow: add Sensirion SLF3S
- liquid flow sensor
-Message-ID: <20260605132135.141422d8@jic23-huawei>
-In-Reply-To: <200a6c34-3321-4c2c-9746-52348e700cd9@kernel.org>
-References: <20260530205435.37326-1-wafgo01@gmail.com>
-	<20260530205435.37326-3-wafgo01@gmail.com>
-	<20260601-banana-narwhal-of-music-0b4d3a@quoll>
-	<20260601150959.49bbf125@jic23-huawei>
-	<1dbd3ab3-de6c-44dd-8100-e8ee60f558c8@kernel.org>
-	<20260604100304.11d0e003@jic23-huawei>
-	<200a6c34-3321-4c2c-9746-52348e700cd9@kernel.org>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1780662332; c=relaxed/simple;
+	bh=Cco+vFiWz8nH8jHJl25YPtjf0AjyxuJKLseQuLXyV6w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MP/g3GjG391o7agKBAVo9nYnSsTvMP8csowmom8qFHLZCqLDiAN9iTvcoOEI+inx0grqQmxbneXjwl0XY/48+koF1l9jgS9K68VvVNzhRldgLttWNsCLl57bxkKZeBWLUKcH/ZNi1hRfKKI6DvwM9nNRKUpM4RjP30eOfoVUrdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=tUMtqLec; arc=none smtp.client-ip=209.85.210.51
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-7e6da33a561so1488790a34.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 05:25:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1780662330; x=1781267130; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hOWy2W3C8F0epU9cKoqDrCPhuhX/iOel8Vt4x+uvwak=;
+        b=tUMtqLecdeNiQfmnCangw9uIxBJT/E1QFVahFrNmyeF4vG+kGclSuDkVfdn/cTn2FE
+         y96Whio74QV2/5QtORKyOzL05kuZVCGVjvaqhCiCgqmsO6GRYdyGZsEcyxEhZtHgynHx
+         LdzzGk8Q59EzezCjYkyEKO69UK+xv0YFKRuzF7t4CErPNlFQirp98qROPXTkpfc2wb7r
+         qbdcaPCGEbcpxMxtlV94hIXpYi6Sd2LmW2P8cfioGpodNFZ02i2Xi8vUL9opx68VX68T
+         wz2XTSACWkijiS6GtkoDT+Z5q6QthEC9Exl2raiI8iIvLtqNwAPe0hIkQH0LiZCRPf3r
+         4hdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780662330; x=1781267130;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hOWy2W3C8F0epU9cKoqDrCPhuhX/iOel8Vt4x+uvwak=;
+        b=H7wc4il6BoEGwYp6rPGmtvRf05asZ4MTyVRcZNrXXpm+3Qm28wRewgqbk4nqgUTKkY
+         56b5p06UnnwcO6yLMGsnVlo04KSelt4RooFRW/c+q6ozRe4rInCA+svgmwxAAJlhqsU/
+         Y/UxdmJKjOofwi5J88Oi1bmjZGtTp4G2HvGKI29AI4LdlasO/1BLmrfSBIxy218dzgaY
+         nQB+tNfr9LYsfKZ1X3L3/konrT1q12NkYDRJd3Cj7UN+X3TW/9LZnTpcK+gLEzTucIPX
+         cRo+S6GRcA8tsmJ7i3+mU2qwGdzz4OhWkJw+hmVi9zDPgnDoN/9hxmqk0aiNPQzkCRMD
+         QzXQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9I9stZlVyrs01SGcnyXph+6EptQgH3XS6bG4Ia9TpfTwtk2ahTuHxz8xShI0PsvCNqRiE5Pu7/Z3eZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7sajTUt/KpRD3obp6V5yI0bmeMQv9lwEn0OHAbP/4jesQpofu
+	vPJsFJDUcvtluNYBfvPAPmSR/DgjsbYYSuEmSmRC42pth8m7VgwIQuTNS2ZzF0yxpDo=
+X-Gm-Gg: Acq92OEWCJQYLHvMBqQBZTdmUJpdqZJuDpUn1NOcS2I1kIQQxlS1P6YRlwUZIMi3YZ8
+	ogK24DFo/LJbnVfF2qsZ9CkaDNKnUe4OJ6BGXgCylJLkoQ0Plr4R5iD6ato72++uqIXdBCsmHDr
+	r4Yufand+cM4NyAc0BHnioK+ADlJ5xTQy5lsmbdM6U9mR+HRZuZV1cA1abXQI2cxxo0yMolPGeT
+	WW8P7RGly2akyJlat8B8Qh+iicHDztYmJgZMxryblwl11450HKUfiBABeR9uTPrx1ygld7Ul5S8
+	jqi8HCdvhXgPH2vrjVen6/DNwwEm+4WTIcsFKWMihJIFPK5EojAGGvsbeeOa3vmolCJcVg3KBDO
+	DbfwxrBpzzRcq5YbnsPbr2XoR4jOULo8ADfvn+NxvaCWmcNDlJNPWzc8pKi2Z3W7wP67d7z3x04
+	qbDVYqEqYLAyILhIXVodtILsotiPptsbX/CSk=
+X-Received: by 2002:a05:6830:6685:b0:7e6:deb1:484d with SMTP id 46e09a7af769-7e70c7b1386mr1725355a34.13.1780662284484;
+        Fri, 05 Jun 2026 05:24:44 -0700 (PDT)
+Received: from [172.22.22.234] ([73.62.185.64])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e6e7974f22sm5817653a34.25.2026.06.05.05.24.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Jun 2026 05:24:44 -0700 (PDT)
+Message-ID: <bd2c09d4-462d-4392-bb3f-ca91b2f08bd7@riscstar.com>
+Date: Fri, 5 Jun 2026 07:24:40 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 10/14] dt-bindings: net: toshiba,tc9654-dwmac:
+ add TC9564 Ethernet bridge
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: weishangjuan@eswincomputing.com, linux-gpio@vger.kernel.org,
+ inochiama@gmail.com, davem@davemloft.net, devicetree@vger.kernel.org,
+ kuba@kernel.org, me@ziyao.cc, hawk@kernel.org, arnd@arndb.de,
+ konradybcio@kernel.org, mohd.anwar@oss.qualcomm.com, hkallweit1@gmail.com,
+ pabeni@redhat.com, ast@kernel.org, maxime.chevallier@bootlin.com,
+ bpf@vger.kernel.org, boon.khai.ng@altera.com, linusw@kernel.org,
+ andersson@kernel.org, sdf@fomichev.me, linux-kernel@vger.kernel.org,
+ livelycarpet87@gmail.com, a0987203069@gmail.com,
+ linux-stm32@st-md-mailman.stormreply.com, daniel@iogearbox.net,
+ john.fastabend@gmail.com, alexandre.torgue@foss.st.com,
+ richardcochran@gmail.com, rmk+kernel@armlinux.org.uk, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rohan.g.thomas@altera.com, gregkh@linuxfoundation.org,
+ Daniel Thompson <daniel@riscstar.com>, chenchuangyu@xiaomi.com,
+ andrew+netdev@lunn.ch, mcoquelin.stm32@gmail.com, edumazet@google.com,
+ siyanteng@cqsoftware.com.cn, wens@kernel.org, brgl@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ julianbraha@gmail.com, netdev@vger.kernel.org, chenhuacai@kernel.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com
+References: <20260605010022.968612-1-elder@riscstar.com>
+ <20260605010022.968612-11-elder@riscstar.com>
+ <178062720108.1744752.12164392208085928081.robh@kernel.org>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <178062720108.1744752.12164392208085928081.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.06 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:wafgo01@gmail.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:m32285159@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307408-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-307406-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:weishangjuan@eswincomputing.com,m:linux-gpio@vger.kernel.org,m:inochiama@gmail.com,m:davem@davemloft.net,m:devicetree@vger.kernel.org,m:kuba@kernel.org,m:me@ziyao.cc,m:hawk@kernel.org,m:arnd@arndb.de,m:konradybcio@kernel.org,m:mohd.anwar@oss.qualcomm.com,m:hkallweit1@gmail.com,m:pabeni@redhat.com,m:ast@kernel.org,m:maxime.chevallier@bootlin.com,m:bpf@vger.kernel.org,m:boon.khai.ng@altera.com,m:linusw@kernel.org,m:andersson@kernel.org,m:sdf@fomichev.me,m:linux-kernel@vger.kernel.org,m:livelycarpet87@gmail.com,m:a0987203069@gmail.com,m:linux-stm32@st-md-mailman.stormreply.com,m:daniel@iogearbox.net,m:john.fastabend@gmail.com,m:alexandre.torgue@foss.st.com,m:richardcochran@gmail.com,m:rmk+kernel@armlinux.org.uk,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:rohan.g.thomas@altera.com,m:gregkh@linuxfoundation.org,m:daniel@riscstar.com,m:chenchuangyu@xiaomi.com,m:andrew+netdev@lunn.ch,m:mcoquelin.stm32@gmail.com,m:edumazet@google.com,m:siyanteng@c
+ qsoftware.com.cn,m:wens@kernel.org,m:brgl@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:julianbraha@gmail.com,m:netdev@vger.kernel.org,m:chenhuacai@kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:johnfastabend@gmail.com,m:rmk@armlinux.org.uk,m:krzk@kernel.org,m:conor@kernel.org,m:andrew@lunn.ch,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,baylibre.com,analog.com,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[48];
+	FORGED_SENDER(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[eswincomputing.com,vger.kernel.org,gmail.com,davemloft.net,kernel.org,ziyao.cc,arndb.de,oss.qualcomm.com,redhat.com,bootlin.com,altera.com,fomichev.me,st-md-mailman.stormreply.com,iogearbox.net,foss.st.com,armlinux.org.uk,linuxfoundation.org,riscstar.com,xiaomi.com,lunn.ch,google.com,cqsoftware.com.cn,lists.infradead.org,bp.renesas.com];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,jic23-huawei:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,kernel,dt,netdev];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,riscstar.com:mid,riscstar.com:from_mime,riscstar.com:email,riscstar-com.20251104.gappssmtp.com:dkim,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C0FFB64832F
+X-Rspamd-Queue-Id: ACC11648365
 
-On Thu, 4 Jun 2026 13:22:17 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 6/4/26 9:40 PM, Rob Herring (Arm) wrote:
+> 
+> On Thu, 04 Jun 2026 20:00:17 -0500, Alex Elder wrote:
+>> From: Daniel Thompson <daniel@riscstar.com>
+>>
+>> Add devicetree bindings for the Toshiba TC956x family of Ethernet-AVB/TSN
+>> bridges.
+>>
+>> The TC9564 contains a PCIe switch with one upstream and three downstream
+>> PCIe ports.  The third PCIe downstream port has an attached embedded PCIe
+>> endpoint, and that endpoint implements two PCIe functions.  Each internal
+>> PCIe function has a Synopsys XGMAC Ethernet interface capable of 10 Gbps
+>> operation.
+>>
+>> The TC9564 also implements an embedded GPIO controller, which exposes
+>> 10 lines externally.  Some platforms use these GPIO lines, so this
+>> GPIO controller is managed by a separate driver.  Other embedded
+>> peripherals (like a microcontroller, SRAM, and UART) are currently
+>> unused.
+>>
+>> The GPIO controller is managed by registers accessed via MMIO on an
+>> internal PCIe function's registers.
+>>
+>> Signed-off-by: Daniel Thompson <daniel@riscstar.com>
+>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>> ---
+>>   .../bindings/net/toshiba,tc9564-dwmac.yaml    | 120 ++++++++++++++++++
+>>   MAINTAINERS                                   |   6 +
+>>   2 files changed, 126 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/net/toshiba,tc9564-dwmac.yaml
+>>
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
 
-> On 04/06/2026 11:03, Jonathan Cameron wrote:
-> > On Wed, 3 Jun 2026 16:29:10 +0200
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >   
-> >> On 01/06/2026 16:09, Jonathan Cameron wrote:  
-> >>> On Mon, 1 Jun 2026 13:53:23 +0200
-> >>> Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >>>     
-> >>>> On Sat, May 30, 2026 at 10:54:31PM +0200, Wadim Mueller wrote:    
-> >>>>> Document the bindings for the Sensirion SLF3S family of digital
-> >>>>> liquid-flow sensors on I2C.  The family currently covers the
-> >>>>> SLF3S-0600F, SLF3S-1300F and SLF3S-4000B variants.
-> >>>>>
-> >>>>> The driver auto-detects the variant from the product-information
-> >>>>> register at probe time; the per-variant compatible strings exist
-> >>>>> for documentation and dt_binding_check purposes.      
-> >>>>
-> >>>> Here...
-> >>>>    
-> >>>>> +description:
-> >>>>> +  Family of digital liquid-flow sensors from Sensirion with I2C
-> >>>>> +  interface.  All family members share the same register map; sub-types
-> >>>>> +  differ only in the flow scale factor and the calibrated measurement
-> >>>>> +  range, both of which are detected at probe time via the
-> >>>>> +  product-information register.      
-> >>>>
-> >>>> And here...
-> >>>>    
-> >>>>> +
-> >>>>> +properties:
-> >>>>> +  compatible:
-> >>>>> +    enum:
-> >>>>> +      - sensirion,slf3s-0600f
-> >>>>> +      - sensirion,slf3s-1300f
-> >>>>> +      - sensirion,slf3s-4000b      
-> >>>>
-> >>>> And here something else. Confusing. Didn't you say device variants are
-> >>>> auto-detectable? So you have only one compatible sensirion,slf3s.    
-> >>>
-> >>> And then future fallback compatibles can never work. 
-> >>> Basically as far as I have ever been able to establish this is why
-> >>> generic compatibles are almost always the wrong way to go.
-> >>>
-> >>> If we get a future part with an unknown ID and don't have these existing
-> >>> specific compatibles, then we have no way to specify which one it is    
-> >>
-> >> But why would you have future part with unknown ID?  
-> > 
-> > That's what manufacturers do on a very frequent basis.  They tweak something
-> > that has no affect on the interface or channel scaling etc and release a new part
-> > with a different ID.  Can be something like a part suited to different operating
-> > conditions, or with a different supply tolerance.  
-> 
-> and it will have a different, known that time ID. How could be "unknown"?
+Thank you for this report.  After upgrading the "dtschema" package I
+also see these errors.  The "gpio" and "ethernet" properties will
+have an "unevaluatedProperties: false" constraint added in the next
+version of this series.  The name of the binding file will also be
+correct in the MAINTAINERS file.
 
-Known to us, sure, know to old kernel (or other software), not so much.
-For this sort of driver the main use of fallback compatibles is to work on
-a not yet aware kernel.
+					-Alex
 
+> yamllint warnings/errors:
 > 
-> >   
-> >>
-> >> The device is slf3s with variants. All of known variants have an
-> >> interface to detect the actual variant. There is no indication that this
-> >> won't work - why would company remove the ID register?  
-> > 
-> > They won't remove the ID, but they will put other values in it to
-> > indicate new revisions of a part - often entirely backwards compatible
-> > - sometimes with extra features that we don't use until the driver is updated.
-> > 
-> >   
-> >>
-> >> But even if this happens, then it would be change of device interface,
-> >> thus you cannot use generic compatible and you will have a new dedicated
-> >> compatible.  
-> > 
-> > We've had this discussion a number of times for whether an ID register difference
-> > alone makes a device non compatible, and the answer from DT review has always been
-> > a firm no and that it is incorrect to reject an unknown ID if the dt-compatible  
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/toshiba,tc9564-dwmac.yaml: gpio: Missing additionalProperties/unevaluatedProperties constraint
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/toshiba,tc9564-dwmac.yaml: ethernet: Missing additionalProperties/unevaluatedProperties constraint
 > 
-> True, but this is not the case here. That incompatible device would
-> simply not use this compatible, thus it will not start the probe.
-
-Taking a rather extreme viewpoint: So fallback compatibles are pointless why do
-we bother with them?  Note this ID register thing covers most IIO drivers that
-have fallback compatibles today. This is not a rare corner case.
-
+> doc reference errors (make refcheckdocs):
+> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/net/toshiba,tc956x-dwmac.yaml
+> MAINTAINERS: Documentation/devicetree/bindings/net/toshiba,tc956x-dwmac.yaml
 > 
+> See https://patchwork.kernel.org/project/devicetree/patch/20260605010022.968612-11-elder@riscstar.com
 > 
-> > is known.  The compromise that people were happy with was an info print if
-> > such a mismatch is detected as it might indicate an incompatible part replacement
-> > and a broken DT.
-> > 
-> > Probably 80%+ of IIO bindings with fallback compatibles do not have
-> > matching "who am I" register values.  This is incredibly common.
-> >   
-> >>
-> >> If the device is actually "slf3s-0600f" (because slf3s is a family),
-> >> then I am fine with using that as the fallback. Specific front
-> >> compatibles are also fine in such case.  
-> > 
-> > Yes, it's a part in the family. Each of the compatibles here has a
-> > separate datasheet:
-> > 
-> > https://sensirion.com/media/documents/C4F8D965/66F56F53/LQ_DS_SLF3S-0600F_Datasheet.pdf
-> > https://sensirion.com/media/documents/6971528D/63625D22/Sensirion_Datasheet_SLF3S-1300F.pdf
-> > etc
-> > 
-> > (wonderfully inconsistent file naming ;)
-> >   
-> >>
-> >>
-> >>  
-> >>> compatible with.  Given these are providing scaling info that means we
-> >>> can't realistically support such a future part with a fallback at all.
-> >>>
-> >>> That would only be possible if there was feature level discovery. A single
-> >>> whoami register with no structure to the value is useless for this.    
-> >>
-> >> The whoami register defines all the features, no? What would feature
-> >> discovery improve? ID register is simply logical OR of some feature set,
-> >> still uniquely identifying the features set/variant.  
-> > 
-> > Would be lovely if true. Sadly almost never true. They are typically just
-> > the next number in a list of parts released. There is no direct information
-> > on feature set encoded in that value, we have to have a look up table in
-> > the driver to translate to feature set. (Not relevant here but sometimes
-> > manufacturers forget to change the number and we get different feature
-> > sets with the same ID and no discoverability)  
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
 > 
-> I did not mean there is direct information. I meant that you can create
-> such map, so basically it is defining all features.
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
 > 
-> > 
-> > If they were an OR of features that would be great.
-> > 
-> > The thing is a little structured in this case
-> > 
-> > 0x07         Liquid flow sensor
-> > 0x  03       Product family (e.g. SLF3x)
-> > 0x    03     Subtype (e.g. SLF3S-0600F)
-> > 0x      02   Revision number (changes with minor firmware or hardware revisions)
-> > 
-> > But both the product family and subtype are numbers to feed into look up tables
-> > (maybe revision number as well)  
+> pip3 install dtschema --upgrade
 > 
-> The values don't matter. What only matters is that each is unique, you
-> can map it to a real device (and its datasheet) and features are
-> decodable from the datasheet.
-
-Sure, but as above, that breaks the use of fallback compatibles for the incredibly
-common case of otherwise identical parts that would work fine on an old kernel
-but where we can't match them because the ID register differs.
-
-Jonathan
-
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
 > 
-> Best regards,
-> Krzysztof
 
 
