@@ -1,76 +1,83 @@
-Return-Path: <devicetree+bounces-307506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307507-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mtf5ApsUI2pXhwEAu9opvQ
-	(envelope-from <devicetree+bounces-307506-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:25:31 +0200
+	id LhT9D30UI2pMhwEAu9opvQ
+	(envelope-from <devicetree+bounces-307507-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:25:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6316E64A96A
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:25:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95EE764A943
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 20:25:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lunn.ch header.s=20171124 header.b=kKvXX5Tw;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307506-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307506-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=lunn.ch;
+	dkim=pass header.d=intel.com header.s=Intel header.b=J2ujLPrn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307507-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307507-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1A43D303A240
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 18:15:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 20DE83066A91
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 18:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 541BA3A9DAE;
-	Fri,  5 Jun 2026 18:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A7FF3A4523;
+	Fri,  5 Jun 2026 18:16:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40DEE3A3821;
-	Fri,  5 Jun 2026 18:14:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDA2F390C8D;
+	Fri,  5 Jun 2026 18:16:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780683297; cv=none; b=GKbfeMpjOlyoZrqg/kywW42i//k2/idlpOQsJAFWJbjVUeYWRw6wwgKcm7VUHL/yXsnqi0/ng3NRV/EvXKzVicfv8aYORf7MJduyiZyYXpU/Y4jnBZCREPMvJvt5W6bPKJLnSu6F3l5whiJrwVxG1rzOCp7t9B4Ay0GoP27GO8k=
+	t=1780683405; cv=none; b=RADLb2+YF6zQ5ug7GkWY48vV1ZgJa2+IQV6b0G50P+bxjuD6QeOrAZFJIHN+Iez+Sm2KsS3f0T1Uw7WO0L6XawahmJeTo/lzkn79MGa8aa4gTHmoqoXOLcoDEeyqpK59r19OH5X3yXB9KLRe5t6Olb6RVQog7qAo0MmsW+/Panc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780683297; c=relaxed/simple;
-	bh=Ge2nsXbXVB11wGz26n/HR93zpsXWkFswt9H/b+SLtgA=;
+	s=arc-20240116; t=1780683405; c=relaxed/simple;
+	bh=Czu7M7stp84IueL4PgpIZQSP3xMQW5xUrpR55Dpa0hM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C7JmOc7bZSzPLbTY/w/2CkYSCLyPpumvnJOxnr4xpBhB9xfomEJO0lj5ldK6u+0KWsXwktw2FlOQVR++kh+DntDzriendpWvy/LDY+4+KlygHoMoJF0vghbpjyzIZ9UWmNXlu9/S7EvBKZS0PHt828hWQX8f0qS7XdRyGR+tGx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=kKvXX5Tw; arc=none smtp.client-ip=156.67.10.101
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=CWSJhxCvKNv8WF2H5sZ3YZCpqe7EisvdRxWuvZCt+Lg=; b=kKvXX5Tw3k1zYXky5H61GA2eAn
-	YQCNCAOfKkOUytJ/ySMIjmGQwwTn903T3ajubR8xq7X2ymdVcWy5etV9+6ZpEv+kQYn2SsTy4QiUX
-	2hr4X3WWaFNDEQkSscWHthsGXvO+PfTiaXqUzXBmUkiw/Z45LVwc3z3cRtPm9l6SHmlg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1wVZ43-006H9d-S1; Fri, 05 Jun 2026 20:14:39 +0200
-Date: Fri, 5 Jun 2026 20:14:39 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: George Moussalem <george.moussalem@outlook.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=MRoNrKER2RtSyeQ8RIZmPFkwJHrO+nl7hOOgEy9JeVWDODO0Ik4m7Prn9GOK0GSkNjnEwR0WTzmkmOvsT+N3d1yBfU79D3Mf1oty1Tz98ox4UDW33teqx4vzW5nM8fD7KKLdpvRBkpSIe9hGysjtOY+oVIQQhRGyNR+z7M4nEpE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=J2ujLPrn; arc=none smtp.client-ip=198.175.65.9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1780683404; x=1812219404;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Czu7M7stp84IueL4PgpIZQSP3xMQW5xUrpR55Dpa0hM=;
+  b=J2ujLPrnTAFdSSi3ftxnUKs8DsoBaIKLVeA5q3M9PZsqjJfy5qNCxjQp
+   LnnNgFZs5Nr/YOkGVseV40TQmRjFSf6cWL0EMByddQty9BV3wB3cGihmI
+   NltPLkyw4tepkwXjc76UUTPkQxmJVLHYy3+2DlF6/6KRy36nK0qYmsER/
+   /DRL9ULaaK6qHJxm1T+vky0r1U/6Sx12d0spxTX2RmpXuRL0cqJ2YILwF
+   px0XNoMm3VFFgARcy4EyMc+xg2oC+1L85t/PxH09KJcC/yRXscJNoD5xx
+   H8xeGcLCcBUdRZKMnxncfpTQ/+TYnZz2RKmcMFHy+wdxc8EPrht6b5LyW
+   w==;
+X-CSE-ConnectionGUID: Ntde4AFuSbGboZQ9PEyicw==
+X-CSE-MsgGUID: qzfR19uDR763gJlgaT1KSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="104183174"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; 
+   d="scan'208";a="104183174"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2026 11:16:43 -0700
+X-CSE-ConnectionGUID: +UtgzMglSRypY9K2M6LwNw==
+X-CSE-MsgGUID: F5ESppPXSWG8lsSCPSFTag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; 
+   d="scan'208";a="241928990"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.178])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2026 11:16:39 -0700
+Date: Fri, 5 Jun 2026 21:16:37 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Petar Stepanovic <pstepanovic@axiado.com>
+Cc: Akhila Kavi <akavi@axiado.com>,
+	Prasad Bolisetty <pbolisetty@axiado.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] net: phy: at803x: add RX and TX clock management
- for IPQ5018 PHY
-Message-ID: <afdced5b-73b9-4214-a94a-c13fadd39dce@lunn.ch>
-References: <20260605-ipq5018-gephy-clocks-v3-0-f232d9ca0966@outlook.com>
- <20260605-ipq5018-gephy-clocks-v3-4-f232d9ca0966@outlook.com>
- <36cd63f4-749e-4b09-b8a6-cbf6924dea88@lunn.ch>
- <SN7PR19MB673634FEEF98FB8BCBBB15979D112@SN7PR19MB6736.namprd19.prod.outlook.com>
- <471a21f2-7ab0-410c-861d-5722a94b127d@lunn.ch>
- <SN7PR19MB67363B4F852FB37071637A299D112@SN7PR19MB6736.namprd19.prod.outlook.com>
+	Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] Subject: [PATCH 0/3] iio: adc: Add Axiado SARADC
+ driver
+Message-ID: <aiMShZhp7iUL9n4_@ashevche-desk.local>
+References: <20260528-axiado-ax3000-ax3005-saradc-v1-0-345dd5f6608a@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,76 +86,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <SN7PR19MB67363B4F852FB37071637A299D112@SN7PR19MB6736.namprd19.prod.outlook.com>
+In-Reply-To: <20260528-axiado-ax3000-ax3005-saradc-v1-0-345dd5f6608a@axiado.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:george.moussalem@outlook.com,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:f.fainelli@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:ffainelli@gmail.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-307506-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[outlook.com];
-	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-307507-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:pstepanovic@axiado.com,m:akavi@axiado.com,m:pbolisetty@axiado.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hshah@axiado.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,oss.qualcomm.com];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,lunn.ch:mid,lunn.ch:from_mime,lunn.ch:dkim]
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,intel.com:from_mime,intel.com:dkim,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6316E64A96A
+X-Rspamd-Queue-Id: 95EE764A943
 
-> >> This PHY is integrated into the IPQ5018 SoC, connected to the first GMAC
-> >> (GMAC0) and probed upon boot. However, this PHY is not used on all
-> >> boards because an external PHY or switch can be wired to the SoC's
-> >> second GMAC instead (through a PCS). So from a power management
-> >> perspective, it would be better if we can disable the clocks if there's
-> >> no link detected.
-> > 
-> > Humm, is link the correct criteria? If the PHY is not used,
-> > .config_aneg should not be called. Why not have the probe method get
-> > the optional clocks, but leave them off. When .config_aneg is called
-> > for the first time, enable the clocks?
+On Thu, May 28, 2026 at 01:10:22AM -0700, Petar Stepanovic wrote:
+> This series adds support for the SAR ADC controller found on Axiado
+> AX3000 and AX3005 SoCs.
 > 
-> Will check if config_aneg is called and test accordingly.
+> The controller is a 10-bit ADC. AX3000 has sixteen input channels and
+> AX3005 has eight input channels. The driver uses SoC match data to
+> select the number of available channels for each compatible.
 > 
-> ip link set eth0 up/down and cable (un)plug do trigger
-> link_change_notify, and based on the link state the RX/TX clocks are
-> turned off/on properly.
+> The driver supports single-shot voltage reads through the IIO subsystem
+> and uses the reference voltage regulator for scale calculation.
 
-You are talking about something else here. You say the device is not
-used. If it is not used, .config_aneg should not be called.
+When submit a new driver always answer these two questions:
+- why do we even need a new brand driver? (No existing that can be extended?)
+- where can we get a datasheet? (URL? Other means?)
 
-This is a second use case, the device is used, and you want to limit
-the power it consumes, when there is no link. Do you have any numbers?
-How much power is actually saved?
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> Could you explain why to use _optional variants of devm_clk_get as these
-> clocks are required? There are currently no users upstream.
 
-This last bit is important. We don't want to cause regressions on
-existing systems by adding in requirements which were not there in the
-past. But if you say there are currently no users, that is fine.
-
-	Andrew
 
