@@ -1,207 +1,258 @@
-Return-Path: <devicetree+bounces-307411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307364-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9dwrGuPDImqbdQEAu9opvQ
-	(envelope-from <devicetree+bounces-307411-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:41:07 +0200
+	id cazGHaS1ImrycQEAu9opvQ
+	(envelope-from <devicetree+bounces-307364-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 13:40:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF2B6648404
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 14:41:06 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3E3E647CAD
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 13:40:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=antispam.mailspamprotection.com header.s=default header.b=Nf4n3md+;
-	dkim=fail ("headers rsa verify failed") header.d=valla.it header.s=default header.b=hWWMhmjp;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307411-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307411-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=valla.it (policy=none);
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=MC8vsyJI;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307364-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307364-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 150EB301DAC8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 12:27:51 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 826EB3068EFD
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 11:38:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E6F30D3ED;
-	Fri,  5 Jun 2026 12:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D11C4D90A1;
+	Fri,  5 Jun 2026 11:38:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from delivery.antispam.mailspamprotection.com (delivery.antispam.mailspamprotection.com [185.56.87.2])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A18834388A;
-	Fri,  5 Jun 2026 12:27:43 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780662468; cv=pass; b=V3duXycbVPs+Sqb0hg4ua3/1rlwkm6QL2Vol/Mdmhlh4Yqars1MA8p/ohJu6tGjFNUGNvSnovs0NHG6wY9+z8Hjm2Xyj10ZocMgUBErfK/TbLLhXeeszUqDrEhi7QszWbkmD8q1mWnurz6p2e/wy4KPlhAjACV292ZHwFtq1Kv4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780662468; c=relaxed/simple;
-	bh=XNHtznNb9YuK+Ys5xRmERxuX6qwUALEMw5FejOZwa8M=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C444D8DAF
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 11:38:08 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780659490; cv=none; b=c/b23uMkIK/VTtespELbpxlmbI2Ur98W4zeDKI3bCdJMYE1QwQtuNWEh7oFUSjvbyRIAJE6yMNSbLlbbwQQAjKY45lH0TqB3bezplfBUhNtOKYNYdrEGcc9Nav4mExEBElwCnmvf6yC+gH2/CBlSlhOFHVyRh3o9Dx6vlAwa3XE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780659490; c=relaxed/simple;
+	bh=+Z1AS70xH1g3nSzkBrXOCRlYByo0ZRJRM5L3O1Uetbs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KRlUGgMk43hC3sr/Kydv/J7TPY9WyQvmzjOdqq1jNjdqKielIB0Ft5To0KDDf4VWH6EWPF+2tVyzL7n0UFyrE6eEHT2+5ItOHTuREVoDq4CBKQVN2qjJQ+LXIR1HkKaCPxseIM5xwEBQDfx+sDO6W+/FydFHtA9NZlv6l+A8tHo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valla.it; spf=pass smtp.mailfrom=valla.it; dkim=pass (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.b=Nf4n3md+; dkim=pass (1024-bit key) header.d=valla.it header.i=@valla.it header.b=hWWMhmjp; arc=pass smtp.client-ip=185.56.87.2
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-3q75.prod.antispam.mailspamprotection.com; s=arckey; t=1780662464;
-	 b=NitIPqFgbfXb0o259pKfC5OPthZauRUak4CTjFxESuKt9kfL0fGWzy9OnGtwliyGOTcULcvGR8
-	  K4mLwt0gafn6hPyXgk1LW/hD2//IVGRopnmHQeswKc5ebsZMw8j91wtJcDmnGOJSI81P3eET4X
-	  8y4vj9MJWax3aR6XdeVudqF7JifKXbCkEwcXoHZ348aBcYLUGeqvVOySt0PMLD7RVG8p02jsLs
-	  7rKOsj400DsnWp0HUJOXaEicLGDvFOD59GJRkktf3LZzV+ZsS7ndt3zjOqoRzSBLFWFkm3kKZk
-	  49VOJ+TbLYejnBQPHedOdDOh9+NmiSSIfzAY2uqlqqU3ug==;
-ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-3q75.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
-	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
-	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
-	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
-	arc=none
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-3q75.prod.antispam.mailspamprotection.com; s=arckey; t=1780662464;
-	bh=XNHtznNb9YuK+Ys5xRmERxuX6qwUALEMw5FejOZwa8M=;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	  Message-ID:Date:Subject:Cc:To:From:DKIM-Signature:DKIM-Signature;
-	b=BLteGgyHE1u/0GB5kGhAiBc5SH2+pVZaACceYhkqOwkHCZ04LjJaGkM2561paxAKv3CbuwCtlu
-	  fOAAHV0gLpSeBQkAPPgzxypRb0SEiOj/kIf0T+R2+vsXfmr9t+ixZ6o1AmFSjIOVfIQBdd3d9b
-	  Dm9egMvU6YgeoLFT4FDJ4jNvbFDt9ak504QkVRJk2fmQ9Xe1koavIvLullj6D4JjH/HN8XYZVT
-	  hNrhpTqVH/GaP4IetLIAdbLqrGzldXP20mc+9dhyLF+GDYrOrYwAIyxryl2nYZVyK1cYlwodcj
-	  5QKGUR8LQxz6kCYnQrAZ7QjgLk6XunZuM+A22LgZ1ourDw==;
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
-	:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
-	Cc:To:From:Reply-To:List-Unsubscribe;
-	bh=F927iQO2yHy5r4ReVfNbFmhFmycUVmgAeB7fBG6rev8=; b=Nf4n3md+bEvNHFEDbwvwmsNN5j
-	M64nYlSNHEnT7wdAlIRnuG3ZPCkRi6BdNPRb+UAHTd92xdDfpPZGRSFB8jjNnaSfEG11kvnF5jzW7
-	Hi2uIy1yKRewXnfOvlUQI/WjZmG/UL7Pnsl1Kf4t7z9GuhGFMcceSgJ9SJJ82iShvWRM=;
-Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
-	by instance-europe-west4-3q75.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.4)
-	(envelope-from <francesco@valla.it>)
-	id 1wVTeG-00000009oW7-1Ynh;
-	Fri, 05 Jun 2026 12:27:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
-	s=default; h=Date:Subject:Cc:To:From:list-help:list-unsubscribe:
-	list-subscribe:list-post:list-owner:list-archive;
-	bh=F927iQO2yHy5r4ReVfNbFmhFmycUVmgAeB7fBG6rev8=; b=hWWMhmjpCi3qq3Fr1kFkjljgGg
-	Vj11SCwNaX7NdXLQ3qtQU0cIeMp5zUEHjseLafSbXct8roL3XC0mULS233X6ryPzSD3EvxZNa3D6Z
-	4wc4QhGzrtSUV1P56thuHX00CZKOx2WPSbw7LmpqnTIcF/4mX+jvQKGyYGzMmdtsRT5o=;
-Received: from [95.248.69.182] (port=62513 helo=bywater.localnet)
-	by esm19.siteground.biz with essmtpa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.3)
-	(envelope-from <francesco@valla.it>)
-	id 1wVSqb-00000000Bzf-1M8X;
-	Fri, 05 Jun 2026 11:36:21 +0000
-From: Francesco Valla <francesco@valla.it>
-To: Joseph Guo <qijian.guo@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- steven.yang@nxp.com
-Subject: Re: [PATCH] arm64: dts: imx93-11x11-frdm: enable additional devices
-Date: Fri, 05 Jun 2026 13:36:20 +0200
-Message-ID: <_j4Ik3AsS5yfKb4Y7cSB1w@valla.it>
-In-Reply-To: <aiKP3EgdrCbqtUH0@lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com>
-References:
- <20260115-imx93_devices-v1-1-b2c840cafa2e@valla.it>
- <aiKP3EgdrCbqtUH0@lsvm11u0000395.swis.ap-northeast-2.aws.nxp.com>
+	 MIME-Version; b=AmE1qoZjI9EWqWkRnC1z8CIh8uDLSTtigW8mLlPN9V/vCqk0BmdKjh61yR23qt4IES3WsNCYeLkCPS6BLrRj61GdNbexTEN55kjN9I265LWy9ogVpp5AmtyPJqa5dBFTkBn2+3cUhOFaXs50sn230nldE8hTMKYeNcUpfVobf9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MC8vsyJI; arc=none smtp.client-ip=209.85.221.43
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-45ef372c58aso1076544f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 04:38:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780659487; x=1781264287; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9/bPH9nJO/zmP9XNA7k/eJKg93awmo1tL5WymrDFCak=;
+        b=MC8vsyJIXiengRbrk9JXU8f1ik06fzaHPO0JHhaIBvVRIQb6nUDC/la6jzm462ugOQ
+         IQUxmVU7vemQKtuGIXmh4Ap/fK1msGZW1/WCocJ0SPQn3p3uxjpIw57HldxcrYNk+16k
+         leTkQp6QSue8RiqvgB2I72HdhTJQ2JDa+TAq/iD2wECvuWUGXAkMwGNz30BUA7uhwmh5
+         tXNAC1/zXM3u1/60GNfD4xbhQPL6dIN9SAKbi8kg5YqoIeAUWvJVnt6N43ZLiBALRcn+
+         x8jLzoMLGA/UMaO5WtLMHThASlG8C9TYMXI2dKIKcfr0FyRDyUwhZGaM2s33Sk093Bkl
+         HHMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780659487; x=1781264287;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=9/bPH9nJO/zmP9XNA7k/eJKg93awmo1tL5WymrDFCak=;
+        b=prBpPhatP5rUOaEo7dc9woi8Ed5goZdDIYmoWLWEhnneZ7zmV0+7m6e7oB26RFmSLb
+         oyR4CIYajxDhfdHB0dwB5jexzth1cb4QxFMCo7aCycZKJTv3fxl2ymU+bFtCY2IZ70fw
+         fLLW3NRRagV1+6yJbUFmE7DJjZglfbEzRsWnecKz5Is+RxAUjglm45DtDa6Lz7CYs0xA
+         qatrHAk+C2zUUr0hWjygGPJoxd1MXBDgB9zZvj71/o9sw/oxTnU1XzS1onKm85ki0tAM
+         iDreucsbQI0fi5Mvu6YREyi8MnlxHJ5JY97GRbq0wGDXgQcmDpbP7nnFBAdm1YXYEINw
+         gIWw==
+X-Forwarded-Encrypted: i=1; AFNElJ8NyjEUOFo/h/0tXfBv4Rxpfl2VhqyH7XCfyjPqWPtwr2kE04DWdN1f2KjdyRisvO8ZFOM92KKacDIs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRZHvD2oztp38n0zCzaiBnN5aN9ojMVxcBEH+/f/A7e772fKM2
+	+54MgX+X1Xl8bpIB12pn955ZU8Wfw2W4JFHjokGVr4fMAmlHqekS+G4u
+X-Gm-Gg: Acq92OEBY3ofPQAB5W3nkaBL8j29d/wUh0gvzA/dOekPskzBfbAYEiFAB4q10p/2P+T
+	AIaUEMFgWvPP8JuNBgPaYLVMr3kR4H+hEkA+Y71dvZadHA6zfv1rNo7C8Na9YzlZj7goc+pR7WD
+	uB7URvMXDSOVOUs0ERZzB5Jl/VGd6NgXn1LCJdJ+ptr/PNwsJG34+tUdoULwg5WI33wF2z1ZGTh
+	WTIbjF5QDplaANzpPWNL1E4BYAIzSWwrjyC4vSr9FMHwzw1LnHTghmBwN2u0KrTtaFGA4r6aHkw
+	yxrXWinRGM/qR0/boLD3gCDH67iJRyuMlh5PKnbRjA8U/odV0EhjBbRR5KeJMD6Z0SgSJLNWV4b
+	WzBFOAjhgrmRkr2bMOGSZOEH5TQMu7iKuwhjkWrrsrKiAVygT6Szhtnncm374GzU9gqjst3E+1G
+	KCy+CPN3AooKgtxSZbE1Z58jm1aAT5UC0EZktB8fHChTrT9QHgoZz86qtUFP70
+X-Received: by 2002:a05:6000:2081:b0:455:fbb:28bb with SMTP id ffacd0b85a97d-4603075f442mr5402974f8f.35.1780659486770;
+        Fri, 05 Jun 2026 04:38:06 -0700 (PDT)
+Received: from SMW024614.wbi.nxp.com ([128.77.115.158])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46028a6dcbdsm15262439f8f.7.2026.06.05.04.38.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Jun 2026 04:38:06 -0700 (PDT)
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Peng Fan <peng.fan@nxp.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daniel Baluta <daniel.baluta@oss.nxp.com>,
+	Francesco Dolcini <francesco@dolcini.it>
+Cc: linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 4/4] arm64: dts: freescale: add DT overlay for MX95-15x15-FRDM RPMSG usage
+Date: Fri,  5 Jun 2026 04:36:21 -0700
+Message-ID: <20260605113621.1479-5-laurentiumihalcea111@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260605113621.1479-1-laurentiumihalcea111@gmail.com>
+References: <20260605113621.1479-1-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - esm19.siteground.biz
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - valla.it
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-SGantispam-id: 77b55c899ef279f5221f9be05f414dcb
-X-AntiAbuse: ID - 77b55c899ef279f5221f9be05f414dcb
-AntiSpam-DLS: false
-AntiSpam-DLSP: 
-AntiSpam-DLSRS: 
-AntiSpam-TS: 1.0
-CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
-CFBL-Feedback-ID: 1wVTeG-00000009oW7-1Ynh-feedback@antispam.mailspamprotection.com
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_DKIM_REJECT(1.00)[antispam.mailspamprotection.com:s=default,valla.it:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[valla.it : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307411-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:qijian.guo@nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:daniel.baluta@nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:steven.yang@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[francesco@valla.it,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307364-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.hauer@pengutronix.de,m:peng.fan@nxp.com,m:festevam@gmail.com,m:daniel.baluta@oss.nxp.com,m:francesco@dolcini.it,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	HAS_X_SOURCE(0.00)[];
-	HAS_X_ANTIABUSE(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,pengutronix.de,nxp.com,gmail.com,oss.nxp.com,dolcini.it];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[francesco@valla.it,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[antispam.mailspamprotection.com:-,valla.it:-];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurentiumihalcea111@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,valla.it:mid,valla.it:from_mime,valla.it:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,nxp.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AF2B6648404
+X-Rspamd-Queue-Id: E3E3E647CAD
 
-Hi Joseph,
+From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-On venerd=C3=AC 5 giugno 2026 10:59:08 Ora legale dell=E2=80=99Europa centr=
-ale Joseph Guo=20
-wrote:
-> On Thu, Jan 15, 2026 at 06:11:34PM +0100, Francesco Valla wrote:
-> > Enable additional devices on the i.MX93 FRDM board:
-> >   - CAN port and associated transceiver
-> >   - Bluetooth portion of the IW612 chipset
-> >   - WiFi SDIO port
-> >   - user buttons
-> >=20
-> > The WiFi portion of the on-board IW612 chipset is still not supported
-> > upstream, but since SDIO is a discoverable bus it will be probed once it
-> > is.
-> >=20
-> > Signed-off-by: Francesco Valla <francesco@valla.it>
-> > ---
-[...]
+Add RPMSG DT overlay for the MX95-15x15-FRDM board. This overlay is meant
+to be used with the mx95evkrpmsg system manager configuration for
+remoteproc and audio over rpmsg-usecases.
 
->=20
-> Hi Francesco,
->=20
-> Do you ever tried bluetooth feature? The bluetooth failed to scan with
-> 'device-wakeup-gpios' property.
->=20
-> Regards,
-> Joseph
->
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/Makefile        |  3 +
+ .../dts/freescale/imx95-15x15-frdm-rpmsg.dtso | 67 +++++++++++++++++++
+ 2 files changed, 70 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx95-15x15-frdm-rpmsg.dtso
 
-Yes, Bluetooth was tested using bluetoothctl, I just briefly re-tested it
-with latest master branch (7.1.0-rc6).
-
-Can you clarify what you mean with "The bluetooth failed to scan
-with 'device-wakeup-gpios' property."?
-
-Thank you
-
-Regards,
-
-=46rancesco
-
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 03988f0eae30..dba191a2f790 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -637,6 +637,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx943-evk-sdwifi.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-ab2.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-frdm.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-frdm-rpmsg.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-frdm-pro.dtb
+@@ -658,6 +659,8 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-mallow.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-yavia.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-zinnia.dtb
+ 
++imx95-15x15-frdm-rpmsg-dtbs = imx95-15x15-frdm.dtb imx95-15x15-frdm-rpmsg.dtbo
++
+ imx95-15x15-evk-pcie-dtbs += imx95-15x15-evk.dtb imx-m2-pcie.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-pcie.dtb
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm-rpmsg.dtso b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm-rpmsg.dtso
+new file mode 100644
+index 000000000000..bc02864c6f88
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm-rpmsg.dtso
+@@ -0,0 +1,67 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2026 NXP
++ *
++ * This DT overlay is meant to be used alongside the mx95evkrpmsg SM
++ * configuration for remoteproc and audio over rpmsg.
++ */
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	remoteproc-cm7 {
++		compatible = "fsl,imx95-cm7";
++		mboxes = <&mu7 0 1>, <&mu7 1 1>, <&mu7 3 1>;
++		mbox-names = "tx", "rx", "rxdb";
++		memory-region = <&vdev0buffer>, <&vdev0vring0>,
++				<&vdev0vring1>, <&rsc_table>;
++		memory-region-names = "vdev0buffer", "vdev0vring0",
++				      "vdev0vring1", "rsc-table";
++	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++
++		vdev0vring0: memory@88000000 {
++			reg = <0 0x88000000 0 0x8000>;
++			no-map;
++		};
++
++		vdev0vring1: memory@88008000 {
++			reg = <0 0x88008000 0 0x8000>;
++			no-map;
++		};
++
++		vdev0buffer: memory@88020000 {
++			compatible = "shared-dma-pool";
++			reg = <0 0x88020000 0 0x100000>;
++			no-map;
++		};
++
++		rsc_table: memory@88220000 {
++			reg = <0 0x88220000 0 0x1000>;
++			no-map;
++		};
++	};
++
++	sound-micfil {
++		status = "disabled";
++	};
++};
++
++&edma1 {
++	/* reserved for M7 */
++	dma-channel-mask = <0x40>;
++};
++
++&edma2 {
++	/* reserved for M7 and V2X */
++	dma-channel-mask = <0xf>;
++};
++
++&micfil {
++	/* reserved for M7 */
++	status = "reserved";
++};
+-- 
+2.43.0
 
 
