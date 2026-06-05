@@ -1,56 +1,57 @@
-Return-Path: <devicetree+bounces-307540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307546-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nWSIJdE8I2rIlQEAu9opvQ
-	(envelope-from <devicetree+bounces-307540-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 23:17:05 +0200
+	id BZwrJgg9I2r9lQEAu9opvQ
+	(envelope-from <devicetree+bounces-307546-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 23:18:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F347D64B522
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 23:17:04 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB7064B551
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 23:18:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmx.de header.s=s31663417 header.b=bqzZ5NLe;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307540-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307540-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmx.de header.s=s31663417 header.b=fflYfp8T;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307546-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307546-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=gmx.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D3CB53014C7D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 21:17:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9538F3049785
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 21:17:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C043CD8CA;
-	Fri,  5 Jun 2026 21:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFB053D9678;
+	Fri,  5 Jun 2026 21:17:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0EA71B78F3;
-	Fri,  5 Jun 2026 21:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAE9B3D669C;
+	Fri,  5 Jun 2026 21:17:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780694221; cv=none; b=QfVGx8XoztLnQsqc/7MBueEkJn08uxN8qivjCVOn6Ka1H6Rt3/XwnOFBT3ABiZ9bs0Ye8yf6T5y0uSOceQU9nfiewBhEbv9J033jm/5ecf4EBG6bemhMBFdEFdq95qBaohc9AZIdZH3DEXKwAS2HKbrm4EyoMCAxqehS1M3M5a4=
+	t=1780694226; cv=none; b=nwobfNQb58QB6XUg+gdovuF9zfDJDpoKEB/muv4fTOXf9mYQ61f0hwficOJk67qCbo1hld/8raZmbFbF39sS49+CrO4O1/s7xpprDX/Fckea9Njp2A7bOzIuzioxIcXX0CSrlm0j658rv+mRE1E7JsnHhzmEkbOpwADmC19buSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780694221; c=relaxed/simple;
-	bh=2mWo7qvKGtyRI8zqGN0FALEm5qQx8MEDXClpk7ipdxI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CckOhBkIFzMktkecy7/UK+VP3i5kcmn2E4xTtAmsm7oQw0ixHDzu2DqZz+uR+7BPZK4DLVKb271VndEXPIozvZ5SVSn+lcoo8+2q6e7YE5qp3Q+2Qfa8u6JqeXkSU2EXT9gKRmRRwWsu6dgGTAWwoqKnDiqmJqjHO5cFOGiFGq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=bqzZ5NLe; arc=none smtp.client-ip=212.227.15.18
+	s=arc-20240116; t=1780694226; c=relaxed/simple;
+	bh=2kkbFm+JxmxoNpQPiyhk2VwVKZ/+h1HH8WLe4BS2o5A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=NytIvGmW23tosaYeLSBYvxYP2tZSiWHlyEy0AwYGklajV8scebFONWIT65n6jf9MVzDU3+RI4W0iYxS9q8b6whzXfEHDSh+xSf0nVKrUAYas0zn2vE37buTP9Z6cqYtgL62UzxgBN02zyIwGtlhllUwfsjwFfCRtbM/CVfFvq6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=fflYfp8T; arc=none smtp.client-ip=212.227.15.19
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1780694217; x=1781299017;
+	s=s31663417; t=1780694218; x=1781299018;
 	i=markus.stockhausen@gmx.de;
-	bh=oFxcuMJ6osgASjMsSZwVcfM+b3rzYyEUR7in+7BB8lM=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
-	 MIME-Version:Content-Transfer-Encoding:cc:
+	bh=SLM9a9ShE+joMCiCcdG1UH72JT39SJAMtHPqQLXCxvA=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
+	 References:MIME-Version:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=bqzZ5NLe0zjL1OpLySt4h2W7rHSdVACXwKbszAoWTSxaNVHtGzG8I5J7qAq+wKHs
-	 o4J0r9/zLlrrVtIC5ry8Zat/jtY5cAN+Ig26HID+h82xVB3iXm2xJ0VkB5QfKwBCO
-	 8Nun4w5IC1ngkXcvvJB4tjY0kh6fWA6Wyq+rSm8cQjIu4iaoHWU0UAXrJeT32kfnP
-	 J81MWVVFPROSvSUXgi0VOt/uAvn17y9jbn//NtAjaP943a9hQQ15YuC4oRV0DfEm2
-	 QiwYvaGCdiuLp4L//Fpt49HfQ+0HmBRa1wSt2ipuDup+K99d1NSUV/312ENmqackL
-	 DgJ72Geb0ZSIU9h5Fg==
+	b=fflYfp8T/jmfL1lua/uJjmJ8HV08fYnd9miZHSPkFCY7b4yN9v82RJ/snO0d0C1w
+	 tALFyBwKa1LqgQrmd6r7DOb1krK8ZkSEubrgD857Fu9JW8paDzP/+V6JXVXu/8l6R
+	 ArzHntR7mC57O0oEeeUmWyOq4K2FkHf23WVcjcpFsr5Dk4ygcUsg7uJTRq9qBwMCt
+	 B4faaIBQfNd5Xdhe/7tst10QinG9D5TpK2kYJ2V/u/K+B8ZDvLY26+U6CH/H41UID
+	 UBu0vt0ov9+f8sXPrKIu5YirwdsVxacP3VHYBptzgPkwE249EewJlexjPnt8XvepL
+	 aalW6tGz4XVdHc68gg==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from client.hidden.invalid by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MWzk3-1wkkC0346D-00SPPm; Fri, 05
- Jun 2026 23:16:57 +0200
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N2V4P-1xGFBm45Oh-014Tzg; Fri, 05
+ Jun 2026 23:16:58 +0200
 From: Markus Stockhausen <markus.stockhausen@gmx.de>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -62,10 +63,12 @@ To: robh@kernel.org,
 	tglx@kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Markus Stockhausen <markus.stockhausen@gmx.de>
-Subject: [PATCH 0/7] irqchip/irq-realtek-rtl: Add multi parent support
-Date: Fri,  5 Jun 2026 23:16:39 +0200
-Message-ID: <20260605211646.2101652-1-markus.stockhausen@gmx.de>
+Subject: [PATCH 1/7] dt-bindings: interrupt-controller: realtek,rtl-intc: Allow 2 interrupt cells
+Date: Fri,  5 Jun 2026 23:16:40 +0200
+Message-ID: <20260605211646.2101652-2-markus.stockhausen@gmx.de>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260605211646.2101652-1-markus.stockhausen@gmx.de>
+References: <20260605211646.2101652-1-markus.stockhausen@gmx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,90 +76,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:R44xBIaN35ZZpkrt3W16OPyne1Ze6Pn96K9j4AoqdJja0FAD1Hd
- wfE4z2brRFmfWD49el3AqEN/GhzEo3r8g0S546UM/VfYFuMgwk6GWsDX/AzN0G+weqGS+7D
- 3ePIJw6W1McvDsb2etV8f8JVAxuPRuHrpufcktbsr0ux1CSbEEj5ocSrRq6F4cL/aTcboi+
- INkP0QqBj5X9jP4U5yBBw==
+X-Provags-ID: V03:K1:MncPeWVYAatCqFOkDjSs5mNHY1Osg2jk8m8oGVG9jJC79H8xYAc
+ rEBe6fUYn6SObQ2KcZthutQe6fwwX1dc64inr31cPZbUCKhvwBmJMjHXvvn1VUDc2UF0Sqr
+ Ld3ZKT34e4sXX5XthaIhd2HgfSW4b9ABxXq98BgQ/ZPFwNqC/P5KX8phJwcU2olr7Zdk6uv
+ b+8nb69THf0pH8xlADLGg==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:lnA4qbkwHok=;Bbl3UIdls2xjS6DU7z2S521nirb
- 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
- Bo2WbxbsJccp3MV3PYpU5lRnIHw=
+UI-OutboundReport: notjunk:1;M01:P0:ALt4HJp+SGc=;phECtW9udPPIJWwryF4JImq2K/g
+ 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
+ PE/SJkTz46N5h0sKvU=
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -164,13 +168,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-307540-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307546-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_CC(0.00)[gmx.de];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -188,57 +192,50 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[gmx.de:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,gmx.de:mid,gmx.de:dkim,gmx.de:from_mime,gmx.de:email,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,gmx.de:mid,gmx.de:dkim,gmx.de:from_mime,gmx.de:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F347D64B522
+X-Rspamd-Queue-Id: 7AB7064B551
 
-The Realtek Otto switch series consists of multiple devices.
+The Realtek Otto SoC interrupt controller supports hardware interrupt
+routing to multiple parent CPU interrupt lines. To utilize this
+multi-domain support, peripheral devices need a way to explicitly
+specify their desired parent interrupt line in the device tree.
 
-- RTL838x: single core (Realtek proprietary IRQ controller)
-- RTL839x: multi core (Realtek proprietary IRQ controller)
-- RTL930x: multi core (Realtek proprietary IRQ controller)
-- RTL931x: multi core (MIPS GIC controller)
-
-The proprietary interrupt controller supports hardware interrupt
-routing. To be precise:
-
-- The hardware knows up to 32 different interrupts.
-- These can be assigned dynamically to the normal MIPS=20
-  interrupts (2-6).
-
-For this each of the 32 hardware interrupts has a routing
-register. If properly set up, important interrupts (like
-timers) can be prioritized.
-
-Until now all interrupts are always routed to the low priority
-MIPS interrupt 2. This series extends the driver by registering
-multiple domains for the different MIPS interrupts and adding
-the possibility for hardware devices to map a desired parent
-interrupt.
+Update the "#interrupt-cells" property to accept either 1 or 2 cells.
+- 1 cell: Specifies the hardware interrupt index, implicitly routing it
+  to the first available parent (maintaining backward compatibility).
+- 2 cells: The first cell specifies the hardware interrupt index and
+  the second cell specifies the targeted parent interrupt index.
 
 Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
 =2D--
+ .../bindings/interrupt-controller/realtek,rtl-intc.yaml      | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-
-
-Markus Stockhausen (7):
-  dt-bindings: interrupt-controller: realtek,rtl-intc: Allow 2 interrupt
-    cells
-  irqchip/irq-realtek-rtl: Use helper for parent setup
-  irqchip/irq-realtek-rtl: Add interrupt data structure
-  irqchip/irq-realtek-rtl: Add mask for interrupt handling
-  irqchip/irq-realtek-rtl: Add a select function
-  irqchip/irq-realtek-rtl: Allow shuffled interrupt order
-  irqchip/irq-realtek-rtl: Activate multiple parents
-
- .../realtek,rtl-intc.yaml                     |   5 +-
- drivers/irqchip/irq-realtek-rtl.c             | 152 +++++++++++++-----
- 2 files changed, 113 insertions(+), 44 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/realte=
+k,rtl-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/r=
+ealtek,rtl-intc.yaml
+index 833a01cdd1b1..5c52e57c6647 100644
+=2D-- a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl=
+-intc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-i=
+ntc.yaml
+@@ -32,8 +32,9 @@ properties:
+=20
+   "#interrupt-cells":
+     description:
+-      SoC interrupt line index.
+-    const: 1
++      First cell is the SoC interrupt line index. Optional second cell
++      specifies the parent interrupt index to route to.
++    enum: [1, 2]
+=20
+   reg:
+     minItems: 1
 =2D-=20
 2.54.0
 
