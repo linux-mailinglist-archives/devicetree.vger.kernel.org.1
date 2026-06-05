@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-307230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307232-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id STIuGKF4ImrzXwEAu9opvQ
-	(envelope-from <devicetree+bounces-307230-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 09:20:01 +0200
+	id XWiDCMt3Imq5XwEAu9opvQ
+	(envelope-from <devicetree+bounces-307232-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 09:16:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59EE1645E2C
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 09:20:00 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1946645DC0
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 09:16:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=OiQJE1lB;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307230-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-307230-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="fSy9aAf/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307232-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307232-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0A9193082346
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 07:10:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 462DA30B074A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 07:10:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5ECF472760;
-	Fri,  5 Jun 2026 07:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B54A3478E3D;
+	Fri,  5 Jun 2026 07:10:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6851B453482
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 07:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A581646AEE2
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 07:10:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780643402; cv=none; b=lH/nKVQ6DNsL1zRDW2x3L/eJfDfoGYU1IQi+KQQQc+SGSydS2uUkG9nPYK4om1E+qMUjKmMzSaMlgRNtlXcink+DLA4WjwbzNVbMa6bt7etjw7nceE0D0SqyTZq5ssQMveua34R/44cy6r0ZiiCOOLli2zuoDnkBaEC3yNddne8=
+	t=1780643405; cv=none; b=Fm+YbxKDWU+Mw+5Z6G70gyLBh/DXszTPjz7QPyGwA4JUn+MUSocJb8cPmunPZS2vjUPzgn/ecZKxtqj2Scj75iV/+aAo9Zg8NQjAk06p14mU90Lab/lUd2rBqk3Nhp5uXo34vVHTGwJqaOTDEkTjB4ghDKc7Bm3sPjKsJ04laqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780643402; c=relaxed/simple;
-	bh=81QWGp2xwz5I5iCFmW4tGpxlb1ZZCK6gGl11cl7Gxbo=;
+	s=arc-20240116; t=1780643405; c=relaxed/simple;
+	bh=7MDbaMfdfDFcEL1euNDkSuzapxJuUtssv4QW4CSalUc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=i9nutPPBEKHJKzQn9bpwpLjUEGfSMeHnhFbsmbFmFf0QSxw/CPnCqZ4lLZBWut3/N9cH0cvTZNh3xVXCIhnu9M1BUfrZ3BwVDycRqqs2/k2TfK2Zl+TfXpH127Kfn6NM+XZBHMI1JjgsAVzmS1TTDmv/XaNKZ+EkGlqRMa76H0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OiQJE1lB; arc=none smtp.client-ip=209.85.128.51
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-490c0c92cffso7086075e9.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 00:10:01 -0700 (PDT)
+	 MIME-Version; b=c7jbjmjqSLtuGSVJKEUUBi/Lyzf9lCnWJtwBQ4bpqHEGFxw/tLg4domPUQAdCmefP2pugwyBBFd+xLIuUfNOxtR95x73WXV59QaOoyRuPfwu3inW14wipa0jZ6FAQYVtp8sPbBMPnMNYCbl0pdSMLBIeQjzNgD6lKrW0a/oxr0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fSy9aAf/; arc=none smtp.client-ip=209.85.221.52
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-4600ddc4017so1191113f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Jun 2026 00:10:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780643400; x=1781248200; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1780643401; x=1781248201; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=//utTjSSQFS79aIABVKNXcplPpUF6UEdGauCN88OgVs=;
-        b=OiQJE1lBfqJhsNSGtRE6hvNCZl8O0JH/n7508pOaG1Yj4F2I6RKttuwqTB5YKQQl/Z
-         E6x2r/4KN8KIHaU6pmmeH878wdben34ihjWaXwHAWJHS1fsCDPlZzPmdoRuMG4BdPZIB
-         Dl8GlQtV/ViusHFXgkanRfIYGewpeIiL7/mjpuoKz+ZjB1Pw+ddj+gAzcMJ/VfgC4UFq
-         ekjq0oBKyIFvt4pyXL2iMKg1W9ePRKVw6suImJwuSwGKmafKW+5SuyUCa+QHoxjMAy+k
-         jDDGw7ZmoTkuyGfQdIyAF9cUwoiOgWl3byEhUAmjmC88boVVkyxFijC/Z4Qy50Ar23PA
-         h/hA==
+        bh=oL4Y31r8dtXqoPXz/W9R/fk3pvn98vrw1YoAz+z4buw=;
+        b=fSy9aAf/UppHL2XCuU87VFTQmEsCIb/b4p5MU/uaQTdP3j0fbn3QW9kZS7IsOgGmRL
+         A9TPjxfxioz3hQWmTBq09svrElNUeclNmT2W9ke2a5hAxeFXvlJlWrTBsvdg41zF6PT+
+         1UH1MBTL7K6BuWC03AvGOaI/bIExTFWtIKvBUe+V2soaQGIynTuTKpa/mbeO73NRF2i4
+         Eq1fhyuIYKelTNDBdOqoIKYUAc+N0Ss0RmsukBtY6KzvCVWmH+I2/SdQpQG6n0N74BcJ
+         CkHrDAK0l1+w8y1tumNFf/bq1BA1stF45eWrgJwtJImvUu6/DtAfS21ibRka+z5zvlda
+         CMQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780643400; x=1781248200;
+        d=1e100.net; s=20251104; t=1780643401; x=1781248201;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=//utTjSSQFS79aIABVKNXcplPpUF6UEdGauCN88OgVs=;
-        b=QqNwG8lo8ON29KLh4b8OW+DfJbvH8cCF9cdBarwqGoazAsBOsiT8L+5gbcJ8x1pwVo
-         EbIdFIbHDiVMOyFDFp/t2JIxnpmt92IGiURFpOsrzQMuKJKq4IcT9fjA53feyMbCEIM/
-         k4O7V3zrxd9Qga6iMu5JtLPDgHC5Zfpgx3uUUxOLeKUfBJlXXkNK6T1zDp1r8Up4bKVx
-         ySbaJh9UJiBb4f85TfpYDOfJ7j5KBR8C2JCf5Z+C0egLb1WgPUArvGSmyfkPes4zExDy
-         loAH871jn3JdVAybR0KB4e47w7xTWGEBGp//6JmyF2yymcJeJf6/6kqs/m22EGLK4xp8
-         82/w==
-X-Forwarded-Encrypted: i=1; AFNElJ+1EAfhej1+jJMFyhkshyiO2rXH3jbKJfPyjXGwClbf+TsTFUpQHmretv5XdGabpp7NSxTyDWZA7mGz@vger.kernel.org
-X-Gm-Message-State: AOJu0YylAbJ3edVS9aHLSv+N9SQaRiY96g9x0QcKVrgeRZlhBBjsX6MG
-	PmgcPWB7R6QMwK2rcoPwjYx6FCxsBsveuz6kr4tMit1q6NrdI/zJvroE
-X-Gm-Gg: Acq92OEv8FrbU+23CxRVl8NSuMOxhDmjBLqijILVLnzgDJbDsQFhXkTT+DbxP5CWjOm
-	qkiiNOHhgEPzzvKEvUSfsUlMS5rwvnxha780ixiT9uk0qlxv9GBWonta2nYPVQlflVv070F2Rg9
-	L0LdwKRm2UgUqPw4aOl6lNDb5ne/u7+/MRJwcBl5epBpFgoU0qbx6ALq1S/u7rVvVzCvkXlZDWm
-	RafR5xIXEO37Jokwl478j64yM55o1oW21qI0+RRuTUZQ92zlkJp6OVHP6q6lEjEUwwJtxtplDqJ
-	xzhcFCQZ2VZv1/eK1sfjGWUMQCdDy9juG+DfV17tyWbxY46QByJhLssIrLR5V5E1bvUH5nyrPP/
-	fCTznj9TkesGUg1YPKQEPcqPAGYvw3ZkGX+qOxYteHV/dI7coL9gPopT9GBqH0ZAB1sJO8XwUWr
-	Y4MLbwdnHicW2hoxsXqALGcI3qBEEBoOo8LHzyRFJ7ktcNTMz9GgtoxiYB+A8raPht/GwAI98XF
-	hXEPE6hewuovSidJKmffw==
-X-Received: by 2002:a05:600c:3f1b:b0:490:bcf6:46bf with SMTP id 5b1f17b1804b1-490c2599fecmr30837895e9.9.1780643399552;
-        Fri, 05 Jun 2026 00:09:59 -0700 (PDT)
+        bh=oL4Y31r8dtXqoPXz/W9R/fk3pvn98vrw1YoAz+z4buw=;
+        b=lxnoLF6FFi3l5gxAbNXVYdPPIUH14qhErhre733KWXkmCnojiIZtZfQjnUAaCPJnjP
+         ABb6BeF/1gjRtAzSz4rhz1sDmDkEwl7iLFFI8U9V/DrdQZsc34jHtWj9B6eYqv/dmm7K
+         S5X9MzEemeROkMlo8sKnbm18s4N0Ee8EVc32sr5dt7/6+3YUbRZFZ2XjtpN/jrpAqpKA
+         xEWcq0xgC7xNh5NqHfWE1o0RLNWm2O1h1opiePwjxO8DrzcXWxwgAklfkHULj1OOOvj2
+         7GGmsYBDjMqFcPoq5lZpWkwL5e/Vg+y0w/ZvwmurwjjYM1ok8K96OBfM9eM25O4OYshp
+         8oaA==
+X-Forwarded-Encrypted: i=1; AFNElJ9R3wvqr6+b3Zm0TFlpgdOmgmGo5Kst8DXoKLhRH+iNBlZ1+6gV+yPnwHawb7oa5s32dqGBA9wqtHuO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyfzt3RZh3bYFAI+SuYGH/EWooFMyAK+MEqDnRbRF+AtejoNs2w
+	urKLChbXpcMbFF5zsgt2IpklHxxUkBPTI2xaesl0x10BSMBgbkzBbBtR
+X-Gm-Gg: Acq92OH9uheVrNPbTQbfcJZu5kpBzxJR+SQP6a5FuUtNWdfc/b4N94FHf2ScYZRnkTx
+	Hu36aaEgWIx1Lf7d/Z9B0UwTSlHdn8w9N6ayR1r92qxYKe3YpBSBM4qcnPyCXf+QaIXOaKKDQM3
+	udl4MFz8sfN/2K4uWBaQ8a2V9oegnhO+PVMRdu0qzOHInh6O9bIxsIkJDeWtKSKmi0SUGXFsRHu
+	SQta6SxsYmzCtDhbsNeN+/V/eqpk2pRbPSkcnlAjDDfYyb/1Tju5fQJDpLYIXQVHtO/c0r7NMxu
+	ykcyIoH+iXFRlbc7Gal94/Pt3HzCmSBG6zLH8Ed3+ZxjLHB1LGH2RKpvr7opkne+bvg1S3LesZi
+	N5Am6nDzc/4AtgGi3Q441tgPy3iy98B3YcWd5DrtXs1tzGZP8A5SpM/MVfRUWSTQvhdAOlsZiZC
+	CUsL/FaDkVRiimZgtHa6d7MecVPtMwHcztQ2QQnPL2uQ1razW99gbHT8tC6V0LO1CfA7w+kfWJP
+	DLtdLffihAXfGRzi7Y55cwYPRGZT+Qk
+X-Received: by 2002:a05:6000:178e:b0:460:3234:293d with SMTP id ffacd0b85a97d-46032342a62mr2372600f8f.40.1780643400949;
+        Fri, 05 Jun 2026 00:10:00 -0700 (PDT)
 Received: from localhost.localdomain (72.92.4.85.dynamic.cust.swisscom.net. [85.4.92.72])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f2dcad5sm25132882f8f.5.2026.06.05.00.09.58
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f2dcad5sm25132882f8f.5.2026.06.05.00.09.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Jun 2026 00:09:59 -0700 (PDT)
+        Fri, 05 Jun 2026 00:10:00 -0700 (PDT)
 From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 To: linux-arm-kernel@lists.infradead.org,
 	linux-sunxi@lists.linux.dev
@@ -101,11 +101,10 @@ Cc: Alexander Sverdlin <alexander.sverdlin@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-input@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Paul Kocialkowski <paulk@sys-base.io>
-Subject: [PATCH v4 2/7] dt-bindings: vendor-prefixes: Add Shenzhen Baijie Technology Co., Ltd.
-Date: Fri,  5 Jun 2026 09:09:16 +0200
-Message-ID: <20260605070923.3045073-3-alexander.sverdlin@gmail.com>
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v4 3/7] dt-bindings: arm: sunxi: Add Baijie HelperBoard A133 compatible
+Date: Fri,  5 Jun 2026 09:09:17 +0200
+Message-ID: <20260605070923.3045073-4-alexander.sverdlin@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260605070923.3045073-1-alexander.sverdlin@gmail.com>
 References: <20260605070923.3045073-1-alexander.sverdlin@gmail.com>
@@ -123,21 +122,21 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-307230-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[25];
+	TAGGED_FROM(0.00)[bounces-307232-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:alexander.sverdlin@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:hansg@kernel.org,m:dmitry.torokhov@gmail.com,m:andre.przywara@arm.com,m:jerrysteve1101@gmail.com,m:lukas.schmid@netcube.li,m:j.ne@posteo.net,m:ebiggers@kernel.org,m:michal.simek@amd.com,m:luca@lucaweiss.eu,m:sven@kernel.org,m:mripard@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-input@vger.kernel.org,m:conor.dooley@microchip.com,m:paulk@sys-base.io,m:alexandersverdlin@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:alexander.sverdlin@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:hansg@kernel.org,m:dmitry.torokhov@gmail.com,m:andre.przywara@arm.com,m:jerrysteve1101@gmail.com,m:lukas.schmid@netcube.li,m:j.ne@posteo.net,m:ebiggers@kernel.org,m:michal.simek@amd.com,m:luca@lucaweiss.eu,m:sven@kernel.org,m:mripard@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-input@vger.kernel.org,m:conor.dooley@microchip.com,m:alexandersverdlin@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER(0.00)[alexandersverdlin@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,sholland.org,arm.com,netcube.li,posteo.net,amd.com,lucaweiss.eu,vger.kernel.org,microchip.com,sys-base.io];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,sholland.org,arm.com,netcube.li,posteo.net,amd.com,lucaweiss.eu,vger.kernel.org,microchip.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -151,34 +150,45 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,vger.kernel.org:from_smtp,szbaijie.com:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,sys-base.io:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 59EE1645E2C
+X-Rspamd-Queue-Id: B1946645DC0
 
-Shenzhen Baijie Technology Co., Ltd. focuses on R&D and production of
-embedded products as well as customization of embedded solutions.
+Baijie HelperBoard A133 is a development board around their A133 Core
+board. Introduce a compatible for both the Core and the development
+boards.
 
-Link: https://szbaijie.com/
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Paul Kocialkowski <paulk@sys-base.io>
 Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Changelog:
+v4:
+- renamed "Baijie Helper A133" -> "Baijie A133 HelperBoard"
+- renamed "baijie,helper-a133" -> "baijie,helperboard-a133"
+v3:
+- no separate section for "core" .dtsi
+v2:
+- introduced baijie,helper-a133-core compatible for the Core (SoM) board
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 28784d66ae7b..095cf654787f 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -229,6 +229,8 @@ patternProperties:
-     description: Azoteq (Pty) Ltd
-   "^azw,.*":
-     description: Shenzhen AZW Technology Co., Ltd.
-+  "^baijie,.*":
-+    description: Shenzhen Baijie Technology Co., Ltd.
-   "^baikal,.*":
-     description: BAIKAL ELECTRONICS, JSC
-   "^bananapi,.*":
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index e6443c266fa1..82dd58b95f8a 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -96,6 +96,12 @@ properties:
+           - const: allwinner,ba10-tvbox
+           - const: allwinner,sun4i-a10
+ 
++      - description: Baijie A133 HelperBoard
++        items:
++          - const: baijie,helperboard-a133
++          - const: baijie,helperboard-a133-core
++          - const: allwinner,sun50i-a100
++
+       - description: BananaPi
+         items:
+           - const: lemaker,bananapi
 -- 
 2.54.0
 
