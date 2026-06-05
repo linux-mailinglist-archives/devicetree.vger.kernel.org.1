@@ -1,115 +1,195 @@
-Return-Path: <devicetree+bounces-307442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307443-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QEGQOGHXImoueQEAu9opvQ
-	(envelope-from <devicetree+bounces-307442-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 16:04:17 +0200
+	id Jn6ZGtvXImpSeQEAu9opvQ
+	(envelope-from <devicetree+bounces-307443-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 16:06:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533AD648B3C
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 16:04:17 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D36EE648B6A
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 16:06:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lunn.ch header.s=20171124 header.b=tAwGn3C7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307442-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307442-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=lunn.ch;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=O+FnFUgJ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307443-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307443-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 26BC03014686
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 14:03:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CFC76305B22A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 14:04:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C4A339853;
-	Fri,  5 Jun 2026 14:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3DF936215A;
+	Fri,  5 Jun 2026 14:04:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D4817C211;
-	Fri,  5 Jun 2026 14:03:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5B835CB6A
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 14:04:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780668236; cv=none; b=u/zba0TDo679KWlQ/QO3ameE3z3lC71Putyc7srd081e+ObNhm40F5Q/VzFi4OGiswTnXxEMd6wWSRzVdkOKlM+zuRcNTvUZVBiS6zBsG7GsSFeTyZR8FvWAohSKrL/TP+5juAXW0upOl5c9zhCBMtqTksxaNLeaTiStgxGB0pg=
+	t=1780668254; cv=none; b=rio6p0dw2nqxMWVg67wcLJp8gw3wgRv7QyjKOro8025bnCVaZtpnixmY50bkdHwvB16TZMRLAs7DQBKNH1sPTmnYSLWVzPmGRT2azkmgpf3TjUecwI+thLmtmwd6xAyk4CeoKxVpr9A6bM7q/2ga1OofH2ucBD42xbbBje6lRZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780668236; c=relaxed/simple;
-	bh=P+oBBbWfPSZxy+LD5MvkYeicwdU102OQDnAKIlD2n58=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f5XajSmQixwkKYHriH0qqYXIeCILCptf8dQQh6GJf69Ru5N95E56DCd4E5D8eJlR4HxgO1Ea9+1n/D7XUMo9kvFOtiMaIDOYNUNR39dPZ7ApILb1L/KOhxlYsmiCoD+4BEUnP0G5k2FAXoViEtyIbkhnDeImrZPgvyWCScvF4Ec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=tAwGn3C7; arc=none smtp.client-ip=156.67.10.101
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=OTJvxf/jbQXoxNh715eN/OTiKIJrGsPOhm3F7zukjxE=; b=tAwGn3C7iyVjOB6T4m1/RhOb5c
-	JtO3Kz4/G6yoEw4m+b8qPDWDXiCL4WiUsKasrdGD6xDOulWG9TCQcq/vC9hJ1rBEMmbzS0a0owdHY
-	M3MZ/6fV8ZccuEnYEXLPUS2CiIvYevXmcdZwOdfK8XLhu8zoFZGZIXc1tQGIxGYsINUE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1wVV92-006EzK-NC; Fri, 05 Jun 2026 16:03:32 +0200
-Date: Fri, 5 Jun 2026 16:03:32 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: devnull+george.moussalem.outlook.com@kernel.org, hkallweit1@gmail.com,
-	linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, f.fainelli@gmail.com, andersson@kernel.org,
-	konradybcio@kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	konrad.dybcio@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-	george.moussalem@outlook.com
-Subject: Re: [PATCH v2 4/4] net: phy: at803x: add RX and TX clock management
- for IPQ5018 PHY
-Message-ID: <cf699ef5-aa9f-46bb-a071-4d7db889967d@lunn.ch>
-References: <20260602-ipq5018-gephy-clocks-v2-4-65a1f1d881f3@outlook.com>
- <20260605013305.3533509-1-kuba@kernel.org>
+	s=arc-20240116; t=1780668254; c=relaxed/simple;
+	bh=Xo2hFHtyKCsSF8RLQqHJE7GMwdSmwWbFyUfFPVgdm7o=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=E8slFIAgN9yr6/ckw62JUQv97vZ63l+GNxU51lw9eCJVdg2Q443Vfk3dl9rc4T7j541/OwMiGQ2Y/x3VJJaGyw8pUT3uWyDBnecpTTZE3ikjxEsvtZEMx8ym12mKLXU5qSmVeBo+Lv9J4QShjxto7+zKSYjhhNXa1Y3cKfodQAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+FnFUgJ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB2A81F00898;
+	Fri,  5 Jun 2026 14:04:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780668253;
+	bh=aOHUT2Ksa9+eTBrlEuneSYRR/2rvuY0xgQ+fmf7/3Z0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=O+FnFUgJoOKGpajFLKJ086PMLhTye7CxGvS7bOHzTCQXHIB3aSwYZhZSzdotTwruc
+	 f4i0i7hO81e/8H1I+vtFSyI8JdNDr+O9zmG1bbhKmzuYO1Lr1otBtlxXdzqrfOLzb5
+	 6Z3uOhvmgt+Z/NK7gH5R5aH42/Gq8XE3CfdcqsZZEEwSP7lHdYn5Ws4IBKjxxmMDlL
+	 ZNH0HVZ31IQYQcQbTh8yOr9yIIUNjhsveuJCSHmfwmIGtnwtbJ0YUkOwTX78sZVbIH
+	 Coux5i31gvRc4bSvgRKP17mpK2EdKDeEbp6KRHlKA+NdScYXCWWwLLYnQ1SODTppAn
+	 SQFWW4aDSRzxA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 08/10] ASoC: renesas: fsi: refactor clock
+ initialization
+Reply-To: sashiko-reviews@lists.linux.dev
+To: phucduc.bui@gmail.com
+Cc: devicetree@vger.kernel.org, wsa+renesas@sang-engineering.com, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260605121955.105661-9-phucduc.bui@gmail.com>
+References: <20260605121955.105661-9-phucduc.bui@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 05 Jun 2026 14:04:12 +0000
+Message-Id: <20260605140412.CB2A81F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260605013305.3533509-1-kuba@kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307442-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,armlinux.org.uk,davemloft.net,google.com,redhat.com,vger.kernel.org,oss.qualcomm.com,outlook.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:kuba@kernel.org,m:devnull+george.moussalem.outlook.com@kernel.org,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:f.fainelli@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:george.moussalem@outlook.com,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:ffainelli@gmail.com,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307443-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url,smtp.kernel.org:mid];
+	FORGED_RECIPIENTS(0.00)[m:phucduc.bui@gmail.com,m:devicetree@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:phucducbui@gmail.com,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,george.moussalem.outlook.com,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 533AD648B3C
+X-Rspamd-Queue-Id: D36EE648B6A
 
-> +	priv->rx_clk = devm_clk_get_enabled(dev, "rx");
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-This should probably use an _optional_ version of the API, in order to
-keep backwards compatibility with older blobs.
+New issues:
+- [High] Missing cleanup for previously allocated FSIA DMA channels if FSIB=
+ clock initialization fails in probe.
 
-     Andrew
+Pre-existing issues:
+- [High] The DAI trigger callback executes sleeping clock operations while =
+holding a PCM spinlock.
+--
+
+commit 7a2af4d59dffa88627e517f84d651b199bf13ef8
+Author: bui duc phuc <phucduc.bui@gmail.com>
+
+ASoC: renesas: fsi: refactor clock initialization
+
+This commit moves the fsi_clk_init() function call from fsi_dai_set_fmt()
+into the fsi_probe() path. It aims to ensure that clock resources are
+validated early during the driver probe rather than deferring the lookup
+to hardware configuration.
+
+> diff --git a/sound/soc/renesas/fsi.c b/sound/soc/renesas/fsi.c
+> index a2d7d17dd2bb0..3f303e15e8351 100644
+> --- a/sound/soc/renesas/fsi.c
+> +++ b/sound/soc/renesas/fsi.c
+
+[ ... ]
+
+> @@ -898,6 +904,11 @@ static int fsi_clk_set_rate_cpg(struct device *dev,
+>  	int ackmd, bpfmd;
+>  	int ret =3D -EINVAL;
+> =20
+> +	if (!ick || !div) {
+> +		dev_err(dev, "ick clock or div clock is missing\n");
+> +		return -EINVAL;
+> +	}
+> +
+
+[Severity: High]
+This isn't a bug introduced by this patch, but does this clock initializati=
+on
+path ultimately lead to sleeping while atomic?
+
+The ASoC framework invokes fsi_dai_trigger() in an atomic context with the
+PCM stream spinlock held and IRQs disabled. For the start command, the call
+chain executes:
+
+fsi_dai_trigger()
+  fsi_hw_startup()
+    fsi_clk_enable()
+      fsi_clk_set_rate_cpg()
+        clk_set_rate()
+
+clk_set_rate() attempts to acquire the global prepare_lock mutex in the com=
+mon
+clock framework, which will trigger a scheduling-while-atomic panic when
+called from the atomic trigger path.
+
+[ ... ]
+
+> @@ -1985,6 +2000,9 @@ static int fsi_probe(struct platform_device *pdev)
+>  	fsi->master	=3D master;
+>  	fsi_port_info_init(fsi, &info.port_b);
+>  	fsi_handler_init(fsi, &info.port_b);
+> +	ret =3D fsi_clk_init(&pdev->dev, fsi);
+> +	if (ret)
+> +		return ret;
+>  	ret =3D fsi_stream_probe(fsi, &pdev->dev);
+>  	if (ret < 0) {
+>  		dev_err(&pdev->dev, "FSIB stream probe failed\n");
+
+[Severity: High]
+If this fails, does the direct return bypass the cleanup for FSIA?
+
+Earlier in fsi_probe(), FSIA is probed and successfully allocates
+non-devres managed DMA channels. If fsi_clk_init() subsequently fails for
+FSIB (for example, returning -EPROBE_DEFER for an unavailable clock), the
+error path directly returns instead of executing the cleanup routine.
+
+Would this lead to a permanent leak of the DMA channels and other stream
+resources allocated for FSIA? Might a goto statement targeting the exit_fsia
+label be needed here so that fsi_stream_remove() can safely clean up?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260605121955.1056=
+61-1-phucduc.bui@gmail.com?part=3D8
 
