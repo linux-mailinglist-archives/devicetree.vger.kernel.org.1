@@ -1,179 +1,227 @@
-Return-Path: <devicetree+bounces-307140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307142-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id i+uIGHI1Imp2TwEAu9opvQ
-	(envelope-from <devicetree+bounces-307140-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 04:33:22 +0200
+	id 8QwcKP01ImqPTwEAu9opvQ
+	(envelope-from <devicetree+bounces-307142-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 04:35:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC3AC644B27
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 04:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF70644B33
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 04:35:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=rock-chips.com header.s=default header.b=EsXQiFhN;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307140-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307140-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=rock-chips.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=altera.com header.s=selector2 header.b=g+5XseZl;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307142-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307142-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=altera.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4BEFB302615A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 02:28:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 23DB0302A51A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 02:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD763DFC99;
-	Fri,  5 Jun 2026 02:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CE33806C0;
+	Fri,  5 Jun 2026 02:31:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731119.qiye.163.com (mail-m19731119.qiye.163.com [220.197.31.119])
+Received: from PH0PR06CU001.outbound.protection.outlook.com (mail-westus3azon11011031.outbound.protection.outlook.com [40.107.208.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3909C199E89;
-	Fri,  5 Jun 2026 02:28:34 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780626522; cv=none; b=ahSNxvxwP4ZIRb+5ahJ0t8Sl3jrEPI93nHMMz1hkk1SgxAFckZ3DBdLopMvVXEs0xFDQ9WaZSIEVNNvP8HObNFWZNylE2LZjJjY5kcu77//BgP80/C3QX69fbV8NwFih1FWSFFZFuspXKVvrpyiz5OQbg0YTiYVq9LM9sE55nmI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780626522; c=relaxed/simple;
-	bh=GFPWi/xaj2KK9JkNv4kgMVIXco4zFkyHwtNhMlrUhGI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ekj5Vqhvz01FHaW0la+sjAW1nPn50JMHXMrXwKQm0UY3RJVy4MtTk+xgN065aRxN8HNtZuZrYEsRy6TM9MEzN4+RPTKlI53oCm5YEmEm4BdHXpwlqUY3sZdV0NpXJ5zPUsnvpfkAH2iZRgX+MDJcuRPY3NAtTphpNnPgCghTKZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=EsXQiFhN; arc=none smtp.client-ip=220.197.31.119
-Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 412944d02;
-	Fri, 5 Jun 2026 10:23:19 +0800 (GMT+08:00)
-From: Damon Ding <damon.ding@rock-chips.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de
-Cc: sebastian.reichel@collabora.com,
-	nicolas.frattaroli@collabora.com,
-	alchark@gmail.com,
-	detlev.casanova@collabora.com,
-	cristian.ciocaltea@collabora.com,
-	michael.riesch@collabora.com,
-	andy.yan@rock-chips.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v11 3/3] arm64: dts: rockchip: Add eDP node for RK3576
-Date: Fri,  5 Jun 2026 10:23:05 +0800
-Message-Id: <20260605022305.3058853-4-damon.ding@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260605022305.3058853-1-damon.ding@rock-chips.com>
-References: <20260605022305.3058853-1-damon.ding@rock-chips.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6E73BB677;
+	Fri,  5 Jun 2026 02:31:50 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780626714; cv=fail; b=TCq5hDoVsoskZNve4WNvGG+rAyEtnaGzwywIRVK8210Vt4/wquIUR/r+pr3bGlv7aanGZ6BgBWA5CEOGr5vYOzT5Wt3DDi/zdc0vrvXXPmxBZnkmWERovCpEot0+C/XA2qiS1AoK685vWJt08NG73+sirXUmjLy4XoQsuBr+oq0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780626714; c=relaxed/simple;
+	bh=QJ2f3tMpRiqt7xZso01zcNmfGdwp7sZDYQTLyg2Q7e4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=kOj/W9o0A+JXOS/t75e+X/FIHAMNwcGOP+PiHDgHQ028PENOFZzEyDIcsHTh59Ba75c4Qq6C2NST7Zf4eLCN1m+eUVjlGS6GiuMOA7SzNnE+Ux/dZf9BUqbnQXz9uksvcGk4dXPMf8M9iqAft0fjnb9BJp0vqZIU4khcF4pQ9G4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=g+5XseZl; arc=fail smtp.client-ip=40.107.208.31
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AEyXvyJrnAXSxTxII/Q18R8WeGA6ybfVBJ0Idg0A74atBY3Rf9P0K5bRvvWXPc/XsphhFTn8CGTLz0czPxASP0jAVt1O3Vlrie7dGXij6TqVuGP3Hbb5sWfqeMK/LufSqsNa135NoUMwmxgxiBXkwcua4OAEPe5bxEa90u4uGXVAx90+SpzlHhuWMEkGIxrHrqmzKQ9rOMBBCONoioW4BOOCBSzFstCde/xRJLRQsuibgq1ruSZ7vqVCbUQKqz1b8+fHbhNhbUrYbJ/tMO8raEhSXrQWps17YFkIkqfbbuAfKtOOdrTE4d1RVyz80gGZFwzM7Q1RyoReAidl3NCtpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QJ2f3tMpRiqt7xZso01zcNmfGdwp7sZDYQTLyg2Q7e4=;
+ b=na3CnfePwC87pIkAI63H0Cx0KMwz4IDMxOptk1YjYkzbnpisv//XXoFJdOMllqdtJP6VKy65SShz5A0toI1vPyPeIjkmn6pK8HLWDi/+7O4EbaM9gyzLkQp7ULMUPJSpoVOTJvae6h9LiGB5jD4OFJ770z5ueWpM9J/8ER5fAE0BY5KCkr2wsl5ZT5DIn/Yn4ostJunHuEIL9Px3XBVmT1XgKyEMuilJWaD18lZzhadU/AabT0guSwqje+LjrRHg30TnXLQ6XrSIHcoiCqq7EUtfuCP97lXWTzCs23yDwsjT5F0WOEFodp6TZdjaJA78yLNMAbCglknystx9HC0NrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QJ2f3tMpRiqt7xZso01zcNmfGdwp7sZDYQTLyg2Q7e4=;
+ b=g+5XseZltpaZlFQo0XL0mrSS8W6Bh2+LaOSYumUENwE8n9lGkrkkqtBRIoNppXqlPBVG1IoyY9Rn+o5di1lJNu/LOCiAg9J4xsHZOIL7nOYM3WdsWomUaJdlHDl0ZtgXf5HFu6nIQGIVmuuZCQXmUnHYWoL5TazD4FEnmKnErBb0FMZ/1sM9ujgrpJ8lDZ6DieucfkI7x/ROQdknpgGWp8pR0UJtHPxw5A0I0FlxZGYl2ZHUhD4nkieQbVV8wnUxJzT2w7YwaqCYUZxvFM5kOnXGkUOLGXYgwiv0o//QZ5pk7zqEjMiEwdGThSYMfBLqVKcPmkN2SXFJ7e/zYgVpew==
+Received: from SJ0PR03MB6964.namprd03.prod.outlook.com (2603:10b6:a03:432::18)
+ by DS3PR03MB989168.namprd03.prod.outlook.com (2603:10b6:8:39b::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Fri, 5 Jun 2026
+ 02:31:45 +0000
+Received: from SJ0PR03MB6964.namprd03.prod.outlook.com
+ ([fe80::b965:bfa8:58fb:e775]) by SJ0PR03MB6964.namprd03.prod.outlook.com
+ ([fe80::b965:bfa8:58fb:e775%6]) with mapi id 15.21.0092.006; Fri, 5 Jun 2026
+ 02:31:45 +0000
+From: "Nazle Asmade, Muhammad Nazim Amirul"
+	<muhammad.nazim.amirul.nazle.asmade@altera.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, "dinguyen@kernel.org"
+	<dinguyen@kernel.org>
+CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] arm64: dts: socfpga: Enable the SMMU for SoCFPGA
+ device trees
+Thread-Topic: [PATCH v2 1/2] arm64: dts: socfpga: Enable the SMMU for SoCFPGA
+ device trees
+Thread-Index:
+ AQHc5EDdBDlckWQyTUeGG+SOvBoa6LYmgX+AgAfXTgCAAAV+AIAADJgAgAALuQCAAOfKAA==
+Date: Fri, 5 Jun 2026 02:31:45 +0000
+Message-ID: <693c2187-3f49-40eb-b8ad-b7af9b249ada@altera.com>
+References:
+ <20260515080014.6260-1-muhammad.nazim.amirul.nazle.asmade@altera.com>
+ <20260515080014.6260-2-muhammad.nazim.amirul.nazle.asmade@altera.com>
+ <c1aad046-fef0-4c2a-9e51-59e643e7966d@kernel.org>
+ <47a7cb44-416b-4e48-a7f2-b6b69b71896a@altera.com>
+ <62e4809b-078b-432f-a3b1-59559a4aa77f@kernel.org>
+ <e168eefe-7a06-4da4-833f-a679b2d29395@altera.com>
+ <e2c03291-ec94-41e6-8384-34524ce8a525@kernel.org>
+In-Reply-To: <e2c03291-ec94-41e6-8384-34524ce8a525@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR03MB6964:EE_|DS3PR03MB989168:EE_
+x-ms-office365-filtering-correlation-id: 055ddd02-0f8d-453f-abcc-08dec2aa966d
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|1800799024|366016|55112099003|11063799006|4143699003|56012099006|22082099003|18002099003|38070700021;
+x-microsoft-antispam-message-info:
+ yobYlsqamUZsDHuJPurIRteRQ8BZ0rG/FuR6MtlLK0poN+uITm/AvcexZHuUyfWuSkRIfPDj3roYrUPFaJIPz7FGmH4wh6dhsx3C3Q4RUy94vC3Xt+TJHyXR3v0WHCB6CU/T0ztymzAmK5xVnQnQiehk0Y6aDgStZ2WGLa2qPG00IVrk1JX6REQKEDd0xum68oSBnXC4Aqu4JA6aCAaqptaZ5yULpO1U5e0VBMYydm3/vT2ZVqc8sMGtJqBSbWvKefdqfXKJUURjCe+COlvFO0RQfXShC1Bxk8qvbhpqmifsAmh5KSCtLEranLq57ifHgY2B4c73XtpCI/gv2yQyYcMdhpwTqnQodLuRi5WQIbT2yYbCCIM+DgzTn+0cDYSmfxzMqAbNQLj2D0tsDTPs5MEDY4HDzMEv8VPJEwMSlA/p8BQJua8flhgaJ3nlh6uMkNK+gg0XrCbj31jgqG/McQllqlE+pJKySXncXzUKQx12HGXkkLxqpViomAWUj7y/gkN8QO20cdLzI7oPUrbRj1ROLBrvcBFZSyTTYQFQSBUvsTRaP1mFasQF8lWUG2uDSuox+oTrQway3xdlymXz/YcdweY7jevMnzpcoS0ygHes31tch35SvnY8Kr40JlrNi40aGDHqjGjfMj9KTFAj19KOC7B2Hum0SEamlShNct2/CaEUvx55JKrdPnHZeVryWbrsY55GKVBH7o+AJeHmUpHr4F2ymU20AiI5ejtU8I0jqQMnCSDXpLe3H9ws85yG
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR03MB6964.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(55112099003)(11063799006)(4143699003)(56012099006)(22082099003)(18002099003)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?Zk9uclRHTExMd1Jyd0dMeHllYnlFMTNoTHh0cldNUXlDSkljUmIrejJTY0lo?=
+ =?utf-8?B?M3VnS0dhbE1xRndyNVhtejd6ZHpsWHVlWktEMmN3ekJoeWErOWMyS1JNSDNB?=
+ =?utf-8?B?YmdMV1dJelRmS2VXdVpRMEltY2gvU3RSUWd5SS9wNTBraStXaitDN0pzNGVP?=
+ =?utf-8?B?RzYxMHUxbVRUQkVNWGlYSlM0NVF4M3FBMG5KbFlINkpncWIxUnJJWG1HU3do?=
+ =?utf-8?B?aDBrRytIWUlPTHpSZ2JaVWdEcklnRnBLY3hrQzFlRk9kVFRhQVBIL25MUjFJ?=
+ =?utf-8?B?TW9xV0RFK1RvSlZRWlZqQVgzMVRwNUxWakNwL2l0OHRCRGROVyttWXNSNmM3?=
+ =?utf-8?B?QXQ4ek9WQlhWS0RGOU1zTmpXRmVBcjlOelpISXpxOWE2bmc1dEMrMzNQR09D?=
+ =?utf-8?B?OFBhdXQ4OW92aEFIR3AvLzZkZWN2RVFrcnQvMkxRelROOTBtdTFGaXkvTG5n?=
+ =?utf-8?B?T0E4aGNtUVdJMjZoRWpsTDZ2UkF5elZVeU9YaG4xMkw5aEpreHAyUEZ6cFFL?=
+ =?utf-8?B?Sm5jTXlvQmJJVEVMWHBSZ000ZkZVdndyQnYrY3FqejdFVkJFQVhzeVNxTnlm?=
+ =?utf-8?B?WUp6eUMzWFh4eWVsajd6Z2NDREFjSmVHWWFLUGpvRU9mSEN3U3dhcXZZdHFH?=
+ =?utf-8?B?WDRmcWxDbk1jSjIzS2tZV1l5aEN5dSthMU9qWHpTTGROUzVxUkUvV1l1VmpQ?=
+ =?utf-8?B?M3pKc0F6Nm1iQ3pxd1FHbk5IVHV0OXZCVm5pU1E3L2p4VEpKcmp0cm1OWW9a?=
+ =?utf-8?B?NE5Ya25GNWJmb0N2L29lZUkvekNlL3IyVjJ1eXJ3Qy9FeDFUNVdIdUNzSCt1?=
+ =?utf-8?B?VE1TRzlIM2sremEzK1V3VFhObHdxYmFQVnJZSm9paHVQSmhvbGxGdXlaR2kx?=
+ =?utf-8?B?MWlIb29pbER6Q0QwMXVKODlKbUduOUsrZ0dPWi9COGRmM05WZ1VmcGFDMFBn?=
+ =?utf-8?B?R0tOQzgwSUZEVXdkTjFaamMwY3lST2p4Z3QyWDRWVkxMbG5DNk9pam84SXFu?=
+ =?utf-8?B?ZzdQV00xb0FzVERCMThtbllVUnpXcEdHZHpvbGxCd0tTTGI4a1l3M3lITVFS?=
+ =?utf-8?B?aXNOTXJCMDlHdkNCczV6TFM4S05TYzhINDdIYW1UV1F1VTJkZGtWbzROeFlz?=
+ =?utf-8?B?TTZ3WVVrNEJJSkZYdm1QTUc3UnFkRCtBWVhUaHNxREs3M3Y1SXpHR0M2RjB5?=
+ =?utf-8?B?QkdXMGc0S1dKQmk5cmxva25lc0FjY0kyWkVvWHI2RzlrUDE3WnJRQXEzd2Nz?=
+ =?utf-8?B?TFpWN3FIOVp5b3h3T1duNkJySUFtQ3h3R0hCOXR1djltbm5VTzR2dHpEblUw?=
+ =?utf-8?B?Q0d3K25hb1gwTUVGVWdOaWgxS0J5WDRIZ2UxSldJMnhyNlRSQ3ZFajg5aW5n?=
+ =?utf-8?B?ZXlEWVRsb3R5TWdwUW9ua2hMSXBwQVFqelZUQ0k3d1AwVStRdUdlcGh2azQx?=
+ =?utf-8?B?VHRSWFRjY2dOVGtzS3RlR2ZRNHRadUV5VXgvWDVNdlB5aExMbThtNVI4cGRq?=
+ =?utf-8?B?U3FJaDVDTjR2T0JTekowZ2JxVy9YVXVnMmdtQnljUG1jajNGSmhnQ1lJdUp3?=
+ =?utf-8?B?QXJ5cm1FblNuZFhBMWcvK1VmNlJzS1B6eTdTTXowbHVJa1Z1dC9CcTdSZ0c5?=
+ =?utf-8?B?QnVoTTdQK3lHZ1FUZWkwWVlFeE9mMlhRMVVQbDZvU0c2anp0OGoxSXBWK2Ey?=
+ =?utf-8?B?OXJacHdMWXIvYTZxS0hWUWdPWkU2dWlkNm5peHhkWVRVTTRoMGRMSTFRTlR2?=
+ =?utf-8?B?dVJuZWNvNndiMS85Z1BzNnh0azNpWG5ZWDZOMVZ0ZFMxeEQxcDVlSWRnNmtz?=
+ =?utf-8?B?cXJuZDZwVitwZnpHdHJzcWJBeWpRWnloV09pajh5YjlvVmpQVlBEWWc2blpM?=
+ =?utf-8?B?RVg2MVhHSVJVTTB0dEVUWWV3czBORS94TDVWZjIvdGQ0bHdSRHBHUmYzTHpZ?=
+ =?utf-8?B?VDQwR2xGQWhYd3Y3ZHR3dHNRVUgzR1U1d3RsTEFBQkJOVlZQTFBNVTYya21p?=
+ =?utf-8?B?czBRQml4d21BNE5OcjJ2T1A3WldIY3I0ZkpsRTZqL21Bb2VWZEdLcnRjZzEx?=
+ =?utf-8?B?OSt2WW9mK2U5a2pPMHFzWjFSS2FsbUFCUVMxUzVYZW5kTjRBSUdWUlFTUHBm?=
+ =?utf-8?B?VThZenZtVkxIUENFTkhIVDZFakh1c29tR0tMSHVjdkN4OFJVaW1WZFFDOXZx?=
+ =?utf-8?B?T1Jod1pFeFdJQ2tUU2paZVJSbGhqYklKU1d6a3pOdEdCTUpMVE9NdzJYSWZG?=
+ =?utf-8?B?K0NiNklPWkhuc0VXYm5sOGovdDRMSmlTV3lzMHlkblQ4MnFzUUJ6bC9icGpR?=
+ =?utf-8?B?WEZENytxdkVnMFJQVjUyZnNaMU5sbHRXNzc5cHpGQm8wOW5sV3BQSVVhK3VC?=
+ =?utf-8?Q?gHihpdVpQslQ9m4rYihw2yw8MXnbJ5caOTjtdO4H6ubRo?=
+x-ms-exchange-antispam-messagedata-1: IU0F2RK+e9p+jw==
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <FA5CBD9ACFF38C4890B6A78B78771A44@namprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9e959793f103a8kunm9494c848401b1
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZGUkfVhlMQkIfTkMZQ0oaTVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=EsXQiFhN975959RUVS9FERX34+noz1T+VebvqoZ6DQ5fkujqQzLD2H8tyaRpH2qHDtwlYJBxDGMojVgpwJFX9tZndyvpG4gc/d8uJl1sis6yV34HqosEOgwAffk9ETmvdBKq8SO9Pa8baOqrwtSpvM6CZCgqklB60KO0XcCdD2E=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=K1DLY9Im8emQ1pvFmDCS9X34Zpvqnm1ezAB2dEZJU7I=;
-	h=date:mime-version:subject:message-id:from;
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR03MB6964.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 055ddd02-0f8d-453f-abcc-08dec2aa966d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jun 2026 02:31:45.6950
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XMVEBUV7+CnMyQ/PKYVz5PzxYg5p5tNxskyWcLKND9Dhj4aXOSdHPLFLnpVjVvXu1xH7xXC0R24/lK97ht+x6/+Va4mZmwgptz9cmkmFakwbeWXeWYdG3aGzh4IkVV7pswndXEs9OKh5RSlkRMNUSw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR03MB989168
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-0.06 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[altera.com,reject];
+	R_DKIM_ALLOW(-0.20)[altera.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-307140-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307142-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:sebastian.reichel@collabora.com,m:nicolas.frattaroli@collabora.com,m:alchark@gmail.com,m:detlev.casanova@collabora.com,m:cristian.ciocaltea@collabora.com,m:michael.riesch@collabora.com,m:andy.yan@rock-chips.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:damon.ding@rock-chips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:dinguyen@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[collabora.com,gmail.com,rock-chips.com,vger.kernel.org,lists.infradead.org];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER(0.00)[muhammad.nazim.amirul.nazle.asmade@altera.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[altera.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[muhammad.nazim.amirul.nazle.asmade@altera.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,rock-chips.com:mid,rock-chips.com:dkim,rock-chips.com:from_mime,rock-chips.com:email,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,altera.com:mid,altera.com:from_mime,altera.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AC3AC644B27
+X-Rspamd-Queue-Id: 0CF70644B33
 
-Add full device tree definition for the integrated eDP controller
-on RK3576, following the existing RK3588 hardware layout.
-
-Configure required register range, clocks, interrupt, phy, power
-domain, reset and grf properties to fully describe the controller.
-
-Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-
----
-
-Changes in v2:
-- Add Reviewed-by tag.
-
-Changes in v4:
-- Modify the commit msg.
----
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 28 ++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 28175d8200d5..733449cb88b1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1496,6 +1496,34 @@ hdmi_out: port@1 {
- 			};
- 		};
- 
-+		edp: edp@27dc0000 {
-+			compatible = "rockchip,rk3576-edp";
-+			reg = <0x0 0x27dc0000 0x0 0x1000>;
-+			clocks = <&cru CLK_EDP0_24M>, <&cru PCLK_EDP0>, <&cru HCLK_VO0_ROOT>;
-+			clock-names = "dp", "pclk", "hclk";
-+			interrupts = <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>;
-+			phys = <&hdptxphy>;
-+			phy-names = "dp";
-+			power-domains = <&power RK3576_PD_VO0>;
-+			resets = <&cru SRST_EDP0_24M>, <&cru SRST_P_EDP0>;
-+			reset-names = "dp", "apb";
-+			rockchip,grf = <&vo0_grf>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				edp_in: port@0 {
-+					reg = <0>;
-+				};
-+
-+				edp_out: port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
-+
- 		dp: dp@27e40000 {
- 			compatible = "rockchip,rk3576-dp";
- 			reg = <0x0 0x27e40000 0x0 0x30000>;
--- 
-2.34.1
-
+T24gNC82LzIwMjYgODo0MiBwbSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gT24gMDQv
+MDYvMjAyNiAxNDowMCwgTmF6bGUgQXNtYWRlLCBNdWhhbW1hZCBOYXppbSBBbWlydWwgd3JvdGU6
+DQo+PiBPbiA0LzYvMjAyNiA3OjE1IHBtLCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOg0KPj4+
+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ludGVsL3NvY2ZwZ2FfYWdpbGV4NS5k
+dHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9pbnRlbC9zb2NmcGdhX2FnaWxleDUuZHRzaQ0KPj4+
+IGluZGV4IGIwNmM2ZDVkNjBlZS4uNjRmMzczOWEwYzMzIDEwMDY0NA0KPj4+IC0tLSBhL2FyY2gv
+YXJtNjQvYm9vdC9kdHMvaW50ZWwvc29jZnBnYV9hZ2lsZXg1LmR0c2kNCj4+PiArKysgYi9hcmNo
+L2FybTY0L2Jvb3QvZHRzL2ludGVsL3NvY2ZwZ2FfYWdpbGV4NS5kdHNpDQo+Pj4gQEAgLTM4NSw3
+ICszODUsNyBAQCBzbW11OiBpb21tdUAxNjAwMDAwMCB7DQo+Pj4gICAgICAgICAgICAgICAgICAg
+ICAgICAgIGludGVycnVwdC1uYW1lcyA9ICJldmVudHEiLCAiZ2Vycm9yIiwgInByaXEiOw0KPj4+
+ICAgICAgICAgICAgICAgICAgICAgICAgICBkbWEtY29oZXJlbnQ7DQo+Pj4gICAgICAgICAgICAg
+ICAgICAgICAgICAgICNpb21tdS1jZWxscyA9IDwxPjsNCj4+PiAtICAgICAgICAgICAgICAgICAg
+ICAgc3RhdHVzID0gImRpc2FibGVkIjsNCj4+PiArICAgICAgICAgICAgICAgICAgICAgc3RhdHVz
+ID0gIm9rYXkiOw0KPj4gSGkgS3J6eXN6dG9mLA0KPj4NCj4+IFRoZSBzbW11OiBpb21tdUAxNjAw
+MDAwMCBub2RlIGluIHNvY2ZwZ2FfYWdpbGV4NS5kdHNpIGlzIGRlZmluZWQgd2l0aA0KPiANCj4g
+V2hpY2ggZmlsZSBhcmUgd2UgZGlzY3Vzc2luZyBoZXJlPyBzb2NmcGdhX2FnaWxleDUuZHRzaS4g
+VGhlbiB3aHkgZG8geW91DQo+IHJlZmVyIHRvIHRoZSBzYW1lIGZpbGU/DQo+IA0KPj4gc3RhdHVz
+ID0gImRpc2FibGVkIiBhcyB0aGUgZGVmYXVsdC4gSXQgd2FzIG5vdCBlbmFibGVkIGR1cmluZyB0
+aGUNCj4+IGluaXRpYWwgQWdpbGV4NSBicmluZy11cC4NCj4gDQo+IA0KPiBCZXN0IHJlZ2FyZHMs
+DQo+IEtyenlzenRvZg0KSGkgS3J6eXN6dG9mLA0KDQpBcG9sb2dpZXMgZm9yIHRoZSBjb25mdXNp
+b24uIEkgd2FzIHJlZmVycmluZyB0byBzb2NmcGdhX2FnaWxleDUuZHRzaSANCml0c2VsZiwgYW5k
+IEkgYmVsaWV2ZSB0aGF0IGlzIHdoYXQgeW91IG1lYW50IGFzIHdlbGwg4oCUIHdlIHNob3VsZCBz
+aW1wbHkgDQpyZW1vdmUgdGhlIHN0YXR1cyA9ICJkaXNhYmxlZCIgbGluZSBvbmx5LCBzaW5jZSB0
+aGUgZGVmYXVsdCBzdGF0dXMgaXMgDQoib2theSIgd2hlbiBub3Qgc3BlY2lmaWVkLg0KDQpCUiwN
+Ck5hemltDQo=
 
