@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-307253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307255-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3FeTH9aHImobZwEAu9opvQ
-	(envelope-from <devicetree+bounces-307253-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 10:24:54 +0200
+	id AqDmHx6JImpSZwEAu9opvQ
+	(envelope-from <devicetree+bounces-307255-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 10:30:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1F636465D9
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 10:24:53 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86613646673
+	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 10:30:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=d69+2dcr;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307253-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307253-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cH0W1Z50;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307255-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307255-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DA8CD3014C53
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 08:16:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8DB93304F9D0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 08:16:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE58374E42;
-	Fri,  5 Jun 2026 08:16:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B92933C1973;
+	Fri,  5 Jun 2026 08:16:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32CF3C062D
-	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 08:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CE723C3787
+	for <devicetree@vger.kernel.org>; Fri,  5 Jun 2026 08:16:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780647412; cv=none; b=gKM8CBsoalvDNnOVNkTJTkF5Cc3wpZ31yXnFyOyxz+/xHXMxcX++TrJVFhpkthQ9ryuFlSl0n19r0Su2ns5kuBXl+aCz0JbmCCW3PQFaXvAmRnhryr9TQ7OzliKrl/0K3/EjsRiRj+fYaDwBg/v9ExI2X3sAgwW0ohaHG8MF9Z8=
+	t=1780647414; cv=none; b=Z5VYS3KFEAy9tkuYYjULRmmPKnNQQTUTSiiRn9RMRtPSBzftjEHl4p97c/5YsbRxqO+xd0hPnlJjFalMf3QPEXWNaUHpFiel7tgRP+LzLF8AM3RsaTdy9fuaAUv071WEcXooCeFllXnglf8yLqED3IIQjMohlPOc+MoKAMOjHpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780647412; c=relaxed/simple;
-	bh=1MdTFwon4JOk/xjZuVBgQseoutxqvisxz2XLn2wr3E4=;
+	s=arc-20240116; t=1780647414; c=relaxed/simple;
+	bh=jmWPwB+VvwOS3U2BpullmrMkM8peUqE4CIfFy2USKAY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=NPKeGcB5lWoHz40z6N3Y+7vz//hQhDP9NkhoO76oSoPLTnGL1K3mDYhRX7+SyMbTjZfR1DBGTfisspziAvaNdV8wtppbW4hLmu0CsAFGndQSy/L+5NxJkiNq7qT1VsykIo+z2OIZN8Drlp+F4eNFQfR73+JuwQFnXMIudcR196g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d69+2dcr; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C76251F00893;
-	Fri,  5 Jun 2026 08:16:49 +0000 (UTC)
+	 Message-Id; b=DSGnfo+UwconX/mR+quKJJMcvbvFeJ89U+HNruc8wtPnX3AKxDF11O4cuS42YZ+yiw5eUjFhuebuWAO9DfU2RaTaiuWPlawnLhWCcq48YRGXglEESpzDZUSZuhP8kqeaRUscV7EmqRZnF3W3NNwTJ4RZcTfXPB//GeonGBS2neU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cH0W1Z50; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 865581F00898;
+	Fri,  5 Jun 2026 08:16:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1780647410;
-	bh=+DG/q+/O7eWR1y+akr6BwSaLvKrOI4jiO5eXL4wrPHo=;
+	bh=IvoRvDrIeOWZs4QgqGRqJk36pwE+3rWSHFgJZGgZvCU=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=d69+2dcr78bHU9RCMLUF/XzxOJHEPp/AamFL6xVAY9gjA0B7B49QxafRmrWlnBa6Z
-	 VbhyS4lwcDxnmuQW2+xWG4ooQa7/CysqEWuXm1WB/uKVGejmvDApraCkJ819Uffn4A
-	 ajqtqNsi9X//2lfvxoC/9QwCsnSg7bqdf2uI1Pt6mIaEM5wdj0qrHjzObAIRwCCwUz
-	 8Db1ZYyCXf2nNgu2Fkk1QXDoTQcBVmEp12Ldy3WPTl71pSwjBQiGepiDO2yFQ1hSot
-	 18HWGKKa6YSPII8HIpOCDtOeEOwOr0HLQFb7pvwKslPFLz2C0eua89vsu07uep35Of
-	 M4mK3uQcE+X+Q==
+	b=cH0W1Z50f7ewlqTWydfgF1kGopXUWQ1JoP+VtnsgPqSMuN71ufUn/+xaSsB2xX0ph
+	 Yk01Yzm8dSWkz2FbqIAPIZHLlhT4XIoNXFDjBeMst7guim+3F9/C17seViSuT29sLk
+	 X+si3yKUlCJCC/V7vSKPxQIFUYkLZs/ibYj/ZvSIjTxcGeJ09B0JO4FCrLLmpHqN3N
+	 8Nzg5TjvAyScXOZLgnI+x0We2x3dRQi1Ni0JQebKhKPOPATWeogmch3dkJCStrmv8c
+	 ld7PmC7uMAgQawWgj+mhQpGdhy++G2uKHiqrADmYoVZgtHrbg9AdstoLSe87IsamAh
+	 ZNj4CG43NwDbw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v5 3/5] net: dsa: tag_ks8995: Add the KS8995
- tag handling
+Subject: Re: [PATCH net-next v5 5/5] net: dsa: ks8995: Delete surplus driver
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Linus Walleij" <linusw@kernel.org>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260604-ks8995-to-ksz8-v5-3-98baeb45e665@kernel.org>
-References: <20260604-ks8995-to-ksz8-v5-3-98baeb45e665@kernel.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260604-ks8995-to-ksz8-v5-5-98baeb45e665@kernel.org>
+References: <20260604-ks8995-to-ksz8-v5-5-98baeb45e665@kernel.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 05 Jun 2026 08:16:49 +0000
-Message-Id: <20260605081649.C76251F00893@smtp.kernel.org>
+Date: Fri, 05 Jun 2026 08:16:50 +0000
+Message-Id: <20260605081650.865581F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +68,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -77,11 +76,11 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-307253-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307255-lists,devicetree=lfdr.de];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -97,124 +96,99 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F1F636465D9
+X-Rspamd-Queue-Id: 86613646673
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Critical] Double free of skb in ks8995_xmit() and ks8995_rcv() on tag al=
-location failures.
-- [High] ks8995_xmit() fails to clear hardware-accelerated VLAN tags for no=
-n-802.1Q protocols (like 802.1ad QinQ), breaking DSA port isolation.
+- [High] The transitional Kconfig symbol NET_DSA_KS8995 becomes invisible b=
+y removing its prompt string, causing it to be silently dropped during conf=
+ig migration and failing to enable the new driver.
+- [High] The new ksz_spi driver fails to probe when instantiated via platfo=
+rm data (non-DT), breaking existing non-DT ks8995 users.
 --
 
-commit 69e87755967f9829df353d79046ed354251e2a4a
+commit 8ed57f24bf56fd7cb6ebaef9e6fc435940681d6f
 Author: Linus Walleij <linusw@kernel.org>
 
-net: dsa: tag_ks8995: Add the KS8995 tag handling
+net: dsa: ks8995: Delete surplus driver
 
-This commit adds ingress and egress tagging support for the KS8995 100Mbit
-switch in the DSA subsystem. The tag is implemented as a modified 0x8100
-ethertype tag.
+This commit deletes the old ks8995 driver since the Microchip ksz driver
+now handles these switches. It leaves a stub in Kconfig to automatically
+transition users to the new symbol when migrating their configurations.
 
-> diff --git a/net/dsa/tag_ks8995.c b/net/dsa/tag_ks8995.c
-> new file mode 100644
-> index 0000000000000..5bdb182715827
-> --- /dev/null
-> +++ b/net/dsa/tag_ks8995.c
-
-[ ... ]
-
-> +static struct sk_buff *ks8995_xmit(struct sk_buff *skb, struct net_devic=
-e *dev)
-> +{
-> +	struct vlan_ethhdr *hdr =3D vlan_eth_hdr(skb);
-> +	bool have_hwaccel_tag =3D false;
-> +	u16 tci =3D 0, portmask;
-> +
-> +	/* Prepare the special KS8995 tags */
-> +	portmask =3D dsa_xmit_port_mask(skb, dev);
-> +
-> +	if (skb_vlan_tag_present(skb) && skb->vlan_proto =3D=3D htons(ETH_P_802=
-1Q)) {
-> +		tci =3D skb_vlan_tag_get(skb);
-> +		__vlan_hwaccel_clear_tag(skb);
-> +		have_hwaccel_tag =3D true;
-> +	}
+> The Microchip ksz driver now handles all switches that the
+> old driver was handling, but better.
 
 [Severity: High]
-Does this strict check for ETH_P_8021Q fail to clear hardware-accelerated
-VLAN tags for other protocols, such as 802.1ad?
+Does the new ksz_spi driver support non-Device-Tree (platform data)
+instantiations like the old ks8995 driver did?
 
-If a non-802.1Q hwaccel tag is left intact, the conduit driver might offload
-it as the outermost tag on the wire. Since the KS8995 switch expects its
-STPID tag to immediately follow the MAC addresses, could seeing the unclear=
-ed
-tag instead cause it to misinterpret the DSA routing tag and bypass port
-isolation?
+Looking at ksz_spi_probe() in drivers/net/dsa/microchip/ksz_spi.c, it
+aborts the probe when no match data is found:
 
-> +
-> +	if (have_hwaccel_tag || hdr->h_vlan_proto !=3D htons(ETH_P_8021Q)) {
-> +		skb =3D vlan_insert_tag(skb, KS8995M_STPID(portmask), tci);
-> +		if (!skb)
-> +			return NULL;
+	chip =3D device_get_match_data(ddev);
+	if (!chip)
+		return -EINVAL;
 
-[Severity: Critical]
-Can this cause a double-free of the skb on allocation failure?
+For non-DT instantiations, this relies on the driver_data field in
+the SPI ID table. However, ksz_spi_ids[] in the same file does not define
+driver_data mappings for any chip entries:
 
-Looking at vlan_insert_tag(), it unconditionally consumes and frees the skb=
- if
-it fails to allocate memory. However, returning NULL from a DSA tagger's xm=
-it
-routine instructs the caller, dsa_user_xmit(), to explicitly free the origi=
-nal
-skb again.
+static const struct spi_device_id ksz_spi_ids[] =3D {
+	{ "ks8995" },
+	{ "ksz8463" },
 
-> +		hdr =3D vlan_eth_hdr(skb);
-> +		netdev_dbg(dev, "%s: inserted VLAN TAG %04x TCI %04x\n",
-> +			   __func__, hdr->h_vlan_proto, hdr->h_vlan_TCI);
-> +	} else {
+This means bus fallback matching will provide a NULL chip data structure,
+causing the probe to unconditionally fail with -EINVAL. Could this break
+support for existing non-Device-Tree users migrating to the new driver?
 
-[ ... ]
+> diff --git a/drivers/net/dsa/Kconfig b/drivers/net/dsa/Kconfig
+> index e704ab702c189..f2a48c5bfc12b 100644
+> --- a/drivers/net/dsa/Kconfig
+> +++ b/drivers/net/dsa/Kconfig
+> @@ -98,13 +98,15 @@ config NET_DSA_RZN1_A5PSW
+>  	  RZ/N1 SoC.
+> =20
+>  config NET_DSA_KS8995
+> -	tristate "Micrel KS8995 family 5-ports 10/100 Ethernet switches"
+> +	tristate
+>  	depends on SPI
 
-> +static struct sk_buff *ks8995_rcv(struct sk_buff *skb, struct net_device=
- *dev)
-> +{
-> +	int portmask;
-> +	u16 etype;
+[Severity: High]
+Does removing the prompt string make this symbol invisible to Kconfig?
 
-[ ... ]
+Without a prompt or a default attribute, an invisible symbol unconditionally
+evaluates to n. During config migration, such as when running make oldconfi=
+g,
+the user's previous selection in .config would be ignored and dropped.
 
-> +	/* Move the custom DSA+VLAN tag into the hwaccel area and strip
-> +	 * it from the skb head
-> +	 */
-> +	skb =3D skb_vlan_untag(skb);
-> +	if (!skb) {
-> +		netdev_err(dev, "%s: unable to untag skb\n", __func__);
-> +		return NULL;
-> +	}
+Consequently, the select NET_DSA_MICROCHIP_KSZ_SPI statement below would ne=
+ver
+be triggered, causing users to silently lose switch functionality when upgr=
+ading
+their kernels.
 
-[Severity: Critical]
-Will this result in a double-free of the skb?
+Would it be better to retain the prompt with an obsolete label or provide
+a default fallback to retain the old value?
 
-Similar to the xmit path, skb_vlan_untag() frees the skb when it encounters=
- an
-error. Returning NULL from ks8995_rcv() instructs dsa_switch_rcv() to free =
-the
-skb a second time.
-
-> +
-> +	portmask =3D FIELD_GET(KS8995M_STPID_PORTMASK, etype);
-> +	netdev_dbg(dev, "%s: etype %04x portmask %04x (%d)\n",
-> +		   __func__, etype, portmask, ilog2(portmask));
-
-[ ... ]
+> -	depends on !NET_DSA_MICROCHIP_KSZ_SPI
+> -	select NET_DSA_TAG_NONE
+> +	select NET_DSA_MICROCHIP_KSZ_COMMON
+> +	select NET_DSA_MICROCHIP_KSZ_SPI
+>  	help
+> -	  This driver supports the Micrel KS8995 family of 10/100 Mbit ethernet
+> -	  switches, managed over SPI.
+> +	  This is a transitional option for users who had NET_DSA_KS8995
+> +	  enabled. It automatically enables the new NET_DSA_MICROCHIP_KSZ_SPI
+> +	  driver which supersedes it. This option will be removed in a future
+> +	  kernel release.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260604-ks8995-to-=
-ksz8-v5-0-98baeb45e665@kernel.org?part=3D3
+ksz8-v5-0-98baeb45e665@kernel.org?part=3D5
 
