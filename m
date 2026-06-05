@@ -1,153 +1,164 @@
-Return-Path: <devicetree+bounces-307551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307554-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /DZYLJJGI2oBnQEAu9opvQ
-	(envelope-from <devicetree+bounces-307551-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 23:58:42 +0200
+	id n5ymFbdHI2oKngEAu9opvQ
+	(envelope-from <devicetree+bounces-307554-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 00:03:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 073FB64B7D5
-	for <lists+devicetree@lfdr.de>; Fri, 05 Jun 2026 23:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A985964B868
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 00:03:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b="OE/5STLP";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307551-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307551-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=ideasonboard.com header.s=mail header.b=FzGgOX7C;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307554-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307554-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=ideasonboard.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1F63F3066246
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 21:49:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A2433303741E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jun 2026 21:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E71E3B71B3;
-	Fri,  5 Jun 2026 21:49:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44B803B71DC;
+	Fri,  5 Jun 2026 21:59:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A15E37BE74;
-	Fri,  5 Jun 2026 21:49:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D9F719D8AC;
+	Fri,  5 Jun 2026 21:59:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780696164; cv=none; b=HxkuMPYxTBcKrnBKPpC/a2iOZHaBWMQtRGvm55j/9nNMEPDEA6s2omk4wgjGeN4EnVf7YNFsGrQOphm/+T3y1yhzAGkYIXUXsg4WcEgBK8+mkxdQvIB9Ychc838iJxpp1Y79Mw9zKcgoVKB52n6ZJrmSfX6ZKW6vvxLbx5dO3mk=
+	t=1780696761; cv=none; b=ew+1RNtwdJNIBJaKRlDlyq0s6kVflfE1InnV86rsP2QTH/IXHTXs+SQkm3jDOD1gvYtD9v5wUqpRp89jqOIrfh9hSeexfr1XMCzXwv8aM2bmYE7k0tXtLkjGqShjHU6EuUN9rWGLKMdJo5V6iJ+H2rTmyh01ecVoDN0QRtWVtfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780696164; c=relaxed/simple;
-	bh=OAS4olxbrpvpcUkxuRn6v9A1t3vkU7Qutn4uR3BehGw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AxH0RsxVQkAbJ5gxL+ZtON9hSo60kJge7Vb5aqbgNwDvqGUO5knF1zop/6HpIHGbkL0OIRqhioIXLk69FKJmgxAevGx8fyeiv2dFP1Jj0nuWPuZ1lHE1uI+F2qSpd6ZQmyYcEzFU6dMLsyWNh9Z4MFZ7cq4rleREna7UPzKqaf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OE/5STLP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EE990C2BCC9;
-	Fri,  5 Jun 2026 21:49:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1780696164;
-	bh=OAS4olxbrpvpcUkxuRn6v9A1t3vkU7Qutn4uR3BehGw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=OE/5STLPngv1vv4/9mJZMj6HJ1+9OWrEhR+rokZ+fE6GV0NK4pc+ymnv3Qrmr2ZFt
-	 g09SlxXOjBcSLMmigwrgoXnC7kmuNUlmimeWpmtwClRas0ADcOQKqFIap3dFOJpLHB
-	 iR/fhNf2X4hBfEskj4Pv5NCC2DR7b7BKCUHZMot1F+HyrK/3XzMxVRk0USbSLB/ins
-	 FNeXXJ+kuQsFIlWPpF68+1ffvQg+JGH8JswpeHyFXZbb/Sl/+ph/yfKqADVOzmlPNX
-	 eb+WNnVl4UHx5NPIjHtaZlWf9YZgKvIlNrpQQB/c6StLYjQ6Un4n9bgb2E2ejqvlA6
-	 jmNtXBwaxWqRA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E0D8FCD6E7E;
-	Fri,  5 Jun 2026 21:49:23 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Fri, 05 Jun 2026 16:49:08 -0500
-Subject: [PATCH 2/2] soc: qcom: socinfo: Add CQ8725S SoC ID
+	s=arc-20240116; t=1780696761; c=relaxed/simple;
+	bh=/qPumg2Nle3zpDmRleRAgtq84tFaKpcOCbUJPuueXzY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ynac9TUAhokrf4VAwu80zd/wgYB5kegDZ3TEAPxh8luJ3CK87lU/M8d/LUhLYEZ5/u5qiAAKt71WrzE+MlyTYsAMsFqZZcxvILoZ+M+DOfs0dqfRTkmvNPmclgNc1E+Rd6EpcBLcNXMtN+ByOoLZhyU/BnhRS3L2kFY1UqPl02g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=FzGgOX7C; arc=none smtp.client-ip=213.167.242.64
+Received: from killaraus.ideasonboard.com (2001-14ba-70f3-e800--a06.rev.dnainternet.fi [IPv6:2001:14ba:70f3:e800::a06])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D9B7E20EA;
+	Fri,  5 Jun 2026 23:58:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1780696732;
+	bh=/qPumg2Nle3zpDmRleRAgtq84tFaKpcOCbUJPuueXzY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FzGgOX7C31YQORfusB+iVgGAG8sjKkhBW+dswFB6T4ajhopyaSLsE9vcRjdEVceVR
+	 wU3NktAOQpS77Q1KwsHw9RKaTYcy4VoPqAf0Zqd/jIxLVLvvu6wtH9d5Ov2j9j239q
+	 rFXC3qpa3eKdLh+qvWuAZkiA+F+OMMJFcMf7DZmk=
+Date: Sat, 6 Jun 2026 00:59:15 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" <linux-media@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: media: Add macros for video interface
+ devices
+Message-ID: <20260605215915.GA160511@killaraus.ideasonboard.com>
+References: <20260605150309.2451456-1-kieran.bingham@ideasonboard.com>
+ <20260605151353.GB4350@killaraus.ideasonboard.com>
+ <aiNBXzmezUX9fB6_@valkosipuli.retiisi.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260605-cq8725s-soc-id-v1-2-bb1ef93de649@gmail.com>
-References: <20260605-cq8725s-soc-id-v1-0-bb1ef93de649@gmail.com>
-In-Reply-To: <20260605-cq8725s-soc-id-v1-0-bb1ef93de649@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>, 
- Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780696163; l=731;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=wkySf1dgX9Cw4+8ob2ohV1kwlJW81Sedb4xXGiINUAU=;
- b=Vvly/oG1MGvCiurwMdwBi0y5wrzw4aKDl4gtomZNK0IQZPfuJOmP3MUP7ITEyoYD228Wee8Nm
- U7RBv/Zm2sEAlVWIyrFj8dJ8Ux9LYrJYAY4XHnK5Ssh/Wz44f5hsKxu
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <aiNBXzmezUX9fB6_@valkosipuli.retiisi.eu>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307551-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
-	RCVD_TLS_LAST(0.00)[];
+	TO_DN_ALL(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307554-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:teguh@sobir.in,m:webgeek1234@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:sakari.ailus@iki.fi,m:kieran.bingham@ideasonboard.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,sobir.in,gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[webgeek1234@gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,sobir.in:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,ideasonboard.com:dkim,ideasonboard.com:from_mime,ideasonboard.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 073FB64B7D5
+X-Rspamd-Queue-Id: A985964B868
 
-From: Teguh Sobirin <teguh@sobir.in>
+On Sat, Jun 06, 2026 at 12:36:31AM +0300, Sakari Ailus wrote:
+> Hi Laurent, Kieran,
+> 
+> On Fri, Jun 05, 2026 at 06:13:53PM +0300, Laurent Pinchart wrote:
+> > CC'ing Sakari.
+> 
+> Thanks for cc'ing me.
+> 
+> > On Fri, Jun 05, 2026 at 04:03:08PM +0100, Kieran Bingham wrote:
+> > > Add a new dt-bindings/media/video-interface-devices.h header that
+> > > defines macros corresponding to the orientation enumeration types from
+> > > media/video-interface-devices.yaml.
+> > > 
+> > > This allows avoiding hardcoded constants in device tree sources.
+> > > 
+> > > Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+> > > ---
+> > >  include/dt-bindings/media/video-interface-devices.h | 13 +++++++++++++
 
-Add the ID for the Qualcomm CQ8725S SoC which represents the Pakala
-platform.
+A mention of the header in video-interface-devices.yaml would be useful,
+the same way we mention video-interfaces.h in video-interfaces.yaml.
+Apart from that,
 
-Signed-off-by: Teguh Sobirin <teguh@sobir.in>
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- drivers/soc/qcom/socinfo.c | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
-index af418adad7aaf3..2b1395a85af45e 100644
---- a/drivers/soc/qcom/socinfo.c
-+++ b/drivers/soc/qcom/socinfo.c
-@@ -540,6 +540,7 @@ static const struct soc_id soc_id[] = {
- 	{ qcom_board_id(QCS9075) },
- 	{ qcom_board_id(QCS615) },
- 	{ qcom_board_id(SA8797P) },
-+	{ qcom_board_id(CQ8725S) },
- 	{ qcom_board_id(CQ7790M) },
- 	{ qcom_board_id(CQ7790S) },
- 	{ qcom_board_id(CQ2390M) },
+> > >  1 file changed, 13 insertions(+)
+> > >  create mode 100644 include/dt-bindings/media/video-interface-devices.h
+> > > 
+> > > diff --git a/include/dt-bindings/media/video-interface-devices.h b/include/dt-bindings/media/video-interface-devices.h
+> > > new file mode 100644
+> > > index 000000000000..d2340b457292
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/media/video-interface-devices.h
+> > > @@ -0,0 +1,13 @@
+> > > +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> > > +/*
+> > > + * Copyright (C) 2026 Kieran Bingham <kieran.bingham@ideasonboard.com>
+> > > + */
+> > > +
+> > > +#ifndef __DT_BINDINGS_MEDIA_VIDEO_INTERFACE_DEVICES_H__
+> > > +#define __DT_BINDINGS_MEDIA_VIDEO_INTERFACE_DEVICES_H__
+> > > +
+> > > +#define MEDIA_ORIENTATION_FRONT		0
+> > > +#define MEDIA_ORIENTATION_BACK		1
+> > > +#define MEDIA_ORIENTATION_EXTERNAL	2
+> > > +
+> > > +#endif /* __DT_BINDINGS_MEDIA_VIDEO_INTERFACE_DEVICES_H__ */
+> 
+> Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 
 -- 
-2.53.0
+Regards,
 
-
+Laurent Pinchart
 
