@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-307735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307734-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bhCfAFeJJGr+8QEAu9opvQ
-	(envelope-from <devicetree+bounces-307735-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 22:55:51 +0200
+	id VRHTH0iJJGrz8QEAu9opvQ
+	(envelope-from <devicetree+bounces-307734-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 22:55:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E33F864E591
-	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 22:55:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E544B64E58E
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 22:55:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=netcube.li header.s=s1 header.b=Zciy3iEO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307735-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-307735-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=netcube.li header.s=s1 header.b=opByfpmf;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307734-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307734-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=netcube.li;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3B7823010DCB
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jun 2026 20:55:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 25160304E410
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jun 2026 20:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23523BAD95;
-	Sat,  6 Jun 2026 20:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B1313BAD95;
+	Sat,  6 Jun 2026 20:55:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263693B7B98;
-	Sat,  6 Jun 2026 20:55:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E5233A5448;
+	Sat,  6 Jun 2026 20:55:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780779327; cv=none; b=lBgH/t7WUvc0C3QYAxm+IKEcO3KdmQdQBU+pyXtRIffOwD5Uyi79RKZvi2ntGmY4iu5kzJlVZ4aiDtkHrrZpurPI06Eb67Y+eHTV/FWEJAhL0FgFuenxUy8sWtyN/MElhY5bzgNdG+BhLzhaAs7hr442YhFGh7gbY/8KxHl2jc0=
+	t=1780779321; cv=none; b=Vxx/BBChpvluQ8JtqgZFFDiTZcJgrERyyzqJQiJzfgL796WYMvyjs8tsxbMjmJ78RZpVJoB1+5e1YfhIM4KebojnlR2OSk0OYxpKWy0ehQLiywxDpAQWDLO+zvBftghZyC7KdHk4k+3Ri1ZDxpFvL0U8JImsPs2GK2TiDap9NNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780779327; c=relaxed/simple;
-	bh=27FZggmFfooUbRXK18oUXNCON2FidPig+TucrvZfa70=;
+	s=arc-20240116; t=1780779321; c=relaxed/simple;
+	bh=fxjxwfx7XvPeO/NbiTK9kR5HAqqnG8gD+SZpa0q6mc0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WMxRZQlhhBXiomLCBqezqQhIngmPeBCyXsWQollUM+PgD4IbXRCZvWfyE+Eaw0ezlNAnfijRNzLEF32KN1fb10SYlMz4i/1o8KBUX700N4waXRHBTipUn3uEmT8YlJgcUCpUMRDf21YU05EZO2remHYkzVmoBbsjp+68Kqi26SQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=Zciy3iEO; arc=none smtp.client-ip=173.249.15.149
+	 MIME-Version; b=KlrFDJmWSJJI6y+2+n9+ExcCapMbabyKLAGGpScgJaDjtuE0vFAvpBXkhlABnBBDa78kLkifWg+7QI8qQN3ZfYRFo9VPouwuxxIcIys8NnkxVq0yA4gUik2UwC95IrU0+/xP+R55zHw4h5Hcg6l+JqUVKKnqMp5nXsXfDNMrcKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=opByfpmf; arc=none smtp.client-ip=173.249.15.149
 dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
 	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding:In-Reply-To:References;
-	bh=xgNX3BfF0sHR956gYPtFqiQRwqATyVW0rwVI7QS8mHU=;
-	b=Zciy3iEO9kQCICY0jza7XyrrLzhEfUvM1IqCBuCeMQ4E7jbYdsk+fzcSSwgkxE2/VTU2M99QUC3C4c2IX3iCh/tz41rYarbAbeyklTHpNrsACF2l7nouICZCg+sPqpDg6hv6Q8kY1kHbcWKb1RByNAkZdtZoQPUzIcdmaUpxh2E=
+	bh=gTs0cZaUUQQv4ViGpAM8i/wK3g92g6IK/a+nwJZu5P4=;
+	b=opByfpmfym0rEyf4E0H3rNZji7sw4nKL2lLjL1tAj5GafO29CbZplcouWJdZaMQanJLBfPQ1EXUUizfHetOpPyQ/xUzcnidfPjqLi05N87hMQzF4Mnc1SOjDJHmX3+VoF6bz2Ps/U1MBbbmljXzphxliNz9VFwlPbYq8rhkj2wc=
 Received: from lukas-hpz440workstation.lan.sk100508.local (194-166-56-114.hdsl.highway.telekom.at [194.166.56.114])
 	by mail.netcube.li with ESMTPA
-	; Sat, 6 Jun 2026 22:55:12 +0200
+	; Sat, 6 Jun 2026 22:55:14 +0200
 From: Lukas Schmid <lukas.schmid@netcube.li>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -59,9 +59,9 @@ Cc: Lukas Schmid <lukas.schmid@netcube.li>,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	linux-riscv@lists.infradead.org
-Subject: [PATCH v4 1/3] dt-bindings: arm: sunxi: Add NetCube Systems OpenNMC (dobermann)
-Date: Sat,  6 Jun 2026 22:54:41 +0200
-Message-ID: <20260606205452.2386930-2-lukas.schmid@netcube.li>
+Subject: [PATCH v4 2/3] riscv: dts: allwinner: d1s-t113: Add uart4 pinctrl required by NetCube Systems OpenNMC
+Date: Sat,  6 Jun 2026 22:54:42 +0200
+Message-ID: <20260606205452.2386930-3-lukas.schmid@netcube.li>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260606205452.2386930-1-lukas.schmid@netcube.li>
 References: <20260606205452.2386930-1-lukas.schmid@netcube.li>
@@ -79,13 +79,13 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[netcube.li,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[netcube.li:s=s1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307735-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307734-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:mripard@kernel.org,m:lukas.schmid@netcube.li,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
@@ -104,32 +104,36 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,netcube.li:mid,netcube.li:dkim,netcube.li:from_mime,netcube.li:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E33F864E591
+X-Rspamd-Queue-Id: E544B64E58E
 
-The OpenNMC is an open replacement for APC SmartSlot management cards
-based on the Nagami System-on-Module.
+Added the "uart4_pb_pins" pinctrl used by the OpenNMC
 
 Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
 ---
- Documentation/devicetree/bindings/arm/sunxi.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index e6443c266fa1..077b65507645 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -598,6 +598,7 @@ properties:
-       - description: NetCube Systems Nagami SoM based boards
-         items:
-           - enum:
-+              - netcube,dobermann
-               - netcube,nagami-basic-carrier
-               - netcube,nagami-keypad-carrier
-           - const: netcube,nagami
+diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+index 82cc85acccb1..00fddedfa36f 100644
+--- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
++++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+@@ -191,6 +191,12 @@ uart3_pb_pins: uart3-pb-pins {
+ 				pins = "PB6", "PB7";
+ 				function = "uart3";
+ 			};
++
++			/omit-if-no-ref/
++			uart4_pb_pins: uart4-pb-pins {
++				pins = "PB2", "PB3";
++				function = "uart4";
++			};
+ 		};
+ 
+ 		ccu: clock-controller@2001000 {
 -- 
 2.47.3
 
