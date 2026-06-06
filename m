@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-307590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307591-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id P9zBK16rI2pXwwEAu9opvQ
-	(envelope-from <devicetree+bounces-307590-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 07:08:46 +0200
+	id xPNFA0KsI2rnwwEAu9opvQ
+	(envelope-from <devicetree+bounces-307591-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 07:12:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1132A64C828
-	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 07:08:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58A2B64C83B
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 07:12:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="L/EWXQ3R";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307590-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307590-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=U4Jsu2w7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307591-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307591-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7FE753020D75
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jun 2026 05:08:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EE927300DE3F
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jun 2026 05:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E67169AD2;
-	Sat,  6 Jun 2026 05:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0CFE4071ED;
+	Sat,  6 Jun 2026 05:12:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B858618FDDE
-	for <devicetree@vger.kernel.org>; Sat,  6 Jun 2026 05:08:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AE030148C
+	for <devicetree@vger.kernel.org>; Sat,  6 Jun 2026 05:12:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780722520; cv=none; b=gAU/gB1qWUT3xW4PHo5mFjfpatQzAh2xhWWLTFqEDV9HwbGBeymAFVQtJ910yC4xdA/lceTdQVxcJq5hPZ7zDxenZWuYtzc76B0SlbEdntrokBCicJlM0rAgnX7DqD9RFBh5pPGBiylU1O8NYHag+dbj7BUsbFpIN4M/+utctWs=
+	t=1780722750; cv=none; b=TbMMaWxLNQVz4ocFx5qL6/awY9NAKmuCqu9x+pCUrbCUOPjcRL6u1vj29FgO9RHshTIY1LobvbFzYvLjf8EaUroSl7GKrt8Bi6uUqYD3rF4wNEMHP5apDEaZqPv8ZIMNZHqcp2rO/r7GowXBZMzj5HKDVggPqAIuE3QpsLIBMMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780722520; c=relaxed/simple;
-	bh=Qgha8HSTZZM+g7lqTk/ZMKwiJV9fWEYgSuJP8zsERuY=;
+	s=arc-20240116; t=1780722750; c=relaxed/simple;
+	bh=uuLzX93Xueq7gKI60uGR5sKZrY3Ud6UbBF66BHJNHG8=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=WFwXVvjmX7rZLPZtUIEc/mKJMZmcpuszXbrDpH87UlIDWdULn3Q51QCEwB7+9VP6b3yMMJ9nDOuRr1bdFk7v62BXytyoAg6ufpUfgHoAHAnQVYxFylty/nwdMG9UL37cyHOrG+Jzw7C5mjn/9kxDdZMXQcqSnULySIdu3xA2rIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L/EWXQ3R; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1278C1F00893;
-	Sat,  6 Jun 2026 05:08:39 +0000 (UTC)
+	 Message-Id; b=WynI2+lKMxZFotd5mugL5BwpWRR/DqDt6AzUzLWAh6krVAdIl685J5VrasIA+20Z5sw7yhbmaLMtV+2it0WeBzPY3ThnYQ2kSTKEnCo4Lh+LyRW9t1mK7tN6b85PidF55aWbojcNN50lKOKl9UEQxhMsw1N/pFm8tdW+wahUUuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U4Jsu2w7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AC861F00893;
+	Sat,  6 Jun 2026 05:12:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780722519;
-	bh=zfrpr2ZwbwsXzpaIjP4ZAyy37/spCmP0osyV0BEpaMY=;
+	s=k20260515; t=1780722746;
+	bh=6bYQrmPqAxPat8JflIcElg4C3oQrSvT37xLjto40jzM=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=L/EWXQ3Re/Uiv1l0a2xm+pAeQtziVLMCDQAUsyD3yq+DxiOR4hvUuS1EMKgGxiTD3
-	 5n0zCOMmnz9E2khCPvzMkv/MuGt50gwv43Cxxx2nA+gddBF9CfriMQCg/EgKDLu92v
-	 6391AKXdDxzRJamPALXkX1UNtM6m5mo+7gSaFcEH70uSIOCEbcnI9R7CyrBAcXcQ6c
-	 Fia+dYRNhY0HXMO3Kdb62KFXoPkzAY+3p80mEpTWLxQiCxycG3d6Gx4trskjgQ853C
-	 /rF3P3P3e2Fzv1LHuEeNqxqeOSNMqRZdicDYL76zUjy0fDZM95euR8tVFsvlqGdCQB
-	 NgtQjGIu8WrTg==
+	b=U4Jsu2w7bQvNYQcDWBps7oHnWdZV0lzTC/Y6Y/7x8Ss06MkTpJSEjvPMmWNQv4Yql
+	 uO4SlsouEMbQ3j7h8gNMZ7bnwIQb6IwVkb/hJt5SWTXSW/eO/Oh7u+2r4AUMwMrKOb
+	 /OBS3dcVSqa0Zzx6Kxpac1Iu4FVVmICqkutpw37A/gdndzJIcFI0ZldEu3mlko2SUE
+	 jPgGzkoSVAHh+xDY+nz1uzy/EvLVprZDDHtihf/thrB3uwZvIE5gvNCsM4Pxmmwep0
+	 pxOKd17TDI7AxL5pSYPKwb2heJ1BB2AZ7TSP50VKsqetgIbi30YP+BTEb1A1EBp7sT
+	 XHMOSs9AjiEig==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 10/14] mfd: lm3533: Set DMA mask
+Subject: Re: [PATCH v4 11/14] video: backlight: lm3533_bl: Improve logic of
+ sysfs functions
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Svyatoslav Ryhel" <clamor95@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20260606045738.21050-11-clamor95@gmail.com>
-References: <20260606045738.21050-11-clamor95@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+In-Reply-To: <20260606045738.21050-12-clamor95@gmail.com>
+References: <20260606045738.21050-12-clamor95@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 06 Jun 2026 05:08:38 +0000
-Message-Id: <20260606050839.1278C1F00893@smtp.kernel.org>
+Date: Sat, 06 Jun 2026 05:12:25 +0000
+Message-Id: <20260606051226.4AC861F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,111 +69,147 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307590-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:clamor95@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307591-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:clamor95@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1132A64C828
+X-Rspamd-Queue-Id: 58A2B64C83B
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] This problem wasn't introduced by this patch, but an out-of-bounds=
- array write occurs in `lm3533_device_init` when a child node contains mult=
-iple matching compatible strings.
+- [High] sysfs show functions `show_als_en` and `show_linear` return premat=
+urely when the tested bits are set, breaking the sysfs read and returning a=
+n empty/uninitialized buffer.
 --
 
-commit 5fa77e39c45bca237d41fbd7e2b8b8b97be664ec
+commit 549a7f316072e9f93bfcd3d182e73739a35c0c7a
 Author: Svyatoslav Ryhel <clamor95@gmail.com>
 
-mfd: lm3533: Set DMA mask
+video: backlight: lm3533_bl: Improve logic of sysfs functions
 
-This commit sets the DMA mask to zero to prevent a warning in dmesg about
-the DMA mask not being set for the platform device. It applies to both
-the coherent and regular DMA mask, as neither the core nor the cells
-utilize DMA.
+Simplify the sysfs logic of properties by switching to macros and proper
+regmap helpers.
 
-> diff --git a/drivers/mfd/lm3533-core.c b/drivers/mfd/lm3533-core.c
-> index 500cec3ccebad..5d17da1d998b5 100644
-> --- a/drivers/mfd/lm3533-core.c
-> +++ b/drivers/mfd/lm3533-core.c
+> diff --git a/drivers/video/backlight/lm3533_bl.c b/drivers/video/backligh=
+t/lm3533_bl.c
+> --- a/drivers/video/backlight/lm3533_bl.c
+> +++ b/drivers/video/backlight/lm3533_bl.c
+
 [ ... ]
-> @@ -489,6 +489,10 @@ static int lm3533_i2c_probe(struct i2c_client *i2c)
->  				   LM3533_BOOST_FREQ_MAX);
->  	lm3533->boost_freq =3D lm3533->boost_freq / (500 * KILO) - 1;
-> =20
-> +	/* LM3533 and child devices do not use DMA */
-> +	i2c->dev.coherent_dma_mask =3D 0;
-> +	i2c->dev.dma_mask =3D &i2c->dev.coherent_dma_mask;
-> +
->  	return lm3533_device_init(lm3533);
+
+> @@ -85,88 +87,68 @@ static ssize_t show_als_channel(struct device *dev,
+>  	return scnprintf(buf, PAGE_SIZE, "%u\n", channel);
 >  }
+> =20
+> -static ssize_t show_als_en(struct device *dev,
+> -				struct device_attribute *attr, char *buf)
+> +static ssize_t show_als_en(struct device *dev, struct device_attribute *=
+attr,
+> +			   char *buf)
+>  {
+>  	struct lm3533_bl *bl =3D dev_get_drvdata(dev);
+>  	int ctrlbank =3D lm3533_bl_get_ctrlbank_id(bl);
+> -	u32 val;
+> -	u8 mask;
+> -	bool enable;
+>  	int ret;
+> =20
+> -	ret =3D regmap_read(bl->regmap, LM3533_REG_CTRLBANK_AB_BCONF, &val);
+> +	ret =3D regmap_test_bits(bl->regmap, LM3533_REG_CTRLBANK_AB_BCONF,
+> +			       CTRLBANK_AB_BCONF_ALS(ctrlbank));
+>  	if (ret)
+>  		return ret;
 
 [Severity: High]
-This is a pre-existing issue, but can the device initialization in
-lm3533_device_init() write past the bounds of the lm3533_devices array?
+Does this error check prematurely exit the function when the bit is set?
 
-The array is allocated based on the total number of child nodes:
+regmap_test_bits() returns 1 if the specified bit is set. If the bit is set=
+,=20
+the if (ret) condition evaluates to true, causing the function to return 1
+immediately instead of formatting the buffer.
 
-lm3533_devices =3D devm_kcalloc(dev, nchilds, sizeof(*lm3533_devices),
-                              GFP_KERNEL);
+This could break the sysfs API contract and return a single null byte to
+userspace instead of the expected string. Should this check be if (ret < 0)
+instead?
 
-However, inside the device_for_each_child_node_scoped() loop, the
-compatibility checks are independent if statements without an else if or
-continue:
+> =20
+> -	mask =3D 1 << (2 * ctrlbank);
+> -	enable =3D val & mask;
+> -
+> -	return scnprintf(buf, PAGE_SIZE, "%d\n", enable);
+> +	return scnprintf(buf, PAGE_SIZE, "%d\n", ret);
+>  }
 
-if (fwnode_device_is_compatible(child, "ti,lm3533-als")) {
-        lm3533_devices[count].name =3D "lm3533-als";
-        ...
-        count++;
-}
+[ ... ]
 
-if (fwnode_device_is_compatible(child, "ti,lm3533-backlight")) {
-        ...
-        count++;
-}
+> -static ssize_t show_linear(struct device *dev,
+> -				struct device_attribute *attr, char *buf)
+> +static ssize_t show_linear(struct device *dev, struct device_attribute *=
+attr,
+> +			   char *buf)
+>  {
+>  	struct lm3533_bl *bl =3D dev_get_drvdata(dev);
+> -	u32 val;
+> -	u8 mask;
+> -	int linear;
+> +	int ctrlbank =3D lm3533_bl_get_ctrlbank_id(bl);
+>  	int ret;
+> =20
+> -	ret =3D regmap_read(bl->regmap, LM3533_REG_CTRLBANK_AB_BCONF, &val);
+> +	ret =3D regmap_test_bits(bl->regmap, LM3533_REG_CTRLBANK_AB_BCONF,
+> +			       CTRLBANK_AB_BCONF_MODE(ctrlbank));
+>  	if (ret)
+>  		return ret;
 
-If a single child node contains multiple matching compatible strings,
-such as "ti,lm3533-als" and "ti,lm3533-backlight", count will be
-incremented multiple times during a single loop iteration.
+[Severity: High]
+Could this have the same issue as show_als_en() above?
 
-Since the bounds check if (count >=3D nchilds) break; only happens at the
-start of the loop, this sequence would allow count to exceed nchilds,
-writing out of bounds on the lm3533_devices array.
+When the linear mode bit is set, regmap_test_bits() returns 1, triggering
+this error path and returning 1 directly instead of calling scnprintf().
+
+> =20
+> -	mask =3D 1 << (2 * lm3533_bl_get_ctrlbank_id(bl) + 1);
+> -
+> -	if (val & mask)
+> -		linear =3D 1;
+> -	else
+> -		linear =3D 0;
+> -
+> -	return scnprintf(buf, PAGE_SIZE, "%x\n", linear);
+> +	return scnprintf(buf, PAGE_SIZE, "%x\n", ret);
+>  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260606045738.2105=
-0-1-clamor95@gmail.com?part=3D10
+0-1-clamor95@gmail.com?part=3D11
 
