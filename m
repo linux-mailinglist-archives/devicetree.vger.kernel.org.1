@@ -1,187 +1,165 @@
-Return-Path: <devicetree+bounces-307724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307726-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JY1ZN1N1JGo46wEAu9opvQ
-	(envelope-from <devicetree+bounces-307724-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 21:30:27 +0200
+	id Ii8nEVd5JGrV6wEAu9opvQ
+	(envelope-from <devicetree+bounces-307726-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 21:47:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36BDA64E224
-	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 21:30:27 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A225C64E282
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 21:47:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QUyWH2Ns;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307724-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307724-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BAHfvUk7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307726-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307726-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C58C2300F5F7
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jun 2026 19:30:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4BA6D30117B5
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jun 2026 19:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 500A92E1F02;
-	Sat,  6 Jun 2026 19:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B93B227A462;
+	Sat,  6 Jun 2026 19:47:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF80721A434
-	for <devicetree@vger.kernel.org>; Sat,  6 Jun 2026 19:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B980A3A1B5;
+	Sat,  6 Jun 2026 19:47:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780774225; cv=none; b=f9hgky+s2AnplgWjNdO2LzHrOwLECAirSpOzmA8R6fPwSyQQfU95A0uU2ngph3Ak5hjwey27nL//8Y85wmm44eqL285zJ8SKp0K9KyxdF9+Jd8gNXU7Hpymx14mc0BHULeuwDh316cnMgjiI/T40NZ+uknd17gKmOHZYjvI2aZY=
+	t=1780775250; cv=none; b=UOAfzZYLg+LSm0nIsQkPTZn0VauqqgIL8JH+f/9/FS8YTX8HWLpqHFxbiUBAbLtI2tpcHO0GOdW9HzpyIi4X+Wu1ELS2Y9yhCxtOpBj3TRMBT8Npl7K7k4vSOHhK+RK77fVOGYr1j7NtpIA3UpIb95eOQPo+KShfupsPhZ2Dylo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780774225; c=relaxed/simple;
-	bh=QKYHY0qgMcMoBTNwpncxRqngwXcB4yMBhr4n9IkeS10=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ugjaQTRgB/bmYQeh3lVP0HYrOo+IF0C9FLCcdG76qFRuJNiWJPCSYjVlc+9/7n932+jl9u3XPwUW1tvSO4yjt3guvFperSoWf/TD4zFWG8xJ/87GNI9GWb6ET+rqjJSNmLwj16Mvjfmq/bBrjoNeF4Gyth2zgUNBWQKQvTqVEGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QUyWH2Ns; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 591D61F00893;
-	Sat,  6 Jun 2026 19:30:22 +0000 (UTC)
+	s=arc-20240116; t=1780775250; c=relaxed/simple;
+	bh=/KwxgH46IcnrRnKljN2L/MuNd/6Uzq1oeSoszjSmVP0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g2GzmzdFvmQt/cGS4h8Wggsbc0bQRYnzHYieQSirE81ZZya7NZtHT6nLm6qwuADCnCCINqRMylafQCGGW60lgTB1sFdK3gciOiYPtTSH9Okn9hSst5ABBSQq+ozUWRacO/2C9XowdXBPZTx9IiuhvU8U/iu4mYAABkHcK68mnoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BAHfvUk7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1C181F00893;
+	Sat,  6 Jun 2026 19:47:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780774222;
-	bh=jE4HYmDjPwCf/zXFM46m6catfSXXNqYLsPE71lyrV7Q=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=QUyWH2Nsy5q09AJL8L3emnv3b1TAfYiTprTeJQuu43CoSaO8WIhQZpmeDxyZD7+1Y
-	 GwlvSSmSyg8ZFGYM2bW/aAPDM6RAH+x5TUlQPH/dT3R0o+C0Ryd5vCYXmdmtgtrfyE
-	 TICJ9SnQMEd1tYF9HN6NpHdgGnVyQQWFdGCb/tQbExuPL+T06Ox9FJ7vcy1UUTpRlW
-	 NI3dLXaQFr9sZ5cM2fijZLuAgb0p913yNWzBCbA4Fq43gLTy8aOpOAiw0UEkC5j6J5
-	 t2KY8Y/CyKOJ5PMwMugQ8wmDtZihoclatbq8iKm95G7p2cD8qS1ikRzVwL7tjR1hM8
-	 tLKf6fN7k9Y2g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rubikpi3: Move PCIe GPIOs to
- root ports
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Hongyang Zhao" <hongyang.zhao@thundersoft.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260607-rubikpi-bugfix-next-20260605-v1-1-ff97c5e35bf6@thundersoft.com>
-References: <20260607-rubikpi-bugfix-next-20260605-v1-1-ff97c5e35bf6@thundersoft.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sat, 06 Jun 2026 19:30:21 +0000
-Message-Id: <20260606193022.591D61F00893@smtp.kernel.org>
+	s=k20260515; t=1780775249;
+	bh=YSr6u812Mv5KjuzWl6+xPL5oIpVe8jm0f+zBcmYYkyU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=BAHfvUk7efwNio3BnvTAuQO3IMRwpgy8MRpvYmcdkCXoheIhWeRTlD5pdEGXMaVVc
+	 aCsXOys2nr5ktKREsYTp4FZ7SsTlA2Og8JTnDvW7dbphuYhGqa681mxV5AOAUR+i+I
+	 mi6k/taP9FdBUMoP1dMyXTAnDQ96q8NxkFLkgAHr5pVPdH9htrrCSaQzo9yy7Tnxip
+	 MHnG1ewjzyDSIl4Z0UJv3DHsEZ38XN7c70zJysN0hvYZBAqMSjRmi91CSytNcBfZmq
+	 DoI0eBxmRMyHVsXuY93qOPMEwoV+iZfOTNZNQGSAyA1kB65Y+lZfDP/X88UfnDAkQX
+	 ubgsstSa4prCw==
+Message-ID: <c2f8a080-38ee-48d0-8fd2-6f2935c8ed4f@kernel.org>
+Date: Sat, 6 Jun 2026 21:47:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom,ids: Add SoC ID for CQ8725S
+To: webgeek1234@gmail.com, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>
+References: <20260605-cq8725s-soc-id-v1-0-bb1ef93de649@gmail.com>
+ <20260605-cq8725s-soc-id-v1-1-bb1ef93de649@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260605-cq8725s-soc-id-v1-1-bb1ef93de649@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307724-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307726-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:hongyang.zhao@thundersoft.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:webgeek1234@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:teguh@sobir.in,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,thundersoft.com:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sobir.in:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 36BDA64E224
+X-Rspamd-Queue-Id: A225C64E282
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Moving reset-gpios to the root port node without moving `phys` bre=
-aks PCIe reset initialization, leaving the endpoints stuck in reset.
---
+On 05/06/2026 23:49, Aaron Kling via B4 Relay wrote:
+> From: Teguh Sobirin <teguh@sobir.in>
+> 
+> Add the ID for the Qualcomm CQ8725S SoC which represents the Pakala
+> platform.
 
-commit 061c47f23072e39770a5af921fae6283ad631fb1
-Author: Hongyang Zhao <hongyang.zhao@thundersoft.com>
+That's pretty confusing statement, considering first usage of name
+"Pakala" and not really accurate (complete). Maybe refer to the actual
+mobile SoC model number instead?
 
-arm64: dts: qcom: qcs6490-rubikpi3: Move PCIe GPIOs to root ports
 
-This commit moves the PCIe0 and PCIe1 reset and wake GPIOs to their
-root port nodes in the qcs6490-thundercomm-rubikpi3 device tree. This
-keeps the GPIO ownership with the device below the root port to match
-the updated PCIe binding expectations.
 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts b/=
-arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
-> index f47efca42d48d..5c08ab53cdbd9 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-thundercomm-rubikpi3.dts
-[ ... ]
-> @@ -830,10 +827,12 @@ &pcie0_phy {
->  	status =3D "okay";
->  };
-> =20
-> -&pcie1 {
-> -	perst-gpios =3D <&tlmm 2 GPIO_ACTIVE_LOW>;
-> -	wake-gpios =3D <&tlmm 3 GPIO_ACTIVE_LOW>;
-> +&pcie0_port {
-> +	reset-gpios =3D <&tlmm 87 GPIO_ACTIVE_LOW>;
-> +	wake-gpios =3D <&tlmm 89 GPIO_ACTIVE_HIGH>;
-> +};
-
-[Severity: High]
-Does moving reset-gpios to the root port node without also moving the
-phys property break PCIe reset initialization?
-
-In drivers/pci/controller/dwc/pcie-qcom.c, qcom_pcie_parse_port() expects
-to find the phys property on the port node:
-
-qcom_pcie_parse_port() {
-        ...
-        phy =3D devm_of_phy_get(dev, node, NULL);
-        if (IS_ERR(phy))
-                return PTR_ERR(phy);
-        ...
-}
-
-Because phys remains defined on the host node in the underlying base
-dtsi, this returns -ENODEV and falls back to qcom_pcie_parse_legacy_binding=
-().
-
-The legacy parser then looks for perst-gpios on the host node:
-
-qcom_pcie_parse_legacy_binding() {
-        ...
-        reset =3D devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
-        if (IS_ERR(reset))
-                return PTR_ERR(reset);
-        ...
-}
-
-Since this patch removes perst-gpios from the host node, this silently
-returns NULL and the driver proceeds without acquiring the reset GPIO.
-
-With pinctrl configuring the pin as output-low, won't the endpoints remain
-stuck in reset indefinitely?
-
-> =20
-> +&pcie1 {
->  	pinctrl-0 =3D <&pcie1_clkreq_n>,
->  		    <&pcie1_reset_n>,
->  		    <&pcie1_wake_n>;
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260607-rubikpi-bu=
-gfix-next-20260605-v1-1-ff97c5e35bf6@thundersoft.com?part=3D1
+Best regards,
+Krzysztof
 
