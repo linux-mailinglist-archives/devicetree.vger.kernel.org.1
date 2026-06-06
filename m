@@ -1,306 +1,220 @@
-Return-Path: <devicetree+bounces-307664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307666-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lpJlKoMTJGrW2gEAu9opvQ
-	(envelope-from <devicetree+bounces-307664-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 14:33:07 +0200
+	id XMIODAgUJGoJ2wEAu9opvQ
+	(envelope-from <devicetree+bounces-307666-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 14:35:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F1D564D6B8
-	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 14:33:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9802364D716
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 14:35:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b="E/FAz9rD";
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=etr7bukI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307664-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307664-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=herrie.org header.s=transip-a header.b=OdzQVzNE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307666-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307666-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A60303022926
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jun 2026 12:32:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D4A28302ACFB
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jun 2026 12:35:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D878E392C56;
-	Sat,  6 Jun 2026 12:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91F993A7D6E;
+	Sat,  6 Jun 2026 12:35:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from outbound4.mail.transip.nl (outbound4.mail.transip.nl [136.144.136.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DF034F275
-	for <devicetree@vger.kernel.org>; Sat,  6 Jun 2026 12:32:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7587E3A5434;
+	Sat,  6 Jun 2026 12:34:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780749162; cv=none; b=RZcPkWOyxemCfqMhH7JOgLkJhEjGgUbFU98DEaZcAj18BNiSW2ME7iqxHJVd6ta5SwBCYj4plWOy31mCL9QkEhKq4dFtSQP+54zLAIigYcMg3nK06U4N88rJ/Hw1ZDfJ7cr81FR5o8sAWaIXMA8LWkE074v64SodoK19/t6QHhM=
+	t=1780749301; cv=none; b=EBaQeMdQ+hbJ3Iu+LHAioChj5lVWC8IpxUmAmBrd++moUcgBgufRudpBWGcDfHy+tGVkpvNwYExBAbOysE0bmwvmZWpsh8ZdcMcBx48ORDio4MUW9hQZJl/bEkkD/XwOcGPGtW0zKZqXMhN8xVp7eFPaK/Iv2zUYqYv4VFGnVJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780749162; c=relaxed/simple;
-	bh=uArRKwydgi7Awi4QPGR51VyhpX7czobobNZeG3o9P0k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H9Acsa6u4o7YRtAZuB98f9WEM+nUVbW/fOBMwgtTCVQJzXs0c0Vpsn3YSVLr7TqlThSsD3VfDaKcQo7z+y88I/0viWGdp5XQpe+H5D5pvG9EICA2C7/Whe4s7CjEHtSUAEt2S74ZnOVBYftruPo1BNqMSyNUZugo0SM+tMf2iIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=E/FAz9rD; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=etr7bukI; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 656BGeTV1295877
-	for <devicetree@vger.kernel.org>; Sat, 6 Jun 2026 12:32:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=J7Jk6biw3e7jArCRN6UqVLK8
-	rysHv0R52SpzdK/4FYE=; b=E/FAz9rDat47MAmRdOnoSqI7RkGCWRGIiEDC51vj
-	JLkwxEz/tmIyvekIfi6YxXkyorWJua3ag9xd9BWtmJJXEP6psl3iJcnKjT8KEEJs
-	0yIJotazgYMkChJ7zncLaPbnjYzmx1ZBMyJNdZ5IJSZDL7pyWGMBEguyx0o8NSJ2
-	UXThhukq5USxC+w/HpEZNFtNyj0CsiDdcP+yd3jsCXGkBZ+PnEJtKMH4IaD31EHT
-	lLCjItmIe5+szFktITBMFzgrIu5vKOlLFe5xQsLPKbYcTuce+q/RDoNVhhqmXGlk
-	wIZqMJ31B4GDYyFaUPhd4dvPY7qFaT6vo2DeLUl8ed7kZA==
-Received: from mail-ua1-f70.google.com (mail-ua1-f70.google.com [209.85.222.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4em9k3hf2n-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 06 Jun 2026 12:32:40 +0000 (GMT)
-Received: by mail-ua1-f70.google.com with SMTP id a1e0cc1a2514c-96391e58e62so3806926241.0
-        for <devicetree@vger.kernel.org>; Sat, 06 Jun 2026 05:32:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780749160; x=1781353960; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=J7Jk6biw3e7jArCRN6UqVLK8rysHv0R52SpzdK/4FYE=;
-        b=etr7bukIK2frDt50OzMcg67khqXOtR245s49ghOJZ7EBEAKCx5hxD8uOs0st22U8FO
-         1LX1IyiksadBCqllzb3iSfHErb2C302JU8c42k3qlbkAPeKUDlog07FuiiCIfFF6E0qi
-         pcNvdSfoDtDkN4cEWGUpIZT1q7DiliyMUm/uhgt5u9K0KpAeLWFe12FZ+ixXSl5FE8Mm
-         zzL23mWKkvFR9pqpuTDW0aOn/laVLJw36j6ullZj36j0WgHvLGZqkhgxzsHo+420aJt7
-         kZ/7JQeTpJoJK/a16IbcP2/E2PE4toqd3S5LITfjKQblXDoDlz9IUVkxyRYlHPez0ANk
-         o6kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780749160; x=1781353960;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J7Jk6biw3e7jArCRN6UqVLK8rysHv0R52SpzdK/4FYE=;
-        b=QOQF6iKpsnRJPk2YQO91YnuXqfv0BAwQWoD42/PFVHpTMI4Zc4oJPDcIm7dStD4N4Q
-         3qdW40qJELgEH6gUUgozRCvDZSy5KuPW3rNDBUvHNpsaq6ZOHsVJwb4kkiENkj1oefmE
-         9R4Y+uM+Z8mi4XumfUTvij0jb40zcvlwqSrMwY/wQOc+RiDhQ81OA/EeWXShU2tSfQpg
-         kdamsogdxHSMnDm25c3XbnyQBSQHspq+qaOg9bItyqgGGZk6omqPeJhYo9GDh3Qhp770
-         aXVSn9zu9a1YzKPUjhx/PTGXSBX0mNIBbNS/no0F+U1d2cbLi8zl3NoPQPthzxA5g4SQ
-         JfYA==
-X-Forwarded-Encrypted: i=1; AFNElJ8cjhAl3Ya5sUl45QHBmZwU8cBznUW+Mzl3sCewgWoaFwQSi4t/R3FDqvRhKUDE38ka9SodwEoJtIBa@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVH2mZ21qMPASNJBzseWTzuROiOtVbcJjrrpRaV7VDpNyZk92U
-	h0VUzEAn5bSa9sap7AHUvXtR+wsVKq65cFNcJ05Sy91kHUNCYFTnikWwr72/Jgox/yC46X5PMtI
-	qHppvbHlWfrP5DTEHT1u1Su558dUvFEASkhKo7g5fnaokUEOqbf4oJRuuuhjcTxFD
-X-Gm-Gg: Acq92OF3viOGW0nOv3bZ4REP4zLWWZDFGAwsLfIdl1Uz9dfqTT+Q3elIxZLF/ZtAWtp
-	bvQH584YUZrC4gPS0O1v52kwEidmDaRs4K8iLI5KfSusCJikY82w1sEN/vKEsyUAt4HOGMJqkYC
-	Wt68AR+GGlUL761UPQdgnBwmyctm+Zi7TGDb1w3rvzTGPseMQ94tpC5lBK35HVXd6a0WizVMHxO
-	ShHf1XKA7u5ivRJo3fc54XmlqWkSs8FFxvDmOnLv5GeQ9vrmGTa/pKX6FtWlaJ2/Gway/LpxP2M
-	Ubfx4B5cReSq24VvBuDhCPqpMDEqW6hyqjVGVGnDIBTikGI2VH3tvQNy/1/LT/7cfgfRUhursDL
-	5QXb/6Ftt2ZDVX0yLU7pN9JioQdsPmTtZpuObGamNSscyCg1tzsW8u+xCO42J39aGUIHkH4CQ9h
-	dr4+nV7BFDMnLLXmIWRTEaPSJcPoMH1F3s86uFADSdnuubiw==
-X-Received: by 2002:a05:6102:284f:b0:6dc:c4aa:472 with SMTP id ada2fe7eead31-700359f5425mr1741714137.14.1780749159949;
-        Sat, 06 Jun 2026 05:32:39 -0700 (PDT)
-X-Received: by 2002:a05:6102:284f:b0:6dc:c4aa:472 with SMTP id ada2fe7eead31-700359f5425mr1741697137.14.1780749159549;
-        Sat, 06 Jun 2026 05:32:39 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa7b8fba4asm2415013e87.18.2026.06.06.05.32.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Jun 2026 05:32:37 -0700 (PDT)
-Date: Sat, 6 Jun 2026 15:32:35 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-Subject: Re: [PATCH v3 08/10] arm64: dts: qcom: shikra: Enable CDSP, LPAICP
- and MPSS on EVK boards
-Message-ID: <ykcbo7dkl2rrjdzutpwsc3wmnub5r7h3zuspxiyh5v432whb65@sbaar24glpta>
-References: <20260601-shikra-dt-m1-v3-0-0fe3f8d9ec48@oss.qualcomm.com>
- <20260601-shikra-dt-m1-v3-8-0fe3f8d9ec48@oss.qualcomm.com>
+	s=arc-20240116; t=1780749301; c=relaxed/simple;
+	bh=/sdLYb7HiwW41ku/waMHD09EcecKAyZhUtgaLIYVZPQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ibnd1ur/2CIVT17+JlYrXk0d2vY3qPd3kacQa48ml00MfJCKrxxNedp4TfmCglRYlJYjKSGUzPNAq11pmavHNrmJsY2nqNezxaJAiCLrZHoAqnZdE6VnpVxwX8OYYHLtxOB4OAOa/gokd9B5Z4DFuPuL2kzCrdh5dPYm/agji3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=OdzQVzNE; arc=none smtp.client-ip=136.144.136.2
+Received: from submission2.mail.transip.nl (unknown [10.100.4.71])
+	by outbound4.mail.transip.nl (Postfix) with ESMTP id 4gXd6f4xMyzwPPl;
+	Sat,  6 Jun 2026 14:34:50 +0200 (CEST)
+Received: from [127.0.1.1] (180-93-184-31.ftth.glasoperator.nl [31.184.93.180])
+	by submission2.mail.transip.nl (Postfix) with ESMTPA id 4gXd6d5mM7zJjhYB;
+	Sat,  6 Jun 2026 14:34:49 +0200 (CEST)
+From: Herman van Hazendonk <github.com@herrie.org>
+Subject: [PATCH v3 0/2] interconnect: qcom: add MSM8x60 NoC driver
+Date: Sat, 06 Jun 2026 14:34:49 +0200
+Message-Id: <20260606-submit-interconnect-msm8660-v3-0-f9da0158cdf8@herrie.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260601-shikra-dt-m1-v3-8-0fe3f8d9ec48@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA2MDEyNSBTYWx0ZWRfX1752kyJDehRO
- XCr4WTNeTmW4TVhEuflIMSkC8fzFOnaQZn04bRSv/wO0gnAzDgHejrWKftFZeiSr6TtDnd1CnLJ
- zw1e4WL9zhCgzlZn1f1Q2lCy0Ota5te9kn/f41hMneFZDgWBN8AQtQYQgEHz1luwv4cYPNTKQjR
- mYhCfAyQpeSla4P9U/wG5KAiHjYx6GAaBaHnr82gtru+Zi8z0kUVE+fEv3AS++o7GSa8bhSZ/9w
- Y9CDe1bL4xazrEQW5Dlv3q3oj4QbWGfNaE71cppn6+f3ICOBcXiAntUc9rONlt1+I2+XcMQHnqB
- o0hMT/JijjCkQ7HirbBuftRgcIFuhvnU8kJjanwpf4nHqMZNO081/kvnoVazp1wYGzlU6quvNlL
- 94jigyKZkShqYzUPcHzAEUJvUH2W0T15+UkgEhlWBCH4Lp2iuxD6AOxULVZcp92VSm68JOFJ9bT
- bBrqxfHX583mEPte6uA==
-X-Proofpoint-ORIG-GUID: GQcUygE5S418tgSOeZF0Ms8_N86LvEQF
-X-Proofpoint-GUID: GQcUygE5S418tgSOeZF0Ms8_N86LvEQF
-X-Authority-Analysis: v=2.4 cv=TIB1jVla c=1 sm=1 tr=0 ts=6a241368 cx=c_pps
- a=R6oCqFB+Yf/t2GF8e0/dFg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8
- a=0thynvrgsBQo68K9vjAA:9 a=CjuIK1q_8ugA:10 a=TD8TdBvy0hsOASGTdmB-:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-06_03,2026-06-05_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 phishscore=0 clxscore=1015 adultscore=0 priorityscore=1501
- bulkscore=0 malwarescore=0 suspectscore=0 spamscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606060125
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOkTJGoC/x3MwQqDMAyA4VeRnBeoVYL6KrJD7TLNoVGabgjiu
+ 6+M//Rd/guMs7DB1FyQ+Ssmu1Z0jwbiFnRllFc1eOfJ1dA+S5KCooVz3FU5FkyWBiKH5HvvYjv
+ 2CwWohyPzW87/fX7e9w9BTaODbQAAAA==
+To: Georgi Djakov <djakov@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Herman van Hazendonk <github.com@herrie.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780749289; l=4513;
+ i=github.com@herrie.org; s=20240417; h=from:subject:message-id;
+ bh=/sdLYb7HiwW41ku/waMHD09EcecKAyZhUtgaLIYVZPQ=;
+ b=CkyX1dS0mZn0EzOup9y+ZObwAS7bXKUkJVZvwMxGwQeQwDCMSDsCOyliZH003lsUAWp8fkIRg
+ Wi8D5cnrmltDZCmqKe+jg7Ltj9YwK8jlIvYXj2dZKf6QccX2mXfwTH4
+X-Developer-Key: i=github.com@herrie.org; a=ed25519;
+ pk=YYxdq8fb5O9vhkW3n2dCH044FPZZO5718v/du7fRhFw=
+X-Scanned-By: ClueGetter at submission2.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=transip-a; d=herrie.org; t=1780749290; h=from:subject:to:cc:date:
+ mime-version:content-type;
+ bh=l0eQSqyJnMG+PBzP9ncSMISaaSFS2QO9XZhcyls2bGE=;
+ b=OdzQVzNEUwcgUo6K5WDyix1nAN1Vhe+GszRqMhL/pZmqdtWAC0l4VKk9bn/T25Knb3TJQh
+ bqQciDr2YZxPL6hetV5cAC5pCJe6Gx1+Vx0fopb4nniF52TsQxmEo3WQ5ItUuapyhKmNzs
+ RKRcUw/T942N0xxHO5LwhflKRtqJiRc8dv1RAxoWDdWWNWk6M0c3JnofPgoFGK9FndJ3DT
+ vUMd3v16JC4zUetzyIjHT7ue+5a1s9M+xRPakKw7jmb2dvnMSDtA/dNVV3j5cKztVWD9cV
+ 9tDrU5ihBGCZy8yGrBWAqt1d33sH1/3FGmHTqFyElJ96/7baMUs9QnVOrfBLZg==
+X-Report-Abuse-To: abuse@transip.nl
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307664-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,qualcomm.com:dkim,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS(0.00)[m:komal.bajaj@oss.qualcomm.com,m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:djakov@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:bibek.patro@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-307666-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[herrie.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[herrie.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:djakov@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:github.com@herrie.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,herrie.org:mid,herrie.org:dkim,herrie.org:from_mime,herrie.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1F1D564D6B8
+X-Rspamd-Queue-Id: 9802364D716
 
-On Mon, Jun 01, 2026 at 06:25:10PM +0530, Komal Bajaj wrote:
-> From: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-> 
-> Enable CDSP, LPAICP and MPSS for Qualcomm's Shikra CQM, CQS and
-> IQS EVK board.
-> 
-> Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-> Signed-off-by: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/shikra-cqm-evk.dts | 19 +++++++++++++++++++
->  arch/arm64/boot/dts/qcom/shikra-cqs-evk.dts | 19 +++++++++++++++++++
->  arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts | 19 +++++++++++++++++++
->  3 files changed, 57 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/shikra-cqm-evk.dts b/arch/arm64/boot/dts/qcom/shikra-cqm-evk.dts
-> index 0a52ab9b7a4c..b112b21b1d79 100644
-> --- a/arch/arm64/boot/dts/qcom/shikra-cqm-evk.dts
-> +++ b/arch/arm64/boot/dts/qcom/shikra-cqm-evk.dts
-> @@ -23,6 +23,25 @@ chosen {
->  	};
->  };
->  
-> +&remoteproc_cdsp {
-> +	firmware-name = "qcom/shikra/cdsp.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_lpaicp {
-> +	firmware-name = "qcom/shikra/lpaicp.mbn",
-> +			"qcom/shikra/lpaicp_dtb.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_mpss {
-> +	firmware-name = "qcom/shikra/cqm/qdsp6sw.mbn";
+Add an interconnect provider for the MSM8x60 family (MSM8260 / MSM8660
+/ APQ8060). The driver describes the four NoC fabrics (System, Apps,
+MMSS, Daytona) and the RPM-managed fabric arbitration tables that
+program per-master / per-tiered-slave bandwidth budgets via
+QCOM_RPM_*_FABRIC_ARB resources.
 
-qcom/shikra/qdsp6sw.mbn
+v3 folds one High Sashiko finding (msm8660_rpm_commit() concurrent
+access on shared per-fabric scratch buffers) on top of the v2 patchset
+that addressed the maintainer / LKP feedback from v1.
 
-> +
-> +	status = "okay";
-> +};
-> +
->  &sdhc_1 {
->  	vmmc-supply = <&pm4125_l20>;
->  	vqmmc-supply = <&pm4125_l14>;
-> diff --git a/arch/arm64/boot/dts/qcom/shikra-cqs-evk.dts b/arch/arm64/boot/dts/qcom/shikra-cqs-evk.dts
-> index b3f19a64d7ae..e62ba5aef71f 100644
-> --- a/arch/arm64/boot/dts/qcom/shikra-cqs-evk.dts
-> +++ b/arch/arm64/boot/dts/qcom/shikra-cqs-evk.dts
-> @@ -23,6 +23,25 @@ chosen {
->  	};
->  };
->  
-> +&remoteproc_cdsp {
-> +	firmware-name = "qcom/shikra/cdsp.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_lpaicp {
-> +	firmware-name = "qcom/shikra/lpaicp.mbn",
-> +			"qcom/shikra/lpaicp_dtb.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_mpss {
-> +	firmware-name = "qcom/shikra/cqs/qdsp6sw.mbn";
+Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
+---
+Changes in v3:
 
-qcom/shikra/qdsp6sw_nm.mbn
+  - [High Sashiko] msm8660_rpm_commit() ran with no synchronisation.
+    The shared per-fabric scratch buffers (qp->arb, qp->bwsum,
+    qp->rpm_buf) are allocated once at probe and reused across all
+    ICC set operations. The ICC core can dispatch provider->set
+    concurrently from different CPUs, so two msm8660_rpm_commit()
+    instances could interleave their memset()s and overlapping
+    per-node writes, producing a corrupted packet on the
+    qcom_rpm_write() to RPM firmware. Added a 'struct mutex
+    commit_lock' to msm8660_icc_provider, initialised via
+    devm_mutex_init() in probe, taken across the entire
+    memset -> iterate -> pack -> qcom_rpm_write sequence with a
+    scoped guard(mutex)().
 
-> +
-> +	status = "okay";
-> +};
-> +
->  &sdhc_1 {
->  	vmmc-supply = <&pm4125_l20>;
->  	vqmmc-supply = <&pm4125_l14>;
-> diff --git a/arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts b/arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts
-> index 3003a47bd759..727809430fd1 100644
-> --- a/arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts
-> +++ b/arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts
-> @@ -23,6 +23,25 @@ chosen {
->  	};
->  };
->  
-> +&remoteproc_cdsp {
-> +	firmware-name = "qcom/shikra/cdsp.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_lpaicp {
-> +	firmware-name = "qcom/shikra/lpaicp.mbn",
-> +			"qcom/shikra/lpaicp_dtb.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_mpss {
-> +	firmware-name = "qcom/shikra/cqs/qdsp6sw.mbn";
+Changes in v2 (already sent 2026-06-04):
 
-qcom/shikra/qdsp6sw_nm.mbn
+Maintainer / LKP feedback on v1:
 
-> +
-> +	status = "okay";
-> +};
-> +
->  &sdhc_1 {
->  	vmmc-supply = <&pm8150_l17>;
->  	vqmmc-supply = <&pm8150_s4>;
-> 
-> -- 
-> 2.34.1
-> 
+  - [Medium] dt-bindings: add explicit '#interconnect-cells: const: 1'.
+    The common rpm-common.yaml permits both 1- and 2-cell phandles for
+    historical reasons; without an explicit const here a 2-cell consumer
+    would pass schema validation but then fail of_icc_xlate_onecell()
+    at runtime.
 
+  - [High] msm8660_get_rpm(): drop the manual device_link_remove()
+    before the EPROBE_DEFER return path. The link is added with
+    DL_FLAG_AUTOREMOVE_CONSUMER, so the driver core releases its kref
+    when our probe ultimately fails. The manual remove dropped an
+    extra kref -> potential UAF on the supplier device.
+
+  - [Low] devm_clk_bulk_get_optional(): drop the dead ret == -ENOENT
+    branch. The helper internally masks per-clock ENOENT to NULL
+    handles before returning, so the branch is unreachable.
+
+  - [High] static msm8660_qnode .node cache pointers: on probe
+    failure icc_nodes_remove() frees the dynamic icc_node but the
+    cache field still points at freed memory. A subsequent
+    probe-retry (or unbind/rebind) would then dereference the stale
+    pointer. Added msm8660_clear_node_cache() helper, called from
+    both err_remove_nodes: and msm8660_icc_remove(). Same latent bug
+    exists in the icc-rpmh.c template; we keep it local for now.
+
+  - [High] icc_link_nodes(): check the return value. Failure
+    (-ENOMEM from krealloc) was silently ignored -> partially-linked
+    topology with no error path. Now goto err_remove_nodes on
+    failure.
+
+Test results (v3, HP TouchPad APQ8060, kernel 7.1.0-rc1):
+
+  - All four fabrics probe clean at boot
+    (4096000.qnoc, 4400000.qnoc, 4500000.qnoc, 4540000.qnoc).
+    Real bandwidth votes flow through slv_ebi_ch0 (DDR), MDP,
+    video-codec, camss.
+
+  - 120s concurrent multi-subsystem load
+    (camera stream loop + dd to eMMC + /dev/urandom + filesystem
+    walk + USB I/O): zero qcom_rpm errors, zero icc warnings,
+    USB stayed up, MDP stayed active, no display glitches or
+    USB stalls.
+
+  - dmesg post-load: 0 WARN, 0 BUG, 0 Oops. Specifically no
+    "qcom_rpm: ARB write failed" and no "interconnect: ... failed"
+    messages.
+
+  - Kernel build clean (ARCH=arm, CONFIG_INTERCONNECT_QCOM_MSM8660=y).
+
+- Link to v1: https://lore.kernel.org/r/20260603163410.2312712-1-github.com@herrie.org
+- Link to v2: https://lore.kernel.org/r/20260604184400.801543-1-github.com@herrie.org
+
+---
+Herman van Hazendonk (2):
+      dt-bindings: interconnect: qcom: add msm8660 NoC
+      interconnect: qcom: add MSM8x60 NoC driver
+
+ .../bindings/interconnect/qcom,msm8660.yaml        |  166 ++
+ drivers/interconnect/qcom/Kconfig                  |   14 +
+ drivers/interconnect/qcom/Makefile                 |    2 +
+ drivers/interconnect/qcom/msm8660.c                | 1663 ++++++++++++++++++++
+ include/dt-bindings/interconnect/qcom,msm8660.h    |  156 ++
+ 5 files changed, 2001 insertions(+)
+---
+base-commit: 944125b4c454b58d2fe6e35f1087a932b2050dff
+change-id: 20260606-submit-interconnect-msm8660-62420c194b6a
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Herman van Hazendonk <github.com@herrie.org>
+
 
