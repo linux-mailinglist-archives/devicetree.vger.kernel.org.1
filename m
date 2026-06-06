@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-307561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307562-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7mkMOmRxI2oGuAEAu9opvQ
-	(envelope-from <devicetree+bounces-307561-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 03:01:24 +0200
+	id g7bVGYFxI2oPuAEAu9opvQ
+	(envelope-from <devicetree+bounces-307562-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 03:01:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 866A464C0FB
-	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 03:01:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8178B64C110
+	for <lists+devicetree@lfdr.de>; Sat, 06 Jun 2026 03:01:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HCnDEqLN;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307561-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307561-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bVO4mYiK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307562-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307562-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D110830144C3
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jun 2026 01:01:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 23CFF3020D69
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jun 2026 01:01:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19C41DE3DC;
-	Sat,  6 Jun 2026 01:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C919F233950;
+	Sat,  6 Jun 2026 01:01:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D436C1A262A;
-	Sat,  6 Jun 2026 01:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 954661A6816;
+	Sat,  6 Jun 2026 01:01:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780707682; cv=none; b=XS9GQhqhJv2hRay5zwLXa5qtKit2/mFBAsz+qJux587XfDUNpGDfsZ3Bh/tiJhRgWB+50lkHzsK8K/TTPgG482Y+fQI6EUM7sFMqlI/MeUvKhUMKxTA3TD+hluvl3oSkIUyEaVrIqc9zdJA5fQadX+f8srqpkpVdiqZWvq12yMs=
+	t=1780707683; cv=none; b=XnUL/KW9fVZboRCwJr29VSI0RMM70yI+HAtYtFI56cHSk8w7LXQhFg+40XbJdsRC87AL9HvLG1WX2pyLcXxosFjl/+wahpupREWNRiiAfffVBsgD9YGQ8yX4nfoTCxIIZaZQlfFx8wKR8eM7UKj03QKX66oykBjPTH/6A0wyHBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780707682; c=relaxed/simple;
-	bh=dvDm1rbitEHVVRWuvKxq7bgXWQVbprtJLmXCP7BF4vk=;
+	s=arc-20240116; t=1780707683; c=relaxed/simple;
+	bh=vwS0MDGwnMP+qy+iMt0cW823/NcvkElfyo3HMquYRMc=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=r68bCJDKl171yTTrDAjXsT3elJebbmymCkc+DoT5aWMiGjdEv/hfSNkSrCDeUKXcmVEN4qBqMTVJrLm7KoX9fHmW7G5hIT4z44FLzFMrFnAIctfLfcZWpNFRPU/Fm9PWI4kT7lglgm+LqHmRtBWFt0GIMYC9eoW6FBHvxD7BIng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HCnDEqLN; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 580DF1F00898;
-	Sat,  6 Jun 2026 01:01:21 +0000 (UTC)
+	 Message-Id; b=fnFrDeqPyypDW+Uv7kaTfplyfowbzBrwnl8gyU6n5OWJqbLser1vMNpIJ+k0ZqmL8qBrd6IrLn9ACV0F+KvWW98OMs/RIMyxqVhxalwY/jg/n5KBvTi9hQ5NjjsvjlUxx1tzM3Mh/lq0JwES5i8BtJOROEl9/CjIt1w9Ie9JIxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bVO4mYiK; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21A211F00899;
+	Sat,  6 Jun 2026 01:01:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780707681;
-	bh=OllOCYmt/Ha9/XrVXwaHa3NQn1gIUZLBxpQxSVb87XM=;
+	s=k20260515; t=1780707682;
+	bh=Ur2NTdRGOHJR7RwLC+7bY1IFjGxC1Gqdfo05jJ2ykt4=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=HCnDEqLNFd3Z2I4gPLyKTDN3hCbzkk+CzydZOjCHVW1S9kBZod5NnF1Xm7Ayp+/wq
-	 00U0d88LVn0ygLlgwCJYEkHQSL5Bu57H1Bu7N9acrhQg19sWH6Cz9F0Efkp+96dlgq
-	 h1pHIiGOZdDAqZFWcQzJZym/jK5qKY8FNfrRtnFlZmlp44WbV69DFsaFxDyDRoF3YE
-	 1hf9pckwhZgxtyTZqTcxvCkpQG6w5sHDLndnIghhKhe8j7qCgdUJczVrwh47jEcpbK
-	 1gg1Xxx7SpYNnmomsEsM2QJqu3c6hHnm9mmMUi7sD4dQ0wjOM1g71PgNfUM8nOKuxL
-	 By3kUX58oYP/g==
+	b=bVO4mYiKVPYb3TFdUpz3mIqpjyCiRyx4OIgWbHXPKxkb2T8nxnvWtD4UcdWY4Oybb
+	 i6qKq9Ng/7/6JJ8RLkiT5Cnq9BY5Ph42FPALyTdNb1ApxO7AlNJLvRBBZSUp+8atAM
+	 8TezKVEPZOZ5J6TPKGOmHgtlUfhBilbnQTXYIu1WCxjRVuBpJK82/63KKIRLfOjeFV
+	 SdmXCknUy7uRjkJUnXOoIoTGRITxAdZZT5qKLtwmiS9AwSwA7EuAL1zuO2qAlNWdFt
+	 Ym3WDb1J6wAWPKwdzTKRUA2ZM/ubNTUUkx5vBtE1vs2kHE0vnbIUrzF4WTmdKuSHIx
+	 55Uqa088f9+9w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v2 05/14] net: pcs: pcs-xpcs: select operating
- mode for 10G-baseR capable PCS
+Subject: Re: [PATCH net-next v2 06/14] net: stmmac: dma: create a separate
+ dma_device pointer
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Alex Elder" <elder@riscstar.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, bpf@vger.kernel.org
-In-Reply-To: <20260605010022.968612-6-elder@riscstar.com>
-References: <20260605010022.968612-6-elder@riscstar.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, bpf@vger.kernel.org
+In-Reply-To: <20260605010022.968612-7-elder@riscstar.com>
+References: <20260605010022.968612-7-elder@riscstar.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 06 Jun 2026 01:01:20 +0000
-Message-Id: <20260606010121.580DF1F00898@smtp.kernel.org>
+Date: Sat, 06 Jun 2026 01:01:21 +0000
+Message-Id: <20260606010122.21A211F00899@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,17 +68,17 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url];
-	TAGGED_FROM(0.00)[bounces-307561-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	TAGGED_FROM(0.00)[bounces-307562-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:elder@riscstar.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:bpf@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:elder@riscstar.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:bpf@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
@@ -95,77 +95,156 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	PRECEDENCE_BULK(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FROM_NO_DN(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 866A464C0FB
+X-Rspamd-Queue-Id: 8178B64C110
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] False detection of 10Gbase-R capability on 1G-only devices lacki=
-ng MMD 3 (PCS) due to unhandled `0xffff` MDIO read response.
+
+Pre-existing issues:
+- [High] When DMA mapping fails during transmission, the driver either leak=
+s mapped memory (non-TSO path) or causes a permanent hardware TX queue stal=
+l (TSO path).
+- [High] Kernel panic in the DMA descriptor allocation error path due to a =
+NULL pointer dereference when tearing down uninitialized queues.
 --
 
-commit 8962f48f9cb6674f919016e2d22817c0d0ed132d
-Author: Daniel Thompson <daniel@riscstar.com>
+commit 66acc331f7f048d75e9c4b2fb700576508be93dc
+Author: Alex Elder <elder@riscstar.com>
+Subject: net: stmmac: dma: create a separate dma_device pointer
 
-net: pcs: pcs-xpcs: select operating mode for 10G-baseR capable PCS
+The patch separates the DMA device from the MAC device in the stmmac driver.
+It adds a dma_device pointer to the stmmac_priv and plat_stmmacenet_data
+structures, and updates all DMA operations to use it.
 
-This commit adds generic logic to change the operating mode on XPCS
-devices that support 10Gbase-R when the default mode is inappropriate.
-It sets PCS_TYPE_SEL to a reserved value to fix an issue where modal
-switching is otherwise suppressed.
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/=
+net/ethernet/stmicro/stmmac/stmmac_main.c
+> index 35da51c262484..09d2640a18b3c 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -1730,12 +1730,12 @@ static void stmmac_free_tx_buffer(struct stmmac_p=
+riv *priv,
+>  	if (tx_q->tx_skbuff_dma[i].buf &&
+>  	    tx_q->tx_skbuff_dma[i].buf_type !=3D STMMAC_TXBUF_T_XDP_TX) {
+>  		if (tx_q->tx_skbuff_dma[i].map_as_page)
+> -			dma_unmap_page(priv->device,
+> +			dma_unmap_page(priv->dma_device,
+>  				       tx_q->tx_skbuff_dma[i].buf,
+>  				       tx_q->tx_skbuff_dma[i].len,
+>  				       DMA_TO_DEVICE);
+>  		else
+> -			dma_unmap_single(priv->device,
+> +			dma_unmap_single(priv->dma_device,
+>  					 tx_q->tx_skbuff_dma[i].buf,
+>  					 tx_q->tx_skbuff_dma[i].len,
+>  					 DMA_TO_DEVICE);
 
-> diff --git a/drivers/net/pcs/pcs-xpcs.c b/drivers/net/pcs/pcs-xpcs.c
-> index 76c04372b5b50..e58103ae8dadd 100644
-> --- a/drivers/net/pcs/pcs-xpcs.c
-> +++ b/drivers/net/pcs/pcs-xpcs.c
-> @@ -705,10 +705,49 @@ static void xpcs_get_interfaces(struct dw_xpcs *xpc=
-s, unsigned long *interfaces)
->  static int xpcs_switch_interface_mode(struct dw_xpcs *xpcs,
->  				      phy_interface_t interface)
->  {
-> +	int mdio_stat2, ret;
-> +
->  	/* Wangxun provides a full alternative implementation to handle quirks =
-*/
->  	if (xpcs->info.pma =3D=3D WX_TXGBE_XPCS_PMA_10G_ID)
->  		return txgbe_xpcs_switch_mode(xpcs, interface);
-> =20
-> +	mdio_stat2 =3D xpcs_read(xpcs, MDIO_MMD_PCS, MDIO_STAT2);
-> +	if (mdio_stat2 < 0)
-> +		return mdio_stat2;
-> +
-> +	/*
-> +	 * If this XPCS supports 10Gbase-R then that will be the default
-> +	 * operating mode. There are several interface modes where this default
-> +	 * is unhelpful. Change the operating mode for interfaces were we know
-> +	 * the default is wrong, and restore the default otherwise.
-> +	 */
-> +	if (mdio_stat2 & MDIO_PCS_STAT2_10GBR) {
+[Severity: High]
+This is a pre-existing issue, but is there a risk of a NULL pointer
+dereference in the DMA descriptor allocation error path?
 
-[Severity: Medium]
-Will this falsely detect 10GBASE-R support on 1G-only devices?
+In the error path of alloc_dma_tx_desc_resources() or
+alloc_dma_rx_desc_resources(), if queue allocation fails (e.g., -ENOMEM from
+kzalloc_objs), the driver unconditionally cleans up all configured queues,
+including those that were never initialized.
 
-If a device lacks the PCS MMD (MMD 3), the MDIO bus read in xpcs_read()
-naturally returns 0xffff due to floating bus pull-ups. Because 0xffff is
-greater than 0, it bypasses the mdio_stat2 < 0 error check above.
-
-Since 0xffff & MDIO_PCS_STAT2_10GBR (0x0001) evaluates to true, the driver
-will falsely identify the device as 10GBASE-R capable and perform unintended
-writes to MDIO_CTRL2 in the unpopulated MMD 3. Does this check need to
-account for 0xffff responses?
-
-> +		switch (interface) {
-> +		case PHY_INTERFACE_MODE_SGMII:
+When free_dma_rx_desc_resources() or free_dma_tx_desc_resources() processes
+an uninitialized queue, it iterates over the descriptor ring and calls
+stmmac_free_tx_buffer() or stmmac_free_rx_buffer(). Since tx_skbuff_dma
+or buf_pool is NULL for uninitialized queues, attempting to check conditions
+like the one above will dereference a pointer relative to NULL, triggering a
+panic.
 
 [ ... ]
 
+> @@ -4571,9 +4571,9 @@ static netdev_tx_t stmmac_tso_xmit(struct sk_buff *=
+skb, struct net_device *dev)
+>  	first =3D desc;
+> =20
+>  	/* first descriptor: fill Headers on Buf1 */
+> -	des =3D dma_map_single(priv->device, skb->data, skb_headlen(skb),
+> +	des =3D dma_map_single(priv->dma_device, skb->data, skb_headlen(skb),
+>  			     DMA_TO_DEVICE);
+> -	if (dma_mapping_error(priv->device, des))
+> +	if (dma_mapping_error(priv->dma_device, des))
+>  		goto dma_map_err;
+> =20
+>  	stmmac_set_desc_addr(priv, first, des);
+> @@ -4599,10 +4599,10 @@ static netdev_tx_t stmmac_tso_xmit(struct sk_buff=
+ *skb, struct net_device *dev)
+>  	for (i =3D 0; i < nfrags; i++) {
+>  		const skb_frag_t *frag =3D &skb_shinfo(skb)->frags[i];
+> =20
+> -		des =3D skb_frag_dma_map(priv->device, frag, 0,
+> +		des =3D skb_frag_dma_map(priv->dma_device, frag, 0,
+>  				       skb_frag_size(frag),
+>  				       DMA_TO_DEVICE);
+> -		if (dma_mapping_error(priv->device, des))
+> +		if (dma_mapping_error(priv->dma_device, des))
+>  			goto dma_map_err;
+
+[Severity: High]
+This is a pre-existing issue, but does a DMA mapping failure here cause a
+permanent hardware TX queue stall?
+
+In stmmac_tso_xmit(), intermediate descriptors are eagerly marked with the
+OWN=3D1 bit by stmmac_tso_allocator() before all fragments are mapped. If a
+subsequent fragment mapping fails, the code jumps to dma_map_err before
+setting the OWN bit on the first descriptor.
+
+The hardware DMA engine won't process the intermediate fragments. Later, wh=
+en
+stmmac_tx_clean() processes the ring, it will encounter the OWN=3D1 descrip=
+tor
+and permanently halt, freezing the entire TX queue.
+
+[ ... ]
+
+> @@ -4827,9 +4827,9 @@ static netdev_tx_t stmmac_xmit(struct sk_buff *skb,=
+ struct net_device *dev)
+>  	} else {
+>  		bool last_segment =3D (nfrags =3D=3D 0);
+> =20
+> -		dma_addr =3D dma_map_single(priv->device, skb->data,
+> +		dma_addr =3D dma_map_single(priv->dma_device, skb->data,
+>  					  nopaged_len, DMA_TO_DEVICE);
+> -		if (dma_mapping_error(priv->device, dma_addr))
+> +		if (dma_mapping_error(priv->dma_device, dma_addr))
+>  			goto dma_map_err;
+> =20
+>  		stmmac_set_tx_skb_dma_entry(tx_q, first_entry, dma_addr,
+> @@ -4878,9 +4878,9 @@ static netdev_tx_t stmmac_xmit(struct sk_buff *skb,=
+ struct net_device *dev)
+> =20
+>  		desc =3D stmmac_get_tx_desc(priv, tx_q, entry);
+> =20
+> -		dma_addr =3D skb_frag_dma_map(priv->device, frag, 0, frag_size,
+> -					    DMA_TO_DEVICE);
+> -		if (dma_mapping_error(priv->device, dma_addr))
+> +		dma_addr =3D skb_frag_dma_map(priv->dma_device, frag, 0,
+> +					    frag_size, DMA_TO_DEVICE);
+> +		if (dma_mapping_error(priv->dma_device, dma_addr))
+>  			goto dma_map_err; /* should reuse desc w/o issues */
+
+[Severity: High]
+This is a pre-existing issue, but does this error path lead to a memory lea=
+k?
+
+In stmmac_xmit(), if dma_map_single() or skb_frag_dma_map() fails, the code
+jumps to dma_map_err without advancing tx_q->cur_tx.
+
+Subsequent transmissions will reuse the same descriptor index and overwrite
+the DMA addresses in tx_q->tx_skbuff_dma. This causes a permanent memory le=
+ak
+of the previously mapped fragments for this skb, as they are never unmapped.
+
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260605010022.9686=
-12-1-elder@riscstar.com?part=3D5
+12-1-elder@riscstar.com?part=3D6
 
