@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-307811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307821-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5EAENZxpJWrlHwIAu9opvQ
-	(envelope-from <devicetree+bounces-307811-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 14:52:44 +0200
+	id w0BsAalsJWpsIAIAu9opvQ
+	(envelope-from <devicetree+bounces-307821-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 15:05:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E1F265090A
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 14:52:44 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F3565096F
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 15:05:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=marvell.com header.s=pfpt0220 header.b=PdEFP5tG;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307811-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307811-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=marvell.com header.s=pfpt0220 header.b=eds3Ek3v;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307821-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307821-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=marvell.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 99201300D449
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 12:51:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E90F6300EF4A
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 13:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E028B38E8A1;
-	Sun,  7 Jun 2026 12:51:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C3A3A63F2;
+	Sun,  7 Jun 2026 13:05:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E6F318B96;
-	Sun,  7 Jun 2026 12:51:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 301CA1A6822;
+	Sun,  7 Jun 2026 13:05:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780836691; cv=none; b=AAG/mw44zrtBUHXw92SzsptYwT1pwWwPRw4f3qFvP6KiaQ3UnoTiM3cfp87YS2sfIgvLYYl/Iki2tm6SApTUAckiuVaAxsViErLDRpB6EklMVyD9EFS4RiQ69AKWT/P/8ewS8zdt3oxZLLCLC3BVifPRVlea4W1CqxU7/TQVFs4=
+	t=1780837542; cv=none; b=jRv1cm5bkfeeBySZJORv2NvBParkUGf9CTEPVqVj62sYWRY7wmjKc07mnv01gjj08I3QWLV+1S0YgSUN7RZU9NOu/+yG6NdN49OdqjqhXdx947E+vfGV5CEhS3p99R+uM8wCkj+xdrDFu56vIkvomm7RO417AiKPoDzqAbBgknw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780836691; c=relaxed/simple;
-	bh=y1mCNYbv4xmoA/8hPymwySCxvqNrhzdGKAkPdI9eXQU=;
+	s=arc-20240116; t=1780837542; c=relaxed/simple;
+	bh=PPDJAMg14oqT50Y0gJO+dAmrsAOhLH6wQ3dQ1Tfpv1Y=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Tg8/bN70c1B+UBMqsVnfx4e+xCMF+kzr1e9mquYLeCO6QUUTnaDXDoRuQjqhocveSwTpjGcj4W6QnCUOt3bVEZMYJy6aU8+LBn9MueGfjTQGGbKngQajAgtZFFklVwRrmeRmsWFTzXhjSfbIh965Ova/jjJ5lHERL1ML8LT2cTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=PdEFP5tG; arc=none smtp.client-ip=67.231.148.174
-Received: from pps.filterd (m0431384.ppops.net [127.0.0.1])
-	by mx0a-0016f401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 657BT63E3749526;
-	Sun, 7 Jun 2026 05:51:13 -0700
+	 MIME-Version:Content-Type; b=bh0Hm97BML3bV5HU1tpMaaxBBIdClBKIp+ge6oHteaNllDRzIk05souUvWpNyk2bB5s3wRV6rpoASmis4nMekbHCeZiNErhtU+2eo8qSmdUtKfwlvb5Bczs2iskQjMGEXelMkLhiOyQr+mOjEMYlDdDIQXsCLrpDq2WJpFr4Xc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=eds3Ek3v; arc=none smtp.client-ip=67.231.156.173
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+	by mx0b-0016f401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 657B1cqb3698744;
+	Sun, 7 Jun 2026 05:51:16 -0700
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=pfpt0220; bh=gzX90Dtqcl+cOEpVY5HErjumr
-	gVIscJmmnCnneyC1iA=; b=PdEFP5tG52IQR35Xtzufx+P+vg3XbrYosIsUJDnoK
-	xRe7xXrfUmf7wfA6e7oW16UXsRYJ/z5YriDu7T7G4fzb5JMqaRSt9FMfjjvZp9C8
-	uknHI13bJKhXTRxAe0a/DJgHOs6LmsHW6mkquNQ95YkrfcgbRUKfoPv0fbmrZeOq
-	o7FmE5CavqAKbkBQmg21A9G+aw7Zw4sf38eSt9Lk7A3VGkmq5xLSPExuugxb3wsX
-	N50fVmyv3Cn44GvkRwtKOzoQebwHP1FDLN6zwfmlUrmqGgP7Rj0/Uv/u1axt7gd3
-	LjKfyPriakSAkNPBwCpUELzzrZWtlqB3p3G7nykWM6/CA==
+	:references:subject:to; s=pfpt0220; bh=aWcYYpxWpHV0gRGBfsC2kHwRU
+	bnJJhhEUIpChyiUSAY=; b=eds3Ek3vxSQhI88b03EtftC7ngUl7P+H+3bHyH3j3
+	z/6irkzQ1ovrrh/aha/+whitXyNs5Jfp2ZXc6f1pTyKAN0LcXjsVZVIUqoQ1jfnJ
+	1nwnpjWKoH2aTM6tHJJ/BrI5HSsUF0ItKZOsPxsw60IL5lF+NbyNJp1iJ+L1HHDU
+	fJN6pPoaNWnRBpQPHF3ir/2mdf/3Oz+AEiTJVn1G+n4YX8LBJz04DOVs8+aqo7AB
+	bwOpjjx9kDyC5G/KlLHd7vWhTm+zdH464sXr9SyEDy5bG3pHSMOH2UeCCCfZuB7b
+	eX1aa7GU7c5FmxMgQfFtyg/Aqlqsv9UDvu/CQRaDBGCVg==
 Received: from dc5-exch05.marvell.com ([199.233.59.128])
-	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 4en7t8r53e-1
+	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 4emk2ek3f7-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 07 Jun 2026 05:51:12 -0700 (PDT)
+	Sun, 07 Jun 2026 05:51:16 -0700 (PDT)
 Received: from DC5-EXCH05.marvell.com (10.69.176.209) by
  DC5-EXCH05.marvell.com (10.69.176.209) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Sun, 7 Jun 2026 05:51:12 -0700
+ 15.2.1544.25; Sun, 7 Jun 2026 05:51:15 -0700
 Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH05.marvell.com
  (10.69.176.209) with Microsoft SMTP Server id 15.2.1544.25 via Frontend
- Transport; Sun, 7 Jun 2026 05:51:12 -0700
+ Transport; Sun, 7 Jun 2026 05:51:15 -0700
 Received: from hyd1soter3.marvell.com (unknown [10.29.37.12])
-	by maili.marvell.com (Postfix) with ESMTP id 8AACA3F70BA;
-	Sun,  7 Jun 2026 05:51:09 -0700 (PDT)
+	by maili.marvell.com (Postfix) with ESMTP id AEE213F70C5;
+	Sun,  7 Jun 2026 05:51:12 -0700 (PDT)
 From: Geetha sowjanya <gakula@marvell.com>
 To: <linux-perf-users@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
 CC: <mark.rutland@arm.com>, <will@kernel.org>, <krzk+dt@kernel.org>,
         <gakula@marvell.com>
-Subject: [PATCH 2/3] perf: marvell: Add CN20K LLC-TAD PMU support
-Date: Sun, 7 Jun 2026 18:21:00 +0530
-Message-ID: <20260607125101.17778-3-gakula@marvell.com>
+Subject: [PATCH 3/3] dt-bindings: perf: marvell: Extend CN10K TAD PMU binding for CN20K
+Date: Sun, 7 Jun 2026 18:21:01 +0530
+Message-ID: <20260607125101.17778-4-gakula@marvell.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20260607125101.17778-1-gakula@marvell.com>
 References: <20260607125101.17778-1-gakula@marvell.com>
@@ -78,21 +78,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA3MDEyOCBTYWx0ZWRfX9JdUTYcp82bL
- 04KFZ4at+fUzy9XdhIm6QpSporQPY3PtzMkZPHLN6awae6GiTFzoKMKgP+1r7Ad++Egke5qh761
- MN2ydUVlkY0DLqDRaVKzCVc+QfnHcXBsik8iGqqIUYJ7l/EiX9nBjy67VWgrSDZVohMfTwvaCfh
- XRQmHUj6tREwbfXqq5XS4/awV1jYukX/Q0w8mUDkVboTS48nsBgH+TIpaeUfOoiBkgju8Ll2gfI
- 421vsU6qLqR3UdeRHrEaUh0GMnOz91jpLeF7Ux3/xvuOmsV6ewu5918uZ9EgVj8Xo6VpjCT+4J0
- w3FdaNNpS8fGvcnsbr6ONCKb5ENsCYGz9LkIO42gtj/k+ulbt6ouU01PWldDu+7FE26t8T0dy3R
- oFGBvBR4hE11xAJBNJz/32w/AAns+DwGs3BxPAJlnz2lulfxPVbQBra3gE2MFfEd9uKLErJWJhr
- rIMkfSzHrqgJ7rVfSlQ==
-X-Authority-Analysis: v=2.4 cv=evLvCIpX c=1 sm=1 tr=0 ts=6a256940 cx=c_pps
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA3MDEyOCBTYWx0ZWRfX7i5rzTf4t3Bz
+ k6XEnIA6TnTI+IBPSxZScs0dLR6I9MigGv8ogGoXd9SXOujlSmQpE4MnYBFBzhRbnLJ5N6rqKoc
+ cSL/V9GUlNnpZQ4Q348eJdpHsXWEK89Z0LuELtyMBX8uhSm3y7imjHnfuzH2RkwnLU2IyWNn/++
+ t6i0alma3eR7M8ym41ptMWlTXis6LICnw9MAB+nus453guVFDPVL/RMFzUgMTXc/VSHpU3zMEtQ
+ Wyi77hsRc9gMuypqmMMcq8YtDWY0sR/D7WucOZq12eY0gtqzMS0uzWQgyD83P5oPzUpG+kJWzoH
+ mgwSgMzZ9663HP3IoFW8TIbbiEyQXh4MfpU3HMXM5E6g7V/vZy1Logrc1ll4RYIB0Owl3vUAvuw
+ tMjoaPdjFU8rUI9j4rLaNh2qPTHm6SUKF7//DlOOg8pg+sjQHlMeU7J8HEtW8V+h88Zz/B4IRSI
+ aGgBcfWJelhxraapTVw==
+X-Proofpoint-GUID: Knqm4btXgidxs7KvtiAQGoPwpMAezOuj
+X-Authority-Analysis: v=2.4 cv=bJUm5v+Z c=1 sm=1 tr=0 ts=6a256944 cx=c_pps
  a=rEv8fa4AjpPjGxpoe8rlIQ==:117 a=rEv8fa4AjpPjGxpoe8rlIQ==:17
  a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=l0iWHRpgs5sLHlkKQ1IR:22
- a=TtqV-g6YmW1Jfm2GSLaY:22 a=M5GUcnROAAAA:8 a=Ye5975JmM4DBnxqCyIMA:9
- a=OBjm3rFKGHvpk9ecZwUJ:22
-X-Proofpoint-ORIG-GUID: QybdIdM_cGL4jEs5nNVnnEq9doSuyz9m
-X-Proofpoint-GUID: QybdIdM_cGL4jEs5nNVnnEq9doSuyz9m
+ a=QXcCYyLzdtTjyudCfB6f:22 a=gEfo2CItAAAA:8 a=M5GUcnROAAAA:8
+ a=rc1d4UPXP1xlpl8uFC8A:9 a=sptkURWiP4Gy88Gu7hUp:22 a=OBjm3rFKGHvpk9ecZwUJ:22
+X-Proofpoint-ORIG-GUID: Knqm4btXgidxs7KvtiAQGoPwpMAezOuj
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-07_03,2026-06-05_02,2025-10-01_01
@@ -104,12 +104,12 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[marvell.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[marvell.com:s=pfpt0220];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307811-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307821-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:linux-perf-users@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:mark.rutland@arm.com,m:will@kernel.org,m:krzk+dt@kernel.org,m:gakula@marvell.com,m:krzk@kernel.org,s:lists@lfdr.de];
@@ -122,134 +122,65 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	ALIAS_RESOLVED(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,marvell.com:mid,marvell.com:dkim,marvell.com:from_mime,marvell.com:email,vger.kernel.org:from_smtp];
 	DKIM_TRACE(0.00)[marvell.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2E1F265090A
+X-Rspamd-Queue-Id: 53F3565096F
 
-CN20K LLC-TAD uses non-standard PFC/PRF page offsets relative to each
-TAD region base. Add a TAD_PMU_V3 profile with per-platform register bases,
-extend the CN10K event map for new counters, and match the block via OF and
-ACPI.
+Allow marvell,cn20k-tad-pmu alongside marvell,cn10k-tad-pmu, document
+CN20K in the title and description, add a maintainer, and include a
+CN20K example node with the same required properties as CN10K.
 
 Signed-off-by: Geetha sowjanya <gakula@marvell.com>
 ---
- drivers/perf/marvell_cn10k_tad_pmu.c | 33 +++++++++++++++++++++++++---
- 1 file changed, 30 insertions(+), 3 deletions(-)
+ .../bindings/perf/marvell-cn10k-tad.yaml      | 20 +++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/perf/marvell_cn10k_tad_pmu.c b/drivers/perf/marvell_cn10k_tad_pmu.c
-index 7a3b659c999a..4daf109b89ee 100644
---- a/drivers/perf/marvell_cn10k_tad_pmu.c
-+++ b/drivers/perf/marvell_cn10k_tad_pmu.c
-@@ -17,6 +17,8 @@
+diff --git a/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml b/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
+index 362142252667..1612052b59ae 100644
+--- a/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
++++ b/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
+@@ -4,23 +4,27 @@
+ $id: http://devicetree.org/schemas/perf/marvell-cn10k-tad.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
- #define TAD_PRF_OFFSET		0x900
- #define TAD_PFC_OFFSET		0x800
-+#define TAD_PRF_NS_OFFSET	0x30900
-+#define TAD_PFC_NS_OFFSET	0x30800
- #define TAD_PFC(base, counter)	((base) | ((u64)(counter) << 3))
- #define TAD_PRF(base, counter)	((base) | ((u64)(counter) << 3))
- #define TAD_PRF_CNTSEL_MASK	0xFF
-@@ -33,6 +35,7 @@ struct tad_region {
- enum mrvl_tad_pmu_version {
- 	TAD_PMU_V1 = 1,
- 	TAD_PMU_V2,
-+	TAD_PMU_V3,
- };
+-title: Marvell CN10K LLC-TAD performance monitor
++title: Marvell CN10K / CN20K LLC-TAD performance monitor
  
- struct tad_pmu_data {
-@@ -80,8 +83,14 @@ static void tad_pmu_start_counter(struct tad_pmu *pmu,
- 	if (partid && event_idx > 0x19 && event_idx < 0x21) {
- 		partid_filter = TAD_PRF_MATCH_PARTID | TAD_PRF_PARTID_NS |
- 				((u64)partid << 11);
-+
-+		if (pdata->id == TAD_PMU_V3)
-+			partid_filter = TAD_PRF_MATCH_PARTID | BIT_ULL(25) |
-+				((u64)partid << 10);
- 	}
+ maintainers:
+   - Bhaskara Budiredla <bbudiredla@marvell.com>
++  - Geetha sowjanya <gakula@marvell.com>
  
-+	if (pdata->id == TAD_PMU_V1 && event_idx > 0x24)
-+		return;
+ description: |
+-  The Tag-and-Data units (TADs) maintain coherence and contain CN10K
+-  shared on-chip last level cache (LLC). The tad pmu measures the
+-  performance of last-level cache. Each tad pmu supports up to eight
+-  counters.
++  The Tag-and-Data units (TADs) maintain coherence and contain the
++  shared on-chip last level cache (LLC) on Marvell CN10K and CN20K SoCs.
++  The TAD PMU measures last-level cache performance. Each TAD PMU
++  supports up to eight counters.
  
- 	for (i = 0; i < pmu->region_cnt; i++) {
- 		reg_val = event_idx & 0xFF;
-@@ -261,6 +270,18 @@ static struct attribute *tad_pmu_event_attrs[] = {
- 	TAD_PMU_EVENT_ATTR(tad_dat_rd_byp, 0x22),
- 	TAD_PMU_EVENT_ATTR(tad_ifb_occ, 0x23),
- 	TAD_PMU_EVENT_ATTR(tad_req_occ, 0x24),
-+	TAD_PMU_EVENT_ATTR(tad_req_msh_out_dtg_evict, 0x25),
-+	TAD_PMU_EVENT_ATTR(tad_req_msh_out_ltg_evict, 0x26),
-+	TAD_PMU_EVENT_ATTR(tad_rsp_msh_out_mpam, 0x28),
-+	TAD_PMU_EVENT_ATTR(tad_replays, 0x29),
-+	TAD_PMU_EVENT_ATTR(tad_req_byp0, 0x2a),
-+	TAD_PMU_EVENT_ATTR(tad_req_byp1, 0x2b),
-+	TAD_PMU_EVENT_ATTR(tad_txreq_byp, 0x2c),
-+	TAD_PMU_EVENT_ATTR(tad_time_in_dslp, 0x2d),
-+	TAD_PMU_EVENT_ATTR(tad_time_elapsed, 0x2e),
-+	TAD_PMU_EVENT_ATTR(tad_req_msh_out_dss_rd_128mrg, 0x2f),
-+	TAD_PMU_EVENT_ATTR(tad_req_msh_out_dss_wr_128mrg, 0x30),
-+	TAD_PMU_EVENT_ATTR(tad_tot_cycle, 0xff),
- 	NULL
- };
+-  The DT setup comprises of number of tad blocks, the sizes of pmu
+-  regions, tad blocks and overall base address of the HW.
++  The DT setup describes the number of TAD blocks, the sizes of PMU
++  regions and TAD pages, and the overall MMIO base of the hardware.
  
-@@ -426,7 +447,6 @@ static int tad_pmu_probe(struct platform_device *pdev)
- 	tad_pmu->region_cnt = tad_cnt;
+ properties:
+   compatible:
+-    const: marvell,cn10k-tad-pmu
++    items:
++      - enum:
++          - marvell,cn10k-tad-pmu
++          - marvell,cn20k-tad-pmu
  
- 	tad_pmu->pmu = (struct pmu) {
--
- 		.module		= THIS_MODULE,
- 		.capabilities	= PERF_PMU_CAP_NO_EXCLUDE |
- 				  PERF_PMU_CAP_NO_INTERRUPT,
-@@ -440,7 +460,7 @@ static int tad_pmu_probe(struct platform_device *pdev)
- 		.read		= tad_pmu_event_counter_read,
- 	};
- 
--	if (version == TAD_PMU_V1) {
-+	if (version == TAD_PMU_V1 || version == TAD_PMU_V3) {
- 		tad_pmu->pmu.attr_groups = tad_pmu_attr_groups;
- 		tad_pmu->ops		 = &tad_pmu_ops;
- 	} else {
-@@ -482,6 +502,11 @@ static const struct tad_pmu_data tad_pmu_data = {
- 	.tad_pfc_offset = TAD_PFC_OFFSET,
- };
- 
-+static const struct tad_pmu_data tad_pmu_cn20k_data = {
-+	.id   = TAD_PMU_V3,
-+	.tad_prf_offset = TAD_PRF_NS_OFFSET,
-+	.tad_pfc_offset = TAD_PFC_NS_OFFSET,
-+};
- #endif
- 
- #ifdef CONFIG_ACPI
-@@ -495,6 +520,7 @@ static const struct tad_pmu_data tad_pmu_v2_data = {
- #ifdef CONFIG_OF
- static const struct of_device_id tad_pmu_of_match[] = {
- 	{ .compatible = "marvell,cn10k-tad-pmu", .data = &tad_pmu_data },
-+	{ .compatible = "marvell,cn20k-tad-pmu", .data = &tad_pmu_cn20k_data },
- 	{},
- };
- #endif
-@@ -503,6 +529,7 @@ static const struct of_device_id tad_pmu_of_match[] = {
- static const struct acpi_device_id tad_pmu_acpi_match[] = {
- 	{"MRVL000B", (kernel_ulong_t)&tad_pmu_data},
- 	{"MRVL000D", (kernel_ulong_t)&tad_pmu_v2_data},
-+	{"MRVL000F", (kernel_ulong_t)&tad_pmu_cn20k_data},
- 	{},
- };
- MODULE_DEVICE_TABLE(acpi, tad_pmu_acpi_match);
-@@ -564,6 +591,6 @@ static void __exit tad_pmu_exit(void)
- module_init(tad_pmu_init);
- module_exit(tad_pmu_exit);
- 
--MODULE_DESCRIPTION("Marvell CN10K LLC-TAD Perf driver");
-+MODULE_DESCRIPTION("Marvell CN10K/CN20K LLC-TAD Perf driver");
- MODULE_AUTHOR("Bhaskara Budiredla <bbudiredla@marvell.com>");
- MODULE_LICENSE("GPL v2");
+   reg:
+     maxItems: 1
 -- 
 2.25.1
 
