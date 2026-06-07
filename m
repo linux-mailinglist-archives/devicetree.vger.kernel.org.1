@@ -1,146 +1,169 @@
-Return-Path: <devicetree+bounces-307856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307857-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3QNNDJ25JWrSKwIAu9opvQ
-	(envelope-from <devicetree+bounces-307856-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 20:34:05 +0200
+	id +spBKZu6JWonLAIAu9opvQ
+	(envelope-from <devicetree+bounces-307857-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 20:38:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738AB6513D9
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 20:34:04 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 431E765146F
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 20:38:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WJx3nq4m;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307856-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307856-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mSGRj76Z;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307857-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307857-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D3FAF300C582
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 18:33:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 501C830089AB
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 18:37:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D9F730C360;
-	Sun,  7 Jun 2026 18:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8E5E319847;
+	Sun,  7 Jun 2026 18:37:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932D9224D6;
-	Sun,  7 Jun 2026 18:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A08521EFFB7
+	for <devicetree@vger.kernel.org>; Sun,  7 Jun 2026 18:37:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780857188; cv=none; b=iubpEtjO/Mpkf+DPaQdgOVzh0YoEEbJLr+MJiIU5Tnei4XgfCzU8u1uV+zhcwNqv2mmJvyjpirJQpzEHgbgtLzmG3itlcRWjI3hOEpLJvNEX7rIuM+qDhpPYfvcJCv5dMuR6pMltZyxSZWxXD8wyI+bzqgGasMUaAZRJD03V/qc=
+	t=1780857438; cv=none; b=UMNmtrL92gcjgfi3wgYNHxtsToGJO/ggBEuQzLIogxRYU/6gPR3NXU4SuVBUO3v2ZpbuvzMsr9OF06Gr+UzjUGgWTuKyhWMUwaCLqimP6QUBgFu+BzJxedk6rtSyGm+GOLGAikaDt/Lo0NUUbJSzsVu1dU9Bj/V6BW+g5dsAa4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780857188; c=relaxed/simple;
-	bh=X/5om6HkYhW7mPvTmTrOWA5QHz5YZ+eLYbvUEduIo8w=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=T/orR1YFFp437oTkL0xdk8myHjMO9lQLJEMQSmjyQJjTsTQnXt2PHraRz+o4qkBqFWl0XEvVbZh9r2zeKHLFKXfqWb4VriKAeeGtpiR6C9jXuae/5Sw1FLGJirEpJBthcGPy/hNqG/WkpSn+khkBWZ9ej6qEVHFyHM0Is5iJkXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WJx3nq4m; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4A711F00893;
-	Sun,  7 Jun 2026 18:33:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780857187;
-	bh=uU69zeuZlkcAkD3EIcqqhVPgOcO8cs/QtnDl9YzXe3c=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject;
-	b=WJx3nq4mnicd5pPpZxIaCqpREUWEfJ669+yElZgjvTgtrp/Sm0feR1ZqTGkQEUqW2
-	 G0ADy/Ew7iti+oiM4LzJXZbssmydYSJ4pMWi2giz5t5e2fDuwx0iZu9lzTvb4cZTj8
-	 CCdko9DtVRmho06iXWNJLCIRMRPNF77Na11JnidtxW2ha/jO6LLA4ZLCe2SfNfk3cR
-	 IXXvOS0zvq1OrLYEP/9Dznrqf5F6fLlAWYC5Sron6i3UVE/9xRjex5FwOAeLvTkuCm
-	 KfZ6LNPuk/IVhb8MYbgmQX9Tm2xmYlQqRSzqtDYpaxlG7mWzhXJ0E45lDRkGz/Mwy4
-	 TJMQ7EsYZWDFA==
-Date: Sun, 07 Jun 2026 13:33:06 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1780857438; c=relaxed/simple;
+	bh=12QKhw9u5pwrqF99zfY9pLn7KRj4JE4SboM6uGGpOj8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d5d8GF4Y4RDN742wo53ad5BvZ7bbTi34A4lgC9rAqzI6hFGUW53S38xOMEN+bLYnZtWrbknC/uzuw35KqO2LXKjf/PjZhM4Oz0giNgVwaYTMfh77myEi8sfgTwZfajUeogZZF+llPTVWFEpQpbpsSQiQRliEApUmvXuT40zgbp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mSGRj76Z; arc=none smtp.client-ip=209.85.167.54
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5aa7a70c0aaso3581191e87.0
+        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 11:37:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780857436; x=1781462236; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sn+CljYu5ixflRA1SgmEgER7JwRLqObGFjigh04bFJg=;
+        b=mSGRj76Z6JoehNOsk7do8eQvZQKuC72DhS4gRfVbQt4YfEz7SxXWAlHftwSjMHIWZp
+         fcMSw0/sdzFSCMweDWWhVlSpjuN4ZpUoNZQ2zC9mwPdwyAr5OfwW1aEliN1L4Q1o/jnn
+         V3ojSd2N6e6GUJPbZ6w/ZskxhRpzL7otVqoMx2Wq1aMml6gvYn5wVKAVXkk/spFuo11Q
+         qd5yfROiB17NA3PiX4fOyqGAi4wmPPptbSSD8uSjlYOV3eYjK/Nl6HZ55NHsUAsu2oZu
+         uK42PLVbMBl5mGv49jAsXo774LhTiDqBHu6/3POSGz9pQ4PFhsUmr9bZ6H7MxnaVkbNT
+         MFAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780857436; x=1781462236;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sn+CljYu5ixflRA1SgmEgER7JwRLqObGFjigh04bFJg=;
+        b=fpEcu5g/31Yx0sIqBLl2uHw6nmMkv4dHvoyImMl2qyGP8z5jEA+JmpB5tKYBhOFq0d
+         rXUNQYMSUsi6gWqGLptVkQf6mRKQuAaHXgEDnnIGzqTs/PZr89uBE8Rd4tLZissnTbjg
+         PbrGPQ48sQLDR9OpTrgTlGDqmzn+bO8g54w5JgcTNWBQC0Oxq6/kCK8q/Ekv6/zUP6Nk
+         0tUpjeUTr7R4MwoQUOAvzGLIoQq4wnEoHDWO7bXo16nMiB/xAmKYiNxZP2c/pU/Ysl8w
+         pDrrI3mFgM5gLh+I8aYHFEePSJ49VgFvv+JyERqiL2XHsngleVi0exSPosyXaOmZ9tvV
+         Feqw==
+X-Forwarded-Encrypted: i=1; AFNElJ8ZkiteFSp5Dfps+Q6oFtecQGB226kJRxipw0oNr5+G0PDi0LbNUgIeReZ119qlAN5Pix58XeeVyRzX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXtvUD3YImEpK8JWWfCd9V82SqRwTAUYjKJxQKV3OCqPfot4KB
+	3HBO1zQh1Lmh3r3djeBi0NJo2sbHGhBdwgS3jXA79YCteFNZBIFXzoJb
+X-Gm-Gg: Acq92OGC4bmUERqd3lhU5G1U1gjHPuGAGbzdO1oXIEYZ6750p4vNo/JcDwuvgz61yLp
+	GNEdKiyZ+CYeT9MUEL0JER6Y1FCpG1wDVyWj99poREHT0Z/P+AzKqACL9pAhOOet87OSznd3pVR
+	rvKlxlQzzbNjK/WniRLDO6MXi5Y8+zDd2MTC58+6NyU0Vt+8El+PjdYXnRn+VEj/Bc/HJ58eY2h
+	XySQwVgCU5mvCIYxNJM9cR8AV572PwPPJl4Nqx8cK1B77vUxeYaeD3CylmO2+y/j0mTRHyPIMKB
+	hgAH5X/TKzpzqhWDdloxaUvM01nYep7C/k1cUMr288QqQHEiEUACuqGRb2clB83u98glPn8cZ/3
+	9uPw3E7QoCxiN+MsWl1jTuQyQ4X0ah+ETS9w21CTIUb24O35duFaQCjBDCDwbmK8ROIBij5ywjp
+	GzAhNvkdm1vKfdNEwVKd57VMjS/rPguVhnh1VstlEPbdCr+irEh5tjNoxmsT9mWgd/FVw=
+X-Received: by 2002:ac2:51c9:0:b0:5aa:265f:acd0 with SMTP id 2adb3069b0e04-5aa87c1a006mr3168512e87.39.1780857435867;
+        Sun, 07 Jun 2026 11:37:15 -0700 (PDT)
+Received: from MSI-LINUX.kielce.vectranet.pl ([2a02:2a40:27ec:2900:efe3:f920:63b7:5b7])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa7b8fc426sm3240809e87.26.2026.06.07.11.37.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Jun 2026 11:37:15 -0700 (PDT)
+From: Jakub Szczudlo <jakubszczudlo40@gmail.com>
+To: linux-iio@vger.kernel.org
+Cc: jic23@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	marcelo.schmitt@analog.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mike.looijmans@topic.nl,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	jorge.marques@analog.com,
+	antoniu.miclaus@analog.com,
+	mazziesaccount@gmail.com,
+	jishnu.prakash@oss.qualcomm.com,
+	duje@dujemihanovic.xyz,
+	wens@kernel.org,
+	sakari.ailus@linux.intel.com,
+	linusw@kernel.org,
+	Jakub Szczudlo <jakubszczudlo40@gmail.com>
+Subject: [PATCH 0/3] iio: adc: Extend ti-ads1100 driver
+Date: Sun,  7 Jun 2026 20:35:39 +0200
+Message-ID: <20260607183542.368184-1-jakubszczudlo40@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: me@brighamcampbell.com, linux-kernel-mentees@lists.linux.dev, 
- linux-spi@vger.kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, broonie@kernel.org, skhan@linuxfoundation.org, 
- conor+dt@kernel.org
-To: Ninad Naik <ninadnaik07@gmail.com>
-In-Reply-To: <20260607142356.2844008-1-ninadnaik07@gmail.com>
-References: <20260607142356.2844008-1-ninadnaik07@gmail.com>
-Message-Id: <178085718604.176000.18209557583521606291.robh@kernel.org>
-Subject: Re: [PATCH] spi: dt-bindings: octeon: Convert to DT schema
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307856-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307857-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[jakubszczudlo40@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,topic.nl,vger.kernel.org,gmail.com,oss.qualcomm.com,dujemihanovic.xyz,linux.intel.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:me@brighamcampbell.com,m:linux-kernel-mentees@lists.linux.dev,m:linux-spi@vger.kernel.org,m:krzk+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:broonie@kernel.org,m:skhan@linuxfoundation.org,m:conor+dt@kernel.org,m:ninadnaik07@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:marcelo.schmitt@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mike.looijmans@topic.nl,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jorge.marques@analog.com,m:antoniu.miclaus@analog.com,m:mazziesaccount@gmail.com,m:jishnu.prakash@oss.qualcomm.com,m:duje@dujemihanovic.xyz,m:wens@kernel.org,m:sakari.ailus@linux.intel.com,m:linusw@kernel.org,m:jakubszczudlo40@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jakubszczudlo40@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,devicetree.org:url]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 738AB6513D9
+X-Rspamd-Queue-Id: 431E765146F
 
+Extend ADS 1100 driver to support ADS1110, which is a pin-to-pin 
+compatible device with higher resolution. This patch also updates the 
+device tree bindings and Kconfig description to reflect the new 
+supported device.
 
-On Sun, 07 Jun 2026 19:53:56 +0530, Ninad Naik wrote:
-> Convert octeon-3010 to DT schema
-> 
-> Signed-off-by: Ninad Naik <ninadnaik07@gmail.com>
-> ---
->  .../bindings/spi/cavium,octeon-3010-spi.yaml  | 67 +++++++++++++++++++
->  .../devicetree/bindings/spi/spi-octeon.txt    | 33 ---------
->  2 files changed, 67 insertions(+), 33 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-octeon.txt
-> 
+Signed-off-by: jszczudlo <jakubszczudlo40@gmail.com>
+---
+jszczudlo (3):
+  dt-bindings: iio: adc: Update title and enum
+  iio: adc: Update Kconfig description for TI_ADS1100
+  iio: adc: Add ti-ads1110 support to ti-ads1100 driver
 
-My bot found errors running 'make dt_binding_check' on your patch:
+ .../bindings/iio/adc/ti,ads1100.yaml          |   3 +-
+ drivers/iio/adc/Kconfig                       |   6 +-
+ drivers/iio/adc/ti-ads1100.c                  | 165 +++++++++++++-----
+ 3 files changed, 131 insertions(+), 43 deletions(-)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.example.dtb: /: 'compatible' is a required property
-	from schema $id: http://devicetree.org/schemas/root-node.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.example.dtb: /: 'model' is a required property
-	from schema $id: http://devicetree.org/schemas/root-node.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20260607142356.2844008-1-ninadnaik07@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.47.3
 
 
