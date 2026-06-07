@@ -1,85 +1,86 @@
-Return-Path: <devicetree+bounces-307777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307778-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zgf7JSYqJWqIEAIAu9opvQ
-	(envelope-from <devicetree+bounces-307777-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 10:21:58 +0200
+	id XbRZIkwqJWqWEAIAu9opvQ
+	(envelope-from <devicetree+bounces-307778-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 10:22:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E213064F1DB
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 10:21:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E25C864F1F9
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 10:22:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=nexthop.ai header.s=google header.b=RcvraqHq;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307777-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307777-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=nexthop.ai header.s=google header.b=bdwOH6CA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307778-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307778-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=nexthop.ai;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 988AC3022602
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 08:21:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B040730342B5
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 08:21:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00ECE36F438;
-	Sun,  7 Jun 2026 08:21:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81A8536F438;
+	Sun,  7 Jun 2026 08:21:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com [74.125.82.53])
+Received: from mail-dl1-f46.google.com (mail-dl1-f46.google.com [74.125.82.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B2A2E739F
-	for <devicetree@vger.kernel.org>; Sun,  7 Jun 2026 08:21:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A62B36F8EA
+	for <devicetree@vger.kernel.org>; Sun,  7 Jun 2026 08:21:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780820464; cv=none; b=b7ckMqGjj2eQmj/qmSAz79MxZCSQJB7SPAIKJsh2qsJhveJFFfvqR16MAql96RPSv0C68/6b8rAuuaJU8TPLx6rkipjNIKt3Ma5Rl/p/Cb84ThdXHMpOh7Q/489eqW1fZmJAs9iJfIkHyzu9di2PJ9/jFaLFZbZzg7pt0IUbv3g=
+	t=1780820466; cv=none; b=TXMBSby5BERGRjgNaxRIxiWselYa+zzj+7g1xS3I5L+Wo/lKbej+fGai4uSVXs/nnpLmSgzS8DOKhc0ydNXZFrnD6eKC7EkwN3PEsXFjLK3ATak4Ce9DnHi3sG0EAElBLU/ppeygOdtZRiT8osU9Bvr+6k4XF7lqrCthjXszFCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780820464; c=relaxed/simple;
-	bh=XaIH/tdA/VTfND3mpkqGBSmm806lREpUi5+nvDjYaoo=;
+	s=arc-20240116; t=1780820466; c=relaxed/simple;
+	bh=YQERmjO6hBoH6+GdyySBEbETr2FTBTtGkTU+7Ccv33E=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VOvOXP/sq7arsRmzUP/cLveaOBlfYyaNrnU50q5GuQ7PKKKKH3pb3+sNM2KNeRn9cw8nRLxmqfv27PhQpSooRm3qt/FlB6wqSgjW0RRgHfqaIHSJPUZGcN4OxcY8GqTVssRZBiGZWTpJW4S/zmACibQovnmgGZUbrOMxmjzoY6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nexthop.ai; spf=pass smtp.mailfrom=nexthop.ai; dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b=RcvraqHq; arc=none smtp.client-ip=74.125.82.53
-Received: by mail-dl1-f53.google.com with SMTP id a92af1059eb24-137dd3af345so2978615c88.0
-        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 01:21:03 -0700 (PDT)
+	 In-Reply-To:To:Cc; b=u1W48VWMvvl4YbSwkyqgwRH2kiSbQ9n7W4h41nDl9fj73AH75L2Wr/yTzry+b+weLKnygKpY1xOqRTj74fgXkZIjeascct2MNay1//u2t7McWT/FYL7BgbbYGthz8BXBTbMQFGNVdbBDPSrJuIiHQSxnjwG83i2gswjCIiYvGwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nexthop.ai; spf=pass smtp.mailfrom=nexthop.ai; dkim=pass (2048-bit key) header.d=nexthop.ai header.i=@nexthop.ai header.b=bdwOH6CA; arc=none smtp.client-ip=74.125.82.46
+Received: by mail-dl1-f46.google.com with SMTP id a92af1059eb24-138129a622dso3732842c88.0
+        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 01:21:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexthop.ai; s=google; t=1780820463; x=1781425263; darn=vger.kernel.org;
+        d=nexthop.ai; s=google; t=1780820464; x=1781425264; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=n/xWxoztuolS/ZK9hptFI5IvqarIJl0DesoQ958DqkU=;
-        b=RcvraqHqwhkrL/dhgGhClTpe1pmQJ4z7dABaE7b1qeBevAJEOZV65Z3kcIOFS5Kh/0
-         063dtGANGx5n4aSg3IW7tDrmV4IRDXI3Ncw1OBhx7qQ5p/8K1JXirYvBTmwqCEtTnSZU
-         zNZEMZQCC2MilV3TOa7KE5eYrU2dx8viXCdb/F3H71HnZlfjpdGqmH+a3rUwvZ+Mz7NU
-         7mSX4Rg8/SucnqXRoAWfdNo2GNJsVXLIsl9IVptxPHj4K5q0hDLrfbIt2nJDam+xtI6d
-         DEBa9SusGKFODlzR24w8FKPcPlyGYk0QItUqhACUrbGb6bte50zUvvNo0idFezJbjRFz
-         TzkQ==
+        bh=fXENIPE1x+qpwB7xDgysn50NyxQ6tMkm/oN0K3KXyn0=;
+        b=bdwOH6CA3MEm4icejJUJyYT50xPCnyTJczYxHbjgj8rN8tah5IIh+5eQ8YCgJ3CEhg
+         uI4CpTox0e5V/hdhDblZhYdum7d3DRyFVxvMZxW1O6ShC0buxyTv9fef1aqOO84stQwm
+         9dOF1tRx+zTnwGQjORkBi6TVwrogUiTUtAn2Wvgp2lKnI8vfufQ9YmWJQM8VJr36APGE
+         dOUiiHhwTqDAhU7UQcmKVU2qbjdiPetc0SxQ3hicYoB0yhiCHV7LTnIqtHqcVVbKkfqI
+         vnhDoHsv7QP+IKKTpGCBSm1UKOoeAKeDVcLODpm7X4Sk1WlpdaUecbs6N9bIj0cglqP+
+         NPVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780820463; x=1781425263;
+        d=1e100.net; s=20251104; t=1780820464; x=1781425264;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=n/xWxoztuolS/ZK9hptFI5IvqarIJl0DesoQ958DqkU=;
-        b=fCTzf6VJFt1EGcO/6woS6mxeotorLgzuGi38v3RZ5b+vuza2HLRbd3D9s4ArP2vewR
-         3CsVdOFFFUukCVFGluVaACYuyJYNZK8/Lk0A0b+/RO/jeAFrBRiPG3XmYZ1uqqUrnPE6
-         SOZI3XDaKKxNHUI8pnBQq+JkAx5eq3pqYGp335D7L9s3FnL+s/wVJsw5gkgkEs0DOqQi
-         hzic1O69cYLyQDOsspDCxI8AV+70JeS2U731DNrnuKVS2fNM8sjfsnmlLmMLGrHWnmXi
-         tJKc2k+E1r8LwD/6YrJcr0qdnttOkGqzN+vf4iFhpHs1VEik5mNOt8fIkvSubPSvb32O
-         Y6pQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+3iRMUh9T8KISzk7v+gFx2e/vOJW4rRNxhKvlNyBz30j3fyEMGvyjtA+GKIOaCZrIhttvvQKMWOxjz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJgvAGRE2CW4Riec8KO32vXcgSX9mNDGXA32WF0nuCglDJKRyn
-	29N0Lh76EFCSb0otRBRNJEeL0Kw/nOMGPINNM/CFGr6IprzlnihMyr2IvY0s98rRBReSCAHbQts
-	qD4Kq
-X-Gm-Gg: Acq92OGQ0hFntlIw51YeG7DprHzgiEPHd1tKrT3kBqG3gJvb6IWeb2miQialAkCXP1C
-	qOrwPCU4ivPKlv1OClwwnztcUiWtM+0P8O422hDsahCNUwLekJmrjgzVuWpE0Ut9c6wBkcHQprG
-	mmzIlJkTBYp38rGn/C35XuwtNGetslYaj2SVCBQTejp3v4M61NtxFHTsS6ZaGyw3yd+5ivta87R
-	9XG64D5nSORe3YHskfvHztarZaU+3ZhaSA0aPWhaHvqqsbIYVdDiMBdsCruyE+DW83qQXGKrTvG
-	eggiwTMlOYQXVqx4j4nZe2SkbmZ8sCN3FZhYNWOo5FueNlfI5PgBGpIapfJfmDXX4jcJWpioAF9
-	m0aTSHL7gOpHtvSZ1jS8kVUtrqOWjvPfeQf9G+/9dY1NQpQLIT5Q6mvCjuW/hh8wTC0CvgLlJKa
-	iS0c39zZ/izGVj7k+lWWTzXg0osnST8jeQQLM44aJtgTIQUww=
-X-Received: by 2002:a05:7022:6ba1:b0:136:d237:b42f with SMTP id a92af1059eb24-1380671e4f7mr5539508c88.32.1780820462533;
-        Sun, 07 Jun 2026 01:21:02 -0700 (PDT)
+        bh=fXENIPE1x+qpwB7xDgysn50NyxQ6tMkm/oN0K3KXyn0=;
+        b=Y+WjSMmpbtkeHkp9BeaLHf5vpdbtBfL0jpXZY566dU0JEW10LTikiQU3exYz31r5Cc
+         1bigih4ESHgMyFls7zjEfs8Ktdee7Dt33rHu7Z8LVeqlTKXiWYMspMFToKVvB+6p7DoW
+         wIRhNx8n4ZFHXQmdgKAMS1Jq1CkxJ8tMfoZB8B24KWRw0jAu80XKEiQvf6aV+/N6EyYV
+         BKYd7jlqpY9VFc0N4NIVcAbe1GqpXgn3cVYRScW+zZgrks8Cqeip8q+iQd5BzvzFT+rv
+         PI8/WUFVb4WG+Xx/mlPZbaCgLgMMLvvp0DqhUj11VMcvFTOgo03/rmZ/N3+2CPiSWfUZ
+         Y5SA==
+X-Forwarded-Encrypted: i=1; AFNElJ/uV9PpIhourIwev3MSqZ1iDCMFTlvcqcbdwAOxkl40OfS9c+d/exGqXJEEQndTnj2fwf72+zisWQF3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzguNp0Qf/zfa0+ewgzjRX+WlPF0Af1U4CEV5PzBAaaQak2keLw
+	NaUf6EqZwAu/yp6O4EttbrJJKZnsT1QJb8qtpKPHHwUNajpkAqvnoWb/u6bTofhYG/oQ0h9eTa6
+	9MyAL
+X-Gm-Gg: Acq92OHSQ14LF8uWsWEzGwxae9Vm2A9UYYt6sei0ErOc6TMpBbUcCOqBT2yyOAzvxcS
+	wI8RWf9qfa59Tv9RQ+Q1pBVUPPs/hbQERt/3wnJPORmmKByOmM5T4mZ8Am/JSPG3YG4KCw4g75z
+	cT1P+TJylKtLTN5t6A5M11Gly93HtOk9xynlwuqZI4pZyqFzZp8/s5PYYyaoOUIae8qQm+XqXGy
+	tcynk2mDvrGsxkmlc9plGEzaf//zwcZyUWaJz9VX4/70VWnBSzhJEtvL6TUeFg2qBcyTE8AHu0o
+	GfYdrhM43L8XDfvdQMZnphnDAbRRAXdrp3ihlUnw+jY6FTAnC7sas8bW+qreIeyQhS4c7R7cSuo
+	y3L7BCiB2c7P6lLbK4TW99iZ7XrPzo50QnTfHGcw0+3Iz5wIMzGYUTCm5C+l1gISo5XyWAzpRE7
+	fXrMkT0ZHgtHQgrg2hdg/m0J+uLMFBvUWEyj0b
+X-Received: by 2002:a05:7022:6081:b0:137:f4b6:b39a with SMTP id a92af1059eb24-1380672d9a7mr5614612c88.32.1780820464140;
+        Sun, 07 Jun 2026 01:21:04 -0700 (PDT)
 Received: from [127.0.0.2] ([50.145.100.174])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-137f5489d17sm9439232c88.1.2026.06.07.01.21.01
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-137f5489d17sm9439232c88.1.2026.06.07.01.21.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Jun 2026 01:21:01 -0700 (PDT)
+        Sun, 07 Jun 2026 01:21:03 -0700 (PDT)
 From: Abdurrahman Hussain <abdurrahman@nexthop.ai>
-Date: Sun, 07 Jun 2026 01:20:55 -0700
-Subject: [PATCH 1/2] dt-bindings: i2c: convert i2c-mux-reg to DT schema
+Date: Sun, 07 Jun 2026 01:20:56 -0700
+Subject: [PATCH 2/2] i2c: mux: reg: allow fixing the base bus number via
+ fwnode
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260607-i2c-mux-reg-base-bus-num-v1-1-f193b5a8fedc@nexthop.ai>
+Message-Id: <20260607-i2c-mux-reg-base-bus-num-v1-2-f193b5a8fedc@nexthop.ai>
 References: <20260607-i2c-mux-reg-base-bus-num-v1-0-f193b5a8fedc@nexthop.ai>
 In-Reply-To: <20260607-i2c-mux-reg-base-bus-num-v1-0-f193b5a8fedc@nexthop.ai>
 To: Peter Rosin <peda@lysator.liu.se>, Andi Shyti <andi.shyti@kernel.org>, 
@@ -97,11 +98,11 @@ To: Peter Rosin <peda@lysator.liu.se>, Andi Shyti <andi.shyti@kernel.org>,
 Cc: linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, Abdurrahman Hussain <abdurrahman@nexthop.ai>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780820459; l=7006;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780820459; l=2252;
  i=abdurrahman@nexthop.ai; s=20260510; h=from:subject:message-id;
- bh=XaIH/tdA/VTfND3mpkqGBSmm806lREpUi5+nvDjYaoo=;
- b=C+ibZQ+gsmsrAvsymoBk+kltJIaMIG2c48b1dcSIFmRXC4kaNlSUsBa0652Tuh3i3hW16XpDB
- Hvz0eR4j8g+DurUyhYeszzYQ+sC0B5KJX/DIQH6ziBr1OxW04Lb7Ixx
+ bh=YQERmjO6hBoH6+GdyySBEbETr2FTBTtGkTU+7Ccv33E=;
+ b=GA4/wUnezdHhRk5QO3A6zO2xlwtE/AQK4Dg9ix7np0jTjZ2PELt7nH+Osff1G+z1/gLUEHpv6
+ 0wUC3LwQGXqChAqwQG6JCLVs4v1MsRgJ3iEr7UXdPd4pvM1DDsWuOsl
 X-Developer-Key: i=abdurrahman@nexthop.ai; a=ed25519;
  pk=omTm9cCAbO0ZhS32aKfJDKue0W3sQGpG9ub5eYHif8I=
 X-Rspamd-Action: no action
@@ -119,7 +120,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[abdurrahman@nexthop.ai,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307777-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307778-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:peda@lysator.liu.se,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-i2c@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:abdurrahman@nexthop.ai,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
@@ -137,220 +138,59 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E213064F1DB
+X-Rspamd-Queue-Id: E25C864F1F9
 
-Convert Documentation/devicetree/bindings/i2c/i2c-mux-reg.txt to
-the YAML schema so the i2c-mux-reg binding is validated by
-dt_binding_check.
+i2c_mux_reg supports per-channel force_nr through mux->data.base_nr
+(when set, the channel-N adapter is registered as
+i2c_add_numbered_adapter(base_nr + N)), but the only way to populate
+base_nr was the legacy i2c_mux_reg_platform_data path. DT/ACPI/swnode
+instances have always defaulted to dynamic allocation, which makes
+sensors.conf bus stanzas and other static references break across
+boots whenever the i2c-core pool shifts.
 
-Also document a new optional "base-bus-num" property: when
-present, child adapter N is registered as Linux i2c bus number
-(base-bus-num + reg), so static references such as sensors.conf
-stanzas remain stable across boots. The matching driver support is
-added in the following patch.
+Read base_nr from the new "base-bus-num" device property in
+i2c_mux_reg_probe_fw(). When the property is absent, base_nr stays
+zero and the existing dynamic-allocation behaviour is preserved.
+
+Anchor the per-channel bus number to the channel index (values[i]
+== the child node's reg) rather than the iteration counter:
+
+  nr = base_nr ? base_nr + values[i] : 0
+
+values[i] is the channel id encoded in the child node's reg property
+(0..n-1), which is also what i2c_mux_add_adapter() receives as
+chan_id. Using values[i] makes the mapping deterministic across
+fwnode-iteration orderings (some OF kernels walk children in reverse
+source order) and across DTS gaps (e.g. a mux that wires channels
+0, 1, 3 still gets sane, consecutive bus numbers).
 
 Signed-off-by: Abdurrahman Hussain <abdurrahman@nexthop.ai>
 ---
- .../devicetree/bindings/i2c/i2c-mux-reg.txt        |  74 --------------
- .../devicetree/bindings/i2c/i2c-mux-reg.yaml       | 110 +++++++++++++++++++++
- 2 files changed, 110 insertions(+), 74 deletions(-)
+ drivers/i2c/muxes/i2c-mux-reg.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-reg.txt b/Documentation/devicetree/bindings/i2c/i2c-mux-reg.txt
-deleted file mode 100644
-index b9d9755e4172..000000000000
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-reg.txt
-+++ /dev/null
-@@ -1,74 +0,0 @@
--Register-based I2C Bus Mux
--
--This binding describes an I2C bus multiplexer that uses a single register
--to route the I2C signals.
--
--Required properties:
--- compatible: i2c-mux-reg
--- i2c-parent: The phandle of the I2C bus that this multiplexer's master-side
--  port is connected to.
--* Standard I2C mux properties. See i2c-mux.yaml in this directory.
--* I2C child bus nodes. See i2c-mux.yaml in this directory.
--
--Optional properties:
--- reg: this pair of <offset size> specifies the register to control the mux.
--  The <offset size> depends on its parent node. It can be any memory-mapped
--  address. The size must be either 1, 2, or 4 bytes. If reg is omitted, the
--  resource of this device will be used.
--- little-endian: The existence indicates the register is in little endian.
--- big-endian: The existence indicates the register is in big endian.
--  If both little-endian and big-endian are omitted, the endianness of the
--  CPU will be used.
--- write-only: The existence indicates the register is write-only.
--- idle-state: value to set the muxer to when idle. When no value is
--  given, it defaults to the last value used.
--
--Whenever an access is made to a device on a child bus, the value set
--in the relevant node's reg property will be output to the register.
--
--If an idle state is defined, using the idle-state (optional) property,
--whenever an access is not being made to a device on a child bus, the
--register will be set according to the idle value.
--
--If an idle state is not defined, the most recently used value will be
--left programmed into the register.
--
--Example of a mux on PCIe card, the host is a powerpc SoC (big endian):
--
--	i2c-mux {
--		/* the <offset size> depends on the address translation
--		 * of the parent device. If omitted, device resource
--		 * will be used instead. The size is to determine
--		 * whether iowrite32, iowrite16, or iowrite8 will be used.
--		 */
--		reg = <0x6028 0x4>;
--		little-endian;		/* little endian register on PCIe */
--		compatible = "i2c-mux-reg";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		i2c-parent = <&i2c1>;
--		i2c@0 {
--			reg = <0>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			si5338: clock-generator@70 {
--				compatible = "silabs,si5338";
--				reg = <0x70>;
--				/* other stuff */
--			};
--		};
--
--		i2c@1 {
--			/* data is written using iowrite32 */
--			reg = <1>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			si5338: clock-generator@70 {
--				compatible = "silabs,si5338";
--				reg = <0x70>;
--				/* other stuff */
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-reg.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-reg.yaml
-new file mode 100644
-index 000000000000..7fadedabde70
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-reg.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/i2c-mux-reg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/i2c/muxes/i2c-mux-reg.c b/drivers/i2c/muxes/i2c-mux-reg.c
+index 13da757100fe..5ea59ecb4ae5 100644
+--- a/drivers/i2c/muxes/i2c-mux-reg.c
++++ b/drivers/i2c/muxes/i2c-mux-reg.c
+@@ -141,6 +141,8 @@ static int i2c_mux_reg_probe_fw(struct regmux *mux, struct device *dev)
+ 	if (!device_property_read_u32(dev, "idle-state", &mux->data.idle))
+ 		mux->data.idle_in_use = true;
+ 
++	device_property_read_u32(dev, "base-bus-num", &mux->data.base_nr);
 +
-+title: Register-based I2C Bus Mux
-+
-+maintainers:
-+  - Peter Rosin <peda@axentia.se>
-+
-+description: |
-+  This binding describes an I2C bus multiplexer that uses a single
-+  memory-mapped register to route the I2C signals.
-+
-+  Whenever an access is made to a device on a child bus, the value
-+  set in the relevant node's reg property is output to the register.
-+
-+  If an idle state is defined via the idle-state property, the
-+  register is set to that value whenever no access is being made.
-+  Otherwise the most recently used value is left programmed.
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-mux.yaml#
-+
-+properties:
-+  compatible:
-+    const: i2c-mux-reg
-+
-+  reg:
-+    maxItems: 1
-+    description: |
-+      Offset and size of the register that selects the active child
-+      bus, relative to the parent node's address space. The size
-+      determines the access width and must be 1, 2, or 4 bytes. If
-+      omitted, the platform device's own memory resource is used
-+      instead.
-+
-+  i2c-parent:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle of the I2C bus that this multiplexer's master-side port
-+      is connected to.
-+
-+  little-endian:
-+    type: boolean
-+    description: Register is accessed in little-endian byte order.
-+
-+  big-endian:
-+    type: boolean
-+    description: Register is accessed in big-endian byte order.
-+
-+  write-only:
-+    type: boolean
-+    description:
-+      Register is write-only; the driver must not read back the
-+      current selection.
-+
-+  idle-state:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Value to write to the register when no child bus is selected.
-+
-+  base-bus-num:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Base Linux i2c-adapter number for the child buses. Child N is
-+      registered as bus (base-bus-num + reg). When unset, child
-+      adapters are allocated dynamically by the i2c core.
-+
-+required:
-+  - compatible
-+  - i2c-parent
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c-mux@6028 {
-+        compatible = "i2c-mux-reg";
-+        reg = <0x6028 0x4>;
-+        little-endian;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        i2c-parent = <&i2c1>;
-+        base-bus-num = <16>;
-+
-+        i2c@0 {
-+            reg = <0>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            clock-generator@70 {
-+                compatible = "silabs,si5338";
-+                reg = <0x70>;
-+            };
-+        };
-+
-+        i2c@1 {
-+            reg = <1>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            clock-generator@70 {
-+                compatible = "silabs,si5338";
-+                reg = <0x70>;
-+            };
-+        };
-+    };
-+...
+ 	return 0;
+ }
+ 
+@@ -197,7 +199,7 @@ static int i2c_mux_reg_probe(struct platform_device *pdev)
+ 		muxc->deselect = i2c_mux_reg_deselect;
+ 
+ 	for (i = 0; i < mux->data.n_values; i++) {
+-		nr = mux->data.base_nr ? (mux->data.base_nr + i) : 0;
++		nr = mux->data.base_nr ? (mux->data.base_nr + mux->data.values[i]) : 0;
+ 
+ 		ret = i2c_mux_add_adapter(muxc, nr, mux->data.values[i]);
+ 		if (ret)
 
 -- 
 2.54.0
