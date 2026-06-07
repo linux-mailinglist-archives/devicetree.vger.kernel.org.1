@@ -1,292 +1,223 @@
-Return-Path: <devicetree+bounces-307881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307883-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mTUUBF7cJWp3MwIAu9opvQ
-	(envelope-from <devicetree+bounces-307881-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 23:02:22 +0200
+	id kBAYO1/eJWrXMwIAu9opvQ
+	(envelope-from <devicetree+bounces-307883-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 23:10:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F70651954
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 23:02:21 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBFB765199E
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 23:10:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=dgpGP+dr;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307881-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307881-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=onsemi.com header.s=mimecast20250127 header.b=dtU6qITW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307883-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307883-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=onsemi.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7DC503006F04
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 21:02:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E2EA83001852
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 21:10:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C38F2330B3B;
-	Sun,  7 Jun 2026 21:02:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F793321A2;
+	Sun,  7 Jun 2026 21:10:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from usb-smtp-delivery-120.mimecast.com (usb-smtp-delivery-120.mimecast.com [170.10.153.120])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D922F361E
-	for <devicetree@vger.kernel.org>; Sun,  7 Jun 2026 21:02:18 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780866139; cv=pass; b=bI17QvTM79s6Iw+LSeyoiYf/WAASsQmFdNVVXoo5147DipdANi5xXdWPVv6epy02Fp6EiFqWK747uuWm4BCdvaks2L2mdqX5nkYiZm4IfQ94Llsx6oIx6Cdh+f8fvAgpQn52rtOdq2K8cyiuZ/syT2SpGOd8E1JtMd9CvF0UovA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780866139; c=relaxed/simple;
-	bh=+8UdWvNZOrMkx3IvycG3o83qj4YVhpznC6XOZkbSFus=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a7KoatYiXcaUek2g8k/t05WSXntKf/gFQGi+UnOFI9VW6Xqy4DReBCAXUOjGZd2EmzveeFIVJzpK5xtu5i4rSZWe6J0IX8KUPSMOoJ64uLlMOrgrv8j5LTSAapLAYmBuP1ur7FSX7dBJIT3t0IJqry2LgBmMjyALXZlKKCvwm/0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dgpGP+dr; arc=pass smtp.client-ip=209.85.208.41
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-68f36e1663cso6445776a12.3
-        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 14:02:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780866137; cv=none;
-        d=google.com; s=arc-20240605;
-        b=InV4PPWsJoPfDdf5Nx1jqeAR1hP1n5j1JGcStumoVng9+HYa0wv18sTDKyX9/m2IB4
-         TCWDxnzrnUYeIC0fG0W0bCGfTtguEEP+KrhrSjb0Lu3Vluees+j1xQo/f4jBdE1w5Mq2
-         JT23pks6a/8I/F5BBO3ydICqA4AIhiBY+vPDaoK01H0KMBW74OI4Kwou4iciHweZqinm
-         8U2HJ45sEmDeYf1qQj+d2tvNNYeWGWQ/cR72dapIRZC6Qnc3juAEUHTAD0VyIDsWOmZt
-         TYkxmZgs/1K9RtjmyGKugOZkRNiBbMWsjFoRHB8MrUXV8vhgJ1FUA9OWupyDKU/hHYvQ
-         sapA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=A+9fNpCsE6s4qptEKDyb1NK+xycGWP9ueu0opDX1ZcA=;
-        fh=YARkibs01m831C4RaMQNMxxe2dCEvrhDW6aPt4+wOkY=;
-        b=JBEOMaYYk64wYd7utERyqCdudA2/d0LFZGu7DJL+yAJPzn1ubbJjSCw7FX76sh/NWn
-         q/7R/Q3sNZH7aRQNLSvGozdLFmpZ1Notz98Qu3/x3/mNvPDkVZuU40uNz6SQXJWLF0SF
-         XWqv7ELn+BHnZHWsReKeoVQFXzFGvFGpY+As1LGSD79XrIA/q1oQfMDn85kXJrDeL6rk
-         wS8CkTNQnoTsit8va6zkINdC9Me4AJCJ6lsfh4ecvztcrylKYTh3Wtss2+oJsrE6lhrT
-         NB3lMxVn+VRZ+8s7DV5SOkw3VWawbY7ag9WpovCv3JIicgRrfs5SDvMA0481v5MybMbk
-         FSzw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780866137; x=1781470937; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A+9fNpCsE6s4qptEKDyb1NK+xycGWP9ueu0opDX1ZcA=;
-        b=dgpGP+drnVbMAmsWovLRp9zzgmLOXy8+Muff559H3UR75Ki+OK2bdDbuufGbBIhjIu
-         btwdDPjSBvmTNNyn8QN5bRcFIEQGAGc63so8sBqFujXqcgKVD4mjvUJZ8ciSnTckMhZK
-         GgDXKrDXY6QTrduofZg3Q6YES9v/ca21+Mlm9swHrA/dx9D8sNiGMdxiTBgxJ6xil7b5
-         BFIHcKHBtsny8FOOOStS4tJpZBp59Hq6jbd+nqZpUgpUGm3PbiCHVLGniVe7mbSuxjgT
-         kuNMB0WHSVsSsI0Sq/9X+kNDQV+Y9MQpUgbVt6RchriyTH9rzgPiT//U8ybvKcVIkysV
-         6X0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780866137; x=1781470937;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=A+9fNpCsE6s4qptEKDyb1NK+xycGWP9ueu0opDX1ZcA=;
-        b=aJffpmGpmoYSVd4OEVa2KK/q0Hh6bQ15DXu7fgAiPCtY1bOTwrZEyFbw+eWDWqBA/c
-         hOfL+zJO0NtOHmRGwBy7tnyvm7rtOLyTuquytDnwrAqXuZ43LSYjoBVrvqfk8ZNcTcmg
-         BfVuen7HFatHEhvTLhzpnwBk5f4A9SPJqwhc2rnDIXRTmWPYU5GiQO/Janc/PBED2OLx
-         7heZp3nhyMC0eXxawremAFUeD7hpkTDP1t5tzRx2Is7Sbi0YTeWJK+5AxmoonMCaRAg2
-         1bWf8hWFq/icyKJQxGlMeoSi0cBla+PO0ac6i+NLlLI3d9TAKQQVEgjjEhyjveKNyTdv
-         udjA==
-X-Forwarded-Encrypted: i=1; AFNElJ/PxbHEug33+hVPVp4zSQ+7BAb2mcb7n1UGaZUXwlc90Um7pXft6ZiIxPwSg1NokF3N5wZN5IUerCQn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxghuDoAVbechjr8l5weINt6q5d/yx79Gt7W8QNgq99Sn1jqjWT
-	EACxxk0DDzOT07okUd47I7/Fw3zA8WBdVQnN9XSso/pdwr+KK9ARZI7vkR5hePlnDxgKK4ZbG2H
-	1A6Ex4Rrns+SGh32PkZ+QcQMcgQy3X64=
-X-Gm-Gg: Acq92OGyHNzr7mNBPwuEBQVhBHeVweOqXkVfiPqjVAwpUcQKFuLauPNHC1NXBhyGVkS
-	N9PBg8fOvCFv058yJWKRxydc9HAMA8MROrdzoi4ZjN+eqhSUuaEjc10qwAGIN4uZ1zrDsNIUPhG
-	IaloE23Y8Qsn7iQ1+OYMeofCMDluPmOPeMrf9wYglHG2Dphb+hMvp6nz9L+1QTKTrXZaUvisg7x
-	fCJcHdZejSLiqST/m7/46rDAco7AHeNcb4Ypu7I68oa+PAshBcyRAqfpxW/rFPD/1ZMUgdqviPV
-	aFVf8MZtIC9F7yv70yiT7ne0TwYEXZzXlwKxbxzIgnnFOkuvoQk=
-X-Received: by 2002:a17:907:2718:b0:bea:f4e0:c7b9 with SMTP id
- a640c23a62f3a-bf370d638ccmr437637066b.19.1780866136465; Sun, 07 Jun 2026
- 14:02:16 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A7773314BF
+	for <devicetree@vger.kernel.org>; Sun,  7 Jun 2026 21:10:47 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780866648; cv=none; b=Ed8Op34Um/DtsIEcQZJLFis1VwiwEUfr9JchmmNhcyoBV97c/X9XQL+0ccTSOuK1YInEPLVastzVodRueNcVFL0+CLDi+QowBKCVSW6vjqeW3wCrsCH7F2lpTkVKNedaxUBo9W4j5oPGPbanGBoRWjzc3zMmcpsS9pNzjWCDnww=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780866648; c=relaxed/simple;
+	bh=IFMh2IC1xf6kxXZUyg4ZsgOxchLsmBNa1tSoloYO1yo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 MIME-Version:Content-Type; b=VuMZlTI11Q2NHKbsl/iLQd5XgF4wAWfYylU4qcZcYMu5kk8aLEeVt3MRf0GjMZRVumq9N4YLyf/IbW7oaDxlvp6/xhvHby9ozShDscx26qIHmbTxCvlycX97AkDfTo42EihYjVAlBXGh8CjXuykJkyeuSQRTQtMQpkj4xlQeMvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=onsemi.com; spf=pass smtp.mailfrom=onsemi.com; dkim=pass (2048-bit key) header.d=onsemi.com header.i=@onsemi.com header.b=dtU6qITW; arc=none smtp.client-ip=170.10.153.120
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=onsemi.com;
+	s=mimecast20250127; t=1780866646;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IFMh2IC1xf6kxXZUyg4ZsgOxchLsmBNa1tSoloYO1yo=;
+	b=dtU6qITWkMC1qrTBpDKoxW9hpTmq1vtrXti97Hv4lKWJDWphXowuczWWTWhpt9CLBhVzYg
+	mF1hbWzEHe/RMJ4Z5Te01BFZdw5zbJB6szVCdMenyyaBrMbEhpBmX1pH/GQPR3KVUWdhvp
+	LYCB+GNGB1kkkgDj2FjkC5x/Hp1tPf7jr3Bljq/1Ahe0YERRztQvPVl9Rd9LpIUZYlBBN4
+	9u2u3K9NT/j3GENBrX8IaOWrK+3OKFltjbg5Z7/ESzfHa+HmXZY3RIstHsm3eTf0g95nrp
+	CrkUZxO8fQzriFGOYk/djeVwF4bZ3tDS1H3l5dGj8p7fvfy5DQRmW+16o7IQkg==
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012007.outbound.protection.outlook.com
+ [40.93.195.7]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ usb-mta-52-0Dr1Mk_BM0KlwIdMTBY4RQ-1; Sun, 07 Jun 2026 14:10:41 -0700
+X-MC-Unique: 0Dr1Mk_BM0KlwIdMTBY4RQ-1
+X-Mimecast-MFC-AGG-ID: 0Dr1Mk_BM0KlwIdMTBY4RQ_1780866635
+Received: from CY8PR02MB9249.namprd02.prod.outlook.com (2603:10b6:930:9c::17)
+ by BL3PR02MB8939.namprd02.prod.outlook.com (2603:10b6:208:3b7::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.12; Sun, 7 Jun 2026
+ 21:10:30 +0000
+Received: from CY8PR02MB9249.namprd02.prod.outlook.com
+ ([fe80::e437:4ba8:6506:4cda]) by CY8PR02MB9249.namprd02.prod.outlook.com
+ ([fe80::e437:4ba8:6506:4cda%3]) with mapi id 15.21.0092.011; Sun, 7 Jun 2026
+ 21:10:30 +0000
+From: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+To: Randy Dunlap <rdunlap@infradead.org>, Andrew Lunn <andrew@lunn.ch>,
+	Piergiorgio Beruto <Pier.Beruto@onsemi.com>, Heiner Kallweit
+	<hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Andrew Lunn
+	<andrew+netdev@lunn.ch>, Parthiban Veerasooran
+	<parthiban.veerasooran@microchip.com>, Richard Cochran
+	<richardcochran@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Simon
+ Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan
+	<skhan@linuxfoundation.org>
+CC: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, Jerry Ray
+	<jerry.ray@microchip.com>
+Subject: RE: [PATCH net-next v4 16/16] Documentation: networking: Add
+ timestamp related APIs to OA TC6 framework
+Thread-Topic: [PATCH net-next v4 16/16] Documentation: networking: Add
+ timestamp related APIs to OA TC6 framework
+Thread-Index: AQHc9XdYqyenjPnuP0avpxdMHovoULYyl8UAgAEBGuA=
+Date: Sun, 7 Jun 2026 21:10:30 +0000
+Message-ID: <CY8PR02MB9249DA24FC3E3292FC2D7628831F2@CY8PR02MB9249.namprd02.prod.outlook.com>
+References: <20260605-s2500-mac-phy-support-v4-0-de0fbc13c6d8@onsemi.com>
+ <20260605-s2500-mac-phy-support-v4-16-de0fbc13c6d8@onsemi.com>
+ <cf3d6937-1ffa-4d81-8e19-b3f607a7e1d1@infradead.org>
+In-Reply-To: <cf3d6937-1ffa-4d81-8e19-b3f607a7e1d1@infradead.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY8PR02MB9249:EE_|BL3PR02MB8939:EE_
+x-ms-office365-filtering-correlation-id: 29b84b88-8999-4926-01fb-08dec4d934a2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700021|22082099003|18002099003|921020|4143699003|56012099006|11063799006
+x-microsoft-antispam-message-info: I665StqrlFPi93aMEOrv/jWkVUY3u+P1gIXMsjNZ+jaJKzstGt/ngTH3xUHhaA9yg9Ku5vTR5Q70D1F+PZoA8VwaWaxXJDPQg4KF+j7GvacBL2IPd12TrtRi6bWPB+1yWoOAAJeKRYd19PsJrkimrfEbGL3YiyQRJLwhZK5wzF+bRSC3J2pzblQA/6BCPSRZj4X5Toy8JSoQ/r6AgUGf167Ln7Yx1o3RnHfCilK4Vk3xyXgK0P5EaudrE9JzVt4oYjocirW24rH81FsiKIR+WzPvQmjp9O1XcoXBfKfu87kU6WejKgumV0qiUhhdP3QLKZCj4/ONexDbm03ePd/oF4tF1WNN5pisSMRY0QbIl5HHfaQv4+Ao4StMVbm1vpj/d3C/oCgYjcP/5349wIvcKTUnAoxanzujeTuNFN+FYDChbNd5T6Tkb8PEnafwwo6yZIsel5soLfyfsX62vLiqxt6GkkxmuEtMybMIWwWbqgK5NP9jVmn39BADfNP3HXUArRDeIonXp4EAcKPDfcopZpuyzWJN8hkj9U/8/g2f9ww4qF/Q88dUjxvs3W5MkwFp5gQbgwIjLRcFKdo0AZYs51HpVDBxnghdZfDpdeoY2BUwOHKEC8VEpjjlmfhOa/wwYMwTORn/dT1EWkEkPrLnYta/FmO+yUFlAIr/KzgrZoCB490jLBmqcEu8sPr6B1pdnzMVs+cO+LJqqWeRRqQ28Z5rP3yrjyjZHFz+sc9pce8jcrQnj2LcFb1hP/1uANeFCBPP7l+tJLGsfaaWqi+KEg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR02MB9249.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700021)(22082099003)(18002099003)(921020)(4143699003)(56012099006)(11063799006);DIR:OUT;SFP:1101
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aHQ4WG1MVnNLRmZjazJQREpHZVBLTFd3T2t0aHZ2SDRTajVwM2ZraFZkNTdU?=
+ =?utf-8?B?YVFCTk9vY1dzdXZ1L1FCcTdkMUtxUlFYL2JEWnZyczI4Z1QwTkgwa1VLV3BB?=
+ =?utf-8?B?V2xMZWFqUVdURVBCUE5TMnhscEZWNTFRZUo2RlF1QzBoSzdJamJHYWhIY2VB?=
+ =?utf-8?B?bjJGZDdIMngwR2VGLy8xMkJDaDNzdElHU05VWGxlMHU5blh5dkNEMXIvcGo2?=
+ =?utf-8?B?eEs4a3hUT0RFTkNtSTE0eTdhRmZOSWNTeXgzdVk1amJQRnovWHkwQUFCQXJP?=
+ =?utf-8?B?LytuV3JDQmRoUk9XNzF5SDZXdEt4U0IyZHpicGZ2RFRLbHNsTTRNczFXVnZk?=
+ =?utf-8?B?Y0JsS3NwVFZTOUZNSEN0VmRCZTNvODVCVi9HNG1SVG5SN2R2SGJzZ0Mra3R4?=
+ =?utf-8?B?U0tkVFJhdHQxTE5lNmlUUHlvU2hzZWhqQWJYOTdweE9lOUZUYzRMN3Nzci85?=
+ =?utf-8?B?MDdMWDk3c3ZXZVhnM3NyUEFEckI3ZENXV0hPdUExUVFGcVprVHpuY1B3RXB5?=
+ =?utf-8?B?UU5jRm5XU1RqMlVKVko0NmY4RVVabDhad3o3Y3FSMWg4UHdPM0t4NU5WRnVK?=
+ =?utf-8?B?b2dOZEY5eEdXamFlZFFUSm0wRSs1UjhROG9IczJMa1NnSFdheEdSRzN6Tjkx?=
+ =?utf-8?B?SStUd0thQWZHTjV1a0RrK3ExdVRNZHdIWEt4eHhXR0REWUs5K1JRMTFyQlB4?=
+ =?utf-8?B?anVoTHVLRVNqUDM3ZVg5OUxWUmZoRUFDTy9YaUtGQ1R5UnJXWUhIRy9CUzcv?=
+ =?utf-8?B?dER5YlhnWVhKMVJCSmNpU0EydHY1QUJSOHpNV3k4eTNlc09RVjFrRmw2VFFw?=
+ =?utf-8?B?bWNCM1Z4b0k2Qkt3Ryt6WWh2T1BwK1lKUXVrcGgrVGJUSTk4YTNKNUNFaXRD?=
+ =?utf-8?B?dVRoelgvMFFxZTBTOGFmT1czdXIxQmNzaHdRZ3M1YUFhTTRjSWJORU85OVF4?=
+ =?utf-8?B?dGtYNUZsbFNEL0x0N0tEbHlkYnFZSC9VSDdpcHJGdnQxUlJUY2RJa1RMOXhh?=
+ =?utf-8?B?MFJuWm12dnJuN2VuYXpqakRxVStiU2RMWHNtYW1lSGgxNitzbEJpU0RZZVhS?=
+ =?utf-8?B?MzVhZG5JdEdTLzh6bENUcXdlQzNoaTRTRTcyVEFURXl6ZUQwci9KOGlGRDE2?=
+ =?utf-8?B?ai9FdGxSa0tFb2F6dmltWGxvb3VJZU44N09teUo0K0FXZTlFempadnY5NUFU?=
+ =?utf-8?B?NjBmQWpIaE14bXZtbjFlZGt0a2hKREZUKzlQNzB6dTdMQWV3UlZWVEJpcWVX?=
+ =?utf-8?B?OHkvVlFTV2FVbVNSQlJDUnZSdUp4TEtZNmJBNFNMMENrTE9FQVJpT3dWa1RC?=
+ =?utf-8?B?R3dVVzEyL2ZXQkNiaDFEVEJHUHcvbjZTbHJweUJIeTkvZjF5bGdtN1RMdktq?=
+ =?utf-8?B?dE5YUWJpVDV2SktySUx1bUtNVEFUMGUxYTJMbDltbGpIZ1AvcVBhaXBDanVw?=
+ =?utf-8?B?WGtINEtHZ0FsYmJ4T3BSM1UyTWR3UmZrUE5hMXRDVUlIV2ZWL3QxUDU1YURN?=
+ =?utf-8?B?Yk9JbVVyV3ZMS0srTHlEZ25FQTZvV29rL3BBTTByVlVBTjVNOXdXUkJPMlJ6?=
+ =?utf-8?B?RDZBeTBtTXpWRnNDNzNKYVZSWDNLVnpQbGhqQ2x3cHVJT3J2WjJ6MXdZTUVO?=
+ =?utf-8?B?TWpOdXhtdlBETy9WSjRuQjhaLzhBMVJRKy95bEZJbHIySHo4dU9nVlN6YXFY?=
+ =?utf-8?B?OHlpM1dteGpDeEZLcHoyQWdLMi9KRzh1M2lrUG02MVZlUXJoaVAydzlKWGlI?=
+ =?utf-8?B?aU9GSm5GdzZZODdvNUYrUnphUnRDa0FuRkVVd0YzeEVlQ21QV1o4U2JUUm1q?=
+ =?utf-8?B?QUUrSnVyQkJSNUtZZGRvSWhTRklmYU1LZGxRWFJBZHhmNFVGaHBkSnVoR0h3?=
+ =?utf-8?B?a3kzY01uV0ZQemRYaHhQV2JUZkdxVVZSc1R5a1kyMFRnMVdrZFowd0hNdVhQ?=
+ =?utf-8?B?VHJZREhHc0hvaEJTYk1mbmV6bXhZVWNhTWpQSzlMWWxJL0VsWmRIakVYTGtr?=
+ =?utf-8?B?M01lV3lMVW5jNWRoMVN2eTMwUlJEUVFIRHJRUnYzcWVqdm1MaGErazVLc2JY?=
+ =?utf-8?B?RFVuY1lTRFljUFMrZzd5d2orME9pMkF6TkVXaUVockhIdGxYTHpmU0w4N0R1?=
+ =?utf-8?B?ODJGQlBxNXFjSFVLUE9DOUNBSjkwUFRhSUhFRDBTR2oxU1NTbEppN0YxSEp6?=
+ =?utf-8?B?QUJpTzE2V0JoU2RGb285Z1lERit6SS8yYVk5d21uSkhZdWFiNUd0dFo4bDVx?=
+ =?utf-8?B?cWZqSnJIRHR2NVh5S0pNR3VmMmJYdkczOUZjR2JsbWk4N3pBZElubUhMK3R0?=
+ =?utf-8?B?UWZaR2paQUhPT0lWYzliVkgrMjRxMGRXb3RsZ1EzVFBMZCtPaWo5L0ZKWitP?=
+ =?utf-8?Q?rOsYz0z5AFB2Q6hs=3D?=
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260604135255.62682-1-midgy971@gmail.com> <20260604135255.62682-7-midgy971@gmail.com>
- <e44b506e-e9d2-48e3-acea-ab28b7be9b37@rock-chips.com>
-In-Reply-To: <e44b506e-e9d2-48e3-acea-ab28b7be9b37@rock-chips.com>
-From: Midgy Balon <midgy971@gmail.com>
-Date: Sun, 7 Jun 2026 23:05:03 +0200
-X-Gm-Features: AVVi8Cf-JVkWYJtDYXL1xfOVyosnpbnb7w4PJV4kFFggOhSQTxoQOwyJz0V_ZFQ
-Message-ID: <CA+GS1Y16++cztPxdUGLrPA73ENm4vJGFrjm-jP8r=8OQqcMJGA@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 6/9] iommu/rockchip: Clear AUTO_GATING bit 1 on the
- RK356x v1 IOMMU
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Simon Xue <xxm@rock-chips.com>, tomeu@tomeuvizoso.net, ogabbay@kernel.org, 
-	heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	joro@8bytes.org, will@kernel.org, robin.murphy@arm.com, 
-	dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	iommu@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Exchange-RoutingPolicyChecked: l8nYRJMqwGtmTP3FAAHt3C+s7l8d65aqamWtI1IAp1Wi/Lk2T1g47GPogBEF2X8s3AOA5B//VFWsewTI07ghmBICBRKhL84zrcgbiRXUf/3CL/yIr0NGf1/qiSef1vVUmZOUPbaPGiLUEvgLDytONZ2w5pZo8xJTPI5WrlquqkDbksZChvulFa0Gz/+xdZ7YKklNhkSki8thMzYmuQc12+bzHszSt5sWsQgKzM8ZegESPF7mrlPlTqIUwH1H61k+ZkBOf+w0WgiTFe1npNUBVwTx51ShRputtlnH7ZraslCh5k+jsgXDGAI33uEZELfBTRzCle5MpnRQ1GTsF+FqPA==
+X-OriginatorOrg: onsemi.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR02MB9249.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29b84b88-8999-4926-01fb-08dec4d934a2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2026 21:10:30.2563
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 04e1674b-7af5-4d13-a082-64fc6e42384c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nQ6WJ4BfAaDz3Oa2XMc+BNpU+8Bwv33dhfDZ944R9SCfrPFseWccWFR8tZighgUNJ8srlwyGqZzJK4tY7mm8bBTSM4b3Gh6Iow+bUTn6Zzg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR02MB8939
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: aSjUn4NdepxVJd_jrZEGcBj9PE9FGWbwBuJKEAyvv2E_1780866635
+X-Mimecast-Originator: onsemi.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[onsemi.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[onsemi.com:s=mimecast20250127];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:chaoyi.chen@rock-chips.com,m:xxm@rock-chips.com,m:tomeu@tomeuvizoso.net,m:ogabbay@kernel.org,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:dri-devel@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-307881-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307883-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:rdunlap@infradead.org,m:andrew@lunn.ch,m:Pier.Beruto@onsemi.com,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:parthiban.veerasooran@microchip.com,m:richardcochran@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jerry.ray@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[Selvamani.Rajagopal@onsemi.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[infradead.org,lunn.ch,onsemi.com,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,microchip.com,lwn.net,linuxfoundation.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Selvamani.Rajagopal@onsemi.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[onsemi.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,vger.kernel.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[CY8PR02MB9249.namprd02.prod.outlook.com:mid,onsemi.com:from_mime,onsemi.com:dkim,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 74F70651954
+X-Rspamd-Queue-Id: EBFB765199E
 
-Hi Chaoyi,
+PiANCj4gSGksDQo+IFRoZXNlIG5lZWRzIGEgZmV3IGFkZGl0aW9uYWwgYmxhbmsgbGluZXMgdG8g
+YXZvaWQgZG9jcyBidWlsZCB3YXJuaW5nczoNCg0KV2lsbCBkby4gTXkgYmFkIHRoYXQgSSBkaWRu
+J3QgdmVyaWZ5IHdpdGggbWFrZSBodG1sZG9jcyBhZnRlciBlZGl0aW5nIHRoZSBmaWxlLg0KDQo+
+IA0KPiBEb2N1bWVudGF0aW9uL25ldHdvcmtpbmcvb2EtdGM2LWZyYW1ld29yay5yc3Q6NTU0OiBX
+QVJOSU5HOiBFeHBsaWNpdCBtYXJrdXAgZW5kcw0KPiB3aXRob3V0IGEgYmxhbmsgbGluZTsgdW5l
+eHBlY3RlZCB1bmluZGVudC4gW2RvY3V0aWxzXQ0KPiBEb2N1bWVudGF0aW9uL25ldHdvcmtpbmcv
+b2EtdGM2LWZyYW1ld29yay5yc3Q6NTYxOiBXQVJOSU5HOiBFeHBsaWNpdCBtYXJrdXAgZW5kcw0K
+PiB3aXRob3V0IGEgYmxhbmsgbGluZTsgdW5leHBlY3RlZCB1bmluZGVudC4gW2RvY3V0aWxzXQ0K
+PiBEb2N1bWVudGF0aW9uL25ldHdvcmtpbmcvb2EtdGM2LWZyYW1ld29yay5yc3Q6NTY2OiBXQVJO
+SU5HOiBFeHBsaWNpdCBtYXJrdXAgZW5kcw0KPiB3aXRob3V0IGEgYmxhbmsgbGluZTsgdW5leHBl
+Y3RlZCB1bmluZGVudC4gW2RvY3V0aWxzXQ0KPiBEb2N1bWVudGF0aW9uL25ldHdvcmtpbmcvb2Et
+dGM2LWZyYW1ld29yay5yc3Q6NTczOiBXQVJOSU5HOiBFeHBsaWNpdCBtYXJrdXAgZW5kcw0KPiB3
+aXRob3V0IGEgYmxhbmsgbGluZTsgdW5leHBlY3RlZCB1bmluZGVudC4gW2RvY3V0aWxzXQ0KPiAN
+Cj4gU2VlIGJlbG93Lg0KPiANCg0K
 
-> As I said, it is v2. Could you please try using the code below instead an=
-d
-> see if it works?
-> [ auto_gate =3D read(RK_MMU_AUTO_GATING); auto_gate |=3D BIT(31); write(.=
-..) ]
-
-Thanks -- that's clearly the right shape (read-modify-write, before paging =
-is
-enabled, keeping the reset value instead of my clobbering 0x2).
-
-I rebuilt v7.1-rc6 (with the rocket RK3568 series + your per-device-ops wor=
-k)
-using your bit-31 version and tested it on a ROCK 3B: the NPU IOMMU comes u=
-p and
-services the NPU's DMA cleanly -- the NPU probes, attaches its domain, and =
-runs
-repeated conv submissions with no DMA_READ_ERROR and no page-walk stall. No
-regression from the write.
-
-To be precise about what I can and can't show: I tested both ways on v7.1-r=
-c6 --
-with your bit-31 write, and on the reset value (0x3) -- and the NPU
-IOMMU services
-the NPU's reads with zero faults in both cases (no DMA_READ_ERROR, no page-=
-walk
-stall). So I don't have a failing baseline here that bit-31 visibly
-fixes. Is the
-AUTO_GATING write needed on current mainline, or only under conditions I'm =
-not
-reproducing (a particular traffic pattern / silicon rev)? I'll keep the pat=
-ch in
-your form unless you'd prefer to drop it.
-
-One question so I document it correctly: what does bit 31 of RK_MMU_AUTO_GA=
-TING
-control on the v2 block -- is it a master "disable internal auto clock-gati=
-ng"
-for the page-table walker (i.e. so a TLB-miss walk's AXI master keeps its c=
-lock
-to completion)? The RK3568 TRM I have doesn't cover the IOMMU registers, so=
- a
-one-line description would let me write an accurate comment.
-
-
-
-Kind regards,
-Midgy
-
-Le ven. 5 juin 2026 =C3=A0 03:59, Chaoyi Chen <chaoyi.chen@rock-chips.com> =
-a =C3=A9crit :
->
-> Hello Midgy,
->
-> On 6/4/2026 9:52 PM, Midgy BALON wrote:
-> > On the RK356x v1 IOMMU, RK_MMU_AUTO_GATING resets to 0x3. Bit 1 enables
-> > auto clock-gating of the page-table walker, so the walker's AXI master
-> > loses its clock between transactions; a TLB-miss page walk then never
-> > completes and the IOMMU is left stuck (PAGING_ENABLED, never IDLE).
-> >
-> > Clear bit 1 (keeping bit 0, the slave-port gate) once paging is enabled
-> > so the walker keeps its clock. This is required for the RK3568 NPU MMU.
-> >
-> > Signed-off-by: Midgy BALON <midgy971@gmail.com>
-> > ---
-> >  drivers/iommu/rockchip-iommu.c | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-io=
-mmu.c
-> > index 4da80136933c4..e3d8b6e9ca12b 100644
-> > --- a/drivers/iommu/rockchip-iommu.c
-> > +++ b/drivers/iommu/rockchip-iommu.c
-> > @@ -953,6 +953,18 @@ static int rk_iommu_enable(struct rk_iommu *iommu)
-> >
-> >       ret =3D rk_iommu_enable_paging(iommu);
-> >
-> > +     if (!ret) {
-> > +             /*
-> > +              * RK356x v1 IOMMU: RK_MMU_AUTO_GATING bit 1 enables page=
--walker
-> > +              * auto clock-gating; the walker's AXI master then loses =
-its clock
-> > +              * between transactions and a TLB-miss page walk never co=
-mpletes,
-> > +              * leaving the IOMMU stuck (PAGING_ENABLED, never IDLE). =
- Clear
-> > +              * bit 1 (keep bit 0, the slave-port gate) once paging is=
- enabled.
-> > +              */
-> > +             for (i =3D 0; i < iommu->num_mmu; i++)
-> > +                     rk_iommu_write(iommu->bases[i], RK_MMU_AUTO_GATIN=
-G, 0x2);
-> > +     }
-> > +
-> >  out_disable_stall:
-> >       rk_iommu_disable_stall(iommu);
-> >  out_disable_clocks:
->
-> As I said, it is v2. Could you please try using the code below
-> instead and see if it works? Thank you.
->
-> diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iomm=
-u.c
-> index 0013cf196c57..89e3a83a0251 100644
-> --- a/drivers/iommu/rockchip-iommu.c
-> +++ b/drivers/iommu/rockchip-iommu.c
-> @@ -930,6 +930,7 @@ static int rk_iommu_enable(struct rk_iommu *iommu)
->         struct iommu_domain *domain =3D iommu->domain;
->         struct rk_iommu_domain *rk_domain =3D to_rk_domain(domain);
->         int ret, i;
-> +       u32 auto_gate;
->
->         ret =3D clk_bulk_enable(iommu->num_clocks, iommu->clocks);
->         if (ret)
-> @@ -948,6 +949,10 @@ static int rk_iommu_enable(struct rk_iommu *iommu)
->                                rk_ops->mk_dtentries(rk_domain->dt_dma));
->                 rk_iommu_base_command(iommu->bases[i], RK_MMU_CMD_ZAP_CAC=
-HE);
->                 rk_iommu_write(iommu->bases[i], RK_MMU_INT_MASK, RK_MMU_I=
-RQ_MASK);
-> +
-> +               auto_gate =3D rk_iommu_read(iommu->bases[i], RK_MMU_AUTO_=
-GATING);
-> +               auto_gate |=3D BIT(31);
-> +               rk_iommu_write(iommu->bases[i], RK_MMU_AUTO_GATING, auto_=
-gate);
->         }
->
->         ret =3D rk_iommu_enable_paging(iommu);
->
-> --
-> Best,
-> Chaoyi
 
