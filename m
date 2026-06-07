@@ -1,196 +1,197 @@
-Return-Path: <devicetree+bounces-307824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307826-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ppTVIUJuJWqWIAIAu9opvQ
-	(envelope-from <devicetree+bounces-307824-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 15:12:34 +0200
+	id rKFZBzV9JWrZIgIAu9opvQ
+	(envelope-from <devicetree+bounces-307826-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 16:16:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4DD6509B0
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 15:12:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A751650BE2
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 16:16:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=qcOYCRbh;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307824-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-307824-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=SRbmxDSP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307826-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307826-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4548E3002F6A
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 13:12:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CE7143048DFF
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 14:02:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 037F633BBC0;
-	Sun,  7 Jun 2026 13:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C1F3AA4EF;
+	Sun,  7 Jun 2026 14:02:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F892EEE7D
-	for <devicetree@vger.kernel.org>; Sun,  7 Jun 2026 13:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3383C3859F6
+	for <devicetree@vger.kernel.org>; Sun,  7 Jun 2026 14:02:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780837947; cv=none; b=CpuJmXtTiNBX7qbTTYEqd220NEM8+GoPbPS1j3mcEFHZdEbFjvJEOZBtnIxlKb5g4aKNyYr4HU1qs3o5Z/sYh1uIBiSyKCzuyq76r00Vi57gWEyJxKNVfU6g0YT+tVcksjK1nFdyL9+oWZOTsp7ZWrRpXJ6t9JriVKJXnVLgYF8=
+	t=1780840935; cv=none; b=oK6pXRhMZ7Xiw2lo/Z7SbsdkBNZ59RRP75/KG8HVMu0GVJIBwFvYUsr2LJXarsqgx6+Hyx2UAoxDU4ZJTygKAUscPl0CyXsmq77nZ+/DHtXMOzWX8gtKdc1sN72YQQDrIXW2/RgEpOrwN4rKuGJ1FYSA1Gn+h4PEnVXySLTCoMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780837947; c=relaxed/simple;
-	bh=7olzZHHpB71MrERaSvQjT5XeeR/NDdooMLayR7fPucY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LgPhj5kMoEaAsbD1RXKZOwdL3YuEioBkgV+RJw/bXBa79C163wg7gBQudX9H2sX+JEa72M6WoYcKHRUvikc0LpGlNLT7lUG71GaZ3xvzlT7Br8BlnpDQ8BykrhfxtSwcEs8qBiIyOe1C+M+9jKARDWlwTC0IqlK9p1nIGgc15Gk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qcOYCRbh; arc=none smtp.client-ip=209.85.218.45
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-befee9e5ef7so379736066b.0
-        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 06:12:25 -0700 (PDT)
+	s=arc-20240116; t=1780840935; c=relaxed/simple;
+	bh=dztEsTWxmH2haAYHQs1wZXsZ1TJJ1TM6oh4YtQz6xLI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AD6hyextfJX1hqXrjBPuZFWQn/o2+3jjeCdJXA4tiESi+6qnCjMbSK8eNtFbVazR3uIe49xqogKjvsa0WsKpMDkIlMdOJkv/MNBzvG5BVvd8bLol0jgJOmyvLb5AU2R2d+gGt8HovmLJqckbrwN8jz28sBcxgJ0X2EXAf+dYzBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SRbmxDSP; arc=none smtp.client-ip=209.85.128.53
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-490cf322ed0so301245e9.1
+        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 07:02:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780837944; x=1781442744; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=upYkD5TmeVM6Zj2sXRhLZMQLdRWjjRoIFrUgE/4H0kg=;
-        b=qcOYCRbhNIx6IB07wiTtdAt9GOwEVZ6/BAR6Gol8GimRnM+v/v0y6uYEl4OPfHtuPI
-         /VEyZz+WhxQrwE+v10uuKgokvrGIMzGp6umafTRYK13MI1FaVFm4w8TpvsWRakA7zcu+
-         eONPRunZzk60n+3KrL7qo2mKIiC10Zy/cwzwVlCIFcjMjxoVVMXjQOf/2g7g+uynIeHo
-         rANSTF9Mqumd0CfVU+pEquvxTnaT8xFAvNvdX9ehzeogUrgli71gvZS1YzvmgvHUxWWy
-         OvijL0gX3su5Ojv5lM72BnZD4zRukJnamYaRom9+yJD1QUFmmgK0DFeX6GPe7oJrHU4T
-         ExOw==
+        d=gmail.com; s=20251104; t=1780840932; x=1781445732; darn=vger.kernel.org;
+        h=content-transfer-encoding:autocrypt:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=t6VglNTovUYCDn8ZP7dcNe/GS5KXZ47ukCjoUu64dW8=;
+        b=SRbmxDSPJIIPclqUc8DZdFSHJ4e93XqE+B/xyowt4JJf21b2H0WbTYo20G9gb9pUAL
+         wO2/Dln2FuRXCokDI/od2Py5JiP0NthCmLSsWGm7sVf+xYZ17FcXoU20EcVdZn1N0IAD
+         UP20D0ceLWKIOlwKr7WPz0e3n8Bi3wsOegtdx3qJmxfpllaZ/ElMrg44aRVXXN1zwsaF
+         w6Gh/+yvf1d27flEz7ABwWbDsqveCkb9mv55G882a4ZjHDfHIJ3zWo1x64PLyQf/+Cfk
+         HbWIqJGH2UHyq6UEVac8TOWF1eY5dVri+8ZZHj4ruyRbObFlrObn74Bw3yECyHa2YeBP
+         ocSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780837944; x=1781442744;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=upYkD5TmeVM6Zj2sXRhLZMQLdRWjjRoIFrUgE/4H0kg=;
-        b=VEzIFNcGa6IORQtKYvWQLFEBGjlbGw6kM3p4BE4QdfTnUMN39T/dyDwSTx4mOh5iRy
-         QqoXfGO/dKvrN4IAM1sefEiEwK2QbQNVeQGjvCYsl1haHdcoNg7OtRakVdWLmjacRrzJ
-         dHIPTF3KaZE/MTKi32iQq0pxXw0s2ViVHBLqDxc9KST+RGFYyTJnV8jdIDdMtZnLJneR
-         TtyDKXAELlqDna8j80HHjsGaMPSbfTNnFQ+EjKATkF0Ff0dO1I2ROU2aEqsF+3cPw3T7
-         e98wSeTYaCyF3AgD+CRiK0onBGaW5ZbD9+qyBbi6ZVuq4GzO/8YgH4a6d1uoTjoFtgEX
-         Lehg==
-X-Gm-Message-State: AOJu0YzNr8OjiIExeAyaQARmQCrZiyk53hw8xfTxndG+ZzP9X0P3P1Mf
-	yo95SjCQ+rYUY8owTSncHtAWKO9sc8fZDNSFbbPoHerRhpocO+QGuodBh+GquMFC
-X-Gm-Gg: Acq92OGtvjgt3RNbhmDuEGv7ivf7HByVOpgJFfE85Pekg1QvlZHmEXELC/9W6tQ9Xk0
-	7WgWE6T1pm77yb2SoU9fDu5Q7NH7rZaasK/AArOgxwIgyFTHnVIpToFVEEvF8G8axzlTZ4maIK1
-	KXuaLCbmc1bYdl6fpv/pB/T8vhlthx6uv8WKFhLP6FrzL7sVG+1UOI9cnZMmxypzpCRoW+HlboP
-	7Lvz2W50ZE6Gfr9Jrs3PeSJZDb/os/n0OYeswuxEE5xeVbZ4sanr5D1LhoXAtDrV28fAec8rN/U
-	SYcpQH8Wh/y7Fceks+jAR6g9tb7MWRcQeRiPKOF31qkq3ZPw9X57aD/kXL14/MOQfK/QNDdlbXt
-	mJy+VaGlwPaT6lXxbAvcZhG228nUTd9glDUSlSJMjmMkJ9kesRPEdQxPVr8uMC0t2Cn/UfnsRnq
-	UB7KKriH85EsrdvwWVxNUCfgsKr2+QAlwxj5Z9hF3adLhwtsw=
-X-Received: by 2002:a17:907:2718:b0:bea:f4e0:c7b9 with SMTP id a640c23a62f3a-bf370d638ccmr395176866b.19.1780837944394;
-        Sun, 07 Jun 2026 06:12:24 -0700 (PDT)
-Received: from gigabyte-b550m.local ([80.68.228.198])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bf05176e1b5sm719839566b.8.2026.06.07.06.12.23
+        d=1e100.net; s=20251104; t=1780840932; x=1781445732;
+        h=content-transfer-encoding:autocrypt:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t6VglNTovUYCDn8ZP7dcNe/GS5KXZ47ukCjoUu64dW8=;
+        b=LdaFyHvJSk5Y6WKsE0JZcJsfQmWyEseqV2VYNlcXL9ZFRWs7VleOg957uP0gz7PILD
+         l4thJodg/Xr4aZ+O/IJuT4dJoNC/czUUDj8lvzj6hzekHz4XiHIcBlOeAoMiauyd/uyk
+         d1xsiGf+wmRYEMUbTDb698RH0+3o/jdCzsDUxaQu16Gs6rcwGSw6vyenK8jh+MlwaPzZ
+         +vdIcpWutVFHH2pKcbmSJecqC+3T1Ssg8/ni9ye4S5xXEp5MKtgdoWAdAv5qz9IY874X
+         hKwMl/nx2qixKj186m3Q4jq6DXHg5EySFIQPugnhjsZXOROe3PVYNN1T8zPSqW6Jd8xe
+         Xp1Q==
+X-Gm-Message-State: AOJu0YwtgExVN/h53J3XaS+kztYvvH8qs57EsXM0xz1+OUYIb7FfkvF6
+	c6sjB17kOSgwyTmstB2ZybSOvw7x3/npCPcZUD3eOXBq84NIKflSzspl
+X-Gm-Gg: Acq92OFZMivQyCbyv8sf3B9AMtqw92cWQfwz6ZzAQ9kLo4V1Lb8BKG+Hnq1jdiMGtbW
+	zEDJe9VevQ9mFZSIuTa4ZzU0knw4xARPvMNlHEpqFMhWIkiON2Jlc4jPmHxPjJG/XRLjrDpA+k0
+	nOhgu3BxWkTJTMFAzdJ66ZkUpjrii2loUzmI8BAFpG4EYopUme5D9AjBxP1L3VuOYtsOr6Xji5i
+	hRPa1HeKDIVdURuKM4N5DXzgyrz5W/dSE04cWpKwE+W8V9JGDkNqs7c+idXZoayhHP6v8xC1k9u
+	HS5TmPYumvN1EkH+L5xVUcyXQrq90o7K0e9FAy9njk8zn7tVDO6R8FDDR/3jxeusQTFS3ACYDVP
+	++YZGyNFmW0DcgI4L+gxEQz/jwAaTNc0ZDI372MelR9nV9brThzizO74u4I3LTnMcD1NDObwclO
+	iqcEyVKbUIrX2GVgrvlelihcNmA1FkCuUsF8ie8/IQpUiWhXne/AfqFcJBesWQ2C3X+LKN8Bna2
+	M+8bxwRUhTX3gBQ2e/mSoiWOn0xjdGnOoBGLciKY8F2bQ==
+X-Received: by 2002:a05:600c:190b:b0:490:9804:afdc with SMTP id 5b1f17b1804b1-490c25ff35dmr203817205e9.23.1780840931356;
+        Sun, 07 Jun 2026 07:02:11 -0700 (PDT)
+Received: from radijator.localnet (93-140-232-240.adsl.net.t-com.hr. [93.140.232.240])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f35eae5sm44141055f8f.33.2026.06.07.07.02.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Jun 2026 06:12:23 -0700 (PDT)
-From: Lech Perczak <lech.perczak@gmail.com>
-To: devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Cc: Fabio Estevam <festevam@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lech Perczak <lechu@hswro.org>,
-	Lech Perczak <lech.perczak@gmail.com>
-Subject: [PATCH] ARM: dts: imx7d-pico: describe Bluetooth controller
-Date: Sun,  7 Jun 2026 15:12:17 +0200
-Message-ID: <20260607131217.6497-1-lech.perczak@gmail.com>
-X-Mailer: git-send-email 2.47.3
+        Sun, 07 Jun 2026 07:02:10 -0700 (PDT)
+From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <dujemihanovic32@gmail.com>
+To: Karel Balej <balejk@matfyz.cz>
+Cc: devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH 3/3] regulator: 88pm886: Add Vbus regulator
+Date: Sun, 07 Jun 2026 16:02:08 +0200
+Message-ID: <DRas3NvTRJi7jDZJc8QqTA@gmail.com>
+In-Reply-To: <DJ2R7MRPNO5X.2WPLSEDZFAJ3G@matfyz.cz>
+References:
+ <20260526-88pm886-vbus-v1-0-f2bd1fd3c19e@dujemihanovic.xyz>
+ <20260526-88pm886-vbus-v1-3-f2bd1fd3c19e@dujemihanovic.xyz>
+ <DJ2R7MRPNO5X.2WPLSEDZFAJ3G@matfyz.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=dujemihanovic32@gmail.com;
+ keydata=
+ mDMEabRVUBYJKwYBBAHaRw8BAQdAG5VJBpoPRIGQml4+E2LcPdyVtnXRuuqoD1BsHxRjNQ60KER
+ 1amUgTWloYW5vdmnEhyA8ZHVqZUBkdWplbWloYW5vdmljLnh5ej6ImQQTFgoAQRYhBJvUYwF2kA
+ idqo3CZidfVEs7G0eSBQJptFVQAhsDBQkFo5qABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAA
+ AoJECdfVEs7G0eStq0A/1SDcm8Bkq1JV+GTGMC8qE1QzCFvnoJuZqtUuQRCkd31AP9Mbc3pmg1K
+ JDxgPl17/CQohZ98dbUVffmdQpJJLLMsArgzBGm0VXYWCSsGAQQB2kcPAQEHQH8nnS6QNfgpc1Y
+ tqU80DWMWMsDPEGJ7yZ9Nf90mPEEQiPUEGBYKACYWIQSb1GMBdpAInaqNwmYnX1RLOxtHkgUCab
+ RVdgIbAgUJBaOagACBCRAnX1RLOxtHknYgBBkWCgAdFiEEA6Ue0g5lV5FAcj1ivjIt18NZWcUFA
+ mm0VXYACgkQvjIt18NZWcUyDwEA5OK1WRFN4/psOq/bS6Wuh5ysy0CyXIydqIwDJDdAFukA+wfc
+ lr1qyAbEX0FHVunCl+sxv/ymvjsup85rAH+a2j8HA7gBAIolabvAIUTUfCQNCu5MUt482b2EC8K
+ 40xl/6HT43dunAQCqxwRLI2k0xmTdia2AZwqbbMvqWonOLWtdZwWvodgjBLg4BGm0VaASCisGAQ
+ QBl1UBBQEBB0CoqkQL2R15WHRvj3RlkxjW3pPpZVUOHyfhEX+Q9PhTcwMBCAeIfgQYFgoAJhYhB
+ JvUYwF2kAidqo3CZidfVEs7G0eSBQJptFWgAhsMBQkFo5qAAAoJECdfVEs7G0eSnB0A/3oyRxS5
+ cUJMNnM1+4UkRahmU5/42NfVOxIL5d5oaW13AQD617LpOfnCuZR3U0vHLOW5vrnFtdvi32N5zLD
+ 9wyShC7gzBGm0VbYWCSsGAQQB2kcPAQEHQPRL1mWe9nIhjicyAqqEN80IXEF0NeKSFFpN8n75b2
+ YIiH4EGBYKACYWIQSb1GMBdpAInaqNwmYnX1RLOxtHkgUCabRVtgIbIAUJBaOagAAKCRAnX1RLO
+ xtHktyGAQCJPD6JsQhQZEB8ciZrJz+hnonsJp+KZZQQGEK/KsLHEgD/ePz/x0pQdI/DcJd/5Qge
+ +IJGd+jyv4zyevPxipVbyAo=
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,nxp.com,pengutronix.de,kernel.org,hswro.org];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307824-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:festevam@gmail.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:lechu@hswro.org,m:lech.perczak@gmail.com,m:krzk@kernel.org,m:lechperczak@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[lechperczak@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lechperczak@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-307826-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:balejk@matfyz.cz,m:devicetree@vger.kernel.org,m:phone-devel@vger.kernel.org,m:~postmarketos/upstreaming@lists.sr.ht,m:linux-kernel@vger.kernel.org,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[dujemihanovic32@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dujemihanovic32@gmail.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,dujemihanovic.xyz:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8E4DD6509B0
+X-Rspamd-Queue-Id: 6A751650BE2
 
-Ampak AP6335i Wi-Fi module atop i.MX7D Pico SoM also supports Bluetooth 4.1
-via UART attached to "serial6" port. Describe it, so the controller can
-probe automatically on boot.
+On Sunday, 7 June 2026 12:44:08 Central European Summer Time Karel Balej=20
+wrote:
+> Duje Mihanovi=C4=87, 2026-05-26T21:14:49+02:00:
+> > From: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
+> >=20
+> > Add support for the PMIC's Vbus regulator. This regulator is mandatory
+> > for USB OTG support on boards using the PMIC.
+> >=20
+> > Signed-off-by: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
+> > ---
+> >=20
+> >  drivers/regulator/88pm886-regulator.c | 27 +++++++++++++++++++++++++++
+> >  include/linux/mfd/88pm886.h           |  7 +++++++
+> >  2 files changed, 34 insertions(+)
+> >=20
+> > diff --git a/drivers/regulator/88pm886-regulator.c
+> > b/drivers/regulator/88pm886-regulator.c index a38bd4f312b7..039822e86ec8
+> > 100644
+> > --- a/drivers/regulator/88pm886-regulator.c
+> > +++ b/drivers/regulator/88pm886-regulator.c
+> > @@ -4,6 +4,7 @@
+> >=20
+> >  #include <linux/platform_device.h>
+> >  #include <linux/regmap.h>
+> >  #include <linux/regulator/driver.h>
+> >=20
+> > +#include <linux/units.h>
+>=20
+> What is this for?
 
-This is based on "Pico i.MMX Development Kit for Android Things Hardware
-Manual" rev. B1 [1], Table 6 on page 12.
+Leftover from a WIP version, I'll drop it in v2.
 
-Link: https://www.nxp.com/docs/en/user-guide/PICO-IMX7UL-USG.pdf [1]
+Regards,
+=2D-
+Duje
 
-Signed-off-by: Lech Perczak <lech.perczak@gmail.com>
----
- arch/arm/boot/dts/nxp/imx/imx7d-pico.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-pico.dtsi b/arch/arm/boot/dts/nxp/imx/imx7d-pico.dtsi
-index a1574ccec89c..6d4e8087192c 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-pico.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-pico.dtsi
-@@ -339,6 +339,20 @@ &uart7 { /* Bluetooth */
- 	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
- 	uart-has-rtscts;
- 	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4329-bt";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_bluetooth>;
-+
-+		max-speed = <3000000>;
-+
-+		reset-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
-+		device-wakeup-gpios = <&gpio4 17 GPIO_ACTIVE_HIGH>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-names = "host-wakeup";
-+	};
- };
- 
- &usbotg1 {
-@@ -401,6 +415,15 @@ &wdog1 {
- };
- 
- &iomuxc {
-+	pinctrl_bluetooth: bluetoothgrp {
-+		fsl,pins = <
-+			MX7D_PAD_ECSPI1_MOSI__GPIO4_IO17	0x14
-+			MX7D_PAD_ECSPI1_MISO__GPIO4_IO18	0x14
-+			MX7D_PAD_SD2_RESET_B__GPIO5_IO11	0x14
-+		>;
-+
-+	};
-+
- 	pinctrl_ecspi3: ecspi3grp {
- 		fsl,pins = <
- 			MX7D_PAD_I2C1_SCL__ECSPI3_MISO		0x2
-
-base-commit: e43ffb69e0438cddd72aaa30898b4dc446f664f8
--- 
-2.47.3
 
 
