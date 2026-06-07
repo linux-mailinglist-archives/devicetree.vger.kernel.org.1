@@ -1,544 +1,378 @@
-Return-Path: <devicetree+bounces-307882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307880-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id vls9CfrcJWqTMwIAu9opvQ
-	(envelope-from <devicetree+bounces-307882-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 23:04:58 +0200
+	id spQ+N+7bJWpEMwIAu9opvQ
+	(envelope-from <devicetree+bounces-307880-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 23:00:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78EF8651970
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 23:04:57 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0AEE651935
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 23:00:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=5gYjOmym;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307882-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307882-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=R3BXuMjS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307880-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307880-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C7D52302F0D8
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 21:02:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0554830015A4
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 21:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 435EA32FA18;
-	Sun,  7 Jun 2026 21:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F303B32E13B;
+	Sun,  7 Jun 2026 21:00:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010007.outbound.protection.outlook.com [52.101.46.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C275728727D;
-	Sun,  7 Jun 2026 21:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E6228727D
+	for <devicetree@vger.kernel.org>; Sun,  7 Jun 2026 21:00:24 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780866178; cv=fail; b=cVqwe3Ktjf64Lf8OgOoG2JWtvYJnJreAXtAzdBq8/5xnW7UEOnYlPDLmvNBiXovQocvtc3DrE09Zgqp2F0oZAz8SPs5TQl11n1sKAFRkS8oahnUZvMx+L72y4vVGiPkv2Swov5YyvpSJXteS0Pwhgo6QcD5FzVmvcfX7i+sxQWg=
+	t=1780866025; cv=pass; b=V/irYi159e3f4B4pqwJXca63QygrE0K2XNrRjeypEr6F+pDICMnZwTa4oZA7omizo7S/cTQ6dgNIy5ePeUqhcu/grQSSa8H6IUoMKkSk9iEf+iKjlCmhBYVy7w07FYZ4N21r8kYg3CdDErBeNu/1AWapmH0j0AqscBryBIZPjyg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780866178; c=relaxed/simple;
-	bh=leI7plT44IPfxY6pidHAAdw0tnwi6+mww3LNrHjd9FU=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=hSOic3Pccig8MCqebLvcw3bfhAegaoQyxQ4jmJyxXoy6+9bKVX9wbFHQpGptNoos47LNixMobk5JzneSFhBNU1O0c1LBOK5QLJ4pRJzLg8jT0+sNRcz9fK6kO6GeYKL0cKDUjhws+BUaMfBMd++nI3hcyiBvd9zxvYPwpVDapBQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=5gYjOmym; arc=fail smtp.client-ip=52.101.46.7
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XFl9OjwTBMD2cSGYb5K73XEDy+nH2PzXfE1d+RSDf4i4anokwrvTK4Sx9eftUM9GUx5nHw1XK0gdMqEx3I52E66dTQVvCuQxiNUELKZLJrJZbZBMay3t7DAtuTGw1kYDi9gijTOQdwbWki9i9nNhSEbnrtuYgJ62FgkULXiMvrTqteoXfbzpO+W6BdetzQGRKkcYrNQyByPWcaHdDJeZoKFKCal089RyKZWIFrMWHP0y+JxXJERBVmgGunGDZMEtNdZ7/2/OjJl/kSdhg7hbOjtlnrCrdmR6tcuTzbSZSMu0XjUBIFNX2hzZUY15mKYbeTCBdeuzve3zO0UtrA1K8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KVfxmPAufXSZrllgk4stfNuBXs7Cbl0Bhfom0DGXgSs=;
- b=zFh41PHYwvdBRFsoEtb2L0d49gn/lre5MSzWH+TEcWmRIjdXuGuxJ0TYubIgAt4pP4Cq1yuHibBuzFgWNO8+kdS4UAsFhJgEO8RsobLDH6bckh82tA4ai5ppkjEJUuO8WKI1UYAkU8MHRduPkGioVNA/Y1JcFwA/kwf63A0RDPixpcvbW+2QKesOB05DIKBSZOdVqdO5x4/Z+lA45LDaK69ebRvLQaHSxsbwVVfROmeb+/7jKc65ZGQY6Ryi2SETjj4lFsPANp4rqp67xtfZiUFo/ZOY6BJuxYNSNaVb3KNrhINFEl23aMW9jqjAXRJBFqlmAgpvja5DV5Lx75F4ww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KVfxmPAufXSZrllgk4stfNuBXs7Cbl0Bhfom0DGXgSs=;
- b=5gYjOmymPlwwPcrMa+xpnqGN693nLaio8RsVxoRYklkT9FpJhpXw658Rbuhx4W1aCTIB/WOFGciTAi63gVrRezSwI16f5yttOLt6VyUuZMftUwKkAA1BTjxkWISgO8YTTmQMX7QcaI3Sfb81SplHcGmGkJEH9zrhCBhekOVK9Oc=
-Received: from IA1PR12MB7736.namprd12.prod.outlook.com (2603:10b6:208:420::15)
- by CH3PR12MB8726.namprd12.prod.outlook.com (2603:10b6:610:17b::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.12; Sun, 7 Jun 2026
- 21:02:52 +0000
-Received: from IA1PR12MB7736.namprd12.prod.outlook.com
- ([fe80::2274:9fed:8f3:8550]) by IA1PR12MB7736.namprd12.prod.outlook.com
- ([fe80::2274:9fed:8f3:8550%6]) with mapi id 15.21.0092.011; Sun, 7 Jun 2026
- 21:02:51 +0000
-Message-ID: <0f8f431f-af21-4bad-bff2-e6cde078bd41@amd.com>
-Date: Sun, 7 Jun 2026 22:02:47 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/5] iio: adc: versal-sysmon: add threshold event
- support
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
- David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Conall O'Griofa <conall.ogriofa@amd.com>,
- Michal Simek <michal.simek@amd.com>, Guenter Roeck <linux@roeck-us.net>,
- Salih Erim <erimsalih@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260606051707.535281-1-salih.erim@amd.com>
- <20260606051707.535281-5-salih.erim@amd.com>
- <aiUeVs_FoI9vV1Hd@ashevche-desk.local>
-Content-Language: en-US
-From: "Erim, Salih" <salih.erim@amd.com>
-In-Reply-To: <aiUeVs_FoI9vV1Hd@ashevche-desk.local>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PA7P264CA0243.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:371::8) To IA1PR12MB7736.namprd12.prod.outlook.com
- (2603:10b6:208:420::15)
+	s=arc-20240116; t=1780866025; c=relaxed/simple;
+	bh=G+HvROUFtSgMmsk49gO9w19nLvoqyb3fxbxS9M8djJE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=j+YPWrl1YBbkTySavhcwf0osrPW6WDlUUCh1oGPonLNqAd6qRpmHZv4Vzwe2atRZSOP8A1dvujqMo3jn1CcRaiAFNDT3DoADcmvkbjTOOCiJ+GI/WqQWempb7IhfgpWHCXHsx+u6PkxWODmyWVwqQ5EKVlvnymkwTm6TVqpDQFY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R3BXuMjS; arc=pass smtp.client-ip=209.85.218.44
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-bebc80100efso387492566b.1
+        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 14:00:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780866023; cv=none;
+        d=google.com; s=arc-20240605;
+        b=OPV3O2cU32lyUeDg7lzfw5Y4PsreyfXpKzq3ujkfV9R1MDMDUsfY6DhN+jIJyPKzRC
+         8Zq02T9wDqzltBH/xW3/wyStRsT9PXv1EWpZ+WBVe8rIyNKl6ok3T+wrlFJNrLRyPGKp
+         NEigbhIUTUWTXHLuf89o+tBIIf+SIpjluUJCJmI1Qb6KbqxiI9uED7UApKHcq9Odd5s7
+         FReR8l7cgLvMTJyfOum8aAGULR8y/tMJ1fIc0bEIQXCPgVQ/GEXHyDuJjxedVmcRDQvo
+         ljzOVQNzwrrvdtzgmgvMce+Hs+xoKOeR2eGud9+9/mjQNEKp1JQHxoNA2QyZB8oi4unX
+         1cOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ab6NkRbgO8MmT1srYNgG1RYGxHSJUAoP80C+AxzOUBY=;
+        fh=kKpQPO/D4PtYkqkmv2VVJiGw9xR0NPia164XrtEB/SY=;
+        b=T0TrVe9mkZx+WAAf+uo4HBbep4x45MaxogwgQsxKllUDiK5nlA+ZzHTUk+wbGtVBdL
+         m0dht5VnWIGJ0rHcIcHk+8HDdCxZGZH3D2iIIT2IKjVSGxGxzUDVL/yq4JDreir276Tz
+         wu3Gr1FIkQKslw5a0KyUX+0SBUZx0Yfv2kpF9uskC+QjGPmUkcgyfZI+ZAnimB/wOC4L
+         RUt8UEBw6Y9fM6NYrYkm+D4B3Cym+ZnwCSXk+oStPxhEk1x7bU7S9+KsTaDelRSW26F3
+         SUuM1vJK2QSsmqTJGUORUSyjEmA5MBv7NP3xVquTA4Bb4/pDotz6PKkb1rQFWyZ/Ctlo
+         spmw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780866023; x=1781470823; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ab6NkRbgO8MmT1srYNgG1RYGxHSJUAoP80C+AxzOUBY=;
+        b=R3BXuMjSlMT+xRaaYYGCWTT/Uu43vgjeF3pueSoihDL5xsn1o30vUgCcn17EAH/sta
+         pweHcVKR2hUfYPVr1LTRKKlyG9ZNMy4otYqf3D9E4ShzWxl/vDCyLS/9qOeEcxOzocIo
+         JMXXCdmmrJj9Q3TxgGB5aMZgs07N1OXN3TTx/g6sWPQj0xpGBoGYa3IE1h0Be5Hx/jaq
+         RCFjzudml096kPaj3S1jrT+oynrq8KWJXQPvyUKLF8NEiL9dsS+DzQd7d5Skz4lSYS2y
+         aYOW84wFxBmVOAfYGLATeaWyaKpsYrkt+M88OyvpRx+iRuJLAsEsZl2P6hOTcbmrnTgP
+         tpgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780866023; x=1781470823;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ab6NkRbgO8MmT1srYNgG1RYGxHSJUAoP80C+AxzOUBY=;
+        b=oeD1fGIw0tIff2/8uKkNTV6l8LTtgIGkDEWCXPivuFpbat1uyfQSDTiQX5zeCIK/bN
+         C8Z3XHt1wIfIJQD7STR0juTcBIEfXECYJ1hnn/PRD0EOwDZYXuv81Eonw5fNOo877IOM
+         O92dnxb83N6CRglW89TzFsaKi2Br59w5gCFyvf7G6qDrPnmYWxpAYVjicyKFCZV61+Sm
+         ae9uPw5T02UT43Ll+ek0xf0dgVq6xwrZ+68YcwRpaUMHJW6eXVIvtaadXEFER30wCmce
+         xznYTvpXRQL8XYjbRQJ+sjSuLhmP1wQiRYvtTEA+OwAogSCtp4z1enxgOuHQ4NCpnFQ6
+         IWEg==
+X-Forwarded-Encrypted: i=1; AFNElJ/zicIUG3zP86e+/Xi0MV9zcFzCOEJEIuAaYrNSIrMicSogaext99pVEnUVAl4LyBGMloabJZWOCK/J@vger.kernel.org
+X-Gm-Message-State: AOJu0YzunjYjn6YlNLtjXEnvL/kMMAVjfqHOkRsCvMiqprOPcTij8qvA
+	nBdjMM3ouL1dKMrj3Tmau8mF+Anhwdvxk8MgQIzIAGiMesZps9ZfUKUWWDjPOZ26LzIIwM8qeMg
+	AuMY3fGNkU0R4KtcLPVGubhJAm+RA7c8=
+X-Gm-Gg: Acq92OFQ3p9N7CZ39pFA2jp0c5HWpDYGkdkaAmOTsowV0TVTX3H5AEeEf3EGPRr+1b4
+	8lKecaut9iQt8gz/yMHXEQfY9CvPoqlMvuW/f+5ot5fuokjGk/I6yd2ibIftGhZwPP5+HCubrzl
+	z8NDo8WLJVhsTTyilN4R6yywOjMiUCAms8OUFi918ulJdlpObUq0hL7QXBunhFoXhB7i70X19U3
+	0NeDV7l/FkMMvFQ+Kg1dW1LdXOWYlrbfyc3/zxfIITFwqWFo94RxkjZW2a/iCyySKRAYjmuHPR4
+	BW4et+lDOGiFag65od9r2Jug4+lTKeks1fNzf6jDajDY69QPIYUJWauFNjAJVQ==
+X-Received: by 2002:a17:906:8a42:b0:bb8:fdf7:e132 with SMTP id
+ a640c23a62f3a-bf370a673a2mr449071866b.18.1780866022378; Sun, 07 Jun 2026
+ 14:00:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR12MB7736:EE_|CH3PR12MB8726:EE_
-X-MS-Office365-Filtering-Correlation-Id: c1ff6592-cb16-4932-bd25-08dec4d82319
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|7416014|376014|6133799003|18002099003|18092099006|22082099003|4143699003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info:
-	SkdPapOGiTp26p1X1bS3faL1jW52c6LJtqqYegHkLDRLEuoRiCYh2vxHhfsGVn53N6kofZiulOnWlXlvcp4Uy3Rb4k/CzIAJ7MMSDQexCzNNcutZ+J+rdS3OlTNrV7T+oFz+TIyY4PlbemvazMDXLLJSnjqrI/loKu7dixH/CcMnlosTRyflUx4oG8JpRaJt3eV5kBA92Y1tttWV7EcrLY6CAHuIo1r5mfUpcu0Zdzp74gd7jKMYbYjfBTV9Ky/UTFKiFAPkPp8r3dPvL+qkzByOO5hYJ5x0FNP9d4jKNOWHu+kdXv/dg3hGTCQyqdvJJI25/v+Z5iQSppWrxFcBx+Yi+TmlwaOLsX0aL2rF+dZbpU1kPa6xsCi4EdLQLlmVJys07bYwwmcmGKHRhFumMQjM+v4siJqI3A7l4pAbhthD5ocwVCgY5FVxd6AmAx1fV/E4/I4GYheIf5+j0C9LWdbPSxvEhNCXJ/Qsez/oxxGjI0KvbYzKYFCY1xvrJCoCNDolyHlPxaW5NpUjttg3H9WtNQbbnK4WfnVSbciUYOt85EGJcTsijh4wtHm+lYamuy4A/9kPO+dZftBycR0Lg8dBe1UOeyzJG/tVMHEK1//R6nOWrN7db1qPgisVqq4+4Ruk5U/Fkuuc10F52fwtIo7DaRdbKfhSrg5qTzwfUI/FfhmXr5i1Q4BUf8fy8nbu
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR12MB7736.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(6133799003)(18002099003)(18092099006)(22082099003)(4143699003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WTRIWDc3a05STVFNeG1DU1ZNQ0QxMitUSXBYOUZjdkpQNVB6WWEyNXo4eTJU?=
- =?utf-8?B?b3Z6U1pHL0REVW02cDFaWkhSQVdlb1FPYkxMTFp3dEtETjBSNWlWN2U4QmNL?=
- =?utf-8?B?TEdGZHJteldSOVp4T242REFuWEVGMUJUb3REOGVtOHdNUDNYM2NhaTk4UHM0?=
- =?utf-8?B?R252K3lmR3pkaE9yQ2l3eExBc2E5a3V3RXVlZzNzVW1LTFh2OXg1Y05Xd2Q0?=
- =?utf-8?B?QlU0cDVUaVdNeEdHOWhNL0NBVTRTSWRhdEJTVktqc3ZkUDBnWnl1QUdZeUp1?=
- =?utf-8?B?VUF4MjR5Y0JYUm1xODdaYjZPcGFCTjE0MVBjdENyMTBURldBOEh0RExJVEt5?=
- =?utf-8?B?WGxNYVFoOEpBb29FVmVEVVBXaUh6SlpucjVOVXhDSk1qS2JXNGZBcHFoMWpY?=
- =?utf-8?B?dnlGUW1IbVpiNnpiWWVoOVVYT0hKTDBZR3hpR0FzT0hMNzYrWVhGZ0EwbUlq?=
- =?utf-8?B?RkdvOWZQNDhob3hUbS9kMFVyOWJMNEdSS3VMNGUzQldQQTRwZkErSzZyOWdz?=
- =?utf-8?B?WWtZVFhWRDZDemM4ZWV2b0dJbFg3UmJXZXU0TmxhaWlmVUtodGRpT0Z3dkhU?=
- =?utf-8?B?dDlNdExVdGVhaUd4YUVWcDk1YkdXYjNRM0RDcksyME9KbXl5VDFYWEIzVTdo?=
- =?utf-8?B?Y2xRK1hPSkpZQTBiTXhaR0RzYzVtVjU2eFNjelJoUnJvbXBsWm1rZVYvUDky?=
- =?utf-8?B?N25TbytnN2dKQ2hVSjVtWXdWTUpZL3g2UVVCRDByTjBlR1BhRWZVOUh6c0k2?=
- =?utf-8?B?bE10WUs5aE53dHdOQmxWZW1OVDdKZGEvNndSa2xWWGZocVh0YlVwVjREalVL?=
- =?utf-8?B?Rjl2OXRkUEdDTUZBWC9iSTZWRGRsRGcwRmNEYXZHNGVRcFVRR0FpTXJFUHNT?=
- =?utf-8?B?SjRpc08wdm0yVUkxQVE1TUsrdzJRVlBqRFErWjBIS1p3QjhkR0UzVjhGWGJ4?=
- =?utf-8?B?YmJHNUxMcWdSbkZwZkczN0ZLa29xMnk2MVY4aXFrUEgzWmIyMEdkNlZsR0dj?=
- =?utf-8?B?L1hOejEyeGhicDFlWUcyMGJxOG9jOGZZVzNZc1JqRmxnZG4vOXY5TGpvMGM5?=
- =?utf-8?B?TUNDMmRXd0tmMkV3WlJhMkVRYy9IR0JCejRjNnk1U096aUNDSnN0Z0ZhWmQw?=
- =?utf-8?B?UExGcHZpMStuMGJJY2ZuY1lIT1VwMFhjUkpBcklyc2ZrTEI5SVh2ZS8xMjMy?=
- =?utf-8?B?d1Jnek01bG43R3JMNFh2Z1RiZDlHSzNPRWVISFQyTksrODRYaWxKcWoxVU1m?=
- =?utf-8?B?b2dKSGkxaHNyNnlrdFo5aS9zN0djL0xkMUhSZTlyUU9Vb2tEVEZoRHNoZDFj?=
- =?utf-8?B?Z0l3aTN6bGN5ZmJEN2tUZUxyYlhCRk4yMlZQclRoNWxXekVhUTlGOHFEaEt5?=
- =?utf-8?B?eEVETDQvemxoUVU0blNxSlROS2JRZnRRaDhVdzA5czRUYTJGMTluaW9jeDZz?=
- =?utf-8?B?UURpaUVUTldnb1BMcytmS0lPdlZOUEZxaU5HUnpWenpwelN1WkpSODJhMDA2?=
- =?utf-8?B?LzJ4REs1UTJoYW1BbVpQc3hZWWx0R3NUTVpIRmIzaEQyS1lhVE82VWIrdUJ6?=
- =?utf-8?B?cnZOcGVlc0laMVlpalA4b1djcW9rLzdqUExmY0k2NEkrb0xFR0M5STVLNEJi?=
- =?utf-8?B?YmlFaWxlaFlnbnRsVXdGV0NoMnBHZnhrY3RzNURJTDF6MGROVERpc21qd2hS?=
- =?utf-8?B?Z3YrR2pKOUNYY1NSVndEeDFUTEtwTG52R01nSnd5a1UwMWYrQ0RVcHVteXBx?=
- =?utf-8?B?b3NkZzBPYkhrL2FOUWNETTJUSnNvWC9scE5pRUY3Y3B5SElCekEvVC9JcTlh?=
- =?utf-8?B?TzlOelJpQkwzMEplSFNWeTVFWHFaYjNTbDVMM3EwdlFQWVpLTnNwLy9Ja1Bl?=
- =?utf-8?B?WVdiTDEvTEowTHZOWFhWem9admFaY1pqQVloVlJvZ0xKQWVsb3gxVjhVWkJC?=
- =?utf-8?B?UmM3VXF3RVNrb1lSNHZYT0pyYjQ4N0xuQzlEOWJmQzNUZFFVSEo5bzgwcXdU?=
- =?utf-8?B?cHZMdmZFOVRod1Q0UTh3ckVtUmZ2My9LbVFmMkpGRkdCVFc3eVJFS1kxZS9n?=
- =?utf-8?B?b1VkMFcvV0NlRjdlcjUrZjhndThnUHlmY0JvT1hxSFdTR3FBMXJ5Mm82OXN6?=
- =?utf-8?B?bi9zNlVKRnZLSDNVR0lYaUNUT09mZnNYUEY5eTl3aWoyRW5Hd01xc3B6YzQy?=
- =?utf-8?B?WmUxaUdldFVEa0pYK20rNXcrdldxRmlFeDV5RTkyN0RXYkxDUHZvQW9JSHVV?=
- =?utf-8?B?VDJXVThhbnQ2ZlZFZk1YU1JiZ3VqbmNKMDZFa0pSdkhvam1ZT3dhQi81RHgr?=
- =?utf-8?Q?48XSdSd2SRzAOy98kv?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c1ff6592-cb16-4932-bd25-08dec4d82319
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB7736.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2026 21:02:51.6075
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: svR3TFlj5t9WWVIo9tGgh+hXFP6ar5VlhG6FAJpgdmerP864tiZM49AthAQ0KjIR
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8726
+References: <20260604135255.62682-1-midgy971@gmail.com> <3d99569e-9c3a-49d1-93fb-1335382523e9@rock-chips.com>
+In-Reply-To: <3d99569e-9c3a-49d1-93fb-1335382523e9@rock-chips.com>
+From: Midgy Balon <midgy971@gmail.com>
+Date: Sun, 7 Jun 2026 23:03:08 +0200
+X-Gm-Features: AVVi8CeDCIQ6l1Xo0XYKychXQqz8K96nj5PXcE7mUgH_L3ruXovyZGyMkFh5fkU
+Message-ID: <CA+GS1Y1s78PwN63X2YJoS8VEGp7CpTERo_K65yKs00U4VRAw4Q@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 0/9] accel: rocket: Add RK3568 NPU support
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: tomeu@tomeuvizoso.net, ogabbay@kernel.org, heiko@sntech.de, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joro@8bytes.org, 
+	will@kernel.org, robin.murphy@arm.com, dri-devel@lists.freedesktop.org, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307882-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:chaoyi.chen@rock-chips.com,m:tomeu@tomeuvizoso.net,m:ogabbay@kernel.org,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:dri-devel@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307880-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[salih.erim@amd.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:jic23@kernel.org,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[salih.erim@amd.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,amd.com:mid,amd.com:from_mime,amd.com:dkim,vger.kernel.org:from_smtp,sysmon_unmask_work.work:url]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 78EF8651970
+X-Rspamd-Queue-Id: E0AEE651935
 
-Hi Andy,
+Hi Chaoyi,
 
-Thanks, replies are inline.
-On 07/06/2026 08:31, Andy Shevchenko wrote:
-> 
-> On Sat, Jun 06, 2026 at 06:17:06AM +0100, Salih Erim wrote:
->> Add threshold event support for temperature and supply voltage
->> channels.
->>
->> Temperature events:
->>    - Rising threshold with configurable value
->>    - Over-temperature (OT) alarm with separate threshold
->>    - Per-channel hysteresis as a millicelsius value
->>    - Event direction is IIO_EV_DIR_RISING (hysteresis mode)
->>
->> Supply voltage events:
->>    - Rising/falling threshold per supply channel
->>    - Per-channel alarm enable via alarm configuration registers
->>
->> The hardware supports both window and hysteresis alarm modes for
->> temperature. This driver uses hysteresis mode, where the upper
->> threshold triggers the alarm and the lower threshold clears it
->> (re-arm point). The hardware has a single ISR bit per temperature
->> channel with no indication of which threshold was crossed, so
->> hysteresis mode is the natural fit. The lower threshold register
->> is computed internally as (upper - hysteresis).
->>
->> Hysteresis is stored in the driver as a millicelsius value,
->> initialized from the hardware registers at probe. Writing the
->> rising threshold or hysteresis recomputes the lower register.
->> ALARM_CONFIG is hard-coded to hysteresis mode during init.
->>
->> The interrupt handler masks active threshold interrupts (which are
->> level-sensitive) and schedules a delayed worker to poll for condition
->> clear before unmasking. When no hardware IRQ is available, event
->> channels are not created and interrupt init is skipped, since the
->> I2C regmap backend cannot be called from atomic context.
->>
->> When disabling a supply channel alarm, the group interrupt remains
->> active if any other channel in the same alarm group still has an
->> alarm enabled.
-> 
-> ...
-> 
->> +static void sysmon_supply_processedtoraw(int val, u32 reg_val, u32 *raw_data)
->> +{
->> +     int exponent = FIELD_GET(SYSMON_MODE_MASK, reg_val);
->> +     int format = FIELD_GET(SYSMON_FMT_MASK, reg_val);
->> +     int scale, tmp;
->> +
->> +     scale = BIT(SYSMON_SUPPLY_MANTISSA_BITS - exponent);
->> +     tmp = (val * scale) / (int)MILLI;
->> +
->> +     if (format)
->> +             tmp = clamp_t(int, tmp, S16_MIN, S16_MAX);
->> +     else
->> +             tmp = clamp_t(int, tmp, 0, U16_MAX);
-> 
-> No, please, use clamp().
+Thanks a lot for looking at this -- input from Rockchip is exactly what thi=
+s
+series needs.
 
-Accepted.
+> Hmmm. If I understand correctly, the NPU IOMMU should be v2 rather than v=
+1,
+> implying it should support 40-bit PAs. Nevertheless, please note that the
+> upper limit for DTE is 32 bits.
 
-> 
->> +     *raw_data = (u16)tmp;
->> +}
-> 
-> ...
-> 
->> +static int sysmon_write_alarm_config(struct sysmon *sysmon,
->> +                                  unsigned long address, bool enable)
->> +{
->> +     u32 shift = address % SYSMON_ALARM_BITS_PER_REG;
->> +     u32 offset = SYSMON_ALARM_OFFSET(address);
->> +
->> +     if (enable)
->> +             return regmap_set_bits(sysmon->regmap, offset, BIT(shift));
->> +
->> +     return regmap_clear_bits(sysmon->regmap, offset, BIT(shift));
-> 
-> regmap_assign_bits()
+Understood, and that 32-bit-DTE note is the crux of the trouble I had, so l=
+et
+me lay out what I see and ask how you'd prefer to solve it.
 
-Accepted.
-> 
->> +}
-> 
-> ...
-> 
->> +     u32 alarm_reg_offset = SYSMON_ALARM_REG + (event * SYSMON_REG_STRIDE);
-> 
-> Unneeded parentheses.
+The mainline node is already v2 (rockchip,rk3568-iommu in rk356x-base.dtsi)=
+.
+The problem on this 8 GiB board: with the v2 ops the page-table allocations
+(gfp_flags =3D=3D 0) can land above 4 GiB, so the DTE ends up > 32 bits and=
+ the
+NPU's first translation faults with DMA_READ_ERROR. To work around that I h=
+ad
+switched the NPU MMU to the v1 compatible (rockchip,iommu), whose ops set
+GFP_DMA32 and keep the DTE sub-4 GiB. That works in isolation, but because =
+the
+driver keeps a single global rk_ops, a v1 NPU MMU then trips
+WARN_ON(rk_ops !=3D ops) against the SoC's v2 instances (VOP/VDEC), which i=
+s why
+I based the series on Simon's per-device-ops work.
 
-Accepted. Will remove in both places.
-> 
-> ...
-> 
->> +             for_each_set_bit(bit, &alarm_flag_reg,
->> +                              SYSMON_ALARM_BITS_PER_REG) {
-> 
-> I would leave this on a single (83 characters) line.
+So my question: with per-device ops in place, what's the intended way to ke=
+ep
+the NPU MMU on v2 *and* cap its DTE at 32 bits on boards with >4 GiB of RAM=
+?
+A v2 ops variant carrying GFP_DMA32 for this device, or is there a register=
+/
+config bit that constrains the DTE address? I'd rather follow the Rockchip
+intent here than carry the v1 workaround. (Simon, cc'd -- this is right nex=
+t to
+your per-device-ops series.)
 
-Accepted.
+> Can these operations not be completed via the pmdomain driver?
+> If some operations are controlled by TF-A, are you using open source TF-A=
+?
 
-> 
->> +                     address = bit + (SYSMON_ALARM_BITS_PER_REG * event);
-> 
-> Unneeded parentheses.
+Most of it is in pmdomain already. Power-on and NoC de-idle are done by the
+RK3568 NPU power domain (genpd) at power-on -- the driver no longer pokes t=
+he
+PMU directly. Two things remain outside it:
 
-Accepted.
+ - vdd_npu: I mark it regulator-always-on in DT rather than wiring it as th=
+e
+   domain's domain-supply, because as a domain-supply it created a device-l=
+ink
+   to the I2C PMIC (rk809) and genpd's power-off QoS-save path then hung
+   reading the NPU QoS registers behind the (gated) NoC. If there's a clean=
+ way
+   to let genpd own vdd_npu without that I2C ordering deadlock I'd much pre=
+fer
+   that -- pointers welcome.
 
-> 
->> +                     sysmon_push_event(indio_dev, address);
->> +                     ret = regmap_update_bits(sysmon->regmap, alarm_reg_offset, BIT(bit), 0);
-> 
-> Why not _clear_bits()
+ - the NPU compute clock (PVTPLL): set from the driver via SCMI, and only
+   needed for actual compute, not for bring-up.
 
-Accepted.
+One more pmdomain observation from testing, possibly relevant to how the NP=
+U
+domain should be modelled: the domain's power-off/on cycle doesn't reliably
+re-de-idle the NoC. If the NPU is probed after genpd has already powered th=
+e
+(unused) domain off, the power-on de-idle fails ("failed to set idle on dom=
+ain
+'npu'") and the NPU IOMMU then takes an external abort on its first MMIO ac=
+cess.
+Probing the NPU before the unused-domain power-off, or marking the domain
+always-on, both avoid it. Is the NoC de-idle expected to work on a genpd
+re-power here, or should this domain effectively stay on?
 
-> 
->> +                     if (ret)
->> +                             return ret;
->> +             }
-> 
-> ...
-> 
->> +static void sysmon_unmask_temp(struct sysmon *sysmon, unsigned int isr)
->> +{
->> +     unsigned int unmask, status;
->> +
->> +     status = isr & SYSMON_TEMP_INTR_MASK;
->> +
->> +     unmask = (sysmon->masked_temp ^ status) & sysmon->masked_temp;
-> 
-> Is this the same as
-> 
->          unmask =  ~status & sysmon->masked_temp;
-> 
-> ?
+On TF-A: yes -- bl31 is built from upstream arm-trusted-firmware
+(github.com/ARM-software/arm-trusted-firmware, RK3568 platform), providing =
+PSCI
+and the SCMI clock service. The only closed blob in the boot chain is Rockc=
+hip's
+DDR init (rkbin), which is the standard situation for mainline RK356x.
 
-Yes, that's equivalent, Will simplify.
-> 
->> +     sysmon->masked_temp &= status;
->> +
->> +     unmask &= ~sysmon->temp_mask;
-> 
-> The above needs a comment explaining the logic.
+Kind regards,
+Midgy
 
-Accepted. Will add a comment explaining that we only unmask
-interrupts that have cleared in hardware and are not
-administratively disabled by userspace (via temp_mask).
-
-> 
->> +}
-> 
-> ...
-> 
->> +static void sysmon_unmask_worker(struct work_struct *work)
->> +{
->> +     struct sysmon *sysmon = container_of(work, struct sysmon,
->> +                                          sysmon_unmask_work.work);
-> 
-> Better to split as
-> 
->          struct sysmon *sysmon =
->                  container_of(work, struct sysmon, sysmon_unmask_work.work);
-
-Accepted.
-
-> 
->> +     unsigned int isr;
->> +
->> +     spin_lock_irq(&sysmon->irq_lock);
->> +     regmap_read(sysmon->regmap, SYSMON_ISR, &isr);
->> +     regmap_write(sysmon->regmap, SYSMON_ISR, isr);
->> +     sysmon_unmask_temp(sysmon, isr);
->> +     spin_unlock_irq(&sysmon->irq_lock);
->> +
->> +     if (sysmon->masked_temp)
->> +             schedule_delayed_work(&sysmon->sysmon_unmask_work,
->> +                                   msecs_to_jiffies(SYSMON_UNMASK_WORK_DELAY_MS));
->> +     else
->> +             regmap_write(sysmon->regmap, SYSMON_STATUS_RESET, 1);
->> +}
->> +
->> +static irqreturn_t sysmon_iio_irq(int irq, void *data)
->> +{
->> +     struct iio_dev *indio_dev = data;
->> +     struct sysmon *sysmon = iio_priv(indio_dev);
->> +     unsigned int isr, imr;
->> +
->> +     guard(spinlock)(&sysmon->irq_lock);
->> +
->> +     regmap_read(sysmon->regmap, SYSMON_ISR, &isr);
->> +     regmap_read(sysmon->regmap, SYSMON_IMR, &imr);
->> +
->> +     isr &= ~imr;
-> 
->> +     regmap_write(sysmon->regmap, SYSMON_ISR, isr);
-> 
-> Is writing 0 necessary?
-
-No. Will move the ISR write after the if (!isr) early return.
-
-> 
->> +     if (!isr)
->> +             return IRQ_NONE;
->> +
->> +     sysmon_handle_events(indio_dev, isr);
->> +     schedule_delayed_work(&sysmon->sysmon_unmask_work,
->> +                           msecs_to_jiffies(SYSMON_UNMASK_WORK_DELAY_MS));
->> +
->> +     return IRQ_HANDLED;
->> +}
->> +
->> +static int sysmon_init_interrupt(struct sysmon *sysmon,
->> +                              struct device *dev,
->> +                              struct iio_dev *indio_dev,
->> +                              int irq)
->> +{
->> +     unsigned int imr;
->> +     int ret;
->> +
->> +     /* Events not supported without IRQ (e.g. I2C path) */
->> +     if (!irq)
->> +             return 0;
->> +
->> +     ret = devm_delayed_work_autocancel(dev, &sysmon->sysmon_unmask_work,
->> +                                        sysmon_unmask_worker);
->> +     if (ret)
->> +             return ret;
->> +
->> +     ret = regmap_read(sysmon->regmap, SYSMON_IMR, &imr);
->> +     if (ret)
->> +             return ret;
->> +     sysmon->temp_mask = imr & SYSMON_TEMP_INTR_MASK;
->> +
->> +     return devm_request_irq(dev, irq, sysmon_iio_irq, 0,
->> +                             "sysmon-irq", indio_dev);
-> 
-> 
-> 
->> +}
-> 
-> ...
-> 
->> +static int sysmon_init_hysteresis(struct sysmon *sysmon, int address,
-> 
-> Can address be negative?
-
-No. Will change to unsigned int.
-
-> 
->> +                               int *hysteresis)
-> 
-> ...
-> 
->> +     ret = regmap_read(sysmon->regmap, upper_off, &upper_reg);
->> +     if (ret)
->> +             return ret;
->> +
->> +     ret = regmap_read(sysmon->regmap, lower_off, &lower_reg);
->> +     if (ret)
->> +             return ret;
-> 
-> Half of the IO accessors have no error checks, these do.
-> Why is this inconsistency?
-
-The regmap calls in sysmon_unmask_worker and sysmon_iio_irq
-have no error checks because they run in contexts where errors
-cannot be propagated (workqueue, hardirq). The init path checks
-errors because it can return them to the caller. Will add a
-comment explaining this.
-
-> 
-> ...
-> 
->> +     if (has_irq) {
->> +             temp_chans = temp_channels_with_events;
->> +             num_static = ARRAY_SIZE(temp_channels_with_events);
->> +     } else {
->> +             temp_chans = temp_channels_no_events;
->> +             num_static = ARRAY_SIZE(temp_channels_no_events);
->> +     }
->> +
->>        sysmon_channels = devm_kcalloc(dev,
->> -                                    size_add(ARRAY_SIZE(temp_channels),
->> +                                    size_add(num_static,
->>                                                num_supply + num_temp),
-> 
-> It makes inconsistency. Even originally. It should be two calls to size_add().
-
-Accepted.
-
-> 
->>                                       sizeof(*sysmon_channels), GFP_KERNEL);
->>        if (!sysmon_channels)
->>                return -ENOMEM;
-> 
-> 
-> ...
-> 
->> +     irq = fwnode_irq_get(dev_fwnode(dev), 0);
->> +     has_irq = irq > 0;
-> 
-> This misses deferred probe.
-
-Accepted. Will check for negative return and propagate.
-
-> 
-> ...
-> 
->> -     ret = sysmon_parse_fw(indio_dev, dev);
->> +     ret = sysmon_parse_fw(indio_dev, dev, has_irq);
-> 
-> Why do we need has_irq? You can supply irq there as well and check it against 0.
-
-Accepted. Will pass irq directly and check > 0 inside
-sysmon_parse_fw.
-
-Regards,
-Salih
-
-> 
->>        if (ret)
->>                return ret;
->>
->> +     if (has_irq) {
->> +             /* Set hysteresis mode for both temperature channels */
->> +             ret = regmap_set_bits(sysmon->regmap, SYSMON_TEMP_EV_CFG,
->> +                                   SYSMON_OT_HYST_MASK |
->> +                                   SYSMON_TEMP_HYST_MASK);
->> +             if (ret)
->> +                     return ret;
->> +
->> +             /* Initialize cached hysteresis from hardware registers */
->> +             ret = sysmon_init_hysteresis(sysmon, SYSMON_ADDR_TEMP_EVENT,
->> +                                          &sysmon->temp_hysteresis);
->> +             if (ret)
->> +                     return ret;
->> +             ret = sysmon_init_hysteresis(sysmon, SYSMON_ADDR_OT_EVENT,
->> +                                          &sysmon->ot_hysteresis);
->> +             if (ret)
->> +                     return ret;
->> +
->> +             ret = sysmon_init_interrupt(sysmon, dev, indio_dev, irq);
->> +             if (ret)
->> +                     return ret;
->> +     }
-> 
+Le ven. 5 juin 2026 =C3=A0 03:36, Chaoyi Chen <chaoyi.chen@rock-chips.com> =
+a =C3=A9crit :
+>
+> Hello Midgy,
+>
+> On 6/4/2026 9:52 PM, Midgy BALON wrote:
+> > RFC, not for merge. End-to-end inference does not produce correct outpu=
+t
+> > yet (see Status), so per the v2 discussion this is a request for design
+> > feedback. It now probes, attaches, and submits cleanly on a stock
+> > v7.1-rc6 tree; what remains is one hardware-internal issue.
+> >
+> > The RK3568 has a single NVDLA-derived NPU core, the same IP family as t=
+he
+> > RK3588 NPU the driver already supports; the register layout matches. Th=
+e
+> > RK3568 differences are a 32-bit NPU AXI/IOMMU (vs 40-bit) and explicit
+> > PVTPLL/PMU bring-up to power and de-idle the NPU before it is reachable=
+.
+> >
+> > Patches:
+> >   1-2  rocket: per-SoC data struct, then derive DMA width and core coun=
+t
+> >        from match data (refactors, no functional change).
+> >   3    rocket: RK3568 SoC data + PVTPLL/PMU/NOC bring-up.
+> >   4    rocket: reset the NPU before detaching the IOMMU on a job timeou=
+t
+> >        (the detach otherwise stalls a wedged AXI master and WARNs).
+> >   5    rocket: keep the IOMMU domain attached across jobs instead of
+> >        re-attaching per job (the per-job rk_iommu handshake on the idle
+> >        NPU MMU is slow and noisy).
+> >   6    iommu/rockchip: clear AUTO_GATING bit 1 on the RK356x v1 IOMMU s=
+o
+> >        the page-walker keeps its clock (else a TLB-miss walk never
+> >        completes).
+> >   7    dt-bindings: add the RK3568 NPU compatible.
+> >   8-9  arm64 dts: add the NPU and its IOMMU, and enable them on ROCK 3B=
+.
+> >
+> > Dependency. The NPU MMU is rockchip-iommu v1 (32-bit) while the rest of
+> > the RK3568 uses v2 (40-bit). They cannot coexist until the driver carri=
+es
+> > per-device ops; this series is developed on top of Simon Xue's
+> > "iommu/rockchip: Drop global rk_ops in favor of per-device ops" [1].
+> > Without it the NPU IOMMU fails to probe on a full RK3568 boot.
+> >
+>
+> Hmmm. If I understand correctly, the NPU IOMMU should be v2 rather than
+> v1, implying it should support 40-bit PAs. Nevertheless, please note that
+> the upper limit for DTE is 32 bits.
+>
+> > Power bring-up. The NPU is brought up through the power-domain layer (n=
+o
+> > driver hack): the NPU power-domain keeps its clocks but drops the pm_qo=
+s
+> > phandle (qos_npu sits behind the gated NPU NoC, so genpd's power-off Qo=
+S
+> > save faults reading it), and vdd_npu is marked always-on so the rail is
+> > up before genpd de-idles the NoC at power-on. The PMU de-idle then ACKs
+> > without PVTPLL running; PVTPLL is only needed for compute.
+> >
+>
+> Can these operations not be completed via the pmdomain driver?
+> If some operations are controlled by TF-A, are you using open
+> source TF-A? Thank you.
+>
+> > Status. On v7.1-rc6 the driver probes, creates /dev/accel/accel0,
+> > attaches an IOMMU domain, and submits jobs; the program controller
+> > fetches and broadcasts the command list. Inference output is still wron=
+g,
+> > and the cause is split across three layers:
+> >   - kernel (this series): the RK3568 differences appear handled;
+> >   - mesa/Teflon userspace: still emits RK3588-tuned config, wrong for
+> >     RK3568 (to be filed separately on mesa-dev);
+> >   - hardware: with corrected config the NPU's DMA reads the full input
+> >     and weight tensors (confirmed via its DMA bandwidth counters), but
+> >     the MAC/output stage never completes, the job times out, and the
+> >     output stays at the buffer's zero-point. I have not found the missi=
+ng
+> >     step; it is not in the command list (replaying the vendor's
+> >     byte-exact command list behaves the same). Pointers welcome,
+> >     especially from anyone with RK3568 NPU experience.
+> >
+> > Known residual. On the first IOMMU attach the NPU MMU is idle with pagi=
+ng
+> > already enabled; the rk_iommu stall/reset handshake does not complete i=
+n
+> > that state and logs one burst of timeouts before the (kept) domain
+> > settles. It is harmless here because the job times out regardless, but =
+it
+> > points at an idle-MMU reconfiguration corner the rk_iommu code does not
+> > handle on this block.
+> >
+> > [1] https://lore.kernel.org/linux-rockchip/20260310105303.128859-1-xxm@=
+rock-chips.com/
+> >
+> > Changes since v2:
+> >   - Tagged RFC; now tested on a stock v7.1-rc6 tree.
+> >   - Bring-up moved into the power-domain/DT layer (no initcall hack).
+> >   - Added the IOMMU detach-on-timeout and attach-once driver fixes.
+> >   - Split the driver patch (Heiko): soc_data / match-data / RK3568.
+> >   - Derive DMA width and core count from match data; drop the DT rescan=
+s.
+> >   - Binding describes the hardware; added the missing $ref on rockchip,=
+pmu.
+> >   - Disclosed the per-device-ops IOMMU dependency.
+> >
+> > Midgy BALON (9):
+> >   accel: rocket: Introduce per-SoC rocket_soc_data
+> >   accel: rocket: Derive DMA width and core count from match data
+> >   accel: rocket: Add RK3568 SoC support
+> >   accel: rocket: Reset the NPU before detaching the IOMMU on timeout
+> >   accel: rocket: Keep the IOMMU domain attached across jobs
+> >   iommu/rockchip: Clear AUTO_GATING bit 1 on the RK356x v1 IOMMU
+> >   dt-bindings: npu: rockchip,rk3588-rknn-core: Add RK3568
+> >   arm64: dts: rockchip: rk356x: Add the NPU and its IOMMU
+> >   arm64: dts: rockchip: rk3568-rock-3b: Enable the NPU
+> >
+> >  .../npu/rockchip,rk3588-rknn-core.yaml        | 18 ++++-
+> >  .../boot/dts/rockchip/rk3568-rock-3b.dts      | 14 +++-
+> >  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 38 +++++++++++
+> >  drivers/accel/rocket/rocket_core.c            | 22 ++++++-
+> >  drivers/accel/rocket/rocket_core.h            | 19 ++++++
+> >  drivers/accel/rocket/rocket_device.c          | 15 ++---
+> >  drivers/accel/rocket/rocket_device.h          |  3 +-
+> >  drivers/accel/rocket/rocket_drv.c             | 66 ++++++++++++++++++-
+> >  drivers/accel/rocket/rocket_job.c             | 35 ++++++++--
+> >  drivers/iommu/rockchip-iommu.c                | 12 ++++
+> >  10 files changed, 219 insertions(+), 23 deletions(-)
+> >
+> >
+> > base-commit: 52c800fdcf11888ebeb50c3d707f782cc15b66eb
+>
 > --
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
-
+> Best,
+> Chaoyi
 
