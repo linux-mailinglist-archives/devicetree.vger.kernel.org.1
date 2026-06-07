@@ -1,240 +1,212 @@
-Return-Path: <devicetree+bounces-307791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307794-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EQ+AEFdHJWpuFwIAu9opvQ
-	(envelope-from <devicetree+bounces-307791-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 12:26:31 +0200
+	id MBuGH99NJWpqGgIAu9opvQ
+	(envelope-from <devicetree+bounces-307794-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 12:54:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B82464FA89
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 12:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB0566501AD
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 12:54:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=nigugi1D;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=jHWSBPcy;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307791-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307791-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=vinatta.cz header.s=default header.b=Ei3346eb;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307794-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307794-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=matfyz.cz (policy=none);
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4EAB5305B12B
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 10:17:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E0549302C6E5
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 10:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0FB12EB87F;
-	Sun,  7 Jun 2026 10:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3F93254A9;
+	Sun,  7 Jun 2026 10:35:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vinatta.cz (vinatta.cz [37.205.8.231])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99BA4071DA
-	for <devicetree@vger.kernel.org>; Sun,  7 Jun 2026 10:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D081257855;
+	Sun,  7 Jun 2026 10:35:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780827470; cv=none; b=QdBsFisUjzeQMTm/GueF9FvSJdTG/lau5C68HO2kLYDye4G2WMZ4Ta78RK4wB7s7Z0CGgpi4zuhxDRC21W/M18JiL4xbYaUMNDmedtdJLX2GqKIAvDl2LeREF4YY6rbsB384WSEHnj/eWDGYWQuRnlqHkfkKF/EOOmUeuPoy2Ls=
+	t=1780828525; cv=none; b=X5nbXBW9cMG7iCP8y0r72uH8yXa0sR9KwcGe6+krqbnyU7zkr0OGXGIExIFzEsoVSm5TfzlLAKFweP2egRhZ56aL4W54WKE7Zs594lsHMzP+qLTcZdHFNecCfJjD9Bep9tTZ0k+eIZqWghDxwEIKIew7NkI29kmf+7QI1Qwp/kM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780827470; c=relaxed/simple;
-	bh=idf868Vsbnyyotx0jfNiPXsybJ5w2gQ2keSGP20nPmE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HHmb2DA+HpScScSof3Yv2htlNEvQIYEKodIVewQu1TMLxxKgucDmLVNzGu3AlEUxTTWNdZv0Gop36xQ+tZCBQ6CDgrygzR/132KYt7G0aIddMSiPG+gvYj165xZQVunarhAl18YCjBCmTuGIQG4Dy+eug6KYhm5oiPfKiSFDsFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nigugi1D; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=jHWSBPcy; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6577BT7J3719726
-	for <devicetree@vger.kernel.org>; Sun, 7 Jun 2026 10:17:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=M4FwfUZ9jESPMwli0wZo2L5a
-	U9CNfaUCjDk/3XMqWL0=; b=nigugi1Dt5LzZTWMC73FUxJV06Ogbbaq1U2yR/C5
-	DPFS30E5GhCYhDjYNBviOdHrcYccTJQWgvycC/HEyXGNVsqgESd5PqZn11JVd++T
-	sYkHpwa4n0fHTtW+JHJBe+nKHp51LK9bhMebdrmCjg495VGqWpHo9ME0fWFa3yq6
-	LxSC45J+z2rgyZA1BNNvQH58wWg+sQVR9oJPtwC9PdfEidCA6z+mP6dV5YNLYd4j
-	xw7RueetEPuUty5K+40j+39Y8bOym0vEP45JIAFH4pQXbcig7gsUz5fraGxeibbq
-	DaZlRGU+qfALXyKouvg6dgg1kta9OfN8qb5LDH+4n2+gJw==
-Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com [209.85.217.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4emcu8u92w-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 10:17:49 +0000 (GMT)
-Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-6c152655acfso535024137.0
-        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 03:17:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780827468; x=1781432268; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=M4FwfUZ9jESPMwli0wZo2L5aU9CNfaUCjDk/3XMqWL0=;
-        b=jHWSBPcydhs0Y6ENmiWmw2JJMFeXEDJn0hWGgJLQBLNqD8KwARLsjnuha2fI0JeUQ0
-         FfDHUkjNSrD4VJSeBEyjWNkeFJ7yoIRDdNHhhvdtbBgwi6jMmhKBDUXK1ERHzfRLUpCd
-         3yB3emAWteZKMLjM8UToENLzA1UP29q4QTqB0ms00CLwT0nFmSK2i2ln8IonerVoFPUA
-         KgUhJdQDcMlEkJrWF3UtnYnTAwkD16SP5biWt2Ua+5l1qx+p1DoLNmWf7IAOsUmS7QMi
-         EFRJ4Lh2ORCY0FqsDP7qKlQUBgNc5fRg2FiAAOa4d6WaK4nZKRe0U7E3GXERnONvDcdW
-         5gmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780827468; x=1781432268;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M4FwfUZ9jESPMwli0wZo2L5aU9CNfaUCjDk/3XMqWL0=;
-        b=b/xWx+9bvS/OX3WsuCdaGXedXwoaeAU2gmeW2KtkYffo0+AugZko4vbIfWIewWbJUN
-         zZs9xjk1h9BzgBHGWFQD7dh/mSeD0HtkajwEnjg+A2jCYvLAqe762RnQR7zY8SCDCHY6
-         1J0rewt3YDLr1XhkNAws3WiSSZ+cpzFe0pi+3+08vht7xed+X0kDaqP2kAtOABLzRqmj
-         jo16Y+R/YNN1g3ZSoH+k6HZBru8VEiixmN5LChvFsdcl91PioaznKiBFOzRyzodvF2UJ
-         AnEpzPHASchQjdrY/b1OIkIymhbT5fq48tFHWKrI7GlEc9HLVuLAEx3HGSsohzC7c+Hw
-         YhXw==
-X-Forwarded-Encrypted: i=1; AFNElJ+15/VOMDZIAPWuFdAtD9skv/q6sUBhfBoTXdi88tjgCBOKDT9a7A9N+lQvN5bI91UjAVo0eUyOuAeB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4zlQO44Idz/yVHBmczf5dPU0NQTMtXoccHzCCXshGNPiwDnhL
-	m3I0KswJnMhuiLhd6xcbtH4ppCXM1D+3c30PDKIl1PTSj7Fv2oi9v29JsqmsWpVqRTlL6kRWvHD
-	ejoKc56XmD3mGUmuwIj75QYL+Geo4R1gs2O8IFgdkl9S2oj3C2DkHmUA/fAGNiQI5A9q1fxnu
-X-Gm-Gg: Acq92OGn0rXBuQUUqHslA3yZpolOghfsbbRdE5eMXVMxAJQnRFukH8d+K6LEdxVur7/
-	HT6WWJWG7oUmU5j/aINu0AjUMgyiihcAVIpU2LkNF1t+q3a25MQEzC2wYctfcbPF8fsEaPz49Oq
-	CHjyZ0qSsQLYFNNpjDiaG2Cu280Mz3OUOGHA5FFVRLS8E65BmEtbmpybRLR626PKqosmvRcQi1y
-	sIkTO8PywCjSRgMSkJC3iQOWDr9IdKOalj7svYlgMxdjXzJSNOzhupJuEpBtFwUNkJNZ8YEh/J8
-	oi3kpQ/L177Mb02Lnjiusy7uD1mnN2oW3GzogkueNtQdzgpu0unT4NgKGKLS/7p/GeC8VmGnLiG
-	d44bkobPnri84LSByP33e7v6eRFnthwk6sljdVD3JX6pjMmDpXB4DLA5zppMoTQhUpxHzEIq0OJ
-	LyxUwl6A0rWmbS/jWR3eYnguDkJ+SdBj0dNbANbrqaUV5KVw==
-X-Received: by 2002:a05:6102:3594:b0:639:43f5:1fdc with SMTP id ada2fe7eead31-6ff018e8796mr4345830137.26.1780827467951;
-        Sun, 07 Jun 2026 03:17:47 -0700 (PDT)
-X-Received: by 2002:a05:6102:3594:b0:639:43f5:1fdc with SMTP id ada2fe7eead31-6ff018e8796mr4345825137.26.1780827467554;
-        Sun, 07 Jun 2026 03:17:47 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa7b99c2b9sm2984082e87.80.2026.06.07.03.17.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Jun 2026 03:17:46 -0700 (PDT)
-Date: Sun, 7 Jun 2026 13:17:43 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ajit Singh <blfizzyy@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: Add Vicharak Axon Mini
-Message-ID: <ny26r5a2npafcryx4z2xoyzkdbp6r5vbdoc6asyfprw5q4hgzh@ukbc7kfpzsle>
-References: <20260519125655.23796-1-blfizzyy@gmail.com>
- <20260519125655.23796-4-blfizzyy@gmail.com>
+	s=arc-20240116; t=1780828525; c=relaxed/simple;
+	bh=sB9DQeRkuWeZiSHTms9NV6hjc3XvirX8YIcp7h1Z0jI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=Oich1VenkdNhZsO8wYuy9tBf2m5PRENYhMhXmgtmupSmqeIY+3zzTBuHE+AqEhGgxdeW6X+rv2pShAljRT1g5195ksXdiqxP5sc+47ZAllYucSkPckv+Hwsn35uZrxOUkg0xrNiLamlWjENB27jxDrEIXAlqrDKl3qjxEzYlP9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=vinatta.cz; dkim=pass (2048-bit key) header.d=vinatta.cz header.i=@vinatta.cz header.b=Ei3346eb; arc=none smtp.client-ip=37.205.8.231
+DKIM-Signature: a=rsa-sha256; bh=mO4758l4xD4doudJsBypWffgPZyM4fYzNrX9tTyuI3s=;
+ c=relaxed/relaxed; d=vinatta.cz;
+ h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
+ i=@vinatta.cz; s=default; t=1780827561; v=1; x=1781259561;
+ b=Ei3346ebznbzoY+9Qon6+dNgqo1xRE97BD4hbG8ZKJcmVwiQqeq3YlLx+4PXyFu0RH/mZnFr
+ uIgZ86jwee0wLUX2j9PU3suUzGr27NJlacuPbsa6Bqp0ECpiVEg/HnUOZ2/G0NtaCnfvJ3v+htX
+ WihFy6Xf1r69CPAV5X2sEAGiAMRf4D7ZVm5NRzZrPZKXtKvcjIoVdMlAJwPz6hKr0SjMLTdEkO0
+ ME9AKNuyvNk4sef9Q10Mz54/FzHbMLAWdtP/JcYZTLbyN65S8XdeXye7AAayaQFJTVNhej+NHfc
+ 8TVcfYurWrTqiaW/NRLX/E8WvyODd9HUmZSRHY+oolNqg==
+Received: by vinatta.cz (envelope-sender <karel@vinatta.cz>) with ESMTPS id
+ e04f78f5; Sun, 07 Jun 2026 12:19:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260519125655.23796-4-blfizzyy@gmail.com>
-X-Proofpoint-ORIG-GUID: 0BD9vsDQfaucm6PsTY1uDkErTBlPrq3i
-X-Authority-Analysis: v=2.4 cv=deGwG3Xe c=1 sm=1 tr=0 ts=6a25454d cx=c_pps
- a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22 a=pGLkceISAAAA:8
- a=JL1AdETER_kwsCMOzjcA:9 a=CjuIK1q_8ugA:10 a=crWF4MFLhNY0qMRaF8an:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA3MDEwMCBTYWx0ZWRfXwi+pp0ZZBX1z
- riVWJEez0QXRCSBzdMqOLc9wKIPTfJjdse19gn7L9iG9IIs82hJQnhAiYi4WDlrXVpmuKxtahmL
- wQEoRJlsQbNmFluXvaSIsDEEZaYHYgAhRbM4xD0Ss+tMgiTD+NJWWHDkKnGlrmziI+yOSqMidVl
- 6pIoPRoyscOeCaWGqzP/gd/BHAQRD0UH2P0lTnXWaYVvhQz89Ye6qP80QJWA+rpacyO0tz+hXXm
- TeBG9tGG2cbg7Jj9Do6k7DEr3xzrFg7TlXHy12pAl1k3cnIuRLiIt0RcVxfNgV5tzzv9XM5cv4Q
- YGQysZv4mtbX+JU/7VAy9hnAncCFvtSQdL/guuwUFZXRsAGMJlNeh5mgo41FJVdvCfIXQlcy8Sf
- dTj2T0CBtHwKU/QryIuy7wnYFQMTTHJt0ZTWs3lkJE9c8Fk5XoLkVZak2BcS114j7R5C862V6Uy
- 15AEWWPwf8W4nb7YNHw==
-X-Proofpoint-GUID: 0BD9vsDQfaucm6PsTY1uDkErTBlPrq3i
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-07_02,2026-06-05_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 clxscore=1015 phishscore=0 impostorscore=0 priorityscore=1501
- bulkscore=0 adultscore=0 malwarescore=0 suspectscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606070100
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 07 Jun 2026 12:19:21 +0200
+Message-Id: <DJ2QONQXFUDK.22S5350HOO2N6@matfyz.cz>
+Cc: <devicetree@vger.kernel.org>, <phone-devel@vger.kernel.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <linux-kernel@vger.kernel.org>,
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <dujemihanovic32@gmail.com>, "Lee Jones"
+ <lee@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>
+Subject: Re: [PATCH 2/3] mfd: 88pm886: Initialize battery page
+To: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+From: "Karel Balej" <balejk@matfyz.cz>
+References: <20260526-88pm886-vbus-v1-0-f2bd1fd3c19e@dujemihanovic.xyz>
+ <20260526-88pm886-vbus-v1-2-f2bd1fd3c19e@dujemihanovic.xyz>
+In-Reply-To: <20260526-88pm886-vbus-v1-2-f2bd1fd3c19e@dujemihanovic.xyz>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[vinatta.cz:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[matfyz.cz : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307791-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim];
-	FORGED_RECIPIENTS(0.00)[m:blfizzyy@gmail.com,m:andersson@kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:phone-devel@vger.kernel.org,m:~postmarketos/upstreaming@lists.sr.ht,m:linux-kernel@vger.kernel.org,m:dujemihanovic32@gmail.com,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:duje@dujemihanovic.xyz,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[balejk@matfyz.cz,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-307794-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[vinatta.cz:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[balejk@matfyz.cz,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com,kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vinatta.cz:dkim,matfyz.cz:mid,matfyz.cz:from_mime,matfyz.cz:email,dujemihanovic.xyz:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9B82464FA89
+X-Rspamd-Queue-Id: CB0566501AD
 
-On Tue, May 19, 2026 at 06:26:55PM +0530, Ajit Singh wrote:
-> Add DTS for the Vicharak Axon Mini board based on the Qualcomm
-> QCS6490 SoC.
-> 
-> This adds debug UART, eMMC, UFS, SDIO WLAN, USB 2.0 host, PCIe
-> support along with regulators.
-> 
-> Signed-off-by: Ajit Singh <blfizzyy@gmail.com>
+Duje Mihanovi=C4=87, 2026-05-26T21:14:48+02:00:
+> From: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
+>
+> Initialize the PMIC's battery page. The battery page registers are
+> shared between Vbus regulator, charger, fuelgauge and camera flash
+> blocks, hence the commonization of the page.
+>
+> Signed-off-by: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile             |    1 +
->  .../dts/qcom/qcs6490-vicharak-axon-mini.dts   | 1025 +++++++++++++++++
->  2 files changed, 1026 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-vicharak-axon-mini.dts
-> 
-> +
-> +&pcie0_clkreq_n {
-> +	bias-pull-up;
-> +	drive-strength = <2>;
-> +};
-
-Could you please add a /* pinctrl */ comment at the end of the file and
-group all pinctrl-related changes after it?
-
-> +
-> +
-> +&uart5 {
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_hc {
-> +	/delete-property/ qcom,ice;
-
-This should be explained in the commit message.
-
-> +
-> +	reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
-> +	vcc-supply = <&vreg_l7b_2p96>;
-> +	vcc-max-microamp = <800000>;
-> +	vccq-supply = <&vreg_l9b_1p2>;
-> +	vccq-max-microamp = <900000>;
-> +	vccq2-supply = <&vreg_l9b_1p2>;
-> +	vccq2-max-microamp = <900000>;
-> +
-> +	status = "okay";
+>  drivers/mfd/88pm886.c       | 21 ++++++++++++++++++++-
+>  include/linux/mfd/88pm886.h |  5 +++++
+>  2 files changed, 25 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/mfd/88pm886.c b/drivers/mfd/88pm886.c
+> index e411d8dee554..73102e638eba 100644
+> --- a/drivers/mfd/88pm886.c
+> +++ b/drivers/mfd/88pm886.c
+> @@ -16,6 +16,12 @@ static const struct regmap_config pm886_regmap_config =
+=3D {
+>  	.max_register =3D PM886_REG_RTC_SPARE6,
+>  };
+> =20
+> +static const struct regmap_config pm886_regmap_battery_config =3D {
+> +	.reg_bits =3D 8,
+> +	.val_bits =3D 8,
+> +	.max_register =3D PM886_REG_CLS_CONFIG1,
 > +};
 > +
-> +&usb_2 {
-> +	dr_mode = "host";
+>  static const struct regmap_irq pm886_regmap_irqs[] =3D {
+>  	REGMAP_IRQ_REG(PM886_IRQ_ONKEY, 0, PM886_INT_ENA1_ONKEY),
+>  };
+> @@ -88,7 +94,8 @@ static int pm886_probe(struct i2c_client *client)
+>  	struct regmap_irq_chip_data *irq_data;
+>  	struct device *dev =3D &client->dev;
+>  	struct pm886_chip *chip;
+> -	struct regmap *regmap;
+> +	struct regmap *regmap, *regmap_battery;
+> +	struct i2c_client *battery_page;
 
-Is it actually host-only?
+Not sure if this should be reordered to preserve the "reverse Christmas
+tree", but maybe it's fine if checkpatch didn't complain.
 
+>  	unsigned int chip_id;
+>  	int err;
+> =20
+> @@ -105,6 +112,18 @@ static int pm886_probe(struct i2c_client *client)
+>  		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to initialize regma=
+p\n");
+>  	chip->regmap =3D regmap;
+> =20
+> +	battery_page =3D devm_i2c_new_dummy_device(dev, client->adapter,
+> +						 client->addr + PM886_PAGE_OFFSET_BATTERY);
+> +	if (IS_ERR(battery_page))
+> +		return dev_err_probe(dev, PTR_ERR(battery_page),
+> +				     "Failed to initialize battery page\n");
 > +
-> +	status = "okay";
-> +};
+> +	regmap_battery =3D devm_regmap_init_i2c(battery_page, &pm886_regmap_bat=
+tery_config);
+> +	if (IS_ERR(regmap_battery))
+> +		return dev_err_probe(dev, PTR_ERR(regmap_battery),
+> +				     "Failed to initialize battery regmap\n");
+> +	chip->regmap_battery =3D regmap_battery;
 > +
 
--- 
-With best wishes
-Dmitry
+Nit: maybe this could go below the chip ID check so that it's not
+executed if the check subsequently fails?
+
+Also, I think the error messages are missing either a definite article
+or an underscore. Same in the commit message title.
+
+>  	err =3D regmap_read(regmap, PM886_REG_ID, &chip_id);
+>  	if (err)
+>  		return dev_err_probe(dev, err, "Failed to read chip ID\n");
+> diff --git a/include/linux/mfd/88pm886.h b/include/linux/mfd/88pm886.h
+> index 38892ba7b8a4..2c24dd3032ab 100644
+> --- a/include/linux/mfd/88pm886.h
+> +++ b/include/linux/mfd/88pm886.h
+> @@ -11,6 +11,7 @@
+> =20
+>  #define PM886_PAGE_OFFSET_REGULATORS	1
+>  #define PM886_PAGE_OFFSET_GPADC		2
+> +#define PM886_PAGE_OFFSET_BATTERY	3
+> =20
+>  #define PM886_REG_ID			0x00
+> =20
+> @@ -128,9 +129,13 @@
+>  #define PM886_GPADC_BIAS_LEVELS		16
+>  #define PM886_GPADC_INDEX_TO_BIAS_uA(i)	(1 + (i) * 5)
+> =20
+> +/* Battery block register definitions */
+> +#define PM886_REG_CLS_CONFIG1		0x71
+> +
+>  struct pm886_chip {
+>  	struct i2c_client *client;
+>  	unsigned int chip_id;
+>  	struct regmap *regmap;
+> +	struct regmap *regmap_battery;
+>  };
+>  #endif /* __MFD_88PM886_H */
+>
+> --=20
+> 2.54.0
+
+Reviewed-by: Karel Balej <balejk@matfyz.cz>
 
