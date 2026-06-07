@@ -1,268 +1,183 @@
-Return-Path: <devicetree+bounces-307820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307823-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id e0CGDHdsJWprIAIAu9opvQ
-	(envelope-from <devicetree+bounces-307820-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 15:04:55 +0200
+	id oXxwEOZtJWqNIAIAu9opvQ
+	(envelope-from <devicetree+bounces-307823-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 15:11:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 754A665096B
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 15:04:54 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 394DB65099E
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 15:11:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=KpYLeGF1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307820-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307820-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fEsRa7xV;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307823-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-307823-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2A9F6300EF47
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 13:04:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 56A1630028CF
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 13:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE5539182E;
-	Sun,  7 Jun 2026 13:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86F71DF254;
+	Sun,  7 Jun 2026 13:10:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5804F2EEE7D;
-	Sun,  7 Jun 2026 13:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBBD52459E5;
+	Sun,  7 Jun 2026 13:10:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780837492; cv=none; b=u0BxpfyCt13mqsYo3yYzQmPl5WMZanZslW1V3VlT0yOhUqGiSuk6o/g+xwVdM9JDGaPePRZGduZbaD92rIphfg5GBZZVsVecvO5hQYW4S0zNM7I2EE009sL2xsbyYXyq+mnu8zqzukRf8+4ekjGl8lKRFppJwdgt9wfOcfA3ClQ=
+	t=1780837855; cv=none; b=DYbnVYQIRhKGD2wJrvt4B71LGsqHzTFyMQb52xFJrvCFxsWzR1/mzY3asZpkthv0U0M5jw77DK91m1lYtSg+J5vPxvsFmw9Rh9Ah56czdRjB4/0CARCRhYFE64qswE90xaIEovOFpLvoJkqBd9gaMsAFqoVuF7vaZDMtKJrAAoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780837492; c=relaxed/simple;
-	bh=F1QyJjX1yFzlyg1M22MRH9BXgHyjN1RlYcMUrY74d9E=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=dJsjmkPD0+/KX7AF5X5Muw2IhVZYj1fE+FYx2KVK/oGpzRvFk5poCAXvh4vtTACEv8P7fdFBM6TbtNaJtQNXr3ktDWu1UZhit96n3RDY6Gb/cUNvi5VLB8o/z6qU5C+W0YwXzesQ48OZW8BippsJyOQP4ovCETT1U1WS/2oNaro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KpYLeGF1; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8A561F00893;
-	Sun,  7 Jun 2026 13:04:50 +0000 (UTC)
+	s=arc-20240116; t=1780837855; c=relaxed/simple;
+	bh=GPV98c7LhjIz7qOdaq9DJebC/14sSOkYq6z2g09vcZg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Ia2JmJjg6VeujfafHT7BVjFBty9CvdLG+z31nVhiCWsi63fjOA9vNVxK30Z0CQ8oK+/toUBnxKoJsOCMERcYvg7wgQ/pGgROl+KmA4EdocDpoHLoJ8cHp8rkmrf4ITUSKORkzxhZHkxpLuH2plJE6EKZvB3lAOBYRsnac8e6IzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fEsRa7xV; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 416931F00893;
+	Sun,  7 Jun 2026 13:10:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780837491;
-	bh=AWVTn/ddSiFqVnROl7IYlnKOGqz+FIezPvnF8nLm35M=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=KpYLeGF1NWlirpxxDtdwVwk1p3YYF6q1iI7QoflU/8WP3jFmCgTgz1JVlXxBTr44x
-	 hDQL5N7vWGwpEYfGY4T2Iwj+BCmIuB0RpII2J85OYvmvul7i5eXQ3Af1QO3bRSYI8Z
-	 LJy0a77MebG0XXhLnt5Ey2NSqDQZT4FwTvOWki1ewXV+lMRVRcATaMbi7Gj1fL+hWc
-	 3+HerthI9qnRvmFQOj1HKi89S916fi4tg8GG3mpClhxL2fCNmeE1W3a0x9brIlhqiL
-	 yNlIls7X0SfFFTQrnCBdTOTA6i+EyrZrIUbYVMrmaEcdcC0m4J/wedIB8jXl244GIr
-	 UPD7yvjjUgN3A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/3] perf: marvell: Add CN20K LLC-TAD PMU support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Geetha sowjanya" <gakula@marvell.com>
-Cc: linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260607125101.17778-3-gakula@marvell.com>
-References: <20260607125101.17778-3-gakula@marvell.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sun, 07 Jun 2026 13:04:50 +0000
-Message-Id: <20260607130450.B8A561F00893@smtp.kernel.org>
+	s=k20260515; t=1780837854;
+	bh=F2xqSkIR5zY+W2bnuAsWsR1SiOHZkfrjd5N+jCaFNXc=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=fEsRa7xV3t4R2RdnUn2vRvpM5bAyNHRKVgb2Zc7aD5Ijf3WN5lFgW5DvhpDXIExYO
+	 hxNbppayoTRu2vNeuES1JRf0mf7BpAcwOi+UsFm0AfvhWnurLmOPDjNIwb1sG7beXl
+	 IFCw7l2ugyXLqFLQYdWJ074r4XgKhPFwmFNhcpyphTWEw5BHpgoVC8zIIMUSYZfzL1
+	 HMOHYdaJYIOqCobQTHWHTd095G8rUi1kxKnRkISxbcTUVRCIvTMj0+K3R4ICyEOQgK
+	 E91tHhJNIw5Y/5zUA20n7MH9HX850C09NgC8o8zbz9LcLgW9p9tv/e2aOZvkwJk+xX
+	 gPNJvvPEhRg7w==
+Message-ID: <0bbe9ff3-5d42-496b-b777-8eb657b6e6a2@kernel.org>
+Date: Sun, 7 Jun 2026 15:10:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/5] dt-bindings: net: realtek,rtl9301-mdio: Add
+ RTL931x series
+To: Markus Stockhausen <markus.stockhausen@gmx.de>, andrew@lunn.ch,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ netdev@vger.kernel.org, chris.packham@alliedtelesis.co.nz,
+ daniel@makrotopia.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org
+References: <20260607125406.2853607-1-markus.stockhausen@gmx.de>
+ <20260607125406.2853607-2-markus.stockhausen@gmx.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260607125406.2853607-2-markus.stockhausen@gmx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,marvell.com:email,smtp.kernel.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,lists.linux.dev:replyto,sashiko.dev:url];
-	TAGGED_FROM(0.00)[bounces-307820-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307823-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:gakula@marvell.com,m:linux-perf-users@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmx.de,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,alliedtelesis.co.nz,makrotopia.org];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:markus.stockhausen@gmx.de,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:netdev@vger.kernel.org,m:chris.packham@alliedtelesis.co.nz,m:daniel@makrotopia.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,gmx.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 754A665096B
+X-Rspamd-Queue-Id: 394DB65099E
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
-s) to consider:
+On 07/06/2026 14:54, Markus Stockhausen wrote:
+> Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
+> ---
+>  .../devicetree/bindings/net/realtek,rtl9301-mdio.yaml       | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/realtek,rtl9301-mdio.yaml b/Documentation/devicetree/bindings/net/realtek,rtl9301-mdio.yaml
+> index 02e4e33e9969..494c92601e09 100644
+> --- a/Documentation/devicetree/bindings/net/realtek,rtl9301-mdio.yaml
+> +++ b/Documentation/devicetree/bindings/net/realtek,rtl9301-mdio.yaml
+> @@ -19,6 +19,12 @@ properties:
+>                - realtek,rtl9303-mdio
+>            - const: realtek,rtl9301-mdio
+>        - const: realtek,rtl9301-mdio
+> +      - items:
+> +          - enum:
+> +              - realtek,rtl9312-mdio
+> +              - realtek,rtl9313-mdio
+> +          - const: realtek,rtl9311-mdio
+> +      - const: realtek,rtl9311-mdio
 
-New issues:
-- [High] The shifted `partid` value overlaps with the hardcoded Non-Secure =
-(`NS`) flag on CN20K (V3), corrupting the filter configuration.
-- [Medium] The driver shares the PMU events attribute array between CN10K (=
-V1) and CN20K (V3) without visibility checks, exposing unsupported V3 event=
-s on V1 systems and breaking the pre-existing `tad_tot_cycle` (0xFF) event.
-- [Medium] The PMU driver prevents users from profiling MPAM PARTID 0, as i=
-t overloads `partid =3D=3D 0` to mean 'filtering disabled'.
+That one is part of enum with other single entries - rtl9301.
 
-Pre-existing issues:
-- [High] Malformed ACPI/DT memory resources cause NULL pointer dereferences=
- if they are smaller than `tad_cnt`, as the driver unconditionally assigns =
-the expected count instead of the mapped count.
-- [High] The driver modifies the global platform_device resource bounds dur=
-ing probe, corrupting subsequent ioremap attempts and causing driver rebind=
-s to fail.
-- [High] Missing `hwc->prev_count` reset when starting counters leads to bo=
-gus perf event counts upon read.
---
+>  
+>    '#address-cells':
+>      const: 1
 
-commit db735a497cd5d9c282e3c5a1fa6ad9ee8d6ea442
-Author: Geetha sowjanya <gakula@marvell.com>
-Subject: perf: marvell: Add CN20K LLC-TAD PMU support
 
-Adds support for the CN20K LLC-TAD PMU by defining a TAD_PMU_V3 profile
-with per-platform register bases. It extends the CN10K event map for new
-counters and matches the block via OF and ACPI.
-
-> diff --git a/drivers/perf/marvell_cn10k_tad_pmu.c b/drivers/perf/marvell_=
-cn10k_tad_pmu.c
-> index 7a3b659c999a2..4daf109b89eea 100644
-> --- a/drivers/perf/marvell_cn10k_tad_pmu.c
-> +++ b/drivers/perf/marvell_cn10k_tad_pmu.c
-[ ... ]
-> @@ -80,8 +83,14 @@ static void tad_pmu_start_counter(struct tad_pmu *pmu,
->  	if (partid && event_idx > 0x19 && event_idx < 0x21) {
-
-[Severity: High]
-This is a pre-existing issue, but does tad_pmu_event_counter_start() fail to
-reset the software prev_count when starting the counters?
-
-When the hardware counters are zeroed out earlier in tad_pmu_start_counter(=
-),
-local64_set(&hwc->prev_count, 0) is not called to match. When the counter is
-later stopped or read, computing new minus prev can underflow because prev
-still holds the value from the previous time the event was stopped.
-
-[Severity: Medium]
-Does checking if partid is non-zero prevent users from profiling MPAM PARTI=
-D 0?
-
-If a user explicitly specifies partid 0, which is a valid MPAM partition, it
-evaluates to false. This bypasses the hardware filter configuration entirel=
-y,
-causing the hardware to count events for all partitions instead of exclusiv=
-ely
-restricting to PARTID 0.
-
->  		partid_filter =3D TAD_PRF_MATCH_PARTID | TAD_PRF_PARTID_NS |
->  				((u64)partid << 11);
-> +
-> +		if (pdata->id =3D=3D TAD_PMU_V3)
-> +			partid_filter =3D TAD_PRF_MATCH_PARTID | BIT_ULL(25) |
-> +				((u64)partid << 10);
-
-[Severity: High]
-Does shifting a 16-bit partid by 10 cause a bit collision with the hardcoded
-Non-Secure flag at bit 25?
-
-Because BIT_ULL(25) occupies the exact same bit position as the most
-significant bit (bit 15) of the shifted 16-bit partid, any user-provided
-partid with bit 15 set might corrupt the hardware filter value.
-
->  	}
-> =20
-> +	if (pdata->id =3D=3D TAD_PMU_V1 && event_idx > 0x24)
-> +		return;
-
-[Severity: Medium]
-Does this early return prevent tad_tot_cycle (0xFF) from working on V1
-hardware?
-
-Because 0xFF is greater than 0x24, attempting to measure the total cycle
-event on V1 will be silently ignored, leaving the counter unprogrammed.
-
-> =20
->  	for (i =3D 0; i < pmu->region_cnt; i++) {
->  		reg_val =3D event_idx & 0xFF;
-[ ... ]
-> @@ -261,6 +270,18 @@ static struct attribute *tad_pmu_event_attrs[] =3D {
->  	TAD_PMU_EVENT_ATTR(tad_dat_rd_byp, 0x22),
->  	TAD_PMU_EVENT_ATTR(tad_ifb_occ, 0x23),
->  	TAD_PMU_EVENT_ATTR(tad_req_occ, 0x24),
-> +	TAD_PMU_EVENT_ATTR(tad_req_msh_out_dtg_evict, 0x25),
-> +	TAD_PMU_EVENT_ATTR(tad_req_msh_out_ltg_evict, 0x26),
-> +	TAD_PMU_EVENT_ATTR(tad_rsp_msh_out_mpam, 0x28),
-> +	TAD_PMU_EVENT_ATTR(tad_replays, 0x29),
-> +	TAD_PMU_EVENT_ATTR(tad_req_byp0, 0x2a),
-> +	TAD_PMU_EVENT_ATTR(tad_req_byp1, 0x2b),
-> +	TAD_PMU_EVENT_ATTR(tad_txreq_byp, 0x2c),
-> +	TAD_PMU_EVENT_ATTR(tad_time_in_dslp, 0x2d),
-> +	TAD_PMU_EVENT_ATTR(tad_time_elapsed, 0x2e),
-> +	TAD_PMU_EVENT_ATTR(tad_req_msh_out_dss_rd_128mrg, 0x2f),
-> +	TAD_PMU_EVENT_ATTR(tad_req_msh_out_dss_wr_128mrg, 0x30),
-> +	TAD_PMU_EVENT_ATTR(tad_tot_cycle, 0xff),
->  	NULL
->  };
-
-[Severity: Medium]
-Since these V3-specific events are added to the shared attribute array
-without an is_visible callback, are they incorrectly advertised to
-userspace on V1 hardware?
-
-[ ... ]
-> @@ -440,7 +460,7 @@ static int tad_pmu_probe(struct platform_device *pdev)
->  		.read		=3D tad_pmu_event_counter_read,
->  	};
-> =20
-> -	if (version =3D=3D TAD_PMU_V1) {
-> +	if (version =3D=3D TAD_PMU_V1 || version =3D=3D TAD_PMU_V3) {
->  		tad_pmu->pmu.attr_groups =3D tad_pmu_attr_groups;
->  		tad_pmu->ops		 =3D &tad_pmu_ops;
->  	} else {
-
-[Severity: High]
-This is a pre-existing issue, but in the region initialization loop earlier
-in tad_pmu_probe():
-
-for (i =3D 0; i < tad_cnt && res->start < res->end; i++) {
-    ...
-}
-tad_pmu->region_cnt =3D tad_cnt;
-
-If the loop terminates early due to the resource size being smaller than
-expected, region_cnt is unconditionally assigned tad_cnt instead of the
-successfully mapped count (i). Does this lead to NULL pointer dereferences
-later when PMU operations iterate up to region_cnt and access the
-uninitialized base pointers?
-
-[Severity: High]
-This is another pre-existing issue, but in that same tad_pmu_probe()
-initialization loop:
-
-for (i =3D 0; i < tad_cnt && res->start < res->end; i++) {
-    ...
-    res->start +=3D tad_page_size;
-}
-
-Does modifying res->start directly corrupt the global platform_device
-resource bounds?
-
-Since platform_get_resource() returns a direct pointer to the device's
-resource descriptor, permanently altering it means subsequent ioremap
-attempts will start from the corrupted offset if the driver module is
-reloaded or if probe defers.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260607125101.1777=
-8-1-gakula@marvell.com?part=3D2
+Best regards,
+Krzysztof
 
