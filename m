@@ -1,212 +1,236 @@
-Return-Path: <devicetree+bounces-307794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307792-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MBuGH99NJWpqGgIAu9opvQ
-	(envelope-from <devicetree+bounces-307794-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 12:54:23 +0200
+	id 7IgnBt5IJWpHGAIAu9opvQ
+	(envelope-from <devicetree+bounces-307792-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 12:33:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB0566501AD
-	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 12:54:22 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E20664FC4E
+	for <lists+devicetree@lfdr.de>; Sun, 07 Jun 2026 12:33:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=vinatta.cz header.s=default header.b=Ei3346eb;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307794-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307794-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=matfyz.cz (policy=none);
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=amd.com header.s=selector1 header.b=g6t9d8yU;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307792-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307792-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E0549302C6E5
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 10:35:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 874C13048933
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jun 2026 10:27:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3F93254A9;
-	Sun,  7 Jun 2026 10:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CDF43264F3;
+	Sun,  7 Jun 2026 10:27:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vinatta.cz (vinatta.cz [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012006.outbound.protection.outlook.com [52.101.53.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D081257855;
-	Sun,  7 Jun 2026 10:35:00 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780828525; cv=none; b=X5nbXBW9cMG7iCP8y0r72uH8yXa0sR9KwcGe6+krqbnyU7zkr0OGXGIExIFzEsoVSm5TfzlLAKFweP2egRhZ56aL4W54WKE7Zs594lsHMzP+qLTcZdHFNecCfJjD9Bep9tTZ0k+eIZqWghDxwEIKIew7NkI29kmf+7QI1Qwp/kM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780828525; c=relaxed/simple;
-	bh=sB9DQeRkuWeZiSHTms9NV6hjc3XvirX8YIcp7h1Z0jI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
-	 References:In-Reply-To; b=Oich1VenkdNhZsO8wYuy9tBf2m5PRENYhMhXmgtmupSmqeIY+3zzTBuHE+AqEhGgxdeW6X+rv2pShAljRT1g5195ksXdiqxP5sc+47ZAllYucSkPckv+Hwsn35uZrxOUkg0xrNiLamlWjENB27jxDrEIXAlqrDKl3qjxEzYlP9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=vinatta.cz; dkim=pass (2048-bit key) header.d=vinatta.cz header.i=@vinatta.cz header.b=Ei3346eb; arc=none smtp.client-ip=37.205.8.231
-DKIM-Signature: a=rsa-sha256; bh=mO4758l4xD4doudJsBypWffgPZyM4fYzNrX9tTyuI3s=;
- c=relaxed/relaxed; d=vinatta.cz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@vinatta.cz; s=default; t=1780827561; v=1; x=1781259561;
- b=Ei3346ebznbzoY+9Qon6+dNgqo1xRE97BD4hbG8ZKJcmVwiQqeq3YlLx+4PXyFu0RH/mZnFr
- uIgZ86jwee0wLUX2j9PU3suUzGr27NJlacuPbsa6Bqp0ECpiVEg/HnUOZ2/G0NtaCnfvJ3v+htX
- WihFy6Xf1r69CPAV5X2sEAGiAMRf4D7ZVm5NRzZrPZKXtKvcjIoVdMlAJwPz6hKr0SjMLTdEkO0
- ME9AKNuyvNk4sef9Q10Mz54/FzHbMLAWdtP/JcYZTLbyN65S8XdeXye7AAayaQFJTVNhej+NHfc
- 8TVcfYurWrTqiaW/NRLX/E8WvyODd9HUmZSRHY+oolNqg==
-Received: by vinatta.cz (envelope-sender <karel@vinatta.cz>) with ESMTPS id
- e04f78f5; Sun, 07 Jun 2026 12:19:21 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121D41C5F27;
+	Sun,  7 Jun 2026 10:27:27 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780828049; cv=fail; b=ovVuMimPWuKEpDIKmqAKs+a3uItwyiSf2H3O5XvX9u3hRR8zPracJ94mRaa2lx9AWT5Z2YR30v0ZCzicc+FiaocV7sr3kOY2w//ofPDOobcGlyItTD3C9rrbUBVmPb2t+KRTlpqAah3bQoxnNetP19YqDcaVfssRjVTgaWKkf0o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780828049; c=relaxed/simple;
+	bh=5+r8bpUCsMISGNvtEtxt/FZnod3tEe6VnMd8ES/htCM=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=tzWsY38xceGKeQhh8559saJS83PYw0+OeUC2dXK6wk3/IEQVrfXcL3a58PXsLAdQuqNeFAwXoUqZtlnHPcXORJ6FGypspyOajZy+DYUcxu9O5AFmiULeOgWx/UkPnv50lMf/bn7Zb+HOQu+O9t5DPAK9a8EO1r5NZFfXAiP150s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=g6t9d8yU; arc=fail smtp.client-ip=52.101.53.6
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iVngu7wZ6HCY+jw1mo5D4xzs8c5MY09ugg8cvwQz3taUXP4jxPqZmb/IHz3AZKAf0EkOBKVZb0I/iiKgFNGfpThpr/MvqqSVoYINXG3LIYWFcbmzwO5PFtzDstfp3ClmQnu848ILwm64MnrYkpS1fV8HIoJQH+LY7Dhc91e3q59Uwk2ihBSYOVDdHlEprU/dG27IbiuV5imZMkdAoXBhPWk19OOzcFrfFjlzoppaoI2HbSq7/+kxClIFrKdUAtlUs0yE4aie8RLldab7wh6RmV3MJ7eLo+xB2TyXcROQyEfioiBvQ0RuQq4hfwauARyM7/LLrRUOMTMNdPcYby4r9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SLhej37+8jE34vAeg4dFJPgmVl8ViPXXKNReix/1NYQ=;
+ b=YwMmFzp/+n6OhlBQROkr80iGz+5nV6YUig5VjugzEGgDxv0zbszhElAOboXXXgKyQZijndAfpYuro9lzw134xY5vPTGiE0BRIXPotNbWEpBkemOJnmE9X4LfvyBV7qt2xnWZx3sfHj/1Kg+JKzmNBOUpWc0D1py9OGDoPe9HRRTZl383beeC81drfDLYF7yD73n2qde809v71VE0QR4u9XP/gv8a0z42b2WXkX/AjdULAX7z7deH3XN/B7IrhnCDl17IBg2VQ7DKL3JHfNeVKPUqZQ6seFJdn6uAwpklHUdv3fbqOriMy0z88tHRzD/gdmxSh71U2BNU7zZ3WVoPRA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SLhej37+8jE34vAeg4dFJPgmVl8ViPXXKNReix/1NYQ=;
+ b=g6t9d8yUSABXqs9ri7gj+LikzZj+0bjcKwjH5Xk+LM9ctBw6Qef5xuSZsLEFHibkwzIpkOg/w6s02K/pAlgHCqhUO/Bm/NL5/Oq2yTnLyVUG0F9eZWLftxT+XsHyXN7HRHEpfyB4LkYCYDPUHzj9oV2RCo5Uuq3LT4wc/9AzXCA=
+Received: from IA1PR12MB7736.namprd12.prod.outlook.com (2603:10b6:208:420::15)
+ by MN6PR12MB8592.namprd12.prod.outlook.com (2603:10b6:208:478::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.12; Sun, 7 Jun 2026
+ 10:27:23 +0000
+Received: from IA1PR12MB7736.namprd12.prod.outlook.com
+ ([fe80::2274:9fed:8f3:8550]) by IA1PR12MB7736.namprd12.prod.outlook.com
+ ([fe80::2274:9fed:8f3:8550%6]) with mapi id 15.21.0092.010; Sun, 7 Jun 2026
+ 10:27:23 +0000
+Message-ID: <1d336058-7930-49f4-8bef-5e4f3438bda0@amd.com>
+Date: Sun, 7 Jun 2026 11:27:19 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/5] iio: adc: versal-sysmon: add I2C driver
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Conall O'Griofa <conall.ogriofa@amd.com>,
+ Michal Simek <michal.simek@amd.com>, Guenter Roeck <linux@roeck-us.net>,
+ Salih Erim <erimsalih@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260606051707.535281-1-salih.erim@amd.com>
+ <20260606051707.535281-4-salih.erim@amd.com>
+ <aiRoOnyMG2g6BU_a@ashevche-desk.local>
+Content-Language: en-US
+From: "Erim, Salih" <salih.erim@amd.com>
+In-Reply-To: <aiRoOnyMG2g6BU_a@ashevche-desk.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0511.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:272::12) To IA1PR12MB7736.namprd12.prod.outlook.com
+ (2603:10b6:208:420::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 07 Jun 2026 12:19:21 +0200
-Message-Id: <DJ2QONQXFUDK.22S5350HOO2N6@matfyz.cz>
-Cc: <devicetree@vger.kernel.org>, <phone-devel@vger.kernel.org>,
- <~postmarketos/upstreaming@lists.sr.ht>, <linux-kernel@vger.kernel.org>,
- =?utf-8?q?Duje_Mihanovi=C4=87?= <dujemihanovic32@gmail.com>, "Lee Jones"
- <lee@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Liam Girdwood"
- <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>
-Subject: Re: [PATCH 2/3] mfd: 88pm886: Initialize battery page
-To: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-From: "Karel Balej" <balejk@matfyz.cz>
-References: <20260526-88pm886-vbus-v1-0-f2bd1fd3c19e@dujemihanovic.xyz>
- <20260526-88pm886-vbus-v1-2-f2bd1fd3c19e@dujemihanovic.xyz>
-In-Reply-To: <20260526-88pm886-vbus-v1-2-f2bd1fd3c19e@dujemihanovic.xyz>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR12MB7736:EE_|MN6PR12MB8592:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b52d1fd-3848-4efa-9cae-08dec47f5cbb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|22082099003|18002099003|11063799006|4143699003|56012099006|3023799007;
+X-Microsoft-Antispam-Message-Info:
+	u6zdK2mTK/JSnsWkuxbkFbRaub02d/klyUbWoX93WNoNB/mV9y6TtGr7ipHTHoOGO+DasGUTw3aQvTqWWFvcXbcnGpu6CpLQFVXc7bepUSJ10lq868edUsvsAv6FjPIm8A/fIano0OSkyD5F1QC67RL5KXlMNhql2HFc/eKqDKKfZ9waqBTVhvkQ7c9ew2ZX3qDR2sJatrkL64YYOVSkvQjj8ep3iZAJy6EpQAfXKrLbfIHyzccvp1z3wo+F/w+wXvtGhldyO0VTTsy0aw22pYdy+cVGvI+wOPHF2asrDHQySti84VBK55OMwxpCfYvMsVmQBHewzmCJkinAYhuqntTRfFV4m7pKi9tEkdI5ch82dnF0n0dGa7yBzqBEXq3ZEjK/sQAxj6U+9CqhhWOLAakKlH2J2cORZjHtmjxbU5cume/aZhAxEawwXa10GWj5YwjZSoN1FpLL9UE/wj2kfPgJHgwQbDZbVe7BkZ4Wd6a8UuHknDnp05CnpL3sZjqfzXfFjwPLdTTJ6KSkoWOfdGnWIflvCSsEnkyVvH5/VoSh59k2jPQotVvp423QAPF8BqsdKg/bc+u7S8ttpP6NvqgaSyTiwAOwqHHsewcsWSwdqqF+NZjjijB9C0AZWNrAUk9hjcwwMiPTz9w9fiYPvAXCCVwJx7TT5l3E4CFwQSl+DZBbESfc+j22rfPS4cp9
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR12MB7736.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(22082099003)(18002099003)(11063799006)(4143699003)(56012099006)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bjRza2UyMjdBS1ZSRHVzRzRvYjYrVndycWRJck1iZ3dhSm9xTWZYT2xlbUFk?=
+ =?utf-8?B?RHVjazEyUWl3MnRZaVhRLzRvckZ5eVVPOTVkNU9DeGJ0Ynd1T1FQUm5YN3Z4?=
+ =?utf-8?B?VXM5elNBb3Z5dHBXOUZIL0ZZSnY0VERnZ2VQWWNZNUdUakFSZlZwc0Q2akVJ?=
+ =?utf-8?B?UURjV2sxcHpKVGpJYWkwTDhpV25PWjcwOXlIWjY2Z2JnTkhTN3ZnRjV3R0I5?=
+ =?utf-8?B?M0JNV3dTZys5NURwVGdHYUNXcFk3YWd3ZHh0emMvSUpKY1JWb1h5bTQ0QTgz?=
+ =?utf-8?B?V0k5YzZZdFRKOVQ2OW05cWNkMmdYalhUUjdkTWhwRnFBSWp3QjJuMFJ5WnB4?=
+ =?utf-8?B?WW1ES0pjQlhoOHpGRTY1c3k0alVHbFN2c2YrTkNtQ2VDTlJtWXk5WjY2aTd4?=
+ =?utf-8?B?L2dPa3Vjc3pTYnhmbDhvcEhUOUNaL1R0ODV4UmNsUkhTQUpRSklHNTVwSkZt?=
+ =?utf-8?B?cW51YnlxQjRLSXI4cGpOZHJ6aU0rdWs2TExTcDVpU1FRMXJkWHR5V01aV3dq?=
+ =?utf-8?B?MEo2cEt6TDlZQ1hHT01rS0JTT0gwVUdhbjVXU1B2UlNmT3RYa1lOSC9McEFS?=
+ =?utf-8?B?NkFhcUVaY0wyV0x3SWlxQ0JFZm10U3pqZHE5OHMvSnZhZFV3OThjM0ZKRktG?=
+ =?utf-8?B?SE8ybFUrd0pvVlNEMmRmcURrWlRJazk4ZTBxaUVya2xqSUp1dXZqUktrak40?=
+ =?utf-8?B?YTdYRmZLcjYwMVBWWGxiem9hcmpiLzZlOWRkK1NpZ2Rzc3YxUW0yWVZXVk9q?=
+ =?utf-8?B?UTRnZjdESnpGc3hRb3paV0JueXlWb3poU1RiVWZKRlN0WEZTdDJpVlcrNitC?=
+ =?utf-8?B?Q05GQU9ka1JXS1pNazhraHh5VmFKWmhrK2NDUGdqaGR5eUg3cHE4aVpoRlpq?=
+ =?utf-8?B?dGs3N3dXdWtPRGhsT0YrNk9jaFVhRmdLaGs2NlNjYXBMKzFJbVh1Rnk3Ylo1?=
+ =?utf-8?B?cHlCbXBSeHo0a1dvSStzNm40QXQzTnU3MjVJUG1EdENmbDdkci9VajVYNjNu?=
+ =?utf-8?B?OFJYTlpselZJVjI0U1FtaWsxRDU5aGR3YWpIM3c0cDg1MmNBUWw3TTdzOXc5?=
+ =?utf-8?B?ZC9kYWxYQjdLbFE3N3JZUDZjQ0JUZGZqZXlTaWhSOGgwNjBSa0dYWG9VU2RK?=
+ =?utf-8?B?enY5eGIzRzl2enBleXFFYzlHVzFORWM3WGZQbnFUcmFLL1pEYVFHVHJQbno5?=
+ =?utf-8?B?cjJNbS9hR3JXWS9CWUF4UzgxelNPUFFiaVE1Vmpja250MHBaTzlOOStzYWZK?=
+ =?utf-8?B?MmUvUndGWFIvbVFVRXBZaWRURjBZd2J4N1pjUzhXZGVhZFZNdnk3c05mYlZC?=
+ =?utf-8?B?OForYllENHZzUVpuUUxOVE5zNjZtcytuQ1NKMmRSVmFSL1p1OGE4OVlKTUJV?=
+ =?utf-8?B?NEM0WEdrb0lMcWFuR1Z3MDRjeVNNRVJIMS9jNDVPbjlaelJMb214bjBPT09a?=
+ =?utf-8?B?bW5DenJyOWp4Q2s3My9ocGFrZXd2UEl4RkVmbTBMb1dMbHpDWnJmaE9ZTkRU?=
+ =?utf-8?B?Nis1akxOKzZ6cCtVUW43ZUxWdmFJYUhrVks5YmZ3bFBHU2pTV0cySmdwb0p3?=
+ =?utf-8?B?YlpyRktEYmIzNUZ4NG94M3Uwam14WldrdkpsaHJ2UndPN1lIaGQ3U3pzY2Z6?=
+ =?utf-8?B?ekFWcFUwUmJWVDdmQSs4dTE3MWJuSTdVanN4TVp6aDNBSWIxa0cycGoyR0hm?=
+ =?utf-8?B?TG1NRGpLR2htdXlaaEd1cERML2RjR0FiUmlEWXlrZjhGOUY3bFNnVGVQYm00?=
+ =?utf-8?B?Z011eVZZL250VURDYlhPQzlmVHhSYkhqMGhaaDFXZHZTVTlPbFBwbmVEbzFv?=
+ =?utf-8?B?ZUpLcHJSOXRpRmNTd2dVY1pnSFdlMTZSWElweGQ2TzlPcmlMWXBxSDNWRUdX?=
+ =?utf-8?B?aDFUaXhQL1YvYjYzN09Oc2FnUFVqb2EwdDAwVW5tNGRTNytPbmFTMFh1NEd2?=
+ =?utf-8?B?UHIwVzZBbnZzQk9IUWZFdmg2b05UY1JJQWNyQ2xpNkU1SUNIeHcwZ0FMRWZU?=
+ =?utf-8?B?UU9wdDRuN3h6THlRUXNTQjRsT3dPdzNTR2Vrd3lqNlJFT2dkRForN09WQ0tY?=
+ =?utf-8?B?YWJ6azdKeUcyZjFvckoyRFdmc09pNkUrTElPTnJpbkpIYm5ZVVVqbHRkR2xt?=
+ =?utf-8?B?dEtWVWI5UVEwVU5MV3Z2cXJ5WjFkOHlid2VwWWVseUFFd2EvcjI3ZnUyb3lL?=
+ =?utf-8?B?M2ZVQm5OZlhIeXBkS3pWbjRMQUlNRzhSVWZ5a3ZrNDRHdWw3dWovZUtaZEtK?=
+ =?utf-8?B?dFJXaHVuMG5hbDdPZVFlaDQzQ3M5V2hjZnphWVRFcnFqVzRITndVWXpqOE5C?=
+ =?utf-8?Q?drB76HLIG9k1y2wxvp?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b52d1fd-3848-4efa-9cae-08dec47f5cbb
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB7736.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2026 10:27:23.0709
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Nmq32pIOo1hRnvaI5USrzxL7mdCc+sGuRHVl4voNznSqHVZknq9ozZQ1iwx/vJKk
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8592
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.44 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[vinatta.cz:s=default];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[matfyz.cz : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-307792-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:phone-devel@vger.kernel.org,m:~postmarketos/upstreaming@lists.sr.ht,m:linux-kernel@vger.kernel.org,m:dujemihanovic32@gmail.com,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:duje@dujemihanovic.xyz,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[balejk@matfyz.cz,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-307794-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[salih.erim@amd.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:jic23@kernel.org,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[vinatta.cz:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[balejk@matfyz.cz,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com,kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[salih.erim@amd.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vinatta.cz:dkim,matfyz.cz:mid,matfyz.cz:from_mime,matfyz.cz:email,dujemihanovic.xyz:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:from_mime,amd.com:dkim,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CB0566501AD
+X-Rspamd-Queue-Id: 6E20664FC4E
 
-Duje Mihanovi=C4=87, 2026-05-26T21:14:48+02:00:
-> From: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
->
-> Initialize the PMIC's battery page. The battery page registers are
-> shared between Vbus regulator, charger, fuelgauge and camera flash
-> blocks, hence the commonization of the page.
->
-> Signed-off-by: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
-> ---
->  drivers/mfd/88pm886.c       | 21 ++++++++++++++++++++-
->  include/linux/mfd/88pm886.h |  5 +++++
->  2 files changed, 25 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/mfd/88pm886.c b/drivers/mfd/88pm886.c
-> index e411d8dee554..73102e638eba 100644
-> --- a/drivers/mfd/88pm886.c
-> +++ b/drivers/mfd/88pm886.c
-> @@ -16,6 +16,12 @@ static const struct regmap_config pm886_regmap_config =
-=3D {
->  	.max_register =3D PM886_REG_RTC_SPARE6,
->  };
-> =20
-> +static const struct regmap_config pm886_regmap_battery_config =3D {
-> +	.reg_bits =3D 8,
-> +	.val_bits =3D 8,
-> +	.max_register =3D PM886_REG_CLS_CONFIG1,
-> +};
-> +
->  static const struct regmap_irq pm886_regmap_irqs[] =3D {
->  	REGMAP_IRQ_REG(PM886_IRQ_ONKEY, 0, PM886_INT_ENA1_ONKEY),
->  };
-> @@ -88,7 +94,8 @@ static int pm886_probe(struct i2c_client *client)
->  	struct regmap_irq_chip_data *irq_data;
->  	struct device *dev =3D &client->dev;
->  	struct pm886_chip *chip;
-> -	struct regmap *regmap;
-> +	struct regmap *regmap, *regmap_battery;
-> +	struct i2c_client *battery_page;
+Hi Andy,
 
-Not sure if this should be reordered to preserve the "reverse Christmas
-tree", but maybe it's fine if checkpatch didn't complain.
+Thanks for all reviews.
 
->  	unsigned int chip_id;
->  	int err;
-> =20
-> @@ -105,6 +112,18 @@ static int pm886_probe(struct i2c_client *client)
->  		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to initialize regma=
-p\n");
->  	chip->regmap =3D regmap;
-> =20
-> +	battery_page =3D devm_i2c_new_dummy_device(dev, client->adapter,
-> +						 client->addr + PM886_PAGE_OFFSET_BATTERY);
-> +	if (IS_ERR(battery_page))
-> +		return dev_err_probe(dev, PTR_ERR(battery_page),
-> +				     "Failed to initialize battery page\n");
-> +
-> +	regmap_battery =3D devm_regmap_init_i2c(battery_page, &pm886_regmap_bat=
-tery_config);
-> +	if (IS_ERR(regmap_battery))
-> +		return dev_err_probe(dev, PTR_ERR(regmap_battery),
-> +				     "Failed to initialize battery regmap\n");
-> +	chip->regmap_battery =3D regmap_battery;
-> +
+On 06/06/2026 19:34, Andy Shevchenko wrote:
+> Caution: This message originated from an External Source. Use proper caution when opening attachments, clicking links, or responding.
+> 
+> 
+> On Sat, Jun 06, 2026 at 06:17:05AM +0100, Salih Erim wrote:
+>> Add an I2C transport driver for the Versal SysMon block. The SysMon
+>> provides an I2C slave interface that allows an external master to
+>> read voltage and temperature measurements through the same register
+>> map used by the MMIO path.
+>>
+>> The I2C command frame is an 8-byte structure containing a 4-byte data
+>> payload, a 2-byte register offset, and a 1-byte instruction field.
+>> Read operations send the frame with a read instruction, then receive
+>> a 4-byte response containing the register value.
+>>
+>> Events are not supported on the I2C path because there is no
+>> interrupt line and the I2C regmap backend cannot be called from
+>> atomic context.
+> 
+> ...
+> 
+>> +#include <linux/bits.h>
+>> +#include <linux/i2c.h>
+>> +#include <linux/module.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/unaligned.h>
+> 
+> There are headers absent, please, follow IWYU principle.
+> 
+> IS_ERR() ? struct of_device_id ?
 
-Nit: maybe this could go below the chip ID check so that it's not
-executed if the check subsequently fails?
+Accepted. Will add linux/err.h and linux/mod_devicetable.h in v5.
 
-Also, I think the error messages are missing either a definite article
-or an underscore. Same in the commit message title.
+Salih.
+> 
+>> +#include "versal-sysmon.h"
+> 
+> --
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
 
->  	err =3D regmap_read(regmap, PM886_REG_ID, &chip_id);
->  	if (err)
->  		return dev_err_probe(dev, err, "Failed to read chip ID\n");
-> diff --git a/include/linux/mfd/88pm886.h b/include/linux/mfd/88pm886.h
-> index 38892ba7b8a4..2c24dd3032ab 100644
-> --- a/include/linux/mfd/88pm886.h
-> +++ b/include/linux/mfd/88pm886.h
-> @@ -11,6 +11,7 @@
-> =20
->  #define PM886_PAGE_OFFSET_REGULATORS	1
->  #define PM886_PAGE_OFFSET_GPADC		2
-> +#define PM886_PAGE_OFFSET_BATTERY	3
-> =20
->  #define PM886_REG_ID			0x00
-> =20
-> @@ -128,9 +129,13 @@
->  #define PM886_GPADC_BIAS_LEVELS		16
->  #define PM886_GPADC_INDEX_TO_BIAS_uA(i)	(1 + (i) * 5)
-> =20
-> +/* Battery block register definitions */
-> +#define PM886_REG_CLS_CONFIG1		0x71
-> +
->  struct pm886_chip {
->  	struct i2c_client *client;
->  	unsigned int chip_id;
->  	struct regmap *regmap;
-> +	struct regmap *regmap_battery;
->  };
->  #endif /* __MFD_88PM886_H */
->
-> --=20
-> 2.54.0
-
-Reviewed-by: Karel Balej <balejk@matfyz.cz>
 
