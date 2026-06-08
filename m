@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-308104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308111-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pkLHDTaBJmqOXgIAu9opvQ
-	(envelope-from <devicetree+bounces-308104-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:45:42 +0200
+	id YJhKAIaCJmrzXgIAu9opvQ
+	(envelope-from <devicetree+bounces-308111-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:51:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24AAA6542D2
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA1F365437E
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:51:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308104-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308104-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308111-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308111-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5C1D63006021
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 08:37:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 62B603064E35
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 08:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 324EF3B27D3;
-	Mon,  8 Jun 2026 08:36:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 563603B4423;
+	Mon,  8 Jun 2026 08:38:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from r3-55.sinamail.sina.com.cn (r3-55.sinamail.sina.com.cn [202.108.3.55])
+Received: from smtp153-182.sina.com.cn (smtp153-182.sina.com.cn [61.135.153.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACFF3B1ECC
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 08:36:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 744892F1FDF
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 08:38:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780907793; cv=none; b=lk6d6/JgIN4E3SOdtsHEZDratW4NxBjWuhpk7mLF5m0ZpVT5rVDSLaJrdeSi5CotxooIbmn0vSppzqMKA3xow0M9g1hqfPjFuAEL+i9pDdgnzPOhgcYeenCxc9FBDeHEiAIEVOuWHg1vonyyUSQgPd5DOG7d+2tP6+GH62qfDjM=
+	t=1780907903; cv=none; b=lVa5b55LpKTw6/BizKLZM2QkwMNzI7P2gLJ73FMTYCbDHk9xlj+vLG/tXDVOoWRRpqtXeKa7zYoeVmUevxBENw+5D3lOGCLgd5z7FdEvMQzBfYLdDFVO+FgdDvBYs04Og2ohZ3C1kfkf7RET757aDnYgbEXOxcE/95N0BdJv2lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780907793; c=relaxed/simple;
-	bh=9JVAFCmQgU3Kp62ol+ZD/YGYjXfJYpwOQ7FApQXA7ZM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=PIzirHJYji/HDDgMYOhAcQRMmL2D1Cx6P4M2veE6wX2yyVYUVqc0RfZJkKff1sTyzIGWPJ+VBFi84Ar9R/OJz/g0/+YHV2oMo5wJa8Tp9CIZaQMejcB9/1AeahpNAK0LBGOb23t7su9Z9NcfX1CKfc4OLLi7ErWPh/JOFMiwUVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=202.108.3.55
+	s=arc-20240116; t=1780907903; c=relaxed/simple;
+	bh=eNkE9fThA+Yddd79uMmDbx3+986LsI7yJiUpq9sLT8g=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=NpFz3Lcl8rwHEs7fzrMkdWFpsUwKrbZMuX+bYNhKRsQvza+F+i81vtGFBsMMndeAf/80hrdujbrXlfOfS9tBg3z+FEK8pR1IEiLy1LY43ghxRGkOziEcSNZ2bz1S5w+u2yTNiH67mZFwidxwhN2axfjDeH09iGXVaSUAwsqCeVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=61.135.153.182
 Received: from unknown (HELO zy-virtual-machine.localdomain)([58.38.107.94])
 	by sina.net (10.54.253.38) with ESMTP
-	id 6A267EDF00000BB8; Mon, 8 Jun 2026 16:35:45 +0800 (CST)
+	id 6A267EDF00000BB8; Mon, 8 Jun 2026 16:35:46 +0800 (CST)
 X-Sender: zhangyi@everest-semi.com
 X-Auth-ID: zhangyi@everest-semi.com
-X-SMAIL-MID: FF3B8CE09A85460290A09CA735F6B639
-X-SMAIL-UIID: FF3B8CE09A85460290A09CA735F6B639-20260608-163545
+X-SMAIL-MID: 8E193D818EC3496CA065561154769EE9
+X-SMAIL-UIID: 8E193D818EC3496CA065561154769EE9-20260608-163546
 From: Michael Zhang <zhangyi@everest-semi.com>
 To: alsa-devel@alsa-project.org,
 	broonie@kernel.org,
@@ -49,9 +49,9 @@ Cc: tiwai@suse.com,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	Zhang Yi <zhangyi@everest-semi.com>
-Subject: [PATCH v0 1/7] ASoC: codecs: ES8389: Modify volatile_register
-Date: Mon,  8 Jun 2026 16:35:34 +0800
-Message-Id: <20260608083540.12581-2-zhangyi@everest-semi.com>
+Subject: [PATCH v0 2/7] ASoC: codecs: ES8389: Fix the issue about mclk_src
+Date: Mon,  8 Jun 2026 16:35:35 +0800
+Message-Id: <20260608083540.12581-3-zhangyi@everest-semi.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20260608083540.12581-1-zhangyi@everest-semi.com>
 References: <20260608083540.12581-1-zhangyi@everest-semi.com>
@@ -71,7 +71,7 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-308104-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308111-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
 	DMARC_NA(0.00)[everest-semi.com];
@@ -91,56 +91,51 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	R_DKIM_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,everest-semi.com:mid,everest-semi.com:from_mime,everest-semi.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,everest-semi.com:mid,everest-semi.com:from_mime,everest-semi.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 24AAA6542D2
+X-Rspamd-Queue-Id: EA1F365437E
 
 From: Zhang Yi <zhangyi@everest-semi.com>
 
-Mark some registers that are not volatile as false
+Fix the issue with incorrect modifications to mclk_src
 
 Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
 ---
- sound/soc/codecs/es8389.c | 25 ++++++++++++++++++++++---
- 1 file changed, 22 insertions(+), 3 deletions(-)
+ sound/soc/codecs/es8389.c | 2 +-
+ sound/soc/codecs/es8389.h | 7 ++++---
+ 2 files changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/sound/soc/codecs/es8389.c b/sound/soc/codecs/es8389.c
-index 449d9574b03a..9c816491648c 100644
+index 9c816491648c..638eb1f0462e 100644
 --- a/sound/soc/codecs/es8389.c
 +++ b/sound/soc/codecs/es8389.c
-@@ -50,10 +50,29 @@ static const char * const es8389_core_supplies[] = {
- static bool es8389_volatile_register(struct device *dev,
- 			unsigned int reg)
- {
--	if ((reg  <= 0xff))
--		return true;
--	else
-+	switch (reg) {
-+	case ES8389_ADC_HPF1:
-+	case ES8389_ADC_HPF2:
-+	case ES8389_ADCL_VOL:
-+	case ES8389_ADCR_VOL:
-+	case ES8389_MIC1_GAIN:
-+	case ES8389_MIC2_GAIN:
-+	case ES8389_DACL_VOL:
-+	case ES8389_DACR_VOL:
-+	case ES8389_ALC_ON:
-+	case ES8389_ALC_CTL:
-+	case ES8389_ALC_TARGET:
-+	case ES8389_ALC_GAIN:
-+	case ES8389_ADC_MUTE:
-+	case ES8389_OSR_VOL:
-+	case ES8389_DAC_INV:
-+	case ES8389_MIX_VOL:
-+	case ES8389_DAC_MIX:
-+	case ES8389_ADC_RESET:
- 		return false;
-+	default:
-+		return true;
-+	}
- }
+@@ -609,7 +609,7 @@ static int es8389_pcm_hw_params(struct snd_pcm_substream *substream,
  
- static const DECLARE_TLV_DB_SCALE(dac_vol_tlv, -9550, 50, 0);
+ 	if (es8389->mclk_src == ES8389_SCLK_PIN) {
+ 		regmap_update_bits(es8389->regmap, ES8389_MASTER_CLK,
+-					ES8389_MCLK_SOURCE, es8389->mclk_src);
++					ES8389_MCLK_MASK, es8389->mclk_src);
+ 		es8389->sysclk = params_channels(params) * params_width(params) * params_rate(params);
+ 	}
+ 
+diff --git a/sound/soc/codecs/es8389.h b/sound/soc/codecs/es8389.h
+index d21e72f876a6..13ce241774dc 100644
+--- a/sound/soc/codecs/es8389.h
++++ b/sound/soc/codecs/es8389.h
+@@ -116,9 +116,10 @@
+ #define ES8389_TDM_SLOT               (0x70 << 0)
+ #define ES8389_TDM_SHIFT              4
+ 
+-#define ES8389_MCLK_SOURCE            (1 << 6)
+-#define ES8389_MCLK_PIN               (1 << 6)
+-#define ES8389_SCLK_PIN               (0 << 6)
++#define ES8389_MCLK_MASK              (3 << 6)
++#define ES8389_MCLK_SOURCE            (0 << 6)
++#define ES8389_MCLK_PIN               (0 << 6)
++#define ES8389_SCLK_PIN               (1 << 6)
+ 
+ /* ES8389_FMT */
+ #define ES8389_S24_LE                 (0 << 5)
 -- 
 2.54.0.windows.1
 
