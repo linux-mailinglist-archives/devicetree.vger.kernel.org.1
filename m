@@ -1,145 +1,191 @@
-Return-Path: <devicetree+bounces-308110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308112-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NgocEgmBJmqBXgIAu9opvQ
-	(envelope-from <devicetree+bounces-308110-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:44:57 +0200
+	id q4+6GNWCJmoJXwIAu9opvQ
+	(envelope-from <devicetree+bounces-308112-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:52:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FBC86542CD
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:44:56 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA3CC6543A2
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:52:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308110-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308110-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="UtAzf/TG";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308112-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308112-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 33FA2303D0B7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 08:37:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 00E6B30207DF
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 08:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBEF73AFD0C;
-	Mon,  8 Jun 2026 08:36:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 332D63C4B88;
+	Mon,  8 Jun 2026 08:40:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from r3-212.sinamail.sina.com.cn (r3-212.sinamail.sina.com.cn [202.108.3.212])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C45103B27C7
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 08:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D74C23C455F
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 08:40:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780907801; cv=none; b=cyApgORkH8eKiwTlXnJLMDGKKa+EyBRMM6zSY/boNisz1tnaFPRXHiuDZgeHG5Tn98P7hIfuPHBwCa75STsIsjBHxOsZwVGW6DIfj4RTxl+lJe4rj/aECZJ1Hod6btfzMyg940MjYT0mcxkGFX4bTbvIkzX5AVxkWEC5BRSEfFw=
+	t=1780908058; cv=none; b=tNb4yjxwZGkNfrKHIzQHTszUbzS4a85XgVb3DFu7x8iAaN8KkV0y/LrZjAfrckFH3BFFvupN3xNiXis+E18xSxt+Vw/oUrpBcsa+gKd6y8MxJSlb1u48di5gOiOHeHVQxl0QIL27egik/mAgt4gbN6i5wm15bG9sfeqF8DOaT0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780907801; c=relaxed/simple;
-	bh=PWcx8/Dn+2xQh7F9PERadP/6V3dIclTt9+aSzlSjToc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=FH8uvVQkz/2+saP3xGdTXyt5rbbSfKSvWRsdQVxcRThnHTawLVBMarXPEXQDqpuX47Mz+voa4v9RFj2oAbgV0g9OTxhgIVWEEc3nHXBCXYcLqANKu1P1tgz/7c8pZ9MkIYpWt3+mVc7pIzRndEjmr/XHI2C/GzGlA5YmRlhaN4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=202.108.3.212
-Received: from unknown (HELO zy-virtual-machine.localdomain)([58.38.107.94])
-	by sina.net (10.54.253.38) with ESMTP
-	id 6A267EDF00000BB8; Mon, 8 Jun 2026 16:35:51 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-X-SMAIL-MID: 5B284E84CEFC4205A5584B854CE328A2
-X-SMAIL-UIID: 5B284E84CEFC4205A5584B854CE328A2-20260608-163551
-From: Michael Zhang <zhangyi@everest-semi.com>
-To: alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org
-Cc: tiwai@suse.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Zhang Yi <zhangyi@everest-semi.com>
-Subject: [PATCH v0 7/7] ASoC: dt-bindings: ES8389: Add members about HPF
-Date: Mon,  8 Jun 2026 16:35:40 +0800
-Message-Id: <20260608083540.12581-8-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20260608083540.12581-1-zhangyi@everest-semi.com>
-References: <20260608083540.12581-1-zhangyi@everest-semi.com>
+	s=arc-20240116; t=1780908058; c=relaxed/simple;
+	bh=Z1tpQiF5SlWYkxPC/pBiynkFWvlAzchlifLEFft0XF8=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Wuz68i3hziOPv7uMzKw0Ml+T7KcZ9bTHylFVlfO+yPKE1LQbYWsgc5C7v5CWhhkJ2BJvbllmUaBsJvkTNfEL0OBT+tQc6TLiQPCo0HRmfcMIbUeeaT3Bu+5WHce+vz04gY4RLwidXDPemKNn4KsCKddCY2z4iVf63Cxv+j6Xx6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UtAzf/TG; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C14011F0089A
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 08:40:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780908055;
+	bh=4HoT9KIsnYIDd0zvedKTYCGFgVE6ChDhK5tVcTIkXrs=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=UtAzf/TGWJfwCsNV2Ue5iolZ68yf3f30P6b6WmVzMzBqmmPCvh444Q2e4wBR9DYZC
+	 AnxUpcvEVn2Om/u9TmAeMRVOIJcAlsFT0YmOWjrVMVfIRbPKrc9iGS0/Jgf4Qr2NYD
+	 MBwOdTvIy/zAkvHr4quF7Wwq4FMCmIDH4DB7ddcjbeIN5xVcDXorm2J96nVOaL/XCC
+	 r8l2OPZPij1DKq+wHQbblb/+Tt2+7PzogxDLKgACcK819/76HiKDbpBS0bXE4RuGEG
+	 d69BNA98i9BydLxFP1a+/yqre2Wxr8M5vsK9LaX6cTvPy5TevPtps1emBN/QIKPBDS
+	 nJrnvZt+BYY4w==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5aa5edf347eso2596573e87.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 01:40:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8ecDWhXlrCPBNG8EdceDAMwu/z10dDZR4vKYZf+bbaWt03Z5yOIaruRvhmR9gcjznVaHaQBYdacEsa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3kUpR4iU/eJesNQEh4B3L6mAfPFomTSe1u7VZYQBMTTZForMZ
+	GGttu2wlt31Rf8eP563TVaj4gkylXDOZj8nFkvWiQ9HPwpHuyyAAywIQbUy13H3JJWBxinO+Km0
+	iAilalQjlp6BKAZNsXn6Pzu699G4c9OMg922EpPXiNw==
+X-Received: by 2002:a05:6512:8046:b0:5aa:6dff:cf0d with SMTP id
+ 2adb3069b0e04-5aa87bc2279mr2524415e87.28.1780908053800; Mon, 08 Jun 2026
+ 01:40:53 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 8 Jun 2026 01:40:52 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 8 Jun 2026 01:40:52 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260521-pdev-fwnode-ref-v1-5-88c324a1b8d2@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com> <20260521-pdev-fwnode-ref-v1-5-88c324a1b8d2@oss.qualcomm.com>
+Date: Mon, 8 Jun 2026 01:40:52 -0700
+X-Gmail-Original-Message-ID: <CAMRc=MdrfyUUyk9sMGVCedyug_JmZQZEQHuK5T6+BRv3AvNT6g@mail.gmail.com>
+X-Gm-Features: AVVi8CchM9VaksLWvpKbwHirniTnl6glReoNd3-xvchi05VK9oh9JtbFGYTDxqA
+Message-ID: <CAMRc=MdrfyUUyk9sMGVCedyug_JmZQZEQHuK5T6+BRv3AvNT6g@mail.gmail.com>
+Subject: Re: [PATCH 05/23] powerpc/powermac: fix OF node refcount
+To: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: brgl@kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+	driver-core@lists.linux.dev, devicetree@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org, 
+	iommu@lists.linux.dev, linux-pm@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, intel-xe@lists.freedesktop.org, 
+	dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org, 
+	linux-mips@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+	stable@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+	Mark Brown <broonie@opensource.wolfsonmicro.com>, 
+	Thierry Reding <thierry.reding@avionic-design.de>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Srinivas Kandagatla <srini@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Vinod Koul <vkoul@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, 
+	Madhavan Srinivasan <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Nicholas Piggin <npiggin@gmail.com>, "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Doug Berger <opendmb@gmail.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ulf Hansson <ulfh@kernel.org>, 
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Matthew Brost <matthew.brost@intel.com>, 
+	=?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+	Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Peter Chen <peter.chen@kernel.org>, 
+	Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Maximilian Luz <luzmaximilian@gmail.com>, 
+	Hans de Goede <hansg@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-308110-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,lists.linux.dev,lists.ozlabs.org,lists.infradead.org,lists.freedesktop.org,opensource.wolfsonmicro.com,avionic-design.de,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,linuxfoundation.org,linux.ibm.com,ellerman.id.au,linux.intel.com,8bytes.org,arm.com,broadcom.com,nxp.com,pengutronix.de,intel.com,ffwll.ch,crapouillou.net,ti.com,kernel.crashing.org];
+	TAGGED_FROM(0.00)[bounces-308112-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
-	DMARC_NA(0.00)[everest-semi.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:bartosz.golaszewski@oss.qualcomm.com,m:brgl@kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:linux-i2c@vger.kernel.org,m:iommu@lists.linux.dev,m:linux-pm@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-usb@vger.kernel.org,m:linux-mips@vger.kernel.org,m:platform-driver-x86@vger.kernel.org,m:stable@vger.kernel.org,m:lee@kernel.org,m:broonie@opensource.wolfsonmicro.com,m:thierry.reding@avionic-design.de,m:sebastian.hesselbarth@gmail.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:srini@kernel.org,m:gregkh@linuxfoundation.org,m:vkoul@kernel.org,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:ma
+ ddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:chleroy@kernel.org,m:andi.shyti@kernel.org,m:andriy.shevchenko@linux.intel.com,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:opendmb@gmail.com,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:ulfh@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:peter.chen@kernel.org,m:paul@crapouillou.net,m:b-liu@ti.com,m:p.zabel@pengutronix.de,m:luzmaximilian@gmail.com,m:hansg@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:krzk@kernel.org,m:benh@kernel.crashing.org,m:sebastianhesselbarth@gmail.com,m:andrew@lunn.ch,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:alsa-devel@alsa-project.org,m:broonie@kernel.org,m:devicetree@vger.kernel.org,m:tiwai@suse.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zhangyi@everest-semi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[67];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp,everest-semi.com:mid,everest-semi.com:from_mime,everest-semi.com:email]
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8FBC86542CD
+X-Rspamd-Queue-Id: EA3CC6543A2
 
-From: Zhang Yi <zhangyi@everest-semi.com>
+On Thu, 21 May 2026 10:36:28 +0200, Bartosz Golaszewski
+<bartosz.golaszewski@oss.qualcomm.com> said:
+> Platform devices created with platform_device_alloc() call
+> platform_device_release() when the last reference to the device's
+> kobject is dropped. This function calls of_node_put() unconditionally.
+> This works fine for devices created with platform_device_register_full()
+> but users of the split approach (platform_device_alloc() +
+> platform_device_add()) must bump the reference of the of_node they
+> assign manually. Add the missing call to of_node_get().
+>
+> Cc: stable@vger.kernel.org
+> Fixes: 81e5d8646ff6 ("i2c/powermac: Register i2c devices from device-tree")
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+> ---
+>  arch/powerpc/platforms/powermac/low_i2c.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/powerpc/platforms/powermac/low_i2c.c b/arch/powerpc/platforms/powermac/low_i2c.c
+> index da72a30ab8657e6dc7e6f3437af612155783d8f9..973f58771d9636605ed5d3e91b45008543b584d3 100644
+> --- a/arch/powerpc/platforms/powermac/low_i2c.c
+> +++ b/arch/powerpc/platforms/powermac/low_i2c.c
+> @@ -1471,7 +1471,7 @@ static int __init pmac_i2c_create_platform_devices(void)
+>  		if (bus->platform_dev == NULL)
+>  			return -ENOMEM;
+>  		bus->platform_dev->dev.platform_data = bus;
+> -		bus->platform_dev->dev.of_node = bus->busnode;
+> +		bus->platform_dev->dev.of_node = of_node_get(bus->busnode);
+>  		platform_device_add(bus->platform_dev);
+>  	}
+>
+>
+> --
+> 2.47.3
+>
+>
 
-Add members related to HPF
+Hi!
 
-Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
----
- .../bindings/sound/everest,es8389.yaml         | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Gentle ping for that fix. Can we get this landed for v7.1 or early v7.2 and
+make getting the rest of the series upstream easier next cycle?
 
-diff --git a/Documentation/devicetree/bindings/sound/everest,es8389.yaml b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-index 75ce0bc48904..eb4639f60f09 100644
---- a/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-+++ b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-@@ -38,6 +38,22 @@ properties:
-     description:
-       Interface power supply.
- 
-+  everest,hpfl:
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    description:
-+      the HPF value of ADCL.
-+    minimum: 0x00
-+    maximum: 0x0f
-+    default: 0x0a
-+
-+  everest,hpfr:
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    description:
-+      the HPF value of ADCR.
-+    minimum: 0x00
-+    maximum: 0x0f
-+    default: 0x0a
-+
- required:
-   - compatible
-   - reg
-@@ -58,5 +74,7 @@ examples:
-         #sound-dai-cells = <0>;
-         vddd-supply = <&vdd3v3>;
-         vdda-supply = <&vdd3v3>;
-+        everest,hpfl = [0a];
-+        everest,hpfr = [0a];
-       };
-     };
--- 
-2.54.0.windows.1
-
+Bart
 
