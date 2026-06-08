@@ -1,143 +1,187 @@
-Return-Path: <devicetree+bounces-308405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308407-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wVv3CDLzJmoyogIAu9opvQ
-	(envelope-from <devicetree+bounces-308405-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:52:02 +0200
+	id O2W7FdnlJmqEmgIAu9opvQ
+	(envelope-from <devicetree+bounces-308407-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 17:55:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86390658F06
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:52:01 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9BD1658643
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 17:55:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="GeM/Cyp+";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308405-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308405-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b="2g7NN/Td";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308407-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308407-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9EB46367365D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 15:28:57 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A2F4C3083631
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 15:29:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C35F140E8D1;
-	Mon,  8 Jun 2026 15:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89114183CA;
+	Mon,  8 Jun 2026 15:05:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B403B3CD8BF;
-	Mon,  8 Jun 2026 15:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D98A5421880;
+	Mon,  8 Jun 2026 15:05:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780931069; cv=none; b=fsFO5ZzQtJrs2oHvjQW/Nr6Ddbfeapm5HE3QO6Ou0s0gK1dTmFZkyTyHKOsiq009yaQYQ+M49t1ScXknwHN5dhSPkfS3goVr0ge5ouycoGINgAYdo4sSHoRn6RH3cgAhqUwwHf7tTM5k7Mq5aJQ7kYbUxukvy8V1bjusW+lzQts=
+	t=1780931131; cv=none; b=Lgk5uZTxeggUsf39VTorL7U1DpYSb7lYzj2YyIGOLt2Ey8SzJjy2hNZN/aYZe5lzcFrsHoqKLbNNH/+LUfIx4Mez0sZAxcVmIMD2S4CaJhn8UJUd78meMXNQ2lj0v9TChmxMmWSobxvmnQObHsOADMFdlMdnrh/4szxHy3rcEY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780931069; c=relaxed/simple;
-	bh=CVoKgWZ+ub1WXLntPwtTto+oaVQCNMeX/4B9ZsAz0y4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ICrrZ7RC90rSBgd3lp6bAIfZhI/Ta0osTfzBVNoWupYTIrRELnlSIO+BdBRhZ6YywFBxNGH/X/TcQVCPjMd7Ac4u1b8QzPoX+CbDoJUrh7mDvmXOnBMUgW0PEieQTVqKVcCYNMpTPKPpQHWdxem9kFCmrroQHw/xBJ5sRHKCZSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GeM/Cyp+; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 282B31F00893;
-	Mon,  8 Jun 2026 15:04:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780931068;
-	bh=YbVuMNFrxqonNhSqkk1WADPG0zY295z5cgBosjf/o8k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=GeM/Cyp+0qarp6IBled8dKyC0JTNPFpGBy7L+bUKeSf2PxB1Uj379W9mfIF9y15k8
-	 6HzTzBptnr7OasS67h43nZHEC5rjQUlcZqT5klOmt15exzVIOpWGXBazToMLgefxWE
-	 T8f6rp4NPGi/cze6g1KPGvInyERZ4S4gkhs76YDMQmpVr/exgj8b7Sqb8+wMcm/6zw
-	 7h/2TniXwtQdhsWZ+vAMN3asaIX0olHR+BWeuvusuaJwRWSG44Y6kYUOqgF5VxmwwG
-	 obvV/hmo/UBsv2ZZdedldjtGAbINeWM7mRoIYfE38iiWXQXAD8VJ/I75OhAGOy7Exv
-	 0eDrpkX/PRkCw==
-Date: Mon, 8 Jun 2026 10:04:27 -0500
-From: Rob Herring <robh@kernel.org>
-To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] dt-bindings: display: bridge: Document Renesas
- R-Car V4H DSC bindings
-Message-ID: <20260608150427.GA2682771-robh@kernel.org>
-References: <20260515-rcar-du-dsc-v3-0-164157820498@ideasonboard.com>
- <20260515-rcar-du-dsc-v3-2-164157820498@ideasonboard.com>
+	s=arc-20240116; t=1780931131; c=relaxed/simple;
+	bh=RWEsvSAq7ltiLSc4M7S0u33C9h51EmAl0FCKmQlIJrk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eiiJNkJm0lriu73RSgZv6juSsvtFoaTcKqG1ON9BhkH76RbTTdNdthWDO7YOX1tP/fI/15ZhNjpOreMoMK5/KivhmYagOeN8XP/00THZ3pdh7AOe7wFAbohxl4E8fKmem7w2oipfR923pvwXFXtjjj/OYomWj8OZygKpZVqseyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=2g7NN/Td; arc=none smtp.client-ip=185.246.85.4
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 5287C4E41672;
+	Mon,  8 Jun 2026 15:05:26 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 25C525FFB7;
+	Mon,  8 Jun 2026 15:05:26 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9E22A106A012C;
+	Mon,  8 Jun 2026 17:05:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1780931125; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=2iO37rqCp8Bs5CHZkoCFUdRXh+bredeUM2BucmQS/c8=;
+	b=2g7NN/TdRn+HON9Qz7VDE8oxJ54eXQ8Xw6enEE3N39Bgcj2RHx9LNzvdVG6G+Kho9qkMki
+	lLG7kSQKadxtVi6CCDnm2RxVpDGZTdXmnwgmvCWtPOnMxY/mUAVro3ojwULhBgaar6pG0p
+	u3Tfd2Rlwnci14p9HX2QPpFHxC0C6A9YMkpHsxWceCx4d0g6JMwI8DcY1ASf+Fa6UA9N1Y
+	azeBHhISVaj8/rE5Cvr5jXWRQYYifLCNGhS0DvgYPNUhhFnih8gEYBBxPTUMeWAKRKvXNM
+	KAmcJqqux7555Mv8voJvUcHj4LmYNPNDkxNmnrLW7lyN9tCuSkj6fPM7X7eZwQ==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Puranjay Mohan <puranjay@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Wil Stark <wil_stark@keysight.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject:
+ Re: [PATCH 1/2] dt-bindings: iio: ti,tmp117: add binding for the TMP119
+Date: Mon, 08 Jun 2026 17:05:20 +0200
+Message-ID: <0JXKC01fTuif-8VlbZtc5Q@bootlin.com>
+In-Reply-To: <20260605152005.4d888f6b@jic23-huawei>
+References:
+ <20260605-tmp119-v1-0-349f45f17d12@bootlin.com>
+ <ft-705oeTSiaftSGNjv94A@bootlin.com> <20260605152005.4d888f6b@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260515-rcar-du-dsc-v3-2-164157820498@ideasonboard.com>
+Content-Type: multipart/signed; boundary="nextPartkwe-YhX2RNmWXg_K9c85Xw";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-308407-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308405-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FORGED_RECIPIENTS(0.00)[m:tomi.valkeinen+renesas@ideasonboard.com,m:geert+renesas@glider.be,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:marek.vasut+renesas@mailbox.org,m:laurent.pinchart+renesas@ideasonboard.com,m:kieran.bingham+renesas@ideasonboard.com,m:p.zabel@pengutronix.de,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:tomi.valkeinen@ideasonboard.com,m:geert@glider.be,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,m:marek.vasut@mailbox.org,m:laurent.pinchart@ideasonboard.com,m:kieran.bingham@id
- easonboard.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:puranjay@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:thomas.petazzoni@bootlin.com,m:wil_stark@keysight.com,m:linux-iio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[glider.be,baylibre.com,kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,mailbox.org,pengutronix.de,vger.kernel.org,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:mid,bootlin.com:url,bootlin.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 86390658F06
+X-Rspamd-Queue-Id: E9BD1658643
 
-On Fri, May 15, 2026 at 12:09:27PM +0300, Tomi Valkeinen wrote:
-> From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> 
-> The Renesas DSC Display Stream Compression is a bridge embedded in the
-> Renesas R-Car V4H SoC. The bridge performs VESA DSC encoding of up to
-> 8k or 400 Mpixel/s .
-> 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-> [tomi.valkeinen: fix the example]
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> ---
->  .../bindings/display/bridge/renesas,dsc.yaml       | 96 ++++++++++++++++++++++
->  1 file changed, 96 insertions(+)
+--nextPartkwe-YhX2RNmWXg_K9c85Xw
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Date: Mon, 08 Jun 2026 17:05:20 +0200
+Message-ID: <0JXKC01fTuif-8VlbZtc5Q@bootlin.com>
+In-Reply-To: <20260605152005.4d888f6b@jic23-huawei>
+MIME-Version: 1.0
 
-Conor reviewed the one you sent 2 hours earlier...
+On Friday, 5 June 2026 16:20:05 CEST Jonathan Cameron wrote:
+> On Fri, 05 Jun 2026 14:24:45 +0200
+...
+> > 
+> > > The second patch then just resolves the print that would happen on older
+> > > kernels using that fallback due to ID mismatch.  That's fine but nice
+> > > if older kernels can work with this part.
+> > 
+> > Sorry I don't quite understand: since this is a feature patch, I don't
+> > expect it would get backported onto older kernels. Therefore why would
+> > the second patch resolve the print happening on older kernels?
+> 
+> The point of a fallback compatible is that we don't have to backport
+> anything. New device tree comes along that lists
+> 
+> compatible = "ti,tmp119", "ti,tmp117"
+> 
+> will just work. Older kernel will think it has a tmp117 which is fine as
+> they are register interface compatible.  It will print a message to say
+> that it found an unknown ID but then assume it is what the firmware told
+> it, here the tmp117 fallback.  With your second patch in place, that
+> harmless message will disappear for new kernels.
+
+Ok I understand, thanks for the explanation.
+
+Thanks,
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPartkwe-YhX2RNmWXg_K9c85Xw
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmom2jAACgkQKCYAIARz
+eA6Kdw/+IvNTcDnK8CkAkEHWwWhIAZQYNqPrbIIAqQUnCoicoZaPGqof3+YMIsbi
+jBJlkDj9LXlxB9RvjGBMt48PajUlUcB4jGQDXOGG94nvO8TFj43Nn5yHfJ3L7xZS
+p7xbezI1Txhkfb3m8ddZ+XTGOH9lHH1+aBWf9uX0j12cIxfHAkhd21CdwRGZhsnn
+MScyK1lCNfWpmShL+wOGK8hfw/fkJrKMKshSBJdNTdx8Nv7Ujj2qoy4rt0PYTadH
+CAY87MUT5VMLQsgf+e1GFu5l0Qchb3URYPf6zexy5bPLSIYiAFXA20xUa7yxP64i
+BuNR65pgET4JltJKUSULVCgQ97qnNoJuGiJalQ5pJTuvH1oDtJ/lPmpZ7NA2aUO4
+XzpeNcPzgOVDfwDkS3OhgoV77cOS0VYTWl/GFZkKdCwr+FAQ0Vic5BvVhDKwCIlS
+iONnF22RdMjroHFoer0plYV18k/9Itv72v5DjzQe7LSvHeeq4oh/Wo5SOaAClQwI
+paA/fXXxvS/i8KNaaaHEm/UwuAbmEQ6aIgcLhjuelYrF7gg1sm65t6KLmuW/TF4K
+Wr8sIn63QHwa6931mPkxUjk4CIXtcMb0BdFgFCrsvwbttyqdJh8CUNFc98fmX8Xv
+43wYU6/ZuZZpx3oU4eNjEXEOV7VDOkFRPSfgmSaQGiJS1FnXYWM=
+=X4hH
+-----END PGP SIGNATURE-----
+
+--nextPartkwe-YhX2RNmWXg_K9c85Xw--
+
+
+
 
