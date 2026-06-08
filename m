@@ -1,189 +1,171 @@
-Return-Path: <devicetree+bounces-308448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308450-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nU48MVT8JmrppAIAu9opvQ
-	(envelope-from <devicetree+bounces-308448-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 19:31:00 +0200
+	id WXBkIOQFJ2oLqQIAu9opvQ
+	(envelope-from <devicetree+bounces-308450-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:11:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5941B659425
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 19:31:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6AB965991B
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:11:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=IFX7P8Td;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308448-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308448-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=linaro.org header.s=google header.b=bJNtrGri;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308450-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308450-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E65F83019805
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 17:30:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 33C3E3040956
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 17:33:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D67B31F990;
-	Mon,  8 Jun 2026 17:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EA2830D405;
+	Mon,  8 Jun 2026 17:33:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 035D52D23B9;
-	Mon,  8 Jun 2026 17:30:54 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780939855; cv=none; b=CjaA49f0GHkvAB5s0TtZP6k5KisKlMugi1Ny+k1kw8kii2g5mT9h5avF9zoHM0GLoX6N/Rx0gYnOL9nib+bw5dv4eLExf6gdrovk6SL797FMJ0JIfvcYBnTP2qebN4/VGnYzkzfSlEeWIHhr3WvGHqVne3tA1lCZj1RaR6f5lIQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780939855; c=relaxed/simple;
-	bh=xaRCLUeeFiQVw1R7X3Bk4L9sca5W65yPaPkHtSqVsm4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EN6R8LEE4fyfhLRpbzlv/utFeBioQnxcGqMwadeb0SxJHQCG+Cs2VE8i1/KreXCnLzvqYaS1A6GylPc224frvHbQvD/j7Gzq86uQVWE2LlGDLd6oWtnoOMXSIpWU/XO4hw9XPRqGHveTgy8LLxq6WO1BmXnO+6nz7F9EsFqKXTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IFX7P8Td; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 176791F00893;
-	Mon,  8 Jun 2026 17:30:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780939853;
-	bh=wj1z2Ftw+sgGKRj+NIWl5o3RU5HdxjtVfe2qpfcSpww=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=IFX7P8Td2ZSOEvbUyS6A7OJIJch01lZAd1jPEDGeA+xy9oVLdA48JNkDgSHfkShK2
-	 UQhoTYGmyfLT6SMangP0KPTpSty485sOs5dLJ9bE5rpsgmozIYp3SpeLjTmE49cFgz
-	 fGPn/+7oxtzvwXnrgTT7HkKZhVOoP7u94s7nsiyFHIE+EJXGAzp4CgD/IzzNcA85D3
-	 hGR4RWVRvnM/9BCCuqLAF5kC0UZMCASEwkwf1UYcT4lJDOxGFKCGLmTwFgZO58o5xT
-	 t/agY/nSOjwb2wZOdNZOfnz4WthgLcguYJl2938UUmTC31j0wpdz0zfEfhyxx6BNRb
-	 0ZUCGRMAD+QLg==
-Date: Mon, 8 Jun 2026 18:30:48 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jakub Szczudlo <jakubszczudlo40@gmail.com>
-Cc: linux-iio@vger.kernel.org, jic23@kernel.org, dlechner@baylibre.com,
-	nuno.sa@analog.com, andy@kernel.org, marcelo.schmitt@analog.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mike.looijmans@topic.nl, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jorge.marques@analog.com,
-	antoniu.miclaus@analog.com, mazziesaccount@gmail.com,
-	jishnu.prakash@oss.qualcomm.com, duje@dujemihanovic.xyz,
-	wens@kernel.org, sakari.ailus@linux.intel.com, linusw@kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: Update title and enum
-Message-ID: <20260608-leverage-taunt-54a5164eb128@spud>
-References: <20260607183542.368184-1-jakubszczudlo40@gmail.com>
- <20260607183542.368184-2-jakubszczudlo40@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C5731F995
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 17:33:45 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780940026; cv=pass; b=CoXhoIcqFldN8oK3dTZSUqSoIR88fb7BjIkn1nedA2ZT/CoZksMv+wh+4FjC6EKkwongA9mzMLNgahPeTXGePv2Hq+Dp7mYLX7HtdloUMcz4oO+yPdJgA3K5IZ7XFqe2xmKWw7VsedOKNJgUjSh+ZF5+MK+amHS68LXD7lEbmD4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780940026; c=relaxed/simple;
+	bh=FxmIEvYMFiKht1WQY00uEYuxrUvnYaCMiFzMz9XnZpI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Xj1wxv9LOx/sUSR5dDxn1zhY6x9jaDaHB+9R8UhNW2A8UwKc5g6sE4Ze5liX57tQP5zR5R7PW5SWzSy2HSggoxFq54krxjL5xOK31IYTgr9KP8XVhLAUwJwfsQGfHlfeuHx2FqVff8uZb7SVjgqC1fs8dBLG0AdhFFcv2qbs7bQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bJNtrGri; arc=pass smtp.client-ip=209.85.221.44
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-4602e2a0372so3253393f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 10:33:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780940024; cv=none;
+        d=google.com; s=arc-20240605;
+        b=czhOBH+8sDmFkM9tUw4I9/04DFgFeZZjKDFVoc2Ons6dy6/f5RxoMCGQTefp2VzwVi
+         qz4esiB68mZnq2OW5aBpOd/+vVV2h2k44wRTffa+VXE4IIgNmUdAHacUDy4Ypc/VDfdD
+         Evp48mU7s5nKXexUlxWXWJixHSX91OO/okWENaIAg/syPjQDPHJeWAWE5YzRdX2haytR
+         zadsrI7bW3yLctYSH5fOo3iX0lK/qK5BtPDxp5mcwnZD9+PaBOfrbCjvMH+zduKv3P5q
+         DF9PgK5Lx239RyIXkIfmsQSKvu/M9gF2cVpJriCQyzvzQ9BxP6wnvK2hy0hw38DtJ5p4
+         IbYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=FxmIEvYMFiKht1WQY00uEYuxrUvnYaCMiFzMz9XnZpI=;
+        fh=3+ECrvvH5CEpa/9/ocy1DEjGxTihqVeKjYfByxaIztM=;
+        b=hziXM3h166UelgLtNmT0vhxauelDg5NE+/NKDLWCXEc6aToggv/VAmGudjxgfiJJyx
+         qhZdjDYDKsHV5MZ8Q68TGOZ+66zMZh90JWl+LbnO28eLxEVZIYmsFRiNtZsjnyNxIzps
+         Ah/MF4wPJe6B3fsD7LspQp9Wup9h5zN8N1sWqV2H/5jpyvOKJgO38FZzj5Ja8bfdFWDm
+         fu9AgNncPCw2Yue1gP2BMzYMDxRCWL7m4edVwE43hbNOvZ2HjvxWrTqrZ42eUn3octLk
+         EAEvIflQRTGzvWNVh7L6SYo0cqH6Ee9jaCfA6KtHs3QJKDjleZH7Zxpw04EJtl8w1U7q
+         1xog==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1780940024; x=1781544824; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=FxmIEvYMFiKht1WQY00uEYuxrUvnYaCMiFzMz9XnZpI=;
+        b=bJNtrGri4UPKGK83uJThs6H99DTEBAghTzew6/yeulD34I307+Fwg7s3rxtaQHyd/N
+         ZJwOe0aAxPjLDmR5HlThvsFJ7Cew0jZzTgiDVqYo/JfbCSHE15lfzVKk8nQzhJDnzSO7
+         A5hNODMaF0jlzG5NWdjcVQMiy7LYO6c49vbc3IVkGd5CW/1FXxgwpADaekjrbGn0m958
+         awz3l+cGLs/FKE72R0PHmhaSY3LGAjRzysPHgHNrM8rZ/r3MKrxVSAmIAZevRcrkAxZS
+         T3aaEerUycbOfBc1ApjFq2mbx4CFcKo7BBgNwDPxOHeiljySOfnpXbKemp35hY+yaFiR
+         /r9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780940024; x=1781544824;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FxmIEvYMFiKht1WQY00uEYuxrUvnYaCMiFzMz9XnZpI=;
+        b=cD+YlkOfDG8DjVqzgxPrXP8ZzHCLEMk1xcy+cjO341JKK4tlRElUk+p2OzFpQo2P6h
+         VOjoZczmQ2tD133yJEpHc02LHoAfgQfE/Hfjtbn9rot+3YOyh5cswlH2DGc2sMxRMe6d
+         +PYnkyj4yYGTshrtP+txjAkZVs7eQkvmOgoSEdrZp6nDSsp2fqhL+5veLYQtIe+dA1Wc
+         j2FzevSYWN3UHZYZdtYBBhPGNa2/tN2JvzAyj+6Vylh45k5japXt6F7EJc+Vh1viyT/F
+         TC9lm+AYWm/cdqH0fYo5CCPbQ+HA4I83Lv5aDFaGNMTgRfSyJ+W01VDOnBAX/SmeFZm+
+         PEgQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9JlOKIDr5At6ioxeOuetqcNx3rX0cpJjmUeIO9tsHUPb4r+wC0Pz6RNkEHFzoTuOA1hqHQrmPkilgs@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo45ocyjoWypXT6JEwz/Lm5u9fMAOdZG1NddUNy/QlSqnztvVb
+	YVVMBEg82hA3orCrujxu8CMPfmNg7O58W7WmjWXkvP52/KOjRhwwNWpBbI/xYwFjNbW6KBZBZoJ
+	0ii4LQ9uOXf3mYQ8qtzmTiDYisQHKAdM72o9qgu5tyQ==
+X-Gm-Gg: Acq92OH28p2mjEaeuVI3yKxubinLulIS0FB9cAV7iMBEbuQo3D2vBRUT4mzEEKhLMov
+	HrPG+5PhjHT5tb3rEVVusEN/vKldsPkPMuARTRp15pVuMsrNGi7xMOPe+7iVjzsiDe2bV1ncr5n
+	c4eVN+h4WzunAh5jjasD9D+4rfuJt1LHG1abBQEIdQX4nijwfUtTCq5FmNWx4WUTI0d/FX8O034
+	dwHs4tYLJkM7xgb4s/1Y3WFgV/9xDRuCnAaCKxv//m2NM7m0xBDBCOS1KaAU7GvFUsVTJepIa+W
+	dG01v1MsOKR4B31b
+X-Received: by 2002:a05:6000:46d9:b0:45e:df08:b02 with SMTP id
+ ffacd0b85a97d-4603065d18dmr16264914f8f.28.1780940023601; Mon, 08 Jun 2026
+ 10:33:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xrTrwg6zCyeujvaw"
-Content-Disposition: inline
-In-Reply-To: <20260607183542.368184-2-jakubszczudlo40@gmail.com>
+References: <20260508-wip-obbardc-msm8996-blsp2_spi4-v2-1-8b81a95b1ed7@linaro.org>
+ <1e855b70-cc2e-47f8-a820-877622620016@oss.qualcomm.com>
+In-Reply-To: <1e855b70-cc2e-47f8-a820-877622620016@oss.qualcomm.com>
+From: Christopher Obbard <christopher.obbard@linaro.org>
+Date: Mon, 8 Jun 2026 18:33:29 +0100
+X-Gm-Features: AVVi8Ces1BlsHomoRYetwp-12g5BTdj-x__0BBdgHY3i0bEes8xlKKD_-3BzVCY
+Message-ID: <CACr-zFDc8KCDEe1kj_iO12UDX+1QY=E--z777gjbQ8G_b6TNbA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: msm8996: add blsp2_spi5 node
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-308450-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jakubszczudlo40@gmail.com,m:linux-iio@vger.kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:marcelo.schmitt@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mike.looijmans@topic.nl,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jorge.marques@analog.com,m:antoniu.miclaus@analog.com,m:mazziesaccount@gmail.com,m:jishnu.prakash@oss.qualcomm.com,m:duje@dujemihanovic.xyz,m:wens@kernel.org,m:sakari.ailus@linux.intel.com,m:linusw@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-308448-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[christopher.obbard@linaro.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,baylibre.com,analog.com,topic.nl,gmail.com,oss.qualcomm.com,dujemihanovic.xyz,linux.intel.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christopher.obbard@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,spud:mid,vger.kernel.org:from_smtp,topic.nl:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,vger.kernel.org:from_smtp,linaro.org:dkim,linaro.org:email,linaro.org:from_mime,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5941B659425
+X-Rspamd-Queue-Id: D6AB965991B
+
+Hi Bjorn,
+
+On Fri, 8 May 2026 at 10:56, Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 5/8/26 4:30 AM, Christopher Obbard wrote:
+> > Add the blsp2_spi5 SPI controller node together with its default and sleep
+> > pinctrl states.
+> >
+> > Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
+> > ---
+>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>
+> Konrad
+
+Gentle check on the status of this one, did it slip through the net?
 
 
---xrTrwg6zCyeujvaw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Cheers!
 
-On Sun, Jun 07, 2026 at 08:35:40PM +0200, Jakub Szczudlo wrote:
-> From: jszczudlo <jakubszczudlo40@gmail.com>
->=20
-
-$subject: dt-bindings: iio: adc: Update title and enum
-
-This should read "dt-bindings: iio: adc: ti,ads1100: add support for $newde=
-vice".
-
-> Add ads1110 into title and enum compatible for ads1100 driver.
-
-And so should this.
-Additionally, please explain why this device is not compatible with
-existing ones.
-pw-bot: changes-requested
-
->=20
-> Signed-off-by: jszczudlo <jakubszczudlo40@gmail.com>
-
-Probably your signoff should be "Jakub Szczudlo <jakubszczudlo40@gmail.com>=
-".
-
-
-Thanks,
-Conor.
-
-> ---
->  Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml b/=
-Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
-> index 970ccab15e1e..4c43996b7ec6 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/iio/adc/ti,ads1100.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> =20
-> -title: TI ADS1100/ADS1000 single channel I2C analog to digital converter
-> +title: TI ADS1100/ADS1000/ADS1110 single channel I2C analog to digital c=
-onverter
-> =20
->  maintainers:
->    - Mike Looijmans <mike.looijmans@topic.nl>
-> @@ -17,6 +17,7 @@ properties:
->      enum:
->        - ti,ads1100
->        - ti,ads1000
-> +      - ti,ads1110
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.47.3
->=20
-
---xrTrwg6zCyeujvaw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaib8SAAKCRB4tDGHoIJi
-0jbiAQDtpOcmvzAjJs3mf+y1iPz7xRduDUkpc8oSOJuo2OzBEQEAkfzmVRYrf9w/
-Vjt6toU83B93ihJKpBrIc5kG6KW23AE=
-=IKcT
------END PGP SIGNATURE-----
-
---xrTrwg6zCyeujvaw--
+Chris
 
