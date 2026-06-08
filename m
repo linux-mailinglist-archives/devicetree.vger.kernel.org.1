@@ -1,150 +1,185 @@
-Return-Path: <devicetree+bounces-308374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308403-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nt+rJ+7SJmqYlAIAu9opvQ
-	(envelope-from <devicetree+bounces-308374-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:34:22 +0200
+	id SK85JBneJmo6mAIAu9opvQ
+	(envelope-from <devicetree+bounces-308403-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 17:22:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A03176573CD
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:34:21 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D58D1657F68
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 17:22:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Yq6+gp7o;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308374-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308374-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=hugovil.com header.s=default header.b="sV/EbSJ1";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308403-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308403-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=hugovil.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 54FE83014873
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 14:32:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 01FE630BF713
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 15:12:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E93037FF68;
-	Mon,  8 Jun 2026 14:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5229E3EFFCB;
+	Mon,  8 Jun 2026 14:55:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2758331715D
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 14:30:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550BD3EFD2E;
+	Mon,  8 Jun 2026 14:55:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780929044; cv=none; b=QEl17CseYz6S2XwLqT2lzFlQw3g8U3zp3O+48DY0l0rG+W8FtQpTWXKDz6OWc2lWXk3AFULotA58fcqK6a9kKyfk3hh3MW3CR2VQPGYs0dLDHLLvdEJT7ZsndwRvxGt4Hz3pEX27W+t2r/Er9q8I1eBsC0kiIJriVVnf0U93alg=
+	t=1780930512; cv=none; b=SKHGa/TIIzjgdfHgJ7WSYLrmbxO+pnInf8UZsOcgLj45HAHGISEA06Cii8jLgqunAo7+8hePMCxtJxz8pNfbpaEa9teD6ZVXq2lC6/mH5ZA/31ArQ5MOInrVjdJdjkulyT9HoqMSHkNqA5zRrj9+LTdVuKeuTlXSdpIRMeeQGK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780929044; c=relaxed/simple;
-	bh=DgevYk+trI9a01XYiR93DkcK4FlvyCsJcciplo5M4a4=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gXtSz7JEaItDsIiNbiQf1pV988naR5FQRvnt/0OmASbhD53Rx+pR2LxjjirtlGIWfK9H1PwZFyp6OidCA9+wo/msfGbJB9kgMJ5Ym19bk4JOKF1uJR6B6CeQAmJEAcpprflA+0oKNEpfduD5IVwTfTHzGq0ZdslNtFAk93Y+I0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yq6+gp7o; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0FF21F00A01
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 14:30:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780929042;
-	bh=DgevYk+trI9a01XYiR93DkcK4FlvyCsJcciplo5M4a4=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc;
-	b=Yq6+gp7o+t+YQI0mcfmczBWPQRT/vd6mpMnL5zm7lJV5zufTqvuUZFav2lmFFR1zr
-	 vU2EVs2llYOb0dtHlYEy9NzYr8JNJOb9R1lU5oyaRfZwTC3rjT9WFZNADXH/tZMrle
-	 rQWEi5ICOGsWewXIS0NwPziENp+foPhZM/T9FRSdghgNLaHkUvpi++XUTe79xgkI13
-	 mJw1ghKOSb9H72lLnbQC9gNsmjTHJqMFItaCAHvhmMAdMrViPbYjMDv0qYB1s2n2AK
-	 kjAgcHKa7c135LL3iv5tW2H8Cj5Lg7JHQ1PfB1H1fFtJmIM6y7uSF6hbjgUcRa/JXR
-	 UDwXwOdmoqi8w==
-Received: by mail-dl1-f50.google.com with SMTP id a92af1059eb24-137eb0d76beso3100230c88.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 07:30:42 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/ezTyPo62gdWjiWgj038WkuqikqKvs66DMUeEj9UpSj29DYx6BKj6Gg83RexBbFpEmBsNbcFvFvxy6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAzRhcs8xD5xZ0xleijyPCuWvCZCJuIO9RobpNsJpaedDkcO2W
-	fCTtZXkjDg5eumEbHpQLe1FJtwY9A9etJHRCRu4hplrbUAdxOD9GvYvNkxSqvvFibPMVOH9YXFa
-	b4PtyobW+iMFrugkq1KEDoslFxDE1wlkx8uVgbxTUqg==
-X-Received: by 2002:a05:701a:c951:b0:12d:b8e5:5e2 with SMTP id
- a92af1059eb24-13807dbc1f2mr6212351c88.23.1780929042235; Mon, 08 Jun 2026
- 07:30:42 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 8 Jun 2026 07:30:38 -0700
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 8 Jun 2026 07:30:38 -0700
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260608-sm8350-wifi-v2-1-efb68f1ff04c@oss.qualcomm.com>
+	s=arc-20240116; t=1780930512; c=relaxed/simple;
+	bh=efD5WqtlqRfwifxxwoK5B9N/dCynfQHG10xfXW5An3w=;
+	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
+	 Mime-Version:Content-Type; b=FeWYozVjYB9a0mR5A3noeOrtw+wcUm6r8JzU3jU3o6N6XTx9hzW2zucZYFrkm0BjfE+RPMC4FLY3Lq4ysXTUNmeGjrYaYwAlluGw6vCfl3dv2q9mSH26smG2qpfU3/9odPMvUkb0+P1ugRz0Y+xxJRMRVOUTZvqJvhrtHQgUNFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=sV/EbSJ1; arc=none smtp.client-ip=162.243.120.170
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=default; h=Content-Transfer-Encoding:Mime-Version:Message-Id:Subject:Cc:
+	To:From:Date:subject:date:message-id:reply-to;
+	bh=NqHxMoguK2gDguhbFbY8cwX2FqYEftuj+HxBPwP9Wnk=; b=sV/EbSJ1NcIMQOjzOgvWNV/CLJ
+	psBOODM9g/F7lI+pZYYCveKgOETLgh/IYMMsdRJKhNIIQ0DI1MeSq1sheu81G+pc5H+oDtSXuD2YQ
+	8ykH94/DeKpIGp0LZso5akvv0AZ2qnITY+ocy9v3Lk61VxFB57vMntoSmDAwoD8KGhL4=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61] helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.98.2)
+	(envelope-from <hugo@hugovil.com>)
+	id 1wWb1q-000000000gS-1u7V;
+	Mon, 08 Jun 2026 10:32:38 -0400
+Date: Mon, 8 Jun 2026 10:32:36 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: krzk@kernel.org
+Cc: krzk@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ simona@ffwll.ch, Frank.Li@nxp.com, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, shawnguo@kernel.org,
+ laurent.pinchart+renesas@ideasonboard.com, antonin.godard@bootlin.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, Hugo Villeneuve
+ <hvilleneuve@dimonoff.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v2 14/15] dt-bindings: display/lvds-codec: add
+ ti,sn65lvds93
+Message-Id: <20260608103236.efd8db82877ce76b09fde75b@hugovil.com>
+In-Reply-To: <20260521122353.82651a97984e58d2ec8309c5@hugovil.com>
+References: <20260305180651.1827087-1-hugo@hugovil.com>
+	<20260305180651.1827087-15-hugo@hugovil.com>
+	<20260511114406.24673c770d112b2ca4aba2eb@hugovil.com>
+	<20260521122353.82651a97984e58d2ec8309c5@hugovil.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260608-sm8350-wifi-v2-0-efb68f1ff04c@oss.qualcomm.com> <20260608-sm8350-wifi-v2-1-efb68f1ff04c@oss.qualcomm.com>
-Date: Mon, 8 Jun 2026 07:30:38 -0700
-X-Gmail-Original-Message-ID: <CAMRc=MctdRxo4WFf6F9A1pFOeTq8us6brdSEzTZsNPFwqrSnNQ@mail.gmail.com>
-X-Gm-Features: AVVi8CcaZhXYOpCv2x74C9QF-11-iy12puwZY5pM4Q7NOmmptdOTSpcIOV1fL7E
-Message-ID: <CAMRc=MctdRxo4WFf6F9A1pFOeTq8us6brdSEzTZsNPFwqrSnNQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] PCI: qcom: fix parsing of PERST# in the legacy case
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Qiang Yu <qiang.yu@oss.qualcomm.com>, 
-	Jeff Johnson <jjohnson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
-	ath11k@lists.infradead.org, devicetree@vger.kernel.org, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-bluetooth@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam_score: -2.0
+X-Spam_bar: --
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[hugovil.com,none];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-308374-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:mani@kernel.org,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:robh@kernel.org,m:bhelgaas@google.com,m:konrad.dybcio@oss.qualcomm.com,m:qiang.yu@oss.qualcomm.com,m:jjohnson@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:quic_bgodavar@quicinc.com,m:quic_rjliao@quicinc.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-pci@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath11k@lists.infradead.org,m:devicetree@vger.kernel.org,m:brgl@bgdev.pl,m:linux-bluetooth@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,oss.qualcomm.com,gmail.com,holtmann.org,quicinc.com,vger.kernel.org,lists.infradead.org,bgdev.pl];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,mail.gmail.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-308403-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:laurent.pinchart+renesas@ideasonboard.com,m:antonin.godard@bootlin.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:hvilleneuve@dimonoff.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor@kernel.org,m:jernejskrabec@gmail.com,m:laurent.pinchart@ideasonboard.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,nxp.com,pengutronix.de,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,dimonoff.com,oss.qualcomm.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[hugovil.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A03176573CD
+X-Rspamd-Queue-Id: D58D1657F68
 
-On Mon, 8 Jun 2026 08:59:19 +0200, Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> said:
-> Commit deed8aec62dc ("PCI: qcom: Handle mixed PERST#/PHY DT
-> configuration") fixed support for the "mixed" platforms which declare
-> PERST# pin the RC node and the PHY in the RP node, however it also broke
-> support for a majority of existing platforms, which declare both PERST#
-> and PHY in the RC node, because now PERST# is first acquired in
-> qcom_pcie_parse_ports(), which then returns -ENODEV (as there are no
-> PHYs in the RP nodes). Later qcom_pcie_parse_legacy_binding() tries to
-> acquire the PERST# GPIO again and fails with -EBUSY (as the GPIO has
-> already been requested).
->
-> Move parsing of RC's perst-gpios to qcom_pcie_probe(), making it obvious
-> that it's shared for both cases and skip parsing it in both functions.
->
-> Fixes: deed8aec62dc ("PCI: qcom: Handle mixed PERST#/PHY DT configuration")
-> Closes: https://lore.kernel.org/r/gieaybsg2ckxpctvqj77nlwu7utama2yeyvebkonmexsxrra3v@v3fobqasxnmy/
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
+On Thu, 21 May 2026 12:23:53 -0400
+Hugo Villeneuve <hugo@hugovil.com> wrote:
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+> On Mon, 11 May 2026 11:44:06 -0400
+> Hugo Villeneuve <hugo@hugovil.com> wrote:
+> 
+> > Hi,
+> > 
+> > On Thu,  5 Mar 2026 13:06:29 -0500
+> > Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > 
+> > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > 
+> > > Add compatible string for TI SN65LVDS93. Similar to
+> > > SN65LVDS83 but with an industrial temperature range.
+> > > 
+> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > Now that this series landed in linux-next/master, except for this
+> > patch, we now have an error since it is required:
+> > 
+> > https://lore.kernel.org/oe-kbuild-all/202605071909.lXKPelNA-lkp@intel.com/
+> 
+> Hi DT folks,
+> wondering if someone could pick/apply this patch to fix the build error?
+
+Ping...
+
+Hugo.
+
+
+> > > ---
+> > >  Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> > > index 4f52e35d02537..f2cb74b86cc05 100644
+> > > --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> > > @@ -37,6 +37,7 @@ properties:
+> > >                - ti,ds90c185   # For the TI DS90C185 FPD-Link Serializer
+> > >                - ti,ds90c187   # For the TI DS90C187 FPD-Link Serializer
+> > >                - ti,sn75lvds83 # For the TI SN75LVDS83 FlatLink transmitter
+> > > +              - ti,sn75lvds93 # For the TI SN75LVDS93 FlatLink transmitter
+> > >            - const: lvds-encoder # Generic LVDS encoder compatible fallback
+> > >        - items:
+> > >            - enum:
+> > > -- 
+> > > 2.47.3
+> > > 
+> > > 
+> > 
+> > 
+> > Hugo Villeneuve <hugo@hugovil.com>
+> 
+> 
+> -- 
+> Hugo Villeneuve
+> 
+
+
+-- 
+Hugo Villeneuve
 
