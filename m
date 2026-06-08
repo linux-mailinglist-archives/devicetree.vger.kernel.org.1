@@ -1,68 +1,62 @@
-Return-Path: <devicetree+bounces-308449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308451-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XdAaM/P8JmoSpQIAu9opvQ
-	(envelope-from <devicetree+bounces-308449-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 19:33:39 +0200
+	id 4Qd7NAMGJ2odqQIAu9opvQ
+	(envelope-from <devicetree+bounces-308451-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:12:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A347659485
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 19:33:39 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28BF4659932
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:12:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ndddILg1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308449-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308449-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GgF9d1mJ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308451-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308451-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EEC8530182F5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 17:33:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 32F19309B78E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 17:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D1F346AE1;
-	Mon,  8 Jun 2026 17:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82A64352013;
+	Mon,  8 Jun 2026 17:35:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B7E42405EB;
-	Mon,  8 Jun 2026 17:33:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCE323ED5B;
+	Mon,  8 Jun 2026 17:35:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780940017; cv=none; b=YciuPSZPZAo4LUeXSxF22sKqnToDea8FrT+FcU+BHf0E4nF+pVQ3hb+a3gsRVAk66u2TBHK+ZjI0hgQquvcPBC4WtF0tazHatSpiEWQG55lutR1mj4WCIIyO+LkeNfG2vFd1gDBmIL8u22IROftMeFDQz9SnAbVZ+syIu6AUgQw=
+	t=1780940101; cv=none; b=pgCMG4O9+a4z+YQq5NB+YBMQ4OloH56GqIiscgMZpXLflPdqxQKINF1qqIXkhJDXvFaTkTyAtB1oXPYBf+fsrAtFGM8v00f5hcLSaikuw4EZ01wwtv5Rdswv0xpSk34+3YUs8JvenA/eL7onkTlSK9eQXYsixjXSiZtLTuvBsC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780940017; c=relaxed/simple;
-	bh=RO6ggq1uRwsFrrB076tcfWBueXi0X/cyLecV3BHAk18=;
+	s=arc-20240116; t=1780940101; c=relaxed/simple;
+	bh=N/BlOr6IqWA7u5hswBBBa84Hnz73U2qA8o6mElH9O8I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FW7parxvE7fliooCaBhXUPFR/of7K1OAyNacUxOMwi3AnwP7M9ECtMBE4dx8pV/pCZ8TQpUe9JJHqJbkYEDmk7twbueWFLVgBNBarQiIdHToGGrlxy7UdgFElN9zMEzoNNwXC5Ki7BUYyB7ymwKKt5o9FMfbyHtoPRAOE7p6YRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ndddILg1; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 249D71F00893;
-	Mon,  8 Jun 2026 17:33:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hB50FjW93ZPbRaSGvcVipCWlApKshrxHhQQSdWivSvkHepHHPAzQPZKWyMrCM0kzmvJR5GsGyzVPH9EnRT5ekN9v1pzTM3CGS+CJB5v4yGDqFz6vExIHHe7QjO56pkpRFTlDpn+3lqhjpDIXH5P1dqMOrhr/dELQZ+BUtkvPwcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GgF9d1mJ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AFC81F00893;
+	Mon,  8 Jun 2026 17:34:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780940016;
-	bh=rz/kHBX65bHwP7+NFX9CSyO/YRkZEFq5Dqp/UQNjVAg=;
+	s=k20260515; t=1780940100;
+	bh=3X58+ak98zXIl0hmCwArn7OR21uOOHpsO2nLWNu5Jz8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ndddILg1yFOlz/auS4UTqqrDE9jWFKioka6dvQL8iY2jSS6dUNobB61dzx6qTLIm0
-	 B5rb2RJNxJA40SOe8AmVi8GDOqLYuNQKwtTzOGfrj48YXrlYfjEotZqp4/1ndrIJpS
-	 KlCiXY4WF/gkh03icXnLISOcNIiJ9PbpQjEvFirKw8ddaqwXhq5WsJvCqRKG+vXgR/
-	 6ZE5zkek5fbsHe3vynGB1pdZitO+QUdbfGBjJtsl4uHxR4nZIT1HxxpD/oJqBGTart
-	 fQRqn+oSHheZ38UK1O/iC9omWMDJLHJMjqX8+Zd8D0FFzyve/uO75SO5jcolAcuECo
-	 XGC+5xT/hUvnw==
-Date: Mon, 8 Jun 2026 18:33:31 +0100
+	b=GgF9d1mJ5KXoPgzadwHPsD5LEFsR8UtWI0lxxsgSQm1ybcppy6X+/fjlDyzG/7WnM
+	 TG0s+Q3u+3fmhb18wIPBCvOo+atURJCqjdYhbaJxndpFezTFTDOHP79n7Vnb2VIzkr
+	 yPMoTBBle9hVplin8Y6woZZKFtCrn3v1nnDOiIxJ1YTKy9Tw7UaVXFVUvraAh68xZH
+	 eOXgoMUO7hu1w8TX0Wbo4aXnOjFuDvwfgUmHm9qqqd92xtQQGiQYXmaFaadCroP7TK
+	 x+FJjzO7+8xnudkVajSdZhNJ2qNsCwoZynXqRCvc+PCSZNwO/5FCk2bVC0QYH+LCPA
+	 E4zb1nd1CFQpQ==
+Date: Mon, 8 Jun 2026 18:34:56 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Guodong Xu <docular.xu@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH 1/2] dt-bindings: dmaengine: Add SpacemiT K1 PDMA request
- numbers
-Message-ID: <20260608-dazzling-hacksaw-dbe84766ec76@spud>
-References: <20260607-b4-k1-pdma-req-macros-v1-0-5b2a3955007c@gmail.com>
- <20260607-b4-k1-pdma-req-macros-v1-1-5b2a3955007c@gmail.com>
+To: Geetha sowjanya <gakula@marvell.com>
+Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	mark.rutland@arm.com, will@kernel.org, krzk+dt@kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: perf: marvell: Extend CN10K TAD PMU
+ binding for CN20K
+Message-ID: <20260608-spiral-unsterile-66189c3241f8@spud>
+References: <20260607125101.17778-1-gakula@marvell.com>
+ <20260607125101.17778-4-gakula@marvell.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,9 +64,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xjVn6sgaP8h5qJrR"
+	protocol="application/pgp-signature"; boundary="GYpgjdsQiQTsrVfP"
 Content-Disposition: inline
-In-Reply-To: <20260607-b4-k1-pdma-req-macros-v1-1-5b2a3955007c@gmail.com>
+In-Reply-To: <20260607125101.17778-4-gakula@marvell.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -80,162 +74,119 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-308451-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:gakula@marvell.com,m:linux-perf-users@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:mark.rutland@arm.com,m:will@kernel.org,m:krzk+dt@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS(0.00)[m:docular.xu@gmail.com,m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:docularxu@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-308449-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,spud:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,spud:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8A347659485
+X-Rspamd-Queue-Id: 28BF4659932
 
 
---xjVn6sgaP8h5qJrR
+--GYpgjdsQiQTsrVfP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jun 07, 2026 at 01:41:30PM -0400, Guodong Xu wrote:
-> Add a dt-bindings header that gives symbolic names to the SpacemiT K1
-> PDMA request lines of the non-secure peripherals. Device trees can use
-> these K1_PDMA_* macros instead of magic numbers.
+On Sun, Jun 07, 2026 at 06:21:01PM +0530, Geetha sowjanya wrote:
+> Allow marvell,cn20k-tad-pmu alongside marvell,cn10k-tad-pmu, document
+> CN20K in the title and description, add a maintainer, and include a
+> CN20K example node with the same required properties as CN10K.
+
+This is great and all, but is evident from the diff (other than the fact
+it talks about an example that does not exist).
+What is missing is an explanation of why a fallback comaptible is not
+usable.
+pw-bot: changes-requested
+
+Thanks,
+Conor.
+
 >=20
-> Point the spacemit,k1-pdma binding's #dma-cells description at the new
-> header.
->=20
-> Signed-off-by: Guodong Xu <docular.xu@gmail.com>
+> Signed-off-by: Geetha sowjanya <gakula@marvell.com>
 > ---
->  .../devicetree/bindings/dma/spacemit,k1-pdma.yaml  |  4 +-
->  include/dt-bindings/dma/spacemit,k1-pdma.h         | 56 ++++++++++++++++=
-++++++
->  2 files changed, 59 insertions(+), 1 deletion(-)
+>  .../bindings/perf/marvell-cn10k-tad.yaml      | 20 +++++++++++--------
+>  1 file changed, 12 insertions(+), 8 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/dma/spacemit,k1-pdma.yaml =
-b/Documentation/devicetree/bindings/dma/spacemit,k1-pdma.yaml
-> index ec06235baf5ca..0d4ac9849e27b 100644
-> --- a/Documentation/devicetree/bindings/dma/spacemit,k1-pdma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/spacemit,k1-pdma.yaml
-> @@ -35,7 +35,9 @@ properties:
->    '#dma-cells':
->      const: 1
->      description:
-> -      The DMA request number for the peripheral device.
-> +      The single cell is the DMA request number for the peripheral devic=
-e.
-> +      See <dt-bindings/dma/spacemit,k1-pdma.h> for the list of valid req=
-uest
-> +      numbers.
+> diff --git a/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yam=
+l b/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
+> index 362142252667..1612052b59ae 100644
+> --- a/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
+> +++ b/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
+> @@ -4,23 +4,27 @@
+>  $id: http://devicetree.org/schemas/perf/marvell-cn10k-tad.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
 > =20
->  required:
->    - compatible
-> diff --git a/include/dt-bindings/dma/spacemit,k1-pdma.h b/include/dt-bind=
-ings/dma/spacemit,k1-pdma.h
-
-Why does this need to be in a binding when there is no use of this in
-the driver? May as well be a header, particularly if these are numbers
-with a set meaning that are lifted from the TRM, rather than made up
-numbers to make a driver work. The former seems likely, given you're
-indexing from 3 not 0.
-
-> new file mode 100644
-> index 0000000000000..491976516550a
-> --- /dev/null
-> +++ b/include/dt-bindings/dma/spacemit,k1-pdma.h
-> @@ -0,0 +1,56 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * This header provides DMA request number for non-secure peripherals of
-> + * SpacemiT K1 PDMA.
-> + *
-> + * Copyright (c) 2026 Guodong Xu <docular.xu@gmail.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_DMA_SPACEMIT_K1_PDMA_H_
-> +#define _DT_BINDINGS_DMA_SPACEMIT_K1_PDMA_H_
-> +
-> +#define K1_PDMA_UART0_TX	3
-> +#define K1_PDMA_UART0_RX	4
-> +#define K1_PDMA_UART2_TX	5
-> +#define K1_PDMA_UART2_RX	6
-> +#define K1_PDMA_UART3_TX	7
-> +#define K1_PDMA_UART3_RX	8
-> +#define K1_PDMA_UART4_TX	9
-> +#define K1_PDMA_UART4_RX	10
-> +#define K1_PDMA_I2C0_TX		11
-> +#define K1_PDMA_I2C0_RX		12
-> +#define K1_PDMA_I2C1_TX		13
-> +#define K1_PDMA_I2C1_RX		14
-> +#define K1_PDMA_I2C2_TX		15
-> +#define K1_PDMA_I2C2_RX		16
-> +#define K1_PDMA_I2C4_TX		17
-> +#define K1_PDMA_I2C4_RX		18
-> +#define K1_PDMA_SPI3_TX		19
-> +#define K1_PDMA_SPI3_RX		20
-> +#define K1_PDMA_I2S0_TX		21
-> +#define K1_PDMA_I2S0_RX		22
-> +#define K1_PDMA_I2S1_TX		23
-> +#define K1_PDMA_I2S1_RX		24
-> +#define K1_PDMA_UART5_TX	25
-> +#define K1_PDMA_UART5_RX	26
-> +#define K1_PDMA_UART6_TX	27
-> +#define K1_PDMA_UART6_RX	28
-> +#define K1_PDMA_UART7_TX	29
-> +#define K1_PDMA_UART7_RX	30
-> +#define K1_PDMA_UART8_TX	31
-> +#define K1_PDMA_UART8_RX	32
-> +#define K1_PDMA_UART9_TX	33
-> +#define K1_PDMA_UART9_RX	34
-> +#define K1_PDMA_I2C5_TX		35
-> +#define K1_PDMA_I2C5_RX		36
-> +#define K1_PDMA_I2C6_TX		37
-> +#define K1_PDMA_I2C6_RX		38
-> +#define K1_PDMA_I2C7_TX		39
-> +#define K1_PDMA_I2C7_RX		40
-> +#define K1_PDMA_I2C8_TX		41
-> +#define K1_PDMA_I2C8_RX		42
-> +#define K1_PDMA_CAN0_RX		43
-> +#define K1_PDMA_QSPI_RX		44
-> +#define K1_PDMA_QSPI_TX		45
-> +
-> +#endif /* _DT_BINDINGS_DMA_SPACEMIT_K1_PDMA_H_ */
->=20
+> -title: Marvell CN10K LLC-TAD performance monitor
+> +title: Marvell CN10K / CN20K LLC-TAD performance monitor
+> =20
+>  maintainers:
+>    - Bhaskara Budiredla <bbudiredla@marvell.com>
+> +  - Geetha sowjanya <gakula@marvell.com>
+> =20
+>  description: |
+> -  The Tag-and-Data units (TADs) maintain coherence and contain CN10K
+> -  shared on-chip last level cache (LLC). The tad pmu measures the
+> -  performance of last-level cache. Each tad pmu supports up to eight
+> -  counters.
+> +  The Tag-and-Data units (TADs) maintain coherence and contain the
+> +  shared on-chip last level cache (LLC) on Marvell CN10K and CN20K SoCs.
+> +  The TAD PMU measures last-level cache performance. Each TAD PMU
+> +  supports up to eight counters.
+> =20
+> -  The DT setup comprises of number of tad blocks, the sizes of pmu
+> -  regions, tad blocks and overall base address of the HW.
+> +  The DT setup describes the number of TAD blocks, the sizes of PMU
+> +  regions and TAD pages, and the overall MMIO base of the hardware.
+> =20
+>  properties:
+>    compatible:
+> -    const: marvell,cn10k-tad-pmu
+> +    items:
+> +      - enum:
+> +          - marvell,cn10k-tad-pmu
+> +          - marvell,cn20k-tad-pmu
+> =20
+>    reg:
+>      maxItems: 1
 > --=20
-> 2.43.0
+> 2.25.1
+>=20
 >=20
 
---xjVn6sgaP8h5qJrR
+--GYpgjdsQiQTsrVfP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaib86wAKCRB4tDGHoIJi
-0pgsAQCNGTEM+fPWwgLkbr7pqHDECKqYqXVibCQqXRT0zsqgLQD/X2yJ0LhoUtgO
-mfCnn/fGZxot4TnZziQGgygeMKvKLgs=
-=XmHc
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaib9QAAKCRB4tDGHoIJi
+0iuaAP96ctiNghyt5d2J1nsjhd7clrVmybndmOZ62qcSmQkpFAEAtRVcR6SCoSR7
+HhSMhZEIIzV91tr2oTChrnix/m86bQM=
+=JDcj
 -----END PGP SIGNATURE-----
 
---xjVn6sgaP8h5qJrR--
+--GYpgjdsQiQTsrVfP--
 
