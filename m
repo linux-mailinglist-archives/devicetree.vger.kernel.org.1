@@ -1,346 +1,150 @@
-Return-Path: <devicetree+bounces-308500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308501-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id N1EMAAsSJ2rHrAIAu9opvQ
-	(envelope-from <devicetree+bounces-308500-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 21:03:39 +0200
+	id PsrYJoMRJ2qOrAIAu9opvQ
+	(envelope-from <devicetree+bounces-308501-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 21:01:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B966659FC5
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 21:03:38 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A642659F23
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 21:01:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="hH9bNo/R";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308500-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308500-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=RWOCw9PM;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308501-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308501-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A99D63088883
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 18:52:26 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5D9533020AED
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 18:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E99D83B4439;
-	Mon,  8 Jun 2026 18:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7CBE3E5598;
+	Mon,  8 Jun 2026 18:57:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4DA238E8B7
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 18:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871A83E51D3
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 18:57:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780944745; cv=none; b=uWf2RETgtibh0Jx0nU+EZ+XRkhtRjkupao7sxd7dz50Oucc73TvSHmKRsLJd0H2e9752na69rr+f1t7WP0WKo+IZ2gLVGys9OSIvSDucZpf4ilDKO1wI8EEv6xhvPEU6qA0FJQ1ug+b7QWM/v5GXDNGi9EL+kfG1WrTRnWYIbrI=
+	t=1780945021; cv=none; b=S4VzIVz52IpTjB7jeLA07uCnaAkP32xpAybdA0Lz0WALLFGpHHmjZE8B7f9yR9fF3/Wd/DVZrvyb7zEmeoMvYzlI8pYIQjKtRHHyvKVRXZ4C/5qkqTMHxU8ukXhIiLG1xWkvVRVgEnqp/gxy2er+hjpPk4UZ2NB43OExUtlSEkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780944745; c=relaxed/simple;
-	bh=qxhb0zuH//40cIHcG/820caQiv2W35L6k+u964tQukA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=WJ5XqLSPySu84lXKV7xxZfi9OuaqoQffI0SkWdFvtVyX6NiBK6C/Vh+TmL69KwZcP4wWTePNIQQC1/GheXN6tp+V4xD8U2V3LHA5t54vSgTIbvd+qEOOGS8z6snGRgMsdNYtSvhuXu567CYFDw57bx4AfRXESWRNv8aTk1JxJrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hH9bNo/R; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 315A51F00893;
-	Mon,  8 Jun 2026 18:52:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780944744;
-	bh=PVUIMCDPZWjbf5Qc9sTCcdy9K8VtQ6qXoBA+jRLrlro=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hH9bNo/R2U7wv0KRsFF6stntuIUL4WbhGx4XqyoaC0UQOeUewF/qU7fjpzf1512mP
-	 yFsSX/9Vdlx4Nl52irOK2KR0+sa2T6zK/zKArzkZZ9I/v1BKXuXknJmGQYkZMxBo/s
-	 iZyCuWcr6xZ94OO2gVkvE1zhr6c7lT5ky5+7qOj3tXhEOHjbXX+zoSHJkNpjeIxfV1
-	 g9bZ6qLccRI3euE/nkr3P9SiHbvpMfifqjbsV2x5iIJ7EzoYeyNYhmuMSYjah2bJA7
-	 Amt/GB2aQjpPKR9OVakOyLlM9xg+AWrH8Ty+4juGSr5Bczel2xD7yXpB2/KsM1H/tW
-	 m99XvtgRm9zeQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 4/5] iio: adc: versal-sysmon: add threshold event
- support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Salih Erim" <salih.erim@amd.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260608183801.1257051-5-salih.erim@amd.com>
-References: <20260608183801.1257051-5-salih.erim@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 08 Jun 2026 18:52:23 +0000
-Message-Id: <20260608185224.315A51F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780945021; c=relaxed/simple;
+	bh=sHRgZReIBWpW5NdfBaanZpgYqI1k260TPLXuy8TIblI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bvChKtkQrheD9Cj36LgN7Z/PrpxJk3weB6XrSVx6n0Kbiacp2N/7PfuM4eGJH8P/jRCgxFvlfR6I7g7YRz58Ix3O+H5CEqpmeBPZmKXOXCWVFSjMeGpQDNoXA2zOlObs+rf4KX+BHbj1bLE0Iff73WtrH7ds98fn1CqDG8xtBUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RWOCw9PM; arc=none smtp.client-ip=209.85.210.178
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-842848fd613so3852217b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 11:57:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780945020; x=1781549820; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KhXTrIGzEozRTYZqrvuBs+osNbcorCKCcPcM0I49+xk=;
+        b=RWOCw9PMyf2fTpkNnfFyd7t9MtV1t0B8XBlBx4F0mBFY4EIC61n5Niu6dHqvep+qFJ
+         zgFANamEuV+RrdRLwP9kzX/1oiCiWSw6Pd7jMPdjckZ0CKCFY2JydUoaPaHbPyjtQRPr
+         NHTsALLCfm0IP8G7Ui+S3hOS6UOzq7qHWwYlXccjPHcdVqd1t3mWvn3yKdBMb+e/uu36
+         rw467FC9n0fr0wgYTkSmc7LngSzuxLM9SMyHarZYiJex5xGWRe9VhRz/4cqKB0ZGLjfE
+         1CrDZl3HZvcVtMbQoKURlpYVecIx7Uo/HPsr4vlOnIdVlIEcY0MbLDxoqcCukOXOZ5mL
+         Ko/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780945020; x=1781549820;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KhXTrIGzEozRTYZqrvuBs+osNbcorCKCcPcM0I49+xk=;
+        b=bFlXUWqmvzvLjSa3H53lCVaQBwUYJ4n/THmjpydLuJbs0kzzblrKA4HCj2b5n6uNEM
+         U+lHiIo+mt4+6LPeNwIrwpb4S6YbfociADDrSyKwf7miH7le7t3EIA5+kdDI641qDjO7
+         8lyuxjX2D5z3KM4b+9zXeaBAWY2r+YqrqUIJquHUmytNYRS4qrDaXs/84h3rWHXWliz5
+         Bqxfnj6Iy3kBKx54mAgpf5rVYxDEDPbg56JmjdZwQRh2KHFHdbG9oXvIG9/+9pbMldUR
+         CVt0LnnAHXw6UvyFI5M3Kf00OxZQUOzD2+/GMAsJvPXbCa7n7NfzHxGNth7iSKIIOhw8
+         GIlQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+cDrLDjEHj7rGFJA6+QW1WT2wNpsd54imY3sA1VCYF/mKaZyjFQpThysvUE1bAHzSgpnEUsPXaPDnI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMVt+oxjHKICR7w/Urtkl6Ro405YCmBM8PMBFMNTtE15/y9n5+
+	aYzupUhPvcADypK7t/G9TdbX+MMlvbKNWymLCJIfIhd+59wf/KW3NQZJ
+X-Gm-Gg: Acq92OEIa3S9V8Opt0TUivNi4QXV5emo3d9P+MbFfcnc7pUwPBmSyAy66fb74jhnJut
+	5NCHTShrPULGBZCfGIs8KzaS0b5aw6hDEUqvgkurJSkzdaOYwiVKsJ8ocqD8Ur3ctmM8r6kITFT
+	OwaJAVK7w3i8S6IAXD8hchn9kckMt5DCBac6amUq7pvXbhOYuKoW3CiNpgKcARpbJVG4UT3tFk/
+	n4bwYDKbnXhVLtf5TFRw5cXlZuK6/kzlfYMyClMebCc12JpNA37WUcUVBhii/0Xr9tSP+dxalwv
+	oV5Z6e+ws9ZiIN1DP7DhGSXdHJr61XTtOIn+5ivf0Ic3GXhGW/hQY7UlGthTjishwNhu+AFDoLY
+	2Apdpt8X9h6q1NFFJppI8AHhupZXVoJLnVMILrn0Ax63krgQRAuLitAEIZhJBIyZkE48wr88r1d
+	o1CDn+WFAUH9O/IPAl8hHlAkuxchpx5cyFmj5NT4PKUpfuQ4C+3dUJg8W8ww==
+X-Received: by 2002:a05:6a00:94d6:b0:835:366f:5da2 with SMTP id d2e1a72fcca58-842b1051617mr15667359b3a.37.1780945019804;
+        Mon, 08 Jun 2026 11:56:59 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-842829188b9sm19476589b3a.59.2026.06.08.11.56.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jun 2026 11:56:59 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 8 Jun 2026 11:56:58 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: watchdog: qcom-wdt: Document IPQ5210
+ watchdog
+Message-ID: <31356c7a-6028-4901-a98b-5cb375d7742d@roeck-us.net>
+References: <20260511-ipq5210_wdt_binding-v1-1-859003d48274@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260511-ipq5210_wdt_binding-v1-1-859003d48274@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-308501-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308500-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:salih.erim@amd.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:kathiravan.thirumoorthy@oss.qualcomm.com,m:wim@linux-watchdog.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:quic_rjendra@quicinc.com,m:linux-arm-msm@vger.kernel.org,m:linux-watchdog@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,lists.linux.dev:replyto,amd.com:email,sysmon_unmask_work.work:url,smtp.kernel.org:mid,sashiko.dev:url]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4B966659FC5
+X-Rspamd-Queue-Id: 9A642659F23
 
-Thank you for your contribution! Sashiko AI review found 8 potential issue(=
-s) to consider:
-- [High] The probe function unconditionally fails for devices without an IR=
-Q, breaking I2C deployments.
-- [High] `sysmon_write_event_value` overwrites the entire threshold registe=
-r, incorrectly clearing upper bits.
-- [High] The delayed worker blindly clears all pending hardware interrupts =
-in the ISR register, causing unmasked hardware events to be permanently los=
-t.
-- [High] Missing 16-bit mask for negative temperature thresholds writes cor=
-rupted data (1s) to upper hardware register bits.
-- [Medium] `sysmon_read_event_config` exposes transient internal polling ma=
-sk state to userspace instead of the administrative state.
-- [Medium] Unbounded user input from sysfs causes signed integer overflow i=
-n arithmetic conversions for temperature and voltage thresholds.
-- [Medium] A race condition between `sysmon_write_event_config` and `sysmon=
-_unmask_worker` can leave a disabled temperature interrupt enabled in hardw=
-are.
-- [Medium] The driver will cause a 'scheduling while atomic' BUG on the I2C=
- path if an interrupt is erroneously provided in the device tree.
---
+On Mon, May 11, 2026 at 04:19:13PM +0530, Kathiravan Thirumoorthy wrote:
+> Document the watchdog device found on the Qualcomm IPQ5210 SoC.
+> 
+> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-commit 2275827bc141241d722cd6abd38d36f5e908731f
-Author: Salih Erim <salih.erim@amd.com>
-Subject: iio: adc: versal-sysmon: add threshold event support
+Applied.
 
-This patch adds threshold event support for temperature and supply voltage
-channels. The driver uses hysteresis mode for temperature and schedules a
-delayed worker to poll for condition clear before unmasking.
-
-> The interrupt handler masks active threshold interrupts (which are
-> level-sensitive) and schedules a delayed worker to poll for condition
-> clear before unmasking. When no hardware IRQ is available, event
-> channels are not created and interrupt init is skipped, since the
-> I2C regmap backend cannot be called from atomic context.
-
-Does the unconditional check in sysmon_core_probe cause the probe to fail
-on I2C devices instead of falling back to polled mode? The code aborts if
-fwnode_irq_get returns a negative error code, which contradicts this part
-of the commit message.
-
-> diff --git a/drivers/iio/adc/versal-sysmon-core.c b/drivers/iio/adc/versa=
-l-sysmon-core.c
-> index c7b5eecc93cfb..5fbd509089bbd 100644
-> --- a/drivers/iio/adc/versal-sysmon-core.c
-> +++ b/drivers/iio/adc/versal-sysmon-core.c
-[ ... ]
-> +static void sysmon_millicelsius_to_q8p7(u32 *raw_data, int val)
-> +{
-> +	*raw_data =3D (val << SYSMON_FRACTIONAL_SHIFT) / (int)MILLI;
-> +}
-
-[Severity: Medium]
-Could the arithmetic left shift overflow the 32-bit integer for large
-user inputs?
-
-[Severity: High]
-If the division yields a negative signed integer for sub-zero temperatures,
-does this result in an implicitly sign-extended 32-bit value that writes
-1s to the upper 16 bits of the hardware register?
-
-[ ... ]
-> +static void sysmon_supply_processedtoraw(int val, u32 reg_val, u32 *raw_=
-data)
-> +{
-> +	int exponent =3D FIELD_GET(SYSMON_MODE_MASK, reg_val);
-> +	int format =3D FIELD_GET(SYSMON_FMT_MASK, reg_val);
-> +	int scale, tmp;
-> +
-> +	scale =3D BIT(SYSMON_SUPPLY_MANTISSA_BITS - exponent);
-> +	tmp =3D (val * scale) / (int)MILLI;
-
-[Severity: Medium]
-Could this multiplication overflow a 32-bit signed integer if userspace
-provides a moderately high voltage threshold?
-
-[ ... ]
-> +static int sysmon_read_event_config(struct iio_dev *indio_dev,
-> +				    const struct iio_chan_spec *chan,
-> +				    enum iio_event_type type,
-> +				    enum iio_event_direction dir)
-> +{
-> +	u32 alarm_event_mask =3D sysmon_get_event_mask(chan->address);
-> +	struct sysmon *sysmon =3D iio_priv(indio_dev);
-> +	unsigned int imr;
-> +	int config_value;
-> +	int ret;
-> +
-> +	ret =3D regmap_read(sysmon->regmap, SYSMON_IMR, &imr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* IMR bits are 1=3Dmasked, invert to get 1=3Denabled */
-> +	imr =3D ~imr;
-> +
-> +	if (chan->type =3D=3D IIO_VOLTAGE) {
-> +		config_value =3D sysmon_read_alarm_config(sysmon, chan->address);
-> +		if (config_value < 0)
-> +			return config_value;
-> +		return config_value && (imr & alarm_event_mask);
-> +	}
-> +
-> +	return !!(imr & alarm_event_mask);
-> +}
-
-[Severity: Medium]
-Does this expose the transient internal polling mask state from the
-hardware instead of the persistent administrative state? If userspace
-reads this during the 500ms delayed worker polling window, could it falsely
-report that the interrupt is disabled?
-
-[ ... ]
-> +static int sysmon_write_event_config(struct iio_dev *indio_dev,
-> +				     const struct iio_chan_spec *chan,
-> +				     enum iio_event_type type,
-> +				     enum iio_event_direction dir,
-> +				     bool state)
-> +{
-[ ... ]
-> +	if (chan->type =3D=3D IIO_TEMP) {
-> +		if (state) {
-> +			ret =3D regmap_write(sysmon->regmap, SYSMON_IER, ier);
-> +			if (ret)
-> +				return ret;
-> +
-> +			scoped_guard(spinlock_irq, &sysmon->irq_lock)
-> +				sysmon->temp_mask &=3D ~ier;
-> +		} else {
-> +			ret =3D regmap_write(sysmon->regmap, SYSMON_IDR, ier);
-> +			if (ret)
-> +				return ret;
-> +
-> +			scoped_guard(spinlock_irq, &sysmon->irq_lock)
-> +				sysmon->temp_mask |=3D ier;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-
-[Severity: Medium]
-Is there a race condition here if sysmon_unmask_worker runs exactly
-between the regmap_write to SYSMON_IDR and the spinlock acquisition?
-Could the worker read the old sysmon->temp_mask and incorrectly re-enable
-the interrupt in hardware?
-
-[ ... ]
-> +static int sysmon_write_event_value(struct iio_dev *indio_dev,
-> +				    const struct iio_chan_spec *chan,
-> +				    enum iio_event_type type,
-> +				    enum iio_event_direction dir,
-> +				    enum iio_event_info info,
-> +				    int val, int val2)
-> +{
-[ ... ]
-> +	if (chan->type =3D=3D IIO_VOLTAGE) {
-> +		offset =3D sysmon_supply_thresh_offset(chan->address, dir);
-> +		if (offset < 0)
-> +			return offset;
-> +
-> +		ret =3D regmap_read(sysmon->regmap, offset, &reg_val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		sysmon_supply_processedtoraw(val, reg_val, &raw_val);
-> +
-> +		return regmap_write(sysmon->regmap, offset, raw_val);
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-
-[Severity: High]
-Does this overwrite the entire 32-bit threshold register with a
-zero-extended 16-bit value? Since sysmon_supply_processedtoraw casts the
-result to a u16 before assigning it to the u32 raw_val pointer, does
-writing it back directly clear the upper 16 bits of the hardware register?
-
-[ ... ]
-> +static void sysmon_unmask_worker(struct work_struct *work)
-> +{
-> +	struct sysmon *sysmon =3D
-> +		container_of(work, struct sysmon, sysmon_unmask_work.work);
-> +	unsigned int isr;
-> +
-> +	/*
-> +	 * regmap errors are not checked here because the worker and IRQ
-> +	 * handler cannot propagate errors. The MMIO regmap uses fast_io
-> +	 * with direct readl/writel which cannot fail.
-> +	 */
-> +	spin_lock_irq(&sysmon->irq_lock);
-> +	regmap_read(sysmon->regmap, SYSMON_ISR, &isr);
-> +	regmap_write(sysmon->regmap, SYSMON_ISR, isr);
-> +	sysmon_unmask_temp(sysmon, isr);
-> +	spin_unlock_irq(&sysmon->irq_lock);
-
-[Severity: High]
-Does writing the exact read value back to the write-1-to-clear SYSMON_ISR
-register permanently clear all pending hardware interrupts? If a supply
-voltage alarm triggers just before this runs, could it be silently dropped
-since the worker only processes temperature bits?
-
-[ ... ]
-> +static irqreturn_t sysmon_iio_irq(int irq, void *data)
-> +{
-> +	struct iio_dev *indio_dev =3D data;
-> +	struct sysmon *sysmon =3D iio_priv(indio_dev);
-> +	unsigned int isr, imr;
-> +
-> +	guard(spinlock)(&sysmon->irq_lock);
-> +
-> +	regmap_read(sysmon->regmap, SYSMON_ISR, &isr);
-
-[Severity: Medium]
-Will this cause a scheduling while atomic bug on the I2C path if an
-interrupt is erroneously provided in the device tree? Since sysmon_core_pro=
-be
-unconditionally accepts the IRQ, and this handler uses a spinlock while
-performing a regmap_read, could the I2C transfer function attempt to take
-a mutex in atomic context?
-
-[ ... ]
-> @@ -269,13 +904,40 @@ int sysmon_core_probe(struct device *dev, struct re=
-gmap *regmap)
->  	if (ret)
->  		return ret;
-> =20
-> +	irq =3D fwnode_irq_get(dev_fwnode(dev), 0);
-> +	if (irq < 0)
-> +		return dev_err_probe(dev, irq, "failed to get IRQ\n");
-
-[Severity: High]
-Does this unconditional check cause the probe to fail on I2C devices instead
-of falling back to polled mode?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608183801.1257=
-051-1-salih.erim@amd.com?part=3D4
+Thanks,
+Guenter
 
