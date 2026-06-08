@@ -1,58 +1,104 @@
-Return-Path: <devicetree+bounces-308089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308091-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id l9BhMMB5JmoyXAIAu9opvQ
-	(envelope-from <devicetree+bounces-308089-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:13:52 +0200
+	id fXUlKs96JmqGXAIAu9opvQ
+	(envelope-from <devicetree+bounces-308091-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:18:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61690653DF1
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:13:52 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A16E2653EE3
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:18:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=huawei.com header.s=dkim header.b=KfpMRhsX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308089-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308089-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=huawei.com;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=RXOJd87q;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=SQhI6Kq4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308091-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308091-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B944E30117FF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 08:09:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 289443038AC3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 08:09:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4272939F18F;
-	Mon,  8 Jun 2026 08:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3832A3A7593;
+	Mon,  8 Jun 2026 08:07:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout01.his.huawei.com (canpmsgout01.his.huawei.com [113.46.200.216])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC4C39EF0F
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 08:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75913A48C5
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 08:07:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780906037; cv=none; b=XVsukg9cWkOyzHLQhyNrIRQUs/uDIdTaNDjlbuODXxJwSSpwFh+LNHaqq5/I09itrq6gJPgl1/7V1Ic2YgZUiLmCgmxZm6ks1alHZNDjOI8hp+4w/wI/UG+d2Crc1b9fLzvZh3VZLDmXaptZMA6XX85OnB9mjk5wwF6PYVfRUDo=
+	t=1780906048; cv=none; b=jYGHNKzkPVp1eBd2EpLN+RTMTyLF5TphYqV8EwrElEn2fa5l86BNt5r0jvHxtyniMNXXw++7l/sda4mBokYLwzjYuDzJhzsMqJfxdumeJGqhzvKt+a70I4lxujh0FfjqeufNJiHCudLQtI49NESMDs61N/QBkuAIOOcNkD88FBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780906037; c=relaxed/simple;
-	bh=vU0Lq8g00XlEZmlw0DT/lddA72fo7MIfMItv+nMrVE0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=C2yHeil101E+TR/Su6nYJbddLj1lZuB+9yVEtUQMdjJNjR/Yy8e2KCTXGhCiY+pPWKpvzDnQhFaD+JXk8o7pEQIeJWqfZgwBcE1EeCAaEot+mSLaPPAAcamKUOt4CvESO0CEZVzgsHwIfoZ444TA0XY8cxLpdy5P5n1EaJDFa5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=KfpMRhsX; arc=none smtp.client-ip=113.46.200.216
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=9GfoYO9Ez3GPgUjbOCSIO7Rv/8xo1QbYLJmt+2dUr5E=;
-	b=KfpMRhsXCMP5Z5iy3po04X1xjsJG+lNmgjX0PUYQELmooXBwibf4r7BPfH59CHnJn3WdGkok7
-	BvzAYjWn3VembATsPXILgbYbLW1R0CP35+aN+fgoGH/Jo4AGC5cs1v603IqFk5fzg/teiiwgA3m
-	tzoI+isR3Gg30dINCmBFjuY=
-Received: from mail.maildlp.com (unknown [172.19.163.0])
-	by canpmsgout01.his.huawei.com (SkyGuard) with ESMTPS id 4gYkvJ1NyJz1T4Fy;
-	Mon,  8 Jun 2026 15:58:52 +0800 (CST)
-Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
-	by mail.maildlp.com (Postfix) with ESMTPS id 4174E40537;
-	Mon,  8 Jun 2026 16:07:10 +0800 (CST)
-Received: from [10.67.109.254] (10.67.109.254) by
- dggpemf500011.china.huawei.com (7.185.36.131) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Mon, 8 Jun 2026 16:07:07 +0800
-Message-ID: <36979c7f-853f-433a-a31f-4aba3c8242b4@huawei.com>
-Date: Mon, 8 Jun 2026 16:07:06 +0800
+	s=arc-20240116; t=1780906048; c=relaxed/simple;
+	bh=34m7SfVQVZbxNJAO7Dmf5tlGcddqxPWguftSDeuhdKk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sC3T4JMnglrC/A5ipA2FS35HTKMcRA7VGCDDexz1Db2F48Su9P8bY1nMUnizkddo/XIiLZJgRD2JbMiwm3AVWOFOg0GXqQENtt3MDYvR+R5H3XXncbCchd7StQ60b2Tp5TrQj2jK8wJkbSE54p8UM80lF9vWdgY7rQbvZrs+iF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RXOJd87q; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SQhI6Kq4; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6586RWZ52833465
+	for <devicetree@vger.kernel.org>; Mon, 8 Jun 2026 08:07:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PjcRkdjiGy7fLYr8yh6M+jv8Y8SIt/ntNkKHV25fvcA=; b=RXOJd87qybAhc8dK
+	O7mOV04BJx4I6xY9wkKP+gKp6LjWLHiwIYawpvcvgZmXf9w3qdHtPXMghMlqSPob
+	F7ycHkoFfyV+oBXseXqdaf6Q9UTNMdcwqyrtuTwOAeN25i3INZKQ6XfgbfuVzf5+
+	ZvrlSbBRpHlF1wULEzA5Yg5P0rg6J8bYxzGWImmNt24BMvTTRfMmvda6GGNDNurq
+	+AAZ6Q9eKB3qx76gwjVSutBLJ0jVevPy13zb5qoT7ZlPk9AoOFw3O4UkKFr6U5PT
+	IjlqodlIgPGaCVZq7UZaP6KVIZkSSGsuYrmwSSUUtpXKnGJxxET/jl5DpuGJU0dd
+	fQCFRA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4emaj4y093-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 08:07:25 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-915a547f4b3so103917985a.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 01:07:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1780906045; x=1781510845; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PjcRkdjiGy7fLYr8yh6M+jv8Y8SIt/ntNkKHV25fvcA=;
+        b=SQhI6Kq4cQmIFitb8H2g80D3moebARtqjVDV9bDm19qpy7bnDOfMWHJ+Aqlj6FpibI
+         6zF6sPUqiczywv3cm9CtTgkXOHMoSmANn2uKyOmitjeaRBwpDiQT3BR7jVITLCYHyIhs
+         oXRtuxkfr4uVUeYYF9Uw8LoDtDHEdfADXKwx0jDHN6bfYhEG9yBamArnvlg9ZAD9Lmiy
+         lR+ALyb9SaBhrnzpLGB6WATZuYjz6jKoIbvyuJrhQfYlxcQdrMeE0L4y+zOCWT/FEJIl
+         JGYoQFC/M50qwQCsogozvmr9/Y6jklXrS6jFPnA5IrgWSLc0jg7oV5Ivt4Y0N2H2Sjcr
+         5qFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780906045; x=1781510845;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PjcRkdjiGy7fLYr8yh6M+jv8Y8SIt/ntNkKHV25fvcA=;
+        b=c36rl//OIYwFsOKC5FPvDr5OY1ywIMjPDTWcJFpf1n6yDgvZiIH+fC82iAUUmoDpnU
+         gZKv7fmpnJZW0o7KVOHV38fXQI1D1FNs6XB/PZvc1pASx91qY6vqO81z3en2GftZk9XU
+         GyC4wi0Ky5M77qEwOKWwr9mQvzjrcpO9RPC/XoC07n4RuNapbE2tBCWRbuMl0M/+aNOu
+         TP0d7RKky8ANGV122/RIZqK8Xqft47yn1+Ca9NmfbGUQO0wgwKavoHsAPBs87PlEcxaI
+         La+M7k48C0sBQsRE0oEvnC33kLSmNSVXm+snA/JSgkVs5DjTwO83ijJr9erRoc5kB5VS
+         OtMw==
+X-Forwarded-Encrypted: i=1; AFNElJ8F86VQ6bfW9sTG8fV2egVUKUaCXUcjCADTTvL2pkVlh/mjbiNe7d8g2BSkEohVRfQaQVy/gk1MEIh7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWZpbMJuKuWBnLBgbUfsw0e0f0smrV4zu20edPQ2JJ3MVi8FvV
+	yEwatcnE/z2UXKMF2CSuCzlnrz0pPx6KpaFwFMcuj3Rv/zottdVeYEDZ3qWARpVakpdXoww+w43
+	xuZetXndtE0nwIr7X0EmwwB9Y4s90Y6ctK0Hm6D95E3Z0Rj2zG9YPIG3TgRxGeihc6/r7na0F
+X-Gm-Gg: Acq92OFl4h4NfY7xopP0gaJGjQhwv1+A9DNpQoIR0FTors55oipZnGIvW8SPhLjZAY2
+	rq9J+6T4dHpZMWlNWeXSCAxieHf8/CjfdDIEmfPai10Bhn2ulfmJbvtU4AVl4QNafr6Phd5tiYW
+	nTMdrCqPuAox3YXRJyFet3Z4NZBKI+LoYahVL7qrTkEGNtQiKnbiEz4SrtAj+2V1DF6WRb6yEgz
+	XZ+5vtJrK1/PQTdaDfwzs64oLGXxOj3I/B4Mh0lhzR3WYJf7cv3cnEEoVGjOKKIUvMlzRlpAIqI
+	mwm3BRL54sn7pdTQKjXOruIesY1kWH60kGBCo2A0jCWYhbniJiDtBkrkfmCmnp7a1VVy2a+dAh5
+	+gdcK6otT5vOQLMoC0XmQq/ajfMN75BaA+zFW/goGYEcF7TbKt3RZ0yGk
+X-Received: by 2002:a05:620a:4607:b0:915:86a4:667b with SMTP id af79cd13be357-915a9de9b69mr1410040185a.6.1780906045310;
+        Mon, 08 Jun 2026 01:07:25 -0700 (PDT)
+X-Received: by 2002:a05:620a:4607:b0:915:86a4:667b with SMTP id af79cd13be357-915a9de9b69mr1410038585a.6.1780906044944;
+        Mon, 08 Jun 2026 01:07:24 -0700 (PDT)
+Received: from [192.168.120.170] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-68e65851786sm6634023a12.17.2026.06.08.01.07.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Jun 2026 01:07:24 -0700 (PDT)
+Message-ID: <c0033210-7fba-49de-aeac-1ab0d6219c8a@oss.qualcomm.com>
+Date: Mon, 8 Jun 2026 10:07:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,174 +106,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v16 04/10] arm64: kexec_file: Use crash_prepare_headers()
- helper to simplify code
-To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
-	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
-	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
-	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
-	<akpm@linux-foundation.org>, <bhe@redhat.com>, <rppt@kernel.org>,
-	<pasha.tatashin@soleen.com>, <pratyush@kernel.org>, <ruirui.yang@linux.dev>,
-	<rdunlap@infradead.org>, <peterz@infradead.org>,
-	<feng.tang@linux.alibaba.com>, <dapeng1.mi@linux.intel.com>,
-	<kees@kernel.org>, <elver@google.com>, <kuba@kernel.org>,
-	<lirongqing@baidu.com>, <ebiggers@kernel.org>, <paulmck@kernel.org>,
-	<leitao@debian.org>, <coxu@redhat.com>, <Liam.Howlett@oracle.com>,
-	<ryan.roberts@arm.com>, <osandov@fb.com>, <jbohac@suse.cz>,
-	<cfsworks@gmail.com>, <tangyouling@kylinos.cn>, <sourabhjain@linux.ibm.com>,
-	<ritesh.list@gmail.com>, <adityag@linux.ibm.com>, <liaoyuanhong@vivo.com>,
-	<seanjc@google.com>, <fuqiang.wang@easystack.cn>, <ardb@kernel.org>,
-	<chenjiahao16@huawei.com>, <guoren@kernel.org>, <x86@kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <loongarch@lists.linux.dev>,
-	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <kexec@lists.infradead.org>
-References: <20260608073459.3119290-1-ruanjinjie@huawei.com>
- <20260608073459.3119290-5-ruanjinjie@huawei.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <20260608073459.3119290-5-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH] arm64: dts: qcom: glymur: Fix gcc clock specifier for
+ usb_mp_qmpphy nodes
+To: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Wesley Cheng <wesley.cheng@oss.qualcomm.com>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+        Rajendra Nayak <rajendra.nayak@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260602-glymur-fix-usb-mp-qmpphy-clock-specifier-v1-1-19c6f44d5655@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260602-glymur-fix-usb-mp-qmpphy-clock-specifier-v1-1-19c6f44d5655@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
- dggpemf500011.china.huawei.com (7.185.36.131)
+X-Proofpoint-ORIG-GUID: nkH2rLW8DrKfyttIsALxQCOO8fMo1ewa
+X-Proofpoint-GUID: nkH2rLW8DrKfyttIsALxQCOO8fMo1ewa
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA4MDA3MyBTYWx0ZWRfXy8nPYeE5Ml+x
+ ehkFiHCpsyvcPi+QFH5fqztvWaWC/5QSmEhmRrfIUI/kgrNQkOUbsUjAXB9UjZJ2pChGVnUPkfa
+ rUqJ+qmLkRGDrG+xrAFdrovp3Sk0/DwAvOAGyfFmfqvJI1KkPwzKU4H3Yy00MXsQyCXiQOBjMdB
+ Xb4rVd4R9a7M++0CJAeGRt1zrgxbmvtms07PajQUC0NKL5I165FisJBgoZZFpvQENJhyRCIvo5x
+ SpPh0bg/HxmmQkx2NjzjXLvt9jyzjHkUqF9YxLXn8KY7wRIcneOnl1402Mc5H14BRvn15Mo3We/
+ L2Wz6tS5EvIhb8r3lwMOLq0rUizopLDzAOxFdUD8tJ+kQqs8WbVpuckL3PJW1s1sCxJx6IpsGqD
+ rbWfuv+Rz82MREaf5Kh1wBaVP9CAnSci+xOHCedPoY51WaqGn1GNVD0XSAfHIanZ8OHZtGaoq7u
+ vg4XOxT2VWonDoT/flw==
+X-Authority-Analysis: v=2.4 cv=TLh1jVla c=1 sm=1 tr=0 ts=6a26783d cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8 a=Ic1KOHRaER9q49jtsWgA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-08_02,2026-06-05_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 spamscore=0 adultscore=0 clxscore=1015
+ phishscore=0 malwarescore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606080073
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[huawei.com:+];
-	TAGGED_FROM(0.00)[bounces-308089-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308091-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,soleen.com,linux.dev,infradead.org,linux.alibaba.com,google.com,baidu.com,debian.org,oracle.com,fb.com,suse.cz,kylinos.cn,vivo.com,easystack.cn,huawei.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	FORGED_RECIPIENTS(0.00)[m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:catalin.marinas@arm.com,m:will@kernel.org,m:chenhuacai@kernel.org,m:kernel@xen0n.name,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:chleroy@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:tglx@kernel.org,m:mingo@redhat.com,m:bp@alien8.de,m:dave.hansen@linux.intel.com,m:hpa@zytor.com,m:robh@kernel.org,m:saravanak@kernel.org,m:akpm@linux-foundation.org,m:bhe@redhat.com,m:rppt@kernel.org,m:pasha.tatashin@soleen.com,m:pratyush@kernel.org,m:ruirui.yang@linux.dev,m:rdunlap@infradead.org,m:peterz@infradead.org,m:feng.tang@linux.alibaba.com,m:dapeng1.mi@linux.intel.com,m:kees@kernel.org,m:elver@google.com,m:kuba@kernel.org,m:lirongqing@baidu.com,m:ebiggers@kernel.org,m:paulmck@kernel.org,m:leitao@debian.org,m:coxu@redhat.com,m:Liam.Howlett@oracle.com,m:ryan.roberts@arm.com,m:osandov@fb.com,m:jbohac@suse.cz,m:cfsworks@gmail.com,m:tangyouling@kylinos.cn,m:sourab
- hjain@linux.ibm.com,m:ritesh.list@gmail.com,m:adityag@linux.ibm.com,m:liaoyuanhong@vivo.com,m:seanjc@google.com,m:fuqiang.wang@easystack.cn,m:ardb@kernel.org,m:chenjiahao16@huawei.com,m:guoren@kernel.org,m:x86@kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:loongarch@lists.linux.dev,m:linuxppc-dev@lists.ozlabs.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:kexec@lists.infradead.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:gopikrishna.garmidi@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wesley.cheng@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:pankaj.patil@oss.qualcomm.com,m:sibi.sankar@oss.qualcomm.com,m:rajendra.nayak@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_GT_50(0.00)[63];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	MIME_TRACE(0.00)[0:+]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 61690653DF1
+X-Rspamd-Queue-Id: A16E2653EE3
 
-
-The below AI reported TOCTOU bug is an existing artifact and completely
-unrelated to the core CMA implementation introduced here. Therefore, we
-will skip fixing it in this series to avoid unnecessary noise.
-
-Link:
-https://lore.kernel.org/all/20260608075628.039FC1F00893@smtp.kernel.org/
-
-On 6/8/2026 3:34 PM, Jinjie Ruan wrote:
-> Use the newly introduced crash_prepare_headers() function to replace
-> the existing prepare_elf_headers(), allocate cmem and exclude crash
-> kernel memory in the crash core, which reduce code duplication.
+On 6/2/26 6:51 PM, Gopikrishna Garmidi wrote:
+> usb_mp_qmpphy0 and usb_mp_qmpphy1 have #clock-cells set to 0 so they take
+> no specifier. Drop the erroneous QMP_USB43DP_USB3_PIPE_CLK argument.
 > 
-> Only the following two architecture functions need to be implemented:
-> - arch_get_system_nr_ranges(). Use for_each_mem_range() to traverse
->   and pre-count the max number of memory ranges.
+> This fixes the following dtbs_check warning:
+> clock-controller@100000 (qcom,glymur-gcc): clocks: [[59, 0], ..... [0]]
+> is too long
+> from schema $id: http://devicetree.org/schemas/clock/qcom,glymur-gcc.yaml
 > 
-> - arch_crash_populate_cmem(). Use for_each_mem_range to traverse
->   and collect the memory ranges and fills them into cmem.
-> 
-> Acked-by: Catalin Marinas <catalin.marinas@arm.com>
-> Reviewed-by: Sourabh Jain <sourabhjain@linux.ibm.com>
-> Acked-by: Baoquan He <bhe@redhat.com>
-> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+> Fixes: 4eee57dd4df9f ("arm64: dts: qcom: glymur: Add USB related nodes")
+> Signed-off-by: Gopikrishna Garmidi <gopikrishna.garmidi@oss.qualcomm.com>
 > ---
->  arch/arm64/kernel/machine_kexec_file.c | 40 ++++++++------------------
->  1 file changed, 12 insertions(+), 28 deletions(-)
-> 
-> diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
-> index e31fabed378a..b019b31df48c 100644
-> --- a/arch/arm64/kernel/machine_kexec_file.c
-> +++ b/arch/arm64/kernel/machine_kexec_file.c
-> @@ -40,46 +40,30 @@ int arch_kimage_file_post_load_cleanup(struct kimage *image)
->  }
->  
->  #ifdef CONFIG_CRASH_DUMP
-> -static int prepare_elf_headers(void **addr, unsigned long *sz)
-> +unsigned int arch_get_system_nr_ranges(void)
->  {
-> -	struct crash_mem *cmem;
-> -	unsigned int nr_ranges;
-> -	int ret;
-> -	u64 i;
-> +	unsigned int nr_ranges = 2; /* for exclusion of crashkernel region */
->  	phys_addr_t start, end;
-> +	u64 i;
->  
-> -	nr_ranges = 2; /* for exclusion of crashkernel region */
->  	for_each_mem_range(i, &start, &end)
->  		nr_ranges++;
->  
-> -	cmem = kmalloc_flex(*cmem, ranges, nr_ranges);
-> -	if (!cmem)
-> -		return -ENOMEM;
-> +	return nr_ranges;
-> +}
-> +
-> +int arch_crash_populate_cmem(struct crash_mem *cmem)
-> +{
-> +	phys_addr_t start, end;
-> +	u64 i;
->  
-> -	cmem->max_nr_ranges = nr_ranges;
-> -	cmem->nr_ranges = 0;
->  	for_each_mem_range(i, &start, &end) {
->  		cmem->ranges[cmem->nr_ranges].start = start;
->  		cmem->ranges[cmem->nr_ranges].end = end - 1;
->  		cmem->nr_ranges++;
->  	}
->  
-> -	/* Exclude crashkernel region */
-> -	ret = crash_exclude_mem_range(cmem, crashk_res.start, crashk_res.end);
-> -	if (ret)
-> -		goto out;
-> -
-> -	if (crashk_low_res.end) {
-> -		ret = crash_exclude_mem_range(cmem, crashk_low_res.start, crashk_low_res.end);
-> -		if (ret)
-> -			goto out;
-> -	}
-> -
-> -	ret = crash_prepare_elf64_headers(cmem, true, addr, sz);
-> -
-> -out:
-> -	kfree(cmem);
-> -	return ret;
-> +	return 0;
->  }
->  #endif
->  
-> @@ -109,7 +93,7 @@ int load_other_segments(struct kimage *image,
->  	void *headers;
->  	unsigned long headers_sz;
->  	if (image->type == KEXEC_TYPE_CRASH) {
-> -		ret = prepare_elf_headers(&headers, &headers_sz);
-> +		ret = crash_prepare_headers(true, &headers, &headers_sz, NULL);
->  		if (ret) {
->  			pr_err("Preparing elf core header failed\n");
->  			goto out_err;
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+Konrad
 
