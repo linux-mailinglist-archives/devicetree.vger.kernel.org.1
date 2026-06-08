@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-308480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308481-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Ri6/KPcIJ2pDqgIAu9opvQ
-	(envelope-from <devicetree+bounces-308480-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:24:55 +0200
+	id alMlKC8GJ2o8qQIAu9opvQ
+	(envelope-from <devicetree+bounces-308481-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:13:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9027659B0C
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:24:54 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 126EC65994D
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:13:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZT58sg61;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308480-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308480-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=JGIz76Zo;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308481-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308481-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D67E1308F376
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 18:09:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 771C2302621C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 18:12:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E36E3D75C0;
-	Mon,  8 Jun 2026 18:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A9D7385506;
+	Mon,  8 Jun 2026 18:12:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5297384CCD
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 18:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EED67367295
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 18:12:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780942189; cv=none; b=jHJyjiauo7gIKZWqlCVAxyP6knoYfciKhb/ZeosIOE8sG7CUQyKYlgeY3WqLnXsmUNAVJT65GBkil93vQYRfSS4c4JlU7oq+vx2801TlJkdqTQ6byd++hoE11+pH96a6d2jGurILA6B0fkY5gq+PTjFWPWmQXwME8N/gRGR8+TM=
+	t=1780942345; cv=none; b=QOrEllYYCHFj8FYwyyrX5qIUkIEttn9DLz2PCuwIsns3zzw+NSQqNoggnPHoJRLvvVMsaepOBhoH6RJqctxPdeXofedqYVcUDnJ6Ae51pSqyi8lVY++sl+dvVqpd/jk0hyWkfxT12cnl1qNYm2+2RCjIsDTtqnfgh/HAJ6qKx30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780942189; c=relaxed/simple;
-	bh=dPfcG4Fc703mtDcGfZCUeIsSh9HXGdXdNmE5C2yXEP0=;
+	s=arc-20240116; t=1780942345; c=relaxed/simple;
+	bh=PozAsDVYNX0qVEfnvUXBw31pqBuyPfSY2hnGbfTeSWo=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=ACBBvB+yllK7BSmYMh5d8UVaXcGb/8wBV6Lf6HbJOTxIWsVTromnZYVle82UqWmrBCuagDw7I9knDL38SYAjrxpsXdasI+uX3XvGovZLZl4thg1OJm9Xq18Pfp0KAzwaRaU5DZ0LbfpCy0UyHXsBgXEs70ioAdXMA8vrEsCMnfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZT58sg61; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1A341F00898;
-	Mon,  8 Jun 2026 18:09:46 +0000 (UTC)
+	 Message-Id; b=oGp0ALTHwD2xKtBoOxP6k9GGfOKjYJcmw22w1vtKxRrVONDdG1GKTwIiJByBCCziDvnZ5PPHvG1oifYPR6ZHyCi1yMA3CkGgSr0AyeWuc0+oyCGUpPXY552untsUHjsAjaAf49H/zwg42oDJ1OioIc5F9wNniRU1yB4iBjsxc3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JGIz76Zo; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F5B31F008A4;
+	Mon,  8 Jun 2026 18:12:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780942187;
-	bh=qzr3U3wR2B4G6mUWOTOv9GVv/gHDCaOI+1xGOeK40gc=;
+	s=k20260515; t=1780942343;
+	bh=JbG/1njiIe85DoTIuEgzAfsylhxt+0EqyYqOUouPwcw=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=ZT58sg61t+bUZgzOETtmAO+SS2LpciOHv8ZNYLAnABQWToj0B3IgcITd4HcblDzi3
-	 5ED8h7tLQgREwydfXon+TYBLhovcvSBKiNjvCgYLF1fGRXXAsA6qQSuW7dN9I4J+PR
-	 A63XdH9vzNUvMcu11rez/XzZfKxIsOfMuXT65qb48slV8qUz+5Tqvdwj9GJXzaHYeY
-	 prhWOm0jz/qo6eEjxUNTnijOp22qUGK5i76Tx5ubPEx6v17f8As03+lc+Kb3h49odK
-	 qmIn7KnUuh7oLZE0YTQG2WIvVVt5LFaVgp4pP5BZDxFaKdEzde7ddOlmbja+qD0p/Q
-	 /G0YLVE3BL9Vw==
+	b=JGIz76ZoxNGInm9rV+AzxJVje7HaCOLCjfMN5zwtQYA0tYcLTdXMKb6iKdw4tcbiB
+	 ghE3Z/TnLYYV1a0KCw52TZ/TkKCVH7a/tb5OhOqH6iCHNXZyqz2vWHMN6ajmkvuuF2
+	 RaHG5iDbEOSmR3DJsvaB2QrCkjAvEw96fO21VbQxhJZMznah2xsbp2ZrGlcdkkb8ZY
+	 vvthi9purvb0bcdGU9MfGyBLQhQYc/g2eV9tb9OwMcSD/GswS9V7PdVFyeFEgqiZEy
+	 mnalXmdQOyaDaToT8hkXBvzGNJPxd0hFaP+NbreTjQ2dWsoGDbXf3jp5wxIIEx7tCe
+	 PXRr3ipdLjzNw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V6 2/6] power: supply: sgm41542: Add SG Micro sgm41542
- charger
+Subject: Re: [PATCH v1 2/2] soundwire: qcom: add EE-aware register layout
+ and cpu selection
 Reply-To: sashiko-reviews@lists.linux.dev
-To: "Chris Morgan" <macroalpha82@gmail.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260608175521.67449-3-macroalpha82@gmail.com>
-References: <20260608175521.67449-3-macroalpha82@gmail.com>
+To: "Mohammad Rafi Shaik" <mohammad.rafi.shaik@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260608175345.3118060-3-mohammad.rafi.shaik@oss.qualcomm.com>
+References: <20260608175345.3118060-3-mohammad.rafi.shaik@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 08 Jun 2026 18:09:46 +0000
-Message-Id: <20260608180946.F1A341F00898@smtp.kernel.org>
+Date: Mon, 08 Jun 2026 18:12:22 +0000
+Message-Id: <20260608181223.3F5B31F008A4@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,7 +70,7 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -78,17 +78,16 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308480-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308481-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:mohammad.rafi.shaik@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -98,258 +97,138 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sg-micro.de:url,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E9027659B0C
+X-Rspamd-Queue-Id: 126EC65994D
 
-Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Invalid pointer dereference of I2C client device during IRQ wake t=
-eardown.
-- [High] Watchdog timer bits are always written as zero, silently permanent=
-ly disabling the watchdog.
-- [High] Hardware watchdog will incorrectly trigger and reset device limits=
- during system suspend.
-- [High] TOCTOU race in probe causes integer underflow that applies extreme=
- maximum current limits.
-- [High] Ignored return value of `enable_irq_wake()` results in unbalanced =
-decrement during teardown.
-- [Medium] Ignored return value from `devm_add_action_or_reset()` leaves de=
-vice without expected wakeup capabilities.
-- [Medium] Unprotected concurrent writes to the unused `sgm->state` field c=
-auses a data race.
+
+Pre-existing issues:
+- [High] Data race on `ctrl->intr_mask` between threaded interrupt handler =
+and PM runtime callbacks.
+- [High] Missing NULL pointer validation for `data` from `of_device_get_mat=
+ch_data()`, leading to a NULL pointer dereference crash.
 --
 
-commit a4ca3f3960debe0f5d998a1b64ed909e6c09a1bf
-Author: Chris Morgan <macromorgan@hotmail.com>
-Subject: power: supply: sgm41542: Add SG Micro sgm41542 charger
+commit 2b9927d4b6910f9c0442ddebd7fb189132946df1
+Author: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
 
-This commit adds support for the SG Micro SGM41542 charger and boost
-converter. The driver is adapted from the Rockchip BSP and confirmed
-with the vendor datasheet.
+soundwire: qcom: add EE-aware register layout and cpu selection
 
-Link: https://github.com/rockchip-linux/kernel/blob/develop-6.6/drivers/pow=
-er/supply/sgm41542_charger.c
-Link: https://www.sg-micro.de/rect/assets/1e8de70b-657e-4156-be68-a64fdbe8e=
-418/SGM41541_SGM41542.pdf
+This commit adds support for selecting the SoundWire execution environment
+from the device tree and adjusts register windows based on the EE value.
+For v2.0+ hardware, the IRQ, FIFO, and status register layout is offset by
+the EE window stride.
 
-> diff --git a/drivers/power/supply/sgm41542_charger.c b/drivers/power/supp=
-ly/sgm41542_charger.c
-> new file mode 100644
-> index 0000000000000..f6aff2c2335d5
-> --- /dev/null
-> +++ b/drivers/power/supply/sgm41542_charger.c
-> @@ -0,0 +1,1057 @@
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index 3d8f5a81eff19..f4b8ff77bc2f8 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+
 [ ... ]
-> +static int sgm4154x_set_input_curr_lim(struct sgm4154x_device *sgm, int =
-iindpm)
-> +{
-> +	int reg_val;
-> +	int ret;
-> +
-> +	if (iindpm < SGM4154X_IINDPM_I_MIN_UA)
-> +		return -EINVAL;
-> +
+
+> @@ -1545,7 +1578,22 @@ static int qcom_swrm_probe(struct platform_device =
+*pdev)
+>  		return -ENOMEM;
+> =20
+>  	data =3D of_device_get_match_data(dev);
+> +	ctrl->ee =3D SWRM_EE_CPU;
+> +	ret =3D of_property_read_u32(dev->of_node, "qcom,swr-master-ee-val", &c=
+trl->ee);
+> +	if (ret)
+> +		ret =3D of_property_read_u32(dev->of_node, "qcom,ee", &ctrl->ee);
+> +	if (ret)
+> +		ctrl->ee =3D SWRM_EE_CPU;
+> +	if (ctrl->ee > SWRM_MAX_EE) {
+> +		dev_warn(dev, "invalid SoundWire EE %u, using EE%u\n",
+> +			 ctrl->ee, SWRM_EE_CPU);
+> +		ctrl->ee =3D SWRM_EE_CPU;
+> +	}
+>  	ctrl->max_reg =3D data->max_reg;
+
+[Severity: High]
+This isn't a bug introduced by this patch, but could this dereference of
+data->max_reg cause a NULL pointer crash?
+
+If the device is bound to the driver manually via sysfs (e.g., by writing to
+driver_override), the platform bus falls back to matching by name rather th=
+an
+the device tree.
+
+In this case, dev->of_node is missing, and of_device_get_match_data() retur=
+ns
+NULL.
+
+Does this data pointer need to be validated before being dereferenced?
+
 > +	/*
-> +	 * Per the datasheet, values between 100000uA and 3100000uA work
-> +	 * as expected with the register defined as having a step of
-> +	 * 100000 and a min/max of 100000 (0x00) through 3100000 (0x1e).
-> +	 * The register value of 0x1f however corresponds to 3800000uA not
-> +	 * 3200000uA as one would expect.
+> +	 * Defer EE register window selection until HW version is known.
+> +	 * For v2.0+ the IRQ/FIFO window is EE-banked.
 > +	 */
-> +	if ((iindpm > SGM4154X_IINDPM_I_MAX_UA) || (iindpm > sgm->init_data.ili=
-m))
-> +		iindpm =3D min(SGM4154X_IINDPM_I_MAX_UA, sgm->init_data.ilim);
+>  	ctrl->reg_layout =3D data->reg_layout;
+
+[ ... ]
+
+> @@ -1733,16 +1782,19 @@ static int __maybe_unused swrm_runtime_resume(str=
+uct device *dev)
+>  		reset_control_reset(ctrl->audio_cgcr);
+> =20
+>  		if (ctrl->version =3D=3D SWRM_VERSION_1_7_0) {
+> -			ctrl->reg_write(ctrl, SWRM_LINK_MANAGER_EE, SWRM_EE_CPU);
+> +			ctrl->reg_write(ctrl, SWRM_LINK_MANAGER_EE, ctrl->ee);
+>  			ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL,
+> -					SWRM_MCP_BUS_CLK_START << SWRM_EE_CPU);
+> +					SWRM_MCP_BUS_CLK_START << ctrl->ee);
+>  		} else if (ctrl->version >=3D SWRM_VERSION_2_0_0) {
+> -			ctrl->reg_write(ctrl, SWRM_LINK_MANAGER_EE, SWRM_EE_CPU);
+> -			ctrl->reg_write(ctrl, SWRM_V2_0_CLK_CTRL,
+> +			ctrl->reg_write(ctrl, SWRM_LINK_MANAGER_EE, ctrl->ee);
+> +			ctrl->reg_write(ctrl, SWRM_V2_0_CLK_CTRL +
+> +					((int)ctrl->ee - SWRM_EE_CPU) *
+> +					SWRM_V2_REG_EE_STRIDE,
+>  					SWRM_V2_0_CLK_CTRL_CLK_START);
+>  		} else {
+>  			ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL, SWRM_MCP_BUS_CLK_START);
+>  		}
 > +
-> +	if (iindpm > 3100000 && iindpm < SGM4154X_IINDPM_I_MAX_UA)
-> +		iindpm =3D 3100000;
-> +
-> +	if (iindpm =3D=3D SGM4154X_IINDPM_I_MAX_UA)
-> +		reg_val =3D 0x1f;
-> +	else
-> +		reg_val =3D (iindpm - SGM4154X_IINDPM_I_MIN_UA) / SGM4154X_IINDPM_STEP=
-_UA;
+>  		ctrl->reg_write(ctrl, ctrl->reg_layout[SWRM_REG_INTERRUPT_CLEAR],
+>  			SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET);
+> =20
 
 [Severity: High]
-Does this logic underflow if called early?
+This is a pre-existing issue, but could there be a data race on ctrl->intr_=
+mask
+between the threaded interrupt handler and PM runtime callbacks?
 
-If sysfs limits are set before sgm4154x_hw_init() runs in probe,
-sgm->init_data.ilim will still be 0. This would cause iindpm to be clamped
-to 0, and the step calculation above would evaluate to:
-reg_val =3D (0 - 100000) / 100000 =3D -1
+Just below this code in swrm_runtime_resume(), ctrl->intr_mask is modified
+locklessly:
 
-When passed to regmap_update_bits(), the -1 will be masked against 0x1F,
-resulting in 0x1F. This would inadvertently apply the maximum 3.8A limit
-to the upstream power supply instead of the lowest limit.
+    ctrl->intr_mask |=3D SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET;
 
-> +
-> +	ret =3D regmap_update_bits(sgm->regmap,
-> +				 SGM4154X_CHRG_CTRL_0,
-> +				 SGM4154X_IINDPM_I_MASK,
-> +				 reg_val);
-[ ... ]
-> +static int sgm4154x_set_watchdog_timer(struct sgm4154x_device *sgm, u8 t=
-ime)
-> +{
-> +	int ret;
-> +
-> +	if (time > 3)
-> +		return -EINVAL;
-> +
-> +	ret =3D regmap_update_bits(sgm->regmap,
-> +				 SGM4154X_CHRG_CTRL_5,
-> +				 SGM4154X_WDT_TIMER_MASK,
-> +				 time);
+At the same time, the threaded IRQ handler performs its own lockless
+read-modify-write on ctrl->intr_mask:
 
-[Severity: High]
-Since SGM4154X_WDT_TIMER_MASK spans bits 4 and 5 (GENMASK(5, 4)), shouldn't
-the time parameter (values 0-3) be shifted left by 4 before updating the
-register?
+drivers/soundwire/qcom.c:qcom_swrm_irq_handler() {
+    ...
+    ctrl->intr_mask &=3D ~SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET;
+    ...
+}
 
-Passing the unshifted value here causes the regmap_update_bits masking logic
-to evaluate to (time & 0x30), which is always 0. This effectively disables
-the hardware watchdog permanently.
+Both execute in process context without synchronization, and the PM runtime
+worker can be scheduled via wake_irq independently.
 
-> +
-> +	if (ret) {
-[ ... ]
-> +static int sgm4154x_charger_get_property(struct power_supply *psy,
-> +					 enum power_supply_property psp,
-> +					 union power_supply_propval *val)
-> +{
-> +	struct sgm4154x_device *sgm =3D power_supply_get_drvdata(psy);
-> +	struct sgm4154x_state state;
-> +	int ret;
-> +
-> +	ret =3D sgm4154x_get_state(sgm, &state);
-> +	if (ret) {
-> +		dev_err(sgm->dev, "get state error!\n");
-> +		return ret;
-> +	}
-> +	sgm->state =3D state;
+If these run concurrently on different CPUs, could this result in a
+read-modify-write race where an update is lost?
 
-[Severity: Medium]
-Could this concurrent, unprotected write to sgm->state cause a data race
-between sysfs readers and the IRQ handler below?
-
-Since the sgm->state field is completely unused elsewhere in the driver,
-can we safely remove it entirely to avoid the regression?
-
-> +
-> +	switch (psp) {
-[ ... ]
-> +static irqreturn_t sgm4154x_irq_handler_thread(int irq, void *private)
-> +{
-> +	struct sgm4154x_device *sgm4154x =3D private;
-> +	struct sgm4154x_state state;
-> +	int ret;
-> +
-> +	ret =3D sgm4154x_get_state(sgm4154x, &state);
-> +	if (ret) {
-> +		dev_err(sgm4154x->dev, "get state error!\n");
-> +		return IRQ_NONE;
-> +	}
-> +	sgm4154x->state =3D state;
-
-[Severity: Medium]
-Could this concurrent, unprotected write to sgm4154x->state cause a data ra=
-ce?
-
-> +	if (state.vbus_gd) {
-[ ... ]
-> +static void sgm4154x_disable_irq_wake(void *data)
-> +{
-> +	struct sgm4154x_device *sgm =3D data;
-> +	struct i2c_client *client =3D to_i2c_client(sgm->dev->parent);
-> +
-> +	disable_irq_wake(client->irq);
-
-[Severity: High]
-Is it possible this casts the wrong device pointer?
-
-sgm->dev is already the I2C client's device, so sgm->dev->parent points to
-the upstream I2C adapter. Casting the adapter via to_i2c_client() and
-accessing client->irq will read arbitrary memory, potentially corrupting a
-random IRQ descriptor's wake state when passed to disable_irq_wake().
-
-> +}
-[ ... ]
-> +static int sgm4154x_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev =3D &client->dev;
-> +	struct sgm4154x_device *sgm;
-> +	int ret;
-[ ... ]
-> +	sgm->sgm_monitor_wq =3D devm_alloc_ordered_workqueue(dev, "sgm-monitor-=
-wq",
-> +			WQ_MEM_RECLAIM | WQ_FREEZABLE);
-
-[Severity: High]
-Is it safe to use a freezable workqueue here without providing PM suspend
-callbacks to disable the hardware watchdog?
-
-If the system suspends while the watchdog is active, the workqueue will pau=
-se
-and the watchdog will expire, resetting the charger configuration and
-clearing the thermal/current limits established during probe.
-
-> +	if (!sgm->sgm_monitor_wq)
-> +		return -EINVAL;
-> +
-> +	ret =3D devm_delayed_work_autocancel(dev, &sgm->sgm_delay_work,
-> +					   sgm_charger_work);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Unable to register delayed work\n");
-> +
-> +	ret =3D sgm4154x_power_supply_init(sgm, dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register power supply\n");
-> +
-> +	ret =3D sgm4154x_hw_init(sgm);
-
-[Severity: High]
-Does registering the power supply earlier expose the sysfs interface to
-userspace before sgm4154x_hw_init() has populated the limits in
-sgm->init_data?
-
-If userspace writes to the input limit early, the uninitialized zeros will =
-be
-used in sgm4154x_set_input_curr_lim() which may trigger the underflow
-mentioned above.
-
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Cannot initialize the chip.\n");
-> +
-> +	if (client->irq) {
-> +		ret =3D devm_request_threaded_irq(dev, client->irq, NULL,
-> +						sgm4154x_irq_handler_thread,
-> +						IRQF_TRIGGER_FALLING |
-> +						IRQF_ONESHOT,
-> +						"sgm41542-irq", sgm);
-> +		if (ret)
-> +			return ret;
-> +
-> +		enable_irq_wake(client->irq);
-
-[Severity: High]
-If the IRQ controller doesn't support wakeup and enable_irq_wake() fails,
-does ignoring the error here result in an unbalanced disable_irq_wake() call
-during teardown?
-
-> +		devm_add_action_or_reset(dev, sgm4154x_disable_irq_wake, sgm);
-
-[Severity: Medium]
-Also, does ignoring the return value of devm_add_action_or_reset() risk
-leaving the device without its teardown handler if the devm allocation fail=
-s?
-
-> +	}
+If an update is lost, could an interrupt be unintentionally left unmasked,
+potentially causing a persistent IRQ storm?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608175521.6744=
-9-1-macroalpha82@gmail.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608175345.3118=
+060-1-mohammad.rafi.shaik@oss.qualcomm.com?part=3D2
 
