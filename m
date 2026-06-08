@@ -1,232 +1,218 @@
-Return-Path: <devicetree+bounces-307983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307984-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IyVzF0tJJmqbUQIAu9opvQ
-	(envelope-from <devicetree+bounces-307983-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 06:47:07 +0200
+	id l0tWKI5OJmqEUgIAu9opvQ
+	(envelope-from <devicetree+bounces-307984-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 07:09:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B004C652A25
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 06:47:06 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E2A652B5E
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 07:09:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=Op28MRt0;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=HBGTYaeI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307983-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307983-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b="K1/SG5D/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307984-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307984-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 046B63011743
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 04:46:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 514353009012
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 05:09:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A29673161BA;
-	Mon,  8 Jun 2026 04:46:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3981355F53;
+	Mon,  8 Jun 2026 05:09:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78BF32609E3
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 04:46:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CCC14071ED;
+	Mon,  8 Jun 2026 05:09:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780894009; cv=none; b=pQ2k/zothFaPcFFfyoDA9RbIL9oDPmu6G17A/z37bE9t1Sv6eezywG/HkFLBoKGVfr4DQ4O1Sta3oLIG1mMEKQDTEIJFA7sqMLjtIb037tW/40T/57LH28lZ/OpmD+sbR4xTNmmNuBR5nhcmup8CEPJRZcvW/abjjYw4zpdDICQ=
+	t=1780895366; cv=none; b=r1bwBcB0cG/9f0qkkImwjfGSKrkhB8m+Maid21tuKfqXEg/ZEcfEv6nUtLKHkJsMW2bA2nY4KZ3/53RgOvpxFj2Bn+luds68R94LI28QGjiHD36OpsVYI8jYaxg/F1tjBbQXcfxDK4qsFumvxLycQUz3a8gHnN1TjCT3R/566TM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780894009; c=relaxed/simple;
-	bh=/LzMqcu3HHGE5GBV56yl9iCiM+D7QtWOREec3mGMfy4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YGMyqBonZESajdMKrYxKHmv8b9X6X5rqRkgO1hqcwvtzWqWB+qX1fOlPs9UHI0a15R3elu8/J4eZ0VrHxIGKErdlirHdtbZ0vK9/I2oIiKpVIdDM1HaizWlScvaw6rI8kdMpcBVVqWblGMb7deYdFCAzx5rLATE+ShILB6qtrPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Op28MRt0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HBGTYaeI; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6580FUud1515198
-	for <devicetree@vger.kernel.org>; Mon, 8 Jun 2026 04:46:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XaXdloh55VzPZiCRBES2vXV1HkRk8zMeWbdqdMEo94w=; b=Op28MRt0CQd+bmiL
-	ZNZK2H2S+JI2Uo5Zd+z0JwD+S2pGVeI2xFxYUG47QfknUReW05Eneb7dYcjp4Mqp
-	E29Q/Dn7XPBcWhXnLcCP7s53joLMZ5QxkPYVzTRCZVCwCkYYxkouzVY0vgQKGn4V
-	XOT73dxR8EMH6z4ONN2S7U9tJArEdx9TICXESRmfLbM4nMyt2Dbde5wd0Np7BYp2
-	9bcqM1UlCIh7F4djL8YORPvbVMIt6ggpaI454jx+L1dXFDleKFhGxRvOgchhXki0
-	gNcF8EPfrK3VT9PnpUTXElxL3bYlVrh/Eib71bM3wA5s3M4tUuf4aXwSsAN9ucri
-	TC0KEw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4emcadwhux-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 04:46:47 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2bfdd99f6b7so52811785ad.0
-        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 21:46:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780894007; x=1781498807; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XaXdloh55VzPZiCRBES2vXV1HkRk8zMeWbdqdMEo94w=;
-        b=HBGTYaeII3fTv0Njehh4iIJaMI9qWDgw6o1TgwE9j8pJ3hcggy0L1ArYN3l4bF68wr
-         7ZoLkYZehEtddviKsNvNGTsTwugWveXPBTAqU7pTDoJobdutNF/SxbqQ9WR1fAZftmUF
-         lWw1oDMu8IyBrm91z4tJB16Ssavhhd4nDyJtlNWnsCSVG1iyGYzGSxE3CZhszNgrECiy
-         2WLNRo0qs1gZhFGbYYoouf0GThUxjcpM2bRW8sqC6agQKxy2qoo8M31FbE2GYSm8EZvD
-         1VLLzjoK8xvCOnGQwSZ5Gn0TNHsL+/Kd79C8Lo4YRGA1NEXkn1Q0I6vAci/V4H3bvxjI
-         gmwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780894007; x=1781498807;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XaXdloh55VzPZiCRBES2vXV1HkRk8zMeWbdqdMEo94w=;
-        b=q3ZjmJ1jcsUFx/J4RWs0wLXt5ARFC8dI+7ERaioe+i4hJX4PWnzWvx/gaSY8EC1xyp
-         /jwCuBhP0dWVJi7MXTH2rQJQjKJCNNywlCDthDH/pvRi4n+KRzJSaQHd/cMkBW4DuUHP
-         LUeJ1dSTHORldqz3HyukfhYrTt8Aw+TnNOwNLfb2YrGuluribsU46W6RgKfJ7tvY1fSl
-         89Y+XS7J7g5Y1RXSdfcIaOWwV//OzBgBAyAdQbd8oiEownQfUQOhRr2snbBjeSNpF6qA
-         TH15BniviXRoHA5UKInXEovNvFXo3l7wX5Fsx3P21GJSl2GNvEjmuRH6BKIUCZrIl1P9
-         PhKQ==
-X-Forwarded-Encrypted: i=1; AFNElJ++wpXiQtyoQkxgi5iIJ8A/bcrkeLm32/p7h1QjRMF3ShK0xtrHNwKHff8sVlERNxVmJrPwQgPxReeE@vger.kernel.org
-X-Gm-Message-State: AOJu0YylU5kc2n/A7JprKLrFmufzPOb5osycsprzQ6GWFevGfpVnpvhv
-	h9P1N33ToIhIX3ujBA911VYTeTNbDBH698Hh2xipQy57SrgkDVJEJ6DOfjC9qUPiaNs4URtm+Ce
-	BGhqU9kle3ou69lYoCvyxtJuhJUX1fb8Et8rwsTpuu7zQ1ydvV1/HoUlXQSGVj4us
-X-Gm-Gg: Acq92OGmtUo1gcuIfQegGLVrJaZZII+jVVxCR+LmnAyTP67CggEa5GvzgJ0EL7lR8Cr
-	EzODrUWPNZjglMizcjbO3ado2xLUHR5zHRCLssvnNzYXahY80muItX0SA8Rk4SPBo+pWy1vp2p1
-	13tUu7/j5jib18bSPleYGa2iSSSgBx0sVGTw7vYnzbu1RaTtCPduSvEOTAU+bxa/cOmIrfptd3h
-	/V7CKG+4C337lr7baBbfsC5iYivypL+BfvOLxW9LfSnPiZy5p/Z+X47N5ItiNSJRK6FCx6RUKW+
-	D6NLiLqjlS5LI+33wU3ZObv7DnLdvgEI8irSifhPNKw91D7lSBMV3LxA10JZ4T2dy4SrfU9koZZ
-	WkfUWa5c3jO82mKlpogQGxjZQgUMlNsphouz8m3Ywm5vc0k3BLFdeC+N01Co=
-X-Received: by 2002:a17:903:acc:b0:2bd:6e1c:3ce with SMTP id d9443c01a7336-2c1e849512cmr151618435ad.20.1780894007065;
-        Sun, 07 Jun 2026 21:46:47 -0700 (PDT)
-X-Received: by 2002:a17:903:acc:b0:2bd:6e1c:3ce with SMTP id d9443c01a7336-2c1e849512cmr151618215ad.20.1780894006676;
-        Sun, 07 Jun 2026 21:46:46 -0700 (PDT)
-Received: from [10.218.5.114] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c164f8bc5asm173655765ad.27.2026.06.07.21.46.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Jun 2026 21:46:46 -0700 (PDT)
-Message-ID: <0a7f8ee4-2bd4-4ae6-ba6c-72b37d6ef92d@oss.qualcomm.com>
-Date: Mon, 8 Jun 2026 10:16:39 +0530
+	s=arc-20240116; t=1780895366; c=relaxed/simple;
+	bh=mUbPbxGPsJq6zrKufoKUIDyht+0XfDJdNp0bjmYdApw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mHbbssb2+0e5ENVjarCsZtx6eiBR5BA3ofE24M06e6VyNrlx14JDcagdJGWp71B7f3kEHST31H6iG293jxuR+3jCVDJMExfCVdo1Oh8bN7xww7+LWfYNJdJx+WQm9kNikhODotErbzSkDlVwNQNYA987zBLllwfnmlydlyBvWD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K1/SG5D/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 244A6C2BCB0;
+	Mon,  8 Jun 2026 05:09:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780895366;
+	bh=mUbPbxGPsJq6zrKufoKUIDyht+0XfDJdNp0bjmYdApw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=K1/SG5D/mw++6Hs4NCTZEaluXP2Dxho1FWzDvqsWNpUGcdKFtt1UTE91dc/NK2iQ1
+	 UctrfZsVNaBhfe4FgdvelewXUrUTt84Fx/kwtyOg7JZfXCjT7RjhVkBi4K59NoVBIz
+	 vzxDooYAqk4OGGraI4yw8WZpQ9WEzpl1le8SUxSMftRYA5M1+8KI9DREqpRL12GcKx
+	 rkaztB/3pSxG7muk2SDtwZ/BIJrWghC4WsD5TxMlBC4h2Rdc48ZkZk7DWKhOJzs0s3
+	 Ac60TYAsLZmWfQFqAtnjHV2QMgv5JRsahmh03KNVkPATHDnbRAF5hD2Nd7avuGkXYS
+	 tsQNtDVxFFmGQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08B73CD8C8E;
+	Mon,  8 Jun 2026 05:09:26 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Subject: [PATCH v4 0/4] IPQ5018: Add and enable GEPHY RX and TX clocks
+Date: Mon, 08 Jun 2026 09:09:15 +0400
+Message-Id: <20260608-ipq5018-gephy-clocks-v4-0-fb2ccd56894b@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] clk: qcom: Add Global clock controller support on
- Qualcomm Shikra SoC
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Brian Masney <bmasney@redhat.com>,
-        Ajit Pandey
- <ajit.pandey@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-References: <20260605-shikra-gcc-rpmcc-clks-v4-0-a0a7bfb44455@oss.qualcomm.com>
- <20260605-shikra-gcc-rpmcc-clks-v4-4-a0a7bfb44455@oss.qualcomm.com>
- <gvqubjzscwvq4nmerwptrnojrui26ymigzs3mo5yqordyfsnx5@zxtjhsntbrcw>
-Content-Language: en-US
-From: Imran Shaik <imran.shaik@oss.qualcomm.com>
-In-Reply-To: <gvqubjzscwvq4nmerwptrnojrui26ymigzs3mo5yqordyfsnx5@zxtjhsntbrcw>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=DIa/JSNb c=1 sm=1 tr=0 ts=6a264937 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=EUspDBNiAAAA:8 a=ayl1ZFWQluqbhyEjsXUA:9 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-GUID: JrhEmEANtH5mK_EDaonnQ4Eqk-pLRT2I
-X-Proofpoint-ORIG-GUID: JrhEmEANtH5mK_EDaonnQ4Eqk-pLRT2I
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA4MDAzOSBTYWx0ZWRfX2VXrfJj9V1kW
- I0PD/hTQ/L14FLl5Oxvfep0EY6tdhRY4UfOGPuG7RH9pNB9qizCDjki9WejQrRVQWvePUtdb8Qo
- 6tEncz/6oUpUSFXo2Q8dbyN0uwC7fmUs5tia/Cp4fqMGruVGD+Z0PBOjIkHWZf95Jw4mJkml+0s
- TvsFFcpVbfEjyoB6nqfmRAZRN5mpYgt49LQ7m2kqeJHA7ZaMBY29PBMQG5HWnl3AbpE5DoXu0gl
- Lp0q0auEaQ20fBJQf7Y8/QOHdwsaGy2KKO469Df1iVz+2LsMoFcGjgL1EX881gsy7Ut3iNj+KLy
- /fnuvnGMMFzu1OPa1RKI0mqDspXbWiBX3q5Xhe7U//mLg06HP358CLNfH04Kmrtjf9MvZiHR/7P
- mwKf3Pk1AopZg2kdXQv6IN1acqnnhCutKEF9wn8tiA4yihNarChVpbl2Vvc0a0l8s8eVYCCcZzW
- DTX0wMuS1Rl2xTRCKBQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-08_01,2026-06-05_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 phishscore=0
- bulkscore=0 adultscore=0 malwarescore=0 clxscore=1015 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605210000
- definitions=main-2606080039
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4XNQQ6CMBCF4auQrq3pDFCKK+9hXDSlhQakSJFIC
+ He3sMJE4vJ/yXwzE697qz25RDPp9Wi9dW2I5BQRVcm21NQWoQky5IwzoLZ7pgwELXVXTVQ1TtW
+ eaiExSRhkQjISTrteG/ve2Ns9dGX94Ppp+zLCuv4BR6CMYmEEiiwDVPHVvYbGufqs3IOs5Ih7B
+ g8YDAxPJRgohADzg4n3THrAxIExGGORK8lyzr+ZZVk+y8m7/UgBAAA=
+X-Change-ID: 20260601-ipq5018-gephy-clocks-e8a2440178a0
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ linux-arm-msm@vger.kernel.org, 
+ George Moussalem <george.moussalem@outlook.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780895363; l=3901;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=mUbPbxGPsJq6zrKufoKUIDyht+0XfDJdNp0bjmYdApw=;
+ b=j7PTfT+AVzYO+QNVp70e0WTB6PJKkIvNwd26NqzHAbGAZa614pThDXkeei12jc9rIqCUIC7F2
+ Uy9jcDNr118Di5TGlTudxPyi32XDeR93hQTJflcHcyV8RKbyxdIVuPr
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-307983-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:f.fainelli@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:george.moussalem@outlook.com,m:conor.dooley@microchip.com,m:dmitry.baryshkov@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:ffainelli@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307984-lists,devicetree=lfdr.de,george.moussalem.outlook.com];
+	FREEMAIL_REPLYTO(0.00)[outlook.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:richardcochran@gmail.com,m:bmasney@redhat.com,m:ajit.pandey@oss.qualcomm.com,m:taniya.das@oss.qualcomm.com,m:jagadeesh.kona@oss.qualcomm.com,m:krzk@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[imran.shaik@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,gmail.com,redhat.com,oss.qualcomm.com,vger.kernel.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,oss.qualcomm.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,qualcomm.com:email,qualcomm.com:dkim];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_TO(0.00)[lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:mid,outlook.com:email,outlook.com:replyto,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[imran.shaik@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,oss.qualcomm.com,outlook.com,microchip.com];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	HAS_REPLYTO(0.00)[george.moussalem@outlook.com];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B004C652A25
+X-Rspamd-Queue-Id: 13E2A652B5E
 
+Greetings,
 
+This patch series addresses a missing hardware description issue for the
+Qualcomm IPQ5018 Internal Ethernet PHY, where the data paths fail to
+function correctly unless their dedicated RX and TX clocks are
+explicitly enabled.
 
-On 06-06-2026 05:12 pm, Dmitry Baryshkov wrote:
-> On Fri, Jun 05, 2026 at 04:49:14PM +0530, Imran Shaik wrote:
->> Add support for Global clock controller (GCC) on Qualcomm Shikra SoC.
->>
->> Reviewed-by: Taniya Das <taniya.das@oss.qualcomm.com>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> 
-> I know that I've r-b'd the patch. But then I also compared GCC on Shikra
-> and Agatti. Is there a chance we can merge those?
-> 
+Further testing revealed that leaving these clocks unmanaged by the
+kernel, they were inadvertently left enabled by the bootloader / QSDK
+platform, which masked the issue. Testing a fresh network configuration
+path exposed that the data link fails to work without explicit software
+gating.
 
-The Shikra GCC has new addition of EMAC, PCIe, TSC, USB20, QUP subsystem 
-clocks. Along with this, several Agatti clock/reset register offsets, as 
-well as votable clock register offsets and enable BITs are updated on 
-Shikra, and a few GPLL changes are also present.
+To correctly introduce the required multi-clock properties, the IPQ5018
+binding definition must first be split away from the shared
+qca,ar803x.yaml schema. This isolation is required because ar803x
+references the generic ethernet-phy.yaml, which enforces a strict
+single-clock limit constraint. 
 
-I agree that few clocks duplication will be there, but it will be a 
-clean and better approach to keep the separate driver and bindings for 
-Shikra due to these new clock additions/changes.
+- Patch 1: Moves the clocks property and its restriction out of the
+	   generic ethernet-phy.yaml schema to individual bindings files
+	   that need it to allow for PHYs that require multiple clocks.
+- Patch 2: Add clocks property to qca,ar803x.yaml for the IPQ5018 PHY.
+- Patch 3: Appends the missing RX/TX clock definitions into the IPQ5018
+           device tree before driver modification to avoid the driver
+	   failing to probe.
+- Patch 4: Updates the Qualcomm AT803x PHY driver framework to acquire,
+	   enable, and gate these clocks upon link state changes for
+	   runtime power optimization.
 
-Thanks,
-Imran
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+---
+Changes in v4:
+- Removed code to enable/disable clocks upon link state changes.
+- Enable the RX/TX clocks during probe and removed them from priv struct
+  as we don't need to manage them after enabling during probe.
+- Link to v3: https://lore.kernel.org/r/20260605-ipq5018-gephy-clocks-v3-0-f232d9ca0966@outlook.com
 
->> Signed-off-by: Imran Shaik <imran.shaik@oss.qualcomm.com>
->> ---
->>   drivers/clk/qcom/Kconfig      |   10 +
->>   drivers/clk/qcom/Makefile     |    1 +
->>   drivers/clk/qcom/gcc-shikra.c | 4431 +++++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 4442 insertions(+)
->>
-> 
+Changes in v3:
+- Revert the change to move the clocks property out of the generic
+  ethernet-phy.yaml schema and simple increase the maxItems limit to 2.
+- Listed clocks, clock-names, and resets as required properties in the
+  schema.
+- Acquire the RX and TX clock during probe without enabling them. Then
+  enable/disable the clocks in the link state change callback to ensure
+  they are only active when needed with checks to avoid redundant
+  enable/disable calls.
+- Re-ran make dt_binding_check on all schemas in net folder without new
+  issues.
+- Link to v2: https://lore.kernel.org/r/20260602-ipq5018-gephy-clocks-v2-0-65a1f1d881f3@outlook.com
+
+Changes in v2:
+- Added patch 1 to move the clocks property and its restriction out of
+  the generic ethernet-phy.yaml schema to individual bindings files that
+  need it to allow for PHYs that require multiple clocks.
+- Reverted splitting out IPQ5018 from the shared qca,ar803x.yaml schema
+  and simply added the clocks and clock-names properties to the
+  definition of the IPQ5018 PHY.
+- Corrected / updated commit title of patch 4 (qca,at803x -> at803x)
+- Link to v1: https://lore.kernel.org/r/20260601-ipq5018-gephy-clocks-v1-0-2df8287712c3@outlook.com
+
+---
+George Moussalem (4):
+      dt-bindings: net: ethernet-phy: increase max clock count to two
+      dt-bindings: net: qca,ar803x: Add clocks for IPQ5018 PHY
+      arm64: qcom: ipq5018: Add GEPHY RX and TX clocks
+      net: phy: at803x: add RX and TX clock management for IPQ5018 PHY
+
+ .../devicetree/bindings/net/ethernet-phy.yaml         |  9 ++++++---
+ Documentation/devicetree/bindings/net/qca,ar803x.yaml | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi                 |  3 +++
+ drivers/net/phy/qcom/at803x.c                         | 12 ++++++++++++
+ 4 files changed, 40 insertions(+), 3 deletions(-)
+---
+base-commit: 7da7f07112610a520567421dd2ffcb51beaefbcc
+change-id: 20260601-ipq5018-gephy-clocks-e8a2440178a0
+
+Best regards,
+-- 
+George Moussalem <george.moussalem@outlook.com>
+
 
 
