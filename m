@@ -1,167 +1,309 @@
-Return-Path: <devicetree+bounces-307953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307934-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KtS9GAQvJmrBTAIAu9opvQ
-	(envelope-from <devicetree+bounces-307953-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:55:00 +0200
+	id Oy6yFhErJmoKTAIAu9opvQ
+	(envelope-from <devicetree+bounces-307934-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:38:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E907465259A
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:54:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49E0365245D
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:38:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=thundersoft.com header.s=default header.b=gHnag+Kb;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307953-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307953-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=thundersoft.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=AupZy8fW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307934-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-307934-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1571A3007C89
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 02:52:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6D2DD30013A0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 02:38:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73ABF3375CB;
-	Mon,  8 Jun 2026 02:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79542282F30;
+	Mon,  8 Jun 2026 02:38:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731104.qiye.163.com (mail-m19731104.qiye.163.com [220.197.31.104])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698D83358D6;
-	Mon,  8 Jun 2026 02:51:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49FA626E165
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 02:38:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780887119; cv=none; b=DAa8/6I1vTptLxhFEjfMvUaAlUYDShavaxrr01zzKuw02E/UNBZzdCsSnM4bAvBRdJ1of35cJQDaGVWuQRdAt/A+klUB9OwBPYsfis6C7a0DbEwnKti+jgdtt+3l7FG/AhXoMaVWLBMyrEgB3NtwUOgOmSPLM2d5UBWoJdylhzI=
+	t=1780886282; cv=none; b=rNkDFq+w3M+2c9d5pKBge+apnE0+SO62s/ZvjTf8odG5Msjb4t6dEi3XF9GmFhtLSES0vXw9sntErpAevaWKdLmEwpE9/vb4FwwSKZn4UhWhTkTWhLKiAiSH/qT0bc4ctgw6M9YPY5GVJsCwEPRt3/i50KmkBlUoPzG12E6hoEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780887119; c=relaxed/simple;
-	bh=N8vUXE64W18PddgRde03vNdC4qGDFahuP3s7CY3yLCs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O5gHX8BrQVacp6t/zuJcFKQOpwPLgS7XHegtI5feYVG4ENFEeozS/0BYRpATCtJHsbfXT2E12c2uLaEI3OzSk9hYSXYXwVez8RLzyc+935AQ8L5N7aoHZ6Xi0YcRR4ptsI4wSCcEVlAkTI/1aDK4wMnABXOG9A1wemhcjTcvCMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=gHnag+Kb; arc=none smtp.client-ip=220.197.31.104
-Received: from tsdl-HP-EliteDesk-880-G6-Tower-PC.. (unknown [36.129.139.90])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 416dfdcb3;
-	Mon, 8 Jun 2026 10:36:20 +0800 (GMT+08:00)
-From: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-To: dmitry.baryshkov@oss.qualcomm.com
-Cc: andersson@kernel.org,
-	broonie@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	drake@endlessm.com,
-	hongyang.zhao@thundersoft.com,
-	katsuhiro@katsuster.net,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	lgirdwood@gmail.com,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	matteomartelli3@gmail.com,
-	mohammad.rafi.shaik@oss.qualcomm.com,
-	perex@perex.cz,
-	robh@kernel.org,
-	rosh@debian.org,
-	srini@kernel.org,
-	tiwai@suse.com,
-	zhoubinbin@loongson.cn
-Subject: Re: [PATCH 2/5] ASoC: dt-bindings: qcom,sm8250: Add QCS6490 RubikPi3 sound card
-Date: Mon,  8 Jun 2026 10:35:54 +0800
-Message-ID: <20260608023555.3379028-1-hongyang.zhao@thundersoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <6svyrusik3lljjvoo7c27b6agr6ipivjxzeyyo6z5va2qaiatg@g4l3vcrns6hj>
-References: <6svyrusik3lljjvoo7c27b6agr6ipivjxzeyyo6z5va2qaiatg@g4l3vcrns6hj>
+	s=arc-20240116; t=1780886282; c=relaxed/simple;
+	bh=eFrijx7ZA1QWUNRyATk4/xMjtGNNOlUvL1Ca5ljDA2A=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=J8LdQSJ5RaUtBqgZXA4yUwblKMITRwgiTFAdkNVAsqDU4o+2upok5i6bsrZGcKrqAtEpv3f58KGhEn1DmO4fLv2BzMiTwo6g9aH6Mh+QgQzDXk6N5YTqxPM3t7AWUnS8uOcsTmM72QYUQx9JD+JLGb7J1+Po7+58EGGe/5tISWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AupZy8fW; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B22171F00893;
+	Mon,  8 Jun 2026 02:38:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780886280;
+	bh=I/S++X2GEdIbt7I4van65+iRPUnC0chQq17/Ei/eooc=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=AupZy8fW1XVHC6ZD8+/1DY/zYIruMTpjsPmQ73hgu1DY0B343M3ZSz/q0/qXLnf/Z
+	 nEzFmK5Mkbg6OiDXpzrKGmRYniLeIrKwl4ZzuT5H3rW+9xPQtPn15R846/t/ZgD81A
+	 4N1OP03ngtLU3TVTg44SWz/p3Z6PGAsEbs2YtXZIQA64dlbN2HjeqID/rsN4zcyTGb
+	 Oykypnc4CgkGtja6WfVcLUpbgI4gBbTxbRt/uWU85DzntNMLJDLPzPbJyiyHte+RGS
+	 PYhEc5w2n/RVLJ7zSmUC7i1UaNtay7Xf+tlrxM6UpeIiSgZ6Pstzg2ZHeJ5p4fN5OE
+	 sTxMmhyHAxt3A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/3] ASoC: qcom: q6apm-lpass-dais: Add MI2S clock
+ control
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Mohammad Rafi Shaik" <mohammad.rafi.shaik@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260608023011.942228-3-mohammad.rafi.shaik@oss.qualcomm.com>
+References: <20260608023011.942228-3-mohammad.rafi.shaik@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 08 Jun 2026 02:38:00 +0000
+Message-Id: <20260608023800.B22171F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9ea516918d09d5kunmbe08a6ae1cf591
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZTxhMVkkaTRkfSEkaGBlIGlYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlITVVKSUJVSkhCVUJLWVdZFhoPEhUdFFlBWU9LSFVKS0
-	lPT09IVUpLS1VKQktLWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=gHnag+KbBmDxSfNbzCg4SJ5D3rHhzdTVK+WSqUD+j2WjuqCsW+VRceOpHD7vM/LsCDs/K5Yf/HC/j5hRsQ3zqsXQcQOK0tPY27taggFg/cV2fF0S7G6L0a3Ey4AeKU6s1nn8RRAmCBluiXmXlaID1iv0W5KCFD8XuSqc3qD/9p0=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=w0y2HqBqO72JeGZBjz2G9m+/S0jNLXjZrbfu9iyJgQE=;
-	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307953-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,endlessm.com,thundersoft.com,katsuster.net,gmail.com,oss.qualcomm.com,perex.cz,debian.org,suse.com,loongson.cn];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[hongyang.zhao@thundersoft.com,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:andersson@kernel.org,m:broonie@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:drake@endlessm.com,m:hongyang.zhao@thundersoft.com,m:katsuhiro@katsuster.net,m:konradybcio@kernel.org,m:krzk+dt@kernel.org,m:lgirdwood@gmail.com,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-sound@vger.kernel.org,m:matteomartelli3@gmail.com,m:mohammad.rafi.shaik@oss.qualcomm.com,m:perex@perex.cz,m:robh@kernel.org,m:rosh@debian.org,m:srini@kernel.org,m:tiwai@suse.com,m:zhoubinbin@loongson.cn,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307934-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:mohammad.rafi.shaik@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hongyang.zhao@thundersoft.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[thundersoft.com:+];
-	TO_DN_NONE(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,thundersoft.com:mid,thundersoft.com:dkim,thundersoft.com:from_mime,thundersoft.com:email,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,qualcomm.com:email,smtp.kernel.org:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E907465259A
+X-Rspamd-Queue-Id: 49E0365245D
 
-> On Sun, Jun 07, 2026 at 02:58:18AM +0800, Hongyang Zhao wrote:
-> > Add the thundercomm,qcs6490-rubikpi3-sndcard compatible for the QCS6490
-> > Thundercomm RubikPi3 sound card.
-> > 
-> > Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-> > ---
-> >  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> > index 15f38622b98b..d95e072fab25 100644
-> > --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-> > @@ -48,6 +48,7 @@ properties:
-> >            - qcom,sm8250-sndcard
-> >            - qcom,sm8450-sndcard
-> >            - qcom,x1e80100-sndcard
-> > +          - thundercomm,qcs6490-rubikpi3-sndcard
-> 
-> Would it be better to follow the newer pattern and define one compat for
-> all Kodiak platforms? Or would it be possible to use any other QCM6490 /
-> QCS6490 card as a compat fallback?
-> 
-
-Thanks for your review. I think my commit message did not explain the
-reason clearly enough.
-
-The RubikPi3 compatible is intended to select board-specific machine
-driver data from the sc8280xp OF match table (added in patch 4/5 of
-this series). RubikPi3 needs different configuration from the existing
-QCM6490/QCS6490 sound cards, including the ES8316 MI2S codec clocking
-and headset jack setup, so using an existing compatible as a fallback
-would select the wrong machine data.
-
-> >  
-> >    audio-routing:
-> >      $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> > 
-> > -- 
-> > 2.43.0
-
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
+- [Critical] Uninitialized pointers `sysclk` and `enabled` in `q6i2s_set_sy=
+sclk` can cause arbitrary memory writes and kernel crashes.
+- [High] Clock references acquired via `of_clk_get_by_name()` are never rel=
+eased with `clk_put()`, causing permanent resource leaks.
+- [High] Unbalanced clock enable/disable logic between `.set_sysclk` and `.=
+shutdown` causes clock enable count leaks and hardware state desync.
+- [Medium] Missing `of_node_put()` on early return inside OF node iterator =
+loop causes device node reference leak.
 --
-Thanks,
-Hongyang
+
+commit bb83de598c284e0e9f9b088d18eb243bc21c7bbd
+Author: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+
+ASoC: qcom: q6apm-lpass-dais: Add MI2S clock control
+   =20
+Add support for MI2S clock control within q6apm-lpass DAIs, including
+handling of MCLK, BCLK, and ECLK via the DAI .set_sysclk callback.
+Each MI2S port now retrieves its clock handles from the device tree,
+allowing per-port clock configuration and proper enable/disable during
+startup and shutdown.
+
+> --- a/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
+> +++ b/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
+
+[ ... ]
+
+> +static void q6i2s_lpass_dai_shutdown(struct snd_pcm_substream *substream=
+, struct snd_soc_dai *dai)
+> +{
+> +	struct q6apm_lpass_dai_data *dai_data =3D dev_get_drvdata(dai->dev);
+> +
+> +	if (dai_data->priv[dai->id].mclk_enabled) {
+> +		clk_disable_unprepare(dai_data->priv[dai->id].mclk);
+> +		dai_data->priv[dai->id].mclk_enabled =3D false;
+> +	}
+> +
+> +	if (dai_data->priv[dai->id].bclk_enabled) {
+> +		clk_disable_unprepare(dai_data->priv[dai->id].bclk);
+> +		dai_data->priv[dai->id].bclk_enabled =3D false;
+> +	}
+> +
+> +	if (dai_data->priv[dai->id].eclk_enabled) {
+> +		clk_disable_unprepare(dai_data->priv[dai->id].eclk);
+> +		dai_data->priv[dai->id].eclk_enabled =3D false;
+> +	}
+> +	q6apm_lpass_dai_shutdown(substream, dai);
+> +}
+> +
+> +static int q6i2s_set_sysclk(struct snd_soc_dai *dai, int clk_id, unsigne=
+d int freq, int dir)
+> +{
+> +	struct q6apm_lpass_dai_data *dai_data =3D dev_get_drvdata(dai->dev);
+> +	struct clk *sysclk;
+> +	bool *enabled;
+> +	int ret =3D 0;
+> +
+> +	switch (clk_id) {
+> +	case LPAIF_MI2S_MCLK:
+> +		sysclk =3D dai_data->priv[dai->id].mclk;
+> +		enabled =3D &dai_data->priv[dai->id].mclk_enabled;
+> +		break;
+> +	case LPAIF_MI2S_BCLK:
+> +		sysclk =3D dai_data->priv[dai->id].bclk;
+> +		enabled =3D &dai_data->priv[dai->id].bclk_enabled;
+> +		break;
+> +	case LPAIF_MI2S_ECLK:
+> +		sysclk =3D dai_data->priv[dai->id].eclk;
+> +		enabled =3D &dai_data->priv[dai->id].eclk_enabled;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	if (sysclk) {
+
+[Severity: Critical]
+Are the pointers sysclk and enabled initialized when clk_id falls into the
+default case?
+
+If an unsupported clk_id is provided, the switch statement completes without
+assigning values to sysclk and enabled. The local stack memory could
+evaluate as non-NULL, causing clk_set_rate() to be called with a garbage
+pointer.
+
+Additionally, does this lead to memory corruption when it executes
+*enabled =3D true; writing a boolean to an arbitrary, uninitialized address?
+
+> +		clk_set_rate(sysclk, freq);
+> +		ret =3D clk_prepare_enable(sysclk);
+
+[Severity: High]
+Can this lead to unbalanced clock enable/disable counts and broken concurre=
+nt
+streams?
+
+In q6i2s_set_sysclk(), clk_prepare_enable() is called unconditionally,
+meaning multiple invocations will increment the enable count multiple times.
+
+However, q6i2s_lpass_dai_shutdown() runs per-substream. If both playback
+and capture are active on the same DAI, shutting down the first stream
+will disable the shared clock and set the enabled boolean to false. Does
+this prematurely kill the clock for the remaining active stream?
+
+Similarly, if the enable count was incremented multiple times, but shutdown
+only disables it once before clearing the flag, does this leak the clock
+enable refcount?
+
+> +		if (ret) {
+> +			dev_err(dai->dev, "Error, Unable to prepare (%d) sysclk\n", clk_id);
+> +			return ret;
+> +		}
+> +
+> +		*enabled =3D true;
+> +	}
+> +
+> +	return ret;
+> +}
+
+[ ... ]
+
+> +static int of_q6apm_parse_dai_data(struct device *dev,
+> +				   struct q6apm_lpass_dai_data *data)
+> +{
+> +	struct device_node *node;
+> +	int ret;
+> +
+> +	for_each_child_of_node(dev->of_node, node) {
+> +		struct q6apm_dai_priv_data *priv;
+> +		int id;
+> +
+> +		ret =3D of_property_read_u32(node, "reg", &id);
+> +		if (ret || id < 0 || id >=3D APM_PORT_MAX) {
+> +			dev_err(dev, "valid dai id not found:%d\n", ret);
+> +			continue;
+> +		}
+> +
+> +		switch (id) {
+> +		/* MI2S specific properties */
+> +		case PRIMARY_MI2S_RX ... QUATERNARY_MI2S_TX:
+> +		case QUINARY_MI2S_RX ... QUINARY_MI2S_TX:
+> +			priv =3D &data->priv[id];
+> +			priv->mclk =3D of_clk_get_by_name(node, "mclk");
+
+[Severity: High]
+Are these clock references ever released?
+
+The clocks are acquired here via of_clk_get_by_name(), which increments the
+underlying refcount and requires a matching clk_put().
+
+If a later clock lookup within this loop fails with -EPROBE_DEFER, the
+function returns early without freeing previously acquired clocks. Furtherm=
+ore,
+because these are not managed via devm_ and there is no teardown logic or
+.remove callback provided, does this cause a permanent resource leak when
+the device unbinds?
+
+> +			if (IS_ERR(priv->mclk)) {
+> +				if (PTR_ERR(priv->mclk) =3D=3D -EPROBE_DEFER)
+> +					return dev_err_probe(dev, PTR_ERR(priv->mclk),
+> +							     "unable to get mi2s mclk\n");
+
+[Severity: Medium]
+Does returning here leak the device node reference?
+
+The for_each_child_of_node() macro automatically manages reference counts
+during iteration, but an early return requires a manual of_node_put(node)
+before exiting. If this loop exits early via return, will the device node
+reference be leaked?
+
+> +				priv->mclk =3D NULL;
+> +			}
+> +
+> +			priv->bclk =3D of_clk_get_by_name(node, "bclk");
+> +			if (IS_ERR(priv->bclk)) {
+> +				if (PTR_ERR(priv->bclk) =3D=3D -EPROBE_DEFER)
+> +					return dev_err_probe(dev, PTR_ERR(priv->bclk),
+> +							     "unable to get mi2s bclk\n");
+> +				priv->bclk =3D NULL;
+> +			}
+> +
+> +			priv->eclk =3D of_clk_get_by_name(node, "eclk");
+> +			if (IS_ERR(priv->eclk)) {
+> +				if (PTR_ERR(priv->eclk) =3D=3D -EPROBE_DEFER)
+> +					return dev_err_probe(dev, PTR_ERR(priv->eclk),
+> +							     "unable to get mi2s eclk\n");
+> +				priv->eclk =3D NULL;
+> +			}
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608023011.9422=
+28-1-mohammad.rafi.shaik@oss.qualcomm.com?part=3D2
 
