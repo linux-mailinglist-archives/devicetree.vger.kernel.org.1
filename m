@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-308205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308206-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4dVwGm+gJmpoaAIAu9opvQ
-	(envelope-from <devicetree+bounces-308205-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 12:58:55 +0200
+	id WLhIFACcJmrSZgIAu9opvQ
+	(envelope-from <devicetree+bounces-308206-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 12:40:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4DE3655681
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 12:58:54 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C01BD655365
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 12:39:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iLMZS0wb;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308205-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308205-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CaOBTIqC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308206-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308206-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CF6F730C59F1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 10:27:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B426D302F768
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 10:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2483B7B96;
-	Mon,  8 Jun 2026 10:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E48A343D8A;
+	Mon,  8 Jun 2026 10:27:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAD923B3887;
-	Mon,  8 Jun 2026 10:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618693148C5;
+	Mon,  8 Jun 2026 10:27:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780914451; cv=none; b=PGxJKPEUpxQHowvz3K/eBMvugp5/XO3ClESr9hTpxUnZd1jvfdMv0vmcjjub1E4bf9gipaAS81s8vzREIjO+9xtfvQIFFS8ogCwU5uVRKK6nXJw8mBbs/cLCJktpnCnfLUo277frR4IWANqADcPSsN3gZEh8/cficyW6+x7zQ3g=
+	t=1780914479; cv=none; b=OVg0RvQUJFScMFZkcvI8IcC/H5xkDUZf20FeKdDPTFf6ci4kQP3fBL3hMiwpB11f7cGzHdT6YbetAxW5uKyH6aiDjgIdiJ56Klil/H4w3OQytffgmt4Cp2m+3Am78sXIvRawowtekEnxJcZJ5x658EzyHfUYbRmmMjMuIly0p4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780914451; c=relaxed/simple;
-	bh=o+cjUESU9sSllbxkX/C5btO4wbTI7+Ur5mkM84/pXCc=;
+	s=arc-20240116; t=1780914479; c=relaxed/simple;
+	bh=GKz3mt5ASiHP0LOj/cTVhMIUUhoOQRuHnlAYso30/2Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cwrl7E4Xy5Ch/DNrwyDqrrYo6KVFedUxtOonQQmPQ2vtNb5qOZdW0X5gk9VsVDCf1fFxJJqmzPVEpuLQLmDCbFvedVz06JOU37xPl7o5Rqx8S/R7+bAuIKgNskEBG9DivM7EIMSED7A6iMkf9JXTOhxLNo8kz8a4qF/a9mpm3OI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iLMZS0wb; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 640B21F00898;
-	Mon,  8 Jun 2026 10:27:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HE+B0/L/nCt6sKW8MJ+C/l43YZCzu+XTCQCy2TFL6u/1ncEhMDYW2EWBWYZlzmSeyysguFbHArThxpRGcm/P7mOJvw/CzLnM3hL9+9+Va5EitnRTJq0MGIMs9BmpH8KPvl1g408tBn7pn60vP82SphM2YMthQAUGIFFLBNmekSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CaOBTIqC; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15EF01F00893;
+	Mon,  8 Jun 2026 10:27:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780914447;
-	bh=TyNxqtslFZQYuMq/6mJiwQMsItsR5jg1yBQCfcCkpRw=;
+	s=k20260515; t=1780914478;
+	bh=wfs3rcPBNb033TIU8tcuziHt29xgmyYpwBKEJ4uT5yM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=iLMZS0wbT0MskX7TsYLWEyQWZNNfIN8vAxwT+IUiXaVV9lQGfbRQIVrZa+Lfe+soz
-	 nbyuUYJ61azgueRWmIbMSbFmZQLak+wWRMrKVEOwKKhtUsbUWPWLnMtbxfUYO4pk6H
-	 bVbf2hxKBawbBo3QYk6hiDx6sdBleZujH2mfAoNcPhnrgPSdzpeMs1pWyolrS+7cTH
-	 NMrkg1abpxLO28mPZQieGPKt2Ywh9IBXOlmeUfRFYfC4sltO0oQPY07goCf7jzkJCs
-	 H5VJO2f4RJbJ2P9hOzt2h+x4VIflZm01e8HJzEubbS0BdJ+Ynt89AR1TYrQC2ecfp9
-	 7zQ5+e9AjqNTA==
-Date: Mon, 8 Jun 2026 12:27:24 +0200
+	b=CaOBTIqCDS3Q3IedCquU4mE941UX0zNuCUbFHK6due4658TjeBWUAFUysm9jWdqXY
+	 hlMlSDDcvdQ52KNhwmkP0xxC8UCL6S0jUy9S7ZsWph2HqDQ7H6aGqcFGTDMKmDZGGU
+	 W9zEo5B8B8qBJjojeND933Iac0mfca+xtnVLsJ7ikqdixSL1HtcESSNZJQ0wPmwpOV
+	 LJvdnbCaRt5UJTzfbVL/jqlyrY5zx0Bw7V2NzAFPwDNRdqJyU5/NA+VOiup0blczgw
+	 uJmbnIliKfbF7dwpX7ZpqBXybyOZp0VsKEF5f/rxugtMAMN4p06pgfiYhQMYvcJGCy
+	 B2e66/qecpfQg==
+Date: Mon, 8 Jun 2026 12:27:54 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Herman van Hazendonk <github.com@herrie.org>
 Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
 	conor+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH 1/1] dt-bindings: mfd: add ti,lm8502 combo LED + haptic
  controller
-Message-ID: <20260608-expert-mustang-of-superiority-fd5ce2@quoll>
+Message-ID: <20260608-crazy-ruby-impala-c7e9a4@quoll>
 References: <20260603080256.853037-1-github.com@herrie.org>
  <20260603080256.853037-2-github.com@herrie.org>
 Precedence: bulk
@@ -71,12 +71,12 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308205-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308206-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
@@ -95,25 +95,14 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,vger.kernel.org:from_smtp,herrie.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,quoll:mid,vger.kernel.org:from_smtp,herrie.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D4DE3655681
+X-Rspamd-Queue-Id: C01BD655365
 
 On Wed, Jun 03, 2026 at 10:02:56AM +0200, Herman van Hazendonk wrote:
 > Add a YAML binding for the TI LM8502, an I2C combo LED + haptic
-
-DT binding. There is no YAML binding.
-
-You sent multiple patches on the same days, multiple versions, not
-waiting for review and causing SAME review comments.
-
-Please slow down.
-
-Only brief review follows and I will mark all your further other patches
-sent so far as changes requested.
-
 > controller used in the HP TouchPad tablet. The chip is exposed as an
 > MFD with two child sub-nodes:
 > 
@@ -163,102 +152,9 @@ sent so far as changes requested.
 > +properties:
 > +  compatible:
 > +    const: ti,lm8502
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vcc-supply:
-> +    description:
-> +      Power supply for the chip (V_DD). On platforms where this supply
-> +      is provided by an RPM-managed LDO with "regulator-allow-set-load",
-> +      the driver will request High Power Mode (~100 mA) so the internal
-> +      boost converter and ten LED outputs are not current-starved.
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO connected to the chip-enable pin. Pulled high by the driver
-> +      at probe time and dropped low across PM suspend.
 
-Drop driver references. Actually description is redundant.
+And where is any user of that? We do not take unused bindings.
 
-
-> +
-> +  pinctrl-names: true
-> +  pinctrl-0: true
-
-Drop both
-
-> +
-> +  leds:
-> +    type: object
-> +    additionalProperties: false
-> +    description: LED-class child for outputs D1..D10.
-> +
-> +    properties:
-> +      compatible:
-> +        const: ti,lm8502-leds
-
-No need, drop compatible.
-
-> +
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +    patternProperties:
-> +      '^led@[0-9]$':
-> +        type: object
-> +        $ref: /schemas/leds/common.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          reg:
-> +            description:
-> +              Zero-based D-channel index (0 = D1 .. 9 = D10).
-> +            minimum: 0
-> +            maximum: 9
-> +
-> +          led-max-microamp:
-> +            description: |
-> +              Per-channel current cap. The chip's MAX_CURRENT field
-> +              quantises this to one of four buckets:
-> +                <=3000  - 3 mA
-> +                <=6000  - 6 mA
-> +                <=9000  - 9 mA  (default)
-> +                 >9000  - 12.75 mA
-> +            default: 9000
-> +
-> +        required:
-> +          - reg
-> +
-> +    required:
-> +      - compatible
-> +
-> +  haptic:
-> +    type: object
-> +    additionalProperties: false
-> +    description: FF_RUMBLE child for the internal H-bridge vibrator output.
-> +
-> +    properties:
-> +      compatible:
-> +        const: ti,lm8502-haptic
-
-Drop compatible
-
-> +
-> +      ti,invert-direction:
-> +        type: boolean
-> +        description:
-> +          Flip the H-bridge polarity bit in HAPTIC_FEEDBACK_CTRL so the
-> +          motor spins in the direction the board expects.
-> +
-> +    required:
-> +      - compatible
-
-No resources here, so this haptic should be folded into the parent.
 
 Best regards,
 Krzysztof
