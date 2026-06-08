@@ -1,215 +1,142 @@
-Return-Path: <devicetree+bounces-308555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308556-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MYxEH7lGJ2oOuQIAu9opvQ
-	(envelope-from <devicetree+bounces-308555-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 00:48:25 +0200
+	id Xt1ALshGJ2oQuQIAu9opvQ
+	(envelope-from <devicetree+bounces-308556-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 00:48:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E389465B126
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 00:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 513A365B12D
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 00:48:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hAT+G0tk;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308555-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308555-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GV5Su1Br;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308556-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308556-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A11C630FDD9B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 22:42:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8D049302D0A6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 22:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68DA43AF66C;
-	Mon,  8 Jun 2026 22:42:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB143B42C2;
+	Mon,  8 Jun 2026 22:43:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48BA138D3FD
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 22:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EDA33B38AF
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 22:43:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780958535; cv=none; b=f9FwSJ+jMDHxobIs3QyMhEmyT7WQY0gW7Gdpu8v/hSQEytrJcZH64DVFBU2NAaX+z/B0vtauADYvgEFX+UKUA8t1TAA3hwDJJA6fiLYnvyveVCAycjJEVZaI7yZORuxRjXAN3SrA6lfgX10tvexvat9SeZ+XcUALUrw/NceO0z0=
+	t=1780958637; cv=none; b=Qx5076memgOmiqq7iGiej5vr7kOqgiyR1VjdMnmU/aCotBR5ZeHTRohhth5TZpujpxi6gocBJS9H30pPDCjK2uo8ap3ONhDAXe0NGtNMCd7xluWfc5CvJVvoS85kPS38uYpoOjdv8FYFKtCReM0r/ySF2J0V110jTpLm1Tm7tSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780958535; c=relaxed/simple;
-	bh=ndRed4DbSqznl8J+o6xGjpEwrvqf3oNi7SlRCDXLixs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=r8cg3RzpL986w4xDx4htkhtnN7IU4sS3H40GSLPx77PgACcmHhl168IC9yoTw8ubsgLbC8iMwrxYJwix6V+niu6ZwJFBPX2CMg96dM1ZeuKIl2rIbsjHYphZ7upMiRmjtlNGGNoFG1DDPHej8F6wnx9Xou0ZMb7HIfBdCvnIe+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hAT+G0tk; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6C221F00893;
-	Mon,  8 Jun 2026 22:42:13 +0000 (UTC)
+	s=arc-20240116; t=1780958637; c=relaxed/simple;
+	bh=A0aMEuooSpehlxvLLcCYGZi3/rId/udlnvg3u80kiOo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q8HBQGL7ewvAFwDhpOZjVPcEcSIBlGgjRtWcWxVhky2xuDrnh5hl8mXSMRor8F6E4ojfHjyoonQUZiflyD9GtaGFoF2Z6qvWngy4XfsM7RC5/YVqFwgEaQGoW9a/okxmWrS5RKkD2wNdaieezb0ubxkJdCKNVbLzZ+2ambPgiKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GV5Su1Br; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2159F1F008A0
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 22:43:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780958534;
-	bh=pb4MTe7iM/DR6+BtqkKp6CNuZVCL04g8xjWFTS5ciW0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hAT+G0tkbwCjCOlwhW5+sb1UQz16inWdm2kc2bxzhRwl/Y3DzwHKusIyoW+LkoiV3
-	 CWpUAWzY3y/nPiLtKaAaIY+DwmKDWam2kyMOR1om8mimCUnvfaNJ907YAkRKsIL7W6
-	 NoMg/P0htS+WqFin0HuxtMvwnR2c5/YIytI+Mrpt+uZxhwPlEMmIeWxgYuQIspAbCi
-	 +vKSAyWy4u3Ub7Y7MqJJXJwH516hF0zUzP1WEilhY02zIDTwRW8jaV4+/S8Rqr1nHE
-	 a3/8SU/p5VAEGlS5yxQmyz5WD+UjNVDSsplo+mLjNzhDueFJUDRdbBttO9sEho2/fj
-	 n2bce5VLZ23bQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v6 3/5] net: dsa: tag_ks8995: Add the KS8995
- tag handling
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Linus Walleij" <linusw@kernel.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260608-ks8995-to-ksz8-v6-3-d91eb43edcc5@kernel.org>
-References: <20260608-ks8995-to-ksz8-v6-3-d91eb43edcc5@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 08 Jun 2026 22:42:13 +0000
-Message-Id: <20260608224213.C6C221F00893@smtp.kernel.org>
+	s=k20260515; t=1780958636;
+	bh=yO33fZb1LjugzRw+G0ggE1zSXDOM86JcqH727KoL53Q=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=GV5Su1Br5SvCs/rJNXXZeLpyhUFI3jQikNovCcx5qQfodSUdXRHSVw7DWxNCJL3KT
+	 Ou1iT5jrVoWXlUuZ2Gvf+gJ9/3gVWTc42TyvGOdXuAir8y1XTOQGaUMi6Cwxw5zqkj
+	 MWv2oDZUFskzYtIx4Qk/BmlliyCwfAld4Us+jiDYSGykz5OxNPICZnBG6Mlqf+Ymzt
+	 omLwRHUBR72YpNwsMTp6K0HaG5OxXpCoK7fb36r1AMVz4EqT4uHJMwXb5m10bBmQsW
+	 wefup+Aa0hpns1Hue0lbWvYs8BdM1RjR6gbkmq6De1rCAuFKglyfGY74YQOGd1yaDG
+	 +dYmx5GlgXleg==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-3965f215817so43661011fa.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 15:43:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ9Hd9GusEODNAFCQIaXgIxhD6UaXa4L7X2Ph95hZqAudjgaSpOc9NFhs56di9OMeXzzPMZhrJv8kjkb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFgGMedrPiY1n4+iLQGHl9QrqwMFvRNa3Wlv/Q2Jm1qgxGmNIU
+	Qmg2hZhdE+GpbLNBL5AAcjf4U6PoETev9DPEgPs11k/FJTn3kTFE6DCAjlfjuyQb9/M7mDpZ4mw
+	zOGsBzKCWF3VyOsoFtV8iH5xQ7XEnCeQ=
+X-Received: by 2002:a2e:a715:0:b0:396:b398:5990 with SMTP id
+ 38308e7fff4ca-396d0802544mr31409431fa.10.1780958634795; Mon, 08 Jun 2026
+ 15:43:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260602-pdm_clk_gp_mnd_v1-v1-0-1522662b6c53@oss.qualcomm.com> <20260602-pdm_clk_gp_mnd_v1-v1-3-1522662b6c53@oss.qualcomm.com>
+In-Reply-To: <20260602-pdm_clk_gp_mnd_v1-v1-3-1522662b6c53@oss.qualcomm.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Tue, 9 Jun 2026 00:43:42 +0200
+X-Gmail-Original-Message-ID: <CAD++jLnqCipTxkOhiwQhKFymOxu1HOTbHzLbNrGTOkCO33y8Vg@mail.gmail.com>
+X-Gm-Features: AVVi8CdznhrC7lojiEVCZUJLtYjgr49qwHSYBFLmYEj8dqSmxJu9YBHItYZ4E9Y
+Message-ID: <CAD++jLnqCipTxkOhiwQhKFymOxu1HOTbHzLbNrGTOkCO33y8Vg@mail.gmail.com>
+Subject: Re: [PATCH 3/5] pinctrl: qcom: Add gp_mn mux function for QCS8300,
+ SA8775P and SC7280
+To: Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Ajit Pandey <ajit.pandey@oss.qualcomm.com>, Imran Shaik <imran.shaik@oss.qualcomm.com>, 
+	Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-308555-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-308556-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:taniya.das@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:richardcochran@gmail.com,m:konradybcio@kernel.org,m:ajit.pandey@oss.qualcomm.com,m:imran.shaik@oss.qualcomm.com,m:jagadeesh.kona@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:netdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,redhat.com,gmail.com,oss.qualcomm.com,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E389465B126
+X-Rspamd-Queue-Id: 513A365B12D
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Critical] Double free of the socket buffer on the error path in `ks8995_=
-rcv()` when `skb_vlan_untag()` fails.
-- [High] Unhandled hardware-accelerated VLAN tags bypass clearing and break=
- the required DSA tagging order on transmission.
---
+On Tue, Jun 2, 2026 at 5:22=E2=80=AFPM Taniya Das <taniya.das@oss.qualcomm.=
+com> wrote:
 
-commit e089d604a4cbc6ed8eab92ba9931985670f7afbe
-Author: Linus Walleij <linusw@kernel.org>
+> Add the gp_mn pin mux function to the TLMM pin controllers for the
+> QCS8300, SA8775P and SC7280 SoCs. This function exposes the GP M/N
+> divider clock output on a dedicated GPIO pin, allowing the clock signal
+> to be routed externally.
+>
+> - QCS8300: gpio32
+> - SA8775P: gpio35
+> - SC7280:  gpio60
+>
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 
-net: dsa: tag_ks8995: Add the KS8995 tag handling
+This looks all right and no-one is saying anything about it, should
+I just apply this one patch to the pin control tree? It doesn't seem
+to have any dependencies.
 
-The KS8995 100Mbit switch can do proper DSA per-port tagging with the proper
-set-up. This adds the code to handle ingress and egress KS8995 tags.
-
-> diff --git a/net/dsa/tag_ks8995.c b/net/dsa/tag_ks8995.c
-> new file mode 100644
-> --- /dev/null
-> +++ b/net/dsa/tag_ks8995.c
-> @@ -0,0 +1,132 @@
-> +// SPDX-License-Identifier: GPL-2.0
-
-[ ... ]
-
-> +static struct sk_buff *ks8995_xmit(struct sk_buff *skb, struct net_devic=
-e *dev)
-> +{
-> +	struct vlan_ethhdr *hdr =3D vlan_eth_hdr(skb);
-> +	bool have_hwaccel_tag =3D false;
-> +	u16 tci =3D 0, portmask;
-> +
-> +	/* Prepare the special KS8995 tags */
-> +	portmask =3D dsa_xmit_port_mask(skb, dev);
-> +
-> +	if (skb_vlan_tag_present(skb) && skb->vlan_proto =3D=3D htons(ETH_P_802=
-1Q)) {
-> +		tci =3D skb_vlan_tag_get(skb);
-> +		__vlan_hwaccel_clear_tag(skb);
-> +		have_hwaccel_tag =3D true;
-> +	}
-
-[Severity: High]
-If a packet has a different hardware-accelerated tag (e.g., 802.1ad Provider
-Bridge), does it bypass this clearing logic?
-
-The KS8995 switch architecture requires the special DSA tag (STPID) to be t=
-he
-first tag in the Ethernet frame immediately following the MAC addresses.
-
-If the non-802.1Q hwaccel tag is left intact, the conduit network driver wi=
-ll
-insert the pending hwaccel tag immediately after the MAC addresses, placing=
- it
-before the KS8995 DSA tag.
-
-Could this cause the switch to fail to parse the DSA tag, leading to misrou=
-ted
-or dropped packets?
-
-[ ... ]
-
-> +static struct sk_buff *ks8995_rcv(struct sk_buff *skb, struct net_device=
- *dev)
-> +{
-> +	int portmask;
-> +	u16 etype;
-> +
-> +	/* We are expecting all received packets to have a mangled VLAN
-> +	 * TPID, so drop anything else. Because of the non-standard TPID,
-> +	 * don't even bother looking for a tag in the hwaccel area.
-> +	 *
-> +	 * We have to inspect the ethertype directly because skb->protocol
-> +	 * will contain garbage.
-> +	 */
-> +	etype =3D ntohs(*(__be16 *)dsa_etype_header_pos_rx(skb));
-> +	if ((etype & KS8995M_STPID_STD) !=3D ETH_P_8021Q) {
-> +		netdev_dbg(dev, "%s: dropped ethertype 0x%04x\n",
-> +			   __func__, etype);
-> +		return NULL;
-> +	}
-> +	netdev_dbg(dev, "%s: received ethertype %04x\n",
-> +		   __func__, etype);
-> +
-> +	/* Move the custom DSA+VLAN tag into the hwaccel area and strip
-> +	 * it from the skb head
-> +	 */
-> +	skb =3D skb_vlan_untag(skb);
-> +	if (!skb) {
-> +		netdev_err(dev, "%s: unable to untag skb\n", __func__);
-> +		return NULL;
-> +	}
-
-[Severity: Critical]
-Does this result in a double-free?
-
-If skb_vlan_untag() fails, it frees the skb internally and returns NULL.
-ks8995_rcv() then returns NULL to the DSA core function dsa_switch_rcv().
-
-The API contract for the DSA .rcv callback dictates that it must not free t=
-he
-original skb if it returns an error (NULL), because dsa_switch_rcv() will c=
-all
-kfree_skb() on the original skb pointer when receiving a NULL return.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608-ks8995-to-=
-ksz8-v6-0-d91eb43edcc5@kernel.org?part=3D3
+Yours,
+Linus Walleij
 
