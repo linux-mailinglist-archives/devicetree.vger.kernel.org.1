@@ -1,148 +1,186 @@
-Return-Path: <devicetree+bounces-308072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308074-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8L0FCRl1JmoDWwIAu9opvQ
-	(envelope-from <devicetree+bounces-308072-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:54:01 +0200
+	id ZJVIDGp0Jmr2WgIAu9opvQ
+	(envelope-from <devicetree+bounces-308074-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:51:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 675D4653B6C
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:54:00 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DE51653B49
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:51:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=D+merpwy;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308072-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308072-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=BLwk8Er3;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308074-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308074-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5C784303715A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 07:49:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 21D6D3002D3D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 07:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A27391835;
-	Mon,  8 Jun 2026 07:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBDE399357;
+	Mon,  8 Jun 2026 07:50:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A823A1DE8BF;
-	Mon,  8 Jun 2026 07:49:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E5063988E2;
+	Mon,  8 Jun 2026 07:50:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780904958; cv=none; b=u+C1BjaVITCamkyz6nJVDD41EWbhNstHDxsn7ekw03RL3geTlSSQZC4TwM/NK6T4r/Ci4/nJKmI670oZCfHI5YfF+YbqoxqQneti5Rtg+/GtdYnMQRgyyDZOR/8VHErYhdNNTy4kjBQK5USQFHIol3wdT5XJRoX/YTuKOAfWmhI=
+	t=1780905059; cv=none; b=fHOov/WrhJaEOO0y44/CUiWWbk5n/T2QR9GiS2Q22ptLglL4N9G5J6pX9ngjTurH/AcTPQShpi7tXL78VCP0hpcCW9IMkVir7m25N4i05Uv2Ipp1QHlHZ2qqh3DO1BrdS0RptnASuXCdpf+DIx/BDSVm9yN5qI3zJQPRhnE8qv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780904958; c=relaxed/simple;
-	bh=DDYs9Hc7KYGqeC+T3KFmi4YWfs7isV3FO0fydCX98Qo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A0sKEMruYACKIetL8F4SQ5Ylrbxnkyz2Q8OARzHynpSEtVvm3vOQ1i+eeFLoV+xIlNjnohlJUyoEvFKviBfzu3joJFbWY14kP4uuMjlalmqbi3rno79hCy15iw+WblshIJdSeVtTKvYqEjz8n8I9ox6i9cQf6zj3ITfVcllMdLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D+merpwy; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 400EF1F00893;
-	Mon,  8 Jun 2026 07:49:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780904957;
-	bh=kxTaNcAY9RKQ6zenFAqGz5cN6oBxyIOCDQqq8HMgsQw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=D+merpwyG1yN/U9rXyWBu/DYhV+l6wOrMyo2gvHuC9PCLEzWXN+dl44+iDmje1qzu
-	 OUwYA26UCxiRfpEbbCPNwJlP2cY9dIqCbjrlTtT6GZYjIkT9w+DR0QPxni1pHiwuFd
-	 hbvnxkb3i63JDi8Hfws0bx4BrH3JUPfS7UIE0so9KIsp/xbqNm/EJKpULO2xlBIjUN
-	 I/cpbwVFiAaiRbnR2lBn5YIqoBzkiRzJ6RQP7D1hayIQiAU3aTFrG9mIVRG4QAY644
-	 xxhIyMKcmPrYi7QInIAXdDfI0yO7qj17uj3ZlGP6sCZQ8WhPgykWJxWH4+yv+rRYgf
-	 JMhw7HKc+U87g==
-Date: Mon, 8 Jun 2026 09:49:13 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: clock: airoha: Document support for
- AN7583 clock
-Message-ID: <20260608-feathered-sincere-petrel-1e88fa@quoll>
-References: <20260528190000.9164-1-ansuelsmth@gmail.com>
- <20260528190000.9164-2-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1780905059; c=relaxed/simple;
+	bh=TR9EWDnFRajz+fp+F/iDS8YxrKo4rRALNNn3rqlhyus=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=f/jYr+X3g5rPGRTLfuJ14gXNz+sDzZLQR5EQ50TsIzWFzTGemIxG1TYEYQ1txSil7pmWkWR3j0at0IqKuBbY6C90GtJ9uorMrTdOGZy6E71N5rCfhBfPLvl50asnGE9iQEPNHtY/4bwL/e0y3ulMOTVgDUM1BzrsZyUGzH2gFxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BLwk8Er3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id A135EC2BCB0;
+	Mon,  8 Jun 2026 07:50:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780905058;
+	bh=TR9EWDnFRajz+fp+F/iDS8YxrKo4rRALNNn3rqlhyus=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=BLwk8Er3PJYVbDjCktl6f2XO5Celly9mLzxmC/1CWRqV7dBWZBPU03ZxtWdECAef9
+	 4j5Y0+U7yu1Q4gYQgMyWd3YWhG38WW2Wv4HM4XEFanIOKPeXb5Jb56hmdYlLYk3VAY
+	 rvZMid90zwZGtVRGu2wIXSqqr0AmZykPQZuaVbCU87GBY9EJOLYfSkA9pkggAfqanN
+	 r9BLYehrA52a6Dsdu1ADVk1mYur5Sw3C3WicVzELgxZjfSAECjOOv7Fmxpn7blcUez
+	 KiB5c6Zvm5pGpuFKjxAbN/PtO+K8LVONbubG+VOGG9Vb1gJGksY726Nsn8TBJF7IRP
+	 ZeYbdsB4S3L+A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D407CD8C9D;
+	Mon,  8 Jun 2026 07:50:58 +0000 (UTC)
+From: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>
+Subject: [PATCH v3 0/2] pinctrl: ultrarisc: add DP1000 pinctrl support
+Date: Mon, 08 Jun 2026 15:50:47 +0800
+Message-Id: <20260608-ultrarisc-pinctrl-v3-0-30a09ed74275@ultrarisc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260528190000.9164-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFd0JmoC/23N3QqCMBwF8FeRXbfYh1vaVe8RXcz5Nxemss1Ri
+ O/eplAQXh4453dm5MAacOiczchCMM4MfQz8kCHdqv4O2NQxI0aYJJxKPHXeKmucxqPptbcdhkZ
+ JYLnOC8JR3I0WGvNazetty26qHqB9glKjNc4P9r2eBpp6my+o2PEDxQRXjRClKEpQhbp8O0c9P
+ FH6COynSEL3FBYVclJaUE5UKet/ZVmWD3hde9kOAQAA
+X-Change-ID: 20260316-ultrarisc-pinctrl-efa6e24c4803
+To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Jia Wang <wangjia@ultrarisc.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780905056; l=2879;
+ i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
+ bh=TR9EWDnFRajz+fp+F/iDS8YxrKo4rRALNNn3rqlhyus=;
+ b=52L1j+tu4EAMXhYMbjEnV3zO3aWz6RKfCRTMg6KPewwxGj4m5UZT/yh2PmOSWhvMqSp2ZH6h+
+ nexCdcSwoB7DWa43VmbM+sMWspvrs0k+LhyxjbcsgAkcFr5tmegPdZq
+X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
+ pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
+X-Endpoint-Received: by B4 Relay for wangjia@ultrarisc.com/20260515 with
+ auth_id=779
+X-Original-From: Jia Wang <wangjia@ultrarisc.com>
+Reply-To: wangjia@ultrarisc.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308072-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:nbd@nbd.name,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-308074-lists,devicetree=lfdr.de,wangjia.ultrarisc.com];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:brgl@kernel.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:wangjia@ultrarisc.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[]
+	HAS_REPLYTO(0.00)[wangjia@ultrarisc.com]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 675D4653B6C
+X-Rspamd-Queue-Id: 1DE51653B49
 
-On Thu, May 28, 2026 at 08:59:54PM +0200, Christian Marangi wrote:
-> Document support for Airoha AN7583 clock. This is based on the EN7523
-> clock schema with the new requirement of the "airoha,chip-scu".
-> 
-> Add additional binding for additional clock and reset lines.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../bindings/clock/airoha,en7523-scu.yaml     | 18 ++++++
->  include/dt-bindings/clock/en7523-clk.h        |  3 +
->  .../dt-bindings/reset/airoha,an7583-reset.h   | 62 +++++++++++++++++++
->  3 files changed, 83 insertions(+)
->  create mode 100644 include/dt-bindings/reset/airoha,an7583-reset.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> index eb24a5687639..6c3c88798515 100644
-> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> @@ -30,6 +30,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - airoha,an7583-scu
->            - airoha,en7523-scu
->            - airoha,en7581-scu
->            - econet,en751221-scu
-> @@ -50,12 +51,29 @@ properties:
->      description: ID of the controller reset line
->      const: 1
->  
-> +  airoha,chip-scu:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: phandle to Chip SCU
+This series adds the devicetree schema and the pinctrl driver for the
+DP1000 controller using generic pinctrl bindings.
 
-Here you explain for what purpose this device needs to reference SCU.
-This is SCU, so I don't understand why SCU needs phandle to Chip SCU...
+Compared with v1, this series is narrowed down to the pinctrl binding
+and driver only. v1 patches 1, 2, 3, 5, 7, 8, and 9 (vendor prefix,
+CPU/SoC bindings, DTS files, and defconfig update) are not included in
+v2 and will be sent separately.
+
+Note:
+- ARCH_ULTRARISC support is being reviewed separately:
+  * Link: https://lore.kernel.org/lkml/20260427-ultrarisc-pcie-v4-1-98935f6cdfb5@ultrarisc.com/
+
+Testing:
+- dt_binding_check and yamllint
+- Kernel build for RISC-V and boot-tested on DP1000 (Milk-V Titan and
+  Rongda M0)
+
+Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
+---
+Changes in v3:
+- Re-add the DT binding header and use numeric pin IDs in the binding.
+- Replace instance-specific mux names with generic function names.
+- Tighten the schema constraints for A-D and LPC pins.
+- Switch the driver to pinctrl_generic_pins_function_dt_node_to_map()
+  and resolve mux routes from the pins + function combination.
+- Link to v2: https://patch.msgid.link/20260601-ultrarisc-pinctrl-v2-0-07ac5130a96d@ultrarisc.com
+
+Changes in v2:
+- Split the vendor prefix, CPU binding, SoC binding, DTS, and defconfig
+  patches out of this series for separate submission.
+- Drop the legacy DT node format from both the binding and the driver,
+  and switch to the generic pinctrl interface with
+  pinconf_generic_dt_node_to_map_all().
+- Drop the DT binding header from the series.
+- Replace the generic func0/func1 mux names with named hardware functions
+  in the binding and driver.
+- Wire the driver through CONFIG_PINCTRL_ULTRARISC and add COMPILE_TEST
+  coverage.
+- Restrict function selection to valid pins in the driver.
+- Link to v1: https://patch.msgid.link/20260515-ultrarisc-pinctrl-v1-0-bf559589ea8a@ultrarisc.com
+
+---
+Jia Wang (2):
+      dt-bindings: pinctrl: Add UltraRISC DP1000 pinctrl controller
+      pinctrl: ultrarisc: Add UltraRISC DP1000 pinctrl driver
+
+ .../bindings/pinctrl/ultrarisc,dp1000-pinctrl.yaml | 131 ++++++
+ MAINTAINERS                                        |   7 +
+ drivers/pinctrl/Kconfig                            |   1 +
+ drivers/pinctrl/Makefile                           |   1 +
+ drivers/pinctrl/ultrarisc/Kconfig                  |  21 +
+ drivers/pinctrl/ultrarisc/Makefile                 |   4 +
+ drivers/pinctrl/ultrarisc/pinctrl-dp1000.c         | 168 +++++++
+ drivers/pinctrl/ultrarisc/pinctrl-ultrarisc.c      | 503 +++++++++++++++++++++
+ drivers/pinctrl/ultrarisc/pinctrl-ultrarisc.h      |  63 +++
+ .../dt-bindings/pinctrl/ultrarisc,dp1000-pinctrl.h |  63 +++
+ 10 files changed, 962 insertions(+)
+---
+base-commit: 8e65320d91cdc3b241d4b94855c88459b91abf66
+change-id: 20260316-ultrarisc-pinctrl-efa6e24c4803
 
 Best regards,
-Krzysztof
+--  
+Jia Wang <wangjia@ultrarisc.com>
+
 
 
