@@ -1,184 +1,213 @@
-Return-Path: <devicetree+bounces-308304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308300-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3ejeNYHDJmrGkAIAu9opvQ
-	(envelope-from <devicetree+bounces-308304-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 15:28:33 +0200
+	id au7iBkfDJmq8kAIAu9opvQ
+	(envelope-from <devicetree+bounces-308300-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 15:27:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 897CE656A3A
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 15:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF44656A11
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 15:27:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=dFYl4LRm;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308304-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308304-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linaro.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=EnWC7rcB;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308300-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308300-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BA552304E40C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 13:21:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 34CFB303C2B0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 13:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EFED386C2D;
-	Mon,  8 Jun 2026 13:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97EF7218ADD;
+	Mon,  8 Jun 2026 13:20:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com [74.125.82.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E9E3769EB
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 13:20:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00A0E370AC8
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 13:20:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780924854; cv=none; b=kNLefUUyI9kwYNMxS9wtOPLKOdAQjFdXd3m2sRa9ZW2skdi4Mr7jbOmT7X2+kOvHigidGFmdKTfDk2Ooabi5zePVUzM6v7FvIn+IXnoCIklpNRBsazDs2GrVI4BD5E8BxGcUc7gWM6CAv6Lgx7qnKKbdBERjCdpiJQAHmZtWAbg=
+	t=1780924851; cv=none; b=dMc3WEwZ3Nxgy+vHO3UsWYeUx6w5Df2uhhCH+VyyiIxRmc8+tH7CvcsdUkT3x+NQ0hNhVjuiZXXfYkch1mJp6D7VsxreVv0LsatXF5SlldZ7oCy3telEYTM/ICVJtJhZSP+JFNC8vArA8mV7u5C0OyQDkvwsPtGr8Rqau7DebbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780924854; c=relaxed/simple;
-	bh=uVTUGj4g6+0ok6CGfPnbzagq2Go25500NOlJFDZS3WA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FBQfsWxyE8ik2DjFKWnqcXb4UF90vUZzn0S2RAckm8zOxMb8d3OoPeWQST0xWjXz271rIAOijVHGEDmwDuFi+Z+kC9KIYfEHN+KkxkJ7sE6thNnykI9pCntG64ppKKU5CSRhKQq99QZOdHGbPh2FUPi7m2Wp014+Unsje4UywLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dFYl4LRm; arc=none smtp.client-ip=209.85.221.44
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-45ef616daf6so3922717f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 06:20:52 -0700 (PDT)
+	s=arc-20240116; t=1780924851; c=relaxed/simple;
+	bh=lPHK/ihuGBPLemRU0lPXBkD1+OkfE/pRAjceTfkiS3U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Fs8MQwMPd4+tUj1oDS5pSkib24vgdEeRfVsIag0FcokXAV1LR4hb9MS0wlpfqInCPelsLrKbFVm3gLS+GNYAgk4xwq9Iv47rnTzB3psk3QCwLxVj355hbT6qL37gN8Ae9csgtnreQK3Pd3tbD8u4j4hCe8KvEdz0BYBVg7PLX9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EnWC7rcB; arc=none smtp.client-ip=74.125.82.179
+Received: by mail-dy1-f179.google.com with SMTP id 5a478bee46e88-304d8362a58so2520116eec.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 06:20:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1780924851; x=1781529651; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PL7471kdmSWyPmgK4b9+x0sJCZApJQ6JQDBnuoCpSUU=;
-        b=dFYl4LRmB1xoMO130DTy2OgjLHhZgBfP6s7G6oSTP6Kou/RlTAGOiBXUfw86m12rOv
-         JiDyF0CbnVTFUl9ret51LLuR5YLv9g+nl23ohBXIqIQ230F7fFU9cRIn6h1VNsVavET/
-         jb47ggwTygCWYIm/TNHzbmvKx0QBT1apHvk7Dyf9SVINpgr95wPbTNFOa9Ybpc7m3Sxb
-         WAlGSyYpk4i1ImkTkPcNgBy89E/VAlK9j82SvDv0rQKBI+7zgphvPnKrmi0AFcooEqvx
-         qIvktETCB/cVrP3d8oAubzxBO5gh0dolTP9iglGk+6FkX8g4BkQP9Sow01I5mSvpLwn8
-         clOw==
+        d=gmail.com; s=20251104; t=1780924849; x=1781529649; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wFJPSMXCi6b6l39VWDqxTROb6VoHdQrtvaD0s6OS/zU=;
+        b=EnWC7rcBXstq3BlIiVBlw2fhDGeomCPlOpNavPR48UhvixSqe57BLwH1dwWS0HerUn
+         btD4hrRmA6iR/SLA6TOueApC7Pg8sr6UUSQ2VH1C8joYw5ZQsL4ijw4vh1f0ZVrt5o3W
+         +uuO9dNUIsvltBKweUJSMRyK8t6MCYJCL82RSzSTsD3NrqY8gNyZAh9nHkBCsk8jEQa/
+         u0j8nR4+whSI3Z7xz2MCD51hYVGdMBGQ9T8Uqyg9iCQCB4TtVzqBCPwYnz0Wa90X+2Y5
+         Yg4EynD2/edj2eUrDNgpLr//8RacYeBz66j5iL8RjKYP4296PWBMI+VRM+uThX/gTUrl
+         LK5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780924851; x=1781529651;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PL7471kdmSWyPmgK4b9+x0sJCZApJQ6JQDBnuoCpSUU=;
-        b=hNTJFBsA6Zq/JawZH+Dp2Rn8jnQjPbFMWMoj/s8x81RCQOrti0IEHL4QgvRYUS3QVU
-         PvRNduEunoegiHvD9pdyc39v+MHwe/VUieOBnIau8o9eF6NAyoDzqyd45mmEnUxK+gA5
-         gZurUPaP4OJQUImVmz9B3x13GIwmx2qzv84tLYoz6ag//aHBhDNffib8vOrmFPrLSrZS
-         cTiSdpZbi1tCF+JyAEWJA9nm/xQGYtqrtDeT1tW7+HnbV2zYa+9xAyeLqC4suVgx3tXX
-         gLyiyAy/ULkHS8WgZWRmLXg5YtXqT7Cs1NAwrGmMs/YreYyg0OPQtQNY6xx5qpvPyyK6
-         2Huw==
-X-Forwarded-Encrypted: i=1; AFNElJ9WA5qhW3AxJ9aV1z7VSl/tdPHdMU+SZSQGKbkIL+/PrHb2gN9zsDlyJwP3nMop3qDZFZmmpRmIvIU/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yygf31QJ2lCgdh+Xg/CB5fj+1gYrOQA4sm4UTDMMoZXbJryEtf7
-	vwj5DxnfMB4lunyhr2sN6gc8AoF0hpnMF1CrARK+BXLp2bxb4lvDe5FXxu5HxLokvdl2iIlEk67
-	ccg58Ckw=
-X-Gm-Gg: Acq92OEtNSLgx6KPTRD/qbj1e7zEqOfWVaHTFC61p8hrSmYNZV44jbj8+sAIaz0IxiA
-	KrCoa/vp3z7pxHpQDXOFhzUDw47tJ/gjWmfudoFAvMA6Mxbrt7QwgTjgUNK6ZAn7j4Hv23ogr+U
-	8MTwkNCTJpXIlR2finshW2IBdvvNi7H31bM/IHn7h5ak3BKZEX19+rbV9vYvKgD08l38ywgmPlk
-	oK1peavSn1WpaCCvjOZzyACe7BxUr/UVzKvRO2sDQHvipjh0Ch9v9DO/3DvsCFEx9scxhw4A61D
-	ccoH8647osOCmyIUc/Bl0Qx0LvZLRi5vCR4HOj/U3w7JlAekgCnZlpUAKeQcqR3agJZcDSxHxeP
-	xjGuGIKL35KKUjuwQdeUwaCO0zf1bBstZ/gyVzNQg+6OalAEbp+0RVBni6exl4zBaDkXiDo/ztH
-	T1YRytpz17hzCIznC2RiPkk/CwLE8Aq4vHO9Cg3SGAt/IInEw=
-X-Received: by 2002:a05:6000:713:b0:460:1a52:8a13 with SMTP id ffacd0b85a97d-460301825femr23864909f8f.0.1780924851118;
-        Mon, 08 Jun 2026 06:20:51 -0700 (PDT)
-Received: from [127.0.0.2] ([2a02:2454:ff23:4410:963d:8b06:4a7b:c38f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f34413csm51684983f8f.21.2026.06.08.06.20.50
+        d=1e100.net; s=20251104; t=1780924849; x=1781529649;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=wFJPSMXCi6b6l39VWDqxTROb6VoHdQrtvaD0s6OS/zU=;
+        b=eWalBNpUW/ltJJva7WqDnx7SFfSgZe76MjOJ2PqJQbZ4JXO64B1OHCld4nkpIFZw/y
+         0msf5RgTdu1iJS771fvuJIX26nQG5vLrAOGVr9dxDoknOYrRfANJ1t75iBlQVrlNxNmN
+         onLN5DcaEVNPJICDFmoVacIjmgq+SKGcSrXgdsWLW66CcPyTR/7dELPfxvAYfq4sFS0r
+         y4lSRrfADC5vKf9Ouddmog8lJH9vqCxqgHYca/PUsK9MbUl9l6YgEcEOQfUOWN8Sn98a
+         nrC/LU+zwPcatcza4OvT3VEXIQdfySaZGl2Mwr2LBe0Sjs7JbzyYGM5rikdWT/PHKhTc
+         vnLQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/U7Rm/own2spMAeqjZt2igWBJaJusqTUQiz5HO/MMOPOjkedqr5BFOoP8oGk9yvbEMFwyqQroV0i+y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yytiad3Z6WfBWBbBMdoIG7D8BUxg34iYvz6MV/MCi5b0QkZPpv3
+	SrDgq4dc11HSCSMCdUKI+Yx6TVQORU0UwsRkSX/XYt6fMijG6Ao7r0g5O5BfUzzary4=
+X-Gm-Gg: Acq92OFm7sWvZIzz6Hmdo/ciufiL/giEKsv/EN2kCHbA5FRs1ZTnYaG1EtAmv6VMmEB
+	BV35tw3Lhyjs7c1PS1mO7qSlUz1on/2pwylA+kf54+aso+AHHGL1YgRLTSVO3uBoeUV5qPN7kON
+	VieOsIEvQCtQVamwoFwTjuoCrw2q5EBjAYY/yEeyv22/iFdomztF3eW/hNFoLKWXsrwr9wiep3A
+	xP6nVRdVwU+zJvTHi6GprfTnBWi7pFmTghYMYt2JyVCirCVDD7CZzHxSeA1yFqykFHV3ks6UsiI
+	cb16TgtHJBezpZ8ALr30TJkbcPpmC8pjZ2l4A5tbJnR1wKEAl4sau7er0ZmwQwA7LbYnPU6oha/
+	Eksy2O8ryGNZEfQPaac3+xvsJz9AZJubbPiVKt2fofNFGf4VXZjbq+GUAK3LXCEzgEqGz7nYVw7
+	aDT2hRpUkEClSJZP83wAX8mjIRjyWG9xYZG5Zbs8EfGjU9E02Bbw==
+X-Received: by 2002:a05:7301:6098:b0:2c1:67e1:61a9 with SMTP id 5a478bee46e88-3077fff14bamr6004505eec.13.1780924848991;
+        Mon, 08 Jun 2026 06:20:48 -0700 (PDT)
+Received: from arch.localdomain ([2409:8a28:a54:e741:3a5a:3245:d3dc:4b5d])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3074df9bbd4sm15481288eec.30.2026.06.08.06.20.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2026 06:20:50 -0700 (PDT)
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-Date: Mon, 08 Jun 2026 15:20:25 +0200
-Subject: [PATCH 4/4] mtd: rawnand: qcom: Add MDM9607 compatible
+        Mon, 08 Jun 2026 06:20:48 -0700 (PDT)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: sashiko-bot@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dmitry.torokhov@gmail.com,
+	jerrysteve1101@gmail.com,
+	linux-input@vger.kernel.org,
+	robh@kernel.org,
+	sashiko-reviews@lists.linux.dev
+Subject: Re: [PATCH 5/8] Input: cap11xx - add reset gpio support
+Date: Mon,  8 Jun 2026 21:20:42 +0800
+Message-ID: <20260608132042.547421-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260606151346.8C5861F00893@smtp.kernel.org>
+References: <20260606151346.8C5861F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260608-qcom-nandc-mdm9607-v1-4-4639a0492274@linaro.org>
-References: <20260608-qcom-nandc-mdm9607-v1-0-4639a0492274@linaro.org>
-In-Reply-To: <20260608-qcom-nandc-mdm9607-v1-0-4639a0492274@linaro.org>
-To: Manivannan Sadhasivam <mani@kernel.org>, 
- Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-X-Mailer: b4 0.15.2
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-308300-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,lists.linux.dev];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308304-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mani@kernel.org,m:miquel.raynal@bootlin.com,m:richard@nod.at,m:vigneshr@ti.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-mtd@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-bot@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dmitry.torokhov@gmail.com,m:jerrysteve1101@gmail.com,m:linux-input@vger.kernel.org,m:robh@kernel.org,m:sashiko-reviews@lists.linux.dev,m:conor@kernel.org,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:from_mime]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 897CE656A3A
+X-Rspamd-Queue-Id: 8CF44656A11
 
-MDM9607 has QPIC v1.5 that supports the OP_PAGE_READ_ONFI_READ command, but
-is missing the rest of the hardware changes in QPIC v2. Add the new
-qcom,mdm9607-nand compatible and set it to use has_onfi_read_op without
-also setting qpic_version2.
+> Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+> s) to consider:
+> - [Low] Inefficient delay using usleep_range() for a large duration (400-50=
+> 0ms).
+> - [Low] Missing explicit inclusion of <linux/delay.h>.
+> --
+> 
+> commit 83de47341df3454fdb8216dc0a95948c3f158a40
+> Author: Jun Yan <jerrysteve1101@gmail.com>
+> 
+> Input: cap11xx - add reset gpio support
+> 
+> This commit adds hardware reset support for CAP11xx devices by toggling a
+> dedicated reset GPIO during the i2c probe phase. It incorporates specific
+> timing requirements for the reset filter and active reset duration.
+> 
+> > diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/ca=
+> p11xx.c
+> > index 686174722204c..7015aa7654ce7 100644
+> > --- a/drivers/input/keyboard/cap11xx.c
+> > +++ b/drivers/input/keyboard/cap11xx.c
+> 
+> [ ... ]
+> 
+> > @@ -452,6 +457,17 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_=
+> client)
+> >  	if (IS_ERR(priv->regmap))
+> >  		return PTR_ERR(priv->regmap);
+> > =20
+> > +	priv->reset_gpio =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LO=
+> W);
+> > +	if (IS_ERR(priv->reset_gpio))
+> > +		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio),
+> > +							"Failed to get 'reset' GPIO\n");
+> > +	if (priv->reset_gpio) {
+> > +		gpiod_set_value_cansleep(priv->reset_gpio, 1);
+> > +		usleep_range(CAP11XX_T_RST_FILT_MIN, CAP11XX_T_RST_FILT_MIN * 2);
+> > +		gpiod_set_value_cansleep(priv->reset_gpio, 0);
+> > +		usleep_range(CAP11XX_T_RST_ON_MIN, CAP11XX_T_RST_ON_MAX);
+> 
+> [Severity: Low]
+> Does this regression introduce unnecessary overhead by using usleep_range()
+> for a 400-500ms delay in cap11xx_i2c_probe()?
+> 
+> According to kernel timer guidelines, usleep_range() is designed for short
+> delays (10us to 20ms) and sets up high-resolution timers. For delays longer
+> than 20ms, using msleep() or fsleep() avoids unnecessary overhead and
+> expensive CPU wakeups.
+> 
 
-Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
----
- drivers/mtd/nand/raw/qcom_nandc.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Agreed. Will replace usleep_range() with msleep() in V2.
 
-diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
-index 9217e8de5512..d7642db2e2df 100644
---- a/drivers/mtd/nand/raw/qcom_nandc.c
-+++ b/drivers/mtd/nand/raw/qcom_nandc.c
-@@ -2381,6 +2381,15 @@ static const struct qcom_nandc_props ipq8074_nandc_props = {
- 	.bam_offset = 0x30000,
- };
- 
-+static const struct qcom_nandc_props mdm9607_nandc_props = {
-+	.ecc_modes = (ECC_BCH_4BIT | ECC_BCH_8BIT),
-+	.supports_bam = true,
-+	.nandc_part_of_qpic = true,
-+	.has_onfi_read_op = true,
-+	.dev_cmd_reg_start = 0x7000,
-+	.bam_offset = 0x30000,
-+};
-+
- static const struct qcom_nandc_props sdx55_nandc_props = {
- 	.ecc_modes = (ECC_BCH_4BIT | ECC_BCH_8BIT),
- 	.supports_bam = true,
-@@ -2412,6 +2421,10 @@ static const struct of_device_id qcom_nandc_of_match[] = {
- 		.compatible = "qcom,ipq8074-nand",
- 		.data = &ipq8074_nandc_props,
- 	},
-+	{
-+		.compatible = "qcom,mdm9607-nand",
-+		.data = &mdm9607_nandc_props,
-+	},
- 	{
- 		.compatible = "qcom,sdx55-nand",
- 		.data = &sdx55_nandc_props,
+>
+> [Severity: Low]
+> Could this regression in header dependencies be avoided by explicitly
+> including <linux/delay.h> since we are now calling usleep_range() here?
+> 
+> While the code might compile due to implicit inclusion via other headers,
+> relying on implicit includes can sometimes lead to build failures on other
+> architectures or if intermediate headers are refactored in the future.
+> 
 
--- 
-2.54.0
+OK. Will add #include <linux/delay.h> in v2,
+
+> > +	}
+> > +
+> >  	error =3D regmap_read(priv->regmap, CAP11XX_REG_PRODUCT_ID, &val);
+> >  	if (error)
+> >  		return dev_err_probe(dev, error, "Failed to read product ID\n");
+> 
+> --=20
+> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260606150458.2506=
+> 06-1-jerrysteve1101@gmail.com?part=3D5
 
 
