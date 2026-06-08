@@ -1,218 +1,194 @@
-Return-Path: <devicetree+bounces-308383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308385-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3TDkA9nXJmpjlgIAu9opvQ
-	(envelope-from <devicetree+bounces-308383-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:55:21 +0200
+	id QJG5DT7XJmoclgIAu9opvQ
+	(envelope-from <devicetree+bounces-308385-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:52:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 585D46579CC
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52F806578DA
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:52:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eSnltNVf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308383-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308383-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=rOH9jsRz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308385-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308385-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 349953034DF1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 14:40:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 21F3930FEEFB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 14:41:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E2D3C81B8;
-	Mon,  8 Jun 2026 14:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF5713B774F;
+	Mon,  8 Jun 2026 14:41:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D43273B3BF0;
-	Mon,  8 Jun 2026 14:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEE43C81B8
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 14:41:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780929611; cv=none; b=Grua3sGWo+4ogBucJMgJ3thtCF7I7BGHuWISo4JpAvGW3ufgkhcFEE6GOrVmkxJzE7+ojxRo29sdtc7SsvF1uB6xfEcypbx855cjbta45Is3y4tPaAbNW5ImWiMLD2IC9bYKdDvpuTCP5yb+5JIQt25EtH33VjcKVT8pWlTxPq0=
+	t=1780929686; cv=none; b=dCF1Bv0Mp6xbMU/Zc61bFmPfKgrh8xnxe/GRRY6emHv/z/9S/qUPSxfpCXmzSgK5MtJ3WWASjtKokqjbOUwQSGuuOIHlZ9VMbE1eMDU1cMVkpbJC7OzTy/3qTYwDQ2vPOULmFzOYuWxN1X2h1WR+STxReyjRnBJJ5AVVzMqsg8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780929611; c=relaxed/simple;
-	bh=pc5KgDDfBUpeSS+ethb+diBYBB7fvh0257nUv2wQ7Uk=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=hX1+bz8lmWGEFZk30TJlAiEkLP2rVUaFM3bEzZJK8UnrB4WTRxJIQ1WVU+p8XQsfEmQ39RXgHFs32h4qpnrAKbINreo3Q0kZCOT86aJX3javjgd1l6L54sYsUelLhu4vXxEILrgtmDaBPiJ4z7VUxum1mlcSnuhHeyvuRudG4xE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eSnltNVf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 406801F00893;
-	Mon,  8 Jun 2026 14:40:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780929610;
-	bh=xxJFOLNTcjcr4KYGxInqQFoOAc8L/4p2jjmZkVRdyw0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=eSnltNVfb+eUappQKZYkcyV88hNhVJbVHUdch6lhRz0KJacyDvNYJCJHWpo7/M7cd
-	 u1KCin/M+MZdn1QT+5hX7f4s/CEWcUGn7w4UB5zC4oM1m99g6uivUTCPo7HL5gMrqY
-	 LdK2cd2mdOLdcBMTmdNDWMt0ez+Jh6veoeCHh9Lpppd3eTrpNdpJVnc0qON3SsbHgS
-	 2OgtAORa/2oQ1ojbVeEpDQd5jpcgMBb+m88GGi7QCqI79eTFUMRheIeHMyahE4j78L
-	 YyrzSfCAP0XaE9cMN9dNap+xX0ZrZFnKlp4+Q4JpVHoPFIemp6ancDqftFiQs2CNng
-	 RIPBSvSy8QhmA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 2/4] arm64: dts: freescale: add initial device tree
- for TQMa8MPQS with i.MX8MP
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Alexander Stein" <alexander.stein@ew.tq-group.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, imx@lists.linux.dev, wsa+renesas@sang-engineering.com, Frank.Li@kernel.org
-In-Reply-To: <20260608142144.564871-2-alexander.stein@ew.tq-group.com>
-References: <20260608142144.564871-2-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 08 Jun 2026 14:40:09 +0000
-Message-Id: <20260608144010.406801F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780929686; c=relaxed/simple;
+	bh=+wicVs5ToWL4a54zQqI268Tg5wVEbVHmDLNWn0zdgz4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cKSSgzgWkwJMxaWzD9YymrJaayCUZ9jSZTP7NEqpflyE03ZNNoOqSLLQCpFtYkZpvpVoRqNbuwQcGOs27u7//6ndX0JwARpRT3pTqh6cM2XL2GmMgv2wEoNT47ognVDsEca433WrFQzeTEm2tVc7VdroQSHBi7RON61TQ/Z9zx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rOH9jsRz; arc=none smtp.client-ip=209.85.221.43
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-45e9f4a3510so2033957f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 07:41:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780929684; x=1781534484; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=S9bZC8rw7YmoIyog8z2SdVy+ERoBgDn2wG881TA87OA=;
+        b=rOH9jsRzxyke3hngZoB0T4JkXKiSVwvYKXu8tNUE9zl3KBj/d5DrJnrhldbJYNpGb4
+         fMYU5srkgyjMUHLsqRPrXvOctPZrS+7ZufLGG99HsOQMRnk5n7YUQlfZ1lRQKgiolYvh
+         gqTTyEd9DqKxBtaM8miQMqBUbPYz+7LKnKhSI6EeO/9bmwAuWLOTSCyV9D0+G8Rmd0x/
+         GYPtKA0iHM4zefXrNiUvor5ZGugVHPnW3XHcEYlyJKg7ZRT0VIdN7r2k0G/dvjN4megS
+         2ODN8WBuNQyb1SdY3mBbD6HQ7CBPAwrADSrpoL6p8quEaDsIWQDG1ZT5QjZ+4hUHFY61
+         IkEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780929684; x=1781534484;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S9bZC8rw7YmoIyog8z2SdVy+ERoBgDn2wG881TA87OA=;
+        b=fwRRDZEkaXH+thvm+QANKa14FqpQ9ATCLZQhC21x9EePFW3MtbKLyTBfOz9x2k2kDc
+         Jvlcw4x8q0zyxpjMDX32a86JtJSP/v9wF6Ek4JETp5lUMMcXNjrLhmmkkNbT2w4HiwpY
+         qbVIhqcAgiEUvQqOFCS5IASY7wH2NMjVVHRtfU70mSBjkvxmtpIZkkb//JgAMx9Ih6SK
+         FwwqxJcm3CD8HKrrlFqRYMiqGjJYXu4KaS96OF9/Fm91CHpbQQkDJVoJrg6CCL8MJU5+
+         KH3nYmpARDxreSjJeE/lvtu944XRTYHEW1pse8jaKgYdLHUtJvaaRFBOnDkxXDomjh19
+         ZZyw==
+X-Forwarded-Encrypted: i=1; AFNElJ9P5cwhfCIl/h0ExA2SXOUxivIYFvDj5pg1XLPQ/Oaq+ogls0cdbI3zTZca57X6H+V8P9l1riULSAVK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxnzq1duiTsUyzTrs7q9UB3wkvWtIki595hpF/hxYgie0jad0oF
+	PiZy/QLyE7u/NPIFYkJCeZls88R1Aves3tC0VUQTvWDQkW7fwzkCLamG
+X-Gm-Gg: Acq92OGu7t/sg4LRQP3Zf6CLIKJpQdK35nPvoMJ0SaA5Eq8ResWYgnn2dZVbAoVgAbe
+	wbVROFlv0YGv4GIh8JpBlqKc83M6/XoIOG/dOYcQarEDLoZfYRHh6CPWi22vwNC477rUW0mXs+d
+	dlXOru1i4mzIkbRQSY5UdedserFqhJWlQ4VNm20gSF24o7nHcW+K1GCm2tkxU+J49HFHNhfp/mD
+	AxW7ast8eI22GfGr5G3zfNZvTD26Ugd/jd3DeQp46YVRuWamwwVC7XqjxzXcoIW9jZ7xgNcicwk
+	rIFhBCh0oOuS72ANPchTR48HHRpicNIa8Tb+LoO+Swj5jvNbwPVj9l2GkHun5huFFDqRoyqpdgc
+	Jn44Wpweg85oR+nqHEWV1vLgU6H4BAmAnNYVWKPOus2kGmvYsjKV8xmWcEkY+nuQN5mnh2LEOkI
+	kTcCB1nr3qdzEoQYUeZYlo5ZAPuG2dBIvz1AG7GNjXrF7MJH3iy6yh6Q/kYfzv8rCKaxrail1pP
+	SPAVusoyHnrp+16iWX96xDz/2LALJ+YeOORzNw3oY5zUrCwhbHoyVbH6oM=
+X-Received: by 2002:a5d:480a:0:b0:45e:f5b6:7bf9 with SMTP id ffacd0b85a97d-46030627a04mr16756707f8f.31.1780929683675;
+        Mon, 08 Jun 2026 07:41:23 -0700 (PDT)
+Received: from Lord-Beerus.station (net-93-144-65-244.cust.vodafonedsl.it. [93.144.65.244])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f2dcad5sm58222519f8f.5.2026.06.08.07.41.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jun 2026 07:41:23 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH v5 00/14] arm64: dts: imx8mp-var-som-symphony: align DTS with hardware revision
+Date: Mon,  8 Jun 2026 16:41:01 +0200
+Message-ID: <cover.1780929317.git.stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308383-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:alexander.stein@ew.tq-group.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:wsa+renesas@sang-engineering.com,m:Frank.Li@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-308385-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,variscite.com:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 585D46579CC
+X-Rspamd-Queue-Id: 52F806578DA
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] Incorrect GPIO polarity for the DisplayPort bridge `reset-gpios`.
-- [Medium] Missing `interrupts` property for the DisplayPort bridge, preven=
-ting hardware Hot-Plug Detect (HPD) interrupts.
-- [Medium] Missing high-speed capability flags on SD/eMMC nodes, causing fa=
-llback to legacy speeds.
---
+This series updates the i.MX8MP VAR-SOM and Symphony device trees to
+better align them with the current hardware configuration.
 
-commit fb67de7a11b79a2d50aaec8dc9df977e8f195879
-Author: Paul Gerber <paul.gerber@tq-group.com>
+It adds the missing board peripherals and completes the related pinctrl,
+GPIO and bus configuration.
 
-arm64: dts: freescale: add initial device tree for TQMa8MPQS with i.MX8MP
+v4->v5:
+ - Add the SION (Software Input On) bit for the I2C recovery pins
+ - Remove regulator-always-on and duplicated vddio node
 
-This adds support for the TQMa8MPQS module on the MB-SMARC-2 board.
+v3->v4:
+ - Fixed USB irq edge type
+ - Add HDMI HPD support
+ - Add pcie reset-gpios instead of deprecated one
+ - Fixed eth regulator
 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpqs.dtsi b/arch/a=
-rm64/boot/dts/freescale/imx8mp-tqma8mpqs.dtsi
-> new file mode 100644
-> index 0000000000000..9cff5bf9162a4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpqs.dtsi
-[ ... ]
-> +&i2c3 {
-> +	clock-frequency =3D <384000>;
-> +	pinctrl-names =3D "default", "gpio";
-> +	pinctrl-0 =3D <&pinctrl_i2c3>;
-> +	pinctrl-1 =3D <&pinctrl_i2c3_gpio>;
-> +	scl-gpios =3D <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	sda-gpios =3D <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +	status =3D "okay";
-> +
-> +	dp_bridge: dp-bridge@f {
-> +		compatible =3D "toshiba,tc9595", "toshiba,tc358767";
+v2->v3:
+ - Add FlexCAN2 controller support
+ - Add FEC controller and MaxLinear MXL86110 PHY support
+ - Describe PCIe PERST# reset GPIO
 
-[Severity: Medium]
-Since the DP_HPD_INT signal is routed to GPIO5_IO21 (as defined in the
-dp-hpd-int-hog node), should this node include the interrupts and
-interrupt-parent properties?
+v1->v2:
+ - Add missing HDMI pinctrl configuration
+ - Enable LCDIF3 for the HDMI display pipeline
+ - Adjust PCIe controller configuration
+ - Update PTN5150 interrupt trigger type
 
-Without them, the driver will not register an IRQ handler for Hot-Plug
-Detect events and will fall back to 10-second DRM polling.
+Stefano Radaelli (14):
+  arm64: dts: imx8mp-var-som-symphony: add input keys
+  arm64: dts: imx8mp-var-som-symphony: enable USB support
+  arm64: dts: imx8mp-var-som-symphony: add TPM support
+  arm64: dts: imx8mp-var-som-symphony: add external RTC
+  arm64: dts: imx8mp-var-som-symphony: enable header UARTs
+  arm64: dts: imx8mp-var-som-symphony: enable PCIe
+  arm64: dts: imx8mp-var-som-symphony: add HDMI support
+  arm64: dts: imx8mp-var-som-symphony: add capacitive touchscreen
+  arm64: dts: imx8mp-var-som-symphony: enable ECSPI2
+  arm64: dts: imx8mp-var-som-symphony: keep RGB_SEL low
+  arm64: dts: imx8mp-var-som-symphony: enable PWM1
+  arm64: dts: imx8mp-var-som-symphony: enable CAN
+  arm64: dts: imx8mp-var-som-symphony: add second Ethernet port
+  arm64: dts: freescale: imx8mp-var-som: add I2C1 bus recovery GPIOs
 
-> +		reg =3D <0xf>;
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&pinctrl_tc9595>;
-> +		clock-names =3D "ref";
-> +		clocks =3D <&clk_dp>;
-> +		reset-gpios =3D <&expander0 4 GPIO_ACTIVE_HIGH>;
+ .../dts/freescale/imx8mp-var-som-symphony.dts | 389 +++++++++++++++++-
+ .../boot/dts/freescale/imx8mp-var-som.dtsi    |  12 +-
+ 2 files changed, 399 insertions(+), 2 deletions(-)
 
-[Severity: High]
-Does this leave the DP bridge permanently disabled?
 
-The tc358767 driver initializes the reset GPIO with GPIOD_OUT_LOW
-(logical 0), and returns it to logical 0 during normal operation after
-pulsing it. Since the target hardware pin is an active-high enable
-(DP_BRIDGE_EN), it must be physically HIGH during operation.
+base-commit: b3c1d1631f097619f8091f0293e027c4301285d6
+-- 
+2.47.3
 
-With GPIO_ACTIVE_HIGH, the driver's logical 0 translates to a physical LOW.
-Should this use GPIO_ACTIVE_LOW instead to map the deasserted reset state
-to a physical HIGH?
-
-> +		toshiba,hpd-pin =3D <0>;
-> +		status =3D "disabled";
-
-[ ... ]
-
-> +&usdhc2 {
-> +	pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 =3D <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 =3D <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-2 =3D <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> +	bus-width =3D <4>;
-> +	vqmmc-supply =3D <&reg_usdhc2_vqmmc>;
-
-[Severity: Medium]
-Will this node fall back to legacy 50MHz speeds despite having 200MHz
-pinctrl states?
-
-The MMC subsystem requires explicit capability properties (like
-sd-uhs-sdr104) to negotiate higher speeds. Without them, the state_100mhz
-and state_200mhz definitions will not be used.
-
-> +	/* NOTE: CD / WP and VMMC support depends on mainboard */
-> +};
-> +
-> +&usdhc3 {
-> +	pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 =3D <&pinctrl_usdhc3>;
-> +	pinctrl-1 =3D <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 =3D <&pinctrl_usdhc3_200mhz>;
-> +	bus-width =3D <8>;
-> +	non-removable;
-> +	no-sdio;
-> +	no-sd;
-> +	vmmc-supply =3D <&buck4>;
-> +	vqmmc-supply =3D <&buck5>;
-
-[Severity: Medium]
-Similar to usdhc2, is this missing eMMC high-speed capability flags like
-mmc-hs200-1_8v, mmc-hs400-1_8v, or mmc-hs400-enhanced-strobe?
-
-Without these flags, the interface will operate at legacy speeds instead
-of utilizing the 100MHz or 200MHz hardware capabilities.
-
-> +	status =3D "okay";
-> +};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608142144.5648=
-71-1-alexander.stein@ew.tq-group.com?part=3D2
 
