@@ -1,67 +1,65 @@
-Return-Path: <devicetree+bounces-308082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308083-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8wRjDT94JmrIWwIAu9opvQ
-	(envelope-from <devicetree+bounces-308082-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:07:27 +0200
+	id DlcNOL92JmpzWwIAu9opvQ
+	(envelope-from <devicetree+bounces-308083-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:01:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89B83653CF7
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:07:26 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB650653C4B
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:00:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="hT/m1biD";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308082-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308082-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RQOMOgPz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308083-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308083-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EBFEF306B7DE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 07:58:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 398DE3005590
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 08:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE552399359;
-	Mon,  8 Jun 2026 07:58:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7914E3955D3;
+	Mon,  8 Jun 2026 08:00:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34AE3955C6;
-	Mon,  8 Jun 2026 07:58:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8D93909A6;
+	Mon,  8 Jun 2026 08:00:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780905483; cv=none; b=a5ijSn0cKbF0kM3qaoRC7hvneQSf7oNEwxLmAq47teBc7eW4iS+fCIHKgpFFPQc5v4hTis2jXANBfryqXS9zdkSW1Y8VnmnQp/1XzclhJAYyojz03fyCJxs1HnbuqtSO8dac5An/F3As/OZBn7Z/DWB0CEzsfJcCu22VlD9GpEI=
+	t=1780905656; cv=none; b=er2PGUv/j2mGN1H4VWMosbU6BG0kWqcDM7r9zWDDe+cNClg1GT0i7CE/uwyK8llembhF+DCRGMyooJuI0eGGVgj3GEbKG6oOGXfyG3nzyHCol9PYHUJ20SkvjTDoU1FvP4Ycg0ADgrHGA66QY3srmCdY1yx1B5xh8kxW9JBMcMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780905483; c=relaxed/simple;
-	bh=rTqCYyaCkrZimhRY3+r90HkswJnvOuNoCop1+yjfzTI=;
+	s=arc-20240116; t=1780905656; c=relaxed/simple;
+	bh=bzTXkUJKEXTOVEyIqlk8q5UW/AMNUwx8UJOuGCWhNFk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H5o/7wYboBBm5UvF0TZMpSXUh5b3gbWnuRoneLQLErSSXoccw/omDYYJ/hoCrJzWiyZmypoWUX4VPKODxzthZgJ5ad4MSYO2Jeo6vbtwVZ2s1eYwI0nQnuiAV5AOh3tVWlsQYt9TjQw4csFgKfwbE/DojaAmwy9ZtTdvIVlK75I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hT/m1biD; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90BDF1F00893;
-	Mon,  8 Jun 2026 07:58:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RNl4hDGqBaUzVqskSApHB9xmTjy/GXIXXgeriDnvnJJ+Vje5gsIwegfD0a5nrrBiXEd3fzijSQOYTudLAOJCWHLw5YwuhLF19GtLvBpvMLJwOAixA3/ZKzEPWYnqcz6MpNufMJYr0svOagysoJ2l8bGVFXi2ga4/u1Ye/NH7Yg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RQOMOgPz; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36E251F00893;
+	Mon,  8 Jun 2026 08:00:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780905482;
-	bh=2c67zNsS0HvgzZNh71DbxgcmS8tcATdydWycpSmMb/E=;
+	s=k20260515; t=1780905655;
+	bh=shxmCQvSBBkNie3O/CcwrtLbRce6sySrtFuYPQ8CYKk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=hT/m1biDqcx4HHvNJoG2hykcnOUtT84VJfuAbUwLAIKu4Hnk+ZXo5P2QkdZjY2wXJ
-	 LdNNSwOMzQPatplpQzEha26AG7OPbQVz3klo+T5aEl0HwCxAddaCbz5ZRIfKNxWzWz
-	 0vFCGwQAfOg8jMP1XJXLNMehOB7TVWR2I+ND/wvs8voq9X0rTemT/UcfmaEzCpggbT
-	 ke4FGNYQv+Slne1BYStrCVIXlSI/HB0utqa8HXEaYSjB8gMD0B52zJEKzgRj9Lrrvr
-	 CvB3tA/oX8qHrsCCqC/hu4kEihVSQ4qi0YlZmRTVFoGqGs0eZ8i73O1P83/zNi0U/q
-	 hlCpcmnqLyiDA==
-Date: Mon, 8 Jun 2026 09:57:58 +0200
+	b=RQOMOgPzEjoT70pPB5OMCCJi0hMd9T/OIYgzJ4wRIaMkJslVqmxoeFc2FLbXXl1wd
+	 zLhK55oHz5jto8g56BT3Wv29Fce7c7CxLGc2z0yOitcB5yKjy52UIfTbYGpwQngChf
+	 DCaa+P8O2fIzraUcsg9bxTByaU3j5zFeVlQAIOHK2VBmIgV5iJf96mGX2r5g4Byrxj
+	 Fbcm/tO+8z0/4C0fm0f+/WyjurR7I92iIuzO6l7Ng0D6XvJCHwNvapf4EXB5LI6kTG
+	 CSSnLT+Mce9d/u5j87dXp62lnA8Uj8cNlC5fRmoHW+oTFL1B1zv987rqe/8bBTbPz6
+	 YAEVkyPepQUhA==
+Date: Mon, 8 Jun 2026 10:00:51 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ricardo Pardini <ricardo@pardini.net>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>, nic_swsd@realtek.com, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: add Realtek r8169 family PCIe
- Ethernet
-Message-ID: <20260608-armored-ultra-uakari-ef1d77@quoll>
-References: <20260605-rk3588-dts-rtl-eth-describe-dt-alias-v3-0-8a8857b39daf@pardini.net>
- <20260605-rk3588-dts-rtl-eth-describe-dt-alias-v3-1-8a8857b39daf@pardini.net>
+To: Joey Lu <a0987203069@gmail.com>
+Cc: zhengxingda@iscas.ac.cn, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, ychuang3@nuvoton.com, 
+	schung@nuvoton.com, yclu4@nuvoton.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: display: verisilicon,dc: generalize
+ for single-output variants
+Message-ID: <20260608-emotional-rapid-woodlouse-61f7b9@quoll>
+References: <20260608023237.305036-1-a0987203069@gmail.com>
+ <20260608023237.305036-2-a0987203069@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,129 +68,216 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260605-rk3588-dts-rtl-eth-describe-dt-alias-v3-1-8a8857b39daf@pardini.net>
+In-Reply-To: <20260608023237.305036-2-a0987203069@gmail.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-308083-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308082-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:ricardo@pardini.net,m:hkallweit1@gmail.com,m:nic_swsd@realtek.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:sebastian.reichel@collabora.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[iscas.ac.cn,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nuvoton.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:a0987203069@gmail.com,m:zhengxingda@iscas.ac.cn,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:yclu4@nuvoton.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	SEM_URIBL_FRESH15_UNKNOWN_FAIL(0.00)[quoll:query timed out];
 	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,realtek.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,sntech.de,collabora.com,vger.kernel.org,lists.infradead.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	RSPAMD_EMAILBL_FAIL(0.00)[devicetree@vger.kernel.org:query timed out];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,devicetree.org:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,quoll:mid]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 89B83653CF7
+X-Rspamd-Queue-Id: BB650653C4B
 
-On Fri, Jun 05, 2026 at 01:49:08PM +0200, Ricardo Pardini wrote:
-> Add a binding for fixed/soldered Realtek PCIe Ethernet controllers
-> driven by the r8169 driver (RTL8125/8126/8127/8168 and variants).
+On Mon, Jun 08, 2026 at 10:32:33AM +0800, Joey Lu wrote:
+> The existing schema hard-codes the five-clock/three-reset/dual-port
+> topology of the DC8200 IP block, preventing reuse for single-output
+> variants such as the Verisilicon DCUltraLite used in the Nuvoton MA35D1
+> SoC.
 > 
-> The "pciVVVV,DDDD" compatibles are the Open Firmware PCI Bus Binding
-> spelling, auto-derived from PCI-SIG vendor/device IDs, but they still
-> need a binding when used in a board DT - analogous to "usbVVVV,PPPP"
-> compatibles documented in their own bindings (e.g. microchip,lan95xx)
-> so board DTs attaching properties (fixed MAC, nvmem cell, ...) to
-> these PCI function nodes can be validated.
+> Rework the schema so that variant-specific constraints are expressed via
+> allOf/if blocks:
 > 
-> Suggested-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
+> - Add nuvoton,ma35d1-dcu to the SoC-specific compatible enum.  The
+>   generic verisilicon,dc fallback remains the driver-binding string.
+> - Relax the top-level clocks/resets definitions to minItems ranges so
+>   the base schema accepts both variants.
+> - Keep ports in the global required list and keep additionalProperties
+>   tightened to unevaluatedProperties.
+> - Add an allOf/if block for thead,th1520-dc8200: five-clock (core, axi,
+>   ahb, pix0, pix1), three-reset (core, axi, ahb).
+> - Add an allOf/if block for nuvoton,ma35d1-dcu: two-clock (core, pix0),
+>   one-reset (core).
+> - Fix a stray space in the port@0 description.
+> - Add a DT example for the Nuvoton MA35D1 DCU Lite using ports/port@0.
+> 
+> Signed-off-by: Joey Lu <a0987203069@gmail.com>
 > ---
->  .../devicetree/bindings/net/realtek,r8169.yaml     | 54 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 55 insertions(+)
+>  .../bindings/display/verisilicon,dc.yaml      | 103 +++++++++++++++---
+>  1 file changed, 90 insertions(+), 13 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/realtek,r8169.yaml b/Documentation/devicetree/bindings/net/realtek,r8169.yaml
-> new file mode 100644
-> index 0000000000000..6923211ff4c93
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/realtek,r8169.yaml
+> diff --git a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> index 9dc35ab973f2..db0260d874c5 100644
+> --- a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> +++ b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> @@ -17,7 +17,8 @@ properties:
+>      items:
+>        - enum:
+>            - thead,th1520-dc8200
+> -      - const: verisilicon,dc # DC IPs have discoverable ID/revision registers
+> +          - nuvoton,ma35d1-dcu
+> +      - const: verisilicon,dc  # DC IPs have discoverable ID/revision registers
 
-r8169 but no r8169 devices at all. This must match the device name, so
-most likely:
+Why do you need to change indentation? Why introducing irrelevant
+changes to the diff?
 
-realtek,rtl8168.yaml
+>  
+>    reg:
+>      maxItems: 1
+> @@ -26,6 +27,7 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> +    minItems: 2
+>      items:
+>        - description: DC Core clock
+>        - description: DMA AXI bus clock
 
-
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/realtek,r8169.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Realtek r8169 family PCIe Ethernet Controllers
-
-rtl8169? 8168? There is no r8169, is there?
-
-> +
-> +maintainers:
-> +  - Heiner Kallweit <hkallweit1@gmail.com>
-> +
-> +description:
-> +  PCI function node properties for fixed/soldered Realtek Ethernet
-> +  controllers driven by the r8169 driver.
-
-Describe hardware, not drivers.
+That's not true anymore. In such case the list should also be defined
+per variant and here only min/maxItems.
 
 
-> +
+> @@ -34,24 +36,19 @@ properties:
+>        - description: Pixel clock of output 1
+>  
+>    clock-names:
+> -    items:
+> -      - const: core
+> -      - const: axi
+> -      - const: ahb
+> -      - const: pix0
+> -      - const: pix1
+> +    minItems: 2
+> +    maxItems: 5
+>  
+>    resets:
+> +    minItems: 1
+>      items:
+>        - description: DC Core reset
+>        - description: DMA AXI bus reset
+>        - description: Configuration AHB bus reset
+>  
+>    reset-names:
+> -    items:
+> -      - const: core
+> -      - const: axi
+> -      - const: ahb
+
+This stays, with minItems. Variants only need min/maxItems
+
+
+
+> +    minItems: 1
+> +    maxItems: 3
+>  
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+> @@ -59,7 +56,7 @@ properties:
+>      properties:
+>        port@0:
+>          $ref: /schemas/graph.yaml#/properties/port
+> -        description: The first output channel , endpoint 0 should be
+> +        description: The first output channel, endpoint 0 should be
+>            used for DPI format output and endpoint 1 should be used
+>            for DP format output.
+>  
+> @@ -77,7 +74,60 @@ required:
+>    - clock-names
+>    - ports
+>  
+> -additionalProperties: false
 > +allOf:
-> +  - $ref: ethernet-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: thead,th1520-dc8200
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 5
+> +          maxItems: 5
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - pci10ec,8125  # RTL8125 2.5GbE
-> +      - pci10ec,8126  # RTL8126 5GbE
-> +      - pci10ec,8127  # RTL8127
-> +      - pci10ec,8161  # RTL8168 variant
-> +      - pci10ec,8162  # RTL8168 variant
-> +      - pci10ec,8168  # RTL8168/8111 GbE
+> +        clock-names:
+> +          items:
+> +            - const: core
+> +            - const: axi
+> +            - const: ahb
+> +            - const: pix0
+> +            - const: pix1
 > +
-> +  reg:
-> +    maxItems: 1
+> +        resets:
+> +          minItems: 3
+> +          maxItems: 3
 > +
-> +  local-mac-address: true
-> +  mac-address: true
-> +  nvmem-cells: true
-> +  nvmem-cell-names: true
+> +        reset-names:
 
-Drop all above
+minItems: 3
 
+> +          items:
+> +            - const: core
+> +            - const: axi
+> +            - const: ahb
 > +
-> +required:
-> +  - compatible
-> +  - reg
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nuvoton,ma35d1-dcu
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
 > +
-> +additionalProperties: false
+> +        clock-names:
+> +          items:
+> +            - const: core
+> +            - const: pix0
+> +
+> +        resets:
+> +          maxItems: 1
+> +
+> +        reset-names:
 
-uneavaluatedProperties instead
+maxItems: 1
+
+> +          items:
+> +            - const: core
+> +
+> +unevaluatedProperties: false
+
+Stop making random changes to the binding.
 
 Best regards,
 Krzysztof
