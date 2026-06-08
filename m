@@ -1,129 +1,197 @@
-Return-Path: <devicetree+bounces-308078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308079-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 96EhOyp2JmpPWwIAu9opvQ
-	(envelope-from <devicetree+bounces-308078-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:58:34 +0200
+	id bLRJFmV2JmpeWwIAu9opvQ
+	(envelope-from <devicetree+bounces-308079-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:59:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82188653C14
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:58:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3DDA653C2F
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:59:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RzhrtqVI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308078-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308078-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=f3w0AFvZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308079-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308079-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 13EF5301F999
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 07:53:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B70A6302A2DB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 07:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19FFD38F646;
-	Mon,  8 Jun 2026 07:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 846C33839A3;
+	Mon,  8 Jun 2026 07:54:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D0630C629;
-	Mon,  8 Jun 2026 07:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F1C73101D4
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 07:54:21 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780905186; cv=none; b=pLHlgdRiyBdSvoZDxXJKc/3wsg/cGr2/CgTifwnAkrLR7tiTGfytn32OMm/sse/2vmyez5IEGuGReYk8bIbn0K12F9S13mFfoz8tfm3+Qdgm6dVFUd6pwh11N2/AunilAG3EpTJbD7gwJe3rMRF0/pqCEJeQldQgKWuI0YEKjro=
+	t=1780905262; cv=none; b=uAAUR+cT7gEt9+y0jqjAzR9yGsZiVxaNbe/xFpzVAEzWbtsYb0GvkG/lNYlYh4ao2gJ4mfdub0gYASvJ6YvVG4v4E7yvlSw5BEwhviJTXdczGm8GaQOQe86TwwSbSX6RmhssWaIyXvK9IiZRDGozySmAMTkgnvbw4idfqqtFi+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780905186; c=relaxed/simple;
-	bh=xDqUmosu9bm9fo+RWAw/TRQttLRRtnRIaEteULDwtFw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MhB2puK6+rQUTZwNwgyOw3oLqMCm9xm3awtBAR5Y/6nvBR8IESHo4EyvPwXOe7KcXZIh9Er368nhPYcAecPBwILvcSlwf5v3ImCdvoh17MvlUpZZfUrVXB1ja6NifPnVhiWkW5BP+s/7GRU7AhSwK3wP2GGdQsgOCMPJavwYkZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RzhrtqVI; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBB8E1F00893;
-	Mon,  8 Jun 2026 07:53:03 +0000 (UTC)
+	s=arc-20240116; t=1780905262; c=relaxed/simple;
+	bh=1TBbE154d7n6vJz2xt2Zd43U+H5MBxTvz8QxmTXZeNo=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=KHtNcSekx2yB7jaSZtmC7IF/hFWFyWwmbTip8mQIv2H3yAhXlXHK6b6eo5guDFuHhJt3dNlHgzxWWInXP5viu8XuT6AI+9hD7PFBDZG9iScL5c2evFtLE9J2HAC/l7fV/A1NXO7I4UZEj95sOoKMTrL7ZDuJi2C1sUXfuoeEZ8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f3w0AFvZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C5871F00893;
+	Mon,  8 Jun 2026 07:54:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780905184;
-	bh=WJFQ/eLSZ9ZBMeT1AmRntICsA1hijhCQck/8ePq58YE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=RzhrtqVI9UAWhhgYirzsJcVjkBxa++IFG414nhMt2IVhZ59WqE6RFJojWO0vhbdoT
-	 0BrdHFT0HZ/PgcYv6EOZoJuEcVbTRPtmemjHxNZxQfd1z7M8o+rv1q9s7jBfneBqjI
-	 Yo5NCoHTZrur9nAXrSDHBXQTkBJuNVN+tq2+jY3HJLmzBWtDGt9+7qvOAJ1beiZG+Q
-	 dexDgH4uQ7kw2f8JVtL4dDc7s1kFsSsSqAugGyOd/TZNqfvDs0iZvHQa1G7sCOWMhy
-	 fxbdjvxnMz3Hq2GzcZVLSxChwNHGF7vCttFn4qZ+2l7089OpSpMWvTbsKH7JsI5fy7
-	 P3psG3PRd2/iQ==
-Date: Mon, 8 Jun 2026 09:53:01 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, 
-	Piergiorgio Beruto <pier.beruto@onsemi.com>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, Richard Cochran <richardcochran@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, netdev@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Jerry Ray <jerry.ray@microchip.com>
-Subject: Re: [PATCH net-next v4 15/16] dt-bindings: net: add onsemi's S2500
-Message-ID: <20260608-nifty-garnet-pillbug-2be5da@quoll>
-References: <20260605-s2500-mac-phy-support-v4-0-de0fbc13c6d8@onsemi.com>
- <20260605-s2500-mac-phy-support-v4-15-de0fbc13c6d8@onsemi.com>
+	s=k20260515; t=1780905261;
+	bh=SLoG+vZ6qQr+aKJX0NhBBf6Rn8OeKTA6fft+3Qish6o=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=f3w0AFvZhqhUEOXsxl/7tZzGasNN3N0ScX//pWnlrjE2KH1TNwzkuzSdSm9+J1iW7
+	 vd+n4pf/rPZdle5PfrB5MXPlC+FEp8NGkgOFNvn8gAbmlKRf/gNedMtUg2L1b9DMpK
+	 Wjx9RMiFc6hZBiEUg/VEpnwTQYj1lu5cR7acU8KHo377dnJdLya6Ra3YzwQWa0l2G3
+	 g0yjBleLOtgpOHDtN4akeqfUTryKNOJIRzdqPwSYH+IkIChJ3MM9sbzSuSc1cWLzjC
+	 KWhThJkLcZSoGqoedXodw7AeW0v56MxaBpfGn7Q5rKvMcMPllN8Tfl1ZFkeNlKcECn
+	 WLKDekqdfgbkA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v16 06/10] riscv: kexec_file: Use
+ crash_prepare_headers() helper to simplify code
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jinjie Ruan" <ruanjinjie@huawei.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260608073459.3119290-7-ruanjinjie@huawei.com>
+References: <20260608073459.3119290-7-ruanjinjie@huawei.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 08 Jun 2026 07:54:20 +0000
+Message-Id: <20260608075420.8C5871F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260605-s2500-mac-phy-support-v4-15-de0fbc13c6d8@onsemi.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308078-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Selvamani.Rajagopal@onsemi.com,m:andrew@lunn.ch,m:pier.beruto@onsemi.com,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:parthiban.veerasooran@microchip.com,m:richardcochran@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jerry.ray@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-308079-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:ruanjinjie@huawei.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,onsemi.com,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,microchip.com,lwn.net,linuxfoundation.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 82188653C14
+X-Rspamd-Queue-Id: B3DDA653C2F
 
-On Fri, Jun 05, 2026 at 10:42:46PM -0700, Selvamani Rajagopal wrote:
-> Add YAML device tree binding for the onsemi S2500 IEEE 802.3cg
-> compliant Ethernet transceiver device.
-> 
-> We use IRQF_TRIGGER_FALLING, though OPEN Alliance 10BASE-T1x
-> Serial Interface specification calls for IRQF_TRIGGER_LOW.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-Ah, and keep correct order of patches.
+Pre-existing issues:
+- [High] A Time-of-Check to Time-of-Use (TOCTOU) race condition in kexec se=
+gment preparation can cause a heap buffer overflow if memory hotplug occurs.
+--
 
-Please organize the patch documenting the compatible (DT bindings)
-before the patch using that compatible.
-See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+commit b23452d9853c692b4f51771e551dbfc49512243d
+Author: Jinjie Ruan <ruanjinjie@huawei.com>
 
-Best regards,
-Krzysztof
+riscv: kexec_file: Use crash_prepare_headers() helper to simplify code
 
+This patch simplifies the kexec_file code for RISC-V by using the newly
+introduced crash_prepare_headers() helper. It replaces the architecture
+specific prepare_elf_headers() with arch_get_system_nr_ranges() and
+arch_crash_populate_cmem() to reduce code duplication.
+
+> diff --git a/arch/riscv/kernel/machine_kexec_file.c b/arch/riscv/kernel/m=
+achine_kexec_file.c
+> index 3f7766057cac3..439cbc50dfa69 100644
+> --- a/arch/riscv/kernel/machine_kexec_file.c
+> +++ b/arch/riscv/kernel/machine_kexec_file.c
+[ ... ]
+> @@ -55,41 +64,9 @@ static int prepare_elf64_ram_headers_callback(struct r=
+esource *res, void *arg)
+>  	return 0;
+>  }
+> =20
+> -static int prepare_elf_headers(void **addr, unsigned long *sz)
+> +int arch_crash_populate_cmem(struct crash_mem *cmem)
+>  {
+> -	struct crash_mem *cmem;
+> -	unsigned int nr_ranges;
+> -	int ret;
+> -
+> -	nr_ranges =3D 2; /* For exclusion of crashkernel region */
+> -	walk_system_ram_res(0, -1, &nr_ranges, get_nr_ram_ranges_callback);
+> -
+> -	cmem =3D kmalloc_flex(*cmem, ranges, nr_ranges);
+> -	if (!cmem)
+> -		return -ENOMEM;
+> -
+> -	cmem->max_nr_ranges =3D nr_ranges;
+> -	cmem->nr_ranges =3D 0;
+> -	ret =3D walk_system_ram_res(0, -1, cmem, prepare_elf64_ram_headers_call=
+back);
+> -	if (ret)
+> -		goto out;
+> -
+[ ... ]
+> +	return walk_system_ram_res(0, -1, cmem, prepare_elf64_ram_headers_callb=
+ack);
+>  }
+
+[Severity: High]
+This is a pre-existing issue, but can this code suffer from a Time-of-Check
+to Time-of-Use race condition during memory hotplug?
+
+The crash_prepare_headers() helper in kernel/crash_core.c uses a lockless
+two-pass sequence:
+
+kernel/crash_core.c:crash_prepare_headers() {
+    ...
+    max_nr_ranges =3D arch_get_system_nr_ranges();
+    ...
+    cmem =3D alloc_cmem(max_nr_ranges);
+    ...
+    ret =3D arch_crash_populate_cmem(cmem);
+    ...
+}
+
+Since the kexec syscall does not hold mem_hotplug_lock or use
+get_online_mems(), could a concurrent memory hotplug event call add_memory()
+and insert a new resource into the system RAM resource tree between the two
+passes?
+
+If that happens, the second walk_system_ram_res() pass in
+arch_crash_populate_cmem() would encounter the newly inserted memory range.
+This would cause it to execute prepare_elf64_ram_headers_callback() more
+times than initially counted.
+
+Because prepare_elf64_ram_headers_callback() unconditionally writes to
+cmem->ranges[cmem->nr_ranges] without verifying that
+cmem->nr_ranges < cmem->max_nr_ranges, would this result in an out-of-bounds
+write that corrupts adjacent heap memory?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608073459.3119=
+290-1-ruanjinjie@huawei.com?part=3D6
 
