@@ -1,420 +1,210 @@
-Return-Path: <devicetree+bounces-307936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307940-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kKEXAF4rJmoZTAIAu9opvQ
-	(envelope-from <devicetree+bounces-307936-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:39:26 +0200
+	id l7vDD9orJmovTAIAu9opvQ
+	(envelope-from <devicetree+bounces-307940-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:41:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8C7652478
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:39:24 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D19E165249D
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:41:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=M4hmWh5f;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307936-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307936-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LNM+0Ql2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307940-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-307940-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0AFFF300187E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 02:39:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 496E6300360C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 02:41:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34EA31CA4E;
-	Mon,  8 Jun 2026 02:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE28D326D65;
+	Mon,  8 Jun 2026 02:41:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCA073176EF
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 02:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C8B32B111
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 02:41:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780886361; cv=none; b=eQLIkLbum3ymKmvDDodLPQQCD0W3oQ3KXnFC7D/5ed7x5zF6BCBCzMkSInPSZp9aCkU95veV9SfD+CCuPgkb0vk0GFLhBufnkPdljwPVlsi7tJ81++KsYJTpGSwItwAM2e0U8GnPvh8AVfXC3TZc4ovoS7xrikg0AQvTgSatloo=
+	t=1780886487; cv=none; b=UZPASkZSOgCf4408iMQUDDTcEcogtE9N8os8zKG427Magof5in6GiQH+mUTiEYMCczsMwg9RlJFO/Fk4yIH5z6v2bYQp8ihkQKxGOnzLsNwcDAkfLT3XaQEyGt75kJdrpXlq/fwhuHRHPIudg0s41lod7916lhrTWEqU4h7CNrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780886361; c=relaxed/simple;
-	bh=lrg3BfU0Dfd2KrphFHdGyamOqLlZn8UGWEQr3pMFwwY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=twWHpHGIHpcln9RLbtT0NipRDUAk6Ipm/bRX9XRRvnXmqTTPsEptSoYMvj5dfm2AZ+Qpz69A+zrwMW3BvGlraj0mVFXOk74aT+uDI7g8EJPUA8Sdegl9RTpOdoC9ggKbdaRHjc06UWQDpQhQr9OTkuZhk+kiPsF6Csdnx+BxKn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M4hmWh5f; arc=none smtp.client-ip=209.85.216.51
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-36d98c9b596so2263918a91.3
-        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 19:39:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780886358; x=1781491158; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YfFgN+bmnzJQ2v84ituwVsdrEhxj4WXz21z/Ki18mKI=;
-        b=M4hmWh5fvMRXRXwJ8nNLaQFJmOiJdZlgPPldh2R+jAZB6jU9iaKdS0xVVehoxTpHZJ
-         /GrmdqEjJWH25DW2q2RDzwrfjxb2Ac0O5yCfCWenfCCRDtjiLgLGELCTiHuei+3WfrNk
-         bqmIg1QPplkL/m3o354XABlTxfI+GZ7sYAYmxeJRfjjrPlbxI1t9jLnCnfUiVsIiCIzr
-         sBa9b3W7Gl54ZXVooX1qTc7BLOyxGIvHlTv2tClVzxZDt8M8OFB5xBUb/osrwAAlEOCL
-         ukjtzaKe4haXfLVW0J0bqRgfhWNdRCanx916U1j0Qff/w7RBcB1MYhDAxD+yHbAZHnAU
-         kRFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780886358; x=1781491158;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=YfFgN+bmnzJQ2v84ituwVsdrEhxj4WXz21z/Ki18mKI=;
-        b=JbIS2wb8WvdpJP7woyhuEA4/XsyjEFqeP2smNdroJ5oGwDCsJSnJ4YFgU6YFQfWc7i
-         +IW2lJzGsKO1SEekeIj2BXtQ9guqhamwT/wy2TynK2YQBRKRpmYh4c9MIr4VshyfdEIW
-         SJBgdhyyzakwQK2z6ASmC/TfKCcmdNhQroOrH3QKmfVGt6tTHZjkEo+OLKm0xHGRYXWd
-         X9vMVPNu1h8sqKa2OC5HxB0tXdT0ynowYxfXqVu94qujoGM9I+dxzCHwU2vtvt6jEIj+
-         nKPcfF9NBm5MbxPfNPyDo/nZAKksXWxTxWPVcW2eB9B9d7ETFz4IqJ4GG8x8p6F926hU
-         83fg==
-X-Forwarded-Encrypted: i=1; AFNElJ+0JFMzi3CNCeNY3SOo0h89SumM56zsG4SOJaSpj7xxXACRpbpPbZLWhlyBhcxYyi5Z4CXjlCV8w8Ds@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3pbkYyQrO8owxzlscdJttfFJUt4tHSWRsn1JE5BjxVw8mSNXl
-	4czggKnhNaiN811qIy/U45eao8Am4vpN7U6WfGznxvOUlnxOLNWnOJpY
-X-Gm-Gg: Acq92OHTWcwxahvtSEaOU3SfqkBA9kYwm1U/KK9vQ2poVgU9y5ITRblLtN/H2jEXj4D
-	KdwES/YsD6U3mABLd5v8AjgweqFXOPsH69wBI0QLUm6BVq4elg0fcmDPm+Zbis28u0mZ+jqbX+K
-	lQt4Lz5Y94hnxj6F1TuMsS2RMk2qaO1EGOU6LZNON133P3jxWYZgft5sXF9QEzZkd3P612gJFVQ
-	7GkP4z+szSKqLfrPa0ySb3kScVwYc0G4Rqo5709v1pwnWJsgFumDjP5SbQeUv+1CEKBOw2T+hhR
-	LTLICcsyY+SCRiVSLbFP9+cIGpKhEXpvHx+GKRoRtzfM1gosDap9eZxy8y8VFruKcS2M421ZuCh
-	UoJVsqUBjsrMgsfldKkWcQFBmyGZtFLjyfawfvJXYMPwFaeR1ew5G8xgmCwAnfkega4GYKK7+cE
-	NJZPEGTlNdTXqi3yMhrKy4dWrBsCKWWo7kKZtzW7WhKivviKwbOsm3Ils3Mw==
-X-Received: by 2002:a17:90b:3a44:b0:369:971:4888 with SMTP id 98e67ed59e1d1-370f057ac30mr12499905a91.15.1780886357991;
-        Sun, 07 Jun 2026 19:39:17 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36f711e52b0sm14248048a91.15.2026.06.07.19.39.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Jun 2026 19:39:17 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sun, 7 Jun 2026 19:39:16 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: ASHISH YADAV <ashishyadav78@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ashish Yadav <ashish.yadav@infineon.com>
-Subject: Re: [PATCH v3 2/2] hwmon:(pmbus/xdp720) Add support for efuse xdp730
-Message-ID: <bf947dcd-2028-4dfd-a007-c4f39d2b7649@roeck-us.net>
-References: <20260601090925.3781-1-Ashish.Yadav@infineon.com>
- <20260601090925.3781-3-Ashish.Yadav@infineon.com>
+	s=arc-20240116; t=1780886487; c=relaxed/simple;
+	bh=P+Vq4deZiWLV553QIy9k7efD+BX5pJv6rClwciZFCsk=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=GS4UA9D1zyKae/IVxXwmPxbCi3OYqFAkk7pMhexNcws2/9Shz+KbXB/F7Agdxg9GgG/YNXGSbfGrzDVLkcozMDc40JZmJ6VFdDDcppVp1M1+wP1aX+NjfBjLebDYBbpmFqgBl45oPFsGdATGJ1RQexpfsYC84SLcnt32GOkJj58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LNM+0Ql2; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D1481F00893;
+	Mon,  8 Jun 2026 02:41:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780886483;
+	bh=mwJrXmtqejKYCngZrxBQoyTb/fGdzAiXmkGHtx6i+jA=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=LNM+0Ql2/hqwTH6TJmDTcqTY36jPz3KLjscM9TZ1ZipqgSYUVVZYRZykzABJOmTN0
+	 313E0pon45P8+EYRtfWIzeg95ziEb0ujDniNJesOVLvGpLc8M/OOkhu4paBrXy2VZB
+	 fHfugn03bZpZ4re56EbFBps7Pc1VnJvwlyK6ExmZqn2Dmf68JmMbyepcBhFWemwCww
+	 t+7ltYvRjB74vaOOdSdtidfjXdZkPLhnd8TPQ8vueudXL1/kC/AKOyXN8RHV3YUSJh
+	 Js1y1vkH0FrIzrxWYmMdHVxy7c7KM91x6Ljkn0jk3+d588hqC1B1LydYz/ytVWRudB
+	 lBQgEMrBta3oQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 5/5] drm/verisilicon: add DCUltraLite chip identity
+ to HWDB
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Joey Lu" <a0987203069@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260608023237.305036-6-a0987203069@gmail.com>
+References: <20260608023237.305036-6-a0987203069@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 08 Jun 2026 02:41:22 +0000
+Message-Id: <20260608024123.9D1481F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260601090925.3781-3-Ashish.Yadav@infineon.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307936-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307940-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ashishyadav78@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ashish.yadav@infineon.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DMARC_NA(0.00)[roeck-us.net];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,sashiko.dev:url];
 	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:a0987203069@gmail.com,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,infineon.com:email,roeck-us.net:from_mime,roeck-us.net:mid]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CA8C7652478
+X-Rspamd-Queue-Id: D19E165249D
 
-On Mon, Jun 01, 2026 at 02:39:25PM +0530, ASHISH YADAV wrote:
-> From: Ashish Yadav <ashish.yadav@infineon.com>
-> 
-> Adds support for the Infineon XDP730 Digital eFuse Controller by
-> updating the existing XDP720 driver.
-> 
-> Signed-off-by: Ashish Yadav <ashish.yadav@infineon.com>
-> ---
-> XDP720/XDP730 Digital eFuse Controllers provides accurate system telemetry
-> (V, I, P, T) and reports analog current at the IMON pin for post-processing.
-> 
-> Both parts share the same PMBus register map and direct-format
-> coefficients; they differ in the GIMON gain step exposed via the
-> TELEMETRY_AVG register (bit 10) and in the VDD_VIN pin number
-> (XDP720: pin 9, XDP730: pin 20).
-> 
-> The Current and Power measurement depends on the RIMON and GIMON values.
-> The GIMON (microA/A) depends on the 10th bit of TELEMETRY_AVG PMBUS Register.
-> The value of RIMON (kohm) can be provided by the user through device tree using
-> infineon,rimon-micro-ohms  property.
-> ---
->  drivers/hwmon/pmbus/Kconfig  |   2 +-
->  drivers/hwmon/pmbus/xdp720.c | 167 +++++++++++++++++++++--------------
->  2 files changed, 100 insertions(+), 69 deletions(-)
-> 
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index 8f4bff375ecb..a9e86d92b044 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -715,7 +715,7 @@ config SENSORS_XDP720
->  	tristate "Infineon XDP720 family"
->  	help
->  	  If you say yes here you get hardware monitoring support for Infineon
-> -	  XDP720.
-> +	  XDP720 and XDP730 Digital eFuse Controllers.
->  
->  	  This driver can also be built as a module. If so, the module will
->  	  be called xdp720.
-> diff --git a/drivers/hwmon/pmbus/xdp720.c b/drivers/hwmon/pmbus/xdp720.c
-> index 8729a771f216..1a5eab09f2fd 100644
-> --- a/drivers/hwmon/pmbus/xdp720.c
-> +++ b/drivers/hwmon/pmbus/xdp720.c
-> @@ -1,128 +1,159 @@
->  // SPDX-License-Identifier: GPL-2.0+
->  /*
-> - * Hardware monitoring driver for Infineon XDP720 Digital eFuse Controller
-> + * Hardware monitoring driver for Infineon XDP720 / XDP730 Digital
-> + * eFuse Controllers.
-> + *
-> + * Both parts share the same PMBus register map and direct-format
-> + * coefficients; they differ in the GIMON gain step exposed via
-> + * the TELEMETRY_AVG register and in the VDD_VIN pin number.
->   *
->   * Copyright (c) 2026 Infineon Technologies. All rights reserved.
->   */
->  
-> +#include <linux/bitops.h>
->  #include <linux/i2c.h>
-> -#include <linux/module.h>
->  #include <linux/init.h>
->  #include <linux/kernel.h>
-> -#include <linux/of_device.h>
-> -#include <linux/bitops.h>
->  #include <linux/math64.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
->  #include "pmbus.h"
->  
->  /*
-> - * The IMON resistor required to generate the system overcurrent protection.
-> - * Arbitrary default Rimon value: 2k Ohm
-> + * The IMON resistor required to generate the system overcurrent
-> + * protection.  Arbitrary default Rimon value: 2 kOhm (in micro-ohms).
->   */
-> -#define XDP720_DEFAULT_RIMON 2000000000 /* 2k ohm */
-> -#define XDP720_TELEMETRY_AVG 0xE9
-> +#define XDP720_DEFAULT_RIMON		2000000000U	/* 2 kohm */
-> +#define XDP720_TELEMETRY_AVG		0xE9
-> +#define XDP720_TELEMETRY_AVG_GIMON	BIT(10)		/* high/low GIMON select */
-> +
-> +/* Chip identifiers carried in OF match-data and i2c_device_id->driver_data. */
-> +enum xdp720_chip_id {
-> +	CHIP_XDP720 = 0,
-> +	CHIP_XDP730,
-> +};
->  
-> -static struct pmbus_driver_info xdp720_info = {
-> +struct xdp720_data {
-> +	enum xdp720_chip_id	 id;
-> +	struct pmbus_driver_info info;
-> +};
-> +
-> +static const struct pmbus_driver_info xdp720_info = {
->  	.pages = 1,
-> -	.format[PSC_VOLTAGE_IN] = direct,
-> -	.format[PSC_VOLTAGE_OUT] = direct,
-> -	.format[PSC_CURRENT_OUT] = direct,
-> -	.format[PSC_POWER] = direct,
-> -	.format[PSC_TEMPERATURE] = direct,
-> -
-> -	.m[PSC_VOLTAGE_IN] = 4653,
-> -	.b[PSC_VOLTAGE_IN] = 0,
-> -	.R[PSC_VOLTAGE_IN] = -2,
-> -	.m[PSC_VOLTAGE_OUT] = 4653,
-> -	.b[PSC_VOLTAGE_OUT] = 0,
-> -	.R[PSC_VOLTAGE_OUT] = -2,
-> +	.format[PSC_VOLTAGE_IN]		= direct,
-> +	.format[PSC_VOLTAGE_OUT]	= direct,
-> +	.format[PSC_CURRENT_OUT]	= direct,
-> +	.format[PSC_POWER]		= direct,
-> +	.format[PSC_TEMPERATURE]	= direct,
-> +
-> +	.m[PSC_VOLTAGE_IN]	= 4653,
-> +	.b[PSC_VOLTAGE_IN]	= 0,
-> +	.R[PSC_VOLTAGE_IN]	= -2,
-> +	.m[PSC_VOLTAGE_OUT]	= 4653,
-> +	.b[PSC_VOLTAGE_OUT]	= 0,
-> +	.R[PSC_VOLTAGE_OUT]	= -2,
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-Do not change patch formatting just because you prefer your own
-format. This hides the actual changes for no purpose.
+Pre-existing issues:
+- [High] A wildcard entry in vs_chip_identities shadows subsequent specific=
+ entries, making them unreachable.
+- [High] The IRQ handler is registered before DRM structures are initialize=
+d, which can cause a NULL pointer dereference if an interrupt fires early o=
+r if initialization fails.
+--
 
->  	/*
-> -	 * Current and Power measurement depends on the RIMON (kOhm) and
-> -	 * GIMON(microA/A) values.
-> +	 * Current and Power measurement depend on the RIMON (micro-ohm)
-> +	 * and GIMON (microA/A) values; scaled per-instance in probe().
+commit ef807eaf736a3cb84d7613b4d88301061b410a1b
+Author: Joey Lu <a0987203069@gmail.com>
 
-Also, if you make changes like this, do it in a separate patch
-or patch series. Again, this hides functional changes.
+drm/verisilicon: add DCUltraLite chip identity to HWDB
 
-I am not going to review this patch any further.
+This commit registers the Nuvoton MA35D1 DCUltraLite chip identity in
+the hardware database. It places the entry last in the list to act as a
+gate for hardware recognition.
 
-Guenter
+> diff --git a/drivers/gpu/drm/verisilicon/vs_hwdb.c b/drivers/gpu/drm/veri=
+silicon/vs_hwdb.c
+> index 91524d16f7785..7d630a667a3f0 100644
+> --- a/drivers/gpu/drm/verisilicon/vs_hwdb.c
+> +++ b/drivers/gpu/drm/verisilicon/vs_hwdb.c
+> @@ -129,6 +129,16 @@ static struct vs_chip_identity vs_chip_identities[] =
+=3D {
 
->  	 */
-> -	.m[PSC_CURRENT_OUT] = 24668,
-> -	.b[PSC_CURRENT_OUT] = 0,
-> -	.R[PSC_CURRENT_OUT] = -4,
-> -	.m[PSC_POWER] = 4486,
-> -	.b[PSC_POWER] = 0,
-> -	.R[PSC_POWER] = -1,
-> -	.m[PSC_TEMPERATURE] = 54,
-> -	.b[PSC_TEMPERATURE] = 22521,
-> -	.R[PSC_TEMPERATURE] = -1,
-> +	.m[PSC_CURRENT_OUT]	= 24668,
-> +	.b[PSC_CURRENT_OUT]	= 0,
-> +	.R[PSC_CURRENT_OUT]	= -4,
-> +	.m[PSC_POWER]		= 4486,
-> +	.b[PSC_POWER]		= 0,
-> +	.R[PSC_POWER]		= -1,
-> +	.m[PSC_TEMPERATURE]	= 54,
-> +	.b[PSC_TEMPERATURE]	= 22521,
-> +	.R[PSC_TEMPERATURE]	= -1,
->  
->  	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_PIN |
-> -		   PMBUS_HAVE_TEMP | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_INPUT |
-> -		   PMBUS_HAVE_STATUS_TEMP,
-> +		   PMBUS_HAVE_TEMP | PMBUS_HAVE_IOUT |
-> +		   PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP,
->  };
->  
->  static int xdp720_probe(struct i2c_client *client)
->  {
-> -	struct pmbus_driver_info *info;
-> +	struct xdp720_data *data;
->  	int ret;
-> -	u32 rimon;
->  	int gimon;
-> +	u32 rimon;
->  
-> -	info = devm_kmemdup(&client->dev, &xdp720_info, sizeof(*info),
-> -			    GFP_KERNEL);
-> -	if (!info)
-> +	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
->  		return -ENOMEM;
->  
-> +	data->id = (enum xdp720_chip_id)(uintptr_t)i2c_get_match_data(client);
-> +	data->info = xdp720_info;
-> +
->  	ret = devm_regulator_get_enable(&client->dev, "vdd-vin");
->  	if (ret)
->  		return dev_err_probe(&client->dev, ret,
-> -			"failed to enable vdd-vin supply\n");
-> +				     "failed to enable vdd-vin supply\n");
->  
->  	ret = i2c_smbus_read_word_data(client, XDP720_TELEMETRY_AVG);
-> -	if (ret < 0) {
-> -		dev_err(&client->dev, "Can't get TELEMETRY_AVG\n");
-> -		return ret;
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "failed to read TELEMETRY_AVG\n");
-> +
-> +	/* Bit 10 of TELEMETRY_AVG selects the GIMON gain step in microA/A */
-> +	switch (data->id) {
-> +	case CHIP_XDP720:
-> +		gimon = (ret & XDP720_TELEMETRY_AVG_GIMON) ? 18200 : 9100;
-> +		dev_info(&client->dev, "Initialised XDP720 instance\n");
-> +		break;
-> +	case CHIP_XDP730:
-> +		gimon = (ret & XDP720_TELEMETRY_AVG_GIMON) ? 20000 : 10000;
-> +		dev_info(&client->dev, "Initialised XDP730 instance\n");
-> +		break;
-> +	default:
-> +		return -EINVAL;
->  	}
->  
-> -	ret >>= 10; /* 10th bit of TELEMETRY_AVG REG for GIMON Value */
-> -	ret &= GENMASK(0, 0);
-> -	if (ret == 1)
-> -		gimon = 18200; /* output gain 18.2 microA/A */
-> -	else
-> -		gimon = 9100; /* output gain 9.1 microA/A */
-> -
-> -	if (of_property_read_u32(client->dev.of_node,
-> -				 "infineon,rimon-micro-ohms", &rimon))
-> -		rimon = XDP720_DEFAULT_RIMON; /* Default if not set via DT */
-> +	if (device_property_read_u32(&client->dev,
-> +				     "infineon,rimon-micro-ohms", &rimon))
-> +		rimon = XDP720_DEFAULT_RIMON;	/* Default if not in FW */
->  	if (rimon == 0)
->  		return -EINVAL;
->  
-> -	/* Adapt the current and power scale for each instance */
-> -	info->m[PSC_CURRENT_OUT] = DIV64_U64_ROUND_CLOSEST((u64)
-> -		info->m[PSC_CURRENT_OUT] * rimon * gimon, 1000000000000ULL);
-> -	info->m[PSC_POWER] = DIV64_U64_ROUND_CLOSEST((u64)
-> -		info->m[PSC_POWER] * rimon * gimon, 1000000000000000ULL);
-> +	/* Adapt the current and power scale for each instance. */
-> +	data->info.m[PSC_CURRENT_OUT] = DIV64_U64_ROUND_CLOSEST((u64)
-> +		data->info.m[PSC_CURRENT_OUT] * rimon * gimon,
-> +		1000000000000ULL);
-> +	data->info.m[PSC_POWER] = DIV64_U64_ROUND_CLOSEST((u64)
-> +		data->info.m[PSC_POWER] * rimon * gimon,
-> +		1000000000000000ULL);
->  
-> -	return pmbus_do_probe(client, info);
-> +	return pmbus_do_probe(client, &data->info);
->  }
->  
->  static const struct of_device_id xdp720_of_match[] = {
-> -	{ .compatible = "infineon,xdp720" },
-> -	{}
-> +	{ .compatible = "infineon,xdp720", .data = (void *)CHIP_XDP720 },
-> +	{ .compatible = "infineon,xdp730", .data = (void *)CHIP_XDP730 },
-> +	{ }
->  };
->  MODULE_DEVICE_TABLE(of, xdp720_of_match);
->  
->  static const struct i2c_device_id xdp720_id[] = {
-> -	{ "xdp720" },
-> -	{}
-> +	{ "xdp720", CHIP_XDP720 },
-> +	{ "xdp730", CHIP_XDP730 },
-> +	{ }
->  };
->  MODULE_DEVICE_TABLE(i2c, xdp720_id);
->  
->  static struct i2c_driver xdp720_driver = {
->  	.driver = {
-> -		   .name = "xdp720",
-> -		   .of_match_table = xdp720_of_match,
-> +		.name		= "xdp720",
-> +		.of_match_table	= xdp720_of_match,
+[Severity: High]
+This is a pre-existing issue, but does the wildcard entry at the start of
+vs_chip_identities prevent specific entries from being matched?
+
+Looking at vs_chip_identities, the first entry uses a wildcard for the
+customer ID:
+
+static struct vs_chip_identity vs_chip_identities[] =3D {
+	{
+		.model =3D 0x8200,
+		.revision =3D 0x5720,
+		.customer_id =3D ~0U,
+...
+
+In vs_fill_chip_identity(), the search loop returns on the first match:
+
+	for (i =3D 0; i < ARRAY_SIZE(vs_chip_identities); i++) {
+		if (vs_chip_identities[i].model =3D=3D model &&
+		    vs_chip_identities[i].revision =3D=3D revision &&
+		    (vs_chip_identities[i].customer_id =3D=3D customer_id ||
+		     vs_chip_identities[i].customer_id =3D=3D ~0U)) {
+...
+
+Because the ~0U entry comes first, wouldn't it shadow the subsequent specif=
+ic=20
+entries for the same model and revision (like customer_id 0x310 and 0x311),
+preventing their specific formats from ever being applied?
+
+>  		.max_cursor_size =3D 64,
+>  		.formats =3D &vs_formats_no_yuv444,
 >  	},
-> -	.probe = xdp720_probe,
-> -	.id_table = xdp720_id,
-> +	.probe		= xdp720_probe,
-> +	.id_table	= xdp720_id,
+> +	{
+> +		.model =3D 0x0,		/* DCUltraLite */
+> +		.revision =3D 0x5560,
+> +		.customer_id =3D 0x305,
+> +
+> +		.generation =3D VSDC_GEN_DC8000,
+> +		.display_count =3D 1,
+> +		.max_cursor_size =3D 32,
+> +		.formats =3D &vs_formats_no_yuv444,
+> +	},
 >  };
->  
->  module_i2c_driver(xdp720_driver);
->  
->  MODULE_AUTHOR("Ashish Yadav <ashish.yadav@infineon.com>");
-> -MODULE_DESCRIPTION("PMBus driver for Infineon XDP720 Digital eFuse Controller");
-> +MODULE_DESCRIPTION("PMBus driver for Infineon XDP720/XDP730 Digital eFuse Controllers");
->  MODULE_LICENSE("GPL");
->  MODULE_IMPORT_NS("PMBUS");
+> =20
+>  int vs_fill_chip_identity(struct regmap *regs,
+
+[Severity: High]
+This isn't a bug introduced by this patch, but is it possible for an early
+interrupt to cause a NULL pointer dereference during probe?
+
+In vs_dc_probe() from vs_dc.c, the IRQ handler is registered before DRM
+structures are initialized:
+
+	ret =3D devm_request_irq(dev, irq, vs_dc_irq_handler, 0,
+			       dev_name(dev), dc);
+...
+	ret =3D vs_drm_initialize(dc, pdev);
+
+If an interrupt fires during this window, the handler seems to unconditiona=
+lly
+dereference dc->drm_dev which is allocated later in vs_drm_initialize():
+
+vs_drm_handle_irq() in vs_drm.c:
+...
+			if (dc->drm_dev->crtcs[i])
+				drm_crtc_handle_vblank(&dc->drm_dev->crtcs[i]->base);
+
+Could this lead to a panic if the hardware has a pending interrupt before D=
+RM
+is ready?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608023237.3050=
+36-1-a0987203069@gmail.com?part=3D5
 
