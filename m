@@ -1,151 +1,228 @@
-Return-Path: <devicetree+bounces-308404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308406-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rK02N8XyJmrAoQIAu9opvQ
-	(envelope-from <devicetree+bounces-308404-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:50:13 +0200
+	id ZwLHODzzJmo6ogIAu9opvQ
+	(envelope-from <devicetree+bounces-308406-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:52:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35907658EAB
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38671658F15
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:52:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GI47GZ7t;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308404-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308404-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=onsemi.com header.s=mimecast20250127 header.b=aD7MQXZ2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308406-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308406-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=onsemi.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 99380365B9E5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 15:27:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E27ED342C0D4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 15:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71EE240800C;
-	Mon,  8 Jun 2026 15:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F4096423148;
+	Mon,  8 Jun 2026 15:04:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from usb-smtp-delivery-120.mimecast.com (usb-smtp-delivery-120.mimecast.com [170.10.153.120])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14D4E286417;
-	Mon,  8 Jun 2026 15:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC1B03CD8BF
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 15:04:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780930850; cv=none; b=SI7y2n93bYqoo64ApWxvq6U7PjYTU6XpxP1FnKx6qRkr71o1Q8LQKR6pSPtLK2oZPTBK8H1/RidB7PIQhnmmzdvCaP+XJ5/UsovXK8cLTfbSYzMhX2bt38zKRk/qpgFCKUdy/vk0ZYqgZHwEqxWLUYMq9HU+LDQohomW8OS1Ruw=
+	t=1780931074; cv=none; b=a0nmWzHHfxLf+lj/udoasqO9AAiNDMxpiXrmlAZunn2hVdfmxYLaK/5tTgwafNZKLdDcfLOOUF1j6fm+ZnxLLXHi1udvPgRK+13oYdHGoqtdmL7jA9kLOoNaZ7cXkNdgPLCXoFQhdMj9mbtru/E3keBLyQjelH6wpabKiFqbKos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780930850; c=relaxed/simple;
-	bh=/xTngY1e5T3eCXThGLvVYNJGUTCOiwYZCZyPREmZoUI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LuUNsNixIZsujgPaObUOoDHT1lcZFrNiOp4xGyd7q6tEVDj4w6k5lQs+DhIoX9Ok1Qe0Ycmn13GydelGf0VhuING4D7nL/leRn2itpyplWxMuJWK57oPh3BUFEnahYXMEJ8uxhm64ZmkZ9KqWyiVgbVT29XsbCqEpGpq5YDbr00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GI47GZ7t; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D2BB1F00893;
-	Mon,  8 Jun 2026 15:00:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780930841;
-	bh=egby52K8xtGcrLXY6RAt9nVSWQECKng6yoZW1LfMLq0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=GI47GZ7tVZtzEpB5LRuwh9v5wSxOwyPJ7N58X3cS8j1QaV3chZzoY0kEAr7Qfb64U
-	 kRqQw6jUR/UiGdcyUi5XU/55tBtZODE1Vrn3Umd/3lj6NqI1SHoeeQU7Fe8yP7orfA
-	 EQsM1vflBaQjvDGFwUgDJyNMtUXsQtHk5UXcJASIrbfft3DMCHYRsGcupc5E6NBrPl
-	 2TkGz4wsN/FOUTIbfTTRUPa9XAmMb+v7pELhG3nrKcWAIslJYsgJ/+dSMfKQ4ol51v
-	 c+nNyACdEFol4wW3/xKXnRH+UzTffC+vPI8+YGQorHgviL07ZwBugLY2xJ0deyO2L2
-	 /Lae5gPVzL1Cw==
-Date: Mon, 8 Jun 2026 10:00:40 -0500
-From: Rob Herring <robh@kernel.org>
-To: Ninad Naik <ninadnaik07@gmail.com>
-Cc: broonie@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, me@brighamcampbell.com,
-	linux-kernel-mentees@lists.linux.dev, skhan@linuxfoundation.org
-Subject: Re: [PATCH] spi: dt-bindings: octeon: Convert to DT schema
-Message-ID: <20260608150040.GA2675433-robh@kernel.org>
-References: <20260607142356.2844008-1-ninadnaik07@gmail.com>
- <20260608143259.GA2569066-robh@kernel.org>
+	s=arc-20240116; t=1780931074; c=relaxed/simple;
+	bh=AMp19Y3f3mgCseJLZe5AGO/icYDr4A3NJA39rKfnj54=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 MIME-Version:Content-Type; b=N8HmZv40kNskTYhiIsat8xI7C40U7c3kyIdZIE11q8BRPO+Oap8ynIq5Cjw10yRVl9p+xAUSPyWz7F1CDMXoO5+bGevapnEtXxPJhePKc6tibpe4qrIqk4aKxxW2cIKd/VnaNGT925Rl8SOcs0zckV9kBCfXq9Q3dok9T4XY7Dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=onsemi.com; spf=pass smtp.mailfrom=onsemi.com; dkim=pass (2048-bit key) header.d=onsemi.com header.i=@onsemi.com header.b=aD7MQXZ2; arc=none smtp.client-ip=170.10.153.120
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=onsemi.com;
+	s=mimecast20250127; t=1780931073;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=AMp19Y3f3mgCseJLZe5AGO/icYDr4A3NJA39rKfnj54=;
+	b=aD7MQXZ2Rs5zZ+wGH88DviJ9DwTg96/dlXhs3AoplBu/By5LceQMZnhpgElvhx99LU07AT
+	UtOS69PH2T8NtCTnWgOgrgHDSEIY9Ye9p2sD/cStZGUdKJ3X22VT6MS/ymcWwOHoHjppXL
+	iWZn6+DCOyXLeEIsECCJEi5rQqe9ueUg123Jjq3OTkZx/KiRAapOZSmKIoBYA/gx8BEA5a
+	ISrvmM2LEv2BTeExA/Qwf7hKok62/UsqC8pV2dpB6j0TO/zEV5mOq2Rza/FnLyTu7yqBu3
+	EVm7fIWZsDnVHlXYQBqeTQv6GKkU1nSsELkdo8nDWUeh/j2VBq4DzqJxDPcxeA==
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012056.outbound.protection.outlook.com
+ [40.107.200.56]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ usb-mta-54-bxBH4JDtOxqh3JIfQ0Fm8g-1; Mon, 08 Jun 2026 08:04:28 -0700
+X-MC-Unique: bxBH4JDtOxqh3JIfQ0Fm8g-1
+X-Mimecast-MFC-AGG-ID: bxBH4JDtOxqh3JIfQ0Fm8g_1780931062
+Received: from CY8PR02MB9249.namprd02.prod.outlook.com (2603:10b6:930:9c::17)
+ by CH3PR02MB10112.namprd02.prod.outlook.com (2603:10b6:610:197::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.12; Mon, 8 Jun 2026
+ 15:04:19 +0000
+Received: from CY8PR02MB9249.namprd02.prod.outlook.com
+ ([fe80::e437:4ba8:6506:4cda]) by CY8PR02MB9249.namprd02.prod.outlook.com
+ ([fe80::e437:4ba8:6506:4cda%3]) with mapi id 15.21.0092.011; Mon, 8 Jun 2026
+ 15:04:19 +0000
+From: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: "Parthiban.Veerasooran@microchip.com"
+	<Parthiban.Veerasooran@microchip.com>, "conor@kernel.org" <conor@kernel.org>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
+	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	Piergiorgio Beruto <Pier.Beruto@onsemi.com>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "Conor.Dooley@microchip.com"
+	<Conor.Dooley@microchip.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: RE: [PATCH net v3 2/2] dt-bindings: net: updated interrupt type to be
+ active low, level triggered
+Thread-Topic: [PATCH net v3 2/2] dt-bindings: net: updated interrupt type to
+ be active low, level triggered
+Thread-Index: AQHc8eDLvWzkHnbXI0KmrY/VvMfuDrYrecyAgAALlpCAAm25gIAAkU0wgAAYXICAAAajgIAFcz6AgAAGt5CAACvrAIAAgT8g
+Date: Mon, 8 Jun 2026 15:04:19 +0000
+Message-ID: <CY8PR02MB9249CBAC46F7F56A5075254E831C2@CY8PR02MB9249.namprd02.prod.outlook.com>
+References: <20260601-level-trigger-v3-0-da73e7010532@onsemi.com>
+ <20260601-level-trigger-v3-2-da73e7010532@onsemi.com>
+ <20260602-rebel-snide-5036c97e410d@spud>
+ <CY8PR02MB92493D2E5491AAE5416C05A283122@CY8PR02MB9249.namprd02.prod.outlook.com>
+ <a5abb9b8-6ebf-4f95-a684-fc889b98acea@microchip.com>
+ <CY8PR02MB9249E607ACBF3A05AB83ABF683102@CY8PR02MB9249.namprd02.prod.outlook.com>
+ <20260604-swimwear-garnet-3eb092e6fda7@spud>
+ <4df9882b-3426-4c36-8048-0c76d0f11c74@lunn.ch>
+ <7c68173a-ebff-42cc-8519-95e8365805b5@microchip.com>
+ <DM4PR02MB926317F64B5A3827009B66A9831C2@DM4PR02MB9263.namprd02.prod.outlook.com>
+ <103296ba-9577-4851-ad43-dcd261130afd@lunn.ch>
+In-Reply-To: <103296ba-9577-4851-ad43-dcd261130afd@lunn.ch>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY8PR02MB9249:EE_|CH3PR02MB10112:EE_
+x-ms-office365-filtering-correlation-id: dc5d7d61-9291-4c8d-aac4-08dec56f373e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|22082099003|18002099003|6133799003|38070700021|11063799006|4143699003|56012099006
+x-microsoft-antispam-message-info: x9vDLgSpVTZa7Hc8La+2MBBEtOy5CQhz5Ritg7JHW54xPj8senZ3cIDrApxjmyXxdazd8xKjwhdG/NwkLs57yy4qtlfpIkPeQO0m9zEpEcbL6U0ggQXGgxVZqlqDuVmJ8Uu1cwGzb805lylkKbmE4aEVS0paS67E2SMEoCQA9BMGzHnld/+6cRziY4fqT5hEZTC3uf/wgi5HOkDmldRcZkbblKBVdGzyVuyWnu3jqKps5FIfLR1QQWdFa6+F5QK/fvAJPSOBwancYGU2i0b6y8rt6a6hKedtghlOCdLBm95UMFhkcIdLn/IvsVodhogAMF8DSZNOXAC9tY50gbWtersbpy6lxoCpGKl52WqCx2KwLax33Ab0cJPNIqEUcop72HfZsmHo6n31XBxSqIHShFlb4/4KBg9xqAYuTHPT/Ah+OZ494uF4tQ76vt51Ch7yW9mUv03rl6Kw57B9TeCamx1klu76E9IjWR5vaFTvp1urXIgCFrdzza+c5+AJqvWJs6xppdKVSTU7dCmzkpaOSlG3HRtZz0rgdSA7gsERUhtbTanx5sM/8fLOiIopvb4F39fK5+mCx+HJWB2SKi6zve6bwmOPIoF20ncnWcRltdGeELzIXZ82nvbZibGeafFUuLwxgU8NfB4+i0A7GyPHv82hREpAA5TNQykin9dG+2LXX9BEPKivtCYAAx2hNpapDR5QBm1WBK6bATEZLvTVkf7Rg3Y27EtBKKebCGmdOZU9wdAdlyA4AU961Zc3NASB
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY8PR02MB9249.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(22082099003)(18002099003)(6133799003)(38070700021)(11063799006)(4143699003)(56012099006);DIR:OUT;SFP:1101
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MzJoaGVKbSt1WlloU3FPbzZoTktKMi9jNDFUWFlCR3lRWUkxdHBhaXZzTUpp?=
+ =?utf-8?B?a1FjaVFmQ0tMNCszTFNucTFrY2hML2M3bXg1M0tYKzMvekd5T2JXVTRmTnJX?=
+ =?utf-8?B?V1k5bDRZY0ozenVGcGFtL3JBVEROdkZFbE5MM09WczVuT1B1RUxydDBGS1ZN?=
+ =?utf-8?B?MmF1RkZFZnhRUXNPSFI4MCtIWm1zcDNqcW1NRjFCcjJzcXBSbFhjc0F2Nzl1?=
+ =?utf-8?B?d0VTOWNXOUpBMHVrSFhqU282dmhlNThMc2VwaFB2dHJVYkpPSXJiUE9Tb1dr?=
+ =?utf-8?B?TWEyM3V5RERpdGtkRk9EOU8xV3Bhc1lOZTBSRmdqM0htK0ZrbmVlV1RLRW1D?=
+ =?utf-8?B?RzAzU29qb01FSkJQMWVqVHpoaWJWNE5FeXJDNkVMcGZYcGFDRE5JdEJub2gv?=
+ =?utf-8?B?emtuUm9JS0RCaUFraFRmYlRMSVR6djYyZitzQTllaHFDSkRzaXRvNnBrRUpr?=
+ =?utf-8?B?elBrNzhQbXF4M01pc2lTdWZiYjV6eUVTZmE1ZkUwd0tWVDQ2Wjg2R3d6NjBZ?=
+ =?utf-8?B?QjJYVXROMWdoV3dKOUtlUSt5ay9GeVMzeU94ZEYxUUZLalF6SHV4aDBVb0cr?=
+ =?utf-8?B?MDQxamR5K0l3TUxuNko4N09BR0FlbUZ1blFPWHhEdE5jeHJJZGdEZkQyd0F1?=
+ =?utf-8?B?cm84bmRvWXJBcVliUFc3OTNrZ0VEcUhkT1BwdSt6dGJLRUhsMUNsNFFCald5?=
+ =?utf-8?B?a0FKTTJHVXRlbjNsSlllTVNMZmRDcStaK0hjNkh3Mk5aVHNtY1lKWXZ5V2l5?=
+ =?utf-8?B?eUlTZVJaSnlxRFJkdHlPcG82Z2hONk9zcDVrczB2M2dvcVZwNURON2t3YWtv?=
+ =?utf-8?B?ZDYraWlZT3MvMkhGUkljLzVxalY0aDg0cjRRYXdGV0hySUVZbDVhNzBFZWZa?=
+ =?utf-8?B?SytFWGJxOHBxZDNBOTMyWUhEVDlBVURUNWJOVVVDU0Z3NGhzZEZtcy9EeUp4?=
+ =?utf-8?B?Nllkak0xcitLRnlXOW9rOXliTy9PVkxVTVFkQk00UzJLZ2RiQ05WVXAzSDZY?=
+ =?utf-8?B?eXNuQUUyT3F1VmdnclRLSkVTYzZJSFhMeEZ6b2lQNjRMUUZuY1pmNlN6UGUx?=
+ =?utf-8?B?Y3NhY0lYYlFOWEh1QzY2TWJYYXFkZGlITDBrVGhsdFIzb0FTeXQ0TDRVUFRN?=
+ =?utf-8?B?WkZvek4yNm9HekNtR1JYc3JNM0NONERyOFYzdTVrNDlBOG9yK1d6di8rZGhS?=
+ =?utf-8?B?enRBSlZ3QjNJWHJZUEV4THRFN2Rvc3BSbkpIYTVJdlBQWmcwQ2xleE55azl5?=
+ =?utf-8?B?bzFhQmdXQW5ac29pdXF0SFRaWTdZRklqRGsxZXFVU0F3RnVBVGNTQlVvVmI1?=
+ =?utf-8?B?cmFSUkZtUGVRaFVvU1NzR2VneTE0YjFTQmJkZERpbkMrQVY3enRvaFpYYU40?=
+ =?utf-8?B?MHZZZ2RxUExDMTBrcWk1SUhyc05SVW1FOE9QSDQ1ZkhzR2hMc3owTDF2Q1k2?=
+ =?utf-8?B?bThnOFNuc01KaGRFVTlrODlKVk84ditCVkRuUVFCRkRqcVNMa2VWb3BHZlk4?=
+ =?utf-8?B?VFg2bGFSVGdMWEVsWkpQS0Z6UkhPL3ZvRXpReW9USVZSQVR5QVBvWnZCbGpj?=
+ =?utf-8?B?dE94TldTaWplbmhJWnh2d1h0NS9jMGJIaVo5MHFzejZyUENxczNNdjFleXRn?=
+ =?utf-8?B?NzV4bmp1bU5JLzBZWWFsc255UldXdGhubVZIa290VXZlNGNKM0dzTEUwN0c3?=
+ =?utf-8?B?OWQ1TE8zdm5ydU5tNUhUS25PWGdRYWlTYVFJSlphaDFHRkVwbFlmQXp2ZEpw?=
+ =?utf-8?B?TFF6WjFBQjBqVzR3R2tTMXAxUXZtSlNwazJWTTJJWWsxSzlrWkl4VS9ZYUxR?=
+ =?utf-8?B?ckVKUmpzSDN0ZjhDUGxZUXFhYmRJbmkzdWdEWXdleG44cUpuWVBIZ0hVei9Q?=
+ =?utf-8?B?a3RGb3NLMnJUNEpQUVhVOExRcVV2RFlkRmVVTUQ3V1JUclBIeG1YTU5QVm1K?=
+ =?utf-8?B?TWVCWnhDQ3VGeDRWWnVxMkR4VU15WHIxYkM0Rk1zcmM2SFQyTXFja3dDZmtj?=
+ =?utf-8?B?NXBoaCtvSWJ3WThTUjc5MGN3NG5uaHErMUx2ZE5MR1hJaFV4YmhsY1dOS1B4?=
+ =?utf-8?B?TDNBWC9BYnV5ZmVGMVNXZkRCV2Q5eUMzTWl1VERCYTR2VFNMaUR5MjlzU2Ey?=
+ =?utf-8?B?bmZCYUs3S29IeWkyYloxYW9TNUNHNVNTeTZJLzJXSGxlRTZIN3pncTZWNWxF?=
+ =?utf-8?B?cHhUTC9EQzV5TCtmc2ZmQ3R3blM3c2JSTDFvZkR2OUNYN3lyMkhqQ2dsSnE0?=
+ =?utf-8?B?SGFnNk5lR09IY3Baa2JrNGZteldtb0dWd3hhc1lteFJkNjVpY0FMQzhJdTcr?=
+ =?utf-8?B?R3drL2FFRzZlVGRzaVR2SFVqS0lHZDdjYWc1Yi9Yam1pSlh6aWVnQUx0V0dZ?=
+ =?utf-8?Q?ANgDyuD3F88l0ON4=3D?=
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260608143259.GA2569066-robh@kernel.org>
+X-Exchange-RoutingPolicyChecked: Edy+XVJpoUim4ENAUFAE4Es+PSb6+rbv6xfe9QxZA/s8MQmDQ95YDUfxFSmHWgJa3hRxrSiHYKuaocsRNmkI7Wt9eZIzBCIxz3nEQh0RVyFXGYWS14mUNPlxvs/NPuk3BG7weGWmMEJfkZKn5ltqFj6yiUN6mm8z8pd80gggNhoPZ64La03w80/ZbQgO+Y2kA+tZjC/xXqocS7M4YTSbdEH8qfkR+1hMjZJVdkCEzJXPPzdmcZzMxQMI7lDtngICbcrX7hLZyOtEP/j08qb3/+fb0FhI1yANI9CJYADSfOx0iDhp50uaL1uNNvlEEfXr0P3kfYXZvAKcCROSuj253Q==
+X-OriginatorOrg: onsemi.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR02MB9249.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc5d7d61-9291-4c8d-aac4-08dec56f373e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jun 2026 15:04:19.1462
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 04e1674b-7af5-4d13-a082-64fc6e42384c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DTMM18p83ilmg+bgFqWmaWWeH1Xx1Lzupf/M5QYhZ5A9HwQ0KlMbOHr7TX8OcxI8n0Ys3JcfgMDfJBAdaAWYi3znHN4+pXZjkGwgLoz68Vo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR02MB10112
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: ek5r35br0mblROKcW9yxM2yPgtxdVh5AioROymmlAT4_1780931062
+X-Mimecast-Originator: onsemi.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[onsemi.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[onsemi.com:s=mimecast20250127];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-308404-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ninadnaik07@gmail.com,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:me@brighamcampbell.com,m:linux-kernel-mentees@lists.linux.dev,m:skhan@linuxfoundation.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-308406-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:Parthiban.Veerasooran@microchip.com,m:conor@kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Pier.Beruto@onsemi.com,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:Conor.Dooley@microchip.com,m:devicetree@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[Selvamani.Rajagopal@onsemi.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Selvamani.Rajagopal@onsemi.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[onsemi.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url]
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,CY8PR02MB9249.namprd02.prod.outlook.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 35907658EAB
+X-Rspamd-Queue-Id: 38671658F15
 
-On Mon, Jun 08, 2026 at 09:32:59AM -0500, Rob Herring wrote:
-> On Sun, Jun 07, 2026 at 07:53:56PM +0530, Ninad Naik wrote:
-> > Convert octeon-3010 to DT schema
-> > 
-> > Signed-off-by: Ninad Naik <ninadnaik07@gmail.com>
-> > ---
-> >  .../bindings/spi/cavium,octeon-3010-spi.yaml  | 67 +++++++++++++++++++
-> >  .../devicetree/bindings/spi/spi-octeon.txt    | 33 ---------
-> >  2 files changed, 67 insertions(+), 33 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/spi/spi-octeon.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml b/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml
-> > new file mode 100644
-> > index 000000000000..3dbbb4f3c104
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml
-> > @@ -0,0 +1,67 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/spi/cavium,octeon-3010-spi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Cavium, Inc. OCTEON SoC SPI master controller
-> > +
-> > +description:
-> > +  The Cavium OCTEON SPI controller is an SPI master controller found in
-> > +  OCTEON SoCs.
-> > +
-> > +maintainers:
-> > +  - Mark Brown <broonie@kernel.org>
-> 
-> This should be someone with this h/w. But there doesn't appear to be any 
-> OCTEON maintainer. There isn't any .dts using the compatible either. 
-> Perhaps this driver and binding can just be removed?
+PiBTdWJqZWN0OiBSZTogW1BBVENIIG5ldCB2MyAyLzJdIGR0LWJpbmRpbmdzOiBuZXQ6IHVwZGF0
+ZWQgaW50ZXJydXB0IHR5cGUgdG8gYmUgYWN0aXZlIGxvdywNCj4gbGV2ZWwgdHJpZ2dlcmVkDQo+
+IA0KPiANCj4gPiBJIGFncmVlLiBXaGVuIHdlIGNoYW5nZSB0byBsZXZlbCB0cmlnZ2VyZWQgaW50
+ZXJydXB0LCBjdXJyZW50IG1lY2hhbmlzbSB3b24ndCB3b3JrIGFzDQo+ID4gd2UgYXJlIG5vdCBk
+aXNhYmxpbmcgdGhlIGludGVycnVwdCB3aGVuIHdlIGhhbmRsZSB0aGVtLg0KPiANCj4gSSdtIGtp
+bmQgb2Ygc3VycHJpc2VkIGFib3V0IHRoYXQuIElmIHlvdSBvbmx5IHByb3ZpZGUgYSB0aHJlYWQg
+Y29udGV4dA0KPiBoYW5kbGVyLCBidXQgbm90IGEgaW50ZXJydXB0IGNvbnRleHQgaGFuZGxlciwg
+aSB3b3VsZCBvZiBleHBlY3RlZCB0aGUNCj4gSVJRIGNvcmUgdG8gbGVhdmUgdGhlIGludGVycnVw
+dCBkaXNhYmxlZCB1bnRpbCB0aGUgdGhyZWFkZWQgaGFuZGxlcg0KPiBleGl0ZWQuIEJ1dCBtYXli
+ZSBpdCBpcyBoaXN0b3JpYyBiZWhhdmlvdXIuDQoNCg0KWW91IGFyZSByaWdodC4gSSB3YXMganVz
+dCBoaWdobGlnaHRpbmcgdGhlIG5lZWQgZm9yIG1vdmluZyB0byANCnRocmVhZGVkIElSUSB3aGVu
+IHdlIG1vdmUgdG8gbGV2ZWwgdHJpZ2dlcmVkIGludGVycnVwdC4NCg0KQXMgeW91IGtub3csIHRo
+ZSBjdXJyZW50IGNvZGUgZG9lc24ndCBoYXZlIHRocmVhZGVkIElSUS4NCkl0IGhhcyBJU1Igd2Fr
+aW5nIHVwIGEgdGhyZWFkIHRoYXQgaGFuZGxlcyB0aGUgaW50ZXJydXB0DQogDQo+IEFuZHJldw0K
+DQo=
 
-Maybe not. Seems this is used on newer Octeon platforms like cn7130 
-which aren't that old. Some Ubiquiti devices use it and run 5.4 kernel 
-with OpenWRT:
-
-https://openwrt.org/toh/ubiquiti/edgerouter_4
-
-Rob
 
