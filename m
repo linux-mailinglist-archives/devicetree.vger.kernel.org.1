@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-307944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307946-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4lrQGhQtJmpmTAIAu9opvQ
-	(envelope-from <devicetree+bounces-307944-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:46:44 +0200
+	id maRqBB0tJmpnTAIAu9opvQ
+	(envelope-from <devicetree+bounces-307946-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:46:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB6FF6524F9
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:46:43 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF8F6524FC
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:46:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307944-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307944-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307946-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-307946-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5F974300398F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 02:46:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0249F300CFC9
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 02:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED683336882;
-	Mon,  8 Jun 2026 02:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766CD337B99;
+	Mon,  8 Jun 2026 02:46:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D649A3375CB;
-	Mon,  8 Jun 2026 02:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CCE130FF21;
+	Mon,  8 Jun 2026 02:46:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780886801; cv=none; b=es3mKiLOA6LPC9KhhyA7S83jUo38Fs+e39COTeELKnzX/RxgIrFR5cP0kk7cbx+qrqll9mMTewU30bmdhuv+tjryITF9Ii+B3FKBInop5UQ+3vmePsFhRBSkXqg3Em/W9hBy4LYCfyFZ3QcjqJADaIwY4fWTWSar/diywI7LpP0=
+	t=1780886803; cv=none; b=G5h9asueZ1zlfcOYlaBbOtd+vhLhziK+r8agZWntw48Z35Q0Ta5QDT0Zi7BKKpQaXk7SiBMLYc+YjwkkCYQDrEnA0OfcLyaiRzhlhC+51jS7mh/itGU6qYJ/iKFDPLyAePKPc+alFQlIf/2385yGwt//8fPTT/PVtmf7W7zum2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780886801; c=relaxed/simple;
-	bh=9QyzrGwtsAeFA6AEPpKbURPN5nrm65NIvoeoDNJNCmk=;
+	s=arc-20240116; t=1780886803; c=relaxed/simple;
+	bh=+eSvQyg0WYIA5OXyNDQfLE+z6DeiJKTxn5DMaIKwvbE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fq+lC5HQISx+zR9ILFI7xSzS6/tJNWygzTYEGS/bfQZx3dGkacyMKe3T4RkmmFbQXzW3GuZZ+b/Il5w7GqkW1Ms+tOs8YmdYE8KA4U0k2D647hK7F540bot9PRNJtivBJmdGHLkubOLnJ0aAl/RJqW/ZkiXPCh9M+1My3ri2HxQ=
+	 MIME-Version; b=aL7fqzSr54C0sibIbkH6eNIMl8ouUoxsY4uI8Qz5NSwu9aeZEDsMoanXkhSzbR7kRSc6NDaGAJSgLWOW6U5Bi1Tf5Wkt34x9WvKdM7fRK/Wr96AbU1SOAz/jWTv8qDXDw3PNQ3wmrTwKnFCzWE4ZX/aG+T25qJGwsobAsf9etcY=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
 Received: from loongson.cn (unknown [10.20.42.101])
-	by gateway (Coremail) with SMTP id _____8DxRekOLSZq+p4RAA--.41162S3;
-	Mon, 08 Jun 2026 10:46:38 +0800 (CST)
+	by gateway (Coremail) with SMTP id _____8DxVXgQLSZq_p4RAA--.22545S3;
+	Mon, 08 Jun 2026 10:46:40 +0800 (CST)
 Received: from loongson-pc.loongson.cn (unknown [10.20.42.101])
-	by front1 (Coremail) with SMTP id qMiowJCxOMEKLSZq9ESfAA--.25894S3;
-	Mon, 08 Jun 2026 10:46:38 +0800 (CST)
+	by front1 (Coremail) with SMTP id qMiowJCxOMEKLSZq9ESfAA--.25894S4;
+	Mon, 08 Jun 2026 10:46:39 +0800 (CST)
 From: Hongliang Wang <wanghongliang@loongson.cn>
 To: Hongliang Wang <wanghongliang@loongson.cn>,
 	Binbin Zhou <zhoubinbin@loongson.cn>,
@@ -50,10 +50,10 @@ Cc: linux-i2c@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	loongarch@lists.linux.dev,
 	Huacai Chen <chenhuacai@loongson.cn>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v6 1/2] dt-bindings: i2c: ls2x-i2c: Add clocks and clock-frequency properties
-Date: Mon,  8 Jun 2026 10:45:32 +0800
-Message-Id: <20260608024533.32419-2-wanghongliang@loongson.cn>
+	stable@vger.kernel.org
+Subject: [PATCH v6 2/2] i2c: ls2x: Add clocks property parsing and adjust bus speed
+Date: Mon,  8 Jun 2026 10:45:33 +0800
+Message-Id: <20260608024533.32419-3-wanghongliang@loongson.cn>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20260608024533.32419-1-wanghongliang@loongson.cn>
 References: <20260608024533.32419-1-wanghongliang@loongson.cn>
@@ -64,88 +64,173 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJCxOMEKLSZq9ESfAA--.25894S3
+X-CM-TRANSID:qMiowJCxOMEKLSZq9ESfAA--.25894S4
 X-CM-SenderInfo: pzdqwxxrqjzxhdqjqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBj9xXoW7Gr17ur43Kw47trW8JFW7WrX_yoWkZFXEka
-	4xAw18GrsxAF1Fg3yqvF4xJr43Ja42y3WrC3WUCF4vya4Ut345GFykJ343Ar4fWrsxu3W3
-	uFs7GrZ3Za1fKosvyTuYvTs0mTUanT9S1TB71UUUUjUqnTZGkaVYY2UrUUUUj1kv1TuYvT
-	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
-	cSsGvfJTRUUUbSxYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
-	vaj40_Wr0E3s1l1IIY67AEw4v_JrI_Jryl8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
-	w2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
-	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6r4UJVWxJr1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
-	xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1q
-	6rW5McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64
-	vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_
-	Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8Gjc
-	xK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0
-	cI8IcVAFwI0_JFI_Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8V
-	AvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E
-	14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUcNeODUUUU
+X-Coremail-Antispam: 1Uk129KBj93XoWxCr15KF15uw15Xw1DAw4fZwc_yoWrXw1kpF
+	W5CFZ5Gr4qqF42grsaq3W7ZFyYvws5JayUCFy7tw1xW3Z3Zr1DZa4ftFn09FWvgF97uayU
+	XayDGr43CFyUZrcCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUBIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVW8Jr0_Cr1UM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
+	AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
+	tVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7V
+	AKI48JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
+	6r1j6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
+	xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xII
+	jxv20xvE14v26r4j6ryUMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw2
+	0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x02
+	67AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU0epB3UUUUU==
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307944-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-307946-lists,devicetree=lfdr.de];
 	DMARC_NA(0.00)[loongson.cn];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:wanghongliang@loongson.cn,m:zhoubinbin@loongson.cn,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:loongarch@lists.linux.dev,m:chenhuacai@loongson.cn,m:stable@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER(0.00)[wanghongliang@loongson.cn,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:wanghongliang@loongson.cn,m:zhoubinbin@loongson.cn,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:loongarch@lists.linux.dev,m:chenhuacai@loongson.cn,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[wanghongliang@loongson.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,microchip.com:email,loongson.cn:mid,loongson.cn:from_mime,loongson.cn:email]
+	R_DKIM_NA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[loongson.cn:mid,loongson.cn:from_mime,loongson.cn:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EB6FF6524F9
+X-Rspamd-Queue-Id: 6EF8F6524FC
 
-Add clocks and clock-frequency properties to examples.
+The i2c-ls2x driver supports dts and acpi parameter passing.
+
+In dts, uses clock framework, by parsing clocks property to
+get i2c bus reference clock, and define the div of reference
+clock by device data.
+
+In acpi, by passing clocks property to describe i2c bus reference
+clock and clock-div property to describe the div of reference clock.
+
+Based on i2c bus reference clock(clock_a), i2c bus speed(clock_s)
+and div, calculate the prcescale of i2c divider register. The
+calculation formula is
+
+prcescale = (clock_a*10)/(div*clock_s)-1
 
 Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Cc: stable@vger.kernel.org
 Signed-off-by: Hongliang Wang <wanghongliang@loongson.cn>
 ---
- Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/i2c/busses/i2c-ls2x.c | 36 ++++++++++++++++++++++++++++++++---
+ 1 file changed, 33 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml b/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
-index ee09c6d9c5f0..0beb7f2515c8 100644
---- a/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
-@@ -37,11 +37,14 @@ unevaluatedProperties: false
+diff --git a/drivers/i2c/busses/i2c-ls2x.c b/drivers/i2c/busses/i2c-ls2x.c
+index b475dd27b7af..46dafa11b301 100644
+--- a/drivers/i2c/busses/i2c-ls2x.c
++++ b/drivers/i2c/busses/i2c-ls2x.c
+@@ -12,6 +12,7 @@
  
- examples:
-   - |
-+    #include <dt-bindings/clock/loongson,ls2k-clk.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
+ #include <linux/bitfield.h>
+ #include <linux/bits.h>
++#include <linux/clk.h>
+ #include <linux/completion.h>
+ #include <linux/device.h>
+ #include <linux/iopoll.h>
+@@ -63,11 +64,18 @@
+ /* The default bus frequency, which is an empirical value */
+ #define LS2X_I2C_FREQ_STD	(33 * HZ_PER_KHZ)
  
-     i2c0: i2c@1fe21000 {
-         compatible = "loongson,ls2k-i2c";
-         reg = <0x1fe21000 0x8>;
-+        clock-frequency = <100000>;
-+        clocks = <&clk LOONGSON2_APB_CLK>;
-         interrupt-parent = <&extioiic>;
-         interrupts = <22 IRQ_TYPE_LEVEL_LOW>;
-         #address-cells = <1>;
++/* The div of i2c reference clock on LS2K0500/2K1000/2K2000 */
++#define LS2X_I2C_2K_CLOCK_DIV	40
++
++/* The div of i2c reference clock on LS7A1000/7A2000 */
++#define LS2X_I2C_7A_CLOCK_DIV	50
++
+ struct ls2x_i2c_priv {
+ 	struct i2c_adapter	adapter;
+ 	void __iomem		*base;
+ 	struct i2c_timings	i2c_t;
+ 	struct completion	cmd_complete;
++	unsigned int		div;
+ };
+ 
+ /*
+@@ -96,6 +104,8 @@ static irqreturn_t ls2x_i2c_isr(int this_irq, void *dev_id)
+ static void ls2x_i2c_adjust_bus_speed(struct ls2x_i2c_priv *priv)
+ {
+ 	u16 val;
++	u32 pclk, div;
++	struct clk *clk;
+ 	struct i2c_timings *t = &priv->i2c_t;
+ 	struct device *dev = priv->adapter.dev.parent;
+ 	u32 acpi_speed = i2c_acpi_find_bus_speed(dev);
+@@ -107,12 +117,30 @@ static void ls2x_i2c_adjust_bus_speed(struct ls2x_i2c_priv *priv)
+ 	else
+ 		t->bus_freq_hz = LS2X_I2C_FREQ_STD;
+ 
++	if (dev_of_node(dev)) {
++		clk = devm_clk_get_optional_enabled(dev, NULL);
++		if (!IS_ERR_OR_NULL(clk))
++			pclk = clk_get_rate(clk);
++		else
++			pclk = LS2X_I2C_PCLK_FREQ;
++
++		div = priv->div;
++
++		val = (pclk * 10) / (div * t->bus_freq_hz) - 1;
++	} else {
++		/* clocks and clock-div are only ACPI properties. */
++		if (!device_property_read_u32(dev, "clocks", &pclk) &&
++		    !device_property_read_u32(dev, "clock-div", &div))
++			val = (pclk * 10) / (div * t->bus_freq_hz) - 1;
++		else
++			val = LS2X_I2C_PCLK_FREQ / (5 * t->bus_freq_hz) - 1;
++	}
++
+ 	/*
+ 	 * According to the chip manual, we can only access the registers as bytes,
+ 	 * otherwise the high bits will be truncated.
+ 	 * So set the I2C frequency with a sequential writeb() instead of writew().
+ 	 */
+-	val = LS2X_I2C_PCLK_FREQ / (5 * t->bus_freq_hz) - 1;
+ 	writeb(FIELD_GET(GENMASK(7, 0), val), priv->base + I2C_LS2X_PRER_LO);
+ 	writeb(FIELD_GET(GENMASK(15, 8), val), priv->base + I2C_LS2X_PRER_HI);
+ }
+@@ -295,6 +323,8 @@ static int ls2x_i2c_probe(struct platform_device *pdev)
+ 	if (!priv)
+ 		return -ENOMEM;
+ 
++	priv->div = (unsigned long)device_get_match_data(dev);
++
+ 	/* Map hardware registers */
+ 	priv->base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(priv->base))
+@@ -349,8 +379,8 @@ static DEFINE_RUNTIME_DEV_PM_OPS(ls2x_i2c_pm_ops,
+ 				 ls2x_i2c_suspend, ls2x_i2c_resume, NULL);
+ 
+ static const struct of_device_id ls2x_i2c_id_table[] = {
+-	{ .compatible = "loongson,ls2k-i2c" },
+-	{ .compatible = "loongson,ls7a-i2c" },
++	{ .compatible = "loongson,ls2k-i2c", .data = (void *)LS2X_I2C_2K_CLOCK_DIV, },
++	{ .compatible = "loongson,ls7a-i2c", .data = (void *)LS2X_I2C_7A_CLOCK_DIV, },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, ls2x_i2c_id_table);
 -- 
 2.47.2
 
