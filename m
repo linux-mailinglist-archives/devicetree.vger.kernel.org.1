@@ -1,207 +1,228 @@
-Return-Path: <devicetree+bounces-308351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gHIzMtDRJmpUlAIAu9opvQ
-	(envelope-from <devicetree+bounces-308351-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:29:36 +0200
+	id W836I8PUJmp3lQIAu9opvQ
+	(envelope-from <devicetree+bounces-308356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:42:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AFF0657315
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:29:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7D26576BD
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:42:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=k3N1gQtS;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="gnEc0q/E";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308351-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308351-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=amarulasolutions.com header.s=google header.b=JB4Zp65e;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308356-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308356-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=amarulasolutions.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1D64E3027680
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 14:19:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 53E2F30D1550
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 14:23:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94A53C9EE9;
-	Mon,  8 Jun 2026 14:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F14282F1E;
+	Mon,  8 Jun 2026 14:22:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB0333C98AE
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 14:19:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5855D3CFF79
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 14:22:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780928388; cv=none; b=RmZ8x+ImSpdY1Ovcp0OvbhlZuRNF8Vm3dl5R9vARfecCAue7aS4Ghc5ISnBtlCRc6dcGy1WEpRyAHW0tcIshS5xhjtYOFZqs8C7i4KW26nl+UChvwH7p1vUUD+zHpGze4Xn3YhnT3r2notbil4Ir+gfNNa9+wv1SMw1PhA70zRw=
+	t=1780928548; cv=none; b=BSqAP7OIOLwV83UnowG9EO9+8Eu/4J0URTxhs6/MYgX9UFlJoe+l5f+p05jhKBwZbt15ffj0nvdQH/KSHJyyVK8qjSaMJJJko3/TZpQVd5i3DRd8hmIPVTeB6YcY8boOSmnLfOH2BJ26/W93mb+P57MMNjLSwgspD4TdXmxFAjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780928388; c=relaxed/simple;
-	bh=RCYy0IHiJIJ71s+W/69dtSzgpRWYhBpmknflCMoSQ7s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aQ9YjBYrAkmFATaOissH9E5Jq8+GpirGLZfd/zwWYJUik4GakhRpefJLUrSuib7eQzazFq3yS4Zf1fs7zs55ObPA6JEzqoKm1EfVChrj1OifbR5hycUP4piH4uP9m6ZAZjtpAgbTGGYhpdc0FSWveabBMegt0MZHHibrLYJKl+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k3N1gQtS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gnEc0q/E; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 658DROIT3346978
-	for <devicetree@vger.kernel.org>; Mon, 8 Jun 2026 14:19:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	T48n2DUWsXNrk3FetI/dF/Eg9NT15exAWsHm/kM8tw8=; b=k3N1gQtSk6OnTdvm
-	E3Xfi5uS1MXoIMj1wX3SgYwWlu2h1JuCd+0V7Om7+xRUpC1p5VZWoc70uaaLLQ1S
-	dOSrfCWM/Ut+fDoDbd3fn6KLk7Covdz4ClO11shd6Dsq4rkzC31YIIs3qfo/zBWT
-	scbGj8S+apvyyujS5UuhcIsvHZgDKE5iMS74v4LwZfujaAxw36lOhG+iOWd28buv
-	utg13w5p2vIF4YRQ211eQuAo6639MX+DkrqiASUKtzQnXgUGdga2fJQi4q/exhCF
-	MoRn0NNBTon5GdL16F+/99WYZLbxs8eE7GEoKiy3CW07kBIwr4G4K3CqKcjZpj7Q
-	FIKssw==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4envaj8w0u-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 14:19:47 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-59ec1fcd5aaso6830536e0c.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 07:19:47 -0700 (PDT)
+	s=arc-20240116; t=1780928548; c=relaxed/simple;
+	bh=wzKX3PZSvEsg1ltSh5uHLZhsRsknb1MpSSDieocByRk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AogzhQjdv5ZrQ4a3dWX1LstxOIVGV+iEVNCD5Z486oTNoPCc4sj9+SAzqRS0woEEMXSdWwvdFGTJsboSpKip4HljllwpEZLwtoodfCEC7uVT88+akQtJbOFOfCIIuFPLebrvzDfhvlo0Mgs3DWsO2JvkTA9uwO+GJs4bd3XWbY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=JB4Zp65e; arc=none smtp.client-ip=209.85.218.52
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-bec3ffb95dbso678608366b.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 07:22:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780928386; x=1781533186; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T48n2DUWsXNrk3FetI/dF/Eg9NT15exAWsHm/kM8tw8=;
-        b=gnEc0q/EJ+1Vp/L2aJ2iXTHxsf0d97IYT5cqjLy2WUZScMkwpBSXj2YqBrBjSmYPPq
-         4SB2PBp0u1RIryn7GRROYMNB+FKpra+WJtpXu/iZQfs+fZhX3mYegR6qj2gk8551aI9c
-         a8AgYIryQZlmvxq98poTZktBmWhT/JJDWUCHlUpH85iwTxIwcTXmHAxVOp6FLZjQebad
-         MCVfktJW9W1thWqT04cGo7X1eQuNSD2Fx4HSRSE6ja6+W2YGn5ZXHADQaL5ZU4yVL7yT
-         xk0ignjxlGjWkxjpr7DWGBASksk3MQ5b2jgF8DLN05PPkndqhNYGIDyszmBMB2WK1YbS
-         5iiQ==
+        d=amarulasolutions.com; s=google; t=1780928546; x=1781533346; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8d17gntFj9cyOcdFrgQoUlzT+noL9BgQQAWn2N+JpH4=;
+        b=JB4Zp65ecVLQImDInuRP2oBGGTK1a45Fq0M8IcutDodPqZu2awVEu17Tf/FVr7Ngml
+         T/KXrXA2lqTAEax5hGEubWnd7PKHCcNcuewLMgsxP5a8eOEcdATYadtiwhHIWd9ElN5D
+         FGnL+eQIMvKZQqBjZYoDpOMdOKbOwVq18PBmc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780928386; x=1781533186;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=T48n2DUWsXNrk3FetI/dF/Eg9NT15exAWsHm/kM8tw8=;
-        b=S2xWpjfK0jVhKKESIJVsLgwLpKwMJ4LM8s9tF/ydlE9UgC7FpCgJlZhKPvG7ukre4a
-         NMEAQ47HPqSBqR6tnvvYYk7bVXjnz5LwuUrBr2FC86BdOjbx1XEu5zjkLe+fN4ldlFPd
-         /EvjrgVG9krX5jbeP4vvVtkJ44ghbVG/JgBrMFVJsjwVlfySeTkPBhwR7WwQSzaYDuAk
-         m/YmgWCKVYAH62n+O5UytOoOvzeOMWiXl9HJIOi2wMSmJxvjDFg1dgyCeGCZjnV7nxB1
-         unohzUVQkzzAJTWUv7Vxhnsl+9mmauSssU56hQGA4WmG5ou9OM5d73WD5s4oveSkroXY
-         Q8Qw==
-X-Forwarded-Encrypted: i=1; AFNElJ8TJ9g5vpGgydro/wcrAq2L4Vpb4CbgzDcc3UwADOqlOTTZUOKM2TFXvD+Jf7eMmxTLJ4OMO5nC/FlA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHRI+P4hKULLHw3ShEXwsXHd/VWFGDWpQeketnfMSb2hFJm6ev
-	vlz3roCqraEgZ3hOJsNrc5PjSTMZAb8cy61Em8ZJh9oQX3CNAv4aILKQ8tfuHiZvUWPzBdqoYOq
-	iu3rnPGkH4xQ56Ih8hqPcg3lXAXJAELXdfS29SS4Y2vp3whlHLOCZpZ+VINPPITgv
-X-Gm-Gg: Acq92OG4n92UoBgFPkWDJYcGtVLm+vHqID9r+yeTyJBJkCQ0oLzj5xw8Axhd0wYCMMS
-	Xgd8eTQ5viBbX/1Ib+c2ZoV2A7+iLpo7RLrDOvHmSNz/xr7at5wnSN6lUUssdz+USp9P85SoUBH
-	YW9L9cnPWyov+6Cy2xHcHGwCRLQebkoq9Sy39x33f4LG1dOl76xu6lrRBXqfZ7Oqh0YLUws9BNB
-	au87L6T76/bugp2+CEjW+fx4FRDlBpWGRailIDgO9l6jX7sOLMXtXancy1JenRzhcePxwbjJ4v3
-	AyLRwrXLCRA6Zd/HSzcQYuu6xKwANVgKErmnlAN1OV2IoZEZ9klExKgSSdSOg4qkufvNRmUw+Qb
-	KvqE5M12F0d40zAS2uSt7C+NW2FnyU76yKv45qkmKZhb3fe5jKWmcwVQRczw=
-X-Received: by 2002:a05:6122:1796:b0:5a0:c38e:6199 with SMTP id 71dfb90a1353d-5ac4ca5ce4amr7610867e0c.1.1780928386002;
-        Mon, 08 Jun 2026 07:19:46 -0700 (PDT)
-X-Received: by 2002:a05:6122:1796:b0:5a0:c38e:6199 with SMTP id 71dfb90a1353d-5ac4ca5ce4amr7610799e0c.1.1780928385554;
-        Mon, 08 Jun 2026 07:19:45 -0700 (PDT)
-Received: from brgl-qcom.home ([2a01:cb1d:dc:7e00:4904:8660:26f:8b6a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc3c15cesm397599425e9.5.2026.06.08.07.19.43
+        d=1e100.net; s=20251104; t=1780928546; x=1781533346;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8d17gntFj9cyOcdFrgQoUlzT+noL9BgQQAWn2N+JpH4=;
+        b=EjveIm2UxpZpcCj2R7Y1JDtKEUy2riQs1YUcS80u23ug+/wde1fRfI2A0nANMo76OA
+         4fsmHA4aMTeEkROv/d7Z9SBzlz4rO6lP/yNs6z/0caBcgElADmcb53NmaxPkpTZDWb1y
+         DDJC3Ke1J7+XqinEe88E+HxmGrb5OA2cNYOcpRzOxGJZRkFdnPgaLx87PXeazKA4P3fm
+         IKzO2rUYg+nMGiHsUtKG2X6F/X2aD2d+eTkUVRfNYAtmA3/P7nFSmbch+nUZo2+hpHG8
+         Od3mut1NDfrW0fz2Ale2yQQc0TvSCrGY6xgRrKQ+wbpytVGZpcPw8v6yS3rpyOmDTamt
+         Loag==
+X-Forwarded-Encrypted: i=1; AFNElJ+LduMzh+3PJDznsTMTgO4Lkrc9e4u5NYs+Oep//pXrgDcK7+LhLW09778nQ3uwWzs78zauTzVtA3+r@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqQbqonG6sko94tR2VZiB2DZdKbJouRihszcbebD1gZTBZBjdz
+	NkJMRtp1JJqqu2e833NjRo5A7kan5YZXQ2SjBFvpzV3K3yVFDglnT3MClQq58It0QQs=
+X-Gm-Gg: Acq92OHEe5AUlFIAXqK9byz4sc6ZvTRlEwh2meA87i2Yxo2My2aAMSx30Wxkpk7RMzX
+	45j2u5Uqx6VynLLVCVF3RTMDbj7KHQiwfYxuPHKXbKVIsamoyWgkXdoQrEuF/rPZk0Rg/lQW8R9
+	+MQwX4dSvvqrbxoXlKbHLPnawY5pILrNwpbScyvE02rprpJSzxojblhQJGQK6dSSo/Gy9L7PZvb
+	EZkWW9377aA7LxW91DLtFsyP0vPyJC8Eku2DZ2YHB+PrVMa08Q9LSQMPVI8nL1XV+uE074+SJo4
+	so20BvV06yDgIcVhSDezfrMMGYn493sif55URAXSgVZjiAIuqT3mB5P+1t5Y7DchCulW15JxGdd
+	5o15QJFkrfrwjun3EPeemexUg3nXrHxBAYw1oCBR9PRy1BfPF4BOd1iA64mAu8FKA+Rnhibs0Ld
+	Tncy/FUk9L5JMvkf7koITnumvb1OqUI9cP+Sa9r2jOpvkAtuhJ1CToFbosuWECxDPWfEz5z0Gq6
+	/weFterLsuknyBmS8fFRYuDTQCUVYkd+3cjHltkCHBQ5N/6Ts9KA08yFo8=
+X-Received: by 2002:a17:907:8b93:b0:bd5:2859:ed0a with SMTP id a640c23a62f3a-bf373306ce1mr774111666b.42.1780928545606;
+        Mon, 08 Jun 2026 07:22:25 -0700 (PDT)
+Received: from dario-ThinkPad-P14s-Gen-5.amarulasolutions.com ([2.196.42.139])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bf055307a35sm881847066b.52.2026.06.08.07.22.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2026 07:19:44 -0700 (PDT)
-From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        Wei Deng <wei.deng@oss.qualcomm.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-pm@vger.kernel.org, quic_chezhou@quicinc.com,
-        cheng.jiang@oss.qualcomm.com, shuai.zhang@oss.qualcomm.com,
-        jinwang.li@oss.qualcomm.com, xiuzhuo.shang@oss.qualcomm.com,
-        mengshi.wu@oss.qualcomm.com
-Subject: Re: (subset) [PATCH 0/2] Enable WCN6855 Bluetooth on lemans-evk via PCIe M.2 Key E connector
-Date: Mon,  8 Jun 2026 16:19:42 +0200
-Message-ID: <178092837981.163118.4463258851423326572.b4-ty@oss.qualcomm.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260608091702.3797437-1-wei.deng@oss.qualcomm.com>
-References: <20260608091702.3797437-1-wei.deng@oss.qualcomm.com>
+        Mon, 08 Jun 2026 07:22:25 -0700 (PDT)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	domenico.acri@engicam.com,
+	michael@amarulasolutions.com,
+	francesco.utel@engicam.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Amelie Delaunay <amelie.delaunay@foss.st.com>,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Christophe Parant <c.parant@phytec.fr>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Eric Biggers <ebiggers@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	Huang Shijie <shijie@os.amperecomputing.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Luca Weiss <luca.weiss@fairphone.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Rob Herring <robh@kernel.org>,
+	Sven Peter <sven@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v5 00/16] arm64: support Engicam MicroGEA-STM32MP257-RMM board
+Date: Mon,  8 Jun 2026 16:20:17 +0200
+Message-ID: <20260608142221.952245-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: lAIf8OPQ_Fko3x6kj0Cdb48SCgyBPo-I
-X-Authority-Analysis: v=2.4 cv=eo3vCIpX c=1 sm=1 tr=0 ts=6a26cf83 cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=KxFyB6w1bcBEixo3GQYA:9 a=QEXdDO2ut3YA:10
- a=tNoRWFLymzeba-QzToBc:22
-X-Proofpoint-ORIG-GUID: lAIf8OPQ_Fko3x6kj0Cdb48SCgyBPo-I
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA4MDEzNiBTYWx0ZWRfX8WthmRdrGnRv
- Ju7t/ryLNdYNtOXMrtnprILXyE+3ec1Jr5K9VxySpGwCeFYIvQnT+DsSOef/IkOtv77Hs3OO16R
- teLV8DpOnE2QBYAvVM4wXzLbN4ccJLwYQ3Vs/lPQJurref8eqUkz2gr+MCp4pM4JR8mKJCdtBlW
- 7lVuzUYaS+HYDAglGvXNB1RxCQAh7H5yOFwoiA/9AoBiC8PLHoZo+rG4nqbuT4wT+D9AVWRjWho
- yb1IGkHM10ww/c8a2SlX1cUmpXpXmNiS6jc0usi+JVcSlbOYitnEPdmdkm8cLcII9uwwlbu5wlj
- vcl+npp9PRcTKFEoj3v1CC1Jt/zJOKYvqW78I6zxSZNNo05jZewQs9d+o+nYFQeU/nqSHJ/MWJu
- t0u+01XhPmwhA5hTZysmn+LJhlZf5PVY2O1Zej9icRs7Ya4kaDsCGFyq5bn2K7mfdrFm06g+T0Y
- BjBTkR5bJKLQGqVs/9w==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-08_03,2026-06-05_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 phishscore=0 clxscore=1015 bulkscore=0
- malwarescore=0 adultscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606080136
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amarulasolutions.com,none];
+	R_DKIM_ALLOW(-0.20)[amarulasolutions.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-308351-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FREEMAIL_CC(0.00)[amarulasolutions.com,engicam.com,foss.st.com,oss.qualcomm.com,phytec.fr,kernel.org,linux-m68k.org,siliconsignals.io,os.amperecomputing.com,fairphone.com,gmail.com,amd.com,vger.kernel.org,lists.infradead.org,st-md-mailman.stormreply.com];
+	TAGGED_FROM(0.00)[bounces-308356-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mani@kernel.org,m:brgl@kernel.org,m:wei.deng@oss.qualcomm.com,m:bartosz.golaszewski@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pci@vger.kernel.org,m:linux-pm@vger.kernel.org,m:quic_chezhou@quicinc.com,m:cheng.jiang@oss.qualcomm.com,m:shuai.zhang@oss.qualcomm.com,m:jinwang.li@oss.qualcomm.com,m:xiuzhuo.shang@oss.qualcomm.com,m:mengshi.wu@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[bartosz.golaszewski@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:linux-amarula@amarulasolutions.com,m:domenico.acri@engicam.com,m:michael@amarulasolutions.com,m:francesco.utel@engicam.com,m:dario.binacchi@amarulasolutions.com,m:alexandre.torgue@foss.st.com,m:amelie.delaunay@foss.st.com,m:bjorn.andersson@oss.qualcomm.com,m:c.parant@phytec.fr,m:conor+dt@kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:ebiggers@kernel.org,m:geert@linux-m68k.org,m:himanshu.bhavani@siliconsignals.io,m:shijie@os.amperecomputing.com,m:konrad.dybcio@oss.qualcomm.com,m:krzk+dt@kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:luca.weiss@fairphone.com,m:mcoquelin.stm32@gmail.com,m:michal.simek@amd.com,m:robh@kernel.org,m:sven@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-stm32@st-md-mailman.stormreply.com,m:conor@kernel.org,m:krzk@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[dario.binacchi@amarulasolutions.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bartosz.golaszewski@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[dario.binacchi@amarulasolutions.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[amarulasolutions.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amarulasolutions.com:dkim,amarulasolutions.com:mid,amarulasolutions.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2AFF0657315
+X-Rspamd-Queue-Id: CD7D26576BD
 
+This series adds initial support for the Engicam MicroGEA-STM32MP257-RMM
+board based on the MicroGEA-STM32MP257 SoM.
 
-On Mon, 08 Jun 2026 14:47:00 +0530, Wei Deng wrote:
-> This series enables WCN6855 Bluetooth on the lemans EVK through the
-> PCIe M.2 Key E connector + pwrseq-pcie-m2 path.
-> 
-> It depends on the "Fixes/improvements for the PCI M.2 power sequencing
-> driver" series (V3):
-> 
->   https://lore.kernel.org/r/20260519-pwrseq-m2-bt-v3-0-b39dc2ae3966@oss.qualcomm.com
-> 
-> [...]
+The support includes device tree descriptions for both the SoM and the
+carrier board, together with the required pinctrl definitions for the
+peripherals used.
 
-Applied, thanks!
+The series also updates the arm64 defconfig accordingly.
 
-[1/2] power: sequencing: pcie-m2: Add PCI ID 0x1103 for WCN6855 Bluetooth
-      https://git.kernel.org/brgl/c/bde2202a2fffd3137df9a0b4b8ffd8a44ef316f6
+Changes in v5:
+- Add patch 2/16 arm64: dts: st: add power-domains to sdmmc1 on stm32mp231
+- Add patch 3/16 arm64: dts: st: add power-domains to sdmmc1 on stm32mp251
+- Increase slew-rate to <1> of ltdc pins to support the 27 MHz pixel clock
+  and prevent timing violations.
+- Change SDMMC2_CK pin bias from pull-up to bias-disable to avoid signal
+  integrity issues on the clock line
+- Fix touchscreen resolution to 480x854
+- Fix SPI1 CS0 polarity to GPIO_ACTIVE_LOW
 
-Best regards,
+Changes in v4:
+- Drop inclusion of stm32mp25xf.dtsi from stm32mp257-engicam-microgea.dtsi
+
+Changes in v3:
+- Add power-domains property in the SDMMC2 node.
+- Drop patch "arm64: defconfig: cleanup the defconfig"
+
+Changes in v2:
+- Add Acked-by of Conor Dooley for patch 0/1 "dt-bindings: arm: stm32:
+  support Engicam MicroGEA-STM32MP257-RMM board"
+- Add resets property to dts CAN node. Suggested by Sashiko.
+- Drop the clocks property from the sai1 node in stm32mp257-engicam-microgea-rmm.dts
+  to avoid overriding the peripheral bus clock reference defined in the base
+  SoC device tree. Suggested by Sashiko.
+- Reference the existing labeled nodes directly at the root level using
+  &sai1a and &sai1b in stm32mp257-engicam-microgea-rmm.dts instead of
+  redefining the entire node structure and redeclaring the labels. Suggested by Sashiko.
+- Drop the #clock-cells property from sai1a and remove the reference to sai1a from
+  the clocks array in sai1b, relying strictly on the st,sync property to handle
+  internal synchronization.
+
+Dario Binacchi (16):
+  dt-bindings: arm: stm32: support Engicam MicroGEA-STM32MP257-RMM board
+  arm64: dts: st: add power-domains to sdmmc1 on stm32mp231
+  arm64: dts: st: add power-domains to sdmmc1 on stm32mp251
+  arm64: dts: st: add SDMMC2 support on stm32mp25
+  arm64: dts: st: add CAN1 support on stm32mp25
+  arm64: dts: st: add i2c1 pins for stm32mp25
+  arm64: dts: st: add ltdc pins for stm32mp25
+  arm64: dts: st: add can1 pins for stm32mp25
+  arm64: dts: st: add pwm2/pwm4 pins for stm32mp25
+  arm64: dts: st: add sai1 pins for stm32mp25
+  arm64: dts: st: add sdmmc2 pins for stm32mp25
+  arm64: dts: st: add spi1 pins for stm32mp25
+  arm64: dts: st: add usart1 pins for stm32mp25
+  arm64: dts: st: support Engicam MicroGEA-STM32MP257 SoM
+  arm64: dts: st: support Engicam MicroGEA-STM32MP257-RMM board
+  arm64: defconfig: enable configs for Engicam  MicroGEA-STM32MP257-RMM
+
+ .../devicetree/bindings/arm/stm32/stm32.yaml  |   7 +
+ arch/arm64/boot/dts/st/Makefile               |   1 +
+ arch/arm64/boot/dts/st/stm32mp231.dtsi        |   1 +
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 328 ++++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  17 +
+ arch/arm64/boot/dts/st/stm32mp253.dtsi        |  16 +
+ .../st/stm32mp257-engicam-microgea-rmm.dts    | 319 +++++++++++++++++
+ .../dts/st/stm32mp257-engicam-microgea.dtsi   |  63 ++++
+ arch/arm64/configs/defconfig                  |   4 +
+ 9 files changed, 756 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp257-engicam-microgea-rmm.dts
+ create mode 100644 arch/arm64/boot/dts/st/stm32mp257-engicam-microgea.dtsi
+
 -- 
-Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+2.43.0
+
+base-commit: 4549871118cf616eecdd2d939f78e3b9e1dddc48
+branch: stm32mp257d-microgea
 
