@@ -1,203 +1,302 @@
-Return-Path: <devicetree+bounces-308488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308491-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 27PsNlMQJ2omrAIAu9opvQ
-	(envelope-from <devicetree+bounces-308488-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:56:19 +0200
+	id 2vtzCIkNJ2puqwIAu9opvQ
+	(envelope-from <devicetree+bounces-308491-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:44:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 389B2659E7B
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:56:19 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBFC659D32
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:44:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=Ve6KxcPd;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=hbipcLAe;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308488-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308488-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=amd.com header.s=selector1 header.b=AhxT+Bpn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308491-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308491-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 212323069622
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 18:37:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D33A630ADC15
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 18:38:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A10363E3D8F;
-	Mon,  8 Jun 2026 18:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DF833E51F8;
+	Mon,  8 Jun 2026 18:38:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from CO1PR03CU002.outbound.protection.outlook.com (mail-westus2azon11010042.outbound.protection.outlook.com [52.101.46.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70F523E3C4D
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 18:37:28 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780943849; cv=none; b=HlkwgWnL7416KwshZQvwFIUTLIaAzr9eZ944cehrmpas2IfgbfGpbpC4xeVJXoOZ1OC2a7Y3lYL+T2yTqlmoDJvHDL8ggFytcjeSMAqLgHflGjpVK49+JfvfG34q2N/xGyY/c12jRqNSWLA3Ha2CG5y5SQRBWCsfW1fa/nqU7j8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780943849; c=relaxed/simple;
-	bh=Gf04WEalx/FUQCjoE4Tim+odsuoobVmL7oDW5+HAgG8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ROUnOMtvCQ8A9xvzvgfngjyPbf77XwzM9iySI0uI7rPOGti12GtDvtLHb4FZMI6bCB8SOKjD3AI6RfnUeiYVPgZjS3i/lW7RPOBK2kZl2mfYRSJfOjm9Wjdl4MnNSrXs55VY50wqXCSR+XTtrDZPzodtROHxWaEL7yoliuZ22pk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ve6KxcPd; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hbipcLAe; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 658FKSc64045481
-	for <devicetree@vger.kernel.org>; Mon, 8 Jun 2026 18:37:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=nIZ1j2oO4hKk0sVO2Hu6TOAa
-	KuhKzlRHmyJatc66WiA=; b=Ve6KxcPdZvl6B8I2F1YCoUs97rEowdCEDqmkApdl
-	AvAFb+rdNQVgJrGInOIQZDLQeb0Va59EbdNWVN1qAwmswzh/aJf/LKpxZl2QHGmI
-	QEUhvr/pdHKWEGtPQoQFjEeMDJTbTATeMCiYlzsxFwSu6yL5DjZ321dRKkNoQc1E
-	TBLBYARUxglCCr55z7VpDZ1c857hMtwlqFYM7R6mdDY2VkDSMJpeXCl7FZf8Z0N7
-	UmyIMbUTQ3bCPdh/CakIvYBSVXUtrQIsEmabCc4/XWhnb5b6SBjtMEUTbCMop8fa
-	2QipVp6uHvplwQGH67lk+iAQGs/8vP4NE6nQxJElk/ggUg==
-Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4enxee1mvk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 18:37:27 +0000 (GMT)
-Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-6cfe512e871so2205840137.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 11:37:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780943847; x=1781548647; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nIZ1j2oO4hKk0sVO2Hu6TOAaKuhKzlRHmyJatc66WiA=;
-        b=hbipcLAeNVhUYhaQ0hRNUtdHc69IhOJkjsg3Kf9gdgXC/oGZbs+CXUfTs0aNPop2xU
-         O6ci6IOgsC6hwXe87DaRnIrn7xNULuAOfFclvyzwZ4RxPfx1ZxzBh5J1xAbeYoq25B5x
-         sMPt3KXTaNqppdOeJhph00oXvN15GLKv2qT/Tm/QyQfET04taqhgKUQgw/aLSsWp624K
-         xayRwvOuZz+1FFRqrSSQhZDbOqsjwknxNnpnwEyBLrKUyFGZ6sNaYHs1NRd6nxw3bDL+
-         71vUnzUJwCLDYlhYarvaW4F/nXXxdjbXx0kHV2ZoFh8O6iEP4L5L+J/30U62+AbbwPpc
-         lm0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780943847; x=1781548647;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nIZ1j2oO4hKk0sVO2Hu6TOAaKuhKzlRHmyJatc66WiA=;
-        b=eIusnaoc0+0CMBMdA7j0XIfeMG4mM5+SvBmqLnwMvE7jQiv03GBqdNvzdiJ7P3lWJT
-         J06elKEEVwD3e0aDkArOsbGUXLSVk5g/ma4MHzdvPvNDRSL2rVa4VNAoHgZ8bXjkHUI8
-         zozh1Z3n+wikkuVbYYF1a6nZsfB/IH9n0RihDbvDK/Jf/xRcrICnWADvMv1Pe/oOsYlF
-         aNI6mgsiGn15GmkKX1cjeHONXmJ8F0URpdLvX05qmBoIqiUTmaQBAiVw28i54yPqcpiw
-         JodU6X4uE5jRqcG++H8lpxklP9NcYt9O/Dy3d4zaOi+qSgGDzH76IRCl2/6UUVJbzxU1
-         ESYg==
-X-Forwarded-Encrypted: i=1; AFNElJ9mN/GPnllrZJcRqV5mMe79AFaKhtCMGxuInKc3GDX0bjsTcA+VYz7ZpXwsu/9WCTVX6S7NB9FVOe8H@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzv4j2SoMXcpYm4UzGGyK2o+BHAFrei+kwEIWvB9viCk30YtLf+
-	58udEqOJ816t9qXnGWdf+FzXUalPhGx/SM124lFhCBIF8RmRmsQB3anidAoENxPkWW0ITJxwp7i
-	+zBFvw/rlMGlPwCVAX//UT0qeN/u7mmefCyBxKxpoaytZyuHmzI7/rJp3OvPKNK+k
-X-Gm-Gg: Acq92OH1FVvQ4btwtOr1L6UYbq4VkaALoxofiKHanZHkFFMgbSowsDmPEc6I7v004Zk
-	sKWnMAX9zULH2So/jYMCyDajcnjUiDhtYdfghEIfBSBxi9OxkhILcxRHCdQ/Xiau+1d5LFWFMTV
-	NLmzy+NPoSPjGslU1VS8ERiQ6uUmBHOXu6OlRhQ6iaXycql8vAPDqYMDqhtdRsaaE3nSY/jQRHt
-	3AMFIL7vH4U06GTpwGBdG5v+okQal9MjcFLfrNuLPCl99Xq3bkqD9fmvSz7G0hAzHdn95jz00xs
-	XWj6/gDMe7K8su3XggZHqpw9ivv4ovH0A4jYdAHumpMdtbL7x5SC/DA3TeMXedX1NFhJQdoIBB3
-	bMIKMBfaE4td6kF5Ats4LIMhNZPF/ePl0Xq1x6HDZ53PoVnZc5z+PpgrAL1srrg3DAfTu88qaoU
-	N+bMiTF9tCya3GfBYCa1nPGDNVNPuLa3xGJoBzt1eBwyjihg==
-X-Received: by 2002:a05:6102:442c:b0:631:81d6:e15c with SMTP id ada2fe7eead31-6feeeea7c1cmr7778962137.4.1780943846811;
-        Mon, 08 Jun 2026 11:37:26 -0700 (PDT)
-X-Received: by 2002:a05:6102:442c:b0:631:81d6:e15c with SMTP id ada2fe7eead31-6feeeea7c1cmr7778948137.4.1780943846371;
-        Mon, 08 Jun 2026 11:37:26 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa7b992a66sm3938821e87.74.2026.06.08.11.37.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2026 11:37:25 -0700 (PDT)
-Date: Mon, 8 Jun 2026 21:37:23 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: palash.kambar@oss.qualcomm.com
-Cc: vkoul@kernel.org, neil.armstrong@linaro.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, mani@kernel.org,
-        alim.akhtar@samsung.com, bvanassche@acm.org, andersson@kernel.org,
-        abel.vesa@oss.qualcomm.com, luca.weiss@fairphone.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org, nitin.rawat@oss.qualcomm.com
-Subject: Re: [PATCH v3 3/3] phy: qcom-qmp-ufs: Add UFS PHY support on Hawi
-Message-ID: <25m2ts5lomrmmxkjc24t6ky633sb23ge5udg3z3rln2jaqrfh6@46xrntztb24p>
-References: <20260526090956.2340262-1-palash.kambar@oss.qualcomm.com>
- <20260526090956.2340262-4-palash.kambar@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81383E4C8D;
+	Mon,  8 Jun 2026 18:38:14 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780943896; cv=fail; b=kC9WbNafChOZvZU1TOzaLByntet+HsMFWKamrgE6tWCE+abozeTIpTz2nvn5HCuP0Pbq7RnVDkNRD7slxgzxMWuCd8JP1QGWoJ+9MnT0M70iMRIQ4LhyniYhSw+Lb7anSk2AhVuvq74onjO9jLXiqTMCnfKeiXbmYxQYHXWtQr8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780943896; c=relaxed/simple;
+	bh=upZ3s09Phuo4UKrYViYs8ROJv+74EceCAzULeqiEMwY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=aXJ869gj16c0B1jjoUHtbXCZKuBaajyeEf3lzTNKJkS1n6EozrLLBsg2s/RC38XYhHSXRvPH8pUmLYa5fbZ4VJOdpMIHFXpIMJRtEuGvbdQbRQZVyiCnJ4UBs5WkZ5WtUlXRNY/iu8EIe6tewI97R9GUYfEKg4JaZWW9GNSID/w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=AhxT+Bpn; arc=fail smtp.client-ip=52.101.46.42
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=i/VhXRAIbhe4e+DJHA4poazjrdbLZmp45oMq/dlRlj/K4L8TumRwuKVykwaFuecsEEJ3DkuXj4+8mPxDWNUhFiC4BsPvPF+FHJlXGNScG19pjSY23HKTshon9xjBg8En46CH54nSfK4bWZIOprhHj2FoOjJXPkaA2wzmfpHP3ltADTqbB/TASYxQAaA9cO1G4gppnr1So2jHwdVpq6IOTAoaTaRavDN9z1ICFvvlWY0XZVnbsrq3JygqhzxgvNpD7ZcXwsFTHcnFlEU+WVkxsUe7ZVv167fzXslL17CgtjRKqYtn6t8+TQLlmmIlsa5oZCXwoESyyP1jX3oQy69RqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zMfqLw/T2zLySLYtT0vZV9SqRIXA9NwFOrZBqArPSw4=;
+ b=FL/sWSay8jDHKcBvxo8JyU9Rv+uJmZbE+jIR0XvH4O6gGGTyvGGty+yt/c3vBEnxHTSk1aZB+dSOArqSVKc+Fy+6JqrAG1XkGo5LraX82GU8Y4+SmiDwBe2WvOEP37aQxwftYreib3vHP4uEzONOJ7Xrr5GCtJiHW0cOoqmV8OSKokJJTKqlUgUr7zY97D7Cn9pwqieL+as4axvQJT3wY6qzuAdhmwsb3WbHgREJd4csNppegEU95zhR1GHjpBilFF6JYT5pcWdIV/7cZox7uPx0m2JQtTbQ5Qu1JIp+3TDybb3MAC4ubND4zgV505EjDzm3qCQpWxfJfOeW5jIpwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zMfqLw/T2zLySLYtT0vZV9SqRIXA9NwFOrZBqArPSw4=;
+ b=AhxT+BpnqQYu3ECK7IlsHa8r+TZ3D/wFoE+SwuxCd9lxfgZo6pPAUm09exh09feQrail5iMYVD6kCC7XxcpM7WN4uHGoHrkdrLea2cnuPxIOMM+2j0eZzqURLQHHjpGOooIBh0ZYehVZ3zfPTvhcnVaVzhRugVJZt61OHKpQ3/g=
+Received: from SJ0PR05CA0148.namprd05.prod.outlook.com (2603:10b6:a03:33d::33)
+ by SJ0PR12MB7006.namprd12.prod.outlook.com (2603:10b6:a03:486::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.13; Mon, 8 Jun 2026
+ 18:38:06 +0000
+Received: from SJ1PEPF00002323.namprd03.prod.outlook.com
+ (2603:10b6:a03:33d:cafe::7e) by SJ0PR05CA0148.outlook.office365.com
+ (2603:10b6:a03:33d::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.9 via Frontend Transport; Mon, 8
+ Jun 2026 18:38:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF00002323.mail.protection.outlook.com (10.167.242.85) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.113.7 via Frontend Transport; Mon, 8 Jun 2026 18:38:06 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Mon, 8 Jun
+ 2026 13:38:04 -0500
+Received: from xirsalihe40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Mon, 8 Jun 2026 13:38:02 -0500
+From: Salih Erim <salih.erim@amd.com>
+To: <jic23@kernel.org>, <andy@kernel.org>
+CC: <dlechner@baylibre.com>, <nuno.sa@analog.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <conall.ogriofa@amd.com>,
+	<michal.simek@amd.com>, <linux@roeck-us.net>, <erimsalih@gmail.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Salih Erim <salih.erim@amd.com>
+Subject: [PATCH v5 0/5] iio: adc: add AMD/Xilinx Versal SysMon driver
+Date: Mon, 8 Jun 2026 19:37:56 +0100
+Message-ID: <20260608183801.1257051-1-salih.erim@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260526090956.2340262-4-palash.kambar@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA4MDE3NCBTYWx0ZWRfX3iPlq3uh6pyC
- iLBBIFWrMZjhwPBteKpHqBJg+0sbXGoVrwjc/FHeXy31DSSCmk0L+o0RJ4InzWb+2KXHsc3LsA4
- q1t8hLBU6xtAP2SaYMJaGvems+E4/RNtmzXgV/uyoD5z/lNEJ76wnxK7YIbtomzWrt9W15lNptM
- +wlIs5msrXHtwJLNuy0EpOYFmwar9mJCcf3l0+laSzqrIofNGkbMdMYh90RWVgSieyyj9Lp3RMx
- bgPvlLXA0CNcj12IDJA7mv50UCJM96n0jvz1VSel6d1eDqg6XyvrU55WIJVM+B+eHtHJSaihBem
- G99hQ+/NyqYPTeKA7yWe9+5uzAKEvVUf7dlcWb7AvidpdW3M1GqtjZfC9mFQgEfTUMche87d88k
- phVYmWhlENyiuS3Dgqxe/x5tUxC3rXrLgAcBUqyFe4Y0zD65YEqotFehO/SzB0wBbTKDKvGBgAy
- APZFaXopacYIpIH4zuA==
-X-Authority-Analysis: v=2.4 cv=V6BNF+ni c=1 sm=1 tr=0 ts=6a270be7 cx=c_pps
- a=P2rfLEam3zuxRRdjJWA2cw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=EUspDBNiAAAA:8
- a=4nhpQrVHSdZsbWUMf4AA:9 a=CjuIK1q_8ugA:10 a=ODZdjJIeia2B_SHc_B0f:22
-X-Proofpoint-GUID: NQ7xZy3zkv13wjNiRHubN9HwWe--fiS-
-X-Proofpoint-ORIG-GUID: NQ7xZy3zkv13wjNiRHubN9HwWe--fiS-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-08_04,2026-06-05_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 spamscore=0 malwarescore=0 clxscore=1015
- lowpriorityscore=0 suspectscore=0 bulkscore=0 impostorscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606080174
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002323:EE_|SJ0PR12MB7006:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2cbf2cc3-f43a-45db-7fe7-08dec58d1502
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700016|7416014|376014|82310400026|13003099007|18002099003|6133799003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	zgdodeAsbQKL3QUIEx5/608+U/RfLudwaYE3AzuCtFWPL3xiGGty2LqM79PErs2jXwRDy9uyH/ey2x+EiFrAwCpeEhzT4QFz8wpOLEEZqyVh17eQc/Ict22TJdjsEr4R+iaAFee5VnGUKDSi/BA3p52ZnfEOFkaQzPpDKkX3LXnQSxoaFZFMDabcloRUxRu3xsBjQwHPU5tmZutqXwEmB8kPPWYrUYFMQ+CRYji3v1RbtPO0uhlG7WwwWXz+k8CNd5pBphVfEiMMyqJehT/2kbIhgeIeSKk3Lh30em4QCpQUZqzGI32qIukLblcPBY4OE7K6DP3EIG1NwDVMLGCLr0mgI8MPNzX0piikqDLfJMBH4BIikmPiXqm6CdL4DwJaykgZFYl+oD0XMuRQVw7OMMKSQMrY1mDMzY5oUruP0v3r56sBAjkSfXE26UvRZWzuVMn2FiJB3DwUeBPH4uSufPvH9hquQOYTeSDxmw1uYoc5+Y/rHe+QexivZkYczou/c5mXyeQdeV+BjWCoUaboTbPxLdHSDlRvFjhEQZS3WtlQNOnmRwn1AUGQsMaCA51XWrPJmPXghFjXBqxcNp/AMu4+6zG0YDH8nPiQf759ga6JbyAPwDFVLlHvDfop8VHVWqpyVxueaHZodXhKLhfZBFo9SIpToZsLSsXBhDmpSpxK0YQGP5KSOo23QQO9eD64S3sVpSsJR4bAFMPnP1v3c1Gv+Gb7onY6h81hha/95pU=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(7416014)(376014)(82310400026)(13003099007)(18002099003)(6133799003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	MshsWrg3Ef8KnEz0gpIuEuHFVADYmDl3W9PeBqggTvcgpJcO4khFJAHcU31cDIAe84nBsHwGd/ajrc7k3kEQ0di6vToWoeZLNRWR3zZpCt2ysktoEOaDKGzALHB7hwrLUmSc7g6fJcoqyjqfji1X9iEZ8MOmb9VJ48SbyC+65xs9BJwUioc5qMmJKab0j6Rx1DQHAYHuG5yhJf0LG0jlaHu1Lad5JfDUFWpibLfY0Ncb0BMwRozcFVxHamk6zyRxO24YWA/lPU2sKouMm8mQD/uTiYC0vAPfa6sAZJDJW7kHK48eOXoY6mafCDQUCIqTdZdy+DnBFcxUTtd0XyhcFqeKiqT0hF36ApdUlGrXMn8j8ZIyrSTZXRVcEr+S2zgN8t7OGUkqt8jJVdn0T+/IQL2P3FKc6TwFRdcWMMCCVpYtZYDjjS3pA0N/QzIOenIT
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2026 18:38:06.5488
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2cbf2cc3-f43a-45db-7fe7-08dec58d1502
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00002323.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7006
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-308488-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,46xrntztb24p:mid,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:palash.kambar@oss.qualcomm.com,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mani@kernel.org,m:alim.akhtar@samsung.com,m:bvanassche@acm.org,m:andersson@kernel.org,m:abel.vesa@oss.qualcomm.com,m:luca.weiss@fairphone.com,m:linux-arm-msm@vger.kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:nitin.rawat@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:salih.erim@amd.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308491-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER(0.00)[salih.erim@amd.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[salih.erim@amd.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:mid,amd.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 389B2659E7B
+X-Rspamd-Queue-Id: 8BBFC659D32
 
-On Tue, May 26, 2026 at 02:39:56PM +0530, palash.kambar@oss.qualcomm.com wrote:
-> From: Palash Kambar <palash.kambar@oss.qualcomm.com>
-> 
-> Add the init sequence tables and config for the UFS QMP phy found in
-> the Hawi SoC.
-> 
-> Signed-off-by: Palash Kambar <palash.kambar@oss.qualcomm.com>
-> ---
->  .../phy/qualcomm/phy-qcom-qmp-pcs-ufs-v7.h    |  24 +++
->  .../phy-qcom-qmp-qserdes-txrx-ufs-v8.h        |  37 +++++
->  drivers/phy/qualcomm/phy-qcom-qmp-ufs.c       | 139 ++++++++++++++++++
->  3 files changed, 200 insertions(+)
->  create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-ufs-v7.h
->  create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-ufs-v8.h
-> 
+This series adds a new IIO driver for the AMD/Xilinx Versal System
+Monitor (SysMon), providing on-chip voltage and temperature monitoring.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+The Versal SysMon measures up to 160 supply voltages and reads up to
+64 temperature satellites distributed across the SoC. The hardware
+also provides aggregated device temperature registers: the current
+max and min across all active satellites, and peak/trough values
+recorded since last hardware reset. The device can be accessed via
+memory-mapped I/O or via an I2C interface.
 
+The driver is split into a bus-agnostic core module using the regmap
+API, an MMIO platform driver, and an I2C driver. This allows the
+same IIO logic to be shared across different bus transports.
+
+Previous submissions:
+  v4: https://lore.kernel.org/all/20260606051707.535281-1-salih.erim@amd.com/
+  v3: https://lore.kernel.org/all/20260527114211.174288-1-salih.erim@amd.com/
+  v2: https://lore.kernel.org/all/20260502111951.538488-1-salih.erim@amd.com/
+  v1: https://lore.kernel.org/all/cover.1757061697.git.michal.simek@amd.com/
+
+Changes in v5:
+  - Core: add err.h include (IWYU) (Andy)
+  - Core: drop (int) cast on MILLI in scale assignment (Andy)
+  - Core: sign_extend32() instead of (s16) cast (Andy)
+  - Core: remove unneeded parentheses in voltage address
+    calculation (Andy)
+  - Core: drop NULL checks before fwnode_get_child_node_count
+    (NULL-aware) (Andy)
+  - Core: nested size_add() for overflow-safe allocation (Andy)
+  - Core: if (ret) instead of if (ret < 0) for fwnode property
+    reads (Andy)
+  - Core: remove outer parentheses in satellite address
+    calculation (Andy)
+  - Core: loop index declared in for() scope (Andy)
+  - MMIO: add err.h, types.h includes (IWYU) (Andy)
+  - Header: remove unused types.h include and struct iio_dev
+    forward declaration at P2 stage (Andy)
+  - I2C: add err.h, mod_devicetable.h includes (IWYU) (Andy)
+  - Events: clamp() instead of clamp_t() (Andy)
+  - Events: regmap_assign_bits() instead of separate set/clear (Andy)
+  - Events: remove unneeded parentheses (2 places) (Andy)
+  - Events: for_each_set_bit on single line (Andy)
+  - Events: regmap_clear_bits() instead of regmap_update_bits() (Andy)
+  - Events: simplify unmask XOR to ~status & masked_temp (Andy)
+  - Events: add comment explaining unmask &= ~temp_mask logic (Andy)
+  - Events: split container_of across two lines (Andy)
+  - Events: move ISR write after !isr check (Andy)
+  - Events: unsigned int for init_hysteresis address param (Andy)
+  - Events: add comment explaining error check policy in
+    worker/IRQ (Andy)
+  - Events: nested size_add() for overflow-safe allocation (Andy)
+  - Events: propagate negative from fwnode_irq_get() for
+    EPROBE_DEFER (Andy)
+  - Events: pass irq instead of has_irq to sysmon_parse_fw (Andy)
+  - Oversampling: remove unneeded parentheses (Andy)
+  - Oversampling: use struct regmap *map local variable (Andy)
+  - Oversampling: switch instead of redundant if/if on
+    channel_type (Andy)
+  - Oversampling: add CONFIG register readback fence after
+    oversampling update to prevent NoC bus hang from posted
+    writes (found during hardware stress testing)
+
+Changes in v4:
+  - Core: temperature channels use RAW + SCALE (IIO_VAL_FRACTIONAL,
+    1000/128) instead of PROCESSED; voltage channels use PROCESSED
+    only, drop RAW; drop scan_type from all channel macros (Jonathan)
+  - Core: move __free(fwnode_handle) declarations down to just
+    above use; devm_regmap_init() on one line; lock comment
+    describes RMW sequences and cached state (Jonathan)
+  - Events: merge event channels into static temp array -- two
+    arrays (with/without events) selected by has_irq; event-only
+    channels have no info_mask (Jonathan)
+  - Events: blank lines, fit under 80 chars, default returns error,
+    return early in each case, guard(spinlock) in IRQ handler
+    (Jonathan)
+  - Events: take irq_lock in write_event_config for temp_mask
+    updates (Sashiko)
+  - I2C: replace enum with defines, use unaligned accessors for
+    data and register offset packing, named initializer in
+    i2c_device_id (Jonathan)
+  - I2C: drop bitfield.h, add unaligned.h
+  - Oversampling: return directly, remove else after early returns,
+    rename mask defines, blank lines (Jonathan)
+  - Oversampling: move oversampling read inside guard(mutex) scope
+  - Fix v2 lore link in cover letter
+
+Changes in v3:
+  - DT binding: single compatible, voltage-channels rename, single
+    quotes, drop label/bipolar/xlnx,aie-temp (Krzysztof)
+  - Core: IWYU throughout, __free(fwnode_handle), sign_extend32(),
+    size_add(), dev_err_probe(), s16 param, remove (int) casts,
+    drop SYSMON_MILLI in favor of (int)MILLI, rename _ext to _name
+    in SYSMON_CHAN_TEMP macro (Andy, Jonathan)
+  - Core: fwnode_irq_get() moved to core_probe, remove sysmon->dev/
+    indio_dev/irq from struct, describe protected data in lock
+    comment, add RAW+PROCESSED comment (Jonathan)
+  - I2C: IWYU, remove wrapper struct, explicit enum values, sizeof()
+    for buffers, = { } initializers, adapt to core_probe interface
+    change (Andy, Krzysztof)
+  - Events: IWYU, FIELD_GET/FIELD_PREP, regmap_set/clear_bits,
+    clamp_t, !!, IRQ_RETVAL(), devm_delayed_work_autocancel,
+    loop var scope, error checks, remove redundant else, logical
+    param splits, spinlock safety comment (Andy)
+  - Events: hysteresis rework -- store as millicelsius, hardcode
+    ALARM_CONFIG to hysteresis mode, compute lower threshold from
+    (upper - hysteresis), remove falling threshold for temperature,
+    single event spec per channel with IIO_EV_DIR_RISING, push
+    IIO_EV_DIR_RISING for temp and IIO_EV_DIR_EITHER for voltage
+    (Jonathan)
+
+Tested on VCK190 (single SLR, MMIO path, 7 supplies, 10 temperature
+satellites) and VPK180 (System Controller, I2C path, 7 supplies).
+
+A follow-up series will add thermal zone integration, secure firmware
+access, and I2C remote monitoring.
+
+
+Salih Erim (5):
+  dt-bindings: iio: adc: add xlnx,versal-sysmon binding
+  iio: adc: add Versal SysMon driver
+  iio: adc: versal-sysmon: add I2C driver
+  iio: adc: versal-sysmon: add threshold event support
+  iio: adc: versal-sysmon: add oversampling support
+
+ .../bindings/iio/adc/xlnx,versal-sysmon.yaml  |  154 +++
+ MAINTAINERS                                   |    7 +
+ drivers/iio/adc/Kconfig                       |   33 +
+ drivers/iio/adc/Makefile                      |    3 +
+ drivers/iio/adc/versal-sysmon-core.c          | 1092 +++++++++++++++++
+ drivers/iio/adc/versal-sysmon-i2c.c           |  127 ++
+ drivers/iio/adc/versal-sysmon.c               |   93 ++
+ drivers/iio/adc/versal-sysmon.h               |  129 ++
+ 8 files changed, 1638 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/xlnx,versal-sysmon.yaml
+ create mode 100644 drivers/iio/adc/versal-sysmon-core.c
+ create mode 100644 drivers/iio/adc/versal-sysmon-i2c.c
+ create mode 100644 drivers/iio/adc/versal-sysmon.c
+ create mode 100644 drivers/iio/adc/versal-sysmon.h
 
 -- 
-With best wishes
-Dmitry
+2.48.1
+
 
