@@ -1,158 +1,213 @@
-Return-Path: <devicetree+bounces-307942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307937-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id J0KRJ7YsJmpcTAIAu9opvQ
-	(envelope-from <devicetree+bounces-307942-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:45:10 +0200
+	id 8xfYCeYrJmo1TAIAu9opvQ
+	(envelope-from <devicetree+bounces-307937-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:41:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDBBD6524E5
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:45:09 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9552B6524A5
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:41:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=thundersoft.com header.s=default header.b=VcS2bmLU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307942-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307942-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=thundersoft.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=HanKu4dA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307937-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307937-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 152673021715
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 02:43:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E1F68301DCE8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 02:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB21C322C77;
-	Mon,  8 Jun 2026 02:43:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621653264E7;
+	Mon,  8 Jun 2026 02:40:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m9358.xmail.ntesmail.com (mail-m9358.xmail.ntesmail.com [103.126.93.58])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4750532FA14;
-	Mon,  8 Jun 2026 02:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7825D23D297
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 02:40:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780886580; cv=none; b=bPTkBAmtcFZAZmD/upNpBhSPEVBr0FJ2yF0PyyCuN/il8iSbcYg3WFp79uGdLHbs8NVVMrgUcuyx1hj6jHKUMQVUrzzW9BrBgpYGTHgaaKWvy2+bkOOlNDzuvLgAPH7cgGrmIzSUu9fp6xwU8UwrjWbSs5Sq+Q20hw9i1tbXEq0=
+	t=1780886437; cv=none; b=T5/xgLKfKtRevtM2s++Gg7If72lkPifjX7qiV5MMgzIIaxrIrdRfiL7YWULGCCNha/T5nNzdrr6RcFDaJUabbgqtibn+CK8Nt59OR1V/Y+0OhDXxR3g9+L1uGwsSeqYJdVHfaF6PXc1j24XWi27FmYmjHSBBQkkEHIq9MIsAr3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780886580; c=relaxed/simple;
-	bh=FFHkbWqxP4gtZ0+UM4SSW3ETnpfqxrf4fmpYzQIlMcU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KXA+j+WIpy/4q8HtYTuqUsRw7ic71NBGSAWFYhxrHZF4dT5m8Rzmzp8JMWODoMVyRkuuE1OMKWQJgBBnPKWbhl/UZvRviT6SMWZ0LVZ3VA13mWSLHWofpdOCHpgd/gkJGJxr+Z2MuPF+DW0EY2gAmFyNxaqsaKMR4gUhVcDm3/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=VcS2bmLU; arc=none smtp.client-ip=103.126.93.58
-Received: from tsdl-HP-EliteDesk-880-G6-Tower-PC.. (unknown [36.129.139.90])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 416e8806b;
-	Mon, 8 Jun 2026 10:42:46 +0800 (GMT+08:00)
-From: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-To: dmitry.baryshkov@oss.qualcomm.com
-Cc: andersson@kernel.org,
-	broonie@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	drake@endlessm.com,
-	hongyang.zhao@thundersoft.com,
-	katsuhiro@katsuster.net,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	lgirdwood@gmail.com,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	matteomartelli3@gmail.com,
-	mohammad.rafi.shaik@oss.qualcomm.com,
-	perex@perex.cz,
-	robh@kernel.org,
-	srini@kernel.org,
-	tiwai@suse.com,
-	zhoubinbin@loongson.cn
-Subject: Re: [PATCH 4/5] ASoC: qcom: sc8280xp: Add per-card data
-Date: Mon,  8 Jun 2026 10:42:03 +0800
-Message-ID: <20260608024203.3381312-1-hongyang.zhao@thundersoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <t2vwes2xzruqygdjasgi6akwuvephitqbyz3dntiqidbm23bki@uj22cgv72ht5>
-References: <t2vwes2xzruqygdjasgi6akwuvephitqbyz3dntiqidbm23bki@uj22cgv72ht5>
+	s=arc-20240116; t=1780886437; c=relaxed/simple;
+	bh=Gi78jGqhca4I3YcILxH9j+RePrTUjsAyMzxkhn6QReQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kUANZ2Om0lJlIuBl9N5h1ehvUSatc9ncuJtHpd1dBjtBkX28VWPUM+qnV2ZvepREPwl+dh9SIw1HKBZ4sIBiwe1Gp92UhWDqR2eN6KyYGiPxenKhkKtNaAe2Iqm6WrIU4FdYBrEt4+PIJ9TROPhpHHEe4rDblSet+32EYPksuis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HanKu4dA; arc=none smtp.client-ip=209.85.215.181
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-c85ba774551so1321129a12.0
+        for <devicetree@vger.kernel.org>; Sun, 07 Jun 2026 19:40:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780886435; x=1781491235; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=38SrOSOGK3sCwLNpHejTdRoa1jMmte3Iy/3zoqwAvic=;
+        b=HanKu4dA5d1ze2td3To+4JU8M7FHW/UxIGaM+PJYyzbID9H54FFmmWti3IzL1FkbUB
+         MDOSNWNfafZn9Tr18l8RMFNj7MdR2htMMH5D0+NaX+PPcXxNZYrbWf/+t7PIHZn7q8Hw
+         iNBZYUx5jyR4gEPhuLdPOcAutwD8V2UgWp94ENeei5Kq100sbIyMVMqApgHxaFTynPAB
+         t3dIHrbGQAWfutLZ2j5c8crtY1mh9G6i+J4sSY3AEcC5reJgcLUJHzORfTntgW56wZlZ
+         E8z+lzP3TvDHBRoOK9mqyeRB0R9nBWFBcDIJsgTITMe7hoFsSw6sFJ4nQhjvakTOy2gP
+         cVzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780886435; x=1781491235;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=38SrOSOGK3sCwLNpHejTdRoa1jMmte3Iy/3zoqwAvic=;
+        b=bQChW37pcfoP1/jZ2+KoFvdfLpX3iafz1yhtxRnVskEhWPFRSGwF4swM9saP/Iw4Fy
+         QaH28tqVhJsqxNYcRq2Ue2YmolXlkuPEvoNCzKv78dmueatYTg8HqV95ldso5trmK2xx
+         PTTeimtMkI/IK/DKValSrbKswoiZsqywk468FxoY/DBzKGKPts0B3iNlDJfx0p/dRw64
+         ZSeoRBojJv031bQiIPbt9MQUh3N3qaEZ2iPRV9kWs1e4l5EPwpZLaJ8V+qY2uVnzPGRM
+         Mqtb+Bc1dQwCiperwfkc4WLt+Z7YFTLfFHjjZxG68fB6MRz51Bew710aZsRXESn2Zh7y
+         /dyw==
+X-Gm-Message-State: AOJu0YxieT1EU2v8aKSAwuC2HkZxAHSa2GQaCC0toatLw+/i/rw1Y0kM
+	HcEMdW2o7y6jGBODS1ooyppcFMcBXV4g65r9WP3m9Way05EcOxtIjExw
+X-Gm-Gg: Acq92OFIlkAUWAyBJNGkpaFziRhfVg2Omr02iV70Tj4bq2cUfdPl1WXS47PHmLBoWkW
+	syTwdHGs/ky14IOC8yQL9QeEwEbfpOPiK0JOX5RWZdAlHOMjm8WI2zl1iOSuhsrBNHfp11VXINA
+	Dq/ICDqAqapGzTKYKk0lcsaJwQsf3Q5lkG3v6wCmo50eh30j8gzWvYPkFeJUZT0/T1WgfrRQnIB
+	tkDuxtNhf2l8Qk8wZv/5STpjDTiOAvSwDiNQHhiQBFYrZ2HZdL/R7hNsWPcrt4h2yriPU0eZj+J
+	Hse1J4K+s4v0yGRg2RvczwSReAJqeXS40l57r9twlClFAO2ihBYMJ0BbXEHhcbn4sZPsFeKSB5E
+	irtSF1d72l7qvdLPPOUHtlCRCqakw6e5LAr+a78tSJB6QtdWa1oHtv81Gg1bQwcLRgpGOsFxRGN
+	EUtdNc25Q2f68BQp28P4wxhbLlMUEEr4g3GI+COZRw+RmFRxssqSDAFWUqdxn1ZS1Y9LeNvZdGs
+	w==
+X-Received: by 2002:a05:6a00:844:b0:835:405a:7e6d with SMTP id d2e1a72fcca58-842b0ea14f4mr13899922b3a.21.1780886434827;
+        Sun, 07 Jun 2026 19:40:34 -0700 (PDT)
+Received: from [127.0.1.1] (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-842824a1cb4sm19310520b3a.26.2026.06.07.19.40.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Jun 2026 19:40:34 -0700 (PDT)
+From: Kyle Hsieh <kylehsieh1995@gmail.com>
+Subject: [PATCH v5 0/2] Add Meta(Facebook) ventura2 BMC(AST2600)
+Date: Mon, 08 Jun 2026 10:42:07 +0800
+Message-Id: <20260608-ventura2_initial_dts-v5-0-37ee5bcf58b6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9ea51c749a09d5kunm1fdaa3051d051f
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaT09IVklISR5JQx5MTh1CGVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlITVVKSUJVSkhCVUJLWVdZFhoPEhUdFFlBWU9LSFVKS0
-	lPT09IVUpLS1VKQktLWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=VcS2bmLUGJ/5+Wnh1J3UcwBRUvI0f4cEFl0y2PqJdF8nSgkgFSTOxiM/bX2gRPTA3xgk6C/m54ohLqx5XJVWXKklCOqsXhTY7EMTUCDgSFzvDmM3jKFHCm8pmuyqdfFCZBAIHC9fPTc7aVZSNiVbWKRukN3MYTe5DzgnN9Ty2jY=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=gomWAGuoJJ3xeyiLoDn5pG81Zg2uv+LzMpwhNWj9oH8=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP8rJmoC/4XO22rDMAyA4Vcpvp6HLJ+aXe09Rily7LSCNhl2a
+ jZK3n1uYaxshF3+An3SVZSUORXxsrmKnCoXnsYW9mkj+iONhyQ5thYIaBUiyprG+ZIJ9zzyzHT
+ ax7nIDrqg0fvonBVt9T2ngT/u7Nuu9ZHLPOXP+5WqbtN/wKokSDWAU871fkv69XAmPj3301ncw
+ IqPiFlBsCGD6nQgGw34P4j+RhwopVcQ3RCMYYjkyAbjfyPmBzGrn5iGbMEFgERGK/OILMvyBYq
+ Xx9SHAQAA
+X-Change-ID: 20251222-ventura2_initial_dts-909b3277d665
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Kyle Hsieh <kylehsieh1995@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2830;
+ i=kylehsieh1995@gmail.com; h=from:subject:message-id;
+ bh=Gi78jGqhca4I3YcILxH9j+RePrTUjsAyMzxkhn6QReQ=;
+ b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBqJiwEBeVbdsZIqyr8QR4WZFHc+4DWcWIpgMLHD
+ L4ZxmsorE6JATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCaiYsBAAKCRClg0K3CVbE
+ gfajCACvzmERcaUA5uZwA+10S/TWH6Nt3JMJnEm+URle13QSepXcDkTNb0eQmi4RsfL4iVmNsoc
+ /HrrnqUGJS4o41K7I2CL0WynKLmUiv4gJQx4v5jymkNb09RR4n3mHvvXI8BdNz4VOZBoS0tusQi
+ zAsZD4NI9x+3U+rCzFfRt5VdWzbutkScoAIOT9XF1kk5UdiR4MRy5LqpoS9UDPQRnhNmI0fewMU
+ MxixylKyvMS7KPizt0rf59y9QmhNnq9BXaQG9zWX/PCWIJzlVAKJHQMRwrxVThJ69V9z+MdpIXz
+ hDeKrlubXoPM2vXYsHHpku5Y4zXSK0vPfeBqgjBVmp56DV8T
+X-Developer-Key: i=kylehsieh1995@gmail.com; a=openpgp;
+ fpr=C91EC68D64E758F931C6A897A58342B70956C481
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-307942-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,endlessm.com,thundersoft.com,katsuster.net,gmail.com,oss.qualcomm.com,perex.cz,suse.com,loongson.cn];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[hongyang.zhao@thundersoft.com,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:andersson@kernel.org,m:broonie@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:drake@endlessm.com,m:hongyang.zhao@thundersoft.com,m:katsuhiro@katsuster.net,m:konradybcio@kernel.org,m:krzk+dt@kernel.org,m:lgirdwood@gmail.com,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-sound@vger.kernel.org,m:matteomartelli3@gmail.com,m:mohammad.rafi.shaik@oss.qualcomm.com,m:perex@perex.cz,m:robh@kernel.org,m:srini@kernel.org,m:tiwai@suse.com,m:zhoubinbin@loongson.cn,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hongyang.zhao@thundersoft.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[thundersoft.com:+];
-	TO_DN_NONE(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.ozlabs.org,gmail.com,oss.qualcomm.com];
+	TAGGED_FROM(0.00)[bounces-307937-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:andrew@codeconstruct.com.au,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-aspeed@lists.ozlabs.org,m:linux-kernel@vger.kernel.org,m:kylehsieh1995@gmail.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[kylehsieh1995@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kylehsieh1995@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[thundersoft.com:mid,thundersoft.com:dkim,thundersoft.com:from_mime,thundersoft.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EDBBD6524E5
+X-Rspamd-Queue-Id: 9552B6524A5
 
-> On Sun, Jun 07, 2026 at 02:58:20AM +0800, Hongyang Zhao wrote:
-> > The sc8280xp machine driver currently uses the OF match data only as a
-> > driver name, which makes it difficult to describe board-specific MI2S
-> > codec requirements.
-> > 
-> > Convert the match data to a per-card data structure and add data for
-> > the QCS6490 RubikPi3. The RubikPi3 data configures the ES8316 MI2S DAI
-> > format, MCLK rate, BE hardware parameters and headset jack pins.
-> 
-> Please don't mix refactoring and actual changes in a single patch. Split
-> this commit, performing one logical change per commit.
-> 
+Summary:
+Add linux device tree entry related to Meta(Facebook) ventura2.
+specific devices connected to BMC(AST2600) SoC.
 
-Thanks for your review.
+Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
+---
+Changes in v5:
+- Addressed review comments:
+  * Added comments explaining the necessity of 'legacy_' prefixes (hardware label collision), pre-allocated I2C aliases (future expansions), and the 'ledd1' naming convention (schematic alignment).
+  * Removed the empty `&mdio0` node to comply with upstream networking subsystem guidelines.
+  * Removed the redundant `&peci0` node.
+  * Sorted `&kcs3` and `&lpc_ctrl` nodes in strict alphabetical order.
+- Hardware/DT alignment updates:
+  * Removed unpopulated sensors (adi,adt7461, infineon,tda38640, ti,ina230, ti,ina238) to accurately reflect the current board population.
+  * Added the secondary flash node (flash@1 labeled "e810") under the &spi2 bus.
+- Link to v4: https://lore.kernel.org/r/20260424-ventura2_initial_dts-v4-0-806b00ea4314@gmail.com
 
-I will split it in v2. The intended split is:
-- convert the sc8280xp OF match data to a per-card data structure;
-- add the generic/common helper changes needed for headset jack setup;
-- add the RubikPi3-specific machine data, including MI2S codec clocking
-  and headset jack configuration.
+Changes in v4:
+- Fixed capitalization: "ventura2" -> "Ventura2".
+- Reordered I2C child nodes in ascending order of unit addresses.
+- Enable PECI, LPC control, and KCS3 interfaces for host communication.
+- Configure MCTP controller on I2C4 and enable MCTP support for specific mux channels.
+- Add Infineon TDA38640 and TI INA230 power monitor nodes.
+- GPIO and Pinmux cleanup for PVT:
+    - Aligned gpio-line-names as requested.
+    - Remove unused or non-existent GPIO line names to align with Ventura2 PVT.
+    - Update specific GPIO pins to empty strings where signals were removed or consolidated.
+- Adjust SGPIOM frequency to 200kHz and update signal line names.
+- Enable UART3 and add serial2 alias.
+- Link to v3: https://lore.kernel.org/r/20260113-ventura2_initial_dts-v3-0-2dbfda6a5b47@gmail.com
 
-> > 
-> > Add a common headset jack helper which accepts board-specific DAPM pins
-> > for codecs that are not connected through the WCD TX codec DMA path.
-> > 
-> > Signed-off-by: Hongyang Zhao <hongyang.zhao@thundersoft.com>
-> > ---
-> >  sound/soc/qcom/common.c   |  75 ++++++++---
-> >  sound/soc/qcom/common.h   |   6 +-
-> >  sound/soc/qcom/sc8280xp.c | 319 ++++++++++++++++++++++++++++++++++++++++++----
-> >  3 files changed, 357 insertions(+), 43 deletions(-)
-> >
+Changes in v3:
+- Add annotation for marvel 88e6393x
+- Modify the gpio-line-name
+- Modify the node order alphabetically
+- Modify dt-bindings document for rmc instead of bmc
+- Move the gpio-line-names to original node
+- Link to v2: https://lore.kernel.org/r/20251224-ventura2_initial_dts-v2-0-f193ba5d4073@gmail.com
 
---
-Thanks,
-Hongyang
+Changes in v2:
+- Remove unused mdio
+- Link to v1: https://lore.kernel.org/r/20251222-ventura2_initial_dts-v1-0-1f06166c78a3@gmail.com
+
+---
+Kyle Hsieh (2):
+      dt-bindings: arm: aspeed: add Meta ventura2 board
+      ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
+
+ .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
+ arch/arm/boot/dts/aspeed/Makefile                  |    1 +
+ .../dts/aspeed/aspeed-bmc-facebook-ventura2.dts    | 2888 ++++++++++++++++++++
+ 3 files changed, 2890 insertions(+)
+---
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20251222-ventura2_initial_dts-909b3277d665
+
+Best regards,
+-- 
+Kyle Hsieh <kylehsieh1995@gmail.com>
+
 
