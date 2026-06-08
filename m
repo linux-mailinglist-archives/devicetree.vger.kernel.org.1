@@ -1,83 +1,85 @@
-Return-Path: <devicetree+bounces-308262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308264-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id q1+SDQOxJmrxbAIAu9opvQ
-	(envelope-from <devicetree+bounces-308262-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 14:09:39 +0200
+	id v8KtJE+xJmoBbQIAu9opvQ
+	(envelope-from <devicetree+bounces-308264-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 14:10:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A5F7655FB7
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 14:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24301655FDF
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 14:10:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=VdQdCYjo;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308262-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308262-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linaro.org header.s=google header.b=D9UV4agn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308264-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308264-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 13923302BFC4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 12:06:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 634C73042014
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 12:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C01375F65;
-	Mon,  8 Jun 2026 12:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1AD9379C4A;
+	Mon,  8 Jun 2026 12:06:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC05372062
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 12:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD53376469
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 12:06:14 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780920374; cv=none; b=JEv4MjPJKarLhQTioPTS+gQEjxVlzwewW3EJ+IwqehU85SSUcxC0dZnpj85zt8tDvtQQwgYBbiqtNFABkaFikx9Yx/tmrIb891L7ZGOBGVQjAyaSFqPhHN/gYOYu0xnPlzNLSZk5ied+Y6RvapzIc7tk8AZLOHDo5RpGDetNAIA=
+	t=1780920377; cv=none; b=czJbKOv4NJUrZFa8c5kG2oZ6RrWYmOraL1Wkvqz8TNvM0RS+TWlzGnuxyzA+1OqGxmUP63+dJXWLCso6DJZp0fy/e/CGNG2eERVw34zuND4QL9XmZoYXpxO4tWWHupO1FQj0yQ2zTDhcdmsjnUl9AYeZ6Gh9Rm2/RWLSD67akD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780920374; c=relaxed/simple;
-	bh=pfmSN65yllH6tLhlIzzWMqdu+L4C+S5GJPNQV+rUZ3E=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Y/toiooQ5N6fCwD4yZJuxc6qF/AlyayuQ0LDH0EELRm/Mhp2kjvtPsS7MbJeStI5ABchpaIYdvFpE4glOPOFWon9gRG5xpeQj4JWwIiQE8zacC2OzmT4z3wv0MwFguqfEOmxEqVcm78rUBQXYRs7LG1K6mcqmQ98j9iiUnfGDm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VdQdCYjo; arc=none smtp.client-ip=209.85.128.41
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-490b4e1ade7so45664155e9.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 05:06:13 -0700 (PDT)
+	s=arc-20240116; t=1780920377; c=relaxed/simple;
+	bh=I0MRNDhtPil/XdRFHR6g64yWZF1AHbnM3WQ2SyhhCNQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=LRTR1sj3shjlwjZFKpCATONxDcA1v3RCZs7pJnFJdR2BNMyV+UWWiXt8rLMA76DjZ9Fs6UyvcpJrXvbqE1UdTzBmNfTuCkRETmrc1geLpSSXlSgJXKsr20B7dzaolIlc9ygzh2i4LUNkgbSm+rdsDC+IQ4jRzwUxWzzF2RyoZeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D9UV4agn; arc=none smtp.client-ip=209.85.128.47
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-490b9318997so30987835e9.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 05:06:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1780920372; x=1781525172; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xMJeUc7+7+u2n+HnGIXbVVy++zpMhMvTi9S984NETBo=;
-        b=VdQdCYjoFmGIeY9oZsUFO0jgzqjwdY3zjGarY7QnIhfPGthzu6f4wO1xRlswmh8ex9
-         v8/jOpx5skxvG9hKCuntjMXEruXJkzbZyrH9DYpkLiRGvnKOBBW3uhmveBwg5HlH3VcN
-         awBvHmjCUjE1/C79LnLwv+wd3t16TuqGQ0aGeicsIv5QZ+vF9sQNEp19i2eHSTfYZx5u
-         XBuZbxjp5EKnKmoAjxc7Tq8xXIhCoYMIS3USdlJjFPnhYbCR7NUbRnQSp5C5g45EHEVS
-         sSafUCQfUHK9TTiaI8yzaNg6PbPYvjR5Y0Ws6QPiYWzmh6/DKnOxeG8FMgG4KFQP68Zd
-         d+Wg==
+        d=linaro.org; s=google; t=1780920373; x=1781525173; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZPTIML/fjZVyuVRpqLdTSfDMUxOQRLiEiydHZK8Z8OM=;
+        b=D9UV4agnLMvlH1l0ogLRYjFWHvUNkJjYeOiooKlczeU5XSzmUg4DamUt9pUo2dMGMx
+         r+P3oFcoUmEKv2lWMkkOvDuP20uHum/25SGwOLKTiwus+KbDm2LUg7+UoVSY8Ce/qxeq
+         lRA98vk3oe2hmAI9rj6HTUtehPyDsXHUjKIcUdhSNf8zta0TaVeXLMGWoJC5AauXHzKX
+         aqitmqH7eCS5vG1peXdWBWyKOSjMznxK70adRsJWelAFArR7lxjjeMBeBNQZYowVct+B
+         QL3K59owyIY461tAkuBbeBUxOKsv0/Vuza/nKUtYoISY5nA2eCt/Ty3diOS3nVcqpUtd
+         HHkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780920372; x=1781525172;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xMJeUc7+7+u2n+HnGIXbVVy++zpMhMvTi9S984NETBo=;
-        b=Eb1CAwBa5nf6Pd3/6vtcq71xTzu6/jlDie/chwRrke9lhlQnuihAQ0QUQL3WM1/Zgc
-         DeClDaaJAgRdSOczXPmtR5FUQJc+9WZQq6k5AjCrfr7tP2KNV/9Gmo7Rpwx1oLVbPTRa
-         fg9P6aXpVpmX1nW8y5NPrAt7h3bGqUFXszP394E6dgeyGKn4HXZUAU0eqGFlf/G46NsU
-         17SPWbUIoL/lLkUcwYHz4m3VH7pwWLVTnv1yzdPpCO/zZYYCOVjh2fKN2c/mv/kvrFja
-         3ewzxPxbNGEUcCBKO/lpFO/p6sT11+jPn6fnMb7xW5pooza5MN8CsXMANKCks78DCIfF
-         6TTg==
-X-Forwarded-Encrypted: i=1; AFNElJ+83XcZHM+kDhZCr3JT/Y/MgvoF09zS1JHMGwxip+6k0Ko6ri4MI/QrueyUcg5TMVzndEU4Sy58BTig@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpYtKfDqJ/1yc/mExWh0kx7rnllnKGwu2mnl2w2xHtOkORbJRO
-	ZOKhEidPqvLYtAGn47fVZUnGRMSEfgLZjBO3tRRjfEAeKLFY3OQSv7XjILceEHytJqI=
-X-Gm-Gg: Acq92OHXPAQGGkNxXLt6ZjNo+jn8oDIXtjXVTsiNP48pE641HkTGw/LW8o5HJN2eRGJ
-	NzY6DXaleg3hfwooF603cF2coGtmKFOUVHWV3n3hJoCowQLz6/bcbteVrCp1Y+MTX7gkMpj9hXl
-	jTRK2Ct5D9n375W4/J7eTEc5dZe124iad6IrM8hxmaukXeYyvU79L8ieBGOrRITgigIBYzmY6PX
-	4aqqPsF+B5Zdd//g2rFzujYcv5J7WVIwWWek3QqZP9455i2M4O3d7fybVZB690YrEJFf8kpIaU5
-	FTkjjE2IIAX+69Y6oJu69vB48awcFElaAeqBxyd1WHQZSv9cnXGcLLnQrf0GLSbJ87v7NZk7Lse
-	bbslA2wvmG9ThPokFoeLBDws0uwwSwkK1iHuWIiQz5WAzSsONxw/IZdy1ss8nAeif/uw1W10Bvz
-	Iz89D+ZqrJD/kqFL8zPhocKJD/NeJ0zNQ6AgIRYf1tpfv/o3k=
-X-Received: by 2002:a05:600c:620f:b0:490:5074:651e with SMTP id 5b1f17b1804b1-490c2612cb7mr222035555e9.25.1780920371969;
-        Mon, 08 Jun 2026 05:06:11 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1780920373; x=1781525173;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ZPTIML/fjZVyuVRpqLdTSfDMUxOQRLiEiydHZK8Z8OM=;
+        b=dF4X/PuHaJ5fYSVsRobg7soFvgzDJ3iJnwpNg4qizzd3eoea4Rwbq6BxoYsLnn4eUa
+         A4bKJUsArQwjpZCFNA5RrxbHtjMBHVV6YzXPbZFnoJtSj383sCnTBWIJr5c1+KrZlIDv
+         zdzbHzOIBZ4LiVBe2MiwM15U11LkWZfjCL9C67TAc33Acv4qIKQ6i3n8BwnQHBCeKjBF
+         hsme4wu/ckeLloGjrtFYwHoStZENCDg8+c6Ci9dhnurqraEk8HgABGKOjgNe+hLaXR8X
+         UzzUvlQn+juZcUVxIm3wJvXT2roGKUZ99A53HNqVLT2lKlhqqZPx3SWlGK8xNp0Muxnl
+         ZdiQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+r2GGEiYrobLpvco11lvG/J+OlnmiJYhprJuk7rBMBwyCg8M/eLgZU9RSxd2dHYPrmGEIpixwiHHyd@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDj4fQ8BU/Q0caSgZ8mJ495o6tqHzcKzxgHSP3CzvBxsjILL/C
+	CPYicdWfYJKEncY94b5IwZJpo10cZRgxu9j0Z1Hbnnqfg9oSiflQxhUFfZbREovvaP8=
+X-Gm-Gg: Acq92OEKoa5K8MaHoBplH+ex976uR+++qIu6h7Ww7+bW2YEmIogqdtAxJK6y+6h3haE
+	/wmpeG5K0+2RNs55vTaLdNS0VsBmkprMmhqqs6IpYcwan0OpAPB/sdqWOz6S/oUlPwRfL3/42e0
+	GoM99OY8blOEPdvdjIOss3P9N88elb5PqjEp+w1DW+Vv+eynfGJf6+N3aRwT4198Ln9BJYR6wbj
+	aIC0muH8DGZnTIatPriulOfeLj+Y878xcb/94iJiK0TD9HsXQE6QecgmG18QhqU8NwcPFoGbEPz
+	0MKzfq4CtudW6eri05zu0r8GiBgTiHOIrt9BHTi5N/DVPWzwC3CygLXhLImH1J30+5cM2vOKjWD
+	+ez1wBk8c0rniGrv1kzYLmEzv97YBqpYKdS7It/R+WSnjJwR3C6+jVa4bzdK/LVVn2SWG8S/ffa
+	5AvWPLh41YMaNLXgb+JIqN1yX/Fa85iJU1FHZ1zhfZxq5iHgsaKbZXcfw+qQ==
+X-Received: by 2002:a05:600c:6087:b0:48a:8b02:ae91 with SMTP id 5b1f17b1804b1-490c25b0231mr265490125e9.11.1780920373102;
+        Mon, 08 Jun 2026 05:06:13 -0700 (PDT)
 Received: from [127.0.0.2] ([2a02:2454:ff23:4410:7dca:9001:34e4:f362])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490c2d30eeasm250331745e9.1.2026.06.08.05.06.10
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490c2d30eeasm250331745e9.1.2026.06.08.05.06.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2026 05:06:11 -0700 (PDT)
+        Mon, 08 Jun 2026 05:06:12 -0700 (PDT)
 From: Stephan Gerhold <stephan.gerhold@linaro.org>
-Subject: [PATCH 0/2] regulator: qcom_smd-regulator: Add PM8019
-Date: Mon, 08 Jun 2026 14:05:42 +0200
-Message-Id: <20260608-rpm-smd-regulator-pm8019-v1-0-c671388b9ea5@linaro.org>
+Date: Mon, 08 Jun 2026 14:05:43 +0200
+Subject: [PATCH 1/2] regulator: dt-bindings: qcom,smd-rpm-regulator: Add
+ PM8019
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,10 +88,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIABawJmoC/yXMQQ6CMBBA0auQWTvJtBisXsWwKGXEGgvNDBgTw
- t0tuHyL/1dQlsgKt2oF4U/UOI0F5lRBePpxYIx9MViyDTXkUHJCTT0KD8vbz5NgTo7MFYOtuaO
- Lq8/eQMmz8CN+j/W9/VuX7sVh3n+wbT/xFlfhfAAAAA==
-X-Change-ID: 20260608-rpm-smd-regulator-pm8019-c23eb07834a1
+Message-Id: <20260608-rpm-smd-regulator-pm8019-v1-1-c671388b9ea5@linaro.org>
+References: <20260608-rpm-smd-regulator-pm8019-v1-0-c671388b9ea5@linaro.org>
+In-Reply-To: <20260608-rpm-smd-regulator-pm8019-v1-0-c671388b9ea5@linaro.org>
 To: Mark Brown <broonie@kernel.org>
 Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -108,7 +109,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-308262-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308264-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:broonie@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:agross@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
@@ -130,29 +131,42 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:from_mime,linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9A5F7655FB7
+X-Rspamd-Queue-Id: 24301655FDF
 
-Add the definitions and dt-bindings for the regulators in PM8019 to allow
-controlling them through the RPM firmware. PM8019 is typically used
-together with the MDM9607 SoC.
+Add the qcom,rpm-pm8019-regulators compatible to allow describing
+regulators controlled by the RPM firmware on platforms that use PM8019.
 
 Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 ---
-Stephan Gerhold (2):
-      regulator: dt-bindings: qcom,smd-rpm-regulator: Add PM8019
-      regulator: qcom_smd-regulator: Add PM8019
+ .../devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml         | 4 ++++
+ 1 file changed, 4 insertions(+)
 
- .../bindings/regulator/qcom,smd-rpm-regulator.yaml |  4 ++++
- drivers/regulator/qcom_smd-regulator.c             | 23 ++++++++++++++++++++++
- 2 files changed, 27 insertions(+)
----
-base-commit: 382f7d3b4c9740ac06199207796ed9b71582c7c5
-change-id: 20260608-rpm-smd-regulator-pm8019-c23eb07834a1
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
+index 0fa0db7eef23..0d8bc9bf996a 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
+@@ -35,6 +35,9 @@ description:
+ 
+   For pm660l s1, s2, s3, s5, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, bob
+ 
++  For pm8019, s1, s2, s3, s4, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11,
++  l12, l13, l14
++
+   For pm8150, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, l1, l2, l3, l4, l5, l6,
+   l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18
+ 
+@@ -94,6 +97,7 @@ properties:
+       - qcom,rpm-pm6125-regulators
+       - qcom,rpm-pm660-regulators
+       - qcom,rpm-pm660l-regulators
++      - qcom,rpm-pm8019-regulators
+       - qcom,rpm-pm8150-regulators
+       - qcom,rpm-pm8226-regulators
+       - qcom,rpm-pm8841-regulators
 
-Best regards,
---  
-Stephan Gerhold <stephan.gerhold@linaro.org>
+-- 
+2.54.0
 
 
