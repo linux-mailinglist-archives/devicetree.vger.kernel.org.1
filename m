@@ -1,175 +1,192 @@
-Return-Path: <devicetree+bounces-308044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308045-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gXiqMChpJmpqWAIAu9opvQ
-	(envelope-from <devicetree+bounces-308044-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:03:04 +0200
+	id djk3NyBqJmqqWAIAu9opvQ
+	(envelope-from <devicetree+bounces-308045-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:07:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F24665359A
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:03:04 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F48A653639
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 09:07:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cXE8vzkd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308044-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308044-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Ds8FYyBn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308045-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308045-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 491D430065D8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 07:03:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7780E30309A0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 07:03:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E122C38A73B;
-	Mon,  8 Jun 2026 07:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DCA538F643;
+	Mon,  8 Jun 2026 07:03:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33DD3254A9;
-	Mon,  8 Jun 2026 07:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D89235E1C5;
+	Mon,  8 Jun 2026 07:03:05 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780902181; cv=none; b=Qrshm8uYa8FM4mOaO0aLp9+dIs+JQtu0b6HOpOmfSRHIpZqX0TNhyDVWObcC5mhvlq+kCEivjdxZk3Jt78fcTPOELGwNxJHYkGaUYFrbG8lKvBxU0C7JkjLKEWeJqsdb5hrHfXMQOVBG+WJ1VrXZB2ziLNw4aaFomTTQS8h7gxc=
+	t=1780902187; cv=none; b=JHsmTzwMvt3HA1MonoQjbz4f46vJZQ0JF5oYfcA5uf1hdTk57oz3E29m7ggZTdzkXiICt1rC3MOWdncRnyA/YFif0fqW1pZNfN5ZescKdpI0/8RsNjxV/QuvevMwLhGHmNWdzr8chKOV3WS/RNfnK5Xk3u+0Tq2/fSBOeNptVKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780902181; c=relaxed/simple;
-	bh=BMjFzNBoAGngJ0hCOmcrg7I3zkNFzTNBG3ZjqL53oMs=;
+	s=arc-20240116; t=1780902187; c=relaxed/simple;
+	bh=/EV8js+2v8OzyEkyzphqS7BgoRmZaabHmg7vtIFY5t8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=idwb3qFc9w1zZIAQNHTEITURDAnpLdFCQDdqyVD8FIuogQSTsCQgop6BXu9s28vMOxRkHC1muQFx5rjCrU8l4rMUsBfyEo3kn5VaribETEpBkeK1gWDnDIXN/KcMjx9pJCpW3vpiaBsDYMUaxeQbCOY/JbgW8lXiPYlvUmobVac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cXE8vzkd; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 547DD1F00893;
-	Mon,  8 Jun 2026 07:02:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rKEv80/br3FXob8jYeqyjObK6o3gMLBqtwurQeIJKK7qKryUPrIGtaHfVzjyrD23NZdE+sAR32v3QU94mIsGF9EhqKS1hsoYBgF3XYDh0AFcd7DZbMGz89rvtf5ukTLoLvuelrJZkYOs3Ycb0WlaBA6Z/3RMRCusZaut1UCHhug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ds8FYyBn; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 980A31F0089A;
+	Mon,  8 Jun 2026 07:03:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780902180;
-	bh=sC/NJlKydMkj+Y9yfiR3+x1I6jBmsagpXNDi38GetMg=;
+	s=k20260515; t=1780902185;
+	bh=10dFrUC/6z32jGP8zynGCsubM/uQN+Pn4UzSAjajejM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=cXE8vzkdo3y3nBwueO3NFR2c9fkxUxELfMg/ceK54WfkCIT/cAVZ9cN9sjD9ooPBy
-	 2mQl1Npy1SiK6qr3U+pEMC2sJU08DJ0trJinQT1xdruW33XMTW3xfgDtjzmRrpoNKt
-	 WdEq31dQXxTtInOMV5f/b6sLvJZgOanV3+NkE2E+Tl8fwNi/S1p39cv+ZseRzFG3ZG
-	 9r36zELmr1ZnsLSzJ00AIVdN6XDx7yFDNOspmZA7BX1pf3WTxQZUaCpqymMVWpg2XT
-	 z5u6hXu+tCU+FhmmzdUQdHREjGV8RTWul7NXTXITAP9phoIh2C38PZJFOmENTT5yW9
-	 W1JkmyDaFTq9Q==
-Date: Mon, 8 Jun 2026 09:02:56 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Herman van Hazendonk <github.com@herrie.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] media: i2c: add Aptina MT9M113 1.3 Mpx SoC sensor
- driver
-Message-ID: <20260608-exuberant-ingenious-macaw-9c6145@quoll>
-References: <20260607-submit-media-mt9m113-v7-0-5da397a3d2a5@herrie.org>
- <20260607-submit-media-mt9m113-v7-2-5da397a3d2a5@herrie.org>
+	b=Ds8FYyBnv2B771u4jaYArIjXJx5UpC1WUxFyjTQDVhtf+l1qYyu5NwqVY+oOzuc6C
+	 YgqUxqU4gV2VnsPffdjORqDHElM1kd63ltUYUyVdF4TYaUEWtF2JD2pU6poVM1ArWL
+	 lMUinVJ6futH/7sdnAjzkFIuaCbufZx8fG+uk80ePL2EOH8cH49KxCDKv1sJ8txsUy
+	 Qpsb63Y/49p0ZHrtiY6ZwtKegiVpiUrgHwkrzV4CAq0F0zJwJnRUTZXAStb/+L2/kr
+	 FA/3lev2TYsrVndJqyIIwBECwbTBWrmYCkIgZRjk+HnLbC8Mzg1CGk5xkLhbQhHDnH
+	 KQOX+wjtpEfGA==
+Received: from johan by xi.lan with local (Exim 4.99.3)
+	(envelope-from <johan@kernel.org>)
+	id 1wWU0k-00000000LzQ-1V0O;
+	Mon, 08 Jun 2026 09:03:02 +0200
+Date: Mon, 8 Jun 2026 09:03:02 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+	Lee Jones <lee@kernel.org>,
+	Mark Brown <broonie@opensource.wolfsonmicro.com>,
+	Thierry Reding <thierry.reding@avionic-design.de>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@kernel.org>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Doug Berger <opendmb@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ulf Hansson <ulfh@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Matthew Brost <matthew.brost@intel.com>,
+	Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+	Rodrigo Vivi <rodrigo.vivi@intel.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Peter Chen <peter.chen@kernel.org>,
+	Paul Cercueil <paul@crapouillou.net>, Bin Liu <b-liu@ti.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Maximilian Luz <luzmaximilian@gmail.com>,
+	Hans de Goede <hansg@kernel.org>,
+	Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>, brgl@kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+	driver-core@lists.linux.dev, devicetree@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+	iommu@lists.linux.dev, linux-pm@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+	linux-usb@vger.kernel.org, linux-mips@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH 08/23] driver core: platform: provide
+ platform_device_set_of_node_from_dev()
+Message-ID: <aiZpJkQBXg2pcczy@hovoldconsulting.com>
+References: <20260521-pdev-fwnode-ref-v1-0-88c324a1b8d2@oss.qualcomm.com>
+ <20260521-pdev-fwnode-ref-v1-8-88c324a1b8d2@oss.qualcomm.com>
+ <ah9O15bMlAYgSlHx@ashevche-desk.local>
+ <aiK-EXwp_xhcbty9@hovoldconsulting.com>
+ <aiLi0KZskrCyEYO5@ashevche-desk.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260607-submit-media-mt9m113-v7-2-5da397a3d2a5@herrie.org>
+In-Reply-To: <aiLi0KZskrCyEYO5@ashevche-desk.local>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-308044-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,opensource.wolfsonmicro.com,avionic-design.de,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,linuxfoundation.org,linux.ibm.com,ellerman.id.au,8bytes.org,arm.com,broadcom.com,nxp.com,pengutronix.de,intel.com,linux.intel.com,ffwll.ch,crapouillou.net,ti.com,kernel.crashing.org,vger.kernel.org,lists.linux.dev,lists.ozlabs.org,lists.infradead.org,lists.freedesktop.org];
+	TAGGED_FROM(0.00)[bounces-308045-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:github.com@herrie.org,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sakari.ailus@linux.intel.com,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[johan@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@linux.intel.com,m:bartosz.golaszewski@oss.qualcomm.com,m:lee@kernel.org,m:broonie@opensource.wolfsonmicro.com,m:thierry.reding@avionic-design.de,m:sebastian.hesselbarth@gmail.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:srini@kernel.org,m:gregkh@linuxfoundation.org,m:vkoul@kernel.org,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:chleroy@kernel.org,m:andi.shyti@kernel.org,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:opendmb@gmail.com,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:ulfh@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:rodrigo.vivi@intel.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:peter.chen@kernel.org,m:paul@c
+ rapouillou.net,m:b-liu@ti.com,m:p.zabel@pengutronix.de,m:luzmaximilian@gmail.com,m:hansg@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:krzk@kernel.org,m:benh@kernel.crashing.org,m:brgl@kernel.org,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:driver-core@lists.linux.dev,m:devicetree@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:linux-i2c@vger.kernel.org,m:iommu@lists.linux.dev,m:linux-pm@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-usb@vger.kernel.org,m:linux-mips@vger.kernel.org,m:platform-driver-x86@vger.kernel.org,m:sebastianhesselbarth@gmail.com,m:andrew@lunn.ch,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[johan@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[66];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,vger.kernel.org:from_smtp,herrie.org:email]
+	TAGGED_RCPT(0.00)[devicetree,netdev];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,hovoldconsulting.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5F24665359A
+X-Rspamd-Queue-Id: 4F48A653639
 
-On Sun, Jun 07, 2026 at 07:34:05AM +0200, Herman van Hazendonk wrote:
-> Add a V4L2 subdev driver for the Aptina MT9M113 1.3 Megapixel SoC
-> image sensor (1280x1024 active pixel array) with on-chip ISP. The
-> sensor exposes:
+On Fri, Jun 05, 2026 at 05:53:04PM +0300, Andy Shevchenko wrote:
+> On Fri, Jun 05, 2026 at 02:16:17PM +0200, Johan Hovold wrote:
+> > On Wed, Jun 03, 2026 at 12:44:55AM +0300, Andy Shevchenko wrote:
+> > > On Thu, May 21, 2026 at 10:36:31AM +0200, Bartosz Golaszewski wrote:
+> > > > Provide a platform-specific variant of device_set_of_node_from_dev(). In
+> > > > addition to bumping the reference count of the OF node being assigned,
+> > > > it also assigns the fwnode of the platform device.
+> > > 
+> > > Can we rather investigate the way how to make that of node reuse thingy
+> > > (which is used solely by pin control) differently and then drop this confusing
+> > > device_set_of_node_from_dev() call altogether?
+> > 
+> > No, that call is needed. See commit 4e75e1d7dac9 ("driver core: add
+> > helper to reuse a device-tree node") for details.
 > 
->   - dual context operation: Context A (640x480 preview, binned) and
->     Context B (1280x1024 capture) selectable at runtime;
->   - single-lane MIPI CSI-2 output, YUV422 in UYVY or YUYV byte order
->     (the byte order is selected via the chroma/luma swap bit in
->     MODE_OUTPUT_FORMAT_{A,B});
->   - I2C MCU-indirect register access through the 0x098C/0x0990 page
->     indirection pair, in addition to the directly addressable
->     register space;
->   - V4L2 controls: H/V flip, color effects (none / mono / sepia /
->     negative / solarization), power-line frequency, saturation,
->     manual or auto exposure, analog gain, auto white balance, and
->     a four-entry test pattern selector;
->   - a 24 MHz EXTCLK and 1.8/2.8 V supplies.
-> 
-> The MT9M113 MCU intermittently wedges on stream start (SEQ_CMD
-> stuck, SEQ_STATE never reaching preview/capture; only a full power
-> cycle recovers it). The driver works around this in two layers:
-> runtime-PM resume always performs a full power-cycle plus init-table
-> replay - matching the legacy vendor kernel's per-open behaviour -
-> so a wedged MCU is recovered each session; and the s_stream(1) path
-> retries a bounded number of times with a runtime-PM power cycle
-> between attempts as fallback insurance for the residual failure
-> rate.
-> 
-> Found on the HP TouchPad (Tenderloin) as the front-facing camera
-> and on a number of other 1280x1024 mobile/embedded boards.
-> 
-> Assisted-by: Claude:claude-opus-4-7 Sashiko:claude-haiku-4-5 Sparse:0.6.4 Coccinelle:1.1.1
-> Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
-> ---
->  .../bindings/media/i2c/aptina,mt9m113.yaml         |    8 +
->  MAINTAINERS                                        |    8 +
->  drivers/media/i2c/Kconfig                          |   13 +
->  drivers/media/i2c/Makefile                         |    1 +
->  drivers/media/i2c/mt9m113.c                        | 3394 ++++++++++++++++++++
->  5 files changed, 3424 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9m113.yaml b/Documentation/devicetree/bindings/media/i2c/aptina,mt9m113.yaml
-> index 72b827c47b1d..cfd6711e8250 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/aptina,mt9m113.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9m113.yaml
-> @@ -70,6 +70,14 @@ properties:
->              const: 4
->              description: MIPI CSI-2 D-PHY
->  
-> +          data-lanes:
-> +            description:
-> +              The MT9M113 has a single CSI-2 data lane. Reject DT entries
-> +              that try to assign more than one lane so a misconfiguration
-> +              is caught at schema-validation time rather than at runtime
-> +              when the driver enforces num_data_lanes == 1.
-> +            maxItems: 1
-> +
+> Bart fixes the problem with the platform driver. At the result this will be
+> the only device_set_node() + 'reused = true'.  As for 'reused' flag, the need
+> is only for pinmux/pin control stuff.
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+And any other resource which may (eventually) be claimed by driver core
+or bus code.
 
-Best regards,
-Krzysztof
+> The question here is if there is a better
+> way to make that 'reused' be done automatically without need of setting some
+> flag explicitly.
 
+That's not really relevant to the series at hand.
+
+If this is something we want to merge then you need to continue setting
+the flag in order not to cause regressions.
+
+Johan
 
