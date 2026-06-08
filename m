@@ -1,185 +1,163 @@
-Return-Path: <devicetree+bounces-308403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308375-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SK85JBneJmo6mAIAu9opvQ
-	(envelope-from <devicetree+bounces-308403-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 17:22:01 +0200
+	id eU2rJhjUJmojlQIAu9opvQ
+	(envelope-from <devicetree+bounces-308375-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:39:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58D1657F68
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 17:22:00 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D241657596
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:39:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=hugovil.com header.s=default header.b="sV/EbSJ1";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308403-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308403-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=hugovil.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nyWRvOt5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308375-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308375-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 01FE630BF713
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 15:12:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CB031300F255
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 14:33:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5229E3EFFCB;
-	Mon,  8 Jun 2026 14:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E2293C457F;
+	Mon,  8 Jun 2026 14:33:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550BD3EFD2E;
-	Mon,  8 Jun 2026 14:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BBE23CCFDB;
+	Mon,  8 Jun 2026 14:33:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780930512; cv=none; b=SKHGa/TIIzjgdfHgJ7WSYLrmbxO+pnInf8UZsOcgLj45HAHGISEA06Cii8jLgqunAo7+8hePMCxtJxz8pNfbpaEa9teD6ZVXq2lC6/mH5ZA/31ArQ5MOInrVjdJdjkulyT9HoqMSHkNqA5zRrj9+LTdVuKeuTlXSdpIRMeeQGK0=
+	t=1780929182; cv=none; b=gOk85ewWutPO2GenUw0b9YWU7l6Q/RTwhj7G34Y8ia4eXk+mxMjRsEAim1+4ZV0IGNj3yK0rrlDeZ9YzUOSXy9l3+292V6n/uCpUN83hCONpfFzAZMbXb7fMkQ23XP9UFSLBdu3ET6hmHUoGW7TQsmWkpgwdDBif5r6B8GSFcOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780930512; c=relaxed/simple;
-	bh=efD5WqtlqRfwifxxwoK5B9N/dCynfQHG10xfXW5An3w=;
-	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
-	 Mime-Version:Content-Type; b=FeWYozVjYB9a0mR5A3noeOrtw+wcUm6r8JzU3jU3o6N6XTx9hzW2zucZYFrkm0BjfE+RPMC4FLY3Lq4ysXTUNmeGjrYaYwAlluGw6vCfl3dv2q9mSH26smG2qpfU3/9odPMvUkb0+P1ugRz0Y+xxJRMRVOUTZvqJvhrtHQgUNFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=sV/EbSJ1; arc=none smtp.client-ip=162.243.120.170
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=default; h=Content-Transfer-Encoding:Mime-Version:Message-Id:Subject:Cc:
-	To:From:Date:subject:date:message-id:reply-to;
-	bh=NqHxMoguK2gDguhbFbY8cwX2FqYEftuj+HxBPwP9Wnk=; b=sV/EbSJ1NcIMQOjzOgvWNV/CLJ
-	psBOODM9g/F7lI+pZYYCveKgOETLgh/IYMMsdRJKhNIIQ0DI1MeSq1sheu81G+pc5H+oDtSXuD2YQ
-	8ykH94/DeKpIGp0LZso5akvv0AZ2qnITY+ocy9v3Lk61VxFB57vMntoSmDAwoD8KGhL4=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61] helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.98.2)
-	(envelope-from <hugo@hugovil.com>)
-	id 1wWb1q-000000000gS-1u7V;
-	Mon, 08 Jun 2026 10:32:38 -0400
-Date: Mon, 8 Jun 2026 10:32:36 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: krzk@kernel.org
-Cc: krzk@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- simona@ffwll.ch, Frank.Li@nxp.com, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, shawnguo@kernel.org,
- laurent.pinchart+renesas@ideasonboard.com, antonin.godard@bootlin.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v2 14/15] dt-bindings: display/lvds-codec: add
- ti,sn65lvds93
-Message-Id: <20260608103236.efd8db82877ce76b09fde75b@hugovil.com>
-In-Reply-To: <20260521122353.82651a97984e58d2ec8309c5@hugovil.com>
-References: <20260305180651.1827087-1-hugo@hugovil.com>
-	<20260305180651.1827087-15-hugo@hugovil.com>
-	<20260511114406.24673c770d112b2ca4aba2eb@hugovil.com>
-	<20260521122353.82651a97984e58d2ec8309c5@hugovil.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1780929182; c=relaxed/simple;
+	bh=Pr9eqaJY5GiRXhXqVcRp8krosz9a6kRtEH7xau+kdYo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xt4g+TMEfZkdBB5WSXaxlNDgCzkiI8pVyfXpUXXJEZsc2tF0ARPMZTfvYcoxp9phO6j+n5Gj723RJzCoY9tY+Z+Rh6s5w34gixlYjuTHO+I+ddgwDB7zr0UhKpuqorZkNDDkfzNiM8Da+LB6XfTQe64cwUfzDBdNAwwNhnbT2c0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nyWRvOt5; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98AA81F00893;
+	Mon,  8 Jun 2026 14:33:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780929180;
+	bh=aDE4Pibswk5HFQAZoTvPpolcswnIs7t/D7Mgu2GT9FQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=nyWRvOt5WmS6vhlBqHoEsC1V57CsT8zNavt5c1XkEHNxn12IXAGsqKVnwOegxSoPf
+	 CYTuDBr0xmv61PoNlL9Wlwm4zozkTtSp69PJV6F5P4JbEZsTNDW+44Imkgdko3IgKY
+	 GzGXhGfEGNgVi3behteNn0b8NMKFG74jxm2uh/oHowx7pG0oTawkwXOI4WfXT/7fXF
+	 wjC5IEzyE+cKpArncg1oxGm5ma/a2Uv7vAGsEP77ZM3JXs/whSUmvG8WMPOypLjNf9
+	 gf4Qv73mQ43/Tbgr+pRR/yOyj1s0P175X35gV/zwjadCBtmVhGV/TUAFTfXuanz62W
+	 KoNfbQcb/Fy3Q==
+Date: Mon, 8 Jun 2026 09:32:59 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ninad Naik <ninadnaik07@gmail.com>
+Cc: broonie@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, me@brighamcampbell.com,
+	linux-kernel-mentees@lists.linux.dev, skhan@linuxfoundation.org
+Subject: Re: [PATCH] spi: dt-bindings: octeon: Convert to DT schema
+Message-ID: <20260608143259.GA2569066-robh@kernel.org>
+References: <20260607142356.2844008-1-ninadnaik07@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam_score: -2.0
-X-Spam_bar: --
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260607142356.2844008-1-ninadnaik07@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[hugovil.com,none];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=default];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-308375-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308403-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:laurent.pinchart+renesas@ideasonboard.com,m:antonin.godard@bootlin.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:hvilleneuve@dimonoff.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:conor@kernel.org,m:jernejskrabec@gmail.com,m:laurent.pinchart@ideasonboard.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ninadnaik07@gmail.com,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:me@brighamcampbell.com,m:linux-kernel-mentees@lists.linux.dev,m:skhan@linuxfoundation.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,nxp.com,pengutronix.de,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,dimonoff.com,oss.qualcomm.com];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[hugovil.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D58D1657F68
+X-Rspamd-Queue-Id: 8D241657596
 
-On Thu, 21 May 2026 12:23:53 -0400
-Hugo Villeneuve <hugo@hugovil.com> wrote:
-
-> On Mon, 11 May 2026 11:44:06 -0400
-> Hugo Villeneuve <hugo@hugovil.com> wrote:
+On Sun, Jun 07, 2026 at 07:53:56PM +0530, Ninad Naik wrote:
+> Convert octeon-3010 to DT schema
 > 
-> > Hi,
-> > 
-> > On Thu,  5 Mar 2026 13:06:29 -0500
-> > Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > 
-> > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > 
-> > > Add compatible string for TI SN65LVDS93. Similar to
-> > > SN65LVDS83 but with an industrial temperature range.
-> > > 
-> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > Now that this series landed in linux-next/master, except for this
-> > patch, we now have an error since it is required:
-> > 
-> > https://lore.kernel.org/oe-kbuild-all/202605071909.lXKPelNA-lkp@intel.com/
+> Signed-off-by: Ninad Naik <ninadnaik07@gmail.com>
+> ---
+>  .../bindings/spi/cavium,octeon-3010-spi.yaml  | 67 +++++++++++++++++++
+>  .../devicetree/bindings/spi/spi-octeon.txt    | 33 ---------
+>  2 files changed, 67 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-octeon.txt
 > 
-> Hi DT folks,
-> wondering if someone could pick/apply this patch to fix the build error?
+> diff --git a/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml b/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml
+> new file mode 100644
+> index 000000000000..3dbbb4f3c104
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/cavium,octeon-3010-spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cavium, Inc. OCTEON SoC SPI master controller
+> +
+> +description:
+> +  The Cavium OCTEON SPI controller is an SPI master controller found in
+> +  OCTEON SoCs.
+> +
+> +maintainers:
+> +  - Mark Brown <broonie@kernel.org>
 
-Ping...
+This should be someone with this h/w. But there doesn't appear to be any 
+OCTEON maintainer. There isn't any .dts using the compatible either. 
+Perhaps this driver and binding can just be removed?
 
-Hugo.
-
-
-> > > ---
-> > >  Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> > > index 4f52e35d02537..f2cb74b86cc05 100644
-> > > --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> > > @@ -37,6 +37,7 @@ properties:
-> > >                - ti,ds90c185   # For the TI DS90C185 FPD-Link Serializer
-> > >                - ti,ds90c187   # For the TI DS90C187 FPD-Link Serializer
-> > >                - ti,sn75lvds83 # For the TI SN75LVDS83 FlatLink transmitter
-> > > +              - ti,sn75lvds93 # For the TI SN75LVDS93 FlatLink transmitter
-> > >            - const: lvds-encoder # Generic LVDS encoder compatible fallback
-> > >        - items:
-> > >            - enum:
-> > > -- 
-> > > 2.47.3
-> > > 
-> > > 
-> > 
-> > 
-> > Hugo Villeneuve <hugo@hugovil.com>
-> 
-> 
-> -- 
-> Hugo Villeneuve
-> 
+> +  compatible:
+> +    const: cavium,octeon-3010-spi
 
 
--- 
-Hugo Villeneuve
+> +examples:
+> +  - |
+> +    / {
+
+Drop. You don't need the root node.
+
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        intc: interrupt-controller {
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+> +        };
+
+Drop. Examples don't need providers.
+
+Rob
 
