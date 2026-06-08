@@ -1,271 +1,363 @@
-Return-Path: <devicetree+bounces-308254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308255-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9joeHDuuJmpnbAIAu9opvQ
-	(envelope-from <devicetree+bounces-308254-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 13:57:47 +0200
+	id 0KdcNoyuJmpybAIAu9opvQ
+	(envelope-from <devicetree+bounces-308255-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 13:59:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E50655E7F
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 13:57:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D59655EA9
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 13:59:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bp.renesas.com header.s=selector1 header.b=c0rJAX3c;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308254-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308254-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=renesas.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cVHjfbqA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308255-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308255-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F101E3040F96
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 11:51:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 316433050218
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 11:52:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F37D036D50D;
-	Mon,  8 Jun 2026 11:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 697B2370D63;
+	Mon,  8 Jun 2026 11:52:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010038.outbound.protection.outlook.com [52.101.228.38])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA2D36C59A;
-	Mon,  8 Jun 2026 11:51:11 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780919472; cv=fail; b=LS2HBTEW/Ezd2Vi8w0/cjlqAW0DYL/1HrVvlJc3EnDAcPlGiH8KE+5Iuy1R8Vy275abTJ6wGftGzKZlfOOG0i9BebDaPHWwcIvMcgPaaEopD7JoiqgqniWBAsXg6PVVWePpMp5viKbaovgaBSSc6y2HT8g+YUOajLrnMAyO8mRE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780919472; c=relaxed/simple;
-	bh=f4BV78Axi33D0nhBAFvVyPYEfsMz+X84SXkMxR5RVkU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ARrPhVM+LqGqV9/BAabFaWSTFWaq2uVWweRoMQQHEKnRn4Wp2gc5ESvShe9O7aMzoQ8weForHoB31dlLuSaQAsczmS+dXj8+mLT+twNvZ8gIMpXPY/Y6r+a4mxkOJqaXV3Ylon3RLMEBhwzm5SeObzScLcXA8ds70iHyTJkS7Z8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=c0rJAX3c; arc=fail smtp.client-ip=52.101.228.38
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gL+smwUBM1K8u38VaPHvHh+rnWFAH4ft8lA6q9iNNGe6KtBrI6caC5oFO9I0yzXAp3ynt7KeAXS43hAdMlkAQ1693ymF5pAokKswMP0w0njVMYG8B0/vlkp+bQhdddUQa7seOf6cmKxS/6q/3JJ9W2JYf7hDHaG3jrUickKY9wHdkvKy3rm/IpnA2r2PuHqjnx8XAf1D8StZL+W7B1NVm8pu9V+PnAp2GnQuKwWHxI14cBB888sykOg85yNfwMlN5mX8zCds/fCQCNnBc0We+cANTkcJ7nbFCQ7X1PRXdbBB55rqkEpLRCHeGef6dj5ynQ6G7u3lM5ff+sSApH009w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f4BV78Axi33D0nhBAFvVyPYEfsMz+X84SXkMxR5RVkU=;
- b=M52Mtup5k3d1C+62eUUBHh81oiw050h0nbKfX0OkYlJDrOBLXdaQPVWiK+2eueG5jZ/ujjCQlr4g3VXk6KB+4MGi4BzpdEJF0Tf21DSAZgU96g3UjMK0w8uK+gfQzhsLIm+gZJylaui+ymOspadT2PsOY4an4poq2h91TCEWW14xcxcK6JFZ4p6QjnKigqtWiFKbXtnAQo23zeUkpFfRTiaXKE4lXpYfA1Pcd+hcBfJqOZ5/8R7OTe9LnKIw0X3QVWqpn2C4+Sv+70YNgO/MbA0nzr2xj3+sqgdZS5eQgovvJByStNH3y4LMVf/eCfwLuhidx3T3h2aqX+UgTJq2lw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f4BV78Axi33D0nhBAFvVyPYEfsMz+X84SXkMxR5RVkU=;
- b=c0rJAX3cIrlP+gpzOeM83s6XvgzlyPjVEYzKUS5nUA4kf/TUsbzn58UQ6q32W97y6HLUCReUO+4hWGKsTVrpRG9E6aqoZWwluzAfwPW1LxGKasAw8sI68y5fyDB2QsusMh/G/WQY0onVk/aamEN0EWukmZLYCRawXB8AGn1fWU4=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TYYPR01MB12528.jpnprd01.prod.outlook.com (2603:1096:405:197::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.12; Mon, 8 Jun 2026
- 11:51:08 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::87d1:4928:d55:97de]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::87d1:4928:d55:97de%4]) with mapi id 15.21.0092.011; Mon, 8 Jun 2026
- 11:51:08 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, biju.das.au <biju.das.au@gmail.com>
-CC: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert
- Uytterhoeven <geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: RE: [PATCH] dt-bindings: mfd: syscon: Make ranges required for
- renesas,r9a08g046-lvds-cmn
-Thread-Topic: [PATCH] dt-bindings: mfd: syscon: Make ranges required for
- renesas,r9a08g046-lvds-cmn
-Thread-Index:
- AQHc8pGh26og7GjtHkeCuhYLGQ8HXrY0e8eAgAAAPoCAAABXAIAADYMAgAACtXCAAAczgIAAAFYQ
-Date: Mon, 8 Jun 2026 11:51:07 +0000
-Message-ID:
- <TY3PR01MB11346C66B7BD36CB89D19009F861C2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20260602131331.90756-1-biju.das.jz@bp.renesas.com>
- <20260608-alluring-remarkable-echidna-d107ea@quoll>
- <d8cf5925-9c4e-4417-8fee-1d24c4cd303d@kernel.org>
- <TY3PR01MB1134665BE4CE8FB734BCFAAAF861C2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <f5e8719f-6d85-4edf-a645-5be9be7ec980@kernel.org>
- <TY3PR01MB113469E3AB101C3552E721E11861C2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <6960d660-2851-44e3-af89-b334ab6cecc0@kernel.org>
-In-Reply-To: <6960d660-2851-44e3-af89-b334ab6cecc0@kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYYPR01MB12528:EE_
-x-ms-office365-filtering-correlation-id: 638aba7e-ab1e-431e-23b9-08dec5543a4e
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|11063799006|4143699003|3023799007|56012099006|6133799003|38070700021|18002099003|22082099003;
-x-microsoft-antispam-message-info:
- wtG1usDV4vinKk1PHbJJ0qdTuPyukffbmIHOsV2q5NBloo9YBE5bbPNmYjAOqYQcQxWtLrmLsN2dmFTr7nKG3DSu6/fcb1f2JcuhQAOyRMM4rbIoQQXj/8JZwJPNhl1HBqiVOl/+OEd5Pxqa4qzEO1ra4xMEF3gMJWzfrx5hkU8zUJt0OG7DNoc7wh0Qce7KINgx6kzhRoRDkE/ctJO0vb1l3bPijQ64lbCd/ohZ+SerltvLN80fjEmFBX8N96cLD3TmralqRZ1JOnv2/eZypVvDWDbrF6moZwhX2Gq2IZLaYnCM+CjeHNuTbU7ZFa2OBFRUzRX+9H6YvCDjf7x+ttg+UqwOr2lvXwWxwIhw0geBU2cJgm0zEYLBZ80yJzPUnZQwrSviEV5hHq1TfycyOqDVR+TbYuyuCPxMR8C8BOLGaN5Ka/axeCOIT1c6HMSEWFk2We3XWEbSO2nJbP7md9hmwWgULIlUO6EXeJ0txJgfLKMipfW7B7Y5dh7+hI6Pq7qTl7wJE63XG65J/yM3t+olduJUkVQfmWQePvD4jB9rfs3PdG/bnbVX0VFaqW2KXLqRKfScBvQdy480OVzU8XXf1nbuqdkzxLLp6erwNK3nkzXHEvpF/ck2ZMzZg3pBVLTK08FrL/z+O49SoQqEwRZWVZyxc2iC+4vpR3BShpynHK1YrW+wJJoh5Tai7wrTqeSwvSbdvym45NWPM92jjalg33BcvHxDGy3jJ/shGp2pCGhT1SVU5Z65l+P8+xcF
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(11063799006)(4143699003)(3023799007)(56012099006)(6133799003)(38070700021)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?T21DWkpqUmMxNDQvNVI4UHpLVjdaU1p3eEc0djhUaTljSC9EQ3liTnhObURY?=
- =?utf-8?B?MG1SVlFYUkx3RndjL2hqQ2xzQVFITnRqdXFsR1cvMzliZUg5VURXTkNFVWZC?=
- =?utf-8?B?YnhsdWx5cUdnd3B1RmVtZUF3TG9xZmNBVXVNUWFhOGEwT2ZVV3pzZmc1UC9p?=
- =?utf-8?B?c3RqU1FMNDl1WGNrYi9ramFQNVh2c3NJUTZsL2F5ZVhKeHMvUWNEUnNXWXlp?=
- =?utf-8?B?dDNrallzaFZZWTNyQ001QVRGUE14NGRJcFpiMzZGY09KK3JaVWxVRyt3d3l0?=
- =?utf-8?B?QUp6L0YwaUJibnl2bk1GSE1rdTIzQW0yMlRmTDhMbnZ2eDNPdFZJUGhqZklI?=
- =?utf-8?B?MDBEMHN6SDNERmRxUE1pVG12aTlvOENLYTR5VzBhNDRISkhUemc0YVI3WTZl?=
- =?utf-8?B?c1llQUpxL3FxTjFzTTJNZkE5Z1dySWZnWkVzOHhwK0d6VWhkTzREdFJydGZi?=
- =?utf-8?B?Q3dRSDVueEhrS2pUa1VETlFDT1N0dG40eTdTNGZXWlpuU2NkWmo4djR6TU5E?=
- =?utf-8?B?NkRhNG5Ec3lMSXFxRllnQ050Qkg0bnZTeENKb29ER2dZSlNnMmkxcXNLU1Zt?=
- =?utf-8?B?ekt1TFV2Z3JUd2FPN1Q3Tm5YVHNFUk1Cc0EyOCt5OFlWUXp0T09HWElZNisz?=
- =?utf-8?B?R3NnbEtzWFgvVk43cEVjS2FZdGkzRXZ0TExSUVJ6c2lxZEdPMEp5bmZsYlBQ?=
- =?utf-8?B?VlpnTVZDNGdCTkJzSm9jMjRBLzM4QjJWWGRLbUQ1bDVXL2VTcGJDSUxIa3gw?=
- =?utf-8?B?Q1pYVjFIaCtFV3BoOWpzeXJNcFJoNjJKemF2VGUxaHZ3KzFkS014eFdidzgw?=
- =?utf-8?B?Qk5rbEVvc3RBYWNSK2tleGRjVmt2NURjNHN0U25jSGZtWDNXeEpxSlEwcU1M?=
- =?utf-8?B?SVJRWG1ZcVRYN0g3RVVhUWttTHU3QndhTUttREFjK3E2WTJvMXR3ZzlCaUdG?=
- =?utf-8?B?NksrUk1kT1JvUWdPejBvMkl3eEJ4Q3psdEt0QmdYTEFWYjc3YmJhRUxSZ1Vo?=
- =?utf-8?B?VUU2VWJXekd2a2ZYRXBJbEswRnZZZXU0NEJTNGZiMU51TGpTVnNNL1ZjQUkx?=
- =?utf-8?B?UFRUN2FVT0VxVFhxL3lZVDU0MzVIUkcxc0s0NUJYVURIWTFUUU53SnZ6WmpR?=
- =?utf-8?B?WFlXbmk1NmZLbVhhVlFsK3V2aEVXU21QY0h2SFFCWmVZZjNjUXVobVJmaWJE?=
- =?utf-8?B?bGZtNnVleE5adzZvZWJhUXQ2cHQ2WTE3Qld5aitTa1VWcERCVXlvcjF4NlRk?=
- =?utf-8?B?dDIrVit1aG9ua3dkNlgzL0FSZkgzREZCTm82NFUvSnhaN2YvWG85VkQ0Yko4?=
- =?utf-8?B?Ky9NRTYyWWFMV0hRT3VuS2RqVmRRMkJwd24zOG5ydm9TMW4vb0xSbjljYjhH?=
- =?utf-8?B?VlRVQW1tcm9xVXNndkxVL01YcXE2SjVMREVHRnQvRk9tQmJjVVNVOG1ZZURH?=
- =?utf-8?B?YS80T1JvNWlrMTlSZ3dBenE1MTV5R2cvcy9zbGxiT2J5dmhDcFA5WitDREJu?=
- =?utf-8?B?Nm02aG5nS281ZS9HdkNEOXhNeTA0emFySVdlREJIMWZYQXAxZnJWcEk0clk5?=
- =?utf-8?B?Tk04ZURuQTNjV3RERWJqVHZTUWY0YWxYcHI0ZHlUSUExUG9iY0cxRnFLNTlo?=
- =?utf-8?B?ZmZQMnkvZzJkcXV2b0RyZ0FsZmh6Q1Z5R05BMUtRU0F0ZW1MVjhRMEV0cmFX?=
- =?utf-8?B?MlVYcnFwYlFDK08rZjExM29XQW9RcVRsMzhJSmQya3RMdHFLaHREb3Y3UFNW?=
- =?utf-8?B?Y01oMFdHYXpveUE0cmhla0o3L2V4dTJ1S3N6U081WE05ZUtrUVNZdm9OZ3cz?=
- =?utf-8?B?d3A1U2lFU3Z0am83NG1QQnA1QTYydC82dFhBMlV2bGlMZHJFYlNSdUVYenM2?=
- =?utf-8?B?Z0JJNkhIRXNob3BtWEFwSjlFNkN6VzNFbERXandJMDRlVmk3Nm4wQkJpc0JR?=
- =?utf-8?B?NU5mWEhNUDMycmRlbEpTU1E4bUlkZ1JjZDhIMVVBblV0RmtNNExVVXFUSkta?=
- =?utf-8?B?aFZ2YkpCYndtclF1NG9lVDRKTDVQMi8wMnArRm9uTzZwRTBmTGE5M1J0ZmtP?=
- =?utf-8?B?RDAvTW1FczNISmFYTENIWWx3ZkVQM2pyQnZUSDI5NmtUSlpYN09WOEZFL1dx?=
- =?utf-8?B?V20yN0d6QXd1TGc3WmxsWDcxMFVoOENtSEJGZjlLbUpWRVlWNGRtK0pkaXEz?=
- =?utf-8?B?RURzZUxQUzczN3RjblZrR3cxZUVlSXp6NGtPMVkzOEJKdHBSZmpubzRmcFBD?=
- =?utf-8?B?TEFvNlliczNCcUtmYlduQS9teTVrUEg3MGtXY2J2Y05VVUJNVDV1YzNhbmlx?=
- =?utf-8?B?K1VVb3lVayt5Uk0vNWMweWlhYUdyTWM4andZY1o4TjY1RDE5cWQ1UT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C861370AC9
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 11:52:48 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780919570; cv=none; b=encUBN7Mvem1r3BU6gPix7CWGHzsvzu7mHavTXjuMDBInSUisRsfMD1z9a8YBjGI9TmF5B9NJROojxLB4FAC2t1AsrsvFcXz1bBSE4iI+SNE6JuHOVqla5WJF8+BqiU/28UDyLrL1GwurX5n9Wc8dB2iQ8KIE1i2QexTns3pxh8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780919570; c=relaxed/simple;
+	bh=YjVhYKpo/2mZup7aKBa47I6+VWPzGcLOPJTKPuLxZg8=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kM0s3qWDrv1disGvCwe9Q48TibXa0pQ4rdpoX6mGtChDobsVBkwvi2ctXDlfS94HcdzkSJ2IuH+8KT2nLWUlNVse8ac704NoZusLZVGTc90NPfrQL+Q3oxpUFI/KK2l6Dy4ilgRklkWBkn286mQss7gG/CIqJFsIlwsG2r8UtpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cVHjfbqA; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D68C01F008A3
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 11:52:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780919568;
+	bh=z6rLz19GV55l5tqoQrBtMaqb4H3JquZfolkQprG3C7E=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=cVHjfbqABbW4ULixT+MvTLTXt8UtJR4uEvhwnoBPaRA21Gk/pn0r9f0htuh4GiTfJ
+	 gDqXzH+GHHbtPG/N07Ovq/ngLOAqXTG5uIuqym19YXEiGJXT5pa503nm0KnaXbP6K3
+	 77x32Am0YnB6qOkES6K2EUKxsgWx7bYl5UZowipFzFijeuVrctRAz/Vg130bG1f/UD
+	 GvKQ1Zktr9UwgWc2KVx4GENfksCnHOJCMJDnqdw6WqP7OdYKQfxJAb3mH2qh++Z3OH
+	 N0pO7QKu4xbzrETKdCATFcaXbg9DjXLmheroUsehMjfSoPeVniPEZlAg9xt+5Cu/DU
+	 aqm0cXxJxyTqQ==
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5aa7bf3d512so3722384e87.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 04:52:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8twyfln+yx9etKcK2d/YgqQmNG5AMVpgX+RsYAJWzAPG9VBqjNuTCKKc9HxSsG4vpnsw5PQr2WVT3p@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFKuKXC4d/f9npvNgL7nw5qZR9QYIpbv3sTZ+T3My2GDKe+vYC
+	mGNTZmeFrcMRF2RlFnvVicTdvvTwNy6A6sr8Ht8duX7lJ8k1vMcfrT0X4Kk5t3pvrxVSRVXVRcN
+	tzHV/xpeChZqbacobx+1wyuWIXeS3b+tcFHgJdoeZSw==
+X-Received: by 2002:a05:6512:65d7:b0:5aa:6eb4:fead with SMTP id
+ 2adb3069b0e04-5aa87c393b2mr2637859e87.34.1780919567433; Mon, 08 Jun 2026
+ 04:52:47 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 8 Jun 2026 04:52:45 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 8 Jun 2026 04:52:45 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260605010022.968612-13-elder@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 638aba7e-ab1e-431e-23b9-08dec5543a4e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jun 2026 11:51:07.9279
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zf7A0NmUtNbg7Ih1TXCCrpoFR9yeRppL9LQgf+m9cxPvrC0tiZJD+jn58SCut/unYfp+fUdnqZgnfSdZ2EsEIBel+pnsRgQZUF7WWMXLD1o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB12528
+References: <20260605010022.968612-1-elder@riscstar.com> <20260605010022.968612-13-elder@riscstar.com>
+Date: Mon, 8 Jun 2026 04:52:45 -0700
+X-Gmail-Original-Message-ID: <CAMRc=Mf4MgnSoKbrtVxDJOzYntPZPenYYde1STN-GajCU_NLBg@mail.gmail.com>
+X-Gm-Features: AVVi8Cfce9S2I3CO2iQ2lxXhAb9TU9oc8tjgmzM5jX_8w_OZsxuiuwaNEuhyNWM
+Message-ID: <CAMRc=Mf4MgnSoKbrtVxDJOzYntPZPenYYde1STN-GajCU_NLBg@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 12/14] gpio: tc956x: add TC956x/QPS615 support
+To: Alex Elder <elder@riscstar.com>
+Cc: daniel@riscstar.com, mohd.anwar@oss.qualcomm.com, a0987203069@gmail.com, 
+	alexandre.torgue@foss.st.com, ast@kernel.org, boon.khai.ng@altera.com, 
+	chenchuangyu@xiaomi.com, chenhuacai@kernel.org, daniel@iogearbox.net, 
+	hawk@kernel.org, hkallweit1@gmail.com, inochiama@gmail.com, 
+	john.fastabend@gmail.com, julianbraha@gmail.com, livelycarpet87@gmail.com, 
+	mcoquelin.stm32@gmail.com, me@ziyao.cc, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com, 
+	rohan.g.thomas@altera.com, sdf@fomichev.me, siyanteng@cqsoftware.com.cn, 
+	weishangjuan@eswincomputing.com, wens@kernel.org, netdev@vger.kernel.org, 
+	bpf@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com, 
+	rmk+kernel@armlinux.org.uk, andersson@kernel.org, konradybcio@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linusw@kernel.org, 
+	brgl@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.94 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308254-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[49];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-308255-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:biju.das.au@gmail.com,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:bijudasau@gmail.com,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
-	FORGED_SENDER(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:elder@riscstar.com,m:daniel@riscstar.com,m:mohd.anwar@oss.qualcomm.com,m:a0987203069@gmail.com,m:alexandre.torgue@foss.st.com,m:ast@kernel.org,m:boon.khai.ng@altera.com,m:chenchuangyu@xiaomi.com,m:chenhuacai@kernel.org,m:daniel@iogearbox.net,m:hawk@kernel.org,m:hkallweit1@gmail.com,m:inochiama@gmail.com,m:john.fastabend@gmail.com,m:julianbraha@gmail.com,m:livelycarpet87@gmail.com,m:mcoquelin.stm32@gmail.com,m:me@ziyao.cc,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:richardcochran@gmail.com,m:rohan.g.thomas@altera.com,m:sdf@fomichev.me,m:siyanteng@cqsoftware.com.cn,m:weishangjuan@eswincomputing.com,m:wens@kernel.org,m:netdev@vger.kernel.org,m:bpf@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redh
+ at.com,m:maxime.chevallier@bootlin.com,m:rmk+kernel@armlinux.org.uk,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:arnd@arndb.de,m:gregkh@linuxfoundation.org,m:johnfastabend@gmail.com,m:mcoquelinstm32@gmail.com,m:andrew@lunn.ch,m:rmk@armlinux.org.uk,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,vger.kernel.org,bp.renesas.com];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,kernel.org,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lunn.ch,davemloft.net,google.com,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,riscstar.com:email,vger.kernel.org:from_smtp,mail.gmail.com:mid];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:from_mime,bp.renesas.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,vger.kernel.org:from_smtp,TY3PR01MB11346.jpnprd01.prod.outlook.com:mid,renesas.com:email,nesas.com:url]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D7E50655E7F
+X-Rspamd-Queue-Id: 43D59655EA9
 
-SGkgS3J6eXN6dG9mIEtvemxvd3NraSwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
-PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+DQo+IFNlbnQ6IDA4
-IEp1bmUgMjAyNiAxMjo0Nw0KPiBTdWJqZWN0OiBSZTogW1BBVENIXSBkdC1iaW5kaW5nczogbWZk
-OiBzeXNjb246IE1ha2UgcmFuZ2VzIHJlcXVpcmVkIGZvciByZW5lc2FzLHI5YTA4ZzA0Ni1sdmRz
-LWNtbg0KPiANCj4gT24gMDgvMDYvMjAyNiAxMzoyMiwgQmlqdSBEYXMgd3JvdGU6DQo+ID4gSGkg
-S3J6eXN6dG9mIEtvemxvd3NraSwNCj4gPg0KPiA+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0t
-LQ0KPiA+PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+DQo+ID4+
-IFNlbnQ6IDA4IEp1bmUgMjAyNiAxMjoxMQ0KPiA+PiBTdWJqZWN0OiBSZTogW1BBVENIXSBkdC1i
-aW5kaW5nczogbWZkOiBzeXNjb246IE1ha2UgcmFuZ2VzIHJlcXVpcmVkDQo+ID4+IGZvciByZW5l
-c2FzLHI5YTA4ZzA0Ni1sdmRzLWNtbg0KPiA+Pg0KPiA+PiBPbiAwOC8wNi8yMDI2IDEyOjI2LCBC
-aWp1IERhcyB3cm90ZToNCj4gPj4+IEhpIEtyenlzenRvZiBLb3psb3dza2ksDQo+ID4+Pg0KPiA+
-Pj4gVGhhbmtzIGZvciB0aGUgZmVlZGJhY2suDQo+ID4+Pg0KPiA+Pj4+IC0tLS0tT3JpZ2luYWwg
-TWVzc2FnZS0tLS0tDQo+ID4+Pj4gRnJvbTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6a0BrZXJu
-ZWwub3JnPg0KPiA+Pj4+IFNlbnQ6IDA4IEp1bmUgMjAyNiAxMToyMg0KPiA+Pj4+IFN1YmplY3Q6
-IFJlOiBbUEFUQ0hdIGR0LWJpbmRpbmdzOiBtZmQ6IHN5c2NvbjogTWFrZSByYW5nZXMgcmVxdWly
-ZWQNCj4gPj4+PiBmb3IgcmVuZXNhcyxyOWEwOGcwNDYtbHZkcy1jbW4NCj4gPj4+Pg0KPiA+Pj4+
-IE9uIDA4LzA2LzIwMjYgMTI6MjAsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+ID4+Pj4+
-IE9uIFR1ZSwgSnVuIDAyLCAyMDI2IGF0IDAyOjEzOjI5UE0gKzAxMDAsIEJpanUgd3JvdGU6DQo+
-ID4+Pj4+PiBGcm9tOiBCaWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+ID4+
-Pj4+Pg0KPiA+Pj4+Pj4gQWRkIGEgY29uZGl0aW9uYWwgc2NoZW1hIHJ1bGUgdG8gdGhlIHN5c2Nv
-biBiaW5kaW5ncyB0aGF0DQo+ID4+Pj4+PiByZXF1aXJlcyB0aGUgcmFuZ2VzIHByb3BlcnR5IHdo
-ZW4gdGhlIGNvbXBhdGlibGUgc3RyaW5nIGNvbnRhaW5zDQo+ID4+Pj4+PiByZW5lc2FzLHI5YTA4
-ZzA0Ni1sdmRzLWNtbi4gVGhpcyBlbnN1cmVzIHRoZSBMVkRTIGNvbW1vbiBjb250cm9sDQo+ID4+
-Pj4+PiBibG9jayBvbiB0aGUgUlovRzNMIFNvQyBjb3JyZWN0bHkgZGVjbGFyZXMgaXRzIGFkZHJl
-c3MNCj4gPj4+Pj4+IHRyYW5zbGF0aW9uLCBhcyB0aGUgZGV2aWNlIGhhcyBjaGlsZCBub2RlcyB0
-aGF0IG5lZWQgYSB2YWxpZA0KPiA+Pj4+Pj4gcmFuZ2VzIG1hcHBpbmcgdG8gYmUgZGVzY3JpYmVk
-IGluIHRoZSBkZXZpY2UgdHJlZS4NCj4gPj4+Pj4+DQo+ID4+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBC
-aWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+ID4+Pj4+PiAtLS0NCj4gPj4+
-Pj4+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL3N5c2Nvbi55YW1sIHwg
-MTQNCj4gPj4+Pj4+ICsrKysrKysrKysrKysrDQo+ID4+Pj4+PiAgMSBmaWxlIGNoYW5nZWQsIDE0
-IGluc2VydGlvbnMoKykNCj4gPj4+Pj4+DQo+ID4+Pj4+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9zeXNjb24ueWFtbA0KPiA+Pj4+Pj4gYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL3N5c2Nvbi55YW1sDQo+ID4+Pj4+PiBp
-bmRleCA5YzgxMDEwZDVhNzQuLmNiZjgzYTA2YWUyNSAxMDA2NDQNCj4gPj4+Pj4+IC0tLSBhL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvc3lzY29uLnlhbWwNCj4gPj4+Pj4+
-ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvc3lzY29uLnlhbWwN
-Cj4gPj4+Pj4+IEBAIC0yNjksNiArMjY5LDggQEAgcHJvcGVydGllczoNCj4gPj4+Pj4+ICAgIHJl
-c2V0czoNCj4gPj4+Pj4+ICAgICAgbWF4SXRlbXM6IDENCj4gPj4+Pj4+DQo+ID4+Pj4+PiArICBy
-YW5nZXM6IHRydWUNCj4gPj4+Pj4NCj4gPj4+Pj4gVGhlcmUgYXJlIG5vIGNoaWxkcmVuIGFsbG93
-ZWQsIHNvIHJhbmdlcyBwcm9wZXJ0eSBpcyB3cm9uZy4NCj4gPj4+Pj4NCj4gPj4+Pj4gWW91IGFy
-ZSBjaGFuZ2luZyBiaW5kaW5nIHdoaWNoIERPRVMgTk9UIGFsbG93IHNpbXBsZS1tZmQgb3IgYW55
-DQo+ID4+Pj4+IG90aGVyIGNoaWxkcmVuLiBSYW5nZXMgaXMgbm90IGEgcHJvYmxlbSBoZXJlLg0K
-PiA+Pj4+DQo+ID4+Pj4NCj4gPj4+PiBBbmQgaWYgeW91IHRlc3RlZCBpdCBvbiB5b3VyIERUUywg
-eW91IHdvdWxkIHNlZSB0aGlzIGRvZXMgbm90IHdvcmsuLi4NCj4gPj4+DQo+ID4+PiBJIGRvbid0
-IHNlZSBhbnkgd2FybmluZ3Mgb3IgZXJyb3IuIEkgaGF2ZSBkb25lIHRoaXMgY2hhbmdlIGJhc2Vk
-IG9uDQo+ID4+PiBSb2IncyBjb21tZW50IGJhc2VkIG9uIHNhc2hpa28gcmV2aWV3IFsxXS4NCj4g
-Pj4+DQo+ID4+PiBJZiB5b3UgYWdyZWUsIEkgY2FuIGRyb3AgdGhpcyBwYXRjaC4NCj4gPj4+DQo+
-ID4+PiBbMV0NCj4gPj4+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI2MDYwMTAyMjYx
-OS5HQTM5NjEzMjQtcm9iaEBrZXJuZWwub3JnDQo+ID4+PiAvDQo+ID4+DQo+ID4+IExvb2s6DQo+
-ID4+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI2MDUyNDE5NDQ1Ny40Nzk2ODEtMi1i
-aWp1LmRhcy5qekBicC5yZQ0KPiA+PiBuZXNhcy5jb20vDQo+ID4+IFdoYXQgY29tcGF0aWJsZXMg
-YXJlIGhlcmU/DQo+ID4+DQo+ID4+IE5vdyBvcGVuIHRoZSBiaW5kaW5nIC0gd2hhdCBjb21wYXRp
-YmxlcyBhcmUgYWxsb3dlZCBmb3IgcmVuZXNhcyxyOWEwOGcwNDYtbHZkcy1jbW4gPw0KPiA+DQo+
-ID4gT0ssIEkgYW0gbWlzc2luZyB0aGUgZmFsbGJhY2tzICJzaW1wbGUtbWZkIiwgInN5c2NvbiI7
-IGluIHRoZQ0KPiA+IGNvbXBhdGlibGVzIGFsbG93ZWQgZm9yIHJlbmVzYXMscjlhMDhnMDQ2LWx2
-ZHMtY21uLg0KPiA+DQo+ID4gT0ssIEkgd2lsbCBhZGQgdGhvc2UuDQo+IA0KPiBObywgbWF5YmUs
-IGR1bm5vLi4uIEhvdyBhbnl0aGluZyBoZXJlIGNvdWxkIGhhdmUgYmVlbiB0ZXN0ZWQ/IGR0YnNf
-Y2hlY2sgY2xlYXJseSBwb2ludHMgZXJyb3JzIG9uIHlvdXINCj4gRFRTLg0KDQpJIHJhbiB0aGUg
-YmVsb3cgY29tbWFuZHMgYW5kIG5vbmUgb2YgdGhlbiB0cmlnZ2VyZWQgdGhlIGVycm9yL3dhcm5p
-bmcgeW91IGFyZSBzdXNwZWN0aW5nLg0KQW0gSSBtaXNzaW5nIGFueXRoaW5nIGhlcmU/DQoNCm1h
-a2UgQVJDSD1hcm02NCBEVF9DSEVDS0VSX0ZMQUdTPS1tIERUX1NDSEVNQV9GSUxFUz0kezF9IENS
-T1NTX0NPTVBJTEU9fi8ke1RPT0xfQ0hBSU59L2Jpbi9hYXJjaDY0LW5vbmUtbGludXgtZ251LSBk
-dF9iaW5kaW5nX2NoZWNrIC1qMzINCm1ha2UgQVJDSD1hcm02NCAtcyBkdGJzX2NoZWNrIC1qMzIN
-Cm1ha2UgQVJDSD1hcm02NCBEVF9TQ0hFTUFfRklMRVM9JHsxfSBDUk9TU19DT01QSUxFPX4vJHtU
-T09MX0NIQUlOfS9iaW4vYWFyY2g2NC1ub25lLWxpbnV4LWdudS0gLXMgZHRic19jaGVjayAtajMy
-DQptYWtlIEFSQ0g9YXJtNjQgQ1JPU1NfQ09NUElMRT1+LyR7VE9PTF9DSEFJTn0vYmluL2FhcmNo
-NjQtbm9uZS1saW51eC1nbnUtIFc9MSBkdGJzIC1qMzIgMj4mMSB8IHRlZSAtYSBhcm02NC1kdGJz
-LmxvZw0KDQpDaGVlcnMsDQpCaWp1DQoNCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9m
-DQo=
+On Fri, 5 Jun 2026 03:00:19 +0200, Alex Elder <elder@riscstar.com> said:
+> Toshiba TC956x is an Ethernet-AVB/TSN bridge and is essentially
+> a small and highly-specialized SoC.  TC956x includes a GPIO block that
+> can be accessed, alongside several other peripherals, via two PCIe
+> endpoint functions.  The PCIe function driver creates an auxiliary
+> device for the GPIO block, and that device gets bound to this auxiliary
+> device driver.
+>
+> This driver is implemented using the generic regmap-based GPIO driver.
+>
+> Co-developed-by: Daniel Thompson <daniel@riscstar.com>
+> Signed-off-by: Daniel Thompson <daniel@riscstar.com>
+> Signed-off-by: Alex Elder <elder@riscstar.com>
+> ---
+>  MAINTAINERS                |   1 +
+>  drivers/gpio/Kconfig       |  12 ++++
+>  drivers/gpio/Makefile      |   1 +
+>  drivers/gpio/gpio-tc956x.c | 130 +++++++++++++++++++++++++++++++++++++
+>  4 files changed, 144 insertions(+)
+>  create mode 100644 drivers/gpio/gpio-tc956x.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0924f7ec43cb0..0439607d1155f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -27057,6 +27057,7 @@ M:	Alex Elder <elder@kernel.org>
+>  M:	Daniel Thompson <danielt@kernel.org>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/net/toshiba,tc956x-dwmac.yaml
+> +F:	drivers/gpio/gpio-tc956x.c
+>  F:	drivers/misc/tc956x_pci.c
+>
+>  TOSHIBA WMI HOTKEYS DRIVER
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index 020e51e30317a..36631ca722fa3 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -743,6 +743,18 @@ config GPIO_TB10X
+>  	select GPIO_GENERIC
+>  	select GENERIC_IRQ_CHIP
+>
+> +config GPIO_TC956X
+> +	tristate "Toshiba TC956X GPIO support"
+> +	depends on TOSHIBA_TC956X_PCI
+> +	select GPIO_REGMAP
+> +	default m
+> +	help
+> +	  This enables support for the GPIO controller embedded in the Toshiba
+> +	  TC956X (and Qualcomm QPS615).  This device connects to the host
+> +	  via PCIe port, which is the upstream port on an internal PCIe
+> +	  switch.  On some platforms, a few of the GPIO lines are used to
+> +	  manage external resets.
+> +
+>  config GPIO_TEGRA
+>  	tristate "NVIDIA Tegra GPIO support"
+>  	default ARCH_TEGRA
+> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> index b267598b517de..c3584e7cba9b4 100644
+> --- a/drivers/gpio/Makefile
+> +++ b/drivers/gpio/Makefile
+> @@ -178,6 +178,7 @@ obj-$(CONFIG_GPIO_SYSCON)		+= gpio-syscon.o
+>  obj-$(CONFIG_GPIO_TANGIER)		+= gpio-tangier.o
+>  obj-$(CONFIG_GPIO_TB10X)		+= gpio-tb10x.o
+>  obj-$(CONFIG_GPIO_TC3589X)		+= gpio-tc3589x.o
+> +obj-$(CONFIG_GPIO_TC956X)		+= gpio-tc956x.o
+>  obj-$(CONFIG_GPIO_TEGRA186)		+= gpio-tegra186.o
+>  obj-$(CONFIG_GPIO_TEGRA)		+= gpio-tegra.o
+>  obj-$(CONFIG_GPIO_THUNDERX)		+= gpio-thunderx.o
+> diff --git a/drivers/gpio/gpio-tc956x.c b/drivers/gpio/gpio-tc956x.c
+> new file mode 100644
+> index 0000000000000..0dc6b1028d970
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-tc956x.c
+> @@ -0,0 +1,130 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +/*
+> + * Copyright (C) 2026 by RISCstar Solutions Corporation.  All rights reserved.
+> + */
+> +
+> +/*
+> + * The Toshiba TC956X implements a PCIe Gen 3 switch that connects an
+> + * upstream x4 port to two downstream PCIe x2 ports.  It incorporates
+> + * an internal endpoint on a internal PCIe port that implements two
+> + * Synopsys XGMAC Ethernet interfaces.
+> + *
+> + * 35 GPIOs are also implemented by an embedded GPIO controller.  Three
+> + * registers control the first 32 GPIOs (other than 20 and 21, which are
+> + * reserved).  Three other registers control GPIOs 32 through 36. GPIOs
+> + * 22-24, 27-28, 31, and 34 are treated as "input only".
+> + *
+> + * There is a TC956X PCI power controller driver that accesses the
+> + * direction and output value registers for GPIOs 2 and 3.  These
+> + * GPIOs control the reset signal for the two downstream PCIe ports.
+> + * Their values will never change during operation of this driver, and
+> + * this driver reserves these two GPIOS.
+> + */
+> +
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/gpio/regmap.h>
+> +
+> +#define DRIVER_NAME		"tc956x-gpio"
+> +
+> +#define TC956X_GPIO_COUNT	37	/* Number of GPIOs (20-21 reserved) */
+> +
+> +/* The GPIO offsets are relative to 0x1200 in TC956X SFR space. */
+> +#define GPIO_IN0_OFFSET		0x00		/* Input value (0-31) */
+> +#define GPIO_EN0_OFFSET		0x08		/* 0: out; 1: in (0-31) */
+> +#define GPIO_OUT0_OFFSET	0x10		/* Output value (0-31) */
+> +
+> +/*
+> + * There are two sets of registers, each representing (up to) 32 GPIOs with a
+> + * stride of 4 bytes (IN1 is 4 bytes past IN0, EN1 is 4 bytes past EN0, etc.).
+> + */
+> +#define GPIO_PER_REG		32
+> +#define GPIO_REG_STRIDE		4
+> +
+> +static int tc956x_gpio_init_valid_mask(struct gpio_chip *gc,
+> +				       unsigned long *valid_mask,
+> +				       unsigned int ngpios)
+> +{
+> +	/*
+> +	 * GPIOs 2 and 3 are used by the PCI power control driver, and
+> +	 * we don't allow them to be used.  GPIOs 20 and 21 are reserved
+> +	 * (and not usable).
+> +	 */
+> +	bitmap_fill(valid_mask, ngpios);
+> +	bitmap_clear(valid_mask, 2, 2);
+> +	bitmap_clear(valid_mask, 20, 2);
+> +
+> +	return 0;
+> +}
+> +
+> +static int tc956x_gpio_probe(struct auxiliary_device *adev,
+> +			     const struct auxiliary_device_id *id)
+> +{
+> +	DECLARE_BITMAP(zeroes, TC956X_GPIO_COUNT);
+> +	DECLARE_BITMAP(fixed, TC956X_GPIO_COUNT);
+> +	struct gpio_regmap_config config = { };
+> +	struct gpio_regmap *gpio_regmap;
+> +	struct device *dev = &adev->dev;
+> +
+> +	/* We need the regmap pointer, stored in our platform data */
+> +	if (!dev->platform_data)
+> +		return -EINVAL;
+
+Please use the standardized accessor: dev_get_platdata().
+
+> +
+> +	/*
+> +	 * Only some of our GPIOs are fixed direction:
+> +	 *	22, 23, 24, 27, 28, 31, and 34	(all input-only)
+> +	 * Set up the fixed bitmap to indicate which are fixed.
+> +	 */
+> +	bitmap_zero(fixed, TC956X_GPIO_COUNT);
+> +	bitmap_set(fixed, 22, 3);
+> +	bitmap_set(fixed, 27, 2);
+> +	set_bit(31, fixed);
+> +	set_bit(34, fixed);
+> +
+> +	/* All fixed GPIOs are input; the zeroes bitmap indicates that. */
+> +	bitmap_zero(zeroes, TC956X_GPIO_COUNT);
+> +
+> +	config.parent = dev;
+> +	config.regmap = dev->platform_data;
+> +	config.label = DRIVER_NAME;
+> +	config.ngpio = TC956X_GPIO_COUNT;
+> +	config.reg_dat_base = GPIO_REGMAP_ADDR(GPIO_IN0_OFFSET);
+> +	config.reg_set_base = GPIO_REGMAP_ADDR(GPIO_OUT0_OFFSET);
+> +	config.reg_dir_in_base = GPIO_REGMAP_ADDR(GPIO_EN0_OFFSET);
+> +	config.reg_stride = GPIO_REG_STRIDE;
+> +	config.ngpio_per_reg = GPIO_PER_REG;
+> +	config.init_valid_mask = tc956x_gpio_init_valid_mask;
+> +	config.fixed_direction_mask = fixed;
+> +	config.fixed_direction_output = zeroes;
+
+May I suggest using a compound literal here like:
+
+	config = (struct gpio_regmap_config){
+		...
+	};
+
+?
+
+> +
+> +	gpio_regmap = devm_gpio_regmap_register(dev, &config);
+> +	if (IS_ERR(gpio_regmap))
+> +		return PTR_ERR(gpio_regmap);
+> +
+> +	return 0;
+
+You can do:
+
+	return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(dev, &config));
+
+and save a few lines.
+
+> +}
+> +
+> +static const struct auxiliary_device_id tc956x_gpio_ids[] = {
+> +	{ .name = "tc956x_pci.tc9564-gpio", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(auxiliary, tc956x_gpio_ids);
+> +
+> +static struct auxiliary_driver tc956x_gpio_driver = {
+> +	.name		= DRIVER_NAME,
+> +	.probe          = tc956x_gpio_probe,
+> +	.id_table       = tc956x_gpio_ids,
+> +	.driver = {
+> +		.name		= DRIVER_NAME,
+> +		.owner		= THIS_MODULE,
+> +		.probe_type	= PROBE_PREFER_ASYNCHRONOUS,
+> +	},
+> +};
+> +module_auxiliary_driver(tc956x_gpio_driver);
+> +
+> +MODULE_DESCRIPTION("Toshiba TC956X PCIe GPIO Driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("auxiliary:" DRIVER_NAME);
+> --
+> 2.51.0
+>
+>
+
+Bart
 
