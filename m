@@ -1,85 +1,84 @@
-Return-Path: <devicetree+bounces-308264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308263-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id v8KtJE+xJmoBbQIAu9opvQ
-	(envelope-from <devicetree+bounces-308264-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 14:10:55 +0200
+	id fWHPBjGxJmr8bAIAu9opvQ
+	(envelope-from <devicetree+bounces-308263-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 14:10:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24301655FDF
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 14:10:55 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88EE655FD8
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 14:10:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=D9UV4agn;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308264-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308264-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linaro.org header.s=google header.b="FVs/+zIp";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308263-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308263-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 634C73042014
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 12:06:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2CD74303C29A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 12:06:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1AD9379C4A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31A6D37881D;
 	Mon,  8 Jun 2026 12:06:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD53376469
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 12:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7F2376A17
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 12:06:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780920377; cv=none; b=czJbKOv4NJUrZFa8c5kG2oZ6RrWYmOraL1Wkvqz8TNvM0RS+TWlzGnuxyzA+1OqGxmUP63+dJXWLCso6DJZp0fy/e/CGNG2eERVw34zuND4QL9XmZoYXpxO4tWWHupO1FQj0yQ2zTDhcdmsjnUl9AYeZ6Gh9Rm2/RWLSD67akD0=
+	t=1780920377; cv=none; b=hglGT47aILwW6XLQlipofytNy068GiDQQkNsxIMxZHgHC3uleN9U227Knh3++etp99OnrH3hzf9Eq6FCUK9hfMM7grkNvtWdUhURp7fm7mQxIVDbz23HmZ0wWUoYHj093J9TeBXoSKVDRo8CwULPw5D+9Uo72GmmBpQRk6r4eGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1780920377; c=relaxed/simple;
-	bh=I0MRNDhtPil/XdRFHR6g64yWZF1AHbnM3WQ2SyhhCNQ=;
+	bh=psdlKRmlMOyfEpNVz9NH/d/+Z7S/hNOJKN2k6tGs9l4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LRTR1sj3shjlwjZFKpCATONxDcA1v3RCZs7pJnFJdR2BNMyV+UWWiXt8rLMA76DjZ9Fs6UyvcpJrXvbqE1UdTzBmNfTuCkRETmrc1geLpSSXlSgJXKsr20B7dzaolIlc9ygzh2i4LUNkgbSm+rdsDC+IQ4jRzwUxWzzF2RyoZeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D9UV4agn; arc=none smtp.client-ip=209.85.128.47
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-490b9318997so30987835e9.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 05:06:14 -0700 (PDT)
+	 In-Reply-To:To:Cc; b=adXOITYiYziQxrNd5zmjQEbyOotjYci5HZteHHFL30fekjcyFxSfDZA++3tYrpZs8jhIevH1CxTXX2/1IBGWNdLSb2NW5YnIBK3WuHnwTPnwjIrZ/QqTGq2AG3QTXxAq3Xf6bfCYhpchNBSi0e0Ce2bhofu8za2HZWwe3/BolZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FVs/+zIp; arc=none smtp.client-ip=209.85.128.48
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-490b64c8311so47465785e9.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 05:06:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1780920373; x=1781525173; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1780920374; x=1781525174; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZPTIML/fjZVyuVRpqLdTSfDMUxOQRLiEiydHZK8Z8OM=;
-        b=D9UV4agnLMvlH1l0ogLRYjFWHvUNkJjYeOiooKlczeU5XSzmUg4DamUt9pUo2dMGMx
-         r+P3oFcoUmEKv2lWMkkOvDuP20uHum/25SGwOLKTiwus+KbDm2LUg7+UoVSY8Ce/qxeq
-         lRA98vk3oe2hmAI9rj6HTUtehPyDsXHUjKIcUdhSNf8zta0TaVeXLMGWoJC5AauXHzKX
-         aqitmqH7eCS5vG1peXdWBWyKOSjMznxK70adRsJWelAFArR7lxjjeMBeBNQZYowVct+B
-         QL3K59owyIY461tAkuBbeBUxOKsv0/Vuza/nKUtYoISY5nA2eCt/Ty3diOS3nVcqpUtd
-         HHkA==
+        bh=z4Ag4hwxXni0Q4GlZ/0SV/0r7HfMZXBXNEFUido3hDw=;
+        b=FVs/+zIptN7ALy/+pDqBgZ1zYqSN3/GGUQKArnJyLz/AdDlcc+TrrNnDfi/QxTSgep
+         Wv/5vMiND7Dxw1pi8qNga0OWaAzMFsfnFSUj0srUeyJNbU4D0s1kkDdELKVXEuZ62MaK
+         tRN08+h/nzvt2h7YyBftfAq4TXe7yoevWdiTf8thCEswCU4Ifvdt0/sXjTcamAFBhUm3
+         OQQ3YhYBabYY9jmiA+/p7CFmqeoXYKLzW0Ujj7HWMJ1LXiMPxN5N01Fef/7sBuJ69oRI
+         4jfcacQ03WyI3jnMlf8Mq7hMCPFC25r7J8Zf1UXtdfKPj+MOSm61TVWCiGPgEYl2bhIz
+         o9dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780920373; x=1781525173;
+        d=1e100.net; s=20251104; t=1780920374; x=1781525174;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=ZPTIML/fjZVyuVRpqLdTSfDMUxOQRLiEiydHZK8Z8OM=;
-        b=dF4X/PuHaJ5fYSVsRobg7soFvgzDJ3iJnwpNg4qizzd3eoea4Rwbq6BxoYsLnn4eUa
-         A4bKJUsArQwjpZCFNA5RrxbHtjMBHVV6YzXPbZFnoJtSj383sCnTBWIJr5c1+KrZlIDv
-         zdzbHzOIBZ4LiVBe2MiwM15U11LkWZfjCL9C67TAc33Acv4qIKQ6i3n8BwnQHBCeKjBF
-         hsme4wu/ckeLloGjrtFYwHoStZENCDg8+c6Ci9dhnurqraEk8HgABGKOjgNe+hLaXR8X
-         UzzUvlQn+juZcUVxIm3wJvXT2roGKUZ99A53HNqVLT2lKlhqqZPx3SWlGK8xNp0Muxnl
-         ZdiQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+r2GGEiYrobLpvco11lvG/J+OlnmiJYhprJuk7rBMBwyCg8M/eLgZU9RSxd2dHYPrmGEIpixwiHHyd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDj4fQ8BU/Q0caSgZ8mJ495o6tqHzcKzxgHSP3CzvBxsjILL/C
-	CPYicdWfYJKEncY94b5IwZJpo10cZRgxu9j0Z1Hbnnqfg9oSiflQxhUFfZbREovvaP8=
-X-Gm-Gg: Acq92OEKoa5K8MaHoBplH+ex976uR+++qIu6h7Ww7+bW2YEmIogqdtAxJK6y+6h3haE
-	/wmpeG5K0+2RNs55vTaLdNS0VsBmkprMmhqqs6IpYcwan0OpAPB/sdqWOz6S/oUlPwRfL3/42e0
-	GoM99OY8blOEPdvdjIOss3P9N88elb5PqjEp+w1DW+Vv+eynfGJf6+N3aRwT4198Ln9BJYR6wbj
-	aIC0muH8DGZnTIatPriulOfeLj+Y878xcb/94iJiK0TD9HsXQE6QecgmG18QhqU8NwcPFoGbEPz
-	0MKzfq4CtudW6eri05zu0r8GiBgTiHOIrt9BHTi5N/DVPWzwC3CygLXhLImH1J30+5cM2vOKjWD
-	+ez1wBk8c0rniGrv1kzYLmEzv97YBqpYKdS7It/R+WSnjJwR3C6+jVa4bzdK/LVVn2SWG8S/ffa
-	5AvWPLh41YMaNLXgb+JIqN1yX/Fa85iJU1FHZ1zhfZxq5iHgsaKbZXcfw+qQ==
-X-Received: by 2002:a05:600c:6087:b0:48a:8b02:ae91 with SMTP id 5b1f17b1804b1-490c25b0231mr265490125e9.11.1780920373102;
-        Mon, 08 Jun 2026 05:06:13 -0700 (PDT)
+        bh=z4Ag4hwxXni0Q4GlZ/0SV/0r7HfMZXBXNEFUido3hDw=;
+        b=KUdI+cFlLaDD8saYfKUh72gQ9QhQYMh+cGrzfEf0n8dNVGGXJB4tMOe3RQzD3ONOwO
+         yJrPr4I4TBYZuh+Uk+C1Pw9k5AiIX+r3iDzhqKXkMij5onOlfm8OPgGY6gt9xJiYFTCb
+         XofzTwraxNMeoDIRpcbUu+uNeEGz8lGQ4bGiPEQzsIwCqxxpRsih1ovzGvxx8DlIP9FW
+         h1/x8qHvVqq27AYufj86feVnUPAllmqnk1tE+yOeYzsdvgIOKyCgq+JGO0pgi7JNKTG+
+         rP6KHMQBFz4IUTsp3MHaYv5/pmeJHDiYcYQoMIaLYR8Wgt1cyB5SnkYwFWcUrZrdwA/o
+         sNjw==
+X-Forwarded-Encrypted: i=1; AFNElJ8F7RnC2ti7tvISQ+YIX92B8xJ8341GwI8kcnaf9mjrwFnvEbN4zpCEYs+d7vDXfTfFL1yXfM8YvjL1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsQLE73wb9SAm7GNXnt+g9gvFKB0OdXzYlOhX60coNM22IEf02
+	g7XTorTt6H/C9z7xzBuKxT2WwDSgI/SRG/P854sSHuRjFhctxh1ZvvMMm7H5wPDuu6w=
+X-Gm-Gg: Acq92OEIIWgOd4w5q9R/7WHa7fnDyH+zTqjTrcSb5+aGuk8xfxA2MFOVM9I6nPPvFU5
+	LiXNwTlFizXIYtmU/gSj2bgCP/MF6IDRtSOM2qfWQGgs5M6H4pcC5C2qNBR8xhWIBj3fKXxa98K
+	akTFyoKZ66oKcFr9Yz6jVcnEIgLwaeyizoREtdJ5vfTPXRXd9brbD/kZHxEPjMXnoaRxmbxnhwF
+	Ha7ENQmslEF9DR78IAHPZeuMPOwPXTv3yaZJN7VOI4G+/5cbJZ6ijkxklEh7bLtbbGUTVfykL9a
+	C8dTgvDGXCsei4COIyVTD5ZIEBPU8h6/1ZIXhHajoybgfh0QS4zWQAlgj1ySSQEsw9DxqVGAuS1
+	1HI571NaTXjvOg1zMx4OEnEW9q+nWAtYiWXd4J3RPvVqDAN23E8VhlVWnWWn5EdVOzN0FJWVFMI
+	iD3y0CPlEQavD8q3yeQ2/VDZLQbHTBdQwVRsEtYIpvjmNUbKI=
+X-Received: by 2002:a05:600c:c0d3:b0:490:53b0:9e53 with SMTP id 5b1f17b1804b1-490c265c107mr211049105e9.1.1780920374045;
+        Mon, 08 Jun 2026 05:06:14 -0700 (PDT)
 Received: from [127.0.0.2] ([2a02:2454:ff23:4410:7dca:9001:34e4:f362])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490c2d30eeasm250331745e9.1.2026.06.08.05.06.12
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490c2d30eeasm250331745e9.1.2026.06.08.05.06.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2026 05:06:12 -0700 (PDT)
+        Mon, 08 Jun 2026 05:06:13 -0700 (PDT)
 From: Stephan Gerhold <stephan.gerhold@linaro.org>
-Date: Mon, 08 Jun 2026 14:05:43 +0200
-Subject: [PATCH 1/2] regulator: dt-bindings: qcom,smd-rpm-regulator: Add
- PM8019
+Date: Mon, 08 Jun 2026 14:05:44 +0200
+Subject: [PATCH 2/2] regulator: qcom_smd-regulator: Add PM8019
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +87,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260608-rpm-smd-regulator-pm8019-v1-1-c671388b9ea5@linaro.org>
+Message-Id: <20260608-rpm-smd-regulator-pm8019-v1-2-c671388b9ea5@linaro.org>
 References: <20260608-rpm-smd-regulator-pm8019-v1-0-c671388b9ea5@linaro.org>
 In-Reply-To: <20260608-rpm-smd-regulator-pm8019-v1-0-c671388b9ea5@linaro.org>
 To: Mark Brown <broonie@kernel.org>
@@ -104,12 +103,12 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-308264-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308263-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:broonie@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:agross@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
@@ -119,7 +118,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	FORGED_SENDER(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -131,40 +130,63 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:dkim,linaro.org:from_mime,linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:mid,linaro.org:from_mime,linaro.org:dkim,vger.kernel.org:from_smtp,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,gerhold.net:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 24301655FDF
+X-Rspamd-Queue-Id: C88EE655FD8
 
-Add the qcom,rpm-pm8019-regulators compatible to allow describing
-regulators controlled by the RPM firmware on platforms that use PM8019.
+From: Stephan Gerhold <stephan@gerhold.net>
 
-Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+Add the definitions for the regulators in PM8019 to allow controlling them
+through the RPM firmware. Reading the TYPE/SUBTYPE registers using SPMI
+reveals that PM8019 uses a mixture of regulators from PMA8084 (hfsmps,
+pldo) and PM8916 (nldo).
+
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 ---
- .../devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml         | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/regulator/qcom_smd-regulator.c | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-index 0fa0db7eef23..0d8bc9bf996a 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
-@@ -35,6 +35,9 @@ description:
+diff --git a/drivers/regulator/qcom_smd-regulator.c b/drivers/regulator/qcom_smd-regulator.c
+index 3ee7f5d0c694..23ed594b574e 100644
+--- a/drivers/regulator/qcom_smd-regulator.c
++++ b/drivers/regulator/qcom_smd-regulator.c
+@@ -913,6 +913,28 @@ static const struct rpm_regulator_data rpm_pm660l_regulators[] = {
+ 	{ }
+ };
  
-   For pm660l s1, s2, s3, s5, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, bob
- 
-+  For pm8019, s1, s2, s3, s4, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11,
-+  l12, l13, l14
++static const struct rpm_regulator_data rpm_pm8019_regulators[] = {
++	{ "s1", QCOM_SMD_RPM_SMPA, 1, &pma8084_hfsmps, "vdd_s1" },
++	{ "s2", QCOM_SMD_RPM_SMPA, 2, &pma8084_hfsmps, "vdd_s2" },
++	{ "s3", QCOM_SMD_RPM_SMPA, 3, &pma8084_hfsmps, "vdd_s3" },
++	{ "s4", QCOM_SMD_RPM_SMPA, 4, &pma8084_hfsmps, "vdd_s4" },
++	{ "l1", QCOM_SMD_RPM_LDOA, 1, &pm8916_nldo, "vdd_l1" },
++	{ "l2", QCOM_SMD_RPM_LDOA, 2, &pma8084_pldo, "vdd_l2_l3" },
++	{ "l3", QCOM_SMD_RPM_LDOA, 3, &pma8084_pldo, "vdd_l2_l3" },
++	{ "l4", QCOM_SMD_RPM_LDOA, 4, &pma8084_pldo, "vdd_l4_l5_l6" },
++	{ "l5", QCOM_SMD_RPM_LDOA, 5, &pma8084_pldo, "vdd_l4_l5_l6" },
++	{ "l6", QCOM_SMD_RPM_LDOA, 6, &pma8084_pldo, "vdd_l4_l5_l6" },
++	{ "l7", QCOM_SMD_RPM_LDOA, 7, &pma8084_pldo, "vdd_l7_l8_l11" },
++	{ "l8", QCOM_SMD_RPM_LDOA, 8, &pma8084_pldo, "vdd_l7_l8_l11" },
++	{ "l9", QCOM_SMD_RPM_LDOA, 9, &pm8916_nldo, "vdd_l9" },
++	{ "l10", QCOM_SMD_RPM_LDOA, 10, &pm8916_nldo, "vdd_l10"},
++	{ "l11", QCOM_SMD_RPM_LDOA, 11, &pma8084_pldo, "vdd_l7_l8_l11"},
++	{ "l12", QCOM_SMD_RPM_LDOA, 12, &pm8916_nldo, "vdd_l12"},
++	{ "l13", QCOM_SMD_RPM_LDOA, 13, &pma8084_pldo, "vdd_l13_l14"},
++	{ "l14", QCOM_SMD_RPM_LDOA, 14, &pma8084_pldo, "vdd_l13_l14"},
++	{}
++};
 +
-   For pm8150, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, l1, l2, l3, l4, l5, l6,
-   l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18
- 
-@@ -94,6 +97,7 @@ properties:
-       - qcom,rpm-pm6125-regulators
-       - qcom,rpm-pm660-regulators
-       - qcom,rpm-pm660l-regulators
-+      - qcom,rpm-pm8019-regulators
-       - qcom,rpm-pm8150-regulators
-       - qcom,rpm-pm8226-regulators
-       - qcom,rpm-pm8841-regulators
+ static const struct rpm_regulator_data rpm_pm8150_regulators[] = {
+ 	{ "s1", QCOM_SMD_RPM_SMPA, 1, &pmic5_ftsmps520, "vdd-s1" },
+ 	{ "s2", QCOM_SMD_RPM_SMPA, 2, &pmic5_ftsmps520, "vdd-s2" },
+@@ -1390,6 +1412,7 @@ static const struct of_device_id rpm_of_match[] = {
+ 	{ .compatible = "qcom,rpm-pm6125-regulators", .data = &rpm_pm6125_regulators },
+ 	{ .compatible = "qcom,rpm-pm660-regulators", .data = &rpm_pm660_regulators },
+ 	{ .compatible = "qcom,rpm-pm660l-regulators", .data = &rpm_pm660l_regulators },
++	{ .compatible = "qcom,rpm-pm8019-regulators", .data = &rpm_pm8019_regulators },
+ 	{ .compatible = "qcom,rpm-pm8150-regulators", .data = &rpm_pm8150_regulators },
+ 	{ .compatible = "qcom,rpm-pm8226-regulators", .data = &rpm_pm8226_regulators },
+ 	{ .compatible = "qcom,rpm-pm8841-regulators", .data = &rpm_pm8841_regulators },
 
 -- 
 2.54.0
