@@ -1,282 +1,211 @@
-Return-Path: <devicetree+bounces-308384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308393-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id unW4GmvXJmotlgIAu9opvQ
-	(envelope-from <devicetree+bounces-308384-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:53:31 +0200
+	id 2SQWL9nYJmoDlwIAu9opvQ
+	(envelope-from <devicetree+bounces-308393-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:59:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62F8A657914
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:53:30 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1B5F657BD6
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:59:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eYgNgmKS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308384-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308384-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=LCVGYqhB;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308393-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308393-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6804D303ABCD
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 14:41:26 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B00C3304C627
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 14:43:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920753CF021;
-	Mon,  8 Jun 2026 14:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 109183D969E;
+	Mon,  8 Jun 2026 14:41:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C8B3CCFB2;
-	Mon,  8 Jun 2026 14:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D5503D7D77
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 14:41:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780929673; cv=none; b=SDYr/nKBe5Ke6jE2SI71spq/KI/PcPFEmtNHLGqd5PlG+dBsjWoJ6T3wtvmaSO4eD0R26XD0a3GA1s00qTFCECdGvMaDCwDZEMid9Ed98l/UqqBUBstzFWFvZSILvaSdgQNqkTVXfpe4z9gM++d+ayh16OucswjhjhiRQQh7Mgw=
+	t=1780929694; cv=none; b=sowSwgG5tuRW/LUhi/0c9F/TkMKn13+BgA1xsmCLNRcCWae3ry5rzF1GkXPBMykNiuqhm2uS79jUsDP3Htkslulb5TbkHiVRC831M2VpOCI//IEkt6VkCXsw0wG6Lh2mFY/NtAalwlFKTftv2B6+LUwgXW9mcoMC/2nA9x4+gFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780929673; c=relaxed/simple;
-	bh=fE1b9m6X8tZfpvHfiMJ+gOS3cPimN0u2PkMXjJQx/Xk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=Fx0WJY9leRl4YeHz5mmYMXbFpsUJ5DD0CYqpN1IScSbcW/R5IAy+iZ0dIJwHQgk8xftqlWWGYaThg93RbW1fUbZxNCLeEtCGnnFpWJmLq7w6HNfHeXIYQ5TUH/tPd1vua46rjUGn2TAKYV9WSaHyy6wCwFdhzn2n6/Iyq1tGyrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eYgNgmKS; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id BCD421F00893;
-	Mon,  8 Jun 2026 14:41:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780929672;
-	bh=L9ZUAyPA++9VU0oc6CUX2aYB7mPcCRmX32/6vz2s6h8=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To;
-	b=eYgNgmKSz8+8vUuSqQLqjGrIl5qnT7M50Z/l7zNFcZI6k+OTPILcDfXGjawgWrhHB
-	 DPTjMxWmNUGswh8HlOQkYtyl7NQobtkFASCTBzwVdl6BdxHJERevU6fsS12SS17T50
-	 /I9GXjvrHcJRc3rKD95RM34f36WJq5cj50yDXzt4HJhOx2NQl5DO0YiA4ccBhNzE3M
-	 5ZcTuULoOuKVYVNYdaaXKo+IAZYqBUZLRA2MF3U76/VUMl7ue22RAEFaMTUk+grOKo
-	 XuMS4MZA9OkL3AVLDuKPZFSTPTtu0r15VKgPdI73Yx2n8CiaTbOoKssberufKbUKSV
-	 U+yhd0NpMJdGw==
+	s=arc-20240116; t=1780929694; c=relaxed/simple;
+	bh=MkKtOKSAFSfH3HpuvW02i0uEm9hF7g1DUQA7Q9AMED0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=B3lgBXS5lukFAGRyd4fNo1a1PkV25LvibPLCHLD+Yfmx3d4uw23XjDGd2wBzjYC/dG9BTqq13H0JVW3S712hkJrcG5MkCkY5TwjM1X4oWoZkpJmX3VHxCX3vUu3D+G0zqLBAM7iS1YIr3VFx/GZJAapGeaRqoff7kjcRPJi7Aw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LCVGYqhB; arc=none smtp.client-ip=209.85.221.47
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-45eecb8bf67so3341462f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 07:41:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780929692; x=1781534492; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WvRlDNPd907U87yIndLhCKBBwk0x0oHkEk0pAVg2DU8=;
+        b=LCVGYqhB/JfxyydFtF12BPdtIT++vBAVJ+oVkvO4aFtGPxV+JkXhnza9KpGMpWG6gs
+         UvntBMm8PhUfeDa41dTWkRzRF6DqY437VAUyCnPq29XY1ehaBwDWP71kRii1a/kcxU5i
+         4vEmEyJGjS58aQa4eDmA3dr4BYV46Qts1IMIX0kNlmlBCex/JR45f3GfZxMeQXA/LrQL
+         7/maslYM1du/X1e3gI3mb2+B6PQCj/wraQRVENKVGgAw8SwHuCJMl63z5dw2EF0LJNLZ
+         itN3R/zl2z1MLxz7yZYjb8N1EbrjPP0ytzH4CK7iqBjxYG8it2r/m6HnMsmOozqYM7g8
+         i5Pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780929692; x=1781534492;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=WvRlDNPd907U87yIndLhCKBBwk0x0oHkEk0pAVg2DU8=;
+        b=XcQL2LvoNa2zdjX/4+7C0X885en9h3dul0PFaFWuXLf9MicUIm2scnJ4YsyTB4GW08
+         LTazJNgvt3YiqQ0rVGSps/V38nATx0uI2Lgte6CZEf8ROaIyHVXs/yPBJy7NMLeg4Bw6
+         Pj3RVs2Qkvg03NRD2gC6KqOWHK/jx5y77HnwQqoHGdwmXMmRE2AeJHfA/4GkCBQYK+So
+         88Oj3FaE+Gq9ghoIAeVDdMo91WR21tmhlUCdsJ6HO+DHUSpNbzl1NQVbN5KLJqL1Rt+g
+         9m+Zam0Out4RUGCirG7zeWJDEGeDbElnRqIM5e+fjgzmYO036iDVxbS12Ef61e+kFfag
+         O6YA==
+X-Forwarded-Encrypted: i=1; AFNElJ8XAHu10ErWzXxScKJaX3slUuE/QLK1ccR++kXmmWiVRDnB6Vm9m+waAafvnNfzQlrYaCvqwYwDjANW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNuGZavgkoh/o5WIpAnQMwXliTuFql0V0x24fwAu/0HOs2ki4D
+	rdQ6dQYDEDIx4Zhb7dgNi7R95JaPJnsq+y9+jv9xIfAzLL0JxIOR0+yG
+X-Gm-Gg: Acq92OHcNNTTfypdOaT8S8cxz/YSkJvtaJPmbneJwFnImMUm+SbUh8+AKOjFNerwG+b
+	/Us69yQK0Mia2wPyUeaG9BqNXx+bLFCeTy/NRySZrwmdqPWI6aNrXdb6XIzZLH3RdKvBfG5WlQz
+	JEX2CvFqg3tRMueNzMZ/P/EVAXEHviCSqyfj31JoxLd9TfofkZaj9JyO4YF7+o3+bb57ti27Ong
+	McekF1a/jWEJckuQJtoi62A+NoK7+j+eQrHgLqJ1TWAxHb+9MR5YL4J137AJeaJ8hRrU6zXREw0
+	3kb+5J1q6e0b4KfHX/hS/xkWl5cVaK5I+21rXfeucr0pB8JnrAQzSYP2PMKv9vQ971qgQ4Nm6xD
+	kks/1/0ydo/9az7B0WTJhnCIILPTpem2AXAMgJfJtniFsR2xoPFnGeRK1r61EKLtLbT1MgVSn+T
+	GNsKwzBmG29lBIvwZoi7HN3tzosH+TDGETFYSIvxeWKGrD2JF67FvHTXJVSk4/jlrUwNN2/bDYw
+	JPHeR9jBTvIJ4nfNG6Rame7+ixTrTULsNeelr82KGxvG4mN
+X-Received: by 2002:a5d:4610:0:b0:460:e00:1215 with SMTP id ffacd0b85a97d-46030617c50mr17401096f8f.31.1780929691647;
+        Mon, 08 Jun 2026 07:41:31 -0700 (PDT)
+Received: from Lord-Beerus.station (net-93-144-65-244.cust.vodafonedsl.it. [93.144.65.244])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f2dcad5sm58222519f8f.5.2026.06.08.07.41.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jun 2026 07:41:31 -0700 (PDT)
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Cc: pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH v5 08/14] arm64: dts: imx8mp-var-som-symphony: add capacitive touchscreen
+Date: Mon,  8 Jun 2026 16:41:09 +0200
+Message-ID: <cf961b59769f34505a9b6f1f73849346c57ca7c0.1780929317.git.stefano.r@variscite.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1780929317.git.stefano.r@variscite.com>
+References: <cover.1780929317.git.stefano.r@variscite.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=ab88639452d187061230192ab1490bf4846f6d9975e50bf2597a3d568188;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Mon, 08 Jun 2026 16:41:08 +0200
-Message-Id: <DJ3QVMZ6XLW9.1M9W541O92QWJ@kernel.org>
-Subject: Re: [PATCH v3 2/7] gpio: regmap: add gpio_regmap_get_gpiochip()
- accessor
-Cc: "linusw@kernel.org" <linusw@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "afaerber@suse.com"
- <afaerber@suse.com>, "wbg@kernel.org" <wbg@kernel.org>,
- "mathieu.dubois-briand@bootlin.com" <mathieu.dubois-briand@bootlin.com>,
- "lars@metafoo.de" <lars@metafoo.de>, "Michael.Hennerich@analog.com"
- <Michael.Hennerich@analog.com>, "jic23@kernel.org" <jic23@kernel.org>,
- "nuno.sa@analog.com" <nuno.sa@analog.com>, "andy@kernel.org"
- <andy@kernel.org>, "dlechner@baylibre.com" <dlechner@baylibre.com>,
- =?utf-8?b?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-realtek-soc@lists.infradead.org"
- <linux-realtek-soc@lists.infradead.org>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>, =?utf-8?b?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?=
- <cy.huang@realtek.com>, =?utf-8?b?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?=
- <stanley_chang@realtek.com>, =?utf-8?b?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?=
- <james.tai@realtek.com>, =?utf-8?b?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?=
- <eleanor.lin@realtek.com>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Bartosz Golaszewski" <brgl@kernel.org>, "Andy Shevchenko"
- <andriy.shevchenko@intel.com>
-X-Mailer: aerc 0.20.0
-References: <20260512033317.1602537-1-eleanor.lin@realtek.com>
- <20260512033317.1602537-3-eleanor.lin@realtek.com>
- <agMM9soiqpG-TRSb@ashevche-desk.local>
- <adff3a2d21a64d3ea3b408d62157ee1e@realtek.com>
- <ah92oEavMu4QRn8y@ashevche-desk.local>
- <CAMRc=MdA24z-tB_D8CTw68Di8e4OVQJ1QH4+rDskFzq=xjJ5BQ@mail.gmail.com>
-In-Reply-To: <CAMRc=MdA24z-tB_D8CTw68Di8e4OVQJ1QH4+rDskFzq=xjJ5BQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-308384-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[26];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:afaerber@suse.com,m:wbg@kernel.org,m:mathieu.dubois-briand@bootlin.com,m:lars@metafoo.de,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:dlechner@baylibre.com,m:tychang@realtek.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:linux-iio@vger.kernel.org,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:james.tai@realtek.com,m:eleanor.lin@realtek.com,m:brgl@kernel.org,m:andriy.shevchenko@intel.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[mwalle@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-308393-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mwalle@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,variscite.com:mid,variscite.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 62F8A657914
+X-Rspamd-Queue-Id: B1B5F657BD6
 
---ab88639452d187061230192ab1490bf4846f6d9975e50bf2597a3d568188
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+From: Stefano Radaelli <stefano.r@variscite.com>
 
-Hi,
+Add the FT5206 capacitive touchscreen controller on the Symphony carrier
+board.
+Describe the interrupt pin and touchscreen geometry.
 
-On Mon Jun 8, 2026 at 4:10 PM CEST, Bartosz Golaszewski wrote:
-> On Wed, 3 Jun 2026 02:34:40 +0200, Andy Shevchenko
-> <andriy.shevchenko@intel.com> said:
->> On Mon, May 25, 2026 at 12:04:09PM +0000, Yu-Chun Lin [=E6=9E=97=E7=A5=
-=90=E5=90=9B] wrote:
->>> > On Tue, May 12, 2026 at 11:33:12AM +0800, Yu-Chun Lin wrote:
->>> > > Expose an accessor function to retrieve the gpio_chip pointer from =
-a
->>> > > gpio_regmap instance.
->>> > >
->>> > > This is needed by drivers that use gpio_regmap but also manage thei=
-r
->>> > > own irq_chip, where gpiochip_enable_irq()/gpiochip_disable_irq() mu=
-st
->>> > > be called with the gpio_chip pointer.
->>> > >
->>> > > Add gpio_regmap_get_gpiochip() to allow drivers with complex custom
->>> > > IRQ implementations.
->>> >
->>> > Hmm... Can't we rather add
->>> > gpio_regmap_enable_irq()/gpio_regmap_disable_irq()
->>> > that take regmap or GPIO regmap (whatever suits better for the purpos=
-e) and
->>> > do the magic inside GPIO regmap library code?
->>
->>> Thanks for the review! I apologize for the misleading commit message.
->>> The real reason I need the struct gpio_chip pointer is to properly set =
-up a custom
->>> IRQ domain. Our SoC GPIO controller is quite complex. It routes differe=
-nt trigger
->>> types to multiple parent IRQs, which doesn't fit the generic regmap_irq=
- framework.
->>> Therefore, we have to create our own irq_domain and pass it to
->>> gpio_regmap_config.irq_domain.
->>>
->>> The core problem occurs inside our custom irq_domain_ops.map() callback=
-:
->>>
->>> static int rtd1625_gpio_irq_map(struct irq_domain *domain, unsigned int=
- irq,
->>>                                 irq_hw_number_t hwirq)
->>> {
->>> 	struct rtd1625_gpio *data =3D domain->host_data;
->>> 	struct gpio_chip *gc =3D data->gpio_chip;
->>>
->>> 	/*
->>> 	 * The second argument MUST be struct gpio_chip *.
->>> 	 * If we pass our custom data structure here, the kernel will panic la=
-ter
->>> 	 * in gpiochip_irq_reqres() when it calls irq_data_get_irq_chip_data()
->>> 	 * and strictly expects it to be a gpio_chip.
->>> 	 */
->>> 	irq_set_chip_data(irq, gc);
->>>
->>> 	irq_set_lockdep_class(irq, &rtd1625_gpio_irq_lock_class,
->>> 				&rtd1625_gpio_irq_request_class);
->>>
->>> 	irq_set_chip_and_handler(irq, &rtd1625_iso_gpio_irq_chip, handle_bad_i=
-rq);
->>> 	irq_set_noprobe(irq);
->>>
->>> 	return 0;
->>> }
->>>
->>> Without an accessor like gpio_regmap_get_gpiochip(), we cannot retrieve=
- the
->>> gpio_chip instantiated inside gpio-regmap.c to fulfill these requiremen=
-ts in our
->>> map() function.
+Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
+---
+v4->v5:
+ - 
 
-Why is gpiochip_irq_reqres() called in the first place? Isn't that
-only called if the irq handling is set up via gc->irq.chip and not
-via gpiochip_irqchip_add_domain() like in gpio-regmap?
+v3->v4:
+ - 
 
->> This is all good and needs to be depicted in the cover-letter and/or com=
-mit message.
->>
->>> Before I send a v4, I see 3 possible paths:
->>>
->>> Option 1: Keep the accessor (Current v3 approach)
->>> We keep gpio_regmap_get_gpiochip() but I will completely rewrite the co=
-mmit message
->>> to explain the custom irq_domain_ops.map and lockdep requirements.
->>>
->>> Option 2: Let gpiolib create the irq_domain via gpio_regmap_config
->>> Instead of creating the irq_domain in our driver, we add all necessary =
-IRQ fields
->>> (irq_chip, irq_handler, irq_parents, etc.) into struct gpio_regmap_conf=
-ig. Then
->>> gpio-regmap.c populates the gpio_irq_chip structure before calling
->>> gpiochip_add_data(). This prevents an early return and allows the core =
-gpiolib
->>> (gpiochip_add_irqchip()) to automatically create the irq_domain for us.
->>> Drawback: This adds a lot of fields to gpio_regmap_config and might vio=
-late the
->>> original design philosophy of gpio-regmap.c (commit ebe363197e52), whic=
-h explicitly
->>> states that it does not implement its own IRQ chip and delegates it to =
-the parent
->>> driver.
->>>
->>> Option 3: Drop gpio-regmap entirely (Revert to v2 approach)
->>> Currently, all drivers using gpio-regmap (mostly simple CPLDs and exter=
-nal I/O cards)
->>> use regmap-irq to get their domain. Since our SoC has a complex IRQ rou=
-ting scheme
->>> with multiple parents, maybe gpio-regmap is simply not the right tool f=
-or this
->>> hardware, and we should just implement a standard GPIO driver directly =
-using gpiolib.
->>>
->>> Which approach would you prefer upstream?
->>
->> This question to Bart, Linus, and poissibly gpio-regmap stakeholders. I'=
-m not sure
->> that my personal opinion will be the best fit here.
->>
->
-> My preference would be for #2 but I understand that this could risk getti=
-ng
-> stuck in endless bikeshedding so I'm fine with going #3 with potential fo=
-r
-> future refactoring if we have more similar users.
+v2->v3:
+ - 
 
-Yeah, I'd like to keep that stuff out of gpio-regmap. But I'm on the
-same boat regarding the refactoring if we have more data and
-potential users.
+v1->v2:
+ - 
 
--michael
+ .../dts/freescale/imx8mp-var-som-symphony.dts | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
---ab88639452d187061230192ab1490bf4846f6d9975e50bf2597a3d568188
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
+index 0beaee5f81c9..f8a4b5b2e9fb 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
+@@ -195,6 +195,21 @@ st33ktpm2xi2c: tpm@2e {
+ 		reset-gpios = <&pcal6408 4 GPIO_ACTIVE_LOW>;
+ 	};
+ 
++	/* Capacitive touch controller */
++	ft5x06_ts: touchscreen@38 {
++		compatible = "edt,edt-ft5206";
++		reg = <0x38>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_captouch>;
++		interrupt-parent = <&gpio5>;
++		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
++		touchscreen-size-x = <800>;
++		touchscreen-size-y = <480>;
++		touchscreen-inverted-x;
++		touchscreen-inverted-y;
++		wakeup-source;
++	};
++
+ 	rtc@68 {
+ 		compatible = "dallas,ds1337";
+ 		reg = <0x68>;
+@@ -306,6 +321,12 @@ &usdhc2 {
+ };
+ 
+ &iomuxc {
++	pinctrl_captouch: captouchgrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SPDIF_TX__GPIO5_IO03				0x16
++		>;
++	};
++
+ 	pinctrl_hdmi: hdmigrp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL			0x1c2
+-- 
+2.47.3
 
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaibUhBIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/hoHwF+L2/C0SzzRn4Jx1XywdW3IuoaQvOH/CyM
-tM+DiaJqPgiaiQHKQPw34Zd2pdQ6KAWfAX4i8MWoU3pRuIBrOY9/uz1/yXmfdz0h
-BO8TtdBsdvvFAiFlxOBrtRXZDI/pOWJBA7U=
-=N+gM
------END PGP SIGNATURE-----
-
---ab88639452d187061230192ab1490bf4846f6d9975e50bf2597a3d568188--
 
