@@ -1,169 +1,214 @@
-Return-Path: <devicetree+bounces-308427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308428-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +IWRDLr+Jmp8pQIAu9opvQ
-	(envelope-from <devicetree+bounces-308427-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 19:41:14 +0200
+	id inmtIZv0JmrKogIAu9opvQ
+	(envelope-from <devicetree+bounces-308428-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:58:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA505659577
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 19:41:13 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E4B1658FF8
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:58:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=AQE2xXfN;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308427-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308427-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=mailbox.org;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kTjXo7Fg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308428-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308428-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B66F430A9B22
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 16:29:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6A609303FFF4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 16:39:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491CF386C3E;
-	Mon,  8 Jun 2026 16:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D9CB33F8D6;
+	Mon,  8 Jun 2026 16:39:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80AC32B132;
-	Mon,  8 Jun 2026 16:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA6BB330D22
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 16:39:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780936182; cv=none; b=WSd+UfsbsA4s5QQHXXgyK/86QeIRU7vYs9O2mpMK/Ddquqd2aDu8DEpgB0oO7sPsvP1RsxXBB4TfwvKlIxY5Pw0qDbEPNYqNCeeAa8P03w7d9ip8MvjGhCUGHzZgf5Hsl7VCiFsE96IVVTsI6MPDQDRMSpEYZd4uooPMzlCWBmQ=
+	t=1780936768; cv=none; b=O874PIi9U7OmU1GVB0ttr34X0iWcezZxjqPdRBvvxgqbZVQleQzFvXmqpRe7rN7Agt3q5MgqVYClK0hV5q1bS1alQ398yg/hXdFSw5ISfcj67Us4FaEF2SlHEg3hKMx/RPnGW5kPDL31sbUs38sVP8aSBgY1suNT0mdKve3UPvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780936182; c=relaxed/simple;
-	bh=f/i7u1ZB+xcfFhCwaN1+gJjMrCNJnyf6QLMgddrR3v0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ObWLvmFswXIBKNVpxsZEYOLjvPH8tIpdhBb4QZtbWqAlYOitGMuV/8+T1mXBDP/GYLe21r0b8TJ5xza4z5Tg9lRivcxnAJifsghZ0tHStK4cDmSobFUXN78lHB7HlRWv0kFIcou46Aq1Q8/I2PPoG6JXpQ6xoOtTnjeyI0G4KgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=AQE2xXfN; arc=none smtp.client-ip=80.241.56.171
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4gYyDd4cMlz9v04;
-	Mon,  8 Jun 2026 18:29:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1780936177;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BbSbELZ/qhJGz8m9PkFP4eZM/CFetLN6lwudktuynGY=;
-	b=AQE2xXfNVLdb0zenRfKtc1yr7vSNa3ByjQ0rIG1J/Ql0m4lBUCNWwtIrp3znIEbEDtsn8h
-	IMGOPgaK0+eCY7j1maEAItCcpQPyKJ7EnszJxY220kDYTU1J8pgWVcgvGRJmW0qTbOaB7D
-	qeMglUL8Fp+gPnHx9kzN5tpB+fajuXZY5KKPH9qumH7BnQAdWg/B3XKTwzgUFL6SO75SDb
-	I5g9Edd+BUNNLOAWjCxWxqIjDWMrqVw4VbJUSHIwz3efT8YHbNLMTMiFiMwwvEDuL+L9K0
-	a3UnfU9QVReNX3lcogtEW1Jj6oSeI1xs5OgCPqZoaRRXyNJHAUHpGEwOl8uTtg==
-Message-ID: <9ece4e08-a77f-4410-ba16-a77b9bd0aace@mailbox.org>
-Date: Mon, 8 Jun 2026 18:29:32 +0200
+	s=arc-20240116; t=1780936768; c=relaxed/simple;
+	bh=YEu9rgHXKgRYTzP5paavzCA/BE56X2cC57yroi7VAAs=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Fq6vrnRLRT6eDnxJmDCyS46JwRh14w0xpqKOpwq0YDsr6EWw9au8x5w43TixWVNlXuKRriE6Fs2PMMtogSRmCr7+AmI+62GjjNAFGwW7l34yzjZiaUjmzdI9uUlyRF0VMzXHtV3ckb1yvCwdLOKycX/hAffOarOz2o+0U8GgZAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kTjXo7Fg; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EBAA1F00893;
+	Mon,  8 Jun 2026 16:39:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780936767;
+	bh=ICG6hewedWOwG5e8SNGz6l8qRIMctSufBqI583I7OFo=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=kTjXo7FgmR9YFGBIWzzL4n0lyvDCtVNSqLtKTKxtqZyppWyafLx4Xqx7VZ7B+Vzoq
+	 TBSbdCO02v66BnwVDOIF1aVQIy3IuEtvjI7DJxz/lBsVjmofPr+dVqRymMs/APz0Kl
+	 vDWfmNd573qHT1N2jC5bQTWryhFdoZrlBza1Y/4MvrNHux1Dy5XyX64mX/SBDRUSeD
+	 JEPuPzgRdQ6oPpatqCkQi7D4mmry7/MG8ueiKWRCW5iEP/k0eS3J1Q04yv8n6cZ/eE
+	 HMNMmeU1DHdit0bICVfSAWkja5WvAmK9ypGtNTNDG61S3mFlH/Qo25TXXPxsLDn53d
+	 5JDxRwamTFHpg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/3] drm/panel: himax-hx83121a: pass the panel pointer
+ when creating BL
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Icenowy Zheng" <zhengxingda@iscas.ac.cn>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, dri-devel@lists.freedesktop.org, conor+dt@kernel.org
+In-Reply-To: <20260608162622.403713-2-zhengxingda@iscas.ac.cn>
+References: <20260608162622.403713-2-zhengxingda@iscas.ac.cn>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 08 Jun 2026 16:39:26 +0000
+Message-Id: <20260608163927.3EBAA1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Subject: Re: [PATCH 00/39] Add i.MX95 DPU/DSI/LVDS support
-To: Liu Ying <victor.liu@nxp.com>, Piyush Patle <piyushpatle228@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lucas Stach <l.stach@pengutronix.de>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Abel Vesa <abelvesa@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20251011170213.128907-1-marek.vasut@mailbox.org>
- <20260605121112.27866-1-piyushpatle228@gmail.com> <aiZzxhljfyYQ68Gl@raspi>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aiZzxhljfyYQ68Gl@raspi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: yf38h31tgdjwq7mde8h8omnc7sio8pks
-X-MBO-RS-ID: 587bbf07cc5c34a1000
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:victor.liu@nxp.com,m:piyushpatle228@gmail.com,m:dri-devel@lists.freedesktop.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:shawnguo@kernel.org,m:festevam@gmail.com,m:peng.fan@nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:l.stach@pengutronix.de,m:Laurent.pinchart@ideasonboard.com,m:tzimmermann@suse.de,m:abelvesa@kernel.org,m:kernel@pengutronix.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-308427-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[nxp.com,gmail.com];
-	FORGED_SENDER(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-308428-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid,vger.kernel.org:from_smtp,iscas.ac.cn:email,lists.linux.dev:replyto];
+	FORGED_RECIPIENTS(0.00)[m:zhengxingda@iscas.ac.cn,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,lists.linux.dev,lists.infradead.org,vger.kernel.org,kernel.org,gmail.com,nxp.com,pengutronix.de,ideasonboard.com,suse.de];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mailbox.org:dkim,mailbox.org:mid,mailbox.org:from_mime]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AA505659577
+X-Rspamd-Queue-Id: 7E4B1658FF8
 
-On 6/8/26 9:48 AM, Liu Ying wrote:
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
 
-Hello everyone,
+Pre-existing issues:
+- [High] Missing device link to secondary DSI host can lead to Use-After-Fr=
+ee if the host driver is unbound.
+- [High] The backlight device is exposed to userspace before the DSI device=
+ is attached to the host, allowing premature DCS transfers.
+- [High] Unprotected MIPI DSI hardware access due to missing backlight disa=
+ble allows DCS commands to a powered-off panel.
+--
 
->> I brought this series up on the i.MX95 15x15 FRDM (IT6263 LVDS-to-HDMI on
->> LVDS ch1). It mostly works, but I ran into a few issues around DI routing,
->> LVDS format handling, and DC enable sequencing which needed rework before
->> HDMI would come up reliably on the board.
->>
->> I don't see a v2 of the series and things seem to have been quiet since
->> November. Are you planning to post an updated version?
-> 
-> My plan was to enable prefetch engine support[1] for i.MX8QXP display
-> controller and add device tree for a whole i.MX8QXP LVDS display pipeline,
-> before adding i.MX95 display controller support.
-> 
-> Unfortunately, it seems that Marek is not a big fan of [1]
+commit 4b6dd00d8fec3ba9b10693589e0413bbbce2ec2f
+Author: Icenowy Zheng <zhengxingda@iscas.ac.cn>
 
-I am fine with [1] as long as it can be isolated and does not affect 
-every SoC that might reuse this driver, which I think it can be done.
+drm/panel: himax-hx83121a: pass the panel pointer when creating BL
 
-> and I'm busy
-> with downstream development so the plan doesn't move forward well.  I still
-> think [1] makes sense(maybe I need to rebase it on latest drm-misc-next),
-> so I'd like to see review comments on [1] and hopefully people think that
-> the overall idea of [1] is ok.
+This commit modifies the backlight creation function to accept the entire
+panel context instead of just the DSI device. This prepares the driver for
+future backlight powering on/off support.
 
-My only concern is, to keep it isolated to MX8Q, so this driver can be 
-reused by MX95.
+> diff --git a/drivers/gpu/drm/panel/panel-himax-hx83121a.c b/drivers/gpu/d=
+rm/panel/panel-himax-hx83121a.c
+> index bed79aa06f46a..1a7e0125bced8 100644
+> --- a/drivers/gpu/drm/panel/panel-himax-hx83121a.c
+> +++ b/drivers/gpu/drm/panel/panel-himax-hx83121a.c
+> @@ -193,10 +193,11 @@ static const struct drm_panel_funcs himax_panel_fun=
+cs =3D {
+> =20
+>  static int himax_bl_update_status(struct backlight_device *bl)
+>  {
+> -	struct mipi_dsi_device *dsi =3D bl_get_data(bl);
+> +	struct himax *ctx =3D bl_get_data(bl);
+>  	u16 brightness =3D backlight_get_brightness(bl);
+>  	/* TODO: brightness to raw map table */
+> -	return mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
+> +	return mipi_dsi_dcs_set_display_brightness_large(to_primary_dsi(ctx),
+> +							 brightness);
 
->> I've accumulated a fair amount of rework while getting this running on the
->> FRDM. If you're not planning a v2, I can clean things up and send one based
->> on the current series.
-> 
-> I still think that i.MX95 display controller driver should be in a separate
-> driver, rather than sharing the same driver with i.MX8QXP display controller
-> like this patch series does, because the two display controllers are quite
-> different as I mentioned in comments on this patch series and in discussion
-> in [1].  Also, the common part between the two display controllers should
-> be extracted to a common helper library as I mentioned there too.
-Are they really? It seems this series adds support for the MX95 DC 
-without that many changes, so are the DCs really that different ? It 
-seems the MX95 DC is simply a reuse/evolution of the MX8Q DC blocks, so 
-duplicating the code seems like the wrong direction, it will only lead 
-to disparate sets of bugs in two drivers, which isn't desired.
+[Severity: High]
+This isn't a bug introduced by this patch, but does this function leave the
+MIPI DSI hardware vulnerable to unprotected access?
 
-(I might not fully understand what you have in mind with the helper 
-library though?)
+Because ctx->backlight is not assigned to ctx->panel.backlight during
+probe, the DRM core does not automatically manage its state. In
+himax_unprepare(), the panel's regulators are disabled and the reset GPIO
+is asserted, but there is no corresponding backlight_disable() call.
+
+If userspace writes to the backlight sysfs interface after the panel is
+powered off, this function will unconditionally send DCS commands via
+mipi_dsi_dcs_set_display_brightness_large() to the off panel. This
+typically causes the MIPI DSI host to experience transfer timeouts and
+potential hardware errors.
+
+[ ... ]
+
+> @@ -646,7 +647,7 @@ static int himax_probe(struct mipi_dsi_device *dsi)
+>  	ctx->panel.prepare_prev_first =3D true;
+> =20
+>  	if (desc->has_dcs_backlight) {
+> -		ctx->backlight =3D himax_create_backlight(to_primary_dsi(ctx));
+> +		ctx->backlight =3D himax_create_backlight(ctx);
+
+[Severity: High]
+This is a pre-existing issue, but does himax_create_backlight() expose the
+device to userspace too early?
+
+In himax_probe(), this registers the backlight device and immediately expos=
+es
+its sysfs interface. However, this happens before devm_mipi_dsi_attach() is
+called later in the probe routine.
+
+If userspace writes to the brightness attribute in this window,
+himax_bl_update_status() could send DCS commands over the MIPI DSI bus
+before the hardware is actually attached to the host, which could result in
+transfers on uninitialized hardware.
+
+[Severity: High]
+This is also a pre-existing issue, but does himax_probe() need to establish
+a device link to the secondary DSI host?
+
+Earlier in himax_probe(), the secondary DSI host is looked up and the
+device is created:
+
+    dsi1_host =3D of_find_mipi_dsi_host_by_node(dsi1);
+    ...
+    ctx->dsi[1] =3D devm_mipi_dsi_device_register_full(dev, dsi1_host, &dsi=
+_info);
+
+Without establishing a device link (e.g., using device_link_add()) to
+ensure proper driver unbind synchronization, if the secondary DSI host driv=
+er
+is unbound, its mipi_dsi_host and the associated DSI device are unregistered
+and freed.
+
+Since the panel driver remains bound and retains ctx->dsi[1], a subsequent
+DCS command or modeset could access this freed memory, leading to a
+use-after-free.
+
+>  		if (IS_ERR(ctx->backlight))
+>  			return dev_err_probe(dev, PTR_ERR(ctx->backlight),
+>  					     "Failed to create backlight\n");
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608162622.4037=
+13-1-zhengxingda@iscas.ac.cn?part=3D2
 
