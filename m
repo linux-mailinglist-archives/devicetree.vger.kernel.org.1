@@ -1,85 +1,53 @@
-Return-Path: <devicetree+bounces-308250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308251-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9JttFpqsJmrnawIAu9opvQ
-	(envelope-from <devicetree+bounces-308250-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 13:50:50 +0200
+	id MUyXBemrJmqrawIAu9opvQ
+	(envelope-from <devicetree+bounces-308251-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 13:47:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6F7655DC6
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 13:50:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD7E9655D68
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 13:47:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ebrGdBFf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308250-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308250-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HDKLbUH7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308251-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308251-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E7E713015187
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 11:45:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 65179301417F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 11:46:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3376D367281;
-	Mon,  8 Jun 2026 11:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69CC2370AFD;
+	Mon,  8 Jun 2026 11:46:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E663936F91F
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 11:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CA33370AD9;
+	Mon,  8 Jun 2026 11:46:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780919120; cv=none; b=h1p9luV/g4BFpzWLKLe5k+aPw02pVpCj5ax0P/hxiMj24dWHLCUCWaR9O3L7qdv0GNLIYPTuD2mGlNAoUXcFh0PKXMo/IPK70+ZOPJ7DCm2HNVnqszrERNeaPPhukFOu9kHQKm8UgQAwP4BJ//ptPBJbrIk5lZ1iR2O7NaL9iKg=
+	t=1780919202; cv=none; b=AyYNv+M1v38nZrvvJMFtST0f4Zm9TRh8UzVNi3X56ZZ7wyVif2ENWAq+KW3NM1qZFrjSJZRmsfOb30FFPx0v2Qu+dI/pnqSK54wkr3nrTzAQWXp59N8fCS0oE9s+W3tiZeO2Exro3/TTrr6DmhKmLYnE5grgYRai55xEmS3t6ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780919120; c=relaxed/simple;
-	bh=S/5uyfhhCgsSjb9t77M59co6shwLNaNk5RDo3PmKTLc=;
+	s=arc-20240116; t=1780919202; c=relaxed/simple;
+	bh=IeeNafBtVL4wg1ZxzaOcNCCCcfvtRuK19NFM8ZG/8us=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LlwshCpCyLO7KT9hV5k16jb8NnnZw6DkgUMtIuiL7zEGSJtrawCmIf3jVH1W8Rhupv9fpsMf5cBUn9TPtxfjxCheaSUugbc9evvqIWRjRQFTXF0M0oCkjRDok8JC3sMl+fH6pzXlwPp9vLCGTRGwCXVM72pIS/OUlSnIn4fUfVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ebrGdBFf; arc=none smtp.client-ip=209.85.210.176
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-8423b08b293so1778930b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 04:45:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780919118; x=1781523918; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3RBJSxqfT0copcCoPASu9D+tQdpKRcrHjtldnEnz33U=;
-        b=ebrGdBFfJsflAknKx+DaZVXgwHue21UNE00fNRvNyA1Q0WQBN56vAB1N8KlgphqxbE
-         y6k/usViD+QyzgWzM6+qAGyqODV6TC0zhgHAA0Q3xO2d6AuDgl2IFH9Ciw1nZdrVohxV
-         w0+NhVN/oYcCngKbBJ+4rqhec754R2a4TcS9zEZvZJgIj1hH67+iqpgD7CHPrpH1rdjr
-         aPQjUIW2R5FfCRYSuheBdKdUE9R5BStcDpOqplw3/GPtqbQSdhwcj81vLQ6phIZMeEGp
-         /bTAV9Mu5ROAoHn8AX3ZU/xY5PHyv1rXhQoF8USahn+UmCLC5Lu0IYvaBqGhQ7cVNCgE
-         uzjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780919118; x=1781523918;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3RBJSxqfT0copcCoPASu9D+tQdpKRcrHjtldnEnz33U=;
-        b=A1qsNd+wYlnfpQfB38zE39DynTl6Xys8rDnq0gtyTZKPmrLVmcBtJoVow949T+e16j
-         87QZ/xK50rWeHmtkUDyMQWV6wLxzKT795UyKGtmmeAAdhwNvINroVDpNTafBM4yc47xh
-         v/pleyhOmgfJgBv1KqJmlZOIhalrr7FVMGBMSqAfuSSsZxH4f8DFachbJD5rVbJkI/RY
-         c8pICukSBe2VFTwUCUhWALKvjFwtLSaARPvpWsKqYgFAv5v5GkOUbnDEVRWtHE+1vBiD
-         7iWYenqmADCg7NFD8Y3EVPYGkOTvt/mbs71xQsIfwdZZF68e4eg0yY1ufZDdmBaXxOEY
-         OwGg==
-X-Forwarded-Encrypted: i=1; AFNElJ/9DoLsBYpMF7v5rv3/83P3y09J2Mmb8M7T4gLsaAKydhpgZA5Lv8jHK/1NcS3aooE6FOec+qosgF4P@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSF/+b9YtH2yCRDIq5gXUnNdgh/5L9+UrNlKHUZHkG0TUFkmGf
-	oUTJKaZXBQG+rZWIsapCcShLfYw8/JNW+owBoXki6UPrtJ21y7rNdAQxQQng8w==
-X-Gm-Gg: Acq92OHQqM8WK/ncQQBhYLvil+zt1F3oYE/D39CL3zqNkULB5eiZD2iHqJBeZXJorNT
-	HoAv2Sjg40zPnmGftAL9fTSf8KFYBqd1DogtW/Nx2l0W7gSo+UMwjFvYwk0jddpD1/wCrkiAFO+
-	bDRg1AeS0W5K1w2zGRDZF6icVZTSXZ9vy9bQErlh0TfMCrVH55lpXK1ZBHVrEaRR9YIx9b8QqNB
-	63uFU6reYUxhiGdktsSLMAzA2aBzSopU7NwHzU/TX3K7qi2msXu8Mmm86A7ktvMkXz+7aNfL32G
-	o0bBqkJwuW+YQbEJOOl4UOys9k+chgyJdK1gXgqUrmm85YapE0jyn/0946gjAp+MRFsLlcuAZS9
-	cssVVfIoatBGpYxhN3tkUWZTJGx0Xi5ve/SGYTJl8BP3V1mvIEsSQ1qDyE+6+m9zpjtf83Y6QhT
-	TZ9+aatcVsfCmu470vCluMrCEzr1hcK3boimj1h/YS4u612CxQ5qUoSUCRMSzWNL2tZ20YA3WHP
-	U4NyKvTm5NMcQ==
-X-Received: by 2002:a05:6a00:1996:b0:842:2f28:4e36 with SMTP id d2e1a72fcca58-842b0f90897mr15772480b3a.17.1780919118219;
-        Mon, 08 Jun 2026 04:45:18 -0700 (PDT)
-Received: from [172.19.1.42] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-842828836efsm17689182b3a.38.2026.06.08.04.45.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jun 2026 04:45:14 -0700 (PDT)
-Message-ID: <79e704ef-bcaa-456c-9d0a-0680bd885563@gmail.com>
-Date: Mon, 8 Jun 2026 19:45:10 +0800
+	 In-Reply-To:Content-Type; b=UnvjnAL/AHz9FrHfZhJ140sCFgm73AlM5g1d5uNvDJo4urTPU3HqKynlFMKwFYQpSUFUZSKXTBopcypdVg/s4UHbbx8aWicPOybZNyX00DiLgKMhez+pVyyCOi6DHbbnlULWWS0tJ/FC3hIzw/Za+Z5o7unIi3kXZa4su4yjjNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HDKLbUH7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F921F00899;
+	Mon,  8 Jun 2026 11:46:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780919200;
+	bh=gC+UvcWJE8vffj4yb99SLhXbgF682IrB+3UO3I9FT8I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=HDKLbUH7OaB1e0fuk1xXXxHLf/Pz/98dfFWeJT+AzE3FlTqkpKNF5WfDfEcTbgjuf
+	 gAKPNHql8BJqHdZ0pA8Qg4qtzNTo+P++YWtrjdrHFU2SS+Sy0jtl0KIo/iu5j7RqYL
+	 fo7p7Jc+D6YkEEilh3iuXT7HfLHuw3pOCcuWZVRdk3PEXolVD7ODKues7dN9wrYn29
+	 EdUoEHiG+ATQfF/XuAMsRCM+FMY3Smo/aSk/20K+IfHkFbTGZ8VDI8zDXZaRNfi12E
+	 YwxrB/lp7jSOiOWvRaK/72xheq/U/OzKOM8jGSCbpxA2kSF/unZ5qKHTgGnYcDWp0k
+	 mIOsFAURS1caA==
+Message-ID: <6960d660-2851-44e3-af89-b334ab6cecc0@kernel.org>
+Date: Mon, 8 Jun 2026 13:46:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,85 +55,187 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] spi: ma35d1-qspi: Add Nuvoton MA35D1 QSPI
- controller support
-To: Mark Brown <broonie@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, cwweng@nuvoton.com
-References: <20260608025009.1504971-1-cwweng@nuvoton.com>
- <20260608025009.1504971-3-cwweng@nuvoton.com>
- <8e751df3-6237-4c8e-9c87-34bb67e435f7@sirena.org.uk>
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Make ranges required for
+ renesas,r9a08g046-lvds-cmn
+To: Biju Das <biju.das.jz@bp.renesas.com>, "biju.das.au"
+ <biju.das.au@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ "magnus.damm" <magnus.damm@gmail.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260602131331.90756-1-biju.das.jz@bp.renesas.com>
+ <20260608-alluring-remarkable-echidna-d107ea@quoll>
+ <d8cf5925-9c4e-4417-8fee-1d24c4cd303d@kernel.org>
+ <TY3PR01MB1134665BE4CE8FB734BCFAAAF861C2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <f5e8719f-6d85-4edf-a645-5be9be7ec980@kernel.org>
+ <TY3PR01MB113469E3AB101C3552E721E11861C2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Chi-Wen Weng <cwweng.linux@gmail.com>
-In-Reply-To: <8e751df3-6237-4c8e-9c87-34bb67e435f7@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <TY3PR01MB113469E3AB101C3552E721E11861C2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-308250-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[cwwenglinux@gmail.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cwweng@nuvoton.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:biju.das.jz@bp.renesas.com,m:biju.das.au@gmail.com,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:bijudasau@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308251-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[bp.renesas.com,gmail.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,vger.kernel.org,bp.renesas.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cwwenglinux@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4F6F7655DC6
+X-Rspamd-Queue-Id: AD7E9655D68
 
-Hi Mark,
+On 08/06/2026 13:22, Biju Das wrote:
+> Hi Krzysztof Kozlowski,
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: 08 June 2026 12:11
+>> Subject: Re: [PATCH] dt-bindings: mfd: syscon: Make ranges required for renesas,r9a08g046-lvds-cmn
+>>
+>> On 08/06/2026 12:26, Biju Das wrote:
+>>> Hi Krzysztof Kozlowski,
+>>>
+>>> Thanks for the feedback.
+>>>
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>>>> Sent: 08 June 2026 11:22
+>>>> Subject: Re: [PATCH] dt-bindings: mfd: syscon: Make ranges required
+>>>> for renesas,r9a08g046-lvds-cmn
+>>>>
+>>>> On 08/06/2026 12:20, Krzysztof Kozlowski wrote:
+>>>>> On Tue, Jun 02, 2026 at 02:13:29PM +0100, Biju wrote:
+>>>>>> From: Biju Das <biju.das.jz@bp.renesas.com>
+>>>>>>
+>>>>>> Add a conditional schema rule to the syscon bindings that requires
+>>>>>> the ranges property when the compatible string contains
+>>>>>> renesas,r9a08g046-lvds-cmn. This ensures the LVDS common control
+>>>>>> block on the RZ/G3L SoC correctly declares its address translation,
+>>>>>> as the device has child nodes that need a valid ranges mapping to
+>>>>>> be described in the device tree.
+>>>>>>
+>>>>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>>>>> ---
+>>>>>>  Documentation/devicetree/bindings/mfd/syscon.yaml | 14
+>>>>>> ++++++++++++++
+>>>>>>  1 file changed, 14 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml
+>>>>>> b/Documentation/devicetree/bindings/mfd/syscon.yaml
+>>>>>> index 9c81010d5a74..cbf83a06ae25 100644
+>>>>>> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+>>>>>> @@ -269,6 +269,8 @@ properties:
+>>>>>>    resets:
+>>>>>>      maxItems: 1
+>>>>>>
+>>>>>> +  ranges: true
+>>>>>
+>>>>> There are no children allowed, so ranges property is wrong.
+>>>>>
+>>>>> You are changing binding which DOES NOT allow simple-mfd or any
+>>>>> other children. Ranges is not a problem here.
+>>>>
+>>>>
+>>>> And if you tested it on your DTS, you would see this does not work...
+>>>
+>>> I don't see any warnings or error. I have done this change based on
+>>> Rob's comment based on sashiko review [1].
+>>>
+>>> If you agree, I can drop this patch.
+>>>
+>>> [1]
+>>> https://lore.kernel.org/all/20260601022619.GA3961324-robh@kernel.org/
+>>
+>> Look:
+>> https://lore.kernel.org/all/20260524194457.479681-2-biju.das.jz@bp.renesas.com/
+>> What compatibles are here?
+>>
+>> Now open the binding - what compatibles are allowed for renesas,r9a08g046-lvds-cmn ?
+> 
+> OK, I am missing the fallbacks "simple-mfd", "syscon"; in the compatibles allowed
+> for renesas,r9a08g046-lvds-cmn.
+> 
+> OK, I will add those.
 
-Thanks for the review.
-
-I will add mem_caps in v3 and set per_op_freq for the spi-mem path.
-
-I will keep the direct CS polarity handling for now, and also add
-SPI_CS_HIGH to mode_bits. I understand that moving this handling into
-the core would be a separate issue.
+No, maybe, dunno... How anything here could have been tested? dtbs_check
+clearly points errors on your DTS.
 
 Best regards,
-Chi-Wen
-
-Mark Brown 於 2026/6/8 下午 06:53 寫道:
-> On Mon, Jun 08, 2026 at 10:50:09AM +0800, Chi-Wen Weng wrote:
->> Add SPI controller driver support for the Nuvoton MA35D1 Quad SPI
->> controller.
->> +static void nuvoton_qspi_mem_set_cs(struct spi_device *spi, bool enable)
->> +{
->> +	struct nuvoton_qspi *qspi = spi_controller_get_devdata(spi->controller);
->> +	bool assert = enable;
->> +
->> +	if (spi->mode & SPI_CS_HIGH)
->> +		assert = !assert;
-> Hrm, we should have the core deal with this.  Separate issue though.
->
->> +	ctlr->num_chipselect = NUVOTON_QSPI_DEFAULT_NUM_CS;
->> +	ctlr->mem_ops = &nuvoton_qspi_mem_ops;
-> We don't specify mem_caps, I'm vaugely surprised nothing trips over that
-> when testing.
+Krzysztof
 
