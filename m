@@ -1,249 +1,122 @@
-Return-Path: <devicetree+bounces-308102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308106-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OmwNBkZ9JmpRXQIAu9opvQ
-	(envelope-from <devicetree+bounces-308102-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:28:54 +0200
+	id Q1qRCkSBJmqSXgIAu9opvQ
+	(envelope-from <devicetree+bounces-308106-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:45:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA4816540A3
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:28:53 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DEB86542DC
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 10:45:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=pRxHhS86;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308102-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308102-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308106-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308106-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2B97C3009893
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 08:28:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1C8F6309035A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 08:37:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49D903AFAEF;
-	Mon,  8 Jun 2026 08:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F393B3895;
+	Mon,  8 Jun 2026 08:36:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp153-176.sina.com.cn (smtp153-176.sina.com.cn [61.135.153.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C583AFB12
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 08:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2465D3B19D0
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 08:36:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780907294; cv=none; b=OrUQULNiS1H/6oLkCHaA1ZALzKTje3TCMThwIoOthWtFzPSIk2xSQfwPDJZBIelzNMlJJ94kRfeuBR9FugiYhGsjVut8t0Xx2SgiQpB+z3UYGpk1HEY7ym3LiDoUDPFg2nGgd9UXrU+1AyfIC/vcicq/HaK0Qp3ZgMIfy/97Kc8=
+	t=1780907796; cv=none; b=JJn6iM45u+zKWqL5W8Agt/GJaKCQS+oXv9vmVJiPCX1VhRNq7Mvwq7CyYsAMW2zAwgI64vy0/c7hSOqTbJw8ZMxOvzh9LyIz6KIEP7ltSfivNKc9NdbUAs2sK6qF+fswnppMt4a8e6AFQUXlJp7OKHvOc/BfXboTpGQ8eMdFi/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780907294; c=relaxed/simple;
-	bh=1wZNWjUwc+vC0bVgQ0ZlbNdOYECuxeaY+pojCpm9HA8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UkoKpVyh6kjomPGURgYtfs8rPbHiukUkcp7/g1tmS8VMeYgUNxEZS+EV6zOPIVdCdzS5jTM5aI4S/yOKS4/5wwwwuPr8NjX0Vcl9bnh3IhXsPYbCm4lVtZWTT7YS1zAohWGI48704OVoza1xd2LBmB0kZ9afbA693iYJWu8SHPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pRxHhS86; arc=none smtp.client-ip=209.85.221.54
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-45efa80e0afso3096557f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 01:28:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780907288; x=1781512088; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PPeReRpnLBnfoJVjUD6XA7EpJ91dRyU67u4RwbeYW+E=;
-        b=pRxHhS86/i5lFqEWxQzb0O+X8Zyp37Hv3tGh3OHmku2+J0DMTShEIoDFPF5+g16XoX
-         0/xzJY28v1rymS9yzI7KHMRk0IeziIOkWIPqVfkUye8wZJttEFW/FcI+aU86Rikvat9l
-         3jA+YliBw41w8GQE7xKZ9EQjOQQbL+YYnxuJjX4jf3aPIR1WfHhJPQdJZuBSe+xnUAl+
-         dtoBA37i1x1kYXtM5lfvLefrGVE01DMzYBPcoep0q9+uZ3Eny3uorpfzkgRxuco4ZTbC
-         bxYoIh5Qr9/yxZVLN5ZvPQHKjtMWM/Z9Lf1PsHtLLKLv1nCCj0WS1WBtDAK3sVV2iqwl
-         OY1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780907288; x=1781512088;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PPeReRpnLBnfoJVjUD6XA7EpJ91dRyU67u4RwbeYW+E=;
-        b=fnfyrUZGfIysfnI8oivdajJXvhxS3WpbE2sfvYYWRb5mMhiea+CGPnJCpnH5CMWL3O
-         IajHWKRrocowWMFGfQlZG8IJHf1T1haEmhwfkU4MnrEuCrLsd1WPXHWlmqiOJ8WBO9MY
-         TKKFcg98ohaWjLapOBL1jo/R2+JUoJijpfLGZ6hJqmaA4v4hjMTrWDLbGJ1ON4765xfp
-         BSqaJZigEzZpvVqrv8iKJLAnmeijnd2z615uM4tTVX55DFOYK4wsCFEn09MSG7kn2H3q
-         KURUann3Jeb1pqMf3pH4pRLW+bGF+a00IoYYegFanNm5ZgJUpC7CPNy7a9/JLFaCUy8J
-         klfQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/GvrxPGAomOp2PxasRWzbdnxBZot+q9AWn27CnR/iXO3nJlf2W0qJzwiZAOrMfv1K11/E16V62Uf0+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyxhfNFKiVj18K+mj2jHy6rwrEUclJnGbuWvJU3Rg2nyiO/b6+
-	aYnT6bRYNhjyuET27Kdd+C9xffQSeSLw55a0iq0WTn1vkql81OkNb9vW
-X-Gm-Gg: Acq92OEM/xSm+ouIVHTHSFvMuupvPzWiSZKrCxhWCj/pl90/hW6Uhe5eKRVQuCq4Wk2
-	VaCCkcNzSei2n1USd1vDBOAZx6b8RU9+E20FuAWzfByjPNHhQcP05SY3XCmOMsCGLINODRAGm7i
-	IVPYrrRNBep1TZQ0seZ1LE+9YKvuvxFtg4JXpQbPYYGy6hqXLURjbxugRCVYAIzjYncN+5USgYB
-	kXB9lc/rAzSshN7yvL9OWqtBUP+zpicLcmMxAKi9G/e6TbOzUc7Ip1UxMUsN+Rupodxr+QE07q5
-	4PF0+X3kSFVqpjKEJ+TzLW+vyva917TzfAud3itHrXOkAppwntT2SzxJrRtoHWft0aLxy/DcHOj
-	0OmiXeluLj6vr+CpneoJD9JsUbVTd0TxVvkC4iclbnnUFb+S26/AxtkfecnJGS5fD8Udxg/SQhz
-	f3uqAegYuJuK7WZBm2+oCM1CPXrQ==
-X-Received: by 2002:a05:6000:29d6:b0:460:3233:beeb with SMTP id ffacd0b85a97d-4603233c00bmr13957776f8f.43.1780907287945;
-        Mon, 08 Jun 2026 01:28:07 -0700 (PDT)
-Received: from nsa ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f2ec711sm49104616f8f.12.2026.06.08.01.28.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2026 01:28:07 -0700 (PDT)
-Date: Mon, 8 Jun 2026 09:29:07 +0100
-From: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: rodrigo.alencar@analog.com, Michael Auchter <michael.auchter@ni.com>, 
-	linux@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>, 
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH 06/12] iio: dac: ad5686: consume optional reset signal
-Message-ID: <aiZ7mVMImugYwOVq@nsa>
-References: <20260602-ad5686-new-features-v1-0-691e01883d27@analog.com>
- <20260602-ad5686-new-features-v1-6-691e01883d27@analog.com>
- <ah_k9A9535Vz6PCw@nsa>
- <20260603130833.007c1526@jic23-huawei>
+	s=arc-20240116; t=1780907796; c=relaxed/simple;
+	bh=r6n7VzfROoKpU8dQtsIgWZS+PzUAAj4TZpbKmIdcY9s=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=TCS+thXNeB9Vr0lTjVWJ3OTz0adk72qEgkwbNCaNxXW/vZbaD6kBWWD5nonYV2ocTJTsx2c46NfUiTpNr2w7mzabyK1XrlnjztXj1ZKg8bgUwSOOiLw4+EvCrkEr55VMiowNEg1bow2LEN99+OVTtm0flX8sT0FdgIgIgVwV+eg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=61.135.153.176
+Received: from unknown (HELO zy-virtual-machine.localdomain)([58.38.107.94])
+	by sina.net (10.54.253.38) with ESMTP
+	id 6A267EDF00000BB8; Mon, 8 Jun 2026 16:35:44 +0800 (CST)
+X-Sender: zhangyi@everest-semi.com
+X-Auth-ID: zhangyi@everest-semi.com
+X-SMAIL-MID: 7159E92E2FA54055B451A0810323BEE7
+X-SMAIL-UIID: 7159E92E2FA54055B451A0810323BEE7-20260608-163544
+From: Michael Zhang <zhangyi@everest-semi.com>
+To: alsa-devel@alsa-project.org,
+	broonie@kernel.org,
+	devicetree@vger.kernel.org
+Cc: tiwai@suse.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Zhang Yi <zhangyi@everest-semi.com>
+Subject: [PATCH v0 0/7] ASoC: codecs: ES8389: Modify the ES8389 driver
+Date: Mon,  8 Jun 2026 16:35:33 +0800
+Message-Id: <20260608083540.12581-1-zhangyi@everest-semi.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260603130833.007c1526@jic23-huawei>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308102-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-308106-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[everest-semi.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:alsa-devel@alsa-project.org,m:broonie@kernel.org,m:devicetree@vger.kernel.org,m:tiwai@suse.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zhangyi@everest-semi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,everest-semi.com:mid,everest-semi.com:from_mime,everest-semi.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AA4816540A3
+X-Rspamd-Queue-Id: 7DEB86542DC
 
-On Wed, Jun 03, 2026 at 01:08:33PM +0100, Jonathan Cameron wrote:
-> On Wed, 3 Jun 2026 09:28:26 +0100
-> Nuno Sá <noname.nuno@gmail.com> wrote:
-> 
-> > On Tue, Jun 02, 2026 at 05:33:53PM +0100, Rodrigo Alencar via B4 Relay wrote:
-> > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > > 
-> > > Add RESET pin GPIO support through an optional reset control, which is
-> > > local to the probe function. Also, include delays for power-up time and
-> > > reset pulse width.
-> > > 
-> > > Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > > ---
-> > >  drivers/iio/dac/ad5686.c | 13 +++++++++++++
-> > >  1 file changed, 13 insertions(+)
-> > > 
-> > > diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
-> > > index 4a8c587ff116..345ca2436332 100644
-> > > --- a/drivers/iio/dac/ad5686.c
-> > > +++ b/drivers/iio/dac/ad5686.c
-> > > @@ -8,12 +8,14 @@
-> > >  #include <linux/array_size.h>
-> > >  #include <linux/bitfield.h>
-> > >  #include <linux/bitops.h>
-> > > +#include <linux/delay.h>
-> > >  #include <linux/dev_printk.h>
-> > >  #include <linux/errno.h>
-> > >  #include <linux/export.h>
-> > >  #include <linux/kstrtox.h>
-> > >  #include <linux/module.h>
-> > >  #include <linux/regulator/consumer.h>
-> > > +#include <linux/reset.h>
-> > >  #include <linux/sysfs.h>
-> > >  #include <linux/wordpart.h>
-> > >  
-> > > @@ -471,6 +473,7 @@ int ad5686_probe(struct device *dev,
-> > >  		 const struct ad5686_chip_info *chip_info,
-> > >  		 const char *name, const struct ad5686_bus_ops *ops)
-> > >  {
-> > > +	struct reset_control *rstc;
-> > >  	struct ad5686_state *st;
-> > >  	struct iio_dev *indio_dev;
-> > >  	int ret, i;
-> > > @@ -506,6 +509,16 @@ int ad5686_probe(struct device *dev,
-> > >  		return dev_err_probe(dev, -EINVAL,
-> > >  				     "invalid or not provided vref voltage\n");
-> > >  
-> > > +	rstc = devm_reset_control_get_optional_exclusive(dev, NULL);
-> > > +	if (IS_ERR(rstc))
-> > > +		return dev_err_probe(dev, PTR_ERR(rstc),
-> > > +				     "Failed to get reset control\n");  
-> > 
-> > On top of what Andy stated, I'm fairly sure
-> > devm_reset_control_get_optional_exclusive() returns with the GPIO
-> > asserted.
-> 
-> We've been getting reports on that not being the case from Sashiko
-> and when I last looked into one of those it definitely isn't documented
-> as doing so and I got the impression it is a reset controller specific
-> thing.  Do we are fine here because the gpio reset controller reset_gpio_probe()
-> includes:
-> 	priv->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> 	if (IS_ERR(priv->reset))
-> 		return dev_err_probe(dev, PTR_ERR(priv->reset),
-> 				     "Could not get reset gpios\n");
-> Which I guess puts it in to reset?
-> 
-> So do we assume gpio reset or not for this sort of driver that specifies
-> in the binding reset-gpios. Now if the following is implying we need
-> a deasserted to asserted transition (maybe?) then we'd need to force
-> a deassert first.
+From: Zhang Yi <zhangyi@everest-semi.com>
 
-Yeah, fair enough. I think in practice it works but we are relying in
-internals of other piece of code for it to work which is not great.
+v0:
+  - Modify volatile_register
+  - Add MCLK_MASK to resolve the issue related to mclk_src
+  - Modify configuration about clock
+  - Add private members about HPF at driver and devicetree
+  - Add INPUT MUX at route
 
-- Nuno Sá
+Zhang Yi (7):
+  ASoC: codecs: ES8389: Modify volatile_register
+  ASoC: codecs: ES8389: Fix the issue about mclk_src
+  ASoC: codecs: ES8389: Modify the clock table
+  ASoC: codecs: ES8389: Modify the initial configuration
+  ASoC: codecs: ES8389: Add private members related to HPF
+  ASoC: codecs: ES8389: Add INPUTL MUX and INPUTR MUX
+  ASoC: dt-bindings: ES8389: Add members about HPF
 
-> 
-> Btw I used claude to explore this and it hallucinated the reverse polarity
-> providing otherwise correct code for what was in reset_gpio_probe() but
-> oddly editing that one line.  I was being lazy and using the web UI rather
-> than a version with access to my git tree so maybe it scraped some
-> buggy code from a downstream tree.  Anyhow watch out for subtle garbage!
-> It also took a few requests to get it to figure out the logical nature
-> of the GPIO signals rather than assuming they were controlling whether
-> the line was high or low directly.
-> 
-> Jonathan
-> 
-> 
-> > 
-> > > +
-> > > +	udelay(5); /* power-up time */
-> > > +	reset_control_assert(rstc);
-> > > +	udelay(1); /* reset pulse: comfortably bigger than the spec */
-> > > +	reset_control_deassert(rstc);
-> > > +
-> > >  	/* Initialize masks to all ones */
-> > >  	st->pwr_down_mask = ~0;
-> > >  	st->pwr_down_mode = ~0;
-> > > 
-> > > -- 
-> > > 2.43.0
-> > > 
-> > >   
-> 
+ .../bindings/sound/everest,es8389.yaml        |  18 +++
+ sound/soc/codecs/es8389.c                     | 130 +++++++++++++-----
+ sound/soc/codecs/es8389.h                     |   8 +-
+ 3 files changed, 121 insertions(+), 35 deletions(-)
+
+-- 
+2.54.0.windows.1
+
 
