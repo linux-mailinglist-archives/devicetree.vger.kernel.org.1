@@ -1,150 +1,150 @@
-Return-Path: <devicetree+bounces-308423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308426-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Z5mzJ7zwJmr7nwIAu9opvQ
-	(envelope-from <devicetree+bounces-308423-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:41:32 +0200
+	id ojLCCHfxJmqpoAIAu9opvQ
+	(envelope-from <devicetree+bounces-308426-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:44:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3030F658D26
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:41:32 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA380658DAB
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 18:44:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=HecMdCPQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308423-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308423-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=none;
 	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308426-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308426-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D058930B4E77
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 16:23:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 47D92319A28A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 16:27:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FCF934750A;
-	Mon,  8 Jun 2026 16:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 247913C457F;
+	Mon,  8 Jun 2026 16:26:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com [74.125.82.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDAA343891
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 16:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1437E333730;
+	Mon,  8 Jun 2026 16:26:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780935798; cv=none; b=lKv0YMT3ELCcbgr1l1Sh/FpBTCem7CBN3N0Tqjbq7cRDJHfZAxlymmXxyBp1MUeiqQafjT0EQHi8hiw42rpv2QJ9POL3kuLOKc8pgBpl6eHeMAgYI6dn/AhYH1/7slWq3vUWJgMqJTtrvNwuUcqI89OcHMFvZTM0SMdNN6gQoLw=
+	t=1780936013; cv=none; b=RMKTDXr0KoAMFGFY/CE7V6imZwQn+sHj0Rhw3Cu6Fgjemga5z1Mdcvj7vu8mHuiri7a6Ibjl8NGPeiLEnJNK7sWJHbT58qNaTBi5Cy6rmcwEaq/NqYFGL9vXsVN70hjrFBEW5LowxpdUAqHG7yAt3xVj36MpvmYXbFVs5IVtZTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780935798; c=relaxed/simple;
-	bh=8te2zY0sO0aPP8QOfw6I01FBJQIKoZ/+eGWsj3nDQBo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N6cPaO+IB92o3BNCaNQKYrUQPApVUc2XTdJQ9V1H5UC8TpbZdJ7c7KUnBNcbRVHiqbj8fGLN3tO2oCx7acR/rIAluIcVsz77G07xOv2TuEGd/SimbH0Jbm6z29ghlG7Gddb/fLzd2OdyQASEE4wjJeDlYKUOu/y5XVm05fS9gy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HecMdCPQ; arc=none smtp.client-ip=74.125.82.175
-Received: by mail-dy1-f175.google.com with SMTP id 5a478bee46e88-304ec41197bso4196769eec.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 09:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780935796; x=1781540596; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/xyJaeMREvFPr6MLUgM5itNfuv/IOwPcbYOyGoFxcyk=;
-        b=HecMdCPQ1i59lPU4qr4EcAV4/1QRMh/G0+Oujd2PN2batwOOL2slTM2LLdjI2iM0mN
-         vaY3id9VHDiBIu1dzLtiIhxpHAYYH2jTO2hwRH7yTJ21NnecTRdKw4rxvTDUCcs/BDml
-         ax/WDpaAYO8Q5qEgjEtE1CNYywArc9zs+CihG7jI9PhyrwTII/eHfHfrEZbdh4CorjBq
-         9Em6R9DNX1da4osXiTxejefUqBHPw7g0bCq4zJ7FRh7lTECxrKaJjE02uJBnULpAltlo
-         rro266xoBORRXNY7Z8y8wU61LwxzW/f3vBjG9vgN45XJ0MA1uNSPEEh+Jv8xTTmzZ6x7
-         h+9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780935796; x=1781540596;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/xyJaeMREvFPr6MLUgM5itNfuv/IOwPcbYOyGoFxcyk=;
-        b=Og5YNcfU2iYCqec2pdTQoSQy+tUde+Eu/p0MdzQbNAWPY7qeuTmZJJWeS7L5Gi4o1O
-         02mVaGmWLbFtFrQ2F41OfJ9gn/N6X94WVNeH6PRnrF9W3Uf8hI4ht36C7CqH/PQos3iM
-         5udg3v+E4XzXlaoKITdMjDpJ5UTPxHqfYzrlqJTJZW62vuhDpkHYD2zBBQAijtXaluWI
-         RWORvY/c6Lg2jHxRQePLsQGMKfRoFIF4gaw6J+Z1za1wWaNWc5RFijgJRhi1XWk8QRRj
-         uMBgQtT7/4yk/O4ZGeEAdPWN9Q2+RNejMwfJ8O/oVxV5bJOhg9nT50i80dnW0whkhG6l
-         wPiw==
-X-Forwarded-Encrypted: i=1; AFNElJ89Fqiv8KRAgCqNX2SQW13HS6i18KND8XLlxV4I4RFuSRrZS91WmLhU6lcIaWi+nUGKeklBRlakesL5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx67s9WE6+miuyUOd1WgDh+KxjZiJEtr6G+ll0gH+DB/KK8Mc9P
-	T63xm3PwoYVMGA4Lw1Mx2Vedl+HOQlWNJ4grrUe8s0diBpYKrd8bZ06X
-X-Gm-Gg: Acq92OGSyIBhyrRZFK7gY40OfwEiXDW+6rBgfCr0w7Sfv0NJ4ACYe0lX4f0WuJcmviK
-	WM+iWz2R24pS3ZWy4eNm58NC2jbzjBKNiXo7tl5LnAYs9D7eNh+Ug2S+I0npA26hdgeKqnDdp3O
-	XOQgxbU5M6eus+XCp1FZEMzKUScB4wnlhYD3oaMG4XauzgCaRxYbGfh4F6pltNC9AhWioZxPLAf
-	mp9fKRJhAvm9xeHnnY4mu61B1uTpjzavUTMjF++9dQsHy1A6tUeIASgN+OaltnHYnA2hNrZnGrW
-	MoysfEStbKyvAbbv9czSaJmA2Itzo54X/s7t2Woc/AZpcKHObfkJWEKuG0gPvq4Vv737ebnXsSO
-	iXpd9UIBhqivjfXBMcW0qD+cvBRcj80YEHlS6Nmeo4skhZPawUsBjQkq0FeA4nTPMHeIzoyQtoy
-	h/sWoDxXp9QRlLcDwZJHEcOWxbsekjG+exTf+MbsOY3yfIHPM=
-X-Received: by 2002:a05:693c:2c01:b0:2d2:96e8:1bf5 with SMTP id 5a478bee46e88-3077b32a4ddmr8991673eec.3.1780935795967;
-        Mon, 08 Jun 2026 09:23:15 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3074df64eb9sm15724340eec.25.2026.06.08.09.23.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2026 09:23:15 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 8 Jun 2026 09:23:14 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1780936013; c=relaxed/simple;
+	bh=FdVgxhSUiuF5SF/LtuewUWfQr+cKX2H36+L+MSsJMnA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QrvSh4Ly92LogsDv3g6IVtakgJVafKFzW7ayymMXNCsRTwhcAcFwWqWIzt+DioXuGnHH7SIjnsXHIb1maf2jzl84hdTcWRye5Gptwt2IoCOwrsBPZ2hkY5UnR0Yf/RbouWCVWXkZAVzH/mV7Rl4qacVKm61Wamu97z7qd66iX6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.101.15])
+	by APP-05 (Coremail) with SMTP id zQCowAAXbhEy7SZqx5m4Eg--.4904S2;
+	Tue, 09 Jun 2026 00:26:27 +0800 (CST)
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] hwmon: (adt7462) Add of_match_table to support
- devicetree
-Message-ID: <49e962ce-19ad-4ed8-8fc5-3924f87d430f@roeck-us.net>
-References: <20260608-adt7462-bindings-v2-1-272982c40325@bootlin.com>
+	Pengyu Luo <mitltlatltl@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Subject: [PATCH 1/3] dt-bindings: display: panel: himax,hx83121a: add optional bl supply
+Date: Tue,  9 Jun 2026 00:26:20 +0800
+Message-ID: <20260608162622.403713-1-zhengxingda@iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260608-adt7462-bindings-v2-1-272982c40325@bootlin.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:zQCowAAXbhEy7SZqx5m4Eg--.4904S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrZw1rZFy5AFyDZFy3JFyUtrb_yoWDXFbEq3
+	yIy3Wkt3yDJF1F9rnYyF48KFWFgw48Cr48A34ayF1kt34YkrWqqF97J398Cr17Ca1a9FW3
+	Zwn7WFWDAan2gjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUb3xFF20E14v26ryj6rWUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+	Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr
+	1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
+	n2IY04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
+	AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
+	17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
+	IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
+	IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvf
+	C2KfnxnUUI43ZEXa7sRidbbtUUUUU==
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-308423-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[linaro.org,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mitltlatltl@gmail.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:zhengxingda@iscas.ac.cn,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:romain.gantois@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kory.maincent@bootlin.com,m:thomas.petazzoni@bootlin.com,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_FROM(0.00)[bounces-308426-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,lists.freedesktop.org,vger.kernel.org,iscas.ac.cn];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3030F658D26
+X-Rspamd-Queue-Id: DA380658DAB
 
-On Mon, Jun 08, 2026 at 05:23:43PM +0200, Romain Gantois wrote:
-> From: Kory Maincent <kory.maincent@bootlin.com>
-> 
-> Add of_match_table to add support of devicetree probing.
-> 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> [rgantois: Removed of_match_ptr().]
-> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+When the backlight is managed by the panel controller IC, an external
+power rail might be powering the backlight.
 
-Applied.
+Add an optional `bl-supply` property to describe such power rail, thus
+allow disabling the backlight.
 
-Thanks,
-Guenter
+Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+---
+ .../devicetree/bindings/display/panel/himax,hx83121a.yaml      | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx83121a.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx83121a.yaml
+index e067a2f6d0b22..aeca3c9a599c2 100644
+--- a/Documentation/devicetree/bindings/display/panel/himax,hx83121a.yaml
++++ b/Documentation/devicetree/bindings/display/panel/himax,hx83121a.yaml
+@@ -40,6 +40,9 @@ properties:
+   vddi-supply:
+     description: power supply for IC
+ 
++  bl-supply:
++    description: power supply for backlight, in case it's managed via DSC
++
+   backlight: true
+   ports: true
+ 
+-- 
+2.52.0
+
 
