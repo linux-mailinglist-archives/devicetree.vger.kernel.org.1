@@ -1,230 +1,165 @@
-Return-Path: <devicetree+bounces-308379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308380-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RsNlBmrVJmqVlQIAu9opvQ
-	(envelope-from <devicetree+bounces-308379-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:44:58 +0200
+	id eIsJBNDVJmq8lQIAu9opvQ
+	(envelope-from <devicetree+bounces-308380-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:46:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D21B657734
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 038CD65779A
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 16:46:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=YveAro9s;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308379-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308379-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linaro.org;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SrsiZrhz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308380-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308380-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 978B030634A2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 14:34:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2D8213079E90
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 14:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72573D093E;
-	Mon,  8 Jun 2026 14:34:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FF63CCFDB;
+	Mon,  8 Jun 2026 14:34:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF4593CA487
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 14:34:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 848763CBE80
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 14:34:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780929271; cv=none; b=YDn3+UGut0Ca2fqa2pdZhTmqhoKdg1FW4eEkaf7fTigW3KvpiJt6pQ+ZZmsyAlCqqfKxOHm2aX5Qbaw48UoMW061oHucvhOERzjOa3zEUzVXwF+9mpH1/DoMzu7JaA0f2YvQ/0SM7+V8MLKJvofNyU8FkgcHbtNdYhxZy+3KAc0=
+	t=1780929291; cv=none; b=IZb70Q2wMQ/B3tEZSQXFCFPPeVvsDVcCtaKM248uxrKwRCLTTo+5OSe6QNTCN1SYFKCp4CLPNgVb8ah7HLeyMN2pHTxBeSzViBHR3zfuV8E2TVHOh841HhanqFkWWzaGQUVTAF+iay7/2MTrN3IUCE1yOqd7ysmQVOxXa0ZY3iY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780929271; c=relaxed/simple;
-	bh=4kTILm4V8LGYTvPYFXVdN9AEbZcO30xqsG4kjfshh2E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XH5FmPmMjjBW0nFNXZriAoTsnO/rZCmGFsHE+uWf3DNCE9INrdiPS2TYLqEW1Svm8rR0CUIOdL9k7/fIuWup/7p/+7UkeL34NcRJLavbmtUa5B3/ZBSlFlAJ2pqkiyagWQwpPl3FadVhXanpb90LzvcmNM17SdppvA0a+PEPVsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YveAro9s; arc=none smtp.client-ip=209.85.221.41
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-45ee6d32402so2427113f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 07:34:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1780929268; x=1781534068; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nXHFXu7L7X5+W85+6JMWjYQ7nh2xx8JsX3L6W7xEiLY=;
-        b=YveAro9sJjAVOU4L0VP49z4gWck2W1w5tdgfRt3QfRLTzNf8ruxlBp/LcujOt8VYmZ
-         4Ktx4nQ7FxAOKdDU/mFODCZA980uiQCssS0P/7S7d5ms1RwSNc0mz4jJilGhZxW604k6
-         U1v/0HRoUpFzg1dAp3TJGBnKBigDMpD4nDal/Jf7OIWBB8V1MkqSwDbNaLJ13mxFKMfD
-         OUfy2E73l3jIevlo6xbm5h3oJRWOMPVXMT04e4MO1hbGnJeUO+qLmhUsNVBZXXarTK5h
-         XRuQdt16vmJPioO5TABR0UX2hTsQJy3rjNLX3RoRcwVr8mewkpxMH5/zvnIH6Xosrgqd
-         sXDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780929268; x=1781534068;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nXHFXu7L7X5+W85+6JMWjYQ7nh2xx8JsX3L6W7xEiLY=;
-        b=MwiotaE1xO1yrtvGPCVZ37VzM1tqu2oK57He+YVebYVsi//d/d1GT+zdfWOHd49Nva
-         zW5nSnsqsOFIC98Pdb7emYAWEFdMXn11e2f4QEBM2Myer2MeyOVApCo9hgFz2TZ+ruKJ
-         MjWqw+NDhfU0+6ih5qP/r/DbC64bfz3abjKtc/ZKpr1jDa+8gFaWrPN1mDlRq4kOl3/S
-         dFdvockV4+5NFkE22fWFos+HV0sw/xBb01p6YPir7oDng/x+WuBqq+T0SvfRR06bPrRX
-         RdsuebcZdkW5n/Uosbyu521IACCdgSFeVH0PnDJ+4068yn7uTAKLV0a06gesRR3579nV
-         oVng==
-X-Forwarded-Encrypted: i=1; AFNElJ8MJ9ZiplSQArZLET5IYhCm4ERhUt7xB9DeGhAMxEJ90Zg16ss0EIL8atTegzRwTQjMTPuPXDr78D4H@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGIy5D5VCiJqg5A8uySabDQb4VRvLOeoQfnkOnBEFlX0io4rPY
-	ye41mPyo0KyAPISDBOwHfZH2ILmKfcMIHkPgZT9S3Ok9Fu5aw4exC9pIDNIZHQf6Y4c=
-X-Gm-Gg: Acq92OGnbxeT1dGnRPPA0nEybej+BwQlPixb9+sD5KzbiugL0gqksdl3Y2HO66ESgds
-	ROo3nOaVu/EhiEn4krEMwS26/xDlIMUca7uugHhXlMONd3ywzR2k9NC7IakVoAdrhiUF0h5n35A
-	Ld576ZDE9fT1lA2TYqS2eF+kH0rv7ccc0g4HSAAVryGdGPrbH/ru6TBjyvWyHRSAnMLwbmP2iQC
-	v8+sY+Gulri6FgRxzBfi042UfOlBBBKVeBKAfplQWbozfY/wUK/ooIHP0f31hMLMcGIJAH8ssOC
-	kkkFf9QAXDbKcI6NxCC/pLWdsikUUiGvwVawzAA9vqt115i584aST5e0BRKvPubmGqT8Jehe5cj
-	A4VzNwHwV7DAozFVpJYOIO0CxY+8xb5EMkLUgPQb6RWWcFeQ4d6at8UgbxB/aeMSM9a/mIyLEW2
-	hpJRmm1/y7xep0D3waFfuR5pjVI3755SM1GxusWSMWCQ==
-X-Received: by 2002:adf:fcce:0:b0:45e:df08:b18 with SMTP id ffacd0b85a97d-4603075ca65mr16848230f8f.32.1780929268183;
-        Mon, 08 Jun 2026 07:34:28 -0700 (PDT)
-Received: from [10.11.12.110] ([82.76.215.73])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f351ac0sm95437467f8f.27.2026.06.08.07.34.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jun 2026 07:34:27 -0700 (PDT)
-Message-ID: <cc544c9d-0587-4d07-bc47-83636584fcef@linaro.org>
-Date: Mon, 8 Jun 2026 17:34:25 +0300
+	s=arc-20240116; t=1780929291; c=relaxed/simple;
+	bh=OIalH9+6YMcuHzFN1EBtFcDVHixy1D++idho68g2OA4=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=InzQuqcG8fuzSBVdoH2zpL++ExT613yqh6MyMaD54n4CXgu19jKaABcgZWogFmEWWzRkK2Y/IjyX4wxUWyaLB7BPcS9gysMbkq0qOHEOlsjuPIecRNuSwXPIu5S2u4ZkWH91cMSkizyAoGSE0pXkcqw/1aQglwfesPKvaLJMohk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SrsiZrhz; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CD101F00893
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 14:34:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780929290;
+	bh=3n333W9uuX999VQSw8XPT67sii0JB3oXgtv5iZ8Z2UY=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=SrsiZrhzyVnrJ+VY9f7kpNryvx6H0NREol6ZRwN+n4GdNcKONyAZXFIY2ywhG98lO
+	 wAc7i6k3yGXIcDVhCKhbmySD9e+0UjGLC8ekivOH9Y9W44ZEuHrOL1c/X/l9lmsRkO
+	 e8MUvA0JHFpOp3eGO5xT/juzbKMP0so59ZaEKjvBw/Tza5f2RJxb/U1KBWvhnotv0l
+	 4vuzjliWg0NPuBAeKYja/OBRBkUifVSJLh9+3ybQLx91yqUx6eIswAki6PhohG/UQc
+	 aviuXLKL0HFy/mNNi9+bqFpmui2dRKQENEO2dB3xfANZP4cvnJ3JX/XnhhoQ0ws8nj
+	 RpWc9hjrki4Kw==
+Received: by mail-yx1-f42.google.com with SMTP id 956f58d0204a3-66077f6c438so3828954d50.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 07:34:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/5aJL89o3KyOfknd8y0FTTLmEc1VlGsS2uYepO4f6ZJoLIYUyDmjud7TsywHvYC/BBLX5zVoVVJHpZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzN0WVJMy7TmjDdl+zHoWjLseYPmAkL1fDHW/0RZf10OYKDaFi
+	EnwYK7UMdzFPyVIZ9LkYaSw3C6jaE97l6Rh6mwTWfkwwzFB9xmCwZD2JOaLbgf1CC7Gs0873QeI
+	GBO38oCSxfGxbgGNOOPkaodTcS4NC8B4=
+X-Received: by 2002:a05:690e:2621:b0:65e:41dc:e8de with SMTP id
+ 956f58d0204a3-66107010a7emr11442181d50.61.1780929289702; Mon, 08 Jun 2026
+ 07:34:49 -0700 (PDT)
+Received: from 922524751902 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 8 Jun 2026 07:34:48 -0700
+Received: from 922524751902 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 8 Jun 2026 07:34:48 -0700
+From: Manivannan Sadhasivam <mani@kernel.org>
+In-Reply-To: <20260608091702.3797437-2-wei.deng@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] mailbox: exynos: Add support for Exynos850 mailbox
-To: Alexey Klimov <alexey.klimov@linaro.org>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Sam Protsenko <semen.protsenko@linaro.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>, linux-samsung-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Juan Yescas <jyescas@google.com>
-References: <20260429-exynos850-ap2apm-mailbox-v3-0-8e2719608c46@linaro.org>
- <20260429-exynos850-ap2apm-mailbox-v3-2-8e2719608c46@linaro.org>
- <9b6fce56-6a94-44fe-ab55-5394ec6065e4@linaro.org>
- <DILX9UGAMXLN.2WVL25FJ87HDK@linaro.org>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <DILX9UGAMXLN.2WVL25FJ87HDK@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20260608091702.3797437-1-wei.deng@oss.qualcomm.com> <20260608091702.3797437-2-wei.deng@oss.qualcomm.com>
+Date: Mon, 8 Jun 2026 07:34:48 -0700
+X-Gmail-Original-Message-ID: <CAGyK6cqHM9HtEPLpJqGf8y7wg=en-uA7v=5biU-ZEDLV_6tugA@mail.gmail.com>
+X-Gm-Features: AVVi8CdVpeaaRdhY2oHmyy11kxC7QbyPzyAR-EsnZ7mu0yJ5qIqXjfdDURfEjqU
+Message-ID: <CAGyK6cqHM9HtEPLpJqGf8y7wg=en-uA7v=5biU-ZEDLV_6tugA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] power: sequencing: pcie-m2: Add PCI ID 0x1103 for
+ WCN6855 Bluetooth
+To: Wei Deng <wei.deng@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-pm@vger.kernel.org, quic_chezhou@quicinc.com, 
+	cheng.jiang@oss.qualcomm.com, shuai.zhang@oss.qualcomm.com, 
+	jinwang.li@oss.qualcomm.com, xiuzhuo.shang@oss.qualcomm.com, 
+	mengshi.wu@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-308379-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[linaro.org,kernel.org,gmail.com,samsung.com];
-	FORGED_RECIPIENTS(0.00)[m:alexey.klimov@linaro.org,m:krzk@kernel.org,m:semen.protsenko@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:jassisinghbrar@gmail.com,m:alim.akhtar@samsung.com,m:krzk+dt@kernel.org,m:peter.griffin@linaro.org,m:linux-samsung-soc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:jyescas@google.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[tudor.ambarus@linaro.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-308380-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:wei.deng@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pci@vger.kernel.org,m:linux-pm@vger.kernel.org,m:quic_chezhou@quicinc.com,m:cheng.jiang@oss.qualcomm.com,m:shuai.zhang@oss.qualcomm.com,m:jinwang.li@oss.qualcomm.com,m:xiuzhuo.shang@oss.qualcomm.com,m:mengshi.wu@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mani@kernel.org,m:brgl@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,mail.gmail.com:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_SENDER(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tudor.ambarus@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,linaro.org:dkim,linaro.org:mid,linaro.org:from_mime]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2D21B657734
+X-Rspamd-Queue-Id: 038CD65779A
 
+On Mon, 8 Jun 2026 11:17:01 +0200, Wei Deng <wei.deng@oss.qualcomm.com> sai=
+d:
+> WCN6855 is a Qualcomm Wi-Fi/BT combo chip that uses PCI device ID
+> 0x1103. Add it to pwrseq_m2_pci_ids[] alongside the existing 0x1107
+> (WCN7850) entry, so that the pwrseq-pcie-m2 driver creates a Bluetooth
+> serdev device for WCN6855 cards inserted into PCIe M.2 Key E connectors.
+>
+> Signed-off-by: Wei Deng <wei.deng@oss.qualcomm.com>
 
+Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
 
-On 5/18/26 6:53 PM, Alexey Klimov wrote:
-> Hi Tudor,
-> 
-Hi!
+- Mani
 
->>>  	mbox->num_chans = EXYNOS_MBOX_CHAN_COUNT;
->>
->> EXYNOS_MBOX_CHAN_COUNT is globally defined as:
->> #define EXYNOS_MBOX_CHAN_COUNT		HWEIGHT32(EXYNOS_MBOX_INTGR1_MASK)
->>
->> Does the Exynos850 have the exact same number of channels as the GS101?
->>
->> You may move num_chans into struct exynos_mbox_driver_data alongside the
->> register offsets so each SoC explicitly declares its channel capacity.
-> 
-> Here:
-> 
-> => md 2040000 <--- sram_base + initdata_base
-> 02040000: 000063bc 00000007 0000650c 00000013  .c.......e......
-> 02040010: 00000000 00000007 0000000b 0000000e  ................
-> 				^^^^
-> 02040020: 00000000 00000000 00000013 00000009  ................
-> 02040030: 00008000 00008008 0000800c 00008010  ................
-> 02040040: 00000010 0000017f 00007800 00000080  .........x......
-> 02040050: 0001f800 00004000 00000300 00000010  .....@..........
-> 02040060: 66633931 20613261 65766164 00383130  19cfa2a dave018.
-> 02040070: 00000000 00000000 3a393000 353a3133  .........09:31:5
-> 02040080: 65462034 31312062 32303220 00000030  4 Feb 11 2020...
-> 02040090: 00000000 0000001b 00000002 00ff00df  ................
-> 
-> So it looks like the ipc_ap_max field is equal to 0xb.
-> 
-> [   12.972113] exynos-acpm-protocol firmware:power-management: calling acpm_channels_init
-> [   12.972216] acpm_channels_init: acpm->num_chans=b.
-> [   12.975541] exynos-acpm-protocol firmware:power-management: ID = 0 poll = 1, mlen = 16, qlen = 15
-> [   12.976522] exynos-acpm-protocol firmware:power-management: calling acpm_channels_init
-> [   12.979336] acpm_channels_init: acpm->num_chans=b.
-> [   12.984133] exynos-acpm-protocol firmware:power-management: ID = 0 poll = 1, mlen = 16, qlen = 15
-> [   12.993849] exynos-acpm-protocol firmware:power-management: ID = 1 poll = 1, mlen = 16, qlen = 3
-> [   13.001756] exynos-acpm-protocol firmware:power-management: ID = 2 poll = 1, mlen = 16, qlen = 5
-> [   13.010519] exynos-acpm-protocol firmware:power-management: ID = 3 poll = 0, mlen = 16, qlen = 1
-> [   13.019317] exynos-acpm-protocol firmware:power-management: ID = 4 poll = 1, mlen = 16, qlen = 3
-> [   13.028073] exynos-acpm-protocol firmware:power-management: ID = 5 poll = 0, mlen = 16, qlen = 1
-> [   13.036805] exynos-acpm-protocol firmware:power-management: ID = 6 poll = 0, mlen = 16, qlen = 1
-> [   13.050945] exynos-acpm-protocol firmware:power-management: ID = 7 poll = 1, mlen = 2, qlen = 1
-> [   13.065791] exynos-acpm-protocol firmware:power-management: ID = 8 poll = 1, mlen = 2, qlen = 1
-> [   13.079592] exynos-acpm-protocol firmware:power-management: ID = 9 poll = 1, mlen = 16, qlen = 7
-> [   13.088398] exynos-acpm-protocol firmware:power-management: ID = 10 poll = 1, mlen = 8, qlen = 1
-> 
-> That's what sram + initdata provides but I guess these are implemented
-> number of channels of ACPM firmware (when APM communicates with AP CPU).
-> The mailbox hardware register though can process or consume 16 bits or
-> in other words HWEIGHT32(GENMASK(15, 0)). I guess this field should
-> indicate hardware capability of mbox hardware like max number of
-> possible channels? I'll change the code to use HWEIGHT32(mask) of
-> corresponding register then.
+> ---
+>  drivers/power/sequencing/pwrseq-pcie-m2.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/power/sequencing/pwrseq-pcie-m2.c b/drivers/power/se=
+quencing/pwrseq-pcie-m2.c
+> index efeb25ba9c79..b3af14464314 100644
+> --- a/drivers/power/sequencing/pwrseq-pcie-m2.c
+> +++ b/drivers/power/sequencing/pwrseq-pcie-m2.c
+> @@ -188,6 +188,8 @@ static int pwrseq_pcie_m2_match(struct pwrseq_device =
+*pwrseq,
+>  static const struct pci_device_id pwrseq_m2_pci_ids[] =3D {
+>  	{ PCI_DEVICE(PCI_VENDOR_ID_QCOM, 0x1107),
+>  	  .driver_data =3D (kernel_ulong_t)"qcom,wcn7850-bt" },
+> +	{ PCI_DEVICE(PCI_VENDOR_ID_QCOM, 0x1103),
+> +	  .driver_data =3D (kernel_ulong_t)"qcom,wcn6855-bt" },
+>  	{ } /* Sentinel */
+>  };
+>
+> --
+> 2.34.1
+>
+>
 
-Exactly. The mailbox controller driver should model the underlying
-hardware's capabilities, not the firmware's specific usage limits.
-Since the Exynos850 hardware register uses a 16-bit mask, exposing
-16 hardware channels is the right move. Moving num_chans into
-struct exynos_mbox_driver_data alongside the register masks for
-each SoC is the cleanest approach.
-
-> 
-> Or should there be a call to acpm firmware driver to query the number
-> of channels? Or should we get it from device tree?
-
-There is no need to call the ACPM firmware driver. The mailbox
-controller merely exposes the available pipes.
-
-> 
-> Does gs101 have less than 16 number of ACPM ap channels?
-> 
-
-I don't remember, but regardless of how many channels the gs101 acpm
-firmware actually utilizes, its hw mask is also 16 bit, so exposing
-16 hardware channels for it is correct.
-
-Cheers,
-ta
+--
+=E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=E0=
+=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=E0=
+=AF=8D
 
