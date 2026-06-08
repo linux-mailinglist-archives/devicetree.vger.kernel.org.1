@@ -1,162 +1,176 @@
-Return-Path: <devicetree+bounces-308826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308463-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id o02xLPPSJ2rC2wIAu9opvQ
-	(envelope-from <devicetree+bounces-308826-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 10:46:43 +0200
+	id SbVCKikHJ2rMqQIAu9opvQ
+	(envelope-from <devicetree+bounces-308463-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:17:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B57D65DEE6
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 10:46:43 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C533B6599E2
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 20:17:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gLN3Tz0C;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308826-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308826-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="Z9Ajl/G+";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308463-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308463-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 10CAD3063938
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 08:40:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 735D731B166C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 17:54:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2363EEAC0;
-	Tue,  9 Jun 2026 08:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9C03BB120;
+	Mon,  8 Jun 2026 17:54:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFEE433C195;
-	Tue,  9 Jun 2026 08:40:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72EAA3A9D9D
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 17:54:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780994437; cv=none; b=Xy9fCTtu4EdlpztCrQrAjDZoxyYNXHoWGc0SHZxgKyAgIWd4VcTJivoIHz/npcX1439LcQE64y8NW0AX3C12vi228zWyWyHREWoR/XRqlbDxBFEjmGvjBPsu0QnNFd+l/Xxwy2CaAdwwuRVvFp7G2qO93AULg4cutES6Snpe8F4=
+	t=1780941278; cv=none; b=p0g+4UlIuyBbicH8eH0GaCnYADiJIChVw8O4PNNwLUNU46XEze0R1Y7t3i/4BDS7FB4h4QP7Qu8TE3EcJZr823OpYAvvjo6XteFK9wn7OzcWxkHGLc3MhXaw82kH6+VeOV0laiKxSAq72pHgB8LeWeOyxj7xC3olsDzfWYGvpF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780994437; c=relaxed/simple;
-	bh=XSjoHKs8MCMIjerSDcjBJdrB/+DJHhLIab/p1Ghmjxg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=D78vzRlbIvPufwAGxHrjVLk0RSxDSOxbKYdfSjg0I9YwMCqFdxRui5Rx9nqNF5HYIZIiBPNCQ6LJvqYslMwnEk2PRGkIJsZikPWo3L90PC9d/w8bNpvJuylppBNHGnXjfQgRnphOF6zAdQ8PycxG21Ufre4n77I8C0EcPPFnqsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gLN3Tz0C; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A01CD1F00893;
-	Tue,  9 Jun 2026 08:40:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780994436;
-	bh=ogyh4wObZizXAya8DYDVQH81cbqfbWCBqwPAMYcZIC4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=gLN3Tz0CeLBoINPbLoMDEUIeCS40M/eztQaoXb2xOXXCuWH/8ntgJohyObvQ49N/Q
-	 1vu3Qb/12zKwAVIoVIaEfG0NxUHdmW5xIwt6AYmcYQqhb/7ZS8P7VZlvkzuHG+81WE
-	 zBsafO+3vZ4CFTAr/PkIfa3TnPo1G736JHlBBX2/FTwVZDKeB9VpMyyUvfwl58YDPy
-	 p4derCnh8YJvfxsZaBUuaOqjHlp7BGDxE+Cbo+0O9Bo/cxQe23lKWqRQ9PpBk8KF1p
-	 Q/HbK8FCDH/RjSQSV+WqD9F2nxhyv6gZkuPeP/bbJb5Uamr+iW8Qluy335nZegcijS
-	 4FljBATGIB1Gg==
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, Chancel Liu <chancel.liu@nxp.com>
-Cc: shengjiu.wang@nxp.com, shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, 
- festevam@gmail.com, nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com, 
- Frank.Li@nxp.com, s.hauer@pengutronix.de, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- imx@lists.linux.dev, linux-kernel@vger.kernel.org
-In-Reply-To: <20260528020725.2265321-1-chancel.liu@nxp.com>
-References: <20260528020725.2265321-1-chancel.liu@nxp.com>
-Subject: Re: [PATCH v2 0/3] ASoC: imx-rpmsg: Add headphone jack detection
- and driver_name support
-Message-Id: <178094123266.20828.2548677822968710520.b4-ty@b4>
-Date: Mon, 08 Jun 2026 18:53:52 +0100
+	s=arc-20240116; t=1780941278; c=relaxed/simple;
+	bh=ked5OFQixMHOHNQU87e3oVNysEwBLn+3N65tqp0ANF4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=u1Cd7y68ucZ5VYglZrchhcezc4Gv2kTgIigO6HPizLum+sGJvKRT8rVBS6+dWSTPB9gpp2DiMAAwAKqoxe35Vxeeywj+2X0mSAVX3qCjmR/JWW+DgGyrOSWQMXGnzoql2SUVrIS3S2mDr+JcKPOtdSERTnDgy76QY6sZkq/wHV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z9Ajl/G+; arc=none smtp.client-ip=209.85.128.53
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-490b915ded5so39748045e9.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 10:54:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780941274; x=1781546074; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cGF7+QWpJakGRZT4D0HON+vY+LPOCmvLkPwggXClSNo=;
+        b=Z9Ajl/G+7Y8g+uWqtvrjDCLjSu4ebwNVhHEvkQ0N1FjYMGsHjKpTLYK9zrtQWuq9S5
+         lMW7+uBt4luRz4o15tQ5FyGntnVCzJeEJ1VF3t8OQGSfXt83IP5VC5K9NiMIrDDctBHw
+         UYxM7Bcj4m4YgGlQoeFasuHS/50Neyv6EVrqpNnveKylzCBSy+4fKPSw/gjca4uMg/9/
+         T7jsdRjocGrAQ5qEv8EhA4CIXF5NSkBx1WjFimOthCZWbpyUpPzHf8gD2ZHDyOF62MtY
+         EkWDJa1pHp5h6FU6hN4MD8zPhy7bd//GrNIyz8LBc986S2IHOddDDq2airShaEOQCLUu
+         QVdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780941274; x=1781546074;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cGF7+QWpJakGRZT4D0HON+vY+LPOCmvLkPwggXClSNo=;
+        b=A/zjUIeWIawmjyOtL4whYqo8wmanKdT8ixXkdiJi/6XLLZANf/fJPHY2WSiS6CSYAw
+         8BKVg3vcVKjCe0L5G/N/VjvZJlhl6t6QnEUD7iSToa1+gvG7PFfpZXoiVOOPDvxxYBMi
+         cmLVCClqqmAY5l2SJpdNR4FJeXM8L1ERlKv71nd7CT7UvvCOBvGagQU/dnnLo+eBlbCf
+         ACzRc1pPxrww3ib6EeK/al0kEYVAKgfrJ28KeVJtDhxrm3B/x3vparZFHOl8jm6souDO
+         1cQb1V/tDJg1PzDYaTHdJxw+DeDoyIRs4cQyamZy111ONV6xLBLC2Aa9PrqR6DJWQeGj
+         0k2Q==
+X-Forwarded-Encrypted: i=1; AFNElJ90nJWGn+yBOOLFZ40fcDS6Fx8qpycQxZZVXDbQzSz7vXJ8ygDLUnINyiYkNIZhA7byvZNH1DdUuYCE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaUvnhoQeoMZGIMACxfdm6Qtytz02iqeydO47CiUQ01YEuqlg6
+	4aGw0My8gmkbQFPEvnsqmMseVfjILL/3a1/66OyUJp8AbP8R42aGZfYf
+X-Gm-Gg: Acq92OHNt6aq6aJmZHaGHy1jEUg3tFftOJJ3ALiZ9B4xQwrQ+znT1H1ZdY0Ut7z9CXz
+	+dilzi8t273mYDFWsToiZL5juFXhZuc3yaJ6fsdiw3CcNDcHbkAEGS6/Baul7t4kItMv9a52viX
+	fGf7OkPxgwI7FAqtCBSRrEQrLBO/8bCKNuZYoTphhLA46EaJvDDkFnI8Hlc9va7wjlrNSZlUVdC
+	blhlN1w2B24AkwlI0NMpknFMaVDo9Er9VJA6u6VsT1rMpe8nfm3IGeBGjEFJWoPoP1qj1ohDzx9
+	MMVJoy5X/9Z5vCLS0BtX4CrOKb7sozIj6VLHKXt8Uou1ols6VjB0saat1QB9Xxx680/FV118JqA
+	CRZ2wqmmfA0ZhZLuuF+2dcYE9Nikl0+RzANjoH4adeXao43mTOzRG2dStatBgIKGmbIxlUmBcAK
+	cV9GdP2yLS230LbgObAF8pL2h6ioPTqZGNif159MDzAibj
+X-Received: by 2002:a05:600c:818c:b0:490:b0e1:2161 with SMTP id 5b1f17b1804b1-490c25b39fdmr304459345e9.2.1780941273354;
+        Mon, 08 Jun 2026 10:54:33 -0700 (PDT)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f3529e0sm56269275f8f.28.2026.06.08.10.54.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Jun 2026 10:54:32 -0700 (PDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: andrew@codeconstruct.com.au,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: openbmc@lists.ozlabs.org,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	avifishman70@gmail.com,
+	tmaimon77@gmail.com,
+	tali.perry1@gmail.com,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com
+Subject: [PATCH v2 0/2] Nuvoton NPCM FIU DTS fixes and binding conversion
+Date: Mon,  8 Jun 2026 20:54:16 +0300
+Message-Id: <20260608175418.1936892-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1653; i=broonie@kernel.org;
- h=from:subject:message-id; bh=XSjoHKs8MCMIjerSDcjBJdrB/+DJHhLIab/p1Ghmjxg=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqJ9Fxq985rl6kfTLCWLnzgyx0mjqIxkqYD996p
- GmnbAq+9+WJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaifRcQAKCRAk1otyXVSH
- 0Pz7B/9FpjAQLHNUdUnnW0vYfUAIj7d1B+K/0BzPsIUnYoaLa/9/3mAYK+III9/dbbmJ5lIeciG
- BCywHAC0/i96S9Ocrz8FYBu6NXNozRr9GVGV2UrbqjjhaNKq/LI2fXnpYhPWj0jsPPWMX8/PPrr
- /c2nrMWRmZMhm2BrgvQI5FOyFqjMhAMl87ZfhHzxvvS5POknlQQw4Cb79LrELy2L4iuMgC+9PiX
- Jk121hJBNFh9wF4ozz83VsyVui5ZSg28uV+snrfVPV9/vm6E2w5RQMEp2zn2r8vAnllRum0htVE
- O2hed+mhbUu87ZlXDJavMdPzvvCturASxUp9R2Jsb2CnhHkr
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:chancel.liu@nxp.com,m:shengjiu.wang@nxp.com,m:shengjiu.wang@gmail.com,m:Xiubo.Lee@gmail.com,m:festevam@gmail.com,m:nicoleotsuka@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:imx@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:shengjiuwang@gmail.com,m:XiuboLee@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nxp.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-308826-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.ozlabs.org,vger.kernel.org,gmail.com,google.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-308463-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tmaimon77@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[nxp.com,gmail.com,perex.cz,suse.com,pengutronix.de,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lkml.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0B57D65DEE6
+X-Rspamd-Queue-Id: C533B6599E2
 
-On Thu, 28 May 2026 11:07:22 +0900, Chancel Liu wrote:
-> ASoC: imx-rpmsg: Add headphone jack detection and driver_name support
-> 
-> This series adds two features to the i.MX RPMSG ASoC card:
-> 1. Headphone jack detection via GPIO: Introduce the "hp-det-gpios"
->    device tree property and use simple_util_init_jack() to
->    register a headphone jack with GPIO-based insertion detection.
-> 
-> [...]
+This series fixes the in-tree NPCM7xx FIU controller nodes so their
+resources match what the DTS actually describes, and converts the legacy
+Nuvoton NPCM FIU binding to YAML DT schema.
 
-Applied to
+Patch 1 drops the bogus "memory" entry from reg-names on the NPCM7xx FIU
+nodes, which only describe the control register window today.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.2
+Patch 2 replaces the TXT binding with a YAML schema, documents the optional
+memory-mapped flash window explicitly, and accepts the existing FIU
+clock-names used by the in-tree DTS users.
 
-Thanks!
+Addressed comments from:
+ - Krzysztof Kozlowski : https://lkml.org/lkml/2025/11/13/473
 
-[1/3] ASoC: dt-bindings: fsl,rpmsg: Add hp-det-gpios property
-      https://git.kernel.org/broonie/sound/c/1558039bea60
-[2/3] ASoC: imx-rpmsg: Support headphone jack detection
-      https://git.kernel.org/broonie/sound/c/ec74d4f934a6
-[3/3] ASoC: imx-rpmsg: Set driver_name for snd_soc_card
-      https://git.kernel.org/broonie/sound/c/af0d8aa7fcd5
+Changes since version 1:
+ - Drop interrupts property.
+ - Drop unused label.
+ - Keep reg as the second property, followed by reg-names.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Tomer Maimon (2):
+  arm: dts: nuvoton: npcm7xx: Drop bogus FIU memory reg-names
+  spi: dt-bindings: nuvoton,npcm-fiu: Convert to DT schema
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+ .../bindings/spi/nuvoton,npcm-fiu.txt         | 58 ------------
+ .../bindings/spi/nuvoton,npcm-fiu.yaml        | 91 +++++++++++++++++++
+ .../dts/nuvoton/nuvoton-common-npcm7xx.dtsi   |  6 +-
+ 3 files changed, 94 insertions(+), 61 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.yaml
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.34.1
 
 
