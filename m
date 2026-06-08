@@ -1,185 +1,134 @@
-Return-Path: <devicetree+bounces-308458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308459-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sFYgD7cBJ2qApgIAu9opvQ
-	(envelope-from <devicetree+bounces-308458-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 19:53:59 +0200
+	id NRQrGJoBJ2pvpgIAu9opvQ
+	(envelope-from <devicetree+bounces-308459-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 19:53:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FF716596E7
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 19:53:58 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E516596CF
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 19:53:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=PfYWI+xA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308458-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308458-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=PO8++ZJT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308459-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308459-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4BDAC3044883
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 17:52:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CE53030086B8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 17:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF7B736D9EA;
-	Mon,  8 Jun 2026 17:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 796233B14D0;
+	Mon,  8 Jun 2026 17:53:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F4B536C5B3
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 17:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B8BB36EAB1;
+	Mon,  8 Jun 2026 17:53:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780941138; cv=none; b=Izkyv6rw7hUOcyfijPmA8RnTlEG7V3BAyuTlhnFfDHSCCrPV3om8cfwu7/KZgG3BZYrJrPka/KyJYxkrWdRiujb9gXEORvK7xklNm28xqpI3qcHcNMPYRGelVnR5cVGbLndF5e/HJiVLrC5hcKO0wDWxf7+JLZcPTIFYzeeGvrY=
+	t=1780941194; cv=none; b=XNoQGzkidc0TAnOaUUjEFL5ZAFaJrgjoO0ja4L5QBtkIeGFQSPeA0Zlog6rSfWWqtD95uOhw4RNNHCrlgZQ0NMrXmJIF+hGyghmXFw8ncv2G74y0PYA0gw938EXxudF2Zs8GxXXv0+QuG3hbdiXY+WHXhnjTunD2dXti2mN0OVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780941138; c=relaxed/simple;
-	bh=vxNLeKKDHQA+BN0EVGrLkhfTQO18YuoSGFSYsO0AFiI=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Gt2PGP3ZMGIJxRvDN//xiYZcK4BziRefMHFcF7e6qodj547XyDq0TQoZ/1FODMfVotZ68fdhodNyqkjlafTCY95SmfN22sUoakIFANFvVKS5EFmO4h3KPF53d/m3Hi2A9czOMtZHZ/fXlow8WsMiwRBowROLnKR0cJTRkvCihMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PfYWI+xA; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1AC31F00893;
-	Mon,  8 Jun 2026 17:52:16 +0000 (UTC)
+	s=arc-20240116; t=1780941194; c=relaxed/simple;
+	bh=qkwwkcO6D+ZFuK9gkY8KxQNvnZm7YrKg9Wu3aVMHRXQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XOlku07AD1X/PIT7Sh++fb/JSLrO0HzzUmVquV/tvcywPeZluyyWr3WhK0gTZsGGyM8kSdUivTW3xAQ4/hH1gWd5/IMVxdkuNU6/swEf2LZ6GN6wFv1+GKGSmL6C6f3QkZ1cC5GZexsVpUuMcbIkc+3Am8IjhI4Yj/GwKCrpLW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PO8++ZJT; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 094481F00893;
+	Mon,  8 Jun 2026 17:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780941137;
-	bh=3mEe5QpNCiporWgxsk37/5ibdTmQDl/Fk+s1nbysfXU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=PfYWI+xAeG2asvbsW/jdP74BjSFThePTbyy3ja9c0TFLty2TmlcPN1Kv2hDDjwsOF
-	 rev0ktsUUa9YDMkjiglMn0FI+y2yhiqbhBuuEJQ5zgBNhTQQ7USla4FLA/6ucWCFeC
-	 WEeMKwUE1KTEbaqgs0FUzKLil49PFN3P5pn4WLNa0GUio8TCUNNBW41QKji3JHojka
-	 Lc/ThN/uZ/OX2FaHH1rsKum7CZ9L+69T/pmZkfwMTPVFccX95mOacQbsKtZvOhA1ly
-	 71plWrmihfe4gCSCKFFUh2goAJx+0ou4Hh/uSZl62HPrFmLkIjs+b/CreKDrtijHd6
-	 2CiUyDQhBIaeA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v1 3/3] ASoC: qcom: lpass-va-macro: Add shikra
- compatible
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Mohammad Rafi Shaik" <mohammad.rafi.shaik@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260608172023.2965292-4-mohammad.rafi.shaik@oss.qualcomm.com>
-References: <20260608172023.2965292-4-mohammad.rafi.shaik@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 08 Jun 2026 17:52:16 +0000
-Message-Id: <20260608175216.F1AC31F00893@smtp.kernel.org>
+	s=k20260515; t=1780941193;
+	bh=+oJtzYYP2pKAJ5zPI+wu/YkSrwtr6IMIgnwI/sMsH9g=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=PO8++ZJTfTB5Xb0SGjeZkXVgdt/SPWDsRqHIy6grm4tEzG4c/k2zJOLjiPTRvsvWn
+	 b8+LMn5gZTWl8iY9wz2jbyNSn4aqTIKFx8u9cwjfNRx8I906Gj+Zc8V44+SyuJq8YN
+	 mB8zoBJAgaN+9WEi17PTqX0vUgbb5f/3eS0n3ffYRkAd/a9F6CchEq1ji03mUowf2J
+	 m4o8LnPPVhtTYpsJNxMVBt+dOMjLfdCgmPLpj7lDClEmAce5FvJu5u1g4AnN3oMFxI
+	 cbGDM4QIHyyV6NZJLnXnDRWrxFvjEJmnNg+fiOPl5S8KU9+80AWAbbXSJO+XbSVBZ6
+	 iSYImJMc+k4zQ==
+Date: Mon, 8 Jun 2026 18:53:01 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Joshua Crofts <joshua.crofts1@gmail.com>, Jakub Szczudlo
+ <jakubszczudlo40@gmail.com>, linux-iio@vger.kernel.org,
+ dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ marcelo.schmitt@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mike.looijmans@topic.nl, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, jorge.marques@analog.com,
+ antoniu.miclaus@analog.com, mazziesaccount@gmail.com,
+ jishnu.prakash@oss.qualcomm.com, duje@dujemihanovic.xyz, wens@kernel.org,
+ sakari.ailus@linux.intel.com, linusw@kernel.org
+Subject: Re: [PATCH 2/3] iio: adc: Update Kconfig description for TI_ADS1100
+Message-ID: <20260608185301.320f147d@jic23-huawei>
+In-Reply-To: <aiaq1EdzvyrlYn82@ashevche-desk.local>
+References: <20260607183542.368184-1-jakubszczudlo40@gmail.com>
+	<20260607183542.368184-3-jakubszczudlo40@gmail.com>
+	<CALoEA-yj3hMKRa-3OpKtHKswRjddkARSBs9AnfiLNOtPiygPyw@mail.gmail.com>
+	<aiaq1EdzvyrlYn82@ashevche-desk.local>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:joshua.crofts1@gmail.com,m:jakubszczudlo40@gmail.com,m:linux-iio@vger.kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:marcelo.schmitt@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mike.looijmans@topic.nl,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jorge.marques@analog.com,m:antoniu.miclaus@analog.com,m:mazziesaccount@gmail.com,m:jishnu.prakash@oss.qualcomm.com,m:duje@dujemihanovic.xyz,m:wens@kernel.org,m:sakari.ailus@linux.intel.com,m:linusw@kernel.org,m:joshuacrofts1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308458-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:mohammad.rafi.shaik@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	TAGGED_FROM(0.00)[bounces-308459-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,baylibre.com,analog.com,kernel.org,topic.nl,oss.qualcomm.com,dujemihanovic.xyz,linux.intel.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email,smtp.kernel.org:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,intel.com:email,jic23-huawei:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9FF716596E7
+X-Rspamd-Queue-Id: 43E516596CF
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The max_register limit for the Shikra regmap is set to 0x0980, but=
- the default register array contains registers up to 0x09A4, leading to reg=
-map initialization failure.
-- [High] The newly added Shikra ADPT filter configuration registers (except=
- ADPT_CTRL) are missing from the register access whitelist, rendering them =
-unwritable.
---
+On Mon, 8 Jun 2026 14:43:16 +0300
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 
-commit 440ac48eeb60479f95d4dd29234ca9afb10b5f8a
-Author: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+> On Mon, Jun 08, 2026 at 08:45:46AM +0200, Joshua Crofts wrote:
+> > On Sun, 7 Jun 2026 at 20:38, Jakub Szczudlo <jakubszczudlo40@gmail.com> wrote:  
+> > >
+> > > Add mention of ads1110 in Kconfig for TI_ADS1100
+> > >
+> > > Signed-off-by: jszczudlo <jakubszczudlo40@gmail.com>  
+> > 
+> > Better to fold this change into the patch that adds the actual driver code,
+> > otherwise this is unnecessary churn.  
+> 
+> It's fine to do it separately, but after the code update. The combined version
+> will work for me as well.
+> 
 
-ASoC: qcom: lpass-va-macro: Add shikra compatible
-
-This commit adds shikra specific VA macro data and register programming
-needed by the LPASS codec v4.0 implementation. It includes a shikra regmap
-table, new match data flags, and enables ADPT control programming.
-
-> diff --git a/sound/soc/codecs/lpass-va-macro.c b/sound/soc/codecs/lpass-v=
-a-macro.c
-> index 528d5b167ecff..4a8daa07ec1c6 100644
-> --- a/sound/soc/codecs/lpass-va-macro.c
-> +++ b/sound/soc/codecs/lpass-va-macro.c
-> @@ -155,7 +155,57 @@
-
-[ ... ]
-
->  #define VA_MAX_OFFSET				(0x07A8)
-> +#define VA_SHIKRA_MAX_OFFSET			(0x0980)
-
-[Severity: High]
-Does this offset limit need to be higher?
-
-The max_register limit for the Shikra regmap is set to 0x0980 here, but
-the va_shikra_defaults array contains registers up to 0x09A4
-(CDC_VA_CDC_ADPT3_CUTOFF_FSM_CTRL_5).
-
-During probe, devm_regmap_init_mmio() validates that all default registers
-fall within the [0, max_register] range. Because 0x09A4 is greater than
-0x0980, it seems regmap_init() will reject the defaults with -EINVAL,
-causing the probe to fail.
-
-> =20
->  #define VA_MACRO_NUM_DECIMATORS 4
->  #define VA_MACRO_RATES (SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |\
-
-[ ... ]
-
-> @@ -424,6 +464,10 @@ static bool va_is_rw_register(struct device *dev, un=
-signed int reg)
->  	case CDC_VA_TX3_TX_PATH_SEC4:
->  	case CDC_VA_TX3_TX_PATH_SEC5:
->  	case CDC_VA_TX3_TX_PATH_SEC6:
-> +	case CDC_VA_CDC_ADPT0_ADPT_CTRL:
-> +	case CDC_VA_CDC_ADPT1_ADPT_CTRL:
-> +	case CDC_VA_CDC_ADPT2_ADPT_CTRL:
-> +	case CDC_VA_CDC_ADPT3_ADPT_CTRL:
->  		return true;
->  	}
-
-[Severity: High]
-Should the other newly added Shikra ADPT filter configuration registers be
-included in this whitelist?
-
-The patch adds numerous adaptive filter configuration registers like
-ADPT_GAIN_0, ADPT_GAIN_1, DH_FSM_CTRL, and CUTOFF_FSM_CTRL_*. However, only
-the 4 base CDC_VA_CDC_ADPTx_ADPT_CTRL registers are whitelisted here.
-
-Since this function is provided as the regmap's .writeable_reg callback, the
-regmap core will likely consider the remaining 36 ADPT registers to be
-inaccessible, preventing the hardware adaptive filters from receiving their
-intended configuration.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608172023.2965=
-292-1-mohammad.rafi.shaik@oss.qualcomm.com?part=3D3
+FWIW I'd prefer it combined with the next patch.
+I'm not keen on separate updates on build files in general as they
+are easier to review in context. 
 
