@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-307954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-307956-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id S747ME0vJmrITAIAu9opvQ
-	(envelope-from <devicetree+bounces-307954-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:56:13 +0200
+	id 70nUGr0vJmrUTAIAu9opvQ
+	(envelope-from <devicetree+bounces-307956-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:58:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1537B6525A1
-	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:56:13 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC1A6525B3
+	for <lists+devicetree@lfdr.de>; Mon, 08 Jun 2026 04:58:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=jqkDTscR;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307954-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-307954-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=juqCv0JP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-307956-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-307956-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BFCB1301CCC3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 02:54:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AFA7F3007CBA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jun 2026 02:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD1DC338595;
-	Mon,  8 Jun 2026 02:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F4A3382CB;
+	Mon,  8 Jun 2026 02:57:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4B281624DF
-	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 02:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F7D0301708
+	for <devicetree@vger.kernel.org>; Mon,  8 Jun 2026 02:57:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780887274; cv=none; b=rtrw2BZck/W2lNkW9ecQnYCLxwvgvl0Mhi/+ND5sdcJwEdvAPmPMlej9x1X7p/4hrX1Kxm5RcxlwlVzlhreG8gm014vyk9HGU7Xq3LeNp4QBvz67b4/tkYt6KvC5LoPGAU9saAcrP1DhqutVNwAw9+Ag3oAVAdBTVw3oaJpTzPo=
+	t=1780887476; cv=none; b=fFDHV6eGm84a75nQHGNlwSz/sln6/aFmdy1sprZGof9S4nX3V6A5iF8FLHEAwe0W57FjC1Wuqucm05bemE8Z08PVDX/ws3QUZ71ww+mLYiIwTAXl+SQnmQ7YNWdhLMY/k5+UwPzv/6jZBM1UkBFeRw8s9WkK1NZwP7gNVn1yAKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780887274; c=relaxed/simple;
-	bh=+M6KeAmPLk8uOL6Blge9nQl62nixGGlE9fKTClYTns0=;
+	s=arc-20240116; t=1780887476; c=relaxed/simple;
+	bh=1oThuVHaHRFixJ/o9S43JK0oOQ0HuJgYxFMYpqNsCn0=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=J/H3wo12GW2vvZ7xzVFSps/kzgF8Xdx37XQ41zl5aS6je2GqWtUaRQTtY9dXC/Rs6+sjOV8yFNvXkhIc8It5tLql+FTe0eZ0ej94iNvgFCzn2oCo27CI3vTTm9qkN4qrbYEPMcbglJiqC0j0+enOPkE9RCamERKv8A1HooyUTn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jqkDTscR; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4207B1F00893;
-	Mon,  8 Jun 2026 02:54:33 +0000 (UTC)
+	 Message-Id; b=mS2z6dFvqECJi379AbKxpKy8rVMFqlFBPo+KNAv/1/fT7/SIu1Cl62C0DA3nQh+yU5ZhUjMVqQoLM3qw3vdYdTgoXz60JlXSpvaWOCIhs6WI2namdsMCHH4Nx++W4SV/pWb+VqOTInrSv33KTIE14r85/OKSV9hbXkjznRl8VJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=juqCv0JP; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB08E1F00893;
+	Mon,  8 Jun 2026 02:57:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780887273;
-	bh=/22gxNLxS8P7x0QrPNOwK2Io0HzKVGjU17i9ZkUHApo=;
+	s=k20260515; t=1780887474;
+	bh=bseez00jSu9j6zJSZAIiVzIlVDkbBGiNZQOGS6Xc0d8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=jqkDTscR24HdCPWCxcrdoqyr+pcnIdd/YT9B5EauGu4zHVjd9ygVGK5AfL1mRfw8q
-	 P8tc4dM0zWa1DOvExMyBk9SE75sSmMlYDZKLPKg8N6nX3/c3nSG+1udveddZ8oupDJ
-	 4Wot/fXMbRtq8yirKVihbPYenFqJoSTmb2I/TgtiFwqd0MKdcn3D3If3nrMr9sj0nk
-	 f5aqnk5pFuLvexgoVZngkzq89DOy/ZXS1Jb3P7KKRegZtLw7IHT/9xtlT55NGve/Xe
-	 Q98A1VANhMfucWCPQDntTnUYbWae8DDZxlu9sVou7k+iqjrM+pVbOdl1U1QJtKsfAQ
-	 KDQ9aIQI5FqtA==
+	b=juqCv0JPdcmGg6wvNwaVVEGhPIdfUXJp8VXuBqZyOyQ7wLcoWEVJoB6/fUfPZo0W/
+	 eBp4sTuwa0fXuWuludb0O9QEXz5L7/L1NPJNmqfqqwlXhDleK3XjN05w+//Ln3SCjN
+	 vp8k0aRBplwN30xkPfPrOxsVAvMxoY9ZsPWJ19dcn4pFo4q6f+Aqi0pwCYbGurXlej
+	 3IxzlspaMFp1Xm6xjOt4j3ITW/ufbPN4iwNhQ8sR21O+eOyHinbXWsgNGiO0Acp9ib
+	 va9sdVY0hxU/w9l++Cy7StR6k5ddlSOf8lSJgvScqJJYVYxfuskoGGop5cipKzf093
+	 hQVDb89nC3+6Q==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: i2c: ls2x-i2c: Add clocks and
- clock-frequency properties
+Subject: Re: [PATCH v6 2/2] i2c: ls2x: Add clocks property parsing and
+ adjust bus speed
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Hongliang Wang" <wanghongliang@loongson.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260608024533.32419-2-wanghongliang@loongson.cn>
-References: <20260608024533.32419-2-wanghongliang@loongson.cn>
+Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260608024533.32419-3-wanghongliang@loongson.cn>
+References: <20260608024533.32419-3-wanghongliang@loongson.cn>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 08 Jun 2026 02:54:32 +0000
-Message-Id: <20260608025433.4207B1F00893@smtp.kernel.org>
+Date: Mon, 08 Jun 2026 02:57:54 +0000
+Message-Id: <20260608025754.AB08E1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,7 +70,7 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -78,10 +78,10 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-307954-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-307956-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:wanghongliang@loongson.cn,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:wanghongliang@loongson.cn,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -97,63 +97,143 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,loongson.cn:email,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1537B6525A1
+X-Rspamd-Queue-Id: BCC1A6525B3
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
 s) to consider:
-- [Low] Adding the `clocks` property to the device tree example without def=
-ining it in the `properties` block causes schema validation (`make dt_bindi=
-ng_check`) to fail.
+- [Critical] Calling `devm_clk_get_optional_enabled()` dynamically causes u=
+nbounded memory leaks and unbalanced clock enable counts.
+- [High] Calculation of the I2C prescale value lacks bounds checking, leadi=
+ng to a kernel panic if `div` evaluates to 0.
+- [Medium] The driver improperly repurposes the standard `clocks` property =
+to read a raw 32-bit integer frequency in ACPI setups.
+- [Medium] The strict check for `dev_of_node(dev)` breaks compatibility wit=
+h ACPI PRP0001 matching, causing valid match data to be discarded.
+- [Low] The numerator calculation `pclk * 10` can overflow a 32-bit integer=
+, resulting in a miscalculated I2C bus speed.
 --
 
-commit e568ab3d299f8c59baf7b2a2ee43cbee837517fd
+commit 3bc9e29253442765caa0c735b574051e32efaa27
 Author: Hongliang Wang <wanghongliang@loongson.cn>
 
-dt-bindings: i2c: ls2x-i2c: Add clocks and clock-frequency properties
+i2c: ls2x: Add clocks property parsing and adjust bus speed
 
-This commit adds the clock-frequency and clocks properties to the device
-tree examples for the loongson,ls2x-i2c binding.
+The i2c-ls2x driver supports dts and acpi parameter passing. It adds
+clock framework parsing for device tree configurations, and reads
+clock and clock-div properties directly for ACPI setups.
 
-> diff --git a/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml=
- b/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
-> --- a/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/loongson,ls2x-i2c.yaml
+> diff --git a/drivers/i2c/busses/i2c-ls2x.c b/drivers/i2c/busses/i2c-ls2x.c
+> index b475dd27b7af9..46dafa11b3013 100644
+> --- a/drivers/i2c/busses/i2c-ls2x.c
+> +++ b/drivers/i2c/busses/i2c-ls2x.c
+
 [ ... ]
->  examples:
->    - |
-> +    #include <dt-bindings/clock/loongson,ls2k-clk.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
+
+> @@ -107,12 +117,30 @@ static void ls2x_i2c_adjust_bus_speed(struct ls2x_i=
+2c_priv *priv)
+>  	else
+>  		t->bus_freq_hz =3D LS2X_I2C_FREQ_STD;
 > =20
->      i2c0: i2c@1fe21000 {
->          compatible =3D "loongson,ls2k-i2c";
->          reg =3D <0x1fe21000 0x8>;
-> +        clock-frequency =3D <100000>;
-> +        clocks =3D <&clk LOONGSON2_APB_CLK>;
+> +	if (dev_of_node(dev)) {
+
+[Severity: Medium]
+Does this check break compatibility with ACPI PRP0001 configurations?
+
+During probe(), the driver correctly reads priv->div from the compatible
+string using device_get_match_data(), which supports both native Device Tree
+and ACPI PRP0001. However, since dev_of_node() evaluates to NULL for ACPI
+nodes, PRP0001 setups will be incorrectly routed to the native ACPI fallback
+block.
+
+This will discard the valid matched priv->div and attempt to read non-exist=
+ent
+native ACPI properties. Could this check for the presence of priv->div
+instead?
+
+> +		clk =3D devm_clk_get_optional_enabled(dev, NULL);
+
+[Severity: Critical]
+Does calling devm_clk_get_optional_enabled() here cause a devres memory leak
+and unbalanced clock enable counts?
+
+ls2x_i2c_adjust_bus_speed() is called by ls2x_i2c_init(), which is called n=
+ot
+only during probe, but also during normal operation and error recovery:
+
+ls2x_i2c_resume() -> ls2x_i2c_init()
+ls2x_i2c_xfer_one() -> ls2x_i2c_init()
+
+Since devm_clk_get_optional_enabled() dynamically allocates a managed resou=
+rce
+and increments the clock reference and enable counts, calling it repeatedly
+without releasing previous allocations will eventually exhaust system memory
+and overflow the clock reference tracking.
+
+Can the clock be acquired exactly once in probe() instead?
+
+> +		if (!IS_ERR_OR_NULL(clk))
+> +			pclk =3D clk_get_rate(clk);
+> +		else
+> +			pclk =3D LS2X_I2C_PCLK_FREQ;
+> +
+> +		div =3D priv->div;
+> +
+> +		val =3D (pclk * 10) / (div * t->bus_freq_hz) - 1;
 
 [Severity: Low]
-Will this addition to the examples block cause make dt_binding_check to fai=
-l?
+Can the numerator calculation pclk * 10 overflow a 32-bit integer?
 
-The loongson,ls2x-i2c.yaml schema sets unevaluatedProperties: false. This
-strictly limits allowed properties to those explicitly defined in the schema
-itself or inherited via references. While clock-frequency is inherited from
-the standard i2c-controller.yaml reference, the clocks property does not
-appear to be defined anywhere in the local properties block.
+Since pclk is a 32-bit unsigned integer, if the reference clock exceeds
+approximately 429.49 MHz, the multiplication will wrap around and yield an
+artificially small numerator.
 
-Because clocks is undeclared, adding it here will likely cause the schema
-validation tooling to reject the example and fail the build.
+While typical reference clocks might be lower, would it be safer to use 64-=
+bit
+precision like div_u64((u64)pclk * 10, ...) here?
 
->          interrupt-parent =3D <&extioiic>;
->          interrupts =3D <22 IRQ_TYPE_LEVEL_LOW>;
->          #address-cells =3D <1>;
+
+[Severity: High]
+Does this division lack bounds checking for a zero divisor?
+
+If div evaluates to 0, this will result in a division by zero kernel panic.
+
+This regression can happen if the device is manually bound via sysfs
+driver_override without an ID match, causing device_get_match_data() to
+return NULL. It can also happen in the ACPI branch below if a misconfigured
+ACPI table sets clock-div to 0.
+
+Should div be explicitly validated as greater than 0 before performing the
+division?
+
+> +	} else {
+> +		/* clocks and clock-div are only ACPI properties. */
+> +		if (!device_property_read_u32(dev, "clocks", &pclk) &&
+
+[Severity: Medium]
+Does this reuse the standard clocks property incorrectly for ACPI setups?
+
+The clocks property is strictly defined in Device Tree and unified ACPI _DSD
+environments as an array of phandles to clock providers. Reusing this exact
+name to read a raw 32-bit integer frequency creates a binding conflict and
+could break generic property parsers.
+
+Could a standard, non-conflicting property name like clock-frequency or
+ref-clock-frequency be used instead?
+
+> +		    !device_property_read_u32(dev, "clock-div", &div))
+> +			val =3D (pclk * 10) / (div * t->bus_freq_hz) - 1;
+> +		else
+> +			val =3D LS2X_I2C_PCLK_FREQ / (5 * t->bus_freq_hz) - 1;
+> +	}
+> +
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608024533.3241=
-9-1-wanghongliang@loongson.cn?part=3D1
+9-1-wanghongliang@loongson.cn?part=3D2
 
