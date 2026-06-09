@@ -1,281 +1,299 @@
-Return-Path: <devicetree+bounces-308677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308679-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id l5cjJ72sJ2q70QIAu9opvQ
-	(envelope-from <devicetree+bounces-308677-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:03:41 +0200
+	id zI40FqWsJ2q20QIAu9opvQ
+	(envelope-from <devicetree+bounces-308679-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:03:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11FA265C929
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:03:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0AC565C91D
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:03:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=FFgkSY37;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=FrVJrGi0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308677-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308677-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=O1tjiuTp;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308679-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308679-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linux.dev;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CCEFD305FB95
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 06:00:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E44A93040AB8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 06:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 584D93CEBA9;
-	Tue,  9 Jun 2026 06:00:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96E7A3C942C;
+	Tue,  9 Jun 2026 06:01:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com [95.215.58.186])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FADE3C9456
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 06:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C5037DEB6
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 06:01:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780984842; cv=none; b=HZs26zYSH6HVgVFx6Wt1khM642744G22OKr9c9vFk6/fXIxyuytw2Dg1XNKIJqL82urDBucjFJsEhZNuAUWBoA/Pn4o60DluUJiCufch3k4NVBUMvx2ATjAQqGIWrFyt7aFkzZQkAzq3IN4BVMJXiDyyTTK27wKpi5uRfUlUz0Y=
+	t=1780984899; cv=none; b=AYs2MkYcWS2048qWNEiTG7qD8cqhV/m0ei85g0ldgjA4KzGjnnBuTJ6qc1NsICpKcZknokHZhOPb5j1KzxX6HYaWS4/jBR57r2HnwhhgOQqvsPF7zETAgimVTZb/9/IBAXFmb0oI3PX05QG1EgpgjnP0Ebv9BX0AuVDqEge5/Jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780984842; c=relaxed/simple;
-	bh=XCFNabTCGm6+aNwyq3Zcm8Kst3gcwPvZSnxtnxvQNXo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cJ/OI8L54dNE1NzGB/HzUOpCH7B6NGfVflYnVBVXiyMHr6BET4TEjhYi/xc14akjC8yr9AzI9OIQQ50lpA+rsUNtZLZnDT/5vfiSIjRB6p0VaPUL4rCsqW0ZgrOBtGjSINOcoV+DJ5M2c8aY7KJ+M/zceMwVUMH9d9F39LPmn6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FFgkSY37; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FrVJrGi0; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6593wffs1399919
-	for <devicetree@vger.kernel.org>; Tue, 9 Jun 2026 06:00:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KBhl3HDQ4JqBELbVnf8aJYjqulp5nH2X2j4Fgm26b8U=; b=FFgkSY375OwDfE1J
-	239NMY4mRzvvsDK3bk9JhCC5S9vJyLJDJY24NWDN9VRUXRMfYoY1mknbA4gu7e6u
-	s/P2LIdkrL6ofyKGIOfcJ6h4Hrn8rECC85kjAklSca8Pur+H7G//XLk0zc0K8WmO
-	SXXrR53MtOXnakOZC24ptUtjGhiFJ7yC6fnFZsQykOIQJlFaioqvWZyvDlCVJh1O
-	HydCipFy8lkJ7GNSifxf25ktnZdS2dIDkkgWzJsdKuhdrUcNZIf1hozyJ0mMjRJ3
-	MvqBku46CCK7Qc8AGkHzrjXeTWHMzIGZotiSf1k4f9iBaRr7ZOol6nyPNsr8/Dq5
-	SE9fsA==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4enx2rv06u-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 06:00:39 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-36d99181eaaso7056223a91.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 23:00:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780984839; x=1781589639; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KBhl3HDQ4JqBELbVnf8aJYjqulp5nH2X2j4Fgm26b8U=;
-        b=FrVJrGi0Y3yekaHSoBwQSnLULgU5uFGzKNZsLBn/vF3M2l9V78/gQ8ZnKT4xvkfDnx
-         ymaTPjmJv2GV3N8ZlJ+5XqEw5z0LUDUqNxO8vAvCifowSG9tg6rnjbMqnY2hlQZ7gd1J
-         hh/yRjwCSm0zLBqHUoTkq60XNAFwo6z0LiFrbFv2lE2lNEYr13pN5EKYlIXR4jUlInms
-         mlM7M+GiE030HrBbA71nTiwxTaIcohngYiKlkR60VlOeG2FJtRNYu0ykkT69Tb0QzxI0
-         mRWC4xWQW3EiZhe2UrE7g+7FBIEfp+TlmZGowcXv05Pur+i+ne6LznrP6fsWoUWGI1mE
-         Eczw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780984839; x=1781589639;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KBhl3HDQ4JqBELbVnf8aJYjqulp5nH2X2j4Fgm26b8U=;
-        b=WFCTnw8uGnWVCXlOq9AOXgEpWyaq1rQDGkVjkuP1MBWBSFwGfjcORdDxovfdbwig1R
-         mquIOwi5W76reFtHGbgSQAAHfEJGBCdOAJDItdhkMYWPtLdhb1lpynA7V58X4i8aYKzY
-         NueoxqQWUYhUcKKW2FbouZ0G0y6hRFhwITjZDvmJSzVorP36nCqNOgDbl2zO3AmHo3zz
-         oJHWW0lPkjzDrBZLu1iQ7Sqk2AKx4sDXk/GTt2vzSf0j4/yP+IE0s++LwXjcvH5whTcW
-         p+lG9cK1NWslaTXtFyn2BQO+rPgYE1rOICN6nT0leJMIDYmRNKXChYFG82cPDImlPoB6
-         K53A==
-X-Forwarded-Encrypted: i=1; AFNElJ8wD3OHBuJhidJJce+K5j7e+5oaIhGaRp8PCgPU8Px2i3KogCYSAHkLyc1J6F7et1EOdek6sidqZJ9i@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtsjjLJ6BnlAPqQFlU9P+iq3kVxui1oBLUE7/SvU3h5JSqJrNa
-	Qzhvlm7FSRtPefWyaBt9CnjNIrQferVoSMMF8I39aPZn83e1OkDUOCuz2O/0hQyTlN4sxYj4JON
-	t2eU7pxxX+QoTUx9PjiT250py6V908CgmY2V34XXsHsbN/KFfZ1zWn6h7TtmRw1w+
-X-Gm-Gg: Acq92OF+7KwKChp1Zl2oHMBvavP2LsdzEtTJfZoxVI6J/0FmbpYBbrG+mrPYKz0Bgn8
-	uAkdoR/0PbT0ggGywx6alf95oukqy09DZ805S56+srR5kRrF+WEj64sf8IO/1h7i0eeQf2GopuK
-	PzRrSGZZahXnARmXibHEv/XF8CN7TDso8eTXDZ9wDUk10Ej5Gposcg0E6B+9q4jMAkmB/qAo2eL
-	7MmXH+lvfqIRqR9ueaa1wCFEfKK3jw9YpfuWCPn7uhDTYV4SpoXHFBMwWqlJ50yCqPk0wKaxH67
-	WUzKQmeIp/8mtvoRSOoHBywWmwIriZ+lxD7VkMnjlpbrCkxCgad0ekoE0Ac1NSh4VbzDt+sWRTA
-	NdO0CPP9ziIQES8X+JozMag4mY5kzdzf+S6a9kQUK7iUTp48eSzjJrSCkybkkq8qH
-X-Received: by 2002:a17:90b:6c3:b0:36d:b9c5:e8f6 with SMTP id 98e67ed59e1d1-370f0481909mr21011709a91.19.1780984838795;
-        Mon, 08 Jun 2026 23:00:38 -0700 (PDT)
-X-Received: by 2002:a17:90b:6c3:b0:36d:b9c5:e8f6 with SMTP id 98e67ed59e1d1-370f0481909mr21011660a91.19.1780984838305;
-        Mon, 08 Jun 2026 23:00:38 -0700 (PDT)
-Received: from [10.206.105.200] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-36f710ee4f3sm18653141a91.13.2026.06.08.23.00.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Jun 2026 23:00:37 -0700 (PDT)
-Message-ID: <400ff1d9-1d58-880c-8004-271bd7023831@oss.qualcomm.com>
-Date: Tue, 9 Jun 2026 11:30:27 +0530
+	s=arc-20240116; t=1780984899; c=relaxed/simple;
+	bh=Ymqz3+FLXf6dnNuBjhDkx1kr88ZNpmOttM4Ar5iskOc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qAqHNxviTvzx15j2XwqgF8cJ82VRRePsPn9lq8uz5m8mc4rx868RuYVc756P1tPWItlavNTXLo/V+9vRwTRR0B54QGSyV+1lUf04sJ3IgqkLX44fv7rHLU1x1dqLFnKBU5+3geNkDlP/aroszF/8JcROER/EPblD/8uCazMXwCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=O1tjiuTp; arc=none smtp.client-ip=95.215.58.186
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1780984886;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=1KCHMMMqt54uvd0zabn/q551nPdA3AD97nhsiAZOyL4=;
+	b=O1tjiuTpUd+Yxgf5odCfldB9OXtOf4Sl6MwCdj+iiQaAXwKgYeWa4Ni6UdkHzZucB+lCr2
+	Z6aN4be30vAXJkaQgSEA5Y9jK8F2sfSUNBXGvg3x7eX+R0J5kAovMFEzvZstPyZ5yE9vMs
+	h8KYOnh0EntRzvjiSpjlTMpCBW0/BBY=
+From: Atish Patra <atish.patra@linux.dev>
+Subject: [PATCH v6 00/21] Add Counter delegation ISA extension support
+Date: Mon, 08 Jun 2026 23:01:14 -0700
+Message-Id: <20260608-counter_delegation-v6-0-285b72ed65a9@meta.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v7 1/2] arm64: dts: qcom: sm8250: sort out Iris power
- domains
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>, Jonathan Marek <jonathan@marek.ca>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Hans Verkuil <hverkuil@kernel.org>,
-        Stefan Schmidt <stefan.schmidt@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Dikshita Agarwal <dikshita@qti.qualcomm.com>,
-        Ulf Hansson <ulfh@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260604-iris-venus-fix-sm8250-v7-0-7bd2f0e5bae8@oss.qualcomm.com>
- <20260604-iris-venus-fix-sm8250-v7-1-7bd2f0e5bae8@oss.qualcomm.com>
-From: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
-In-Reply-To: <20260604-iris-venus-fix-sm8250-v7-1-7bd2f0e5bae8@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: qLY7Ne0v_Rn-Pk8mBao3fvq2R6NuZysx
-X-Proofpoint-ORIG-GUID: qLY7Ne0v_Rn-Pk8mBao3fvq2R6NuZysx
-X-Authority-Analysis: v=2.4 cv=JdqMa0KV c=1 sm=1 tr=0 ts=6a27ac07 cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=tk4UjENVHhTGfG5vr0AA:9 a=QEXdDO2ut3YA:10
- a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA5MDA1MyBTYWx0ZWRfXypE/p46Ks9Mm
- KfrqlrCsee9J6voDqNtmQySC/rr+t1otFHW89fmqSm6DP4y+dDPWiA/7txzJOJb8bZ2uiN3t5ul
- wivTLKV7/uxvu0KKe5HjIrg/vYCd6oMckqz54e15rXsPImCBtkGCvnechN6SWWID+XjUyTbrrLd
- V3HdTwijjmfjvZKygb42cSGIddAN5BficYGqGW/PNj30Xh2D4UekXQY3JS8KJpAF/xxN2YYLl05
- LN0YnXdxWvJDpNzBSvM4BBuonPHVawrCdR9JCqo7U3eSWHyN+s0n6O8w4zooSjdztMagwtLrFwt
- uofwp2wRJIJjdF1kDf7OirE1AteJ5pyVCifGDcnfNvAiuoeGQ00f23RrlP9hs4WLukaELZwHj45
- 3EkJH6X6Ry35jOWLUsYgZA22UUnOXbE2EZNa5UKW6+oiHKjJZ3GVuPcjPHQOIy09XerFQiaZHK2
- 2mtHBIHnSmOgo8yqldg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-09_01,2026-06-09_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
- lowpriorityscore=0 malwarescore=0 phishscore=0 adultscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606090053
+X-B4-Tracking: v=1; b=H4sIACusJ2oC/23QwWoEIQwG4FdZPNfFRB3dPfU9SimOZnaEdlx0K
+ i3LvHudLaWlePxD8iXkxgrlSIWdDzeWqcYS09LC8HBgfnbLhXgMLTMUqIQBzX16X1bKL4Fe6eL
+ W1s4HtE7iZP3Je9YGr5mm+HFHn55bnmNZU/6876iwV785BCOENtIepVEKEDjwJpb5+phjTSUu/
+ ujTG9uNij9zWgCo3hkVueB2dEb5MFoNY0eRfxQ0XUU2ZVD2pIIhGILuKOpXQdF9SVX7LVL7yVl
+ LcoR/yrZtXx6ivdd7AQAA
+To: James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Atish Patra <atish.patra@linux.dev>, 
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Jiri Olsa <jolsa@kernel.org>, 
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Anup Patel <anup@brainfault.org>, Namhyung Kim <namhyung@kernel.org>, 
+ Paul Walmsley <pjw@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Ian Rogers <irogers@google.com>
+Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-perf-users@vger.kernel.org, Conor Dooley <conor@kernel.org>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-308677-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:james.clark@linaro.org,m:robh@kernel.org,m:atish.patra@linux.dev,m:acme@kernel.org,m:jolsa@kernel.org,m:will@kernel.org,m:mark.rutland@arm.com,m:anup@brainfault.org,m:namhyung@kernel.org,m:pjw@kernel.org,m:krzk+dt@kernel.org,m:irogers@google.com,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308679-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,vger.kernel.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
-	FORGED_SENDER(0.00)[busanna.reddy@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:quic_tdas@quicinc.com,m:jonathan@marek.ca,m:rafael@kernel.org,m:bod@kernel.org,m:vikash.garodia@oss.qualcomm.com,m:dikshita.agarwal@oss.qualcomm.com,m:mchehab@kernel.org,m:stanimir.varbanov@linaro.org,m:abhinav.kumar@linux.dev,m:hverkuil@kernel.org,m:stefan.schmidt@linaro.org,m:konradybcio@kernel.org,m:bryan.odonoghue@linaro.org,m:dikshita@qti.qualcomm.com,m:ulfh@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-media@vger.kernel.org,m:mchehab+huawei@kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[busanna.reddy@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 11FA265C929
+X-Rspamd-Queue-Id: A0AC565C91D
 
+This series adds the counter delegation extension support. It is based on
+very early PoC work done by Kevin Xue and mostly rewritten after that.
+The counter delegation ISA extension(Smcdeleg/Ssccfg) actually depends
+on multiple ISA extensions.
 
-On 6/4/2026 9:52 PM, Dmitry Baryshkov wrote:
-> On SM8250 Iris core requires two power rails to function, MX (for PLLs)
-> and MMCX (for everything else). The commit fa245b3f06cd ("arm64: dts:
-> qcom: sm8250: Add venus DT node") added only MX power rail, but omitted
-> MMCX voltage levels.
->
-> Add MMCX domain to the Iris device node.
->
-> Fixes: fa245b3f06cd ("arm64: dts: qcom: sm8250: Add venus DT node")
-> Reported-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 20 ++++++++++++++------
->  1 file changed, 14 insertions(+), 6 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 7076720413ab..6150380795b8 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -4326,8 +4326,12 @@ venus: video-codec@aa00000 {
->  			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
->  			power-domains = <&videocc MVS0C_GDSC>,
->  					<&videocc MVS0_GDSC>,
-> -					<&rpmhpd RPMHPD_MX>;
-> -			power-domain-names = "venus", "vcodec0", "mx";
-> +					<&rpmhpd RPMHPD_MX>,
-> +					<&rpmhpd RPMHPD_MMCX>;
-> +			power-domain-names = "venus",
-> +					     "vcodec0",
-> +					     "mx",
-> +					     "mmcx";
+1. S[m|s]csrind : The indirect CSR extension[1] which defines additional
+   5 ([M|S|VS]IREG2-[M|S|VS]IREG6) register to address size limitation of
+   RISC-V CSR address space.
+2. Smstateen: The stateen bit[60] controls the access to the registers
+   indirectly via the above indirect registers.
+3. Smcdeleg/Ssccfg: The counter delegation extensions[2]
 
-With this change in place, the backwards compatibility for the incomplete
-SM8250 ABI which was merged from v5 in this series, which handles the return
-value of devm_pm_domain_attach_list(), will never be hit right? If so, we can
-remove that piece of code from the driver.
+The counter delegation extension allows Supervisor mode to program the
+hpmevent and hpmcounters directly without needing the assistance from the
+M-mode via SBI calls. This results in a faster perf profiling and very
+few traps. This extension also introduces a scountinhibit CSR which allows
+to stop/start any counter directly from the S-mode. As the counter
+delegation extension potentially can have more than 100 CSRs, the specification
+leverages the indirect CSR extension to save the precious CSR address range.
 
-https://lore.kernel.org/all/20260209-iris-venus-fix-sm8250-v5-2-0a22365d3585@oss.qualcomm.com/
+Due to the dependency of these extensions, the following extensions must be
+enabled in qemu to use the counter delegation feature in S-mode.
 
->  			operating-points-v2 = <&venus_opp_table>;
->  
->  			clocks = <&gcc GCC_VIDEO_AXI0_CLK>,
-> @@ -4353,22 +4357,26 @@ venus_opp_table: opp-table {
->  
->  				opp-720000000 {
->  					opp-hz = /bits/ 64 <720000000>;
-> -					required-opps = <&rpmhpd_opp_low_svs>;
-> +					required-opps = <&rpmhpd_opp_svs>,
-> +							<&rpmhpd_opp_low_svs>;
->  				};
->  
->  				opp-1014000000 {
->  					opp-hz = /bits/ 64 <1014000000>;
-> -					required-opps = <&rpmhpd_opp_svs>;
-> +					required-opps = <&rpmhpd_opp_svs>,
-> +							<&rpmhpd_opp_svs>;
->  				};
->  
->  				opp-1098000000 {
->  					opp-hz = /bits/ 64 <1098000000>;
-> -					required-opps = <&rpmhpd_opp_svs_l1>;
-> +					required-opps = <&rpmhpd_opp_svs_l1>,
-> +							<&rpmhpd_opp_svs_l1>;
->  				};
->  
->  				opp-1332000000 {
->  					opp-hz = /bits/ 64 <1332000000>;
-> -					required-opps = <&rpmhpd_opp_nom>;
-> +					required-opps = <&rpmhpd_opp_svs_l1>,
-> +							<&rpmhpd_opp_nom>;
->  				};
->  			};
->  		};
->
+"smstateen=true,sscofpmf=true,ssccfg=true,smcdeleg=true,smcsrind=true,sscsrind=true"
+or Virt machine users can just "max" cpu instead.
+
+When we access the counters directly in S-mode, we also need to solve the
+following problems.
+
+1. Event to counter mapping
+2. Event encoding discovery
+
+The RISC-V ISA doesn't define any standard either for event encoding or the
+event to counter mapping rules. Until now, the SBI PMU implementation relies
+on device tree binding[3] to discover the event to counter mapping in RISC-V
+platform in the firmware. The SBI PMU specification[4] defines event encoding
+for standard perf events as well. Thus, the kernel can query the appropriate
+counter for an given event from the firmware.
+
+However, the kernel doesn't need any firmware interaction for hardware
+counters if counter delegation is available in the hardware. Thus, the driver
+needs to discover the above mappings/encodings by itself without any assistance
+from firmware.
+
+Solution to Problem #1:
+This patch series solves the above problem #1 by extending the perf tool in a
+way so that event json file can specify the counter constraints of each event
+and that can be passed to the driver to choose the best counter for a given
+event.
+
+This series introduces a RISC-V specific event field in "CounterIDMask" in
+event_fields that describes a bitmask of counters supported for a specific eventi.
+This is the similar approach for few other existing properties in the event_fields
+which were used by single architecture as well. The counter constraint bitmap is
+passed to the perf driver via newly introduced "counterid_mask" property set in "config2".
+
+The platform vendor have these three ways to encode/use the platform specific
+events.
+
+1. Directly in driver with appropriate constraints (discouraged due to bloating
+of the driver)
+2. Encode in Json with with CounterIDMask field (preferred as it is contained
+within platform specific json file)
+3. Directly pass counterid_mask at while invoking perf 
+cpu/event=<code>,counterid_mask=<mask>/
+
+The last two patches show cases these use cases and not intended for merging.
+
+Solution to problem #2:
+
+The event encoding can come from the json or commandline as well.
+
+The Qemu patches are available in upstream now.
+
+The Linux kernel patches can be found here:
+https://github.com/atishp04/linux/tree/b4/counter_delegation_v6
+
+[1] https://github.com/riscv/riscv-indirect-csr-access
+[2] https://github.com/riscv/riscv-smcdeleg-ssccfg
+[3] https://www.kernel.org/doc/Documentation/devicetree/bindings/perf/riscv%2Cpmu.yaml
+[4] https://github.com/riscv-non-isa/riscv-sbi-doc/blob/master/src/ext-pmu.adoc
+
+To: Paul Walmsley <pjw@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Will Deacon <will@kernel.org>
+To: Mark Rutland <mark.rutland@arm.com>
+To: Atish Patra <atish.patra@linux.dev>
+To: Anup Patel <anup@brainfault.org>
+To: Arnaldo Carvalho de Melo <acme@kernel.org>
+To: Namhyung Kim <namhyung@kernel.org>
+To: Jiri Olsa <jolsa@kernel.org>
+To: Ian Rogers <irogers@google.com>
+To: James Clark <james.clark@linaro.org>
+Cc: linux-riscv@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-perf-users@vger.kernel.org
+
+Signed-off-by: Atish Patra <atishp@meta.com>
+
+Changes in v6:
+- Reverted the file name changes as suggested by Will. Now pmu-sbi.c will continue
+  to support both counter delegation and SBI PMU with different function prefixes.
+- No longer depends up old upstream patch for reusing the Counter property to
+  encode event to counter mapping property. It directly uses additional field in
+  json event fields similar to other architectures.
+- Added few test patches (not intended for upstreaming) to show case different
+  possibilities of providing mapping/event encodings.
+- Fixed review comments and miscellenous minor typos/fixes on v5
+- Rebased on top of v7.1-rc6
+
+Changes in v5:
+- Fixed dt_binding_check errors.
+- Added the ISA extension dependancy for counter delegation extensions.
+- Replaced the boolean variables with static key conditional check required at boot time.
+- Miscellaneous minor code restructuring.
+- Link to v4: https://lore.kernel.org/r/20250205-counter_delegation-v4-0-835cfa88e3b1@rivosinc.com
+
+Changes in v4:
+- Added ISA dependencies as per dt schema instead of description.
+- Fixed few compilation issues due to patch reordering in v3.
+- Link to v3: https://lore.kernel.org/r/20250127-counter_delegation-v3-0-64894d7e16d5@rivosinc.com
+
+Changes in v3:
+- Fixed the dtb binding check failures.
+- Inlcuded the fix reported by Rajnesh Kanwal for guest counter overflow.
+- Rearranged the overflow handling more efficiently for better modularity.
+- Link to v2: https://lore.kernel.org/r/20250114-counter_delegation-v2-0-8ba74cdb851b@rivosinc.com
+
+Changes in v2:
+- Dropped architecture specific overrides for event encoding.
+- Dropped hwprobe bits.
+- Added a vendor specific event encoding table to support vendor specific event
+  encoding and counter mapping.
+- Fixed few bugs and cleanup.
+- Link to v1: https://lore.kernel.org/r/20240217005738.3744121-1-atishp@rivosinc.com
+
+---
+Atish Patra (18):
+      RISC-V: Add Sxcsrind ISA extension definition and parsing
+      dt-bindings: riscv: add Sxcsrind ISA extension description
+      RISC-V: Define indirect CSR access helpers
+      RISC-V: Add Smcntrpmf extension parsing
+      dt-bindings: riscv: add Smcntrpmf ISA extension description
+      RISC-V: Add Ssccfg/Smcdeleg ISA extension definition and parsing
+      dt-bindings: riscv: add Counter delegation ISA extensions description
+      RISC-V: perf: Restructure the SBI PMU code
+      RISC-V: perf: Modify the counter discovery mechanism
+      RISC-V: perf: Add a mechanism to defined legacy event encoding
+      RISC-V: perf: Implement supervisor counter delegation support
+      RISC-V: perf: Use config2/vendor table for event to counter mapping
+      RISC-V: perf: Add legacy event encodings via sysfs
+      RISC-V: perf: Add Qemu virt machine events
+      tools/perf: Support event code for arch standard events
+      tools/perf: Add RISC-V CounterIDMask event field
+      TEST(do-not-upstream): fake qemu-virt PMU events for cdeleg counter-mask testing
+      TEST(do-not-upstream): fake qemu vendor JSON + mapfile entry for CounterIDMask path
+
+Charlie Jenkins (1):
+      RISC-V: perf: Skip PMU SBI extension when not implemented
+
+Kaiwen Xue (2):
+      RISC-V: Add Sxcsrind ISA extension CSR definitions
+      RISC-V: Add Sscfg extension CSR definition
+
+ .../devicetree/bindings/riscv/extensions.yaml      |   67 ++
+ arch/riscv/include/asm/csr.h                       |   57 ++
+ arch/riscv/include/asm/csr_ind.h                   |   44 +
+ arch/riscv/include/asm/hwcap.h                     |    7 +
+ arch/riscv/include/asm/vendorid_list.h             |    4 +
+ arch/riscv/kernel/cpufeature.c                     |   27 +
+ drivers/perf/Kconfig                               |   14 +-
+ drivers/perf/riscv_pmu_sbi.c                       | 1044 ++++++++++++++++----
+ include/linux/perf/riscv_pmu.h                     |   18 +
+ .../perf/pmu-events/arch/riscv/arch-standard.json  |   10 +
+ tools/perf/pmu-events/arch/riscv/mapfile.csv       |    1 +
+ .../pmu-events/arch/riscv/qemu/virt/events.json    |   26 +
+ tools/perf/pmu-events/jevents.py                   |    7 +-
+ 13 files changed, 1124 insertions(+), 202 deletions(-)
+---
+base-commit: ba3e43a9e601636f5edb54e259a74f96ca3b8fd8
+change-id: 20240715-counter_delegation-628a32f8c9cc
+
+Best regards,
+-- 
+Atish Patra <atishp@meta.com>
+
 
