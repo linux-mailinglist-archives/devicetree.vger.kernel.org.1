@@ -1,598 +1,255 @@
-Return-Path: <devicetree+bounces-308878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308875-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QYnGANDbJ2oQ3gIAu9opvQ
-	(envelope-from <devicetree+bounces-308878-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:24:32 +0200
+	id vhV+NYDbJ2ry3QIAu9opvQ
+	(envelope-from <devicetree+bounces-308875-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:23:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E95465E4C8
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:24:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3195B65E486
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:23:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=JAFsIbg+;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=WLUgKjvw;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308878-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308878-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=UiZHzBLy;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=W+hm+IDZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308875-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308875-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=reject) header.from=qualcomm.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 52C2230A38E8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 09:17:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2740F308661E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 09:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483C83ED3CF;
-	Tue,  9 Jun 2026 09:17:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FD03806B8;
+	Tue,  9 Jun 2026 09:17:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751123AE190
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 09:17:36 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780996659; cv=none; b=tZn/4PgABfeY1z7xByCcUyNC8OmkQb2WLOxtrF7uUBndU3AcG2grqQHrv4/8MYlTBNCld8y2ziFyXKmdiGU8AohCo5QHmHwNfOicBwY3CCxbLj706elU9VXNsHHhh7652JhHEeQDJIuoZk38tmlYkhhcFGogMHR4ONWhgF1HH+Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780996659; c=relaxed/simple;
-	bh=330Zn5ca1hs2v3E8g2cbztx9xr7ZelihicIvV93DrL8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LwXluR/ZhKr+f/f+X0bfsfi2Ca4O8z3DLcqzSd96zysR/vGNsh+P05rIf7pymallvgf6rhSUgS/FWRK5dco7VuXZD/k1EkkZjD9QLCGWHg19u168jAELL+uKxymYwrMg/lVrNUY9z3fFWr2eSpaY75tz2eaOYM2hRCvUhD6hc7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JAFsIbg+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WLUgKjvw; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6597rfs21568430
-	for <devicetree@vger.kernel.org>; Tue, 9 Jun 2026 09:17:35 GMT
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E1B3D669C
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 09:16:58 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780996622; cv=pass; b=GX6W011usADmGbuzq6Ztq8HHgOHC1h2i4LqmcHKhFa2KeFAVjTfHzUlLHq0x/m0aTB1kmRXlK0Nk8ek0e7/t6j4aRDJfU1WVdB4H+PlIEbu6AtgqMCUMnq5QXRyjXeh59MUVG2FZ4ab8cr8Al0erWWEXSNtN8YYxEfrNVaOyrJA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780996622; c=relaxed/simple;
+	bh=TaJIKM3O2Do2Nt4kIaUSWB8jEWE1Qwyap2u8PR62hB4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cJX0X5pmE0qsaH7WJ8TAEJZ/NN+wBWfj9fD2j7WdoW62Vr3csatAcOtzcbKTIvHZbRafYLu6KlMeiB/JGjEal2XKQH8aFzjdNBGvPKslb0dZ1kU527tH9WPYwHUjIIw6iG/1XXQMVwwp8IesoTZdtnvCyQYT3lGV0WaVT+JRHhs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UiZHzBLy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=W+hm+IDZ; arc=pass smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6597ruGp2001674
+	for <devicetree@vger.kernel.org>; Tue, 9 Jun 2026 09:16:58 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	CFzxUUzHhYIgdrM9Cp7Q1mlQeQKF/qEFJ+1fHe7CqxE=; b=JAFsIbg+nSsu65G1
-	dRHUDnhX9MA5E+GrEMN1cZoxZ4MkCeH0DmMN8Rog/TnVLKAUWc+ZmP+bntEqrZxp
-	YUmEY8qwyOoWgFUxfZSEOxs5miMSEvV3rjCo6mhUvvqcg6GasB40LYOKr509H7re
-	AqOfKL9IRYLAWrHQp812E1n8ayxgZ/z7buGye+6AsxEoqdaGJBOfQHI7hU1pZUbn
-	c2KFLkYjKUu3Ju1RJSTJGTRj4ewc6l8cgrCCF/GfjGfwy1J/jOl/9FRC4T6hd9nt
-	tHYOdqwHb65+YfmD84LMO8rdxemx4/bm3DtWGpLwR/k7J6VqRpgT8WEaj8XjmfmK
-	c8QFjg==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4enxx46g8f-1
+	/EqyMxiE/m94G4SRX6R7mDsxcjVfUYvMbEvBF14uWFo=; b=UiZHzBLy4QyYM2Ks
+	N5cm8P4GmceWbdMF1milaB0NUBQ8s4AgwRDCssevYujEjrAkBVTA4jO923lz9Wl2
+	mHZLwHJZ9r9GTahp9dh4aqaIUTEyNiNYXD/1BiR1nRpKEwItt8gi/hY2+yWnGwp3
+	kyDaQuGvCbrGquG6a87/sKd7qD3wBldP0Xf+ZCbT2dZOzOl26cLaMs2Glnpoa4KU
+	CO8NGAjzC7sA+NRQxoXibKITV7Gj1Lunrh4O3pzo71nKvSo42DeUxG3zmdSyIc4A
+	zWGSKMrq3mauzlsp5t4fkd9M8ITdZMiMRsQiJz8sP+KKviNRtBfXyj7JamLklmbc
+	CSh/XA==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4epe25rj02-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 09:17:35 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c85a2ed88c8so5766709a12.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 02:17:35 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 09:16:57 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-91572601753so1042919185a.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 02:16:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780996617; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bQYuWEq3/9nxPH4wx55tCzI4zMr65Mp76WGWcVDpci8rw4WF3FPrG03aPQImUQGvOH
+         Y78QDBf72qFlk63Oa8WYj9vqM1jS2nTJbZkiOnXhen+PbcP+ra22oD2dFWk5R53LcNPx
+         wCNEm0rn4NGut8zUAP1jkssT+3BSWiZEdnvvfYjL2cYjaDKHJsbKfIKzN3TkvPUcZU+X
+         ka2yvcE7fI7qPNRemKUwrfrdXTy6q5SDpR7v8mKuQMECp3ITA9PK/XRgHYKIi0wLdsJn
+         YLSBy2yKZzIFwF2Z3euert01uz8T9Y/upge1z0JuCaU8YNdV6RbGeA00vNlWVBoFCLQY
+         3cxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=/EqyMxiE/m94G4SRX6R7mDsxcjVfUYvMbEvBF14uWFo=;
+        fh=73Zr4BH5cOcFFyCcmY2yAFpCFI95bCs6HTyXZCJ2P34=;
+        b=G2VGTiqmAc81lqKQI/2Zt5+OmAI52iIcdLpg/D4wNlHDhGy0aIFtlC5hFUGh0w3uqD
+         rTYi41AuijPGyNFIJ5XrXWOiEm2ohz9VpnADPZk8UAs5zTZMYKFhgJ1pVPOMp/7+Z66I
+         isQ6Hd9n6lg6vurY7ikyp+JdSRUTKINgZuShqSiGlImNw8/X/zJCFDY44f1zlr6N4fdr
+         CmPAL7CORT73MH1KU20VJVXz7iqK15jemFD0+5wUG9uMazkRNuBWzTVYTijB/ixY2bzt
+         uXQleQSimqPMz2deqGCqX9UKbSRP3a7jgIwaMxTPI1jaf5DfcZ2aGgI4AQAfoKxb3c1J
+         qdxA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1780996655; x=1781601455; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CFzxUUzHhYIgdrM9Cp7Q1mlQeQKF/qEFJ+1fHe7CqxE=;
-        b=WLUgKjvw+5YNvyXgvteUGLzKARQ5FRkx9jdR6WHq+7Q7vV9uvg/XYeRtKQN1kCMQIF
-         KN8QAV3uZRUCD4zNY2RCVgvSPUOBwQce5Exl7YCkq6pozkllLJXw3Up2WpH1Nse7+Lbg
-         Dh4k4RykrFD2mDGi7s/1R3bFUrJGkSTYBnrXNvwH9zVSBB0Rs0pDApDlbx1JafK3shzJ
-         QfsY7zuAH4PwMu0AkWrlsPOYFgpd/OMPOhWSn/qWhRzPTdbTH+zVPeyN4KLsAeMU3d6B
-         mgztqJW49O+sXuoqdakqVKdlPFvSybY8ozUdGWDUglL3p6sqIPqzw/6w0KuHiXQomGCA
-         NzBQ==
+        d=oss.qualcomm.com; s=google; t=1780996617; x=1781601417; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/EqyMxiE/m94G4SRX6R7mDsxcjVfUYvMbEvBF14uWFo=;
+        b=W+hm+IDZ+Te5QTlrcziMBKSHf0e+rSuwESM2TsPwcG2Z/KWKoFe84O02WEfYNwE2QM
+         lxSgrnyOvn6+ZntqK5prUNlgMqBUHW5HamuVM2BMRB5+mXdzCLJCdY0aDXWm/Zbt3yjQ
+         WG2IkRDXpHQuwVxwVYaVMI49M+cjRKGN7iQjqDzR5pTe4tdzAWJcfkD7SsHGRDL43VsE
+         ErNsvW9ASPvqok0dDq5hvZKlNR63uvxyTs4yMCGajpOkfK9T9IqkiveErn0LSLgbmmZS
+         8Xx1eYm2dyvJVNOGw3JCsSTIUwOSAudGTiH+xoiQ2FqXIpEXfDYbc5OIPMmQtZatDue3
+         HBTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780996655; x=1781601455;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CFzxUUzHhYIgdrM9Cp7Q1mlQeQKF/qEFJ+1fHe7CqxE=;
-        b=sjYLhQHlACMQgcA63+UBKKBvaMtgNH3w5VIPEj818sHSMlVLiHg9ir4GDea2oX+umm
-         K4RXhxozux3/4eVFtUKp4PkAfwk8Kw3uRagtsmfLDY2UTB90tP3CHus43bSx1xMH98gp
-         Syb5T3TrbJ0zY+zTzxWp5nUhVlTXCjyMX/awvdVz9LqA7yXW7cmQ7cHyXvqVm1Omtg0J
-         AzApV5tYCkwj5ki0eQB6S5CK7CmqwfvJ5ypu7lvyRNIG50YawEm1Oh+Uh7mVXFgWVZKF
-         WL7FwQCPB0w35uBDJodImEJLGT1LuoNbMf78Cbbl+3FvC17V/QgMUKivCahe0FZBbrhj
-         PG0g==
-X-Forwarded-Encrypted: i=1; AFNElJ9EO0XzNm7CHDlZz0JP4Ttbau/rEvl0aoR6vCg8duX2OIMhCaU+VSWQQ/rUxjhl23MJ14VcQz5SL7uU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkxOzp2m238EsFE68Kh3EJ1wclR6zFfPyfEh/SKfW3sZyTNGhQ
-	GNAZXjNH8Ad3+YAcvX5s8AW04VJLx7JMqkkMt+G6DwchIXrCqXpwqqcEwj1BxUfqYDKSx8HZLX9
-	06L3xk+tOptopq72yho+1zCEm/EJ0sQJl18R9UZ1u1ZpsLE690IGyhF55OAR5Cqio
-X-Gm-Gg: Acq92OHaD2WGZZeBmVEFVf3bEhaXe+zFdadKUmBcxWxEcZo7pxTPzZOSU5acbRNCnO5
-	onBBXuCn5nmgKVPFZLghazFsU33R3EkN47+whSQYMz0Job9KZyGYiPfs3D5IItGhmTHZR/IyF3z
-	7qXGrXnL3UZveOUxL2vlX25CCSofSlimvLqJPHND3OSNLdRKYjx3iiGqnupGysNVhbz9OQKcczp
-	PmWKbye10V2V7xSWYXgJlkxpz7p5gm16OQqi8IgeYFRXEmNdraw6/oOi3XAAi8+neJfVtqVOE1q
-	5uLfcRekrRut6VAwFjFV2kglIQLQDERA/OgC9/nmDaZ8Sa+P/RrIDpEk+XMAcW7kXePUsftHXrm
-	e+AAM9yhfYYMYXF4E9uk1qIvYvh3iG/35YP98oo7S08lwrJ7YP62v3mVDAaG2YZHnulnX
-X-Received: by 2002:a05:6a00:10c4:b0:842:4982:81c with SMTP id d2e1a72fcca58-842b0d5d2e7mr19387316b3a.20.1780996654933;
-        Tue, 09 Jun 2026 02:17:34 -0700 (PDT)
-X-Received: by 2002:a05:6a00:10c4:b0:842:4982:81c with SMTP id d2e1a72fcca58-842b0d5d2e7mr19387263b3a.20.1780996654279;
-        Tue, 09 Jun 2026 02:17:34 -0700 (PDT)
-Received: from hu-drajpura-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-842828fa877sm20974879b3a.51.2026.06.09.02.17.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2026 02:17:33 -0700 (PDT)
-From: DhruvinRajpura <dhruvin.rajpura@oss.qualcomm.com>
-Date: Tue, 09 Jun 2026 14:46:43 +0530
-Subject: [PATCH 2/2] power: supply: qcom_battmgr: Add thermal mitigation
- support
+        d=1e100.net; s=20251104; t=1780996617; x=1781601417;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=/EqyMxiE/m94G4SRX6R7mDsxcjVfUYvMbEvBF14uWFo=;
+        b=X4sjAa9x9TOdauatUO+24UmZVqEkZN1OvvnvIEoJaxsWoonGCR72p2DzyKY0X5LjYg
+         doBpfiOrkjqExdSU173awVDa0LERP9WgVzvMfIlMIZxYQ/B/VkEw9ODlsHzexkRhe8DV
+         uKPR+ek3NJfpbc/RhHPhLrjfLsTE84pTeTAe557SvmLmkSgVCbOl0YKQrfVamiT4XkKm
+         TsfuFQle0T02FSCvB/f0tQm9lBW2fH3Uv2Y4E8YHvR+rdk7PufUvk/xFNr3U/2043FL5
+         4wmEa5YRpYZ8CRSBtkz2F+k1W0iabBNV/1hQx5r6V+5on6dkRafaj5OsKm1HIKOpAjmo
+         XIPw==
+X-Forwarded-Encrypted: i=1; AFNElJ9OR2o8pH2seN1/NYZKZEibMZ8kh4yhejPTAawVmUNYF+i1/54IVSdlV4BD6JLgurss7MPVY3385Jcw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzInu59PZPwz/u5HcanFTG8fPth7x223ASDqnaBJaPdStwwXXl3
+	5RkIUF03k9HixyJ42Ot6m5OAHO1xGVQIJ6tkeNqX/02KLfKTGr3ptd5qQ+k1OQ3kRetmyFXo6vy
+	IFZPAEHJwiJltMq6vdneCjcOv02CcnFDwdcF7j/BQuU9Wx4BbGzVoBjsuUe/ZXpxQTFzZNAV++M
+	7VMUAEcAMpVmlbTCVyjeFqWCUYtut8lzHcISL9sQ8=
+X-Gm-Gg: Acq92OE9aZbn9dRJsSiTXnXln0K/QYzLpWCPbNqiWjRoM+yG5FMUehUSgJYCYJwCcMu
+	unkfqQA0VrjBSr26a4Hr0nHvZrjNQ/WXZ2aQCUaux16tU28Ue4ds/qRZAneJJWxHMI5XP3AMCy1
+	yYmIXKpZigIl+1iQR+x3p3Ie9oRzlvVyrBn/xKBXgP20tTjGC/0OtcBGdQwBTfUE36cyOZmFCML
+	fUdyFKaD7vdl4x4FPMaRsWkAfDsSAPCARP24DIxrZA1t1BnY7MyxbbDu/xDC+uVxzfPwg1vimv+
+	5AdM8kbEGsGk2oKihyAPVCol1tNDCUzRSpOSnh0KAKohFfG/+Vahz+yO8JO4
+X-Received: by 2002:a05:620a:1a0a:b0:915:40ff:4e10 with SMTP id af79cd13be357-915e822bf5amr252715985a.4.1780996617382;
+        Tue, 09 Jun 2026 02:16:57 -0700 (PDT)
+X-Received: by 2002:a05:620a:1a0a:b0:915:40ff:4e10 with SMTP id
+ af79cd13be357-915e822bf5amr252712085a.4.1780996616898; Tue, 09 Jun 2026
+ 02:16:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260609-cooling_device_reg-v1-2-e15bddcb0086@qti.qualcomm.com>
-References: <20260609-cooling_device_reg-v1-0-e15bddcb0086@qti.qualcomm.com>
-In-Reply-To: <20260609-cooling_device_reg-v1-0-e15bddcb0086@qti.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+References: <20260608-shikra-camss-review-v2-0-ca1936bf1219@oss.qualcomm.com> <20260608-shikra-camss-review-v2-2-ca1936bf1219@oss.qualcomm.com>
+In-Reply-To: <20260608-shikra-camss-review-v2-2-ca1936bf1219@oss.qualcomm.com>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Tue, 9 Jun 2026 11:16:44 +0200
+X-Gm-Features: AVVi8CcruF8G3bHCMvT-UUyCre6c8b-WOyhsQAf9gtMqJA6eGNVQ_TK2SNIM-_k
+Message-ID: <CAFEp6-2V_srCT=wWFb5Pjrhq2-pzTG5QCd90Pf+0s92qC6G8LQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/7] dt-bindings: i2c: qcom-cci: Document Shikra compatible
+To: Nihal Kumar Gupta <nihal.gupta@oss.qualcomm.com>
+Cc: "Bryan O'Donoghue" <bod@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        dhruvin.rajpura@oss.qualcomm.com, kamal.wadhwa@oss.qualcomm.com,
-        jishnu.prakash@oss.qualcomm.com,
-        Dhruvin Rajpura <drajpura@qti.qualcomm.com>,
-        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
-        Umang Chheda <quic_uchheda@quicinc.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780996639; l=13463;
- i=drajpura@qti.qualcomm.com; h=from:subject:message-id;
- bh=VJ2CGf/mC6eRUxM8K/QYpGz84W7Qe1qdsXTOg3dFjlc=;
- b=mFfL8llpjCPp7dECJ5J8r5nafgjMt7N0GT5DGNcRJIzYFXMmrGyuJSCKs3PA8ujH2bKDB1H6Z
- tlVWWhKBLu/Dz9WyDIsL2t4/QjqtT6lKZ3voeo0Ifv7Z/l9M8svLO8l
-X-Developer-Key: i=drajpura@qti.qualcomm.com; a=ed25519;
- pk=955XCRKkDWtR3Z/wycEd5zolAQt3Q1z7vODzFB/Wn1g=
-X-Authority-Analysis: v=2.4 cv=cverVV4i c=1 sm=1 tr=0 ts=6a27da2f cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
- a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=KCVx3LFSaJSWsAEuBpQA:9 a=QEXdDO2ut3YA:10
- a=x9snwWr2DeNwDh03kgHS:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: QEtHqARQdTpWHW4c0LTEVmlmGM2rS-gr
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA5MDA4NSBTYWx0ZWRfX+N/lex/nC0b3
- tm9ERQmkQYjj1ETKB7LXOcPBerakXrhHMiPtgzXJtIyNlglOuN0tfOD3GLqX8TuFxL0yjaT7Tyd
- YxXM7x9qD6BkSWdrWBRLN1aWEmrddEigkcOUA+lEqVUR7taD8ym8yXviKweCZCighibcK8nNsCe
- Xg9XK2Ge4kfKY5H4gkLH4OjMImSJ5z90M/RgqSNytM1gwwuopiSaPn0hL0mIurB+aMAyRg8F7ZC
- mBhXx4O5SzfybLAaRw9DQa2/tnYGFrY3gEM9upIhki/YylceIfGD0EinjQbg1w0+Cum+G05f/r4
- U6Pwj0Lbrm5FBUIRGOqcRMMAwffIyDcpvqSWnCDHoyxsLRgjzAvrOmygdN+OphvA/2qx3shyZDo
- PzEEr33C0cB8WMaa03snZySISAIVqw==
-X-Proofpoint-GUID: QEtHqARQdTpWHW4c0LTEVmlmGM2rS-gr
+        Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, linux-arm-msm@vger.kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        Suresh Vankadara <quic_svankada@quicinc.com>,
+        Vikram Sharma <vikram.sharma@oss.qualcomm.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-ORIG-GUID: oD3K3QrTCD7bPc2_iEyM02mbohQ3WQuW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA5MDA4NSBTYWx0ZWRfX6T3/KS5mMceq
+ NU1Qf/52GFWGUS61BQkfC6KBTSllt3az+l+5ThwcRSkWOopnHsrvxsmiFjlR3ewBe7J0lMCKGIq
+ zgnUqhTHdmFc+ml0cNRyTbT7wtfvanCOaa7JreOCAjlOXDgqtMh9LjDjxZAgqKIqJDntplaCkCM
+ opy7xorEx+wS7/lyG5U2rziOBrMSRyegNPp1VWkFUGwn5OcHSUGW6AflCTjRXeMcy4Le32jXlLo
+ 8fNGJ/eR2SXaf+MyFwe9EiQy3OBPTLDSEiHoyAxTjbcuMF7LrLyEXHerVly0gSBtEn/oNtknQMT
+ mI8wnmmwiLFn1nMbA8nor5Gt5s8kHYT+twHPDn9FEED6yQM3ZyUCyGr81jq8gOVL9TyT0IWZYC6
+ UK1GTFbgvCDSoZhIm5xkE0MukdDD8R0WFh+sVqk/i52Xqc4fILy+HLwgSssfZp2nEsLEIHqKTNi
+ +7V0Tf3r9JpoZtgLGwA==
+X-Proofpoint-GUID: oD3K3QrTCD7bPc2_iEyM02mbohQ3WQuW
+X-Authority-Analysis: v=2.4 cv=LoqiDHdc c=1 sm=1 tr=0 ts=6a27da09 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8 a=LDBv8-xUAAAA:8 a=KKAkSRfTAAAA:8
+ a=b40KZWPJp5KrgtGOUacA:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=DZeXCJrVpAJBw65Qk4Ds:22 a=cvBusfyB2V15izCimMoJ:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-09_02,2026-06-09_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 bulkscore=0 suspectscore=0 phishscore=0 spamscore=0
- malwarescore=0 lowpriorityscore=0 classifier=typeunknown authscore=0 authtc=
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.22.0-2605210000 definitions=main-2606090085
+ lowpriorityscore=0 spamscore=0 bulkscore=0 phishscore=0 impostorscore=0
+ adultscore=0 suspectscore=0 malwarescore=0 clxscore=1015 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606090085
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308878-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sre@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:dhruvin.rajpura@oss.qualcomm.com,m:kamal.wadhwa@oss.qualcomm.com,m:jishnu.prakash@oss.qualcomm.com,m:drajpura@qti.qualcomm.com,m:quic_subbaram@quicinc.com,m:quic_uchheda@quicinc.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qti.qualcomm.com:mid,vger.kernel.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime,qualcomm.com:dkim,qualcomm.com:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER(0.00)[dhruvin.rajpura@oss.qualcomm.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-308875-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dhruvin.rajpura@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:nihal.gupta@oss.qualcomm.com,m:bod@kernel.org,m:vladimir.zapolskiy@linaro.org,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:rfoss@kernel.org,m:andi.shyti@kernel.org,m:bryan.odonoghue@linaro.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:linux-arm-msm@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:quic_svankada@quicinc.com,m:vikram.sharma@oss.qualcomm.com,m:wsa+renesas@sang-engineering.com,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,quicinc.com,oss.qualcomm.com,sang-engineering.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sang-engineering.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linaro.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4E95465E4C8
+X-Rspamd-Queue-Id: 3195B65E486
 
-From: Dhruvin Rajpura <drajpura@qti.qualcomm.com>
+On Mon, Jun 8, 2026 at 4:07=E2=80=AFPM Nihal Kumar Gupta
+<nihal.gupta@oss.qualcomm.com> wrote:
+>
+> Add Shikra compatible consistent with CAMSS CCI interfaces.
+> It requires only two clocks.
+>
+> Signed-off-by: Nihal Kumar Gupta <nihal.gupta@oss.qualcomm.com>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-Earlier commit c85c191694cb ("power: supply: remove faulty cooling
-logic") removed the automatic cooling device registration from
-the power supply framework due to inverted cooling logic and
-missing CHARGE_CONTROL_LIMIT_MAX validation across drivers. As
-a result, drivers that need thermal mitigation support must now
-explicitly register their own cooling devices with correct
-semantics.
+Reviewed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
 
-The battery charger firmware exposes a fast charge current (FCC)
-limit property that can be used to throttle charging current in
-response to thermal events. Without explicit cooling device
-registration, the thermal framework has no way to reduce charging
-current when the device is under thermal stress, which can lead
-to excessive heat buildup during charging. Register a thermal
-cooling device that maps discrete current levels defined in the
-qcom,thermal-mitigation DT property to cooling states, where
-level 0 represents the hardware maximum current queried from
-firmware and each subsequent level reduces current to the next
-DT-defined value. Track the last applied FCC value so thermal
-limits are preserved across firmware protection domain restart
-(PDR) events. Expose CHARGE_CONTROL_LIMIT and
-CHARGE_CONTROL_LIMIT_MAX as power supply properties to allow
-userspace to observe and control the current throttle level.
 
-Co-developed-by: Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
-Signed-off-by: Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
-Co-developed-by: Umang Chheda <quic_uchheda@quicinc.com>
-Signed-off-by: Umang Chheda <quic_uchheda@quicinc.com>
-Signed-off-by: Dhruvin Rajpura <drajpura@qti.qualcomm.com>
----
- drivers/power/supply/qcom_battmgr.c | 256 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 256 insertions(+)
-
-diff --git a/drivers/power/supply/qcom_battmgr.c b/drivers/power/supply/qcom_battmgr.c
-index 490137a23d00..cbc129e9aa17 100644
---- a/drivers/power/supply/qcom_battmgr.c
-+++ b/drivers/power/supply/qcom_battmgr.c
-@@ -14,6 +14,7 @@
- #include <linux/soc/qcom/pdr.h>
- #include <linux/soc/qcom/pmic_glink.h>
- #include <linux/math.h>
-+#include <linux/thermal.h>
- #include <linux/units.h>
- 
- #define BATTMGR_CHEMISTRY_LEN	4
-@@ -283,6 +284,7 @@ struct qcom_battmgr_status {
- 
- 	unsigned int discharge_time;
- 	unsigned int charge_time;
-+	unsigned int max_charge_ctl_limit;
- };
- 
- struct qcom_battmgr_ac {
-@@ -321,9 +323,18 @@ struct qcom_battmgr {
- 	enum qcom_battmgr_unit unit;
- 
- 	int error;
-+
-+	int curr_thermal_level;
-+	int num_thermal_levels;
-+
-+	u32 *thermal_levels;
-+	u32 thermal_fcc_ua;
-+	u32 last_fcc_ua;
-+
- 	struct completion ack;
- 
- 	bool service_up;
-+	bool thermal_dev_registered;
- 
- 	struct qcom_battmgr_info info;
- 	struct qcom_battmgr_status status;
-@@ -449,6 +460,8 @@ static const u8 sm8350_bat_prop_map[] = {
- 	[POWER_SUPPLY_PROP_POWER_NOW] = BATT_POWER_NOW,
- 	[POWER_SUPPLY_PROP_CHARGE_CONTROL_START_THRESHOLD] = BATT_CHG_CTRL_START_THR,
- 	[POWER_SUPPLY_PROP_CHARGE_CONTROL_END_THRESHOLD] = BATT_CHG_CTRL_END_THR,
-+	[POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT] = BATT_CHG_CTRL_LIM,
-+	[POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT_MAX] = BATT_CHG_CTRL_LIM_MAX,
- };
- 
- static int qcom_battmgr_bat_sm8350_update(struct qcom_battmgr *battmgr,
-@@ -612,6 +625,12 @@ static int qcom_battmgr_bat_get_property(struct power_supply *psy,
- 			return -ENODATA;
- 		val->intval = battmgr->status.percent;
- 		break;
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
-+		val->intval = battmgr->curr_thermal_level;
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT_MAX:
-+		val->intval = battmgr->num_thermal_levels;
-+		break;
- 	case POWER_SUPPLY_PROP_TEMP:
- 		val->intval = battmgr->status.temperature;
- 		break;
-@@ -770,6 +789,55 @@ static int qcom_battmgr_bat_is_writeable(struct power_supply *psy,
- 	return 0;
- }
- 
-+static int __battery_psy_set_charge_current(struct qcom_battmgr *battmgr,
-+					    u32 fcc_ua)
-+{
-+	int ret;
-+
-+	mutex_lock(&battmgr->lock);
-+	ret = qcom_battmgr_request_property(battmgr, BATTMGR_BAT_PROPERTY_SET,
-+					    BATT_CHG_CTRL_LIM, fcc_ua);
-+	mutex_unlock(&battmgr->lock);
-+	if (ret < 0) {
-+		dev_err(battmgr->dev, "Failed to set FCC %u, ret=%d\n", fcc_ua, ret);
-+	} else {
-+		dev_dbg(battmgr->dev, "Set FCC to %u uA\n", fcc_ua);
-+		battmgr->last_fcc_ua = fcc_ua;
-+	}
-+
-+	return ret;
-+}
-+
-+static int battery_psy_set_charge_current(struct qcom_battmgr *battmgr,
-+					  int val)
-+{
-+	u32 fcc_ua, prev_fcc_ua;
-+	int ret;
-+
-+	if (!battmgr->num_thermal_levels)
-+		return 0;
-+
-+	if (battmgr->num_thermal_levels < 0) {
-+		dev_err(battmgr->dev, "Incorrect num_thermal_levels\n");
-+		return -EINVAL;
-+	}
-+
-+	if (val < 0 || val > battmgr->num_thermal_levels)
-+		return -EINVAL;
-+
-+	fcc_ua = battmgr->thermal_levels[val];
-+	prev_fcc_ua = battmgr->thermal_fcc_ua;
-+	battmgr->thermal_fcc_ua = fcc_ua;
-+
-+	ret = __battery_psy_set_charge_current(battmgr, fcc_ua);
-+	if (!ret)
-+		battmgr->curr_thermal_level = val;
-+	else
-+		battmgr->thermal_fcc_ua = prev_fcc_ua;
-+
-+	return ret;
-+}
-+
- static int qcom_battmgr_bat_set_property(struct power_supply *psy,
- 					 enum power_supply_property psp,
- 					 const union power_supply_propval *pval)
-@@ -784,6 +852,8 @@ static int qcom_battmgr_bat_set_property(struct power_supply *psy,
- 		return qcom_battmgr_set_charge_start_threshold(battmgr, pval->intval);
- 	case POWER_SUPPLY_PROP_CHARGE_CONTROL_END_THRESHOLD:
- 		return qcom_battmgr_set_charge_end_threshold(battmgr, pval->intval);
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
-+		return battery_psy_set_charge_current(battmgr, pval->intval);
- 	default:
- 		return -EINVAL;
- 	}
-@@ -791,6 +861,19 @@ static int qcom_battmgr_bat_set_property(struct power_supply *psy,
- 	return 0;
- }
- 
-+static int qcom_battmgr_prop_is_writeable(struct power_supply *psy,
-+					  enum power_supply_property prop)
-+{
-+	switch (prop) {
-+	case POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT:
-+		return 1;
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
- static const enum power_supply_property sc8280xp_bat_props[] = {
- 	POWER_SUPPLY_PROP_STATUS,
- 	POWER_SUPPLY_PROP_PRESENT,
-@@ -872,6 +955,8 @@ static const enum power_supply_property sm8350_bat_props[] = {
- 	POWER_SUPPLY_PROP_VOLTAGE_NOW,
- 	POWER_SUPPLY_PROP_VOLTAGE_MAX,
- 	POWER_SUPPLY_PROP_CURRENT_NOW,
-+	POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT,
-+	POWER_SUPPLY_PROP_CHARGE_CONTROL_LIMIT_MAX,
- 	POWER_SUPPLY_PROP_TEMP,
- 	POWER_SUPPLY_PROP_TECHNOLOGY,
- 	POWER_SUPPLY_PROP_CHARGE_COUNTER,
-@@ -892,6 +977,8 @@ static const struct power_supply_desc sm8350_bat_psy_desc = {
- 	.properties = sm8350_bat_props,
- 	.num_properties = ARRAY_SIZE(sm8350_bat_props),
- 	.get_property = qcom_battmgr_bat_get_property,
-+	.set_property = qcom_battmgr_bat_set_property,
-+	.property_is_writeable = qcom_battmgr_prop_is_writeable,
- };
- 
- static const enum power_supply_property sm8550_bat_props[] = {
-@@ -1434,6 +1521,11 @@ static void qcom_battmgr_sm8350_callback(struct qcom_battmgr *battmgr,
- 		case BATT_CURR_NOW:
- 			battmgr->status.current_now = le32_to_cpu(resp->intval.value);
- 			break;
-+		case BATT_CHG_CTRL_LIM:
-+			break;
-+		case BATT_CHG_CTRL_LIM_MAX:
-+			battmgr->status.max_charge_ctl_limit = le32_to_cpu(resp->intval.value);
-+			break;
- 		case BATT_TEMP:
- 			val = le32_to_cpu(resp->intval.value);
- 			battmgr->status.temperature = DIV_ROUND_CLOSEST(val, 10);
-@@ -1479,6 +1571,25 @@ static void qcom_battmgr_sm8350_callback(struct qcom_battmgr *battmgr,
- 			break;
- 		}
- 		break;
-+
-+	case BATTMGR_BAT_PROPERTY_SET:
-+		property = le32_to_cpu(resp->intval.property);
-+		if (payload_len != sizeof(resp->intval)) {
-+			dev_warn(battmgr->dev,
-+				 "invalid payload length for %#x request: %zd\n",
-+				 property, payload_len);
-+			battmgr->error = -ENODATA;
-+			return;
-+		}
-+
-+		battmgr->error = le32_to_cpu(resp->intval.result);
-+		if (battmgr->error) {
-+			dev_err(battmgr->dev, "Error in response for opcode :%#x prop_id :%u, ret :%d\n",
-+				opcode, property, battmgr->error);
-+			goto out_complete;
-+		}
-+		break;
-+
- 	case BATTMGR_USB_PROPERTY_GET:
- 		property = le32_to_cpu(resp->intval.property);
- 		if (payload_len != sizeof(resp->intval)) {
-@@ -1583,6 +1694,133 @@ static void qcom_battmgr_callback(const void *data, size_t len, void *priv)
- 		qcom_battmgr_sm8350_callback(battmgr, data, len);
- }
- 
-+static int
-+qcom_battmgr_chg_get_max_charge_cntl_limit(struct thermal_cooling_device *tcd,
-+					   unsigned long *state)
-+{
-+	struct qcom_battmgr *battmgr = tcd->devdata;
-+
-+	*state = battmgr->num_thermal_levels;
-+
-+	return 0;
-+}
-+
-+static int
-+qcom_battmgr_chg_get_cur_charge_cntl_limit(struct thermal_cooling_device *tcd,
-+					   unsigned long *state)
-+{
-+	struct qcom_battmgr *battmgr = tcd->devdata;
-+
-+	*state = battmgr->curr_thermal_level;
-+
-+	return 0;
-+}
-+
-+static int
-+qcom_battmgr_set_cur_charge_cntl_limit(struct thermal_cooling_device *tcd,
-+				       unsigned long state)
-+{
-+	struct qcom_battmgr *battmgr = tcd->devdata;
-+
-+	return battery_psy_set_charge_current(battmgr, (int)state);
-+}
-+
-+static const struct thermal_cooling_device_ops battery_tcd_ops = {
-+	.get_max_state = qcom_battmgr_chg_get_max_charge_cntl_limit,
-+	.get_cur_state = qcom_battmgr_chg_get_cur_charge_cntl_limit,
-+	.set_cur_state = qcom_battmgr_set_cur_charge_cntl_limit,
-+};
-+
-+static int qcom_battmgr_register_thermal_cooling_device(struct qcom_battmgr *battmgr)
-+{
-+	struct thermal_cooling_device *tcd;
-+	u32 prev;
-+	int ret, i;
-+
-+	/* Skip registering thermal cooling device if thermal levels are not defined */
-+	if (!battmgr->num_thermal_levels)
-+		return 0;
-+
-+	if (battmgr->thermal_dev_registered)
-+		return 0;
-+
-+	mutex_lock(&battmgr->lock);
-+	ret = qcom_battmgr_request_property(battmgr, BATTMGR_BAT_PROPERTY_GET,
-+					    BATT_CHG_CTRL_LIM_MAX, 0);
-+	mutex_unlock(&battmgr->lock);
-+
-+	if (ret < 0) {
-+		dev_err(battmgr->dev, "Unable to read CHG_CTRL_LIMIT_MAX ret :%d\n", ret);
-+		return ret;
-+	}
-+
-+	prev = battmgr->status.max_charge_ctl_limit;
-+
-+	for (i = 1; i <= battmgr->num_thermal_levels; i++) {
-+		if (battmgr->thermal_levels[i] > prev) {
-+			dev_err(battmgr->dev, "Thermal values not defined as expected\n");
-+			return -EINVAL;
-+		}
-+		prev = battmgr->thermal_levels[i];
-+	}
-+
-+	battmgr->thermal_levels[0] = battmgr->status.max_charge_ctl_limit;
-+	battmgr->thermal_fcc_ua = battmgr->status.max_charge_ctl_limit;
-+
-+	/* Register Thermal Cooling Device */
-+	tcd = devm_thermal_of_cooling_device_register(battmgr->dev,
-+						      battmgr->dev->of_node,
-+						      (char *)battmgr->bat_psy->desc->name,
-+						      battmgr, &battery_tcd_ops);
-+	if (IS_ERR_OR_NULL(tcd)) {
-+		ret = PTR_ERR_OR_ZERO(tcd);
-+		dev_err(battmgr->dev, "Failed to register thermal cooling device ret=%d\n", ret);
-+		return ret;
-+	}
-+
-+	battmgr->thermal_dev_registered = true;
-+
-+	return ret;
-+}
-+
-+static int qcom_battmgr_parse_dt(struct qcom_battmgr *battmgr)
-+{
-+	struct device_node *node = battmgr->dev->of_node;
-+	int len, ret;
-+
-+	ret = of_property_count_elems_of_size(node, "qcom,thermal-mitigation", sizeof(u32));
-+	if (ret == -EINVAL)
-+		return 0;               /* property not defined, thermal mitigation disabled */
-+	if (ret <= 0)
-+		return ret;              /* real error, propagate */
-+
-+	len = ret;
-+
-+	battmgr->thermal_levels = devm_kcalloc(battmgr->dev, len + 1,
-+					       sizeof(*battmgr->thermal_levels),
-+					       GFP_KERNEL);
-+	if (!battmgr->thermal_levels)
-+		return -ENOMEM;
-+
-+	/*
-+	 * Element 0 is for normal charging current. Elements from index 1
-+	 * onwards is for thermal mitigation charging currents.
-+	 */
-+
-+	ret = of_property_read_u32_array(node, "qcom,thermal-mitigation",
-+					 &battmgr->thermal_levels[1], len);
-+	if (ret < 0) {
-+		dev_err(battmgr->dev, "Error in reading qcom,thermal-mitigation, ret=%d\n",
-+			ret);
-+
-+		return ret;
-+	}
-+
-+	battmgr->num_thermal_levels = len;
-+
-+	return ret;
-+}
-+
- static void qcom_battmgr_enable_worker(struct work_struct *work)
- {
- 	struct qcom_battmgr *battmgr = container_of(work, struct qcom_battmgr, enable_work);
-@@ -1596,6 +1834,18 @@ static void qcom_battmgr_enable_worker(struct work_struct *work)
- 	ret = qcom_battmgr_request(battmgr, &req, sizeof(req));
- 	if (ret)
- 		dev_err(battmgr->dev, "failed to request power notifications\n");
-+
-+	if (!battmgr->thermal_dev_registered) {
-+		ret = qcom_battmgr_register_thermal_cooling_device(battmgr);
-+		if (ret < 0)
-+			dev_err(battmgr->dev, "failed to register thermal cooling device ret:%d\n",
-+				ret);
-+	} else if (battmgr->last_fcc_ua) {
-+		ret = __battery_psy_set_charge_current(battmgr, battmgr->last_fcc_ua);
-+		if (ret < 0)
-+			dev_err(battmgr->dev, "Failed to set FCC (%u uA), ret:%d\n",
-+				battmgr->last_fcc_ua, ret);
-+	}
- }
- 
- static void qcom_battmgr_pdr_notify(void *priv, int state)
-@@ -1690,6 +1940,12 @@ static int qcom_battmgr_probe(struct auxiliary_device *adev,
- 			return dev_err_probe(dev, PTR_ERR(battmgr->wls_psy),
- 					     "failed to register wireless charing power supply\n");
- 	} else {
-+		ret = qcom_battmgr_parse_dt(battmgr);
-+		if (ret < 0) {
-+			dev_err(dev, "Failed to parse thermal mitigation levels ret:%d\n", ret);
-+			return ret;
-+		}
-+
- 		if (battmgr->variant == QCOM_BATTMGR_SM8550)
- 			psy_desc = &sm8550_bat_psy_desc;
- 		else
-
--- 
-2.34.1
-
+> ---
+>  Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Do=
+cumentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> index 7c497a358e1dc8cec8b31c17bfedf315e4e00606..c94069afd8d06dbb08ddd6b49=
+e2de7dc7acdc29a 100644
+> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> @@ -35,6 +35,7 @@ properties:
+>                - qcom,sc8280xp-cci
+>                - qcom,sdm670-cci
+>                - qcom,sdm845-cci
+> +              - qcom,shikra-cci
+>                - qcom,sm6150-cci
+>                - qcom,sm6350-cci
+>                - qcom,sm8250-cci
+> @@ -137,6 +138,7 @@ allOf:
+>                - qcom,kaanapali-cci
+>                - qcom,qcm2290-cci
+>                - qcom,qcs8300-cci
+> +              - qcom,shikra-cci
+>                - qcom,sm8750-cci
+>      then:
+>        properties:
+>
+> --
+> 2.34.1
+>
 
