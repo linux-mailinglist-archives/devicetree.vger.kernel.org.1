@@ -1,424 +1,273 @@
-Return-Path: <devicetree+bounces-309274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309273-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7EDJEGRcKGriCgMAu9opvQ
-	(envelope-from <devicetree+bounces-309274-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:33:08 +0200
+	id PaTnBRVZKGo0CgMAu9opvQ
+	(envelope-from <devicetree+bounces-309273-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:19:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E06663583
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:33:07 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A54B96633FC
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:19:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=c0fWavgy;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309274-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-309274-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b="vqk2o/2l";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309273-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309273-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 21745308C15C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 18:23:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1C2ED3024F9F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 18:19:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA46495528;
-	Tue,  9 Jun 2026 18:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01ED3494A19;
+	Tue,  9 Jun 2026 18:18:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011046.outbound.protection.outlook.com [40.107.130.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54D6F481668
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 18:23:16 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781029397; cv=none; b=YavNXbdaJjaPcSIJhJbWI/AM3tgSnGjmzk+jEA5aIvup4OHFEA+4LiRdTQWeVoWMaIMYJacUEZ4cfQfJ+vHdgECibXd0VclIYnwFxo+keWIwUbbJ/wd1v2cKPur9YzbAy/a0wFXcPT7hLEoFJhfFo1D7fJ+cMrQ2zSmMQJbINEw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781029397; c=relaxed/simple;
-	bh=jS73l8ZPEadDtpuBKIkNYTrDKaEL2P2VVxQ/333SYxA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cvBZcVDpcbphOMXLM+AS2ua9b8OrhWyWpEwWiMNCDjVzTFw9zPIUY6Dr4WquWnWiNGJ+QoITjx0wx+80VMCEHQStAyrZ9fW7Ql5egKouhS7rq+MAfPFD6+OCTL3dEnolfIHgaWDcnwIXCXi3e6fGLdWzXtzRb1cXBDGqs3p9974=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c0fWavgy; arc=none smtp.client-ip=209.85.216.49
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-36d98b68d68so3879011a91.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 11:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781029395; x=1781634195; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5yOK2OmpxELpIU8FfMiRQLGMlc8197Q+PjU02X23WEs=;
-        b=c0fWavgyuyoStlbWSOZhGG6sbZ+XTuqYLD1UoIoMsX7unC7udaPmZmQZedy7iDL1MM
-         QVKqwRE2AG2Gq0Nvj7r5dpwHc1IT07c/qNdehWlrb2jZ5AjSCoBkIwhinC2v8EPQ9S4Q
-         pYn55vyx1l75a974AUnnazsG1InYQoQmfbC9Ele6v5bji9E50wLs00fQwZuGLjgfF8sR
-         8GObpM2NZlvrr5qc3/9aZV3+PjIg5Bs8QM9ca6LCjxbnash0ayysp8L+eUVoO1LdQ4wX
-         rxxqXorytF15C15ZaZb9yY0alFBnGzFeU1D9SJQ6fZdJne9xFyNLhwlupc4hbW41xM61
-         JGJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781029395; x=1781634195;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5yOK2OmpxELpIU8FfMiRQLGMlc8197Q+PjU02X23WEs=;
-        b=iar8R1/042M6aU+/CXmGY/kH+GOqeKSvMFYGec8EvIiR/G5CEqfufdDAuXwc3kGYgp
-         BDXwXVQDRyRb3RKjcY4SudCcs5FqRWvoemvm34oLzqEM+e8MB+/9Gw1HptspQChyHHQm
-         6pKU4eSMSruUGxCJBG/3Kj60m074hniE1L9T5Tyt6udKe4DswQdehcqQrtTfCCFa6vaf
-         pcffuv/1YsceoDVcWLEipFIcwLSYfjO9qQv/pbgdIgX5tSk9r/hD0lcNCmdTqgE6kDl+
-         OwIF+BhMTZxWJttpAKZOlLsm6F4YeiVScUC2UXzWQ/63uePhDn/chUDzxSrpMzdsGnsM
-         6wpg==
-X-Forwarded-Encrypted: i=1; AFNElJ+kWN5mlpUunYfjzwq1ez8qMPecLIK3IYp8kEmLbRLDlTYDi7xGYxSSkMASHlHRjrqKp6aX3igRplXL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2kjNYrwr2T54Ki/1yHcd74wQ0F0xCI8It2616VjEVZDNYy+0h
-	iI2roXreW36XFB9e5+jdkoEB86OFtsHV1BjelAZUNDuYJJYobGiUsTEb
-X-Gm-Gg: Acq92OFghMpyAWWU2x0SPdOLMW5GjzwC3ji87Dy2Db00xiGkzP2+igLpQA8jlkrQcnt
-	iAThJgQV5cRPo43lXvcIViftgKOj/1wMVFPlap4K7F98FxOLm4LwIda57GRvX3r0av1YRoo/Iwx
-	dmnFuotLksB1aGGpVIeZz6awqKkd/Hc+/QlZHkWr3wTDh4h0K3AWPGarPaiyf5RLoEDH6ZI8bAw
-	jQDcG4v+zu9BY8r/xms1LxvinaVLnCwK4fIgr65ioNd6DF+r6u7Adpj++eRK6SUH9UcCFCizU6F
-	Om7e1RkLiee31pf/YtC0JPP/cf1i0DcniGHInodNcqlVJGvg54NQOogPxpLPACndxJ618wIbaf+
-	NU0W20GgcEkPePLr4C0zyLg+aPiJ+IKNGx1kewN+HBbz2wwCgd5o29MIEM8PTAMyFX1c16i3t/g
-	sh+S9tasnhfDvDGs4UzkQGGlamWU0MLqi0VJf+YlEuD7j9QJt/yHQy7nZwvpkIX8ETFUOwUKAz1
-	FQY/Fug3tXI7PHt3lE=
-X-Received: by 2002:a17:90b:1a86:b0:36b:91a3:6af3 with SMTP id 98e67ed59e1d1-370eeb174e9mr21556483a91.7.1781029395432;
-        Tue, 09 Jun 2026 11:23:15 -0700 (PDT)
-Received: from fedora ([103.181.54.100])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c164f6d69csm218805815ad.2.2026.06.09.11.23.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2026 11:23:15 -0700 (PDT)
-From: Ninad Naik <ninadnaik07@gmail.com>
-To: lee@kernel.org,
-	pavel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jonas.gorski@gmail.com,
-	noltari@gmail.com
-Cc: linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	me@brighamcampbell.com,
-	linux-kernel-mentees@lists.linux.dev,
-	skhan@linuxfoundation.org,
-	Ninad Naik <ninadnaik07@gmail.com>
-Subject: [PATCH v2] dt-bindings: leds: bcm6358: Convert to DT schema
-Date: Tue,  9 Jun 2026 23:47:01 +0530
-Message-ID: <20260609181731.1379846-1-ninadnaik07@gmail.com>
-X-Mailer: git-send-email 2.54.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397FC3D1A97;
+	Tue,  9 Jun 2026 18:18:56 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781029138; cv=fail; b=av7fG/Wuya/KB4McjyzzE06lPS8woNOLJPyvj46BSzj7+7zWN/YDYhqqoRWpFjzGBtHDOPUarLtIsffTdJQHajNQu67iW3iRrQv9HkBH5IDHpK8fvDJ0fjx8oMw2ZKfHxt3zHSYtv4TeYBaRzm34onWpSRHdSf2SU6eDuBsa9Zk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781029138; c=relaxed/simple;
+	bh=1CnAhJY3CQFrfYJHG7jh4N6/CeZeW8cG5tAOu5EW3yM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=o3e8LDFMRTtw7gzw/lb4pZEM6KB3ITH31J73S5RfzNcI4t1eY4cvGTgP2ECdvY8Zw8Gy4U5OFBEs9nVm9KtBDj8TdQbkFSMUR/iKuYkxVVV18jZlE6pIat2CAwSnSv/UaSeZE61kUpgI210igEhblE6wox/D5rVSDju3S1yCHME=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=vqk2o/2l; arc=fail smtp.client-ip=40.107.130.46
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rLcShSUve3C2g/oZrKHHKWi3ZspZyAOOevKCw7OIXgvJcTkJq6K+LMIUB6HF1SJRt4ez6O1goneaiJCXuDUK3IBzV335S3JaZ6mrr5fdAtHuJhyQaMJpvcrh7O49ZxULBCVTwzPw/8l6NAJsN8uqV1bWopI1BRYPfd1o+MVMCSw/X2w5XqZB5YaXTnlCLL894up5VZvhAnUKc7k5nvsYx2iIdekmcnhGXJF/vQ9ISSZFmpzEEQiwQvP9MgscT1bSZ3phSHbUPnikd21y9aAxwbBKVvcIjj2jZDQQN4fB+qK2NuT0I2SBL34TceRUB17/wdGB1iRCwDIlAzikwLS2/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oqnvk+IqNSgxtN7lgrT9gTWIrgCsQaSWQxoR1KyhfjQ=;
+ b=XkS25RUR2GdX3Zm3e5dP4UlzCxyCyxhXeQE87ilSL/y6KQIWKCfuEmStzIsMcXt1CBlByf+aTv8hX93mNC3NqnztvcB8eF8T9R7AyFxr1cV8Mtr5oUtVaQEp5mK+xRqt089xIyzz66tEtXr1bSIUpgst/UBO29M6s0ZfVoiVC09cRre2soa+qlz7Xouj0IfmSPaLndif35KAyjQieQ86uCiTbIKj830xAX/h7T2P8aex877b9rdPBeANIe3mHVgzTn56UcCfii7fLwwsnVf+Qp+qgQ13dUZyhXXHSjzojmFFoAk8WUN96AnnBdoTy7U1DZClXYbQEL2zUBH8tcno0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oqnvk+IqNSgxtN7lgrT9gTWIrgCsQaSWQxoR1KyhfjQ=;
+ b=vqk2o/2lYYeAJYZB4EgEJwAkioQRxEW0Dvlgnepab0u73jQPejbwU3Il+R8NLuj/uCIhMdtcTWRdJPXGPZCqRxC6EaLca/VvL0pEn3p7Eost4MTXEoUDjxmok0Qlu6bDVRxXxgzf6llH63MxtUxpSSvkkwIXJ2BZ9+c4zVhCdcB5iYiFXp2SLpVq3L9prf2Qp1obEFXy483MkYdHRLpHncu5Pw7GdjEMjI9QsUQ6UBzDqDoVhRwKHjNNfObS+7LTJZrT6ypIWpluy5mC+soNE0mKmLz/NesRQ1jLCveqeI/WOjm8Dhv4O7BudMAietucpr9GRW0SwEtl0J8dH9NVZQ==
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com (2603:10a6:150:2cf::9)
+ by GV1PR04MB11013.eurprd04.prod.outlook.com (2603:10a6:150:20a::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.14; Tue, 9 Jun 2026
+ 18:18:53 +0000
+Received: from GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c]) by GV2PR04MB11799.eurprd04.prod.outlook.com
+ ([fe80::2146:83a2:5329:b7c%6]) with mapi id 15.21.0092.011; Tue, 9 Jun 2026
+ 18:18:52 +0000
+Date: Tue, 9 Jun 2026 14:18:44 -0400
+From: Frank Li <Frank.li@oss.nxp.com>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, Peng Fan <peng.fan@nxp.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Daniel Baluta <daniel.baluta@oss.nxp.com>,
+	Francesco Dolcini <francesco@dolcini.it>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: remoteproc: imx_rproc: document
+ optional "memory-region-names"
+Message-ID: <aihZBB0rMob3a23f@lizhi-Precision-Tower-5810>
+References: <20260605113621.1479-1-laurentiumihalcea111@gmail.com>
+ <20260605113621.1479-2-laurentiumihalcea111@gmail.com>
+ <aihB5rVLsVqzg6cb@p14s>
+ <aihIIwt_9T7yYxP3@SMW015318>
+ <CANLsYkxw6rbWNom8rNfKurKAXKpihqV1LTd51D5YXG4oFP6-wg@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CANLsYkxw6rbWNom8rNfKurKAXKpihqV1LTd51D5YXG4oFP6-wg@mail.gmail.com>
+X-ClientProxiedBy: SA1PR04CA0024.namprd04.prod.outlook.com
+ (2603:10b6:806:2ce::28) To GV2PR04MB11799.eurprd04.prod.outlook.com
+ (2603:10a6:150:2cf::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV2PR04MB11799:EE_|GV1PR04MB11013:EE_
+X-MS-Office365-Filtering-Correlation-Id: c87dffcc-34da-47d7-e35f-08dec6538f81
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|19092799006|376014|7416014|366016|13003099007|18002099003|22082099003|11063799006|4143699003|56012099006|3023799007;
+X-Microsoft-Antispam-Message-Info:
+	OGR1q8gZ+tKX1Vpzb8h1ITLSH05LXzqhnzrAHWLf8t7cYpDGKGkFzmziziZxu92T9dFovPELGzD3EnlwzhAQhd/lIbA2ygVXshFH9O8bkDDRO0jw7WrKinSrmsHFE4XV9MwOrztAbP5i3Z7MJrLMiZZX115n4AipA1eghNjO5IS/kgKT5RnT9MSCcTaMUjQG0gu9vCxP6Gdp/5vijXS6uckeG6igRyumZnWnDK9LN6AjugyY5NIigzYlPj/8Bb/5Q4B1hDRRK5XsMYcRgrN+r9Y3Iqzsr1Ghu7Kuna6PbZ5qjFs+NPNCoZOaqJ2XQDMrLZ1Zu215kksRazVy9JtFbHnDXxDVUVfKzuRBs+g3kFkbFXbe4NtQv5dmg07NKLPkxKy4p4JF4zBV+0sblXUM2JHdBzbC62JXB9aQ5puuFoyNqQbCZ+xPxSLNQ0tWeQ1VOO+LqpUEF7qsdivkDAQQDOuCjm2JcnnOkjv38U8QCj1v4gBCDyDoBFPkNyWiGmCNnBaf/o8jhJJjUBuS5xxL/bGnJJFptDH6lY2gsnViOcyGXid5uYmXmJbN5qpi0XeBO8X1Zay+EgGlnM1qWEVqvPe09tOquBCico0HFmL1oDZh2KJrXHL9R5AsqIc8N30GWi/f4nUux3t1rVGuhPMKlpnKy3sPL8UKCZKYwtEKN3CTo2hkLNSzG0KFa5+8jgK0
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR04MB11799.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(376014)(7416014)(366016)(13003099007)(18002099003)(22082099003)(11063799006)(4143699003)(56012099006)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?gTNDpuVln3jS//dtQWkibK9FMmAqe5RXsf/87zm07z0O/FkCZv96kAkW94dL?=
+ =?us-ascii?Q?rMy/MSJcskpOO2AQJZvSqidr/Mdn7guHQjScOWjGXXHH3ud28rL4z5wKSsnU?=
+ =?us-ascii?Q?oUVVqaBTJzgunGUH3UmduRvUdq0gqJS96vFx5GgiRK3BAs83gnhCjFDOOvXO?=
+ =?us-ascii?Q?/uNEI8w4yDsH+p5HlML6+S1lpGnaBKeFWLGPoOYKiOcqj9cZumAyQzjh8Xky?=
+ =?us-ascii?Q?rpOGzIUOZByrP1+Wl/Zzekdia/38OFDGPFhgUMSxuI59/A5bBJBToPzcmdyw?=
+ =?us-ascii?Q?4vqkQ7ZCkZJJxwViYnCShymdyrX9ftmKgzDoAJsuohLAheqRgOUEQzGi47vG?=
+ =?us-ascii?Q?0m3T277ytnF7fhGTRRCrECwhxwFE5Sx2nX/yY/XE2dhHTT0f7pYsVgJqYh1K?=
+ =?us-ascii?Q?LgNawYCu+6MrQiTByHjbrdKu0FzNLJg2+yFwNLaG4b/9Kmkgxh9oEQL8G7bJ?=
+ =?us-ascii?Q?dzmLCiQsg+P8x59rkefjFGF2f6vEY1BPAeqgtp/nCfxiLz2YwZxyfv04Zkut?=
+ =?us-ascii?Q?2umQcp0JOQP0ec5IIOZ0VSJUgYgusTYVgemtfyujbmzQFGIt9duBFpsM2PEn?=
+ =?us-ascii?Q?t7IK3t15oNdHWELyo4wggOrG66ZObXYhwZ445awUw60pEnnmPSWGEJNNFdxh?=
+ =?us-ascii?Q?Qb1oZVtcs+4/Sk12ERXcffBR8pwke9/rh18xsYjzmfpbGlRZHG6UArAKd1/L?=
+ =?us-ascii?Q?k8ls2DO5WQAM7sVJujTUO89+TRWuc3YLGHMEpVISIKRtRKPCboZbvHBaDdpv?=
+ =?us-ascii?Q?+WutnbO+czf97JNyMUadD2TnUmKC1neF04NsFScWNr+P41IpmCylly13pP0u?=
+ =?us-ascii?Q?XVeQVianq2CT8mGuoYC3TTXaDHxuELXOQRu7yp+yvOP7CCU+SzeT7Ct6eaMo?=
+ =?us-ascii?Q?Xe/sqYuTq5vgBuIOOemp1SQtvr/CN1ZHIxXFrAUUGOmJbSW706BqQREdQPS3?=
+ =?us-ascii?Q?XG1Z4KBO/GomXpSkGjabP7DxlldHBJc5uqOvg9y3tInNpLXexc01EtpQdhXO?=
+ =?us-ascii?Q?Ce/bh/LVskA3aaomdQqFonb1UfSFIKRPoRH3noLn6yx+Dusv1uuTj/pgiTeg?=
+ =?us-ascii?Q?TNXQaDFONMLCC99pZ2Lx97bLXj6HjCS2nBD/pXAmEh0vGIvQTim4FK1SEtBa?=
+ =?us-ascii?Q?3ObeiP2lFnuXpjdZvTqKKUZoEQrkH3dETb6vcvqbFNq2Nh9Vju90OQW2pmwV?=
+ =?us-ascii?Q?ziCbeNs/p9hHr3IOFp9vnSSVKXz/yWtzcS/4M4FlAZ+6TnZcT1j38hWq7TS2?=
+ =?us-ascii?Q?3rzC6RKzeAJE6n8yzC0AliYk+I97UTFNz31KXeXS0Nv65gpEEQPyFPZuKdGX?=
+ =?us-ascii?Q?VwueSoY979OcYp6wJHkC3CX4arWwSLf78Ev4JS7/2zvEk5QEfS7ahLBbDZyC?=
+ =?us-ascii?Q?H0T6EC+i9qApVHknvkpw5dE/8wPra3ytCA7kN112r+KmwZo3k/yjTyViNPOk?=
+ =?us-ascii?Q?7PMvxOPSnoVf9wN/QuKrdM5zXGcvmfh0SWB53huwJ38KpYyRg9M/aAHNmzMi?=
+ =?us-ascii?Q?zox8G8kvnMbDtOzXvFHnh8kz8/f31SxsHtVYhQ99/aHudhOGxx1nZr2o3YeP?=
+ =?us-ascii?Q?VRK2Fqp6NaWxhOXWhWte4aADKha8yt8ALh/fkRTq1HEzFXfXHF82/pB63L/f?=
+ =?us-ascii?Q?J+RsBd4b2QaqlIuzeFb6CxIIz9bXpikpNvI0AGFt+++xcYjCMuGMLdBoO+h5?=
+ =?us-ascii?Q?Yp5NQTAvj2X+aLxj1UdCZjlQs5o7TycmRvSXJhrrg4U2HDSmgp16WkMJCw7a?=
+ =?us-ascii?Q?NyK/o/VzI9SDbjcUbAlS5miySdIVeU9fY/JQxtpBmoVFoPPSy3RO?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c87dffcc-34da-47d7-e35f-08dec6538f81
+X-MS-Exchange-CrossTenant-AuthSource: GV2PR04MB11799.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2026 18:18:52.7219
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CA2pU0oobHArsCfzFBQC43xJ3+x/kpAmFktLn9ayLBo6iD2ApV5F0gTCIvoSufuz+BXzsW2E1IfRd3Q2YD16XS/Og9DONvTgCdocm2GMRMORcAdro45f1XeXmPkQ7Npt
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB11013
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309274-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonas.gorski@gmail.com,m:noltari@gmail.com,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:me@brighamcampbell.com,m:linux-kernel-mentees@lists.linux.dev,m:skhan@linuxfoundation.org,m:ninadnaik07@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:jonasgorski@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[ninadnaik07@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309273-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mathieu.poirier@linaro.org,m:laurentiumihalcea111@gmail.com,m:andersson@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:s.hauer@pengutronix.de,m:peng.fan@nxp.com,m:festevam@gmail.com,m:daniel.baluta@oss.nxp.com,m:francesco@dolcini.it,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ninadnaik07@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,brighamcampbell.com,lists.linux.dev,linuxfoundation.org,gmail.com];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@oss.nxp.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,pengutronix.de,nxp.com,oss.nxp.com,dolcini.it,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	REDIRECTOR_URL(0.00)[aka.ms];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aka.ms:url,vger.kernel.org:from_smtp,NXP1.onmicrosoft.com:dkim,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,linaro.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 43E06663583
+X-Rspamd-Queue-Id: A54B96633FC
 
-Convert the brcm,bcm6358 to DT schema.
+On Tue, Jun 09, 2026 at 11:33:03AM -0600, Mathieu Poirier wrote:
+> [You don't often get email from mathieu.poirier@linaro.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+>
+> On Tue, 9 Jun 2026 at 11:06, Frank Li <Frank.li@oss.nxp.com> wrote:
+> >
+> > On Tue, Jun 09, 2026 at 10:40:06AM -0600, Mathieu Poirier wrote:
+> > > [You don't often get email from mathieu.poirier@linaro.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> > >
+> > > On Fri, Jun 05, 2026 at 04:36:18AM -0700, Laurentiu Mihalcea wrote:
+> > > > From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> > > >
+> > > > The names of the carveout regions are derived using the names of the
+> > > > reserved memory devicetree nodes, which are referenced using the
+> > > > "memory-region" property. This adds a restriction on the names of said
+> > > > devicetree nodes, often bearing specific names such as: "vdevbuffer",
+> > > > "vdev0vring0", "rsc-table", etc... This goes against the devicetree
+> > > > specification's recommendation, which states that the devicetree node
+> > > > names should be generic.
+> > >
+> > > I don't see what is so restrictive in using the node name of the reserved-memory
+> > > regions.  Function of_reserved_mem_region_to_resource() is already doing all the
+> > > parsing, packaging everything in a neat and easy to use "struct resource".  What
+> > > will you gain with this new "memory-region-names" that can't be done with the
+> > > current solution?
+> >
+> > DT Binding check can't find such wrong if node name is not what expected.
+> > Binding can't restrict memory's node name because there ware not specific
+> > compatible string for it.
+> >
+>
+> But what "wrong" could that be, and what kind of restriction are you
+> hoping to enforce?  What specific problem are you hoping to solve?
 
-Signed-off-by: Ninad Naik <ninadnaik07@gmail.com>
----
-Changes in v2:
-- Modify the maintainers list.
-- Add maxItems: 1 and removed minimum and maximum in reg property.
-- Explicitly list the properties: label, default-state, linux,default-trigger
-  and active-low
-- Change unevaluatedProperties: false to additionalProperties: false
+The sometime miss rsc-table or wrong use rsc_table as node name, dt check
+will be pass, but related driver will be failure.
 
- .../bindings/leds/brcm,bcm6358-leds.yaml      | 105 +++++++++++++
- .../devicetree/bindings/leds/leds-bcm6358.txt | 143 ------------------
- 2 files changed, 105 insertions(+), 143 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/leds/brcm,bcm6358-leds.yaml
- delete mode 100644 Documentation/devicetree/bindings/leds/leds-bcm6358.txt
+>
+> I'll wait to see what the DT people think about this - I personally
+> don't see the value in it.
 
-diff --git a/Documentation/devicetree/bindings/leds/brcm,bcm6358-leds.yaml b/Documentation/devicetree/bindings/leds/brcm,bcm6358-leds.yaml
-new file mode 100644
-index 000000000000..1b586a0c27b7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/brcm,bcm6358-leds.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/brcm,bcm6358-leds.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LEDs connected to Broadcom BCM6358 controller
-+
-+description: |
-+  This controller is present on BCM6358 and BCM6368.
-+  In these SoCs there are Serial LEDs (LEDs connected to a 74x164 controller),
-+  which can either be controlled by software (exporting the 74x164 as spi-gpio.
-+  See Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml), or
-+  by hardware using this driver.
-+
-+maintainers:
-+  - Álvaro Fernández Rojas <noltari@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: brcm,bcm6358-leds
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  brcm,clk-div:
-+    description: SCK signal divider.
-+    default: 1
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2, 4, 8]
-+
-+  brcm,clk-dat-low:
-+    description: Makes clock and data signals active low.
-+    type: boolean
-+
-+patternProperties:
-+  "^led@(0|1?[0-9a-f])$":
-+    type: object
-+    $ref: common.yaml#
-+    description: Each LED is represented as a sub-node of
-+      this device.
-+
-+    properties:
-+      reg:
-+        description: LED pin number (0 to 31).
-+        maxItems: 1
-+
-+      label: true
-+
-+      default-state: true
-+
-+      linux,default-trigger: true
-+
-+      active-low: true
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+    led-controller@fffe00d0 {
-+        compatible = "brcm,bcm6358-leds";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <0xfffe00d0 0x8>;
-+
-+        led@0 {
-+            reg = <0>;
-+            active-low;
-+            label = "white:alarm";
-+        };
-+        led@2 {
-+            reg = <2>;
-+            active-low;
-+            label = "white:tv";
-+        };
-+        led@3 {
-+            reg = <3>;
-+            active-low;
-+            label = "white:tel";
-+        };
-+        led@4 {
-+            reg = <4>;
-+            active-low;
-+            label = "white:adsl";
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/leds/leds-bcm6358.txt b/Documentation/devicetree/bindings/leds/leds-bcm6358.txt
-deleted file mode 100644
-index 211ffc3c4a20..000000000000
---- a/Documentation/devicetree/bindings/leds/leds-bcm6358.txt
-+++ /dev/null
-@@ -1,143 +0,0 @@
--LEDs connected to Broadcom BCM6358 controller
--
--This controller is present on BCM6358 and BCM6368.
--In these SoCs there are Serial LEDs (LEDs connected to a 74x164 controller),
--which can either be controlled by software (exporting the 74x164 as spi-gpio.
--See Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml), or
--by hardware using this driver.
--
--Required properties:
--  - compatible : should be "brcm,bcm6358-leds".
--  - #address-cells : must be 1.
--  - #size-cells : must be 0.
--  - reg : BCM6358 LED controller address and size.
--
--Optional properties:
--  - brcm,clk-div : SCK signal divider. Possible values are 1, 2, 4 and 8.
--    Default : 1
--  - brcm,clk-dat-low : Boolean, makes clock and data signals active low.
--    Default : false
--
--Each LED is represented as a sub-node of the brcm,bcm6358-leds device.
--
--LED sub-node required properties:
--  - reg : LED pin number (only LEDs 0 to 31 are valid).
--
--LED sub-node optional properties:
--  - label : see Documentation/devicetree/bindings/leds/common.txt
--  - default-state : see
--    Documentation/devicetree/bindings/leds/common.txt
--  - linux,default-trigger : see
--    Documentation/devicetree/bindings/leds/common.txt
--
--Examples:
--Scenario 1 : BCM6358
--	leds0: led-controller@fffe00d0 {
--		compatible = "brcm,bcm6358-leds";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0xfffe00d0 0x8>;
--
--		alarm_white {
--			reg = <0>;
--			active-low;
--			label = "white:alarm";
--		};
--		tv_white {
--			reg = <2>;
--			active-low;
--			label = "white:tv";
--		};
--		tel_white {
--			reg = <3>;
--			active-low;
--			label = "white:tel";
--		};
--		adsl_white {
--			reg = <4>;
--			active-low;
--			label = "white:adsl";
--		};
--	};
--
--Scenario 2 : BCM6368
--	leds0: led-controller@100000d0 {
--		compatible = "brcm,bcm6358-leds";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x100000d0 0x8>;
--		brcm,pol-low;
--		brcm,clk-div = <4>;
--
--		power_red {
--			reg = <0>;
--			active-low;
--			label = "red:power";
--		};
--		power_green {
--			reg = <1>;
--			active-low;
--			label = "green:power";
--			default-state = "on";
--		};
--		power_blue {
--			reg = <2>;
--			label = "blue:power";
--		};
--		broadband_red {
--			reg = <3>;
--			active-low;
--			label = "red:broadband";
--		};
--		broadband_green {
--			reg = <4>;
--			label = "green:broadband";
--		};
--		broadband_blue {
--			reg = <5>;
--			active-low;
--			label = "blue:broadband";
--		};
--		wireless_red {
--			reg = <6>;
--			active-low;
--			label = "red:wireless";
--		};
--		wireless_green {
--			reg = <7>;
--			active-low;
--			label = "green:wireless";
--		};
--		wireless_blue {
--			reg = <8>;
--			label = "blue:wireless";
--		};
--		phone_red {
--			reg = <9>;
--			active-low;
--			label = "red:phone";
--		};
--		phone_green {
--			reg = <10>;
--			active-low;
--			label = "green:phone";
--		};
--		phone_blue {
--			reg = <11>;
--			label = "blue:phone";
--		};
--		upgrading_red {
--			reg = <12>;
--			active-low;
--			label = "red:upgrading";
--		};
--		upgrading_green {
--			reg = <13>;
--			active-low;
--			label = "green:upgrading";
--		};
--		upgrading_blue {
--			reg = <14>;
--			label = "blue:upgrading";
--		};
--	};
--- 
-2.54.0
+It will align dt spec and align ABI defination requirement. Node name can't
+be used as ABI except that is defined. It will elimiated this kinds
+hide ABI.
 
+Frank
+
+>
+> > Frank
+> >
+> > >
+> > > >
+> > > > Fix this by documenting an additional, optional property:
+> > > > "memory-region-names". This way, the carveout names can use the values
+> > > > passed via "memory-region-names", while keeping the devicetree node
+> > > > names of the reserved memory regions generic.
+> > > >
+> > > > There are no restrictions imposed on the values of the strings passed via
+> > > > the new property since the software allows any name to be used, with some
+> > > > names (e.g. "vdev%dbuffer", "vdev%dvring%d", "rsc-table") bearing a
+> > > > special meaning.
+> > > >
+> > > > Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> > > > ---
+> > > >  .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml         | 4 ++++
+> > > >  1 file changed, 4 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> > > > index c18f71b64889..8e3e6676a95e 100644
+> > > > --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> > > > +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> > > > @@ -62,6 +62,10 @@ properties:
+> > > >      minItems: 1
+> > > >      maxItems: 32
+> > > >
+> > > > +  memory-region-names:
+> > > > +    minItems: 1
+> > > > +    maxItems: 32
+> > > > +
+> > > >    power-domains:
+> > > >      minItems: 2
+> > > >      maxItems: 8
+> > > > --
+> > > > 2.43.0
+> > > >
+> > >
 
