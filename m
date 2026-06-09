@@ -1,268 +1,275 @@
-Return-Path: <devicetree+bounces-308968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308970-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id U8zoIqb1J2pm6QIAu9opvQ
-	(envelope-from <devicetree+bounces-308968-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 13:14:46 +0200
+	id Hb9RGbb3J2rP6QIAu9opvQ
+	(envelope-from <devicetree+bounces-308970-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 13:23:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1912765F61F
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 13:14:46 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 643DC65F72F
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 13:23:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=gEOHiqKK;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=NoW6rB67;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308968-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308968-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=azXwWHL4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308970-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308970-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 98CA130DC286
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 11:05:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D7F26305C544
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 11:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F8113FD15F;
-	Tue,  9 Jun 2026 11:05:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6DA3FD14D;
+	Tue,  9 Jun 2026 11:10:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D6193FB055
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 11:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A6073FD12D
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 11:10:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781003125; cv=none; b=V2ObJd74EO9GiJ7GXRdLWXY5OiiEfplaKgarIjS1NWu86UM8OAmhY8SN2iib+UfwGMO2pX/GuO+rxf9AldF4/ZzO4u+8wsCV4Eg9ukv1K2wftMJW8Stv+ikfogH4xlX2R2Hcz7n2j0R+PILSYAO2lnwx/Fu/oJGa3YM7xID3hBE=
+	t=1781003411; cv=none; b=t2c58bFIJWluEAS8FI7fkhoheqRZ6luc0/IR1ecvcYwfaYWQc9cv4/lt2YgQyj9+fb4lJqk7FaBki5e7aKCxeTJWj1wAgIiAi9VNZQsuJwVIIcsKy6AY+5tOtC8eq6BOrZeu/JUwMSypmf5kvpLUdI5h2nH8/K5VaxeVFmtF7Qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781003125; c=relaxed/simple;
-	bh=sdfJoX3weu/5bb4kZAE6iE0eMYM9msScYhHFBxigZbg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c8R8a+MWSNd9IgjpYnvuCrVg283/ht55u6jvzCT5LoH5XnsulwVNs4I1iXTXoPwoAKsIg7A6AY2mdLJRqAwdli6L3zT2ppFi47ltW7CVgxO2ZkEemdj2Fq4qrD8GCwZlXGggW1f8a/RWJlkjlYQHu8ReJzcCkS2pTwR/LXr2NgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gEOHiqKK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NoW6rB67; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6599vBV81907230
-	for <devicetree@vger.kernel.org>; Tue, 9 Jun 2026 11:05:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=rx28RGAmnnvmqWkKqwEakAwX
-	zmzhLrzlkZYWSnJi9t8=; b=gEOHiqKKDVWAY2aHe/EcQnF4WPWtVZMw52z1/r0q
-	kI7EJIsgunUKy8/08l4rWR4bSeFImrMm2cZM590FsuTIbEI1c3zVt8WYnTwfYvu7
-	IPtDSVLWM6/p4NKvhqKUFKH1GgfI3xsMTb9p8QEY4ZLZRNxsEYQqyM4mk92CYIhC
-	nU8+JPr19/wF7QENwWL8lqzl5WwRHat5satyF6T+pwrfQrfcDT5Aif9j1lHU7ryk
-	gghfTJ2aDKHUxa0FeqtoSO5SGfBqvKJ3JU8baAnXhFDpEs3/QV3jPOunEKcOMPWF
-	Nzuhfxgi6iBwBVBMAhEcr5+X1+TJFsnmAdfc5SrSLRn4eg==
-Received: from mail-vs1-f72.google.com (mail-vs1-f72.google.com [209.85.217.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4epg3jrd8y-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 11:05:23 +0000 (GMT)
-Received: by mail-vs1-f72.google.com with SMTP id ada2fe7eead31-6c7b5cf8bceso2218743137.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 04:05:23 -0700 (PDT)
+	s=arc-20240116; t=1781003411; c=relaxed/simple;
+	bh=O96mv8mCUvT/nFQ/0Yz/BMdNzocH7igS6slnSuH/62I=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JC8wwKWf1nG7Y4ReBJBVpb1avFwk/f3Luds8ubtwTNwPUDaOdZTvE6doeYAoDqBbPFwmlYOT7lMFSA8zG6YI9GW+2ATmN+77WBe2uxvq2e5SmLBS4byYj9Xkatjf376L7hV18wdHyMTinS62MTuZnjb/KCljg+u4Ouw0EjkDq6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=azXwWHL4; arc=none smtp.client-ip=209.85.218.51
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-bf0170c80f7so890673266b.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 04:10:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1781003122; x=1781607922; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rx28RGAmnnvmqWkKqwEakAwXzmzhLrzlkZYWSnJi9t8=;
-        b=NoW6rB67iEhKaQj/Qi7ICcmw7ChM6QZOaiafk8XQBq7CQwJW4/ABkBmgqiZYhG+R0q
-         laD9PATUo2H9fetJnHvDdR//Go7uOW/Kr8jv1elMmmh8UqRUPjbIxaMtMR/JkcP8nU00
-         kjJ5R/zzl1R+c3z3v6RkFA+yz6x5Uqk6Q6ziT5rl/hG6jrTl4j+roejBltZ3yvBG3+ew
-         rUIy0VVAAGU7eCxgjheTQvn463iflBfXmIiF+xGRc7PQB+gaxZ5YOeyk+NQ8jxcpEfRi
-         MmM/lC7uujlvBEPUyLAhFzTg+1WOA28ODCyhWIoM329jaqyBQXpunv8virWfTjZpkUnF
-         EPAg==
+        d=gmail.com; s=20251104; t=1781003408; x=1781608208; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=0yh8TvfY56yWAGeoqd/6TqfqKFvUUqJuJp99zBnrgzQ=;
+        b=azXwWHL4pit0vmy+wMuCdUzscxnvavh1Z3A1HVepUc21BC/5BemKKolzz4jd81Mh40
+         JsZvTkcEb1WePPAfDRVpPL+uou3TWBvv+rxYW8LPJf3brCa81u5rQ3JlINXEyxYsikJX
+         h7AzlKuSoy3+XZvcXTLJVpNjK0AkB2xY1rrbBu/OHLkNLDabGm7J4VoF9qiT10Pv5LNt
+         IEQDaCkDq04zkElPYuEXSBmqflHeE5g4q70bjnGTcGL2vkpD+6KcpwYh9BsfLQVoFPH8
+         5ND+A7HZOhuuFvO57glRcvPbCU9/9wVZpJPE8pDTIgx39nzGd5PBp1QfxTeCA4dqcIcK
+         WraQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781003122; x=1781607922;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rx28RGAmnnvmqWkKqwEakAwXzmzhLrzlkZYWSnJi9t8=;
-        b=TG6/AIlTBPJ+7TTQHiBZanoBSilc1js/90cjk0u4EYG8UnxytZpVxki0L49SVkLIC9
-         71l5R0zrruBHHmN5HChZOFQzd1910Ibxt+ICH3ME8VEwQ+VT7M7lWQxBh/NZIvz8AtN4
-         P3/eXA6fbTUIITJXr2BT8zHii7A+Gi0UfSGp3NJ6QPYYTRAdBTlnD0mc8QqHDJe8y/C4
-         zCbgH3vzRIPXLWG0sNHj6Tzd3hZWLbriI39Xy33+iBzx4IT5JaSo3nKaEJxWe9injoW8
-         fgZoN0JZ3w1jht9U1ZfjwJBu+r6glfVGTZf4otGACIb6CC2b61wTDcm7eSSDN96Qdogc
-         yvNA==
-X-Forwarded-Encrypted: i=1; AFNElJ85RE07jRzKqkgRucmwd8ON7Br/3bY/2isuuv+WxAZhL7i6J5WCKO6NSl5Pz5X2firiiwWa2Z+Fu++J@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvmEAjI7RDGxA2u7Olyorj8Bb95mhtJJMlyNV7f7wpRA37IcnQ
-	T+g+2Zltca0myiPSYqZxeArnYAWb2hCzqqlUnIL/XVsxReLa1jrW08xaSbCu4OHiZj54JP3is3T
-	3GLd4OIU4U7CeBDQUVkgcEBkD7RdGgDpfWEoklIPi/zaXfzCxTAEixcm9TCzkJm10
-X-Gm-Gg: Acq92OFJ2qxECZ69O2+h2jcQggNHMiLSHdsSaZjSjpLV7O0I8XI7+pkmez/P5PDAZVA
-	jyzm61OQb8GmOf8w+yvddzwHSddW5Er2ToC8iUZfUBlXj2vEjxCdDzxYhHSxmdWscigTPWbzByY
-	t7fqkqjxK9rE7KI9vdwlhFP/nCPzzi9xZGRpVTiPkLK+8HpFRP48MTIS3m0gVvcJ+YBeY9O9/of
-	b+O3uM6wSRqsji92wVpxKm/Ujk+4TqJ0zvENCN+swK28DaYmjtB8X0jANbMonoOV4y7UqIbDS9n
-	10fC6t0Ebmuel6DKwxALdrF2v5ppOOvT1y0oCHOkKjHS3taqsM6ndw1yWpymD1GypgR49bGEpPk
-	3WlVjxpwTSjMU8/1WL8Vi2CMZR0dEtM9AL0LA7hOvPqoH+iJfuh01KtStecUWM96Idpx2wB3Ymq
-	mPgERCAi8BLrGRp4OJxu8SvrcPhT5eARnQtTBD3vq3yiJgrA==
-X-Received: by 2002:a05:6102:848b:10b0:62f:406b:1baf with SMTP id ada2fe7eead31-719367e1560mr450026137.20.1781003122142;
-        Tue, 09 Jun 2026 04:05:22 -0700 (PDT)
-X-Received: by 2002:a05:6102:848b:10b0:62f:406b:1baf with SMTP id ada2fe7eead31-719367e1560mr450006137.20.1781003121692;
-        Tue, 09 Jun 2026 04:05:21 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa7b8ed901sm4515726e87.10.2026.06.09.04.05.20
+        d=1e100.net; s=20251104; t=1781003408; x=1781608208;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0yh8TvfY56yWAGeoqd/6TqfqKFvUUqJuJp99zBnrgzQ=;
+        b=jBin/BT7z0RKKnJBRfRvQ8sRtEBD737rD7OC+NemqZU0gfYouB5SqAEqkrfMG5CjGu
+         /IuapCVAEVCkWkIUMIh4rEx2mlKf8LH5AOmylLQN3zIm/5slP7jSa89Aw+ln9i8JWMrD
+         LypMlzgQbabEdagXWGGd3RD2RDLNqtwb/jAOzUp5rTzssrmHcB4h35bU4IT0ZmhLLXOj
+         FwPVAYzr9Gl5zLCQCqLMdxOUPQ3QdNuI131lwXRSOhc/PgaKoE/k5Y34uTEJVPjnY5pP
+         6dl7LgKbU5y/cFBDXyJAUke8UxACcEEGjr5mTnKxNaGah07f+ZtJUQyoHcKXNkIOfBHb
+         s5dg==
+X-Forwarded-Encrypted: i=1; AFNElJ8A/fb6Y4viVUYYeFajgQJPQVB31dunxtyPXL1e8gkz4rsHLrScdevoydNNfvouG/kJUW+VxrXfH3G0@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPw9KcOSEfCtMJpHUhGRmvPyusGp/pdOsRo8zMMOK51UsxeKMR
+	hqhkWmPHGBNT5oYxSVw91wpSoJ20mJ6I67XZGhm/rISOjTbXWDolADRn
+X-Gm-Gg: Acq92OFnR2WU3zMCGzHSi3ShN8ahAff9/XQVmR38ylN2YLbgfAg/drn5rb53NCRrUsQ
+	oirLH/zlBOdq1pOw3sJRSdmRoEgAk9Y+0yeqjUPdzf5ufAKgrj5kBuQEhqANaUQoLgE7Da0F8NE
+	tgvwfyce2prNNr3AdANtXPZZqXVu2ADhoIyzbjhkqW4PC7QM2el+GOIOVSkEnuSidA52PJbzt+j
+	CEFPFs5lOf32mxvEM2hKeKcWvfFqfrag5Hl8SV4OprHk/cUFA6zTeL9UQIm6nH+qf/54KYxnZUZ
+	4JIHnKMfosDlaptGWGufnX+SHHUnneZa2HVeO3N34h1GLcwhs11TrwwlKq+lXxRp+dEog5l9xOQ
+	LTGZcFrSJWNhbs5l1mRSgTAAn+KXb/4+U2r7GHhA93BFfOW9DzXFWvhTaZ+uKipa8O5YiiHuKyD
+	zdF8Y5iBeR2yzLQPNp+aufQ1nEYcvLG/3fyNKpgyYQwyrXjBlmjlYjVqYP/JgZHK368gtFOr6J+
+	6p+nPrVDk4NtbnZXX3fqNrVCBvkDhHUSEkzvOHY9IjgqD23sA==
+X-Received: by 2002:a17:906:f5aa:b0:bec:6c5c:cced with SMTP id a640c23a62f3a-bf372159bf0mr1067104666b.28.1781003408041;
+        Tue, 09 Jun 2026 04:10:08 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bf051c83c93sm1046788266b.16.2026.06.09.04.10.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2026 04:05:20 -0700 (PDT)
-Date: Tue, 9 Jun 2026 14:05:19 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>,
-        Amit Kucheria <amit.kucheria@oss.qualcomm.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Kees Cook <kees@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-hardening@vger.kernel.org,
-        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-Subject: Re: [PATCH v3 3/8] remoteproc: qcom: pas: register TMD thermal
- cooling devices
-Message-ID: <h6cat45sxkn3l5ispdtuf6dd5co5t335sp57ry4cbarwwzms6w@whokz3vvm5ap>
-References: <20260609-qmi-tmd-v3-0-291a2ff4c634@oss.qualcomm.com>
- <20260609-qmi-tmd-v3-3-291a2ff4c634@oss.qualcomm.com>
+        Tue, 09 Jun 2026 04:10:07 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Tue, 9 Jun 2026 12:10:02 +0100
+To: rodrigo.alencar@analog.com, Michael Auchter <michael.auchter@ni.com>, 
+	linux@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>
+Subject: Re: [PATCH v2 12/12] iio: dac: ad5686: add gain control support
+Message-ID: <luo2bvidr3h5gz5qb3ettl2rzzgjsdi6invgzgmm6dx7rki7gn@6faoaxv44vxr>
+References: <20260609-ad5686-new-features-v2-0-70b423f5c76d@analog.com>
+ <20260609-ad5686-new-features-v2-12-70b423f5c76d@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260609-qmi-tmd-v3-3-291a2ff4c634@oss.qualcomm.com>
-X-Proofpoint-GUID: 77CH81Yvolm0pezP8B06APo8xWKSPZHH
-X-Authority-Analysis: v=2.4 cv=aa9RWxot c=1 sm=1 tr=0 ts=6a27f373 cx=c_pps
- a=DUEm7b3gzWu7BqY5nP7+9g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=EUspDBNiAAAA:8
- a=MAJYu3_Ptnbw-qWrP8kA:9 a=CjuIK1q_8ugA:10 a=-aSRE8QhW-JAV6biHavz:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA5MDEwNCBTYWx0ZWRfX/UgR9RDjPZfp
- nyVhshFfq4wZXzm5h+RsH/sZxSh8E+5NDr+8MHMVqkN3NZe1BrnI1sMcAxtB/d/OEW7haMkVRI1
- aeeGPtUDrnXyLBqyFH6YFrHriKlqefWrt1bLo0MPvk5UJ2tSOyLaZmKR4MlAapQT3oU3YWi9JjH
- i6qr5CXObbkmhYQAWQWP13dvWprdtU+gxIU+CJQ1pYTOVWD7Ie1pI2iKwl/TO4UyxIgq59JCzNz
- mVxaT3aZ57JkP2e9cYn+Q/Nk+ESQNXd267vIK+E7usThJHi2Afxm4CHkzdEuyfkOq4mvw+jE/vZ
- F5IGWiWi9Nu9thqyWPj+uFyU5wYCfpVj2deqfAOAoHnNOomhr7uGUlQx3ksyWQlRF98Pl+TXh9F
- ojix74SDDkYWq9KyLrWfTaIBFWAVyOqlQgSMvpB4RCCtd8zejX6nbgjfSVgAD13Suk71rHwO0wc
- XE/dtZKElTKJtWOqBoA==
-X-Proofpoint-ORIG-GUID: 77CH81Yvolm0pezP8B06APo8xWKSPZHH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-09_02,2026-06-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 suspectscore=0 priorityscore=1501 impostorscore=0 adultscore=0
- spamscore=0 bulkscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606090104
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260609-ad5686-new-features-v2-12-70b423f5c76d@analog.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-308970-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308968-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:gaurav.kohli@oss.qualcomm.com,m:andersson@kernel.org,m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:daniel.lezcano@oss.qualcomm.com,m:amit.kucheria@oss.qualcomm.com,m:mani@kernel.org,m:konradybcio@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:cros-qcom-dts-watchers@chromium.org,m:linux-arm-msm@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:manaf.pallikunhi@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,6faoaxv44vxr:mid,analog.com:email,vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1912765F61F
+X-Rspamd-Queue-Id: 643DC65F72F
 
-On Tue, Jun 09, 2026 at 03:52:58PM +0530, Gaurav Kohli wrote:
-> Add support for Thermal Mitigation Devices (TMDs) to enable
-> thermal throttling of remote processors through QMI.
+On 09/06/26 10:37, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+> - [Medium] ABI Violation: Exposing a writable sysfs attribute to fix a static hardware configuration.
+> - [Medium] State Inconsistency: `st->double_scale` is not rolled back if hardware synchronization fails.
+> - [Low] Data Race: Lockless read of `st->double_scale` can race with concurrent writes.
+> --
 > 
-> This enables the thermal framework to request mitigation when remote
-> subsystems (modem, CDSP) contribute to thermal issues.
+> commit 7fefd2fd08838a6ee5a81a3a819607e02af9d85d
+> Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
 > 
-> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-
-Wrong SoB chain. Yours should be the last one.
-
-> ---
->  drivers/remoteproc/Kconfig         |  1 +
->  drivers/remoteproc/qcom_q6v5_pas.c | 61 +++++++++++++++++++++++++++++++++++++-
->  2 files changed, 61 insertions(+), 1 deletion(-)
+> iio: dac: ad5686: add gain control support
 > 
-> @@ -733,6 +737,49 @@ static void qcom_pas_unassign_memory_region(struct qcom_pas *pas)
->  	}
->  }
->  
-> +static int qcom_pas_setup_tmd(struct qcom_pas *pas)
-> +{
-> +	struct device *dev = pas->dev;
-> +	struct device_node *np = dev->of_node;
-> +	const char **tmd_names;
-> +	int num_tmds, ret, i;
-> +
-> +	if (!of_find_property(np, "tmd-names", NULL))
-> +		return 0;
-> +
-> +	/* Get the TMD names array */
-> +	num_tmds = of_property_count_strings(np, "tmd-names");
-> +	if (num_tmds <= 0)
-> +		return 0;
+> This commit adds support for a 2x gain multiplier applied to the output
+> voltage. This provides a gain control through a bit field in the control
+> register or a dedicated GAIN pin, exposing the scale property as configurable.
+> 
+> > diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
+> > index d9022c6a32016..d49390af71f90 100644
+> > --- a/drivers/iio/dac/ad5686.c
+> > +++ b/drivers/iio/dac/ad5686.c
+> 
+> [ ... ]
+> 
+> > @@ -192,9 +196,14 @@ static int ad5686_read_raw(struct iio_dev *indio_dev,
+> >  			GENMASK(chan->scan_type.realbits - 1, 0);
+> >  		return IIO_VAL_INT;
+> >  	case IIO_CHAN_INFO_SCALE:
+> > -		*val = st->vref_mv;
+> > -		*val2 = chan->scan_type.realbits;
+> > -		return IIO_VAL_FRACTIONAL_LOG2;
+> > +		if (st->double_scale) {
+> > +			*val = st->scale_avail[2];
+> > +			*val2 = st->scale_avail[3];
+> > +		} else {
+> > +			*val = st->scale_avail[0];
+> > +			*val2 = st->scale_avail[1];
+> > +		}
+> > +		return IIO_VAL_INT_PLUS_NANO;
+> 
+> [Severity: Low]
+> Is it possible for a data race to occur here?
+> 
+> In ad5686_read_raw(), the mutable software state st->double_scale is read
+> to determine the returned scale values without holding the st->lock mutex.
+> 
+> Because st->double_scale can be concurrently modified by ad5686_write_raw()
+> (which properly acquires st->lock), this can lead to reading a prematurely
+> updated state before the hardware configuration has actually completed.
 
-Propagate the error?
+Valid concern, will add guarded mutex lock in read_raw to the previous patch.
+ 
+> >  	}
+> >  	return -EINVAL;
+> >  }
+> 
+> [ ... ]
+> 
+> > @@ -216,6 +225,63 @@ static int ad5686_write_raw(struct iio_dev *indio_dev,
+> >  
+> >  		return ad5686_write(st, AD5686_CMD_WRITE_INPUT_N_UPDATE_N,
+> >  				    chan->address, val << chan->scan_type.shift);
+> > +	case IIO_CHAN_INFO_SCALE:
+> > +		if (val == st->scale_avail[0] && val2 == st->scale_avail[1])
+> > +			st->double_scale = false;
+> > +		else if (val == st->scale_avail[2] && val2 == st->scale_avail[3])
+> > +			st->double_scale = true;
+> > +		else
+> > +			return -EINVAL;
+> > +
+> > +		switch (st->chip_info->regmap_type) {
+> > +		case AD5310_REGMAP:
+> > +			return ad5310_control_sync(st);
+> > +		case AD5683_REGMAP:
+> > +			return ad5683_control_sync(st);
+> 
+> [Severity: Medium]
+> Should st->double_scale be restored to its previous value if the hardware
+> synchronization fails?
+> 
+> In ad5686_write_raw(), st->double_scale is updated before the driver attempts
+> to push the change to the DAC via ad5310_control_sync(st) or
+> ad5683_control_sync(st). 
+> 
+> If the underlying SPI/I2C write fails, the function immediately returns the
+> error code without rolling back st->double_scale.
+> 
+> This could cause the driver's cached state to diverge from the actual
+> hardware configuration, causing future reads of the scale to return the
+> incorrect updated value.
 
-> +
-> +	tmd_names = devm_kcalloc(dev, num_tmds, sizeof(*tmd_names), GFP_KERNEL);
-> +	if (!tmd_names)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < num_tmds; i++) {
-> +		ret = of_property_read_string_index(np, "tmd-names", i,
-> +						    &tmd_names[i]);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to read tmd-names[%d]: %d\n", i, ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	pas->tmd_inst = qmi_tmd_init(dev, pas->info_name, tmd_names, num_tmds);
-> +	if (IS_ERR(pas->tmd_inst)) {
-> +		dev_err(dev, "Failed to register '%s'\n", pas->info_name);
-> +
-> +		ret = PTR_ERR(pas->tmd_inst);
-> +		if (ret == -ENODEV) {
-> +			pas->tmd_inst = NULL;
-> +			return 0;
-> +		}
-> +		return ret;
-> +	}
+Will ignore that and assume that SPI write error is a platform problem.
+At another attempt the cached value can take effect.
 
-Assing to a temporal variable, check the result, assign afterwards.
-Saves you from the nested ifs.
+> 
+> > +		case AD5686_REGMAP:
+> > +			/*
+> > +			 * Even if the gain pin is hardwired on the board, the
+> > +			 * user is able to control the scale such that it
+> > +			 * matches the actual gain setting.
+> > +			 */
+> > +			gpiod_set_value_cansleep(st->gain_gpio,
+> > +						 st->double_scale ? 1 : 0);
+> > +			return 0;
+> 
+> [Severity: Medium]
+> Does this expose a writable sysfs attribute to fix a static hardware
+> configuration?
+> 
+> The commit introduces a writable scale sysfs attribute to allow users to manually
+> match the software scale to a hardwired gain pin. Static hardware properties
+> should typically be described via firmware properties (e.g., Device Tree) so
+> the driver can expose the correct, immutable scale at initialization.
+> 
+> If the GAIN GPIO is absent, writing to the scale attribute returns success but
+> does not change the physical hardware state, leading to a silent desynchronization
+> between the reported scale and the actual physical DAC output.
+> 
+> Could this mislead generic IIO clients by presenting multiple available scales
+> that they believe they can dynamically toggle?
 
-> +
-> +	return 0;
-> +}
-> +
->  static int qcom_pas_probe(struct platform_device *pdev)
->  {
->  	const struct qcom_pas_data *desc;
+No sure if this is a big concern (assuming that the user has knowledge of the hardware).
+An option is to add another dt property to indicate that the gain is doubled in hardware.
+Such property cannot be defined alongside the ldac-gpios property. 
+ 
+> -- 
+> Sashiko AI review · https://sashiko.dev/#/patchset/20260609-ad5686-new-features-v2-0-70b423f5c76d@analog.com?part=12
 
 -- 
-With best wishes
-Dmitry
+Kind regards,
+
+Rodrigo Alencar
 
