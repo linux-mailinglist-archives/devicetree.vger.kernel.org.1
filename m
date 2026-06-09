@@ -1,247 +1,188 @@
-Return-Path: <devicetree+bounces-309275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309276-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DPkqJVFcKGrgCgMAu9opvQ
-	(envelope-from <devicetree+bounces-309275-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:32:49 +0200
+	id Fz/oAxddKGoMCwMAu9opvQ
+	(envelope-from <devicetree+bounces-309276-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:36:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075D866357D
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:32:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF8D6635C7
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:36:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=FFuI4KDI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309275-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309275-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="T4B/kx0n";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309276-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309276-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0A7A3300F17D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 18:30:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 16EA33012B25
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 18:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1113C10B0;
-	Tue,  9 Jun 2026 18:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77FEB481259;
+	Tue,  9 Jun 2026 18:36:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37BD331EB6;
-	Tue,  9 Jun 2026 18:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0960C3F1AA6
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 18:36:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781029838; cv=none; b=iTRRt3JyuHnsb7sYlGTteqbtrnOT7cT2Rzuue1BKCMiahDeo7kinA/3EuxBaDtGlVrywijFkm5GBrrDkoHghyN2vME+lXleMBXll5zDOT0+XOUFlCt64EQe5wM9/vlYGnjMpz1iMirawdVMZp3mtQz81U5+IvoDP99ixQgzmCuc=
+	t=1781030163; cv=none; b=Qj9mFlX7Lhs4caeLLvqCurxApdw5GOF4pXDc4hkn8AftCCsMLeIfQuvkN2UCyUzahR1SpOxbOoCxJpXqERXYujebhXTrJEgtuAxu7vRqusJnWYQVK+u4aLWUrU8fxK5bdvSdIF1N0GhIEyIQWWweEV3yv2Rftd3mCNwHOEg+1FU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781029838; c=relaxed/simple;
-	bh=W0vFigz4egcwCqqfYcLa0B3UG4B5j/8tAmG05me37jA=;
+	s=arc-20240116; t=1781030163; c=relaxed/simple;
+	bh=ALGF0JYkp71o2WwvO7Wrabyf9hljxN/QJSQrdrlgPfI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PdKvaIfU90817vzd+VbKl9v7C7EBIfSDhcjnP12fMizMzwFnpQ47S48FvKMZBChpvzCjSNYX+wsQ0gdWKHeKUQBBb2yDqP2r4ihHbrViboTdxGMJbgUFiZpomaOyHeyq0JCw4hBTI6CZ0i5+JnGHrmmjVLOgLacc0LuO33I3yaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FFuI4KDI; arc=none smtp.client-ip=198.175.65.19
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781029837; x=1812565837;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=W0vFigz4egcwCqqfYcLa0B3UG4B5j/8tAmG05me37jA=;
-  b=FFuI4KDIA1uU6b9bfFaCxFhTM/3yVEKXjbe+PXjE/eHg/r0ZBPdyN0yp
-   T9AeLmk2HkNd7j/lwvyNvdsgY0DPurCCHbmsPZHXb9vUJBNoFOLC24uF7
-   j+Q6dqGoNHpTWkMZCXnUy8GBFK9IXF9yNPYrTl5ktReuxb/OQgFlobRsS
-   WS6WJoTVNFdDsMJDIRpR5z42tZKLgRPpd8th+epHM4M/hZIzS2Nmb3KVU
-   AT0owFu0H/4Nu10Ha6lpi85CpifLqGeAVEnHjjjLsA9w5to/t00s1opXH
-   LiSVo2wZWZu8S7oXfVQhOUe0a+WaBjufTuZJbrtpidiCeFGGbToy75wA5
-   g==;
-X-CSE-ConnectionGUID: mX7RinPiTkyjbvhSE83vZw==
-X-CSE-MsgGUID: nfCpBU5JT+mOCvgzuiSU/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="81781634"
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; 
-   d="scan'208";a="81781634"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2026 11:30:36 -0700
-X-CSE-ConnectionGUID: 1+SmyyssQRKPAPX76A14TQ==
-X-CSE-MsgGUID: XHLlIjFDTwKlwWHCZBRSQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; 
-   d="scan'208";a="241798924"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.162])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2026 11:30:33 -0700
-Date: Tue, 9 Jun 2026 21:30:30 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rva333@protonmail.com
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=gOUv7i+IvJtiM0EtXoNnVHGhHQUXkwU75/TGyrTd9rkQmCdFxALXBsAPxywt8GGNaVYl8cVACdgrwDBWmgDMVdbaIpRWvy88GaLgHZcLui/NPoCkVlK08kLsMweXMZ59HGkFmHlJCA7Gy2anyV38LzXFmSY602/2Ql2oZsGXvtc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T4B/kx0n; arc=none smtp.client-ip=209.85.128.54
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4908b92904fso67729185e9.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 11:36:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781030160; x=1781634960; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+HgmsivMcka0FxO5n28WPRUyS7SBIOMsz34g/tl81a4=;
+        b=T4B/kx0n7xQ6uPLTwPXdrw2oFCv0QDBptD5FnBK0Ghgocu5N5lEi2oZUK9kjmDmLDF
+         oLtd6R0AGzlbEJf8r+UOj1OOGow0i8DzjIuo0H2e9s/TDc5H/8CkWRUZjdiTnQ0MzvOu
+         QeXubbIXxFnDLaUR81gBflAyBp2dlqFv5gPvyrnuZRTCXZjm7hTcwkFxgi+6QcdcRkT6
+         7TEFr3/jUIbbQwMGoGbW1PUEsQKCB1Wr+d310Q6Ke/TeMnLvxjoMzSKzPZVPS5ayAXTR
+         /OJ97ep8eLZdiIttZN6Jc0IpeCW+YFnQJ/RUondHDcmy7/4XfwMDRAb8Laexo/C3KSlJ
+         ApOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781030160; x=1781634960;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+HgmsivMcka0FxO5n28WPRUyS7SBIOMsz34g/tl81a4=;
+        b=ai2Krehz9E/vuHSPr8/30GbRQbMT57JqJ0Ud5BYc47FRwgwwV7uVFNOfiKnIiv1ckJ
+         BCyOrBKDFbJ1EB7wgAyhWXy1kEIfWD/mqDYJs6cBjmV1vdXDuFe2QwT5pm26u2hKnp75
+         3wV9M/np925/eHAgHKblajUgI982IqfKgWF42vFDUITV7BO6l+lTgQ2BFaGAnWTwp/hG
+         LtsUenPBtBW9Rev7hRNBBm0uWNV76/8VZHpXnoYqz1lb62Xrw7EM4tWNuZ6jQVWRxTLM
+         +mdS03Ow9wL1jl9GI1oZIJGu72AnGjH9UaA8HomhmYCMin8XV3mcbQM2T4yAlHhX8oBl
+         cPpA==
+X-Forwarded-Encrypted: i=1; AFNElJ/y4fH+8heDNGoH3/Xw9y8hxo0NpIZziJIocGFQ90ykOJn6xvwd4L2qFy0gVkTt7osBeprqSI5S0LOz@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWW3Duclr7b/0lLo0eo0Q//H7PIDRy1c0512qCPykoXdBbfTL8
+	8Jrxflkeotnc5giz7UUumNgYYiddhJE7o6oKBwB9lNPUeazFnlyaCR63
+X-Gm-Gg: Acq92OGWc1x1dO9uPBvuINQbFjxQDmWElBd2WZ6aOdtjYCLPNkiTFQ4MPEeE8FQN56n
+	r6DJcwCCbZa6nvL121Oen9PhByKtKBKGqfBF7mzgUfZieIllu6MLSa/xHFIPycBG4zmf+UciWac
+	GXqr6gakfW9tDR3bb0DZ6a/1cPtSZPl/M3r91Udn8WsmwS61Xg6AUaCHZ6L6oGQOT24e/n+ZIjf
+	9Ik0LT5716eiehwucrG/R9ejrgvEBueQTzTTbWKp6vnYFxXLhWnu58opjAg7Pi9HIro6UArmY5N
+	EsFlXkLmT2TyBSgip9HOykG3PQ1mba+kEAwiJJVW2HvtEv/rkuiEGp2HX24i+gBBgspSgmcm09I
+	fE47LDDi6DG2f1kEiU5kwUxoi8PNNDc+IXPb/K45xFZHIs+0kbSktROPPLjs7zkQchQ28ZD+H01
+	R1g+pLfY6wsRK4h8wdaPdpIX3VXG7UcJBEMCiWBZ6NmQ6GyBQjouLgt9Td+yknNGZ/cUs3WkcfM
+	RUpZQ4nArLkOFqm5VTBsIlz3Ip+S8mIuTL/KMiYfWleRz4DMgxV85c=
+X-Received: by 2002:a05:600c:6389:b0:490:33b3:4be0 with SMTP id 5b1f17b1804b1-490c26233abmr364661655e9.20.1781030160046;
+        Tue, 09 Jun 2026 11:36:00 -0700 (PDT)
+Received: from Lord-Beerus.station (net-93-144-65-244.cust.vodafonedsl.it. [93.144.65.244])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc3cbfe4sm512912365e9.7.2026.06.09.11.35.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jun 2026 11:35:59 -0700 (PDT)
+Date: Tue, 9 Jun 2026 20:35:56 +0200
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	pierluigi.p@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lee Jones <lee@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Ben Grisdale <bengris32@protonmail.ch>
-Subject: Re: [PATCH v2 2/4] iio: adc: mt6323-auxadc: add mt6323 PMIC AUXADC
- driver
-Message-ID: <aihbxowyAIlSeDjH@ashevche-desk.local>
-References: <20260609-mt6323-adc-v2-0-aa93a22309f9@protonmail.com>
- <20260609-mt6323-adc-v2-2-aa93a22309f9@protonmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Josua Mayer <josua@solid-run.com>,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Maud Spierings <maudspierings@gocontroll.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: arm: fsl: add Variscite DART-MX8M
+ PLUS Boards
+Message-ID: <aihdDCS7LDcUELLt@Lord-Beerus.station>
+References: <cover.1780998600.git.stefano.r@variscite.com>
+ <c65129896fc6ce80044ee1d89e12dcdff34945be.1780998600.git.stefano.r@variscite.com>
+ <20260609-clumsy-material-b74a9b6bc7b7@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260609-mt6323-adc-v2-2-aa93a22309f9@protonmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260609-clumsy-material-b74a9b6bc7b7@spud>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309275-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309276-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rva333@protonmail.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:lee@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:bengris32@protonmail.ch,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:daniel.baluta@nxp.com,m:josua@solid-run.com,m:dario.binacchi@amarulasolutions.com,m:maudspierings@gocontroll.com,m:alexander.stein@ew.tq-group.com,m:ernest.vanhoecke@toradex.com,m:francesco.dolcini@toradex.com,m:hvilleneuve@dimonoff.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_TO(0.00)[protonmail.com];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,lists.infradead.org,variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com,solid-run.com,amarulasolutions.com,gocontroll.com,ew.tq-group.com,toradex.com,dimonoff.com,microchip.com];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,protonmail.ch];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,intel.com:dkim,intel.com:email,intel.com:from_mime,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 075D866357D
+X-Rspamd-Queue-Id: 9DF8D6635C7
 
-On Tue, Jun 09, 2026 at 04:31:59PM +0300, Roman Vivchar via B4 Relay wrote:
+Hi Conor,
 
-> The mt6323 AUXADC is a 15-bit ADC used for system monitoring. This driver
-> provides support for reading various channels including battery and
-> charger voltages, battery and chip temperature, current sensing and
-> accessory detection.
+On Tue, Jun 09, 2026 at 05:15:43PM +0100, Conor Dooley wrote:
+> On Tue, Jun 09, 2026 at 11:51:18AM +0200, Stefano Radaelli wrote:
+> > From: Stefano Radaelli <stefano.r@variscite.com>
+> > 
+> > Add DT compatible strings for Variscite DART-MX8MP SoM and Variscite
+> > development carrier Board.
+> > 
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 > 
-> Add a driver for the AUXADC found in the MediaTek mt6323 PMIC.
+> My mailbox looking like
+> | 169 ND  Jun 09 Stefano Radaell ( 27K) ┌─>[PATCH v5 3/3] arm64: dts: imx8mp-var-dart: Add support for Variscite Sonata board
+> | 170 ND  Jun 09 sashiko-bot@ker (7.2K) │ ┌─>
+> is a pretty clear indication that you're iterating too quickly.
+> Try to slow down and leave people time to respond before sending new
+> versions, not just respin for every automated response you get.
+> 
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+Sorry about that. I was making small fixes and re-sending the series
+immediately, without realizing that this could create unnecessary noise
+in the review process.
 
-A few nit-picks, most important from which is the scoped_guard() versus
-guard()() use.
+I'll make sure to leave enough time between revisions from now on,
+so reviewers have a chance to look at the current version before I send
+an updated one.
 
-...
+Thanks for the feedback, and sorry for the inconvenience.
 
-> +static int mt6323_auxadc_prepare_channel(struct mt6323_auxadc *auxadc)
-> +{
-> +	struct regmap *map = auxadc->regmap;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = regmap_read(map, MT6323_AUXADC_CON19, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* The ADC is idle. */
-> +	if (!(val & AUXADC_CON19_DECI_GDLY_MASK))
-> +		return 0;
-
-> +	ret = regmap_read_poll_timeout(map, MT6323_AUXADC_ADC19, val,
-> +				       !(val & AUXADC_ADC19_BUSY_MASK),
-> +				       10, 500);
-
-It's better to split on logical boundaries:
-
-	ret = regmap_read_poll_timeout(map, MT6323_AUXADC_ADC19,
-				       val, !(val & AUXADC_ADC19_BUSY_MASK),
-				       10, 500);
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_clear_bits(map, MT6323_AUXADC_CON19,
-> +				 AUXADC_CON19_DECI_GDLY_MASK);
-> +}
-
-...
-
-> +static int mt6323_auxadc_read(struct mt6323_auxadc *auxadc,
-> +			      const struct iio_chan_spec *chan, int *out)
-> +{
-> +	struct regmap *map = auxadc->regmap;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = regmap_read_poll_timeout(map, chan->address, val, (val & AUXADC_READY_MASK),
-> +				       1 * USEC_PER_MSEC, 100 * USEC_PER_MSEC);
-
-Perhaps
-
-	ret = regmap_read_poll_timeout(map, chan->address,
-				       val, (val & AUXADC_READY_MASK),
-				       1 * USEC_PER_MSEC, 100 * USEC_PER_MSEC);
-
-(see above why).
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	*out = FIELD_GET(AUXADC_DATA_MASK, val);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +	case IIO_CHAN_INFO_RAW:
-> +		scoped_guard(mutex, &auxadc->lock) {
-
-I'm wondering why we haven't moved to guard()() here
-
-	case IIO_CHAN_INFO_RAW: {
-		guard(mutex)(&auxadc->lock);
-
-> +			ret = mt6323_auxadc_prepare_channel(auxadc);
-> +			if (ret)
-> +				return ret;
-> +
-> +			ret = mt6323_auxadc_request(auxadc, chan->channel);
-> +			if (ret)
-> +				return ret;
-> +
-> +			/* Hardware limitation: the AUXADC needs a delay to become ready. */
-> +			fsleep(300);
-> +
-> +			ret = mt6323_auxadc_read(auxadc, chan, val);
-> +
-> +			if (mt6323_auxadc_release(auxadc, chan->channel))
-> +				dev_err(&indio_dev->dev,
-> +					"failed to release channel %d\n", chan->channel);
-> +
-> +			if (ret)
-> +				return ret;
-> +		}
-> +		return IIO_VAL_INT;
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best Regards,
+Stefano
 
