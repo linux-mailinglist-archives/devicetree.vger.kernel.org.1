@@ -1,143 +1,229 @@
-Return-Path: <devicetree+bounces-308709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308710-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Vw/oGbCvJ2pN0gIAu9opvQ
-	(envelope-from <devicetree+bounces-308709-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:16:16 +0200
+	id PR1KB9avJ2pY0gIAu9opvQ
+	(envelope-from <devicetree+bounces-308710-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:16:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F064B65CA8A
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:16:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF16D65CAA3
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:16:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gnkwVPhQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308709-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308709-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="E8UaLx/F";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308710-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308710-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6CA42301AA68
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 06:16:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2596330041C4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 06:16:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC50D3BFE34;
-	Tue,  9 Jun 2026 06:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 000A13C3C0F;
+	Tue,  9 Jun 2026 06:16:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC6A2E7391;
-	Tue,  9 Jun 2026 06:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA1423BED01;
+	Tue,  9 Jun 2026 06:16:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780985773; cv=none; b=WL2y4VXjUaJuFUNxpiY+fIYt/gPHIHS+Fn8NYh0evploJF//U10eh+0Hst37/YLEKU1iKg/IF+kl11Is1BpIghegs1kV4z5vAcCpUu80Q2oplu9pFUVolgfCnkmHVrq2voLSTsJXGeszEQWIcpAr3lttNpsEsCPmqPq/5RDGBVw=
+	t=1780985809; cv=none; b=QXOeWKn5UtwIOXxfFK44M2J0hJGMbax/LrTmoTu0n5ebRIQoZQvu7IN+siBvkQxZG7l/g14QZgMwAqXle16Ncq5oz79okmSh0Ac4zdSinbMQbuXTWMVST+FsTw0AaykqTh1o8hEX/YiGErku1bcgRCdJoNUDZHOouZncdghTark=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780985773; c=relaxed/simple;
-	bh=gZ1kkCFzmNSbTCDKfw8Q0P/VBoZB9c/r9Yianq/IU14=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MYl40FhjOJShObgIk+KMjFgaKC+t3HKHCKiK//uDGrUr75N9Tm9xnhfSUBjTFlgXuazJnMlSBPosWc9P9djR3hWqZXvmgn8lo9BO7qbudAnUBwuNLqIZvFeNUMnOUa9kspGtle/uEzurlgxBJqQMfpr/ROSeg+J3g9QR+exQDOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gnkwVPhQ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22A581F00893;
-	Tue,  9 Jun 2026 06:16:12 +0000 (UTC)
+	s=arc-20240116; t=1780985809; c=relaxed/simple;
+	bh=6Whor5XkaZiXIX/wRKDsuGYZC/t4NxJfT3zbwVHXvcQ=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=C9csfBdjR8PrCBNFg2X1awxKDNQiQQt6ZaECSZg/7sLLQbqdm3yK9mQfPM1aUK8Adwzvc2SHjuYjy6ACnKtCFMPvLXA9YJTqmgV0fCenM/iJMtQdJjdbSaXGrXx7I5SF2j4ToOYVfFQa414HYmPP/ktUxPeG1IUcjufKpNs6OW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E8UaLx/F; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25DF11F00893;
+	Tue,  9 Jun 2026 06:16:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780985772;
-	bh=GRmx4DwqEvH8Sj/Hh6Skbn6x441MCdzscjye44bXYhE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=gnkwVPhQb1ZwNiquck1wvt/I4u7Xwi7KfygraCnUeVOcnNjZoHwgzswIY7tGx4q21
-	 9xqTDQdDBnROooohabC/eJx7QexicCmG6FBAPHdY5lC7YXSGxW/AM8t+XAVWxjkLgQ
-	 f5HCzHfyyLcNsmqOf+WPOHLJANZnbEuvwb1vjdJiABe1OFQuXv2W/0UURrRaIVk4na
-	 gaNBLcthN5C57QLJajeCAn8uMU+eq6ohIfBWseszie91vLW2b8SbBmPrnqMFHLR3Iz
-	 Ocj0FlWFqf2FqQEWX7v82OtzUcllX4I+cnPg1oNqK+xZyxvrGyKK6/6fvh5OMcTubt
-	 eupEoMmaF6uvA==
-Date: Mon, 8 Jun 2026 23:16:11 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-phy@lists.infradead.org,
-	linux-usb@vger.kernel.org, Han Gao <rabenda.cn@gmail.com>,
-	Yao Zi <ziyao@disroot.org>
-Subject: Re: [PATCH 03/12] riscv: dts: thead: add device tree node for MISC
- clock controller
-Message-ID: <aievq4dae3GHHq0c@thelio>
-References: <20260507081710.4090814-1-zhengxingda@iscas.ac.cn>
- <20260507081710.4090814-4-zhengxingda@iscas.ac.cn>
- <aiehUzl-qZeZDjXP@thelio>
- <67790d90737c13127100510020262d6921810e34.camel@icenowy.me>
+	s=k20260515; t=1780985808;
+	bh=bAnQQJWmSkSti7JjToO/IoKflDTyMT8AWvqLBkx688k=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=E8UaLx/FbwHh5w+XlzaGS1DlnzBVSCLFigVfGcz23EY/ihA6PfLEzek5TqxhbAsLo
+	 hgnOXjyf+wXIVhVf4cBkK80ttJciBehqM8oexaC5DBnbZtVr+HLhpq7yk7X259zg2C
+	 QC/+dhae27+pWfN8GRN5ZDNw9iNmZHgCV8khrbhSObzpYhGRe0F8hcg9EETBoLK9om
+	 ab+F4kqwGUOJ7y2RCWvP/6Jph+6+LwiEZCpaUHnDHVb7igtrMqXhnxMT5InPbox6KA
+	 7UlDBZ1rB5c3mNwfqcDNxZLZEebxApTjvPbgbLaqQneKQsBVc9JEcGf383dBZbl7ng
+	 hFpODXCQxGiWQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 12/21] RISC-V: perf: Add a mechanism to defined
+ legacy event encoding
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Atish Patra" <atish.patra@linux.dev>
+Cc: robh@kernel.org, linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260608-counter_delegation-v6-12-285b72ed65a9@meta.com>
+References: <20260608-counter_delegation-v6-12-285b72ed65a9@meta.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 09 Jun 2026 06:16:47 +0000
+Message-Id: <20260609061648.25DF11F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <67790d90737c13127100510020262d6921810e34.camel@icenowy.me>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,rivosinc.com:email,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto];
+	TAGGED_FROM(0.00)[bounces-308710-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308709-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:uwu@icenowy.me,m:guoren@kernel.org,m:wefu@redhat.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:gregkh@linuxfoundation.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:jszhang@kernel.org,m:p.zabel@pengutronix.de,m:linux-riscv@lists.infradead.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-usb@vger.kernel.org,m:rabenda.cn@gmail.com,m:ziyao@disroot.org,m:krzk@kernel.org,m:conor@kernel.org,m:rabendacn@gmail.com,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FORGED_SENDER(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS(0.00)[m:atish.patra@linux.dev,m:robh@kernel.org,m:linux-perf-users@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,redhat.com,baylibre.com,linaro.org,linuxfoundation.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,pengutronix.de,lists.infradead.org,vger.kernel.org,gmail.com,disroot.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,thelio:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F064B65CA8A
+X-Rspamd-Queue-Id: AF16D65CAA3
 
-On Tue, Jun 09, 2026 at 01:35:11PM +0800, Icenowy Zheng wrote:
-> 在 2026-06-08一的 22:14 -0700，Drew Fustini写道：
-> > On Thu, May 07, 2026 at 04:17:01PM +0800, Icenowy Zheng wrote:
-> > > The MISC_SUBSYS clock controller on TH1520 SoC is a clock
-> > > controller
-> > > mainly controlling USB-related clocks (which isn't utilized yet)
-> > > and
-> > > MMC/SD controllers' AHB bus clocks.
-> > > 
-> > > Add the device tree node for it along with the missing bus clock
-> > > references for MMC/SD controllers.
-> > 
-> > Is there a functional reason to modify the mmc nodes in this series?
-> 
-> When the clock isn't referenced, Linux will disable it unless
-> `clk_ignore_unused` parameter is passed.
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
 
-Ah ok, thanks for explaining.
+New issues:
+- [Medium] HW_OP_UNSUPPORTED is defined as 0xFFFF but assigned to a 64-bit =
+event_id, risking collision with valid vendor event IDs.
+- [Low] Public macros in shared header rely on an undeclared `C()` macro an=
+d a private struct.
+- [Low] Unconditional boot-time pr_info spam and incorrect logging conditio=
+n for missing PMU events.
+- [Low] Missing `__init` annotation on `rvpmu_vendor_register_events`.
 
-Drew
+Pre-existing issues:
+- [High] Missing `perf_pmu_unregister()` on error paths in `rvpmu_device_pr=
+obe` causes Use-After-Free.
+--
+
+commit 8f8945d4e47e7d93800a2f3a4d8c51c826b9b889
+Author: Atish Patra <atishp@rivosinc.com>
+RISC-V: perf: Add a mechanism to defined legacy event encoding
+
+This patch introduces a framework to support vendor-specific PMU event
+encodings and counter mappings for the RISC-V ISA. It adds vendor event
+tables and registers them during PMU initialization.
+
+> --- a/include/linux/perf/riscv_pmu.h
+> +++ b/include/linux/perf/riscv_pmu.h
+[ ... ]
+> +#define HW_OP_UNSUPPORTED		0xFFFF
+> +#define CACHE_OP_UNSUPPORTED		0xFFFF
+
+[Severity: Medium]
+Does using 0xFFFF as an unsupported marker risk colliding with valid
+vendor event IDs?
+
+Because RISC-V hardware event encodings can be up to 64 bits, a vendor
+might legitimately define an event ID that evaluates to exactly 0xFFFF
+when assigned to the 64-bit event_id field in struct riscv_pmu_event.
+
+Could we use a standard unassigned sentinel such as U64_MAX instead, to
+prevent falsely rejecting valid events?
+
+> +
+> +#define PERF_MAP_ALL_UNSUPPORTED					\
+> +	[0 ... PERF_COUNT_HW_MAX - 1] =3D {HW_OP_UNSUPPORTED, 0x0}
+> +
+> +#define PERF_CACHE_MAP_ALL_UNSUPPORTED					\
+> +[0 ... C(MAX) - 1] =3D {							\
+> +	[0 ... C(OP_MAX) - 1] =3D {					\
+> +		[0 ... C(RESULT_MAX) - 1] =3D {CACHE_OP_UNSUPPORTED, 0x0}	\
+> +	},								\
+> +}
+
+[Severity: Low]
+Is it safe to expose this macro in a public header?
+
+This macro relies on the C() macro, which is not defined in this header,
+potentially causing build failures if used by external modules.
+
+Additionally, it appears to initialize an array structure meant for
+struct riscv_pmu_event, which is defined privately in riscv_pmu_sbi.c.
+
+Does this break encapsulation by requiring external users to have access
+to that private struct?
+
+> --- a/drivers/perf/riscv_pmu_sbi.c
+> +++ b/drivers/perf/riscv_pmu_sbi.c
+[ ... ]
+> +static void rvpmu_vendor_register_events(void)
+
+[Severity: Low]
+Would it be beneficial to add the __init annotation to this function?
+
+Since this function is exclusively called from rvpmu_devinit(), which is
+an __init function itself, lacking the annotation means its instructions
+will unnecessarily consume memory for the lifetime of the kernel instead
+of being freed after boot.
+
+> +{
+> +	int cpu =3D raw_smp_processor_id();
+> +	unsigned long vendor_id =3D riscv_cached_mvendorid(cpu);
+[ ... ]
+> +	if (!current_pmu_hw_event_map || !current_pmu_cache_event_map) {
+> +		pr_info("No default PMU events found\n");
+> +	}
+> +}
+
+[Severity: Low]
+Can this condition cause unintentional log spam on boot?
+
+Because of the logical OR operator, a platform that provides only one of
+the maps will still trigger this log, incorrectly stating that no events
+were found.
+
+Furthermore, since the table currently only includes a QEMU entry, real
+hardware with counter delegation extensions might unconditionally print
+this on every boot.
+
+Would it be better to use a logical AND here, and perhaps pr_debug?
+
+[ ... ]
+
+[Severity: High]
+This isn't a bug introduced by this patch, but while reviewing the PMU
+registration code, I noticed a potential memory lifecycle issue in the
+existing probe error path.
+
+Looking at rvpmu_device_probe(), the PMU is registered with
+perf_pmu_register(). If a subsequent step fails, the code jumps to the
+out_unregister label, which calls riscv_pmu_destroy() and then frees
+the pmu struct.
+
+However, riscv_pmu_destroy() handles hotplug state and CPU-PM, but
+does not appear to call perf_pmu_unregister().
+
+Could this leave dangling pointers in the perf core and sysfs to the
+freed pmu structure, resulting in a use-after-free if those interfaces
+are accessed?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608-counter_de=
+legation-v6-0-285b72ed65a9@meta.com?part=3D12
 
