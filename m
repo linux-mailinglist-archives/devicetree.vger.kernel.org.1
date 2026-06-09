@@ -1,183 +1,132 @@
-Return-Path: <devicetree+bounces-308854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308859-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XtZhDu7YJ2oX3QIAu9opvQ
-	(envelope-from <devicetree+bounces-308854-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:12:14 +0200
+	id dRizDsTbJ2oM3gIAu9opvQ
+	(envelope-from <devicetree+bounces-308859-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:24:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C58F065E252
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:12:13 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D8265E4BB
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:24:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=YLFP5dU7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308854-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308854-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308859-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308859-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 447B13096838
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 09:05:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9B21C30AEBB5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 09:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 510613E639C;
-	Tue,  9 Jun 2026 09:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B6113EFFA5;
+	Tue,  9 Jun 2026 09:06:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3266338D3EF
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 09:05:54 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780995955; cv=pass; b=pniX/Q8xMWynAyNi6MS8pGGfnKYilXthmeTObucIw5KawAzwFNBocMSA33j1U08CZJDytuw/imtE9y4wE4+ZO0gqomj6SahdbhASHRhlZIbORQe0bOqRtw0y+ru8XkAFu9sjK7YOGag1x3E7VlPyVO6B90f4eL5VBMsUxGZRj9o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780995955; c=relaxed/simple;
-	bh=Arb3l0apixT51Ws7+eo6cRWV6eNyt0ISkTNyCaaADIQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dYmQ2/7PrFGC7q28tMaOym1vAr57qjO01oNUQuaGODJcBbHwC3TLdaGmKeV3AeQnzaJ4TfPto6ACuMzph8duLevsPi/ObiDkD4OtN1MO8kLIGoBi7iBlHjDz6YxT1goyXzlqU3ILV3X0PwwkAzulL5yQHxtLvlpsC8aINTXXExM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YLFP5dU7; arc=pass smtp.client-ip=209.85.210.171
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-8423f1d8902so2186981b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 02:05:54 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780995953; cv=none;
-        d=google.com; s=arc-20240605;
-        b=E9UKW3uxQhHSnFdXY+6n4o0fF6TwyMUsXCWAN5ZA2At1Zdn9HBDzEuQwoEslmY3JhH
-         o3LJVWzyHX8HfWQr4G1eSKw38p9Q4FkUevtsVzk83JOTK3vJFQN0mhgWcyOkFFf9CibH
-         gOgLgDKAKddmbP/6OgbGpdk8cjWfsej3h459HUvuyuCWlej1/LWMjsxg0dQUs2MLnzN0
-         et8T972UYymx8qLUFlhgsNx7mpwSsT3EA3gBaSKP5t7xDJAlLt/rYfYAfY5NxulYduk0
-         A4WYKFF+BfzkBPHYdfTXSBDxdluTCDNvm2fNMrAhpPnLC+7koHl15EzgJIAgJ6J/MUCc
-         xwfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=Arb3l0apixT51Ws7+eo6cRWV6eNyt0ISkTNyCaaADIQ=;
-        fh=6wpNaNlAj4lGrl8zs/0gcJr0mxzg5NGT2crPwSf8uiw=;
-        b=hOOB4bQoCGW1RpcQmmlxDq1j8Y2JYTGBkoTQfKgj/J1tB/c6yQO+wp4mixtCZ2DHqv
-         ySVLCHV/1BHjA7Z95Kk+9Ouy/2z6K05UAiE+PQdWIUuNFzayOQQHjtGz5AaU9amYWk5L
-         yNC9hsN1ZNvYcp3jN8308dMuYEbpByjqF2og/dI9YzcOCAwHRMVXi0wv8VMEjkLwGFMr
-         19lgxfM3YcAPler7VtW50HjHlLePkgDxyfM1UvGaFh8i+qHIK5ZYR7/u0KsuZ1BD8F/J
-         EuqU9LKKRU4PnP+rtWWr2TMBC04TUB6oU2JCPDgQxaEzz9mhCxiXvjDDqL28O2tvVOYR
-         JAHA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780995953; x=1781600753; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Arb3l0apixT51Ws7+eo6cRWV6eNyt0ISkTNyCaaADIQ=;
-        b=YLFP5dU72+eR5ojwV4xaHmL4Dso7O4lJzTJZ75n9R6BizL3klJHu1pop5GIrA3AKIc
-         gaTKtelrPVxhkrTpzIK75mDOI2BYlUvjejp/A+zalPTS3QywffToqcL0Nasxb37RsnON
-         EgFh1hfJXQEiHDm0L8+KVscG/3whYm72vSeQwySN3Vx0Q9wnfne4VXwehDcy6vUJDWsC
-         bVR7gi2JUaPtsjdRroZ5X48OYz4SYu3j0W2+F3BAGNKzJtFkz/BnT/qoYbdOyq7XQg/T
-         sl5nsc/ILE3oOiaLa0UYaDow44NwBQ8SBppOj6VgfwY3KbS0Oycp886y86+Z3pNfJMi1
-         b3fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780995953; x=1781600753;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Arb3l0apixT51Ws7+eo6cRWV6eNyt0ISkTNyCaaADIQ=;
-        b=rAvVIt8K9QFXiuL/8RUfy6DClaX5JB9Q0GbativA0j9hiiziK0GkSQKj82+mHI/omm
-         JuDdXDpEiV32u5/FB7zJbHhTLnk6VOsO7DvfCryKkIyPnljramTvcXK1AVYrM/O6fsiQ
-         XYtsVFGHQUAwBKkEIqNAgALSYZFN9t0FVCIahc5UA+z7SoFACt5xA0Gosdgc2xMI0Lkc
-         aJN8aczYRpcRpj7xs0BRMONGousRReSCKtGgWUtfy3msFmOhDdWG9JJcUGOwV1gXmnPy
-         0dJb7qb9MLy6E1NxdSDbw7+4MvTulVb1F6wcFDKVqzEZX12gfOBem0MEPeNl7E8hJ7mS
-         L99A==
-X-Forwarded-Encrypted: i=1; AFNElJ/2prBx6D7bN4BYHN+LhTRl+bJb2mJeYzCWPXNy6tPxQ1NSCrjrW5uRqO5qRGJFhDbYSZeKT+6zMA/o@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjjvRuvQS4IoQZfPMbercJ75QnONRZnb9FIQgGuDrqJRjcc1g1
-	DX8vezl8Dwk6flOQ4DaBiT/hix1L1xoKEXN+TtveINMLV4Ic6yeFN+tKxd+/KBnrXf1oVOftQFz
-	uQ1GSbBghDbJIpmFd4aFgM0zbR/IryLc=
-X-Gm-Gg: Acq92OGiNhAq7Ls0EThLJATq3hRUKM6h6XcZdu8FQU5t/U911n780BsodfT2072fdV7
-	UOIa0Qbw3j4x4gF5WOo+J0bFId4VL7je/XMkhgZocICIx4dUAQm8UvUzjjB3XXcQpJEY2MZ09YJ
-	eYGzj4LlNCKafrdBZOJcnh4IOBFOMX+g8yncgVf0ZGzOsCEM4mcpmPRg8KEFZf2QE7B4Sp0EMSW
-	G6ds+cmxYoKZ04Z9jt7vCyzLewqJTwt6l3S5t637NSQCnU6NP9do0e3xYmqMtEPpYz5xA3K9z6G
-	doeXpIZplI7RP2sspvrmpttcG0NN3DTIxEmV3aDz1xCu0lfN
-X-Received: by 2002:a05:6a00:ad5:b0:842:2419:6c0b with SMTP id
- d2e1a72fcca58-842b0e11c7cmr20087951b3a.10.1780995953465; Tue, 09 Jun 2026
- 02:05:53 -0700 (PDT)
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B524A3F4109;
+	Tue,  9 Jun 2026 09:06:52 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1780996014; cv=none; b=XNBiAZXmzvCNylL0OA89LviM2jW6NJUomGZpqyrjeTHbuUrc86G4VY4/n1TveMMInO13FHWW9WSpf1hoMcZ6LSnbCJj9JY6Ao2GlsS/zSYBsY0ga8fbHvA7YNKcfgZtxeJIRImUkMjIMPMricyiDUd8V1CtM9FYdZNz93kmkl88=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1780996014; c=relaxed/simple;
+	bh=V3qDZUx3yOnSJqO2amTow6eQ51hs49Q0hdct+TJ+Fss=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ooaMax/D+2NIlskXgw9aGhlTI92fULudGaDqqJ10q1wLJtOYRvxJ6Dovbg4BKyHb7SqDtTVYFwEh1yuOGfIrOYA39EQXFgU4UJcwpWAc6WuAbeym0gJT2kSXrPHfKN6mjmnss3oLp+6wNssSyswDPUsY5UzcAhAQU6P6hmPeEjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Received: from loongson.cn (unknown [10.20.42.101])
+	by gateway (Coremail) with SMTP id _____8Cx3emn1ydqdTESAA--.48284S3;
+	Tue, 09 Jun 2026 17:06:47 +0800 (CST)
+Received: from loongson-pc.loongson.cn (unknown [10.20.42.101])
+	by front1 (Coremail) with SMTP id qMiowJCxOMGk1ydqKKOgAA--.28652S2;
+	Tue, 09 Jun 2026 17:06:46 +0800 (CST)
+From: Hongliang Wang <wanghongliang@loongson.cn>
+To: Hongliang Wang <wanghongliang@loongson.cn>,
+	Binbin Zhou <zhoubinbin@loongson.cn>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	loongarch@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/3] LoongArch: dts: i2c: Add clocks and clock-frequency properties
+Date: Tue,  9 Jun 2026 17:05:40 +0800
+Message-Id: <20260609090543.1462-1-wanghongliang@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260609013107.5995-1-phucduc.bui@gmail.com> <20260609013107.5995-2-phucduc.bui@gmail.com>
- <20260609-nimble-guillemot-of-karma-bef5f1@quoll> <CAABR9nF6uhEyCo-6cekhKwfm3zkqjXCpj2O8C8Xk=2Frw0arRg@mail.gmail.com>
- <6103e3fc-4b27-47b5-aee9-8b481759eb65@kernel.org> <CAABR9nHBA=sZsw54RWMCg_xdDCeo+stnSYg6yACfzuJoMNMyPg@mail.gmail.com>
- <d610ea66-23b0-4691-a0d7-6a32e42dd902@kernel.org>
-In-Reply-To: <d610ea66-23b0-4691-a0d7-6a32e42dd902@kernel.org>
-From: Bui Duc Phuc <phucduc.bui@gmail.com>
-Date: Tue, 9 Jun 2026 16:05:40 +0700
-X-Gm-Features: AVVi8CdtFgeretXS95PDA9wmrlEPo8ic58fZAHHdjLlUvl-toQFSXd88bhJWIb4
-Message-ID: <CAABR9nGS_Rd=tCjhCDu8EDgCLnx97mM1nqGbquHXV+mwuUczYQ@mail.gmail.com>
-Subject: Re: [PATCH v5 01/11] ASoC: dt-bindings: renesas,fsi: add support
- multiple clocks
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Mark Brown <broonie@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowJCxOMGk1ydqKKOgAA--.28652S2
+X-CM-SenderInfo: pzdqwxxrqjzxhdqjqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+	ZEXasCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29K
+	BjDU0xBIdaVrnRJUUUkFb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26c
+	xKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vE
+	j48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxV
+	AFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x02
+	67AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6x
+	ACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E
+	87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41l42xK82
+	IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC2
+	0s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMI
+	IF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF
+	0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87
+	Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07j0FALUUUUU=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [0.04 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308854-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:kuninori.morimoto.gx@renesas.com,m:broonie@kernel.org,m:geert+renesas@glider.be,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:geert@glider.be,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[renesas.com,kernel.org,glider.be,gmail.com,perex.cz,suse.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	DMARC_NA(0.00)[loongson.cn];
+	TAGGED_FROM(0.00)[bounces-308859-lists,devicetree=lfdr.de];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FORGED_RECIPIENTS(0.00)[m:wanghongliang@loongson.cn,m:zhoubinbin@loongson.cn,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:chenhuacai@kernel.org,m:devicetree@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[wanghongliang@loongson.cn,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[wanghongliang@loongson.cn,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,loongson.cn:mid,loongson.cn:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C58F065E252
+X-Rspamd-Queue-Id: 25D8265E4BB
 
-Hi Krzysztof,
+Hi all:
 
-Thank you for the clarification.
+This patch set adds clocks and clock-frequency properties to i2c nodes of
+LS2K0500/2K1000/2K2000 dts.
 
->
-> Odd. clock-names are string-array which has uniqueItems by default.
->
-> That's the first need of usage it, so I think you should skip it even if
-> it does not work correctly - the true fix should be in dtschema.
+Hongliang Wang (3):
+  LoongArch: dts: i2c: Add clocks and clock-frequency properties to
+    2K0500
+  LoongArch: dts: i2c: Add clocks and clock-frequency properties to
+    2K1000
+  LoongArch: dts: i2c: Add clocks and clock-frequency properties to
+    2K2000
 
-Understood. I will remove "uniqueItems: true" in the next version.
+ arch/loongarch/boot/dts/loongson-2k0500.dtsi | 12 ++++++++++++
+ arch/loongarch/boot/dts/loongson-2k1000.dtsi |  4 ++++
+ arch/loongarch/boot/dts/loongson-2k2000.dtsi |  4 ++++
+ 3 files changed, 20 insertions(+)
 
-While testing, I also noticed that the schema accepts cases where the
-number of entries in "clock-names" does not match the number of entries
-in "clocks". For example:
+-- 
+2.47.2
 
-clocks = <&clk1>, <&clk2>;
-clock-names = "fck", "spu", "icka";
-
-This passes dtbs_check on my setup.
-
-Is this also expected to be handled by dtschema, or would an explicit
-constraint be needed in the binding?
-
-Best regards,
-Phuc
 
