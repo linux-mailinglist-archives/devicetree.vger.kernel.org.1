@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-308898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308899-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +DVqABfkJ2qj4AIAu9opvQ
-	(envelope-from <devicetree+bounces-308898-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:59:51 +0200
+	id OZdXJFDmJ2p/4QIAu9opvQ
+	(envelope-from <devicetree+bounces-308899-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 12:09:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A253365EA49
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:59:50 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9049A65EBF3
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 12:09:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=kKyFJSzF;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308898-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308898-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=BNfNwebC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308899-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308899-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1DA753071FD5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 09:52:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7A59F3009811
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 09:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8CB93D5253;
-	Tue,  9 Jun 2026 09:51:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B9CD3F0A85;
+	Tue,  9 Jun 2026 09:51:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25565390212
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 09:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDEB3ACA77
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 09:51:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780998688; cv=none; b=Rg3IMXSFzmTjsz6ovA/MBOJkaKP8mCcuaA3m+L1nyLrPRfqzfuUW6BvNIaXhJj6S9qNajnmXjlr++VkX6gQcj/kWZV+duBjl2j9ooOstAqUa8CgGjFkAnpH8+jJn8Wfo0vBcMN8Ta8lW5p4r8MeGIHutJM+gAqRkmFYvHFicdDk=
+	t=1780998690; cv=none; b=qJlk4POw9nSevA4yTQfsxoMxE7pltFaWMW6DpVomegSRQSLjS8v+8SkUch6qNQ30F78ncONHPsCH5+b/G8W072LBmm5/NDJny4rYZSKYDnYxJlsI5N3KjyCXyR4mDPzHdDTlOU1fiAS0JddN/CTu1j1lc+7atxZlj9tghd7m+RM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780998688; c=relaxed/simple;
-	bh=NLJUcKx8SEyu9XZkzQXY0DpeIK9z2Ebxv6qBFZ7vicA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bn5kgkG0AYq0JhIfBbApoThNMBwGTtJFdrrUIMcVRRR5nXrLH1CeqVdJTaW5pZ3v07rJWH6g/2oXMQwyeVu/G40BaLEKnyzC1/7lQI7Ol8YJGOgVrl3kWoRUsHhkz2CxmIvbEhvl/r+569y/VBl05Js0uiBq7P3CMzoU98a7T/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kKyFJSzF; arc=none smtp.client-ip=209.85.128.50
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-490b3637b90so45667585e9.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 02:51:26 -0700 (PDT)
+	s=arc-20240116; t=1780998690; c=relaxed/simple;
+	bh=32mmXQW5mN6FX7eUOhQr0LzR09q9PhnKOpOCWTiEo10=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=km5EoRWle89jNbHcu3Kzyy5hJonyQLNuaahDkAXIfpQDOXfogXbapotmlucrsKw28b2Kx4cx/kkeFQeTUtSyLVs8ulGcHD51HGiyzh+WRVjySiCQsIcXHNpzi2QMx5mfw6mL0cqi5Cqh1yjVvPrSeX5LfjDWA8Yxw+apHVdaS30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BNfNwebC; arc=none smtp.client-ip=209.85.128.54
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-490b64c8311so59513445e9.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 02:51:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780998685; x=1781603485; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=73q9o/RbMs9HsVClZc0TR5gGHz7oJNAXFjfet/bYLwE=;
-        b=kKyFJSzFTU8F5Vd2o1GPuxRExAgkdNX9LRA6CUdMrtWPUyT5N5wNfHWoz9OzmRIFQR
-         0EZajOUL8iLww1tVkaeUkbFMhsHvZ/4rfOX6kiCscPNdt/nXK432YBkcojJABW+2k1iE
-         t8HWr4CjHXTYaUqZLHsHlB7EJq7U+6IKOS/Mty1qKR3rLN5qvbwXN8xdUxmZRRKsHGuA
-         /3EXf8niblYxUwYEsbcfE1whiKJNhLId1tiwlK+9HhIMYxmRqEWD0dpDyQ7XfI+OXNw0
-         6us7aOhBLs1WMEhY8NGS1bb6lDdQFttZlGvCBVYioUWBIaKGcaznhYOJNq4s/FlHbSNR
-         oafw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780998685; x=1781603485;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1780998687; x=1781603487; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=73q9o/RbMs9HsVClZc0TR5gGHz7oJNAXFjfet/bYLwE=;
-        b=HRmRbhBWOX0B5v3zyeTZvZre53XzM/+thAVbShPE3RWBdoL+9omOBBMhsnrNC7B5lh
-         A1bmA34GdFTO7x2Cj0lIey32FwYFydEdODLOrqVG8ujT24EDiF9fWKGA5ES9AHJOxdzE
-         pZAvmTvhf7sqRRQ0fJb4PnI3r9oH+At/HeiTOgpwDDWIvLMdagt/KIjwL1VfCrYZL0l+
-         Sdj4JbCWX2LGFXio0kHonipOc761suUisV2V1w8teBMYNYb5eNVqqXgRMD/uH5lZ96a8
-         hTd22mVPy2gNIRRD1t0m5v6rzE52ENF/7shA7+Ljw7nkE9qnwkkjgagJf3l+BNNp5FP5
-         h+Ng==
-X-Forwarded-Encrypted: i=1; AFNElJ9XkvAmIbR+UAS3yHxXCEOBxfEaXMDLUSDCKoqPvmULumtlnAkrvq1JdPAXHB5+XDCMkxUU5sySV75u@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4qKjgnGV9kYMFqZ8UJzdQLuR4ulhNUIf1Lx/qTqP5YkLuECkc
-	FOO63MNAMLtNgRJrauaNMyydImFT9KbxsDI1xYxkfAlxfxj6MdqoOdBm
-X-Gm-Gg: Acq92OF2kvsPTsVYQkr3A9EsAlvk4ZqCAT6Y/jBoN0lt7S8F+yIrVq7PFd/CdQoyElL
-	NxjLNefMaLbe8adS8jgd4vgpyH4uhjWthe9mnrLt9ln0NDK9F6ukJrd2aQ21i0E3E+wB5DyTCtJ
-	lzxfKnSXrClbyaOYBPkBvfaYuX1HIDHXBOOUwjnJUL2RYBjlSXwOtKHW5gOehT0h0I82gmQ/+oo
-	1wK7R39rkDvj0Dw0EaodbUAio/0t3e1pSK2ppGZwL7NlPsfSh57N7g05thLMpDfIEa9qzbAI4gA
-	aws4h9OrQ1ZXxKj8oebAf/Id06wxj3pZlrw8vesknqoH2jQSLHH3ux+gRvI9f3WiwYWqrSLBG4E
-	uedGiah3oc5cXPAV8N8TKdnJYWm6fJwfDeLvzoYOTjwVQPEjhil2Lr3mmZf1W56J+xoDKxovHJw
-	VqaQOgK/7K1NvB0FRePsa0/50UiSmlpi11uWkOHYvEc80WR5xD2SmQK/ObZk4ZB6VqLQbj3ekLj
-	uFvcHH59O8WaTq47zBun2SgTt6Cgm+mu2cd3oNgNcwKNCt4YlUjBwGzAg==
-X-Received: by 2002:a05:600c:34c3:b0:490:5e2a:f924 with SMTP id 5b1f17b1804b1-490c2599e11mr350748455e9.7.1780998685051;
-        Tue, 09 Jun 2026 02:51:25 -0700 (PDT)
+        bh=tb/SzpL1XcA+D39fXfaz+1d8t1vR0zE4qmQ3IX4y348=;
+        b=BNfNwebCsVUIUN9YWD57OKCWbRgCxBN8RWQnDQ7QQWhplMrmae6zGnJ/Pq1lEQlxXN
+         xmcWKE/fye3dcumZPKRLYr2v6IWs3DnGuZ9ZZ2g/bNebXCSzxXmewo1JxbJDw+JfJ7zI
+         mfWdhpw15T4MxPlfz4t3uyEaer/KXcrJoygXYwHMfa2ZOddkRBzhbZ5kiLyFviwsdt7x
+         Ks6fHzUpDtKG3NlNG6z2gb4DUy9YtCCCrlNJRKzbTzEXeoYP37s7XLbwjVxXX1FAemG8
+         GlIfMYkWLN7V1snTL1NnSBL1TFYbeL07hTFvCF7fozXx2CoOpMYBgbiE3Rx+qDQOTLqh
+         nqKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780998687; x=1781603487;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=tb/SzpL1XcA+D39fXfaz+1d8t1vR0zE4qmQ3IX4y348=;
+        b=P0nNFrVAgkAu4x2Rc6XGKDxiu8Bmh71oPV+Okzh2i0jpoUGPbgfR8fCCM6lpA6EQ4K
+         ygs/iYJlvkdXYe5hUEMpe6FyW8ri1Z8crR9w5D4qkmBww6qhp3EhzcDaeKoi5gMLSl5a
+         bqCd/BpdSUJFlVva+A7TYK2FBDUkZoBhKxmCfDGn3IblErebN2K5peyEsx4fYVGKpAOE
+         GRNq57VhahP5QMDY2X/0YTAPTYUdkIOhFZ7JhgtDCTt6mGjfx2JIxUYG1xoT1U5YXUTT
+         8dDd59Kx9W9L/koigVrIKQpitAd3OVSWyfeBBQuMoQIeNMCbXMY2wfl1rTnwJJspT60k
+         wdtg==
+X-Forwarded-Encrypted: i=1; AFNElJ8U4hG2NTH4B2cPj38D8LWiwn3ARpnGsYcE4GPz+lelI/xgCSSK97dHToupYlaSrdBgqFXvLHyAZuo1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzb4SjTzxBB5uunviLxs4cvrDpRP9VLhha6tjYt+eFAGCYfN+tD
+	3kbOMpzqhb7enjI8p+IWSusGtVOJBscnon2c9VAjjZ4OeWocTT6ge9US
+X-Gm-Gg: Acq92OG6fgv3u80RCsDlwb+Fbs6bubaZ4M74ae6QSl8GONUwa8nkjcjJhZe91vX/yJy
+	zFCH/ePkOv8oWkSE8MON/DRiKeqxaGfXqLsi6io2jXyO1TbBkcK2VsrdXlSUR5l8GTNaDU6QF42
+	jFLCk+gl1fu3sN/CkSkKjNOA8UKKwcKHphwfX1ji1KEhvtW+lfGyNbgAJuk236xh4YOrbHXp0ne
+	nNgXDRryp4WFBrUuq0BXT5hYa2+8eHTewrvtf0et7/w3FSVcQhxzV6iYLY84xDEIdUySRUr0AYD
+	1Fg/TOsGfy6mtkA2BNY519EpBiffxmobU/ZZTHPkE1Ft4E+DGA3ubuVUGAAIKGfTRF3czq+mrlq
+	BkYQ/2eRaFSD3YLzFgbNqipYUWzgSMLI4RnKBFqagzA+SyG7GE+YZmIkoIoyspLBZWgk9dbvfmC
+	6qaeEhp/EJDcK78tRdUQjxSe4VqfyuMLWNgQReA9D9OmLiqXaod0AzKV7mkNJ09d2w/97WMSLav
+	7bfaGaf5aTaR+B593OlhpN7RLEDa0oQ+qHvSV3vRlPkBIY=
+X-Received: by 2002:a05:600c:83c3:b0:48f:d612:3c59 with SMTP id 5b1f17b1804b1-490c25a21a9mr347442605e9.9.1780998686731;
+        Tue, 09 Jun 2026 02:51:26 -0700 (PDT)
 Received: from Lord-Beerus.station (net-93-144-65-244.cust.dsl.teletu.it. [93.144.65.244])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc413adbsm471043955e9.15.2026.06.09.02.51.23
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc413adbsm471043955e9.15.2026.06.09.02.51.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2026 02:51:24 -0700 (PDT)
+        Tue, 09 Jun 2026 02:51:26 -0700 (PDT)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: linux-kernel@vger.kernel.org,
@@ -98,11 +100,14 @@ Cc: pierluigi.p@variscite.com,
 	Alexander Stein <alexander.stein@ew.tq-group.com>,
 	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
 	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: [PATCH v5 0/3] Add support for Variscite DART-MX8M-PLUS and Sonata board
-Date: Tue,  9 Jun 2026 11:51:17 +0200
-Message-ID: <cover.1780998600.git.stefano.r@variscite.com>
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v5 1/3] dt-bindings: arm: fsl: add Variscite DART-MX8M PLUS Boards
+Date: Tue,  9 Jun 2026 11:51:18 +0200
+Message-ID: <c65129896fc6ce80044ee1d89e12dcdff34945be.1780998600.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1780998600.git.stefano.r@variscite.com>
+References: <cover.1780998600.git.stefano.r@variscite.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -117,19 +122,19 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	TAGGED_FROM(0.00)[bounces-308898-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	TAGGED_FROM(0.00)[bounces-308899-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:daniel.baluta@nxp.com,m:josua@solid-run.com,m:dario.binacchi@amarulasolutions.com,m:maudspierings@gocontroll.com,m:alexander.stein@ew.tq-group.com,m:ernest.vanhoecke@toradex.com,m:francesco.dolcini@toradex.com,m:hvilleneuve@dimonoff.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:daniel.baluta@nxp.com,m:josua@solid-run.com,m:dario.binacchi@amarulasolutions.com,m:maudspierings@gocontroll.com,m:alexander.stein@ew.tq-group.com,m:ernest.vanhoecke@toradex.com,m:francesco.dolcini@toradex.com,m:hvilleneuve@dimonoff.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com,solid-run.com,amarulasolutions.com,gocontroll.com,ew.tq-group.com,toradex.com,dimonoff.com];
+	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com,solid-run.com,amarulasolutions.com,gocontroll.com,ew.tq-group.com,toradex.com,dimonoff.com,microchip.com];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -140,56 +145,54 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,variscite.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[variscite.com:mid,variscite.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A253365EA49
+X-Rspamd-Queue-Id: 9049A65EBF3
 
-This patch series adds support for the Variscite DART-MX8M-PLUS
-system on module and the Sonata carrier board.
+From: Stefano Radaelli <stefano.r@variscite.com>
 
-The series includes:
-- SOM device tree with on-module peripherals
-- Sonata carrier board device tree with board-specific features
+Add DT compatible strings for Variscite DART-MX8MP SoM and Variscite
+development carrier Board.
 
-The implementation follows the standard SOM + carrier board pattern
-where the SOM dtsi contains only peripherals mounted on the module,
-while carrier-specific interfaces are enabled in the board dts.
-
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
+---
 v4->v5:
- - Fix nodes order
+ - 
 
 v3->v4:
- - Add snvs nodes
+ - 
 
 v2->v3:
- - Fixed wrong som eth phy address
+ - 
 
 v1->v2:
- - Fixed wrong sai peripheral reference
- - Fixed wrong eqos pinctrl gpio
- - Fixed model name
- - Added new usdhc2 regulator pinctrl
- - Adjusted irq edges
+ - 
 
-Stefano Radaelli (3):
-  dt-bindings: arm: fsl: add Variscite DART-MX8M PLUS Boards
-  arm64: dts: freescale: Add support for Variscite DART-MX8M-PLUS
-  arm64: dts: imx8mp-var-dart: Add support for Variscite Sonata board
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
- .../devicetree/bindings/arm/fsl.yaml          |   6 +
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx8mp-var-dart-sonata.dts  | 731 ++++++++++++++++++
- .../boot/dts/freescale/imx8mp-var-dart.dtsi   | 476 ++++++++++++
- 4 files changed, 1214 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart-sonata.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-var-dart.dtsi
-
-
-base-commit: be580423d3f84b84a2f549df91e66bc4f54eda02
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 86876311ec59..11629b9eafc5 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1310,6 +1310,12 @@ properties:
+           - const: tq,imx8mp-tqma8mpql            # TQ-Systems GmbH i.MX8MP TQMa8MPQL SOM
+           - const: fsl,imx8mp
+ 
++      - description: Variscite DART-MX8M Plus based boards
++        items:
++          - const: variscite,var-dart-mx8mp-sonata # Variscite DART-MX8MP on Sonata Development Board
++          - const: variscite,var-dart-mx8mp # Variscite DART-MX8MP SOM
++          - const: fsl,imx8mp
++
+       - description: Variscite VAR-SOM-MX8M Plus based boards
+         items:
+           - const: variscite,var-som-mx8mp-symphony
 -- 
 2.47.3
 
