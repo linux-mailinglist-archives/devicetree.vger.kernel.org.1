@@ -1,273 +1,155 @@
-Return-Path: <devicetree+bounces-309338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309340-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id x58uLAeHKGorFwMAu9opvQ
-	(envelope-from <devicetree+bounces-309338-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 23:35:03 +0200
+	id hdZTGfyHKGpRFwMAu9opvQ
+	(envelope-from <devicetree+bounces-309340-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 23:39:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F65F664468
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 23:35:03 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7B4B6644C3
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 23:39:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=riscstar-com.20251104.gappssmtp.com header.s=20251104 header.b=uoS8Wc2e;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309338-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309338-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=riscstar.com (policy=none);
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WttAFDAw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309340-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309340-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1FAF7304B28D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 21:32:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 68AFC304B563
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 21:39:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC1743C063;
-	Tue,  9 Jun 2026 21:32:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 190CB481222;
+	Tue,  9 Jun 2026 21:39:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79ABC3E00BC
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 21:31:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA720373BE4
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 21:38:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781040720; cv=none; b=bqwcODBz/ILowBkROZFyXkOvuSVt5slKccvUCCJJB1Mwr4NTMTsRYIdlNvTtpg5US1H1XRjVR0K11Z2WJuhZOV9oBspqsB5ohU/H5iQEEFXaEDJoz1v5llg+c5afaWS/111eHp53rhRUYFltR5FQW/GC56wPdzz09o6NSfV6KHg=
+	t=1781041140; cv=none; b=mS3AElvav3jZ9uQxA3Npi6vU7fDoBxljBsY9W3ufMrEmA38oU1uCIy2Cu15L8VCEaRR8R1VnUmBhNjQkhP7IxG3yepOrea2KId3fHy6yslbO0eNJXwvic+ijVj2JczVpo+q/TUA7OytfydonYX5Qa4PgF8kWiZxlXHE8xDmkZDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781040720; c=relaxed/simple;
-	bh=WAiXRaxAM4Z1bZ828ygiu2QGKA8btwndyvH6LWkBmvs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hzqgfKD3z6uLz2gxqOwBHSIeib9j2hDOzEog126lbjYzbYKE96cvpwyfCtTyOM1SLN3F1kPVGlIZjQxkkAgtrAApCASiZDMaVtC++bi4ftJh984x7IINyFNGnsZtuatMlzeFSowgwA+66xZhEP0iY5dhXx3QRB31jgUOuZGT6yQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=uoS8Wc2e; arc=none smtp.client-ip=209.85.167.176
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-486503ae8f0so4496829b6e.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 14:31:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1781040718; x=1781645518; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kQKbERiB0ntPOS/R2wMXRwGJAn2HHwIq3s8Tu7uVMO4=;
-        b=uoS8Wc2e1VeGoY7G1XUBEHm43nmS5gaWrdYwUmiNUbR6nAUt8w6us5wXqa8zvD0j8H
-         pElFvyvcXDwQRbA7XsXg25ZJRHvM8K6goHxTNObZ69eH7g4DY9o3ebLH0iTTxx0j3y5M
-         VKauDGWMkjgBFheiP8YjscG+JfsiNeZJp9RizPBwnWb2BY01EYdCMVKjHh58PXuq6py0
-         aKLhGhGkk7vUvFMeaqQ3OwEj7d8vo+rsKGKph1+Ix/B9kDz3fL8ZlaUpliFLu5oek+3b
-         oYjsUvyheB3NSko8ugKmu0mQq0yhwZCWmxtPvlx7+eF5c3u1n/XFljjOak4mPeOyK6q4
-         D2YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781040718; x=1781645518;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kQKbERiB0ntPOS/R2wMXRwGJAn2HHwIq3s8Tu7uVMO4=;
-        b=G0xP6t+hZslDmIia8j2GJPE/31i8r/AAzNY3yCP+S58bL6akXvNZSkv8OgZtxtUGNj
-         szZ1LIbLHmk+gItSpWqyJpgG1LUDFbw0Fr9okVgUqkkclaFh17AFrAESDt4WcPUlEbXR
-         /rGQlVG1bXAUoxGEUta/PCvaKFg11HSeIohHS6+iSk0HAra00h/HiurG9y6ahadTlbS4
-         W3W9VBpUtSBkwsHN9evQ7KftcRXGB+Yz7J9/ufUqfffmjO075q+PwphBnYYSz15N60BB
-         69UC/JPnoHMkeNZdBYQYNScptFqtirTsKN6+94Nu8q/wi7Cel6ADZlFwTmJX5r/Pna4b
-         OsiA==
-X-Forwarded-Encrypted: i=1; AFNElJ9qZyxg5hKL7+nlOOezkyajbG96dyC+YU4fFpBr7nBES6FTd/RXFlvDL9yaQrzs1469HwE+tTDaJ88S@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHOjUxdn0u6xEEBkdsz/TboLPnH36568bki1rJQOx3vBRjEnFr
-	NTp+t/NvBPB5cnTJkPhTRP3AwsIOrY+BnFT3JemCfPTnDgwerK2h3gLEpNRl6rutQzY=
-X-Gm-Gg: Acq92OFjOJj3MMCC1LniTqtdcu23Nu7J4elhgGTvHGklGB6WqT50MU90r6N6d8CfijK
-	5v/jEy7ymCk3x5yjRW2ElJQBYPBvW67ScP+3WPLamga7UbP1Y9HvQeXM11k4XbFPm4NcOhyPu32
-	oa3ZSB5IMC5TlTum7JvtQeNMX4Wzee1a72edBWRZqhM71WGPEAm2Z30pzFew8XMu0R809/keYX8
-	1nTVmYCiqTcgLDUox2Knnsl36atvtEzSNmY2N9tWBql1PMiPuiNNoinzN9TBHyufccbNmG0fW9v
-	EJiZ3LKDTgHaDgZ6RBpWYdSN5gzOB+pMkg8ehVE4YsOwl1wakyJLUlxb0jBD7Ccb+J0Nk8BJRov
-	zhtrPiIk8Z1jljfmkY3hfxxbfGvvIWVRpGMAdRCIBEzAoydI82nI2FhArCGj+xqtxfImffapvSP
-	/ZzSfHp7FJlp2jmNazb1ArbUWzXrEMrXsTxb5WCT742aZD
-X-Received: by 2002:a05:6808:4fe2:b0:485:a9b2:5457 with SMTP id 5614622812f47-4868df63ae3mr15052790b6e.35.1781040718541;
-        Tue, 09 Jun 2026 14:31:58 -0700 (PDT)
-Received: from [172.22.22.28] ([73.62.185.64])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-4865b5a5a64sm17024127b6e.4.2026.06.09.14.31.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jun 2026 14:31:58 -0700 (PDT)
-Message-ID: <b89fe088-496f-4281-9d27-7f8b0b3f38cb@riscstar.com>
-Date: Tue, 9 Jun 2026 16:31:55 -0500
+	s=arc-20240116; t=1781041140; c=relaxed/simple;
+	bh=ufe/+3MlZHgfsfopy//V4vNLQyun6n0BlQhNqz4YL0M=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=nSrSeDsSY8hMFXqtOIjK+u9Z5m46V0fdOcp/JLkTkNOoUo+PFnpZPGdxCARKN+u74S1NbfvXKW2U52VnPB/owgs47P3OYKXPEhJ+S1pMEs3U1na5ehQO2MHAyrQbpOgsc/9kx2CNMaqDOotXdJlRv1IG6b4rcfumyWbsPeLFY84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WttAFDAw; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4611F00893;
+	Tue,  9 Jun 2026 21:38:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781041136;
+	bh=o/JGjHizYGryTmcmiizautgCefRKVFL9GpsDJkSpvFw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=WttAFDAwLv+OPS605ClUgjop+1apnQ5Ge32wZIOKfBOiW+qciOE814r1ioAwy34lp
+	 atGzCJx+Y7ziCn250M9ad+xS6hWERtbpFFwnfT1JrtKphry9C5IEn1bZd8P0YdKU0P
+	 UHwgBYiJHruV3UY0jArn6MUp52P0NwhWNKhAAwA4/UNt6GFgCSlzN4mKbeH2h8eqnH
+	 jMSy1z5aUV220EVDHE8S95AU3HgfH4I4A9jfFoqXkMxX3ihtk1I9q5UHWCEz3DUxVE
+	 s9vG/V9v4rC9GJHRygADpYRUpWta40DeE/yLrzbY4FGXbSKmPmhILJQQSAjF37eqK5
+	 8wUU3pL4qOr+w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3] ASoC: dt-bindings: sound: renesas,r9a09g047: Fix
+ dma-names and ports schema
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "John Madieu" <john.madieu.xa@bp.renesas.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, wsa+renesas@sang-engineering.com
+In-Reply-To: <20260609212921.1706886-1-john.madieu.xa@bp.renesas.com>
+References: <20260609212921.1706886-1-john.madieu.xa@bp.renesas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 09 Jun 2026 21:38:55 +0000
+Message-Id: <20260609213856.0C4611F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 13/14] net: stmmac: tc956x: add TC956x/QPS615
- support
-To: Rob Herring <robh@kernel.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com,
- rmk+kernel@armlinux.org.uk, andersson@kernel.org, konradybcio@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linusw@kernel.org, brgl@kernel.org,
- arnd@arndb.de, gregkh@linuxfoundation.org,
- Daniel Thompson <daniel@riscstar.com>, mohd.anwar@oss.qualcomm.com,
- a0987203069@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
- boon.khai.ng@altera.com, chenchuangyu@xiaomi.com, chenhuacai@kernel.org,
- daniel@iogearbox.net, hawk@kernel.org, hkallweit1@gmail.com,
- inochiama@gmail.com, john.fastabend@gmail.com, julianbraha@gmail.com,
- livelycarpet87@gmail.com, mcoquelin.stm32@gmail.com, me@ziyao.cc,
- prabhakar.mahadev-lad.rj@bp.renesas.com, richardcochran@gmail.com,
- rohan.g.thomas@altera.com, sdf@fomichev.me, siyanteng@cqsoftware.com.cn,
- weishangjuan@eswincomputing.com, wens@kernel.org, netdev@vger.kernel.org,
- bpf@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260605010022.968612-1-elder@riscstar.com>
- <20260605010022.968612-14-elder@riscstar.com>
- <20260605144758.GB3659201-robh@kernel.org>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20260605144758.GB3659201-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.06 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309338-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:maxime.chevallier@bootlin.com,m:rmk+kernel@armlinux.org.uk,m:andersson@kernel.org,m:konradybcio@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:arnd@arndb.de,m:gregkh@linuxfoundation.org,m:daniel@riscstar.com,m:mohd.anwar@oss.qualcomm.com,m:a0987203069@gmail.com,m:alexandre.torgue@foss.st.com,m:ast@kernel.org,m:boon.khai.ng@altera.com,m:chenchuangyu@xiaomi.com,m:chenhuacai@kernel.org,m:daniel@iogearbox.net,m:hawk@kernel.org,m:hkallweit1@gmail.com,m:inochiama@gmail.com,m:john.fastabend@gmail.com,m:julianbraha@gmail.com,m:livelycarpet87@gmail.com,m:mcoquelin.stm32@gmail.com,m:me@ziyao.cc,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:richardcochran@gmail.com,m:rohan.g.thomas@altera.com,m:sdf@fomichev.me,m:siyanteng@cqsoftware.com.cn,m:weishangjuan@eswincomputing.com,m:wens@kernel.org,m:netdev@vg
- er.kernel.org,m:bpf@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:andrew@lunn.ch,m:rmk@armlinux.org.uk,m:krzk@kernel.org,m:conor@kernel.org,m:johnfastabend@gmail.com,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[48];
-	FORGED_SENDER(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,bootlin.com,armlinux.org.uk,arndb.de,linuxfoundation.org,riscstar.com,oss.qualcomm.com,gmail.com,foss.st.com,altera.com,xiaomi.com,iogearbox.net,ziyao.cc,bp.renesas.com,fomichev.me,cqsoftware.com.cn,eswincomputing.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-309340-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto,renesas.com:email,sashiko.dev:url];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:john.madieu.xa@bp.renesas.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:wsa+renesas@sang-engineering.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,kernel,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[riscstar-com.20251104.gappssmtp.com:dkim,riscstar.com:email,riscstar.com:mid,riscstar.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0F65F664468
+X-Rspamd-Queue-Id: C7B4B6644C3
 
-On 6/5/26 9:47 AM, Rob Herring wrote:
-> On Thu, Jun 04, 2026 at 08:00:20PM -0500, Alex Elder wrote:
->> From: Daniel Thompson <daniel@riscstar.com>
->>
->> Toshiba TC956x is an Ethernet AVB/TSN bridge and is essentially a
->> small and highly-specialized SoC. TC956x includes an "eMAC" subsystem
->> that can be accessed, along with several other peripherals, via two
->> PCIe endpoint functions. There is a main driver for the endpoint that
->> decomposes things and creates auxiliary bus devices to model the SoC.
->>
->> The eMAC consists of a Designware XGMAC, XPCS and PMA. Each eMAC is
->> supported by an MSIGEN that bridges TC956x level interrupts to PCIe
->> MSIs.
->>
->> Add a driver for the eMAC/MSIGEN combination.
->>
->> Co-developed-by: Alex Elder <elder@riscstar.com>
->> Signed-off-by: Alex Elder <elder@riscstar.com>
->> Signed-off-by: Daniel Thompson <daniel@riscstar.com>
-> 
-> The order is wrong here unless you worked on it and then Daniel took
-> over. Tags should be chronological order.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Unimplemented Commit Claim: Missing clocks and resets constraints
+--
 
-I think this was a dumb reorder I did to address a complaint
-from checkpatch, but in any case I'll fix this.  Yes, my
-signoff should "wrap" the others.
+commit 57b95b37a13d07fcffc98c59354ae1c916fe8d6f
+Author: John Madieu <john.madieu.xa@bp.renesas.com>
 
->> ---
->>   MAINTAINERS                                   |   2 +
->>   drivers/net/ethernet/stmicro/stmmac/Kconfig   |  14 +
->>   drivers/net/ethernet/stmicro/stmmac/Makefile  |   2 +
->>   .../ethernet/stmicro/stmmac/dwmac-tc956x.c    | 818 ++++++++++++++++++
->>   4 files changed, 836 insertions(+)
->>   create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-tc956x.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 0439607d1155f..418537cbefbbb 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -27059,6 +27059,8 @@ S:	Maintained
->>   F:	Documentation/devicetree/bindings/net/toshiba,tc956x-dwmac.yaml
->>   F:	drivers/gpio/gpio-tc956x.c
->>   F:	drivers/misc/tc956x_pci.c
->> +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-tc956x.c
->> +F:	include/soc/toshiba/tc956x-dwmac.h
->>   
->>   TOSHIBA WMI HOTKEYS DRIVER
->>   M:	Azael Avalos <coproscefalo@gmail.com>
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
->> index e3dd5adda5aca..8d247e033e356 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
->> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
->> @@ -404,6 +404,20 @@ config DWMAC_MOTORCOMM
->>   	  This enables glue driver for Motorcomm DWMAC-based PCI Ethernet
->>   	  controllers. Currently only YT6801 is supported.
->>   
->> +config DWMAC_TC956X
->> +	tristate "Toshiba TC956X DWMAC support"
->> +	depends on PCI
->> +	depends on COMMON_CLK
->> +	depends on TOSHIBA_TC956X_PCI
->> +	default TOSHIBA_TC956X_PCI
->> +	select GENERIC_IRQ_CHIP
->> +	help
->> +	  This selects the Toshiba TC956X (and Qualcomm QPS615) support in the
->> +	  stmmac driver.
->> +
->> +	  This provides support for the ethernet controllers found on these
->> +	  devices.
->> +
->>   config STMMAC_PCI
->>   	tristate "STMMAC PCI bus support"
->>   	depends on PCI
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
->> index a1cea2f57252e..e8e7f95dbe3e8 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
->> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
->> @@ -51,4 +51,6 @@ obj-$(CONFIG_STMMAC_PCI)	+= stmmac-pci.o
->>   obj-$(CONFIG_DWMAC_INTEL)	+= dwmac-intel.o
->>   obj-$(CONFIG_DWMAC_LOONGSON)	+= dwmac-loongson.o
->>   obj-$(CONFIG_DWMAC_MOTORCOMM)	+= dwmac-motorcomm.o
->> +obj-$(CONFIG_TC956X_PCI)	+= tc956x-pci.o
->> +obj-$(CONFIG_DWMAC_TC956X)	+= dwmac-tc956x.o
->>   stmmac-pci-objs:= stmmac_pci.o
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-tc956x.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-tc956x.c
->> new file mode 100644
->> index 0000000000000..c77585e4a50e6
->> --- /dev/null
->> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-tc956x.c
->> @@ -0,0 +1,818 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +/*
->> + * Copyright (C) 2026 by RISCstar Solutions Corporation.  All rights reserved.
->> + *
->> + * Derived from code having the following copyrights:
->> + * Copyright (C) 2011-2012  Vayavya Labs Pvt Ltd
->> + * Copyright (C) 2025 Toshiba Electronic Devices & Storage Corporation
->> + */
->> +
->> +#include <linux/auxiliary_bus.h>
-> 
-> Based on the block diagram, these are PCI devices. Auxiliary bus is the
-> wrong thing to use here.
+ASoC: dt-bindings: sound: renesas,r9a09g047: Fix dma-names and ports schema
 
-As I said in the other message, I'm going to rearrange this
-to use pci-ep-bus and platform drivers.  Most of the core
-code should be stay the same but the overall structure will
-change.
+This commit simplifies the dma-names schema, updates the ports container
+reference, and removes unused top-level address and size cells. It also
+updates the example node order and clock specifiers, and states it pins
+clocks and resets to fixed counts.
 
-Thanks for your suggestions.
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,r9a09g047-so=
+und.yaml b/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.=
+yaml
+> index d7fa165546985..b539e84ead8da 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,r9a09g047-sound.yaml
+> @@ -42,12 +42,6 @@ properties:
+>    "#clock-cells":
+>      const: 0
+> =20
+> -  "#address-cells":
+> -    const: 1
+> -
+> -  "#size-cells":
+> -    const: 0
+> -
+>    clocks:
+>      maxItems: 47
 
-					-Alex
+[Severity: Medium]
+The commit message mentions it will "pin clocks and resets to their fixed
+counts (47 and 14) to match the clock-names/reset-names lists." Did a hunk
+get dropped during a rebase?=20
 
-> 
-> Rob
+The patch doesn't appear to add minItems: 47 to the clocks property here, n=
+or
+does it add minItems: 14 to the corresponding resets property.
 
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609212921.1706=
+886-1-john.madieu.xa@bp.renesas.com?part=3D1
 
