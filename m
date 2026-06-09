@@ -1,167 +1,137 @@
-Return-Path: <devicetree+bounces-308771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308772-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Xn6mF4XBJ2p/1gIAu9opvQ
-	(envelope-from <devicetree+bounces-308771-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:32:21 +0200
+	id jxdqMuLBJ2qa1gIAu9opvQ
+	(envelope-from <devicetree+bounces-308772-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:33:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A229865D3C0
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:32:20 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37AA065D401
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:33:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="SqObM/Hf";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308771-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308771-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="UQG/1zsH";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308772-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308772-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB7723008A40
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 07:27:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8795D30ADC3E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 07:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0042F2AD00;
-	Tue,  9 Jun 2026 07:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59FA3CF692;
+	Tue,  9 Jun 2026 07:28:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7738318B85
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 07:26:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6793B3C1A;
+	Tue,  9 Jun 2026 07:28:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780990021; cv=none; b=OeqfVCx1XZPWKpJJr+az6aPLwKFlYApRy0yW/2slOjz54k24p4+PhjssJRqcTf0Kchh9OsZNh38yQXeq204e+MhblG6I2xjvYe5FPbN+uHn39g87PHS4Gg/mQUyYZF9VqZffThJMvlP+c1RZdr1I3sZyG1+vEqrPN+bLaVyXj6g=
+	t=1780990137; cv=none; b=OJiiEtIm3cp5aTFf9AM5OKSDybIEI4cl5aCs6QzzmDNUg72tNOr6sxbyZMFksMOwh1jwo351AvoxLLWk/ERMMvZtGij00vROGTyKqf0DYxaVzgVSghQ4IlWpOSSIBJuQVlWcrUwQvVhkNgEzK+8+8wDH7bTDf4c8Z/3UgaP6EBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780990021; c=relaxed/simple;
-	bh=MP18MVNHTXW7aNo5eGxHrpd9iKiT4agqpG7qvYvWGm4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=OzkTw5wcynHjqPR0+OM7AHoM109VizFy5qPd+bSQ2AjwCX/RMaq4JLSXwRhQwNu0QuqCBaS5uwJRRQnKxyJhfNbyjUXmp7ZToRJWD8C8vNwvvR7rRCRGGuFtOOCadvgZL+BI7KPPe41XwwhCql6YwB46AdUnCTvE9q1y+05zPR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SqObM/Hf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F16D81F00893;
-	Tue,  9 Jun 2026 07:26:58 +0000 (UTC)
+	s=arc-20240116; t=1780990137; c=relaxed/simple;
+	bh=Qzq8JFlFuObFvmKuFmssnbGMWgD29AFPCAnznkuDpA0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q5+/0Nka7y3BdSiN7Xc6N16dLr63lzLgH9xCwCW6RnFoDp3NiobukkreuC6KDwqavYCtUPSno75Yy3MnXwHKNcSix3kVfwlXYHO1u8aA87XNUkd5SW0hPKJp6rRAch1x70Rk+5q6Ie7omECFS6f9i9ZPrHgBvYdMHi+50WmbK5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UQG/1zsH; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A2DE1F00893;
+	Tue,  9 Jun 2026 07:28:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780990019;
-	bh=YKc6nCZrr9SMM8NJnPMTxLtpgHDW+SWLJ1lj0GYGtEo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=SqObM/HfwPxx5GZRe3mWFjYJTM9bAROcncRz9bQ7jkmbpLJrjYc+rJbzizWixJ1AM
-	 2vMbW5lG6Nlv4wD1hDvc6kE3CHenFl1LwjC6pEPt/WSmXxWjt03oBxoEgTPFUaMpWg
-	 bGe9GRnA4/dYqpaKaVT2Pd/cDI2yW64e5fOpBrbo7UXjYed14ZLqMpCF7hGec3yCU8
-	 AgZOi1FvmFi5RoL59VrRwWVCw3mhm6HRSk7KcPaOLp84hfFuPJKgn19xAfVDOsTCB4
-	 e5+czacOhz0Dh9d3B86Htygo7p2/xJBMYsBfjmryQkiM+ME060xk7fr5GXoyKwlK/y
-	 8VyaTryoVB4MQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 4/7] ASoC: codecs: ES8389: Modify the initial
- configuration
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Zhang Yi" <zhangyi@everest-semi.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260609071732.20939-5-zhangyi@everest-semi.com>
-References: <20260609071732.20939-5-zhangyi@everest-semi.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 09 Jun 2026 07:26:58 +0000
-Message-Id: <20260609072658.F16D81F00893@smtp.kernel.org>
+	s=k20260515; t=1780990136;
+	bh=sWNAmXeiWmwxeKCoQ11+GrDkd2t2GOIhhcnyC5yfQl4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=UQG/1zsHX+JRRF7DbIBZJZG8OKX0NWnFOxKLv7cTXIfpCkTf6DXL4opYKkNc7U01b
+	 2WvQ+LWMwew+eKuWNgjs9oCUICK/ksO2NzLYkU1Ny8SX37YvJJESxj2tVYVECxlEx6
+	 bYYKziFRJ5F3iHHhfG9rLLXMxXqB0M+ahp6fe3TnNRGywPPFSI+4hlvGpTTwZCxoSO
+	 U/9RFlpaHXlmngR/a36ebbL3ZdcGaoF4LGDfO0xEhZ+DIqIrc7WjfJtVipW8IPP9Q6
+	 4e0QYEvNGB9kHfWUuj+h7zuGtNkhKiMsj3l/y8ViXs8w+Ge0jXRQ5biLDqndLus1IO
+	 ZFr45H+Gjk3jg==
+Date: Tue, 9 Jun 2026 09:28:52 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] ASoC: qcom: lpass-rx-macro: Add shikra compatible
+Message-ID: <20260609-pretty-coral-weasel-e951ef@quoll>
+References: <20260608172023.2965292-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20260608172023.2965292-3-mohammad.rafi.shaik@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260608172023.2965292-3-mohammad.rafi.shaik@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308771-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308772-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mohammad.rafi.shaik@oss.qualcomm.com,m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A229865D3C0
+X-Rspamd-Queue-Id: 37AA065D401
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+On Mon, Jun 08, 2026 at 10:50:22PM +0530, Mohammad Rafi Shaik wrote:
+> @@ -3648,6 +3655,7 @@ static int rx_macro_component_probe(struct snd_soc_component *component)
+>  	case LPASS_CODEC_VERSION_2_6:
+>  	case LPASS_CODEC_VERSION_2_7:
+>  	case LPASS_CODEC_VERSION_2_8:
+> +	case LPASS_CODEC_VERSION_4_0:
+>  		controls = rx_macro_2_5_snd_controls;
+>  		num_controls = ARRAY_SIZE(rx_macro_2_5_snd_controls);
+>  		widgets = rx_macro_2_5_dapm_widgets;
+> @@ -3809,6 +3817,7 @@ static int rx_macro_probe(struct platform_device *pdev)
+>  		return PTR_ERR(base);
+>  
+>  	rx->codec_version = lpass_macro_get_codec_version();
+> +	rx->bypass_fs_control = !!(flags & LPASS_MACRO_FLAG_BYPASS_FS_CONTROL);
 
-Pre-existing issues:
-- [High] Calls to `regmap_read()` do not check for error return codes, lead=
-ing to the use of uninitialized stack memory if the read fails.
---
+Is this specific to Shikra or LPASS v4 codec version? Commit msg
+suggests latter, so detectable from version, no?
 
-commit 73684b8bb77238aedd3f4796976da733be77e2de
-Author: Zhang Yi <zhangyi@everest-semi.com>
+>  	struct reg_default *reg_defaults __free(kfree) = NULL;
+>  
+>  	switch (rx->codec_version) {
+> @@ -3831,6 +3840,7 @@ static int rx_macro_probe(struct platform_device *pdev)
+>  	case LPASS_CODEC_VERSION_2_6:
+>  	case LPASS_CODEC_VERSION_2_7:
+>  	case LPASS_CODEC_VERSION_2_8:
+> +	case LPASS_CODEC_VERSION_4_0:
 
-ASoC: codecs: ES8389: Modify the initial configuration
+Best regards,
+Krzysztof
 
-This commit updates several initialization registers in the es8389 codec.
-
-> diff --git a/sound/soc/codecs/es8389.c b/sound/soc/codecs/es8389.c
-> index 647d9d62820e6..284eb707f9f7f 100644
-> --- a/sound/soc/codecs/es8389.c
-> +++ b/sound/soc/codecs/es8389.c
-> @@ -793,7 +793,7 @@ static void es8389_init(struct snd_soc_component *com=
-ponent)
-> =20
->  	regmap_read(es8389->regmap, ES8389_MAX_REGISTER, &reg);
->  	es8389->version =3D reg;
-
-[Severity: High]
-This is a pre-existing issue, but does this code handle regmap_read()
-failures correctly?
-
-If regmap_read() fails (e.g. due to I2C/SPI communication errors), it
-returns a negative error code and leaves reg uninitialized. This
-uninitialized stack memory is then permanently saved to es8389->version
-and could affect later logic.
-
-There appear to be a few other places in this file with the same pattern
-where uninitialized stack memory might be used if regmap_read() fails:
-
-es8389_pcm_hw_params():
-	regmap_read(es8389->regmap, ES8389_DMIC_EN, &regv);
-	dmic_enable =3D regv >> 7 & 0x01;
-
-es8389_mute():
-	regmap_read(es8389->regmap, ES8389_CSM_STATE1, &regv);
-	if (regv !=3D ES8389_STATE_ON) {
-
-es8389_resume():
-	regmap_read(es8389->regmap, ES8389_RESET, &regv);
-	if (regv =3D=3D 0xff)
-
-Could we check the return value of regmap_read() in these locations to
-avoid evaluating garbage data?
-
-> -	regmap_write(es8389->regmap, ES8389_ISO_CTL, 0x00);
-> +	regmap_write(es8389->regmap, ES8389_ISO_CTL, 0x56);
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609071732.2093=
-9-1-zhangyi@everest-semi.com?part=3D4
 
