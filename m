@@ -1,271 +1,192 @@
-Return-Path: <devicetree+bounces-309139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309144-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id O+aMAOM6KGo3AgMAu9opvQ
-	(envelope-from <devicetree+bounces-309139-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:10:11 +0200
+	id bN4GKN0yKGre/wIAu9opvQ
+	(envelope-from <devicetree+bounces-309144-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 17:35:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40A1A6622BD
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:10:10 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 535C6661CF9
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 17:35:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=axis.com header.s=selector1 header.b=qh545K+A;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309139-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-309139-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=axis.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=QnZRTG8b;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309144-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309144-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7E6F2324AD87
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 15:17:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6AC9D30EEBEC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 15:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4C74A1389;
-	Tue,  9 Jun 2026 15:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9EA3624D9;
+	Tue,  9 Jun 2026 15:16:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013031.outbound.protection.outlook.com [52.101.72.31])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 220F847ECE2;
-	Tue,  9 Jun 2026 15:13:28 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781018019; cv=fail; b=PLdd8OkvaU3QOIiIakf6sBkb4NUBVJpvxwtCcqP3Ti/pRt5m15T+TJ9bU5pEw34bWg/Ld4i2qYkXbhBYHjmzICQRbGYSLjAKPV9Ir0/BoMvC8uzW+S+LJeut9n95Fcv+KiUSZjE6SYcxSX4lFajaBNwBAl1tZkH9xwwz5Zf2osw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781018019; c=relaxed/simple;
-	bh=buSMQwv//fBiiXFiYiHhtWytdWB1uhAL4bmttFoJn6E=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Kz8HPo8Xd4Uw4uR9w4wu29X9JBkAnm1hvV0472XPTgYzcsRQOE9qWy4wjgTrZhvH2bt4nNOM7DnwovkWBURinSNIn8mZByqDlqXbAt8XU/I+BpfUBszHELqd5ErpV//751l0ilyCE/OqQ9VHA6TUNsBnDYMeliwBaZsIGF4hit8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=qh545K+A; arc=fail smtp.client-ip=52.101.72.31
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ly6j+Uyu7xVGuaaWE+zrqib5jtTt8ic1Ka4R/w4siOsYcwNR7Xd+vqEWXzglBnWel/+bkNRSrFw1kalcUq12V6l5CcFP5KeKkdTYNQpB6o20nzMJcyAAbtT1De6UcIBy7JxV/+paaCCfCvSW4pHu8f4JaUAT5GQMwpdqccAhas4W24P0Tzxfwn4jmq/nNHneqECOlAWZCDKScBqasvGW2q/tfEr+UNTxz/XzAYV2K95eOfFFv/F33EMEo1ff1vpYaaV//TludE8XfCqaN0a4857n7TKu+XuU7MbeFhTX09/Qx3BaD1izE1s7fvoM6I7fTPkNpc/EDA0oEbivjIMwQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KTq12nMNoYRUVTkgw0xgb37gzF7+e5El1z/LNetKgSo=;
- b=Lka/V6epAclWV9yThIe3xIaCPULosXOWmUT8a3AKAYggG/84oGHnQa8qokwRCyzDrLmDcgUXRvqFmW7b1QmIuULGRpW0IO8bj81YUf3nPLgCSdblNq+y97XMsx7qkfFN8cZ3QbGKaO64JoW/15VyHELxowALKfvxtyiVWJZSVewQ46MRON1W0XAJCfRJhU2jpm9hT2MrJlyVYnZ1TfxhCfJh9Zfs6AmgQd0FdKG7I/d/FnAmfI4ygag9hdttkewsYFw8MSPr3K6iBh7iVAxPVSTsiiy/rk+oF11fAqOaK9bre77N0d0vXlMhTf/myusDIiurgRHEs8pLXD/MUBjvGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KTq12nMNoYRUVTkgw0xgb37gzF7+e5El1z/LNetKgSo=;
- b=qh545K+AI+bGZ37XOSZ/6l7hejkD50ePgYyO6/83G6TE86cDM5Wguaxu8FNRwHTlOwar1+eLoXtm61hBI33YFZZvHMjpCZlbMTbbsRoxj21szTjFqKWVUp9jjGgUysj0qnvfGqwvID1Em/QI3IBW6jLsDWwLqrL+c3kne0PiknU=
-Received: from DU7P191CA0010.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:54e::35)
- by GV1PR02MB10837.eurprd02.prod.outlook.com (2603:10a6:150:170::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.11; Tue, 9 Jun 2026
- 15:13:19 +0000
-Received: from DB5PEPF00014B9C.eurprd02.prod.outlook.com
- (2603:10a6:10:54e:cafe::9f) by DU7P191CA0010.outlook.office365.com
- (2603:10a6:10:54e::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.10 via Frontend Transport; Tue, 9
- Jun 2026 15:13:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- DB5PEPF00014B9C.mail.protection.outlook.com (10.167.8.170) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.113.7 via Frontend Transport; Tue, 9 Jun 2026 15:13:18 +0000
-Received: from pc67007-2609 (10.4.0.13) by se-mail10w.axis.com (10.20.40.10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Tue, 9 Jun
- 2026 17:13:17 +0200
-From: Waqar Hameed <waqar.hameed@axis.com>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, <kernel@axis.com>,
-	<linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [RFC PATCH 0/2] Add driver for TI BQ25630 charger
-In-Reply-To: <ah72aPNg-psfHrHi@venus> (Sebastian Reichel's message of "Tue, 2
-	Jun 2026 18:17:16 +0200")
-References: <cover.1772201049.git.waqar.hameed@axis.com>
-	<pnda4tunkrx.a.out@axis.com> <ah72aPNg-psfHrHi@venus>
-User-Agent: a.out
-Date: Tue, 9 Jun 2026 17:13:17 +0200
-Message-ID: <pndzf13u4qa.a.out@axis.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 491E336215D
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 15:16:50 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781018211; cv=none; b=i/c9i4tT3PmPslL6WQgWAC5IgZyMPhKQNiSVhZM4szMXEtEusKhAAmF/X7J20p1spx4n/3gCr8EzsTJYibhuLzHvO1EbNwgSxWyD8kYTtOQPT50FYxaxZa1llB1n54enzem9fE5obv+dOSmhcJzQ37rwRknDCsn+BSnCYb8T/yY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781018211; c=relaxed/simple;
+	bh=A9tfClX8Q5B176EdrnPRG4VsIQcWv2vxdIc/A1y7sjE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ej4Dj0PHGoQheQPgcvtSZG8HoVdqjZZeBhcEtk0Lj9jh3vka38VVi6wmcAajvxhZHszWzIJsr0tL9RApz2fDCsY1RWpfJA6Rx9FQ8UMP0nhPQEp76b11UWJ+t1UHa16lQWUT+uYKX+6gbPnIHoWrsdcd1sTZVarxNEp4M7QqRoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QnZRTG8b; arc=none smtp.client-ip=209.85.215.178
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-c858b5de728so3653951a12.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 08:16:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781018210; x=1781623010; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X2OVhVGvDZE7tZDpbh1B90htiaNt432NF1Wdfrujw3Q=;
+        b=QnZRTG8bMg93PbDjsDGh0hEcKzU3gIXU3t/gnIz/+qwJ8Nd7M+juyObEXgvVqeV67i
+         R4UB82WgGcRnjzF2mb3uRCOZ+u4rv9SJRhyxa8kK1jeRKBiGeRf2TSHiXSJWzHZdbsYQ
+         Tlv6efzuzmoCtUMFjXCQUwd+H3lK4wMO33J2sp0tFqCbKhSREH+COKrHJE9KBXnqFfLw
+         AkSuP5x/oItJ4vB0EqRttYYB6yWNr2Ab47hYjbhj2C4794QDQqEntNwqZSdAAbJjeC1Q
+         3Tmlh/Ao73JZtH+Q7gj6adweMHtqHThw+U+ZQ5djq1kaxs7ur/V7657Efk7V0cc2O0+L
+         +ACQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781018210; x=1781623010;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X2OVhVGvDZE7tZDpbh1B90htiaNt432NF1Wdfrujw3Q=;
+        b=PU1CaCr7W8o5HIrYrshw9z//huulz1bi2mlpN6ah59xhyokxd9PP9rLNHNddr+ZPqS
+         emwKBjVErVPbulFHxK5BGynhpKJWydFqR+Kqk+GO9lLu5dggNJtvZKxyo1ZAf5x2uYTe
+         UfSXmgvaXtfRo7k7EcsC/qFNEZ75MTNGxAq5mXtt0Q7mJbDokT8r0ITPwA5wQS8IuXJo
+         tmTyaN/WU73S2rNYH+BnT9XR1odqeW8KkkHc3AqKrPdHrevgjbC8XvyfeTo+vPDJYlNA
+         plcyArhGzYOKiJ5B12VNgmLrvTNEbn6O3TyeQvApuYVKw/gAuQS4t4bcdEQKNulc8Xy6
+         vXKw==
+X-Forwarded-Encrypted: i=1; AFNElJ9iCMaaQisvAV3iOiXAXy8XFDWUzMd+JrRQkffLkZWIGqnkscQCL2Ji3XEOagw2JxcaIKqjZrc9AY3x@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8IMO3vOMpzEHIfyBxUmdxKcxHgJoYXe3Y/DguibvuRVE1Tjyf
+	5u5HCQZFFj3E/P/DDdNZjc6pBRyN8/VervFdq+qAwuacFId6d+zfez9G
+X-Gm-Gg: Acq92OH29MK5YVZzyxfNdr0GRtZuNR397Xzr/rmk7/e1A/zkVwOsQOdqSwrCzdi0xrA
+	qT7ffRmfVLpbp4cPdCZFfmCnezP84M/MPdPYPQHxsQ8E20p1gLvvjIANpIPJZwEUsIQU4U7jv7W
+	1iTfzyzYevcPQWStYPnEYhnFhMIT05Cd9F6yM1OaoUR2WGG0ROAce+MO5Rp4pXlm31zsq43tNcR
+	tIPOI77ISMf3zykKiHdrrEa4mS6S6sAIXFwtpETliwMzh1p0Cq+TMGZFl/xSUTwK4/8YDFztlAO
+	bPxP2GFznc+7gefhIHzf3wQ+RdiUxg8f8wOt83TvBp5A40zmzSgqT7Ms5xdtECAbkNpw2+v6JB+
+	3oBpjiAyvtzRMc5g9lbSJAUcxnd0nndNHV7i7gkdyqYyL1oT4jDW1uDeEsVxjR5VhaYTkwe3yeC
+	qhdKKBlAAFHPGqnv/Wdl7xhnYkmsoMQUBMQ5A6LiO9pvN+TJPsCXmCTsoiZ9RN0/sVDC5uqN+4k
+	jpqY6bxNPxXqXD8cFxhYpPWdsB9K9TJR1HhnwSbciuqKQ==
+X-Received: by 2002:a05:6300:67c7:b0:3b4:b30e:1b4d with SMTP id adf61e73a8af0-3b4cd04c26cmr28149436637.40.1781018209653;
+        Tue, 09 Jun 2026 08:16:49 -0700 (PDT)
+Received: from [192.168.0.100] ([103.181.54.100])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c85df03387asm20355865a12.4.2026.06.09.08.16.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jun 2026 08:16:48 -0700 (PDT)
+Message-ID: <c6cc71bc-7256-46a3-ad4a-a1ec4b38400b@gmail.com>
+Date: Tue, 9 Jun 2026 20:46:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: se-mail11w.axis.com (10.20.40.11) To se-mail10w.axis.com
- (10.20.40.10)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB5PEPF00014B9C:EE_|GV1PR02MB10837:EE_
-X-MS-Office365-Filtering-Correlation-Id: daf09964-7251-493f-2900-08dec639a349
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|36860700016|376014|1800799024|6133799003|18002099003|22082099003|11063799006|56012099006|5023799004|4143699003|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	DP6kJ2WwTQGAEkpcO9WhUSq1mcW/sJ6KBEBgCKH1T1a3daALM3JvTdCxXMwApB4jQ3wZlbB0NHM1Qq8dhUeWbsWpsmX+tPQhLsezteiVyRZD6yMCs3dv1u4nwQoxqgcFTUcQmZr88B59U3YC29MDYpMYELzqdiLcQUHPSz9jL4bDrVAXjLFTj8ul/F06H+IeqTndzG37YNbmbdzszPSwlrJ5zhrmuJ2tsyOSxlrBFAoH0hHqHUQ7UGLeBsQgf2HjYrQfmI5vZ7FdiDbFzPyA7SfyE9WAK/wnGCvu8njhLa92U3iIBtqDKvAxqMtPkVQOHQu2bIxbUiMMSlm7Aa4TlQ2IpxJ2+AB9fLhAqSD7/5JSKhzq0qXg8f3Jm2BvtI4fNVKlKDovTh8UWyQSeIgH6Kc+iGUj7M+mY+8OYtnvKjnumh57+Df8gALB+DH5U/PPLerANsLWB1/ThJO6U2TLhZxddQ4XTFrjrzrctRf9Z76uh8kexz6BYWAF9W7jqm7hhtAZd1wSmnAsV4+M/+noN85/PGPiimWMAS/b1na+iBlkq7rKb6olLCjXWR+UFnzI1BEl61rR9qdPOIRiAGXDiT96WjLh32anIkpz7x3zPnwzMXrno37t56+04SMvAdq+aOCBBDS2SEfY6r8xRv8wiiau2uMSn2heycDZV5x8oC9MHTpz+v6NcoonoLZXI6sx
-X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(6133799003)(18002099003)(22082099003)(11063799006)(56012099006)(5023799004)(4143699003)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	8uILbGbNVPRD3ZfiHoq0Hysk+ijK7+MeZfegJh20mS3Hy39m901Oe1n4MF9ulcdJxtQuVNm1S+ych2dXb9S1QS1Zvk+2FSnRyWbZtlHnZo+ONzB0ipV9123mRSUWpW+RLHCXOOjTPfOqF4wyYG1TIvHUglmxCzgIXMcSutX7qO+tnfODnToz54EjrjTQ1FuZdxGrn2fiaMfP+EKT+mol6/P30iCi2rp3OuZrAyLeG5Z19NOr3Bb7rFN/6EnLIm+TfXtufTxiz+nFvlBS/tC8Fyvdup929H19yuMKoTeRlhJTbOJstV7KDAr4R6RiHaLwHgq4QrtgTTbywOTdul3Ov4uI7wXUYzsLRbjIFNo98/PN8Ox26s52KFYzE5AMYCU1ok3p4q7ordSrB3UY4LQBakn0x2AumI7wybuEk/NIpDFGCsiglbq+bO5oXIXQuYEC
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2026 15:13:18.7616
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: daf09964-7251-493f-2900-08dec639a349
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB5PEPF00014B9C.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR02MB10837
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] spi: dt-bindings: octeon: Convert to DT schema
+To: Rob Herring <robh@kernel.org>
+Cc: broonie@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, me@brighamcampbell.com,
+ linux-kernel-mentees@lists.linux.dev, skhan@linuxfoundation.org
+References: <20260607142356.2844008-1-ninadnaik07@gmail.com>
+ <20260608143259.GA2569066-robh@kernel.org>
+ <20260608150040.GA2675433-robh@kernel.org>
+Content-Language: en-US
+From: Ninad Naik <ninadnaik07@gmail.com>
+In-Reply-To: <20260608150040.GA2675433-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.85 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[axis.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[axis.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309144-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kernel@axis.com,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-309139-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[axis.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[ninadnaik07@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:me@brighamcampbell.com,m:linux-kernel-mentees@lists.linux.dev,m:skhan@linuxfoundation.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ninadnaik07@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[axis.com:dkim,axis.com:mid,axis.com:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,collabora.com:email];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 40A1A6622BD
+X-Rspamd-Queue-Id: 535C6661CF9
 
-On Tue, Jun 02, 2026 at 18:17 +0200 Sebastian Reichel <sebastian.reichel@collabora.com> wrote:
 
-> On Wed, May 20, 2026 at 05:49:38PM +0200, Waqar Hameed wrote:
-
-[...]
-
-> Driver itself LGTM. I think it would be sensible to merge that while
-> the extra features are being prepared, but the DT binding must be
-> fixed first :)
-
-Sounds reasonable! I'm doing a thorough testing of this right now (with
-some minor issues found) and will send an updated version of that soon
-so we can have the base functionality merged.
-
->> > However, some functionality has no straightforward implementation. The
->> > following features have therefore been left out and hopefully we can
->> > have some design discussions to reach a clear resolution for the next
->> > patch version (hence the RFC tag):
->> >
->> >   1. The USB OTG functionality (i.e. power *out* from the device) would
->> >      probably need a minor refactorization to use the MFD sub-system to
->> >      also register a regulator driver. Looking at the bq257xx driver,
->> >      this should be the preferred design?
+On 08/06/26 8:30 pm, Rob Herring wrote:
+> On Mon, Jun 08, 2026 at 09:32:59AM -0500, Rob Herring wrote:
+>> On Sun, Jun 07, 2026 at 07:53:56PM +0530, Ninad Naik wrote:
+>>> Convert octeon-3010 to DT schema
+>>>
+>>> Signed-off-by: Ninad Naik <ninadnaik07@gmail.com>
+>>> ---
+>>>   .../bindings/spi/cavium,octeon-3010-spi.yaml  | 67 +++++++++++++++++++
+>>>   .../devicetree/bindings/spi/spi-octeon.txt    | 33 ---------
+>>>   2 files changed, 67 insertions(+), 33 deletions(-)
+>>>   create mode 100644 Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml
+>>>   delete mode 100644 Documentation/devicetree/bindings/spi/spi-octeon.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml b/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml
+>>> new file mode 100644
+>>> index 000000000000..3dbbb4f3c104
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/spi/cavium,octeon-3010-spi.yaml
+>>> @@ -0,0 +1,67 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/spi/cavium,octeon-3010-spi.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Cavium, Inc. OCTEON SoC SPI master controller
+>>> +
+>>> +description:
+>>> +  The Cavium OCTEON SPI controller is an SPI master controller found in
+>>> +  OCTEON SoCs.
+>>> +
+>>> +maintainers:
+>>> +  - Mark Brown <broonie@kernel.org>
+>> This should be someone with this h/w. But there doesn't appear to be any
+>> OCTEON maintainer. There isn't any .dts using the compatible either.
+>> Perhaps this driver and binding can just be removed?
+> Maybe not. Seems this is used on newer Octeon platforms like cn7130
+> which aren't that old. Some Ubiquiti devices use it and run 5.4 kernel
+> with OpenWRT:
 >
-> If the regulator is the only part making this a MFD, just create it
-> in the charger driver itself. There are a few examples, just grep
-> for 'struct regulator_ops' in drivers/power/supply.
-
-Alright, will do that!
-
+> https://openwrt.org/toh/ubiquiti/edgerouter_4
 >
->> >   2. Other drivers add a custom `sysfs` attributes for BATFET control.
->> >      See for example rt9471 and bq24190. Is this the preferred approach?
->> >      Should we add a new power `sysfs` class ABI for this? (There is a
->> >      TODO left in the code for this.)
->> >      
->> >      I reckon it is quite common to have BATFET control for chargers,
->> >      i.e. being able to set them in "ship mode", "stand-by mode",
->> >      "shutdown mode" or "idle mode" (example values taken from the
->> >      `BATFET_CTRL` register field from datasheet [1])?
->
-> Yes. I usually ask to use custom properties until there are a few
-> users to avoid cluttering the general ABI. I think BATFET is a good
-> candidate. Please add a new property for that one.
->
->> >   3. This device has liquid detection and corrosion mitigation. I
->> >      couldn't find any existing device driver with this kind of
->> >      functionality. The datasheet [1] even mentions "patent pending",
->> >      although it refers to the USB type-C Specification 2.3... :)
->
-> This is something I also expect to see in more devices; I know a
-> couple of Android devices offer this. But indeed nothing has been
-> submitted so far.
->
->> >      When liquid is detected in the charging port, an interrupt is
->> >      fired. Likewise, an interrupt can be fired when the port is dry
->> >      enough (according to some configured threshold value). My initial
->> >      thought was that maybe we can add "liquid detected" to the `health`
->> >      `sysfs` ABI?
->
-> Sounds good to me.
+> Rob
+Hi Rob,
 
-I'll send these as separate patches then.
+In this case, should I keep Mark as the maintainer?
 
->
->> >      However, the question still remains though how one
->> >      should enable/disable and set threshold values for this (new power
->> >      class `sysfs` ABI or a custom one only for this driver)?
->> >
->> > [1] https://www.ti.com/lit/gpn/bq25630
->
-> I had a quick look at the datasheet. I think a new standard property
-> would be sensible:
->
-> LIQUID_DETECTION_CONTROL with possible values
->     off = Not liquid detection is being performed
->     auto = Periodic liquid detection checks are being done
->     once = Writing this will perform a single check (and return to off)
+Thanks,
+Ninad Naik
 
-I think this sounds reasonable. Most future devices (if not all?) would
-probably be covered with these three states.
-
->
-> For the other controls I'm not sure how generalized they are. E.g.
-> for TLQD and ILQD it offers 4 steps, but not explicit current
-> (seconds and amps). OTOH for the voltage explicit values are listed.
-> Maybe just leave them to the default until somebody actually need
-> this configurable?
-
-The USB specification actually lists several different methods [1]. I
-agree that the wisest right now is to just leave this and wait for more
-data points (from how other devices will expose this).
-
->
->> Friendly ping incoming!
->
-> Sorry for being slow with reviews, I was quite busy and out of
-> office in the whole May. 
-
-No worries! I know how the workload can be as a maintainer (especially
-if you're all by yourself). Thank you for taking your time! :)
-
-> I suggest that the 3 things are being send on top of the updaed base
-> driver :)
-
-Yes, let's do baby steps here and merge base functionality first (as
-discussed above) before adding all these extra features.
-
-[1] `USB Type-C Spec R2.4 - October 2024.pdf`, A.3, p. 351. https://usb.org/sites/default/files/USB%20Type-C%202.4%20Release%20202410.zip
 
