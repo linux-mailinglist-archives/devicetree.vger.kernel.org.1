@@ -1,148 +1,198 @@
-Return-Path: <devicetree+bounces-308858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308855-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7XJnD2/ZJ2pC3QIAu9opvQ
-	(envelope-from <devicetree+bounces-308858-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:14:23 +0200
+	id zk1GMI/ZJ2pT3QIAu9opvQ
+	(envelope-from <devicetree+bounces-308855-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:14:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A59865E2C6
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:14:22 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3135D65E2E8
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:14:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308858-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308858-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aReuL1nI;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308855-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308855-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BFAA530BB610
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 09:07:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C9483061510
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 09:06:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D50003F20ED;
-	Tue,  9 Jun 2026 09:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03A13C0624;
+	Tue,  9 Jun 2026 09:06:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF541194AE6;
-	Tue,  9 Jun 2026 09:06:49 +0000 (UTC)
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAEC33101BC;
+	Tue,  9 Jun 2026 09:06:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780996011; cv=none; b=WYVNOgxfe6CP4pPpkf06JIJJ4WVf4jlWY6P5P1GtEG+CDY25h8EqnTUX5+5tyBsf4EjQXcerWRcm4aYDYWX1d0aZVBFQMadpuqmVaXx7oLdMU3TT34LvfrUJgt7oQFzD5UrD3pF2JGs/cHeRhWgmAmiZvA2uE1P6wFU6CHi6Bto=
+	t=1780995974; cv=none; b=NDJ8o7a8sxpxd5+CtE/CkVsme4gpdsINeiqu1BALxSPhLm4aHBagQKGOD/rOhCJeF7bSr2RTFc3LyCMJ90hKtHlFAIY8WgJ4A4a2+ServP4RARDluqUKYQ+DLc/HTENsdfn6gStw80FHYGuEkvLZO2e6yKifqMsza0I3CQ4oqjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780996011; c=relaxed/simple;
-	bh=/vPodh8on6A4OnRb2aoAHZJLbt4JZwztrUkDiPLW6kk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TUPjIry5IL22kaXHnzcUNirCrE1dT9JZ0C60Yk+nLRW+YCRSVRfCVum5XywTH1WzwnyfhrQ+Qp3hgPilex6nACalf2CnSMHgowZ3+rSanu8Vvl0UNb0XOYKnhSuXGGnWPOoIAVKAOpJtcdoiwXsmu9MpsXGb+R51y8rCWAe21XM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Received: from loongson.cn (unknown [10.20.42.101])
-	by gateway (Coremail) with SMTP id _____8AxVumo1ydqfjESAA--.42577S3;
-	Tue, 09 Jun 2026 17:06:48 +0800 (CST)
-Received: from loongson-pc.loongson.cn (unknown [10.20.42.101])
-	by front1 (Coremail) with SMTP id qMiowJCxOMGk1ydqKKOgAA--.28652S5;
-	Tue, 09 Jun 2026 17:06:47 +0800 (CST)
-From: Hongliang Wang <wanghongliang@loongson.cn>
-To: Hongliang Wang <wanghongliang@loongson.cn>,
-	Binbin Zhou <zhoubinbin@loongson.cn>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	loongarch@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/3] LoongArch: dts: i2c: Add clocks and clock-frequency properties to 2K2000
-Date: Tue,  9 Jun 2026 17:05:43 +0800
-Message-Id: <20260609090543.1462-4-wanghongliang@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20260609090543.1462-1-wanghongliang@loongson.cn>
-References: <20260609090543.1462-1-wanghongliang@loongson.cn>
+	s=arc-20240116; t=1780995974; c=relaxed/simple;
+	bh=Qbb4rjAIomvVbgZ/M4h141Uqkrd0TLsF8Vr+BK46Icc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=gmIhGhIw8MGasfjw7HJmXdNVWvM5jsl4v5eY1fOuMiwZ7RneFteStI+RnIMYjlbAvkDHArt1L1QKv4QCJOLi27RalLh7/6jGoEi4KxQJoGLZYhyCw1go4v0fADIoxaZDj7Isl77jrg7Ra9/f7+4TjrnBSqDdGlhvQgfXPtdd1Do=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aReuL1nI; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E01401F00893;
+	Tue,  9 Jun 2026 09:06:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780995973;
+	bh=dQDz6m5OW2BTYLWFJoUnXfgZADrjv2c8CLFjM9rxA/s=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=aReuL1nIwUTVhj6BcbVkCELme6p/gYnFWKJ3D8qZxi2ZIPrpfStTcMNE3ke5rVjc1
+	 39InIkplzrvs3LNd0xB42322VL7h4nvf+hF5yHDG8lOtcCoPV5v2A7Eu2j8akrO9gC
+	 nmXaXQ9nUXcR4a1eqsNn445lInQYve/PWe9ZhwOEX7tuaaL3QkVkV1YpzXt+qZLPZK
+	 iN0PSQ4hHvwNed6a9y+BMW3HBPj9pOaehHhn6CdAKLD0YvanVcnDngy2yR+ZQ58UDj
+	 ZieY6X0fbsjd+1owZYmaFVia0mspLH3xXW9ldpskHt0GjDWTa1KsNj1iQJkiWgOwiz
+	 kz5ptcr5WMadg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 2/3] arm64: dts: freescale: Add support for Variscite
+ DART-MX8M-PLUS
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Stefano Radaelli" <stefano.radaelli21@gmail.com>
+Cc: robh@kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <85af11e85dbb7cf5097d7c0ee567272ff6e87ec5.1780995368.git.stefano.r@variscite.com>
+References: <85af11e85dbb7cf5097d7c0ee567272ff6e87ec5.1780995368.git.stefano.r@variscite.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 09 Jun 2026 09:06:12 +0000
+Message-Id: <20260609090612.E01401F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJCxOMGk1ydqKKOgAA--.28652S5
-X-CM-SenderInfo: pzdqwxxrqjzxhdqjqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBj9xXoWrZryxtrW5Zw47XFy5Ary7Jwc_yoWkGFgEq3
-	WfKw1kGrs5JFZ5Zryq9r18X3y7Z347Z3WFyF9rur48tas8trnxGr48Zas8ArW0krW2grs8
-	J3y8X3s3CryakosvyTuYvTs0mTUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUj1kv1TuYvT
-	s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
-	cSsGvfJTRUUUb28YFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
-	vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
-	w2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
-	W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6r4UJVWxJr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27w
-	Aqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE
-	14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCF04k20xvY0x
-	0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E
-	7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcV
-	C0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF
-	04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7
-	CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07josjUUUUUU=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-308855-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[loongson.cn];
-	TAGGED_FROM(0.00)[bounces-308858-lists,devicetree=lfdr.de];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:wanghongliang@loongson.cn,m:zhoubinbin@loongson.cn,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:chenhuacai@kernel.org,m:devicetree@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[wanghongliang@loongson.cn,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FROM_NEQ_ENVFROM(0.00)[wanghongliang@loongson.cn,devicetree@vger.kernel.org];
-	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[variscite.com:url,variscite.com:email,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,loongson.cn:email,loongson.cn:mid,loongson.cn:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FORGED_RECIPIENTS(0.00)[m:stefano.radaelli21@gmail.com,m:robh@kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:stefanoradaelli21@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9A59865E2C6
+X-Rspamd-Queue-Id: 3135D65E2E8
 
-Add clocks and clock-frequency properties to i2c nodes.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The Ethernet PHY is missing its interrupt configuration, forcing=
+ inefficient polling mode.
+--
 
-Signed-off-by: Hongliang Wang <wanghongliang@loongson.cn>
----
- arch/loongarch/boot/dts/loongson-2k2000.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+commit 6c61266b8d072ce2626b1bdfa603f3df1b562809
+Author: Stefano Radaelli <stefano.r@variscite.com>
 
-diff --git a/arch/loongarch/boot/dts/loongson-2k2000.dtsi b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-index 3678c084adf7..7fdc4192d2f2 100644
---- a/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-@@ -239,6 +239,8 @@ rtc0: rtc@100d0100 {
- 		i2c@1fe00120 {
- 			compatible = "loongson,ls2k-i2c";
- 			reg = <0x0 0x1fe00120 0x0 0x8>;
-+			clock-frequency = <100000>;
-+			clocks = <&clk LOONGSON2_MISC_CLK>;
- 			interrupt-parent = <&liointc>;
- 			interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
-@@ -247,6 +249,8 @@ i2c@1fe00120 {
- 		i2c@1fe00130 {
- 			compatible = "loongson,ls2k-i2c";
- 			reg = <0x0 0x1fe00130 0x0 0x8>;
-+			clock-frequency = <100000>;
-+			clocks = <&clk LOONGSON2_MISC_CLK>;
- 			interrupt-parent = <&liointc>;
- 			interrupts = <9 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
--- 
-2.47.2
+arm64: dts: freescale: Add support for Variscite DART-MX8M-PLUS
 
+Add device tree support for the Variscite DART-MX8MP system on module.
+This SOM is designed to be used with various carrier boards. Only
+SOM-specific peripherals are enabled by default.
+
+Link: https://variscite.com/system-on-module-som/i-mx-8/i-mx-8m-plus/dart-m=
+x8m-plus/
+
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-dart.dtsi b/arch/ar=
+m64/boot/dts/freescale/imx8mp-var-dart.dtsi
+> new file mode 100644
+> index 0000000000000..a647a2e0ab94b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-dart.dtsi
+> @@ -0,0 +1,476 @@
+
+[ ... ]
+
+> +	mdio {
+> +		compatible =3D "snps,dwmac-mdio";
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		ethphy0: ethernet-phy@0 {
+> +			compatible =3D "ethernet-phy-ieee802.3-c22";
+> +			reg =3D <0>;
+> +			reset-gpios =3D <&gpio2 11 GPIO_ACTIVE_LOW>;
+> +			reset-assert-us =3D <10000>;
+> +			reset-deassert-us =3D <100000>;
+> +			vddio-supply =3D <&reg_phy_vddio>;
+> +		};
+
+[Severity: Medium]
+Is the Ethernet PHY missing its interrupt configuration?
+
+The ethphy0 node does not define the interrupts and interrupt-parent proper=
+ties,
+which forces the Ethernet PHY driver to fall back to polling the PHY status
+registers periodically. This is less efficient, increases CPU overhead, and
+causes higher latency in link state detection compared to using hardware
+interrupts.
+
+[ ... ]
+
+> +	pinctrl_eqos: eqosgrp {
+> +		fsl,pins =3D <
+> +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x2
+> +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x2
+> +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x90
+> +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x90
+> +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x90
+> +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x90
+> +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x90
+> +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x90
+> +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x16
+> +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x16
+> +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x16
+> +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x16
+> +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x16
+> +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x16
+> +			MX8MP_IOMUXC_SD2_WP__GPIO2_IO20					0x10
+
+[Severity: Medium]
+Could this pin be intended for the PHY interrupt?
+
+It is explicitly configured with a pull-up in the ethernet group, strongly
+indicating it is wired as the PHY interrupt on this SOM. However, no device
+claims it as an IRQ source since ethphy0 lacks the interrupt properties, le=
+aving
+the configured GPIO completely unused.
+
+> +			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11				0x150
+> +		>;
+> +	};
+> +
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1780995368.gi=
+t.stefano.r@variscite.com?part=3D2
 
