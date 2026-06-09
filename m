@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-308573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308574-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CsmXATduJ2pOwgIAu9opvQ
-	(envelope-from <devicetree+bounces-308573-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 03:36:55 +0200
+	id FSbuM7ltJ2o0wgIAu9opvQ
+	(envelope-from <devicetree+bounces-308574-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 03:34:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72F6265BAD5
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 03:36:54 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA9765BA92
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 03:34:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=pTDcMZ6G;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308573-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308573-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=IIkLMIfy;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308574-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308574-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1992330BC07A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 01:33:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2DA8B305CBE7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 01:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A994E32B116;
-	Tue,  9 Jun 2026 01:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B265C1E0E14;
+	Tue,  9 Jun 2026 01:32:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19146344DB0
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 01:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F46345CCD
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 01:32:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780968729; cv=none; b=WplHqdxCfRpppv8cFPxpnpNrz7ZiRK+IN3qLeDsvYDqV2rlN4wpxqUlfpMZXLxdgo4vF5/lkm6ChyIjz9R9EdHxJIV7hhA5mzG7qpHd6tBSj/s35RxiQnweAl/SC/bjClV6q4SHef7x1ic96F0fHDOd141puMEVGy4/ZB1shpiw=
+	t=1780968733; cv=none; b=mohJFdeX/dMIV3bmm2APb8kvyqOXYxkKU4P2Dzh8/ko6zzJSC9eMRuMN2Sc0msU/jqd8hMKyXUjwTgRw7yNx6clsC5qnGhUaMqcoIKSERQhUe2cxj67Xf0oW/s0DdKBfDKuP7zH6yLmrjdXXIWoOScds7L6xP1fN37e7nqfUxyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780968729; c=relaxed/simple;
-	bh=/wFz177WD3SJ6TlQiCBL0Au+rgkwIfaDTqf/SlngIsM=;
+	s=arc-20240116; t=1780968733; c=relaxed/simple;
+	bh=bx/xL4uOu7yvgNYhnektr0xaOZz+gXIRdS4GkyGOK18=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fv2J8IUAMWEvUWhDSTQIQt1mfd+6vsRK2O3+0AdZylrOIy+fVXLYbm5JsUk1k/7T4Mxey858tvt651gUPLT74FJY5wk+zkJonBgbTX+EHDAObZjqKAaBI4xxTUn4PjWTo33Kq7zLMae61ndCq/xG+Lrtan82x6IcePnYPGD4Ap0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pTDcMZ6G; arc=none smtp.client-ip=209.85.214.179
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2c0c1e0b0faso33835275ad.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 18:32:05 -0700 (PDT)
+	 MIME-Version; b=i6pPk3B9Lhf5jxT5mPxlChJgD9ebEuBxFhf0YAYSbUrvfKjnpTAOLC8bUOrpQSFrYniK4NjRZnH/vqMW6mBXW7s8UH2GDTdTq127lCxEgbKjNZ5RqQSw6gUwHPYbPOS+EQ9ZQSbULThiQWa1nw1J1QCQMHuMpaqM+mES+Ef+W8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IIkLMIfy; arc=none smtp.client-ip=209.85.216.43
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-36d98c9b596so3061646a91.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Jun 2026 18:32:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1780968724; x=1781573524; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1780968729; x=1781573529; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m8p33kKo2+s8dyswBbfJmCPtBlgGA9fVQCE0brP+A/g=;
-        b=pTDcMZ6GHW8NgPLm7Fxx0cHPQd+bn3piHYZd2swh3QhFuFa1Q7O3ky6CPVcgPhU/H+
-         Z7kdwGrSeP9cWOrrDdRScfKG8Z+i1ZocLFDzUqKxGbZimkwlaWwDqRVykP12meDCay7Y
-         UPIyn/+YkMttxinMThsdOi5T38QGSAyF4gUvil8Vm3Wt0XbAvoStdLOFApWD+iRvEdbX
-         lYHOn9/FqpciWL4BTWH+hhGVxSu6qfdQ++HuYEV+MvU1UMOzO4xHDtljZxOaDY0Q7raU
-         qyeURMG4mUGfwxID7CVOz9FnLiuumgqrqZwIIVObgdYXBb16kcK2G9IohgoALgmz3Xpp
-         ICKA==
+        bh=mt6AAR2A7+1jbWMkZsxSOAOfyL+coLl7wIQlASDZaG4=;
+        b=IIkLMIfydhs6McIfCIlFNSN+hwhkKjuLJoEgoroRojNzONcs188oTb4+w1AH5tr2DG
+         0RBdbITuYowfGx6uATdZNtcKVESHhgQtfRUFbm2+oEgoU9bx5/pqCMPrO+tnagYic3jM
+         iM1dgYJZf6aXHiONFw1M/IGuN+PxlZ3jLfMtop6hEdX0+4NLLgY88lmJGmo9ta3rxnu1
+         Wt8qTFgjaiXh4/MSUeIidk9jFMia3s+81d3zcwcO9iQcZkNBWnKBJ92CwTBzjS90HonZ
+         VfwkfHuAraCHcAVhhrYT64iIfJSL51qnm/XHkw/jc8RlWQeSp47TaQxGFp1W0IMr+VEx
+         BG2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1780968724; x=1781573524;
+        d=1e100.net; s=20251104; t=1780968729; x=1781573529;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=m8p33kKo2+s8dyswBbfJmCPtBlgGA9fVQCE0brP+A/g=;
-        b=bg2URVtloOD7a80nMUsAChk79HMLsoUftFVBeGidH2ggEc8ji0wZ1KMgXggKX0HR+O
-         U6oiGeJwjh1SaaHVTjJLsEEfJwNIfCATbY/zAY4qMAerhM1IZZDEa0KnXKFjak2Z2Hpi
-         jlg/Qhg9aXCQB8BODcXgJplFq2ORGoCIs3d/K3mAdWpyITg/rf7NDrTC5Gv9hOOvG4Yh
-         vlSi37UHBrt+7clVGjAfIErfY89ooMACPDOi3tYwik9d5ruD/9uzriqGTyL++78cjWyW
-         16vYiM84jer0HzHaDl8LO/k7DErtO0SVj4KN1R29ts73Djer6IJDtXManGbCnwdirn2i
-         UGeA==
-X-Forwarded-Encrypted: i=1; AFNElJ8yinNNmb09khQWscILAQsDbJKfUALPtHBSaqpVTaVAbhU5HfgD1nzpAUn2oLlo9gRAfnuarG+fJAgy@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywcb768qvjT4NokqqHI/5F4vfa2HZjyW+o2GRDxGRynXp1UpuBG
-	5CV6f3r6U/FXdfNpXVPhA0CpuxztVyttUjxIn3zVMuDSXZXeRkJnweJt
-X-Gm-Gg: Acq92OGBfHs10wCfjeALE95kRZZjf6vU1M17a5wdtDtZEYrl8DIAR/A+bR+CvIXITvf
-	IGaHGaRNESQW2bGnHy/xWYmlRInKKWU7Pcip9QJMq21mFez2N/HMpYxEBx8wAgACF8uienf00+4
-	b0XggeMmFgyoWd+j5Gn+lJXzvJr01p+KVRBWR6qLQ0y/z5SZkRmjf3CXSM1i3kQ8sExn59YcMFo
-	n7ZYmBYubsODfpQJGiQOuZKAAzaM/O5YCGqvzAwIfTrakDmgsn93Ew+OIFmmRSRJhX5RFzCmwAI
-	5QqQWc8c2D4Y9orzjI8D80g9byixEUVpG8VhEiWNCixgUJg8HtvVtCiELNtjKYioW4dPak6CNPU
-	aIyEWQLnKN8dB9RsopXoCCBMMczAh5C8OW3pBiKwLjh8i7RUb9a3Yf5+klXgwEMSBk6b8gFZE+9
-	ks7h+Ke0jbw0NjW6iYPSdzgEu77z7xf9KfLhnA+bszExqVPLIDXgar7RSSUp9VGaAzF5gu
-X-Received: by 2002:a17:903:2a87:b0:2bf:13b0:f8ed with SMTP id d9443c01a7336-2c1e7b2ce09mr252583915ad.3.1780968724400;
-        Mon, 08 Jun 2026 18:32:04 -0700 (PDT)
+        bh=mt6AAR2A7+1jbWMkZsxSOAOfyL+coLl7wIQlASDZaG4=;
+        b=VDghNroq2XfEuF6xclpp/xO8C1mnsh47FMJkVF3/maywJIFAY77bYOnIuIJYxohK51
+         zagcW08vF7Sj1rgrLo0ppehbJ7eiGwjvNEe0o4CRND/MWwJwuwhO8HW/EgNRGI0Y3Fmw
+         C+67phOLtJlgAp6WIaVif1FwvHcF9igZ0fcD1QuG8ARM0i+EwREHfNAIVrcq4aSb3qPS
+         qfSVyJGZUVmwlK3huhs6u/NG1NQhMtFKxIiD0DP8HjVBr5z4QQ4cZLlWrE/bTM1myc0O
+         Laqa0e1cOPGsTsKxl28GM/wGeJvPl2d18aivV5tx0x9S7sUsuieOMvEL1l4ceHnN64cT
+         ES1w==
+X-Forwarded-Encrypted: i=1; AFNElJ83zI80nyikIb7Xona31Dk3ks6ijVlkM/N2mFg3ap4QCFvUvYG+K1rfKhKklNbk8uiF+CIcq1alQgns@vger.kernel.org
+X-Gm-Message-State: AOJu0Yysl6ElMo3vcUoZLjYFbbd2xlqIW4juXUigq533vtk188ghx9Xf
+	U03oF29OhAgdTZc8V29uR6WX3nRpMA5ClVNJcqPsxugRwNEzO1vc3XhD
+X-Gm-Gg: Acq92OF9YA5ycWC2fE4UXdhzpLj8Du5K45elfOVGq0hbl+c8x2azeE4eYDHzUWS6m/i
+	8PKkVDZzPI3uhq3t00mDYJqNGMPIythY1HIkYhepW8Gl/J+w43V0YOa2XVF71A8yc3niZUdTAKb
+	TMw5usVJY7enHKnrjiDft00y2VBj48DfrsjukUie92QunJ1Q8NuYI578DByJmzaRyQz02wSHWaJ
+	NV2lSPIV1b905taL2L4tHPNsqD5X82Vjkx0w0gdulPoUBKtkzGysz1EUxPILUaWMBx4F/KxIUTY
+	RoeXIt2tMTmnuTxsSbklhZ8jQ7gmO/2K6GM8Z1nR9kVW/+DjdOPZeevzVumz/ifYOodVq/n19OA
+	BYaROHu5tkxTH2SkoN0qrj56AKC+tN/fEgG5AT4TY0uGlRii0y0Myh6Rca0ADlyS+/Q+PGhCo/U
+	gxzVHcDbjZcM7L/j5uSnyCW66KKDZTYBNwL5X/JJKHQaeSeu53bGNkAouhf1am5ccvczLs
+X-Received: by 2002:a17:90b:5783:b0:36a:4074:9aa6 with SMTP id 98e67ed59e1d1-370ee82fcb9mr17612341a91.6.1780968729219;
+        Mon, 08 Jun 2026 18:32:09 -0700 (PDT)
 Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c16609e627sm198765335ad.52.2026.06.08.18.32.00
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c16609e627sm198765335ad.52.2026.06.08.18.32.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Jun 2026 18:32:04 -0700 (PDT)
+        Mon, 08 Jun 2026 18:32:08 -0700 (PDT)
 From: phucduc.bui@gmail.com
 To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
 	Mark Brown <broonie@kernel.org>,
@@ -92,9 +92,9 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	bui duc phuc <phucduc.bui@gmail.com>
-Subject: [PATCH v5 08/11] ASoC: renesas: fsi: refactor clock initialization
-Date: Tue,  9 Jun 2026 08:31:04 +0700
-Message-ID: <20260609013107.5995-9-phucduc.bui@gmail.com>
+Subject: [PATCH v5 09/11] ASoC: renesas: fsi: Add SPU clock support
+Date: Tue,  9 Jun 2026 08:31:05 +0700
+Message-ID: <20260609013107.5995-10-phucduc.bui@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260609013107.5995-1-phucduc.bui@gmail.com>
 References: <20260609013107.5995-1-phucduc.bui@gmail.com>
@@ -112,14 +112,14 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-308573-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308574-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:kuninori.morimoto.gx@renesas.com,m:broonie@kernel.org,m:geert+renesas@glider.be,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phucduc.bui@gmail.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,m:phucducbui@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
@@ -138,177 +138,58 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,renesas.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 72F6265BAD5
+X-Rspamd-Queue-Id: 8DA9765BA92
 
 From: bui duc phuc <phucduc.bui@gmail.com>
 
-Move fsi_clk_init() from set_fmt() to the probe path.
-This ensures that clock resources are acquired only once during device
-initialization, instead of being looked up repeatedly whenever set_fmt()
-is called.
-Together with the previous conversion to devm_clk_get_optional(), the
-driver can now probe successfully even when optional clocks are absent.
-The set_rate() callbacks continue to validate that all required clocks
-are available before applying hardware-specific configuration.
+FSI register accesses on the r8a7740 require the SPU bus clock to be
+enabled. Add support for acquiring and managing the SPU clock via the
+device tree to ensure proper register access.
 
 Suggested-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 ---
-
-Changes in v5:
- - Reorder the patches 
- - update the error handling path to ensure proper cleanup by Sashiko 
-
-Changes in v4:
- - Handle the return value of fsi_clk_init() to properly support deferred 
-   probe, as suggested by Mark.
-
- sound/soc/renesas/fsi.c | 63 +++++++++++++++++++++--------------------
- 1 file changed, 33 insertions(+), 30 deletions(-)
+ sound/soc/renesas/fsi.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/sound/soc/renesas/fsi.c b/sound/soc/renesas/fsi.c
-index e29be2bcf952..13988c7dc926 100644
+index 13988c7dc926..6c432c7235a4 100644
 --- a/sound/soc/renesas/fsi.c
 +++ b/sound/soc/renesas/fsi.c
-@@ -862,6 +862,11 @@ static int fsi_clk_set_rate_external(struct device *dev,
- 	int ackmd, bpfmd;
- 	int ret = 0;
- 
-+	if (!xck || !ick) {
-+		dev_err(dev, "xck clock or ick clock is missing\n");
-+		return -EINVAL;
-+	}
-+
- 	/* check clock rate */
- 	xrate = clk_get_rate(xck);
- 	if (xrate % rate) {
-@@ -898,6 +903,11 @@ static int fsi_clk_set_rate_cpg(struct device *dev,
- 	int ackmd, bpfmd;
- 	int ret = -EINVAL;
- 
-+	if (!ick || !div) {
-+		dev_err(dev, "ick clock or div clock is missing\n");
-+		return -EINVAL;
-+	}
-+
- 	if (!(12288000 % rate))
- 		target = 12288000;
- 	if (!(11289600 % rate))
-@@ -970,35 +980,35 @@ static int fsi_clk_set_rate_cpg(struct device *dev,
- 	return ret;
- }
- 
--static int fsi_clk_init(struct device *dev,
--			struct fsi_priv *fsi,
--			int xck,
--			int ick,
--			int div,
--			int (*set_rate)(struct device *dev,
--					struct fsi_priv *fsi))
-+static int fsi_clk_init(struct device *dev, struct fsi_priv *fsi)
+@@ -292,6 +292,7 @@ struct fsi_master {
+ 	void __iomem *base;
+ 	struct fsi_priv fsia;
+ 	struct fsi_priv fsib;
++	struct clk *clk_spu;
+ 	const struct fsi_core *core;
+ 	spinlock_t lock;
+ };
+@@ -983,6 +984,7 @@ static int fsi_clk_set_rate_cpg(struct device *dev,
+ static int fsi_clk_init(struct device *dev, struct fsi_priv *fsi)
  {
  	struct fsi_clk *clock = &fsi->clock;
++	struct fsi_master *master = fsi->master;
  	int is_porta = fsi_is_port_a(fsi);
-+	int xck, ick, div;
-+
-+	if (fsi->clk_cpg) {
-+		xck = 0; ick = 1; div = 1;
-+		clock->set_rate = fsi_clk_set_rate_cpg;
-+	} else {
-+		xck = 1; ick = 1; div = 0;
-+		clock->set_rate = fsi_clk_set_rate_external;
-+	}
+ 	int xck, ick, div;
  
- 	clock->xck	= NULL;
- 	clock->ick	= NULL;
- 	clock->div	= NULL;
- 	clock->rate	= 0;
- 	clock->count	= 0;
--	clock->set_rate	= set_rate;
- 
- 	clock->own = devm_clk_get(dev, NULL);
+@@ -1004,6 +1006,13 @@ static int fsi_clk_init(struct device *dev, struct fsi_priv *fsi)
  	if (IS_ERR(clock->own))
--		return -EINVAL;
-+		return dev_err_probe(dev, PTR_ERR(clock->own), "Can't get fck clock\n");
+ 		return dev_err_probe(dev, PTR_ERR(clock->own), "Can't get fck clock\n");
  
++	if (!master->clk_spu) {
++		master->clk_spu = devm_clk_get_optional(dev, "spu");
++		if (IS_ERR(master->clk_spu))
++			return dev_err_probe(dev, PTR_ERR(master->clk_spu),
++					"Can't get spu clock\n");
++	}
++
  	/* external clock */
  	if (xck) {
  		clock->xck = devm_clk_get_optional(dev, is_porta ? "xcka" : "xckb");
--		if (IS_ERR(clock->xck)) {
--			dev_err(dev, "can't get xck clock\n");
--			return -EINVAL;
--		}
-+		if (IS_ERR(clock->xck))
-+			return dev_err_probe(dev, PTR_ERR(clock->xck), "Can't get xck clock\n");
- 		if (clock->xck == clock->own) {
- 			dev_err(dev, "cpu doesn't support xck clock\n");
- 			return -EINVAL;
-@@ -1008,10 +1018,8 @@ static int fsi_clk_init(struct device *dev,
- 	/* FSIACLK/FSIBCLK */
- 	if (ick) {
- 		clock->ick = devm_clk_get_optional(dev,  is_porta ? "icka" : "ickb");
--		if (IS_ERR(clock->ick)) {
--			dev_err(dev, "can't get ick clock\n");
--			return -EINVAL;
--		}
-+		if (IS_ERR(clock->ick))
-+			return dev_err_probe(dev, PTR_ERR(clock->ick), "Can't get ick clock\n");
- 		if (clock->ick == clock->own) {
- 			dev_err(dev, "cpu doesn't support ick clock\n");
- 			return -EINVAL;
-@@ -1021,10 +1029,8 @@ static int fsi_clk_init(struct device *dev,
- 	/* FSI-DIV */
- 	if (div) {
- 		clock->div = devm_clk_get_optional(dev,  is_porta ? "diva" : "divb");
--		if (IS_ERR(clock->div)) {
--			dev_err(dev, "can't get div clock\n");
--			return -EINVAL;
--		}
-+		if (IS_ERR(clock->div))
-+			return dev_err_probe(dev, PTR_ERR(clock->div), "Can't get div clock\n");
- 		if (clock->div == clock->own) {
- 			dev_err(dev, "cpu doesn't support div clock\n");
- 			return -EINVAL;
-@@ -1672,15 +1678,6 @@ static int fsi_dai_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
- 		break;
- 	}
- 
--	if (fsi_is_clk_master(fsi)) {
--		if (fsi->clk_cpg)
--			fsi_clk_init(dai->dev, fsi, 0, 1, 1,
--				     fsi_clk_set_rate_cpg);
--		else
--			fsi_clk_init(dai->dev, fsi, 1, 1, 0,
--				     fsi_clk_set_rate_external);
--	}
--
- 	/* set format */
- 	if (fsi_is_spdif(fsi))
- 		ret = fsi_set_fmt_spdif(fsi);
-@@ -1983,6 +1980,9 @@ static int fsi_probe(struct platform_device *pdev)
- 		dev_err(&pdev->dev, "FSIA stream probe failed\n");
- 		return ret;
- 	}
-+	ret = fsi_clk_init(&pdev->dev, fsi);
-+	if (ret)
-+		goto exit_fsia;
- 
- 	/* FSI B setting */
- 	fsi		= &master->fsib;
-@@ -1996,6 +1996,9 @@ static int fsi_probe(struct platform_device *pdev)
- 		dev_err(&pdev->dev, "FSIB stream probe failed\n");
- 		goto exit_fsia;
- 	}
-+	ret = fsi_clk_init(&pdev->dev, fsi);
-+	if (ret)
-+		goto exit_fsib;
- 
- 	pm_runtime_enable(&pdev->dev);
- 	dev_set_drvdata(&pdev->dev, master);
 -- 
 2.43.0
 
