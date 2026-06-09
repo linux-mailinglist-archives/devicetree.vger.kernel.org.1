@@ -1,198 +1,201 @@
-Return-Path: <devicetree+bounces-308855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308860-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zk1GMI/ZJ2pT3QIAu9opvQ
-	(envelope-from <devicetree+bounces-308855-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:14:55 +0200
+	id hM42CmHZJ2o+3QIAu9opvQ
+	(envelope-from <devicetree+bounces-308860-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:14:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3135D65E2E8
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:14:55 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6E565E2B6
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 11:14:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aReuL1nI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308855-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308855-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=linaro.org header.s=google header.b=CTTT9bOV;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308860-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308860-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7C9483061510
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 09:06:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C3E6030BC72F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 09:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03A13C0624;
-	Tue,  9 Jun 2026 09:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAEAE3DDDC4;
+	Tue,  9 Jun 2026 09:08:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAEC33101BC;
-	Tue,  9 Jun 2026 09:06:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6663A31715A
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 09:08:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780995974; cv=none; b=NDJ8o7a8sxpxd5+CtE/CkVsme4gpdsINeiqu1BALxSPhLm4aHBagQKGOD/rOhCJeF7bSr2RTFc3LyCMJ90hKtHlFAIY8WgJ4A4a2+ServP4RARDluqUKYQ+DLc/HTENsdfn6gStw80FHYGuEkvLZO2e6yKifqMsza0I3CQ4oqjU=
+	t=1780996091; cv=none; b=buMPpoO6TRbAL++w0jPqqw97TD07/SP8z8AYQcS9fU8gI4zTFTzXS2Kj411+/K9VDhnP+Wldju2j0lq7sV10aVlCjbXC2vF7Ebz2cUEnhWbRfwZfZ73b+2ELLKGt9feRVvHKR30uEBXqwIyWMLiEniQc32tJynGweeOFuWLCVS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780995974; c=relaxed/simple;
-	bh=Qbb4rjAIomvVbgZ/M4h141Uqkrd0TLsF8Vr+BK46Icc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=gmIhGhIw8MGasfjw7HJmXdNVWvM5jsl4v5eY1fOuMiwZ7RneFteStI+RnIMYjlbAvkDHArt1L1QKv4QCJOLi27RalLh7/6jGoEi4KxQJoGLZYhyCw1go4v0fADIoxaZDj7Isl77jrg7Ra9/f7+4TjrnBSqDdGlhvQgfXPtdd1Do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aReuL1nI; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E01401F00893;
-	Tue,  9 Jun 2026 09:06:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780995973;
-	bh=dQDz6m5OW2BTYLWFJoUnXfgZADrjv2c8CLFjM9rxA/s=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=aReuL1nIwUTVhj6BcbVkCELme6p/gYnFWKJ3D8qZxi2ZIPrpfStTcMNE3ke5rVjc1
-	 39InIkplzrvs3LNd0xB42322VL7h4nvf+hF5yHDG8lOtcCoPV5v2A7Eu2j8akrO9gC
-	 nmXaXQ9nUXcR4a1eqsNn445lInQYve/PWe9ZhwOEX7tuaaL3QkVkV1YpzXt+qZLPZK
-	 iN0PSQ4hHvwNed6a9y+BMW3HBPj9pOaehHhn6CdAKLD0YvanVcnDngy2yR+ZQ58UDj
-	 ZieY6X0fbsjd+1owZYmaFVia0mspLH3xXW9ldpskHt0GjDWTa1KsNj1iQJkiWgOwiz
-	 kz5ptcr5WMadg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 2/3] arm64: dts: freescale: Add support for Variscite
- DART-MX8M-PLUS
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Stefano Radaelli" <stefano.radaelli21@gmail.com>
-Cc: robh@kernel.org, Frank.Li@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <85af11e85dbb7cf5097d7c0ee567272ff6e87ec5.1780995368.git.stefano.r@variscite.com>
-References: <85af11e85dbb7cf5097d7c0ee567272ff6e87ec5.1780995368.git.stefano.r@variscite.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 09 Jun 2026 09:06:12 +0000
-Message-Id: <20260609090612.E01401F00893@smtp.kernel.org>
+	s=arc-20240116; t=1780996091; c=relaxed/simple;
+	bh=onUk0eC+bj5IO02NaGoMzSwQ82L62PRWwZ9SDyCVvHk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pL13gGTCcy4j2AMW+6bUIqkmAQek/ggPnS0hZKX+DzHoRMeujM+jQs9pjAFvPv4KrzwFZ4Si6SkFLn6jk4SOPWGvqqdMnEgg39j8k5PWqzy/EQaMOvcfGnqAUorjTpWHDCwdM6iCZ5JzEnUKHzcbDOckrrwCFkljfbMfesoC+qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CTTT9bOV; arc=none smtp.client-ip=209.85.221.49
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-4600ddc4017so3724575f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 02:08:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1780996089; x=1781600889; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WcWe6FBXHKu/SjAvczkdQWOlNf7E5opqauX17gbFy9w=;
+        b=CTTT9bOVDlOGfuyPdLAfq4WX5VpSeBwytP6Akmzrf0TPDS1UMFzXnt08zMo/b9p6aF
+         rhY7GEvUmay9ysAsZR0Pl7gru200x123bbmrACMU21zJKXKSv7/SYgzLgmvcZ0OasojC
+         s9hKr5MgNkPS/e+gki1h2miIsfS9XdaJ0GWjBEfM0UEeCcVkseYspK/d5KNPC8vBpwb1
+         5oWTDSa9mGHW0dwUukPeEQbMXSeVku0fv1p5yfyh1zYudXeiY6dAK5QGzuGoSeiHFBaw
+         +mVlS/8SLLHxNjIcq0N+NRjiNQJ81lsI/bCQB2BX5lYJ4ZHSNukoHxmeGaOR42aiQi6u
+         8BuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780996089; x=1781600889;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WcWe6FBXHKu/SjAvczkdQWOlNf7E5opqauX17gbFy9w=;
+        b=Q4oycbqUypai4AnboU7l8ElVrPqq1xJ0+3WBFyA8UxtvkU3xhJkE94VRWfmvR8yqOf
+         FREpUGAA2q4ucpXxE28/9kd5W5zli2L8SbeURGzOSIa5fcIsJRCDC5TQM73GLTOfP5hm
+         YeAGCBL0n+S66Yw4zidHgzY3Q/G0SLL3etytML9p4HVytNOm4M9su8o482E427bR6P+i
+         ahVGnWDRrtWQxDZxLRp71WhzQtP9821rxIt1GCtmPAFAMzTueaLmV/uxX+oc1lkCpgLl
+         hT/Z3AT6HZmnUX9mmvh93vzupURwXfUDz38R5hdaOUa6e5o3iHFYD5Ei6OOzCzIwUyHW
+         kHTg==
+X-Forwarded-Encrypted: i=1; AFNElJ8kXdROdRu8toNOmniQw398BpR6C/gfgbCz2kreFjiCNqa1phgl07iJdc0Ev4VLoO8mcQZGZa+RyL1Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXxqmvPtBaELSTiegiCrboqaOdgqgRJmHKt2f6+4iFkrI+caFF
+	ObTq+ybi3s0ViievISfPoWUrLOTE2Xx/aR6TeAoNsoC1SglWuCXZNnSXzO0zzmrsopo=
+X-Gm-Gg: Acq92OH/JDxEHFcKjNNztNwWyDtMkiJ3TSGXGTL2DwpjNzbJLmrloeA8my9xU8q7AnA
+	6XClDAohgaE0yzCLFgJ+NFKX3Bif/4mlzknBjUPwtiJl9klUgeabv7eNXRyAynt3aiX0tYhLikm
+	oQ7stkDA3OdDyj3WY/cMaS02CkpGI4lPSp3DHKjYCdRHrE+dJZJ2XEln0YP/JhEy3PWdNZTDwNb
+	6JUTzGD+SfUqV5+ogXMKQZMwd8Ta/ZVrxUeYWAZqcF/J/IHbUJlNfGeQY6gL2Ou7BgbCPq7eJYC
+	v6hDHJ/NjRXMiUqJQu7ac2bwPa1ymMbgT9Y6zdhvOtru8170n/cLSEmCO0POM+fc44ZEqg4HrPT
+	ov4S3jDR13jOFfPhnaZCEVMqp9TS/vFG3RqY1IA99BJR1I27AoE6y9DDkpYR3O7etCk1nsasCpg
+	c086GLMYA0eaw1PS1oI/WiJQWdUPzwg+3yPfd74wIX5DnCGA==
+X-Received: by 2002:adf:e30e:0:b0:460:1233:ecf2 with SMTP id ffacd0b85a97d-46030609798mr22478117f8f.30.1780996088589;
+        Tue, 09 Jun 2026 02:08:08 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff23:4410:919a:5e38:ea48:32e9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46028a6dce6sm53232795f8f.30.2026.06.09.02.08.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jun 2026 02:08:08 -0700 (PDT)
+Date: Tue, 9 Jun 2026 11:08:03 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: mtd: qcom,nandc: Add MDM9607 QPIC NAND
+ controller
+Message-ID: <aifX80IHM8TLQiV7@linaro.org>
+References: <20260608-qcom-nandc-mdm9607-v1-0-4639a0492274@linaro.org>
+ <20260608-qcom-nandc-mdm9607-v1-1-4639a0492274@linaro.org>
+ <20260609-quirky-rat-of-criticism-aea1fe@quoll>
+ <87mrx4b164.fsf@bootlin.com>
+ <aifKejyF7n6QsI9h@linaro.org>
+ <a6b17b9a-f639-4a7f-adb6-d0c9dbd31e68@oss.qualcomm.com>
+ <35c7513b-6aea-48cf-aea8-da8604616601@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <35c7513b-6aea-48cf-aea8-da8604616601@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308855-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308860-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[variscite.com:url,variscite.com:email,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:stefano.radaelli21@gmail.com,m:robh@kernel.org,m:Frank.Li@kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:stefanoradaelli21@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:miquel.raynal@bootlin.com,m:krzk@kernel.org,m:mani@kernel.org,m:richard@nod.at,m:vigneshr@ti.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-mtd@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email,vger.kernel.org:from_smtp,linaro.org:dkim,linaro.org:mid,linaro.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3135D65E2E8
+X-Rspamd-Queue-Id: AF6E565E2B6
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The Ethernet PHY is missing its interrupt configuration, forcing=
- inefficient polling mode.
---
+On Tue, Jun 09, 2026 at 11:01:18AM +0200, Konrad Dybcio wrote:
+> On 6/9/26 10:55 AM, Konrad Dybcio wrote:
+> > On 6/9/26 10:10 AM, Stephan Gerhold wrote:
+> >> On Tue, Jun 09, 2026 at 09:52:51AM +0200, Miquel Raynal wrote:
+> >>>>> On MDM9607, there is only a single controllable clock for the NAND
+> >>>>> controller (RPM_SMD_QPIC_CLK). The same situation also applies e.g. for
+> >>>>> qcom,sdx55-nand, but the corresponding device tree (qcom-sdx55.dtsi) works
+> >>>>> around that by assigning a dummy clock (&nand_clk_dummy) to the second
+> >>>>> clock ("aon") that is required by the dt-bindings. This is not really
+> >>>>> useful, so avoid doing that for new platforms by excluding the second "aon"
+> >>>>> clock entry in the dt-bindings.
+> >>>>
+> >>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> >>>
+> >>> What is the problem in giving twice the same clock? If this is what is
+> >>> done in the hardware routing, I do not see the reason for more
+> >>> complexity in the binding?
+> >>>
+> >>
+> >> I had that in my first draft for this series, but this would be wrong
+> >> IMO. I suspect there is no QPIC/NAND related "aon" (always-on) clock on
+> >> this platform at all. I'm not sure about MDM9607 in particular (maybe
+> >> someone from Qualcomm can confirm), but a similar platform I was looking
+> >> into at some point actually had *3* separate clocks for QPIC in the
+> >> hardware and none of them were called "aon" ...
+> > 
+> > gcc_qpic_ahb_clk (50/100/133.(3) MHz sourced from PCNoC_bfdcd_clk_src)
+> > gcc_qpic_clk (likewise, sourced from qpic_clk_src which is sourced
+> > from GPLLs)
+> > gcc_qpic_system_clk (32 KHz)
+> > 
+> > No clock containing the substring 'aon' in its name on this platform
+> 
+> Looking at SDX65, perhaps the 32 Khz clock is the "aon" one after all..
+> The NAND documentation says
+> 
+> CC_QPIC_SYSTEM_CLK - Always-on timeout clock (32 KHz)
+> 
 
-commit 6c61266b8d072ce2626b1bdfa603f3df1b562809
-Author: Stefano Radaelli <stefano.r@variscite.com>
+Thanks for looking this up.
 
-arm64: dts: freescale: Add support for Variscite DART-MX8M-PLUS
+IMO, if we want to describe the actual hardware routing, we should
+describe all 3 clocks and assign all of them to RPM_SMD_QPIC_CLK for
+MDM9607).
 
-Add device tree support for the Variscite DART-MX8MP system on module.
-This SOM is designed to be used with various carrier boards. Only
-SOM-specific peripherals are enabled by default.
+The resulting diff would be basically the same as this patch just
+inversed (3 clocks for MDM9607+SDX(?) and 2 clocks for the IPQ* SoCs.
+The complexity of the binding would be the same, so is it worth
+reworking this patch? At the end, there is just one clock we can toggle
+through the firmware here and I doubt anyone uses this SoC without the
+RPM firmware.
 
-Link: https://variscite.com/system-on-module-som/i-mx-8/i-mx-8m-plus/dart-m=
-x8m-plus/
-
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-dart.dtsi b/arch/ar=
-m64/boot/dts/freescale/imx8mp-var-dart.dtsi
-> new file mode 100644
-> index 0000000000000..a647a2e0ab94b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-dart.dtsi
-> @@ -0,0 +1,476 @@
-
-[ ... ]
-
-> +	mdio {
-> +		compatible =3D "snps,dwmac-mdio";
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		ethphy0: ethernet-phy@0 {
-> +			compatible =3D "ethernet-phy-ieee802.3-c22";
-> +			reg =3D <0>;
-> +			reset-gpios =3D <&gpio2 11 GPIO_ACTIVE_LOW>;
-> +			reset-assert-us =3D <10000>;
-> +			reset-deassert-us =3D <100000>;
-> +			vddio-supply =3D <&reg_phy_vddio>;
-> +		};
-
-[Severity: Medium]
-Is the Ethernet PHY missing its interrupt configuration?
-
-The ethphy0 node does not define the interrupts and interrupt-parent proper=
-ties,
-which forces the Ethernet PHY driver to fall back to polling the PHY status
-registers periodically. This is less efficient, increases CPU overhead, and
-causes higher latency in link state detection compared to using hardware
-interrupts.
-
-[ ... ]
-
-> +	pinctrl_eqos: eqosgrp {
-> +		fsl,pins =3D <
-> +			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x2
-> +			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO				0x2
-> +			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0			0x90
-> +			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1			0x90
-> +			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2			0x90
-> +			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3			0x90
-> +			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x90
-> +			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL			0x90
-> +			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0			0x16
-> +			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1			0x16
-> +			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x16
-> +			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x16
-> +			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL			0x16
-> +			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x16
-> +			MX8MP_IOMUXC_SD2_WP__GPIO2_IO20					0x10
-
-[Severity: Medium]
-Could this pin be intended for the PHY interrupt?
-
-It is explicitly configured with a pull-up in the ethernet group, strongly
-indicating it is wired as the PHY interrupt on this SOM. However, no device
-claims it as an IRQ source since ethphy0 lacks the interrupt properties, le=
-aving
-the configured GPIO completely unused.
-
-> +			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11				0x150
-> +		>;
-> +	};
-> +
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1780995368.gi=
-t.stefano.r@variscite.com?part=3D2
+Thanks,
+Stephan
 
