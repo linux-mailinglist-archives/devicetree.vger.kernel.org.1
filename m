@@ -1,172 +1,282 @@
-Return-Path: <devicetree+bounces-309332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309335-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LIPEEPl5KGr3FAMAu9opvQ
-	(envelope-from <devicetree+bounces-309332-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 22:39:21 +0200
+	id YcC8CUiFKGrUFgMAu9opvQ
+	(envelope-from <devicetree+bounces-309335-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 23:27:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE2E6641CC
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 22:39:20 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 898C26643D1
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 23:27:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=riscstar-com.20251104.gappssmtp.com header.s=20251104 header.b=oD4dgFfj;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309332-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309332-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=riscstar.com (policy=none);
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=fail ("headers rsa verify failed") header.d=antispam.mailspamprotection.com header.s=default header.b=FJ9RC1j4;
+	dkim=fail ("headers rsa verify failed") header.d=valla.it header.s=default header.b=mGxgiW0H;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309335-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309335-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=valla.it (policy=none);
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1245F3058825
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 20:39:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E3BE430B53AA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 21:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4C4A3DC878;
-	Tue,  9 Jun 2026 20:39:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4B1411699;
+	Tue,  9 Jun 2026 21:26:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from delivery.antispam.mailspamprotection.com (delivery.antispam.mailspamprotection.com [185.56.87.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 386C43B0AE3
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 20:39:02 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781037544; cv=none; b=ZfMQFhwOACnQSbTLs1iJcRk2RiJ3DCfxr3QZiJ4QiEVAuOQ6W2RVC5ZI0XgRZyaTFcFsNpBe7tzmvjLhXCGpmreySxcn2WD6k0qVCAwsAJHnjSDxt3ATL8FfgCRt0aPMubm+f8+5Es4j2C9o1bRqfO4VidZoy7YWO0yp8jXQ59Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781037544; c=relaxed/simple;
-	bh=08cDWJ1AoJw7XTjy3VUEvgAlD0lie4xSJmxfcTku0Bo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MM3PBfcCiEFNdriLY+9m6Sfk2nwxO3HT9MGA6RvlyX+g61E6HNPFQmahX8glJt/UHgxgM4WuT71gVyL/BHFxG5uXY7B8qsphjHXBO5mnMqrj1iDL9vMnp+DdmnDCW7rGX3aCvpo8aOO+g6+FKlU5Dg853pMaJ8bCScW+I0v4s5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20251104.gappssmtp.com header.i=@riscstar-com.20251104.gappssmtp.com header.b=oD4dgFfj; arc=none smtp.client-ip=209.85.167.170
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-485ecc0f2dfso4658302b6e.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 13:39:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20251104.gappssmtp.com; s=20251104; t=1781037541; x=1781642341; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xG+PJcI9dU8eULLGgiwqpsuOnpbG0JGZGxHHivVcL3w=;
-        b=oD4dgFfjWcy5YqsNv9HDDx6YWgurqp/+3/dsbW/psa+crQWdh3bLtJK3JgSua94zKx
-         OGgxSJe6ygZ9UeHTcUBxf+Zq7pd73f5c0PipE4nAXgtDNNq7T5IRdnhKjcAooK6ySZqW
-         h8hdqPMAxtxinkdPUm1ncSzy/ZNyr4+2vdsSyoduLQhCEPOXVTwyXjuFf/yYv1hG8t1n
-         fPO01xG3LnWiXJIQ/VXI/zY1DtQ7JQRT075E8SFIvVJPbvfcfgxnw8lBQoxestXrAF9c
-         r88Qbxski0tlH58kci7vaBylcFytMwmSrv7I1YoN/qYFTVnTE1MEqdGnT0nbrDng8JH/
-         +8pA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781037541; x=1781642341;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xG+PJcI9dU8eULLGgiwqpsuOnpbG0JGZGxHHivVcL3w=;
-        b=XNeyE4bTvksn+GXAZQdSURjAY6TVf0FMwbs0+smmJPfeRSQK0PHTBikQxnvccwBGP2
-         eScIdDiI40P2KnHV1RH06IdsoLU1+UhLDxz9iLWJO1m1tjihLoFGdwOqar8BDBvWCsa7
-         +FFTuHq8V9MO2Z0c5FJIeFr6k3amXrJ7Da/PqVbw11e1jK17g0Glta5tNFjeaITqHv/k
-         7+yroKSTJf/VZyjIJJDovSw1g/kqUXeb23EiW3AUstyKZivuICsHyC2pqan66ZNWv+Eg
-         dVIK9sHCTMp/ggX09EAXKmIe8ZGV9eFeWZl2aR/X7qJ+fEExvTccUpDPhvpvl1n0bG6u
-         /cdQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8CZYom3+w1my8Mlo5a1Do8Ru3OMTAopYi1i/kIY3cz4gG5XcwWzTIjvotl7Qh99kdhoDCUdM48VNyb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXSr3A2HytcIKBd9/+pBPqBw4ec18oXRGtx3TxZK/rCh25r30I
-	ssDfWV3zGFm7ej6MGgXPwU9Ss0wKm5BluLmKo7wFaxkACS1vbdApwuvjESGARE3h48Y=
-X-Gm-Gg: Acq92OHnEnwRlgmKPN9KZozOkkeO+Gu812Tx/crBbDC2mviY8wQosSTt9dE58PMHpFS
-	bl6aLlBL3m/DcLSFanXK2dFqcQe1VQ2xD/egwjqE5KZphcyA1oK5cOkHgUZrBDjhByfxRVeYGKi
-	aZZubh9ZVYeFsDv+6dk9uh+qzUNA/lcIcSJNUD4bKnb1VFmL6YKsQ5zfyLjs+a8dL7KzBnGLMiS
-	53QeljvOqwUfMGA2ZhrlxWaY4EYNUWSXzOAnh9LN856m/2J2YXy+0oUq5U4QnV+2wNTf1S3dkyj
-	RvRoJqS4RHrp9UE29Uwi3Mz3Nug3kWspuLtgvdx0Muzy7Vc/fwDJEhDGe+KuZy5FFJChxRho3pr
-	NDITWtSK17EcM33F2jzza0QqqRQNTZ9P9Fjpie9i+eWnOr3SyHfM6maGKJFHZaMTvfnG1JZbd4h
-	1B3HVh8hxbysgpp7alg6JytVG9p2TF2OI3yQ==
-X-Received: by 2002:a05:6808:d4d:b0:485:4601:9c84 with SMTP id 5614622812f47-4868de44d92mr12430789b6e.29.1781037541328;
-        Tue, 09 Jun 2026 13:39:01 -0700 (PDT)
-Received: from [172.22.22.28] ([73.62.185.64])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e6e78e7f9csm15313928a34.17.2026.06.09.13.39.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jun 2026 13:39:00 -0700 (PDT)
-Message-ID: <c2d586ec-84ee-4c25-b5b5-19a0a9819d6c@riscstar.com>
-Date: Tue, 9 Jun 2026 15:38:59 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867CF3EB0F4;
+	Tue,  9 Jun 2026 21:26:30 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781040392; cv=pass; b=pLA/cwLXfns/vmdt962OwUArmVPdeQeRZLoq8EaANvSESxnyf8fPVhS0TbtroXyY8P0KwBP7Dr48Q+eRMKjrIliUvJwMR//V19UoN8JmVpxb6ToPudDR11USJWHTBKm90NOYc/50xxxu0gpdd19kAlIRyclRRftq+6vZwZhe0XU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781040392; c=relaxed/simple;
+	bh=SQ4EKhSiwdW2m9zPBFJmKKyZiDpxnfusfBXNXXgOVM8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Onx5ceKkaWEur4rLE/1q5vCu0Ug365FJDlQw5BipDLx/irfe4Dhyow0PW6Yag7YQ+oervJAeAWoZtFUqiXYf8kBppyz9DtU5tlRQKzSS52/RGkWBMAOkC+W5znf2xo2NeQm7Mqlb2X/qqzFp/fy1wbtUvhQpT1aA1WHTpw1BnBc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valla.it; spf=pass smtp.mailfrom=valla.it; dkim=pass (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.b=FJ9RC1j4; dkim=pass (1024-bit key) header.d=valla.it header.i=@valla.it header.b=mGxgiW0H; arc=pass smtp.client-ip=185.56.87.13
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-httc.prod.antispam.mailspamprotection.com; s=arckey; t=1781040390;
+	 b=OPX/vecK+HIcUmEcKcxWm/hrJvGf6T2ikrpQ7CKNjBVM7iBN61z0E3zAX754LiDaZRUB4xsAXV
+	  CuWi/LI/yOxAkfyinU6+gqp9Bx9HazkHYYPWKuROcxEqZdLPF4PJWNXLwO7670iOfrUbPFjbnQ
+	  HFldvPr8+fVTDXl3282Qm8bbe0iRwPUPAry69HZP3Qa0+LCc1sMTuceGN4XvLUewhK8ey1zolp
+	  qWo8E5s3mxAzJrhY6o/csWZrHxW8KSrwbG/gauV+m3wUC176kCdS4AC6yxtKyxrmXJ0QbFM8e2
+	  Dibv4bsgcYdrd6+FLAM5NOl+IBHAkTBEym5eAaCxyIEcNw==;
+ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-httc.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-httc.prod.antispam.mailspamprotection.com; s=arckey; t=1781040390;
+	bh=SQ4EKhSiwdW2m9zPBFJmKKyZiDpxnfusfBXNXXgOVM8=;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+	  Message-ID:Date:Subject:Cc:To:From:DKIM-Signature:DKIM-Signature;
+	b=kxJwQHxP9dlWJDDy9cZrgwZCRktA28+hnT6GeMCWA8EenHGdcmqB68/4jmOLGBO1Iiv7hGmQK9
+	  7IvcqElxgSJ81gou2Mzv4Ti/UT8mCsK1ZVFJ6ROMVam/1j8LVwxYoIbtNciX2D6pOFfJAaBiMb
+	  ldAQMm7bWstP+BKnLIaREbqvUzROJ8XCy19IKK1O1+Vla3kaPL1Fpw+ym504lB1i97TQsSj/Y1
+	  Z54T9R1emMFiGyRtWHGWGvnqUuFw8M51Hd1cN37mUW837yRDLvwjTAtA1rvkqzxtg9azNGbJZZ
+	  2oQ3zgymnc7xakCeQo9mYCkb/RfZWpxliwKAV7F6o0Ggvg==;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
+	:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:Reply-To:List-Unsubscribe;
+	bh=/CB3uqN+m7C8S/hlT2WiZWa5WYAgtzsD/nbEWBLMncI=; b=FJ9RC1j4csgIQsgt6GjJixnwkZ
+	79CYtVCiDnWT8OGRqnrU4+TjrzKzU68XxD9IXPEOdhHzqmldSrQ98IWhJYen4Zuk2tny4cYGCDVEP
+	qpO4qwj/SF5NR8bopAb+q/X3C7tTFU8bdXjDwFKWfkckGsCH+Nu+dyI/afizBVodpWYY=;
+Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
+	by instance-europe-west4-httc.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.4)
+	(envelope-from <francesco@valla.it>)
+	id 1wX3xl-00000007gad-3K6B;
+	Tue, 09 Jun 2026 21:26:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
+	s=default; h=Date:Subject:Cc:To:From:list-help:list-unsubscribe:
+	list-subscribe:list-post:list-owner:list-archive;
+	bh=/CB3uqN+m7C8S/hlT2WiZWa5WYAgtzsD/nbEWBLMncI=; b=mGxgiW0HLd56ARsb448DjEhxTl
+	YY/dJOylCz3UmiQSzcTqix8Dnx1fm27hErHNngSJ3m5WjS74Ppog2uePEzTAh7zmr0FGpdnh/2pWd
+	2368AnWdWTCS0X+1efQ0XAHr/zxQB+hrpHQbRW9TuA2Mu93IIDSdQmYS+P1vSD0I0qSE=;
+Received: from [95.248.69.182] (port=60980 helo=bywater.localnet)
+	by esm19.siteground.biz with essmtpa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.3)
+	(envelope-from <francesco@valla.it>)
+	id 1wX3EN-00000000JTf-485z;
+	Tue, 09 Jun 2026 20:39:28 +0000
+From: Francesco Valla <francesco@valla.it>
+To: Joseph Guo <qijian.guo@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ steven.yang@nxp.com
+Subject:
+ Re: [EXT] Re: [PATCH] arm64: dts: imx93-11x11-frdm: enable additional devices
+Date: Tue, 09 Jun 2026 22:39:27 +0200
+Message-ID: <qRn4DwQ2Twuq6ao1_CO5YA@valla.it>
+In-Reply-To: <db95fec5-d8ac-4d52-ad2a-75e5593f99ef@nxp.com>
+References:
+ <20260115-imx93_devices-v1-1-b2c840cafa2e@valla.it>
+ <_j4Ik3AsS5yfKb4Y7cSB1w@valla.it>
+ <db95fec5-d8ac-4d52-ad2a-75e5593f99ef@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 03/14] net: pcs: pcs-xpcs-regmap: support XPCS
- memory-mapped MDIO bus via regmap
-To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org, bpf@vger.kernel.org, devicetree@vger.kernel.org,
- conor+dt@kernel.org
-References: <20260605010022.968612-4-elder@riscstar.com>
- <20260606010123.B07D01F0089A@smtp.kernel.org>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20260606010123.B07D01F0089A@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - esm19.siteground.biz
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - valla.it
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-SGantispam-id: 30122680d5fee8d4133c1db00989fa0a
+X-AntiAbuse: ID - 30122680d5fee8d4133c1db00989fa0a
+AntiSpam-DLS: false
+AntiSpam-DLSP: 
+AntiSpam-DLSRS: 
+AntiSpam-TS: 1.0
+CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
+CFBL-Feedback-ID: 1wX3xl-00000007gad-3K6B-feedback@antispam.mailspamprotection.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.56 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[riscstar-com.20251104.gappssmtp.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [1.14 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_DKIM_REJECT(1.00)[antispam.mailspamprotection.com:s=default,valla.it:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[riscstar.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
+	DMARC_POLICY_SOFTFAIL(0.10)[valla.it : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309332-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[riscstar-com.20251104.gappssmtp.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309335-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FORGED_SENDER(0.00)[francesco@valla.it,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:qijian.guo@nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:daniel.baluta@nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:steven.yang@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:bpf@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	FORWARDED(0.00)[lists@lfdr.de];
+	HAS_X_SOURCE(0.00)[];
+	HAS_X_ANTIABUSE(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[elder@riscstar.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[francesco@valla.it,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[antispam.mailspamprotection.com:-,valla.it:-];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,riscstar.com:email,riscstar.com:mid,riscstar.com:from_mime,riscstar-com.20251104.gappssmtp.com:dkim]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[valla.it:email,valla.it:mid,valla.it:from_mime,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CAE2E6641CC
+X-Rspamd-Queue-Id: 898C26643D1
 
-On 6/5/26 8:01 PM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Low] Missing colon ':' after 'F' in the MAINTAINERS file entry.
-> --
-> 
-> commit 2d23c3db72012c33d05246dcd5eb68b21952d164
-> Author: Daniel Thompson <daniel@riscstar.com>
-> 
-> net: pcs: pcs-xpcs-regmap: support XPCS memory-mapped MDIO bus via regmap
-> 
-> This commit introduces helpers to allow drivers to register an XPCS using a
-> regmap for the memory-mapped MDIO bus. It addresses issues where the MDIO
-> bus is allocated to a register window that does not align to a page boundary.
-> 
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index eb8cdcc76324f..2aa6ea012c848 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -25931,8 +25931,10 @@ F:	drivers/net/ethernet/synopsys/
->>   SYNOPSYS DESIGNWARE ETHERNET XPCS DRIVER
->>   L:	netdev@vger.kernel.org
->>   S:	Orphan
->> +F:	drivers/net/pcs/pcs-xpcs-regmap.c
->>   F:	drivers/net/pcs/pcs-xpcs.c
->>   F:	drivers/net/pcs/pcs-xpcs.h
->> +F	include/linux/pcs/pcs-xpcs-regmap.h
-> 
-> [Severity: Low]
-> This isn't a bug, but should this entry have a colon after the 'F'?
+Hi Joseph,
 
-Yes.  This will be fixed in the next version.	-Alex
+On luned=C3=AC 8 giugno 2026 07:14:24 Ora legale dell=E2=80=99Europa centra=
+le Joseph Guo=20
+wrote:
+> On 6/5/2026 7:36 PM, Francesco Valla wrote:
+> > Caution: This is an external email. Please take care when clicking links
+> > or opening attachments. When in doubt, report the message using the
+> > 'Report this email' button
+> >=20
+> >=20
+> > Hi Joseph,
+> >=20
+> > On venerd=C3=AC 5 giugno 2026 10:59:08 Ora legale dell=E2=80=99Europa c=
+entrale Joseph
+> > Guo>=20
+> > wrote:
+> >> On Thu, Jan 15, 2026 at 06:11:34PM +0100, Francesco Valla wrote:
+> >>> Enable additional devices on the i.MX93 FRDM board:
+> >>>   - CAN port and associated transceiver
+> >>>   - Bluetooth portion of the IW612 chipset
+> >>>   - WiFi SDIO port
+> >>>   - user buttons
+> >>>=20
+> >>> The WiFi portion of the on-board IW612 chipset is still not supported
+> >>> upstream, but since SDIO is a discoverable bus it will be probed once=
+ it
+> >>> is.
+> >>>=20
+> >>> Signed-off-by: Francesco Valla <francesco@valla.it>
+> >>> ---
+> >=20
+> > [...]
+> >=20
+> >> Hi Francesco,
+> >>=20
+> >> Do you ever tried bluetooth feature? The bluetooth failed to scan with
+> >> 'device-wakeup-gpios' property.
+> >>=20
+> >> Regards,
+> >> Joseph
+> >=20
+> > Yes, Bluetooth was tested using bluetoothctl, I just briefly re-tested =
+it
+> > with latest master branch (7.1.0-rc6).
+> >=20
+> > Can you clarify what you mean with "The bluetooth failed to scan
+> > with 'device-wakeup-gpios' property."?
+>=20
+> Hi Francesco,
+>=20
+> If 'device-wakeup-gpios' property is set. The bluetoothctl can work, but
+> errors will show up if try to scan the bluetooth devices.
+>=20
+> [bluetoothctl]> scan on
+> SetDiscoveryFilter success
+> Failed to start discovery: org.bluez.Error.InProgress
+> hci0 class of device changed: 0x000000
+> hci0 new_settings: bondable ssp br/edr le secure-conn cis-central
+> cis-peripheral iso-broadcaster sync-receiver ll-privacy past-sender
+> past-receiver [CHG] Controller 20:BA:36:5C:B0:D8 Class: 0x00000000 (0)
+> [CHG] Controller 20:BA:36:5C:B0:D8 Powered: no
+> [CHG] Controller 20:BA:36:5C:B0:D8 Discovering: no
+> [CHG] Controller 20:BA:36:5C:B0:D8 PowerState: on
+> [bluetoothctl]> discoverable on
+> Failed to set discoverable on: org.bluez.Error.Failed
+>=20
+> After remove the 'device-wakeup-gpios' node. The bluetooth can work
+> normally.
 
-> 
->>   F:	include/linux/pcs/pcs-xpcs.h
-> 
+This is not my experience:
+
+[bluetoothctl]> scan on
+SetDiscoveryFilter success
+hci0 type 7 discovering on
+Discovery started
+[CHG] Controller B8:F4:4F:AA:9D:1C Discovering: yes
+[NEW] Device C4:DE:E2:52:B9:96 BWT Perla BLue 16L 0025-003A
+
+[bluetoothctl]> discoverable on
+hci0 new_settings: powered connectable bondable ssp br/edr le secure-conn c=
+is-
+central cis-peripheral iso-broadcaster sync-receiver ll-privacy past-sender=
+=20
+past-receiver=20
+[CHG] Controller B8:F4:4F:AA:9D:1C Connectable: yes
+hci0 new_settings: powered connectable discoverable bondable ssp br/edr le=
+=20
+secure-conn cis-central cis-peripheral iso-broadcaster sync-receiver ll-
+privacy past-sender past-receiver=20
+Changing discoverable on succeeded
+[CHG] Controller B8:F4:4F:AA:9D:1C Discoverable: yes
+
+
+I also enabled the driver debug prints (through #define DEBUG) and can conf=
+irm
+that the GPIO is being driven:
+
+root@imx93-11x11-frdm:~# dmesg|grep h2c
+[   13.524321] hci0: Set Wakeup Method response: status=3D0, h2c_wakeupmode=
+=3D4
+[   15.586748] hci0: Set h2c_ps_gpio: high
+[   28.459963] hci0: Set h2c_ps_gpio: low
+[   32.034623] hci0: Set h2c_ps_gpio: high
+
+Maybe we have a different board revision? Do you know if there is a way I c=
+an
+read mine?
+
+
+Regards,
+=46rancesco
+
+
+
 
 
