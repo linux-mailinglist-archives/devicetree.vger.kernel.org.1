@@ -1,54 +1,53 @@
-Return-Path: <devicetree+bounces-308680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308681-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MNQmJ7SsJ2q50QIAu9opvQ
-	(envelope-from <devicetree+bounces-308680-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:03:32 +0200
+	id q7BsEdKsJ2rE0QIAu9opvQ
+	(envelope-from <devicetree+bounces-308681-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:04:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFD8765C920
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C1F65C93C
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:04:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=sw3aDZVd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308680-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308680-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linux.dev header.s=key1 header.b=WT6Ohiol;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308681-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308681-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=linux.dev;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3039930454AD
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 06:01:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E5E2301F335
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 06:01:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCFE53CE495;
-	Tue,  9 Jun 2026 06:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205133CF02B;
+	Tue,  9 Jun 2026 06:01:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com [95.215.58.186])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AD193CB2E5;
-	Tue,  9 Jun 2026 06:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58AE3C942C
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 06:01:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780984901; cv=none; b=T2fFlHyim9A6Au87qYcyzojJ/+3x6ibs2kEwjQo9giLxjkiYm0sXl4zk5HXiLJsS32bzAwkqwM2meFAi5Z/zeNJgX7/JUYVb15cw6dsYRJf4/Eklp5GaItirJgbAMHSTG4Mppvs5EXwhsNEfr41hgmv/vSZ81AydWRM6SeoqfmE=
+	t=1780984907; cv=none; b=lYbA9o21O1PdJeT9A60+5fJMdu3VpuhAziiNAr06bAWn2ZhN3gN67IYID08YHcKH51ZZOaQ0YCW39m5S0AovEZmQkyS0lolZT27NOEzBTgzLRzZOfGqRM2tiaoLAU0oKVkRECnsFLEhtjY/Y+OV3ZDeLVL5pClpRkEmrE9zLkMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780984901; c=relaxed/simple;
-	bh=Uy+6u+zVVnKDyhH828jdTZwad1FK1t8vFUHFHWkaisM=;
+	s=arc-20240116; t=1780984907; c=relaxed/simple;
+	bh=d8QlKHkfqNhfYohsE98McxXyqugfqZ6DLhV9E4Pu1qY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GMamlalffWg/3KmYg66wnrRdQIf70m5YCeyh84XtuLcde17M42sa7an4uc5iHCgpndfmnKT/25l9WGcoiRh+b+s1oxgePAGr3/DP0VyxQrxhUiETKUYO87FdqDpgoOv3oMvs++f2S4k2z5W8HHzb1e1NeLEz1OzTRQTWGLh1qQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=sw3aDZVd; arc=none smtp.client-ip=91.218.175.179
+	 In-Reply-To:To:Cc; b=e+I1mCdDF+EOt+mtvSJAX2Kq9YNaGN2sxf/2X6ufKxe+RH9Ta9mZm2uO7ZfsIL5KuFgCifD6sWp3HgW/eUjv66xhnItoH5nM/b/EqeCQk3xcbTVhQTBrMrDIni3eozv/pA0y3io1UfijoQYAiVYDLWC8SLyfxb6Qc0wrr8Ul9TA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=WT6Ohiol; arc=none smtp.client-ip=95.215.58.186
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1780984898;
+	t=1780984904;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=UiQdcLZt3TDwJvzued5odyBBsjPd7XdI6I5xzQS3xEM=;
-	b=sw3aDZVdPfe7llAGxyxlkoeaj+NZpqQ/1TJM1oDrs+kUR3wvHtJBHbN1vZstxRbklghJic
-	rWrY5YxoeQ5ifGmmA6R1Nv+8t2fDwbJSDpCAFMwNpY8pxwetZhFooBdJ0YArhjPejNqGuh
-	AwS5gfWT188HhM3CpvbwxQ+bkjvke7E=
+	bh=Vu7UaTVidpWvsx9wHZ3XDd5Hh0ON6Lo1UHqkFEyPu34=;
+	b=WT6OhiolxkqKy78e365lfBny3qt/Y9J9QpcCcbQCiUH4bVvJ1B7zNHjqqhd4DdLpaYR80E
+	A2QRg/b7jfIiLkugqJ/E/q3b+J14jz5G1N2XO1RBuYwGMyZ1/+yk37nEPvFTrczG6IUSNi
+	bdMcj6deKuZJV7MmAtHWwZ1q8pPNb7Q=
 From: Atish Patra <atish.patra@linux.dev>
-Date: Mon, 08 Jun 2026 23:01:17 -0700
-Subject: [PATCH v6 03/21] dt-bindings: riscv: add Sxcsrind ISA extension
- description
+Date: Mon, 08 Jun 2026 23:01:18 -0700
+Subject: [PATCH v6 04/21] RISC-V: Define indirect CSR access helpers
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +56,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260608-counter_delegation-v6-3-285b72ed65a9@meta.com>
+Message-Id: <20260608-counter_delegation-v6-4-285b72ed65a9@meta.com>
 References: <20260608-counter_delegation-v6-0-285b72ed65a9@meta.com>
 In-Reply-To: <20260608-counter_delegation-v6-0-285b72ed65a9@meta.com>
 To: James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>, 
@@ -82,7 +81,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS(0.00)[m:james.clark@linaro.org,m:robh@kernel.org,m:atish.patra@linux.dev,m:acme@kernel.org,m:jolsa@kernel.org,m:will@kernel.org,m:mark.rutland@arm.com,m:anup@brainfault.org,m:namhyung@kernel.org,m:pjw@kernel.org,m:krzk+dt@kernel.org,m:irogers@google.com,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:conor@kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-308680-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308681-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[atish.patra@linux.dev,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -102,54 +101,70 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[meta.com:mid,vger.kernel.org:from_smtp,linux.dev:dkim,linux.dev:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,rivosinc.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[meta.com:mid,vger.kernel.org:from_smtp,rivosinc.com:email,linux.dev:dkim,linux.dev:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DFD8765C920
+X-Rspamd-Queue-Id: 91C1F65C93C
 
 From: Atish Patra <atishp@rivosinc.com>
 
-Add the S[m|s]csrind ISA extension description.
+The indriect CSR requires multiple instructions to read/write CSR.
+Add a few helper functions for ease of usage.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Atish Patra <atishp@rivosinc.com>
 ---
- Documentation/devicetree/bindings/riscv/extensions.yaml | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ arch/riscv/include/asm/csr_ind.h | 44 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index 2b0a8a93bb21..4be557dc215d 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -181,6 +181,14 @@ properties:
-             changes to interrupts as frozen at commit ccbddab ("Merge pull
-             request #42 from riscv/jhauser-2023-RC4") of riscv-aia.
- 
-+        - const: smcsrind
-+          description: |
-+            The standard Smcsrind supervisor-level extension extends the
-+            indirect CSR access mechanism defined by the Smaia extension. This
-+            extension allows other ISA extension to use indirect CSR access
-+            mechanism in M-mode as ratified in the 20240326 version of the
-+            privileged ISA specification.
+diff --git a/arch/riscv/include/asm/csr_ind.h b/arch/riscv/include/asm/csr_ind.h
+new file mode 100644
+index 000000000000..6fd7d44dc640
+--- /dev/null
++++ b/arch/riscv/include/asm/csr_ind.h
+@@ -0,0 +1,44 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (C) 2024 Rivos Inc.
++ */
 +
-         - const: smmpm
-           description: |
-             The standard Smmpm extension for M-mode pointer masking as
-@@ -199,6 +207,14 @@ properties:
-             added by other RISC-V extensions in H/S/VS/U/VU modes and as
-             ratified at commit a28bfae (Ratified (#7)) of riscv-state-enable.
- 
-+        - const: sscsrind
-+          description: |
-+            The standard Sscsrind supervisor-level extension extends the
-+            indirect CSR access mechanism defined by the Ssaia extension. This
-+            extension allows other ISA extension to use indirect CSR access
-+            mechanism in S-mode as ratified in the 20240326 version of the
-+            privileged ISA specification.
++#ifndef _ASM_RISCV_CSR_IND_H
++#define _ASM_RISCV_CSR_IND_H
 +
-         - const: ssaia
-           description: |
-             The standard Ssaia supervisor-level extension for the advanced
++#include <linux/irqflags.h>
++
++#include <asm/csr.h>
++
++#define csr_ind_read(iregcsr, iselbase, iseloff) ({		\
++	unsigned long __value = 0;				\
++	unsigned long __flags;					\
++	local_irq_save(__flags);				\
++	csr_write(CSR_ISELECT, (iselbase) + (iseloff));		\
++	__value = csr_read(iregcsr);				\
++	local_irq_restore(__flags);				\
++	__value;						\
++})
++
++#define csr_ind_write(iregcsr, iselbase, iseloff, value) ({	\
++	unsigned long __flags;					\
++	local_irq_save(__flags);				\
++	csr_write(CSR_ISELECT, (iselbase) + (iseloff));		\
++	csr_write(iregcsr, (value));				\
++	local_irq_restore(__flags);				\
++})
++
++#define csr_ind_warl(iregcsr, iselbase, iseloff, warl_val) ({	\
++	unsigned long __old_val = 0, __value = 0;		\
++	unsigned long __flags;					\
++	local_irq_save(__flags);				\
++	csr_write(CSR_ISELECT, (iselbase) + (iseloff));		\
++	__old_val = csr_read(iregcsr);				\
++	csr_write(iregcsr, (warl_val));				\
++	__value = csr_read(iregcsr);				\
++	csr_write(iregcsr, __old_val);				\
++	local_irq_restore(__flags);				\
++	__value;						\
++})
++
++#endif
 
 -- 
 2.53.0-Meta
