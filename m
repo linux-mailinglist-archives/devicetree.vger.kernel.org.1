@@ -1,230 +1,206 @@
-Return-Path: <devicetree+bounces-309049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309051-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id B0TKAWYWKGrd9gIAu9opvQ
-	(envelope-from <devicetree+bounces-309049-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 15:34:30 +0200
+	id 0+xKBcEWKGr+9gIAu9opvQ
+	(envelope-from <devicetree+bounces-309051-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 15:36:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98E036609A5
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 15:34:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6048B6609F5
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 15:36:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=IyKCWtXT;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=BCf0LeOH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309049-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309049-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=S9vcKysn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309051-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309051-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E42EE304FA48
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 13:31:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 263CB30440AE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 13:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C095340DFDC;
-	Tue,  9 Jun 2026 13:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D92240E8D4;
+	Tue,  9 Jun 2026 13:32:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150A23D3CE3
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 13:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 096042C3261;
+	Tue,  9 Jun 2026 13:32:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781011871; cv=none; b=gYcskkmThffEqESsIKgg+INi2RDoClmGNdbiF1D1GmHErIsWAsAQsFJRV5Bvwt85/Ueqvn94tw6csdyKliPDzU1U5rVkCFkULWkq/2hhGwLx0SCfDoEw0/ThdOtLTsjGPFT6ziHrb381HajZOlJdJ5jlMzHjPrg88IPBuZVC+Tg=
+	t=1781011941; cv=none; b=FjESLVo+r4L7nPX9HcCKs0UIEgfen3XSRXE3D9KMhvMowjLn2i1xieE34GACzcLafNjgGE1EGBc30jABVoxCmLmcJkTkh6/3yPZE/ymbnEZTqTFbsvQW5FRX8iyOCEat8Lw/xAd1Yv7gv/A7+OHDLx6xwcnwzl7OFv+wCFbq0WU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781011871; c=relaxed/simple;
-	bh=PciPETuIrHifr8R1hM7guiG4dpObdPvFcrjqt2Wz96g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mEE7JqYlHWXvZjvMN93HSPPcVFUV2Vtp2UVrb6r3bRirFUs4Ev78tC0x+v4Oiovm2/o0/QCfbidKf97PvaFdPHXT7YCWNnt65aD97nI9VDFNWKfTlJN/nRbhFQ/KVigDgrvRttfQs+1zp3FHvaFx3MTTNlh4H70YM14Ch3erC00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IyKCWtXT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BCf0LeOH; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 659CmQ7l2625109
-	for <devicetree@vger.kernel.org>; Tue, 9 Jun 2026 13:31:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	n3rIzOQooj4MOQACqpysb+d+qYmh7nMWfhScfIEjQME=; b=IyKCWtXThJnH3jGi
-	FBuiLBA3+AkcvNWAMTnTJVj8H+CRQgbUNoUModwQuoMfMIoQwwuIMLAwE163yFoD
-	IgXBDUf9csguFsdEfijrL1tABqEpNcloP/NgmM2/zAWbJLEqU6uIrGfDZUjZhit6
-	faHNnBwoK2zpb/SRLUHLncvLQUGoBT7irXmIL/YeLJt2a5BvBe4S8oKrU+i/LGhr
-	IxU5BpGjUNE5LPIpVizYuDQy/HM0bm4+/G3SzJHP7NVudRygKLFFal5r7PpeBFq1
-	XoBq3v7En6XLHZqsuiJi+msDHmvz6qebpypF/xom/nKR410qskGDh2G2YSTSKvtr
-	VIlnAw==
-Received: from mail-oa1-f72.google.com (mail-oa1-f72.google.com [209.85.160.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4epdds9v94-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 13:31:07 +0000 (GMT)
-Received: by mail-oa1-f72.google.com with SMTP id 586e51a60fabf-440f7f49404so528152fac.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 06:31:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1781011867; x=1781616667; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n3rIzOQooj4MOQACqpysb+d+qYmh7nMWfhScfIEjQME=;
-        b=BCf0LeOHWAf5JcEv/4tsNlnROUOY65+gUZDZcS5b00gQoEQu/fg8JmLUSWEq6HhUAQ
-         pvgJyPI7enx3HepqHioERZn3P/MrSGfjhDDamFrn7S+LEldxLzsyi3h8ghW2ZAs/0n1U
-         kn/znkRTk79y8HiXL382go+4k68360fsMcImLrD7Ya4ONdMeB9KDXIamQpVBjPzAPV4R
-         ry42IdHtlMbAc6mp5ACkAA2APS43zRBOk/5JoHanuVio9VqOCsCn3SXiA70Utd7Z3LdH
-         SagkoOwwXpD/kQ0EhpgJOiPujWsut+aHGlvoKGxIX1FeJ5LV/+/MTEsiTQLci5mnDBB8
-         VxGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781011867; x=1781616667;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=n3rIzOQooj4MOQACqpysb+d+qYmh7nMWfhScfIEjQME=;
-        b=b/2sKWrftm5vOPlukHbb6C+icPRulq9B0LuKG3/A0aymlZM6Z/4PWHKb7IDzklMMTg
-         Q25KG3k2S8TMvfH2ymrIaEHsVTpDM/KeXnvGaLSsk+LRi57P2+2WF6nZ6XRo/hrqulRO
-         GmtNLbYP85GnvgfVA2gyew4LI02OOnu6lk+OuHcl1i+zFp3XJrEWZnypjx6qR3FzULD2
-         Ne072lwlWQkDmbtPNLy9ULkKu2uHlS81jE3yGjDAj+oR5qkW5k9pkt+QV49tNhIe4nqh
-         00yqwSEYtejz4JIYrgmiOpVqUElxZ/TVmfsGtaQ9+vjR8HydG5G7NLML4vDAlrO0VkqZ
-         RgtA==
-X-Forwarded-Encrypted: i=1; AFNElJ/M+ryL+7VI2PjSF6O27Ce6TtYU1deex7ctT5LxYl19oQ0j5ukG52VY3VQnLAgYHGk+1LnqKd9mSIBR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0hwiKJzNZYu2XF934SLt6WqkwUg9yxHN7w4BL/4CG0NuTW82n
-	pTfeZrfVJqHfOk33aw0zrKW5Fz1fZdoHbOmX6RWFGd9V2iJmwSID4VDA3I91rIw9tGjgPnhOrWl
-	ugLgcPKIbWbR+UIx76bPl1tmjDZXJLbqDwnYG7mHHfUXU2tElxwnLfMhOLTnzsL/Qtns6h1AU
-X-Gm-Gg: Acq92OEe0h48lvon0mJ1v6wBGjGmzzB6JjlnV+Fo3reVP/cWJ4eWpUWfj4BfAEhU+qo
-	QWu05YwXzhCuV8qBZ2t0nYwPm/e5XIGIZDvuR/rc2Epc7wIuMgT9IjGojVoBdE9d1/+/7EC4Lpx
-	Z4stXr2vXC6HYz7f2KD3O/6rEyWMgu+wWIcQ2zsKdfaPRUJUnYKC/Bo0DRAbQXTG6LQkECikEfY
-	luhPb0BCPjXtVIC/KgnB28sPVZRzmTCZvSHbR36gb1DQT7biO+rOV4iwZo//gm/24LxaLjlxmmp
-	p/51Q6iGYNtBhtNvhfd5kczc+Od4fBmG7AbuIR7Qq7XxUH7gn5RJVsv/YsZJbgxI+bA6N4B0Chn
-	Ow0weEFAsi69r0E6PtqUropIxeBmJKXUB9K4+EXnYLuwlGyI+Nhul68hu
-X-Received: by 2002:a4a:db85:0:b0:69d:513e:1a69 with SMTP id 006d021491bc7-69e68bce04bmr4357195eaf.2.1781011867316;
-        Tue, 09 Jun 2026 06:31:07 -0700 (PDT)
-X-Received: by 2002:a4a:db85:0:b0:69d:513e:1a69 with SMTP id 006d021491bc7-69e68bce04bmr4357168eaf.2.1781011866448;
-        Tue, 09 Jun 2026 06:31:06 -0700 (PDT)
-Received: from [192.168.120.170] ([178.235.128.140])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bf055500875sm1029528666b.53.2026.06.09.06.31.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Jun 2026 06:31:05 -0700 (PDT)
-Message-ID: <fe5ff2e6-4c54-4b21-be5c-0f06bf0e6696@oss.qualcomm.com>
-Date: Tue, 9 Jun 2026 15:31:03 +0200
+	s=arc-20240116; t=1781011941; c=relaxed/simple;
+	bh=FfND962Io4+pHKDVIyGxMi09AxKTKGfMA3CBqCUUb4c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=o7w1ELDJknV1jowSKsb8cQn70uO8UwD0eDGxcJp+S8NeuInCDjm7T/ovQyCKaWCvZacTEj7BIrGB+222YY6I0O3eWtk2z27HS5gzjPx4fkacIyIh5eTDxupyrXaqMOZysMQvI6y1hg2Zn+nTWUBqTa2oEiiq4tmw3TuXmn3Ssr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S9vcKysn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9ADC5C2BCB4;
+	Tue,  9 Jun 2026 13:32:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781011940;
+	bh=FfND962Io4+pHKDVIyGxMi09AxKTKGfMA3CBqCUUb4c=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=S9vcKysnFo0u6uwqTxbGJkQtCzClBYHpiUkKANV6mEtY0Qj9pV4uxv/TzHCwd9lqn
+	 4+pti0jKXHtVvyalLb3Lm+jxbO8mfKSESQRTF4aKraBeBJqy1mTBmWJQoV3WqpLGE4
+	 IDgD4x4PdzGVkDE2gKvYTue2NkAlQ08gvzNR/9ihubExcTHp5c19bCynCKifi6hYFI
+	 OvX6hyq3UWtwOKWxSim+iaXym2fIfsJoUAIeYRo2yb95mtMPVWTK7Q7uWaE66palec
+	 ySg+Fu+aeck9EML39HN518kcahCMEvZYGbuvOj163CYvBhUUACU8/CcKLSoT7jQmRK
+	 SLDdu1KLuFG1Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6338FCD8CAA;
+	Tue,  9 Jun 2026 13:32:20 +0000 (UTC)
+From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Subject: [PATCH v2 0/4] AUXADC driver for the MediaTek mt6323 PMIC
+Date: Tue, 09 Jun 2026 16:31:57 +0300
+Message-Id: <20260609-mt6323-adc-v2-0-aa93a22309f9@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] powercap: qcom: Add SPEL powercap driver
-To: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-References: <20260519-qcom_spel_driver_upstream-v1-0-75356d1b7f94@oss.qualcomm.com>
- <20260519-qcom_spel_driver_upstream-v1-2-75356d1b7f94@oss.qualcomm.com>
- <7ea2f2cc-ef11-4727-810c-e32e815bd973@oss.qualcomm.com>
- <8f045340-a6c8-41c7-b1c7-6d9b87b05d90@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <8f045340-a6c8-41c7-b1c7-6d9b87b05d90@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: MheBO_HohZcNXTfKo8gyJvdaHAuR_rFj
-X-Authority-Analysis: v=2.4 cv=EI42FVZC c=1 sm=1 tr=0 ts=6a28159c cx=c_pps
- a=Z3eh007fzM5o9awBa1HkYQ==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=EUspDBNiAAAA:8 a=VKwP4syk8cgDA61-jkoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=eBU8X_Hb5SQ8N-bgNfv4:22
-X-Proofpoint-GUID: MheBO_HohZcNXTfKo8gyJvdaHAuR_rFj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA5MDEyOCBTYWx0ZWRfXzzt44PTsSVIX
- W06Y10FJnifXPMh7gLvt16sMs2kkjtcXpAA85BVQoC0sqhfNBOJAe8bgy3CBqTKlTrbXnZlaEYp
- 5s/W5sG26yFSMEFin6jMGT1t94U/ruGvR+38qInk170yXbeAwel7olZSGiCv14aFQbtCeWdJyd6
- lfhhZKuomwcRJ5VInq+vafpGGMWvIFEZkbA3DJ38kiCzjTvgpaIRdIPRjfhkE6lYNUzd/+jut0D
- tKITz1i/1K1zulurk0FSHBcBsQuAM84/JIlMEPX9RD11B9c0fle1HX5oKa3j5GqfS2TFulNlIAw
- x5USwZZhS7wN/ykrUaPZe1Tm0md19m8VM2kcGiA+eGIo0C1BZPPv31Z1ylAgWC8ugikoc+8Mm1O
- gdUgHLwGRSyaU6ObOL8feTRKraGOx+Ip5mCAm7CrTbcMcA30Y8aTMIJ6W/HBLlxIaLrJM8SGS7J
- coXkPbDLUAviPd8FeBA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-09_03,2026-06-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 adultscore=0 bulkscore=0 phishscore=0
- suspectscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605210000
- definitions=main-2606090128
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/02Nyw6CMBBFf4XM2poyDYW48j8ICxgGGSOUtJVoC
+ P8uj43Lk5x77gKBvXCAW7KA51mCuHEDvCRAfT0+WEm7MaBGqzPM1BCtQaPqlpRpuCM2lpoOYRt
+ Mnjv5HLGyOjm8mydT3Au70UuIzn+PtzndvTNsNf6H51RpZQum3OSZLpjvk3fRjUMtryu5Aap1X
+ X9z9kGBuwAAAA==
+X-Change-ID: 20260525-mt6323-adc-3befce36cbf2
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Lee Jones <lee@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, Ben Grisdale <bengris32@protonmail.ch>, 
+ Roman Vivchar <rva333@protonmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781011938; l=3208;
+ i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
+ bh=FfND962Io4+pHKDVIyGxMi09AxKTKGfMA3CBqCUUb4c=;
+ b=jBjC9nUipu0EfQIEXnZBKRC9uX4Uz5bSk7FypJ32naF/9gTeAAKor08+V9gO0X14uZz1EdHg5
+ eBOD4lkHfG8A2SKq8S7iiMtb9/gwpjR+0u9FO957v6igfqL5ohoP2b6
+X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
+ pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
+X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
+ auth_id=777
+X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Reply-To: rva333@protonmail.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309049-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:lee@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:bengris32@protonmail.ch,m:rva333@protonmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com];
+	TAGGED_FROM(0.00)[bounces-309051-lists,devicetree=lfdr.de,rva333.protonmail.com];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:manaf.pallikunhi@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:rafael@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:daniel.lezcano@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:gaurav.kohli@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rva333@protonmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,protonmail.ch,protonmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,protonmail.com:replyto,protonmail.com:email,protonmail.com:mid,vger.kernel.org:from_smtp,msgid.link:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 98E036609A5
+X-Rspamd-Queue-Id: 6048B6609F5
 
-On 6/9/26 3:23 PM, Manaf Meethalavalappu Pallikunhi wrote:
-> Hi Konrad,
-> 
-> 
-> On 5/21/2026 4:46 PM, Konrad Dybcio wrote:
->> On 5/19/26 12:49 PM, Manaf Meethalavalappu Pallikunhi wrote:
->>> The Qualcomm SoC Power and Electrical Limits (SPEL) provides hardware
->>> based power monitoring and limiting capabilities for various power
->>> domains including System, SoC, CPU clusters, GPU, and various other
->>> subsystems.
->>>
->>> The driver integrates with the Linux powercap framework, exposing SPEL
->>> capabilities through powercap sysfs interfaces.
->>>
->>> Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
->>> ---
+This series adds support for the 15-bit AUXADC hardware block found on
+the MediaTek mt6323 PMIC.
 
-[...]
+The previous version of the series for all AUXADC, EFUSE and thermal
+drivers was split after Krzysztof's comment [1].
 
->>> +static void spel_remove(struct platform_device *pdev)
->>> +{
->>> +    struct spel_system *sp = platform_get_drvdata(pdev);
->>> +    int i;
->>> +
->>> +    if (!sp)
->>> +        return;
->>> +
->>> +    /* Unregister in reverse order: children first, then SOC, then SYS */
->>> +    for (i = SPEL_DOMAIN_MAX - 1; i >= 0; i--)
->>> +        powercap_unregister_zone(sp->control_type, &sp->domains[i].power_zone);
->>
->> Could you try adding a devm_ variant of these register functions?
-> 
-> Powercap framework doesn't support any devm_* API, you meant add this support in framework in this series ?
+Tested on the MediaTek mt6572 and mt8163 SoCs (Ben), both paired with a
+mt6323.
 
-Yes, this should be fairly trivial - look at e.g.
+The other parts (EFUSE and thermal) will probably be sent this week.
 
-drivers/regulator/devres.c : devm_of_regulator_get
+[1]: https://lore.kernel.org/linux-mediatek/20260504-mt6323-v1-0-799b58b355ff@protonmail.com/T/#med30fad67a090be35f549231336b2dec295233f6
 
-Konrad
+Tested-by: Ben Grisdale <bengris32@protonmail.ch> # Amazon Echo Dot (2nd Generation)
+Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+---
+Changes in v2:
+- AUXADC driver:
+    - Drop channel type from the MTK_PMIC_IIO_CHAN macro (Nuno)
+    - Drop kerneldoc for the mt6323_auxadc struct (Nuno)
+    - Add channel release to save power (Sashiko, Jonathan)
+    - Drop 'reg' variable in the mt6323_auxadc_read (Jonathan)
+    - Sort variables in the mt6323_auxadc_probe (Jonathan)
+- Maintainers:
+    - Drop linux-mediatek list (Andy)
+    - Split between dt-bindings and driver to avoid missing file (Nuno)
+- Link to v1: https://patch.msgid.link/20260602-mt6323-adc-v1-0-68ec737508ee@protonmail.com
+
+Changes after split:
+- dt-bindings: Change 'MT63xx' to 'MT6350 series and similar' (Jonathan)
+- AUXADC driver:
+    - Add missing headers (Andy)
+    - Fix AUXADC_TRIM_CH* values (Andy)
+    - Rename masks to include their register name (Jonathan)
+    - Fix formatting (Andy, Jonathan)
+    - Replace channel address with actual register value (Jonathan), align the table
+    - Replace IIO_TEMP with IIO_VOLTAGE, since the actual output is still mV, not mC
+    - Rename constants to match their registers (Jonathan)
+    - Remove 'if/else if/else' in the mt6323_auxadc_read_raw (Andy)
+    - Add comments for fsleep, ADC range and resolution (Andy, Jonathan)
+    - Remove useless error messages (Andy)
+- Maintainers:
+    - Explicitly include mt6323 in the name (Jonathan)
+    - Squash with AUXADC driver commit (Krzysztof)
+    - Set status back to 'Maintained'
+- Link to a previous series: https://patch.msgid.link/20260512-mt6323-v2-0-3efcba579e88@protonmail.com
+
+---
+Roman Vivchar (4):
+      dt-bindings: iio: adc: mediatek,mt6359-auxadc: add mt6323 PMIC AUXADC
+      iio: adc: mt6323-auxadc: add mt6323 PMIC AUXADC driver
+      mfd: mt6397-core: add mt6323 AUXADC support
+      ARM: dts: mediatek: mt6323: add AUXADC support
+
+ .../bindings/iio/adc/mediatek,mt6359-auxadc.yaml   |   3 +-
+ MAINTAINERS                                        |   7 +
+ arch/arm/boot/dts/mediatek/mt6323.dtsi             |   5 +
+ drivers/iio/adc/Kconfig                            |  11 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/mt6323-auxadc.c                    | 305 +++++++++++++++++++++
+ drivers/mfd/mt6397-core.c                          |   3 +
+ .../dt-bindings/iio/adc/mediatek,mt6323-auxadc.h   |  24 ++
+ 8 files changed, 358 insertions(+), 1 deletion(-)
+---
+base-commit: 028ef9c96e96197026887c0f092424679298aae8
+change-id: 20260525-mt6323-adc-3befce36cbf2
+
+Best regards,
+--  
+Roman Vivchar <rva333@protonmail.com>
+
+
 
