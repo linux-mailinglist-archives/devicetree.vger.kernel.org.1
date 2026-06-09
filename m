@@ -1,244 +1,258 @@
-Return-Path: <devicetree+bounces-308996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308995-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ouk7KEH+J2pG6wIAu9opvQ
-	(envelope-from <devicetree+bounces-308996-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 13:51:29 +0200
+	id dnsjI9z/J2rf6wIAu9opvQ
+	(envelope-from <devicetree+bounces-308995-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 13:58:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C7B765FAA4
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 13:51:29 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82C9365FBF9
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 13:58:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=microchip.com header.s=mchp header.b="ab/hNcSi";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308996-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308996-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=microchip.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZN0jjj1b;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308995-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308995-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A11893050DE3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 11:50:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CCE383002B71
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 11:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F174E4028DD;
-	Tue,  9 Jun 2026 11:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2DE3F9298;
+	Tue,  9 Jun 2026 11:50:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CFD13FDBEC;
-	Tue,  9 Jun 2026 11:50:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2530F3FC5B9
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 11:50:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781005837; cv=none; b=Nbf/PD91BsqxF8io7ULnaM/lcJzqqBoU1JjHlkalGuCcrfb4Iz8MT+MuvGAHc2ZIRXW66YaboyqPKhlDFRbeBokj0qHE5QWzPdmyrh8T/Y1gFEJvxV6BZBxF71pVAwM9+wvKvzr4GDSca05tAT4ZN34CppPZIRcPcVb9GvyumXQ=
+	t=1781005834; cv=none; b=ZDBLU5rcYR7gsZYw62u70ppG0368gcgkNhSnN3F0uYZZKjYE17FySyE9sSX/nyxnV2Hc3xNGnG/HFaY2UjHHvjXHH6w2lUhyoZ72sptEO5O10AYJcfMtf9at9lRI2xO3r6skbv6DFYdqw0YkIttz8S95NRk2VtjvxN11pIUQLrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781005837; c=relaxed/simple;
-	bh=MU6EDuK1Hk2ydJJG7HBbqIXO3OkmP0YpxmgZiKbMHfI=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=IYFKi0Ah3DYg7CbjJKtaC9NR/L7uSKROzg6dTn3WsTp5rR36cA8dGQWO1qIC08j1OnSXH7n8zHhQHad5ySLNd3he6PK/W2NEDw2eo2hgpnh3tiwMOGHLFXzlo9u4icarwwWvHdZ3qFijGmhCQwFOpE4agG74XadSsndF+QUo170=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ab/hNcSi; arc=none smtp.client-ip=68.232.153.233
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1781005837; x=1812541837;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=MU6EDuK1Hk2ydJJG7HBbqIXO3OkmP0YpxmgZiKbMHfI=;
-  b=ab/hNcSi2IHuoRpLH7liPOxJsKVtPfPlBEwnokOvlex/RN3L4ghpeFJl
-   L/k9EdAqPEcMjf6JnZSGmry3Uj8k6UkjOimsBjZX/oKwQ5I0ieSdpZYJP
-   s/IdKS2aPCqefQyBkyiqyPMgWv7fHoKAkpEHTGjfdaI1nCxJWJEfJO2U1
-   Pze+MhAmnFyfC8pPAhee+1/RTYe3WDZdnk6/Y6k73BwKBMrMSW3WwZSfO
-   3ZsYVisTPcPOg6WtDEFrY4G+i8R1EMUJgjipPQ9DqP1MoMq4/cG1q4NaY
-   BoolZ377h7I71KJ1TADAB4uGjZargiJyADQoKtwzSel182km4a7vICpXy
-   Q==;
-X-CSE-ConnectionGUID: zFAq9PcuQ9yx5sJ3gBlw8g==
-X-CSE-MsgGUID: z2vqpbSORsSg5f6Ep0ddDA==
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; 
-   d="scan'208";a="58821459"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Jun 2026 04:50:36 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Tue, 9 Jun 2026 04:50:34 -0700
-Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Tue, 9 Jun 2026 04:50:30 -0700
-Message-ID: <39e0626955d50970208bdccc74c40c83e6ad1ea0.camel@microchip.com>
-Subject: Re: [PATCH net-next v7 4/9] net: dsa: lan9645x: add basic dsa
- driver for LAN9645X
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: <UNGLinuxDriver@microchip.com>, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, "Simon
- Horman" <horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Woojung
- Huh <woojung.huh@microchip.com>, Russell King <linux@armlinux.org.uk>, "Steen
- Hegelund" <Steen.Hegelund@microchip.com>, Daniel Machon
-	<daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date: Tue, 9 Jun 2026 13:50:30 +0200
-In-Reply-To: <44c635f8-e17e-44bf-b34b-60abcde29577@lunn.ch>
-References: <20260603-dsa_lan9645x_switch_driver_base-v7-0-b2f90e676707@microchip.com>
-	 <20260603-dsa_lan9645x_switch_driver_base-v7-4-b2f90e676707@microchip.com>
-	 <9ee993d0-9a71-48ff-b368-fcebe1ee9e48@lunn.ch>
-	 <a9ab4d129f2e3158c1a7b01d0a975fac00a05893.camel@microchip.com>
-	 <44c635f8-e17e-44bf-b34b-60abcde29577@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
+	s=arc-20240116; t=1781005834; c=relaxed/simple;
+	bh=e3i8EXH0z6awCSE/2faX2xu2Op+OzamloI/0L+wejQE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ryWVZagqZTQJ/UZ219OH1TGWFnRzfQD081NXjq+ilzjWC88PJE1WdnjptlOX3MdNE4A9mf4Je1hx50Q9TLv60xmXWYCi8VZPZaTsPZYqjoYQgrdpHNAzVMGwaEJmrZ/RKyT2qv8JCkBB5+2PMKxqTgQKjkWh8XOmi7+fDUK7uI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZN0jjj1b; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EEFC1F00893;
+	Tue,  9 Jun 2026 11:50:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781005832;
+	bh=fY4pugE/2TECDaf96tCmITZPoAv7RbnPMN5y03nxFFA=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=ZN0jjj1bIqglXl0na/GWdrAyabf1qGzzf1ACYgBg20x604P50WVsMaopBd18dxcm0
+	 YLixj0Nf+dsK2n9XGXsRfApuiDoeQTqnfhE/8KZGNmUjf4iZBPaIPQSH9BFk3/XnlA
+	 iIgLpMxwqQ+6GTghB+93hFeD6sreImX9HRzo0aA/0pKkI+geaelTisgX1/3HUBE7h7
+	 GBfYny1zIqiz962MpkvRzS0MjggtJbidfklo53qS2RANIjTbAbDcxsU40/DhxLbm7y
+	 8fziegaGUtQb2bWoUjH0uKxKhsz9oMB/3jgOuOJDWxsaWiOFRHcGD4jvKRqVMzm3sr
+	 uZM4BOPihHjkg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 01/11] ASoC: dt-bindings: renesas,fsi: add support
+ multiple clocks
+Reply-To: sashiko-reviews@lists.linux.dev
+To: phucduc.bui@gmail.com
+Cc: conor+dt@kernel.org, wsa+renesas@sang-engineering.com, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260609113836.45079-2-phucduc.bui@gmail.com>
+References: <20260609113836.45079-2-phucduc.bui@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+Date: Tue, 09 Jun 2026 11:50:31 +0000
+Message-Id: <20260609115032.3EEFC1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-308996-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-308995-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:UNGLinuxDriver@microchip.com,m:olteanv@gmail.com,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:woojung.huh@microchip.com,m:linux@armlinux.org.uk,m:Steen.Hegelund@microchip.com,m:daniel.machon@microchip.com,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:phucduc.bui@gmail.com,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:phucducbui@gmail.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,microchip.com:dkim,microchip.com:mid,microchip.com:from_mime]
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3C7B765FAA4
+X-Rspamd-Queue-Id: 82C9365FBF9
 
-On Tue, 2026-06-09 at 10:48 +0200, Andrew Lunn wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->=20
-> On Tue, Jun 09, 2026 at 09:08:13AM +0200, Jens Emil Schulz Ostergaard wro=
-te:
-> > On Mon, 2026-06-08 at 20:00 +0200, Andrew Lunn wrote:
-> > > EXTERNAL EMAIL: Do not click links or open attachments unless you kno=
-w the content is safe
-> > >=20
-> > > > +     dsa_switch_for_each_user_port(dp, ds) {
-> > > > +             if (dp->cpu_dp->ds !=3D ds) {
-> > > > +                     dev_err(ds->dev,
-> > > > +                             "NPI port on a remote switch is not s=
-upported\n");
-> > > > +                     return -EINVAL;
-> > > > +             }
-> > > > +
-> > > > +             if (first_cpu_dp && dp->cpu_dp !=3D first_cpu_dp) {
-> > > > +                     dev_err(ds->dev, "Multiple NPI ports not supp=
-orted\n");
-> > > > +                     return -EINVAL;
-> > > > +             }
-> > > > +
-> > > > +             first_cpu_dp =3D dp->cpu_dp;
-> > >=20
-> > > The reason i asked about NPI ports is because this is looping over
-> > > user ports. Yet you say one of these user ports is a CPU port. That
-> > > cannot be correct.
-> > >=20
-> > > The first port returned by dsa_tree_for_each_cpu_port() would be
-> > > first_cpu_dp.
-> > >=20
-> > >         Andrew
-> >=20
-> >=20
-> > I tried to mimic the approach in drivers/net/dsa/ocelot/felix.c:
-> >=20
-> > static int felix_tag_npi_setup(struct dsa_switch *ds)
-> > {
-> >       struct dsa_port *dp, *first_cpu_dp =3D NULL;
-> >       struct ocelot *ocelot =3D ds->priv;
-> >=20
-> >       dsa_switch_for_each_user_port(dp, ds) {
-> >               if (first_cpu_dp && dp->cpu_dp !=3D first_cpu_dp) {
-> >                       dev_err(ds->dev, "Multiple NPI ports not supporte=
-d\n");
-> >                       return -EINVAL;
-> >               }
-> >=20
-> >               first_cpu_dp =3D dp->cpu_dp;
-> >       }
-> >=20
-> >       if (!first_cpu_dp)
-> >               return -EINVAL;
-> >=20
-> >       felix_npi_port_init(ocelot, first_cpu_dp->index);
-> >=20
-> >       return 0;
-> > }
-> >=20
-> > Perhaps I misunderstand you, but there could be confusion about
-> > terminology. The chip designers have a concept of CPU port, which is
-> > used liberally in the datasheet, and in this driver code.
->=20
-> > However, the concept is different from the DSA concept of a CPU port.
->=20
-> And that is a problem because somebody reviewing this code is likely
-> to know DSA concepts much more than the individual devices concepts.
-> To aid overall Maintenance of all the DSA drivers, the driver should
-> try to keep with DSA meanings.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] Missing schema constraints for `renesas,fsi2-sh73a0`.
+- [Medium] Device tree schema mismatch between positional `clocks` descript=
+ions and flexible `clock-names`.
+--
 
-I have tried to explain the relationship between switch CPU port and NPI
-port in comments, but I am sure it could be clearer. I am also guilty of
-thinking in terms of these concepts because it is how the terms are used
-in the office, in the registers and datasheet and so on. It is hard
-writing a driver without knowing this distinction.
+commit f87e156c63c67f6faedd026ab0b5578543349e89
+Author: bui duc phuc <phucduc.bui@gmail.com>
 
+ASoC: dt-bindings: renesas,fsi: add support multiple clocks
 
->=20
-> > Let us call the first switch CPU port, and the second DSA CPU port.
-> >=20
-> > The port we want to use as a DSA CPU port, i.e. the port with the
-> > 'ethernet =3D <&host_port>;' property in the device tree, will be
-> > configured to be an NPI port for injection/extraction for the switch CP=
-U
-> > port (which is not a physical port on the device).
->=20
-> > Therefore, this NPI port is not iterated by
-> > dsa_switch_for_each_user_port. The switch CPU port (index 9) is also no=
-t
-> > iterated by it. It is a chip internal construct with no representation
-> > in the device tree, and no struct dsa_port.
->=20
-> So first_cpu_dp is not a DSA CPU port. It is also not a NAPI port,
-> since that is a DSA CPU port. Then what is it? Why do you need the
-> concept of a switch CPU port?
->=20
->         Andrew
+This commit updates the FSI binding to support multiple clocks to properly
+describe the hardware clock tree, including the SPU bus/bridge clock and
+various CPG DIV6 functional clocks. It documents the clocks supported by
+the FSI driver for the sh73a0 and r8a7740 variants.
 
-But first_cpu_dp _is_ a DSA CPU port (and the NPI port). What I meant is
-that we are iterating user ports with dsa_switch_for_each_user_port, so
-the iteration variable dp is never a DSA CPU port (and therefore not the
-NPI port). But we set first_cpu_dp =3D dp->cpu_dp, not first_cpu_dp =3D dp,
-so first_cpu_dp is indeed a DSA CPU port.
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,fsi.yaml b/D=
+ocumentation/devicetree/bindings/sound/renesas,fsi.yaml
+> index df91991699a72..803945b7f82f0 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,fsi.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,fsi.yaml
+> @@ -9,9 +9,6 @@ title: Renesas FIFO-buffered Serial Interface (FSI)
+>  maintainers:
+>    - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> =20
+> -allOf:
+> -  - $ref: dai-common.yaml#
+> -
+>  properties:
+>    $nodename:
+>      pattern: "^sound@.*"
 
-We find it here so we can pass it to lan9645x_npi_port_init to configure
-the port module at index first_cpu_dp->index as an NPI port. In this
-particular function, the switch CPU port does not occur or play a role,
-I was just trying to explain the relationship in general.
+[ ... ]
 
-Thanks,
-Emil
+> @@ -38,7 +35,32 @@ properties:
+>      maxItems: 1
+> =20
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    items:
+> +      - description: Main FSI module clock
+> +      - description: |
+> +          SPU bus/bridge clock. On R8A7740, this clock must be enabled t=
+o allow
+> +          register access as the FSI block is connected behind the SPU b=
+us.
+> +      - description: CPG DIV6 functional clocks for FSI port A
+> +      - description: CPG DIV6 functional clocks for FSI port B
+> +      - description: FSI dividers for port A used for audio clock genera=
+tion
+> +      - description: FSI dividers for port B used for audio clock genera=
+tion
+> +      - description: External clock inputs for FSI port A provided by th=
+e board
+> +      - description: External clock inputs for FSI port B provided by th=
+e board
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 8
+> +    items:
+> +      enum:
+> +        - fck  # Main FSI module clock
+> +        - spu  # optional SPU bus/bridge clock
+> +        - icka # optional CPG DIV6 functional clocks for FSI port A
+> +        - ickb # optional CPG DIV6 functional clocks for FSI port B
+> +        - diva # optional FSI dividers for port A used for audio clock g=
+eneration
+> +        - divb # optional FSI dividers for port B used for audio clock g=
+eneration
+> +        - xcka # optional External clock inputs for FSI port A provided =
+by the board
+> +        - xckb # optional External clock inputs for FSI port B provided =
+by the board
 
+[ ... ]
+
+> @@ -69,6 +91,30 @@ required:
+> =20
+>  unevaluatedProperties: false
+> =20
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,fsi2-r8a7740
+
+[Severity: Medium]
+The commit message states that both the sh73a0 and r8a7740 variants define
+the SPU DIV6 clock control register, but is the renesas,fsi2-sh73a0
+compatible string missing from this conditional block?
+
+If the condition restricts the clock validation rules entirely to
+renesas,fsi2-r8a7740, the sh73a0 variant would be left without any
+enforcement of the required fck and spu clocks, allowing improperly
+configured device trees to silently pass schema validation but fail
+at runtime.
+
+> +    then:
+> +      required:
+> +        - clock-names
+> +
+> +      properties:
+> +        clock-names:
+> +          minItems: 2
+> +          items:
+> +            - const: fck
+> +            - const: spu
+> +            - enum: [icka, ickb, diva, divb, xcka, xckb]
+> +            - enum: [icka, ickb, diva, divb, xcka, xckb]
+> +            - enum: [icka, ickb, diva, divb, xcka, xckb]
+> +            - enum: [icka, ickb, diva, divb, xcka, xckb]
+> +            - enum: [icka, ickb, diva, divb, xcka, xckb]
+> +            - enum: [icka, ickb, diva, divb, xcka, xckb]
+
+[Severity: Medium]
+Does the use of an unordered enum list for clock-names create a structural
+mismatch with the strictly positional descriptions defined in the clocks
+array above?
+
+Because dt-schema correlates array properties by index, a valid unordered
+list of optional clocks might be mismatched with incorrect descriptions.
+Additionally, defining sequential items with identical enum lists permits
+invalid configurations with duplicate clock entries to pass validation.
+
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/r8a7740-clock.h>
+> @@ -77,7 +123,11 @@ examples:
+>              compatible =3D "renesas,fsi2-r8a7740", "renesas,sh_fsi2";
+>              reg =3D <0xfe1f0000 0x400>;
+>              interrupts =3D <GIC_SPI 9 0x4>;
+> -            clocks =3D <&mstp3_clks R8A7740_CLK_FSI>;
+> +            clocks =3D <&mstp3_clks R8A7740_CLK_FSI>, <&spu_clk>,
+> +                    <&fsia_clk>, <&fsiack_clk>, <&fsidiva_clk>,
+> +                    <&fsib_clk>, <&fsibck_clk>, <&fsidivb_clk>;
+> +            clock-names =3D "fck", "spu", "icka", "xcka", "diva",
+> +                         "ickb", "xckb", "divb";
+
+For instance, this example places xcka at index 3. Would this violate the
+strict positional schema since index 3 in the clocks array is explicitly
+described as "CPG DIV6 functional clocks for FSI port B"?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609113836.4507=
+9-1-phucduc.bui@gmail.com?part=3D1
 
