@@ -1,177 +1,234 @@
-Return-Path: <devicetree+bounces-309206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309208-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NM4VFtxAKGpXBAMAu9opvQ
-	(envelope-from <devicetree+bounces-309206-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:35:40 +0200
+	id AjBIHchBKGqaBAMAu9opvQ
+	(envelope-from <devicetree+bounces-309208-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:39:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082EC662705
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:35:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0473E6627B3
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:39:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=imd-tec.com header.s=google header.b=Icy5pZrd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309206-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309206-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=imd-tec.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=iqZAsn5V;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309208-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309208-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1CBBB305DF9B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 16:23:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1CA133D308E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 16:23:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BC3A3AFCF5;
-	Tue,  9 Jun 2026 16:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E3337DAAC;
+	Tue,  9 Jun 2026 16:23:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C0B3B6C12
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 16:21:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ADDB340413
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 16:22:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781022108; cv=none; b=kF0zGxyLySHDOQAfGa4hram9cS+9GIa8Cxwjn6X11ZZxV2AFFUnCdBY7FhWpD2hCXdoJet3PzRrBtlBOsxisCeU/7ciLDgIc/MJWuzUq410Mzl3oRpxcXW9ihdse0K4iqQzJYhPF88uLDagQ1aKaUIHUmt785qZjKJSUhx1MWs4=
+	t=1781022180; cv=none; b=MFBmjpn67I3SrhDfCXtYQy996HPlkJxEP9eGOl8/kcGQFbYwkhg184HuD47b0yJ7r+ocWa/g7paWMp0DezaE+qY56PbN30rgUPhCAq93QI6pi/wbOaT2pZHJi4EAseYHbww7IFpulCyEoYjpIk/vvpscwsh+xauP6mcmBAXSrg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781022108; c=relaxed/simple;
-	bh=RnYQKTgC5c+dI+AGzkNnXBzaTBP8CgdPH0WnnTKMiA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JNBGay4BKYzlhruyeKMCAHHjx+TH+8LTm48H9aZ/1pgSDImwk+IbqdJy4q4sXwWFngy5wv+8pONV6XUMHPpB0tt6oiNFnth9wy8g4bk5DbYhlORQ2oYrFMIrVOm+VEDhitEm3h0fltXjvMvaQkKcrcaKnfS2DA69WTz5fyXGA/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com; spf=pass smtp.mailfrom=imd-tec.com; dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b=Icy5pZrd; arc=none smtp.client-ip=209.85.128.49
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-490b9318997so42184145e9.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 09:21:46 -0700 (PDT)
+	s=arc-20240116; t=1781022180; c=relaxed/simple;
+	bh=U3gede9JtGGD2FQ6a1L00yb4hwp21BcFfokptR3zW7w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jdPU9qKom8b7UlwsgCMDu/YSy8N37ITWjzvUvKPoat58jxeTTUV1vRMa5bctsJiwTd/z0opHUn52ywNolxrXYIXZDY+diRY52Uf13kckwSJTEcG6mKkTJkfLTPVhsDH8jFajct1c2QMoL+yr79n018KSvCGKKNyEShlP3GOTYe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iqZAsn5V; arc=none smtp.client-ip=209.85.160.176
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-51775f2473aso43221181cf.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 09:22:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=imd-tec.com; s=google; t=1781022105; x=1781626905; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vaGdByy1y9YOgpYVm9cgbblxYGkAi93ghJNskc40SB4=;
-        b=Icy5pZrdXPsbjeHSfsECszAJA32UjM4dgISKqf1hbvskOHszMtAIThKpYVc5mZgbI8
-         lvRiUr1AP/2IvQw0Axqg+d9bhvg5GDrCqfKgjzHcJrnxa2r92hg32sslGnRrIDD2RvtI
-         xfEg4H9pWIts/ETfLBMk+esQKzREMJLlCdmYugKlyZyMlh3OpwJcutxlzra1lNP0opQ+
-         GchOcpMp08rz0+yGmNcaTYN8ZAVNg7q8cOA3jFNkYsaDg32H8rtMJ+pmvb1gb3wI4X8i
-         +sOQYwLc4mcvICk3W7CgW/vuze9LjzpnvBMFAuDu9Djaa2QCYifrltJpei6Fms95aTFw
-         42eQ==
+        d=gmail.com; s=20251104; t=1781022177; x=1781626977; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0fBe9vAakig1BPSXTzZIVSMqUxMEqjGjFooZM5iLX84=;
+        b=iqZAsn5V8djwuPuWU5Aty1TvBBgs6tOD+ELBtkVWcmLuJRxdoKrjOe8rz4Xry5xeWl
+         ry5nd+yPeFtby/g/c4Wug8AqHut9yeJgEYeDEzI1M+hED6KYkeYNSSkoZBzs4BP495zn
+         XmYLOgIJKZjeUoIvVAXAO/GioNw0fu8co8VaUSSHnAAovl4OwOR44+2ldAGYOUWTTQZf
+         /dA2w2wga+knCgJfYK6jmd7PLOzZ37+Jo69gWwr7o0ib3ByN+Qf6dELZevZJ5Fl4P6Q/
+         7yU7AqvNsLuU5M20VX388YGbXYJUAf/8ho0zZcNuZM1uxEW4EIXPuPTVh8vMJSxIkLn3
+         bdRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781022105; x=1781626905;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vaGdByy1y9YOgpYVm9cgbblxYGkAi93ghJNskc40SB4=;
-        b=WETczJ3/DzA3kqZRWi58hh7LLpZ7U7x8dWPTGIbq34fZ+cH8GcyDs6x+4fZQIWxXp6
-         SjlIJ3Rzm43xymSIBO92Vbumn8itjCN6isfGphGz7PGz/EcrGY14CJZPD7TVIuHv9xzM
-         1U0Nwi2yZ3xMGq/QiyHZwxKIRpDsU7kbP/vfomSV5ilIUhol11vkhwiISUoVU3iLVVSo
-         SGlLpvmBY6wBd4istzUWL4kEu5XeJ4zk4SKYmZY3uPzdQr2TTpks7VNBEDYF1KDGtAL6
-         0VD7M6gEpkkdBgV4SKkbUqGpQVQgGsCC45Bh9JyperJ2uEeDCCIE2SoqeH+IY0ZfdXzM
-         HzgQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9OL+/6NK0B876pLa/2dsUACRpRvPsee79ZatxXVAg2DO6usQp39pLAMsK8Nu1l6U1mEq1uPb6n0/HI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5u6NZS1N4lvhX4TbYGbiYKXchWaQeeZ41DyusfLD4oIenG9Vs
-	w1J/Wq9p/Ak8m593Cll6+nWdY3DFpa1SNWyDF0BjKwvS9PJrM04V1LwcYzrp+HQXTPY=
-X-Gm-Gg: Acq92OERJLxB5w2pX00NQNOYmi/rE6bSxw9ZizmBQ48TAs5UhK0idI3ObvUTqyXnh5R
-	FpALJGeyjy1k3YB/4Kv3tEnyMxkf12OoGjvt3dw0NA7eLDNU8BFRHriUXlKqXKn31zyNdZ/S2tj
-	kuP68IZ3SIJ3xkkc7mKFxE+1AaT8snhFqT5DuoWMA0FrzU+pw4u+J/tag+X4KLHfsDTudw8fTbQ
-	/rWsv4bIx66gi2rJntpBfhF7FHtGemPbksMaoWstJAkOXp0g/YGwOk9FPGeAKZ2GDu4+rlFBInT
-	6wEB8wot6/1ExmZyLYRTPTyOJ5C+hglmOPErEBfYBxiRe+sfOfm01GZMgFl9eOdCuEKd8oFDCkV
-	wVESbgdV7rkKnRClSIsWxXgwq1CXaiZE9Tw8LjL/xZbqW1yqMlObbGz5HwmpjAqwLsZQ2kXJHvh
-	+p0d/UyTAoDVoLjJMcBUClk/5FXvI2KkpHLkuDZhqnT3zHFyQURNRQ19TfE7DLpvpVGcQIpA6SM
-	b53uVg+BNgJ4h7lo0UyaTXwWwBavWVTdKSHDXRi/Kh7wAFcn0ydhcmvqfqjSAy/
-X-Received: by 2002:a05:600c:314b:b0:490:bfae:55cb with SMTP id 5b1f17b1804b1-490c25f5df4mr318368755e9.21.1781022104869;
-        Tue, 09 Jun 2026 09:21:44 -0700 (PDT)
-Received: from will-Legion-Slim-5-16APH8 ([2a00:23c6:2736:8e01:f35a:3fa0:85d5:c620])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f2dcde3sm65162418f8f.1.2026.06.09.09.21.43
+        d=1e100.net; s=20251104; t=1781022177; x=1781626977;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0fBe9vAakig1BPSXTzZIVSMqUxMEqjGjFooZM5iLX84=;
+        b=Y1rhidGihGHooc6JVi7wJMGKslRjXaVZxwAnUia1XXWnk2qxg3JVy5phm6fAnj4dW5
+         cjR5vTRGTx0Pn/L/Y0pL3ZMuBDIjg+dUUypSV8por8TZWOUJiMhiPsrxs+IYE0Ty2i/D
+         z0Yweq7fTrHDstUwxf9ZjHRNWAA3Ww3GBvUXZrrz3JwDH6bIDnvia6im+sBIMEFDSg9m
+         GnMQiXzNJDyZHVNsWNSegxA8ZoODKUwd5OXxUj0ubzqyZFiS96d2RCX0jvFlGuQS1CVf
+         FFc3L4PgrVEEWxJvMoZU8ijArwXBR9Wv7Gd1MrYQkfLH+ViAFZgCyGhAXCTBJX81aKQ0
+         3hqg==
+X-Forwarded-Encrypted: i=1; AFNElJ9iCWtc5f5Vl4e2Nm2nI0m5pPcmslPnk6pMvdKzDqw09NIBRPu8G+PVa+Si3o41cE/8ukNVNU4WkIR2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOhxABQqw4Ye3vd5hf0hHn3x8w5c9OCwvbgxt7RT2DsbL4c3z6
+	VwqpkiPvnzydnyJAOy2fZAD2rnNWBvq3I7xqGb1gSe/1IxaDMV/NxCMl
+X-Gm-Gg: Acq92OEpDuF8kp3yJh+Py1HSpVNYvUjgaKaPobLhLCl6nmrL04TuEAJuacNcw3IkPUX
+	ucG5r6XsPgruUQZOB4A1XjP1fSk1n90jJ5ygTUyVK+hd+33gqcOngIBx5b1x9iIzryCKrYf9Iua
+	AITBWagiC+ktVHOkyXf9i/45IhezoQyL/DeTq8+RdFP2+Z76SGwkmWLT96RZlSD1mFCpBzVvCid
+	zJT6Xn2f2SpAFeCBaV+FtzPHzNkBlCRqssV+0u398ZxbFP6EoKNJPGLugSAnrtY/n6Q/r4Ezl8g
+	KWln5Q0FPEFI20fB9nc0PDNkrHAhfI1zWu1cInGIIW2VL17yFkLlW1+VCdCIQhUC/MyDLp/ivAg
+	+2dMIQezkDwhOqh2wIg0Gq1yWWqGLXTrvfEdNIYFmEpACassIBJ4nuVUfXvU44qqiarbGr6+l9X
+	TlkVCQoqWVOgBnwbLwg1GsDKCgPwh81ZTYiv7nuw==
+X-Received: by 2002:ac8:5504:0:b0:517:9b2f:a68c with SMTP id d75a77b69052e-5179b2fa8d0mr218453701cf.30.1781022177321;
+        Tue, 09 Jun 2026 09:22:57 -0700 (PDT)
+Received: from localhost ([142.181.163.192])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-51775c08234sm191310381cf.6.2026.06.09.09.22.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2026 09:21:44 -0700 (PDT)
-Date: Tue, 9 Jun 2026 17:21:42 +0100
-From: William Bright <william.bright@imd-tec.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+        Tue, 09 Jun 2026 09:22:56 -0700 (PDT)
+From: Richard Acayan <mailingradian@gmail.com>
+To: Srinivas Kandagatla <srini@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ram Boukobza <ram@imd-tec.com>,
-	Tendai Makumire <tendai.makumire@imd-tec.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: add SDHC4 controller node
-Message-ID: <aig9licCxhtZbHMq@will-Legion-Slim-5-16APH8>
-References: <20260427-sm8550-sdhc4-support-v2-1-a4241f43ecd5@imd-tec.com>
- <e0731edc-81da-429a-a12e-a1d1b75f9544@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Nickolay Goppen <setotau@mainlining.org>,
+	Adam Skladowski <a39.skl@gmail.com>,
+	Vladimir Lypak <vladimir.lypak@gmail.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
+	Johan Hovold <johan@kernel.org>,
+	Kees Cook <kees@kernel.org>,
+	Charles Keepax <ckeepax@opensource.cirrus.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH v5 00/15] SDM660 sound card and internal MI2S support
+Date: Tue,  9 Jun 2026 12:22:40 -0400
+Message-ID: <20260609162255.31074-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e0731edc-81da-429a-a12e-a1d1b75f9544@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[imd-tec.com,none];
-	R_DKIM_ALLOW(-0.20)[imd-tec.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309206-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vladimir.zapolskiy@linaro.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ram@imd-tec.com,m:tendai.makumire@imd-tec.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[imd-tec.com:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[william.bright@imd-tec.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-309208-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:setotau@mainlining.org,m:a39.skl@gmail.com,m:vladimir.lypak@gmail.com,m:dmitry.baryshkov@oss.qualcomm.com,m:mohammad.rafi.shaik@oss.qualcomm.com,m:johan@kernel.org,m:kees@kernel.org,m:ckeepax@opensource.cirrus.com,m:kuninori.morimoto.gx@renesas.com,m:mailingradian@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:a39skl@gmail.com,m:vladimirlypak@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[william.bright@imd-tec.com,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[mainlining.org,gmail.com,oss.qualcomm.com,kernel.org,opensource.cirrus.com,renesas.com];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,will-Legion-Slim-5-16APH8:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 082EC662705
+X-Rspamd-Queue-Id: 0473E6627B3
 
-On Thu, Jun 04, 2026 at 07:01:22PM +0300, Vladimir Zapolskiy wrote:
-> 
-> How do you know that these modes are broken in hardware and not
-> caused by something else?
-> 
-> It was stated before, but it was proven to be invalid as the statement.
-> 
-Thanks Vladimir for your feedback.
+This adds support for the SDM660 (formerly "SDM660 internal") sound card
+and support for WCD codecs over internal MI2S (represented in APIs as
+LPI MI2S).
 
-I copied this statement from when these modes were also masked out on
-sdhc_2. I see that there was progress since then and the caps mask has
-been dropped so I agree that I shouldn't have this comment that these
-modes are broken due to hardware.
+Like on MSM8916 and MSM8953, some SDM660 and SDM670 devices connect to a
+digital and analog codec. The connection to the digital codec is through
+special "internal" MI2S ports. The digital and analog codecs are used on
+the Xiaomi Redmi Note 7 for headset (playback + capture) and earpiece,
+and also on the Google Pixel 3a for the headset.
 
-I have tested this patch after rebasing onto the latest tree with the
-recent changes that allowed for the caps mask to be dropped for sdhc_2
-and I still see dll tuning failing. To progress, I need some guidance
-from qcom as to what dll-config value should be used as I am uncertain
-about this. I noticed that ftbl_gcc_sdcc4_apps_clk_src only goes up to
-75MHz so perhaps this needs modifying for DLL-tuning to pass and maybe
-there needs to be schematic/routing guidance that needs to be strictly
-followed as-well besides the usual 50 ohm impedance rules?
-> > - Forbid SDR104/SDR50 via sdhci-caps-mask, matching the previously
-> >    existing sdhc_2 workaround in the same file.
-> >    The SDHCI capabilities register on this SoC advertises SDR50/SDR104
-> >    modes that are broken on sdhc_4; without masking them the MMC
-> >    core selects SDR50 and fails DLL tuning with
-> >    -ETIMEDOUT during SDIO card initialisation.
-> 
-> Which one SDIO card do you test?
-> 
-My apologies, I made a mistake in the cover letter, I wasn't testing with
-an SDIO card, I was testing with an NXP IW416 which is hard-wired to
-sdhc_4. 
+This series does not include devicetree patches.
 
-Best regards,
+Changes since v4 (https://lore.kernel.org/r/20260501153128.8152-1-mailingradian@gmail.com):
+- name internal MI2S ports as LPI for public API (2/15, 6/15, 7/15, 8/15, 9/15, 10/15, 11/15, 12/15)
+- fix capture stream macro (11/15)
+- fix is_rx in q6afe port map (7/15)
+- use NULL pointer in place of "NULL" string (8/15)
+- change fallback compatible for WCD analog codec to pm8953 (4/15)
+- add ack tags (1/15, 3/15)
 
-Will
+Changes since v3 (https://lore.kernel.org/r/20260331193939.40636-1-mailingradian@gmail.com):
+- rebase onto v7.1-rc1
+
+Changes since v2 (https://lore.kernel.org/r/20260304195815.52347-1-mailingradian@gmail.com):
+- add missing sign-off (1/15)
+- use definition of last dt-bindings dai cell for LPASS_MAX_PORT (6/15)
+- move sdm660 support to existing sm8250 driver (11-12/15)
+- import WCD codec patches for MSM8953 (3/15, 13-14/15)
+	Changes from original (https://lore.kernel.org/r/20240731-msm8953-msm8976-asoc-v3-0-163f23c3a28d@gmail.com):
+	- add back empty line in WCD dt-bindings patch (3/15)
+	- add Dmitry's review tags (13-14/15)
+	- rebase onto q6dsp fixes
+- rebase onto q6dsp fixes
+
+Changes since v1 (https://lore.kernel.org/r/20260211020302.2674-1-mailingradian@gmail.com):
+- rename sound card to drop "internal" (1/11, 10/11)
+- use common headphone jack code (9/11, 10/11)
+- remove no-op code in sound card driver (10/11)
+- remove inaccurate comment about clock consumer/producer (10/11)
+- add review tags (3/11, 4/11)
+
+Adam Skladowski (2):
+  ASoC: dt-bindings: pm8916-wcd-analog-codec: Document pm8950/pm8953
+  ASoC: msm8916-wcd-analog: add pm8950 codec
+
+Nickolay Goppen (1):
+  ASoC: dt-bindings: qcom,sm8250: add compatible for sdm660
+
+Richard Acayan (11):
+  ASoC: dt-bindings: qcom: q6dsp: add support for lpi mi2s ports 5-6
+  ASoC: dt-bindings: pm8916-analog-codec: Add PM660L compatible
+  ASoC: dt-bindings: msm8916-digital-codec: Add SDM660 compatible
+  ASoC: qdsp6: q6dsp-lpass-ports: add support for lpi mi2s ports 5-6
+  ASoC: qdsp6: q6afe: add internal mi2s support
+  ASoC: qdsp6: q6afe-dai: add internal mi2s support
+  ASoC: qdsp6: q6routing: add lpi mi2s support
+  ASoC: qdsp6: common: support headphone jacks connected to lpi mi2s
+  ASoC: qcom: sm8250: add support for LPI_MI2S_RX_0 and LPI_MI2S_TX_3
+  ASoC: qcom: sm8250: add SDM660 compatible
+  ASoC: msm8916-wcd-analog: add quirk for cajon 2.0
+
+Vladimir Lypak (1):
+  ASoC: msm8916-wcd-analog: add pm8953 codec
+
+ .../sound/qcom,msm8916-wcd-digital-codec.yaml |   8 +-
+ .../sound/qcom,pm8916-wcd-analog-codec.yaml   |  11 +-
+ .../sound/qcom,q6dsp-lpass-ports.yaml         |   4 +-
+ .../bindings/sound/qcom,sm8250.yaml           |   1 +
+ .../sound/qcom,q6dsp-lpass-ports.h            |   4 +
+ sound/soc/codecs/msm8916-wcd-analog.c         | 144 +++++++++++++++++-
+ sound/soc/qcom/common.c                       |   1 +
+ sound/soc/qcom/common.h                       |   2 +-
+ sound/soc/qcom/qdsp6/q6afe-dai.c              |  48 ++++++
+ sound/soc/qcom/qdsp6/q6afe.c                  |  56 +++++++
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c      |   5 +
+ sound/soc/qcom/qdsp6/q6routing.c              |  78 +++++++++-
+ sound/soc/qcom/sm8250.c                       |  17 +++
+ 13 files changed, 367 insertions(+), 12 deletions(-)
+
+-- 
+2.54.0
+
 
