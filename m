@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-309070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309072-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4jX/JsghKGoI+gIAu9opvQ
-	(envelope-from <devicetree+bounces-309070-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 16:23:04 +0200
+	id 3Tz4KZUiKGpC+gIAu9opvQ
+	(envelope-from <devicetree+bounces-309072-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 16:26:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55060660F54
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 16:23:04 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EDBA661009
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 16:26:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=UD1H84L1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309070-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309070-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linaro.org header.s=google header.b=fFYZyzRO;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309072-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309072-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9D0E9305FC7D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 14:15:23 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BF2D430877C6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 14:15:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A872D33D6F8;
-	Tue,  9 Jun 2026 14:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442C534389C;
+	Tue,  9 Jun 2026 14:15:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD7333E377
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 14:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500D133DED5
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 14:15:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781014519; cv=none; b=rQe8I6frrdSt5l86bs2Vno2vWfVmW9qBwWvaqqQmdAB+1UiZZ7jOFFA1vvr2lMKE6WX5dVON4/PMhwj+jPV+MkyUkzWn7xeDm387sQYN5L2MVRWCWmohJH4CoIzApmnGawcy13qwZKgm4WMoy6xGLusAOfQ+93tCLVgo2mVCRaI=
+	t=1781014521; cv=none; b=OLR5Q/at7pJtNqefWI+yPEim3z1s+QEbasomIRuTLWIu0bmLEXfu/rEvY74CB1r/w1MzTaoX7M61r+ZQXx/u/gmBhmq0oXncLCKVJr0qLKEfdXAnJfKOplnjeIK7ZT+1C4LMHhzuhM9Y0xiBgbBsao/2WMndLVardlQ7thDCB4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781014519; c=relaxed/simple;
-	bh=SJ0VcFqN8szreATMoSEelucjmskHHU4MjIq5rUz7iwM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Cmtf0tgrTKhjfNiWt1yqNsGDJJ5avok3K5lRNVJNpduxKJziLOZYCJBT3bwENDwm7trLu9fPBEQ/yO42EI/xZim2WtaVw+2dZ3gRAhjzTA9cxggHaGsamV9KbzDOA26jT8AWjnzzvXuY98p0uRxvHEM56dzH5xKqIYp+0BLaQt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UD1H84L1; arc=none smtp.client-ip=209.85.128.46
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-490b915ded5so48506715e9.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 07:15:16 -0700 (PDT)
+	s=arc-20240116; t=1781014521; c=relaxed/simple;
+	bh=mZo9IHY+dGSIyftD98TZHewljnUEbDQ2yVAJGk71Nyw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=b6l0ekcEdz9hagc13qI8oRGJ8GDzNwEI9b1LIEUponv6cK5JdARENF+oimnrVdpVkKSwNRtSzxCSh7xKEG03g6bXb5++xAMx7MWkDbBero6KmeuyOK0sJ2+jfm+vpsyEGmHLKwIiVZCkH6sZaRmfVNqbb5avk23AP5iH1uMRcF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fFYZyzRO; arc=none smtp.client-ip=209.85.128.47
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-490b12270b3so33656515e9.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 07:15:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1781014515; x=1781619315; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/6sDl5vRDu86DoXVi7plLZ61XDM9mssebUL28OXdvE4=;
-        b=UD1H84L1hJbLHb62kokiLsUQmjZ2UMu7S3DbXCEK86IviNL3vadaarVAjwDsG0vpGn
-         N2DxfU6vMxrfw+/OTPHmf+7enIp97WNXFwTZAyBCP80I80z/iBmeiNGeKuucvrsvbyGj
-         sLUzvBBZTbHDzaTyeoce+9GW8DOcDBItQd8M9JycnfdK0+O+CEFMD8kZyZyh6Isv6vIU
-         QIWu2o2VlZDqCFb7VBGJo3dyGGIGaljvKdL2Igib8LCNPUGj1pnXS2Jc0S8TOXBCdMJ0
-         EZ25FJfoFBOuARrIcs3l7EOP6gw/V8WuPBrZi3D2C+n0oFIeC8HB8sf8FSqLsdh6tOAw
-         hARw==
+        d=linaro.org; s=google; t=1781014517; x=1781619317; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M/HePIOrQIFyMx3sPM3MSE/sDre9oA/XqoIphXPjo+I=;
+        b=fFYZyzROElgGdyEEVmJ8/fpO218dSz5DOZjbujV7FkSPWgHGQzfAhx914xyTm/9L2V
+         PBseuK9JyhTAN8thC4kA/bZcZ9D0UBZzZT+IzOMYjnCggqpnGAhQWZ1BYukXlj1SL/ky
+         tvb7Z1KU2MX0LkJ9qaGJJILAqeLjrTKF9vev4BZuebPsGpAlybfl/a+aGWSWRezqX/dO
+         5Jsy/reFfuBGM/0C/5LB+PskwEP7nVwSKfUr3/zFlf7wyGaDmATCf/APaFMWaID43l18
+         zc8foXTUi+ot4e6TnMRLjSZpnh6HGhTySIle8fBGlBZq7PCdBCOYvF2BBfesBV7/SLhX
+         SB7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781014515; x=1781619315;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/6sDl5vRDu86DoXVi7plLZ61XDM9mssebUL28OXdvE4=;
-        b=Ue4ciEAvACeJIYNbZsFnRxNhHKhjdQRLMlQkX71pCCtNMleqRfAzAAwwagk6L93qJO
-         mVP0N/UxqRf9NB990SurPShEzISdY+KXCmA84+QU2wfGjnMWRn54G5r6OjFm7Uf4flLC
-         OT1PpP3M/yTUMfYPo2NWQOoE9MxGl1/mw/m9KjyfvRUrfpP8+k0Y/6LdIOoE8NaydLRV
-         7Mx/q7qm3wnI75bKKT+VBUCnajxvX/QDR6hZNgus3uUB5FjmexhWqkyhmaCc9gheZ0S6
-         Isl3lIr3yEm7XWJJxfxGExoWzTYGIRQywUGAI+/KTZ5sAbuqgniGzFNn9LPwJW7GfPfC
-         0ELg==
-X-Forwarded-Encrypted: i=1; AFNElJ9jFXQu3cKjhELcEk42Q2XxOC6K6ZX3nEZK/8vFeGkVADVg9kGHBqVeyocR8PkTP5h+l5bPuHV0TpAO@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFYmeqUh3oZvGVGeeT/p9HDKIRT19TIGpyaDgnuBXtjxLxoNVc
-	gG5E2lU6mrdo/SFRg0uviL5ehzmvytVl/VHb4QuHTk3b3kq3jfMJ3SR/I1tCTk/+cDYJt53Splr
-	McpVOI/w=
-X-Gm-Gg: Acq92OFczdfLy4YiwQQjzULqn4p/nZ/l7RBxcZnHXtxYA7UZQXGtrSa/i7B96WHMtWf
-	iw+wVrz/QBqHjeaAj4eEXaoDtDAugLCKs/7tWXsKwQ4L2LMPgfJF55U9MtaQJtYpIsc3zXaC7Es
-	yvokB++TcA4hNrUiqtCyaWHdFfyd5hA6fx1Yy9Dxwy209hVzqq0cwDiMWqOOlAmpjqNjbRTvtqp
-	N5osEG4si3KFF9deVFE5rNxXQ78H0LGDzWd5rs8NThd/wGBh1j+gkQG6cmr6Rep7s7QwnmRYLlk
-	Cxi/8QaLThjY94Itft7R7oJYk+4r1AE5T1PceYsj3sR9zj6E2PJDj2bNdFyfzaRZUOwleZcUbEw
-	375lOhMPwXyH2fKjsEaPkCqtfJbRSM4CP2tz9VuC9tGIDSC+pyDdPOsoPGIj6+MFIFe7J0GHIeO
-	Qc0zQx+JKNWjMRNUSs95UhMB1w7/q08NF5F0LSfhJLljlmqys=
-X-Received: by 2002:a05:600c:c16e:b0:490:b8c0:d470 with SMTP id 5b1f17b1804b1-490c2622d03mr350451545e9.19.1781014515087;
-        Tue, 09 Jun 2026 07:15:15 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1781014517; x=1781619317;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=M/HePIOrQIFyMx3sPM3MSE/sDre9oA/XqoIphXPjo+I=;
+        b=cZH81UFmaj3Peds3NHxMznUJkjFB73+s/dELiK7x8nkLofdiTIslLLD3rOG/Lfnjvc
+         VlA3FC7Qn1lA7BRjAeCWG5QGRtY7Pf8cThrkIDiUycWyuHmmSB9zZzp8LslmGP/SqBxc
+         2+1Y41eyomDv2RW8BC+trCpwd2a8B09HLA52+4MHoGVhB2/5ioPzGn44kHLg/pHLm8Vg
+         lXAgJhZCIkV28qt0of02l69IvZtKrqhyaw+eFJk6YxDk+pCyrRy5U0lvI60CpKFbUj3Y
+         sMBArVYUtvjHpGCKyqoKTBW72m+3z7RIeouJ6tEFx2ScHfVqDtJAHE4q/dZkpR17Xije
+         0OGg==
+X-Forwarded-Encrypted: i=1; AFNElJ/O4/8i7akxPT/LbJuqrrj4Ok2ghiCt3G3pG17yA9qY7q/WliNq8FaFkJyqqk8Lp/4Nna8iJ9TxGpXH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8Maf3Grk9YFci5yW23vAKggEjqhaWXSKzhPKSQ1jQpjYhR1Cx
+	IeGjGh5a1mkFXSOz2QMOTTgIR6T//020zCPydYEP/C7rypfBL/oFk47Zjc4uYXjGdTo=
+X-Gm-Gg: Acq92OFNJuJHBC/rJHocVAH/vYwzlz3aM67XtwIFaipeTqD7tXp/8m/0Rw0UQ1txtQO
+	OHPQZ4brO14QtyO8OwjAojHjm2ibl6PUIGZm3N75SzhqaSqLCuPCc+3J1DDsUY/k664aX2t3oiW
+	lcaXwoIchmUgE6YYMl9qEU82xdNijZLv2AUjfaK1FGq67VzYBuX9xcwJC/0GDJQMMYgbZZuekom
+	6/duKOXnNq6FLLECO6AnfV/W7wdUY/MOuOI2PnE7EPOQLAUmZrGsMawJhqMOjbLCci+zH1Snr8I
+	ws95ujMuyvQHdMYmdgvtwU7/EfrJ36H4Oh78EBju5v5pQEJuBzih6PSQvlP+BG3MBO84eIsM/ZC
+	bqVd/4ZUSauTwPCFNwELdxC4jJwJnD/JDXHcRv49PtZItRw+W+b0hHaaMu3zTyVqJZ/Qhw178tR
+	DPYpWbyd2TfWplUPx+0IhZ9yFzJonQ9kI0nzZvgsRsJSFIAKk=
+X-Received: by 2002:a05:600c:c4a7:b0:490:b58a:dcc1 with SMTP id 5b1f17b1804b1-490c262183cmr318337035e9.29.1781014516562;
+        Tue, 09 Jun 2026 07:15:16 -0700 (PDT)
 Received: from [127.0.0.2] ([2a02:2454:ff23:4410:59bf:7aa6:43c0:c58b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490c2d5d2b4sm321450495e9.2.2026.06.09.07.15.13
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490c2d5d2b4sm321450495e9.2.2026.06.09.07.15.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2026 07:15:14 -0700 (PDT)
+        Tue, 09 Jun 2026 07:15:15 -0700 (PDT)
 From: Stephan Gerhold <stephan.gerhold@linaro.org>
-Subject: [PATCH 00/12] clk: qcom: Assorted fixes for gcc-mdm9607 (and
- gcc-msm8916/39)
-Date: Tue, 09 Jun 2026 16:14:36 +0200
-Message-Id: <20260609-qcom-clk-mdm9607-fixes-v1-0-5e9717faf842@linaro.org>
+Date: Tue, 09 Jun 2026 16:14:37 +0200
+Subject: [PATCH 01/12] clk: qcom: gcc-msm8916: Fix enable_reg for
+ gcc_blsp1_sleep_clk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,10 +88,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAMwfKGoC/yXMQQ6CQAyF4auQrm3SYTEOXsW4gGmVogM6BWJCu
- LujLr+8/G8Dk6xicKo2yLKq6TQWuEMFsW/Hm6ByMdRUe/LU4CtOCePjjolT4+mIV32LYXBtYOe
- 440BQ4meW31Da8+VvW7pB4vx9g33/AJq/soZ6AAAA
-X-Change-ID: 20260609-qcom-clk-mdm9607-fixes-81a8d11dbd80
+Message-Id: <20260609-qcom-clk-mdm9607-fixes-v1-1-5e9717faf842@linaro.org>
+References: <20260609-qcom-clk-mdm9607-fixes-v1-0-5e9717faf842@linaro.org>
+In-Reply-To: <20260609-qcom-clk-mdm9607-fixes-v1-0-5e9717faf842@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>
 Cc: Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Georgi Djakov <djakov@kernel.org>, 
@@ -110,11 +109,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309070-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309072-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
@@ -124,7 +123,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -136,47 +135,41 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 55060660F54
+X-Rspamd-Queue-Id: 9EDBA661009
 
-The gcc-mdm9607 driver was originally based on gcc-msm8916, with register
-addresses/frequency tables - where available - replaced with the values
-from the downstream clock-gcc-mdm9607 driver. Nowadays, gcc-msm8909 is a
-much closer match, so comparing the two drivers revealed quite a few
-mistakes inside the gcc-mdm9607 driver.
+According to the APQ8016E TRM, the GCC_BLSP1_SLEEP_CBCR register is
+read-only and only has the CLK_OFF bit to check if the clock is running.
+This is a shared vote clock, the correct way to enable it is to vote for
+BLSP1_SLEEP_CLK_ENA (BIT(9)) in GCC_APCS_CLOCK_BRANCH_ENA_VOTE (0x45004).
 
-This series fixes them, together with a few other related bug fixes in
-gcc-msm8916, gcc-msm8939 and the dt-bindings for qcom,gcc-mdm9607.
-
+Cc: stable@vger.kernel.org
+Fixes: 3966fab8b6ab ("clk: qcom: Add MSM8916 Global Clock Controller support")
 Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 ---
-Stephan Gerhold (12):
-      clk: qcom: gcc-msm8916: Fix enable_reg for gcc_blsp1_sleep_clk
-      clk: qcom: gcc-msm8939: Fix enable_reg for gcc_blsp1_sleep_clk
-      clk: qcom: gcc-mdm9607: Fix enable_reg for gcc_blsp1_sleep_clk
-      clk: qcom: gcc-mdm9607: Fix BIMC PLL definition
-      clk: qcom: gcc-mdm9607: Fix halt_reg for gcc_apss_axi_clk
-      clk: qcom: gcc-mdm9607: Increase delay for USB PHY reset
-      clk: qcom: gcc-mdm9607: Drop incorrect apss_tcu_clk_src
-      clk: qcom: gcc-mdm9607: Drop incorrect system_noc_bfdcd_clk_src
-      dt-bindings: clock: qcom: gcc-mdm9607: Drop incorrect clocks
-      dt-bindings: clock: qcom,gcc-mdm9607: Add missing "clocks" property
-      dt-bindings: clock: qcom,gcc-mdm9607: Use proper address in example
-      clk: qcom: gcc-mdm9607: Drop redundant register update during probe
+ drivers/clk/qcom/gcc-msm8916.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
- .../bindings/clock/qcom,gcc-mdm9607.yaml           |  18 +++-
- drivers/clk/qcom/gcc-mdm9607.c                     | 105 +++++++--------------
- drivers/clk/qcom/gcc-msm8916.c                     |   5 +-
- drivers/clk/qcom/gcc-msm8939.c                     |   5 +-
- include/dt-bindings/clock/qcom,gcc-mdm9607.h       |   6 +-
- 5 files changed, 57 insertions(+), 82 deletions(-)
----
-base-commit: e108373c54fbc844b7f541c6fd7ecb31772afd3c
-change-id: 20260609-qcom-clk-mdm9607-fixes-81a8d11dbd80
+diff --git a/drivers/clk/qcom/gcc-msm8916.c b/drivers/clk/qcom/gcc-msm8916.c
+index 9c7c6b23ce32..e91406e6f527 100644
+--- a/drivers/clk/qcom/gcc-msm8916.c
++++ b/drivers/clk/qcom/gcc-msm8916.c
+@@ -1589,9 +1589,10 @@ static struct clk_branch gcc_blsp1_ahb_clk = {
+ 
+ static struct clk_branch gcc_blsp1_sleep_clk = {
+ 	.halt_reg = 0x01004,
++	.halt_check = BRANCH_HALT_VOTED,
+ 	.clkr = {
+-		.enable_reg = 0x01004,
+-		.enable_mask = BIT(0),
++		.enable_reg = 0x45004,
++		.enable_mask = BIT(9),
+ 		.hw.init = &(struct clk_init_data){
+ 			.name = "gcc_blsp1_sleep_clk",
+ 			.parent_data = &(const struct clk_parent_data){
 
-Best regards,
---  
-Stephan Gerhold <stephan.gerhold@linaro.org>
+-- 
+2.54.0
 
 
