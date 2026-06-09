@@ -1,209 +1,133 @@
-Return-Path: <devicetree+bounces-309002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309003-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /XcdChYBKGov7AIAu9opvQ
-	(envelope-from <devicetree+bounces-309002-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 14:03:34 +0200
+	id /c7BEWkBKGpu7AIAu9opvQ
+	(envelope-from <devicetree+bounces-309003-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 14:04:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D1C65FC8C
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 14:03:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C205665FD5A
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 14:04:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GQtTfrdc;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309002-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309002-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="m0/wYDh7";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309003-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309003-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A83A1300B06D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 11:59:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0C5643031CA1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 12:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0BBC406270;
-	Tue,  9 Jun 2026 11:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF693FADE5;
+	Tue,  9 Jun 2026 12:00:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D4103EEAC0
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 11:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9059A402BB8;
+	Tue,  9 Jun 2026 12:00:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781006353; cv=none; b=tnmmTwGTX/V4guTEUfRR/3bGHlTOUIYb10vIh2DGPgGszpr0Tdlbty1Df460xKFI3fgE/W0tM1JfdfhsBfBDhKtI/JMZW0EBjXlnKcqweRkD8MHfnby0vZYu8akkbMP+ao7kZnxCFIYxMldAbH3m6TI/U8mnGSaHi0aTEFjJFmQ=
+	t=1781006425; cv=none; b=TUqiV+vrgDwd+PsIyKqUoRSrwa9A1RrpcRCoF3CP18VFYWBvbofXJTd2eUq4/UCUPpiRKBekxuTEaoLiNsomf2ha8S2IBh5/pr6xZOl8gkFWX1GcgnrEYNZXNxU6tttXC1zlIVroQGx25G/jRhjqpeL0wRYERi6eKcW86qNR+Sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781006353; c=relaxed/simple;
-	bh=11rZRiZ5+mu+UOnrzZ0kuBj20Cqp/Ocs2USEV9UO3zA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=WuYiF5WhlFe6MbYBEmePYrEe8/4aoo/GosQi1YFS3ZmPf005iAqqcr9D/MbxLDBLlsdw+tmCrL7FsvCkxVGKoOtwi/4sJwrABzlc0z+5HFKd6dmMkgc+Gd4kZVEM0TtK1QPqVvn1EVL5kcS7RGmSrrJsW5sC9QPPjakW1ZMpoxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GQtTfrdc; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 189B71F00893;
-	Tue,  9 Jun 2026 11:59:08 +0000 (UTC)
+	s=arc-20240116; t=1781006425; c=relaxed/simple;
+	bh=IGpGE5ahmXWsAZ86oddfO+WhOssxkQfsvaFstbpbUH4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qKzduKhvwy8n59hohWQ4F4OBpU28oSPDNXOSCYY6mdLJVH+tRP9sm6kBANIvfD54cyNTnE6UUS0ZCXua2KTQF+cJvt4v3ToYsJxdyZyfSYNRwNvwIlqvWHqlznzW2ccJIqYbt4U3EejHMNTuC6YB2IlT0KBHwQKRHkDo7fev+tQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m0/wYDh7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 121F51F00893;
+	Tue,  9 Jun 2026 12:00:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781006348;
-	bh=kAj8MPZiaKtP4iZTZDUWhcADyr/C1L3162mrt5p68FI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=GQtTfrdcEKcbvbhkxnBwbxnP8zU2Mhs/DLiBlKpQITmcjTt1H+aiSIGQMkvOi7kbN
-	 d6rx3RILx++PzxM79sp0UNRCZE+wWWPhjFI6caBn3xEkiDG4voENKP7wFVfn0DRHYa
-	 UkyaA/Zy/OmiwibZHxM27rIZkiEgkOy6fhwk46kDbe80rQ7PCHq+/9MuCUAPyzX0bq
-	 bUFsM1MhbNmV3+mDW8AWaJhIJz1yyy/oIaJ893kN821xiLjWqGK8umYwS2Md9Il2Zy
-	 GVdlZW0gr5t9Dr/cFi9+SzeWOnq2ZoURdTJUWmSp0Wi0u1F4o2zhnPCA5Z1nCuEiqf
-	 o2am4Q7KlRMdA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 05/11] ASoC: renesas: fsi: Fix register access from
- in-flight IRQ after shutdown
-Reply-To: sashiko-reviews@lists.linux.dev
-To: phucduc.bui@gmail.com
-Cc: wsa+renesas@sang-engineering.com, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260609113836.45079-6-phucduc.bui@gmail.com>
-References: <20260609113836.45079-6-phucduc.bui@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 09 Jun 2026 11:59:07 +0000
-Message-Id: <20260609115908.189B71F00893@smtp.kernel.org>
+	s=k20260515; t=1781006423;
+	bh=YqAY2yjF1JOeRihI2p1gxnrbLAfEXGmBDITPkBFPHmA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=m0/wYDh737gkZwT3FN3edFJLbv3a+bjleGY4f+o86IiNjItI4KQvNxC2tr7kOjGBu
+	 uBb09XVxLPonpuIzJ1lnq385pQlNjtZ8xcmRh1i96QCR3Ztojm9TMB581a1kscxSrJ
+	 nq8babeMmfgcvX0f6ail4xqZMujdIAlFEEK+a7+8WEsTNumg8ZzAlVrVwABK2BWX4U
+	 hSQGO/aoCJPF4V8xJ6Z+vRtWgIR3e4hUHJSsY2QRjK+JrnAbPmOTV/FojO77dKBmQR
+	 frCSgy5419vTSJhU0wrYvrI2eeV53fT2nvNC8gSIRwu/4AL6qr+X9EzKctBjB8Ptvy
+	 i443ymSJEy8rg==
+Date: Tue, 9 Jun 2026 14:00:19 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yixun Lan <dlan@kernel.org>
+Cc: soc@kernel.org, Arnd Bergmann <arnd@arndb.de>, 
+	spacemit@lists.linux.dev, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [GIT PULL] RISC-V SpacemiT Devicetrees for v7.2
+Message-ID: <20260609-pompous-imposing-dragon-fc18cb@quoll>
+References: <20260602070257-KYC5031219@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260602070257-KYC5031219@kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309002-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp];
-	FORGED_RECIPIENTS(0.00)[m:phucduc.bui@gmail.com,m:wsa+renesas@sang-engineering.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:phucducbui@gmail.com,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-309003-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dlan@kernel.org,m:soc@kernel.org,m:arnd@arndb.de,m:spacemit@lists.linux.dev,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TAGGED_RCPT(0.00)[devicetree];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MIME_TRACE(0.00)[0:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 77D1C65FC8C
+X-Rspamd-Queue-Id: C205665FD5A
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+On Tue, Jun 02, 2026 at 07:10:07AM +0000, Yixun Lan wrote:
+> Hi SoC Maintainers,
+> 
+>    Please pull SpacemiT's DeviceTree changes for v7.2
+> 
+> Yixun Lan
+> 
+> The following changes since commit 254f49634ee16a731174d2ae34bc50bd5f45e731:
+> 
+>   Linux 7.1-rc1 (2026-04-26 14:19:00 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/spacemit-com/linux spacemit-dt-for-7.2-1
 
-New issues:
-- [High] The newly added `fsi_stream_is_working()` checks introduce a Time-=
-of-Check to Time-of-Use (TOCTOU) race condition with the clock disablement =
-path.
+Please switch to kernel.org repo. Github is not really a trusted place
+and you have kernel.org account, so not sure why Github is still there.
 
-Pre-existing issues:
-- [High] The patch fails to prevent system hangs during in-flight IRQs beca=
-use it misses the `fsi_stream_transfer()` path, which still performs unprot=
-ected hardware accesses and NULL pointer dereferences.
---
+> 
+> for you to fetch changes up to 793cc54475b49b5b558902b5c13e4bfe66530a50:
+> 
+>   riscv: dts: spacemit: enable PMIC on OrangePi R2S (2026-06-01 06:32:42 +0000)
+> 
+> ----------------------------------------------------------------
+> RISC-V SpacemiT DT changes for 7.2
 
-commit 6fe54dc43154d802e5ce8471d592fd6f73f622bd
-Author: bui duc phuc <phucduc.bui@gmail.com>
+Thanks, applied
 
-ASoC: renesas: fsi: Fix register access from in-flight IRQ after shutdown
+Best regards,
+Krzysztof
 
-This commit attempts to fix system hangs caused by in-flight IRQs accessing
-registers when the SPU clock is disabled. It introduces fsi_stream_is_worki=
-ng()
-checks in fsi_count_fifo_err() and fsi_irq_clear_status() to abort early if=
- no
-streams are active.
-
-> diff --git a/sound/soc/renesas/fsi.c b/sound/soc/renesas/fsi.c
-> index 0bd0e0c8c5a30..3e3c6fd7c56b8 100644
-> --- a/sound/soc/renesas/fsi.c
-> +++ b/sound/soc/renesas/fsi.c
-> @@ -470,6 +470,10 @@ static int fsi_get_current_fifo_samples(struct fsi_p=
-riv *fsi,
-> =20
->  static void fsi_count_fifo_err(struct fsi_priv *fsi)
->  {
-> +	if (!fsi_stream_is_working(fsi, &fsi->playback) &&
-> +	    !fsi_stream_is_working(fsi, &fsi->capture))
-> +		return;
-> +
-
-[Severity: High]
-Does this introduce a time-of-check to time-of-use race condition?
-
-The fsi_stream_is_working() function acquires master->lock, checks the
-substream, and immediately drops the lock. Because the lock is released bef=
-ore
-the hardware access below:
-
-	u32 ostatus =3D fsi_reg_read(fsi, DOFF_ST);
-	u32 istatus =3D fsi_reg_read(fsi, DIFF_ST);
-
-Could a concurrent ALSA shutdown sequence on another CPU execute
-fsi_stream_quit() and fsi_hw_shutdown() to disable the SPU clock exactly in
-this window, leading to the same system hang?
-
-[ ... ]
-
-> @@ -681,6 +685,10 @@ static void fsi_irq_clear_status(struct fsi_priv *fs=
-i)
->  	u32 data =3D 0;
->  	struct fsi_master *master =3D fsi_get_master(fsi);
-> =20
-> +	if (!fsi_stream_is_working(fsi, &fsi->playback) &&
-> +	    !fsi_stream_is_working(fsi, &fsi->capture))
-> +		return;
-> +
->  	data |=3D AB_IO(1, fsi_get_port_shift(fsi, &fsi->playback));
->  	data |=3D AB_IO(1, fsi_get_port_shift(fsi, &fsi->capture));
-> =20
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does the in-flight IRQ still
-trigger hardware accesses and NULL pointer dereferences through other paths?
-
-If fsi_interrupt() runs during shutdown, it calls fsi_stream_transfer()
-unconditionally without checking fsi_stream_is_working() first:
-
-sound/soc/renesas/fsi.c:fsi_interrupt() {
-	if (int_st & AB_IO(1, AO_SHIFT))
-		fsi_stream_transfer(&master->fsia.playback);
-	...
-}
-
-In PIO mode, this leads to fsi_pio_push() which reads the hardware registers
-before verifying the stream state:
-
-	sample_space =3D io->fifo_sample_capa -
-		       fsi_get_current_fifo_samples(fsi, io);
-
-In DMA mode, it leads to fsi_dma_transfer() which dereferences io->substream
-directly:
-
-	struct snd_soc_dai *dai =3D fsi_get_dai(io->substream);
-	struct snd_pcm_substream *substream =3D io->substream;
-
-Can this still cause a system hang or a NULL pointer dereference if the
-stream clock is already disabled and io->substream is set to NULL?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609113836.4507=
-9-1-phucduc.bui@gmail.com?part=3D5
 
