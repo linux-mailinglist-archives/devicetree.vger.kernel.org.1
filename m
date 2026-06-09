@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-308953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308954-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rGocJVrxJ2od6AIAu9opvQ
-	(envelope-from <devicetree+bounces-308953-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 12:56:26 +0200
+	id /rixOV3xJ2oe6AIAu9opvQ
+	(envelope-from <devicetree+bounces-308954-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 12:56:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 772EC65F2DA
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 12:56:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F4365F2DF
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 12:56:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="X2CG/Oe/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308953-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308953-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Jp3bMx9D;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308954-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308954-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 26BDB30BDD27
+	by tor.lore.kernel.org (Postfix) with ESMTP id B026330ED45E
 	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 10:51:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71BA83F99FD;
-	Tue,  9 Jun 2026 10:51:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40F943F9A0E;
+	Tue,  9 Jun 2026 10:51:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41FC438E119
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 10:51:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2CC3DD505
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 10:51:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781002278; cv=none; b=PbpWhNWNp450pcWVnm25q+fK8q/92gT2cliJpelaz32ix/8FP/20QhyUbmvd8/ngpO0RHEP6DkM6sMG5XZ3G3M7YiDxaHu10yf3hasyYo2RRaSdrM/09wbJN9kK9H9QBVHS/33FhkakhuuZnp156jpcEDinnWngZdxFvEl/+piM=
+	t=1781002279; cv=none; b=ugAYZQRHXn9aQmhcWWihghoVTEAO2iYYDsGuGY+mJggj771nDVJdDRlE5p91sXatQsIHKQAz8GWJMKIFiVc84VdXzlZecic/2WmY0soUYvKn6YUJtNuYmG54b+JjDU6PDcwQkco0V/LEL8en4skN+q1vsLqUXPJtF0DRYorj+oE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781002278; c=relaxed/simple;
-	bh=2z4qBauu0xnJR8ySEm4ythKWLc8aVDwOhx8UEBoM5fY=;
+	s=arc-20240116; t=1781002279; c=relaxed/simple;
+	bh=X5aolmkDdxuo4apVQZM5Qq0GVfOHm3Uh7KMv1V0A56g=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Jp60mykjO9m5QoPpYo1Vmq+eFkI8Cl1Aw3gAPedcgz/jn27kHrNbl2ubn+KZdyjMxa3DQnl5NKe4YrY368FDA0+n3nGjJKE9jPyq/FrblulWg3mY7QUfaqWWlZWc9ro7hiWVow5W69jZSnuMx7qwfQUdeWlHfcjSrtsF+JQeLRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X2CG/Oe/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D851F00898;
-	Tue,  9 Jun 2026 10:51:16 +0000 (UTC)
+	 Message-Id; b=jKsiyKG+5xQYDGBCb40cf13AYaEZMs/i0iqGBaFh4JzZq/osHQP7ghBfZC4M7aSAj92nNox5oMvayhR4DMHIikKfw5WBYD5JHTlUEZ82GdVtNfJI6L6WikHGz5j8cYW0PxZPBdgaW0f+sLm4ORDSO/ashLi05IRvfeiKpNzca2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jp3bMx9D; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEB061F00893;
+	Tue,  9 Jun 2026 10:51:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781002277;
-	bh=nxOY5UkLbBq+7IbDHHab4lgAVEtQZ3OOgI/SZDF8xnY=;
+	s=k20260515; t=1781002278;
+	bh=+F0D13mswuQNyvIKH911oqkWc+/subMdkdx++jCcL0E=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=X2CG/Oe/g21nFfSPcw+RwyiSTy5paqoI6uMcgaxJXGQFYQoDihruypFozX5S+kbCV
-	 kudY4m9Wh7fweGoZ44buPc7fwUUH65ymozwbfXJbPDA67aPCBoZ3ZGBwdZ/1+uAdzP
-	 jRNGjMt125M9giFi0VE3luw45mMsz8f/x+uDGgav/wwETlP4uVSeSZHIbhBUJlhS3+
-	 eMquDExBluFuEW2UQoRFtp7R7M3NoF7jDslmciAyCKgcOFmXmFP5fQouTfOSijGP2Q
-	 0ei/sAn+f2xCpbSD5f3FrhOv6IUGKHWgqUJv9WUphz13XFddyGKW66+CmCgsY9IC2A
-	 AOyee1mU4wc/Q==
+	b=Jp3bMx9DnocS2RVGiHBlLqdWLjM4k+iKYgsxthjzuXiw6YuJLe4RLVJ9pgWHQL+t2
+	 cqDDIjS3+grp5s+OWHOLIX6/0SNKk0ogZh46385wxVmkf1k5Kqiek1Ukh80wfl8FoW
+	 edAB8b+mNBCDuSy8ftKUy404EiNShkYH7D+sshWwt5hOsL7z9elDEYEXczhHjPK3T9
+	 xjPP889senwLXrn41dciqltpUa23LT+expmtnwFlIZA9C0Iv3rcLYJxYBG4JHnRs79
+	 Dds9nciPNbStAqizTE2QDdW/sJH52F7OD8L079H6aevbnhGJ446X93VSV1enw28Yor
+	 cq8jIGnhUw5dA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 4/7] block: implement NVMEM provider
+Subject: Re: [PATCH v3 5/7] net: of_net: Add of_get_nvmem_eui48() helper for
+ EUI-48 lookup
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260608-block-as-nvmem-v3-4-82681f50aa35@oss.qualcomm.com>
-References: <20260608-block-as-nvmem-v3-4-82681f50aa35@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260608-block-as-nvmem-v3-5-82681f50aa35@oss.qualcomm.com>
+References: <20260608-block-as-nvmem-v3-5-82681f50aa35@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 09 Jun 2026 10:51:16 +0000
-Message-Id: <20260609105116.C9D851F00898@smtp.kernel.org>
+Date: Tue, 09 Jun 2026 10:51:17 +0000
+Message-Id: <20260609105117.AEB061F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,10 +78,10 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308953-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308954-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -100,162 +101,95 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[config.id:url,smtp.kernel.org:mid,config.dev:url,makrotopia.org:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,config.name:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,qualcomm.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 772EC65F2DA
+X-Rspamd-Queue-Id: 76F4365F2DF
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Provider private data `bnv` is freed prematurely in `blk_nvmem_unr=
-egister`, leading to a Use-After-Free if consumers still hold an NVMEM cell=
- reference.
-- [High] Block device size check against `UINT_MAX` causes a sign-extension=
- bug because `config.size` is a signed `int`.
-- [Medium] Re-opening the block device by `devt` on every read allows NVMEM=
- consumers to read from the wrong device if the original block device is ho=
-t-unplugged and its `devt` is reused.
+- [High] Unaligned memory access regression due to unaligned stack array pa=
+ssed to ether_addr_copy() and is_valid_ether_addr().
 --
 
-commit 4b9cd41ee844820238b2e460a15697cc94e57c3f
-Author: Daniel Golle <daniel@makrotopia.org>
+commit d14ab417c7b180ecf43c9c668c8189080233fb01
+Author: Loic Poulain <loic.poulain@oss.qualcomm.com>
 
-block: implement NVMEM provider
+net: of_net: Add of_get_nvmem_eui48() helper for EUI-48 lookup
 
-This commit adds an NVMEM provider for block devices, allowing partitions
-such as eMMC hardware partitions to expose MAC addresses and calibration
-data to the NVMEM subsystem. It also adds an accessor to the core subsystem
-to retrieve the underlying device.
+This commit factors out the NVMEM EUI-48 retrieval logic into a generic
+helper function, allowing other subsystems to reuse it. It updates
+of_get_mac_address_nvmem() to use this new helper.
 
-> To safely defer the freeing of the provider private data until all
-> consumers have released their cells, a nvmem_dev() accessor is added to
-> the NVMEM core to expose the struct device embedded in struct nvmem_devic=
-e.
-> This allows registering a devm action on the nvmem device itself, ensuring
-> the private data outlives any active cell references.
-
-The commit message mentions registering a devm action to defer freeing
-the private data. Does the code actually implement this action?
-
-Looking at blk_nvmem_register(), there does not appear to be any devm
-action registered to ensure the private data outlives active cell reference=
-s.
-
-> diff --git a/block/blk-nvmem.c b/block/blk-nvmem.c
-> new file mode 100644
-> index 0000000000000..99c7728fb7bcc
-> --- /dev/null
-> +++ b/block/blk-nvmem.c
-> @@ -0,0 +1,171 @@
-
+> diff --git a/net/core/of_net.c b/net/core/of_net.c
+> index 93ea425b9248a..75341c186123e 100644
+> --- a/net/core/of_net.c
+> +++ b/net/core/of_net.c
+> @@ -61,9 +61,7 @@ static int of_get_mac_addr(struct device_node *np, cons=
+t char *name, u8 *addr)
+>  int of_get_mac_address_nvmem(struct device_node *np, u8 *addr)
+>  {
+>  	struct platform_device *pdev =3D of_find_device_by_node(np);
+> -	struct nvmem_cell *cell;
+> -	const void *mac;
+> -	size_t len;
+> +	u8 mac[ETH_ALEN];
+>  	int ret;
+> =20
+>  	/* Try lookup by device first, there might be a nvmem_cell_lookup
 [ ... ]
-
-> +static int blk_nvmem_reg_read(void *priv, unsigned int from,
-> +			      void *val, size_t bytes)
-> +{
-> +	blk_mode_t mode =3D BLK_OPEN_READ | BLK_OPEN_RESTRICT_WRITES;
-> +	struct blk_nvmem *bnv =3D priv;
-> +	size_t bytes_left =3D bytes;
-> +	struct file *bdev_file;
-> +	loff_t pos =3D from;
-> +	int ret =3D 0;
+> -	cell =3D of_nvmem_cell_get(np, "mac-address");
+> -	if (IS_ERR(cell))
+> -		return PTR_ERR(cell);
+> -
+> -	mac =3D nvmem_cell_read(cell, &len);
+> -	nvmem_cell_put(cell);
+> -
+> -	if (IS_ERR(mac))
+> -		return PTR_ERR(mac);
+> -
+> -	if (len !=3D ETH_ALEN || !is_valid_ether_addr(mac)) {
+> -		kfree(mac);
+> -		return -EINVAL;
+> -	}
+> -
+> -	memcpy(addr, mac, ETH_ALEN);
+> -	kfree(mac);
+> +	ret =3D of_get_nvmem_eui48(np, "mac-address", mac);
+> +	if (ret)
+> +		return ret;
 > +
-> +	bdev_file =3D bdev_file_open_by_dev(bnv->devt, mode, priv, NULL);
-
-[Severity: Medium]
-Could this open an unrelated block device if the original device is
-hot-unplugged?
-
-Since bdev_file_open_by_dev() looks up the current device associated with
-bnv->devt, an unplug and subsequent reallocation of the same devt to a new
-device might cause this read to access the wrong hardware.
-
-blk_nvmem_unregister() does not mark the provider's bnv as dead or
-invalidate the devt, which would allow a subsequent consumer read to
-silently leak data from the newly plugged block device.
-
-[ ... ]
-
-> +static int blk_nvmem_register(struct device *dev)
-> +{
-> +	struct device_node *child, *np =3D dev_of_node(dev);
-> +	struct block_device *bdev =3D dev_to_bdev(dev);
-> +	struct nvmem_config config =3D {};
-> +	struct blk_nvmem *bnv;
+> +	if (!is_valid_ether_addr(mac))
+> +		return -EINVAL;
 > +
-> +	/* skip devices which do not have a device tree node */
-> +	if (!np)
-> +		return 0;
-> +
-> +	/* skip devices without an nvmem layout defined */
-> +	child =3D of_get_child_by_name(np, "nvmem-layout");
-> +	if (!child)
-> +		return 0;
-> +	of_node_put(child);
-> +
-> +	/*
-> +	 * skip block device too large to be represented as NVMEM devices,
-> +	 * the NVMEM reg_read callback uses an unsigned int offset
-> +	 */
-> +	if (bdev_nr_bytes(bdev) > UINT_MAX)
-> +		return -EFBIG;
+> +	ether_addr_copy(addr, mac);
+> +	return 0;
+>  }
 
 [Severity: High]
-Does this check adequately protect config.size?
+Do ether_addr_copy() and is_valid_ether_addr() require their arguments to be
+16-bit aligned?
 
-Because struct nvmem_config defines size as a signed int, a block device
-capacity between 2GB and 4GB will pass this check but overflow into a
-negative integer.
+The stack array u8 mac[ETH_ALEN] is naturally 1-byte aligned. On architectu=
+res
+without CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS, ether_addr_copy() and
+is_valid_ether_addr() cast the pointers to u16* to perform 16-bit accesses:
 
-> +
-> +	bnv =3D kzalloc_obj(*bnv);
-> +	if (!bnv)
-> +		return -ENOMEM;
-> +
-> +	config.id =3D NVMEM_DEVID_NONE;
-> +	config.dev =3D &bdev->bd_device;
-> +	config.name =3D dev_name(&bdev->bd_device);
-> +	config.owner =3D THIS_MODULE;
-> +	config.priv =3D bnv;
-> +	config.reg_read =3D blk_nvmem_reg_read;
-> +	config.size =3D bdev_nr_bytes(bdev);
+include/linux/etherdevice.h:ether_addr_copy() {
+...
+#else
+	u16 *a =3D (u16 *)dst;
+	const u16 *b =3D (const u16 *)src;
+...
 
-When the nvmem core later assigns this to nvmem->size (which is size_t),
-the negative integer will sign-extend to a large 64-bit value,
-potentially breaking bounds checks.
+Could this unaligned array trigger alignment faults on strict-alignment
+architectures?
 
-[ ... ]
-
-> +static void blk_nvmem_unregister(struct device *dev)
-> +{
-> +	struct blk_nvmem *bnv_c, *bnv_t, *bnv =3D NULL;
-> +
-> +	scoped_guard(mutex, &devices_mutex) {
-> +		list_for_each_entry_safe(bnv_c, bnv_t, &nvmem_devices, list) {
-> +			if (bnv_c->devt =3D=3D dev_to_bdev(dev)->bd_device.devt) {
-> +				bnv =3D bnv_c;
-> +				list_del(&bnv->list);
-> +				break;
-> +			}
-> +		}
-> +
-> +		if (!bnv)
-> +			return;
-> +	}
-> +
-> +	nvmem_unregister(bnv->nvmem);
-> +	kfree(bnv);
-
-[Severity: High]
-Can this kfree() result in a use-after-free of bnv?
-
-nvmem_unregister() only decrements the device reference count and
-does not synchronously wait for consumers to release their cell references.
-
-If a consumer subsequently reads from its cell, the core will invoke
-blk_nvmem_reg_read() with the freed bnv pointer as the priv argument,
-dereferencing bnv->devt.
+The previous implementation used kzalloc() for the buffer (which guarantees
+alignment) and memcpy(), avoiding this issue. Switching to ether_addr_copy()
+also imposes the same 16-bit alignment requirement on the caller-provided
+addr buffer, which wasn't previously required.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608-block-as-n=
-vmem-v3-0-82681f50aa35@oss.qualcomm.com?part=3D4
+vmem-v3-0-82681f50aa35@oss.qualcomm.com?part=3D5
 
