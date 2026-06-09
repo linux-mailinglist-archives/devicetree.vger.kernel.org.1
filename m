@@ -1,199 +1,424 @@
-Return-Path: <devicetree+bounces-309272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309274-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 98p+FUlYKGoGCgMAu9opvQ
-	(envelope-from <devicetree+bounces-309272-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:15:37 +0200
+	id 7EDJEGRcKGriCgMAu9opvQ
+	(envelope-from <devicetree+bounces-309274-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:33:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB0486633B5
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:15:36 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E06663583
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 20:33:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=I5l27M27;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309272-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309272-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=c0fWavgy;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309274-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-309274-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8A22D3040CAA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 18:15:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 21745308C15C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 18:23:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 188DB3CF212;
-	Tue,  9 Jun 2026 18:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA46495528;
+	Tue,  9 Jun 2026 18:23:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8C4B33C1B4;
-	Tue,  9 Jun 2026 18:15:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54D6F481668
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 18:23:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781028932; cv=none; b=qBDLHuSU+EAKj4GWNCSm+hDCSkl9wtrSqfmj8NLFwXA6Ki8Aeexp21YJMv3o9LrhfUHstySwpGrSjrCZvJP0SbM8/7HQJwxZNln0h/eNHSm9UNpcCYRviTnCB1pbDoZz07vRmPh1O0+O/7sYTsOhwLmWQw9MYwFTFS8DmrZl5aw=
+	t=1781029397; cv=none; b=YavNXbdaJjaPcSIJhJbWI/AM3tgSnGjmzk+jEA5aIvup4OHFEA+4LiRdTQWeVoWMaIMYJacUEZ4cfQfJ+vHdgECibXd0VclIYnwFxo+keWIwUbbJ/wd1v2cKPur9YzbAy/a0wFXcPT7hLEoFJhfFo1D7fJ+cMrQ2zSmMQJbINEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781028932; c=relaxed/simple;
-	bh=j0UdTejC7lDY6owPw/rHcM5IerPjB3ei0m6x7ygaqeo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=btbl47VtPHb0ff0iG8+gu2i1zr6srYngsyhVKzmleBch0INQ2PMtsItDzLYuBG2OkUk7kxjL/t1IaO+Uscq1ayPc/ylfSfI6wlhKT2C+HkJvmkBVDqbKaB6uWsQofogJSaro/QWD7ksYZ3JHZ47ZmYGWC9sUBlDC3OzTeM3ap8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=I5l27M27; arc=none smtp.client-ip=198.175.65.17
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781028931; x=1812564931;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=j0UdTejC7lDY6owPw/rHcM5IerPjB3ei0m6x7ygaqeo=;
-  b=I5l27M27KISj/ih++qrKuaE5HIKMqIOK6uhWyriSms+NWd1DKqnw5ALs
-   gmnH7mv9AyQFg5abykO+OEhpIRv44p8HhQG6G07eq/Th6/7smm6+D6iM1
-   Xq16HRrJtwOo5MgXFhdroJjSCFza8hmzqaVao2rkKcQM4Rni7/NHJZJtu
-   IKjGnVsX4xYBUJg9Y7a8EmF2ezi33/EukI2f24O2/CWEigbxyuRhgGirO
-   TtkRb8vg298gu7m0tgdWF5F1dRUSuh2p9IisdvkHkcSIKTLTcKhe4yqkI
-   +3KsD7/uU/HQ0PAq96j+dtp6DqLKtmPhV2Ox7ZbSfXuY6kmmldulFC8Oa
-   Q==;
-X-CSE-ConnectionGUID: qmFGsM+0Sm6GoKPssamscg==
-X-CSE-MsgGUID: iCAI51w3QuqlUH4TEK1+CA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="81809195"
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; 
-   d="scan'208";a="81809195"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2026 11:15:30 -0700
-X-CSE-ConnectionGUID: 9kniI4o8RyKcX0xGasrMTA==
-X-CSE-MsgGUID: pMo0qlBaQIOaUKcLim9kUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; 
-   d="scan'208";a="245791285"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.162])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2026 11:15:26 -0700
-Date: Tue, 9 Jun 2026 21:15:23 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: Michael Auchter <michael.auchter@ni.com>, linux@analog.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v2 12/12] iio: dac: ad5686: add gain control support
-Message-ID: <aihYO_X9YEqabaFi@ashevche-desk.local>
-References: <20260609-ad5686-new-features-v2-0-70b423f5c76d@analog.com>
- <20260609-ad5686-new-features-v2-12-70b423f5c76d@analog.com>
+	s=arc-20240116; t=1781029397; c=relaxed/simple;
+	bh=jS73l8ZPEadDtpuBKIkNYTrDKaEL2P2VVxQ/333SYxA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cvBZcVDpcbphOMXLM+AS2ua9b8OrhWyWpEwWiMNCDjVzTFw9zPIUY6Dr4WquWnWiNGJ+QoITjx0wx+80VMCEHQStAyrZ9fW7Ql5egKouhS7rq+MAfPFD6+OCTL3dEnolfIHgaWDcnwIXCXi3e6fGLdWzXtzRb1cXBDGqs3p9974=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c0fWavgy; arc=none smtp.client-ip=209.85.216.49
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-36d98b68d68so3879011a91.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 11:23:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781029395; x=1781634195; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5yOK2OmpxELpIU8FfMiRQLGMlc8197Q+PjU02X23WEs=;
+        b=c0fWavgyuyoStlbWSOZhGG6sbZ+XTuqYLD1UoIoMsX7unC7udaPmZmQZedy7iDL1MM
+         QVKqwRE2AG2Gq0Nvj7r5dpwHc1IT07c/qNdehWlrb2jZ5AjSCoBkIwhinC2v8EPQ9S4Q
+         pYn55vyx1l75a974AUnnazsG1InYQoQmfbC9Ele6v5bji9E50wLs00fQwZuGLjgfF8sR
+         8GObpM2NZlvrr5qc3/9aZV3+PjIg5Bs8QM9ca6LCjxbnash0ayysp8L+eUVoO1LdQ4wX
+         rxxqXorytF15C15ZaZb9yY0alFBnGzFeU1D9SJQ6fZdJne9xFyNLhwlupc4hbW41xM61
+         JGJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781029395; x=1781634195;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5yOK2OmpxELpIU8FfMiRQLGMlc8197Q+PjU02X23WEs=;
+        b=iar8R1/042M6aU+/CXmGY/kH+GOqeKSvMFYGec8EvIiR/G5CEqfufdDAuXwc3kGYgp
+         BDXwXVQDRyRb3RKjcY4SudCcs5FqRWvoemvm34oLzqEM+e8MB+/9Gw1HptspQChyHHQm
+         6pKU4eSMSruUGxCJBG/3Kj60m074hniE1L9T5Tyt6udKe4DswQdehcqQrtTfCCFa6vaf
+         pcffuv/1YsceoDVcWLEipFIcwLSYfjO9qQv/pbgdIgX5tSk9r/hD0lcNCmdTqgE6kDl+
+         OwIF+BhMTZxWJttpAKZOlLsm6F4YeiVScUC2UXzWQ/63uePhDn/chUDzxSrpMzdsGnsM
+         6wpg==
+X-Forwarded-Encrypted: i=1; AFNElJ+kWN5mlpUunYfjzwq1ez8qMPecLIK3IYp8kEmLbRLDlTYDi7xGYxSSkMASHlHRjrqKp6aX3igRplXL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2kjNYrwr2T54Ki/1yHcd74wQ0F0xCI8It2616VjEVZDNYy+0h
+	iI2roXreW36XFB9e5+jdkoEB86OFtsHV1BjelAZUNDuYJJYobGiUsTEb
+X-Gm-Gg: Acq92OFghMpyAWWU2x0SPdOLMW5GjzwC3ji87Dy2Db00xiGkzP2+igLpQA8jlkrQcnt
+	iAThJgQV5cRPo43lXvcIViftgKOj/1wMVFPlap4K7F98FxOLm4LwIda57GRvX3r0av1YRoo/Iwx
+	dmnFuotLksB1aGGpVIeZz6awqKkd/Hc+/QlZHkWr3wTDh4h0K3AWPGarPaiyf5RLoEDH6ZI8bAw
+	jQDcG4v+zu9BY8r/xms1LxvinaVLnCwK4fIgr65ioNd6DF+r6u7Adpj++eRK6SUH9UcCFCizU6F
+	Om7e1RkLiee31pf/YtC0JPP/cf1i0DcniGHInodNcqlVJGvg54NQOogPxpLPACndxJ618wIbaf+
+	NU0W20GgcEkPePLr4C0zyLg+aPiJ+IKNGx1kewN+HBbz2wwCgd5o29MIEM8PTAMyFX1c16i3t/g
+	sh+S9tasnhfDvDGs4UzkQGGlamWU0MLqi0VJf+YlEuD7j9QJt/yHQy7nZwvpkIX8ETFUOwUKAz1
+	FQY/Fug3tXI7PHt3lE=
+X-Received: by 2002:a17:90b:1a86:b0:36b:91a3:6af3 with SMTP id 98e67ed59e1d1-370eeb174e9mr21556483a91.7.1781029395432;
+        Tue, 09 Jun 2026 11:23:15 -0700 (PDT)
+Received: from fedora ([103.181.54.100])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c164f6d69csm218805815ad.2.2026.06.09.11.23.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jun 2026 11:23:15 -0700 (PDT)
+From: Ninad Naik <ninadnaik07@gmail.com>
+To: lee@kernel.org,
+	pavel@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	jonas.gorski@gmail.com,
+	noltari@gmail.com
+Cc: linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	me@brighamcampbell.com,
+	linux-kernel-mentees@lists.linux.dev,
+	skhan@linuxfoundation.org,
+	Ninad Naik <ninadnaik07@gmail.com>
+Subject: [PATCH v2] dt-bindings: leds: bcm6358: Convert to DT schema
+Date: Tue,  9 Jun 2026 23:47:01 +0530
+Message-ID: <20260609181731.1379846-1-ninadnaik07@gmail.com>
+X-Mailer: git-send-email 2.54.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260609-ad5686-new-features-v2-12-70b423f5c76d@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309272-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-309274-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jonas.gorski@gmail.com,m:noltari@gmail.com,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:me@brighamcampbell.com,m:linux-kernel-mentees@lists.linux.dev,m:skhan@linuxfoundation.org,m:ninadnaik07@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:jonasgorski@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[ninadnaik07@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ninadnaik07@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,brighamcampbell.com,lists.linux.dev,linuxfoundation.org,gmail.com];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ashevche-desk.local:mid,intel.com:dkim,intel.com:from_mime]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BB0486633B5
+X-Rspamd-Queue-Id: 43E06663583
 
-On Tue, Jun 09, 2026 at 11:13:07AM +0100, Rodrigo Alencar via B4 Relay wrote:
+Convert the brcm,bcm6358 to DT schema.
 
-> Most of the supported devices rely on a GAIN pin to control a 2x
-> multiplier applied to the output voltage. Other devices, e.g. the
-> single-channel ones, provides a gain control through a bit field in the
-> control register. Some designs might have the GAIN pin hardwired to
-> VDD/VLOGIC or GND, which would still be fine for this patch, that allows
-> the scale property to be configurable with two available options.
-> vref_mv field is moved down in the ad5686_state struct, so that
+Signed-off-by: Ninad Naik <ninadnaik07@gmail.com>
+---
+Changes in v2:
+- Modify the maintainers list.
+- Add maxItems: 1 and removed minimum and maximum in reg property.
+- Explicitly list the properties: label, default-state, linux,default-trigger
+  and active-low
+- Change unevaluatedProperties: false to additionalProperties: false
 
-Slightly better to use same terminology as in C and documentation, id est
+ .../bindings/leds/brcm,bcm6358-leds.yaml      | 105 +++++++++++++
+ .../devicetree/bindings/leds/leds-bcm6358.txt | 143 ------------------
+ 2 files changed, 105 insertions(+), 143 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/brcm,bcm6358-leds.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-bcm6358.txt
 
-"...the struct ad5686_state, ..."
-
-> overall size increase is reduced.
-
-...
-
-> +	case IIO_CHAN_INFO_SCALE:
-> +		if (val == st->scale_avail[0] && val2 == st->scale_avail[1])
-> +			st->double_scale = false;
-> +		else if (val == st->scale_avail[2] && val2 == st->scale_avail[3])
-> +			st->double_scale = true;
-> +		else
-> +			return -EINVAL;
-> +
-> +		switch (st->chip_info->regmap_type) {
-> +		case AD5310_REGMAP:
-> +			return ad5310_control_sync(st);
-> +		case AD5683_REGMAP:
-> +			return ad5683_control_sync(st);
-> +		case AD5686_REGMAP:
-> +			/*
-> +			 * Even if the gain pin is hardwired on the board, the
-> +			 * user is able to control the scale such that it
-> +			 * matches the actual gain setting.
-
-Rebalance the line lengths to
-
-			 * Even if the gain pin is hardwired on the board,
-			 * the user is able to control the scale such that
-			 * it matches the actual gain setting.
-
-makes it more consistent.
-
-> +			 */
-> +			gpiod_set_value_cansleep(st->gain_gpio,
-> +						 st->double_scale ? 1 : 0);
-> +			return 0;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-...
-
-> +	unsigned short			vref_mv;
-
-_mV
-
-
+diff --git a/Documentation/devicetree/bindings/leds/brcm,bcm6358-leds.yaml b/Documentation/devicetree/bindings/leds/brcm,bcm6358-leds.yaml
+new file mode 100644
+index 000000000000..1b586a0c27b7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/brcm,bcm6358-leds.yaml
+@@ -0,0 +1,105 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/brcm,bcm6358-leds.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LEDs connected to Broadcom BCM6358 controller
++
++description: |
++  This controller is present on BCM6358 and BCM6368.
++  In these SoCs there are Serial LEDs (LEDs connected to a 74x164 controller),
++  which can either be controlled by software (exporting the 74x164 as spi-gpio.
++  See Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml), or
++  by hardware using this driver.
++
++maintainers:
++  - Álvaro Fernández Rojas <noltari@gmail.com>
++
++properties:
++  compatible:
++    const: brcm,bcm6358-leds
++
++  reg:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  brcm,clk-div:
++    description: SCK signal divider.
++    default: 1
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2, 4, 8]
++
++  brcm,clk-dat-low:
++    description: Makes clock and data signals active low.
++    type: boolean
++
++patternProperties:
++  "^led@(0|1?[0-9a-f])$":
++    type: object
++    $ref: common.yaml#
++    description: Each LED is represented as a sub-node of
++      this device.
++
++    properties:
++      reg:
++        description: LED pin number (0 to 31).
++        maxItems: 1
++
++      label: true
++
++      default-state: true
++
++      linux,default-trigger: true
++
++      active-low: true
++
++    required:
++      - reg
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++    led-controller@fffe00d0 {
++        compatible = "brcm,bcm6358-leds";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0xfffe00d0 0x8>;
++
++        led@0 {
++            reg = <0>;
++            active-low;
++            label = "white:alarm";
++        };
++        led@2 {
++            reg = <2>;
++            active-low;
++            label = "white:tv";
++        };
++        led@3 {
++            reg = <3>;
++            active-low;
++            label = "white:tel";
++        };
++        led@4 {
++            reg = <4>;
++            active-low;
++            label = "white:adsl";
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/leds/leds-bcm6358.txt b/Documentation/devicetree/bindings/leds/leds-bcm6358.txt
+deleted file mode 100644
+index 211ffc3c4a20..000000000000
+--- a/Documentation/devicetree/bindings/leds/leds-bcm6358.txt
++++ /dev/null
+@@ -1,143 +0,0 @@
+-LEDs connected to Broadcom BCM6358 controller
+-
+-This controller is present on BCM6358 and BCM6368.
+-In these SoCs there are Serial LEDs (LEDs connected to a 74x164 controller),
+-which can either be controlled by software (exporting the 74x164 as spi-gpio.
+-See Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml), or
+-by hardware using this driver.
+-
+-Required properties:
+-  - compatible : should be "brcm,bcm6358-leds".
+-  - #address-cells : must be 1.
+-  - #size-cells : must be 0.
+-  - reg : BCM6358 LED controller address and size.
+-
+-Optional properties:
+-  - brcm,clk-div : SCK signal divider. Possible values are 1, 2, 4 and 8.
+-    Default : 1
+-  - brcm,clk-dat-low : Boolean, makes clock and data signals active low.
+-    Default : false
+-
+-Each LED is represented as a sub-node of the brcm,bcm6358-leds device.
+-
+-LED sub-node required properties:
+-  - reg : LED pin number (only LEDs 0 to 31 are valid).
+-
+-LED sub-node optional properties:
+-  - label : see Documentation/devicetree/bindings/leds/common.txt
+-  - default-state : see
+-    Documentation/devicetree/bindings/leds/common.txt
+-  - linux,default-trigger : see
+-    Documentation/devicetree/bindings/leds/common.txt
+-
+-Examples:
+-Scenario 1 : BCM6358
+-	leds0: led-controller@fffe00d0 {
+-		compatible = "brcm,bcm6358-leds";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0xfffe00d0 0x8>;
+-
+-		alarm_white {
+-			reg = <0>;
+-			active-low;
+-			label = "white:alarm";
+-		};
+-		tv_white {
+-			reg = <2>;
+-			active-low;
+-			label = "white:tv";
+-		};
+-		tel_white {
+-			reg = <3>;
+-			active-low;
+-			label = "white:tel";
+-		};
+-		adsl_white {
+-			reg = <4>;
+-			active-low;
+-			label = "white:adsl";
+-		};
+-	};
+-
+-Scenario 2 : BCM6368
+-	leds0: led-controller@100000d0 {
+-		compatible = "brcm,bcm6358-leds";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x100000d0 0x8>;
+-		brcm,pol-low;
+-		brcm,clk-div = <4>;
+-
+-		power_red {
+-			reg = <0>;
+-			active-low;
+-			label = "red:power";
+-		};
+-		power_green {
+-			reg = <1>;
+-			active-low;
+-			label = "green:power";
+-			default-state = "on";
+-		};
+-		power_blue {
+-			reg = <2>;
+-			label = "blue:power";
+-		};
+-		broadband_red {
+-			reg = <3>;
+-			active-low;
+-			label = "red:broadband";
+-		};
+-		broadband_green {
+-			reg = <4>;
+-			label = "green:broadband";
+-		};
+-		broadband_blue {
+-			reg = <5>;
+-			active-low;
+-			label = "blue:broadband";
+-		};
+-		wireless_red {
+-			reg = <6>;
+-			active-low;
+-			label = "red:wireless";
+-		};
+-		wireless_green {
+-			reg = <7>;
+-			active-low;
+-			label = "green:wireless";
+-		};
+-		wireless_blue {
+-			reg = <8>;
+-			label = "blue:wireless";
+-		};
+-		phone_red {
+-			reg = <9>;
+-			active-low;
+-			label = "red:phone";
+-		};
+-		phone_green {
+-			reg = <10>;
+-			active-low;
+-			label = "green:phone";
+-		};
+-		phone_blue {
+-			reg = <11>;
+-			label = "blue:phone";
+-		};
+-		upgrading_red {
+-			reg = <12>;
+-			active-low;
+-			label = "red:upgrading";
+-		};
+-		upgrading_green {
+-			reg = <13>;
+-			active-low;
+-			label = "green:upgrading";
+-		};
+-		upgrading_blue {
+-			reg = <14>;
+-			label = "blue:upgrading";
+-		};
+-	};
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.54.0
 
 
