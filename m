@@ -1,177 +1,212 @@
-Return-Path: <devicetree+bounces-308807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308810-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id C4+sMdjMJ2rP2QIAu9opvQ
-	(envelope-from <devicetree+bounces-308807-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 10:20:40 +0200
+	id B1L7NKfMJ2q12QIAu9opvQ
+	(envelope-from <devicetree+bounces-308810-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 10:19:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C46365DB0D
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 10:20:40 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 709BA65DAC4
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 10:19:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=c1bfHzgt;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308807-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308807-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=lvMAUU8c;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308810-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308810-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2A17C300CBFA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 08:12:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9CC2C30937F6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 08:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A0B23EDE77;
-	Tue,  9 Jun 2026 08:12:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5303ED3A5;
+	Tue,  9 Jun 2026 08:13:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E96BD3ED3CF
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 08:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5A13EAC74;
+	Tue,  9 Jun 2026 08:13:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780992731; cv=none; b=aq81jGcILzPpRjcLUij6O2e34U2NQXOhU7Fss9NaL/RtFhfk76Y25EoN1vx3qOzIGJ1jzXju7OOEv9utzOPZBtnPY9Bpl7jRpub5eksV/ExNwjYPAjd8pH0ptH4kqCTl4TmwXKdwzY1X+2KZCmLhQ7Glmaw7G28Ug2vJhR+U+hc=
+	t=1780992836; cv=none; b=PE06g65EHVCUG9P15RUATqRNomX7jH1j7EVkvN8XlYc9qOiaszfiw5yfmbVjWHTj7BFJEihWlkzNh9AZ9MVav3Y44v0lQmlr2p2moKjk2jcBcbGLjMQgg2wGECZwmjRqI9CeOu/D+/mYwXc71Hi6UMUZeg5o+Ul3nhmRBjl3EDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780992731; c=relaxed/simple;
-	bh=WfhzaYDh+coHnmVdglW1QG5VsKn0NOQHAZiOFbMI10g=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=EhTqt0MmxhOvJoOV2KN0bVnWnqGc1bbbRB44n5WYOy8wtQtQikSYQtJsW+LsQ2AurZzrlreEIIxeWH7aVnRUKPpQjb0cb0pIzfp5RN6YHxiaPkAxBzrFnpogFRQYQXVju/J5+spzu+RM/HgnNkH8LV8do8O1OQVwq9xqodEuCio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c1bfHzgt; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 097C91F00898;
-	Tue,  9 Jun 2026 08:12:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780992730;
-	bh=efS1TadNvY0fGKhRQTnoLSLI98umOyJMWicU26by+Zg=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=c1bfHzgtwP5SaC5BqHRfkYfwXgMesJEFwsiCq5CXzYtLet2UQxiPAgBmDFdsms5iB
-	 0cPN5sJIbzPPjaRPDx3kTVOWelxtoqJzi8b5XfcF/Pt7r/rr0zdXYGnsWBWzS3mhQu
-	 yjE1Hh6DUxCUx8ZTfGbAb3t42gkE6sRGRAo6GindU6KqNNQHwLsZapOkGm/DQaXCBF
-	 CQbAtwAHZhBpn6x/u4uZP8y+Nquy0/Y90J4aMoMGAVwjtMuFKTkTq+4RkntMacNNNl
-	 u59LR1yvxvYhhylRxedgOp416cnIkM9PJjD+5P0j1EkQYnB1fEUWUEtTvuy9zfuHlq
-	 kkdlC5QAJ770w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: Add Eliza CQS SoM platform
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Abel Vesa" <abel.vesa@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260609-eliza-dts-qcs-evk-v3-2-b4e9b033a6dc@oss.qualcomm.com>
-References: <20260609-eliza-dts-qcs-evk-v3-2-b4e9b033a6dc@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 09 Jun 2026 08:12:08 +0000
-Message-Id: <20260609081210.097C91F00898@smtp.kernel.org>
+	s=arc-20240116; t=1780992836; c=relaxed/simple;
+	bh=gHH888DMfaKgGEuNMxRFwJFh5FsrPvr3DTEjnPXl5/o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SVc9gOcPNLcKmITHr+G4+tZrMKF6Pj8J9oJYDS4PjwreeO/jbaVb7cj6rAiw/ZgAsiqBWuCpHAB/dIN+90Pz8OFeYPgIbU8h8zYglgtJ57HS0MzYz383yZZ3Y6qH8mHKtWYjT0prc3CsdI2IY11yUFZjhAEt8bgXw5aWxpvGYOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lvMAUU8c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 2CFBAC2BCB9;
+	Tue,  9 Jun 2026 08:13:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1780992836;
+	bh=gHH888DMfaKgGEuNMxRFwJFh5FsrPvr3DTEjnPXl5/o=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=lvMAUU8caQ4BA7m5rSW4BGy4m4lpinVT6KJi0JVIFsld/gpl4XD0mGj0PMXWcIA5q
+	 mqL1W2kAyZuQMdw4cGmKqjrh2wjBskpngxtig61cJf0j3T++mbafyzl05zF1zA65gn
+	 phfh3qTKD6IBizzRwQunqAgogaor50Js9rzPLJJx9GCqL6ioPbwEz+9DjlajzT4oGg
+	 w2JynUDzxvlFiQBInIIYhJCw6xJyWPKTDhI/ReCOa0e+p1NmY43TNROwUGL3LL1O/L
+	 FpUmmXo4DOFfnB4SabNs/NFA65CtlbfpvlJ50xWtCTeX4zAfqNQl0IRw12d9yGGbll
+	 hvXPjTS+zp+tQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FC57CD8CA4;
+	Tue,  9 Jun 2026 08:13:56 +0000 (UTC)
+From: Alexandre MINETTE via B4 Relay <devnull+contact.alex-min.fr@kernel.org>
+Subject: [PATCH v4 0/6] Add Samsung Galaxy S4 support
+Date: Tue, 09 Jun 2026 10:13:43 +0200
+Message-Id: <20260609-mainline-send-v1-sending-v4-0-83768fbf404d@alex-min.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADfLJ2oC/43NTQ6CMBAF4KuQrq3pD1Bw5T2Mi9IOMAkU05oGQ
+ 7i7hY0aE+Nq5r1kvllIAI8QyClbiIeIASeXQn7IiOm164CiTZkIJkqWC05HjW5ABzSAszTyfaL
+ rqKhqMHUFpTWcpPObhxbnnb5cU+4x3Cf/2D9FvrV/oGlltDENqwqlRG7hrAeY6Yju2HqysVG8U
+ +oHJRJljdY1VxVjqvmm5IsqeP2DkomS1iqtuShkIT+pdV2fLHdgnFgBAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, 
+ Guru Das Srinagesh <linux@gurudas.dev>, Linus Walleij <linusw@kernel.org>, 
+ Rob Clark <robin.clark@oss.qualcomm.com>, Kees Cook <kees@kernel.org>, 
+ Tony Luck <tony.luck@intel.com>, 
+ "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ phone-devel@vger.kernel.org, Alexandre MINETTE <contact@alex-min.fr>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Antony Kurniawan Soemardi <linux@smankusors.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780992834; l=3812;
+ i=contact@alex-min.fr; s=20260421; h=from:subject:message-id;
+ bh=gHH888DMfaKgGEuNMxRFwJFh5FsrPvr3DTEjnPXl5/o=;
+ b=4Wuli+y9wsnk9cFGe66d7AhtuKCs4arD7VZTWNiZIdvihpdK+xhWlMQUUbidRm1Q+eQLBcYDP
+ MDu2yUq1gJLDZy4RV0dJf0/Ai0wDvHucmc5Jeoyq879iQyi45yoXMnT
+X-Developer-Key: i=contact@alex-min.fr; a=ed25519;
+ pk=KOCaxY4v16ptaT0uk1FRkuaDF2n1JhmnYwLiqWD76M4=
+X-Endpoint-Received: by B4 Relay for contact@alex-min.fr/20260421 with
+ auth_id=743
+X-Original-From: Alexandre MINETTE <contact@alex-min.fr>
+Reply-To: contact@alex-min.fr
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308807-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:abel.vesa@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308810-lists,devicetree=lfdr.de,contact.alex-min.fr];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:myungjoo.ham@samsung.com,m:cw00.choi@samsung.com,m:linux@gurudas.dev,m:linusw@kernel.org,m:robin.clark@oss.qualcomm.com,m:kees@kernel.org,m:tony.luck@intel.com,m:gpiccoli@igalia.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:phone-devel@vger.kernel.org,m:contact@alex-min.fr,m:krzysztof.kozlowski@oss.qualcomm.com,m:linux@smankusors.com,m:konrad.dybcio@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	HAS_REPLYTO(0.00)[contact@alex-min.fr]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3C46365DB0D
+X-Rspamd-Queue-Id: 709BA65DAC4
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Low] The device tree source includes `pm7550ba-eliza.dtsi`, which does n=
-ot exist in the source tree, causing a C preprocessor failure during compil=
-ation.
-- [Low] References to device tree labels `&sdhc_1`, `&sdc1_default`, `&sdc1=
-_sleep`, and `&remoteproc_adsp` lack definitions in the base SoC device tre=
-e (`eliza.dtsi`).
---
+Add initial mainline support for the Samsung Galaxy S4, codenamed jflte.
 
-commit 49ba8d899e255d89a8013a6ccd6b518c9f069ea6
-Author: Abel Vesa <abel.vesa@oss.qualcomm.com>
+This series adds the devicetree binding and board DTS, together with the
+small driver and common DTS changes needed to boot the device with working
+USB peripheral mode.
 
-arm64: dts: qcom: Add Eliza CQS SoM platform
+Tested on a Samsung Galaxy S4 GT-I9505. This series adds support for
+UART, USB peripheral mode with USB networking, the front notification
+LED and the physical buttons.
 
-This commit adds the Eliza CQS System-on-Module DTSI file. It describes
-the regulators, board clocks, eMMC support, and ADSP firmware.
+Booting the device also requires an MSM IOMMU master handling fix,
+which will be submitted separately.
 
-> diff --git a/arch/arm64/boot/dts/qcom/eliza-cqs-som.dtsi b/arch/arm64/boo=
-t/dts/qcom/eliza-cqs-som.dtsi
-> new file mode 100644
-> index 0000000000000..33f4cd2822724
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/eliza-cqs-som.dtsi
-> @@ -0,0 +1,394 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +
-> +#include "eliza.dtsi"
-> +#include "pm7550ba-eliza.dtsi"
+Signed-off-by: Alexandre MINETTE <contact@alex-min.fr>
+---
+Changes in v4:
+- Rework PM8921 USB ID support by registering the extcon device from the
+  parent PMIC driver instead of describing a separate DT child node.
+- Add GPIO_OPEN_DRAIN flag to i2c-gpio
+- Drop the Reviewed-by tag from the Galaxy S4 DTS patch because its USB
+  extcon description changed.
+- Drop the MSM IOMMU master lookup fix from this series. It needs a
+  broader rework and will be sent separately.
+- jflte still needs that follow-up MSM IOMMU fix to boot.
+- Link to v3: https://lore.kernel.org/r/20260519-mainline-send-v1-sending-v3-0-3dd7aa125353@alex-min.fr
 
-[Severity: Low]
-Is pm7550ba-eliza.dtsi missing from the tree? It doesn't appear to be added
-in this commit or present in the baseline, which causes a preprocessor
-failure during compilation.
+Changes in v3:
+- Clarify that the Galaxy S4 compatible is for the Qualcomm
+  APQ8064-based variant, and add Krzysztof's Acked-by.
+- Clarify the PM8921 USB ID binding, driver and DTS commit messages to
+  describe the PMIC interrupt-controller interface and the lack of a
+  known register resource for this interrupt-only path.
+- Keep the PM8921 USB ID extcon node non-addressable rather than adding a
+  speculative reg value.
+- Keep the MUIC and LED buses as i2c-gpio. Testing the corresponding
+  GSBI controllers on GT-I9505 made USB fail to enumerate with the MUIC
+  on GSBI2, and made LED brightness writes time out with the LED on
+  GSBI3.
+- Reorder APQ8064 USB clock entries to match the related ci-hdrc binding
+  update, using iface, core, fs order.
+- Sort the jflte DTB Makefile entry after the LG Nexus 4 entry.
+- Link to v2: https://lore.kernel.org/r/20260427-mainline-send-v1-sending-v2-0-dcaa9178007b@alex-min.fr
 
-[ ... ]
+Changes in v2:
+- Keep the APQ8064 compatible list in qcom.yaml alphabetically sorted.
+- Clarify the Qualcomm pinctrl commit message and include the failing hog
+  lookup trace seen on APQ8064.
+- Clarify the MSM IOMMU commit message and include the NULL dereference
+  trace seen during IOMMU probe on APQ8064.
+- Move the PM8921 USB ID extcon node to the end of the PM8921 child nodes.
+- Reorder the jflte DTS nodes and pinctrl properties as requested by
+  reviewers.
+- Add Reviewed-by/Acked-by tags collected on v1.
+- Link to v1: https://lore.kernel.org/r/20260421-mainline-send-v1-sending-v1-0-bcb0857724de@alex-min.fr
 
-> +&remoteproc_adsp {
-> +	firmware-name =3D "qcom/eliza/adsp.mbn",
-> +			"qcom/eliza/adsp_dtb.mbn";
-> +
-> +	status =3D "okay";
-> +};
+---
+Alexandre MINETTE (6):
+      dt-bindings: arm: qcom: Add Samsung Galaxy S4
+      pinctrl: qcom: Register functions before enabling pinctrl
+      ARM: dts: qcom: apq8064: Fix USB controller clocks
+      mfd: qcom-pm8xxx: register PM8921 USB ID extcon
+      extcon: qcom-spmi-misc: match PM8xxx USB ID platform device
+      ARM: dts: qcom: Add Samsung Galaxy S4
 
-[Severity: Low]
-Is the &remoteproc_adsp label defined in the base eliza.dtsi? Compiling
-this device tree fails with a reference to a non-existent node or label.
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
+ arch/arm/boot/dts/qcom/Makefile                    |   1 +
+ .../boot/dts/qcom/qcom-apq8064-samsung-jflte.dts   | 481 +++++++++++++++++++++
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi           |  18 +-
+ drivers/extcon/extcon-qcom-spmi-misc.c             |   7 +
+ drivers/mfd/qcom-pm8xxx.c                          |  78 +++-
+ drivers/pinctrl/qcom/pinctrl-msm.c                 |  15 +-
+ 7 files changed, 588 insertions(+), 13 deletions(-)
+---
+base-commit: 4bf3800382b91c2898d14452cf4332782b3fe80a
+change-id: 20260421-mainline-send-v1-sending-289ec98e6dc1
 
-> +
-> +&sdhc_1 {
-> +	vmmc-supply =3D <&vreg_l12b>;
-> +	vqmmc-supply =3D <&vreg_l1d>;
-> +	pinctrl-0 =3D <&sdc1_default>;
-> +	pinctrl-1 =3D <&sdc1_sleep>;
-> +	pinctrl-names =3D "default", "sleep";
+Best regards,
+-- 
+Alexandre MINETTE <contact@alex-min.fr>
 
-[Severity: Low]
-Are the labels &sdhc_1, &sdc1_default, and &sdc1_sleep defined? They appear
-to be missing from eliza.dtsi and the included files, leading to a build
-failure.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609-eliza-dts-=
-qcs-evk-v3-0-b4e9b033a6dc@oss.qualcomm.com?part=3D2
 
