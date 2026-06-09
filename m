@@ -1,339 +1,191 @@
-Return-Path: <devicetree+bounces-308719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308721-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rrYoHnSxJ2q50gIAu9opvQ
-	(envelope-from <devicetree+bounces-308719-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:23:48 +0200
+	id 5I3vHWmyJ2rr0gIAu9opvQ
+	(envelope-from <devicetree+bounces-308721-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:27:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F06465CB69
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:23:47 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAB8C65CBFC
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 08:27:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kqecfnnq;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308719-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308719-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gJtvunzj;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308721-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308721-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6BD28300682F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 06:23:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 48FBB305FAF7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 06:24:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE3933C8731;
-	Tue,  9 Jun 2026 06:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BCD03D4103;
+	Tue,  9 Jun 2026 06:24:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A916E1990A7;
-	Tue,  9 Jun 2026 06:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B6503CC9E9;
+	Tue,  9 Jun 2026 06:24:08 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780986221; cv=none; b=SIViz/Bs3FQhsYcTR0EOkAVNGq7w+ZdPejVubxX2LGQgr8rYJmNOto6OGOcI2R+3YrYubWCko9iQUfAmD9mUcmobZQGc71JyvNt7sbfk/qpWv98XeqY/RYH8zGTtOeQhz/9xJ+RA7cjNxaZaO2Qy17sjN5weU5GvRjd2pNA8lIU=
+	t=1780986249; cv=none; b=PatQB9tXyY8kjJ4cc/8n215IU+GIRbBvZ9WyddV7QmS6mLB8ZyGH6pIxV51GHvxLVHWN8CRLD33fE8KgAQr7cwZf4/PPf6OViIHxkU4GYUFJiRK1rgXAcaNrYtsUcSYWsLunzYbCVAu3d649vFykr5cH2/0EeSdP0+xENNnGl2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780986221; c=relaxed/simple;
-	bh=/z31ilgIy0k/2elY1si/zcMAqLUldPq851NYvGjUUg4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=QhlhIivHrsn1EmhK/o9shFyqL6yxJwn1951ViASM9xxA2W/5sRBT7qH4JMZUUMp0d9xd1/9mP2lJ6ZDPY761MKAwGsE5U+8gIICUKmEbEpTWvIdHn818JCKxM2MPNALVbOCtJyh0mtCT8edEPLnVUR8+mRiXYvnfUg59uaxi5os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kqecfnnq; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F223A1F00893;
-	Tue,  9 Jun 2026 06:23:39 +0000 (UTC)
+	s=arc-20240116; t=1780986249; c=relaxed/simple;
+	bh=RN0eZ2uQL4RoQ5GcnthSreivhp71F3OQotMobfJe1Xw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gc8ZR4S5MR8IHMD/Q+AzI3u8Dn1G2MDcz1ONOFcZHoz2sAoT39+h4M7lsmaHQJAaUBd6Av2ocuD8b17jNteMyuTNYrGBBCh7wbdzafxueOE9daf3epEWdjijD+XDTQq7vhqMrXLO3x+5E+AhHleyigzCbA3mwOIGUUGbbk64GnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJtvunzj; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADB501F00893;
+	Tue,  9 Jun 2026 06:24:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780986220;
-	bh=/3z/m3l7/Uko4BznX+C3Y9X9nPlsdVhwUqPkRFZUrVo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=kqecfnnqjm6CMNcD+bN3PbjSOpoQ2kEBV8QtQY3M+8+llnFK673l+sEy7iZr12Wse
-	 d48LVYivyeqKjSVnxCjhs6QzcRY9nYpfTJgsmUkEolHLcfJwXa4O1ZAORc6WNKSTvX
-	 zvP1sdd6xV5xOfXnwu9HG0tr+nsYqYjHUefKqnKBDHveitY4443U6OF84DvqYPfW6i
-	 ob79HLomKO8195qE1FmTBgMq2m0tTFc2S3lt1WA/fkg8UVJE2vZmdHi9htNl2Bket7
-	 FNmPydeleoPZIiDvi3nu/dPxvhSGrl+11Mt3DBZ8GUlzzhHh2tqZ1REMPjTfwK/eoc
-	 rdOHzAn6f87Sw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 13/21] RISC-V: perf: Implement supervisor counter
- delegation support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Atish Patra" <atish.patra@linux.dev>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, linux-perf-users@vger.kernel.org
-In-Reply-To: <20260608-counter_delegation-v6-13-285b72ed65a9@meta.com>
-References: <20260608-counter_delegation-v6-13-285b72ed65a9@meta.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 09 Jun 2026 06:23:39 +0000
-Message-Id: <20260609062339.F223A1F00893@smtp.kernel.org>
+	s=k20260515; t=1780986248;
+	bh=fXn32P7dG+BEeIWxmSSoq3HxrifHEQNW0NPJb/gssfY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=gJtvunzjpNCTcx2FP1E/kuBSjYBn1/VPRCftRRQhMBRzlimffe51M2MqKUywTEYdN
+	 wk5WOpU3+yriNZFWBcgWbHYI99nUodOZmDjJdNzWF7BSWrwg1zoxhdm24fQ95w2Hiv
+	 1voIRKXEXKhEY+nx4tXFF+QcURbGqqmHhaq+e1natxvDdmQBXWFkiUAbz2R5l1Abuy
+	 EV4/RG4NcPPazTLy+zzA9ELla5Mx2XE3hT2dfu99Us7bUpBpkpl4uYGXWns3PWCS3N
+	 MyAtwTkIYHNwtPllpR1ybYvsfhUb+xgms4/g7m5pSgIQgMt1PoSRxr3Gk9n+qKkrmC
+	 amhizYmhgulRA==
+Message-ID: <c6415963-ef68-4422-a7fb-fd23b007de32@kernel.org>
+Date: Tue, 9 Jun 2026 08:24:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] dt-bindings: dma: qcom,bam-dma: Increase iommus
+ maxItems to seven
+To: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+ Andy Gross <agross@kernel.org>, Harshal Dev <harshal.dev@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dmaengine@vger.kernel.org
+References: <20260521-shikra_crypto_changse-v1-0-0154cc9cc0de@oss.qualcomm.com>
+ <20260521-shikra_crypto_changse-v1-4-0154cc9cc0de@oss.qualcomm.com>
+ <20260530-spiffy-glittering-quail-dff199@quoll>
+ <289a5bca-5491-4fc2-92d9-1102aa664021@oss.qualcomm.com>
+ <844eccf8-4ad3-46a2-bc8a-67895d629c4f@kernel.org>
+ <26b56175-a83e-4c3e-a871-28fb3aab0725@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <26b56175-a83e-4c3e-a871-28fb3aab0725@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,lists.linux.dev:replyto,rivosinc.com:email];
-	TAGGED_FROM(0.00)[bounces-308719-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-308721-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:atish.patra@linux.dev,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linux-perf-users@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_RECIPIENTS(0.00)[m:kuldeep.singh@oss.qualcomm.com,m:herbert@gondor.apana.org.au,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:vkoul@kernel.org,m:thara.gopinath@gmail.com,m:konradybcio@kernel.org,m:Frank.Li@kernel.org,m:agross@kernel.org,m:harshal.dev@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:tharagopinath@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[gondor.apana.org.au,davemloft.net,kernel.org,gmail.com,oss.qualcomm.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6F06465CB69
+X-Rspamd-Queue-Id: EAB8C65CBFC
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] Bitwise shift of signed 32-bit integer causes overflow and corrupt=
-s SCOUNTINHIBIT on 64-bit systems.
-- [High] Non-sampling events are permanently inhibited from counting becaus=
-e HPMEVENT_OF is unconditionally set but never cleared.
-- [High] On 32-bit architectures, `rvpmu_deleg_ctr_enable_irq` writes modif=
-ied event configuration to the wrong CSR (`CSR_SIREG4` instead of `CSR_SIRE=
-G5`).
-- [High] SBI PMU snapshot logic breaks supervisor counter delegation by unc=
-onditionally bypassing S-mode CSR writes and reading stale shared memory.
---
+On 09/06/2026 07:37, Kuldeep Singh wrote:
+> On 09-06-2026 01:19, Krzysztof Kozlowski wrote:
+>> On 06/06/2026 22:59, Kuldeep Singh wrote:
+>>> On 30-05-2026 16:09, Krzysztof Kozlowski wrote:
+>>>> On Thu, May 21, 2026 at 06:47:11PM +0530, Kuldeep Singh wrote:
+>>>>> Shikra bam dma engine support 7 iommu entries and not 6.
+>>>>> Increase maxItems property for iommus to pass dtbs_check errors.
+>>>>
+>>>> What errors? There is no Shikra in upstream so how could we have errors?
+>>> dt-bindings updates are prerequisites for the DT changes of ice,rng, qce
+>>> and hence updated bindings in patch [1-4]/5.
+>>> Also, the commit message mention about shikra and DT change is also in
+>>> same series.
+>>>
+>>> I hope this clarifies.
+>>
+>>
+>> No, nothing is clarified. This commit msg is just misleading.
+> Yes, I'll update commit message better in next rev.
+> 
+> I specified error observed after introducing qcrypto DT(with 7 iommus)
+> for shikra here[1].
+> Sharing just error snippet:
 
-commit ff1e171673cfe94a12c443765bd5b68dacf3b687
-Author: Atish Patra <atishp@rivosinc.com>
 
-RISC-V: perf: Implement supervisor counter delegation support
+Again, there is no error. Revert this patch and check.
 
-This patch adds support for RISC-V ISA extensions (ssccfg, sscsrind,
-smcntrpmf) that allow programming hpmcounters directly from S-mode.
-It falls back to the SBI PMU extension if the hardware extensions are
-unavailable or for firmware counters.
-
-> diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
-> index 46a25979e95e9..1f16df9d0dd00 100644
-> --- a/drivers/perf/riscv_pmu_sbi.c
-> +++ b/drivers/perf/riscv_pmu_sbi.c
-
-[ ... ]
-
-> -static u64 rvpmu_sbi_ctr_read(struct perf_event *event)
-> +static u64 rvpmu_ctr_read(struct perf_event *event)
->  {
->  	struct hw_perf_event *hwc =3D &event->hw;
->  	int idx =3D hwc->idx;
-
-[Severity: High]
-Does this function still read stale data from the SBI shared memory when
-using supervisor counter delegation?
-
-If a platform supports both SBI PMU snapshots and S-mode counter delegation,
-the code unconditionally reads from the SBI shared memory for stopped
-hardware counters. Since S-mode counters are stopped via direct CSR writes,
-the SBI firmware is bypassed and the shared memory is never updated.
-
-[ ... ]
-
-> +static void rvpmu_deleg_ctr_enable_irq(struct perf_event *event)
-> +{
-> +	unsigned long hpmevent_curr;
-> +	unsigned long of_mask;
-> +	struct hw_perf_event *hwc =3D &event->hw;
-> +	int counter_idx =3D hwc->idx;
-> +	unsigned long sip_val =3D csr_read(CSR_SIP);
-> +
-> +	if (!is_sampling_event(event) || (sip_val & SIP_LCOFIP))
-> +		return;
-
-[Severity: High]
-Will this early return cause non-sampling events to never be counted?
-
-In update_deleg_hpmevent(), the HPMEVENT_OF bit is unconditionally set for
-all events. The Sscofpmf specification states a counter does not increment
-while its OF bit is 1. If we return early here for non-sampling events
-(like perf stat), the OF bit is never cleared, which would leave these
-counters permanently inhibited.
-
-> =20
-> -	/* Reinitialize and start all the counter that overflowed */
-> -	while (ctr_ovf_mask) {
-> -		if (ctr_ovf_mask & 0x01) {
-> -			event =3D cpu_hw_evt->events[idx];
-> -			hwc =3D &event->hw;
-> -			max_period =3D riscv_pmu_ctr_get_width_mask(event);
-> -			init_val =3D local64_read(&hwc->prev_count) & max_period;
->  #if defined(CONFIG_32BIT)
-> -			sbi_ecall(SBI_EXT_PMU, SBI_EXT_PMU_COUNTER_START, idx, 1,
-> -				  flag, init_val, init_val >> 32, 0);
-> +	hpmevent_curr =3D csr_ind_read(CSR_SIREG5, SISELECT_SSCCFG_BASE, counte=
-r_idx);
-> +	of_mask =3D (u32)~HPMEVENTH_OF;
->  #else
-> -			sbi_ecall(SBI_EXT_PMU, SBI_EXT_PMU_COUNTER_START, idx, 1,
-> -				  flag, init_val, 0, 0);
-> +	hpmevent_curr =3D csr_ind_read(CSR_SIREG2, SISELECT_SSCCFG_BASE, counte=
-r_idx);
-> +	of_mask =3D ~HPMEVENT_OF;
->  #endif
-> -			perf_event_update_userpage(event);
-> -		}
-> -		ctr_ovf_mask =3D ctr_ovf_mask >> 1;
-> -		idx++;
-> -	}
-> +
-> +	hpmevent_curr &=3D of_mask;
-> +#if defined(CONFIG_32BIT)
-> +	csr_ind_write(CSR_SIREG4, SISELECT_SSCCFG_BASE, counter_idx, hpmevent_c=
-urr);
-
-[Severity: High]
-Is this writing the event configuration to the wrong CSR?
-
-The code reads the high 32 bits of the event configuration from CSR_SIREG5
-and clears the HPMEVENTH_OF bit, but it writes the modified value back to
-CSR_SIREG4. Since CSR_SIREG4 maps to hpmcounterh, this might overwrite the
-running counter's upper 32 bits with the event configuration value instead
-of clearing the OF bit in the hpmevent register.
-
-> +#else
-> +	csr_ind_write(CSR_SIREG2, SISELECT_SSCCFG_BASE, counter_idx, hpmevent_c=
-urr);
-> +#endif
-> +}
-> +
-> +static void rvpmu_deleg_ctr_start(struct perf_event *event, u64 ival)
-> +{
-> +	unsigned long scountinhibit_val =3D 0;
-> +	struct hw_perf_event *hwc =3D &event->hw;
-> +
-> +#if defined(CONFIG_32BIT)
-> +	csr_ind_write(CSR_SIREG, SISELECT_SSCCFG_BASE, hwc->idx, ival & 0xFFFFF=
-FFF);
-> +	csr_ind_write(CSR_SIREG4, SISELECT_SSCCFG_BASE, hwc->idx, ival >> BITS_=
-PER_LONG);
-> +#else
-> +	csr_ind_write(CSR_SIREG, SISELECT_SSCCFG_BASE, hwc->idx, ival);
-> +#endif
-> +
-> +	rvpmu_deleg_ctr_enable_irq(event);
-> +
-> +	scountinhibit_val =3D csr_read(CSR_SCOUNTINHIBIT);
-> +	scountinhibit_val &=3D ~(1 << hwc->idx);
-
-[Severity: High]
-Could this bitwise shift result in sign-extension and corrupt SCOUNTINHIBIT
-on 64-bit systems?
-
-Because 1 is a signed 32-bit integer, (1 << 31) results in -2147483648.
-When this is negated by a bitwise NOT or cast to an unsigned long on a
-64-bit architecture, it gets sign-extended (e.g., 0x000000007FFFFFFF).
-This could erroneously clear bits 32-63 of the SCOUNTINHIBIT CSR.
-
-Should this use 1UL << hwc->idx or the BIT() macro instead?
-
-[ ... ]
-
-> -static void rvpmu_sbi_start_overflow_mask(struct riscv_pmu *pmu,
-> -					  u64 ctr_ovf_mask)
-> +/*
-> + * This function starts all the used counters in two step approach.
-> + * Any counter that did not overflow can be start in a single step
-> + * while the overflowed counters need to be started with updated initial=
-ization
-> + * value.
-> + */
-> +static void rvpmu_start_overflow_mask(struct riscv_pmu *pmu, u64 ctr_ovf=
-_mask)
->  {
-> +	int idx =3D 0, i;
-> +	struct perf_event *event;
-> +	unsigned long ctr_start_mask =3D 0;
-> +	u64 max_period, init_val =3D 0;
-> +	struct hw_perf_event *hwc;
->  	struct cpu_hw_events *cpu_hw_evt =3D this_cpu_ptr(pmu->hw_events);
-> =20
->  	if (sbi_pmu_snapshot_available())
-> -		rvpmu_sbi_start_ovf_ctrs_snapshot(cpu_hw_evt, ctr_ovf_mask);
-> -	else
-> -		rvpmu_sbi_start_ovf_ctrs_sbi(cpu_hw_evt, ctr_ovf_mask);
-> +		return rvpmu_sbi_start_ovf_ctrs_snapshot(cpu_hw_evt, ctr_ovf_mask);
-
-[Severity: High]
-Does this check bypass S-mode delegation when both snapshot and delegation
-are available?
-
-If a platform supports both, this unconditionally calls
-rvpmu_sbi_start_ovf_ctrs_snapshot(), which starts S-mode delegated hardware
-counters using SBI ECALLs rather than direct S-mode CSR writes.
-
-[ ... ]
-
-> +static void update_deleg_hpmevent(int counter_idx, uint64_t event_value,=
- uint64_t filter_bits)
-> +{
-> +	u64 hpmevent_value =3D 0;
-> +
-> +	/* OF bit should be enable during the start if sampling is requested */
-> +	hpmevent_value =3D (event_value & ~HPMEVENT_MASK) | filter_bits | HPMEV=
-ENT_OF;
-
-[Severity: High]
-Are we unconditionally setting the HPMEVENT_OF bit here?
-
-Although the comment states it should be enabled if sampling is requested,
-the bit is added for all events. Combined with the early return in
-rvpmu_deleg_ctr_enable_irq(), this causes non-sampling events to remain
-inhibited permanently.
-
-[ ... ]
-
->  static void rvpmu_ctr_stop(struct perf_event *event, unsigned long flag)
->  {
-> -	rvpmu_sbi_ctr_stop(event, flag);
-> -	/* TODO: Counter delegation implementation */
-> +	struct hw_perf_event *hwc =3D &event->hw;
-> +
-> +	if ((hwc->flags & PERF_EVENT_FLAG_USER_ACCESS) &&
-> +	    (hwc->flags & PERF_EVENT_FLAG_USER_READ_CNT))
-> +		rvpmu_reset_scounteren((void *)event);
-> +
-> +	if (riscv_pmu_cdeleg_available() && !pmu_sbi_is_fw_event(event)) {
-> +		/*
-> +		 * The counter is already stopped. No need to stop again. Counter
-> +		 * mapping will be reset in clear_idx function.
-> +		 */
-> +		if (flag !=3D RISCV_PMU_STOP_FLAG_RESET)
-> +			rvpmu_deleg_ctr_stop_mask((1 << hwc->idx));
-
-[Severity: High]
-Can this 32-bit shift overflow and corrupt the upper 32 bits of SCOUNTINHIB=
-IT?
-
-Passing (1 << 31) will sign-extend to 0xFFFFFFFF80000000 on 64-bit systems.
-When passed to rvpmu_deleg_ctr_stop_mask, it ORs this mask into SCOUNTINHIB=
-IT,
-which erroneously sets bits 32-63 to 1.
-
-Consider using 1UL << hwc->idx or the BIT() macro to prevent overflow.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608-counter_de=
-legation-v6-0-285b72ed65a9@meta.com?part=3D13
+Best regards,
+Krzysztof
 
