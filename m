@@ -1,148 +1,163 @@
-Return-Path: <devicetree+bounces-308618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308611-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fGeEGWyDJ2q7yQIAu9opvQ
-	(envelope-from <devicetree+bounces-308618-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:07:24 +0200
+	id 0pelOD6DJ2quyQIAu9opvQ
+	(envelope-from <devicetree+bounces-308611-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:06:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B035365BF94
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:07:23 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F86A65BF74
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:06:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308618-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308618-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FvNaNQaE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308611-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308611-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9550C301BCD7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 03:06:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E7F293011E92
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 03:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 409B033FE36;
-	Tue,  9 Jun 2026 03:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD015355055;
+	Tue,  9 Jun 2026 03:06:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp153-182.sina.com.cn (smtp153-182.sina.com.cn [61.135.153.182])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDB59336891
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 03:06:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B14C933FE36
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 03:06:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780974412; cv=none; b=LEUqETQsrPZoZwO2sdtNs1TIsKL/wZF7No8NMUNP2uihEFDVmvgc6LEBeWwgnqO415rCrPHztO3fNn2R2/jp4KvT6YTzSVd/+Aw2ejL6eZwQMIarObRqYjq6BjAI1acTFUMtnESQqKudmEtWCabLnO7Yjps5fGo6C5QLx1IiezY=
+	t=1780974396; cv=none; b=kYXcl6HBNwGvwNTO+IYT7yKmRorH4wKC5tfOmOXYhXyJVd4u8oLcbGC1ajtc/SqVojro6mWAD1Vl8ci6+AODEqxZHT5EjFllaNw5ysLI1pmOGWZgscR2au3Mgos+Hg+a/sWlkJ+Y1rSoojBk2/VuvQYJNUpNdrTnkqUewOvGmAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780974412; c=relaxed/simple;
-	bh=mEAgPbspjroupkPkgrEhICZ9xaV855GXoWdTYDZ3dHE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=PTx09PSDnIJbUF/8v6C5J1VvfzGaGZ2w1vmLyg074eiB4c1NhRzx+cxhgTA+Nj36GEc90lakbbUpPOOWV75mdGx0wKqxlWt0yF7u5ILO/1EkOavQjlsjSxxLD2Gcvp1+kvRFaUi3J9wYC8TYa4hkg49CIo0X3t0YGf6dPYtcPtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=61.135.153.182
-Received: from unknown (HELO zy-virtual-machine.localdomain)([58.38.107.94])
-	by sina.net (10.54.253.38) with ESMTP
-	id 6A278331000011AE; Tue, 9 Jun 2026 11:06:29 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-X-SMAIL-MID: 91644FDEAD464A65A2EB1BD2E2454BAC
-X-SMAIL-UIID: 91644FDEAD464A65A2EB1BD2E2454BAC-20260609-110629
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org
-Cc: tiwai@suse.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Zhang Yi <zhangyi@everest-semi.com>
-Subject: [PATCH 7/7] ASoC: dt-bindings: ES8389: Add members about HPF and clock
-Date: Tue,  9 Jun 2026 11:06:23 +0800
-Message-Id: <20260609030623.17404-8-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20260609030623.17404-1-zhangyi@everest-semi.com>
-References: <20260609030623.17404-1-zhangyi@everest-semi.com>
+	s=arc-20240116; t=1780974396; c=relaxed/simple;
+	bh=szh1CoizDTSxCp9v3664a6ydl/yN5klyMP/P7vW3mHc=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=itjEIOUiPeMt14Iubts14mo1PJLK4ka7AbhHyyo1hMPkd+dN5ei8zB8EvjzLeU1Xsh+gENnzNKlzvmf6VK5VIyggW+Jl4+ab7SVEVqdFGg/zsqSCGOjiJqFXaQhKMedtozG0Co3Jhh5714YOZEZFnRKQwOFNWwZIEykDXKo85gA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FvNaNQaE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 113F61F00893;
+	Tue,  9 Jun 2026 03:06:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780974395;
+	bh=nwnyvky9KaGWlyB5DU9iNNiKHsHjesrrAObPYC+0t2I=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=FvNaNQaE2eXf04CrtFqkhstC24kx1ZbYHuyXNATStkOc+S8SKSOgioETmmnFAtvAH
+	 gLkycC40aN9n2bi5HQK8rHreZpUIz9V3eMNiq2l5Gaxa0JJozm5QK8gbgoDxEQ3yEw
+	 Ahks30AK2Tzy6iV9gycNHAToMk4cTKpGE/ccIxvmW+/85HfgdefuZ5MAvpKusl6o7K
+	 xIyCmwQL06CV2Nr4gjJFqhp4Yvmtj8+rmODobi9AumaXMC3+FJIwrAd9RR/I4sj5c5
+	 IBRBk7Fgb9FxpEsyR34mqurUzjwARTGpcU+7EVlfblOWENDOhLGpoc5KAQHMkEq1Kd
+	 Nc7CQrZ9y8jyw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 6/7] ASoC: codecs: ES8389: Add INPUTL MUX and INPUTR MUX
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Zhang Yi" <zhangyi@everest-semi.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260609025605.16945-7-zhangyi@everest-semi.com>
+References: <20260609025605.16945-7-zhangyi@everest-semi.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 09 Jun 2026 03:06:34 +0000
+Message-Id: <20260609030635.113F61F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-308618-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
-	DMARC_NA(0.00)[everest-semi.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:alsa-devel@alsa-project.org,m:broonie@kernel.org,m:devicetree@vger.kernel.org,m:tiwai@suse.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zhangyi@everest-semi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-308611-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	R_DKIM_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,everest-semi.com:email,everest-semi.com:mid,everest-semi.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,everest-semi.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B035365BF94
+X-Rspamd-Queue-Id: 7F86A65BF74
 
-Add members related to HPF and mclk_source
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] The newly added INPUTL MUX and INPUTR MUX controls will lose their=
+ user-configured state upon system resume, defaulting back to 'Normal' and =
+causing the ALSA DAPM graph to desync from the physical hardware state.
+--
 
-Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
----
- .../bindings/sound/everest,es8389.yaml        | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+commit c098d0e96724f95fd767bddd48bd70af52c8b3e9
+Author: Zhang Yi <zhangyi@everest-semi.com>
 
-diff --git a/Documentation/devicetree/bindings/sound/everest,es8389.yaml b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-index 75ce0bc48..be92014c0 100644
---- a/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-+++ b/Documentation/devicetree/bindings/sound/everest,es8389.yaml
-@@ -38,6 +38,27 @@ properties:
-     description:
-       Interface power supply.
- 
-+  everest,mclk-from-sclk:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Indicates that SCLK is used as the internal clock.
-+
-+  everest,hpfl:
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    description:
-+      the HPF value of ADCL.
-+    minimum: 0x00
-+    maximum: 0x0f
-+    default: 0x0a
-+
-+  everest,hpfr:
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    description:
-+      the HPF value of ADCR.
-+    minimum: 0x00
-+    maximum: 0x0f
-+    default: 0x0a
-+
- required:
-   - compatible
-   - reg
-@@ -58,5 +79,7 @@ examples:
-         #sound-dai-cells = <0>;
-         vddd-supply = <&vdd3v3>;
-         vdda-supply = <&vdd3v3>;
-+        everest,hpfl = [0a];
-+        everest,hpfr = [0a];
-       };
-     };
--- 
-2.17.1
+ASoC: codecs: ES8389: Add INPUTL MUX and INPUTR MUX
 
+This commit adds INPUTL MUX and INPUTR MUX controls to the audio routing
+graph for the ES8389 codec.
+
+> diff --git a/sound/soc/codecs/es8389.c b/sound/soc/codecs/es8389.c
+> index d1bcbbfcd4754..5e4afafd9be63 100644
+> --- a/sound/soc/codecs/es8389.c
+> +++ b/sound/soc/codecs/es8389.c
+
+[ ... ]
+
+> @@ -191,6 +201,20 @@ static const unsigned int es8389_pga_values[] =3D {
+>  	1, 5, 6
+>  };
+> =20
+> +static const struct soc_enum es8389_adcl_mux_enum =3D
+> +	SOC_ENUM_SINGLE(ES8389_ADC_MODE, 5,
+> +			ARRAY_SIZE(es8389_adcl_mux_txt), es8389_adcl_mux_txt);
+> +
+> +static const struct snd_kcontrol_new es8389_adcl_mux_controls =3D
+> +	SOC_DAPM_ENUM("INPUTL MUX", es8389_adcl_mux_enum);
+> +
+> +static const struct soc_enum es8389_adcr_mux_enum =3D
+> +	SOC_ENUM_SINGLE(ES8389_ADC_MODE, 4,
+> +			ARRAY_SIZE(es8389_adcr_mux_txt), es8389_adcr_mux_txt);
+
+[Severity: High]
+Will the user's MUX selection be lost during system suspend and resume?
+
+These MUX controls are backed by the ES8389_ADC_MODE register. If this
+register is treated as volatile by the regmap subsystem, its value will not
+be saved in the cache.
+
+During system resume, if power was lost, es8389_init() unconditionally
+clears bits 4 and 5 of ES8389_ADC_MODE, forcing the MUX back to 'Normal'.
+Because the register is volatile, regcache_sync() will skip it and fail to
+restore the user's selected configuration.
+
+Does this cause the ALSA DAPM graph to desynchronize from the physical
+hardware state, potentially resulting in incorrect audio routing until the
+control is manually toggled again?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609025605.1694=
+5-1-zhangyi@everest-semi.com?part=3D6
 
