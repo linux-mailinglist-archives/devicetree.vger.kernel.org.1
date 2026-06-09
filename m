@@ -1,68 +1,70 @@
-Return-Path: <devicetree+bounces-309356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309357-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pLOBL6udKGpdGwMAu9opvQ
-	(envelope-from <devicetree+bounces-309356-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 01:11:39 +0200
+	id 9hwyE9egKGrLGwMAu9opvQ
+	(envelope-from <devicetree+bounces-309357-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 01:25:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA2A664BC8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 01:11:39 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B44B1664C5F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 01:25:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OQLqyvEX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309356-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309356-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WELQ078C;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309357-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309357-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 47948303982C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 23:11:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 585F73056629
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 23:25:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47B2A3EFFCB;
-	Tue,  9 Jun 2026 23:11:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 814B73EB0EB;
+	Tue,  9 Jun 2026 23:24:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CD95301708;
-	Tue,  9 Jun 2026 23:11:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85997320CAD;
+	Tue,  9 Jun 2026 23:24:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781046686; cv=none; b=osW2KXCi9X1t9Yoyo2MsjLyoHuF8j8tjGsByZQSzZz0xm2rZAXn4MDTYmHQyJoPgY7Uqxalw+HtTfRlgxLftFfe8XqcJ4fQf7nqmKqxUqoGQ/DC8rlP+NidDg/CDhC90BEpm2CeK3E2lvq8Ke2pOF+kY57sjNFovDyLYx5yFxoc=
+	t=1781047499; cv=none; b=cORz/ByqEu7uQVMJj/BV+uJmC+vS2c/mA41lbYCw3vvXBq6PM+1GsXbtzJ3wr7Dud1dTrFShVTYexGjjG4tDgA6YoZYH/aDCdxDYJp/Nz9W3k+a9VE/od2qVplJD/H+XTjkZ/0cJ8UK59R7c54XQPfKVGT4jb+Bb47Phg9ScJhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781046686; c=relaxed/simple;
-	bh=cIUrQfjWhexxtEG3nThdTBHEdFiN5tzrGQ/NU86nAuc=;
+	s=arc-20240116; t=1781047499; c=relaxed/simple;
+	bh=9MdWy2QrDz5exOOLcEuBuj6NyRKlWXPx6gtf5833H4Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dzWalfGQutj+tWeYWLrP8XLiiEXUGsecijxyaiIOsa2miYf3DPPXfEYHigcHgMvz1IU9Vovec83ojw45RVwS5EOD2tk/ABszpd2SCLL9jK3g4nZ8hpkyuvStWeo3qiAUxZTZuEs6GDOxzYImgosrXJDTAQGlZ7p43YvjpGCGiUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OQLqyvEX; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D908C1F00893;
-	Tue,  9 Jun 2026 23:11:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pRpwundnTRiQ/mOcV58mrJG7NJ5IPUEjsxhZce60FPCkeMWpIItVpA+GfE+T4AFS2IZQV2t2YG7R1HrXJ0Pro5B+Vhv2E5YL0VN5dQcfOgV1lbfrwMYwvh87TJC+y/mFbRnDNnZqip2PUWVqbv8nbNpPJ+70e7loky7OuJKxFao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WELQ078C; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4D561F00893;
+	Tue,  9 Jun 2026 23:24:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781046684;
-	bh=RTQ7Dfa+YIedQNlrk2pBh0acv1cJxf0hqLHt+u/Ia8k=;
+	s=k20260515; t=1781047498;
+	bh=XECSwOdG7aWv+AWzkviwG4lcJ5iemprDQN3GLacZFEg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=OQLqyvEXsQZCwc5mO4VNP1T5EDWq5EHl3fArZI4AsaiVQjoGwHMLSdaYH3feXYArf
-	 fA6x7Iqa5b1Vdz7luA+0gDRuJ1XmAEUkt/r7ywxYQMlscO7jIp85Mn7Bt/a3Vkib/K
-	 XHkJTs3ngEVXcvWR3YkCRbm7FYaE6fnBJbU/D1fQUNY1YbBiR8reElwFHflN+o5FMC
-	 2kGiJh2HfnxFpucnbb1auSIIVjs9G8jtku5/p/NM7tHSgcKrFaYMvunEtSYvxtPMY4
-	 VlIIKbCjTFTIquDLJGrYzR9sMbZaVxpIwo4E11M6Qj9dFtBTdmz5wZnGVN4e4fMzNB
-	 U3k49y4B9I9PA==
-Date: Wed, 10 Jun 2026 00:11:19 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Guodong Xu <docular.xu@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	b=WELQ078Cnx3ZRgxOd9TJSEoDMyp4ZPhSZQoulwds1G3zBSC/ve1v+j8gSMDVmqo8Y
+	 N721YOKAn20IE0/TAql5rkEUqo86waFSU9AhrjTyMRuVJNxDoAPjKP4JZfLp9xrY48
+	 4WBSTcXWPvwABjPWblyjWVQwZRflo06m1juhCm5bmXhjUKgP0v5W6LA2g85vYyY0ne
+	 Qox08IOwOPpG2XLO/gPu8Ma22b9SMQvfmnqgdRtMVfYWPzQeLTrbsC9+/BuWOREr3A
+	 zuOaRaPnRw7DHvKXzo9JZlVcgr5SRZAfMZB6ePMBxf8Tn9fRETUsJXEORVPzldr40W
+	 m4tqDeuyC7/Kw==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id 856FC1AC56BD; Wed, 10 Jun 2026 00:24:39 +0100 (BST)
+Date: Wed, 10 Jun 2026 00:24:39 +0100
+From: Mark Brown <broonie@kernel.org>
+To: phucduc.bui@gmail.com
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v2 1/2] dt-bindings: dmaengine: Add SpacemiT K1 PDMA
- request numbers
-Message-ID: <20260610-atrophy-gullible-938789978f76@spud>
-References: <20260609-b4-k1-pdma-req-macros-v2-0-5d5d7b997b54@gmail.com>
- <20260609-b4-k1-pdma-req-macros-v2-1-5d5d7b997b54@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 11/11] ASoC: renesas: fsi: Add SPU clock control in
+ hw_startup/shutdown
+Message-ID: <aiigtwDM-qEBxjH5@sirena.co.uk>
+References: <20260609113836.45079-1-phucduc.bui@gmail.com>
+ <20260609113836.45079-12-phucduc.bui@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,157 +72,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mDjp111cseA+tWiA"
+	protocol="application/pgp-signature"; boundary="rIVLtUXf0Jj60L4V"
 Content-Disposition: inline
-In-Reply-To: <20260609-b4-k1-pdma-req-macros-v2-1-5d5d7b997b54@gmail.com>
+In-Reply-To: <20260609113836.45079-12-phucduc.bui@gmail.com>
+X-Cookie: Leave no stone unturned.
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
+X-Spamd-Result: default: False [-5.76 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:docular.xu@gmail.com,m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:docularxu@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:phucduc.bui@gmail.com,m:kuninori.morimoto.gx@renesas.com,m:geert+renesas@glider.be,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phucducbui@gmail.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309357-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[renesas.com,glider.be,gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-309356-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1BA2A664BC8
+X-Rspamd-Queue-Id: B44B1664C5F
 
 
---mDjp111cseA+tWiA
+--rIVLtUXf0Jj60L4V
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jun 09, 2026 at 03:46:38PM -0400, Guodong Xu wrote:
-> Add a dt-bindings header that gives symbolic names to the SpacemiT K1
-> PDMA request lines of the non-secure peripherals. Device trees can use
-> these K1_PDMA_* macros instead of magic numbers.
->=20
-> Signed-off-by: Guodong Xu <docular.xu@gmail.com>
-> ---
-> V2: Drop the #dma-cells description change in spacemit,k1-pdma.yaml; the
->     request numbers are hardware-fixed and unused by the driver.
+On Tue, Jun 09, 2026 at 06:38:36PM +0700, phucduc.bui@gmail.com wrote:
+> @@ -1560,6 +1560,11 @@ static int fsi_hw_startup(struct fsi_priv *fsi,
+>  			  struct device *dev)
+>  {
+>  	u32 data = 0;
+> +	int ret;
+> +	/* enable spu bus bridge clock */
+> +	ret = clk_enable(fsi->master->clk_spu);
+> +	if (ret)
+> +		return ret;
 
-Worth noting that while this wasn't the change I wanted, I didn't
-express myself clearly and Guodong is going to send a v3 after I
-clarified:
-https://lore.kernel.org/all/6ycdvhpgygnelzp3ot63xtzcnlvac7emngvj7tviiclst4a=
-7km@kjq7oqvecnxx/
+This is unconditional...
 
-ta,
-Conor.
+>  static int fsi_hw_shutdown(struct fsi_priv *fsi,
+>  			    struct device *dev)
+>  {
+> +	int ret;
+>  	/* stop master clock */
+> -	if (fsi_is_clk_master(fsi))
+> -		return fsi_clk_disable(dev, fsi);
+> +	if (fsi_is_clk_master(fsi)) {
+> +		ret = fsi_clk_disable(dev, fsi);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +	/* stop spu bus bridge clock */
+> +	clk_disable(fsi->master->clk_spu);
 
-> ---
->  include/dt-bindings/dma/spacemit,k1-pdma.h | 56 ++++++++++++++++++++++++=
-++++++
->  1 file changed, 56 insertions(+)
->=20
-> diff --git a/include/dt-bindings/dma/spacemit,k1-pdma.h b/include/dt-bind=
-ings/dma/spacemit,k1-pdma.h
-> new file mode 100644
-> index 0000000000000..491976516550a
-> --- /dev/null
-> +++ b/include/dt-bindings/dma/spacemit,k1-pdma.h
-> @@ -0,0 +1,56 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * This header provides DMA request number for non-secure peripherals of
-> + * SpacemiT K1 PDMA.
-> + *
-> + * Copyright (c) 2026 Guodong Xu <docular.xu@gmail.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_DMA_SPACEMIT_K1_PDMA_H_
-> +#define _DT_BINDINGS_DMA_SPACEMIT_K1_PDMA_H_
-> +
-> +#define K1_PDMA_UART0_TX	3
-> +#define K1_PDMA_UART0_RX	4
-> +#define K1_PDMA_UART2_TX	5
-> +#define K1_PDMA_UART2_RX	6
-> +#define K1_PDMA_UART3_TX	7
-> +#define K1_PDMA_UART3_RX	8
-> +#define K1_PDMA_UART4_TX	9
-> +#define K1_PDMA_UART4_RX	10
-> +#define K1_PDMA_I2C0_TX		11
-> +#define K1_PDMA_I2C0_RX		12
-> +#define K1_PDMA_I2C1_TX		13
-> +#define K1_PDMA_I2C1_RX		14
-> +#define K1_PDMA_I2C2_TX		15
-> +#define K1_PDMA_I2C2_RX		16
-> +#define K1_PDMA_I2C4_TX		17
-> +#define K1_PDMA_I2C4_RX		18
-> +#define K1_PDMA_SPI3_TX		19
-> +#define K1_PDMA_SPI3_RX		20
-> +#define K1_PDMA_I2S0_TX		21
-> +#define K1_PDMA_I2S0_RX		22
-> +#define K1_PDMA_I2S1_TX		23
-> +#define K1_PDMA_I2S1_RX		24
-> +#define K1_PDMA_UART5_TX	25
-> +#define K1_PDMA_UART5_RX	26
-> +#define K1_PDMA_UART6_TX	27
-> +#define K1_PDMA_UART6_RX	28
-> +#define K1_PDMA_UART7_TX	29
-> +#define K1_PDMA_UART7_RX	30
-> +#define K1_PDMA_UART8_TX	31
-> +#define K1_PDMA_UART8_RX	32
-> +#define K1_PDMA_UART9_TX	33
-> +#define K1_PDMA_UART9_RX	34
-> +#define K1_PDMA_I2C5_TX		35
-> +#define K1_PDMA_I2C5_RX		36
-> +#define K1_PDMA_I2C6_TX		37
-> +#define K1_PDMA_I2C6_RX		38
-> +#define K1_PDMA_I2C7_TX		39
-> +#define K1_PDMA_I2C7_RX		40
-> +#define K1_PDMA_I2C8_TX		41
-> +#define K1_PDMA_I2C8_RX		42
-> +#define K1_PDMA_CAN0_RX		43
-> +#define K1_PDMA_QSPI_RX		44
-> +#define K1_PDMA_QSPI_TX		45
-> +
-> +#endif /* _DT_BINDINGS_DMA_SPACEMIT_K1_PDMA_H_ */
->=20
-> --=20
-> 2.43.0
->=20
+...but the matching disable is skipped if !fsi_is_clk_master().
 
---mDjp111cseA+tWiA
+--rIVLtUXf0Jj60L4V
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiidlwAKCRB4tDGHoIJi
-0gqdAQDHkJNkld9XKOrvHNTBvPSzUlW9HGCxoEAZz+aOul9PggD/ZoDUW2fCKmZW
-bBkaF7fEvO7Fd+9eaehZv6GsOP6twgU=
-=vNgE
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoooLYACgkQJNaLcl1U
+h9BikQgAgs32gfdN4Rngk/+MZu3KLIyYeq4PEjHKyPBS45e/hcQAox/9hL3UG9ok
+y41NH8g3rJIB0pGpxqkdhgy0comqz/j8jke5fF2Tutv2nnzCKeZ8u6ZZqY5ZgI6Y
+ttlqSXpeRuCNBKLr+Psk27CJsvUALBTrahTK9IraRIbODD27+BYqbpH5u2eq4NTJ
+cBHwq+GB+8IDWUrVq39gZA6+/u7mY4YfuWe8r8EhvkOyEfcW414tjaPiMCEEsu9c
+tXejrZloBhnG4xrH1c+dmvC+aqhhBGoReDUPWEjqsc7RQIqK9rNumDb/s763UxYd
+gxKLg1je7le4XGT4P+ojFZh6gLU0kg==
+=q5yz
 -----END PGP SIGNATURE-----
 
---mDjp111cseA+tWiA--
+--rIVLtUXf0Jj60L4V--
 
