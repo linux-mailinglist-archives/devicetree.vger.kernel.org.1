@@ -1,303 +1,237 @@
-Return-Path: <devicetree+bounces-309323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309325-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5SEWAv9vKGq1EgMAu9opvQ
-	(envelope-from <devicetree+bounces-309323-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:56:47 +0200
+	id JvLuIeZvKGqnEgMAu9opvQ
+	(envelope-from <devicetree+bounces-309325-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:56:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E125663F50
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:56:46 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43101663F36
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:56:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=dziBB5dH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309323-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309323-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=cknow-tech.com header.s=key1 header.b=AOeaBGzl;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309325-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309325-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=cknow-tech.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5E55730CD8BC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 19:51:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DB21B3097200
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 19:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03856480DC9;
-	Tue,  9 Jun 2026 19:51:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C813EB10F;
+	Tue,  9 Jun 2026 19:52:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4586C374A1E;
-	Tue,  9 Jun 2026 19:51:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F34F3362154
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 19:52:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781034684; cv=none; b=fB0NN34KWLWGz9uuEr4gxmdtkQLB2RmNhlunnR2Uws2GbjBc0Lj78o04h1NWIrver2RXOhk12m2od7OsGxQh8UaedJ08VuOYAydgP6sbuxLPD0bujjkFR9Lhdx8pE68PVO1pIBapzvAPLw6Sp/+DwbiYUJ+rwL3aWI0IzGXQOiw=
+	t=1781034752; cv=none; b=btLut41SS8WDG9AqDhDH03f8jZZQb5eC9a9NxukNoObPM2QaJ5AlGyaaY5Q19QJDSoKdPwWxr2LPpcpffdTQC7NYaD+fjwoz3u5HppYU1eyPtMJhHtjd5aol4OQCFQFErDlxcWE0OEHsbh5QX6z6DE1mPhuY7kx9c5oUECRWIAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781034684; c=relaxed/simple;
-	bh=vMyOOIGOAJsdIqCGloHoKrEpv78+bdnXCx7uXU5nR7Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jLKN0jLKCCxd9DKP+ZoxDKVp2WQ+/eWtEr0vd5PWFTyuqMJjSuwWMgiynjmKESx3EikfPhKLMVUFjMWGMvxVE2q/AQblicRIiVD1K9htksL9JyFqF9OKhIv4zEp9nHCA7qIf+NN296gTMeUHjFVCkKi6CNZ9p1vBv4x2XWwhSFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dziBB5dH; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C22091F00893;
-	Tue,  9 Jun 2026 19:51:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781034678;
-	bh=QMeBqfIANjuB2z0BodQbfcwU2KdM59UZ/QBGLC1c+2k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=dziBB5dHsa7EnBkYvZDTTxHglDhPLrVZO5+5Ty/q/KUfuf/21PM2gnqk5xIzBahWF
-	 AuRqNBEiYUEO3IhT9ELTw07O66FMMRYXMvm0QyJQLmfNuyCHKDnpHj3QZO4TtPeB+0
-	 i4og588mJkrYb/mqVF9EZoHg2E+e+x6f+twDCqi+8KVVjCanGfmI7epCqf0AiR7yAt
-	 t/A3BWzKnUDpgdSPP4Ir3rziUxvasVpFbTrX+GMcchlxxXOU4Ln0t5WYs7PMfG0IFl
-	 S6YpNpk3xeGIhCQ0dtw4ikZuCkeL2vYsbD/gUnwRvGiqFbPJCHdI5YRC8z1jh+zi46
-	 end+eultxPHqA==
-Message-ID: <132bb73c-b98d-41aa-a8bb-0f93abbd408b@kernel.org>
-Date: Tue, 9 Jun 2026 21:51:13 +0200
+	s=arc-20240116; t=1781034752; c=relaxed/simple;
+	bh=K1T6VA2P8uQBC9Qz6EIOyWqlugokZJCAHS6tuHawKh8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=p8GkbvHO/HKLpmxQ5Rs/x6C0OtXaOiqlBXEhTWAF4DHeCdq5xP4axOtO5LgJEs5qP3IKJ3+TumvOzB98cd4zWpKS7UGgYWzCBm6miD7Fa/sr2KBYDbDLFd6WAwSOnPasH+X2i4iy7nFIQAevIGP2ltKJ3WxVn7ag5u0Fa98exNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=AOeaBGzl; arc=none smtp.client-ip=91.218.175.182
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/8] can: flexcan: add FLEXCAN_QUIRK_IRQ_BERR quirk
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
- Marc Kleine-Budde <mkl@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- linux-can@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, NXP S32 Linux Team <s32@nxp.com>,
- Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
- Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>,
- Larisa Grigore <larisa.grigore@nxp.com>, Haibo Chen <haibo.chen@nxp.com>
-References: <20260609142954.1807421-1-ciprianmarian.costea@oss.nxp.com>
- <20260609142954.1807421-6-ciprianmarian.costea@oss.nxp.com>
-From: Vincent Mailhol <mailhol@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=mailhol@kernel.org; keydata=
- xjMEZluomRYJKwYBBAHaRw8BAQdAf+/PnQvy9LCWNSJLbhc+AOUsR2cNVonvxhDk/KcW7FvN
- JFZpbmNlbnQgTWFpbGhvbCA8bWFpbGhvbEBrZXJuZWwub3JnPsKZBBMWCgBBFiEE7Y9wBXTm
- fyDldOjiq1/riG27mcIFAmdfB/kCGwMFCQp/CJcFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcC
- F4AACgkQq1/riG27mcKBHgEAygbvORJOfMHGlq5lQhZkDnaUXbpZhxirxkAHwTypHr4A/joI
- 2wLjgTCm5I2Z3zB8hqJu+OeFPXZFWGTuk0e2wT4JzjgEZx4y8xIKKwYBBAGXVQEFAQEHQJrb
- YZzu0JG5w8gxE6EtQe6LmxKMqP6EyR33sA+BR9pLAwEIB8J+BBgWCgAmFiEE7Y9wBXTmfyDl
- dOjiq1/riG27mcIFAmceMvMCGwwFCQPCZwAACgkQq1/riG27mcJU7QEA+LmpFhfQ1aij/L8V
- zsZwr/S44HCzcz5+jkxnVVQ5LZ4BANOCpYEY+CYrld5XZvM8h2EntNnzxHHuhjfDOQ3MAkEK
-In-Reply-To: <20260609142954.1807421-6-ciprianmarian.costea@oss.nxp.com>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1781034734;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FmI8PUvl0y9cOUVYzfjTqYiM/XJNLR0tm65qzan3Ppo=;
+	b=AOeaBGzl7oMpuwX23rf7rzw3qcQOe4ogFQhAi5TCmbEhKy3OJ3PlVbsf3fkxMKcPI59mwR
+	IN4//tCOpt2V8cRmt5BBAi90+ch/VAQ66+lTqMTJOo9bUJ0uGtatt4sPivCzQyNDNV3Db2
+	3z3QYkUdr4UliUsE9o6zoJfhFAFnzAxhO3L8BinjviZNYhJ66T+37dM7iPVWHOQH81gWe+
+	/KgeVxgk3g7Or73PDL87I8Q6IZVMpzUPENF7OkqgW7A/PzF1kThV5qvFG03roQQrjdgn8I
+	qCjl5MaVs+zzOkXkO3WH4KqZrOI9EbX0EdR4ape2N8QTMKEp/i6VXf1k0Hk/Qw==
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Tue, 09 Jun 2026 21:51:58 +0200
+Message-Id: <DJ4S46HX0BMK.25LUHCHQY4V7K@cknow-tech.com>
+Cc: "Heiko Stuebner" <heiko@sntech.de>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: Add Rockchip RK3568 compatible
+ for EHCI and OHCI
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+To: "Jonas Karlman" <jonas@kwiboo.se>, "Diederik de Haas"
+ <diederik@cknow-tech.com>
+References: <20260609154124.445182-1-jonas@kwiboo.se>
+ <20260609154124.445182-2-jonas@kwiboo.se>
+ <DJ4NVA328NUV.LSPMVBFE0PD8@cknow-tech.com>
+ <9e8f806d-72ec-4eb4-8967-3f82eb0e7dd4@kwiboo.se>
+In-Reply-To: <9e8f806d-72ec-4eb4-8967-3f82eb0e7dd4@kwiboo.se>
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[cknow-tech.com,quarantine];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[cknow-tech.com:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:ciprianmarian.costea@oss.nxp.com,m:mkl@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:festevam@gmail.com,m:kernel@pengutronix.de,m:linux-can@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:s32@nxp.com,m:clizzi@redhat.com,m:aruizrui@redhat.com,m:eballetb@redhat.com,m:echanude@redhat.com,m:larisa.grigore@nxp.com,m:haibo.chen@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[mailhol@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_TO(0.00)[oss.nxp.com,pengutronix.de,kernel.org,nxp.com,gmail.com];
+	TAGGED_FROM(0.00)[bounces-309325-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-309323-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gregkh@linuxfoundation.org,m:devicetree@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-usb@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:jonas@kwiboo.se,m:diederik@cknow-tech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mailhol@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[cknow-tech.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,kwiboo.se:email,cknow-tech.com:dkim,cknow-tech.com:mid,cknow-tech.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5E125663F50
+X-Rspamd-Queue-Id: 43101663F36
 
-On 09/06/2026 at 16:29, Ciprian Costea wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> 
-> Introduce FLEXCAN_QUIRK_IRQ_BERR quirk to handle hardware integration
-> where the FlexCAN module has a dedicated interrupt line for signaling
-> bus errors and device state changes.
-> 
-> This adds the flexcan_irq_esr() handler which composes
-> flexcan_do_state() and flexcan_do_berr() to handle platforms where
-> these events share a single IRQ line.
-> 
-> Also extend flexcan_chip_interrupts_enable() to disable/enable the
-> new IRQ line during IMASK register writes.
-> 
-> This is required for NXP S32N79 SoC support.
-> 
-> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> Reviewed-and-tested-by: Haibo Chen <haibo.chen@nxp.com>
-> Tested-by: Enric Balletbo i Serra <eballetb@redhat.com>
+Hi Jonas,
 
-Reviewed-by: Vincent Mailhol <mailhol@kernel.org>
+On Tue Jun 9, 2026 at 8:06 PM CEST, Jonas Karlman wrote:
+> Hi Diederik,
+>
+> On 6/9/2026 6:32 PM, Diederik de Haas wrote:
+>> Hi Jonas,
+>>=20
+>> On Tue Jun 9, 2026 at 5:41 PM CEST, Jonas Karlman wrote:
+>>> The Rockchip RK3568 EHCI/OHCI controller depends on clk_usbphy1_480m
+>>> being enabled, or the system may freeze when registers are accessed.
+>>>
+>>> Add Rockchip RK3568 EHCI and OHCI compatibles with a similar four-clock
+>>> constraint as RK3588.
+>>>
+>>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>>> ---
+>>> Existing DTs for RK3568 use the plain generic-ehci/ohci compatible,
+>>> next patch make use of these new compatibles and adds the missing
+>>> clk_usbphy1_480m clock references.
+>>> ---
+>>>  .../devicetree/bindings/usb/generic-ehci.yaml          | 10 ++++++++++
+>>>  .../devicetree/bindings/usb/generic-ohci.yaml          |  5 ++++-
+>>>  2 files changed, 14 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/=
+Documentation/devicetree/bindings/usb/generic-ehci.yaml
+>>> index 55a5aa7d7a54..c49a1bbc8cfd 100644
+>>> --- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+>>> @@ -52,6 +52,7 @@ properties:
+>>>                - ibm,476gtr-ehci
+>>>                - nxp,lpc1850-ehci
+>>>                - qca,ar7100-ehci
+>>> +              - rockchip,rk3568-ehci
+>>>                - rockchip,rk3588-ehci
+>>>                - snps,hsdk-v1.0-ehci
+>>>                - socionext,uniphier-ehci
+>>> @@ -186,6 +187,15 @@ allOf:
+>>>        required:
+>>>          - clocks
+>>>          - clock-names
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            const: rockchip,rk3568-ehci
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 4
+>>=20
+>> I think that the constraint for rk3588 is this:
+>> - minItems: 1
+>> - maxItems: 4
+>>=20
+>> Like ~ every other compatible; there's no 'branch' for rk3588-ehci.
+>>=20
+>> That's different from what you add for rk3568. Is that deliberate?
+>> Because from the commit message I assumed they should be the same.
+>
+> It was deliberate, the intention is to use min/maxItems: 4 for rk3568
 
-> ---
->  drivers/net/can/flexcan/flexcan-core.c | 54 +++++++++++++++++++++-----
->  drivers/net/can/flexcan/flexcan.h      |  2 +
->  2 files changed, 47 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/flexcan/flexcan-core.c
-> index 0ed838f0719a..adf3af57fb0a 100644
-> --- a/drivers/net/can/flexcan/flexcan-core.c
-> +++ b/drivers/net/can/flexcan/flexcan-core.c
-> @@ -1300,6 +1300,22 @@ static irqreturn_t flexcan_irq_boff(int irq, void *dev_id)
->  	return handled;
->  }
->  
-> +/* Combined bus error and state change IRQ handler */
-> +static irqreturn_t flexcan_irq_esr(int irq, void *dev_id)
-> +{
-> +	struct net_device *dev = dev_id;
-> +	struct flexcan_priv *priv = netdev_priv(dev);
-> +	irqreturn_t handled;
-> +
-> +	handled = flexcan_do_state(dev);
-> +	handled |= flexcan_do_berr(dev);
-> +
-> +	if (handled)
-> +		can_rx_offload_irq_finish(&priv->offload);
-> +
-> +	return handled;
-> +}
-> +
->  static void flexcan_set_bittiming_ctrl(const struct net_device *dev)
->  {
->  	const struct flexcan_priv *priv = netdev_priv(dev);
-> @@ -1540,10 +1556,10 @@ static void flexcan_chip_interrupts_enable(const struct net_device *dev)
->  	u64 reg_imask;
->  
->  	disable_irq(dev->irq);
-> -	if (quirks & FLEXCAN_QUIRK_NR_IRQ_3) {
-> +	if (quirks & FLEXCAN_QUIRK_NR_IRQ_3)
->  		disable_irq(priv->irq_boff);
-> +	if (quirks & (FLEXCAN_QUIRK_NR_IRQ_3 | FLEXCAN_QUIRK_IRQ_BERR))
->  		disable_irq(priv->irq_err);
-> -	}
->  	if (quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ)
->  		disable_irq(priv->irq_secondary_mb);
->  
-> @@ -1554,10 +1570,10 @@ static void flexcan_chip_interrupts_enable(const struct net_device *dev)
->  	enable_irq(dev->irq);
->  	if (quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ)
->  		enable_irq(priv->irq_secondary_mb);
-> -	if (quirks & FLEXCAN_QUIRK_NR_IRQ_3) {
-> -		enable_irq(priv->irq_boff);
-> +	if (quirks & (FLEXCAN_QUIRK_NR_IRQ_3 | FLEXCAN_QUIRK_IRQ_BERR))
->  		enable_irq(priv->irq_err);
-> -	}
-> +	if (quirks & FLEXCAN_QUIRK_NR_IRQ_3)
-> +		enable_irq(priv->irq_boff);
->  }
->  
->  static void flexcan_chip_interrupts_disable(const struct net_device *dev)
-> @@ -1881,7 +1897,8 @@ static int flexcan_open(struct net_device *dev)
->  
->  	can_rx_offload_enable(&priv->offload);
->  
-> -	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3)
-> +	if (priv->devtype_data.quirks &
-> +			(FLEXCAN_QUIRK_NR_IRQ_3 | FLEXCAN_QUIRK_IRQ_BERR))
->  		err = request_irq(dev->irq, flexcan_irq_mb,
->  				  IRQF_SHARED, dev->name, dev);
->  	else
-> @@ -1902,6 +1919,13 @@ static int flexcan_open(struct net_device *dev)
->  			goto out_free_irq_boff;
->  	}
->  
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_IRQ_BERR) {
-> +		err = request_irq(priv->irq_err,
-> +				  flexcan_irq_esr, IRQF_SHARED, dev->name, dev);
-> +		if (err)
-> +			goto out_free_irq_boff;
-> +	}
-> +
->  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ) {
->  		err = request_irq(priv->irq_secondary_mb,
->  				  flexcan_irq_mb, IRQF_SHARED, dev->name, dev);
-> @@ -1916,7 +1940,8 @@ static int flexcan_open(struct net_device *dev)
->  	return 0;
->  
->   out_free_irq_err:
-> -	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3)
-> +	if (priv->devtype_data.quirks &
-> +			(FLEXCAN_QUIRK_IRQ_BERR | FLEXCAN_QUIRK_NR_IRQ_3))
->  		free_irq(priv->irq_err, dev);
->   out_free_irq_boff:
->  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3)
-> @@ -1948,10 +1973,12 @@ static int flexcan_close(struct net_device *dev)
->  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ)
->  		free_irq(priv->irq_secondary_mb, dev);
->  
-> -	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3) {
-> +	if (priv->devtype_data.quirks &
-> +			(FLEXCAN_QUIRK_IRQ_BERR | FLEXCAN_QUIRK_NR_IRQ_3))
->  		free_irq(priv->irq_err, dev);
-> +
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3)
->  		free_irq(priv->irq_boff, dev);
-> -	}
->  
->  	free_irq(dev->irq, dev);
->  	can_rx_offload_disable(&priv->offload);
-> @@ -2338,12 +2365,21 @@ static int flexcan_probe(struct platform_device *pdev)
->  	if (transceiver)
->  		priv->can.bitrate_max = transceiver->attrs.max_link_rate;
->  
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_IRQ_BERR) {
-> +		priv->irq_err = platform_get_irq_byname(pdev, "berr");
-> +		if (priv->irq_err < 0) {
-> +			err = priv->irq_err;
-> +			goto failed_platform_get_irq;
-> +		}
-> +	}
-> +
->  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3) {
->  		priv->irq_boff = platform_get_irq(pdev, 1);
->  		if (priv->irq_boff < 0) {
->  			err = priv->irq_boff;
->  			goto failed_platform_get_irq;
->  		}
-> +
+Thanks :-)
 
-Nitpick: you shouldn't have unrelated changes, like this newline
-addition, in you patches.
+> for both EHCI and OHCI. I left out anything related to k3588 to keep
+> existing behavior and avoid any possible breakage, and why I used
+> 'similar' and not 'same' in the commit message ;-)
+>
+> Did a check and the rk3588 variant also uses 4 clocks so I will add same
+> constraint for the rk3588 variant and address Sashiko's concern in v2.
 
-@Marc, do you mind removing this while applying?
+FWIW: I would be absolutely fine if you restrict this patch set to just RK3=
+568.
+For the same reason you mentioned. All I wanted to know if it was deliberat=
+e
+and you confirmed that :-)
 
->  		priv->irq_err = platform_get_irq(pdev, 2);
->  		if (priv->irq_err < 0) {
->  			err = priv->irq_err;
-> diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/flexcan.h
-> index 16692a2502eb..bbb1a8dd4777 100644
-> --- a/drivers/net/can/flexcan/flexcan.h
-> +++ b/drivers/net/can/flexcan/flexcan.h
-> @@ -74,6 +74,8 @@
->   * both need to have an interrupt handler registered.
->   */
->  #define FLEXCAN_QUIRK_SECONDARY_MB_IRQ	BIT(18)
-> +/* Setup dedicated bus error and state change IRQ */
-> +#define FLEXCAN_QUIRK_IRQ_BERR	BIT(19)
->  
->  struct flexcan_devtype_data {
->  	u32 quirks;		/* quirks needed for different IP cores */
+Cheers,
+  Diederik
 
-
-Yours sincerely,
-Vincent Mailhol
+> Regards,
+> Jonas
+>
+>>=20
+>>>  unevaluatedProperties: false
+>>> =20
+>>> diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/=
+Documentation/devicetree/bindings/usb/generic-ohci.yaml
+>>> index d42f448fa204..5f1b4d2bff89 100644
+>>> --- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+>>> @@ -47,6 +47,7 @@ properties:
+>>>                - hpe,gxp-ohci
+>>>                - ibm,476gtr-ohci
+>>>                - ingenic,jz4740-ohci
+>>> +              - rockchip,rk3568-ohci
+>>>                - rockchip,rk3588-ohci
+>>>                - snps,hsdk-v1.0-ohci
+>>>            - const: generic-ohci
+>>> @@ -198,7 +199,9 @@ allOf:
+>>>        properties:
+>>>          compatible:
+>>>            contains:
+>>> -            const: rockchip,rk3588-ohci
+>>> +            enum:
+>>> +              - rockchip,rk3568-ohci
+>>> +              - rockchip,rk3588-ohci
+>>=20
+>> Here they clearly do have the same constraint.
+>>=20
+>> Cheers,
+>>   Diederik
+>>=20
+>>>      then:
+>>>        properties:
+>>>          clocks:
+>>=20
 
 
