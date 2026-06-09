@@ -1,182 +1,271 @@
-Return-Path: <devicetree+bounces-309241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309243-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id g3MsDW5FKGqXBQMAu9opvQ
-	(envelope-from <devicetree+bounces-309241-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:55:10 +0200
+	id cV3IBe5JKGqeBgMAu9opvQ
+	(envelope-from <devicetree+bounces-309243-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 19:14:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96802662A82
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:55:09 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35C5A662CF7
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 19:14:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=PIRywoC7;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309241-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309241-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="R74uSwk/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309243-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-309243-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 15649304CF72
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 16:41:34 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 112DB303FFFB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 16:42:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23063EFD37;
-	Tue,  9 Jun 2026 16:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03A1A40BCC0;
+	Tue,  9 Jun 2026 16:42:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8925E343894
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 16:41:30 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781023291; cv=pass; b=sBXeu9mhfEkLnhN7Z0DP6n7r4t9pqAFWvZvDb5O7OQMbWFLuTwo4IuPttPg1vDEnbf7zie6ZfgUQKHNP/73f9CXceOJhvKNxRBVQNv0TVdWA8GTL2ADjMiTZqNsJsn69S5FrUiTQNOE0j+pwwrnKdfIJ79gLuUsX60ClW5/zM+A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781023291; c=relaxed/simple;
-	bh=E2GCKIOLtfV53ggPo+NGPJvjLDxOwlQa/g0l6GIWSuU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dpHSFRxvTL7tQdiFojiQEWbOlFa/CjZhLxMdeUx4Fke8fwLVfafUa2KyTICIzlX+PzvT3+l/B0XyA5ECLmCh2XZ+Cs/G9qfPk3XNKkUwqzWZI3LvGlYuyLg7UNrxNScHsffcgAU00EAbzyPkBe+766INFXabIS/uqdI/wqp6Kjs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PIRywoC7; arc=pass smtp.client-ip=209.85.167.50
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5aa66893e9fso6865859e87.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 09:41:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781023289; cv=none;
-        d=google.com; s=arc-20240605;
-        b=B9W1jqHHrSUGuvZJV8I9i4QIX09D5i+fsrmgItS+kZP+1jGBw97bWTWooUnnlCYBeu
-         Db33bzsRl+5/Cb5Wri16zNcsMQJLGp7YQYnmplMiQ/k4n5s3dDJKY0D+qP83ep4vH4T6
-         CfJr6yKDGPjmjWhdTT4tDvxE9VPqDrryck7n7LexfNRlw7pWDVqFOZ9TjjV3B4QYpkGa
-         wx+9gXmS0O/QH9STe+Vr4OENLu0l3h6CpcZdMJF2sFbYaixleHcDqStzDAPeoDLi+vCB
-         YjJp9R38NOr9B6spnxHkENRlgtzQxSGSOj3NWtMV9p+9bfTACL89ZtYL1FjaqyGOsFIB
-         H/8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=JbVtrbPRmQGLBtb4NcidkH30D+QB4F0TUQOAbXH9LEU=;
-        fh=jamsBUgzJwsIIjvD8X5yRxMEz3P5UM52Q9NeOjmZ1s4=;
-        b=aNVuVSQ+iYT8/gk3gGTJNuI/QTh/ag6rT/FSoaOlyj+NiQkfKrgl9VaGb24IqZ0mov
-         a46QUBvl7weJKsxcXnfLAkxTmIkUL0QK6G7CJ/oSRJZ1FKCTWjsRgGfief/1RfrbTSH7
-         6dY5w2ge5ItjvmDxpXcsBZVJupvkrmjcYBVpaThOjUBc76MFzpLAv933jpA8l5DjH000
-         nW0Skxo8kfbuFtPRiCyPy3sMK7ZwJ9ciIptUT9wXsmO9ZC8pXaKGUycvSbtdAhH+I/dN
-         WsdhO56cZtB5GtA3Tj18XuGzSntURU1zKgJNwV7TeoUQs8iAYPcZmwf/+VlQYtcPqA8s
-         ss9g==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93555481FA3
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 16:42:14 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781023335; cv=none; b=K/76c5vxH/u9sg6Et9dD+As15HUj4ZKvoYlO2N1K3wcv5yWVtL8vkIC3z+q/gW/JwQdy5dnmvX0Q+e7CDH5OewORKEcsdNCHIRhDKZPBkQYkom7LnivMheIQrSW+XFF9OQ0g1NT3wubj+tjeUyc0umPiTzDMVBBW1Z/hqwZb/to=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781023335; c=relaxed/simple;
+	bh=99KrLILEF2FMsqh1wD5ix4ZSC/c0+z6tUPRPcB/xSnE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mFee62uBs3Mgxd8Oyje82ACqXQHAOLlK7DNI4jFUgsk3pdrUOcB3K6nTjU8Mq/L4d84qr2r6KsvthLv2qJ72y/f8wzKWPyKz7ssQXdUIZJm4B4bpdLuxoXEmjFTlZi0UAi0mx3AJifoek3QEZePDZBrdxmgbmh5mCBW2178QLrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R74uSwk/; arc=none smtp.client-ip=209.85.128.51
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-490af320e2aso63081755e9.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 09:42:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781023289; x=1781628089; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JbVtrbPRmQGLBtb4NcidkH30D+QB4F0TUQOAbXH9LEU=;
-        b=PIRywoC7jRPDfIsDQePtTZP+TehrcS7vVKAWJbIWMk8GOVt3ztqKGg5u6KRBDA/JA/
-         +hGJABbZbTqcDvfPD1WgsC5KsgnXyL5TTgj+hcQk2CIGi2MP5DlmOO8NxXWs/xAgc+wj
-         4kXxsUjRGFm1pUI++J+k3BjMNVvaEFsR9LmhgDITm4DSlHLBkfqL/CBpuKT9iIUPNxbm
-         +hRFRgxpv+wMXQ1PQx/aRP4Yd0bsyZZmV2ABin6QDqPSU8D/SCmWU5gUkeQk/Qhbzbdk
-         A5r+bTRkk4bDC5M59GzgPh/p+t93yNQhreS6C9Rz6t9pLovdHbCXefITnDLVKSqbfQrM
-         VRhw==
+        d=gmail.com; s=20251104; t=1781023333; x=1781628133; darn=vger.kernel.org;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ltcN6lrCBn1i7VizWEDzmvqmfmSuDzvei1Fc92HuNdU=;
+        b=R74uSwk/1mn+Y95ALM1apeml3hcYrjv4EjrOvM+kdRXYl19ZSmMZfIDXNcAludAxQI
+         YHq5AOGCc2ON5Rvg9d4y54yMFxxM2tNXA2HC2MlLNbchf2NAhdP4ZE56gwL4mYWk9c1Z
+         pxsypRpK0sjfsCojfH2qWgUekXnqBWxd4038E0W15P3x9NNRPfFpfPXr1AbH/YUG1Rd6
+         wbApfCGuXzs2kYueC/kfmVHan9xGLBUbVopemtbhP/EVI1E6t0IsyTrkioAL9Kp3TUsk
+         fuj1xKtTnSMWq+LFtYUaSAJRgn9b5Wp7TUQ9Z5sil/eiPta4x7FvTBG/pVo8ES8bk7gw
+         u0ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781023289; x=1781628089;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=JbVtrbPRmQGLBtb4NcidkH30D+QB4F0TUQOAbXH9LEU=;
-        b=kpcMG8KSV/GaN6j7VT7ZlYulDQcBQmaGPaxsL83kG3qzbnLSJZk/OTasXEyE2gNY6p
-         HlLWmXjZzUssczezMaqmrbSkn8pn9eletAq6MJyGNqeE04uRb1YNoR2bnzTlmD5wl1nr
-         kLlPfnBs9v9WvD2brvmz0tZKqC76rRXsrGWBXpKweGuHd3i96Hm5GlgvQ2f27OI4SRkX
-         eAmMwP1qeFHh3NoD0f9Q6dG7TsEViOF19rJ0ysw1pnw/eUXmc1YKxM+LLRvqvjvm7uS1
-         1DpwHrF/netJZi3gWG27E4pGl0cvG3DunfpHkPxG5bFIVQViJZ5Zs5hHlUelm0X7C0cp
-         +Zjg==
-X-Forwarded-Encrypted: i=1; AFNElJ/nJ19sszUEYz5CWSLMqJkGLtKHDfSZAlO54AZmjABa8g9EgWj6nlis2muEBXEl0/qQlFEh3tWVH9yc@vger.kernel.org
-X-Gm-Message-State: AOJu0YycqOnACQxNesDMSX77eo8mH35JXKvb7Ug1Ri0VZM3MVFf4e8M6
-	Fe1OwaQwY8xyjueCNAaviT+d7A0feHSq+gQuQCiI3OEmj5QIa9uNHxjCrEfku70tAk6NmSh7Fhf
-	LVqy8Q8dcvT9nVurbX4FfmoKiC+nY6qY=
-X-Gm-Gg: Acq92OGqRgf78wY3TcYJOIKlKzANwRPeLxRzheaYWnAUkphNP0IAXSoZVx73ji6QLix
-	tCiFMcU80Yu/XttLNh7RBXnnBW7QXu9PE0nIlNkJ0YqeC8qGXIHoKM35+czoJcfBOd5/0bG2QGX
-	FPYOJM1M+iU/+y0ziwhWPBPUlregZSRzOXuuLRnVlXZV4pTouC5JQPHCsEsOAnpqvsPrOiX9SPg
-	hYuSj+sU5R1Cz7BNLVNARXZPfi9Bfckle5DcQJCSKFpE9ycH/WSxo07+Gx/nk+RnZn5mYIcbHgt
-	jNMNYYX1iaKWB9dKqw==
-X-Received: by 2002:a05:6512:a93:b0:5a4:496:5bac with SMTP id
- 2adb3069b0e04-5aa87bd5171mr6091292e87.36.1781023288477; Tue, 09 Jun 2026
- 09:41:28 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1781023333; x=1781628133;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ltcN6lrCBn1i7VizWEDzmvqmfmSuDzvei1Fc92HuNdU=;
+        b=qTeIUpCwMyQKyPLFn70cUXJpqeNe2FoBn80xuFM9otgkvJcTjAm02tdtQASD/ZIujo
+         7AyDy3vTJVUlXewUd1aDjTxL9wBVHeKdKh1CEEFavlOxQVD0vtIk/iyvISf/Rp4OVjHq
+         FRG9BhWGlfJXM10wQv4A8OmfkG5NPQou9mmMK3WCS3G2nfY7M+WRbDhHZV9Lk2V9zUBV
+         ec7RhGlFTBND/YUPPxLx7/DJ+hAg5rizX0+CQnbBbXntRQBoU+I6JOisBwOomWI6aN1w
+         nw0oq4Gq8YQp+sLGz2S4qeMB2yUv1E+9HJxXYxVKYk7+xH0UVwVuX1qYCt1wCb0LFljM
+         vOnw==
+X-Forwarded-Encrypted: i=1; AFNElJ9arUl4NsVb1UsST7TOaLcSEsrmZ1auKGlKR5ylFq89vSQ16G6sS7bllQEGt28Wn9A/OuRVWJ8Az9IZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFaMnAgcQxoVs+wHQu/jUdmN0XU1LbYiFL2GfdS+SYjtujJdak
+	CRzp7TC1q/2GHdAH1hyuvjOMobdY9VgqKxGVgy3aHGsZ14H9/DP/IN27
+X-Gm-Gg: Acq92OFkVnp08blbTkUUoUMdkGtEEuOPCcV6yzt1T/ZiZCKOVfQ8V9akHbwuzZCdFNE
+	TAEkNsFhVGLwA+6oSDyh2BRt6kxKUH0iP3mprjXAaILbw5TNlBtVwNvLdnYs3s8+FoU+DG5SBj5
+	iy6wV9f5P5GR67cSAo7gbz5gKP6dZFitfHImMIIPCbFA2ADDT8+9pk2zWdpTNeY/ui2EAKEy26G
+	bbnQfTa5DknbVvrecP+dbA7KEqfqwJLqHVpz01dJ+POAq6/h9pYX2SqBv73F0qYU2kgekcZ3yFx
+	yr7AybLONNPB68JZqLki2VLpEQnc/J0fN5bG3++SccrXszkQI7EmteUROIYForNOznmgknxuveT
+	WhCW6ekqOq8W9u1/33CPrPBXTw1LeacVtsOEuKEE97OVaKyu7Lc0EPn09c/rhinRuefWflk/9dR
+	EJ2YRdcjVG7HYRixAggohLNxOXClX+6acCkFRP3QWtl/5k+7DamQ==
+X-Received: by 2002:a05:600c:529b:b0:490:5380:f2cb with SMTP id 5b1f17b1804b1-490c2528b6amr352314605e9.0.1781023332863;
+        Tue, 09 Jun 2026 09:42:12 -0700 (PDT)
+Received: from silicon.doe.home ([197.250.227.145])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-46059346676sm2398593f8f.26.2026.06.09.09.42.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jun 2026 09:42:12 -0700 (PDT)
+From: Stefan =?UTF-8?B?RMO2c2luZ2Vy?= <stefandoesinger@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Brian Masney <bmasney@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RFC v3 0/5] ZTE zx297520v3 clock bindings and driver
+Date: Tue, 09 Jun 2026 19:42:02 +0300
+Message-ID: <QsCV4VffTSWWBp014o7Pkg@gmail.com>
+In-Reply-To: <f92114a3658185b57bffe546c0f4079a9d39afce.camel@pengutronix.de>
+References:
+ <20260529-zx29clk-v3-0-c7fe54ea388f@gmail.com> <2062167.PYKUYFuaPT@strix>
+ <f92114a3658185b57bffe546c0f4079a9d39afce.camel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260609161701.52513-2-m32285159@gmail.com> <c9418ca9-5563-45a8-b995-d2bf7514d819@baylibre.com>
-In-Reply-To: <c9418ca9-5563-45a8-b995-d2bf7514d819@baylibre.com>
-From: Maxwell Doose <m32285159@gmail.com>
-Date: Tue, 9 Jun 2026 11:41:58 -0500
-X-Gm-Features: AVVi8CeB5Cz3-YRRLOs9srWuk1EOE3Tb2CijlwWS3Fx5DtPSuXMKb63HwLEYvMo
-Message-ID: <CAKqfh0GF32Vwcoyr_rLdq9Q_-DESGAiNYWk=SEAODStzOs=MkA@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Replace Tomasz Duszynski as maintainer for SPS30
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; boundary="nextPartFLf7VarUTpi_4IXxXYdobw";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_ALL(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309241-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:dlechner@baylibre.com,m:jic23@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309243-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bmasney@redhat.com,m:p.zabel@pengutronix.de,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[stefandoesinger@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,baylibre.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stefandoesinger@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 96802662A82
+X-Rspamd-Queue-Id: 35C5A662CF7
 
-On Tue, Jun 9, 2026 at 11:22=E2=80=AFAM David Lechner <dlechner@baylibre.co=
-m> wrote:
->
-> On 6/9/26 11:16 AM, Maxwell Doose wrote:
-> > Hi all.
-> >
-> > This is basically the 2nd half of replacing Tomasz's entries, once
-> > again, in the SPS30 dt-bindings and his entry in MAINTAINERS. All of hi=
-s
-> > entries across IIO appear to be dead, which is why this is being sent.
-> > Jonathan Cameron's approved of this [1] so his entries in iio are being
-> > replaced and an RFC regarding this topic with Tomasz Cced has been
-> > sitting on lore.kernel.org for about a month now.
-> >
-> > Maxwell Doose (2):
-> >   dt-bindings: iio: sensirion,sps30: Add myself as maintainer
-> >   MAINTAINERS: Add myself as maintainer for SPS30
-> >
-> >  .../devicetree/bindings/iio/chemical/sensirion,sps30.yaml       | 2 +-
-> >  MAINTAINERS                                                     | 2 +-
-> >  2 files changed, 2 insertions(+), 2 deletions(-)
-> >
-> > [1] https://lore.kernel.org/linux-iio/20260609140712.2e5d1640@jic23-hua=
-wei/
->
-> Do you have this hardware?
+--nextPartFLf7VarUTpi_4IXxXYdobw
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Stefan =?UTF-8?B?RMO2c2luZ2Vy?= <stefandoesinger@gmail.com>
+Subject: Re: [PATCH RFC v3 0/5] ZTE zx297520v3 clock bindings and driver
+Date: Tue, 09 Jun 2026 19:42:02 +0300
+Message-ID: <QsCV4VffTSWWBp014o7Pkg@gmail.com>
+In-Reply-To: <f92114a3658185b57bffe546c0f4079a9d39afce.camel@pengutronix.de>
+MIME-Version: 1.0
 
-No, however I should be able to get it fairly easily.
+Hi Philipp,
+
+I did some more reading and checked past clock driver submissions. This email 
+is to check if I understood it right.
+
+Am Donnerstag, 4. Juni 2026, 18:23:01 Ostafrikanische Zeit schrieb Philipp 
+Zabel:
+> > The register lock because all LSP and at least one TOP register contains
+> > both clocks and resets.
+> 
+> That could be solved with regmap.
+
+This will require me to change the clk component to use regmaps too. There's 
+no regmap equivalent to clk-{div,gate,mux}.c, so I'll need my own. qcom and 
+meson have similar drivers already, so I'd likely copy one of them. Is there a 
+particular reason why there isn't a regmap equivalent of clk-{div,gate,mux}.c?
+
+Another hypothetical solution is a custom regmap implementation that locks my 
+clk driver's lock. I see that only in imx/clk-imx8ulp-sim-lpav.c.
+
+However, the topclk region also has a stray register that controls if a 
+watchdog timeout resets the board. So there's no good way past a syscon 
+compatible and syscon generated regmap anyway.
+
+Afaics syscon regmaps only support a single IO region, so I'd likely revert 
+back to the topclk/matrixclk split with different bindings, bite the other 
+bullet and list all 50 or so PLL outputs as clocks passed from top to matrix.
+
+Which gives a device tree setup like this:
+
+topcrm: something@13b000 {
+	compatible = "zte,zx297520v3-topcrm", "syscon", "simple-mfd";
+	reg = <0x0013b000 0x400>;
+	#address-cells = <1>;
+	#size-cells = <1>;
+	ranges;
+
+	topclk: clock-controller@0 {
+		compatible = "zte,zx297520v3-topclk";
+		reg = <0x0 0x400>;
+		#clock-cells = <1>;
+		#reset-cells = <1>;
+		clocks = <&osc26m>, <&osc32k>;
+		clock-names = "osc26m", "osc32k";
+	};
+
+	reboot {
+		compatible = "syscon-reboot";
+		offset = <0x0>;
+		mask = <0x1>;
+	};
+};
+
+watchdog_t18: watchdog@148000 {
+	compatible = "zte,zx297520-wdt";
+	reg = <0x00148000 0x20>;
+	clocks = <&topclk ZX297520V3_WDT_T18_WCLK>, <&topclk 
+ZX297520V3_WDT_T18_PCLK>;
+	clock-names = "wclk", "pclk";
+	resets = <&topclk ZX297520V3_WDT_T18_RESET>;
+	zte,wdt-reset-sysctrl = <&topcrm 0x2c 0x3 0x3>;
+};
+
+(I did not attempt to build this, might have typos)
+
+And the reset controller will be an aux-bus child of the clock controller. I 
+could make the reset controller its own device with its own bindings, but that 
+would misrepresent the hardware.
+
+Did I understand this correctly?
+
+For some reason in my dev tree the reset sysctrl works even though my clock 
+driver does not use the syscon compatible nor manually create a regmap.
+
+> > Shared register definition: in the case of the LSP clocks breaking up the
+> > composite definition would sacrifice readability.
+> 
+> That is a matter of perspective.
+> 
+> I had a harder time validating that the resets[] array is properly
+> initialized from the two different composite arrays because of the
+> unordered reset_ids, and some remaining resets[] being filled via code.
+
+I do have a sanity check loop for that.
+
+> It would be much simpler if you split the reset definitions out into a
+> single, separate, const array, indexed by reset id. In fact,
+> I would suggest this even if you don't intend to move the reset code.
+
+I had to collect the clocks and resets from all over ZTE's kernel and U-Boot 
+sources plus manual testing, so maybe I am a bit too attached to seeing all 
+controls for a given device in one place. If the reset controls move to a 
+different file, the composite structure becomes less useful, so I'll probably 
+split it up and just list single div, gates and regs.
+
+--nextPartFLf7VarUTpi_4IXxXYdobw
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEQxb0tqoFWyeVMl1sPRO8yFRPGiIFAmooQlobFIAAAAAABAAO
+bWFudTIsMi41KzEuMTIsMywyAAoJED0TvMhUTxoiKesQAJRepE5jSEE8unaib32O
+EpI63wWhBCKBNi9UCv8iIeAt61Av/y7m/U19SEHHCCyv2IdoH8hhqoPLjcJjt+/v
+UsWNcEujOPf+JbRRRtSP2UyoirW5rsoYHEMOTuMfJSBvk2/SIrTApo7AwDhV59rb
+nJ/MZI9DtTBOGF3CV+vuc9qPWtO8hntdu+jlLeg7TmUSkqtJJZEjknUKZdBZGpDQ
+NSd2dY7wHnf7RhLEP73OBXwm9ebely5izLtAyNiDltkDAOAjJXZibKzRbZ/bPgdz
+XkiQ854wIcynNBQPEaDwsHu4tAzpQSBd6qrZzAzrGn/Nw7XCBvTT3rD2xGhJUEU6
+KUJmfCYzS+5dpY1tfSvsstPruM936JzgH6EBCpY0pQjvrs+QdW1lEMrT1NE890rC
+shggbu9bGsS714qLLk54JffkJlpwTAPlObtNqOdyQH22cAvZvKfZ5cZY+rJzdoAs
+2+d6glovGoZ1aJDGU8WhE9nnlKVgTYObenacdL+fedcfBKo0AwRc8Bu5EYnvn4DP
+v+IKyecGKLWSiudu0Jh8oH3uguoKGpFHlZtXcd0jpLn6h7VvS3wqU3LeBpKRu6Em
+Q04ptHCtkq5eJZBqHFBuBWbfT0XfkAF3sVmZqMxq7/SrzT1e3xJ3apVLcdo9u9Fe
+b8l88Dq5BUMzyvr1kCAAFtGj
+=8F5V
+-----END PGP SIGNATURE-----
+
+--nextPartFLf7VarUTpi_4IXxXYdobw--
+
+
+
 
