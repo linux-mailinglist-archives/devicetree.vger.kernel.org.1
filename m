@@ -1,159 +1,137 @@
-Return-Path: <devicetree+bounces-308628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308629-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YZArBvWGJ2o/ygIAu9opvQ
-	(envelope-from <devicetree+bounces-308628-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:22:29 +0200
+	id ciI2IUmIJ2p2ygIAu9opvQ
+	(envelope-from <devicetree+bounces-308629-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:28:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 576B765C05B
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:22:28 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E170065C09C
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:28:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QJsHR21W;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308628-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308628-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iFmxC3Rk;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308629-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308629-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F2633019F2F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 03:21:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7B879307762E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 03:26:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E22D7367B7C;
-	Tue,  9 Jun 2026 03:21:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998A0367B87;
+	Tue,  9 Jun 2026 03:26:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAFD1364E9E
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 03:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6AD1DF25C;
+	Tue,  9 Jun 2026 03:26:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780975316; cv=none; b=egQ9DObuhVBHNom86ACRzdIFS3Dub0bxiCfY13deQPw5+CtJvRCDkxsJs/v+lPg1t44y+7PPyth+Vy2j6ubcc3qxhjP9X5vaGMs5YYdIviUNuwl3+/QzqN5xj2KpzPFV4JLil+QcMhbP5PIDzr4i3smXNrpT5Zk15NcRi3wRFGc=
+	t=1780975567; cv=none; b=IZqHvYuRovWewQ1qKGZ2vhjbdn9qsiDYXWBWcsynDLo7GL3I6vNP6f9ksfKNEhnm1ShPvIx12igUExKYkfqyY47jxxDIL7sloq7CLflsj4bxgK8TE5+3pmWdJ2XCA4ilrJwWZnlTENYh+IP1eg5wJfXQ+vOvAU+EOX1p2t8xBTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780975316; c=relaxed/simple;
-	bh=h0ZvqBueRkR04c8uIniGRaovWhVJwiZwr8IqhxA0zSY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=EgQow/bW+52Us0oqhF+9Q+MjNal8vRfU7Rex+SkAf6rsBcCVTuDCJqSsjE9+fzqEUPcR1IUQrANMFMIfimiNoEAc96UA7FsLXtzN7dQSvhGh1sOuFNOImQxaBbKI1t2/mCADw00I49wplej//aMFnvIjoI5DNtLjJg6Jtp7oSsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QJsHR21W; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65AC71F00893;
-	Tue,  9 Jun 2026 03:21:55 +0000 (UTC)
+	s=arc-20240116; t=1780975567; c=relaxed/simple;
+	bh=ttVqp3RcfN2X0ogQApPD1BVoMIAm1VF9QckaMahgyPs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eHMrVX36XWfN7/8g0jEkbuVXl5EAZIbmSEnwKeuRfcphVopwePcUFa3hTSIWluhNoe5mnD/sM6MNCmzWFaS3tKgfB3drDZkwBUO55N5fQuSP0nFPNIT5RasmveI2zlJTa74v3OZU9U9J6PXc+qg7AYK0wzyM4IcNsTrhteloW0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iFmxC3Rk; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9B731F00893;
+	Tue,  9 Jun 2026 03:26:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780975315;
-	bh=u8LZMZLyCJbs6cg6mw+UUnAiGAvl588xcNAP3WrFkA0=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=QJsHR21W/qkV2+TFqZGmivMXlNlbykt+5bCqA6ZWX54IUDkoTgBnXXy2aYtDRzf8j
-	 +f0k9DmD4+A8mgp0n8qezoW/NEq1LlEKuk2shVh5lhkNepx2gxdlHUAzLeOIcKkfqf
-	 pzGwFNuJKYUHU0mQOcH5UtilGamBaOOj9wLya621ppOJwRkIivZ727Y65zuAZpeKZJ
-	 PnM5zPxBa78JaKilw0DWWY8jDvm6ntWiKlakcy7wj2hHY1uFJUdOdmB6Hs/WtBvRND
-	 qCBO7Zr+mi9lvrFKim7L4fVmA343Do0MLXeTHM46nuAkoe0y1jVa6h4f9obGUmhf1c
-	 BYYb6lkm3CUIA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 6/7] ASoC: codecs: ES8389: Add INPUTL MUX and INPUTR MUX
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Zhang Yi" <zhangyi@everest-semi.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260609030623.17404-7-zhangyi@everest-semi.com>
-References: <20260609030623.17404-7-zhangyi@everest-semi.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 09 Jun 2026 03:21:55 +0000
-Message-Id: <20260609032155.65AC71F00893@smtp.kernel.org>
+	s=k20260515; t=1780975566;
+	bh=DTwyV+49fLCBDx2v0KMlJ6TqGe0qDGgv9OAfvSH0tYE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=iFmxC3RkKrUAh3QAMl5gVzb8HdROjdH5oT0UbWEJI/omLbuPjezupcvYRxHysTALW
+	 PwBym09KYsmIImspBm9kvoe39DehTn/5wtF7q1Io3gED0Cnmmlvjb8E2ctQSAEz04x
+	 S1jJSWnl+tOFBaMa4X8sI12BBltgG1aA1kjT9IIN/BxI4czNurrj8HWr6lzvroPith
+	 u4asF+F3VomimsF7xgZzwEF0OOZ30gNyvRVyJwKN8Gk5Zh/sAgDNGWVNEACoAeXGnQ
+	 ydNvQXYNvRuEnUaMI6AyrlDvqlBmnbAsReI7IN5Gap0o4bCQSzO/kz+3QF/vogd6Is
+	 M56LbLVzROnmQ==
+Date: Mon, 8 Jun 2026 20:26:04 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-usb@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>,
+	Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>
+Subject: Re: [PATCH 01/12] dt-bindings: clock: thead: add TH1520 MISC subsys
+ clock controller
+Message-ID: <aieHzC76oys5ejWT@thelio>
+References: <20260507081710.4090814-1-zhengxingda@iscas.ac.cn>
+ <20260507081710.4090814-2-zhengxingda@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260507081710.4090814-2-zhengxingda@iscas.ac.cn>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308628-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-308629-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:zhengxingda@iscas.ac.cn,m:guoren@kernel.org,m:wefu@redhat.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:gregkh@linuxfoundation.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:jszhang@kernel.org,m:p.zabel@pengutronix.de,m:linux-riscv@lists.infradead.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-usb@vger.kernel.org,m:uwu@icenowy.me,m:rabenda.cn@gmail.com,m:ziyao@disroot.org,m:krzk@kernel.org,m:conor@kernel.org,m:rabendacn@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FORGED_SENDER(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,redhat.com,baylibre.com,linaro.org,linuxfoundation.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,pengutronix.de,lists.infradead.org,vger.kernel.org,icenowy.me,gmail.com,disroot.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,everest-semi.com:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,iscas.ac.cn:email,thelio:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 576B765C05B
+X-Rspamd-Queue-Id: E170065C09C
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] User configuration for the newly added ADC MUXes is permanently =
-lost across a suspend/resume cycle if the device loses power.
---
+On Thu, May 07, 2026 at 04:16:59PM +0800, Icenowy Zheng wrote:
+> TH1520 has a subsystem clock controller called MISC_SUBSYS in its
+> manual, mainly controlling clocks for USB and MMC/SD in non-TEE
+> environment.
+> 
+> Add device tree binding for it.
+> 
+> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+> ---
+>  .../devicetree/bindings/clock/thead,th1520-clk-ap.yaml |  5 +++--
+>  include/dt-bindings/clock/thead,th1520-clk-ap.h        | 10 ++++++++++
+>  2 files changed, 13 insertions(+), 2 deletions(-)
 
-commit 244b36be42543e8998257a345f41703019f1e7ea
-Author: Zhang Yi <zhangyi@everest-semi.com>
+Thanks for working on USB and sorry for the delay in reviewing this series.
 
-ASoC: codecs: ES8389: Add INPUTL MUX and INPUTR MUX
+Reviewed-by: Drew Fustini <fustini@kernel.org>
 
-This commit adds INPUTL MUX and INPUTR MUX to the routing table for the
-ES8389 codec.
-
-> diff --git a/sound/soc/codecs/es8389.c b/sound/soc/codecs/es8389.c
-> index d1bcbbfcd4754..5e4afafd9be63 100644
-> --- a/sound/soc/codecs/es8389.c
-> +++ b/sound/soc/codecs/es8389.c
-[ ... ]
-> @@ -191,6 +201,20 @@ static const unsigned int es8389_pga_values[] =3D {
->  	1, 5, 6
->  };
-> =20
-> +static const struct soc_enum es8389_adcl_mux_enum =3D
-> +	SOC_ENUM_SINGLE(ES8389_ADC_MODE, 5,
-> +			ARRAY_SIZE(es8389_adcl_mux_txt), es8389_adcl_mux_txt);
-
-[Severity: Medium]
-Will the user configuration for these new MUXes be lost across a suspend
-and resume cycle?
-
-Because ES8389_ADC_MODE is omitted from the non-volatile list in
-es8389_volatile_register(), it is treated as volatile and bypasses the
-regmap cache.
-
-When the device resumes from suspend and power is lost, es8389_resume()
-calls es8389_init(), which overwrites this register with default values:
-
-sound/soc/codecs/es8389.c:es8389_init() {
-    ...
-    regmap_write(es8389->regmap, ES8389_ADC_MODE, (0x00 | ES8389_TDM_MODE));
-    ...
-}
-
-Since ES8389_ADC_MODE is volatile, the subsequent regcache_sync() will skip
-it, leaving the routing configuration permanently clobbered. Does
-ES8389_ADC_MODE need to be added to the non-volatile register list so the
-MUX state can be properly restored?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609030623.1740=
-4-1-zhangyi@everest-semi.com?part=3D6
 
