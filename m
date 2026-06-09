@@ -1,147 +1,120 @@
-Return-Path: <devicetree+bounces-308610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308613-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JjDgNM6CJ2qmyQIAu9opvQ
-	(envelope-from <devicetree+bounces-308610-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:04:46 +0200
+	id QZ5WKU2DJ2q2yQIAu9opvQ
+	(envelope-from <devicetree+bounces-308613-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:06:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D7F65BF5E
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:04:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 267F565BF7D
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:06:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ouZp1fRc;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308610-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308610-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308613-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-308613-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BB34E3012C4D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 03:04:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CE66B301C881
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 03:06:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C3E336891;
-	Tue,  9 Jun 2026 03:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C52B9360EED;
+	Tue,  9 Jun 2026 03:06:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from r3-212.sinamail.sina.com.cn (r3-212.sinamail.sina.com.cn [202.108.3.212])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D684071DF;
-	Tue,  9 Jun 2026 03:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64412336891
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 03:06:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780974283; cv=none; b=tU8YS2EzCyUm16P64p13yZ6KkftlFxVJl8NMnxJKZgxfalndROQNwAWwfD5dB0Rt7irNE7eVBDv4FnPo7wnLMQndSYHwBKljLbskbeg4UD+cZULEC2DBXv578zzrrgJU1/9WRWMwEpn/M2mhuAIAsF5fbUPbXYQ3u6J0SFJZn/Q=
+	t=1780974399; cv=none; b=WYiwEN/shFRJgggLkfJPzwzhb0gIeSWWdTM3wh2drFGNtajuIRePLFlveznusMxCQbXoKs/KhzkMsZTRsA5Oh2iXIPh5Ulfajs/OEHY5KEk7BJzt53y/v46supYuyxNipZsI+BqY1GJz2BRbJcQeGPZBLb05It52vIbYAfx/j3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780974283; c=relaxed/simple;
-	bh=yVoGTjwqbsGhqDmyNl4VIBapHM7wIP1YE9nW5TAH7FU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jyxpZisJZ1fUHwrqYEV38JoNAVfFASrkKsQyuqZs7ctkBpBNxFULyjRC2lGvi8U4rPjtreVOQCveov4kNx0xAg4QrYVt5Xla23d+FcX1z7ag7js1B8iwtNyFtPIzgV3IeLck5p0winCXhSD+8LK8h0xL1yoYjM2gecmgRp5AyGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ouZp1fRc; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F6241F00893;
-	Tue,  9 Jun 2026 03:04:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780974282;
-	bh=5myXXeDCn5YVmIBgFVer+wIhNkBS248w938HxQWUeXs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ouZp1fRcPQ/DaYVMHo8ivh9mNFLKsdlvnJsWyTFWnr8N+QkAHMa/OJwopdRkKpjLL
-	 IWeJM8USUMEIPOz2EfqlSyLljjU4KloeKw5MMw7rMerBFs1OFq+j9fpddGM/Ijct8G
-	 cRmusTWLaaLz5aJOD7pq08kUQgU1qe9+8q08dz0GcmZIVO8rbuZ1FQjvZ8hIovKErV
-	 aUrjzISO0FYMvZMlvPhMNohJ+vCeglUrqUMOtUMdDzSInMzCPWFHdFOpfoXm/rAQGX
-	 tqz4AXZUgU6KseCMGRQskG12td3D1EeKxIX7pD8unvJQdbsxER6tc45K44ejOdGLUu
-	 UvvgTlpjVH/nQ==
-Date: Mon, 8 Jun 2026 22:04:38 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Kerigan Creighton <kerigancreighton@gmail.com>, linux-wireless@vger.kernel.org, loic.poulain@oss.qualcomm.com, 
-	wcn36xx@lists.infradead.org, mathieu.poirier@linaro.org, linux-remoteproc@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v3 2/3] remoteproc: qcom_wcnss_iris: Add support for
- WCN3610
-Message-ID: <aieCcYXkmDqfb0Bj@baldur>
-References: <20260306004344.10968-1-kerigancreighton@gmail.com>
- <20260306004344.10968-3-kerigancreighton@gmail.com>
- <4f94c20c-d06f-48e5-95fb-5380c84a1b99@kernel.org>
- <ecad737b-ea4c-4f32-b519-f338cfd6d48e@oss.qualcomm.com>
+	s=arc-20240116; t=1780974399; c=relaxed/simple;
+	bh=P2H+NZzIXse8UQANZN23GTVAli1gBZ4G2itXEem5Krc=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=qHSKOkmdqkbOpWWCTyoxT1bHdgEcdvIz+PiQUauuD1Js5UY1rgHYKPHa1YJDwIznsMiD4LsxSgoFeyOC0zcPYBCbPHobLaQOBZm+WnVHOZDcsAs4eyQuHtr/CtJ40XilLcB9neDqJWZV73xlNrJFF1CuShUWtdycTKaK5qY8RX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=202.108.3.212
+Received: from unknown (HELO zy-virtual-machine.localdomain)([58.38.107.94])
+	by sina.net (10.54.253.38) with ESMTP
+	id 6A278331000011AE; Tue, 9 Jun 2026 11:06:26 +0800 (CST)
+X-Sender: zhangyi@everest-semi.com
+X-Auth-ID: zhangyi@everest-semi.com
+X-SMAIL-MID: 0241C8D6B78345128429AD82FE90F6D1
+X-SMAIL-UIID: 0241C8D6B78345128429AD82FE90F6D1-20260609-110626
+From: Zhang Yi <zhangyi@everest-semi.com>
+To: alsa-devel@alsa-project.org,
+	broonie@kernel.org,
+	devicetree@vger.kernel.org
+Cc: tiwai@suse.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Zhang Yi <zhangyi@everest-semi.com>
+Subject: [PATCH 0/7] ASoC: codecs: ES8389: Modify the ES8389 driver
+Date: Tue,  9 Jun 2026 11:06:16 +0800
+Message-Id: <20260609030623.17404-1-zhangyi@everest-semi.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ecad737b-ea4c-4f32-b519-f338cfd6d48e@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308610-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jeff.johnson@oss.qualcomm.com,m:krzk@kernel.org,m:kerigancreighton@gmail.com,m:linux-wireless@vger.kernel.org,m:loic.poulain@oss.qualcomm.com,m:wcn36xx@lists.infradead.org,m:mathieu.poirier@linaro.org,m:linux-remoteproc@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-308613-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[everest-semi.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com,lists.infradead.org,linaro.org];
+	FORGED_RECIPIENTS(0.00)[m:alsa-devel@alsa-project.org,m:broonie@kernel.org,m:devicetree@vger.kernel.org,m:tiwai@suse.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zhangyi@everest-semi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,baldur:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,everest-semi.com:mid,everest-semi.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 15D7F65BF5E
+X-Rspamd-Queue-Id: 267F565BF7D
 
-On Fri, Jun 05, 2026 at 05:33:22PM -0700, Jeff Johnson wrote:
-> On 3/5/2026 11:25 PM, Krzysztof Kozlowski wrote:
-> > On 06/03/2026 01:43, Kerigan Creighton wrote:
-> >> WCN3610 has the same regulator requirements as
-> >> WCN3620, so in qcom_wcnss_iris, we can use wcn3620_data.
-> >>
-> >> A separate compatible is needed for WCN3610 because the
-> >> wcn36xx driver uses it for chip-specific configuration.
-> >> Specifically, it sets BTC (Bluetooth Coexistence) CFGs,
-> >> disables ENABLE_DYNAMIC_RA_START_RATE, and disables
-> >> STA_POWERSAVE for this specific chip for stable
-> >> functionality.
-> > 
-> > This goes to the binding description where you describe the hardware,
-> > how I asked.
-> > 
-> > Please wrap commit message according to Linux coding style / submission
-> > process (neither too early nor over the limit):
-> > https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-> This series is sitting in my patchwork queue.
-> Based upon Krzysztof's comments there should be a v4 that moves some
-> descriptive text from 2/3 to 1/3.
-> 
-> Bjorn: Once v4 lands, do you want to take this series or should I?
-> (Need to know if I should wait for ACK of 2/3 or give ACK for 3/3).
-> 
+v0:
+  - Modify volatile_register
+  - Add MCLK_MASK to resolve the issue related to mclk_src
+  - Modify configuration about clock
+  - Add private members about HPF at driver and devicetree
+  - Add INPUT MUX at route
 
-I don't see any build-time dependencies between patch {1,2} and {3}. So
-I'd suggest that I pick the two remoteproc patches and you pick the WiFi
-patch.
+Zhang Yi (7):
+  ASoC: codecs: ES8389: Modify volatile_register
+  ASoC: codecs: ES8389: Fix the issue about mclk_src
+  ASoC: codecs: ES8389: Modify the clock table
+  ASoC: codecs: ES8389: Modify the initial configuration
+  ASoC: codecs: ES8389: Add private members related to HPF
+  ASoC: codecs: ES8389: Add INPUTL MUX and INPUTR MUX
+  ASoC: dt-bindings: ES8389: Add members about HPF and clock
 
-Regards,
-Bjorn
+ .../bindings/sound/everest,es8389.yaml        |  23 +++
+ sound/soc/codecs/es8389.c                     | 136 +++++++++++++-----
+ sound/soc/codecs/es8389.h                     |   6 +-
+ 3 files changed, 125 insertions(+), 40 deletions(-)
 
-> /jeff
+-- 
+2.17.1
+
 
