@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-309218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309219-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Y6M3DUNAKGooBAMAu9opvQ
-	(envelope-from <devicetree+bounces-309218-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:33:07 +0200
+	id PziSBu5BKGqoBAMAu9opvQ
+	(envelope-from <devicetree+bounces-309219-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:40:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C26C56626A1
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:33:06 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A4016627E2
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:40:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ExwWrScB;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309218-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309218-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ara+ebIc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309219-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309219-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A91AF305C251
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 16:24:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CA50E31D41AB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 16:24:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649353FD943;
-	Tue,  9 Jun 2026 16:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC8AA3B71D0;
+	Tue,  9 Jun 2026 16:23:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F4863E009B
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 16:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A824D40683E
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 16:23:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781022196; cv=none; b=Ni9mU9+M/edwat0LHucaTXWdbR6d8C979DY4nZkgUyv6T1Kx7d0IDgvBq3sEOwmtwKgmMXt1hZDmpExQXe0IghVOHQMDVdi6uS/fSTghQdfwjZAH6tk7yAAhKWu+M4ilYGbppqAuB9aTWteP/p+aZPOTDC3BcyIDGIXOeN9nT4A=
+	t=1781022197; cv=none; b=kf617ghdSd7wjvQaRQUVwvsGHA9lRJfCnjrwrQtcUlDlEa5zq7ZKLnhVHXFprAZWiFwMUzTdq9+tpMlmA8LEqb/CjmiXrexSKvVZBWyw9foqwb03edCeVA8b/EMnzOY/1JdMNLyjQSZInbQ3Hd0iBTdxdHKKhSUOdri4CCqObMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781022196; c=relaxed/simple;
-	bh=F3/Q/P8gGDDcuSGCNzRM4Jb/sel/WSnd3g4fJslYVg4=;
+	s=arc-20240116; t=1781022197; c=relaxed/simple;
+	bh=5RJmdsszUwLf4aDp9kqAY1nEgmpwmhr4v8CwdairNGQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Zd8oTTB+FfIa1Nz4uHes9Zgl1S6UYrboprAiwrmtdQIcS065AApKMpxP8HYwdU4HCB25uRx/YsFRBv/ESZUajKOYfYjTCitrn+lViqLQc4NM0MMkABo0LH1D4Qi8h3Jshu1QA8XPYwWBm+TSz215sqEK7UOqHXNwr3bfO6L+jL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ExwWrScB; arc=none smtp.client-ip=209.85.222.171
-Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-91578122305so924118785a.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 09:23:14 -0700 (PDT)
+	 MIME-Version; b=qCB1JhKsuKgBxj5/4Yg8c7lXTjl5dOHr52rWHdcshcCYBV0aCpChV48OtxpnhQG9aMsQ8hMso7TfzB+H4uSRug+rshklZr0S2vvNYYYY0jsqhnRho/n0Lr9m4NQufnbRiW+76gEox5mELJqoWXPmQbThrf68smLJjtHtfa1kO2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ara+ebIc; arc=none smtp.client-ip=209.85.222.181
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-9156ceb55ffso495488885a.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 09:23:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781022194; x=1781626994; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1781022196; x=1781626996; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=t9po3bV9rnmIHm+a4pHCaXjx/Bof8CvBzTp64aammzQ=;
-        b=ExwWrScB12UJPgUOulJhOD3WF6GW3a8iqU66RzS1Bpp7Ix+ftz0vKtD5ZlwD9RJOAV
-         zCtTn8HxwtMuidzXvs7ExwnR8fS781bprWVZ5txvJAsXie2YIl0aW5fxH1RbKS//llhE
-         SEJyT7kdAdvhxAmjyXU2Yf+XxFRB0Enar1/c6eeIhYklCBiKU1B5ZyPd0cb249FTPiN8
-         I5H8wKWsFCHUJPouu3A4BzG15BiXjxJc44XFUUIZu47ilpMg6LJBNA4aO7GuUEs+5+o6
-         m2WS23fm2KDyc+/x0jGxYlphFfCYm0KZzMbcpTJHJf7MLmK5o4fzJObl9c6fb+X8iCvy
-         f7QA==
+        bh=gbMh7js/t00A2OiKknYuR6CQAso5EMSHmQD8+7uhBQM=;
+        b=ara+ebIchabtqoFhkWbIlvVBzv0Qq235kwuKx1CET1E7u7LPdoC7RTFJb8BZqBlih9
+         l5ZW9bmd5UPrGpaWOH9olPsUhTW27m5CQhBEigDEowjpfVHNzKAeYo6x1UXPtmfXXShH
+         +KMjexyks9k6fCQHdud4uL33Q3Hm5QHS8RoSmmODQCOCQ2oCMBbW3r504AEsQM/qE2k2
+         gpyrZIX9H7yXdOH0q0KrafeLSHgJ87Fy0BZnvVSwnjpER7Ea4rpVAc7MBw5Biepgi8Sr
+         EKRMZWqP+P12k6VAMp8B9v46J3Ol5A0LvI8tyKQqyHh2pdqM7062xhbI61QpCfLvpH0J
+         yprA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781022194; x=1781626994;
+        d=1e100.net; s=20251104; t=1781022196; x=1781626996;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=t9po3bV9rnmIHm+a4pHCaXjx/Bof8CvBzTp64aammzQ=;
-        b=DRXI8EneeGb8GqdOT/SJPjSjkNffi74RLfsGF53nGDgCaMPIjyIlARBlA/HZMhzDze
-         p4OKLHISy5SWJC/Wyh7uogdUcwh8+kEf0wYVrC5vnQtboPaRpmsJ2K7xex8QhM8aSlEI
-         2+ObPeYdizM++NaYr+gyWBGz7DmDfJIrr/BPObSLYjmqBF1nuRllIcFBTxnbx+6hOyx/
-         H2GkiVpecPxFcWptfSatgmq9vJGVKmfwFvRFOe+EsaI6k5VHL26cpdB6A85k77oY/N1s
-         J6EhZ3adiMsvhq0Dy7pwu8clU9eL71CRDaStjQaNCSMiri2ESz8tKZzYtQ4hhEa/NxNM
-         sSWQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9QfgQLFkjdWKgpfL+kqSlmx1KHq0R8yuEhxC08nyfeA+uom7ib06xVLQbJEF8ZaiWR9EJWtA50ysHv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsJxp9N/JafudZ+Eqi7of82HqqZ2MpsHoS2SrX6LaEu7t6Fjr+
-	5w14zcoAbFZaBm/obspUGLvbWY7KkrPgzIzcR95F7J2mmZfv38LWE7Ea
-X-Gm-Gg: Acq92OHBRYMWKKLkJHmjxj7Hg2r/XkT5nYOLLeKVehQmqN+RHPSqtsiYL876Wty2USL
-	Lu464ecf1aW3mqxa/9c+l2SPknKVpuWOgDqhkKMBaS9lLPLBBiHTwjT1Ga+rlJJjKO2O+dPVsrz
-	SADNKcni7eAJCe/kalmqxY+kB8HCsR+qdJXgCvx5jowQCzpkP/lXAK/iGQw97HEWDD+ap6gHE8u
-	zTNO4qpptiqVl++v7uX56b0c24tnNa0IjGB/UBHcL50DetHoAfdoXtoUapO3Ie5ogk8iiH50Zz/
-	vo9h5+SzMLqt8y020S2Za2I/N2fGYM55TdX6BY9euLt76/PbRiMHaayy61bfWK7NaxjhMIJQiVn
-	ctRSxcafmrkO6/Z3QnwzbCv/Eps50q54EDK8cQBQAwUQlms424ZVxBMJJWfGS/53GCSHc/Wpc8v
-	VMu8OZfyEF85lFAerR5CplwiITxapD+PzGodCFBg==
-X-Received: by 2002:a05:620a:6847:b0:915:bac0:fc2d with SMTP id af79cd13be357-915bac10351mr2274439585a.7.1781022193940;
-        Tue, 09 Jun 2026 09:23:13 -0700 (PDT)
+        bh=gbMh7js/t00A2OiKknYuR6CQAso5EMSHmQD8+7uhBQM=;
+        b=H3Hk7G6ga2VG3Euww7BDaG2iiH9Z6yCEI4hx99297P80IppFYMct9Tfjq26xRJvu06
+         IJkaLXUcEW02hZrqt467Rc9uTGA55u/bHt+Vdq27EIrvCKJ6Pn12BTUKMRRt5QXZcxQ4
+         30q4JIGUd0GylOXsvT3HqjgJN/AQA1pV3uYp2w/LQDc58bAz2i7cWkp7rUYB1fZvm6nY
+         9S2ZxMq/wgWZSlnxnhsGcbKuu4BDtuApOfg0PuHd151QzkWtHTQbiOF7DETsKzYcJY75
+         hpF/ZF5+CT7TU6b+jMPH0JMXS3bymMMamoCxa3Wa0mCPWCs8NK43BkXgugSIq3XiESwZ
+         BzYA==
+X-Forwarded-Encrypted: i=1; AFNElJ+xtD+Xdqjrcyn/B812uI3uYy44AKXW0PYBnUcf9QmvBU4jmnj478qf74mqGc/Pi/VW0bjnrdjSp4x7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqohmFkcpc2qycXXzf9u4dZuLYtc13HBTa26eyDN/zJDoQeMSi
+	elyIdoa9651DdYkqBqm12eg1S4WYApQB7TyZX8Xq6+oESIgVN7tLcttE
+X-Gm-Gg: Acq92OGz0Z1J5rWpG1VYb5F1fPM0DQZ7L6LQp1GD5WAkDx7HGjAEEUVuNwiTVoeSFFO
+	+hgzEm9W7+X/4a0O8i6WuEteBWgcVIJDXPfE+vFCo3updb1KuiYTJh7VbYzsc22rB3JMQtu3WKe
+	zkbAaXbL+hLlIsdXqJRQeXXi85qu+5i2JyqETwvQ38bmwYHDPF6UKfXf8pbJvR2/wvQmPrVZ0Ro
+	NZ5DLt6IExhux9w9oBqNe+PtA/y39NsnW/UX9Mx6qOlda1BVGljg7GbuAlxoj0rDJgZ6j6XkUna
+	wp9pNlvRWXPagr9hvrgmaw6FKbFSdyCRIFiVaK5+6pcIn7XNcxKeTpaKFolJq5jUA7XCIyUWL6b
+	PTr/wEwOe80sbl+hz9PtNj359vWfAXbCuig5hLNPad2n2OjDWI+cXgjn12aDX0Cg0YlUeKKouaB
+	8WmmtYgLAkJr2U5whKpWSG4oozw53ac34UYBWsukUwnoFLshTm
+X-Received: by 2002:a05:620a:468f:b0:915:9fba:8794 with SMTP id af79cd13be357-915e822bc64mr519249685a.6.1781022195649;
+        Tue, 09 Jun 2026 09:23:15 -0700 (PDT)
 Received: from localhost ([142.181.163.192])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-9158a3d2384sm2158510185a.39.2026.06.09.09.23.13
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-9158a00840dsm2345045185a.1.2026.06.09.09.23.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2026 09:23:13 -0700 (PDT)
+        Tue, 09 Jun 2026 09:23:15 -0700 (PDT)
 From: Richard Acayan <mailingradian@gmail.com>
 To: Srinivas Kandagatla <srini@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>,
@@ -99,9 +99,9 @@ Cc: Nickolay Goppen <setotau@mainlining.org>,
 	Charles Keepax <ckeepax@opensource.cirrus.com>,
 	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
 	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v5 10/15] ASoC: qdsp6: common: support headphone jacks connected to lpi mi2s
-Date: Tue,  9 Jun 2026 12:22:50 -0400
-Message-ID: <20260609162255.31074-11-mailingradian@gmail.com>
+Subject: [PATCH v5 11/15] ASoC: qcom: sm8250: add support for LPI_MI2S_RX_0 and LPI_MI2S_TX_3
+Date: Tue,  9 Jun 2026 12:22:51 -0400
+Message-ID: <20260609162255.31074-12-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260609162255.31074-1-mailingradian@gmail.com>
 References: <20260609162255.31074-1-mailingradian@gmail.com>
@@ -119,14 +119,14 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309218-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309219-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[22];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -147,33 +147,49 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C26C56626A1
+X-Rspamd-Queue-Id: 9A4016627E2
 
-On SDM660, LPI MI2S ports can be connected to a WCD codec which may
-support headphones. Register the headphone jack on codecs connected to
-the playback port, LPI_MI2S_RX_0.
+The LPI_MI2S_RX_0 and LPI_MI2S_TX_3 ports on SDM660 can be connected to
+the digital and analog WCD codecs. They can be supported with the same
+logic for other ports, but just need to be explicitly stated. Add
+support for these ports.
 
 Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 ---
- sound/soc/qcom/common.c | 1 +
- 1 file changed, 1 insertion(+)
+ sound/soc/qcom/sm8250.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/sound/soc/qcom/common.c b/sound/soc/qcom/common.c
-index cf1f3a767cee..9070db005e21 100644
---- a/sound/soc/qcom/common.c
-+++ b/sound/soc/qcom/common.c
-@@ -232,6 +232,7 @@ int qcom_snd_wcd_jack_setup(struct snd_soc_pcm_runtime *rtd,
- 	}
- 
- 	switch (cpu_dai->id) {
+diff --git a/sound/soc/qcom/sm8250.c b/sound/soc/qcom/sm8250.c
+index f193d0ba63d0..1952c599e004 100644
+--- a/sound/soc/qcom/sm8250.c
++++ b/sound/soc/qcom/sm8250.c
+@@ -112,6 +112,22 @@ static int sm8250_snd_startup(struct snd_pcm_substream *substream)
+ 		snd_soc_dai_set_fmt(cpu_dai, fmt);
+ 		snd_soc_dai_set_fmt(codec_dai, codec_dai_fmt);
+ 		break;
 +	case LPI_MI2S_RX_0:
- 	case TX_CODEC_DMA_TX_0:
- 	case TX_CODEC_DMA_TX_1:
- 	case TX_CODEC_DMA_TX_2:
++		codec_dai_fmt |= SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_I2S;
++		snd_soc_dai_set_sysclk(cpu_dai,
++			Q6AFE_LPASS_CLK_ID_INT0_MI2S_IBIT,
++			MI2S_BCLK_RATE, SNDRV_PCM_STREAM_PLAYBACK);
++		snd_soc_dai_set_fmt(cpu_dai, fmt);
++		snd_soc_dai_set_fmt(codec_dai, codec_dai_fmt);
++		break;
++	case LPI_MI2S_TX_3:
++		codec_dai_fmt |= SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_I2S;
++		snd_soc_dai_set_sysclk(cpu_dai,
++			Q6AFE_LPASS_CLK_ID_INT3_MI2S_IBIT,
++			MI2S_BCLK_RATE, SNDRV_PCM_STREAM_CAPTURE);
++		snd_soc_dai_set_fmt(cpu_dai, fmt);
++		snd_soc_dai_set_fmt(codec_dai, codec_dai_fmt);
++		break;
+ 	default:
+ 		break;
+ 	}
 -- 
 2.54.0
 
