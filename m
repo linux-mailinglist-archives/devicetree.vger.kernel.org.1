@@ -1,170 +1,203 @@
-Return-Path: <devicetree+bounces-308746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308747-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2Ui8Cn+7J2od1QIAu9opvQ
-	(envelope-from <devicetree+bounces-308746-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:06:39 +0200
+	id k5iGAz68J2o81QIAu9opvQ
+	(envelope-from <devicetree+bounces-308747-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:09:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 839EA65D0A0
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:06:38 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C844865D0EC
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:09:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QdNIacnU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308746-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308746-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=microchip.com header.s=mchp header.b=uRpi2WRs;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308747-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-308747-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=microchip.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 816283028F76
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 07:06:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 31604305635B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 07:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5318F3D811B;
-	Tue,  9 Jun 2026 07:06:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 876113DA5D8;
+	Tue,  9 Jun 2026 07:08:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 451B33D8107
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 07:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB7D3D9DAC;
+	Tue,  9 Jun 2026 07:08:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780988768; cv=none; b=SoVuWbU53Ymj1lF10QnnCuaALdWQYas6cq5flfFF9yus9h1wDXq85FM2WrSZH3hPwhqmfnfM34CiCtcuwAB1mQ+q1yXxqvwjs1aaZA1Acn8ikaj5ai1SOl1k0X4MhOo6Dam6hPx3hAXUAUgxRhz9Q6o8dMs6mHnuptboQUfcwvg=
+	t=1780988900; cv=none; b=QT0ngWeLwpE5jSKyh5SD74kIMFppnsVDJlFuOgV1WKkOebRQY4Vkznvzko9/lhu1XNkIX3pU7rR/LoS+IAhUEHs/hjZ6lBQhpRicq/XldIM1Qf/i4w+LSpIZVUReTetoBSPkZJmTsRjxvZaPJ/cULjCFCFPYfkqYzjNazET+3Co=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780988768; c=relaxed/simple;
-	bh=muK8R/WrqUlZEO1LVYC8jRIzCQpvBvIP+CW6+r9FZPo=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=isQRdCFYiboijG/ZR5DpleS9+Zfl6io2EtWNFKeY0dtTyEy/etIMoectXdGwNVArtWbb/cAGQrtyDDyT2Vym00dk12/gg3v44Z+RnkKWhVdsbd4WaQ/71gG1YdvpjdioBZS1UtAY6NYKlWyeVLBB8mEaPf56Jv2vNpcZl1P8uTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QdNIacnU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 177DF1F0089E;
-	Tue,  9 Jun 2026 07:06:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780988766;
-	bh=VE3VBtQc2sVqCWzSKClTsIc3BBoaSx3PFbAGF3Nf2CY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=QdNIacnUn1L10BNQXg9N2m9zX6OsMgvbUf2fp8e/u0jFjdI/dTDkKszlkS34n3q4w
-	 gQmfloBfLfUs0a8fQnqpNvxiZpFcZCJzYES8/dgd6WWWmRqG7sFz7jRdrgxm+j54Ha
-	 u/4fdW/Aj1CTRF69INlHqQq4rGbSLYKEzYkOi+XAW0FY2/Ub9YI7Ac3ox23B4WFVbj
-	 j45k5bRcLu4h4VJ/orpzmcqWpSWQhw6n5okbOm17JmPznX+9bkoA1wH3wNtanuNb5s
-	 zoWljFH0D8jcd6ZRPr9s5IqHnnippJxDesNa/54TH6cSPipW6w5ijO57lpi67EI+Oy
-	 Ezt172ruVZtVQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] thermal/drivers/qcom/tsens: Add support for
- ipq9650 tsens
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Varadarajan Narayanan" <varadarajan.narayanan@oss.qualcomm.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260609065447.4024695-3-varadarajan.narayanan@oss.qualcomm.com>
-References: <20260609065447.4024695-3-varadarajan.narayanan@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
+	s=arc-20240116; t=1780988900; c=relaxed/simple;
+	bh=bSXm0ozdYzUpty8xJzGSdVF2x1B6U+KwGok9c9C0ICI=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=E70MD7l3wz/wXnrOUKWMfmpLJxh5ks3yuJyLrmIOv1PEGCSLbeKdDTix/hkU1RU4jMDXhpy/8TG10fosM8VLtwOPAc1vaocpK76Bp4eSwdevurjB6RvOLMDv3k4pM0xBZJyFm95/vLWcYOy4gB3VWam5gV/n1X/z2p+0CERAP5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=uRpi2WRs; arc=none smtp.client-ip=68.232.153.233
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1780988900; x=1812524900;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=bSXm0ozdYzUpty8xJzGSdVF2x1B6U+KwGok9c9C0ICI=;
+  b=uRpi2WRsCx2mpPDzsW8GSFUGK9ia/EYDA3LnSC1ymLZflg2C9fYpLPl0
+   wUDMCmEhD0wh3/DGzimBnEOucljhCFqkpBJ36+8J5nMw+KYs7hNCHHWyN
+   FwHHwzAhjP5kHSHGyu9DqGO82gdiDlOVM+pxq0viPBQLX7IpMpEEZ7TlG
+   bRi+HJfAvxD7M/PHLE3gDMeB0jtqSjB095/xHrDqbRlIylqCujR2y95/V
+   NxpDBx3THQoBFMCMVIiQbMYBNihEbLeFIJDGwfIP517lrEdxQlJonmFys
+   ELWftTsQcOdQH+WyMtnTqFNhkRXvZlB+xwzc4i96PqoC4RI+pC74O8hJg
+   w==;
+X-CSE-ConnectionGUID: izW42HxjT1afFW1YFfqUoA==
+X-CSE-MsgGUID: qaRcAMdNSDejHtAuDuej6Q==
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; 
+   d="scan'208";a="58812603"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2026 00:08:19 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
+ chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.41; Tue, 9 Jun 2026 00:08:17 -0700
+Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Tue, 9 Jun 2026 00:08:14 -0700
+Message-ID: <a9ab4d129f2e3158c1a7b01d0a975fac00a05893.camel@microchip.com>
+Subject: Re: [PATCH net-next v7 4/9] net: dsa: lan9645x: add basic dsa
+ driver for LAN9645X
+From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: <UNGLinuxDriver@microchip.com>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, "Simon
+ Horman" <horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Woojung
+ Huh <woojung.huh@microchip.com>, Russell King <linux@armlinux.org.uk>, "Steen
+ Hegelund" <Steen.Hegelund@microchip.com>, Daniel Machon
+	<daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
+Date: Tue, 9 Jun 2026 09:08:13 +0200
+In-Reply-To: <9ee993d0-9a71-48ff-b368-fcebe1ee9e48@lunn.ch>
+References: <20260603-dsa_lan9645x_switch_driver_base-v7-0-b2f90e676707@microchip.com>
+	 <20260603-dsa_lan9645x_switch_driver_base-v7-4-b2f90e676707@microchip.com>
+	 <9ee993d0-9a71-48ff-b368-fcebe1ee9e48@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 09 Jun 2026 07:06:05 +0000
-Message-Id: <20260609070606.177DF1F0089E@smtp.kernel.org>
+User-Agent: Evolution 3.44.4-0ubuntu2.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.34 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308746-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:varadarajan.narayanan@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-308747-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:UNGLinuxDriver@microchip.com,m:olteanv@gmail.com,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:woojung.huh@microchip.com,m:linux@armlinux.org.uk,m:Steen.Hegelund@microchip.com,m:daniel.machon@microchip.com,m:linux-kernel@vger.kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,qualcomm.com:email,smtp.kernel.org:mid,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 839EA65D0A0
+X-Rspamd-Queue-Id: C844865D0EC
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+On Mon, 2026-06-08 at 20:00 +0200, Andrew Lunn wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
+e content is safe
+>=20
+> > +     dsa_switch_for_each_user_port(dp, ds) {
+> > +             if (dp->cpu_dp->ds !=3D ds) {
+> > +                     dev_err(ds->dev,
+> > +                             "NPI port on a remote switch is not suppo=
+rted\n");
+> > +                     return -EINVAL;
+> > +             }
+> > +
+> > +             if (first_cpu_dp && dp->cpu_dp !=3D first_cpu_dp) {
+> > +                     dev_err(ds->dev, "Multiple NPI ports not supporte=
+d\n");
+> > +                     return -EINVAL;
+> > +             }
+> > +
+> > +             first_cpu_dp =3D dp->cpu_dp;
+>=20
+> The reason i asked about NPI ports is because this is looping over
+> user ports. Yet you say one of these user ports is a CPU port. That
+> cannot be correct.
+>=20
+> The first port returned by dsa_tree_for_each_cpu_port() would be
+> first_cpu_dp.
+>=20
+>         Andrew
 
-Pre-existing issues:
-- [High] The device tree property `#qcom,sensors` can override `num_sensors=
-`, leading to an out-of-bounds read of the static `hw_ids` array and subseq=
-uent out-of-bounds array accesses.
---
 
-commit 1557d45f1d577e6cb959599793cf39e4448627b6
-Author: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+I tried to mimic the approach in drivers/net/dsa/ocelot/felix.c:
 
-thermal/drivers/qcom/tsens: Add support for ipq9650 tsens
+static int felix_tag_npi_setup(struct dsa_switch *ds)
+{
+	struct dsa_port *dp, *first_cpu_dp =3D NULL;
+	struct ocelot *ocelot =3D ds->priv;
 
-This commit adds support for the ipq9650 tsens device by reusing the
-ipq5332 ops and features, while defining a custom hardware ID array for
-its 11 sensors.
+	dsa_switch_for_each_user_port(dp, ds) {
+		if (first_cpu_dp && dp->cpu_dp !=3D first_cpu_dp) {
+			dev_err(ds->dev, "Multiple NPI ports not supported\n");
+			return -EINVAL;
+		}
 
-> diff --git a/drivers/thermal/qcom/tsens-v2.c b/drivers/thermal/qcom/tsens=
--v2.c
-> index 8d9698ea3ec40..ef1fee2266a32 100644
-> --- a/drivers/thermal/qcom/tsens-v2.c
-> +++ b/drivers/thermal/qcom/tsens-v2.c
-> @@ -300,6 +300,14 @@ const struct tsens_plat_data data_ipq5424 =3D {
->  	.fields		=3D tsens_v2_regfields,
->  };
-> =20
-> +const struct tsens_plat_data data_ipq9650 =3D {
-> +	.num_sensors	=3D 11,
-> +	.ops		=3D &ops_ipq5332,
-> +	.hw_ids		=3D (unsigned int []){5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
+		first_cpu_dp =3D dp->cpu_dp;
+	}
 
-[Severity: High]
-This is a pre-existing issue, but does this hardcoded array expose us to
-an out-of-bounds read if the device tree overrides the number of sensors?
+	if (!first_cpu_dp)
+		return -EINVAL;
 
-In drivers/thermal/qcom/tsens.c:tsens_probe(), the number of sensors can
-be overridden by the #qcom,sensors DT property. The probe function later
-initializes the sensors in a loop:
+	felix_npi_port_init(ocelot, first_cpu_dp->index);
 
-    for (i =3D 0;  i < priv->num_sensors; i++) {
-        if (data->hw_ids)
-            priv->sensor[i].hw_id =3D data->hw_ids[i];
-        else
-            priv->sensor[i].hw_id =3D i;
-    }
+	return 0;
+}
 
-If a device tree specifies a larger number of sensors than the length of
-this new array (for example 12, which is under the MAX_SENSORS limit of 16),
-will the initialization loop read past the end of the hw_ids array?
+Perhaps I misunderstand you, but there could be confusion about
+terminology. The chip designers have a concept of CPU port, which is
+used liberally in the datasheet, and in this driver code.
 
-It looks like this could result in garbage values being stored as hw_id,
-which are then used as offsets for the fixed-size priv->rf[] regmap field
-array, potentially causing arbitrary out-of-bounds pointer dereferences.
+However, the concept is different from the DSA concept of a CPU port.
+Let us call the first switch CPU port, and the second DSA CPU port.
 
-> +	.feat		=3D &ipq5332_feat,
-> +	.fields		=3D tsens_v2_regfields,
-> +};
+The port we want to use as a DSA CPU port, i.e. the port with the
+'ethernet =3D <&host_port>;' property in the device tree, will be
+configured to be an NPI port for injection/extraction for the switch CPU
+port (which is not a physical port on the device).
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609065447.4024=
-695-1-varadarajan.narayanan@oss.qualcomm.com?part=3D2
+Therefore, this NPI port is not iterated by
+dsa_switch_for_each_user_port. The switch CPU port (index 9) is also not
+iterated by it. It is a chip internal construct with no representation
+in the device tree, and no struct dsa_port.
+
+
+Thanks,
+Emil
+
 
