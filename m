@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-308586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308587-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id l0ngHm91J2pjxQIAu9opvQ
-	(envelope-from <devicetree+bounces-308586-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 04:07:43 +0200
+	id DgV/HjR2J2r8xQIAu9opvQ
+	(envelope-from <devicetree+bounces-308587-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 04:11:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6892E65BCC5
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 04:07:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7109E65BCFD
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 04:10:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ultrarisc.com header.s=dkim header.b="GYVSD7/B";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308586-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308586-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=ultrarisc.com header.s=dkim header.b=Wakr1QTr;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308587-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308587-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=ultrarisc.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A7FF73016CF9
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 02:07:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E9F59301A278
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 02:10:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC5D35F19A;
-	Tue,  9 Jun 2026 02:07:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5F91F8691;
+	Tue,  9 Jun 2026 02:10:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4D01C862D;
-	Tue,  9 Jun 2026 02:07:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB30F355055
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 02:10:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780970857; cv=none; b=MKWb5XS8ZfLW/4nnWfyK/jXFBCj0Mu6bCajGS+0PL/ibv+ydd/N5SYmaQEf5pz9zS9D4ODpgnn1yojEM6JH3vcyKHCItEgr5Jq6MEFHk4ST916xC7CCP6YVUVgjvkfOgQXrvu2cPsmFVGmgmjVwxe69iJiycBgvdC4BOy4Zh4Qw=
+	t=1780971046; cv=none; b=LwxcYRw3kILBiIm601DCwmG0UUOnLxgJv+DM+l9gLnGhqdjXpHH2BrczlA7uNpgGKZAu2l2ZxZfm2XpdzAdOwQFQuTImtSMKuRGorxqhKQVpqx4o/KdmQQYLvX6eF94nWSZIyTMe6Vso0TWMGVi2Y7BNFnKbxnb1Upq2XUSe12E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780970857; c=relaxed/simple;
-	bh=pXLjhYA/HKccNSiWZJ1vD2CM10FqSwMsW43GeFxnlMc=;
+	s=arc-20240116; t=1780971046; c=relaxed/simple;
+	bh=teQaR4A1Zlndlra1Ed1ZkI7fbbKZCmwuBm+AIvpT6QQ=;
 	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=IapEb70+NXnvYmFiDgiWzE/1gz0/KigeZZRH5F4GC58gIZBrYA5vS9sCZK8VdMV99nJ3jNRqKy+y370ZuknYukhjRcLEBNQO+c9hd0+fap9gfxS0T1JtlJUXaHV+RSJB5PCqLbotFn4S99KZwcFGR1JGwhJX+9Pi+8iM9h+zB+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=GYVSD7/B; arc=none smtp.client-ip=218.76.62.146
+	 References:Date:Message-Id; b=I1GzqqO1PXGV68dvxkiew1sEML3EuKXXBllGiDjbCrvKPLKSE8onAsmWfS4LzXbagAJ0Lc/Rt37WbQO9WTe7aYbwRj4e8UtwJT6BHLvGZ64Ea006uyCwpnUOAqqSJXO+RDQV/mpaTMstUYFFNsH99WHn8MMUEIjF0fgO5wk9HsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=Wakr1QTr; arc=none smtp.client-ip=218.76.62.146
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
 	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
-	References:Date:Message-Id; bh=XbcfAkbt1ZemCkeMzHuWx9v5CdZZxTUV3
-	6RmpJC+uBY=; b=GYVSD7/BHc7fjkCMe2fKJ8ImNQ9fsYC6shhhnfhjHjwlQU8lX
-	PER20SC7Nfr7XElTxcEbesiFuPgPINAo93m1j1IMZOJJQPYW4eiKvGQ5k6mOz/5r
-	nhFXtR7jMUSqfO9iZQkD1deE5xO5efsFyOkkF9ZUgftoa0JhxdT04udVfs=
+	References:Date:Message-Id; bh=y6swWkyW3pFl4jhFsCyLgIFMrQBo79gM9
+	UghTuTKTVQ=; b=Wakr1QTrMWhoSS4qEY5EaV7056CAX3D4q3uOgRLn6C40al6fe
+	6ZFawUHhjcegv7+6vMgsc9V5ECVG44WmE3NQrJyOZKM8tStIXro5gOXd/VE/ak7R
+	k07NIu93TKrdVGSom2DQ+qjaCpQMgtoDNgx9IniAd8K9VogcmSILbrHQCU=
 Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwDXEEJ7dSdqC6AJAA--.8834S2;
-	Tue, 09 Jun 2026 10:07:55 +0800 (CST)
+	by localhost.localdomain (Coremail) with SMTP id AQAAfwDXEEJDdidqLaAJAA--.8835S2;
+	Tue, 09 Jun 2026 10:11:16 +0800 (CST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -49,114 +49,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: Add UltraRISC DP1000
  pinctrl controller
 From: Jia Wang <wangjia@ultrarisc.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: wangjia@ultrarisc.com, Linus Walleij <linusw@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20260608-cheer-diabetes-02de68030e0a@spud>
-References: <20260608-ultrarisc-pinctrl-v3-0-30a09ed74275@ultrarisc.com>
- <20260608-ultrarisc-pinctrl-v3-1-30a09ed74275@ultrarisc.com>
- <20260608-cheer-diabetes-02de68030e0a@spud>
-Date: Tue, 09 Jun 2026 10:07:18 +0800
-Message-Id: <178097083811.1947369.16656545397888680932.b4-reply@b4>
+To: sashiko-reviews@lists.linux.dev
+Cc: Jia Wang via B4 Relay <devnull+wangjia.ultrarisc.com@kernel.org>, 
+ devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260608075749.68ED71F00898@smtp.kernel.org>
+References: <20260608-ultrarisc-pinctrl-v3-1-30a09ed74275@ultrarisc.com>
+ <20260608075749.68ED71F00898@smtp.kernel.org>
+Date: Tue, 09 Jun 2026 10:10:38 +0800
+Message-Id: <178097103868.1947369.3891180215442972716.b4-reply@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1780970838; l=1116;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1780971038; l=1668;
  i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
- bh=pXLjhYA/HKccNSiWZJ1vD2CM10FqSwMsW43GeFxnlMc=;
- b=iB/8vN/XfQBrk39/Bm7UzI9hYu5F9fJd5P6MFOs5a1pZuf3VzleVmV5eiFUOlg//xH1VoJCgY
- KGStpw0coOvAdxkHP9alFdMqEdREYKCSaL6PtvjefTVxTCTtRbj1685
+ bh=teQaR4A1Zlndlra1Ed1ZkI7fbbKZCmwuBm+AIvpT6QQ=;
+ b=nMR/UlfIMBqoPoAcVxrFddm5ENM5yTIBfYDVFZ3Dhyz4LlHWvlXPrwnwvBEE0uP+A52f+PV+l
+ lt30hXUN9X7C2r6id4+zmekajd1ZxlHu6RB4vl1DsC3kK4zAovjn4tN
 X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
  pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
-X-CM-TRANSID:AQAAfwDXEEJ7dSdqC6AJAA--.8834S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrtF4kKr4rZF48AF4ruFWfKrg_yoWDurbEkF
-	W8Zr97Xw47GFy8JayDtr17J34YkFsF9Fya9FnrXr4DGry5GryUZa4kK345Aw1fJr48Jrsr
-	Jr1SvFW0yr1akjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUb-kFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
-	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
-	Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr
-	1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-	jxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
-	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
-	n2IY04v7MxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrwCFx2
-	IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v2
-	6r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67
-	AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IY
-	s7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr
-	0_GrUvcSsGvfC2KfnxnUUI43ZEXa7VU13ku3UUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAAEWoWakYABgA5s-
+X-CM-TRANSID:AQAAfwDXEEJDdidqLaAJAA--.8835S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7KFW5Zw1kXw4fury7Kw4fGrg_yoW8WFykpF
+	sxGa9xAF97Jry3Kws3Kw1fA3WfXr1xAFy7Za1q9w1qyFsIqr10qa9YkwsI93WDWr48GF4q
+	vrnxu345Aa18Za7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUv0b7Iv0xC_KF4lb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l
+	c2xSY4AK6svPMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I
+	8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWU
+	twCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x
+	0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_
+	Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8
+	6c_3UUUUU==
+X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAAEWoWakYABgA7s9
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:wangjia@ultrarisc.com,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:brgl@kernel.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:devnull+wangjia.ultrarisc.com@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308586-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	TAGGED_FROM(0.00)[bounces-308587-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,ultrarisc.com:dkim,ultrarisc.com:email,ultrarisc.com:from_mime]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,wangjia.ultrarisc.com,dt];
+	DKIM_TRACE(0.00)[ultrarisc.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ultrarisc.com:dkim,ultrarisc.com:email,ultrarisc.com:from_mime,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,get_maintainer.pl:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6892E65BCC5
+X-Rspamd-Queue-Id: 7109E65BCFD
 
-On 2026-06-08 18:17 +0100, Conor Dooley wrote:
-> On Mon, Jun 08, 2026 at 03:50:48PM +0800, Jia Wang via B4 Relay wrote:
-> > From: Jia Wang <wangjia@ultrarisc.com>
-> > 
-> > Add doc for the pinctrl controllers on the UltraRISC DP1000 RISC-V SoC.
-> > 
-> > Signed-off-by: Jia Wang <wangjia@ultrarisc.com>
-> > ---
-> >  .../bindings/pinctrl/ultrarisc,dp1000-pinctrl.yaml | 131 +++++++++++++++++++++
-> >  MAINTAINERS                                        |   6 +
-> >  .../dt-bindings/pinctrl/ultrarisc,dp1000-pinctrl.h |  63 ++++++++++
+On 2026-06-08 07:57 +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [Low] The newly added dt-bindings header file is not tracked in the MAINTAINERS entry.
+> --
 > 
-> The driver never uses this file, so just stick it as a header in
-> arch/riscv/boot/dts/ultrarisc instead of making it a binding.
+> commit f7f86b1233735eea88a3047d747f41d13c3dc00b
+> Author: Jia Wang <wangjia@ultrarisc.com>
 > 
-> Otherwise, I think this is okay. With the file moved,
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> dt-bindings: pinctrl: Add UltraRISC DP1000 pinctrl controller
 > 
+> This commit adds device tree binding documentation for the pin controllers 
+> on the UltraRISC DP1000 RISC-V SoC. It also introduces a new header file 
+> containing the corresponding pin definitions.
+> 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> 
+> [ ... ]
+> 
+> > @@ -27357,6 +27357,12 @@ S:	Maintained
+> >  F:	drivers/usb/common/ulpi.c
+> >  F:	include/linux/ulpi/
+> >  
+> > +ULTRARISC DP1000 PINCTRL DRIVER
+> > +M:	Jia Wang <wangjia@ultrarisc.com>
+> > +L:	linux-gpio@vger.kernel.org
+> > +S:	Maintained
+> > +F:	Documentation/devicetree/bindings/pinctrl/ultrarisc,dp1000-pinctrl.yaml
+> > +
+> 
+> [Severity: Low]
+> This isn't a bug, but should the new header file
+> include/dt-bindings/pinctrl/ultrarisc,dp1000-pinctrl.h be added to this
+> MAINTAINERS block as well? Without it, get_maintainer.pl might miss CCing
+> the maintainer on future patches that modify the pin definitions.
+>
 
-Agreed. I'll move the header to arch/riscv/boot/dts/ultrarisc/, submit
-it as part of the DTS series, and remove all references to it from the
-dt-bindings documentation. I'll carry your Reviewed-by in the next
-version. Thanks.
-
-> pw-bot: changes-requested
+Thanks. I'll move the header to arch/riscv/boot/dts/ultrarisc/ and
+submit it as part of the DTS series in the next version.
+ 
+> -- 
+> Sashiko AI review · https://sashiko.dev/#/patchset/20260608-ultrarisc-pinctrl-v3-0-30a09ed74275@ultrarisc.com?part=1
 > 
-> Cheers,
-> Conor.
 
 Best regards,
 Jia Wang
+
 
 
 
