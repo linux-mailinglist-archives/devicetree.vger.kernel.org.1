@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-308621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308622-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wr3sMOGDJ2rOyQIAu9opvQ
-	(envelope-from <devicetree+bounces-308621-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:09:21 +0200
+	id 82dqFf+DJ2rTyQIAu9opvQ
+	(envelope-from <devicetree+bounces-308622-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:09:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 229B665BFB1
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:09:21 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44FC565BFC0
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 05:09:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="itSV/Nsh";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308621-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308621-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FFmfDmUK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308622-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-308622-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A7426301AB9A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 03:09:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 44BCA301C9F5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 03:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493A0231842;
-	Tue,  9 Jun 2026 03:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2050363C63;
+	Tue,  9 Jun 2026 03:09:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3392331F996
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 03:09:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0B2364EA6
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 03:09:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780974544; cv=none; b=BeLworIX2dxehD1+3HX6+1/JQaLprvuqDB1OuoaT2ksoez/BK6xZpDRw2hEKzeryu9L9JFpp2aolMG3401W2Jrpr7jn66JUvFiksbRvI8MxM6xUbejm5YDKpNbdNdRmIyMFlET7xEsxMyjgbdiz+2GGpDyjgwdt6SfrsrXdqeyo=
+	t=1780974584; cv=none; b=UBsGqvF1I3+Xawrs27TG7MzbW7cBwIzhqHwfridBhA9f6NVzfGM6hLhYFaOqmuT6yeaf/yCHtscjIOWRrPNjmGrwpFegB/Ne5zoTIfIgK77J/HH1S0/HWKk4jtVG1Pk8hT4XoaFevy8k3JQFHI8c9a7joMy9GF7152urs8/u/9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780974544; c=relaxed/simple;
-	bh=HY/IPPzbiax8P/WmaF1+Ixctbj3iwCYNnZJ9A2xAR5I=;
+	s=arc-20240116; t=1780974584; c=relaxed/simple;
+	bh=IuQY2+WyWx3xZNvypzKrJR0Au+9E6Pt+p1GhhKLi2iY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Wo8npPm9+xjNUe0YNq2wAnkjJoDlplw0bZVeSCjYxc81fZD4cnY1b/E5Lmx4kuPlsDegrzKXsJKlZ1lVhstn8Wtl5LDa0LAWstWtlM1d//sIIj8MLr/Rzj5i8FdE0joEtdzI8QJdHk7FPYOVCSdWebmRThTQOCU+CdDClF2TmJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=itSV/Nsh; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5F1D1F00893;
-	Tue,  9 Jun 2026 03:09:02 +0000 (UTC)
+	 Message-Id; b=RGS8KJZYMdl0jhFNXTF4OUvvhgNyjZxNE3+hm4C4UMwHaNw3mEtbTdld5fQ8C86moMp6VFvFKT51/HWI17BGS3HchhcQINSSlKgb5UmAiv5oJRn3ozzZ5DBaEqAnen7pdn6/OA+hK0ubGAlQ+uiOvhkFdnON9bJ0Y+yA9cR+9YI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FFmfDmUK; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5705C1F00893;
+	Tue,  9 Jun 2026 03:09:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780974542;
-	bh=VO6+1wMgXB9CX04KUzqfpbh04WGM4ix/lLClMja7+SQ=;
+	s=k20260515; t=1780974579;
+	bh=ynVS00Px/aIVFOa7rjML0Bn9v0C2s3fphiaGV/RauEI=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=itSV/Nshz7by9Hq+cWjUU5b6AF85c07lkFTRlzrqE3hDXBu2cP0aL2mRf9X64Kxjm
-	 ndwKgFNIYVYyRDFCt3Im7BnEQGSaRoybxvY+docE46WQhAf5KesAEg7/9aWqZU+QdP
-	 rJ31pV/CWb2wWSn2vrJN2TXEtZPdYIdeHSDkX6ucSRpWOgfZRzatal/Xep5JRzRrm8
-	 uI4WchKOqdFOvlou3Z+lcImp2yr4wNzwU/nIiysX3AAX3RSodIYgl3Gmjybkz0e+YW
-	 efoZWWPVRCFJajkKJK2U98E6ckCM6ZxqAwbFi4/IvfKYKwAlrZSgbGmu9G8wWMX8ik
-	 d3g6b7h2/XU/A==
+	b=FFmfDmUKZpd82ASwUj5tUEnLPxrkuDR1zBmFtFzFiVy1WXFI/RW6Yd22XYNLSnEqa
+	 P5LnC8ohEMx86LF11RWgUyUQ4i/OqKmGwqzQwc7n5Jhw5u/awnQdvlPkX6fzttIf8D
+	 yux1Gne9xswS9kCfdt6/fhvHIDOZ4tbHGHgS/zhkpXhM21360lXrMddFDSZTu9q3ik
+	 Dcd7ExHrp/AVXyDpu7oJNX87B0dGjeL8A8RNjl1OS+db6fzaNtL3lmKjzu33ulkT8S
+	 JSqECsDKLw6LygJHJmhpqZxkfK9371wxQ3XCi6QBoEn/DrY++J0vMxIUY9/NjSWWL5
+	 36/tqiqpr4U0Q==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/7] ASoC: codecs: ES8389: Modify volatile_register
+Subject: Re: [PATCH 3/7] ASoC: codecs: ES8389: Modify the clock table
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Zhang Yi" <zhangyi@everest-semi.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260609025605.16945-2-zhangyi@everest-semi.com>
-References: <20260609025605.16945-2-zhangyi@everest-semi.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260609025605.16945-4-zhangyi@everest-semi.com>
+References: <20260609025605.16945-4-zhangyi@everest-semi.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 09 Jun 2026 03:09:02 +0000
-Message-Id: <20260609030902.A5F1D1F00893@smtp.kernel.org>
+Date: Tue, 09 Jun 2026 03:09:38 +0000
+Message-Id: <20260609030939.5705C1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +69,7 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -77,16 +77,16 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308621-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308622-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -96,119 +96,115 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,everest-semi.com:email,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,everest-semi.com:email,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 229B665BFB1
+X-Rspamd-Queue-Id: 44FC565BFC0
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
 
+New issues:
+- [Medium] Newly added coefficient row for `mclk=3D12288000`, `rate=3D19200=
+0` is artificially restricted to a single voltage.
+
 Pre-existing issues:
-- [High] Incomplete volatile register list leaves critical configuration un=
--cached, causing state loss on resume.
-- [High] regmap cache is clobbered with hardware defaults during resume, nu=
-llifying the preservation of user settings.
+- [High] Modulo arithmetic bug in `get_coeff()` causes `0` to act as a wild=
+card, rendering specific configuration rows unreachable.
+- [High] Silent failure in `es8389_pcm_hw_params()` when clock coefficients=
+ are not found.
 --
 
-commit 18a4d58b5b0816359115dead13dc5872d2f0a08a
+commit d6630cad628ca425c2d2879ffc7997f87b417d34
 Author: Zhang Yi <zhangyi@everest-semi.com>
 
-ASoC: codecs: ES8389: Modify volatile_register
-
-Mark some registers that are not volatile as false.
+    ASoC: codecs: ES8389: Modify the clock table
+   =20
+    Updated the configuration for certain frequencies
 
 > diff --git a/sound/soc/codecs/es8389.c b/sound/soc/codecs/es8389.c
-> index 449d9574b03a8..9c816491648c7 100644
+> index 7a9d5d42a05d0..6ad0b580068cf 100644
 > --- a/sound/soc/codecs/es8389.c
 > +++ b/sound/soc/codecs/es8389.c
-> @@ -50,10 +50,29 @@ static const char * const es8389_core_supplies[] =3D {
->  static bool es8389_volatile_register(struct device *dev,
->  			unsigned int reg)
->  {
-> -	if ((reg  <=3D 0xff))
-> -		return true;
-> -	else
-> +	switch (reg) {
-> +	case ES8389_ADC_HPF1:
-> +	case ES8389_ADC_HPF2:
-> +	case ES8389_ADCL_VOL:
-> +	case ES8389_ADCR_VOL:
-> +	case ES8389_MIC1_GAIN:
-> +	case ES8389_MIC2_GAIN:
+> @@ -434,52 +434,54 @@ static const struct _coeff_div  coeff_div[] =3D {
+
+[ ... ]
+
+>  	{128, 24576000, 192000, 0x00, 0x50, 0x00, 0xC0, 0x18, 0xC1, 0x81, 0xC0,=
+ 0x00, 0x8F, 0x7F, 0xBF, 0xC0, 0x3F, 0x7F, 0x80, 0x12, 0xC0, 0x3F, 0xF9, 0x=
+3F, 2, 2},
+> +	{64, 12288000, 192000, 0x00, 0x41, 0x00, 0xC0, 0x18, 0xC1, 0x80, 0x00, =
+0x00, 0x8F, 0x7F, 0xEF, 0xC0, 0x7F, 0x7F, 0x80, 0x12, 0xC0, 0x3F, 0xF9, 0x3=
+F, 1, 0},
+
+[Severity: Medium]
+Is it intentional to restrict this new row to dvdd_vol=3D1 and dmic_sel=3D0=
+, rather
+than using the wildcard values (2, 2) like the other 192000Hz row?
+
+According to the logic in get_coeff(), dvdd_vol=3D1 strictly requires vddd=
+=3D1
+(ES8389_3V3). If the device is running on 1.8V (vddd=3D0), get_coeff() will
+reject this row and return -EINVAL. Could this break 192kHz playback on 1.8V
+systems?
+
+>  };
+> =20
+>  static inline int get_coeff(u8 vddd, u8 dmic, int mclk, int rate)
 
 [Severity: High]
-This is a pre-existing issue, but does making these registers non-volatile
-cause their cached user settings to be clobbered during resume?
+This is a pre-existing issue, but does the bitwise and modulo arithmetic he=
+re
+unintentionally cause 0 to act as a wildcard?
 
-In es8389_resume(), regcache_cache_bypass(es8389->regmap, false) is called
-before invoking es8389_init():
+In get_coeff():
 
-sound/soc/codecs/es8389.c:es8389_resume() {
-    ...
-	regcache_cache_bypass(es8389->regmap, false);
+	vddd_det |=3D ~(coeff_div[i].dvdd_vol % 2) & 0x01;
+	dmic_det |=3D ~(coeff_div[i].dmic_sel % 2) & 0x01;
 
-	if (regv =3D=3D 0xff)
-		es8389_init(component);
-    ...
-}
+Because 0 % 2 =3D=3D 0, the expression ~0 & 1 evaluates to 1. This means an=
+y row
+with dmic_sel =3D=3D 0 or dvdd_vol =3D=3D 0 acts as a wildcard and matches =
+regardless
+of the actual requested dmic or vddd values.
 
-Because caching is enabled during es8389_init(), its explicit writes to the=
-se
-registers overwrite the user's settings in the regmap cache with hardware
-defaults:
+For configurations where a 0 row precedes a 1 row for the same frequency, l=
+ike:
 
-sound/soc/codecs/es8389.c:es8389_init() {
-    ...
-	regmap_write(es8389->regmap, ES8389_ADC_MUTE, 0xC0);
-    ...
-}
+	{50, 400000, 8000, ..., 2, 0},
+	{50, 400000, 8000, ..., 2, 1},
 
-When regcache_sync() subsequently runs, it syncs these defaults instead of =
+get_coeff() will always return the first row (the 0 configuration), making =
 the
-user's configuration, which silently mutes the microphone and resets its ga=
-in
-upon every resume.
-
-> +	case ES8389_DACL_VOL:
-> +	case ES8389_DACR_VOL:
-> +	case ES8389_ALC_ON:
-> +	case ES8389_ALC_CTL:
-> +	case ES8389_ALC_TARGET:
-> +	case ES8389_ALC_GAIN:
-> +	case ES8389_ADC_MUTE:
-> +	case ES8389_OSR_VOL:
-> +	case ES8389_DAC_INV:
-> +	case ES8389_MIX_VOL:
-> +	case ES8389_DAC_MIX:
-> +	case ES8389_ADC_RESET:
->  		return false;
-> +	default:
-> +		return true;
+second row completely unreachable and preventing correct hardware setup when
+dmic=3D1 is requested.
 
 [Severity: High]
-This is a pre-existing issue, but does this default case incorrectly omit
-essential configuration registers?
+This is also a pre-existing issue, but when get_coeff() fails to find a
+matching row and returns -EINVAL, es8389_pcm_hw_params() does not propagate=
+ the
+error:
 
-It leaves important configuration registers like ES8389_MASTER_MODE,
-ES8389_ADC_MODE, ES8389_DMIC_EN, ES8389_ADC_FORMAT_MUTE, and
-ES8389_DAC_FORMAT_MUTE as volatile.
+	coeff =3D get_coeff(es8389->vddd, dmic_enable, es8389->sysclk, params_rate=
+(params));
+	if (coeff >=3D 0) {
+		regmap_write(...);
+		...
+	} else {
+		dev_warn(component->dev, "Clock coefficients do not match");
+	}
 
-Because volatile registers bypass the regmap cache, any user changes, such =
-as
-DAI formats and DAPM MUX selections, are not cached.
+	return 0;
 
-When es8389_init() writes default values to these registers, regcache_sync()
-skips them, so the user's MUX and format configurations are never restored,
-breaking audio routing.
-
-> +	}
->  }
+Returning 0 causes ALSA to continue preparing and triggering the PCM stream
+without configuring the codec hardware properly. Could this lead to undefin=
+ed
+behavior or silent audio failures?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609025605.1694=
-5-1-zhangyi@everest-semi.com?part=3D1
+5-1-zhangyi@everest-semi.com?part=3D3
 
