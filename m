@@ -1,130 +1,207 @@
-Return-Path: <devicetree+bounces-308758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308764-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Rb+UO6C+J2rI1QIAu9opvQ
-	(envelope-from <devicetree+bounces-308758-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:20:01 +0200
+	id 0djsJWTAJ2ou1gIAu9opvQ
+	(envelope-from <devicetree+bounces-308764-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:27:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E170465D208
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:19:59 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28DB365D2DA
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 09:27:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oIZwfDlP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308758-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308758-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=F+p+dHlU;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308764-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-308764-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F0D94300AD74
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 07:19:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4DD1E30D01CE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 07:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4E7938BF70;
-	Tue,  9 Jun 2026 07:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A1483B3C1A;
+	Tue,  9 Jun 2026 07:22:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7C22383C95;
-	Tue,  9 Jun 2026 07:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D189C38AC68
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 07:22:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780989595; cv=none; b=qdi+uP+hQfKT5GPOIIb7uaUrvd0qXKAgWCteOdlQhz+njkTV+uRsPB7EdfgYNoybLyiUk7WHEsBYXmMonRPlxHiYiSG1GE8HAc2bn2xKW4biCreRb+TpAg33ODruYU1FClID25ONyjktLf6oLudUAScatY0KrH+7PQE+WsNDnzY=
+	t=1780989779; cv=none; b=aBoxvZPY2RbisxWuJEkALsPmqDjH96z7H79Hzdo6EWGNgIJLky1th31P4T3OPgN8qSHgJGFn3q9FY2kz9S0T79dXljhkOSlX54/VgVJOvFDj2gFLwXwTUsajA9yHH1/J52D8jKXkWXEPR0TeRcHhz0I4tT27gz70JLZWOfoAGgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780989595; c=relaxed/simple;
-	bh=MZwiDHuAt1zR5v5iZPKDjhJjLK0FPjrE2wc1inbDoeU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N4D5n9PyC5HVlqotfrQg4u9WWd0C11TGy8l+WBp0Xs2bYJMjXMO5prBDO2dqvTpSf/bKaB8mWUxIQEOofYFGJMrsi90PmzJgm8TIP/ip593EiNH9Tc/bl4s39N7c99ty/DGZFpYzB/upP3JFtc8TX0bdx02OV5sIZJ9jJnrwHB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oIZwfDlP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F9461F00893;
-	Tue,  9 Jun 2026 07:19:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1780989594;
-	bh=vkCP6b4OrlIW/YPpqmN4QaEIE1n3u/k0VTYfSKF2ZnY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=oIZwfDlPg3B9O2qcn8pvuJoYYZDDkHh7O8GNeGzBiTJnjH/yVPNoc7eWWj97Jnlyh
-	 mLPUFa8qLI96o3vljxZFwRA+BpRStZ+n5txbmcsvdNd9XrbIv469K+HVo2K1heivFI
-	 29w3gdD2fn9O97509HVK9VeN9owj77n3O1PTtusxa0TV7y7+YvsqaFOtbXWic3LHeC
-	 spluMgxeGaAFCoVy6Lar+Du9AQ0usBmYmcuKgmdCB3jN4cWmzOn95NMlPiBy639CRn
-	 nUPVbeI+VTdjgmuz1HTGXlTbbPy/tzoaMBGH9+GRewJkg+/jYWu3JOHN4nh6c9bRWu
-	 DhaVi/Qgb2LIg==
-Date: Tue, 9 Jun 2026 09:19:52 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Manivannan Sadhasivam <mani@kernel.org>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: mtd: qcom,nandc: Add MDM9607 QPIC NAND
- controller
-Message-ID: <20260609-quirky-rat-of-criticism-aea1fe@quoll>
-References: <20260608-qcom-nandc-mdm9607-v1-0-4639a0492274@linaro.org>
- <20260608-qcom-nandc-mdm9607-v1-1-4639a0492274@linaro.org>
+	s=arc-20240116; t=1780989779; c=relaxed/simple;
+	bh=bH36BYhgS8uB0x2zr35yevjQLPcz2wgr1eMlLPwWf1s=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=d4nqioL8fmXGfz1QO8vC7wHT//U7/aGQvSD0p/V593d2fJGljK1sDE6gmI+tx01+22ST7fTorwpaJ9JyFlHvvu9VU8bx6SF2llHU7ZMDquS+FOuVjspyow4+dtpD0VUnR2gytc5oi1JdrvikF9wa1zEcrFpI5rhs4xZ0mwbsjvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F+p+dHlU; arc=none smtp.client-ip=209.85.210.169
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-842307472d4so1670955b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 00:22:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1780989777; x=1781594577; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/s0YVM/oDd2r7zbH0W4Z8rnf077Nw3eeODIAgYQWyIA=;
+        b=F+p+dHlUCQDaDEtGqBXNNznT06bN5uERqvOkTkrAuoFWaGS0uFVFkblvRUn19uejgs
+         rRb0r/0JmzIhk4XUdrB5cqciqF3emrAqaXQbzqlWDGI8HhdGSKnqvcTJzm/14gi22Bt8
+         3eBrKv8ddOnprA+IcR4ycVz12QC6zvVfJuWZj/YEB0p9Ka29QrpHmDAcLW5GxpcL2Fgo
+         6l/xn1MjdfEofccp5aQWuVMnkRgl6lW+ghC6Mn+u1vqaGk0gLUPT0JlUNzYjqq85qrGm
+         bIXMrsJUtORjI8O/N5TzeLAT+fy+03SndhmSx6TwHdyN6ZHkOXw0ISY/7/ouc0lyxotZ
+         EmJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780989777; x=1781594577;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/s0YVM/oDd2r7zbH0W4Z8rnf077Nw3eeODIAgYQWyIA=;
+        b=rC4NMhuBlyfBnMNE1KnE1co7USqPcmkgoTOIJKosOrjHGhMlg5IH+KbZ/t7X4Ie/XM
+         JY4bzclG5xvJB92Qsc1Ipcmh/Aj0W4loj45gKQDG1N5R+cWN+J4Kyw8jxbPIMnJSUyJw
+         AaezZeY3yR6NtYge8+34IwgwVBzZlF6z4Ccp7NdV7EKCZvtcqqID2mes9h2Rq/uB3yNB
+         XMLpzd0JJTEiDNmKI9jHOKhdrFmAsU/AUG0w/ptciywIyqlHAZqb+fCaFCJvYE7+DRtP
+         hu/hcxgMc3SYMN68SZqLacS9uPhxllodxwsTwA+R5DE1YnCkMOZzWd49LhCWaEKq0lBz
+         D0Vw==
+X-Forwarded-Encrypted: i=1; AFNElJ8k/zfOxl+xXvF1riyKlG3BVBwN6EY5ItVrUTLHLFtWTEPGXSE/sK+yFdauzau7lqPHdb+NJZfYoA35@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3STfSu5dckSI3uCLK+RgcojIzu4l76ljWiXwsjn+kuje2CAFW
+	DFjTniNvFV8hP6iZ3U1z6M/Gd+Jmj4NyZ/Y58jPt8PDTbf/T8cpvkz/Q
+X-Gm-Gg: Acq92OF71ixB6rwTZyRfYa+MO9HVFpZ2A70OBFUUwiJ2fXl5LtpCcS3tvHdJq6kQwCu
+	1gYQ+tklGLRuW2YkvRbD+rxVfhlAP5NWFJiP4Lc5znG55MGnbDe0gsSgkDZ1+hJxamEDAImmHEO
+	aTR/UgsSSV24LxS5lYJT75dh7PywefkRpO2JsCZ2QAwVVjBsVrw5dtw10ip0V3+2ZHjX2PofCTb
+	8CBop1uvg8EBXO2wUF9qEVwfYsmwxnx1a3jk7nV1Yj1zmkI4Sub2Df6EQYEqHQZeE2XkqnXmIcu
+	4KaFtT5Y7cmko9Nlv9ypej02ySCW/gWgkpBlvvn8SjZuQ/2cfj5mR6pDR0UcZRrg9FvJE7Tms2b
+	Y/b6cZuCA1cAtE2yyeFM6gyDc+RHGVnnzsZ6qKt4PMqtw9f3OW+J0Xx9AVyp1f1+l+OqgR/iW2V
+	r5x0Y2olfsiwBb9Y7WdzR6P3HteSBy3AdpDSMNbYN4H2cocqsPPrhlyN9L
+X-Received: by 2002:a05:6a00:12da:b0:842:6e1f:c8fc with SMTP id d2e1a72fcca58-8430a73d65dmr1919672b3a.32.1780989777010;
+        Tue, 09 Jun 2026 00:22:57 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:c919:66b5:f0e5:3e9c:92e5:3878])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84282221671sm21702448b3a.4.2026.06.09.00.22.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jun 2026 00:22:56 -0700 (PDT)
+From: ASHISH YADAV <ashishyadav78@gmail.com>
+X-Google-Original-From: ASHISH YADAV <Ashish.Yadav@infineon.com>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ashish Yadav <ashish.yadav@infineon.com>
+Subject: [PATCH v5 0/3] Add support for Infineon eFuse xdp730
+Date: Tue,  9 Jun 2026 12:52:28 +0530
+Message-Id: <20260609072231.15486-1-Ashish.Yadav@infineon.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260608-qcom-nandc-mdm9607-v1-1-4639a0492274@linaro.org>
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-308758-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-308764-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:stephan.gerhold@linaro.org,m:mani@kernel.org,m:miquel.raynal@bootlin.com,m:richard@nod.at,m:vigneshr@ti.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-mtd@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ashish.yadav@infineon.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[ashishyadav78@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,infineon.com:email,infineon.com:url,infineon.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E170465D208
+X-Rspamd-Queue-Id: 28DB365D2DA
 
-On Mon, Jun 08, 2026 at 03:20:22PM +0200, Stephan Gerhold wrote:
-> Add the qcom,mdm9607-nand compatible for the QPIC NAND controller used
-> inside the MDM9607 SoC.
-> 
-> On MDM9607, there is only a single controllable clock for the NAND
-> controller (RPM_SMD_QPIC_CLK). The same situation also applies e.g. for
-> qcom,sdx55-nand, but the corresponding device tree (qcom-sdx55.dtsi) works
-> around that by assigning a dummy clock (&nand_clk_dummy) to the second
-> clock ("aon") that is required by the dt-bindings. This is not really
-> useful, so avoid doing that for new platforms by excluding the second "aon"
-> clock entry in the dt-bindings.
-> 
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> ---
->  .../devicetree/bindings/mtd/qcom,nandc.yaml        | 24 ++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
+From: Ashish Yadav <ashish.yadav@infineon.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Best regards,
-Krzysztof
+Hi,
+
+These patches add support for the Infineon XDP730 Digital eFuse Controller
+by updating the existing XDP720 driver.
+
+The XDP720 and XDP730 are PMBus-compliant digital eFuse controllers
+with an integrated current sensor.They provide accurate system
+telemetry (V, I, P, T) and report analog current at the IMON pin for
+post-processing.
+
+Both parts share the same PMBus register map and direct-format
+coefficients; they differ in the GIMON gain step exposed via the
+TELEMETRY_AVG register (bit 10) and in the VDD_VIN pin number
+(XDP720: pin 9, XDP730: pin 20).
+
+The Current and Power measurement depends on the RIMON and GIMON values.
+The GIMON (microA/A) depends on the 10th bit of TELEMETRY_AVG PMBUS Register.
+The value of RIMON (kohm) can be provided by the user through device tree using
+infineon,rimon-micro-ohms  property.
+
+Datasheets:
+ - XDP720: https://www.infineon.com/assets/row/public/documents/24/49/infineon-xdp720-001-datasheet-en.pdf
+ - XDP730: https://www.infineon.com/assets/row/public/documents/24/49/infineon-xdp730-001-datasheet-en.pdf
+
+With Best Regards,
+ Ashish Yadav
+---
+Changes in v5:
+- Link to v4:
+https://lore.kernel.org/all/20260608061544.5613-1-Ashish.Yadav@infineon.com/
+- Fix driver:Split patch into two patches;Support for xdp730 and driver fix/clean
+https://lore.kernel.org/all/f03b52b2-1193-4127-ae5e-bd4a954f8e3e@roeck-us.net/
+
+Changes in v4:
+- Link to v3:
+https://lore.kernel.org/all/20260601090925.3781-1-Ashish.Yadav@infineon.com/
+- Drop extra I2C Device node and add rename node info in commit.
+https://lore.kernel.org/all/20260601-first-attentive-puffin-d7ca66@quoll/
+- Revert back patch formatting.
+https://lore.kernel.org/all/bf947dcd-2028-4dfd-a007-c4f39d2b7649@roeck-us.net/
+
+Changes in v3:
+- Link to v2:
+https://lore.kernel.org/all/20260529054218.5184-1-Ashish.Yadav@infineon.com/
+- Revert back the DT info file name to infineon,xdp720.yaml and added
+  xdp730 info
+https://lore.kernel.org/all/20260529-partake-myself-baa76ed4e279@spud/
+- Revert back the driver file name to xdp720.c and added xdp730 support
+https://lore.kernel.org/all/20260529062937.646091F00893@smtp.kernel.org/
+
+Changes in v2:
+- Link to v1:
+https://lore.kernel.org/all/20260519075558.91466-1-Ashish.Yadav@infineon.com/
+- Integrated XDP720/XDP730 drivers into one driver.
+https://lore.kernel.org/all/51133193-57fb-4a22-bf9e-9817f1f52ad5@roeck-us.net/
+
+Ashish Yadav (3):
+  dt-bindings: hwmon/pmbus: Add Infineon xdp730
+  hwmon:(pmbus/xdp720) Add support for efuse xdp730
+  hwmon:(pmbus/xdp720) Fix driver issues xdp720/730
+
+ .../bindings/hwmon/pmbus/infineon,xdp720.yaml | 28 ++++---
+ drivers/hwmon/pmbus/Kconfig                   |  2 +-
+ drivers/hwmon/pmbus/xdp720.c                  | 82 +++++++++++++------
+ 3 files changed, 76 insertions(+), 36 deletions(-)
+
+-- 
+2.39.5
 
 
