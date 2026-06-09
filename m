@@ -1,282 +1,297 @@
-Return-Path: <devicetree+bounces-309335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309333-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YcC8CUiFKGrUFgMAu9opvQ
-	(envelope-from <devicetree+bounces-309335-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 23:27:36 +0200
+	id MOi9IGx/KGoRFgMAu9opvQ
+	(envelope-from <devicetree+bounces-309333-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 23:02:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 898C26643D1
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 23:27:35 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E160C6642D5
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 23:02:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=antispam.mailspamprotection.com header.s=default header.b=FJ9RC1j4;
-	dkim=fail ("headers rsa verify failed") header.d=valla.it header.s=default header.b=mGxgiW0H;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309335-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309335-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=valla.it (policy=none);
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TbAFWqmq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309333-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309333-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E3BE430B53AA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 21:26:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5850930B1B3E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 20:58:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4B1411699;
-	Tue,  9 Jun 2026 21:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5243D9048;
+	Tue,  9 Jun 2026 20:58:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from delivery.antispam.mailspamprotection.com (delivery.antispam.mailspamprotection.com [185.56.87.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867CF3EB0F4;
-	Tue,  9 Jun 2026 21:26:30 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781040392; cv=pass; b=pLA/cwLXfns/vmdt962OwUArmVPdeQeRZLoq8EaANvSESxnyf8fPVhS0TbtroXyY8P0KwBP7Dr48Q+eRMKjrIliUvJwMR//V19UoN8JmVpxb6ToPudDR11USJWHTBKm90NOYc/50xxxu0gpdd19kAlIRyclRRftq+6vZwZhe0XU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781040392; c=relaxed/simple;
-	bh=SQ4EKhSiwdW2m9zPBFJmKKyZiDpxnfusfBXNXXgOVM8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Onx5ceKkaWEur4rLE/1q5vCu0Ug365FJDlQw5BipDLx/irfe4Dhyow0PW6Yag7YQ+oervJAeAWoZtFUqiXYf8kBppyz9DtU5tlRQKzSS52/RGkWBMAOkC+W5znf2xo2NeQm7Mqlb2X/qqzFp/fy1wbtUvhQpT1aA1WHTpw1BnBc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valla.it; spf=pass smtp.mailfrom=valla.it; dkim=pass (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.b=FJ9RC1j4; dkim=pass (1024-bit key) header.d=valla.it header.i=@valla.it header.b=mGxgiW0H; arc=pass smtp.client-ip=185.56.87.13
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-httc.prod.antispam.mailspamprotection.com; s=arckey; t=1781040390;
-	 b=OPX/vecK+HIcUmEcKcxWm/hrJvGf6T2ikrpQ7CKNjBVM7iBN61z0E3zAX754LiDaZRUB4xsAXV
-	  CuWi/LI/yOxAkfyinU6+gqp9Bx9HazkHYYPWKuROcxEqZdLPF4PJWNXLwO7670iOfrUbPFjbnQ
-	  HFldvPr8+fVTDXl3282Qm8bbe0iRwPUPAry69HZP3Qa0+LCc1sMTuceGN4XvLUewhK8ey1zolp
-	  qWo8E5s3mxAzJrhY6o/csWZrHxW8KSrwbG/gauV+m3wUC176kCdS4AC6yxtKyxrmXJ0QbFM8e2
-	  Dibv4bsgcYdrd6+FLAM5NOl+IBHAkTBEym5eAaCxyIEcNw==;
-ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-httc.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
-	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
-	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
-	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
-	arc=none
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-httc.prod.antispam.mailspamprotection.com; s=arckey; t=1781040390;
-	bh=SQ4EKhSiwdW2m9zPBFJmKKyZiDpxnfusfBXNXXgOVM8=;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	  Message-ID:Date:Subject:Cc:To:From:DKIM-Signature:DKIM-Signature;
-	b=kxJwQHxP9dlWJDDy9cZrgwZCRktA28+hnT6GeMCWA8EenHGdcmqB68/4jmOLGBO1Iiv7hGmQK9
-	  7IvcqElxgSJ81gou2Mzv4Ti/UT8mCsK1ZVFJ6ROMVam/1j8LVwxYoIbtNciX2D6pOFfJAaBiMb
-	  ldAQMm7bWstP+BKnLIaREbqvUzROJ8XCy19IKK1O1+Vla3kaPL1Fpw+ym504lB1i97TQsSj/Y1
-	  Z54T9R1emMFiGyRtWHGWGvnqUuFw8M51Hd1cN37mUW837yRDLvwjTAtA1rvkqzxtg9azNGbJZZ
-	  2oQ3zgymnc7xakCeQo9mYCkb/RfZWpxliwKAV7F6o0Ggvg==;
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
-	:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
-	Cc:To:From:Reply-To:List-Unsubscribe;
-	bh=/CB3uqN+m7C8S/hlT2WiZWa5WYAgtzsD/nbEWBLMncI=; b=FJ9RC1j4csgIQsgt6GjJixnwkZ
-	79CYtVCiDnWT8OGRqnrU4+TjrzKzU68XxD9IXPEOdhHzqmldSrQ98IWhJYen4Zuk2tny4cYGCDVEP
-	qpO4qwj/SF5NR8bopAb+q/X3C7tTFU8bdXjDwFKWfkckGsCH+Nu+dyI/afizBVodpWYY=;
-Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
-	by instance-europe-west4-httc.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.4)
-	(envelope-from <francesco@valla.it>)
-	id 1wX3xl-00000007gad-3K6B;
-	Tue, 09 Jun 2026 21:26:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
-	s=default; h=Date:Subject:Cc:To:From:list-help:list-unsubscribe:
-	list-subscribe:list-post:list-owner:list-archive;
-	bh=/CB3uqN+m7C8S/hlT2WiZWa5WYAgtzsD/nbEWBLMncI=; b=mGxgiW0HLd56ARsb448DjEhxTl
-	YY/dJOylCz3UmiQSzcTqix8Dnx1fm27hErHNngSJ3m5WjS74Ppog2uePEzTAh7zmr0FGpdnh/2pWd
-	2368AnWdWTCS0X+1efQ0XAHr/zxQB+hrpHQbRW9TuA2Mu93IIDSdQmYS+P1vSD0I0qSE=;
-Received: from [95.248.69.182] (port=60980 helo=bywater.localnet)
-	by esm19.siteground.biz with essmtpa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.3)
-	(envelope-from <francesco@valla.it>)
-	id 1wX3EN-00000000JTf-485z;
-	Tue, 09 Jun 2026 20:39:28 +0000
-From: Francesco Valla <francesco@valla.it>
-To: Joseph Guo <qijian.guo@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Daniel Baluta <daniel.baluta@nxp.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- steven.yang@nxp.com
-Subject:
- Re: [EXT] Re: [PATCH] arm64: dts: imx93-11x11-frdm: enable additional devices
-Date: Tue, 09 Jun 2026 22:39:27 +0200
-Message-ID: <qRn4DwQ2Twuq6ao1_CO5YA@valla.it>
-In-Reply-To: <db95fec5-d8ac-4d52-ad2a-75e5593f99ef@nxp.com>
-References:
- <20260115-imx93_devices-v1-1-b2c840cafa2e@valla.it>
- <_j4Ik3AsS5yfKb4Y7cSB1w@valla.it>
- <db95fec5-d8ac-4d52-ad2a-75e5593f99ef@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 978D323D2A4
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 20:58:22 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781038703; cv=none; b=tXepUZ6GARSRTaXFaVrzEi9VsU5rgb/r9RG8eu+gUD7uvWH4TpN2b6un29Xk6VlHiM1kn8uMAAclV1FEThKInfeFcY23o5N/74sa4Ci6O21rXwzk0x74Csxjv6EV0nXW+gYw2ncjUI2vAild5iJl8v+WNrXHBh4nxQ8ZjiFWwIo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781038703; c=relaxed/simple;
+	bh=J31TDGm6HQhribw4GpA/1gSM6x5lUJvmBI3uaO43Lt8=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=UTs7VEYrCI83F2zDclkdxIIDkvS4yDUXfaEr8+W32BHFjArdCGOegSSQxPr4zhMEO6PaI1M6bbzo0NWCFSE/iTk6nru83xKogtdrRLq7vx4+/8A3MTvDeNxIcMrPjKmstPtltMqPFIeIWpk0EvlJJZu7SMOmfiEouU90KErwlSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TbAFWqmq; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19E361F00898;
+	Tue,  9 Jun 2026 20:58:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781038702;
+	bh=8/IzX23uuIpLYDZQMSAvFZbZaDHfZvZfUl+t1PMzAPU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=TbAFWqmq5jb3iSWQoo5J8WAs70A4XzjUXeXAPWaplcgQ21rgYuILJa6Kpf/sn4/Zv
+	 W5BtcVt+gwYDXZUO+pnU9tG+ORaz+k6rxBPrZsMjGyHKq2v/S98Hyne1m+EXC1Uz6Z
+	 /HHLeZX1r6P10FdIc4AAoDC0EGjEsqaN5tTeWWwiv9DUsjwm0NXLEukHFtFgIZ2LvZ
+	 HRINs0KeTxKqpO/dRxCmMz8oztjSOq1NtDawscJPLbENruddY1VoORVDrHl1L4poQV
+	 Kuxnj/ibLqCKKwOd/Paqn4IUYXWjB6rTNw2Fstt7BP+YM1U1LxHJ/+ytgblfHUEMg/
+	 ghkSfaPYyAy3w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH net-next 2/2] net: pse-pd: add Realtek/Broadcom PSE MCU
+ driver
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jonas Jelonek" <jelonek.jonas@gmail.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260608205758.1830521-3-jelonek.jonas@gmail.com>
+References: <20260608205758.1830521-3-jelonek.jonas@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 09 Jun 2026 20:58:21 +0000
+Message-Id: <20260609205822.19E361F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - esm19.siteground.biz
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - valla.it
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-SGantispam-id: 30122680d5fee8d4133c1db00989fa0a
-X-AntiAbuse: ID - 30122680d5fee8d4133c1db00989fa0a
-AntiSpam-DLS: false
-AntiSpam-DLSP: 
-AntiSpam-DLSRS: 
-AntiSpam-TS: 1.0
-CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
-CFBL-Feedback-ID: 1wX3xl-00000007gad-3K6B-feedback@antispam.mailspamprotection.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_DKIM_REJECT(1.00)[antispam.mailspamprotection.com:s=default,valla.it:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[valla.it : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309335-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FORGED_SENDER(0.00)[francesco@valla.it,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_RECIPIENTS(0.00)[m:qijian.guo@nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:daniel.baluta@nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:steven.yang@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309333-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	HAS_X_SOURCE(0.00)[];
-	HAS_X_ANTIABUSE(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[francesco@valla.it,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[antispam.mailspamprotection.com:-,valla.it:-];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jelonek.jonas@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:jelonekjonas@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[valla.it:email,valla.it:mid,valla.it:from_mime,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 898C26643D1
+X-Rspamd-Queue-Id: E160C6642D5
 
-Hi Joseph,
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
+- [High] Unprotected data race on UART receive buffer state between asynchr=
+onous RX callback and process-context TX function.
+- [High] I2C transport handlers swallow explicit MCU error opcodes, causing=
+ 1-second stalls and masking failures.
+- [High] UART receive handler returns partially consumed bytes, leaving ove=
+rflow bytes in the serdev tty buffer which corrupts subsequent frames.
+- [High] The advertised 60W maximum power limit for the BCM59121 chip is ph=
+ysically unreachable and silently clamped to 51W.
+- [Low] Use of non-existent macro `kzalloc_obj()` causes a build failure.
+--
 
-On luned=C3=AC 8 giugno 2026 07:14:24 Ora legale dell=E2=80=99Europa centra=
-le Joseph Guo=20
-wrote:
-> On 6/5/2026 7:36 PM, Francesco Valla wrote:
-> > Caution: This is an external email. Please take care when clicking links
-> > or opening attachments. When in doubt, report the message using the
-> > 'Report this email' button
-> >=20
-> >=20
-> > Hi Joseph,
-> >=20
-> > On venerd=C3=AC 5 giugno 2026 10:59:08 Ora legale dell=E2=80=99Europa c=
-entrale Joseph
-> > Guo>=20
-> > wrote:
-> >> On Thu, Jan 15, 2026 at 06:11:34PM +0100, Francesco Valla wrote:
-> >>> Enable additional devices on the i.MX93 FRDM board:
-> >>>   - CAN port and associated transceiver
-> >>>   - Bluetooth portion of the IW612 chipset
-> >>>   - WiFi SDIO port
-> >>>   - user buttons
-> >>>=20
-> >>> The WiFi portion of the on-board IW612 chipset is still not supported
-> >>> upstream, but since SDIO is a discoverable bus it will be probed once=
- it
-> >>> is.
-> >>>=20
-> >>> Signed-off-by: Francesco Valla <francesco@valla.it>
-> >>> ---
-> >=20
-> > [...]
-> >=20
-> >> Hi Francesco,
-> >>=20
-> >> Do you ever tried bluetooth feature? The bluetooth failed to scan with
-> >> 'device-wakeup-gpios' property.
-> >>=20
-> >> Regards,
-> >> Joseph
-> >=20
-> > Yes, Bluetooth was tested using bluetoothctl, I just briefly re-tested =
-it
-> > with latest master branch (7.1.0-rc6).
-> >=20
-> > Can you clarify what you mean with "The bluetooth failed to scan
-> > with 'device-wakeup-gpios' property."?
->=20
-> Hi Francesco,
->=20
-> If 'device-wakeup-gpios' property is set. The bluetoothctl can work, but
-> errors will show up if try to scan the bluetooth devices.
->=20
-> [bluetoothctl]> scan on
-> SetDiscoveryFilter success
-> Failed to start discovery: org.bluez.Error.InProgress
-> hci0 class of device changed: 0x000000
-> hci0 new_settings: bondable ssp br/edr le secure-conn cis-central
-> cis-peripheral iso-broadcaster sync-receiver ll-privacy past-sender
-> past-receiver [CHG] Controller 20:BA:36:5C:B0:D8 Class: 0x00000000 (0)
-> [CHG] Controller 20:BA:36:5C:B0:D8 Powered: no
-> [CHG] Controller 20:BA:36:5C:B0:D8 Discovering: no
-> [CHG] Controller 20:BA:36:5C:B0:D8 PowerState: on
-> [bluetoothctl]> discoverable on
-> Failed to set discoverable on: org.bluez.Error.Failed
->=20
-> After remove the 'device-wakeup-gpios' node. The bluetooth can work
-> normally.
+commit 99e0f1290d70d0585553ebd399054bea3d8ef281
+Author: Jonas Jelonek <jelonek.jonas@gmail.com>
 
-This is not my experience:
+net: pse-pd: add Realtek/Broadcom PSE MCU driver
+   =20
+This commit introduces a new driver for the microcontroller fronting Realtek
+and Broadcom PSE chips on PoE switches. It includes both I2C and UART
+transport modules alongside a shared core to handle protocol dialects.
 
-[bluetoothctl]> scan on
-SetDiscoveryFilter success
-hci0 type 7 discovering on
-Discovery started
-[CHG] Controller B8:F4:4F:AA:9D:1C Discovering: yes
-[NEW] Device C4:DE:E2:52:B9:96 BWT Perla BLue 16L 0025-003A
+> diff --git a/drivers/net/pse-pd/realtek-pse-core.c b/drivers/net/pse-pd/r=
+ealtek-pse-core.c
+> index 0000000000000..711f85aebf5e8
+> --- /dev/null
+> +++ b/drivers/net/pse-pd/realtek-pse-core.c
+[ ... ]
+> +static const struct rtpse_chip_info bcm59121_info =3D {
+> +	.device_id =3D RTPSE_DEVICE_ID_BCM59121,
+> +	.max_mW_per_port =3D 60000,	/* 802.3bt Type 3 */
+> +	.name =3D "BCM59121",
+> +	.pw_read_lsb_mW =3D 200,
+> +	.pw_set_cmd =3D RTPSE_CMD_PORT_SET_POWER_LIMIT,
+> +	.pw_set_lsb_mW =3D 200,
+> +};
+[ ... ]
+> +static int rtpse_port_set_pw_limit(struct pse_controller_dev *pcdev, int=
+ id, int max_mW)
+> +{
+> +	const struct rtpse_opcode *type_opc, *val_opc;
+> +	struct rtpse_ctrl *pse =3D to_rtpse_ctrl(pcdev);
+> +	const struct rtpse_chip_info *chip =3D pse->chip;
+> +	unsigned int prg_val;
+> +	int ret;
+> +
+> +	if (max_mW < 0 || max_mW > chip->max_mW_per_port)
+> +		return -ERANGE;
+[ ... ]
+> +	prg_val =3D min_t(unsigned int, max_mW / chip->pw_set_lsb_mW, 0xff);
+> +
+> +	return rtpse_port_cmd(pse, id, val_opc->op, prg_val);
+> +}
 
-[bluetoothctl]> discoverable on
-hci0 new_settings: powered connectable bondable ssp br/edr le secure-conn c=
-is-
-central cis-peripheral iso-broadcaster sync-receiver ll-privacy past-sender=
-=20
-past-receiver=20
-[CHG] Controller B8:F4:4F:AA:9D:1C Connectable: yes
-hci0 new_settings: powered connectable discoverable bondable ssp br/edr le=
-=20
-secure-conn cis-central cis-peripheral iso-broadcaster sync-receiver ll-
-privacy past-sender past-receiver=20
-Changing discoverable on succeeded
-[CHG] Controller B8:F4:4F:AA:9D:1C Discoverable: yes
+[Severity: High]
+Is the 60W maximum power limit for the BCM59121 chip physically unreachable
+here?=20
 
+With max_mW_per_port set to 60000 and pw_set_lsb_mW set to 200, programming
+60W results in a target of 300. Since this is packed into an 8-bit command
+payload, the min_t calculation clamps the value to 0xff (255).=20
 
-I also enabled the driver debug prints (through #define DEBUG) and can conf=
-irm
-that the GPIO is being driven:
+This seems to silently restrict the maximum output to 51W, which could break
+functionality for devices expecting the advertised power budget.
 
-root@imx93-11x11-frdm:~# dmesg|grep h2c
-[   13.524321] hci0: Set Wakeup Method response: status=3D0, h2c_wakeupmode=
-=3D4
-[   15.586748] hci0: Set h2c_ps_gpio: high
-[   28.459963] hci0: Set h2c_ps_gpio: low
-[   32.034623] hci0: Set h2c_ps_gpio: high
+[ ... ]
+> +static int rtpse_port_get_pw_limit_ranges(struct pse_controller_dev *pcd=
+ev, int id,
+> +					  struct pse_pw_limit_ranges *out)
+> +{
+> +	struct ethtool_c33_pse_pw_limit_range *range;
+> +	struct rtpse_ctrl *pse =3D to_rtpse_ctrl(pcdev);
+> +
+> +	range =3D kzalloc_obj(*range, GFP_KERNEL);
+> +	if (!range)
+> +		return -ENOMEM;
 
-Maybe we have a different board revision? Do you know if there is a way I c=
-an
-read mine?
+[Severity: Low]
+Will this code compile successfully? There does not appear to be a
+kzalloc_obj() macro in the standard kernel API, which might lead to an
+immediate build failure. Should this just be kzalloc() instead?
 
+> diff --git a/drivers/net/pse-pd/realtek-pse-i2c.c b/drivers/net/pse-pd/re=
+altek-pse-i2c.c
+> index 0000000000000..8b9c31cbdfe99
+> --- /dev/null
+> +++ b/drivers/net/pse-pd/realtek-pse-i2c.c
+[ ... ]
+> +static int rtpse_i2c_smbus_recv(struct rtpse_ctrl *pse,
+> +				const struct rtpse_mcu_msg *req,
+> +				struct rtpse_mcu_msg *resp)
+> +{
+> +	struct i2c_client *client =3D to_i2c_client(pse->dev);
+> +	int tries, ret;
+> +
+> +	for (tries =3D 0; tries < RTPSE_I2C_MAX_TRIES; tries++) {
+> +		if (tries > 0)
+> +			msleep(RTPSE_I2C_RETRY_MS);
+> +
+> +		/* MCU needs 0x00 as command byte for read */
+> +		ret =3D i2c_smbus_read_i2c_block_data(client, 0x00,
+> +						    RTPSE_MCU_MSG_SIZE,
+> +						    (u8 *)resp);
+> +		if (ret < 0)
+> +			return ret;
+> +		if (ret =3D=3D RTPSE_MCU_MSG_SIZE && resp->opcode =3D=3D req->opcode)
+> +			return 0;
+> +	}
+> +
+> +	return -ETIMEDOUT;
+> +}
 
-Regards,
-=46rancesco
+[Severity: High]
+Do these transport loops inadvertently swallow explicit MCU error opcodes?
 
+If the MCU returns a valid error opcode like 0xfd (request incomplete) or
+0xfe (checksum error), resp->opcode won't match req->opcode.=20
 
+Instead of returning the error so the core can translate and handle it,
+the loop appears to ignore the response and continues to poll until hitting
+the timeout.
 
+Could this needlessly stall the bus for a full second on every invalid
+command in both the SMBus and native I2C receive paths?
 
+> diff --git a/drivers/net/pse-pd/realtek-pse-uart.c b/drivers/net/pse-pd/r=
+ealtek-pse-uart.c
+> index 0000000000000..27fa7e0c3f95e
+> --- /dev/null
+> +++ b/drivers/net/pse-pd/realtek-pse-uart.c
+[ ... ]
+> +static size_t rtpse_uart_receive(struct serdev_device *serdev,
+> +				 const u8 *buf, size_t count)
+> +{
+> +	struct rtpse_uart *ctx =3D serdev_device_get_drvdata(serdev);
+> +	size_t take;
+> +
+> +	take =3D min(count, sizeof(ctx->rx_buf) - ctx->rx_len);
+> +	if (take =3D=3D 0)
+> +		return count;  /* drop overflow bytes */
+> +
+> +	memcpy(ctx->rx_buf + ctx->rx_len, buf, take);
+> +	ctx->rx_len +=3D take;
+> +
+> +	if (ctx->rx_len =3D=3D sizeof(ctx->rx_buf))
+> +		complete(&ctx->rx_done);
+> +
+> +	return take;
+> +}
+
+[Severity: High]
+Can returning take instead of count here cause framing desynchronization?
+
+If the handler returns a value less than count, the serdev core keeps the
+unconsumed bytes buffered.
+
+When the next transaction begins, these leftover overflow bytes might
+immediately push into the new buffer, permanently misaligning future
+responses. Does it make sense to unconditionally return count here to drop
+any overflow bytes and allow resynchronization?
+
+[ ... ]
+> +static int rtpse_uart_send(struct rtpse_ctrl *pse, const struct rtpse_mc=
+u_msg *req)
+> +{
+> +	struct rtpse_uart *ctx =3D to_rtpse_uart(pse);
+> +	int written;
+> +
+> +	/* clear any leftover rx state before transmitting */
+> +	reinit_completion(&ctx->rx_done);
+> +	ctx->rx_len =3D 0;
+
+[Severity: High]
+Is there a data race on ctx->rx_len between the receive callback and this
+send function?
+
+The serdev callback rtpse_uart_receive() modifies ctx->rx_len asynchronously
+from a softirq or workqueue context. If a delayed byte arrives just as
+rtpse_uart_send() locklessly resets ctx->rx_len to 0, it could corrupt the
+buffer state.
+
+The pse->mutex appears to only serialize host-initiated requests, but not
+the asynchronous UART receive callback. Could this lead to dropped frames or
+out-of-bounds writes?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260608205758.1830=
+521-1-jelonek.jonas@gmail.com?part=3D2
 
