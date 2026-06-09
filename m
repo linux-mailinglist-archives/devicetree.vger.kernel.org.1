@@ -1,449 +1,211 @@
-Return-Path: <devicetree+bounces-309142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309128-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tU1YKJIyKGrP/wIAu9opvQ
-	(envelope-from <devicetree+bounces-309142-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 17:34:42 +0200
+	id BoZmJ94xKGqo/wIAu9opvQ
+	(envelope-from <devicetree+bounces-309128-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 17:31:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B360661CCB
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 17:34:42 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 850FB661C5E
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 17:31:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=izfXoU30;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309142-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309142-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=CQsVtw5g;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=fy7hf1i1;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309128-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309128-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 65EEE304EE84
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 15:18:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E5E8430DA5DF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 15:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 518A74ADDA6;
-	Tue,  9 Jun 2026 15:13:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95743481AB9;
+	Tue,  9 Jun 2026 15:13:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7B174968E0
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 15:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4C447D938
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 15:12:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781018033; cv=none; b=haMdPdohZecea016FM97GcBN3TJt6hmf22DmldQvGMtfKWA16b5TM6DACPy33rouwqarYoGPtUWlVTdKAx+IC1GRdRTbi6rUBOnZ/v8ZkgtXxc85zydVHMUqXxzwkdukjgi9LvCziCvBMKaZAdE5EVK2EScyNbU2ISWzU+GRZTs=
+	t=1781017980; cv=none; b=O7KMSIkg8ACL4ZQGNLfO2PGDX4QT+kLHK+yfI1L/7F6bmd2AN7ahYb6DEsJaBaxDye42y7SxteP6tSKaUqQLjAxjf05N9fV2cOh3a4qC2au2Z/4AHT1IUztHj+8bKMLmPPrmADIofRO4WKD2U+VKbNYzq6d2P1F+UwXNS/3lo2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781018033; c=relaxed/simple;
-	bh=8O2w84sf3k9UsdHFrkiTPC0ZIKeE7XAkdAh1ZSc348c=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VilSh1JG5DSXkGt5qTlwAmEzPAjyy+7Bpe/hgElxnvHnFk8bDc5WrWzAFOw4WEwRuGYtFFJZBLlO8H0IMpb0NNSLcx0bJZRxpe0YXNu5aJu5EKRqH5Njylc5PnLyz6i7Zso0ZmW24txUMqIyHQuBkkOs5ACjRhaB2to1Bedje3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=izfXoU30; arc=none smtp.client-ip=209.85.218.42
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-bebbc325000so727209766b.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 08:13:40 -0700 (PDT)
+	s=arc-20240116; t=1781017980; c=relaxed/simple;
+	bh=82rPiIP0YAvXOj5cPODTD5NH26/JVRVCRNihB4/5Qlk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JmEvBOqCbHwSBQK6OhxxbPQi0prfEWH8lZxSH/qnnndLC0ih+70lRVtp+zV79TrA8lTSaxb95s5gfjWVD3q2qrQs6tHWvfY+g1twtQDmFyPipaAE05IeJ3Eqoi/9as4uNFvnygJkzPTdvHnxQUD7lonjIvp2GdL5YpEWK1ShJAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CQsVtw5g; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fy7hf1i1; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 659ClGJW2251543
+	for <devicetree@vger.kernel.org>; Tue, 9 Jun 2026 15:12:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mhOnrD0Ngw0/aZVLSpJGyyv3d0d7bAPed3nnx96ANaY=; b=CQsVtw5g95+5D2dA
+	hKo2dx1+w5pfI9J68sboglEg4VakcxYgph2dDRff6Arufpcbd3B3PLJjZsrR2J0D
+	7E1lR8GU5YEnB1Q4l2Q48+6WAsyO/htAZYYvKqES/RCWHQMq3133zab/4K8ATR5M
+	qJJgqsvhxgnjPWj1QMQx/088Vum6PuFOyTkkCwcJOXDMg6d4XMxbQYTpbS2DIU+7
+	BrP1YI5nBhDgHgpPcbiKGYMCgB4VB/vOM7Qt/5nh3ENLGXsMEyTOw08EGmMzNArk
+	csdKjuqgWNu+YAA1GlhdQlpD+G/2YpSXlW0DoHGxnEHwdjJ22C60ltenCZPU2/+A
+	yrJ6lQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4epeqgj3c8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 15:12:55 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-91550f68e7cso148577385a.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 08:12:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781018019; x=1781622819; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BKAHZBj8Q4+vRNpcM7hRX5sDNhQM8RLIVJoZZt90zy8=;
-        b=izfXoU30DNugtjq4M9qUnyFD9GtmWlPvt5Jt8YHZQhr41CAPbHUrWI9IfIQCSe5Awn
-         kxnvHG93imUohZoo2ExJHod2gmLhq19A2n3W4qrTlqrNxjfrCCxAaCRzlO9s+9GiII7u
-         GZZCZilICYr46YlJC40DqdhxATAJx3T8SApwAkvAkvjTG5OQ9OhgAjeGXOoD5LlNiQx0
-         CNj2Amn0Teb5Yl2etVgMabc5PdRvR6nZl1FjIL+QMjNVOt0/qaf+vAW/unKc3KgAxij7
-         YYmAi5DIiap1DPhbj3TqE8KUnmo7fyjPv0GrfRNoXhYkgeiLkWFKME8FF+6aMPzu6n90
-         2W1Q==
+        d=oss.qualcomm.com; s=google; t=1781017975; x=1781622775; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mhOnrD0Ngw0/aZVLSpJGyyv3d0d7bAPed3nnx96ANaY=;
+        b=fy7hf1i1pmYqRp1HAq/QcNzpQX1eUb+ffBAAYB9SIzoSqJXkg7v0NKBDpB9IqAonlj
+         JeuWLUYTQJXwIV/4eiu41ACvW95DdJ11rQePFzlMzG0yBFT1N4IbgLS0F6As8u51BJNX
+         XzBH4ZQA+Em/lkUWuv2xjdgeKOGCHxPJ8xaTJHhVvr1Khr9JAai+cj0Aa9kMFken+NiD
+         +70xLanCce1F1MfLM31TGWK5DYvja1BKKO3Zuczt0kqMIFjZxy2VUlUZw9QBdR/TA2QS
+         Xv/dznzPxnRIHM24/kfrdWInBfhyNqfKdrxE30owoEX0ht7VBkQxxl+GxE34kjFbZgzq
+         Wraw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781018019; x=1781622819;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BKAHZBj8Q4+vRNpcM7hRX5sDNhQM8RLIVJoZZt90zy8=;
-        b=a69/8+fwjnbKjR9WWd3+ndJTu9Bbhj/n5DWCT0xGO3224VyDyyIpJSCJGy02hQvPOX
-         4DHkQrcKVu7hTOjrcRVrNZ+f/1S4suKGczV1akfKKKlXCGZYqzue0yezK2TqjvxRx4Qn
-         FRCSupZ/i3sLYjm26Sazw71gUrlRbR9o7ZLi7sQykcmd7bf2QIKGhgN/tzxpBbLYGb7z
-         okaXDMHyBCcHk5x7WjyQlWzy41M4qnWBMFI9SGkVL5eMF5wxX5bOaiGUJi/unKTG+Bnp
-         eqoaS4YbkYQ7nWposIu2fUU1AXGdf7WCFfk7OLtSMUHOnQqsY/K9OzmV1k4Iw2Kym8qJ
-         M95g==
-X-Forwarded-Encrypted: i=1; AFNElJ+y1sGBcoGkpM4rSDq3wDhBjW6vcmka+SIYmnEjExQgsMKqR6N6XkYJU1vUFxY9IpmhPGkSIXZ6/r+i@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxb7aBFeOrhWxuMH1xIQLfk3Q0QRU6ypcG13Gh+LaU494wIJrCR
-	1JPvj00ejgl+NRTR8wy98Z/WJXfhQlI86PESLjhc8eP0Jq6/CBNavUtl
-X-Gm-Gg: Acq92OFPdI7j8y3I4rtQrEa7FNglzoksAavbnIFDYMd/e6WY0XSkLF7uwa77RQft9bQ
-	2sANVuvVixwa5LQ01KOdMl59AV32/ZfD8eONHsVbLUXtqPPpdFqgwGIaOLECNPP2FyYUT9gmgMT
-	xnTc6KSzOZ2uK84h2TsHpa7VUd4T3udnyZ9/YFVackt0UQVt8dSfiejDZMA7qp3/zsHgZh/aXj6
-	WY5yVnrMZo0eY/DMwC+g9Hk8kNsDzStmzV9qncS97AwKrDoJJSpzDnyeceQ8blbhc5Uj8YQfqqU
-	wwPLAMpHCcaQ1LZYX7csyh6czDPIZh2m0dErOljjhyz3PtfvBT9zupTccHMvGuXTCxxFytMtDWi
-	ItL9CfTexatYpEtLASbsGCJG7krHUky6Iq6oKYxL4unwzl4ZF+TyIjGPHSZKRsMflIyFzewa7ST
-	C7OQDOIaF+iqkJ4xfot8B6kH/4/inQGwoV
-X-Received: by 2002:a17:907:7289:b0:bf3:230c:4c64 with SMTP id a640c23a62f3a-bf371f52a44mr1059828766b.16.1781018018452;
-        Tue, 09 Jun 2026 08:13:38 -0700 (PDT)
-Received: from Ansuel-XPS24 ([2.195.136.12])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-bf0517721e5sm1073637866b.9.2026.06.09.08.13.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2026 08:13:37 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Simon Horman <horms@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	llvm@lists.linux.dev
-Subject: [PATCH net-next v6 12/12] net: airoha: add phylink support
-Date: Tue,  9 Jun 2026 17:12:08 +0200
-Message-ID: <20260609151212.29469-13-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260609151212.29469-1-ansuelsmth@gmail.com>
-References: <20260609151212.29469-1-ansuelsmth@gmail.com>
+        d=1e100.net; s=20251104; t=1781017975; x=1781622775;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mhOnrD0Ngw0/aZVLSpJGyyv3d0d7bAPed3nnx96ANaY=;
+        b=Yg3qyPORv6Qg+PVvMvtquLVzWO46ch053OvbQDGtf1imtmC4kssGOp7DOB8HY4Lej3
+         aVcyq7+zAlWMLunickbIsKxMgXCDRFKuiTp2uHiHwbctDo5Sg1FpG9NEfeWQJsEo3erV
+         UboyDrllssWPG+ABtEE6PTY+fJjA6jG3CCGlq/w79UKMevuTnhqN7IFpcA86RfYcfPku
+         g7AEQNzNuWzoRZSYvehWZlEbuP2aod3TKcPWPN18kSTQpy9MBdacdqF3uf2fV79dN7nU
+         AfM7c2HNNJsfSa0NT95YjIXH53bniTwGsUZ4Kx3B0LhQpGUFXOI0kDfHc0lWmrAWhLP2
+         tajg==
+X-Forwarded-Encrypted: i=1; AFNElJ/2fdfPxuewfgWvBwNBHGm9c37F+NvE7DIHwEtQzfswc8BguqkUxa87YYR9HqQ/QlIDDTwglsx1y5Vv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8rtcKO2dOX+5u8Hs03ANeIBPkWbhqSGI7xFSDIcy79918JKSC
+	LYKcIBW9wHtk8ORhP0dOjkbxgbgWL8qcL7V4vqYEZbuIQk1OiKWvCLkElJp9YNMuhYD9D56KZpT
+	5jBRhQoin1fFoE4T2oisFDy2hI4leUeXNa9I75pxLaJExIuUxAx+5bgcpDOjRgvwD
+X-Gm-Gg: Acq92OHeZuu2j8FV3y4p5pB7XXHrRtTX/POMjshcq6QNsYqjeTcZ2HsNUfRH938NlaP
+	Z800xq56EPyEjf6ydj2QidM16XRfVokVQhJv1slrqxrpWCJ6FvAMxkCtAErtkB2EJQPUfUFL63m
+	boQcsxyRQnjCn8BbHZuyZqlibMPalrh69uwUm/npV4P1f23VB5HHAeONtndJ4AKZGd3ncUZk8ck
+	yv2bipkxIS6UcxjsboSDNUk+dXP7Jg3MzdmyF+6b/R9DLaWSSD3NgFKCxFveWriYHrfLZ4iW3fi
+	UiD7I1sNlUgrAAICjNenj6GS+pB6TYGb3fdTzcNEx3W9YFU8g35pC6LJX8GDVu3JmU9MK3hUWgu
+	FZb4+zfwEV659p8D+NihN9ZfmxG1EryXhtm30gFXXNL5qdTtYmn9JtV1Y
+X-Received: by 2002:a05:620a:4042:b0:915:8055:3f9f with SMTP id af79cd13be357-915a9daea76mr2004996385a.6.1781017973344;
+        Tue, 09 Jun 2026 08:12:53 -0700 (PDT)
+X-Received: by 2002:a05:620a:4042:b0:915:8055:3f9f with SMTP id af79cd13be357-915a9daea76mr2004987585a.6.1781017972545;
+        Tue, 09 Jun 2026 08:12:52 -0700 (PDT)
+Received: from [192.168.120.170] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6914f3b583bsm4849171a12.29.2026.06.09.08.12.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Jun 2026 08:12:51 -0700 (PDT)
+Message-ID: <cca7e305-bdf0-4ddb-b299-aa25a183e229@oss.qualcomm.com>
+Date: Tue, 9 Jun 2026 17:12:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: ipq5018: Correct CMN PLL reference
+ clock rate
+To: george.moussalem@outlook.com, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Luo Jie <jie.luo@oss.qualcomm.com>
+References: <20260521-ipq5018-cmn-pll-rate-fix-v2-1-04b28a92e0f2@outlook.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260521-ipq5018-cmn-pll-rate-fix-v2-1-04b28a92e0f2@outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjA5MDE0NCBTYWx0ZWRfX9dwhvblCozzL
+ aQG/RF/vjVmcOyJlkT2hFHhQWkLJtD0Evqkoet/plafkU6dXzgV2nSDUw/A7QREVeJPIwJcHb/C
+ VHIdK2kmjN/zw6kUga7gFzjQi6iJMnDTVBsOXuUEdiL6lbLn94QCX+LFrO9HLxysgR1Rl1uFLMv
+ cFYqMNPKycg8k/NVyYumJnsdbZyQrM9H6jjbfOa/KTtebXtsLttpvBHpo6PoF4LP+wQJUyes2GM
+ pG0QRn8iqDGk1CiztdubOqp2EH9EUY+mYS9vSCMvFKya/lvqtO87eyqZUv/4JhvUeOlSInJJJTs
+ eghmytfoT5qGtl2okToIPjC8oYfHlU6w8P/v6rZmY1t1W7JSlnmlFgKmIirw+CPg/68rn6a9etG
+ lWRxTsfQ/XpXL0Xws4eROM6CzJG0Dq+b07Hs+ODNbKwjOOFObqA1NETZ0AILezABIdh1etzZZHW
+ 5YZd2XoeaWNYMBy8rGA==
+X-Proofpoint-ORIG-GUID: gjzhBqb9WqHybWpySafvoFQgScBTm-rF
+X-Authority-Analysis: v=2.4 cv=KdHidwYD c=1 sm=1 tr=0 ts=6a282d77 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=bC-a23v3AAAA:8 a=UqCG9HQmAAAA:8 a=EUspDBNiAAAA:8 a=uMLbdMa3B9XRMCKcfW0A:9
+ a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10 a=IoWCM6iH3mJn3m4BftBB:22
+ a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-GUID: gjzhBqb9WqHybWpySafvoFQgScBTm-rF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-09_03,2026-06-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0 suspectscore=0
+ priorityscore=1501 bulkscore=0 clxscore=1015 adultscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606090144
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-309128-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309142-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:ansuelsmth@gmail.com,m:lorenzo@kernel.org,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:p.zabel@pengutronix.de,m:nathan@kernel.org,m:nick.desaulniers+lkml@gmail.com,m:morbo@google.com,m:justinstitt@google.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:llvm@lists.linux.dev,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:nickdesaulniers@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:george.moussalem@outlook.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kathiravan.thirumoorthy@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:jie.luo@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[outlook.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,msgid.link:url,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,qualcomm.com:dkim,qualcomm.com:email];
+	FREEMAIL_TO(0.00)[outlook.com,kernel.org,oss.qualcomm.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,pengutronix.de,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,lkml];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3B360661CCB
+X-Rspamd-Queue-Id: 850FB661C5E
 
-Add phylink support for each GDM port. For GDM1 add the internal interface
-mode as the only supported mode. For GDM2/3/4 add the required
-configuration of the PCS to make the external PHY or attached SFP cage
-work.
+On 5/21/26 9:55 AM, George Moussalem via B4 Relay wrote:
+> From: George Moussalem <george.moussalem@outlook.com>
+> 
+> The correct CMN PLL reference clock rate for IPQ5018 is 4.8 GHz.
+> 
+> The CMN PLL driver did not account for the ref clock divider which is 2
+> for IPQ5018. Therefore, the computed rate was twice the actual output.
+> 
+> With the driver now accounting for the CMN PLL reference clock
+> divider (commit: 88c543fff756), set the correct reference clock rate.
+> 
+> Fixes: c006b249c544 ("arm64: dts: ipq5018: Add CMN PLL node")
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+> ---
+> Changes in v2:
+> - Removed line break in commit message between Fixes and SOB tags
+> - Link to v1: https://patch.msgid.link/20260519-ipq5018-cmn-pll-rate-fix-v1-1-3c83a173c27f@outlook.com
+> ---
 
-These needs to be defined in the GDM port node using the pcs-handle
-property.
+I have no reference for this, but I trust you.. maybe +Kathiravan
+could double-check
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/net/ethernet/airoha/Kconfig       |   1 +
- drivers/net/ethernet/airoha/airoha_eth.c  | 167 +++++++++++++++++++++-
- drivers/net/ethernet/airoha/airoha_eth.h  |   3 +
- drivers/net/ethernet/airoha/airoha_regs.h |  12 ++
- 4 files changed, 181 insertions(+), 2 deletions(-)
+Acked-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-diff --git a/drivers/net/ethernet/airoha/Kconfig b/drivers/net/ethernet/airoha/Kconfig
-index ad3ce501e7a5..38dcc76e5998 100644
---- a/drivers/net/ethernet/airoha/Kconfig
-+++ b/drivers/net/ethernet/airoha/Kconfig
-@@ -20,6 +20,7 @@ config NET_AIROHA
- 	depends on NET_DSA || !NET_DSA
- 	select NET_AIROHA_NPU
- 	select PAGE_POOL
-+	select PHYLINK
- 	help
- 	  This driver supports the gigabit ethernet MACs in the
- 	  Airoha SoC family.
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ethernet/airoha/airoha_eth.c
-index 5a8e84fa9918..eabd7b058f82 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.c
-+++ b/drivers/net/ethernet/airoha/airoha_eth.c
-@@ -8,6 +8,7 @@
- #include <linux/of_reserved_mem.h>
- #include <linux/platform_device.h>
- #include <linux/tcp.h>
-+#include <linux/pcs/pcs.h>
- #include <linux/u64_stats_sync.h>
- #include <net/dst_metadata.h>
- #include <net/page_pool/helpers.h>
-@@ -1779,6 +1780,15 @@ static int airoha_dev_open(struct net_device *netdev)
- 	u32 cur_len, pse_port = FE_PSE_PORT_PPE1;
- 	struct airoha_qdma *qdma = dev->qdma;
- 
-+	err = phylink_of_phy_connect(dev->phylink, netdev->dev.of_node, 0);
-+	if (err) {
-+		netdev_err(netdev, "%s: could not attach PHY: %d\n", __func__,
-+			   err);
-+		return err;
-+	}
-+
-+	phylink_start(dev->phylink);
-+
- 	netif_tx_start_all_queues(netdev);
- 	err = airoha_set_vip_for_gdm_port(dev, true);
- 	if (err)
-@@ -1876,6 +1886,9 @@ static int airoha_dev_stop(struct net_device *netdev)
- 		}
- 	}
- 
-+	phylink_stop(dev->phylink);
-+	phylink_disconnect_phy(dev->phylink);
-+
- 	return 0;
- }
- 
-@@ -3148,6 +3161,153 @@ bool airoha_is_valid_gdm_dev(struct airoha_eth *eth,
- 	return false;
- }
- 
-+/* Nothing to do in MAC, everything is handled in PCS */
-+static void airoha_mac_config(struct phylink_config *config, unsigned int mode,
-+			      const struct phylink_link_state *state)
-+{
-+}
-+
-+static void airoha_mac_link_up(struct phylink_config *config, struct phy_device *phy,
-+			       unsigned int mode, phy_interface_t interface,
-+			       int speed, int duplex, bool tx_pause, bool rx_pause)
-+{
-+	struct airoha_gdm_dev *dev = container_of(config, struct airoha_gdm_dev,
-+						  phylink_config);
-+	struct airoha_gdm_port *port = dev->port;
-+	struct airoha_eth *eth = dev->eth;
-+	u32 frag_size_tx, frag_size_rx;
-+	u32 mask, val;
-+
-+	/* TX/RX frag is configured only for GDM4 */
-+	if (port->id != 4)
-+		return;
-+
-+	switch (speed) {
-+	case SPEED_10000:
-+	case SPEED_5000:
-+		frag_size_tx = 8;
-+		frag_size_rx = 8;
-+		break;
-+	case SPEED_2500:
-+		frag_size_tx = 2;
-+		frag_size_rx = 1;
-+		break;
-+	default:
-+		frag_size_tx = 1;
-+		frag_size_rx = 0;
-+	}
-+
-+	/* Configure TX/RX frag based on speed */
-+	if (dev->nbq == 1) {
-+		mask = GDMA4_SGMII1_TX_FRAG_SIZE_MASK;
-+		val = FIELD_PREP(GDMA4_SGMII1_TX_FRAG_SIZE_MASK,
-+				 frag_size_tx);
-+	}  else {
-+		mask = GDMA4_SGMII0_TX_FRAG_SIZE_MASK;
-+		val = FIELD_PREP(GDMA4_SGMII0_TX_FRAG_SIZE_MASK,
-+				 frag_size_tx);
-+	}
-+	airoha_fe_rmw(eth, REG_GDMA4_TMBI_FRAG, mask, val);
-+
-+	if (dev->nbq == 1) {
-+		mask = GDMA4_SGMII1_RX_FRAG_SIZE_MASK;
-+		val = FIELD_PREP(GDMA4_SGMII1_RX_FRAG_SIZE_MASK,
-+				 frag_size_tx);
-+	} else {
-+		mask = GDMA4_SGMII0_RX_FRAG_SIZE_MASK;
-+		val = FIELD_PREP(GDMA4_SGMII0_RX_FRAG_SIZE_MASK,
-+				 frag_size_tx);
-+	}
-+	airoha_fe_rmw(eth, REG_GDMA4_RMBI_FRAG, mask, val);
-+}
-+
-+/* Nothing to do in MAC, everything is handled in PCS */
-+static void airoha_mac_link_down(struct phylink_config *config, unsigned int mode,
-+				 phy_interface_t interface)
-+{
-+}
-+
-+static const struct phylink_mac_ops airoha_phylink_ops = {
-+	.mac_config = airoha_mac_config,
-+	.mac_link_up = airoha_mac_link_up,
-+	.mac_link_down = airoha_mac_link_down,
-+};
-+
-+static int airoha_fill_available_pcs(struct phylink_config *config,
-+				     struct phylink_pcs **available_pcs,
-+				     unsigned int num_available_pcs)
-+{
-+	struct device *dev = config->dev;
-+
-+	return fwnode_phylink_pcs_parse(dev_fwnode(dev), available_pcs,
-+					&num_available_pcs);
-+}
-+
-+static int airoha_setup_phylink(struct net_device *netdev)
-+{
-+	struct airoha_gdm_dev *dev = netdev_priv(netdev);
-+	struct device_node *np = netdev->dev.of_node;
-+	struct airoha_gdm_port *port = dev->port;
-+	struct phylink_config *config;
-+	phy_interface_t phy_mode;
-+	struct phylink *phylink;
-+	int err;
-+
-+	err = of_get_phy_mode(np, &phy_mode);
-+	if (err) {
-+		dev_err(&netdev->dev, "incorrect phy-mode\n");
-+		return err;
-+	}
-+
-+	config = &dev->phylink_config;
-+
-+	config->dev = &netdev->dev;
-+	config->type = PHYLINK_NETDEV;
-+	config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |  MAC_10000FD;
-+	if (port->id > AIROHA_GDM1_IDX)
-+		config->mac_capabilities |= MAC_10 | MAC_100 | MAC_1000 |
-+					    MAC_2500FD | MAC_5000FD;
-+
-+	err = fwnode_phylink_pcs_parse(dev_fwnode(&netdev->dev), NULL,
-+				       &config->num_available_pcs);
-+	if (err)
-+		return err;
-+
-+	config->fill_available_pcs = airoha_fill_available_pcs;
-+
-+	/*
-+	 * GDM1 only supports internal for Embedded Switch
-+	 * and doesn't require a PCS.
-+	 */
-+	if (port->id == AIROHA_GDM1_IDX) {
-+		__set_bit(PHY_INTERFACE_MODE_INTERNAL,
-+			  config->supported_interfaces);
-+	} else {
-+		__set_bit(PHY_INTERFACE_MODE_SGMII,
-+			  config->supported_interfaces);
-+		__set_bit(PHY_INTERFACE_MODE_1000BASEX,
-+			  config->supported_interfaces);
-+		__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-+			  config->supported_interfaces);
-+		__set_bit(PHY_INTERFACE_MODE_10GBASER,
-+			  config->supported_interfaces);
-+		__set_bit(PHY_INTERFACE_MODE_USXGMII,
-+			  config->supported_interfaces);
-+
-+		phy_interface_copy(config->pcs_interfaces,
-+				   config->supported_interfaces);
-+	}
-+
-+	phylink = phylink_create(config, of_fwnode_handle(np),
-+				 phy_mode, &airoha_phylink_ops);
-+	if (IS_ERR(phylink))
-+		return PTR_ERR(phylink);
-+
-+	dev->phylink = phylink;
-+
-+	return 0;
-+}
-+
- static int airoha_alloc_gdm_device(struct airoha_eth *eth,
- 				   struct airoha_gdm_port *port,
- 				   int nbq, struct device_node *np)
-@@ -3210,7 +3370,7 @@ static int airoha_alloc_gdm_device(struct airoha_eth *eth,
- 	dev->nbq = nbq;
- 	port->devs[index] = dev;
- 
--	return 0;
-+	return airoha_setup_phylink(netdev);
- }
- 
- static int airoha_alloc_gdm_port(struct airoha_eth *eth,
-@@ -3435,8 +3595,10 @@ static int airoha_probe(struct platform_device *pdev)
- 				continue;
- 
- 			netdev = netdev_from_priv(dev);
--			if (netdev->reg_state == NETREG_REGISTERED)
-+			if (netdev->reg_state == NETREG_REGISTERED) {
-+				phylink_destroy(dev->phylink);
- 				unregister_netdev(netdev);
-+			}
- 			of_node_put(netdev->dev.of_node);
- 		}
- 		airoha_metadata_dst_free(port);
-@@ -3472,6 +3634,7 @@ static void airoha_remove(struct platform_device *pdev)
- 				continue;
- 
- 			netdev = netdev_from_priv(dev);
-+			phylink_destroy(dev->phylink);
- 			unregister_netdev(netdev);
- 			of_node_put(netdev->dev.of_node);
- 		}
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
-index 8f42973f9cf5..1b25603dc64d 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.h
-+++ b/drivers/net/ethernet/airoha/airoha_eth.h
-@@ -554,6 +554,9 @@ struct airoha_gdm_dev {
- 
- 	u32 flags;
- 	int nbq;
-+
-+	struct phylink *phylink;
-+	struct phylink_config phylink_config;
- };
- 
- struct airoha_gdm_port {
-diff --git a/drivers/net/ethernet/airoha/airoha_regs.h b/drivers/net/ethernet/airoha/airoha_regs.h
-index 436f3c8779c1..27f2583e143a 100644
---- a/drivers/net/ethernet/airoha/airoha_regs.h
-+++ b/drivers/net/ethernet/airoha/airoha_regs.h
-@@ -358,6 +358,18 @@
- #define IP_FRAGMENT_PORT_MASK		GENMASK(8, 5)
- #define IP_FRAGMENT_NBQ_MASK		GENMASK(4, 0)
- 
-+#define REG_GDMA4_TMBI_FRAG		0x2028
-+#define GDMA4_SGMII1_TX_WEIGHT_MASK	GENMASK(31, 26)
-+#define GDMA4_SGMII1_TX_FRAG_SIZE_MASK	GENMASK(25, 16)
-+#define GDMA4_SGMII0_TX_WEIGHT_MASK	GENMASK(15, 10)
-+#define GDMA4_SGMII0_TX_FRAG_SIZE_MASK	GENMASK(9, 0)
-+
-+#define REG_GDMA4_RMBI_FRAG		0x202c
-+#define GDMA4_SGMII1_RX_WEIGHT_MASK	GENMASK(31, 26)
-+#define GDMA4_SGMII1_RX_FRAG_SIZE_MASK	GENMASK(25, 16)
-+#define GDMA4_SGMII0_RX_WEIGHT_MASK	GENMASK(15, 10)
-+#define GDMA4_SGMII0_RX_FRAG_SIZE_MASK	GENMASK(9, 0)
-+
- #define REG_MC_VLAN_EN			0x2100
- #define MC_VLAN_EN_MASK			BIT(0)
- 
--- 
-2.53.0
-
+Konrad
 
