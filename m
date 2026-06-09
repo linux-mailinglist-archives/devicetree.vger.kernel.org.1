@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-309355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309354-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id l5kUE5qcKGo9GwMAu9opvQ
-	(envelope-from <devicetree+bounces-309355-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 01:07:06 +0200
+	id 06GvM2CcKGorGwMAu9opvQ
+	(envelope-from <devicetree+bounces-309354-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 01:06:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97955664B7B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 01:07:05 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B9E6664B56
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 01:06:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eo8oPCId;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309355-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309355-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ajazoufM;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309354-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309354-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BE3D33074012
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 23:05:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9FF9C30B8E0D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 23:05:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D68EA3E4518;
-	Tue,  9 Jun 2026 23:05:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D153BE161;
+	Tue,  9 Jun 2026 23:05:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C71A5368287;
-	Tue,  9 Jun 2026 23:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0BD03AFD12;
+	Tue,  9 Jun 2026 23:05:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781046335; cv=none; b=talNcIc90brWVr5CXWQ9igi4iUVht9XwMRizSONXRQbPtWHF+nxlG5uoYqvWB+34FgKFWq9AX2Xw4gWqXrNn10qJCn8bFntlxWpkz0fOu349H+rrk2cbVMrG+vck+t46mI3zKbry4jugh927Wzckt5uUZgJnNgSwnQXpCT+kvUs=
+	t=1781046320; cv=none; b=fl1G5DgCi8U2FLyyxbDd9E9cs7+FWZiwIvy88mkPc1ld+PmSqXVH+MM3I6YNFoBSfG9xMrS1r1lGS5CCcdTADnV6uk/nnBiRvSgzhNoH3jgMJAyGU/zIBKfguOttAIFBItGXrOGdXY9OAT4OhY9+WyBZJ8zxJ+EuY38RBrQRt0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781046335; c=relaxed/simple;
-	bh=qtcaH8L1yvluTYbrwvjWN4eUHVFuFYQeSf7xQZO5ssI=;
+	s=arc-20240116; t=1781046320; c=relaxed/simple;
+	bh=BrNsfwI8fdZ3xvK+HTgEtwMoxMr8f36ajoVHWQye5Tg=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=mSw0PhMmR2bP7QrUil3hUAuA+ipNPV2UaYquOY777zP5pxNLQIQG7HetMY82BRiBMIb5Jta0yq67dEmEHuFtk4yoDcxWTDtMJRLxivrx2KS9Z9/T2bCj81lsiJSLgtQAOwBVcW176dLTrGVZ2+Aa8Bdt9KHUv6VUPKnCK+WY2wM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eo8oPCId; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B99F61F00898;
-	Tue,  9 Jun 2026 23:05:31 +0000 (UTC)
+	 MIME-Version:Content-Type; b=LEL6zd6Kl5UQGfzEN2hEab8mcEXChmCxQPohS5iIY6q6o8l4WV+B3S6wfeh8l8GJnskEk4s4ylSNIe2VT/IIwNmMyaHPeIhamLg6Ec7Sedx+siP93TDHPaiLOq+OJPkhviPxl+7gi0L6B7wAKcZYmZRsRCe+vGFQT65TJKPhA7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ajazoufM; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 294081F00893;
+	Tue,  9 Jun 2026 23:05:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781046334;
-	bh=yT+5W4H2TlPWKtpdh47hOBHtSwupgqsf+iMTzAB9YC0=;
+	s=k20260515; t=1781046319;
+	bh=MLrtaZs1mOL3XxietgRzehFxlHUJlKCFPUU1hcZM/u8=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=eo8oPCIdnrtV24DIf9pJ0NkTUK1QbfnktXv9OBpd/nvsvVcgAfoeoZagdu3H2Kvo/
-	 YojjiL1toX6uuedw5yRYjaJnwMNloCHU/s1PrU4DbIRywalaAxRlmJe0s2o535FJ9i
-	 gmP0gY+Y2REXFVA/pFz6NZ4vD3yTiJ+EEpySv6itHvPbjAqi+b17T7O2Mw00seYglf
-	 YSm/NNJkMbawhmgxpdC1K56EkH+OtlVcUsQYvJL8Odb6/KgvPNV+9w1IVaPqxmWiSx
-	 fuZbhVq/k8sLkHkkbaRXw6zzkkoiAUXh63gGXbqnZYeg8PXmgEmxXxqnE/pDgVevXm
-	 iH1CAjkvdGJYQ==
+	b=ajazoufMS0kk7gY5c3Fsgmfh2zgVcJKmcpDc0OHM6QJy1qvN9eJIFZR0ycHqKvRQS
+	 JjYGYwRoAcU70GnZAKSzj37v7qFbVaf5QIiZw89LIh98SOOfpwVOsVt396ZOc0bA3g
+	 7osGZ7AEutzfi76pkduK6/5mhpMO3RALDwZ/HQ7eeFfRxyzBOGRm9AgQq+t7Y1Kd9J
+	 ZBrsGqFLm6OkxXrNePnE6k9VI15GvPx/6NZPhQ7q/naaOv0u+JVUwU4alouMM+Mcjt
+	 Iz6ceJhkuQSjz2I/OIrQs1gnz+Hvx7NPZ7l+VJtmFxexRpnO8bypk61FJiKqt6z7l3
+	 kj8N301NO5H8g==
 From: Mark Brown <broonie@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260608-rpm-smd-regulator-pm8019-v1-0-c671388b9ea5@linaro.org>
-References: <20260608-rpm-smd-regulator-pm8019-v1-0-c671388b9ea5@linaro.org>
-Subject: Re: [PATCH 0/2] regulator: qcom_smd-regulator: Add PM8019
-Message-Id: <178104157125.34323.11061766000197294354.b4-ty@b4>
-Date: Tue, 09 Jun 2026 22:46:11 +0100
+To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, matthias.bgg@gmail.com, 
+ angelogioacchino.delregno@collabora.com, Ninad Naik <ninadnaik07@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ me@brighamcampbell.com, linux-kernel-mentees@lists.linux.dev, 
+ skhan@linuxfoundation.org
+In-Reply-To: <20260604162624.644241-1-ninadnaik07@gmail.com>
+References: <20260604162624.644241-1-ninadnaik07@gmail.com>
+Subject: Re: [PATCH v2] regulator: dt-bindings: mt6311: Convert to DT
+ schema
+Message-Id: <178104161171.34323.12038798713855640788.b4-ty@b4>
+Date: Tue, 09 Jun 2026 22:46:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,15 +69,15 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1443; i=broonie@kernel.org;
- h=from:subject:message-id; bh=qtcaH8L1yvluTYbrwvjWN4eUHVFuFYQeSf7xQZO5ssI=;
- b=kA0DAAoBJNaLcl1Uh9AByyZiAGoonDqgzCd3S5Ere1H3bu5vA8rWNWwRPxGB3h2ycM8Q41T4K
- okBMwQAAQoAHRYhBK3maKpnVxi1n+Kf6iTWi3JdVIfQBQJqKJw6AAoJECTWi3JdVIfQHc0H/0eJ
- 6UpqB5LCb49w4KSAriBQ5pOnkgxGwR3CgRDSZJW80MwXwoAIbVKTsAXLlzf3s+Llnmf6GmLJKJG
- Bw3ms26/rSu37QzJ3ddmJ0RqYayQWDALEftk6rPahlckhuzjs9Wp0NB1+O3v7Qe9KleCISQRkUz
- HvEHhFgNLzQaGPor58TFB7yoVGZMzL0mnhoUtYisnDxPYS2Xjr6CBYeD00tg72Fu1aSe09sLDvr
- ZZ9slck+1hS2fARdZ3M3uZ7duAixctfHZijd3Bj3nPuZzb0etZSwcO1HQPBGUfPSwfCQCB4213Q
- HUz20HIvKmJL6xai10wxmEKRk2KslZkDJRnpuJw=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1128; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=BrNsfwI8fdZ3xvK+HTgEtwMoxMr8f36ajoVHWQye5Tg=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqKJwqUOYi3seoGrTA+jwJWSGqHVeo1WnR0pVhL
+ jrxQb5wLaCJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaiicKgAKCRAk1otyXVSH
+ 0IwXB/98uB2JoqhV8bdIngHR6+f5GXKRaPoPI565mm+ZOiuLfawxkjmVW007xnPhQKQLSOcoSR6
+ 6d2HELc7oykR7jzsTHG3FyVx6tNa0TZmdvqN3Qo8li2LYm29tbn+/HQC5PHc4YwYT3T4HIs4Aoh
+ uw+oKYKk3NO9XbTLzafhqgz/Jt5XYH5gqGXBZ/A/CEbIQZMXDH8Q44CPZbkCk07hsbMjVlSu51d
+ 3loJm6OTvSX5jsxniF8WSG3DoxoLejK2e2q/16236Wc/bMqPbifRlvKF69Ls2Xttn/NYEQySVr7
+ znO5/FXwKrKKwB8lxB5qWUDgTnAt0UNJl9ErJWZolYjmOrUw
 X-Developer-Key: i=broonie@kernel.org; a=openpgp;
  fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Rspamd-Action: no action
@@ -84,48 +85,41 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309355-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:stephan.gerhold@linaro.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:agross@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:ninadnaik07@gmail.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:me@brighamcampbell.com,m:linux-kernel-mentees@lists.linux.dev,m:skhan@linuxfoundation.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,collabora.com];
 	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_FROM(0.00)[bounces-309354-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 97955664B7B
+X-Rspamd-Queue-Id: 1B9E6664B56
 
-On Mon, 08 Jun 2026 14:05:42 +0200, Stephan Gerhold wrote:
-> regulator: qcom_smd-regulator: Add PM8019
-> 
-> Add the definitions and dt-bindings for the regulators in PM8019 to allow
-> controlling them through the RPM firmware. PM8019 is typically used
-> together with the MDM9607 SoC.
-> 
-> 
-> [...]
+On Thu, 04 Jun 2026 21:56:24 +0530, Ninad Naik wrote:
+> regulator: dt-bindings: mt6311: Convert to DT schema
 
 Applied to
 
@@ -133,10 +127,8 @@ Applied to
 
 Thanks!
 
-[1/2] regulator: dt-bindings: qcom,smd-rpm-regulator: Add PM8019
-      https://git.kernel.org/broonie/regulator/c/b13a590e3aa3
-[2/2] regulator: qcom_smd-regulator: Add PM8019
-      https://git.kernel.org/broonie/regulator/c/5116c7f0e7ba
+[1/1] regulator: dt-bindings: mt6311: Convert to DT schema
+      https://git.kernel.org/broonie/regulator/c/fd964ee0ac9e
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
