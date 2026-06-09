@@ -1,236 +1,260 @@
-Return-Path: <devicetree+bounces-309058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309060-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XA/yFL4ZKGrO9wIAu9opvQ
-	(envelope-from <devicetree+bounces-309058-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 15:48:46 +0200
+	id SIU7CPMaKGoP+AIAu9opvQ
+	(envelope-from <devicetree+bounces-309060-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 15:53:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4785660B84
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 15:48:45 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C40B660BFA
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 15:53:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hVobXfeU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309058-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309058-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=redhat.com header.s=mimecast20190719 header.b=IBrb0qld;
+	dkim=pass header.d=redhat.com header.s=google header.b="Q96/HNmi";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309060-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309060-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=redhat.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4FB3E30053A2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 13:44:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2229530623ED
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 13:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 239B74219FF;
-	Tue,  9 Jun 2026 13:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86DE9427A14;
+	Tue,  9 Jun 2026 13:48:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 204A7285041
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 13:44:28 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781012671; cv=none; b=dIbvjrVGqmVfmZClh/AOieXpCpgDhBYjAaSdbLjPgLfS9f2UkBDSwbqN1/sEJvK2+sixMuoGlKCmd8ZOIyg58surl8ElbTDuZriMNyWLE0i8tVW6bMo7mW4k572i9dcesa/z9e2I8b4GK/fO4uTwur61oRdL4sP5VlhrrioSIUQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781012671; c=relaxed/simple;
-	bh=LrepcvbYs4LKr8FytqUrVfyJBqOQ+F8OhSV3OpQuoJ8=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=pEad6RAmhAxBUUcQ3vOeV7AZBfDUmIgC/Vo+37/wFTAIcQNfXtufmp3U98yRwuZ3VPYS9+eYSRovU/3ZD310xpn12lxUZl1yU58qcn2o9P7GXSroWlcm0OwIiajuoRvs2lYKKMotGknUd+5qKJr2SccZW/+Z6bz2O5s1uck7eJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hVobXfeU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E4C81F00893;
-	Tue,  9 Jun 2026 13:44:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781012668;
-	bh=VQUaUvelRcBU2loiyfesAlWzbmicsNFt4Lb0C4HMnxU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hVobXfeUcGtNiVmdcB5oAz5FVu7Gr+OsRuIg4BUo4JBgoTnTBbnoYYN62phupx+DP
-	 Ce+yRQfFd175f72HlmSIAVBLXgKkQn5ldOID4vehuzhfqouV4O0Ujpbg+ObGFGIjsP
-	 Hm5Id2myskInI856bx/OjvSfx+E7yUMa/gTOXyTRAhcBIdYAFYcyH9d+s9DG0FLgSV
-	 F6KuERaK9b0GzqgY3tboZpR2+pxucMqW2URBMI9m9xWzt7aaGLzTPJ5E9a/bzlw7kG
-	 FcXJDpCqCYqBWBcz0b0lInQyFZ1qxjPmvHhKGEZX7s+HHD+Nq2PgjqdLEpldU22Eob
-	 5s4f8oa6z+3Qg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/4] iio: adc: mt6323-auxadc: add mt6323 PMIC AUXADC
- driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Roman Vivchar via B4 Relay" <devnull+rva333.protonmail.com@kernel.org>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260609-mt6323-adc-v2-2-aa93a22309f9@protonmail.com>
-References: <20260609-mt6323-adc-v2-2-aa93a22309f9@protonmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 09 Jun 2026 13:44:28 +0000
-Message-Id: <20260609134428.7E4C81F00893@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DAD7425CF9
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 13:48:46 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781012928; cv=pass; b=Cx4UHIPkEqVf8ECiUzEO6Goznll9QKB78QaRy5hdD0v1+SBYTOTZXQOOZArqEntcemx6LxVUY2PfKoXt8ul64M0tQdRbE9s0ohJCMjDFTSqHbN60AhiIkx+zDxVdsCcxwRl6CSFtOIezM1UemhPmgBz9eYRnAy0erM7Z+oZ/Vls=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781012928; c=relaxed/simple;
+	bh=fCYirjuwrDR66B9tbkORA630qnGzVI5sfSpUkGX5FM8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pIgzKWhAjw4tiIHnMn2IDfHCZ4JDdLo+jjW8MX4MRbJGmWHleLm2taKV3sjTcIt9YIz/wZ1BnvKHKhmcPInZazeP9GxPWcKHp3MfhiiHV7Ym9TNdK10DmKvanWRUuGehoAHS8frzA62ozYKfqzV6qOFrE/NgKk/SRSXzrREBslQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=IBrb0qld; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=Q96/HNmi; arc=pass smtp.client-ip=170.10.133.124
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1781012925;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=B8ybc8eEm2l2UXbUIsilP7Qkz+jgaPmO0vHKofujiXk=;
+	b=IBrb0qldEJTwDhLZNbMahlSumZlhTDlq8edkGSSb4T1h5kJA+7ccWH72iuImHWFzDmuXOt
+	aHWsR5q/dJYK7guUEK/roustkNUQAe13l7gFjlL23h6qcMAbIqSgvRfwucI3v9qd0oOfFx
+	S0kNTikmRRSvspn8rgWEhUPMUvNyQCc=
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com
+ [209.85.208.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-58-cenblqI-NnmZK35YVwaHzA-1; Tue, 09 Jun 2026 09:48:38 -0400
+X-MC-Unique: cenblqI-NnmZK35YVwaHzA-1
+X-Mimecast-MFC-AGG-ID: cenblqI-NnmZK35YVwaHzA_1781012917
+Received: by mail-lj1-f197.google.com with SMTP id 38308e7fff4ca-396a8df57dbso3805541fa.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 06:48:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781012917; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Z/b3J54yA5GbKSIeaHs5mHLlGJVigfFuFq9f36ibHW5aA2dXuMhz/n1Cd0jI/ynoLB
+         ibGINIlsPwJiTyGiAXS5nOWGMyb3PahA/r11+MXZ6ejr+LSaNKaWxTLa9xEhNteECgFE
+         mSU4rydJ3TVdKZ2d01rbgy0srVUPoBOkoqGkkpS87RDDGHDbFB/6eMqMMvO3LTm+/5a4
+         duEDlabaOc21U25Jid4HmfdlG6S8SVJDOsBG4tmRsK+1VVsJDq7BCaRgezX7YT6PS1dV
+         hmhCkG/8AaE5prOrEspEWmdF3JdLVwz2KT0CMzSSOsEam0NMjThYwjWoTsCdXPxL2PMC
+         6DGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=B8ybc8eEm2l2UXbUIsilP7Qkz+jgaPmO0vHKofujiXk=;
+        fh=3C54ibw+6/WqkUg/3DyohhWuNzWpFvicjjpJMatWPHI=;
+        b=B35aVyguWHsKzTRPbju++wNNNjJQZVx7WuQK58GlwAP7Mywld5SnxlcEvxIZfhAC3E
+         n8+SH9oGfNJBmR9aN3Z8bIzL2NUJSM3i8TephCFgLN/DAMuMe4X1WfhaEvDyrHbpsmGd
+         UwfmGy45VdxO58RISDBzoSBxmwHTFzbY/9mCXG4ynl7W34nbL9wxIy6magVdTYOsp5yI
+         nGd2EdQxp3VGgBGqQ7b9Pe8N2g8UP2tx5GH7diG/lo9T3UyaEjdA+ePxgycn4pCSO04a
+         RXdRgIzicvXtpoh65dKbqqUyQhEADzjzyE3rO1DDk8kIioealFFc2OYwIjWp7ZCI8je5
+         hIHA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1781012917; x=1781617717; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B8ybc8eEm2l2UXbUIsilP7Qkz+jgaPmO0vHKofujiXk=;
+        b=Q96/HNmifmuqBgw+xvOzsybbgQsbA0sz4T1YZigg0s27iBrgAGnuOlEa0yJ2gqYM9R
+         sIv9AlYPgi8CV1HrvzRTq26/SIHcLvQXFLgfwYHpZW9hQu716eVkXb1Zwgbje+Rja5A3
+         kkCDo7dtv6/mskURUVQfTRQKC/EuVizKhuGoJ2ka0LuPFKN2BuYfAnfE26Iyo13C1VVz
+         K70Y2wm0qpXigdxp6WCHeTD2W4ei/MiVLdtKfEBGwUkjeB8mJEeuFXzP1eVyoqSLzWKZ
+         6XMahIEF9dL+avwOMGegi2n+AedcL1HdewvE7ACd2g179UYiDXd06j8T4yxc5XST2Nmt
+         Bc3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781012917; x=1781617717;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=B8ybc8eEm2l2UXbUIsilP7Qkz+jgaPmO0vHKofujiXk=;
+        b=hrAS5XSF7dwSyq7cK/mZDOF+nfEE+Ju3lL8YonOqBUQcf00Qalk8P/38A8enJQ7T7p
+         fSZNbUxmpSv8eNjpvTK6FvwPOgz4bCfnZ2SEggWX2x9zxHVxc3H+Vffu1x2Do6Q/vh8X
+         afu/JjQGMDhkxug6HCh6XKN0vG2Buwh/YXNppH9m3LHwxAYCkcVkqQWYR6e4yDe4snpZ
+         PgTeUgnQQiJxevG5sEMuk9RB7mIfWvybd5NDf6p/Hh4piyHiII8HLa6o6ISeuA5hNAPy
+         WEEfMSICsrY46nOeZ7m0rv362Kndq816ZGRnB44g7mVMIC7H64ckA9J3P+x9ALP+Vs86
+         suwA==
+X-Forwarded-Encrypted: i=1; AFNElJ/TCbwFrm5VW1BVPxomkAMqBX0dym1hurgvC+xs7LVBFHVdH9NIxo9/LbDchYXJGb099gndtIsK6Qx0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy03QJJF8WAwP5/g61XFlNsPhQ7kSMSyvKnf4625nqGTGKLgdEv
+	kbA9pNYJmhuaACudOw93jZdWI0CxfDkH3rAO1dBV5hyl607w10nooCJPHs0TCxKn5xH6K95QFRr
+	rXkfssNZiTUZxRWEtNNg6r3OTdYZvHZkQ9aFgwpQpsgeXQJsDCttReaiAsxKEUoV4H9RGKUxQ4e
+	E4HmwvISTdXk+pPuxK/2BSa8Jp1MRxvzQpN9Rk2Q==
+X-Gm-Gg: Acq92OGcy8JeFVlmRxzM3HUjCaOA7IdHueCUY1KxBOSQOwh/pjKf+R87CT3akmdTLIc
+	qiALp/PsEPtvZtKNFqu02xk4QkOSuhEGFr0KZz86M3a1Jjo8lpC+ZpfymQgfeAY840g6Bu324R9
+	f9NHGJTTWjPCBJY9LH+qS/ClyJE8OhjiUey7ksBC/Y/GsSSK7itT1S23EaKIDHcyAGag/PD5i+D
+	EljubedATn4ZZaY
+X-Received: by 2002:a2e:ad12:0:b0:396:8d4f:573d with SMTP id 38308e7fff4ca-396d0870a2fmr26107361fa.4.1781012916518;
+        Tue, 09 Jun 2026 06:48:36 -0700 (PDT)
+X-Received: by 2002:a2e:ad12:0:b0:396:8d4f:573d with SMTP id
+ 38308e7fff4ca-396d0870a2fmr26107251fa.4.1781012915884; Tue, 09 Jun 2026
+ 06:48:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260520151007.4193688-1-khristineandreea.barbulescu@oss.nxp.com>
+In-Reply-To: <20260520151007.4193688-1-khristineandreea.barbulescu@oss.nxp.com>
+From: Enric Balletbo i Serra <eballetb@redhat.com>
+Date: Tue, 9 Jun 2026 15:48:24 +0200
+X-Gm-Features: AVVi8CeBgvu_FxTeu_WpMekXBVDp5tn5JH9vmX9Kfgdgwq-5WsR-GNlc1P-phzU
+Message-ID: <CALE0LRufn_ZRtscVxoZkHdNFdjWpyBeRkeongDRE8NGmPCskJA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/1] add USB PHY node and USB OTG pinctrl support to
+ S32G2/S32G3 SoCs
+To: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, linux-arm-kernel@lists.infradead.org, 
+	imx@lists.linux.dev, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	NXP S32 Linux <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-309058-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devnull+rva333.protonmail.com@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309060-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rva333.protonmail.com,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:khristineandreea.barbulescu@oss.nxp.com,m:chester62515@gmail.com,m:mbrugger@suse.com,m:ghennadi.procopciuc@oss.nxp.com,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:festevam@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kernel@pengutronix.de,m:linux-arm-kernel@lists.infradead.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:s32@nxp.com,m:clizzi@redhat.com,m:aruizrui@redhat.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[eballetb@redhat.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de,kernel.org,lists.infradead.org,lists.linux.dev,vger.kernel.org,redhat.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[eballetb@redhat.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[protonmail.com:email,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,protonmail.ch:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,mail.gmail.com:mid,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C4785660B84
+X-Rspamd-Queue-Id: 8C40B660BFA
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] The probe function unconditionally dereferences `dev->parent` and =
-`dev->parent->parent`, which will cause a kernel panic if the parent device=
- is NULL.
-- [High] The driver incorrectly uses the logical device tree channel index =
-instead of the physical ADC channel index when setting the hardware request=
- bitmask.
-- [Medium] The AUXADC voltage buffer (`VBUF`) is left permanently enabled o=
-n error paths, leading to a resource/power leak.
-- [Medium] Incorrect IIO channel types are hardcoded as `IIO_VOLTAGE` for t=
-emperature and current channels, violating IIO ABI.
---
+Hi,
 
-commit 5d793b85b8942cff4538a9fd7c909fd225402286
-Author: Roman Vivchar <rva333@protonmail.com>
+On Wed, May 20, 2026 at 5:10=E2=80=AFPM Khristine Andreea Barbulescu
+<khristineandreea.barbulescu@oss.nxp.com> wrote:
+>
+> This patchset aims to add two changes to the S32G2/S32G3 dtsi support:
+> - Add the usbphynop node for S32G SoC based boards
+> - Add the usbotg pinctrl support for S32G SoC based boards
+>
+> v2 -> v1:
+> - use hyphenated naming for USB OTG pin groups
+> - replace deprecated 'fsl,usbphy' with 'phys'
+> - move 'usbphynop' node to the SoC-level dtsi
+>
+> Khristine Andreea Barbulescu (1):
+>   arm64: dts: Add usbphynop and usbotg pinctrl for S32G platforms
+>
+>  arch/arm64/boot/dts/freescale/s32g2.dtsi      |  7 ++-
+>  arch/arm64/boot/dts/freescale/s32g3.dtsi      |  7 ++-
+>  .../boot/dts/freescale/s32gxxxa-evb.dtsi      | 46 ++++++++++++++++++-
+>  .../boot/dts/freescale/s32gxxxa-rdb.dtsi      | 46 ++++++++++++++++++-
+>  4 files changed, 102 insertions(+), 4 deletions(-)
+>
+> --
+> 2.34.1
+>
 
-iio: adc: mt6323-auxadc: add mt6323 PMIC AUXADC driver
+I tested the bindings on my S32G-VNP-RDB3 board by connecting
+different devices (mass storage, mouse and
+keyboard) in host mode and got them working, so
 
-The mt6323 AUXADC is a 15-bit ADC used for system monitoring. This driver
-provides support for reading various channels including battery and charger
-voltages, battery and chip temperature, current sensing and accessory
-detection.
+Tested-by: Enric Balletbo i Serra <eballetb@redhat.com>
 
-Tested-by: Ben Grisdale <bengris32@protonmail.ch> # Amazon Echo Dot (2nd Ge=
-neration)
-Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+[   32.957280] usbcore: registered new interface driver usbhid
+[   32.957285] usbhid: USB HID core driver
+[   39.683065] usb_phy_generic usbphynop: dummy supplies not allowed
+for exclusive requests (id=3Dvbus)
+[   39.945747] imx_usb 44064000.usb: No over current polarity defined
+[   39.999412] usb usb1: New USB device found, idVendor=3D1d6b,
+idProduct=3D0002, bcdDevice=3D 7.01
+[   39.999422] usb usb1: New USB device strings: Mfr=3D3, Product=3D2,
+SerialNumber=3D1
+[   39.999429] usb usb1: Product: EHCI Host Controller
+[   39.999435] usb usb1: Manufacturer: Linux 7.1.0-rc4+ ehci_hcd
+[   39.999440] usb usb1: SerialNumber: ci_hdrc.0
+[   40.575296] usb 1-1: new high-speed USB device number 2 using ci_hdrc
+[   40.747558] usb 1-1: New USB device found, idVendor=3D0781,
+idProduct=3D5567, bcdDevice=3D 1.00
+[   40.747578] usb 1-1: New USB device strings: Mfr=3D1, Product=3D2, Seria=
+lNumber=3D3
+[   40.747585] usb 1-1: Product: Cruzer Blade
+[   40.747591] usb 1-1: Manufacturer: SanDisk
+[   40.747596] usb 1-1: SerialNumber: 4C530001310712110235
 
-[ ... ]
-> diff --git a/drivers/iio/adc/mt6323-auxadc.c b/drivers/iio/adc/mt6323-aux=
-adc.c
-> new file mode 100644
-> index 0000000000000..f2cef989d3ce7
-> --- /dev/null
-> +++ b/drivers/iio/adc/mt6323-auxadc.c
-[ ... ]
-> +#define AUXADC_DEFAULT_OSR		3
-> +
-> +#define MTK_PMIC_IIO_CHAN(_name, _chan, _addr)                  \
-> +{                                                               \
-> +	.type =3D IIO_VOLTAGE,                                    \
+# cat /sys/kernel/debug/ulpi/ci_hdrc.0.ulpi/regs
+Vendor ID Low                24
+Vendor ID High               04
+Product ID Low               09
+Product ID High              00
+Function Control             40
+Interface Control            08
+OTG Control                  27
+USB Interrupt Enable Rising  1f
+USB Interrupt Enable Falling 1f
+USB Interrupt Status         04
+USB Interrupt Latch          0c
+Debug                        00
+Scratch Register             00
+Carkit Control               00
+Carkit Interrupt Delay       00
+Carkit Interrupt Enable      00
+Carkit Interrupt Status      00
+Carkit Interrupt Latch       00
+Carkit Pulse Control         00
+Transmit Positive Width      00
+Transmit Negative Width      00
+Receive Polarity Recovery    00
 
-[Severity: Medium]
-Does hardcoding IIO_VOLTAGE here break the IIO ABI for temperature and
-current channels?
+# lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 002: ID 0781:5567 SanDisk Corp. Cruzer Blade
 
-It looks like bat_temp, chip_temp, and isense will be exported as
-in_voltage_*_raw instead of IIO_TEMP and IIO_CURRENT.
+Cheers,
+  Enric
 
-> +	.indexed =3D 1,                                           \
-> +	.channel =3D _chan,                                       \
-[ ... ]
-> +static int mt6323_auxadc_request(struct mt6323_auxadc *auxadc,
-> +				 unsigned long channel)
-> +{
-> +	struct regmap *map =3D auxadc->regmap;
-> +	int ret;
-> +
-> +	ret =3D regmap_set_bits(map, MT6323_AUXADC_CON11, AUXADC_CON11_VBUF_EN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_set_bits(map, MT6323_AUXADC_CON22, BIT(channel));
-
-[Severity: High]
-Does BIT(channel) request the correct physical hardware channel here?
-
-The channel parameter receives chan->channel, which is a logical sequential
-index (e.g., MT6323_AUXADC_BATON2 =3D 0), but the hardware request register
-appears to expect bits corresponding to the physical ADC channels. For
-instance, setting BIT(0) for BATON2 would request ADC0 from the hardware,
-but the driver will later poll the ADC6 data register.
-
-[Severity: Medium]
-If regmap_set_bits() fails to set MT6323_AUXADC_CON22, does this leave the
-AUXADC voltage buffer (VBUF) permanently enabled?=20
-
-Since the caller aborts on error without calling mt6323_auxadc_release(),
-the AUXADC_CON11_VBUF_EN bit is never cleared.
-
-> +}
-> +
-> +static int mt6323_auxadc_release(struct mt6323_auxadc *auxadc,
-> +				 unsigned long channel)
-> +{
-> +	struct regmap *map =3D auxadc->regmap;
-> +	int ret;
-> +
-> +	ret =3D regmap_clear_bits(map, MT6323_AUXADC_CON22, BIT(channel));
-> +	if (ret)
-> +		return ret;
-
-[Severity: Medium]
-If clearing MT6323_AUXADC_CON22 fails here, does it skip disabling the
-voltage buffer?=20
-
-Returning early would leave AUXADC_CON11_VBUF_EN enabled.
-
-> +
-> +	return regmap_clear_bits(map, MT6323_AUXADC_CON11, AUXADC_CON11_VBUF_EN=
-);
-> +}
-[ ... ]
-> +static int mt6323_auxadc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct mt6323_auxadc *auxadc;
-> +	struct regmap *regmap;
-> +	struct iio_dev *iio;
-> +	int ret;
-> +
-> +	regmap =3D dev_get_regmap(dev->parent->parent, NULL);
-
-[Severity: High]
-Can this cause a null pointer dereference if the driver is probed directly
-from a device tree node without an MFD parent?
-
-Because the driver defines an of_match_table, it could be instantiated where
-dev->parent is null. Even if dev->parent is valid but dev->parent->parent is
-null, passing null to dev_get_regmap() will cause a kernel panic when it
-attempts to lock devres.
-
-> +	if (!regmap)
-> +		return dev_err_probe(dev, -ENODEV, "failed to get regmap\n");
-> +
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609-mt6323-adc=
--v2-0-aa93a22309f9@protonmail.com?part=3D2
 
