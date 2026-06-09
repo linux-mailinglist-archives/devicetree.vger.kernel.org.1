@@ -1,172 +1,150 @@
-Return-Path: <devicetree+bounces-309187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309184-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sYsYOUw8KGr4AgMAu9opvQ
-	(envelope-from <devicetree+bounces-309187-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:16:12 +0200
+	id apy1OtRAKGpVBAMAu9opvQ
+	(envelope-from <devicetree+bounces-309184-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:35:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D5EC6623A7
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:16:12 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 466966626FC
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 18:35:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=pxLUNHnL;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309187-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309187-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=XKM5QbrT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309184-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309184-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BDA563082656
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 16:08:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9A349310C0E5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 16:04:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEFC8372B25;
-	Tue,  9 Jun 2026 16:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D9B370AC3;
+	Tue,  9 Jun 2026 16:04:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83F2B370AF5
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 16:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB2236D9F8;
+	Tue,  9 Jun 2026 16:04:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781021268; cv=none; b=DiBT5OqA1OGcCDKrE/TCpiAW6jydUJKKg4iB2jGjwv50xHrj5qJar9lHjtBo8V8b4k8jVylXDYlal/4mdNWZovl75j3QxV1HE6IkwkNxYT5Y2JnlLhj81ls979yiw1dKOBmIYWeKcsfY/+GPpm/zRDRnBNJ02DQq+JyqXKnTa3o=
+	t=1781021066; cv=none; b=T67XUSFijX9ymPgJDMxQSEhuFR9hEX63TObBec9VhMSReilfkWFoSPA+qpgXEm8QKU3PZhhPbkL+Rw6w6xxohVgETL7+rkrNt2G+O6qpBftl266Eh6aeehQyEv5I09CFDjoNs2wyMPMf2fTSgsjkz6HOmSrjaSZ4/Fm+YHxbEAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781021268; c=relaxed/simple;
-	bh=Q79k8W9vOzEUW+r+p6LYN1WSF1e8vDMkHgr6pRQpJOo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Yuhyx+m1s1pe+glLM/iHix3zQBlJSto50afIqy80B2tIYu2DmiBLIp7rJJl3Y5H/F60mgXeYVq09o5ikzFn1HgvuJVNsdLzEofr3U4olxMKTocEHXJLFKJpERl23ODRuybn/xaxwfnhIZ6lpDi0RKHEfMs+PZ4LSWUgSX4RnsVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pxLUNHnL; arc=none smtp.client-ip=209.85.161.52
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-69d862236ddso3436253eaf.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 09:07:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781021266; x=1781626066; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Tr78Ec++ZHHyKCmRsLimyTQ1g5Bjk2CPqZ1jeJIAnco=;
-        b=pxLUNHnLhN1rM1Yxf2R1VcR4carlwTLN7F8S9MCsduhpkCCYmkwqkKIksCEpwWTa1l
-         +NYPbkrwMVe+63ej+U/caOhcF7faUsWfSCdKUMW18qh2L6KY/XDZN7w65DyxXgAl9JK0
-         Gpheg2SvffT2omcqQETFgISEWlv8wPtfmt6fksrSWRKwBt6ESvdMBPjg9miOnQ9QntZg
-         BGIJfOZinIK/gjIT0tfqyAYbbeewqKLsO+TDJIeSH5JPUOzGI3HPR41kuhAYYL2TOHY7
-         Sdc35XF9gl4tMVDYsDNFpjI0LBc2GYGYlfTVVo83rd7KJHN+hxREddJjefS40Nt1vBzo
-         vBAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781021266; x=1781626066;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Tr78Ec++ZHHyKCmRsLimyTQ1g5Bjk2CPqZ1jeJIAnco=;
-        b=N7IG1mCDNLQ7CiPMUdZa4BFb8XeNCcCGmwfH8MRMidAAmAt2L4iqNxC0X5wdvFSpR2
-         AQeCcArFYA9FOhky8uhj0ut1bc+JuULlrb+C/G9Ll/aI0NLe9xrLwK+wQ26QWH6GCvvh
-         GUBgEo9+sgp70m6I8EANqRgapdOklrF64ziPCnbB+3kvhNFT0RziArB0U09/Ansyk6tT
-         Y7gez1CPU/m3jxMRE1Ggyk1I40R2CBhrK4E9xr6Wk4HOXVPyYHm662KjwEHP8IoJmUio
-         mYH1LyQWgdHCzF/gS1AoNiw3kwHqD9QdjVKjZGlQucolcUKN8lAX+jzPxaRuvatCTAIS
-         aIhg==
-X-Forwarded-Encrypted: i=1; AFNElJ91ylq389JUwjkzPcWBICpE4zS47LlUDzFlLq9Gon9+SjN7Ivw4Cy1XIHj25fzrAnA8yUgDrBpg+Sls@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxly3SCtZapDoUhg7s/vhwXHoUBA7OKQEQRXAvYLSAiOdPXHlhR
-	wtmLYcxDmfumUTokbeIZBtRjcmvc7WThhvXvOMOjA4hfWghpHRUwGFMK
-X-Gm-Gg: Acq92OFSdwXfxZzANQS4Bdw815ASnG31z9gjgh2HyBH/d9lt6OJ5Gk7a6komu2b2HJ+
-	ZIa2DzNuiNxPB4xXV07dJHDi4o7Tc2CYSOxmb8G111TqcItgd0rlGJ1Mk4SE6Mi8qHmkJEev/2W
-	zMaOICXjXKL6saouz6Ay6Phde+Hpn0K3U4IUssRf9siULry4Xkb0/hnkxgMb4Y7D5vXp1q6PvLQ
-	k88AFecmnntiQHtsDqzJjBniD/biztVw7GDJaHggqMRhnyAM+XRJU6UcAB/uH0I4Fk5J257gDoQ
-	k+O68snfDIDzMyNXGLd0S9fHDiphxph28x23vVsAUR6iryXRfEPlUBX5b5GTlNg/HFi8Wt3/xcs
-	6M8LaRlf928KltOaWdwmuHZwUoe7tUBEYuBjo9Nli27QmRcM3ZrMI0YeqESMFAHxwtU0U6MSKL4
-	9BS6Xxf+uYS0BVkj9qMJLNBRN8pbzfehLtKC3P/cv4N03tytvHjyHsQOIybq8x7bwobn6B
-X-Received: by 2002:a05:6820:1687:b0:696:89e4:5493 with SMTP id 006d021491bc7-69e68c06d10mr12662859eaf.34.1781021266482;
-        Tue, 09 Jun 2026 09:07:46 -0700 (PDT)
-Received: from linuxescape.lan (23-88-128-2.fttp.usinternet.com. [23.88.128.2])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-69e464050fasm11393859eaf.9.2026.06.09.09.07.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2026 09:07:45 -0700 (PDT)
-From: Maxwell Doose <m32285159@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-iio@vger.kernel.org (open list:IIO SUBSYSTEM AND DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tomasz Duszynski <tduszyns@gmail.com>
-Subject: [PATCH 2/2] MAINTAINERS: Add myself as maintainer for PMS7003
-Date: Tue,  9 Jun 2026 11:03:26 -0500
-Message-ID: <20260609160326.45123-3-m32285159@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260609160326.45123-1-m32285159@gmail.com>
-References: <20260609160326.45123-1-m32285159@gmail.com>
+	s=arc-20240116; t=1781021066; c=relaxed/simple;
+	bh=9hLgtZ8NgBCHZ/yN8NFc6Qpxzdb/6VAOYIWGQIOE4ic=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ULASgnowDzDJsyq/gzXg6kyMlM/t5AHCaaZvNDtRgvyEXoG/UdWLYsAUKWvD30Ju4ej49I9T9WshB/Xr+H1XtcRFNli8pjmrLPDQXfhqgSdLl2s66ta4u+Gmh29fbt1lcs56nti27MCxEBaYHpe8QvhSnAeabzgT7n/7qhj9XCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XKM5QbrT; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25D431F00898;
+	Tue,  9 Jun 2026 16:04:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781021065;
+	bh=rWNQsrFYpu/vCUAn3QHBEywCdhhRWN4mBS4hafW3zac=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=XKM5QbrTSEqzV9W8nx8Huka91MA4LxWNRh2NNEsEtDrLWvAnCt5zd8gtpfC+/EWFJ
+	 5xpw+cefdi14hTplC0AJhzZs9Nq675hInP4aiBugYESzkDh8fIBuKwaHvQCAQB77qE
+	 mOMTlPXSpNlfhYcaaW/A8utugTniC7wmuAKwJcxNYtnwAm2iHDGFWCakW07Nmx4kPm
+	 nCFXrmTw/Yaasb+4/Qg1McSTx+xY486ix6+Iow+uc1tXjdbXX8T5bRX3wojy4OCS16
+	 +ZqMIVA5Fe2tXvUoAcwEWMnuUVd6AeETdUmqIVZ9lf/iyfZ9ki+WqFxYqULTdvxgv/
+	 J8Aq2YU8fqsOQ==
+Date: Tue, 9 Jun 2026 18:04:21 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: phucduc.bui@gmail.com
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Mark Brown <broonie@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 01/11] ASoC: dt-bindings: renesas,fsi: add support
+ multiple clocks
+Message-ID: <20260609-eager-nightingale-of-devotion-b6ca1f@quoll>
+References: <20260609113836.45079-1-phucduc.bui@gmail.com>
+ <20260609113836.45079-2-phucduc.bui@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260609113836.45079-2-phucduc.bui@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309187-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:tduszyns@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m32285159@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:phucduc.bui@gmail.com,m:kuninori.morimoto.gx@renesas.com,m:broonie@kernel.org,m:geert+renesas@glider.be,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phucducbui@gmail.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-309184-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[renesas.com,kernel.org,glider.be,gmail.com,perex.cz,suse.com,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8D5EC6623A7
+X-Rspamd-Queue-Id: 466966626FC
 
-Tomasz's entry is no longer valid, as he is not active anymore. Add
-myself as maintainer of the PMS7003 to replace his entry.
+On Tue, Jun 09, 2026 at 06:38:26PM +0700, phucduc.bui@gmail.com wrote:
+> From: bui duc phuc <phucduc.bui@gmail.com>
+> 
+> The FSI on r8a7740 requires the SPU bus/bridge clock to be enabled before
+> accessing its registers. Without this clock, any register access leads to
+> a system hang as the FSI block sits behind the SPU bus.
+> Update the binding to support multiple clocks to properly describe the
+> hardware clock tree, including:
+>   - SPU bus/bridge clock (spu) for register access.
+>   - CPG DIV6 clocks (icka/b) as functional clock.
+>   - FSI dividers (diva/b) for audio clock generation.
+>   - External clock inputs (xcka/b) provided by the board.
+> The hardware supports several valid clock configurations. For example,
+> when both FSIA and FSIB operate as slaves, only the fck and spu clocks
+> are required. When a port operates as a master, it can use either an
+> internal clock source (ickx + divx) or an external clock source
+> (ickx + xckx). Therefore, while fck and spu are mandatory on r8a7740,
+> the remaining clocks (icka/b, diva/b and xcka/b) are optional and depend
+> on the selected master/slave configuration and clock source.
+> Both sh73a0 and r8a7740 define the SPU DIV6 clock control register at
+> 0xe6150084. The binding therefore documents the clocks supported by the
+> FSI driver for these variants.
+> 
+> Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
+> ---
+> 
+> Changes in v6:
+>  - DT binding updates (drop uniqueItems, commit message) based on 
+>    Krzysztof's feedback.
+> Changes in v4:
+>  - Update dt-bindings based on feedback from Krzysztof, Rob, and Geert.
 
-Link: https://lore.kernel.org/linux-iio/20260609140712.2e5d1640@jic23-huawei/
-Cc: Tomasz Duszynski <tduszyns@gmail.com>
-Signed-off-by: Maxwell Doose <m32285159@gmail.com>
----
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e035a3be797c..d1b0a40c02e0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21147,7 +21147,7 @@ F:	Documentation/devicetree/bindings/input/pine64,pinephone-keyboard.yaml
- F:	drivers/input/keyboard/pinephone-keyboard.c
- 
- PLANTOWER PMS7003 AIR POLLUTION SENSOR DRIVER
--M:	Tomasz Duszynski <tduszyns@gmail.com>
-+M:	Maxwell Doose <m32285159@gmail.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/iio/chemical/plantower,pms7003.yaml
- F:	drivers/iio/chemical/pms7003.c
--- 
-2.54.0
+Best regards,
+Krzysztof
 
 
