@@ -1,175 +1,167 @@
-Return-Path: <devicetree+bounces-309293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309294-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NwWiBmNjKGp/DAMAu9opvQ
-	(envelope-from <devicetree+bounces-309293-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:02:59 +0200
+	id NoU0F7hjKGqvDAMAu9opvQ
+	(envelope-from <devicetree+bounces-309294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:04:24 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8B8E6637D5
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:02:58 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9D3663807
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:04:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Zl3Uy0gZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309293-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309293-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VGowtne7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309294-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309294-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 05165302959E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 19:02:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B4D40303BDD8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 19:03:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71CC54C955E;
-	Tue,  9 Jun 2026 19:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ED9A4C954B;
+	Tue,  9 Jun 2026 19:03:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F69A4C954B;
-	Tue,  9 Jun 2026 19:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044994C0427
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 19:02:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781031774; cv=none; b=H5Rdc6vNALpRd08pFSRy0IJBQp1LwEYF4HlboB7rvPy5sIRh16UcXw5JF+ACrg+GjuDTBJLoIuNXn9KSUPv1HC9UH/bUr4SuYkxUGjv7OJn3rHPpXG1fTjRkb5y06SDngdMbHA6OaGNRjrYG4eOD7I27ubg1cBFYKWFWVqljbxU=
+	t=1781031780; cv=none; b=IkfIEpP28j+qerNP1ObmCiq50F5h3Ix0QyjC3P1LPGJNMgvC64PvoORt81ynvLMuAP5MdEelIgEuA/t+MTJWOIakhMA0i8IUJ+qDfrlyRtMHObbaDjN5AD6QvOMGGizO+n/PBaf5bMyufdEvuHDEsq3kCXBkQoEWCVhN0v4+nY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781031774; c=relaxed/simple;
-	bh=deUspC86kBJfg0o/64mhshqzhfCZxHh4On4fEBT3WEI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qzvToyS4AG3KWrimrdw9L3XYdDF2E3vtnEWoX8LHYKckptJZi+HldDn43yMyy8fRjNwZiiJNcanF1zBJLhQx0ewJYIV127ew1u166YmPf2xB60+YGbMuqZ4rXiXxF/yXWCZJSj20UgGKGoZG2YqPcgkJYpSpnPoW+o1+6u8lyDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Zl3Uy0gZ; arc=none smtp.client-ip=192.198.163.16
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781031773; x=1812567773;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=deUspC86kBJfg0o/64mhshqzhfCZxHh4On4fEBT3WEI=;
-  b=Zl3Uy0gZbwwyzsRUlofJ30QLYh5uLxgNSyajb1qludHqM3HxLCMPGy2W
-   aHyOsPPKO333BpxcfRMS/QcTxvEo4zxXUpFNWStbfMbuQZKdF17q/NQki
-   PMvi+52pF4V1CTKeuGXOod2u+oQMEZex7V5+VXAChaKC6ZiDQFLgSmbyl
-   5onuuy1d+CN2T55z1l4YAuGC/Y8Pckr0ykKvOIleQiHxp5xI9SCUxRNFC
-   6QgbTiTGWbQfNHu5str8RaBdKS4ckZ/Z8YWt6IGb8yVpRusdTT8FGTnH1
-   nfaFci4JMVVX/EfjY8f/t+pi2vrslQf+tVDFxoHwmvtnoCnW8yOaIj4A2
-   Q==;
-X-CSE-ConnectionGUID: Gb6YBAo4R4W93nXv0IEZUw==
-X-CSE-MsgGUID: Uh9r/mbURiqocDF3ZSaLoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="69341469"
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; 
-   d="scan'208";a="69341469"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2026 12:02:52 -0700
-X-CSE-ConnectionGUID: QGqNAd4uTc+4Ed3shPeszQ==
-X-CSE-MsgGUID: Ak0qUeEaSXmuteJyhUjHrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; 
-   d="scan'208";a="284012438"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.162])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2026 12:02:47 -0700
-Date: Tue, 9 Jun 2026 22:02:45 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Helge Deller <deller@gmx.de>,
-	Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v4 02/14] mfd: lm3533: Remove driver specific regmap
- wrappers
-Message-ID: <aihjVZ9xvM2BRFu4@ashevche-desk.local>
-References: <20260606045738.21050-1-clamor95@gmail.com>
- <20260606045738.21050-3-clamor95@gmail.com>
- <aiPDzdKuccdLIvlF@ashevche-desk.local>
- <CAPVz0n2rdgw8Xr3uxVdQGwrHTNFqK4SKQDFU2FEB8LzLwPhQ_A@mail.gmail.com>
+	s=arc-20240116; t=1781031780; c=relaxed/simple;
+	bh=EJk7BFb0mYcKEzbj1uXJieOAG824d3hZuSPEHyyHZY0=;
+	h=From:Subject:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=TaKMkl0no8Mtz3fZ1eg88t8Gv7rSfta8UqcOTcBPTZiatB/nq0qYY2d29zPtBqTn4tNpz9okBPcUrhd0q+4HDlyFvzJ0xjgzG1kIdCca7FUDN1f9xgw/V4qIKj3ZAhjdRoa6IlXJzxgli/yXlTPcoS6KQGyfUJnV+9ZeTYTyU+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VGowtne7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7564D1F00893;
+	Tue,  9 Jun 2026 19:02:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781031778;
+	bh=yGwWaWdsjXDBiV6S3Covo50UWnLTACyy74VXb8rm5jE=;
+	h=From:Subject:Reply-To:Cc:In-Reply-To:References:Date;
+	b=VGowtne7ofCUA1M+DPivl8Z+jx+GkxFtJIAJ/VJtqAJDf/cbjcs4pm1IeYcHkgrkC
+	 nJJ6gU8/X4tRBwH1iBcSPsvN5ZADDzI2B/7Xu5e0CY/48Co+E6PsQRG9NvUXsv9p6+
+	 kBK/DEbUWwwIKQ0sxDFoFbuLQjT9x7VGhoy3wHOAAilnNUDaiXWcmyg7esNp6Xwnms
+	 qYggk0E77WUeES8LR055bEhNPq+205omUpyQbI16EfdAwW/dx5tZZKkLz16IwEcXcI
+	 QpBqTFHlf5bUCZRhyS8WSW7dW+ZEfRCg1/2qYBBCHcHnaqxPWgat1EUVyTAKfWo/Gl
+	 LVhohzVkSvK5A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 06/11] arm64: dts: ti: var-som-am62p: Fix wkup R5F
+ memory region size
+Reply-To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260609-topic-am62a-ioddr-dt-v6-19-v6-6-16afba97fbe0@baylibre.com>
+References: <20260609-topic-am62a-ioddr-dt-v6-19-v6-6-16afba97fbe0@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 09 Jun 2026 19:02:57 +0000
+Message-Id: <20260609190258.7564D1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPVz0n2rdgw8Xr3uxVdQGwrHTNFqK4SKQDFU2FEB8LzLwPhQ_A@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	MISSING_TO(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309293-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:clamor95@gmail.com,m:lee@kernel.org,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:deller@gmx.de,m:johan@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:linux-fbdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-309294-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_THREE(0.00)[3];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,intel.com:dkim,intel.com:email,intel.com:from_mime]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,baylibre.com:email,vger.kernel.org:from_smtp,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A8B8E6637D5
+X-Rspamd-Queue-Id: BF9D3663807
 
-On Sat, Jun 06, 2026 at 10:22:43AM +0300, Svyatoslav Ryhel wrote:
-> сб, 6 черв. 2026 р. о 09:53 Andy Shevchenko <andriy.shevchenko@intel.com> пише:
-> > On Sat, Jun 06, 2026 at 07:57:26AM +0300, Svyatoslav Ryhel wrote:
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The commit message inaccurately describes the prior state of the=
+ code. It claims that `wkup_r5fss0_core0_memory_region` was reserved with "=
+only 0x0f00000" (15 MiB) and implies it is being increased to `0x1d08000`. =
+However, the diff reveals the previous value was actually `0x01e00000` (30 =
+MiB), meaning the patch is shrinking the reservation rather than expanding =
+it from `0x0f00000`. The commit message appears to have been copied from an=
+other patch.
+--
 
-...
+commit f780a29b02dfe26af92ddc65f0520382d3c6c8e7
+Author: Markus Schneider-Pargmann (TI) <msp@baylibre.com>
 
-> > > +     ret = regmap_assign_bits(als->lm3533->regmap, LM3533_REG_ALS_ZONE_INFO,
-> > > +                              LM3533_ALS_INT_ENABLE_MASK, enable);
-> >
-> > In cases like this perhaps leaving mask would be fine and together with
-> 
-> I prefer to remove intermediate variables it the helper allows to
-> directly pass needed value.
-> 
-> >         struct regmap *map = als->lm3533->regmap;
-> 
-> next patch drops lm3533 so there will be als->regmap which IMHO is
-> more logical instead of passing entire lm3533 to child devices.
+arm64: dts: ti: var-som-am62p: Fix wkup R5F memory region size
 
-Still it's longer than map. A local variable may help with making lines
-shorter.
+This commit updates the wkup_r5fss0_core0_memory_region size in the device
+tree for the AM62P platform. The size is adjusted to match the MCU SDK link=
+er
+expectations for the wkup R5F firmware.
 
-> > this be nice one-liner:
-> >
-> >         ret = regmap_assign_bits(map, LM3533_REG_ALS_ZONE_INFO, mask, enable);
-> >
-> > >       if (ret) {
-> > >               dev_err(&indio_dev->dev, "failed to set int mode %d\n",
-> > >                                                               enable);
-> >
-> > In many cases it won't increase LoC count.
+Link: https://github.com/TexasInstruments/mcupsdk-core-k3/blob/k3_main/exam=
+ples/drivers/ipc/ipc_rpmsg_echo_linux/am62px-sk/wkup-r5fss0-0_freertos/ti-a=
+rm-clang/linker.cmd
 
--- 
-With Best Regards,
-Andy Shevchenko
+> The wkup_r5fss0_core0_memory_region was reserved with only
+> 0x0f00000 but the MCU SDK linker for the wkup R5F firmware on
+> AM62P defines the DM code/data DDR footprint differently:
 
+[Severity: Medium]
+Is this description of the prior state accurate?
 
+The commit message states the region was reserved with only 0x0f00000,
+which implies the patch is increasing the size.
+
+However, looking at the device tree changes in this patch:
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi b/arch/arm64/b=
+oot/dts/ti/k3-am62p5-var-som.dtsi
+> --- a/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
+> @@ -71,7 +71,7 @@ wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c8=
+00000 {
+> =20
+>  		wkup_r5fss0_core0_memory_region: r5f-memory@9c900000 {
+>  			compatible =3D "shared-dma-pool";
+> -			reg =3D <0x00 0x9c900000 0x00 0x01e00000>;
+> +			reg =3D <0x00 0x9c900000 0x00 0x01d08000>;
+
+The previous value was actually 0x01e00000 (30 MiB), meaning the region is
+being shrunk to 0x01d08000 rather than expanded from 0x0f00000.
+
+Could the commit message be updated to reflect the actual previous value be=
+ing
+replaced in the device tree?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609-topic-am62=
+a-ioddr-dt-v6-19-v6-0-16afba97fbe0@baylibre.com?part=3D6
 
