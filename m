@@ -1,142 +1,154 @@
-Return-Path: <devicetree+bounces-309300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309301-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WawxCCVoKGq6DQMAu9opvQ
-	(envelope-from <devicetree+bounces-309300-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:23:17 +0200
+	id 06htIDptKGoYEQMAu9opvQ
+	(envelope-from <devicetree+bounces-309301-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:44:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813636639E9
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:23:16 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84850663DD3
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 21:44:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=protonmail.com header.s=protonmail3 header.b=jxZ8lbzX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309300-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309300-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=protonmail.com;
+	dkim=pass header.d=intel.com header.s=Intel header.b=OCn7kXGn;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309301-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309301-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 296D830C4245
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 19:21:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DAC98317005B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 19:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87BAC403AF5;
-	Tue,  9 Jun 2026 19:15:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16C634E3785;
+	Tue,  9 Jun 2026 19:18:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-106102.protonmail.ch (mail-106102.protonmail.ch [79.135.106.102])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E540403AE6
-	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 19:15:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8B34D90A1;
+	Tue,  9 Jun 2026 19:17:59 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781032558; cv=none; b=sXvr/R9DODrFDrgCeGt3v0ESuz/nk68AhB4jmoyS1GzxAg4AfMOxROybRH4ZAyF/l3IUKsMziZgO+Ri2Iacs4CurOO8GmZi6NitZI5d+f9//iML4Kp2XhMsZPt2Qmf5iiHhIVNBN7YbMSIjQlj7Fulc7u8Y+PY7SnwEAbxAJdTU=
+	t=1781032681; cv=none; b=SM3InJdcLULfQPnD7t4HdZQyZYg82KfW/Qx1bjVQ22ywtWwprFaWrsQphdFM77fn0bYtIOGUGr43hb8MQzSIFXdAc8WfOjn2JBBeoCqZFefnEr+c8W48A0FFM+RvkZOwh5iOTs0eFoO4VvyL0hsWcFy3Ip9yx3tX8KOzh/6C24c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781032558; c=relaxed/simple;
-	bh=GgKZnTuVOJ6xRAmOu/hDneQopQHt5m3ut48mdldgavo=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D+AMZOk31L8QbqM1lU71hAbAVJYGP1GJxEf9AvFgAbxcmKKt5L/AFxJM0f3oD1MYE+n7qq87sp4IkfbNeEJUocsFhCtmxHg466mHQ0HM+nKrrQwrgaB75v9Rp0Pk2LfI4FmKXtxd4JiuflthiL333FzgXYSpDpD4Zlf1P1ZTdUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=jxZ8lbzX; arc=none smtp.client-ip=79.135.106.102
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1781032548; x=1781291748;
-	bh=dLyB8XawH2sgIIZ5MIGWnJ1sq7S1TgdTUSfQDubvnvY=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=jxZ8lbzXdWYig6RBNon62GlCSUWxQT8YgWPOGrQicRm1+BP4F6N1vmbOsYU2Mf6Jg
-	 aJHhD77bzauCDH34ogxqUaD8PHf+9PtL2fo6qgpBpwtuMhHfWA7kZMj4ozOSkoh/X/
-	 L3jmVZQ1JnSp3vUJFiP6sqSSmpvPjUsR04kvLBfPTGNp/e4oT0FQwcIObd5vouo9hN
-	 ZrWdB0hgOK+fwTNA3vRUqr9CsiUmc5zbP9ZwKxyK8Vt1m7tXr2sQnrfELoGXIVHWJe
-	 Ic68gU5gkwaRChhxc3HO2DwlcXXA/qE/mRDopRlf/ZjpwVvciYM983aQZAxDJI0uiH
-	 uLYUKLEuxvytg==
-Date: Tue, 09 Jun 2026 19:15:42 +0000
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-From: Roman Vivchar <rva333@protonmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, =?utf-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Lee Jones <lee@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, Ben Grisdale <bengris32@protonmail.ch>
-Subject: Re: [PATCH v2 2/4] iio: adc: mt6323-auxadc: add mt6323 PMIC AUXADC driver
-Message-ID: <hacDZbv1Whk_g8AMSfJqKHrgXfyVKt2o3_UGK-1k9jNRJyMxEFPztGhytHvHbc1x9j-F84I_ZuprmXWf2Azbtdqj2vnVal4PO1gG_DijYyA=@protonmail.com>
-In-Reply-To: <aihbxowyAIlSeDjH@ashevche-desk.local>
-References: <20260609-mt6323-adc-v2-0-aa93a22309f9@protonmail.com> <20260609-mt6323-adc-v2-2-aa93a22309f9@protonmail.com> <aihbxowyAIlSeDjH@ashevche-desk.local>
-Feedback-ID: 173184497:user:proton
-X-Pm-Message-ID: 254bdc277eca4fcbf59a132a374d5de774ac7810
+	s=arc-20240116; t=1781032681; c=relaxed/simple;
+	bh=MTwsqfpI91yD0Y/+0nOvP+mQrtShptVr2NvwI5cxpnA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hIjWkZZh2OSQhCP7U6a5s5e6rz8LCsWzk5vxdPTuViRjOda6Y48XC+qJPw4IAwC2LSgy/poegFIr+wPkHzgAG1dWGttRfeaJvfRHh+ABdaiVeW8PenkcQENnopPYfWp0cDnIZSvreSPXxaGJErkPwdx03kS3isHxVKR7QRceFR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OCn7kXGn; arc=none smtp.client-ip=198.175.65.10
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1781032679; x=1812568679;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MTwsqfpI91yD0Y/+0nOvP+mQrtShptVr2NvwI5cxpnA=;
+  b=OCn7kXGnxujXwcPmUrC2R5vyMVOlqh7IiDCko1yC/fiS325+SL1mnE7H
+   sIDul9AqFTRnWZMb4bIE3Q5rsSAT5QJDB8L4OkDd/EH0mtC5pyC/trx9u
+   QnnDMrd+MiYbgtZ6GczD0zfzo784Jid5Cfw4aNwmOveA15z2QDHHXjj9G
+   HhsdziRc+iz4jg7lgTitzDypnHvkDs9AoqVJoXbYDfBvYzeN5/otpwVu0
+   F4BcnNEYvuWmh2QFfjJAFvKdUPwNAcTckRbwhGcbCFtJ83DcmUgSqUq76
+   OlmOZurFRv1/hDeLrFXyo7QXEnwKfw4lM/k7aFWUThFf9EhgsPKV4BmXD
+   w==;
+X-CSE-ConnectionGUID: KFGlZF46THeYcpnM5b64Ww==
+X-CSE-MsgGUID: HmFWX+HeTwK0jjqjv0Njrw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="99227005"
+X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; 
+   d="scan'208";a="99227005"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2026 12:17:58 -0700
+X-CSE-ConnectionGUID: HucDC72aTtue2Pp5rbNfxg==
+X-CSE-MsgGUID: xJ6+Pb4NQQmRtoZsYTuqNg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; 
+   d="scan'208";a="276140448"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.162])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jun 2026 12:17:54 -0700
+Date: Tue, 9 Jun 2026 22:17:51 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Helge Deller <deller@gmx.de>,
+	Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v4 10/14] mfd: lm3533: Set DMA mask
+Message-ID: <aihm315UtdqJclhh@ashevche-desk.local>
+References: <20260606045738.21050-1-clamor95@gmail.com>
+ <20260606045738.21050-11-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260606045738.21050-11-clamor95@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	TAGGED_FROM(0.00)[bounces-309300-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309301-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[rva333@protonmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:clamor95@gmail.com,m:lee@kernel.org,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:deller@gmx.de,m:johan@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:linux-fbdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[protonmail.com];
-	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:lee@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:bengris32@protonmail.ch,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[protonmail.com:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rva333@protonmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,protonmail.ch];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_ORG_HEADER(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,protonmail.com:dkim,protonmail.com:mid,protonmail.com:from_mime]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:from_mime,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,ashevche-desk.local:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 813636639E9
+X-Rspamd-Queue-Id: 84850663DD3
 
-Hi Andy,
+On Sat, Jun 06, 2026 at 07:57:34AM +0300, Svyatoslav Ryhel wrote:
+> Missing coherent_dma_mask assigning triggers the following warning in
+> dmesg:
+> 
+> [    3.287872] platform lm3533-backlight.0: DMA mask not set
+> 
+> Since this warning might be elevated to an error in the future, set
+> coherent_dma_mask to zero because both the core and cells do not utilize
+> DMA.
 
-On Tuesday, June 9th, 2026 at 9:30 PM, Andy Shevchenko <andriy.shevchenko@i=
-ntel.com> wrote:
-> On Tue, Jun 09, 2026 at 04:31:59PM +0300, Roman Vivchar via B4 Relay wrot=
-e:
->
+Hmm... I am not sure about this. The entire kernel has only two drivers that
+do that, and thanks to their commit messages one of them pointed out to the
+commit from 2018. So, if no other devices suffer from this, I think it has to
+be a better way of achieving the same.
 
-...
+-- 
+With Best Regards,
+Andy Shevchenko
 
->
-> > +=09ret =3D regmap_read_poll_timeout(map, MT6323_AUXADC_ADC19, val,
-> > +=09=09=09=09       !(val & AUXADC_ADC19_BUSY_MASK),
-> > +=09=09=09=09       10, 500);
->
-> It's better to split on logical boundaries:
->
-> =09ret =3D regmap_read_poll_timeout(map, MT6323_AUXADC_ADC19,
-> =09=09=09=09       val, !(val & AUXADC_ADC19_BUSY_MASK),
-> =09=09=09=09       10, 500);
->
 
-Agreed.
-
-...
-
->
-> > +=09case IIO_CHAN_INFO_RAW:
-> > +=09=09scoped_guard(mutex, &auxadc->lock) {
->
-> I'm wondering why we haven't moved to guard()() here
-
-The compiler would complain about 'cannot jump from switch statement'
-due to default case.
-
-Best regards,
-Roman
 
