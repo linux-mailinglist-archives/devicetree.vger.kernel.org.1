@@ -1,267 +1,251 @@
-Return-Path: <devicetree+bounces-308825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-308828-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tu03Jc7SJ2q62wIAu9opvQ
-	(envelope-from <devicetree+bounces-308825-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 10:46:06 +0200
+	id yPfAHYnTJ2rq2wIAu9opvQ
+	(envelope-from <devicetree+bounces-308828-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 10:49:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF83D65DED0
-	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 10:46:05 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D636065DF44
+	for <lists+devicetree@lfdr.de>; Tue, 09 Jun 2026 10:49:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=est.tech header.s=selector1 header.b=ifSJqkah;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308825-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308825-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=chromium.org header.s=google header.b=lpCNua+L;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-308828-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-308828-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=chromium.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 042DD300BDB8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 08:40:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7A4C730E69CE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jun 2026 08:42:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 841143E7BD1;
-	Tue,  9 Jun 2026 08:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207B93F39CC;
+	Tue,  9 Jun 2026 08:41:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013041.outbound.protection.outlook.com [52.101.83.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B078935A393;
-	Tue,  9 Jun 2026 08:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 843AF3E3C73
+	for <devicetree@vger.kernel.org>; Tue,  9 Jun 2026 08:41:54 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1780994418; cv=fail; b=W+ACVHOc8SLY7ILJvIw3mUTTHPB/+ReDZjoP2k4ryJA86fEOC6D2WeEt90+ojLfX/QBXFvvn6x3KvcCseIbnb5SKhgrtwE7y/8EVAq2Otq3FdZUUgncoDsSXvihARIR2Yc7PTd4gUbrIDWFEGpgVRRGiASkom2uVQe3esZ8OA3Y=
+	t=1780994518; cv=pass; b=DxrM9dnVGEQHlqzhlXZ+Nj9IMWDohzwjk6mhi1nbBMxJrvHw8mcpU0Ec84KY/mvC8aKCyD+Jk1EeUzESqo9CRYC45ZU2B6e1Dq8oUJoAxOWKYUQ8XxxTDKQzrt1lg3vmL+QDLQn/VadIfa3C2PtRsIJaz+KCQsfEzmudDPQP9Pg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1780994418; c=relaxed/simple;
-	bh=HpUOfciCD2Ulson6Q6PI5mPidXLJrVQwsfOL/D1mPDE=;
-	h=Message-ID:Date:From:To:Cc:Subject:Content-Type:MIME-Version; b=EkJFD0xSxFaphC+orjK+/T4vS1a61NdKawsht8vuWrJeSMHOFTJe8iO+DnC0yoakgVOkME7biYt9jOhJtIVqggnyJk77NwuaTrcZ2y0VhHwbIPfzUge0/SwDJ7kRnt1bDCGxwX9ML3jCsyJNOh94hBcqToJVvjeI9k2A6iQOCTM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=est.tech; spf=pass smtp.mailfrom=est.tech; dkim=pass (2048-bit key) header.d=est.tech header.i=@est.tech header.b=ifSJqkah; arc=fail smtp.client-ip=52.101.83.41
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oGPKCDaO0JZRpUjnrjrSIu8QGHRM59FqPkfdhtTxIfxk99KQSLAYy/0+eE02PVp9114nrxCAP0p5ednOF5PfslZ+Yy/cBzs0S8768Dwf99Zv7bfb4GFkPBhPHQZAJhWvZd/Y18X7HbUvUfnERmfXCoaHcdQwwXz/QKwrRI7Cnb2C1dnaQO6NfXwJ3Q6KfIOOTo4l1ce9zt/GREBtjTaKLwItTii0hFX73yhi9e2jmMBJxN8PEDvmrsT6WiaxI7HCcxhsno9/MnpJaO5xBQpQv5czkQstvBOOs/0cFMqDeF5egIH2p6Q0ecbali58fHxdjw/9Hcl1RJsYzXihEz+jRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kcIZI8KvsCwBVtGoQnp3ZbswRXGUDxCvY8sWNVG0prc=;
- b=acNgF1w3Lg1GZiNX8CCFx71Lm/ctp8jBOA2bzzcmwyD231XIJSpMq8Cr+v1FHU7H66p8goWCoTuqoI6jeTxFyM4oCTJVNPt8oDf5WaUfCvgHtK8cldkLG+xT0VG/iKwKzr6fc+jvH1mGgnLJbNyfFu6niGHTye/bTH/2XxAfXKqEAUONk1d7qJzPpLQHmseeFwIvcIYF2qWt64oKE0ywIH3j4Lw6R4/qhz5LAx0uzbMCTuzJYz3E/Mz1pMP/0n7vQjJMadlFDUWcIFzVwtglP2Ws/xoh5OdvW8A4MXrBwc+4grtzF9DU6gRzbf+LK9um6omklZw2qG24VOBzHyr+mw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=est.tech; dmarc=pass action=none header.from=est.tech;
- dkim=pass header.d=est.tech; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=est.tech; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kcIZI8KvsCwBVtGoQnp3ZbswRXGUDxCvY8sWNVG0prc=;
- b=ifSJqkahrWMH+jEk/XoL1GddmNq5mBSfQ3Kxy7heRig1hJth8sEJx4B92KaifrETdq+MMrG6/7o8hdfFTk5h8WPgC2omeVmp+yLgrvqXKTGDjr7XgTTyPGcMFZiipW5tjUbWldUvzgXfTAnRSFwA+ZSJCvFFlluxwLl27OFU0bkcc4EvtLZ3+1BWyR3WI0ddUgBuhnNQnyet2aEFwAHirReJ50ZJ39xRNpnEzvhOT3gXqXN5Evpb77gwTQ/UUgmn/EQ8dr4iyUJsET4zPm2PHd4btjFRRAZi4c37OoS3GqBY6NChJvjZNnN7Wm5GvZnNJZlPx468VRzG+4x0teL1eA==
-Received: from AS8P189MB1752.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:39b::19)
- by VE1P189MB1150.EURP189.PROD.OUTLOOK.COM (2603:10a6:800:163::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.14; Tue, 9 Jun 2026
- 08:40:11 +0000
-Received: from AS8P189MB1752.EURP189.PROD.OUTLOOK.COM
- ([fe80::69fc:c4d4:200b:e4b4]) by AS8P189MB1752.EURP189.PROD.OUTLOOK.COM
- ([fe80::69fc:c4d4:200b:e4b4%7]) with mapi id 15.21.0092.014; Tue, 9 Jun 2026
- 08:40:11 +0000
-Message-ID: <5d1bdf6d-ed77-4de9-b788-cf04a98d054d@est.tech>
-Date: Tue, 9 Jun 2026 10:40:08 +0200
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-From: Yunseong Kim <yunseong.kim@est.tech>
-To: Peter Chen <peter.chen@cixtech.com>, Fugang Duan
- <fugang.duan@cixtech.com>, Guomin Chen <Guomin.Chen@cixtech.com>,
- Hans Zhang <hans.zhang@cixtech.com>, Gary Yang <gary.yang@cixtech.com>,
- Joakim Zhang <joakim.zhang@cixtech.com>, Jerry Zhu <jerry.zhu@cixtech.com>
-Cc: CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Yunseong Kim <ysk@kzalloc.com>, Yunseong Kim <yunseong.kim@ericsson.com>
-Subject: [Question] Enabling CoreSight TRBE in firmware on CIX Orion O6
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PR3P191CA0049.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:102:55::24) To AS8P189MB1752.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:20b:39b::19)
+	s=arc-20240116; t=1780994518; c=relaxed/simple;
+	bh=T5Mux1tGqzCER/xDNIb7vnkK5ie0uhA9uXtCNl6hduo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pWCDPj4TOPv0HysCFtymDFhozwjzJBV8t5+p17pRyurdnwSfEqCMCsADZuSoXtjUFGtBJ7QXOMX+S/xXKILp+ITUy+h2gRi814tR4/EdSEa1CEtJ+pIxpLHVM6s9nldqMt5088OAtSbvJp2dEgRnCR14H4o0qsrqNy6yH5TUMiI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=lpCNua+L; arc=pass smtp.client-ip=209.85.128.181
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-7de68222e96so51507497b3.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 01:41:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780994513; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Wp1kgtwmpEG2gnKYNGU/Ij6V2HkI2R1sitqP4MAslBfEhV0vkB+VXLnXvRoF4+p6ja
+         LiAYWMTvSfZTOdtC2nfRpEQz6Vr2TWxKpHm2k5eRlswXJjmwqHkFA1mObFverqI7IdIX
+         omn0cio1+JVSC/4+w5y9FEyqSPJXaxk0SQ7OT/Cyylg6crWlBbqzChzoywKjE/JOoNbS
+         9o7+IpGjhjYGQdjlCAVs9RAwGZ62JPaa4VWljrU1A/5f+fn3R2cXLpkg+TBnZOqSI//h
+         UNHHSWAmWjIlGG0YE73MG8AbASQslaan7PN1NWioFZltgHyN+7bA9WkuwEpXM66HIzdi
+         fmxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=tF9exGGL9nZqc+nch3e4YqTjInqOy/64x7XCEMTr3DQ=;
+        fh=j+8wfW4zBCFGPqH99cmw0L3uHlyw1oN7YL48xlEb5K4=;
+        b=N2BGBphQuqFFJ6jidWafva4oLIZBcv3Yv796hj9pSfj66QkVbRPEsllhxtNQBM+Uyl
+         NBfk4E0WxmKfTBMeeAPjlTEVKjnoiItCjxfT+0THf3crJf3fPaIzjUSMnbiTA8bMJDWs
+         6Ige8xNc+aoA1tjTwWlPpXBqTEmEbyVaC8COzD/kNblzYB0FWj0eEepSMRew+6kTtvnB
+         c6ZCxPV53mH0O4RwnP3PsDHMhiUpDJmRvJ7bC7G8pxLgksPZSLgt1GYcxyF29OLyaTaT
+         TftHLAUQ4NCFxVcDbioPO1DopsXQCZkKv2DPF2HQkhugXbUffddPW7OkTb6u7DmdVa+Q
+         McBA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1780994513; x=1781599313; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tF9exGGL9nZqc+nch3e4YqTjInqOy/64x7XCEMTr3DQ=;
+        b=lpCNua+LY22VooyP8Hnv0JyaYNnxD5MOta/IEB3C3+RpimfZOpsAm3Fg+4hU+rqk9W
+         /49Iibr2S+RPQtcNqx92r+VKPkMhePlKAKzNgdGLQ0vLrCytCoSACAXR4Tj3xOA0KI+G
+         wzFhNV153pmRwJpcV0AxJPzL7BGJ+Rjy3ExEw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1780994513; x=1781599313;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=tF9exGGL9nZqc+nch3e4YqTjInqOy/64x7XCEMTr3DQ=;
+        b=Iz5/ik2G23iIcAGn6u3+6IwmwfiQ+Bx0F/DpaHo/aIAyx+lmaG550AOuR59jvqwn+w
+         3KWojcRG+vFpFSeqeyb1Rps7E9vmkxR6zICy99rJlGrzL9uJxoJjv9MD40JgKGZccH1P
+         V33gFgINmNlAz1gM83lZjNQEMoq+H4Xqiq4ks2aN5CqRBmXU6x5PuI0FttXgPsYRf4Oi
+         LZdKyW6+zs366vKh/gCBVsACuPMd5jHLDPwV/oAwu+bcdgNH0b0lKpWQcdjv2SXNAVb9
+         Ad20p7QlU5jR3Dhlq+O5mydJY4gO6W8JeQPVgoNZR+FoBgceKMdXo7yww8q1o6qcyeeo
+         4VpA==
+X-Forwarded-Encrypted: i=1; AFNElJ8B9N0fVfjfzfIxJruDwDY8og7vzdcsWf7pD80NKe3j1mJMmGqC1QrgE4ilH1rdp1cgBK7DgYY0QgDs@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjSpMxUDUr01CakS7vV16AeXTiukUZ69/kVeNQt1IF9pgXCS7m
+	7LgDnvi8BkDvKjVDNvIzNXz3MtNilz8oKloA/KhdzoM2bIpDrjwI7FzsTVThVdQoby38DvC1ozw
+	N9UmGcJCuVf5xxmpprb+/pviHcwVS43Szkn8vJ5XY
+X-Gm-Gg: Acq92OERUF9ozfkfIzLPhWLfeL5kqQEf1ycfGqHoT4+yaMZmqZeiBfnekcX+YRj29mC
+	sx/s7IoM2AsOw3R6uEbGN2N2P/LZurjRuecqk1UU+c2AZJWFhqc730Ea5Lwrv3+AfEjnDV3cwJW
+	etYAS7CVcDRtpo8fZmvnMhCkiTcYy6A0zYsg4BNHJO7CB7PhHAJ3JW/Nc0/PY759UN1MYQINtEt
+	ySlCWw0hAw3JoilvvzuumVI6pwrout3W1fVOFGLhj7hj6H8Pg9hOXJMu4kIFC7RfaOaODAql/tO
+	gDIWRjJtYYovUIOeOgY=
+X-Received: by 2002:a05:690c:c4f8:b0:7bd:8ce4:92c with SMTP id
+ 00721157ae682-7ed0ed4ee64mr185176347b3.31.1780994513341; Tue, 09 Jun 2026
+ 01:41:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8P189MB1752:EE_|VE1P189MB1150:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6bab84c-349c-4367-1337-08dec602b801
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|366016|6133799003|18002099003|3023799007|56012099006|5023799004|11063799006;
-X-Microsoft-Antispam-Message-Info:
-	vzCyYWuGmKSnJvAlf3BXYOuR/YKg5Vy0X9l3XxHPSXPPGQV3KbUruQeWIK6Ey3RZiUwCpjLuRxg7vKmCVoZ29yCyLqs0nJ04568JwAbp8VgHcCwY8LHj5Iy8y2Ug+AURvYBa0O52S66OFJwTSmskjjHj7jAPZ6ys42kg49zyzr7s/0TfKiUcHlRrv4dFZ0FWSUpdpMmBqQzVVTVVDEAXMdfRrmASMZQXmi+IV3weZT5OjLuWGq8cHUbJUYqKmeV8OlMT7Q/iiryiqqH3TmItPv3381QCls8XtwhPvDFopp1w5zFxkPol+FCLKAE3h/NPw0cE8RGZQaTgX9p/nQZ5dc7y/N7yJ6Za1k3sxSv6Rr8vKy4FSwkfDofZAY8rSfJGnmRDgIwMyi0OGZ0megoPJxtOwO9w/HbsORNj3jZYVEi68ge9u3CoQ9b4L7Mq3E5uXQo62j1R//6YhHBddnssSU9vEesChmiSDi6sZketfRQcrnovfGCwtbLwGO07zi0wdhEe3gCwb0kGRWhhSOHHqoIBxo4NIpIfblQ7E5lfamQy9loTTxICh7l0Mn+LmeCCeL/WSdGa4xpu7Bpt4yOKr6BWeEb2eTOJg+9KPKX6rbFwv2L9uGWTudyoc97FXJ57zOfwb3gvLWJjilTwbMYMvmSkcc/LrKJse+UCwVV2uLFIPbZtO+4KRr8jI0gC7ERR+dUgc5RYj5dUF5O3J2UYWA==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8P189MB1752.EURP189.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(6133799003)(18002099003)(3023799007)(56012099006)(5023799004)(11063799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?clpjWkJoaXB2Mkd6WkpzL2JPYkhSWC81SXNuRFFRKy9IQ2R2VVA3b09hMjIx?=
- =?utf-8?B?bUlPcFBVVDcxMXRRZDRMK0haVlh2d29Xczd2MEJjYmdPOENFUVJaa3NydTdi?=
- =?utf-8?B?YzlpY1NRZ0pYL0J4RnlUUFVIUlNIWW9HVm9PRDJ0YTJ6VUhwMVVHbllHa2dL?=
- =?utf-8?B?Nm1pUE5LWHh6bGNXcUZ2alVFa2RodHdSd0N4KytMMWhVenk2ZHRiNzRpWVpk?=
- =?utf-8?B?UjlnR1JxbGVQZURUQ0lxTmRLUkxyeTM1N210bkx3L041TEcxZjlsTi9xaERD?=
- =?utf-8?B?cjBnVzBuclFEcDRNU1diSzJQMThxQ3I0dmhHaHNXSVJRTkdOcVRIL1ZSeVVF?=
- =?utf-8?B?WmI1cDQrNERlNm03TWZEWVA2R3k5ZG5mWDh3THZhd1VWWnFnOFN4L1R6bEhE?=
- =?utf-8?B?bGU3Nks4NzZkLzBGSndrdTg3YXFFNjdxSWNvWm8xNTdHeEJlbm5sSy9DblJq?=
- =?utf-8?B?RFpleFJBemRSSElZSFcvQ09UTUh1YWRpdnNPZjFlcTB1Ukhnd3I2dU5YcWxV?=
- =?utf-8?B?RWVkY3NlUUJFbWFySjFCNEdqRE1NYS84QU1kOGcrOXdZcVdYZ2dIUHBSaFpQ?=
- =?utf-8?B?OVY5T3JIQ01PVVR0aTVOendsUG1WV3A1Q1lNU21jcmF5VkY2elhvZExCYzVW?=
- =?utf-8?B?Y1pYSVJ4NjZoanJUQ0hlWEtNTkhvakxwWFhXM0xtUmRMN1NVRThLTWsybVQr?=
- =?utf-8?B?VUNqS0ZEV2JwbW9GOGFVWEo4V00xSHdpbDFtRG1nTndXOG56YmZZb0FNUUov?=
- =?utf-8?B?emR4cy9ob2VJRGNGV2RNeHpmYlFEWitYbDIyQ3hkcFlFZllNUktuYWZ0K3BX?=
- =?utf-8?B?LzJ2UjcwdjN4dnRoZHMzWkhhK3FNZ3g1WllIYzczeldDeE52UWRxL3grZVlV?=
- =?utf-8?B?NnJ2bnczSmJYNkZucWNPSjJ5SUJFSE0waGsrc1dNMmdKNlRDUm9OYWdQb3FJ?=
- =?utf-8?B?S2FqTFJmeWdaajlEV3dSR0tSOGJleUwzNmQ5TG1PVXRhSU03MXdxNnhhOERm?=
- =?utf-8?B?MitnV1BzTmxnay9DNkljanUvZlpIeFlUbi9rTmhiRXlmbEkxajl1L2xvQUVC?=
- =?utf-8?B?NzFtb1RQb1JycFY0bXBPWkF2V3lKbE55WTlzZHlWRmZ0eEhWZEdlN2tRMDNS?=
- =?utf-8?B?SWRYcDZOQ0Z0NnZmbEV4UFhoTjlHR0pxdXhCdHBYYTBCcjZNUjEzTFFyc2ZI?=
- =?utf-8?B?b3lCNWFuMVBWMTNIZS84TmErN3lBdE5QdzhhRGVZbHlyVHJIYVM1aklGRHhO?=
- =?utf-8?B?ZVpBSDNTSFRjZHQwK3ZVYjJNTk13M25mSGV2Z0haTURpQVYwNWpxVEtVNWQr?=
- =?utf-8?B?elJoWFJYWlBzY0NqSnBCeDRzTG9WZlZvaWJNZXVUdU05QmJkUERmSXR4K1Yv?=
- =?utf-8?B?akZTTmVpWk9qRDMvNDdFaTM1dVBJN1VyeTNNWjkxVEI1QzV4cWd5MjVDWVpD?=
- =?utf-8?B?YXNZZ2dPT2VJa1UrVDl5RlVNdlVoWm1lWWlKZjRoaFk2bmFaSTdyQk1OS0ZS?=
- =?utf-8?B?NUVwMXBxTFpwd3lCTmU0aUhJMHd2QVhKaGFOVVlDNzlVWlVYNktnUVhqVHVY?=
- =?utf-8?B?SndML2lTeWQzUDcyWmxJY1dHZWFQeFhjQnJ5VXdWQlR6WjBVdHlxcUNLOWoy?=
- =?utf-8?B?TXRvNEdqeEFZSVZrak00ZGNEY0VYL3djUXROWFpTVUx0aXIvRXBvMmRkQ21C?=
- =?utf-8?B?UDB5SGY2NDB6dXpOZm1ZWGFLNm1Wc2l5Vy8zdHVoalREUkh1YkgvbWFKNTZq?=
- =?utf-8?B?UTN6UG1lMld1NDlEQXhmY3VEeVlxeUxHRmtIT3A2SFpWakpYdVFoT0JDaXd6?=
- =?utf-8?B?N1JnSEdoMzdTdUR0QlRYWjlBdHo5TkhhS0FSc25ES0d2Y2l2d25PSDY3a0Fa?=
- =?utf-8?B?QUExVzd4YkpaVFV2QndNei9XbFo2NDROZHpvRyswNEt1RWR2ZXRpZEJSRjNx?=
- =?utf-8?B?KzJqMlkxM2RwZmgzYWNpU0JnRWsxK1hlMmU4MXJzeEdBUW5WNzBPaFd2V3Vq?=
- =?utf-8?B?aDNqbnJwaEVyTWdaM1VrUEZ5V3IxUXNDQ0NCdEV4bFNZQVY4OU4veDVUajZB?=
- =?utf-8?B?a1hGNXNqbHNGM0hReGNaZ0VDUEVBNnF6T0VhNCs1aHArUTg2cUJtY1FEekhS?=
- =?utf-8?B?NTArVXRDM1BJUVZXYVZxbnBVNDYwSlQvNXNsNExlMmVPclV6Q240emZSdXRi?=
- =?utf-8?B?MElQQXdiV29uUlg0VlJkVlpDQnZWN1pBa01DMjVtSlV3eDZ4Z0xhZ3dqUTky?=
- =?utf-8?B?bjJqVytraTM0Vk5QbzRmVS9sbnNjVXhDckxVU3VYL2VZV2ZmSytSYUZjRFda?=
- =?utf-8?B?SXl3U3RmdGFrTm40SStFMnRKMTRFVVlDbnRtdlFEdUxHckg1em04UT09?=
-X-OriginatorOrg: est.tech
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6bab84c-349c-4367-1337-08dec602b801
-X-MS-Exchange-CrossTenant-AuthSource: AS8P189MB1752.EURP189.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2026 08:40:11.3829
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d2585e63-66b9-44b6-a76e-4f4b217d97fd
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YkoZNaPMvcxDwW5rvB3r7n9sXjot3dsc1THCo5cztEIR7VENeQYuadT0bFR6tAuxLQsNr6BgmMebtwgTouZ9Ew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1P189MB1150
+References: <20260520084428.257066-1-wenst@chromium.org> <ag41KWtNpU1ZZs6m@google.com>
+In-Reply-To: <ag41KWtNpU1ZZs6m@google.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 9 Jun 2026 17:41:41 +0900
+X-Gm-Features: AVVi8Ce8Nz35NPVrXN7zfo4FdcTvFwh1LH4tunNmQ4RFKjjZ0Lkrv3scHyEzfwY
+Message-ID: <CAGXv+5GENJJ8sSstFJ8pQDqT-w_2bnan61jbJKiu+W3VM1UerA@mail.gmail.com>
+Subject: Re: [PATCH v2] checkpatch: Don't emit warnings for ID-base USB & PCI
+ DT compatibles
+To: Joe Perches <joe@perches.com>, Andy Whitcroft <apw@canonical.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dwaipayan Ray <dwaipayanray1@gmail.com>, 
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Yingying Tang <yingying.tang@oss.qualcomm.com>, 
+	Brian Norris <briannorris@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.34 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[est.tech:s=selector1];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-308828-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-308825-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[est.tech];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[yunseong.kim@est.tech,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:peter.chen@cixtech.com,m:fugang.duan@cixtech.com,m:Guomin.Chen@cixtech.com,m:hans.zhang@cixtech.com,m:gary.yang@cixtech.com,m:joakim.zhang@cixtech.com,m:jerry.zhu@cixtech.com,m:cix-kernel-upstream@cixtech.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ysk@kzalloc.com,m:yunseong.kim@ericsson.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:joe@perches.com,m:apw@canonical.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dwaipayanray1@gmail.com,m:lukas.bulwahn@gmail.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:yingying.tang@oss.qualcomm.com,m:briannorris@chromium.org,m:krzk@kernel.org,m:conor@kernel.org,m:lukasbulwahn@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	DKIM_TRACE(0.00)[est.tech:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yunseong.kim@est.tech,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com,chromium.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wenst@chromium.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DF83D65DED0
+X-Rspamd-Queue-Id: D636065DF44
 
-Hi CIX team,
+Hi Andy, Joe,
 
-I'm working on vock (https://github.com/yskzalloc/vock), a tool that maps
-userspace programs to the exact kernel code they exercise using hardware
-trace. On arm64, this relies on CoreSight ETM (--mode hw, for non-kcov
-enabled kernel) to collect kernel coverage without requiring CONFIG_KCOV.
-Without firmware enabling TRBE or exposing TMC/ETR, I cannot verify or test
-the arm64 CoreSight code path on the Orion O6 at all.
+On Thu, May 21, 2026 at 7:26=E2=80=AFAM Brian Norris <briannorris@chromium.=
+org> wrote:
+>
+> Hi Chen-Yu,
+>
+> On Wed, May 20, 2026 at 04:44:27PM +0800, Chen-Yu Tsai wrote:
+> > The USB and PCI device bindings define some compatible patterns based
+> > on device IDs that use the comma to separate vendor and product IDs.
+> >
+> > These prefix patterns include:
+> >
+> >   - ^usb(if)?[0-9a-f]{1,4},
+> >   - ^pci[0-9a-f]{2,4},
+> >   - ^pciclass,
+> >
+> > These are not real vendor prefixes. Don't emit warnings for them.
+> > Instead just skip over the DT compatible check altogether, and leave
+> > the real check to the DT validator. This avoids false positive warnings
+> > about undocumented DT vendor prefixes and compatibles.
+> >
+> > Note that the script mostly only checks the first compatible string of
+> > each node, as it processes the source file line-by-line, and the check
+> > only matches on the line with 'compatible =3D "..."'. Otherwise there
+> > would be more warnings from arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+> > since that file also includes compatibles like "pciclass0c0310" and
+> > "pciclass0c03" which are not accepted either.
+>
+> Looking at IEEE Std 1275-1994 (PCI Bus Binding), you're right, that's
+> incorrect.
+>
+> > "pci0014,7a24.0" is not
+> > valid either,
+>
+> It's possible that's trying to follow the "pciVVVV,DDDD.RR" format
+> mentioned in the spec, although it's not clear if it should require 2
+> digits after the dot/period. Notably, the dt-schema does *not* include
+> the "dot" option at all, so maybe there's room for improvement.
+>
+> Anyway, that just adds to why this is a good choice:
+>
+> > but this patch leaves the real check to the DT validator.
+>
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > ---
+> > Changes since v1:
+> > - Moved check earlier and match against full compatible string to avoid
+> >   false positives for undocumented compatibles as well
+> > - Added comma to patterns as they are now matched against the full
+> >   compatible string
+> > - Fixed patterns in commit message to just cover the prefix portion
+> >
+> > This is a simplified version of what Brian Norris previously posted [1]=
+,
+> > but more comprehensive and more perl-y than what Yingying Tang posted
+> > [2], which only covered the second pattern.
+> >
+> > This is based on next-20260519.
+> >
+> > Also, odd observation: the other regex patterns in this script escape
+> > the comma ',', but AFAIK this is not needed.
+> >
+> > [1] https://lore.kernel.org/all/20190223022440.146915-1-briannorris@chr=
+omium.org/
+> > [2] https://lore.kernel.org/all/20251210073812.1380803-1-yingying.tang@=
+oss.qualcomm.com/
+> > ---
+> >  scripts/checkpatch.pl | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+>
+> Reviewed-by: Brian Norris <briannorris@chromium.org>
+> Tested-by: Brian Norris <briannorris@chromium.org>
 
-I've been testing on a CIX Orion O6 board running Debian sid latest generic kernel
-and found that CoreSight trace is not functional due to firmware-level restrictions.
+Ping on this patch.
 
-Test environment running Debian sid arm64 kernel:
-
-  Board:    CIX Orion O6
-  Kernel:   Debian arm64 generic (7.1+unreleased-arm64, CONFIG_CORESIGHT=m)
-  CPU:      Cortex-A520 (0xd81) + Cortex-A720 (0xd80), 12 cores
-  Firmware: UEFI/ACPI (no device tree)
-
-What works:
-
-  - coresight_etm4x module loads successfully
-  - cs_etm PMU appears at /sys/bus/event_source/devices/cs_etm (type=12)
-  - nr_addr_filters = 8
-
-  $ lsmod | grep coresight
-  coresight_etm4x       118784  0
-  coresight             110592  1 coresight_etm4x
-
-  $ ls /sys/bus/event_source/devices/cs_etm/type
-  12
-
-What fails:
-
-  1. No CoreSight bus devices are registered:
-
-     $ ls /sys/bus/coresight/devices/
-     (empty)
-
-  2. perf AUX mmap fails (no trace sink available):
-
-     $ perf record -e cs_etm// -- ls
-     intel_pt: aux mmap: Cannot allocate memory
-
-  3. TRBE module loads but registers no devices (firmware blocks access):
-
-     $ sudo modprobe coresight-trbe
-     $ ls /sys/bus/coresight/devices/
-     (empty)
-
-  4. dmesg shows only configuration manager, no ETM/TRBE device probes:
-
-     [ 4479.881313] cs_system_cfg: CoreSight Configuration manager initialised
-
-  5. DSDT has no CoreSight ACPI devices (no ARMHC500/ARMHC501/ARMHC97C HIDs)
-
-Root cause:
-
-  The Cortex-A520 and Cortex-A720 cores support both ETM and TRBE in
-  hardware, but the firmware (TF-A/EL3) does not enable OS-level access:
-
-  - TRBE: MDCR_EL3.NSTBE is likely not set, preventing non-secure
-    trace buffer access
-  - TMC/ETR: No MMIO-mapped trace sinks are described in the ACPI DSDT
-  - Self-hosted trace: MDCR_EL3.NSTB / CPTR_EL3.TTA may not be configured
-
-
-Can you check enabling CoreSight trace support in the Orion O6 firmware by either:
-
-  (1) (Preferred) Enable TRBE access from non-secure EL1/EL2:
-     - Set MDCR_EL3.NSTBE = 1 in TF-A
-     - This allows the per-CPU Trace Buffer Extension to work as a sink
-       without any additional MMIO hardware
-
-  (2) Or expose the full CoreSight topology in ACPI:
-     - Add ARMHC97C (TMC-ETR) device with MMIO base address
-     - Add ARMHC502 (funnel) devices if applicable
-     - Reference: ARM DEN0067 (CoreSight Architecture ACPI bindings)
-
-(1) is simpler and doesn't require ACPI table changes, it's a single register
-bit in the secure firmware.
-
-
-Thank you!
-
-Best regards
+> > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+> > index 0d18771f1b01..d4ee9d88ad07 100755
+> > --- a/scripts/checkpatch.pl
+> > +++ b/scripts/checkpatch.pl
+> > @@ -3783,6 +3783,12 @@ sub process {
+> >                       my $vp_file =3D $dt_path . "vendor-prefixes.yaml"=
+;
+> >
+> >                       foreach my $compat (@compats) {
+> > +                             # Skip ID-based PCI and USB compatible pa=
+tterns.
+> > +                             # DT validation will check them properly.
+> > +                             next if $compat =3D~ /^pciclass,/;
+> > +                             next if $compat =3D~ /^pci[a-f0-9]{2,4},/=
+;
+> > +                             next if $compat =3D~ /^usb(if)?[a-f0-9]{1=
+,4},/;
+> > +
+> >                               my $compat2 =3D $compat;
+> >                               $compat2 =3D~ s/\,[a-zA-Z0-9]*\-/\,<\.\*>=
+\-/;
+> >                               my $compat3 =3D $compat;
+> > --
+> > 2.54.0.631.ge1b05301d1-goog
+> >
 
