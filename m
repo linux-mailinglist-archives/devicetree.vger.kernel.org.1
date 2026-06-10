@@ -1,278 +1,180 @@
-Return-Path: <devicetree+bounces-309514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309519-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id obDOHrYdKWrDQwMAu9opvQ
-	(envelope-from <devicetree+bounces-309514-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:17:58 +0200
+	id sQ5FEzkeKWreQwMAu9opvQ
+	(envelope-from <devicetree+bounces-309519-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:20:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F7A16670EE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF0DB66713A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:20:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bp.renesas.com header.s=selector1 header.b=EA8fuOjZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309514-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309514-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=renesas.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=WVliarnE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309519-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309519-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9A16A3056B25
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:14:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5D877306707D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:15:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B5733A2E25;
-	Wed, 10 Jun 2026 08:14:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E1113909BF;
+	Wed, 10 Jun 2026 08:15:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010066.outbound.protection.outlook.com [52.101.228.66])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05D0239FCBC;
-	Wed, 10 Jun 2026 08:14:06 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781079248; cv=fail; b=QQdT6TQTKKscpKjb4CVfcAypScQBgDYaTYFCNhSL6qJbfjLra9J5Q6Lz+qwe5geIlScr4DVcwpHQd0v3bc8QsO8rNUrYTbvHy003MddrJUfFr1uQL/mQjtkeRNl5SI6q4WTQxJNjRF9T5yaX7oFZPcthjm4jGhUBWJPsRUC9pAw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781079248; c=relaxed/simple;
-	bh=kPFL6oLH38nBCHUTgtHCLGkmHUb1bE/txSORGMm9ub0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=idjrVshemFAUBMrTTZ/QERd/xQV4gt4j+BerE4QKwllhkxNkxppHfp8avvCVXLC+yaAHueSYMXO1kOOYMsBuDnOvsoq90TpBTnlzPl/0KwIo8tlVRSEKqspUhBevh3U0pLLs6JUkh2PLxWPd/2VAXZo8SKQ7JBqf25PSh5KdkGo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=EA8fuOjZ; arc=fail smtp.client-ip=52.101.228.66
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RvWwcxw2up84X2uNN9nAfDJQ5aOEkzD62d+9bKN9y0FHtoVYHrw7efGreqS6FoOeqAITkWgo3Mftd2nS2d+l+oeZWuKcouncybYlzrMlSmly0/vzKC8iTmNyvdA8x+IO3TJ2XE6QOCg/30Txmq7uW1S/ZR/E85dZTXcGACwmFf+X/iaDbiKEi+HLbyJLJUB6qFHwbCrVBPyDXqhFq1PxUPJJ/eB6cOqUw+BUimd9LFTC5cWgJ1kVAtf1ZoBkP7TtX9zcWW+xuR3gL9/XI8O73c9H9Z3Qw4J7D7hF1CO9q58Fvc27gCms7tg9Xybn0Pu55l4/4zIjIxxagA+VYUkCZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DYfvd6Mcfzw5fm9Z8KuLACKyF2FG7r9WBdeUMWmyJ4c=;
- b=WV53VbdBFp9Ugk+JZJw6YpMXBBs/vDPg3IxFq/SSJ8olZrSmCHU3/U4c0JkvLFC9Dg/PCYX4EvQrY4+DOh3ODJbZeSLlvEoHAUKz3dMBGRF48cn0sQcOoR/KTgmgLwv+NgVl/aiKpcXJ9RBDhwHw/chjCa/KRGKO9zf5T30kBfl5cfxKKvOM4HXB95FopvQ4I7GCby3XorB0MC3VdbO1br4qR0J9mwJu5wSrj/85CmmOMpbiRpYK4TThb0uBajNcAA0ded/GI2vx/xJoWZm91F6J7YP3Va35NWwN7KGhXgx+ScYuOAWEiMzmk9VoGlAjwGlRTuGsArXW9Ql4YV9JYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DYfvd6Mcfzw5fm9Z8KuLACKyF2FG7r9WBdeUMWmyJ4c=;
- b=EA8fuOjZqrL8MKtvpuUlqSKpF/ZfM5RkkT+24HH+oiePx/eYKTQ/W9ll5rgssLF8wr0zaVWhurUmHoUMI8DmxfHE9/ZYQ/ELazBBLHAfj6Dkn/kFNQ0QGcg7fXwefT9lxpsrhvYzLeT5LHeWN0RzHsNC5UjHVHRe9O+4lR4oA0E=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TY4PR01MB15412.jpnprd01.prod.outlook.com (2603:1096:405:273::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.13; Wed, 10 Jun
- 2026 08:14:03 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::87d1:4928:d55:97de]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::87d1:4928:d55:97de%4]) with mapi id 15.21.0113.011; Wed, 10 Jun 2026
- 08:13:57 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: John Madieu <john.madieu.xa@bp.renesas.com>, "geert+renesas@glider.be"
-	<geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
-CC: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"john.madieu@gmail.com" <john.madieu@gmail.com>
-Subject: RE: [PATCH v5 2/4] arm64: dts: renesas: rzg3e-smarc-som: Add Versa3
- clock generator
-Thread-Topic: [PATCH v5 2/4] arm64: dts: renesas: rzg3e-smarc-som: Add Versa3
- clock generator
-Thread-Index: AQHc+K1prHVSYjuVQ0C9HGlf7UjJ7rY3b/pQ
-Date: Wed, 10 Jun 2026 08:13:57 +0000
-Message-ID:
- <TY3PR01MB113467A63C78C21DDA14220BE861A2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20260610074702.1743334-1-john.madieu.xa@bp.renesas.com>
- <20260610074702.1743334-3-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20260610074702.1743334-3-john.madieu.xa@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TY4PR01MB15412:EE_
-x-ms-office365-filtering-correlation-id: 9366547a-a69d-4ea7-840c-08dec6c8383f
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|23010399003|366016|376014|1800799024|11063799006|5023799004|4143699003|22082099003|18002099003|56012099006|3023799007|38070700021;
-x-microsoft-antispam-message-info:
- 0sESYBPu/jLuGNZczjec9jAkbMnsfW4of4wUG3sZ8dmGRqn7zPoj0GqgGOivfpY4KAerl21MIpCGPlYPuAT9TPu4JZfjjE3rREd45bwxBjWbr2Wmz0U6WX6laPmpIh5hSG4Ojk0qeSjOQM3HAiJlfaQoHf5jme26nBR1XzP9P1oJrmy5ToGtlBqX7+yk/PONF+ZK6PrJ7X4zsRcx2HmBZkrAFlgjPML+nyT9gVIvKe+AGgKQpeED4QzRf0w84IgpZDrNhpgDp0LNfcvdIY1/R5mwuxMyCtVigbZJzGX95fklR1ZqK8+ZNU3AUaJNeFG+ziN67zMEaBaD2hBzqHlDg8Yq78w0GGYlwPq0Xuj8QiK4jJHauDAO/LzcFGMeDuzTtxQqyTzJwtvg7IQZAgE/E8ejSmgAkRdpzjbXZChmK9Bzmdg7/d5ypBfdgs8LQt9oHEjpme48J7eA0ElZJv+Y6V89N8cL1SsYitTLMGxu48eDQ/qmmXd9AMOYx2o5fSW0ODaD/wXtZSUfCMZIboK5s6VUa4vnbKcpXqPw1eqHenuyFFlE2xi4B7nuZ1OyLg0HWgVGdk1z1mK5GtJWpxhuRoYIYrdhAoTtLyYDKbwVsltElcCql5XSTsmygHFefV+RF+73WONr2N+NcTU+fGuSvjhU2bFv1nX0JMSDu9S1wioqsIL0i0qfiqbETQcIawZ+M4A2ejQMeWNDBxVLKBlBOen4uF/hkcWhvs3+q9VkbaVPVw9l3oTPpmOBX2VkIP10
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(11063799006)(5023799004)(4143699003)(22082099003)(18002099003)(56012099006)(3023799007)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?pE3ilSUhT/fLJ3BQ1zg80q3AtKQH/c9pZVuoFkrJOBoy6QtSM0J2bPJFmrCj?=
- =?us-ascii?Q?5iryzJXV0p23KRI71syvB/NX8bGxoQt9xXlZpPLK9S9L5c4gh2J5SkrXaPW2?=
- =?us-ascii?Q?oKVzCNrSZtt172A6j52F+Qx8f+Elk/+do1+CumIj1gEJ4qrVgN4QftL0ZfEa?=
- =?us-ascii?Q?zAjDMsi83XcjB8zmIsxRzW12M3Dx7bdSZr6/VPyVTpndYAoFVD+UkXtQAUnz?=
- =?us-ascii?Q?w5o5K/+R9xQ0cff8UM46IzsFmYRThsxUEKSTld1/CPtVFcil6sSTBVnfNNoA?=
- =?us-ascii?Q?5Vj30ApIW59FYnfRHkb8pXc2I/qCmaGPaYiPp3KG74X9C8bMIcP6pyxy4mGr?=
- =?us-ascii?Q?9KU3SljCtOlsBYs8Zvd94q5Y8dQIbJ9S9Kpm0Ma44Q5JErhbIKpR9mClgamS?=
- =?us-ascii?Q?QRRLf3/jONnGvfWr49zVa/YsVYQt5mfp/C2qcozHzBpUK1LC6no+7WvJgH7m?=
- =?us-ascii?Q?CgE+Fb12XYqT+QPg/xwbLDYaNF76iOA+r9BiqbY+FTSldLb4//DVqeBJWZ9a?=
- =?us-ascii?Q?brRN4PKAQxAgH0ExTe0Jg0xR6+kfBRXAbjHg1LozPz42RuLT6SxwZnlDhHsK?=
- =?us-ascii?Q?yKzEkmLfLwFW7I1/aRf0seoyT7smIGV81TofCFH3SNimWeVcuQBim6S8CM7r?=
- =?us-ascii?Q?Lr35BtI7r5yiXSgH/7z2aMs5E0iYmIaanLm0+H7v2BRhsyA88TaXKg/JAYLk?=
- =?us-ascii?Q?O1b9V7fw5+m/tnTbadQqQRCc+zBAPvxIevtcGb0f7/hXTC2C3ouN52u0k979?=
- =?us-ascii?Q?zaJNw/D3CvHVkJegNOaeD/a2pwdSRZhsbflbQfjUc5BLO3uHgHEuzOyq5kIG?=
- =?us-ascii?Q?+GbsNuVdI0Fk+QwKKftLuhZ/PsvMwI7t2ReBqHg5dCEh4ooJ6HeVfUMS9fxs?=
- =?us-ascii?Q?nd7Ay2HUpJAM83WvjSNE+pHM6dCPUllmC7eVjPb5HbKydq5accgLxwwOP4bT?=
- =?us-ascii?Q?F1xf5iPjkiYBcEWjGWP2PNyWh89FHB8LDyhOd07BuSSnWEQ3raDq//aj+4qz?=
- =?us-ascii?Q?+d9kmQTwNzbulSoeLd4XwDI04EcFxhqyMjSJBEtsBuVsMzijVNxhTGzYcrht?=
- =?us-ascii?Q?BR02R7Dh42kEOfm4rVHILr439z2KwlJ7B8oUQ8GbORQBKi1lw0rG99eBOnmc?=
- =?us-ascii?Q?gtyZT0w2uMj4INqtjGvBvmEdfwxoOy9Kr4HGAkYVs0oW8IHNWxCBOzc2b+Th?=
- =?us-ascii?Q?km03xr6iI444RFmqTotZZ/ee/7HosPUPa+FJDu21RYlOuhSopIu+n9simfFO?=
- =?us-ascii?Q?EGgFhK9fsx9GCmbnYUwtqhN7a3b4HFJwJuUdojRKirxk0fvZnNhCPrZJBBwL?=
- =?us-ascii?Q?1vnHysCaDvjlpVD3r0EzQnnGPB0r/3PqIB6kTDXlRylUh8ost7gxoJ9Rq+i+?=
- =?us-ascii?Q?VygkHxP+tFdtrJEG4q6pPfv9qyXMV6aLONqzLnxuVvMu69jGyoLBi3aPnA2X?=
- =?us-ascii?Q?XJkLZKi7MY28v52x6c9dIEXA2s5o4KZf4us4MI4pJarQ87Ap01LSOoIi+an6?=
- =?us-ascii?Q?thcPn9Z4ThUXoyD4ulmLBdYpVeBxJ8vGk1PsKolMZHEa3R3dRZjtsD3cLtIz?=
- =?us-ascii?Q?fdeu5oz/U2w4Y82Js/N3sAVlFWrX3w8Ih8N6XOw2c8JNKrnVtmZou/2s6B/7?=
- =?us-ascii?Q?IZGKFfopAAACT+eFtUGuTUapN0NS4VA7mX7xt0bq4XzP5KEiZ/AE5KacerGb?=
- =?us-ascii?Q?f6NigYLNUy2EU+cqexhVgE2TJFfLzmqGOEqvczT5S2FwawCqMfmTFawi14Cl?=
- =?us-ascii?Q?nhZyF0HCoA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FB9B388876;
+	Wed, 10 Jun 2026 08:15:04 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781079304; cv=none; b=fE64l69M47NW3cPERCiSCHkOr/se76sxYe8Wz69cgK62tlEINEFZFkhgTHdgjRh9gnNMzqjRv/dHlYY99KhHFNJ+laj8neY1pi6ATbIJ6DgUXYEIC98o4gBCZHLbLzC6vAxoU08NHIYFFOVgq6RzYjBbbwFo7aA4aQzw39VT/10=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781079304; c=relaxed/simple;
+	bh=zbqOoMcHfvoA4jobdCXSeR8psyrC1HWfG49UiZtEOgA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hFBfcrQ0TsaOf1Q9A0E2uC5/au9fdZ/Zwkg+0hiMlB1u9H+WS2fu5TS0dn862gtMfzf1rbNnkguDdZ6gxpmBIhR61sbithziMidTL/yCT/euKYei9DMsaaYzjFP7f8I4skkofujrOO6Z4NIqOwDBLbM9Sw+DtOBRVfU/KZoU7TM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVliarnE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DF82DC2BCB8;
+	Wed, 10 Jun 2026 08:15:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781079304;
+	bh=zbqOoMcHfvoA4jobdCXSeR8psyrC1HWfG49UiZtEOgA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=WVliarnE9qzYCC5JSsOceME++GeR8LENSyaCnSDfMnUnwUKpygzbfZgmVlBtWILmg
+	 1xg/9Pp9ehc3lmZhImYZgsCQ34lLzZpm0QHxIc7wr4V3m1dMkCVesWHJ9dQx+uJBo2
+	 kFT9Ng8KJX/K3/rbeuz4jmBCEKzBgsVGIgCOCnA7qR0peQQ/ikySfImOYEy1/h5has
+	 Y+UyZcIXB6Rnm9pn4hkxxxpPI2ZJVH2vWZJykbtcPUVtejKOOqm+zuWOaT4Do8jbHk
+	 p/RmZ1r8vQdG+XyWyFwgtYjkNiDRwndzwgCFCyteWiGC3fsBrMl+z5bYr/CdN6zn56
+	 iXLHmW4VVAn2A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2780CD8CB9;
+	Wed, 10 Jun 2026 08:15:03 +0000 (UTC)
+From: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/2] clk: amlogic: Add A9 peripherals clock controller
+Date: Wed, 10 Jun 2026 16:14:53 +0800
+Message-Id: <20260610-a9_peripherals-v3-0-d07a78085f71@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9366547a-a69d-4ea7-840c-08dec6c8383f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2026 08:13:57.2452
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: K4l3t/FAT5yxujiCbkffXnuLcmDotJUlBHmQLvk19HMuVYsmfU1TAVWvgq/aXdL2du8K3eRapcXwi2gBp628z8N1/BSiZMuAnciNDb+5F60=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB15412
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP0cKWoC/3WMQQrCMBAAv1L2bCRJa2o9+Q8pErdrs9A2IZGgl
+ P7d2LvHGZhZIVFkSnCpVoiUObFfCtSHCtDZZSTBQ2HQUhtpZC1sdw8lCY6inZJotGqo7Vp5GhB
+ KFCI9+b0Pb31hx+nl42f/Z/2zf1dZCymI1OOM0ioyeLXz5EfGI/oZ+m3bvrwlE0OuAAAA
+X-Change-ID: 20260603-a9_peripherals-4214e79705dc
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>, 
+ Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781079301; l=1973;
+ i=jian.hu@amlogic.com; s=20260415; h=from:subject:message-id;
+ bh=zbqOoMcHfvoA4jobdCXSeR8psyrC1HWfG49UiZtEOgA=;
+ b=XTRwIOdCoz0uS9hAn0/t60goTMKKStNMxXoYQUSRMnTL988Q1uD5xZ55OUpuyolRIeRSJ5z4e
+ Ubj6G/gAPYxAPyIXmYmNZgNZ5zH/KFEPZsoQjwrTzmNsKo5OTaB4j+h
+X-Developer-Key: i=jian.hu@amlogic.com; a=ed25519;
+ pk=zHUE+rNtH9z+Sb8au1/elWknjFQmy5QDVkBoxleuOIA=
+X-Endpoint-Received: by B4 Relay for jian.hu@amlogic.com/20260415 with
+ auth_id=735
+X-Original-From: Jian Hu <jian.hu@amlogic.com>
+Reply-To: jian.hu@amlogic.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-309514-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-309519-lists,devicetree=lfdr.de,jian.hu.amlogic.com];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:jbrunet@baylibre.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:xianwei.zhao@amlogic.com,m:khilman@baylibre.com,m:martin.blumenstingl@googlemail.com,m:linux-amlogic@lists.infradead.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:jian.hu@amlogic.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,kernel.org,amlogic.com,googlemail.com];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[bp.renesas.com,glider.be,gmail.com,kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:john.madieu.xa@bp.renesas.com,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:john.madieu@gmail.com,m:geert@glider.be,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:johnmadieu@gmail.com,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[jian.hu@amlogic.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,bp.renesas.com:dkim,bp.renesas.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,renesas.com:email,TY3PR01MB11346.jpnprd01.prod.outlook.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,amlogic.com:replyto,amlogic.com:email,amlogic.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5F7A16670EE
+X-Rspamd-Queue-Id: DF0DB66713A
 
-Hi John,
+This series adds Amlogic A9 peripherals clock support,
+including dt-binding and peripherals clock driver.
 
-> -----Original Message-----
-> From: John Madieu <john.madieu.xa@bp.renesas.com>
-> Sent: 10 June 2026 08:47
-> Subject: [PATCH v5 2/4] arm64: dts: renesas: rzg3e-smarc-som: Add Versa3 =
-clock generator
->=20
-> Add the Renesas 5P35023 (Versa3) programmable clock generator on the
-> I2C2 bus along with its 24MHz input clock (x2 oscillator) to feed the aud=
-io subsystem.
->=20
-> The Versa3 provides the following clock outputs:
-> - Output 0: 24MHz (reference)
-> - Output 1: 12.288MHz (audio, 48kHz family)
-> - Output 2: 11.2896MHz (audio, 44.1kHz family)
-> - Output 3: 12.288MHz (audio)
-> - Output 4: 25MHz (DIFF1, Ethernet)
->=20
-> These clocks are required for the audio codec and the Ethernet controller=
- found on the RZ/G3E SMARC
-> EVK.
->=20
-> Output 5 (DIFF2) is left out, as it is not connected on this board.
->=20
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
->=20
-> Changes:
->=20
-> v5:
->  - Drop Versa3 output 5 (DIFF2), as it is not connected.
->  - Document output 4 (DIFF1) in the commit message; it is needed for
->    Ethernet.
->=20
-> v4: No changes
-> v3: No changes
-> v2: No changes
->=20
->  .../boot/dts/renesas/rzg3e-smarc-som.dtsi     | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm6=
-4/boot/dts/renesas/rzg3e-
-> smarc-som.dtsi
-> index 15c22dbf0ad3..e951609d39e9 100644
-> --- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-> @@ -78,6 +78,12 @@ reg_vdd0p8v_others: regulator-vdd0p8v-others {
->  		regulator-always-on;
->  	};
->=20
-> +	x2: x2-clock {
-> +		compatible =3D "fixed-clock";
-> +		#clock-cells =3D <0>;
-> +		clock-frequency =3D <24000000>;
-> +	};
-> +
->  	/* 32.768kHz crystal */
->  	x3: x3-clock {
->  		compatible =3D "fixed-clock";
-> @@ -137,6 +143,20 @@ raa215300: pmic@12 {
->=20
->  		interrupts-extended =3D <&pinctrl RZG3E_GPIO(S, 1) IRQ_TYPE_EDGE_FALLI=
-NG>;
->  	};
-> +
-> +	versa3: clock-generator@68 {
-> +		compatible =3D "renesas,5p35023";
-> +		reg =3D <0x68>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&x2>;
-> +
-> +		assigned-clocks =3D <&versa3 0>, <&versa3 1>,
-> +				  <&versa3 2>, <&versa3 3>,
-> +				  <&versa3 4>, <&versa3 5>;
+Note that this driver depends on the A9 PLL driver, which is not yet
+upstream. The Meson PLL framework is currently undergoing refactoring,
+and the A9 PLL driver will be submitted as a follow-up series after
+that work has been completed.
 
-No need to assign clock rate for unconnected output. So drop <&versa3 5>;
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+Changes in v3:
+- Add "depend on A9 pll" instructions in the cover-letter.
+- Move COMPILE_TEST after 'depends on ARM64' reported by sashiko-bot.
+- Fix usb_48m_pre_sel's parent reported by sashiko-bot.
+- Fix gen_div width reported by sashiko-bot.
+- Fix hdmitx1_pixel's parent reported by sashiko-bot.
+- Link to v2: https://lore.kernel.org/r/20260603-a9_peripherals-v2-0-ee1b8c0a1e6c@amlogic.com
 
-> +		assigned-clock-rates =3D <24000000>, <12288000>,
-> +				       <11289600>, <12288000>,
-> +				       <25000000>, <25000000>;
+Changes in v2:
+- Split the A9 clock driver and send the peripherals clock separately.
+- Add COMPILE_TEST in Kconfig.
+- Drop the 'optional'.
+- Rename apb4 to soc.
+- Sort the header file.
+- Rename hifi to hifi0.
+- Use CLK_HW_INIT_PARENTS_DATA to describe clk_init_data.
+- Use CLK_HW_INIT_HW to describe clk_init_data.
+- Use CLK_HW_INIT_PARENTS_HW to describe clk_init_data.
+- Link to v1: https://lore.kernel.org/all/20260511-b4-a9_clk-v1-0-41cb4071b7c9@amlogic.com/
 
+---
+Jian Hu (2):
+      dt-bindings: clock: Add Amlogic A9 peripherals clock controller
+      clk: amlogic: Add A9 peripherals clock controller driver
 
-Drop <25000000>;
+ .../clock/amlogic,a9-peripherals-clkc.yaml         |  160 ++
+ drivers/clk/meson/Kconfig                          |   15 +
+ drivers/clk/meson/Makefile                         |    1 +
+ drivers/clk/meson/a9-peripherals.c                 | 1925 ++++++++++++++++++++
+ .../clock/amlogic,a9-peripherals-clkc.h            |  352 ++++
+ 5 files changed, 2453 insertions(+)
+---
+base-commit: ca89c88bcf69daca829044c638a8163d5ce47af0
+change-id: 20260603-a9_peripherals-4214e79705dc
 
-> +	};
->  };
->=20
->  &i3c {
-> --
-> 2.25.1
+Best regards,
+-- 
+Jian Hu <jian.hu@amlogic.com>
+
 
 
