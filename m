@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-309600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309602-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MTPVBR8oKWq8RgMAu9opvQ
-	(envelope-from <devicetree+bounces-309600-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:02:23 +0200
+	id umQ5ATUoKWrKRgMAu9opvQ
+	(envelope-from <devicetree+bounces-309602-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:02:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39ACC6678FD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:02:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9953E66791C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:02:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=imd-tec.com header.s=google header.b=LLvXReHY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309600-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309600-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=imd-tec.com header.s=google header.b=MN7OfKMT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309602-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309602-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=imd-tec.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D1234302CD2E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:57:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D98BA303B197
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D5F3B14D5;
-	Wed, 10 Jun 2026 08:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D89D33B42E3;
+	Wed, 10 Jun 2026 08:57:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82296358D32
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 08:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23DBA3A8752
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 08:57:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781081872; cv=none; b=JkAIwreNd0R5LRtv0dKNRvccJPHV6iLTfphARARp86jTuU80hdpZu8+CmozR02zdcWBaoFXgsrn2r+ZPtyYuPC9zBtV/O2DXgMZ7xOh7th+TfcPZ7PvrXUJnvy5dhao6FYJCb+0OJ8ldtpCauR+hKQVcgzLgkcrkcRFm5UW7Q+U=
+	t=1781081873; cv=none; b=WGsfbGvsyAVuaZUr2WkiF+1+UZQGUHtuzNtbXuaoxUb0hrML7eEwNGrlA0oOv5YNUlv7cozeFjBBNALo4LYkH1VvS5UdI3RbLJHslMQ3pOUcH6rOIeBspM4ByxtjwEnavuBps5V/c5OED+CpDenhTca9V9Vk23/xKu/8GJZ2/3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781081872; c=relaxed/simple;
-	bh=xnjqgJXyoGJWYozez/m84uJbEX14HWPu6Q8EGhsKd1Q=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=trPYszNRindJXq0jwGjoOBwSL/CgxGi5ljA/0OejYSoNFCwmMsf/2Nqmw7sHs8rNjAt7RaAIqd826ubs6UAc62X2OGJISqAATe3WobyR1kmdVQcAhCs/u+1ssLMr8UrzotDeDpDi6nhVPEXeDClqWHbUOgrbYDpRY7WeLePHvXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com; spf=pass smtp.mailfrom=imd-tec.com; dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b=LLvXReHY; arc=none smtp.client-ip=209.85.128.53
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-490ac10e337so54703925e9.3
+	s=arc-20240116; t=1781081873; c=relaxed/simple;
+	bh=1npweHVp9OmRheT/zegFkBMOxoCfQB0An9chDs3xjhU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=LpecSocfjYyYTC5hwvjAauJzmp5UzT//42DEjd9V7sWHHG3vGh2zVWMTqVhrl7bbUxMrvkji0B11vLcGRVQs1sYTYfOIkts645sGiUIYxPxmXddyfMdR0ovGtHX7NZXw/sB00U5jAKFHh3I0mrBZnwo9EggLJOTgggFAryJYmHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imd-tec.com; spf=pass smtp.mailfrom=imd-tec.com; dkim=pass (2048-bit key) header.d=imd-tec.com header.i=@imd-tec.com header.b=MN7OfKMT; arc=none smtp.client-ip=209.85.128.45
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-490ae94a89eso55259615e9.1
         for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 01:57:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=imd-tec.com; s=google; t=1781081869; x=1781686669; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RGxADFJpFtsaw/tpNTJBftbgVulNnvat2Rp1ypoxt4Q=;
-        b=LLvXReHYs8reLeturs8OrpJU7beEUCGVI7dgyLy7c3QFOMKEbISVtMf1rsp21ylF5w
-         TkGztNtrsSNu0CJVoYv2i24JjpFFNB8QdbmsyBT1IjF4ZQAIuPGb6d0ucMTjewiWaOG7
-         e0umDm8kFHh0tTzhvUVMVt/1xH9atrJyW1PfWOGIeiOQwTGHRTQpro3kWxo9xQUXZ4la
-         IVX9cc3AlMGBOm+s9pwjqkA375kf9NaaIX9VjbIUdakwnxnpXxNK+jhpaxOT6Bpsk70N
-         SYFgFRIklPhuWhiLX99DinGDM4PTJwTe++Nrreo4BKGVqBNiuX18Ame127wiioY899K8
-         XUqw==
+        d=imd-tec.com; s=google; t=1781081870; x=1781686670; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HGZDkKeFxbNnSDuxlFvYzVfY/JIiXBnOSQb+89u/BgQ=;
+        b=MN7OfKMT6EWNpkpQJ2Gnr5fEFEWYcJRcGH1u2VHpwgDu5uObpNytSqoIS+oy4cBL64
+         3/TP2h42QejgJeM0xAOCoeynNFqiEAbFsJtdH5+jj6fcpZr+rMtOboa2xNwo7Hv+9O+6
+         e4iyI1JhhgwUYIDKksFBcRrVDJL4djN7w0YeGpGJLMsUBKLJ2ZQa0ISAM6UIc2fEL0WF
+         gtLou6LihF76hPrkzB+sRbWnZl+wMx9wpB5t3EdGkrUzsBMTwXIZ7TLMIzSbJF496/p5
+         lrGKnp2uByzuiuHg1qQUbTVZGxx3VucXZh48lTSC7VaCDd1s9yj0sKcnfj13OMao/4jS
+         VkdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781081869; x=1781686669;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RGxADFJpFtsaw/tpNTJBftbgVulNnvat2Rp1ypoxt4Q=;
-        b=LNMPFhQMBERXFG30+WfNnI0RGhIBrh6vNnpv/sTUuNK5q2M6PjBzY4v05Z8WWgee+5
-         e9WtvuqLEc37pShHBr0/GCF2b6VmgpWB93i1fgZ4mnmgQyD/Pe4I9F6aaMczmBMnAH3i
-         kXuzm162EQoqkNobk7BBBzFPYo+tg+OajeDpB7MehUjNR7O5H7QuqGgmg+eK5zRhkgmR
-         LnDKwzqkmuWWksKdVDbMn4i2iQwtvenWpTYBilAkERkuOmQdoiNGl8JrIm9/Af3bsI5w
-         lS3hrwbtHfjmNRjpdzia+cNCAgcrYZIuwBvndMJzV7M3THGhg2HBj7RH87IhTxGNHqZ7
-         omiw==
-X-Gm-Message-State: AOJu0YxiYUAA89on4kpLSEiVwjR6kn7N4dG2ni+sMzJ7fNUnLGQOIbsM
-	CajbIAx9ZLlXyRvoAQ2sCbQTz7TO6HsP/RtsdJbc+aGg+EwV8xxZGMJko/g6jGgZatA=
-X-Gm-Gg: Acq92OEKB8qwYnD73s4UeVz0RQ9G3jUi6HqrxzA1gPti3Vdg63Ntc0ooSRwMsWquGeo
-	Rex9aAqRnDxWwS/UyaPqhlcgUKHUrIPHIxqXzVuEA7thK8r693O29We/3M62MHH76TGw0vMz/ga
-	QykCrScZFICNGppbk33Bk5gjaBalc7yDOSu/uNTQqUe4dBrBohKCyNqt461eSMzzOyk1tN1lvlM
-	BpLS2EEDNYa3KSP9NCCqypnU8dvOV1+otDGfojFonj8VWaQT29/DjagrM17f/ojTK8+luvYUS50
-	NFDo2Logx8eaFoDqkVgaTDgvmuQ53gLyN8yjBHuATEWD/2tQBRFZjGbA72nNW8nd45mh23dqenl
-	L0kmbmMMPoVMyVOOboD01bC69E2aorhVwIF9d8KahrEnf3sfD0sDT+qlF9k54efAzFB4MpcW6i+
-	oypJVPrjlQ7WTcafhG6q/LGD8HVXMdnXvpVGqP+YjoftEtqj17Qz4LEVGCen0RFLIxnCSu9rBX0
-	GkbA3MzGJ5ASZdJ3Bgg9oIyptmurxuYXw==
-X-Received: by 2002:a05:600d:644a:20b0:490:c6c2:bdc2 with SMTP id 5b1f17b1804b1-490c6c2bdf6mr198982075e9.4.1781081868535;
-        Wed, 10 Jun 2026 01:57:48 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1781081870; x=1781686670;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HGZDkKeFxbNnSDuxlFvYzVfY/JIiXBnOSQb+89u/BgQ=;
+        b=aOQtHWCReXVzA49nBHGizolNykDAafD5wisEE3AskUSFo5nezOSoc9FGRkatdAKNSl
+         vRkA6/vBgC/M/PzfGOyQ2cWN3zrAS3hhVPkcgBP+1t7LQgmZiCC94SsJuSIfWKEF6auE
+         dvz0/T+/hRxbO7onIuKmuOy8nwy/5pYM8xUXVokSmx2ZmtOSeByS93de+4hKsqY3c8Mp
+         Dru3py0EileKEZCeIm4Ha1svsYWTasMkE0heQsPYGXjOk1rEpmR54LrTWOnIEd9WL5Bv
+         n1mtj3w/aTjjshK+rR0wgMU3qnu1TeP9gDGoKbTd7L6o4Fv4bVgCuiAJg7CTt5a3yMRa
+         8h2g==
+X-Gm-Message-State: AOJu0YzKvNU+bGOIDCrksUMDsxOXAy6GimgbpdsnQRjqx/v1vEeOwkMJ
+	4adJdcKEE394KVrNipGPQkfNi25xKYWwaC9ofF9RRZSPVR6jgXuU/JDnBAf2i6TtI/8=
+X-Gm-Gg: Acq92OE8mJQjAWjqfhjzHtbkiIe4kwIILqz/cxHRdXDOs75kod0E9a3YlvxWE8MjRSw
+	RFQOBsurXee3nE0IELC3nk9irFsYy7AD6SVOdNsspXlvbfMsMyYwDMPQ2nCK8jG0L6sRR8oJ9/2
+	+tBH329seZlaeL/KhN3K1iu0/LzRTdimNcpwct0/nZ8Kg/WnZorBkb4hSJ+ww3tPl6I+8AOjLUR
+	602fcTexcENMXVrwzCGYeR7lWe8dDv+gTqy607DEzV6deQoTtAKgwBERWqsM1ZEItCBOhZn3LO0
+	g2JPqSBdVHigrPqIl8Ebf4aO5CpJn5VQUUCEHRZLSbsF+SNqmR3DBtnltpd3aUOH/OPDeUcBfKU
+	kbz93sfFTI+R8l6xbRyixnV8OjriB4i6JspFoY6S6oMcQ8BlIQ8GsOrF6Xb9WbMj8ppIRLPLUvR
+	qEtQlfBkybrUwvrOVfdA4Bl5zIHEgCqtry8tC7g3cnGTiv8DNBixSlSqNZdseejuLUv59+rjRaU
+	HtgNNCqKbtnLYb0p70WMGMogSW+BqxxMA==
+X-Received: by 2002:a05:600c:5488:b0:490:9d1b:f07f with SMTP id 5b1f17b1804b1-490c25b1277mr455620115e9.12.1781081869366;
+        Wed, 10 Jun 2026 01:57:49 -0700 (PDT)
 Received: from [127.0.1.1] ([2a00:23c6:2736:8e01:fc17:adf2:34ee:6df])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc40716bsm584495835e9.12.2026.06.10.01.57.47
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc40716bsm584495835e9.12.2026.06.10.01.57.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2026 01:57:48 -0700 (PDT)
+        Wed, 10 Jun 2026 01:57:49 -0700 (PDT)
 From: William Bright <william.bright@imd-tec.com>
-Subject: [PATCH v4 0/4] arm64: dts: qcom: Add IMDT QCS8550 SBC
-Date: Wed, 10 Jun 2026 09:57:44 +0100
-Message-Id: <20260610-imdt-qcs8550-sbc-rfc-v4-0-358e71d606bc@imd-tec.com>
+Date: Wed, 10 Jun 2026 09:57:45 +0100
+Subject: [PATCH v4 1/4] dt-bindings: vendor-prefixes: Add IMDT
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,11 +87,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAgnKWoC/4XOTQ6CMBAF4KuYrh1T+ktceQ/jou0U6QLQljQaw
- t0tbDQa4vJNZr55E0k+Bp/IcTeR6HNIYehLEPsdca3prx4ClkwYZYoKTiF0OMLdpVpKCsk6iI0
- D4bWzjXUGsSbl9BZ9Ex4re76U3IY0DvG5fsnVMv0D5gooCGRWKS29MfxU1mD07uCGjixkZm9GU
- rnBsMJYoZVGiihY9cvwT0ZvMHxpo5Ej55pZ/tVmnucXR9sFbUgBAAA=
-X-Change-ID: 20260430-imdt-qcs8550-sbc-rfc-4e7cbfbcadd8
+Message-Id: <20260610-imdt-qcs8550-sbc-rfc-v4-1-358e71d606bc@imd-tec.com>
+References: <20260610-imdt-qcs8550-sbc-rfc-v4-0-358e71d606bc@imd-tec.com>
+In-Reply-To: <20260610-imdt-qcs8550-sbc-rfc-v4-0-358e71d606bc@imd-tec.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>
@@ -109,7 +108,7 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[imd-tec.com:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-309600-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309602-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER(0.00)[william.bright@imd-tec.com,devicetree@vger.kernel.org];
@@ -128,114 +127,33 @@ X-Spamd-Result: default: False [-2.16 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,msgid.link:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,imd-tec.com:dkim,imd-tec.com:email,imd-tec.com:mid,imd-tec.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 39ACC6678FD
+X-Rspamd-Queue-Id: 9953E66791C
 
-This patch series adds DT support for the IMD Technologies Ltd (IMDT)
-QCS8550 SBC and corresponding SoM. The SBC DTS supports the following
-hardware on the SBC:
-- Gigabit Ethernet (using a Microchip LAN7430 behind the on-board PCIe
-  switch on PCIE1)
-- USB3 as gadget mode only (No DP alt-mode and flip detection support)
-- SD card (SDHC2)
-- Regulators
-- M.2 Key-E (PCIE0) The SoM DTSI supports the following hardware:
-- PM8550 PMICs (similar to the SM8550-HDK)
-- QCS8550 and UFS
+Add IMDT (IMD Technologies Ltd) to the vendor prefixes list.
 
-The IMDT QCS8550 SBC hardware is capable of the following but support is
-not included in this patch series:
-- USB3 flip detection
-- 8 MIPI CSI2 cameras are supported using 8 IAS connectors
-- MIPI DSI Displays via a DSI/I2C connector
-- Microphone input
-- Speaker output
-- Fan control
-- RS232
-- M.2 Key-B (also on PCIE1, selected by toggling the on-board PCIe
-  switch away from the LAN7430 upstream port)
-- Wi-Fi and Bluetooth via SDHC4/UART14 using an NXP-IW416 (SDHC4 patch
-  [1] is awaiting review)
-
-The DTS files were written using the SM8550-HDK as an initial starting
-point with patches ported from downstream [2].
-
-Claude Opus 4.7 was used for formatting and reviewing the device trees
-against other QCS/SM8550 boards.
-
-Patch 1 adds the IMDT vendor prefix
-Patch 2 adds DT bindings for the SoM and SBC
-Patch 3 adds the SoM DTSI
-Patch 4 adds the SBC DTS
-
-[1] https://lore.kernel.org/all/20260427-sm8550-sdhc4-support-v2-1-a4241f43ecd5@imd-tec.com
-[2] https://github.com/imd-tec/meta-imdt-qcom/tree/kirkstone/patches/msm-kernel-devicetree/files
-
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: William Bright <william.bright@imd-tec.com>
 ---
-Changes in v4:
-- No code changes.
-- Collected Rob's Acked-by tags on patches 1 and 2.
-- Resubmitting due to inactivity on v3.
-- Link to v3: https://patch.msgid.link/20260507-imdt-qcs8550-sbc-rfc-v3-0-47d3d3372b33@imd-tec.com
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes in v3:
-- Dropped backlight node since it's unused. 
-- Dropped regulators which are dead (no usage or not gpio controllable
-  whilst also not strictly required by a DT node). 
-- Dropped SBC modem remoteproc entry since the modem is fused off on the
-  qcs8550.
-- Reformatted commit bodies and DTS comments.
-- Replaced open-drain properties with bias-disable due to open-drain not
-  being supported by the tlmm.
-- Dropped tlmm entries which are unused.
-- Dropped disabling of LPASS codecs as it was unnecessary.
-- Dropped bluetooth usage on uart14 and removed references to uart14
-  since it became unused.
-- Patch 2 renamed to "dt-bindings: arm: qcom: Add IMDT QCS8550 SBC/SoM"
-- Patch 2 commit body shortened as it had information already found
-  within the patch 3 body.
-- Link to v2: https://patch.msgid.link/20260505-imdt-qcs8550-sbc-rfc-v2-0-b4767d0dd421@imd-tec.com
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 28784d66ae7b..1484442fa0d9 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -783,6 +783,8 @@ patternProperties:
+     description: ILI Technology Corporation (ILITEK)
+   "^imagis,.*":
+     description: Imagis Technologies Co., Ltd.
++  "^imdt,.*":
++    description: IMD Technologies Ltd.
+   "^img,.*":
+     description: Imagination Technologies Ltd.
+   "^imi,.*":
 
-Changes in v2:
-- Patch 1 relocated to be above qcs8550-aim300-aiot instead of below
-- Split the SoM and SBC DT changes into two patches, with patch
-  3 adding the SoM DTSI and patch 4 adding the SBC DTS.
-- Dropped the SDHC4 node in patch 4 to focus on the core
-  SoM and SBC device trees. 
-  This allows the primary hardware support to progress through 
-  review while waiting for feedback for [1].
-- Link to v1: https://patch.msgid.link/20260430-imdt-qcs8550-sbc-rfc-v1-0-4d2b6675eaa3@imd-tec.com
-
-To: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-arm-msm@vger.kernel.org
-
----
-William Bright (4):
-      dt-bindings: vendor-prefixes: Add IMDT
-      dt-bindings: arm: qcom: Document IMDT QCS8550 SBC/SoM
-      arm64: dts: qcom: Add IMDT QCS8550 SoM
-      arm64: dts: qcom: Add IMDT QCS8550 SBC
-
- Documentation/devicetree/bindings/arm/qcom.yaml    |   7 +
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- arch/arm64/boot/dts/qcom/qcs8550-imdt-sbc.dts      | 392 +++++++++++++++++++++
- arch/arm64/boot/dts/qcom/qcs8550-imdt-som.dtsi     | 319 +++++++++++++++++
- 5 files changed, 721 insertions(+)
----
-base-commit: 8a4062d204752e0d66a1e7e1a2f8834571a8d40f
-change-id: 20260430-imdt-qcs8550-sbc-rfc-4e7cbfbcadd8
-
-Best regards,
---  
-William Bright <william.bright@imd-tec.com>
+-- 
+2.43.0
 
 
