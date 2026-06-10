@@ -1,187 +1,119 @@
-Return-Path: <devicetree+bounces-309434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309441-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3SZTGXUJKWqZPAMAu9opvQ
-	(envelope-from <devicetree+bounces-309434-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:51:33 +0200
+	id 4dC9NG4KKWrgPAMAu9opvQ
+	(envelope-from <devicetree+bounces-309441-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:55:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CAE0666643
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:51:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 435E566669C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:55:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Amj5CHzN;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309434-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-309434-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=dolcini.it header.s=default header.b=yLjllAxQ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309441-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309441-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=dolcini.it;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 813E73027630
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 06:46:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F83A30530F6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 06:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA410373BE8;
-	Wed, 10 Jun 2026 06:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10375381B1A;
+	Wed, 10 Jun 2026 06:54:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D09A034B1A7
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 06:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB33381AF1;
+	Wed, 10 Jun 2026 06:54:34 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781073982; cv=none; b=rx6epLHJmyMmsjA31ep5hg6hzqi3ZZH/KC+OTAiZiz9Lz5vBCEFPRveFnzfirmRnDpxCA9qnos18p7pyWMvtACFDMiWkQ3nILAJaQuRizlXI4670RX6JUz6siJgQ7qiZMuCxQ3LbAa+Kpj7SVIf+MSSRCmHIWNeoXtw2j0vOmSw=
+	t=1781074479; cv=none; b=E787Nvrv6FuzluqW/MPLb/E0JDnCMmyUrEzTIAMU1ihD4wLrvOx7JLSt3fFezIoJvQjOc9ZDMCQVwgmWYx0QF0mLw3Os6pzQ9pPMKyAhRSEexpGK6L+eUrNiIdciTtznXu7JevRLik4DEbyT2FDiMy/DdhoB5h3c8DX4YpXEXFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781073982; c=relaxed/simple;
-	bh=uSUJp+9Fpyhdb91hwJqRMTnOFYL57v5XmpIsFvXej+o=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=VxxFMS1uvazxgY3DPzBl8APE3rVvMpi1t4dLPdhfXXTFDSe2mqxUhlAF1vrpo0/lRs0cTZeFi+Z4kXLxhFWY833CtwOOB7Ibt7iDZoUov6WylvLe/8IMKmr5mTySQ0B7exB+lwOf3jXYYMDtf97oGRuhkoTMevVUGPHlySgjJik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Amj5CHzN; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 441D61F00893;
-	Wed, 10 Jun 2026 06:46:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781073981;
-	bh=sFhjYI2JpSLft7YV5q7rIs6EQDn1mrRv+0t+lgij0wk=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Amj5CHzNBA/+rPMNFIW8Jl4tWRDVReJr76cCqJJIHMrFU0+8CfjfQwh3AhLek8t5r
-	 4a1Qqw/TE3YRWHdVHeuC9/F4NRMyciEmHtLN4Ar7ecAjX9VfYoQClz+PRfWKtVtq5N
-	 blCJy2wicUCM4BnxHKXJ3dSTyMrkO6gjIwedo430KT7luI9oAJjM092o3+k7p/85QB
-	 QkwN1EvsVD0jhOX+6HgAb6A5RUt0zE71isGoDJd4VijoADysDxUEnaaQY5HD6o7cRG
-	 lNaS/oQsHuI9nDOfqOGa3I00Ju18kU2Yh2jix9vz+Y/GTuC+dC80VWqhkThVy8GCQb
-	 mqpjKcF/2cbRQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 07/12] media: iris: Add power sequence for glymur
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Vishnu Reddy" <busanna.reddy@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260610-glymur-v8-7-1c79b9d51fc0@oss.qualcomm.com>
-References: <20260610-glymur-v8-7-1c79b9d51fc0@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 06:46:20 +0000
-Message-Id: <20260610064621.441D61F00893@smtp.kernel.org>
+	s=arc-20240116; t=1781074479; c=relaxed/simple;
+	bh=yUZ2FNzT+IYNS4EXEgUYbhO7SjVmvuP26QhIH9STW/U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bb0Pf8wG5ZzbSRGn48RTZzwHxizsYqUXGHi3TUUhCbuVwQJ4suKBAs/cWjqffYFJtILTqmQ1PjOqUERaICmr48hbZJZhzLi3udWmDUxICh0Kn+8OznQt8g0VRy53KMsg+/IZuR+pd5r9zQblZcCfu37zQbsQILPED6QBMvqboKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=yLjllAxQ; arc=none smtp.client-ip=217.194.8.81
+Received: from francesco-nb (unknown [185.12.129.182])
+	by mail11.truemail.it (Postfix) with ESMTPA id 3850A1F9B9;
+	Wed, 10 Jun 2026 08:46:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1781073987;
+	bh=Oc1LefQiZLWZj6cHXjnSZFfsCcTG4RfNhHfPJWqAbq0=; h=From:To:Subject;
+	b=yLjllAxQSH7rTGTwI3339Bqg2dotiVr3CpnTdi+1Njva9u2m2aX0rlh+ByvYSqvHK
+	 4FBtg/PY7tIfw/NJ/Ght3zmhCAwkURMrCir/8hYlBRGl4BZHgSkkEut0d6zi54OreU
+	 aFToKaBjM8jTzELTSpYmqTwUiaU03I88Rm7xv0AfgY+j6zZxGgUh4amvv8X+j+X+hY
+	 oQ7Sy/nOcluUfUqXE8+5bMmUkaW6bPPyfiFmL8G5VaslNJEolAHdv1M4IpIUIVEGmE
+	 C2EUSlRruDEd3FxbDtDyUlsk8Y7AbGHnAMa1otKCc+m6u2zZUw7NxCXTukdFBFq5dj
+	 ijrISiAIY5/wQ==
+Date: Wed, 10 Jun 2026 08:46:21 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Vitor Soares <ivitro@gmail.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vitor Soares <vitor.soares@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] arm64: dts: ti: k3-am62p-verdin: Add device tree
+ overlays
+Message-ID: <20260610064621.GA23935@francesco-nb>
+References: <20260602141311.1366818-5-ivitro@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260602141311.1366818-5-ivitro@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[dolcini.it,none];
+	R_DKIM_ALLOW(-0.20)[dolcini.it:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-309441-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309434-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ivitro@gmail.com,m:nm@ti.com,m:vigneshr@ti.com,m:kristo@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vitor.soares@toradex.com,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:busanna.reddy@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[francesco@dolcini.it,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[dolcini.it:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,qualcomm.com:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,francesco-nb:mid,dolcini.it:dkim,dolcini.it:from_mime,toradex.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5CAE0666643
+X-Rspamd-Queue-Id: 435E566669C
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Direct writel() to shared CPU_CS_AHB_BRIDGE_SYNC_RESET register ov=
-erwrites the adjacent core's state, asserting hardware reset prematurely.
---
+On Tue, Jun 02, 2026 at 03:13:10PM +0100, Vitor Soares wrote:
+> From: Vitor Soares <vitor.soares@toradex.com>
+> 
+> This series adds device tree overlays for the Toradex Verdin AM62P,
+> bringing it in line with the overlay support already present for the
+> Verdin AM62.
 
-commit 0a8584c1c055cb2958fb73836b1a4ff132552257
-Author: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-media: iris: Add power sequence for glymur
-
-This commit adds power sequencing for the glymur platform, which features
-two video codec cores (vcodec0 and vcodec1). It ensures both cores vote for
-the clock and power rails based on the combined workload of both cores,
-since they share the same power rails.
-
-> diff --git a/drivers/media/platform/qcom/iris/iris_vpu3x.c b/drivers/medi=
-a/platform/qcom/iris/iris_vpu3x.c
-> index 7cda946015558..afd2a0e2a3a54 100644
-> --- a/drivers/media/platform/qcom/iris/iris_vpu3x.c
-> +++ b/drivers/media/platform/qcom/iris/iris_vpu3x.c
-[ ... ]
-> @@ -221,6 +221,98 @@ static void iris_vpu35_power_off_hw(struct iris_core=
- *core)
->  	iris_vpu33_power_off_hardware(core);
->  }
-> =20
-> +static void iris_vpu36_power_off_vcodec(struct iris_core *core, u32 core=
-_id)
-> +{
-> +	u32 bridge_hw_reset[] =3D {CORE_BRIDGE_HW_RESET_DISABLE, VCODEC1_BRIDGE=
-_HW_RESET_DISABLE};
-> +	u32 power_down_prep[] =3D {REQ_POWER_DOWN_PREP, REQ_VCODEC1_POWER_DOWN_=
-PREP};
-> +	u32 bridge_sw_reset[] =3D {CORE_BRIDGE_SW_RESET, VCODEC1_BRIDGE_SW_RESE=
-T};
-> +	u32 idle_status[] =3D {VCODEC_SS_IDLE_STATUSN, VCODEC1_SS_IDLE_STATUSN};
-> +	u32 lpi_status[] =3D {NOC_LPI_STATUS_DONE, NOC_LPI_VCODEC1_STATUS_DONE};
-> +	u32 power_status[] =3D {VCODEC0_POWER_STATUS, VCODEC1_POWER_STATUS};
-> +	u32 value, i;
-> +	int ret;
-[ ... ]
-> +	writel(0, core->reg_base + AON_WRAPPER_MVP_NOC_LPI_CONTROL);
-> +
-> +	writel(bridge_sw_reset[core_id] | bridge_hw_reset[core_id],
-> +	       core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-> +	writel(bridge_hw_reset[core_id], core->reg_base + CPU_CS_AHB_BRIDGE_SYN=
-C_RESET);
-> +	writel(0x0, core->reg_base + CPU_CS_AHB_BRIDGE_SYNC_RESET);
-
-[Severity: High]
-Will this writel(0x0) overwrite the adjacent core's state and cause an AHB
-bus stall?
-
-CPU_CS_AHB_BRIDGE_SYNC_RESET appears to be a shared register containing
-configuration bits for both vcodec0 and vcodec1. By using a direct writel()
-instead of a read-modify-write, writing 0x0 unconditionally clears the
-HW reset disable bits for both cores (e.g., VCODEC1_BRIDGE_HW_RESET_DISABLE=
-).
-
-When iris_vpu36_power_off_hw() shuts down core 0, this immediately forces
-core 1 into a hardware reset while it is still fully powered on. During the
-next loop iteration, iris_vpu36_power_off_vcodec(core, 1) attempts to read
-core 1's VCODEC1_SS_IDLE_STATUSN. Because the AHB bridge to VCODEC1 was
-already thrown into reset, won't this read crash the kernel due to a
-synchronous external abort?
-
-Should this sequence preserve the adjacent core's active state bits when
-writing to this shared register?
-
-> +
-> +disable_power:
-> +	iris_genpd_set_hwmode(&core->vcodec[core_id], false);
-> +	iris_disable_power_domain_and_clocks(core, &core->vcodec[core_id]);
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610-glymur-v8-=
-0-1c79b9d51fc0@oss.qualcomm.com?part=3D7
 
