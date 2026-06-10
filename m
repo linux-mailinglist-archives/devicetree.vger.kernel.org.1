@@ -1,525 +1,199 @@
-Return-Path: <devicetree+bounces-309922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309924-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YqxUFHeJKWrJYwMAu9opvQ
-	(envelope-from <devicetree+bounces-309922-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 17:57:43 +0200
+	id 8bDvOWiLKWp5ZAMAu9opvQ
+	(envelope-from <devicetree+bounces-309924-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:06:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDBE566B179
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 17:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE85066B283
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:06:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fsdoZZOf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309922-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309922-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=Sv9Qvmjv;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309924-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309924-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0B0F93051220
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 15:48:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5ACA83074BA7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 15:51:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D331542B75E;
-	Wed, 10 Jun 2026 15:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D2A9449ECB;
+	Wed, 10 Jun 2026 15:45:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4CB4429824
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 15:43:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF81A2BDC26;
+	Wed, 10 Jun 2026 15:45:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781106219; cv=none; b=ja1eBO1ZBPlHPpRaVKMW96x6QZqdzGIRzyPwdm1GdFy1wv9gfZDDMgKwjVKYK8hKn9Xcl22JRLbJdB84YHAGXGR8+A/lZbKUC2UkG628slqO41XkCak4Q6pWsu4IFlDeYB5YMIQjZscH8uaesZgofmGnMMjzuf1g/35wBvleQEY=
+	t=1781106350; cv=none; b=KAsgbK9lbDALtc4K/VARCdF8ma7e3CnGshoO0xvvcaYDUdolvtzHGuvujOmu7Md69N8KiNh3yIpp/lRMZE5aHO/aEnj3Ud73yGzfNyvQEY1ybsBSh5iS7kGIGz9wJEGq3HsbhcE5ZlEmb0/xo0Zj4LIIC10sZDGLnx1UWchPGn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781106219; c=relaxed/simple;
-	bh=NlPfSK3+b7dqk0LYlUyWz5tLUNehL8pPEG8moAVfECc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=mPvGFKS1A4FwC2xskdKl8uPtgLWHwQVRkNjBU8HvoBVamhZ6rSV+rkN/4oO7fYhJTM/TOChjEBB+MQBk3KmMeho/x5yo5EDwb6Fci6XZ3xrDsANuIgkFsopS13BBQmKigogBo9cBj6NGE+O8w1tOQhc4uMcpeSa4/SAX+8UAcQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fsdoZZOf; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F4C21F00893;
-	Wed, 10 Jun 2026 15:43:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781106216;
-	bh=57E2e2D5QPKaxYZKLg2rbK8GRfyeGXYaswh4FB4/Opc=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=fsdoZZOf5EVz/ptvdQsOEgWUES9vSVmtBKQa+EJjUexMC4eBG0LgF/uhV5MTJNb/v
-	 x4EdViK51rSKdwNs78ukRyfbsDt9lNHguHbyxtEJR51UamS9bV+8JkdCo5cB/Om0Dl
-	 li6MZW2bdaEBF7hRJCIT01Og0vuwS3I/aw/IObQBv4jvlke108+ZauFPzLfalE/5od
-	 TiSCAM4CJqc2UU5pvUw1m9kfqfef0kLqb+d9lr3Rc/NDQAK13DUaxroY7tegXEOF6n
-	 vIcF2bPQFwBIs5MHRxoozJn7bJWfX9LXhhcpZQ0oZQB4Tsu2TTQSDYHqAX63g5sJBC
-	 kQ8bFyOUaL9/Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] iio: adc: Add TI ADS1220 driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Nguyen Minh Tien" <zizuzacker@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260610151342.44274-3-zizuzacker@gmail.com>
-References: <20260610151342.44274-3-zizuzacker@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 15:43:35 +0000
-Message-Id: <20260610154336.1F4C21F00893@smtp.kernel.org>
+	s=arc-20240116; t=1781106350; c=relaxed/simple;
+	bh=Mk9yuLrT6THr7C4oUkfV/fcuz0ierRDAt6UJjU3/CjA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=q6HAHl+1fW764Hn2r1XDknYEfhMxKPNu0yUvRwXIUT8jPKPdDxYtYcrtlA1x7V+H0jd8pvcl9VHPPnLMx0VNw6VnA/mbDwgOXTW6QrENKoAMwp5oPEp8mPBKkEHFl6bbl8iFDDq0bItHqjgZoJ9ND7Ok3U1gwxU1a2u41wVWIsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Sv9Qvmjv; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65ACBdZh1134931;
+	Wed, 10 Jun 2026 15:45:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=Z5wSQ5tKJ1GjgrX1wwkeFjVEOit3E08G+tB
+	3TNlbTZs=; b=Sv9QvmjvkDgwyPIAaaP/kuAoBGDTETNQI8UFcIgUwSTKCcUBUff
+	sd2C7HA70MikEdcuMZFd/oVN0NDgrIdNwXWdljxv2Rz1lPB9vEfPgYXQJBVIuC5+
+	suSXjfOXL/F8gdDsszQYku4g8lycNyL/z+4jKt39eVfedNlRSbPZTPaXIRDab9pT
+	TuMnkXrjQrMOaj951mt75JzhCHZYcmVm/ZKuPXYM2Iab1CDSjSrISYFhF5Dl3p0X
+	nBCMlP2Op/IvLANf0uxQJR4GMrHwpiLl7i+6+oEGZsQ93I2wZZadL2nRZAPJgvda
+	t0eHlWyRqpvRIvouSVqFjBOpJIgjbseowsw==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eq0m1tnxn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jun 2026 15:45:37 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 65AFjW8x003510;
+	Wed, 10 Jun 2026 15:45:32 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4emcmk7fwt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jun 2026 15:45:32 +0000 (GMT)
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 65AFjWxw003486;
+	Wed, 10 Jun 2026 15:45:32 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-pkumpatl-hyd.qualcomm.com [10.147.245.204])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 65AFjWTT003476
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Jun 2026 15:45:32 +0000 (GMT)
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3914174)
+	id 6940A631; Wed, 10 Jun 2026 21:15:31 +0530 (+0530)
+From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Srinivas Kandagatla <srini@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+Subject: [PATCH v1 0/6] ASoC: qcom: add AudioReach TDM backend support
+Date: Wed, 10 Jun 2026 21:15:11 +0530
+Message-Id: <20260610154517.134570-1-prasad.kumpatla@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEwMDE0OSBTYWx0ZWRfX0Qca21d8Rlmc
+ MfkBEjM1llokaHUeOQ5zVlEJRtX0tyC5HLmdRcpnHtbqi+0Cyl0oRDPXszgYrUHpRO7hxWp126m
+ pVXNoXoTtF4Uhv3+G1cKEaR3rcTeNPDAGdXO3AzseGe6FLdOerAoKAXh1u1vfnH+cyV5Za/nMEv
+ uuctV/9Ew91RI0p3MNiY3Jxj7qvmNhed4m+KDavF8QFzWuOI10susQeF4SXKrIi7iRcVjV5TmPn
+ 7YGi4qQ/CZHbxNC4qnuEi+z0Gvp0BU3xk0JWDxoDzsZLcjZHND5f589fTYpUVERy4m7ZV0yFpaa
+ PiIkcu/5ThjZ6s+m50xf+P2pqfwv9OhpVzO3dyZJJMUN6UN4z+vL0dbnik2Msrl3EsGd0ydTFAO
+ ZTwuP/xHS9+PN/9kej/wHQymrX1G39clz6MYHzVBYL8xXXbeROwbiknrxMUm2/4v/gUsPYqTPZ1
+ SJgnAi+HFfxRrPZT/ew==
+X-Proofpoint-GUID: ltFV8bhoGEKB6RopB3YsfgTmXLT3WBay
+X-Authority-Analysis: v=2.4 cv=UdJhjqSN c=1 sm=1 tr=0 ts=6a2986a1 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=YMgV9FUhrdKAYTUUvYB2:22 a=VwQbUJbxAAAA:8 a=Wdb1h0LgAAAA:8 a=EUspDBNiAAAA:8
+ a=1KI02nGqYswE6hbM9OkA:9 a=j5gyrzqu0rbr1vhfHjzO:22
+X-Proofpoint-ORIG-GUID: ltFV8bhoGEKB6RopB3YsfgTmXLT3WBay
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-10_03,2026-06-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 suspectscore=0 phishscore=0 priorityscore=1501 bulkscore=0
+ malwarescore=0 clxscore=1015 lowpriorityscore=0 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606100149
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309922-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-309924-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,perex.cz,suse.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:zizuzacker@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:srini@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:prasad.kumpatla@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[prasad.kumpatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[prasad.kumpatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DDBE566B179
+X-Rspamd-Queue-Id: BE85066B283
 
-Thank you for your contribution! Sashiko AI review found 13 potential issue=
-(s) to consider:
-- [Critical] An integer overflow when calculating scale gain leads to a div=
-ide-by-zero kernel panic on 32-bit platforms.
-- [High] Inconsistent formatting for IIO_CHAN_INFO_SCALE breaks IIO UAPI co=
-ntracts. read_raw returns the true scale multiplier, but write_raw expects =
-a gain reciprocal, and read_avail exposes gain reciprocals.
-- [High] Using iio_validate_scan_mask_onehot breaks timestamp functionality=
- and allows an out-of-bounds array read in buffer_preenable.
-- [High] Missing `.validate_trigger` allows external triggers to read async=
-hronously without the RDATA command, causing data corruption.
-- [High] The `rx` buffer is not DMA-aligned, violating DMA API requirements=
- and risking memory corruption during SPI transfers.
-- [High] Disabling the triggered buffer leaves the ADC in continuous conver=
-sion mode, causing DRDY interrupt storms.
-- [High] Missing mutex lock protection for the shared `st->tx` and `st->rx`=
- buffers.
-- [High] Using IRQF_NO_THREAD for a potentially level-triggered interrupt w=
-ithout clearing the interrupt in hardware causes an interrupt storm.
-- [Medium] ads1220_write_raw modifies channel configuration without claimin=
-g direct mode, causing races with active buffers and single-shot conversion=
-s.
-- [Medium] IIO_CHAN_INFO_OFFSET returns the positive uncalibrated raw value=
- instead of its negated value, causing the offset error to be doubled in us=
-er-space.
-- [Medium] Concurrent SPI writes can occur during module removal due to inc=
-orrect `devm` cleanup order.
-- [Medium] ads1220_debugfs_reg_access communicates with the device without =
-resuming it from power-down.
-- [Medium] The driver unconditionally fails probe if the AVDD regulator vol=
-tage cannot be read, breaking support for dummy regulators.
---
+Add AudioReach support for LPASS Audio IF based TDM backends and wire it
+up for the sc8280xp machine driver.
 
-commit 1ae738a6247e14166f63bc753a84967fb3d54773
-Author: Nguyen Minh Tien <zizuzacker@gmail.com>
+The series first adds topology-driven Audio IF source/sink handling so
+the DSP interface parameters can be described by topology while runtime
+media format and slot configuration still come from the machine driver.
+It then adds TDM DAI operations for q6apm-lpass-dais, exposes the Audio
+IF clock IDs through the q6dsp-lpass-ports binding and q6prm clock
+tables, and introduces common QCOM helpers for parsing standard
+dai-tdm-slot-* properties from backend CPU and codec endpoints.
 
-iio: adc: Add TI ADS1220 driver
+Finally, sc8280xp uses the common helpers during hw_params to program
+CPU and codec TDM slots, derive the backend bit clock from the active
+PCM parameters, and request the CPU and codec clocks before the stream is
+started.
 
-Add an IIO driver for the Texas Instruments ADS1220 24-bit delta-sigma
-SPI ADC. The driver supports single-ended and differential voltage
-channels described as device-tree child nodes, per-channel programmable
-gain (exposed through scale) and data rate, internal and external reference
-options, single-shot conversions and a DRDY-interrupt-driven triggered buff=
-er.
+This series depends on:
+- https://lore.kernel.org/all/20260607-rubikpi-next-20260605-v1-3-7f334e16fea6@thundersoft.com/
+- https://lore.kernel.org/linux-arm-msm/20260608023011.942228-1-mohammad.rafi.shaik@oss.qualcomm.com/
 
-diff --git a/drivers/iio/adc/ti-ads1220.c b/drivers/iio/adc/ti-ads1220.c
-new file mode 100644
-index 0000000000000..06bcc88418b4c
---- /dev/null
-+++ b/drivers/iio/adc/ti-ads1220.c
-[ ... ]
-> +struct ads1220_state {
-> +	struct spi_device *spi;
-> +	struct completion completion;
-> +	struct iio_trigger *trig;
-> +	struct ads1220_channel_config *channels_cfg;
-> +	unsigned int num_channels_cfg;
-> +	int vref_uV;
-> +	unsigned int vref_source;
-> +
-> +	/*
-> +	 * DMA-safe buffers. tx is used for command/register writes, rx for
-> +	 * register and conversion-result reads. scan holds one sample plus a
-> +	 * timestamp for the triggered buffer.
-> +	 */
-> +	u8 tx[2] __aligned(IIO_DMA_MINALIGN);
-> +	u8 rx[ADS1220_DATA_BYTES];
+Prasad Kumpatla (6):
+  ASoC: qcom: qdsp6: add topology-driven Audio IF support
+  ASoC: qcom: q6apm-lpass-dais: add TDM DAI operations
+  dt-bindings: sound: qcom,q6dsp-lpass-ports: add Audio IF clocks
+  ASoC: qcom: q6prm: add Audio IF clock IDs
+  ASoC: qcom: common: add DAI-node TDM slot helpers
+  ASoC: qcom: sc8280xp: add TDM hw_params support
 
-[Severity: High]
-Does placing the rx array immediately after the 2-byte tx array without
-alignment cause it to share the same cacheline? If st->rx is passed to
-spi_read(), mapping this unaligned sub-cacheline buffer for DMA might
-corrupt adjacent fields on architectures without hardware cache coherence.
+ .../sound/qcom,q6dsp-lpass-ports.h            |  57 ++++++
+ include/uapi/sound/snd_ar_tokens.h            |  58 +++++++
+ sound/soc/qcom/common.c                       | 164 ++++++++++++++++++
+ sound/soc/qcom/common.h                       |  14 ++
+ sound/soc/qcom/qdsp6/audioreach.c             |  97 +++++++++++
+ sound/soc/qcom/qdsp6/audioreach.h             |  62 +++++++
+ sound/soc/qcom/qdsp6/q6apm-lpass-dais.c       |  64 ++++++-
+ sound/soc/qcom/qdsp6/q6prm-clocks.c           |  28 +++
+ sound/soc/qcom/qdsp6/q6prm.h                  |  29 ++++
+ sound/soc/qcom/qdsp6/topology.c               | 108 ++++++++++++
+ sound/soc/qcom/sc8280xp.c                     |  59 +++++++
+ 11 files changed, 739 insertions(+), 1 deletion(-)
 
-> +	struct {
-> +		s32 sample;
-> +		aligned_s64 timestamp;
-> +	} scan;
-> +};
-[ ... ]
-> +static int ads1220_read_raw(struct iio_dev *indio_dev,
-> +			    const struct iio_chan_spec *chan,
-> +			    int *val, int *val2, long mask)
-> +{
-> +	struct ads1220_state *st =3D iio_priv(indio_dev);
-> +	struct ads1220_channel_config *cfg =3D &st->channels_cfg[chan->address];
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		if (!iio_device_claim_direct(indio_dev))
-> +			return -EBUSY;
-> +		ret =3D ads1220_single_conversion(st, chan, val, false);
-> +		iio_device_release_direct(indio_dev);
-> +		return ret;
-> +	case IIO_CHAN_INFO_OFFSET:
-> +		if (!iio_device_claim_direct(indio_dev))
-> +			return -EBUSY;
-> +		ret =3D ads1220_single_conversion(st, chan, val, true);
 
-[Severity: Medium]
-Should the hardware offset be negated before returning it here?
-ads1220_single_conversion() returns the raw measurement of the shorted inpu=
-ts.
-Since the standard IIO calibration formula applied by user-space is
-`value =3D (raw + offset) * scale`, returning a positive offset when the ha=
-rdware
-reads a positive value will apply the offset in the wrong direction and dou=
-ble
-the error.
-
-> +		iio_device_release_direct(indio_dev);
-> +		return ret;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		/* scale [mV] =3D vref / (gain * 2^23); gain is a power of two. */
-> +		*val =3D st->vref_uV / MILLI;
-> +		*val2 =3D (chan->scan_type.realbits - 1) + ilog2(cfg->gain);
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-
-[Severity: High]
-Are the IIO_CHAN_INFO_SCALE interfaces handling values symmetrically?
-ads1220_read_raw() returns the actual physical scale multiplier here, but
-ads1220_write_raw() treats the user input as a gain reciprocal, and
-ads1220_read_avail() exposes gain reciprocals instead of voltage scales.
-If a user reads the scale and writes the exact same value back, could this
-evaluate to an invalid gain and return -EINVAL?
-
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		*val =3D cfg->datarate;
-> +		return IIO_VAL_INT;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-[ ... ]
-> +static int ads1220_write_raw(struct iio_dev *indio_dev,
-> +			     const struct iio_chan_spec *chan,
-> +			     int val, int val2, long mask)
-> +{
-> +	struct ads1220_state *st =3D iio_priv(indio_dev);
-> +	struct ads1220_channel_config *cfg =3D &st->channels_cfg[chan->address];
-> +	unsigned int gain;
-> +	int i;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		/* The available scales are the gain reciprocals (e.g. 1/4). */
-> +		if (val =3D=3D 0 && val2 =3D=3D 0)
-> +			return -EINVAL;
-> +
-> +		gain =3D MICRO / (val * MICRO + val2);
-
-[Severity: Critical]
-Can the expression `(val * MICRO + val2)` overflow on 32-bit platforms if a
-user writes a crafted string (e.g., "4294.967296") to the sysfs scale
-attribute? If the multiplication wraps to exactly zero, does the subsequent
-`gain =3D MICRO / ...` division result in a divide-by-zero kernel panic?
-
-> +		if (!is_power_of_2(gain) || gain > BIT(ADS1220_NUM_GAINS - 1))
-> +			return -EINVAL;
-> +		if (cfg->single_ended && gain > ADS1220_MAX_SE_GAIN)
-> +			return -EINVAL;
-> +
-> +		cfg->gain =3D gain;
-> +		return 0;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		for (i =3D 0; i < ARRAY_SIZE(ads1220_datarates); i++) {
-> +			if (ads1220_datarates[i] =3D=3D val) {
-> +				cfg->datarate =3D val;
-
-[Severity: Medium]
-Does modifying cfg->gain and cfg->datarate in ads1220_write_raw() require
-serialization via iio_device_claim_direct()? Modifying these without the lo=
-ck
-might race with an active triggered buffer or single-shot conversions,
-potentially desynchronizing driver state and hardware or corrupting timeout
-calculations.
-
-> +				return 0;
-> +			}
-> +		}
-> +		return -EINVAL;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ads1220_debugfs_reg_access(struct iio_dev *indio_dev,
-> +				      unsigned int reg, unsigned int writeval,
-> +				      unsigned int *readval)
-> +{
-> +	struct ads1220_state *st =3D iio_priv(indio_dev);
-> +	u8 val;
-> +	int ret;
-> +
-> +	if (reg > ADS1220_MAX_REG)
-> +		return -EINVAL;
-> +
-> +	if (readval) {
-> +		ret =3D ads1220_read_reg(st, reg, &val);
-
-[Severity: Medium]
-Does ads1220_debugfs_reg_access() need to call pm_runtime_resume_and_get()
-before initiating SPI transfers? If the device is in the autosuspended
-POWERDOWN state, these transactions might fail or return garbage data.
-
-> +		if (ret)
-> +			return ret;
-> +		*readval =3D val;
-> +		return 0;
-> +	}
-> +
-> +	return ads1220_write_reg(st, reg, writeval);
-
-[Severity: High]
-Are the shared st->tx and st->rx buffers protected from concurrent access
-here? Writing to st->tx directly via debugfs or pm_runtime_suspend without
-locking could race with an active triggered buffer reading in
-ads1220_trigger_handler(), potentially overwriting the tx buffer mid-transf=
-er
-and sending corrupted SPI commands.
-
-> +}
-> +
-> +static const struct iio_info ads1220_info =3D {
-> +	.read_raw =3D ads1220_read_raw,
-> +	.read_avail =3D ads1220_read_avail,
-> +	.write_raw =3D ads1220_write_raw,
-> +	.debugfs_reg_access =3D ads1220_debugfs_reg_access,
-> +};
-
-[Severity: High]
-Does this struct need a .validate_trigger callback to prevent arbitrary
-external triggers from being attached? Without it, external triggers could
-execute asynchronously to the ADC's data-ready signal. The trigger handler
-uses spi_read() directly without an RDATA command, which according to the
-datasheet could return corrupted data if a register update overlaps.
-
-> +
-> +static int ads1220_buffer_preenable(struct iio_dev *indio_dev)
-> +{
-> +	struct ads1220_state *st =3D iio_priv(indio_dev);
-> +	struct device *dev =3D &st->spi->dev;
-> +	struct ads1220_channel_config *cfg;
-> +	unsigned int index;
-> +	int ret;
-> +
-> +	index =3D find_first_bit(indio_dev->active_scan_mask,
-> +			       iio_get_masklength(indio_dev));
-> +	cfg =3D &st->channels_cfg[index];
-
-[Severity: High]
-What happens if a user enables ONLY the timestamp channel? The active scan
-mask would have exactly one bit set at index =3D st->num_channels_cfg. Will
-find_first_bit() return this index and cause an out-of-bounds array read
-on st->channels_cfg[index]?
-
-> +
-> +	ret =3D pm_runtime_resume_and_get(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D ads1220_configure(st, cfg->mux, cfg->gain, cfg->datarate,
-> +				cfg->single_ended, true);
-> +	if (ret)
-> +		goto err;
-> +
-> +	ret =3D ads1220_command(st, ADS1220_CMD_START);
-> +	if (ret)
-> +		goto err;
-> +
-> +	return 0;
-> +err:
-> +	pm_runtime_mark_last_busy(dev);
-> +	pm_runtime_put_autosuspend(dev);
-> +	return ret;
-> +}
-> +
-> +static int ads1220_buffer_postdisable(struct iio_dev *indio_dev)
-> +{
-> +	struct ads1220_state *st =3D iio_priv(indio_dev);
-> +	struct device *dev =3D &st->spi->dev;
-> +
-> +	pm_runtime_mark_last_busy(dev);
-> +	pm_runtime_put_autosuspend(dev);
-
-[Severity: High]
-Does the device need to be explicitly stopped or powered down here?
-Dropping the PM runtime reference with a 2000ms autosuspend delay leaves
-the ADC running in continuous conversion mode. The hardware might keep
-asserting the DRDY interrupt, but since the buffer is disabled, the IRQ
-handler will only complete the completion without reading data to clear
-the interrupt, potentially causing an immediate IRQ storm.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct iio_buffer_setup_ops ads1220_buffer_setup_ops =3D {
-> +	.preenable =3D ads1220_buffer_preenable,
-> +	.postdisable =3D ads1220_buffer_postdisable,
-> +	.validate_scan_mask =3D &iio_validate_scan_mask_onehot,
-> +};
-
-[Severity: High]
-Is iio_validate_scan_mask_onehot the correct validator for this device?
-This validator requires exactly one bit in the mask to be set. Since the
-IIO core includes the timestamp channel in the active_scan_mask, enabling
-one data channel plus the timestamp results in 2 bits being set, which
-will cause the validator to reject valid configurations.
-
-[ ... ]
-> +static int ads1220_probe(struct spi_device *spi)
-> +{
-> +	struct device *dev =3D &spi->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct ads1220_state *st;
-> +	int avdd_uV;
-> +	int ret;
-[ ... ]
-> +	ret =3D devm_regulator_get_enable(dev, "dvdd");
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to enable dvdd\n");
-> +
-> +	avdd_uV =3D devm_regulator_get_enable_read_voltage(dev, "avdd");
-> +	if (avdd_uV < 0)
-> +		return dev_err_probe(dev, avdd_uV, "Failed to get avdd\n");
-
-[Severity: Medium]
-Should the driver fail probe unconditionally here? If the devicetree does
-not explicitly model the AVDD supply, the core passes a dummy regulator.
-Reading the voltage from a dummy regulator returns -EINVAL, which might
-prevent the driver from probing entirely on such systems, even when
-ti,vref-avdd is not specified.
-
-[ ... ]
-> +	if (spi->irq > 0) {
-> +		ret =3D devm_request_irq(dev, spi->irq, ads1220_irq_handler,
-> +				       IRQF_NO_THREAD, "ads1220", indio_dev);
-
-[Severity: High]
-Can using IRQF_NO_THREAD without clearing the physical DRDY line cause an
-interrupt storm? The hardirq handler immediately returns IRQ_HANDLED
-without issuing an SPI transaction to read the data. If the interrupt is
-configured as level-triggered, the interrupt controller might repeatedly
-re-fire the interrupt upon return. Does this need IRQF_ONESHOT with a
-threaded handler, or an explicit enforcement of IRQF_TRIGGER_FALLING?
-
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to request irq\n");
-> +
-> +		st->trig =3D devm_iio_trigger_alloc(dev, "%s-dev%d",
-> +						  indio_dev->name,
-> +						  iio_device_id(indio_dev));
-> +		if (!st->trig)
-> +			return -ENOMEM;
-> +
-> +		st->trig->ops =3D &ads1220_trigger_ops;
-> +		iio_trigger_set_drvdata(st->trig, indio_dev);
-> +
-> +		ret =3D devm_iio_trigger_register(dev, st->trig);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to register trigger\n");
-> +	}
-> +
-> +	ret =3D ads1220_init(st);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to initialize device\n");
-> +
-> +	pm_runtime_set_autosuspend_delay(dev, ADS1220_SUSPEND_DELAY_MS);
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_set_active(dev);
-> +
-> +	ret =3D devm_pm_runtime_enable(dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to enable pm runtime\n");
-> +
-> +	ret =3D devm_add_action_or_reset(dev, ads1220_powerdown, st);
-
-[Severity: Medium]
-Will registering ads1220_powerdown after pm_runtime_enable cause a teardown
-ordering issue? Since devm executes cleanups in reverse order, powerdown
-would execute before PM runtime is disabled. Could the PM autosuspend
-workqueue trigger ads1220_runtime_suspend at the same moment powerdown
-is executing, causing a data race on the unprotected st->tx buffer?
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-> +
-> +static int ads1220_runtime_suspend(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
-> +	struct ads1220_state *st =3D iio_priv(indio_dev);
-> +
-> +	return ads1220_command(st, ADS1220_CMD_POWERDOWN);
-> +}
-
-[Severity: High]
-Does ads1220_runtime_suspend() overwrite the shared st->tx buffer without
-locking? This asynchronous PM runtime suspend could execute concurrently
-with an active triggered buffer reading or other SPI transactions, corrupti=
-ng
-the sent SPI commands.
-
-> +
-> +static int ads1220_runtime_resume(struct device *dev)
-> +{
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610151342.4427=
-4-1-zizuzacker@gmail.com?part=3D2
+base-commit: 49e02880ec0a8c378e811bc9d85da188d7c6204c
+prerequisite-patch-id: 2f1bd3efac328030dd8efe28fb95f84603868043
+prerequisite-patch-id: 047b4fb1894b92109aa7afcebd7d5c7988ec5379
+prerequisite-patch-id: 222630a15afc952683d954a3c66617a223546de0
+prerequisite-patch-id: 3c55edb41f1e25920a350ce1c6f31fde67fee45a
+-- 
+2.34.1
 
