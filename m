@@ -1,161 +1,148 @@
-Return-Path: <devicetree+bounces-309664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309665-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id P0yLMm06KWqrSgMAu9opvQ
-	(envelope-from <devicetree+bounces-309664-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:20:29 +0200
+	id 9Z3UM6g5KWqISgMAu9opvQ
+	(envelope-from <devicetree+bounces-309665-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:17:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD6D166832D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:20:28 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 205C76682E0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:17:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mThRrkQu;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309664-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309664-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OXbtTC2N;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309665-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309665-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 84E0B3008D03
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:11:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4BC7C309B7BC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:12:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81A813E9C0D;
-	Wed, 10 Jun 2026 10:11:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062E63EA97E;
+	Wed, 10 Jun 2026 10:12:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642713E834B;
-	Wed, 10 Jun 2026 10:11:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1428E3AFD08;
+	Wed, 10 Jun 2026 10:12:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781086313; cv=none; b=Y9NufuykGK3CynW+yC8S3Pg6iSSklqCbx8RnK4gAhvG14z7nbblcP+l4BhtHIH52e0Jrr++WVx0JMpD4+wbk65ox9Ki3I8QpEcexRIbUa+9vojDlH3BQdL+cYzf7khINKRZ6rDQsj7ZEvWzbfaMiyiRJvaLFCFsN0kQo/P2Ibi4=
+	t=1781086328; cv=none; b=mbtCD2J4sCJWuVMPVCiRUA3ojg9GDiH3c5e8sIg14EtiZSIrDMsrSJgvew/uDNMeO/81p/0sNTcXLvxfDz/2gGeA2cPdCWRghjOAPwPPZMCH6tCUDnCSwwKMnW8C+bTAIpwVVulxhMZXOsES2Z4ITzXzwRVuzKmjbJ7znjrRLaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781086313; c=relaxed/simple;
-	bh=TGppL9hDgW5mi5BZI2txZVKn4B8Bduk6VVtIfcRfxcU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=WsPG+8R9kLW05mK98qCdZ9VfO1T5r5chJyHocPW7I08G0QJcqpVwmIktFGdvurissZPveO+2eGKm9WNzs+4xjPJ3QUCizzmhDUK6Pf2iUKGMg9tFRhRZWhV1mb4SCRDoYT9AA238mMyMjIYBwhQXYqTPPDgn1ja8OAKMmMb0nhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mThRrkQu; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA1611F00893;
-	Wed, 10 Jun 2026 10:11:51 +0000 (UTC)
+	s=arc-20240116; t=1781086328; c=relaxed/simple;
+	bh=ZPB5zt/VIUn96ErRXiC4UI/BAJj3SWyZAUsYwv4z0qc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CaaXHoCjZuzFNuAtDUOpfhpzeg+TGHVkZpF6FmYYeZSqN3sAEl9Xvi4ugmg41pDBhrmfiX41KiyZ7nu3/FNSF8Nh+BlY18Yh0tWtCk7sTQ1zmpjakybqZzzD22xN0Ao1L8Vwc3S78LVyd/dxQQir/bGo1agFJeUz9OjTxawp3Zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OXbtTC2N; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 780A81F00893;
+	Wed, 10 Jun 2026 10:12:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781086312;
-	bh=w2L/TnCaqDd4KnTRIQ+TaHnC3QgS/VxXV74wjJWXoG4=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=mThRrkQusiGr8imwkIt5HOS7tZlAK8UwMj6FPIg9iAPFP3GvN1zrRtUbLN/07uPKo
-	 KFScJG5xbtLlguGnyc7HGTvMXwNRu54MlEe8cCOVkV6BeaOP+Hu49Dhlku0k1hbE/t
-	 X8IxNyArUuf6I8IE8OmVUlI3pYh142nnxX7dfSCBFGxSaeclD7bwt3M2ZSLjSJK2yf
-	 wE/noCbSn109cGucbeMzbCuWObtn2bjiHHWfWqo3O6HDhCx/jAwBsLqnQhya5m1Oeh
-	 m6kUSl6w1JsIAVMH56Rva12S08hcJwd2e3omZrFSKxyThxaLU0+7MJRJVlF6sn9mgO
-	 XcLE+IHndrALg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: dmaengine: Add support for
- ATCDMAC300 DMA engine
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "CL Wang" <cl634@andestech.com>
-Cc: Frank.Li@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, dmaengine@vger.kernel.org, robh@kernel.org, vkoul@kernel.org
-In-Reply-To: <20260610095724.1980622-2-cl634@andestech.com>
-References: <20260610095724.1980622-2-cl634@andestech.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 10:11:50 +0000
-Message-Id: <20260610101151.AA1611F00893@smtp.kernel.org>
+	s=k20260515; t=1781086327;
+	bh=ZPB5zt/VIUn96ErRXiC4UI/BAJj3SWyZAUsYwv4z0qc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=OXbtTC2NGz1oy2MDhrcOK13Pa1CQHqk7oZc9eKNz70sHDSVASJ4CBUFlFeRp0JC33
+	 xQzDeIoV8T7iX8vXidR2jynyE6ZrPwdAbYraTR5edwJMZIUsrx11b5/IOYWIXb4O5r
+	 pwzagDcCkfxivhi0hgmymffKfhFBJ5zE4Ks/WifQGkS59f8iLt1lTAdVjx/jS2o7k9
+	 m7KHkoCcvesWczqtovPxhX+gY1TqsThgcTpdli7NHRSRBd23WfZhvUwpU/6JjbyLQ+
+	 5YY5oK1oRC0WW3O6atlnlbuuuSurQuM7SJB1ng92N4mt0fwA0Sbax9IEBpnbaiTgZB
+	 PBUAsK6CC3TVw==
+Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
+	id 05FD31AC56C4; Wed, 10 Jun 2026 11:12:05 +0100 (BST)
+Date: Wed, 10 Jun 2026 11:12:04 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Srinivas Kandagatla <srini@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, kancy2333@outlook.com,
+	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH 0/4] sound: qcom: audioreach: support WSA speakers only
+ on WSA2
+Message-ID: <aik4dCUlumE1A-_v@sirena.co.uk>
+References: <20260610-topic-sm8650-ayaneo-pocket-s2-wsa2-fix-v1-0-18bb19c5ca22@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ZYjR7kSW7kCH+82q"
+Content-Disposition: inline
+In-Reply-To: <20260610-topic-sm8650-ayaneo-pocket-s2-wsa2-fix-v1-0-18bb19c5ca22@linaro.org>
+X-Cookie: Leave no stone unturned.
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-5.76 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-309664-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,outlook.com,vger.kernel.org,oss.qualcomm.com];
+	TAGGED_FROM(0.00)[bounces-309665-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:cl634@andestech.com,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dmaengine@vger.kernel.org,m:robh@kernel.org,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:srini@kernel.org,m:lgirdwood@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kancy2333@outlook.com,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:srinivas.kandagatla@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,andestech.com:email,sashiko.dev:url,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sirena.co.uk:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AD6D166832D
+X-Rspamd-Queue-Id: 205C76682E0
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The schema uses `additionalProperties: false` instead of `unevaluat=
-edProperties: false` while referencing a common subsystem schema.
---
 
-commit 0c4fc28dab967baedae4dfdcb32dfa0eb77d45a5
-Author: CL Wang <cl634@andestech.com>
+--ZYjR7kSW7kCH+82q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-dt-bindings: dmaengine: Add support for ATCDMAC300 DMA engine
+On Wed, Jun 10, 2026 at 09:41:44AM +0200, Neil Armstrong wrote:
 
-This commit documents devicetree bindings for the Andes ATCDMAC300 DMA
-engine, which is embedded in AndesCore-based platforms such as AE350 and
-Qilai.
+> ---
+> base-commit: 1ed783a6906ab62a54d631ff3e8c5cba0f4f4b54
 
-> diff --git a/Documentation/devicetree/bindings/dma/andestech,ae350-dma.ya=
-ml b/Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
-> new file mode 100644
-> index 0000000000000..f040a2bf7d4b9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
+I don't seem to have this, it doesn't seem to be anything from my tree
+or -next.
 
-[ ... ]
+--ZYjR7kSW7kCH+82q
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +allOf:
-> +  - $ref: dma-controller.yaml#
+-----BEGIN PGP SIGNATURE-----
 
-[ ... ]
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmopOHQACgkQJNaLcl1U
+h9AH1Af/cG7mz/CEx2dN/dY19pOPD/v8AbYOGJmBwyD5pp7PyjD8BDO8qACjwZ8+
+psrI7bWURvzZI4Hvg6uzLod6CiwD/ryWWCel+akbwlo8S8e3+f0fF3McZtZOIchN
+Mys+nNzPDiN+Ax8bWLOkCQkhtmYnLLmnDNVkTQ3k3Lm8X9IkFgbHcC4hY7iMxXQT
+XkDjHNFEBfjC4mXkLnAWFFcyBHhLDjjM9qTH3XHLzaNGP38GhN6uf/0mNDhqV4C0
+6MikJqM4BRv8crWOumukJUd58ZBOKr0IHqT7vx+SDyyexJ2ssq3wVikksQVNMbgN
+PAlSbPDjWQOp+74w1DzEGTBHc6v7FQ==
+=I0oh
+-----END PGP SIGNATURE-----
 
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#dma-cells"
-> +
-> +additionalProperties: false
-
-[Severity: Low]
-Does using additionalProperties: false here prevent the use of common DMA
-properties defined in dma-controller.yaml (like dma-channels or
-dma-requests)?=20
-
-Since this binding includes another schema under allOf, should it use
-unevaluatedProperties: false instead, so that dt-validate correctly
-evaluates and permits those inherited properties?
-
-> +
-> +examples:
-> +  - |
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610095724.1980=
-622-1-cl634@andestech.com?part=3D1
+--ZYjR7kSW7kCH+82q--
 
