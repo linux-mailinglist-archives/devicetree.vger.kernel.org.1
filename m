@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-309482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309483-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /XUYDkQYKWonQgMAu9opvQ
-	(envelope-from <devicetree+bounces-309482-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:54:44 +0200
+	id tKmkHzYYKWoiQgMAu9opvQ
+	(envelope-from <devicetree+bounces-309483-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:54:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A0B666D02
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:54:43 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1739A666CF2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:54:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gLnHcn1n;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309482-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-309482-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DVzaL8oj;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309483-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309483-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2A9CD301D52E
+	by sto.lore.kernel.org (Postfix) with ESMTP id EE2DF3050DC2
 	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 07:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02303939B1;
-	Wed, 10 Jun 2026 07:53:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994AA3932FD;
+	Wed, 10 Jun 2026 07:53:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705AB3932FD
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 07:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70630388E69
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 07:53:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781078031; cv=none; b=nSF1k7YAQ2w8ovqamhAF/W7ClN63HP3y4/s7Ze/r0X1ivnOZ0nuD5xoLlima+CBmRPhSyzddBus2iU3skWb+tcZiErjgkHs3zryb2LVrHS/csXJ99Tz8caNWBaeZVdUGjddjIAd1BfDFhJsaK6qGtYqJ0QwFN/0Uz/CtP1wMFLk=
+	t=1781078032; cv=none; b=OH9QAm1Dk+yyazs/8ASBFv50z/7MRJ/YcStpRldspvmkAkhcPPYL5ecqfFxkXM33LxLTk29K9Drhvn99zUgyxL30F8ca1/Zz3BB2yhsyOTulLFqECxRxuTvbn9I6Ias49L4EM6KJ5f50vG63JXrWgiWvcHUOZHi2VP5Rl139u6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781078031; c=relaxed/simple;
-	bh=T/5izGsEhIpoAdL9X0ZraMVdFBpprCeM12rQV/RB4A0=;
+	s=arc-20240116; t=1781078032; c=relaxed/simple;
+	bh=TE2mSlkKJ3a0UQ86s/EDswWrC3NwYJ/X2NMVQYYHCxg=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=WW/elIX7azOoMQs4K7d6CUHU1dSb0TPQMovxr7xy0SEnIH6XJTcI4s5RAccU+Bxp23bYF+Y+F3Kl1tWoG6uLxrNF8Ye2iINmsISaQpRlTBn/nha48Jxm9OnGOQbdUwzGp42LPxRmhRfUPm9YsKVpM9MIrz4pYhYEjlj6RUxe9WQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gLnHcn1n; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 163011F00898;
+	 Message-Id; b=aKAmjY3AicBJBqvFibNf60iDNkLvnDKDk+j+HpjvvPQW3N0VElb1GlPr7lb0BfmBkOrZBiSsn66xpxmgy91vUnL633Um1e7EqevKd0YEO0vqx3oCusRo5xlF6aRgrcN+9zE8ebfPVHVhiKQx4Ti6o0Zv9GdWKvbIAeR7nOBGEmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DVzaL8oj; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCB741F00899;
 	Wed, 10 Jun 2026 07:53:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781078030;
-	bh=ndrYZ+U7s/nUkCw3YdazjptzCT+18khr4sjo+8tOm6c=;
+	s=k20260515; t=1781078031;
+	bh=TtZvPafSbGqVx/tSgYTxoCn/RcXXmv+XEUkANrEfnqU=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=gLnHcn1nOMpkb5qRmRglpfpjHchUmbBhOYb56Bbv3OStZYyeeKP1rwASvONGARwUu
-	 Y/knyOFP/buo2LqtyhPrh+IpTGjMMG12owdbrpRsmh5gquGIHgbDGRcX7rPnVppfdP
-	 f/YBatFKB4+6HmL5gmyQgAVTezGRB7UUnnFCKKzq+sGnRrlX5QbPHKt4pf/7TaN5SN
-	 EOQns1DtjBF/dKI1Bl0AjaLznY8l7ZfkmVY+UmjaHtXZMUiBgbFXxBqZ44YNfH8HBF
-	 5NIQcwGTF0/9DqK/rd83huc7MsE0LXg1tfy2B9zXcIBZP2FasgFqyPpmLlF4xiKGRd
-	 /Qm8nDeG7jSBg==
+	b=DVzaL8ojt05K+xbOoSoAD61l67qZY4HhpUprA3CvMUY/aeQ1CETIjlfjlbfBMAF5t
+	 wwaD2rvtdEdzm6tcx0B+WsB+v8+O4yNADFTpvslJ1YjTemQ8l2kyttUQ5UuzqW/pzK
+	 elhLMnmkQRiYvOBdUMl4UPdMW8ZzRSK2xbrhQ2kvcR6Nr/2i/KyoTDW+ukGVNYAvQs
+	 Wsxcnw8/8yp63gyVXaihyoRsYNyLRWT7gZizere6X7TBeCcAHyYXeLyNfUmpS37m2e
+	 kWPN966uEInK8cOENxG61gxrckBgxhu20v0GLXiFBdWW4No3LcihQpaSSTkBX3YU6G
+	 UcdNAboypVF4Q==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 5/8] net: of_net: Add of_get_nvmem_eui48() helper for
- EUI-48 lookup
+Subject: Re: [PATCH v4 8/8] arm64: dts: qcom: arduino-imola: Describe NVMEM
+ layout for WiFi/BT addresses
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260609-block-as-nvmem-v4-5-45712e6b22c6@oss.qualcomm.com>
-References: <20260609-block-as-nvmem-v4-5-45712e6b22c6@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260609-block-as-nvmem-v4-8-45712e6b22c6@oss.qualcomm.com>
+References: <20260609-block-as-nvmem-v4-8-45712e6b22c6@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 07:53:49 +0000
-Message-Id: <20260610075350.163011F00898@smtp.kernel.org>
+Date: Wed, 10 Jun 2026 07:53:50 +0000
+Message-Id: <20260610075350.CCB741F00899@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,24 +71,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309482-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309483-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -98,95 +98,69 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,qualcomm.com:email,smtp.kernel.org:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,qualcomm.com:email,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 49A0B666D02
+X-Rspamd-Queue-Id: 1739A666CF2
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] The refactored `of_get_mac_address_nvmem()` allocates `u8 mac[ETH_=
-ALEN]` on the stack without an explicit alignment attribute, but passes it =
-to `is_valid_ether_addr()` and `ether_addr_copy()`, which explicitly requir=
-e 2-byte alignment. Additionally, it replaces `memcpy()` with `ether_addr_c=
-opy()` for the output buffer `addr`, which places a new 16-bit alignment re=
-quirement on the caller-provided destination buffer. On architectures where=
- `CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS` is disabled, passing unaligned bu=
-ffers to these inline functions triggers hardware alignment faults (kernel =
-panics).
+- [High] Adding `compatible =3D "fixed-partitions"` to the `partitions-boot=
+1` node causes the block layer OF partition parser to process the `nvmem-la=
+yout` child node as a partition. Since `nvmem-layout` lacks a `reg` propert=
+y, `of_get_property(np, "reg", &len)` in `block/partitions/of.c` returns NU=
+LL and leaves the stack variable `len` uninitialized. This leads to either =
+a boot-time kernel panic (if the uninitialized `len` happens to satisfy `le=
+n / sizeof(*reg) =3D=3D a_cells + s_cells`, causing an unconditional NULL p=
+ointer dereference of `reg` in `of_read_number()`) or an `-EINVAL` error th=
+at aborts partition scanning for the entire `mmcblk0boot0` block device.
 --
 
-commit bea465de4254300767e8f7bcd7c42eab2fe9f51f
+commit 1fb34b213f52de7d901295d011ead6f3136f8d92
 Author: Loic Poulain <loic.poulain@oss.qualcomm.com>
 
-net: of_net: Add of_get_nvmem_eui48() helper for EUI-48 lookup
+arm64: dts: qcom: arduino-imola: Describe NVMEM layout for WiFi/BT addresses
 
-This commit factors out the common NVMEM EUI-48 retrieval logic from
-of_get_mac_address_nvmem() into a new of_get_nvmem_eui48() helper. It
-updates of_get_mac_address_nvmem() to use this new function to preserve
-the existing behavior while making the logic reusable.
+This commit adds NVMEM cell definitions for WiFi and Bluetooth MAC addresses
+to the eMMC boot1 partition on Arduino Uno-Q. It modifies the SDHC1 node to
+declare a fixed-partitions block with an nvmem-layout.
 
-> diff --git a/net/core/of_net.c b/net/core/of_net.c
-> --- a/net/core/of_net.c
-> +++ b/net/core/of_net.c
-> @@ -61,9 +61,7 @@ static int of_get_mac_addr(struct device_node *np, cons=
-t char *name, u8 *addr)
->  int of_get_mac_address_nvmem(struct device_node *np, u8 *addr)
->  {
->  	struct platform_device *pdev =3D of_find_device_by_node(np);
-> -	struct nvmem_cell *cell;
-> -	const void *mac;
-> -	size_t len;
-> +	u8 mac[ETH_ALEN];
-
-[Severity: High]
-Does this stack-allocated array need an explicit alignment attribute?
-
-Because it is a u8 array, it only guarantees 1-byte alignment.
-
->  	int ret;
-> =20
+> diff --git a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts b/arch/ar=
+m64/boot/dts/qcom/qrb2210-arduino-imola.dts
+> index bf088fa9807f0..128c7a7e76b5b 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb2210-arduino-imola.dts
+> @@ -409,7 +409,40 @@ &sdhc_1 {
 [ ... ]
-> -	mac =3D nvmem_cell_read(cell, &len);
-> -	nvmem_cell_put(cell);
-> =20
-> -	if (IS_ERR(mac))
-> -		return PTR_ERR(mac);
-> +	ret =3D of_get_nvmem_eui48(np, "mac-address", mac);
-> +	if (ret)
-> +		return ret;
+> +	card@0 {
+> +		compatible =3D "mmc-card";
+> +		reg =3D <0>;
 > +
-> +	if (!is_valid_ether_addr(mac))
+> +		partitions-boot1 {
+> +			compatible =3D "fixed-partitions";
+> +
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <1>;
+> +
+> +			nvmem-layout {
 
 [Severity: High]
-Could this cause an alignment trap on architectures without efficient
-unaligned access?
+Does adding compatible =3D "fixed-partitions" here cause the block layer
+OF partition parser to process the nvmem-layout child node as a partition?
 
-is_valid_ether_addr() expects its argument to be 2-byte aligned.
-The previous implementation used the pointer returned by nvmem_cell_read(),
-which was allocated via kzalloc() and naturally provided an 8-byte alignment
-guarantee.
+Since nvmem-layout lacks a reg property, this appears to trigger an issue
+in block/partitions/of.c where of_get_property(np, "reg", &len) returns
+NULL and leaves the stack variable len uninitialized.
 
-> +		return -EINVAL;
-> +
-> +	ether_addr_copy(addr, mac);
-
-[Severity: High]
-Can this ether_addr_copy() call cause an alignment fault?=20
-
-ether_addr_copy() requires both the source and destination pointers to be
-2-byte aligned. This replaces the safe memcpy() used in the previous
-implementation and introduces a new 2-byte alignment requirement for the
-caller-provided addr buffer, as well as the locally allocated mac array.
-
-> +	return 0;
->  }
->  EXPORT_SYMBOL(of_get_mac_address_nvmem);
+Depending on the uninitialized stack value, couldn't this cause either a
+boot-time kernel panic due to a NULL pointer dereference in
+of_read_number(), or an -EINVAL error that aborts partition scanning for
+the entire mmcblk0boot0 block device?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609-block-as-n=
-vmem-v4-0-45712e6b22c6@oss.qualcomm.com?part=3D5
+vmem-v4-0-45712e6b22c6@oss.qualcomm.com?part=3D8
 
