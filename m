@@ -1,185 +1,207 @@
-Return-Path: <devicetree+bounces-309733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309734-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Q+S2HcNNKWraUQMAu9opvQ
-	(envelope-from <devicetree+bounces-309733-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:42:59 +0200
+	id 4nkHOPFNKWrzUQMAu9opvQ
+	(envelope-from <devicetree+bounces-309734-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:43:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB569668E42
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:42:58 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38755668E6E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:43:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hRjiv5Sk;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309733-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309733-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Xzg1Ii7O;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309734-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309734-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6D2EB32995BE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:37:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C735B30DE804
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C993DD84A;
-	Wed, 10 Jun 2026 11:37:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F8083F7884;
+	Wed, 10 Jun 2026 11:39:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4EA43E4505
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 11:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E56E30595C
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 11:39:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781091442; cv=none; b=BKOuf+MIUrsp1JCnAh84ReDlJUnc/UKrFnE9nOnpYnV+y/GDe7wZ5CDuY+xNggQP/e58zDchFSkwm3QyBXOVwCs9xlteTNvWv+Hl4ylAvAsIzMnAZbZP6j9KnAwpchj+IC8/n5YLixWdZ4sK2nU9SQLcF/LLqcaKSyicuFmjQ0w=
+	t=1781091565; cv=none; b=WfrCIrc67Ni7lz2m3cYHnX2jcpQUOEE+RV0Fm9b1fImS6ccxAO+ZKKntI4kkU6qJaHf/Z8EcQ/b6Nh/2G3NX/Oov3Zs9VNZDsGyhmy2Fh+OCiRWn/qyp0DNcBqzy2BHuDONTSMFPKNSFbcYMDim+8h6SC1NSENC/s6/Twq4Utuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781091442; c=relaxed/simple;
-	bh=BxVPRC2l2dt/u797CUS7H7awCrNeF/c3TGDvLjbwjCs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=VAbXHaUMf7e916qoS3QReScdZK1ITZ69PYRczmUayKm/Xioc6mTpCf2tWIZ8H5LXqGr+RBvSXfHLGZo9P+evhPNXJF6ORbp6H4MYnjUb6NxEADmeHdeZvf+YJ2BMM9yEDURkx6ByYldP7pcxVVQMB6hhPjU+zO9urXh6VtZWlIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hRjiv5Sk; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B3F91F00893;
-	Wed, 10 Jun 2026 11:37:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781091441;
-	bh=bf324chqa8INaw8Izfb5VwFNFYvWZHn9WVdxWuyyUws=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hRjiv5SkFgsc8OjOQwdloBXFpVeSW/CjiiQhpIdLWMRA9Ek6RIkjCCLXTtKG/prtA
-	 Qjh/a9taV2Xp5Aw6NZw4okk0cZlv1XHpSuGixEl+vZ0l13fgBNss2C+SLXBYPjZDsL
-	 L7PDIeCTMnzxBhgNfCI0wlYMj0Dkofdx0ac73KeJhC054k0//5cJviK710pPyQjH57
-	 +iFsntR1w25ZQpwRikOB6ImCeMi3Nbbsc16oquLDtSkwBZzGR1eSYEcXm8/WR1zMpA
-	 AhGEcK7FCaeQPBw9sBfR1swrfmHcOuPjJSPZWSrZn/0/gHfr4Bj0ZIKBjpU94TD2HI
-	 vtV8rwWQ8p8Og==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: cortina-access: Add DTS for CA8289 SoC
- and Venus board
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jason Li" <jason.lee651024@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260610112821.3030099-5-jason.li@cortina-access.com>
-References: <20260610112821.3030099-5-jason.li@cortina-access.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 11:37:20 +0000
-Message-Id: <20260610113721.0B3F91F00893@smtp.kernel.org>
+	s=arc-20240116; t=1781091565; c=relaxed/simple;
+	bh=kJlyu0Ku8D5i/hWc61LWnoUqEP/8/5haNfDxLdtNTf4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BbmZ7kfgnwWiqOyk7tRN/3gFnY6ZVe5CUAPQ/dpPwJKBaZ79l2TJqL64/Yp2+SIupqElgP4mAfZrPrmHVP7jNdZJm82Om1Av9FR87UP/yvBAO4ezOvdJQXOyO6qaav2CtPPJM90h+Z2ud3Q9cSBaCgylzj+jFGoD9KuttyA5dIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xzg1Ii7O; arc=none smtp.client-ip=209.85.128.48
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4908b92904fso76465965e9.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 04:39:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781091562; x=1781696362; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dLodmWzrTN66XZxi0VhoRsFvF3s+BeRFANK73fDJpdo=;
+        b=Xzg1Ii7OVeJT3vjDySZW+ak5IJ5AtIiF4LsUhdahySxIM/sz2cj3DbGOCmNLvT5pq8
+         EeIkesKWnKX+ekoajvT7mh/3L3BuPdAya+lh4NbUnd6yaS4lVg1tDaHfPFUSNYohHjcD
+         NlQZkTBtUFVsmXN8LAp4CJTJay4Z0CFhBwlh8gHGCawUFvT8uTKuL6XDzHNFHGq/I0gq
+         0bgIo1d8G2kAUSh2FzCpdNc3a0rb5tXl8sYnGLrPL3LIGJl2MBcwgUxLhtMgZTA6aWRO
+         HMMcVkTTluqlj1hFzBCrv66bleeucYqGjcGuXdo3axJtTEveaKWQ1pY2ZWXvw2HBiqbb
+         hTvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781091562; x=1781696362;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dLodmWzrTN66XZxi0VhoRsFvF3s+BeRFANK73fDJpdo=;
+        b=BC9v0fUvSXcs13b/AgplXqlI7MdYh0mBRe/TQ2QSdbJ8VNdBGBcharGXKC1OSn0wep
+         3Q0fmBwcbwHUL8Gq6DUKdegG0I2nnY0JMF42YmbFiX2cP4YSXf+brCpXgP2xNCd3Sbey
+         iH+pb1P9p6hTt+Yc2gcFkr70ApXSAjzsAxOuDU5oHWz7Iwjt/uHz5xvX2V1EGb8pYm3L
+         unaaFW6tOz6TppP7wcZFRX8+M35KGAEmWn6OlcfrxbZrcXGy6KcD20cPXkm4WKQ1jNVB
+         7VH8NjtshaT1qkX2y6vnnZO7zcnJ1uobQ5haeWOPi41mx91yZi/g8hXUlT31XbOjMf5L
+         rNOw==
+X-Forwarded-Encrypted: i=1; AFNElJ8eCQeEEqxV/5NcscdktqTZquG3sClRBv2/VnPtx8JrA/qLT7V49dg9p2UPdKSO1qUAoiU1U7uG5Fmf@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuL4zs342C4nQJ607+7AR96s/1cTNjK/ZVZlscF/LgIe23W5+5
+	WXz0BAJRUJCybPRmStKVD/DgrJ2jSQ7r5P2Fm3vlqGbRgRtJbTtYpogz
+X-Gm-Gg: Acq92OFEHLhsRLSbd522w8YSPokteUSw7JczmFK1B3HUZ0mPbc+VK3A3vl+Yazej6jk
+	x+7/pB3eu6l8uMKK/mhDFhwDagp3KIr59v/yvP99trnHdsqERc+RL87R/aLbuPbMDkOVb2XRbS+
+	Cs7ogPBEqwnz29u+gT4z+MDQWJkXWfwgpnObxi82aW5UvOVQln7mkLplQLhy/T/A8wcl1m4J0+c
+	UIs0aul/YLeLbiKQ+UDxPCnaZLEIC8PCr/I9Lh8ScWDnBssgKtq+2gfWYZ+nIApQYKv51RD0EkK
+	MPuOI2HCrjIHAzbtnkcEHIBaesw6hFDL2agdFUxThnUfAcT97sPmu5cGprONXNNytEHGSYD16Ig
+	MBxXLvoG1H8Xq2DyDbBkO4KWjbcRUmTTu0iphdgSHurqgsaLkHle6tpH0f/2w4OQNyTxaPlqt4G
+	eFP0e4gjqF1J7Gj+pjXuOkzxabDwaCP8/KS2d7rEw=
+X-Received: by 2002:a05:600c:3107:b0:490:9588:bdb6 with SMTP id 5b1f17b1804b1-490c264cc2emr408619475e9.33.1781091561822;
+        Wed, 10 Jun 2026 04:39:21 -0700 (PDT)
+Received: from [192.168.8.79] ([2a00:f502:260:7c0c:c5aa:32d2:49d:5951])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f344148sm68042009f8f.19.2026.06.10.04.39.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jun 2026 04:39:21 -0700 (PDT)
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+Subject: [PATCH v4 0/2] ARM: dts: qcom: msm8926-sony-xperia-yukon-eagle:
+ add initial device tree
+Date: Wed, 10 Jun 2026 14:38:56 +0300
+Message-Id: <20260610-yukon-eagle-v4-0-763d5698bd2c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/13NTQ6CMBCG4auQrq3pP8WV9zAuCkyhKmAoEAnh7
+ lKMEVx+yTzvTMhD68CjUzShFgbnXVMvQxwilJWmLgC7fNmIEaaIZAqP/b2pMZjiAVhJbZnV1FC
+ Ro0U8W7DutdYu18/2fXqDrAuJcFE63zXtuL4baLj7luNdeaCY4ERTmuRKmJim56Iy7nHMmgqF8
+ sB+VhG+t2yxVqtUCCI1t/Lf8q0Ve8vDX+CpjHNOlNFbO8/zG9fqjxIwAQAA
+X-Change-ID: 20260526-yukon-eagle-658f2f81a14d
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15.2
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309734-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309733-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:~postmarketos/upstreaming@lists.sr.ht,m:phone-devel@vger.kernel.org,m:xerikasxx@gmail.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jason.lee651024@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:jasonlee651024@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com,oss.qualcomm.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CB569668E42
+X-Rspamd-Queue-Id: 38755668E6E
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] Use of discouraged `clock-frequency` property in the ARMv8 timer=
- node.
-- [Low] Missing root `#address-cells` and `#size-cells` in SoC DTSI.
---
+Sony Xperia M2 is a smartphone released in 2014 based on the Qualcomm
+Snapdragon 400 (MSM8926) platform.
 
-commit bb6d4b41e4c489bdce2ba3142178fa3654514276
-Author: Jason Li <jason.lee651024@gmail.com>
+Add initial device tree for Sony Xperia M2 with support for:
+- Framebuffer
+- GPIO buttons (Volume Down and Camera)
+- Regulators
+- Internal storage
+- SD card
+- Accelerometer
+- Ambient Light/Proximity sensor
+- NFC
+- pm8226_resin (Volume Up)
+- Vibrator
+- USB/Charger
 
-arm64: dts: cortina-access: Add DTS for CA8289 SoC and Venus board
+Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+---
+Changes in v4:
+- Defined pinctrl for GPIO buttons.
+- Aligned quotation marks in mount-matrix for the accelerator.
+- Dropped magnetometer from the patch. It probes, but fails to read its
+  revision if reset GPIO is not defined, and this model does not have a
+  reset GPIO. Nevertheless, even if one is defined, the probe fails with
+  a timeout. Needs further investigation.
+- Link to v3: https://patch.msgid.link/20260604-yukon-eagle-v3-0-9e3b57d306a8@gmail.com
 
-Add SoC DTSI for the Cortina-Access CA8289 (Venus) and a board DTS for
-the Venus engineering board. The description covers the minimum set of
-hardware nodes needed to boot a kernel with an INITRD rootfs.
+Changes in v3:
+- Changed incorrect "chassis" to "chassis-type" in the device tree.
+- Mentioned added vibrator in the commit message.
+- Link to v2: https://patch.msgid.link/20260603-yukon-eagle-v2-0-f86b440583f5@gmail.com
 
-> diff --git a/arch/arm64/boot/dts/cortina-access/ca8289-soc.dtsi b/arch/ar=
-m64/boot/dts/cortina-access/ca8289-soc.dtsi
-> new file mode 100644
-> index 0000000000000..8e7ffcf4ccab4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/cortina-access/ca8289-soc.dtsi
-> @@ -0,0 +1,118 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * dts file for Cortina Access CA8289 SoC
-> + *
-> + * Copyright (C) 2026, Cortina Access Inc.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
+Changes in v2:
+- Dropped `regulator-always-on` for l3, l6 and l8.
+- Mentioned added GPIO buttons and reset input in the commit message.
+- Link to v1: https://patch.msgid.link/20260527-yukon-eagle-v1-0-98119d64a71b@gmail.com
 
-[Severity: Low]
-Should the root node of this DTSI include its own #address-cells and
-#size-cells declarations?
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
-While the top-level ca8289-engboard.dts provides these, defining several
-top-level nodes (like gic, uart0, uart1) that use 64-bit addresses relies
-on the board file to satisfy the DTSI's cell size requirements. Could
-these be added to the DTSI root node so it remains self-contained?
+---
+Erikas Bitovtas (2):
+      dt-bindings: arm: qcom: Add Sony Xperia M2
+      ARM: dts: qcom: msm8926-sony-xperia-yukon-eagle: add initial device tree
 
-> +	cpus {
-> +		#address-cells =3D <2>;
-> +		#size-cells =3D <0>;
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   1 +
+ arch/arm/boot/dts/qcom/Makefile                    |   1 +
+ .../dts/qcom/msm8926-sony-xperia-yukon-eagle.dts   | 407 +++++++++++++++++++++
+ 3 files changed, 409 insertions(+)
+---
+base-commit: 49e02880ec0a8c378e811bc9d85da188d7c6204c
+change-id: 20260526-yukon-eagle-658f2f81a14d
 
-[ ... ]
+Best regards,
+--  
+Erikas Bitovtas <xerikasxx@gmail.com>
 
-> +	/* See Documentation/devicetree/bindings/timer/arm,arch_timer.yaml */
-> +	timer {
-> +		compatible =3D "arm,armv8-timer";
-> +		interrupt-parent =3D <&gic>;
-> +		interrupts =3D <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> +		clock-frequency =3D <25000000>;
-
-[Severity: Medium]
-Is this clock-frequency property strictly necessary for this new SoC?
-
-For ARMv8 architectures, the system timer frequency should typically be
-programmed into the CNTFRQ_EL0 register by the boot firmware (e.g., TF-A)
-on all CPUs.
-
-The devicetree clock-frequency property is generally treated as a workaround
-for legacy firmware that cannot be modified. For new SoC ports, can the boot
-firmware be updated to properly initialize CNTFRQ_EL0 instead?
-
-> +	};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610112821.3030=
-099-1-jason.li@cortina-access.com?part=3D3
 
