@@ -1,152 +1,372 @@
-Return-Path: <devicetree+bounces-310293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309712-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DUQIN8V+KmrFrAMAu9opvQ
-	(envelope-from <devicetree+bounces-310293-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:24:21 +0200
+	id gE/fOgVJKWqATgMAu9opvQ
+	(envelope-from <devicetree+bounces-309712-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:22:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BA6B6705D8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:24:21 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 651FA668B65
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:22:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="WnTU/27N";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310293-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310293-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=codeconstruct.com.au header.s=2022a header.b=GS2dT7ky;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309712-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309712-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=codeconstruct.com.au;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CAFD8304F42A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:24:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 684853087D00
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1053135E1AA;
-	Thu, 11 Jun 2026 09:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79FA73DCD98;
+	Wed, 10 Jun 2026 11:15:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2281356759;
-	Thu, 11 Jun 2026 09:24:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0829A3DC873;
+	Wed, 10 Jun 2026 11:15:05 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781169853; cv=none; b=IfvtbX1N77Tpo+VLSiU6paXucqtqJkt/Pe7fvePFlbOQhnEj9o8c85OYRMQibmq/vv6CiT+cPFnj0jjUaVnY/cI3mbwgWWU44VmnPu/+UuiRlI/xSbllLbeO+hjpOBx4p34XJDvHOcTF8J+djSHBsdEuBctFxMeaalY0w0bpPB0=
+	t=1781090113; cv=none; b=BCCFyzoeGDekaSOWYr+DNN+pPWqjpk9xeNgY7BPhhlVYR1fm+wuEuLm2HWLOsWBIlfQedd9yKxjSVWNSkMyJF4S543KxNbs1yGqtltYraLYekEGJUIVrWApqtbQQYOik2OYH8ChA8HawN5cwc1n/HBOaH3YROhF2VIovXcorxfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781169853; c=relaxed/simple;
-	bh=mfT8gSVDCWk4JyRaaMo+/qGlPesjAc/rwMATv4G2nsg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=U5/h00SUWjS/d5LhLoDewpElEXhlmupuESbMwTlkFX5FTWzhGaRWF9JM4ITSnh42IJjY5IyAE+69PW7QWiH9dQh3f2bd0uzF78tjthYpAh+waTJBV4uth7pnZxLd5QZnJ6WwjMe26nfUw4wntdac0MHaRLZHnrq71DttvM0Km08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WnTU/27N; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F7A51F00893;
-	Thu, 11 Jun 2026 09:24:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781169852;
-	bh=kaDbe2Wtadm1CovoX1M+pm7BWifn8mTlFUxuaDqLi0Y=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=WnTU/27NgzOoYes/IzeMe1761wQ9wdP19YpDfXsYUpxxGG6XZMQ25Hl4AFte7UTPd
-	 BL8I0iSXCAKoGHxIb9Ayper7xIpPamXXxwv5m5VsIiasCQHvnvOZuqv9I5+4qGtxV3
-	 XbwKGgLUZRH+j7fA58Q7D/JhvHB0y0wcsc6r2X3U98aesHk1zaDTi+9qcueDmAeR+J
-	 uAZns5DnSAzUES0mpChef3CG3k+CVsNG+l2VlDg1dyvN6UstFwo7GOoSJ0aO6k7pYP
-	 puMZojS8gK/7CxwD2v0LuFfPk9L1CJ7Si0BZmcwSj1+lCPXpKE5+MQ1KAquwU90sVk
-	 P5Dpa3PvD9p2w==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Michael Zhang <zhangyi@everest-semi.com>, 
- Diederik de Haas <diederik@cknow-tech.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-In-Reply-To: <20260607105913.355966-1-diederik@cknow-tech.com>
-References: <20260607105913.355966-1-diederik@cknow-tech.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: everest,es8389: Document audio
- graph port
-Message-Id: <178108992684.232889.2776738169377861702.b4-ty@b4>
-Date: Wed, 10 Jun 2026 12:12:06 +0100
+	s=arc-20240116; t=1781090113; c=relaxed/simple;
+	bh=NxC/buIW3nwDt2WYvtbi/fLzJO4I+WcqsNvm2IQ7gKg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=lRDDTN+gMu2aXeC3Of0MLAtc90+hEZLXGB/sOyRzVndRLlihHXM7onL84JgoO9EHVyO4ZpXevJe+echIrmybYCksHd5MTR3R9loNSU74sJpatlboGmaTdu9ixQL10z5EwOUYA2+9v+17k8LC9mpXPARkeYn8jLyHOqMZAwHj0PQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=GS2dT7ky; arc=none smtp.client-ip=203.29.241.158
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1781090103;
+	bh=huOArweXhGZIE9bNjo12S1RadYYw8h6SUyOuwXeK+9c=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=GS2dT7kyT+8KmH/uyXKZYYMSKcKjdLp2WjzBp+OrvXxhLfoSk+nuo0AGiKUXPSDKb
+	 ogljH0Z4KhiNg7c7//rN+PxEOaiAIUZnbZxnVQP2BZZ/hOrAcScGbIcA2OyIcG5uY2
+	 3JnXl7nYmOqmNSAY1UTpRdm19/pUHGiCNV4+w37ya5KjAhNGojedO02bv8PDIsuXU0
+	 BAA32Z1hDNlouzgEN4WhBpEZ3IYemBluFlO6V8epIeaz5adY+2b13NdYQ2E3WRPl7f
+	 8Ef+ffTcSoG8ronceSCvim4zaXtgkEws3EqrEZs+tdeo7BOrbvVqMdpHZuajVSSbaq
+	 IJOpOzwdXc3Fg==
+Received: from [192.168.68.117] (unknown [180.150.112.11])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E6E3760A19;
+	Wed, 10 Jun 2026 19:15:02 +0800 (AWST)
+Message-ID: <3d56889c004fc2d11b76ace6033c7ccfb8a37d03.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5 2/2] ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Kyle Hsieh <kylehsieh1995@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	 <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Wed, 10 Jun 2026 20:45:02 +0930
+In-Reply-To: <20260608-ventura2_initial_dts-v5-2-37ee5bcf58b6@gmail.com>
+References: <20260608-ventura2_initial_dts-v5-0-37ee5bcf58b6@gmail.com>
+	 <20260608-ventura2_initial_dts-v5-2-37ee5bcf58b6@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1142; i=broonie@kernel.org;
- h=from:subject:message-id; bh=mfT8gSVDCWk4JyRaaMo+/qGlPesjAc/rwMATv4G2nsg=;
- b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqKn65dqvazU4B177fGwRd8nxToenUhgxdKVsld
- sQPpxJGuxuJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaip+uQAKCRAk1otyXVSH
- 0F0bB/9PSDgrxCKFj6Vx5OG4742eNYZfdMZGWRmtZMqx1jEsWbsOTc1La2BjnRVl1v3bTjNqWTT
- o6OyxjkETr5eVJG+c6mpNoJYNumnURYwFUK9NKXk0eHHcLxw2LN62kTG1il1q4kOemlEGKb5CT3
- OCM98D214M1rKGCcpeR+A50ik03quJF8PL0hBYuTfgpczE/pOXGDSJKanc50sAq2bdnRTWZPbpr
- 5eDQxgiESXTCYokAEvP+SExqeDHFdz8g5NLcy4C2Je93hx8+x9hcaTVkSAgjC+JB9srp6dwIrp7
- Tj2XVH18GBsUMlpB/cJ9mj9CStveBRbsE+xJYp4NQTRBXHP8
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zhangyi@everest-semi.com,m:diederik@cknow-tech.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,everest-semi.com,cknow-tech.com];
-	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-309712-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:kylehsieh1995@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-aspeed@lists.ozlabs.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,jms.id.au];
+	FORGED_SENDER(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310293-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,codeconstruct.com.au:dkim,codeconstruct.com.au:mid,codeconstruct.com.au:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5BA6B6705D8
+X-Rspamd-Queue-Id: 651FA668B65
 
-On Sun, 07 Jun 2026 12:58:49 +0200, Diederik de Haas wrote:
-> ASoC: dt-bindings: everest,es8389: Document audio graph port
+Hi Kyle,
 
-Applied to
+On Mon, 2026-06-08 at 10:42 +0800, Kyle Hsieh wrote:
+> Add linux device tree entry related to the Meta(Facebook) rmc-node.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.2
+This is redundant as it is evident from the patch itself. Can you
+please remove it?
 
-Thanks!
+> The system use an AT2600 BMC.
+> This node is named "ventura2".
 
-[1/1] ASoC: dt-bindings: everest,es8389: Document audio graph port
-      https://git.kernel.org/broonie/sound/c/aa283db3bb8d
+Can you provide some more detail about the platform in the commit
+message? What's it's purpose? Can you describe some interesting
+features or details about its design?
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+>=20
+> Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
+> ---
+> =C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0=C2=A0 1 +
+> =C2=A0.../dts/aspeed/aspeed-bmc-facebook-ventura2.dts=C2=A0=C2=A0=C2=A0 |=
+ 2888 ++++++++++++++++++++
+> =C2=A02 files changed, 2889 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed=
+/Makefile
+> index 9adf9278dc94..6b96997629d4 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -32,6 +32,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
+> =C2=A0	aspeed-bmc-facebook-minipack.dtb \
+> =C2=A0	aspeed-bmc-facebook-santabarbara.dtb \
+> =C2=A0	aspeed-bmc-facebook-tiogapass.dtb \
+> +	aspeed-bmc-facebook-ventura2.dtb \
+> =C2=A0	aspeed-bmc-facebook-wedge40.dtb \
+> =C2=A0	aspeed-bmc-facebook-wedge100.dtb \
+> =C2=A0	aspeed-bmc-facebook-wedge400-data64.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts b/=
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
+> new file mode 100644
+> index 000000000000..9bf7d6e52e40
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
+> @@ -0,0 +1,2888 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2023 Facebook Inc.
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/i2c/i2c.h>
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +
+> +/ {
+> +	model =3D "Facebook Ventura2 RMC";
+> +	compatible =3D "facebook,ventura2-rmc", "aspeed,ast2600";
+>=20
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+...
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +};
+> +
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+...
 
-Thanks,
-Mark
+> +&gpio1 {
+> +	gpio-line-names =3D
+> +	/*18A0-18A7*/	"","","","","","","","",
+> +	/*18B0-18B7*/	"","","","",
+> +			"FM_BOARD_BMC_REV_ID0","FM_BOARD_BMC_REV_ID1",
+> +			"FM_BOARD_BMC_REV_ID2","",
+> +	/*18C0-18C7*/	"SPI_BMC_BIOS_ROM_IRQ0_R_N","","","","","","","",
+> +	/*18D0-18D7*/	"","","","","","","","",
+> +	/*18E0-18E3*/	"FM_BMC_PROT_LS_EN","AC_PWR_BMC_BTN_R_N","","";
+> +};
+> +
+> +&i2c0 {
+> +	status =3D "okay";
+> +
+> +	i2c-mux@77 {
+> +		compatible =3D "nxp,pca9548";
+> +		reg =3D <0x77>;
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +		i2c-mux-idle-disconnect;
+> +
+> +		i2c0mux0ch0: i2c@0 {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +			reg =3D <0>;
+> +		};
+> +
+> +		i2c0mux0ch1: i2c@1 {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +			reg =3D <1>;
+> +		};
+> +
+> +		i2c0mux0ch2: i2c@2 {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +			reg =3D <2>;
+> +		};
+> +
+> +		i2c0mux0ch3: i2c@3 {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +			reg =3D <3>;
+> +			status =3D "okay";
+> +		};
+> +
+> +		i2c0mux0ch4: i2c@4 {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +			reg =3D <4>;
+> +			status =3D "okay";
+> +		};
+> +
+> +		i2c0mux0ch5: i2c@5 {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +			reg =3D <5>;
+> +			status =3D "okay";
+> +
+> +			eeprom@56 {
+> +				compatible =3D "atmel,24c128";
+> +				reg =3D <0x56>;
+> +			};
+> +		};
+> +
+> +		i2c0mux0ch6: i2c@6 {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +			reg =3D <6>;
+> +
+> +			eeprom@56 {
+> +				compatible =3D "atmel,24c128";
+> +				reg =3D <0x56>;
+> +			};
+> +
+> +			fan_io_expander0: gpio@20 {
+> +				compatible =3D "nxp,pca9555";
+> +				reg =3D <0x20>;
+> +				gpio-controller;
+> +				#gpio-cells =3D <2>;
+> +			};
+> +
+> +			fan_io_expander1: gpio@21 {
+> +				compatible =3D "nxp,pca9555";
+> +				reg =3D <0x21>;
+> +				gpio-controller;
+> +				#gpio-cells =3D <2>;
+> +			};
+> +
+> +			adc@1d {
+> +				compatible =3D "ti,adc128d818";
+> +				reg =3D <0x1d>;
+> +				ti,mode =3D /bits/ 8 <1>;
+> +			};
+> +
+> +			adc@35 {
+> +				compatible =3D "maxim,max11617";
+> +				reg =3D <0x35>;
+> +			};
+> +		};
+> +
+> +		i2c0mux0ch7: i2c@7 {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +			reg =3D <7>;
+> +
+> +			fanctl0: fan-controller@20 {
+> +				compatible =3D "maxim,max31790";
+> +				reg =3D <0x20>;
+> +				#address-cells =3D <1>;
+> +				#size-cells =3D <0>;
+> +				channel@2 {
 
+Can you make sure that you consistently use a blank line to separate
+child nodes from each other and from properties in their parent?
+
+Please fix throughout.
+
+> +					reg =3D <2>;
+> +					sensor-type =3D "TACH";
+> +				};
+> +				channel@5 {
+> +					reg =3D <5>;
+> +					sensor-type =3D "TACH";
+> +				};
+> +			};
+> +
+> +			fanctl1: fan-controller@23 {
+> +				compatible =3D "nuvoton,nct7363";
+> +				reg =3D <0x23>;
+> +				#pwm-cells =3D <2>;
+> +
+> +				fan-9 {
+> +					pwms =3D <&fanctl1 0 20000>;
+> +					tach-ch =3D /bits/ 8 <0x09>;
+> +				};
+> +
+> +				fan-11 {
+> +					pwms =3D <&fanctl1 0 20000>;
+> +					tach-ch =3D /bits/ 8 <0x0B>;
+> +				};
+> +
+> +				fan-10 {
+> +					pwms =3D <&fanctl1 4 20000>;
+> +					tach-ch =3D /bits/ 8 <0x0A>;
+> +				};
+> +
+> +				fan-13 {
+> +					pwms =3D <&fanctl1 4 20000>;
+> +					tach-ch =3D /bits/ 8 <0x0D>;
+> +				};
+> +
+> +				fan-15 {
+> +					pwms =3D <&fanctl1 6 20000>;
+> +					tach-ch =3D /bits/ 8 <0x0F>;
+> +				};
+> +
+> +				fan-1 {
+
+Can you please sort the fan nodes in ascending order?
+
+> +					pwms =3D <&fanctl1 6 20000>;
+> +					tach-ch =3D /bits/ 8 <0x01>;
+> +				};
+> +
+> +				fan-0 {
+> +					pwms =3D <&fanctl1 10 20000>;
+> +					tach-ch =3D /bits/ 8 <0x00>;
+> +				};
+> +
+> +				fan-3 {
+> +					pwms =3D <&fanctl1 10 20000>;
+> +					tach-ch =3D /bits/ 8 <0x03>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+>=20
+
+...
+
+> +
+> +	// Marvell 88E6393X EEPROM
+
+Please try to be consistent with the comment style (prefer /* */).
+
+> +	eeprom@50 {
+> +		compatible =3D "atmel,24c64";
+> +		reg =3D <0x50>;
+> +	};
+> +
+> +	rtc@51 {
+> +		compatible =3D "nxp,pcf8563";
+> +		reg =3D <0x51>;
+> +	};
+> +};
+> +
 
