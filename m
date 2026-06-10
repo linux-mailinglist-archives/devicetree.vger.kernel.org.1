@@ -1,716 +1,213 @@
-Return-Path: <devicetree+bounces-309612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JZFeBtAoKWoCRwMAu9opvQ
-	(envelope-from <devicetree+bounces-309612-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:05:20 +0200
+	id ZOogG4wpKWoyRwMAu9opvQ
+	(envelope-from <devicetree+bounces-309614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:08:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A46DE6679DD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:05:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA144667A66
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:08:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=rEcRM51t;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309612-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309612-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=nxp.com header.s=selector1 header.b=JUukjixR;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309614-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309614-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=nxp.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D478E306D7CC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:59:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8588B34A2B71
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554253B5319;
-	Wed, 10 Jun 2026 08:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAED23B5F59;
+	Wed, 10 Jun 2026 09:00:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011031.outbound.protection.outlook.com [40.107.130.31])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589523BD22C
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 08:59:05 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781081950; cv=none; b=fWzW8IH8LHXLPkqK4YRJOvW53J4v/N0nk6fr3aNvkanqYg7IvpALqM8ksCH5aefPK0OoP28kNd0GVlU+hUfvWICIvdZ7WvLpPfmHfEFkMJx+QVRjn0SJgSSzu5+5sfctsklJgT+JAK4h5CviXwVKuvZHtntz6TIas9bnZmqgYsU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781081950; c=relaxed/simple;
-	bh=hjl1ZWt1RhHfecbd+5h+VYYyClq7LIzLWCHmSmFi8tk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=V9Ba4z6eTQU/ik7i1m+LPeUg/6mxF44ulBnWTaWCOr19Z8DshmGi16bI7s3SVzx3QX07am4appe8q5vKzvKgGMU5NuS5sGoTSawrFxsQHr6rdGyJzd2TIpUKAYIC408bWVijNl9+fsNrBbqrGODr7eI5CNuBNhe730iupurcOUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rEcRM51t; arc=none smtp.client-ip=209.85.128.47
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-490ac10e337so54713325e9.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 01:59:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781081943; x=1781686743; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cZK8BrS7Nr3iiviuEbeV8QIAV92KET5dWEqUIZOvJ+I=;
-        b=rEcRM51tGKzUtzhLsCqNIzsiUMYtorsrZ7fSZ8bbW9Tvqusp/nc+/ArBHG9MaVHQji
-         jniXLVAKEaV5pAyhKLlR7VZnG9kuZVZ+ZWvn8AmSjSBKQ1mJim+qTRitVA5VEMzPsaxp
-         HUYHQOnB8JrU4opXDbZklz9D9cV9Z9yjpUC+podFNXhxB92FIxUWZ0jHZp6Tg6+pNWCS
-         uZBNtMqmSvF/0neofPCBn76eeJibI9quLaIDrVahcuZcIA+LxvXbHdbKX65F+nzDqtJE
-         zAJEQi3KvwE5GNdGgULsymQF9hLJm4lZ5xK9ChB1pnwO/GiE+xIaQ5gN8eBUYM2/4WS5
-         T/mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781081943; x=1781686743;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=cZK8BrS7Nr3iiviuEbeV8QIAV92KET5dWEqUIZOvJ+I=;
-        b=Oa+gH2q6l/XCqiYhZyCIoycFDDFXsNEDmEW7QswT4MRGZUMaIOBDB//n8rLAwnh8dO
-         nPavUcgV8r45cKA1BahtJXxLw6jxD/8Ol2lVLIMvcOpLA9UEpV5xtKHesHYr/WYf8YNh
-         bD7l9+wxhbNtzghIzFEU/H4NyGcPhFOeEody9MjN+zzb47UUGWa36dEGMn9CXXqFO/yT
-         yzKNm87504+2RPoCqRexlcJWxJbhdrlt5hAFbfMrAP3vW4VNREre044Alq4H3gRyUiS6
-         5XhWOHryfNryEVdiidIXBBw5en0yWPeZhj9qSRg0+xWANxcmh3eqL7jabmgoLE81xU7+
-         HZ3w==
-X-Forwarded-Encrypted: i=1; AFNElJ/XiU5qgcPzaCbRQVDSoT03Ybj9AN1jVs3o0PiJCkoPSv2zXb2DhktXqdVi3zyXij1Bft0uPTM2lFBI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQW1GsP7aq//zabTjsqoxHE0NawajcL9uGs8Aju/7DRZ2UHr/U
-	Sw3FhgxYlhYEe/iQcUIUXBlTPfc3sz5Pt3vNDhVlCPnn0Q1DlGY5A+N7
-X-Gm-Gg: Acq92OGoj1q7mW+kf8HySAQAE3jL2PQIECabWuxOK/BCD547JefVqlWFldCrcbNm4fR
-	9kp71LnvASBa2D4owCqWc9JgqSwsLPPkcIhGRntwdJn39GEoCMo79qbtGcMqAH6wxDXqOXQq2XT
-	KIiMwuc505Of6R8sCUZff3OxhNBPe4LmzZZSy7g2qXbpRpmpLuub1/33Z9/5D4K8E1mFPrLqWfL
-	CZoKXnlbtcjjVWUcSwt7w6LRWYVGsZCyO+HBKM5agk6gaus4ChEGu5tPr2WWhcK2oRYCUC2StiB
-	UB3j4TBuNiraHodsFOKv+EEraHHsm7dF2XmuatNvzh2TzBHd9KES8GtnXn4uxB6lMMl0uv983Ui
-	SAGD+09qXZp1fJp15IoLxjEKmWviT+CAVLzUXidDTWzP5WQsY588K8C6fLx66zhC2BzJemnw+vY
-	hwUfilIsIwHSKJItxmjYKHCERpcMbXSOABe0gUu1R9PRWvDNswmFzYZD5wZgboiizZnYF3CJPx5
-	IXB2Hf8XIYpys63lsHyMwGsktyUUm9vQATZS6MY81CMqsxz
-X-Received: by 2002:a05:600c:8b0d:b0:490:b9ce:a73c with SMTP id 5b1f17b1804b1-490c55662b1mr391883465e9.31.1781081943189;
-        Wed, 10 Jun 2026 01:59:03 -0700 (PDT)
-Received: from Lord-Beerus.station (net-93-144-65-244.cust.vodafonedsl.it. [93.144.65.244])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc3cbfe4sm564088465e9.7.2026.06.10.01.59.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2026 01:59:02 -0700 (PDT)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Josua Mayer <josua@solid-run.com>,
-	Maud Spierings <maudspierings@gocontroll.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: [PATCH v1 3/3] arm64: dts: imx8mm-var-dart: Add support for Variscite Sonata board
-Date: Wed, 10 Jun 2026 10:58:55 +0200
-Message-ID: <2fd914cc7af53e217cfdb21713fee8eb7007f42f.1781024557.git.stefano.r@variscite.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1781024557.git.stefano.r@variscite.com>
-References: <cover.1781024557.git.stefano.r@variscite.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EA13BADA2;
+	Wed, 10 Jun 2026 09:00:19 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781082020; cv=fail; b=KqMTW9/lhvHDBRfCIWH0mOFudrJIxG3wEnqqpZHD4lvjL1Wa+YPWajFCkuo18lqKnGZYNM7gznW1LO3S7x833X1HG9iyppcrvzeowVllivh9mgD1i5DxBjXE2LNF1bNnRNHv269Zn7yZuqkfNI2PhWgxxtRIloocIYRzjOm9H/c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781082020; c=relaxed/simple;
+	bh=Em+GDP0BIDT0pOpZdkDCYiKTn02/cDsZKjjRZ/4llOk=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=H7vcD9TQnnuk++pIHk18aX+/csIOo4kIcbBbXI9KSFjE3GHkN0E9Yr6+iGOPLQTlS/Bu/M9d7BwImdsdXXU92f1MRil+QbkvcAsEl2KbT8gPeXh3CusL8fl7i5llDNYFfUCryensRXXoMtxfBLGtx9gZL27xB287cgDXTpcT/0g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=JUukjixR; arc=fail smtp.client-ip=40.107.130.31
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Pl1WstOgbmKh54lOU8WAg7lYvodBpHdS/Iy1RaeKdCg8uC5l7X+rvX+XbhvI8Tmr95pwhVHbyMQpYFMXJgAIV3UK8oipQ+yTpeIfe+41IXFia1jt6uHvJv45S+YjtykrKern0irdqioK1ORidFUZEk0o4CUgVJsuh7rbgSM63xrGapswxvXeRGiAens5u1dh5yvLEvHzwfPvfe/BwlhzbyzFiggaQzfM82IYPzAp2cpYWvY98BlEBBJnY8DiBrXgR59T8drP1IalON3n2gMGP64sCGb3PFcSfD2c/3YXXTeP8jibmtCGrCcWZ/CpNTiP1IjLlzY4G612gY0snml8CA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Em+GDP0BIDT0pOpZdkDCYiKTn02/cDsZKjjRZ/4llOk=;
+ b=t5w7axKJ8x2zWi688OVjAB3GkiV9YPi7ZFOHY/741g6rRxLkxm2ZLFDpEp/qSoywH+qYfvu6U8wbKe+a1kDwjMb5lAKI/Q1ljyzquGLEfDoUzAHdvR6PPeekUcjdGtyuR2SnQxELKnx/Ax+BTKniTrxBmXaEwIhf9dygMCFuXDFRl+Fdv9VNW3ynK8q1i1Ydw9NpDsAv1GxpmmXeTSQbEpf8V4l1Vi8v6L5TN6VMmx3vYnOuetTeFAdlODY18xxKRTK6LC78co3Pi7/5Pf8Fk2nPLvHnD8CL02YqgR52NO1+jq5soFHja0V9/Hx5KnlPc/+JlQ6lhRfrpVOHrrVxyg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Em+GDP0BIDT0pOpZdkDCYiKTn02/cDsZKjjRZ/4llOk=;
+ b=JUukjixRN4Kn8YBdTFeU6+WU+C9Bc2/wQiW4juIwyFXLrfWUHjz0l4+f3OOsm0UX9rG5+o0x5yKhbSGBn/gEpD4MYVg0GILZvC0aPuuPMsQaUO81+sspkGo/BwBZwspROdEmvMrqbQf1JMbxvTYJf6kK4moaGnNNdjaOapHXS6tFhw7PMHjfrgGy4MSJbmq0RJjJGPuUYC8wGxCW6tVzjyxtEEzlN+dUZUrqknqGfJgVujfSpdPZKIk7iktMtmk3g+xTFs0u+8z6h8UVyc/vbSs+9d+QRs+/eJDhC3KCw6CTJs/PZqRhJx+rz6GxLXMtCw7MHiKUNX+2XG2mdXemIA==
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by VI0PR04MB12211.eurprd04.prod.outlook.com
+ (2603:10a6:800:334::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.11; Wed, 10 Jun
+ 2026 09:00:16 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::feda:fd0e:147f:f994%6]) with mapi id 15.21.0092.011; Wed, 10 Jun 2026
+ 09:00:16 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, "sashiko-reviews@lists.linux.dev"
+	<sashiko-reviews@lists.linux.dev>, "manivannan.sadhasivam@oss.qualcomm.com"
+	<manivannan.sadhasivam@oss.qualcomm.com>
+CC: "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "robh@kernel.org"
+	<robh@kernel.org>, "Frank.Li@kernel.org" <Frank.Li@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>
+Subject: RE: [PATCH 1/2] dt-bindings: connector: pcie-m2-e: Add 3.3Vaux supply
+ support
+Thread-Topic: [PATCH 1/2] dt-bindings: connector: pcie-m2-e: Add 3.3Vaux
+ supply support
+Thread-Index: AQHc98EqSHx96zAXkk2n7RCbK2H3mLY1lPEAgABAkQCAAaAD0IAABQ6AgAADzaA=
+Date: Wed, 10 Jun 2026 09:00:16 +0000
+Message-ID:
+ <VI0PR04MB12114452B9EA05635BE745D54921A2@VI0PR04MB12114.eurprd04.prod.outlook.com>
+References: <20260609033840.2006078-2-sherry.sun@oss.nxp.com>
+ <20260609034408.BC69D1F00893@smtp.kernel.org>
+ <20260609-unique-magnificent-eel-eb623f@quoll>
+ <VI0PR04MB121140EFB8E614326D799503A921A2@VI0PR04MB12114.eurprd04.prod.outlook.com>
+ <10f5d51a-2e0e-477f-8431-9a305d57118c@kernel.org>
+In-Reply-To: <10f5d51a-2e0e-477f-8431-9a305d57118c@kernel.org>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|VI0PR04MB12211:EE_
+x-ms-office365-filtering-correlation-id: 74a1bbd7-c88b-4f04-93d5-08dec6ceb09d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|23010399003|376014|1800799024|366016|19092799006|38070700021|18002099003|22082099003|56012099006|11063799006|4143699003;
+x-microsoft-antispam-message-info:
+ v2QliVkYYnjmWWxpOqUCcBrjsZ/Z2RsAc5eppYo35p/nG2/48IKfCIO81xhrpXFXBWVe4JLa14SEECGHiKMOw1Lkq50C63MyQYurZDGS3ueIrpNlGwQYKQ3p0FSfO31fape/R3gR5yMwb6Rr2YhoauyBpIz7IcBG7/CYBzs0fnNjrQspiha0ZFDXmFFKxcoVAnUB3F3S1gdBdrfVw1lrx6mv0KPwOEh3QMYjHp7qoYsef6rZtYuXR3Jz61LWxIzmdF9JaXqO2fYIpWNNl2WZgXg82XSzt2JGw4qZfxXw029rJtT1hdbDuumvFiv8KpKvazmGFNuR/wu5257rSL0pix3xStI/1gzSpQ0feL/4GKa0dKkmw6bVTRG3PsbgfH6dja2MdeDAHKAAGfxeiBsaOn/Yz7MAsBM1MBRTgOq4QEreW3sbFamsNK4h5xYYE1sT94MtpjiramXC7W09s7+Tazu5wIo4VM5/oUZoiRypd+ySqeiXn3vBJ0TBuCBIWhpnAh2yNYdZgjGDF2z4QqXvAfjXu8G5Ra/iS9BkCT03vTqdhvxL/KkYVDviF3jgz0YqF9ARbYpgg6o4oh2U3i5wul30CkGy8yg/g6gZNTLCmFgdI7G/HPGXbAwLOXrkL9U7QvcCZBpq4N4Oul789YOQ6Y2lAuuiELqkMbWzBF1SLrRCpQIgKMC8V1HbPSj6QgrS2nJ23RFd1XF73+fxZkcd9oQKNc6Pg+Jt4xa+gF4WVajMs8grj6fjNICnwLV09GHh
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(19092799006)(38070700021)(18002099003)(22082099003)(56012099006)(11063799006)(4143699003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?L2hLRTNuNVBnendkUU9Bc0Jmb3VLWGRlb3BTUmc0ekE5VlBMcDB0S3o3MHA1?=
+ =?utf-8?B?ck5UZFZlSUsyeVFCZFZnUTJLY2J0VW9rWENIdURmT3c4NjIvcDkvNWpCY01q?=
+ =?utf-8?B?enVCZVpEUGNPRXZtTWxqUWhSTS83bitOb2VaZVROc0FYQ3B0cWc5SXlxczk2?=
+ =?utf-8?B?MCtrL1lYSDN5c0lsTE5IZUU5bGIyZ1FmVEpqcE4yaVJrN1BDdFA0TzREaTdD?=
+ =?utf-8?B?akk3UzJ5d1U1TjBoZ2l4dWNpOUVNTWRLK3QwNUxoRlVJdlUrdjhoeWRyMGo2?=
+ =?utf-8?B?dFZtbkVXbTZLUElqcnNKeTEzczlGWFJXZEhQaTdaVGlPRDJBZ2dmOFRsWTFq?=
+ =?utf-8?B?Mm5ydzg2VDFNVENBZjcydnp1Y1Z3UHVBbXl2a2xzN3hiSDlNV1dRSUF2cXlE?=
+ =?utf-8?B?WkdaUnl0Y0R6SFlmRTVyZTdNeldJUXg0bFVaNVNHUzMrS2p3TmQ2aklHVUlo?=
+ =?utf-8?B?MXBUc21oMWwvYW9XRTd1N2UxallTU0hoWDBXeG9hNHV1U01xQmRpbTRkNGVn?=
+ =?utf-8?B?RFhmZnB2ekFERzkwUkJYNFFibDRVVFU4MytRV0ZES2pnbWZpMWhBSkljSTJ6?=
+ =?utf-8?B?TEcxZGsrbmc3dVZiUXZzVDVZY09lMk1mZVFTQTFDOEdiTjZDblRNVTM5Um1h?=
+ =?utf-8?B?LzgvOW0yS2FUWm1SVFJOSHdpZmo4dHV0NGhCV1VKQ2kyYS9xOHNQaHRRcS9S?=
+ =?utf-8?B?OUFTeW5ITmp6QlpKZVAzK25FWVlNa04vdi83OU5VU3IxSi9uS1B2OUg5U0tV?=
+ =?utf-8?B?ZXRxZnRiVm5LcFJpajRoaEV1UDcyNlNhNFpVOHFRQ05aRUdIT2xDNWROV3dK?=
+ =?utf-8?B?OWxyY3IyZmlCYjFveDBZWE5IRFJwMlVNWjFiWENJQXRad2FSL00rZUR1bDNr?=
+ =?utf-8?B?aWJvb0FrbFNtM2xCT0ZiQ01EeXIzR0FSOTFSNWxjU1prR0wzanpRSXRNWW4w?=
+ =?utf-8?B?bDVKNEZGaEl0UVFmK2VSV2h1eDVKQm9NMnY1UFV2WTBGTGswajBBb1hadkw2?=
+ =?utf-8?B?czYzUGpMQUFCc0tXeXNaZ0I3czE1VUNodDhqczlWTEVjNUh0RzlVeGFOajIx?=
+ =?utf-8?B?d1F3YmxheEUxL1VlNFBMaXdjRnUxRE5sbmJmK1B5YWhDeTJXdUd0QlU0M0dL?=
+ =?utf-8?B?STROUjQzMkpYTTljTmdmNXJVNlMvcUd1dWdzZjJLSnhud0NqTWxRNTJRK3dW?=
+ =?utf-8?B?QkhLUjNEM0ltdlA2dDJ0a3puQ2lLQTUzaStlN29oYisvNE1kT1RHY050QWU4?=
+ =?utf-8?B?WGdlYmZIN05nYWhreWxrem9FbUpJcTUwZmx4M2hTaWJ0T1YwLzlaSGZGZTNq?=
+ =?utf-8?B?VnArMFkwTnFXcmRQVmp6OW1vOTB6VERjdnpiZDlLTUpncVBrZXZaaGFwcG9P?=
+ =?utf-8?B?T3JEYmsxVFdYeWRrQVdCaGxNckJXUDRHckJ4R3IweVR0dzlXUll3VWtBdmxX?=
+ =?utf-8?B?R0dkU2xXWWNMVUtOUU9QTS9keHdnTmZXSUJONWVac0lMSzR5Z3hTOFlPazF0?=
+ =?utf-8?B?Wk1Dcy9RVlU4VlExTTluSUt5a01PVGQ4dTNsYncxTXpDWm0wUmN0RzA0WXJ1?=
+ =?utf-8?B?elQ2dGprN082Tm4wSVZoemEyQUdmQVVZblVUdG5vVFFJcXl0ZFB3eEJlWm45?=
+ =?utf-8?B?U0lmRWRsL25iNmFLaHJ0eTdBUG5FY3RpR1ZCRTFGajgzd1E1STFMZzViWUJa?=
+ =?utf-8?B?T1gvVkZrSlV2UEUyUFp6dXQ1NmZtdXB5QWk5cU1lc21PbVBGd01LMkRoenF4?=
+ =?utf-8?B?MG9ya2N3dy9NNHpubmdvTGhjdElKSUxJUkRVNHJxc0NQYzl0WVlKczExSWNI?=
+ =?utf-8?B?TlY5WXZxVFUzclVzTjNvckZmQkVOcGZCY29NRzdLandSdXZTeGNNenJ4WGxC?=
+ =?utf-8?B?TC84RXpDS1RmMG1EZ0hYUlErYkd4UjljRlhlZDc4R0VtdWwrbjN3enJlTzBz?=
+ =?utf-8?B?VWlheEZVNUhlSllYei9IV0REUGRZVms5MGxVempuQitGRkRlUk1SdnJDRGtV?=
+ =?utf-8?B?L25BeEF6UUZWdFhGVmJLeGZ6dWJ4L2ZxRVE5S29kSE9kOEZ0ZThjV0hDWmE3?=
+ =?utf-8?B?QkJocU4ybVN4Q01ZbXNrWFRBSkdUN0lmdHFpOFhGdU8raXR2c3IrSEIxazg2?=
+ =?utf-8?B?MHludlR4QlQ5YzR3V3p1M3gzTVBtaTNqczFqbk1TVWNYaS8yRXFJd09kdEJu?=
+ =?utf-8?B?ZlRqbDRLdERiSU8zYzV1T09vODZBQmh1akdLcUM3OHFYS3JUakxFZHlxT0hk?=
+ =?utf-8?B?WGFSMVg5NnBROEVzdzBETmJvUnVTdWcrNkdaMjFPRWZMN2FuUkNQS0U5bGdN?=
+ =?utf-8?Q?5/m75jEi3ZJ1Q8rIhp?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 74a1bbd7-c88b-4f04-93d5-08dec6ceb09d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2026 09:00:16.1270
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1XKOiKY5JmQ8uRn9DR1OWe3pqXUZgku4BVHdq4xDyTcKMuxDG7A8xqo+/KOEJBrrVOJc8CgnFslYHVGNlB6drQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB12211
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+X-Spamd-Result: default: False [-0.06 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	TAGGED_FROM(0.00)[bounces-309612-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:pierluigi.p@variscite.com,m:stefano.r@variscite.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:shawnguo@kernel.org,m:daniel.baluta@nxp.com,m:dario.binacchi@amarulasolutions.com,m:josua@solid-run.com,m:maudspierings@gocontroll.com,m:alexander.stein@ew.tq-group.com,m:ernest.vanhoecke@toradex.com,m:francesco.dolcini@toradex.com,m:hvilleneuve@dimonoff.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com,amarulasolutions.com,solid-run.com,gocontroll.com,ew.tq-group.com,toradex.com,dimonoff.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309614-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:sashiko-reviews@lists.linux.dev,m:manivannan.sadhasivam@oss.qualcomm.com,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sherry.sun@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,variscite.com:email,variscite.com:url,variscite.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,nxp.com:dkim,nxp.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A46DE6679DD
+X-Rspamd-Queue-Id: BA144667A66
 
-From: Stefano Radaelli <stefano.r@variscite.com>
-
-Add device tree support for the Variscite Sonata carrier board with the
-DART-MX8M-MINI system on module.
-
-The Sonata board includes
-- uSD Card support
-- USB ports and OTG
-- Uart, SPI and I2C interfaces
-- HDMI support
-- GPIO Expanders
-- RTC module
-- TPM module
-- CAN peripherals
-
-Link: https://variscite.com/carrier-boards/sonata-board/
-Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx8mm-var-dart-sonata.dts  | 517 ++++++++++++++++++
- 2 files changed, 518 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-var-dart-sonata.dts
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 8ddaab127ab9..694c9aa32779 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -166,6 +166,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-prt8mm.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-tx8m-1610-moduline-iv-306-d.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-tx8m-1610-moduline-mini-111.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-dart-sonata.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony-legacy.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-dart-sonata.dts b/arch/arm64/boot/dts/freescale/imx8mm-var-dart-sonata.dts
-new file mode 100644
-index 000000000000..93b0076987b8
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-var-dart-sonata.dts
-@@ -0,0 +1,517 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Variscite Sonata carrier board for DART-MX8M-MINI
-+ *
-+ * Link: https://variscite.com/carrier-boards/sonata-board/
-+ *
-+ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/phy/phy-imx8-pcie.h>
-+#include "imx8mm-var-dart.dtsi"
-+
-+/ {
-+	model = "Variscite DART-MX8M-MINI on Sonata-Board";
-+	compatible = "variscite,var-dart-mx8mm-sonata",
-+		     "variscite,var-dart-mx8mm",
-+		     "fsl,imx8mm";
-+
-+	chosen {
-+		stdout-path = &uart1;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-home {
-+			label = "Home";
-+			linux,code = <KEY_HOME>;
-+			gpios = <&pca6408_1 4 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-up {
-+			label = "Up";
-+			linux,code = <KEY_UP>;
-+			gpios = <&pca6408_1 5 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-down {
-+			label = "Down";
-+			linux,code = <KEY_DOWN>;
-+			gpios = <&pca6408_1 6 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-back {
-+			label = "Back";
-+			linux,code = <KEY_BACK>;
-+			gpios = <&pca6408_1 7 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_leds>;
-+
-+		led-emmc {
-+			gpios = <&gpio4 18 GPIO_ACTIVE_HIGH>;
-+			label = "eMMC";
-+			linux,default-trigger = "mmc2";
-+		};
-+	};
-+
-+	clk40m: oscillator {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <40000000>;
-+		clock-output-names = "can_osc";
-+	};
-+
-+	pcie0_refclk: pcie0-refclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-vmmc-usdhc2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_vmmc_usdhc2>;
-+		regulator-name = "VSD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <100>;
-+		off-on-delay-us = <12000>;
-+	};
-+};
-+
-+&ecspi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi1>;
-+	cs-gpios = <&gpio5  9 GPIO_ACTIVE_LOW>,
-+		   <&gpio1 12 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	/* Resistive touch controller */
-+	ads7846: touchscreen@0 {
-+		compatible = "ti,ads7846";
-+		reg = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_restouch>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-+		spi-max-frequency = <1500000>;
-+		pendown-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
-+		ti,x-min = /bits/ 16 <125>;
-+		ti,x-max = /bits/ 16 <4008>;
-+		ti,y-min = /bits/ 16 <282>;
-+		ti,y-max = /bits/ 16 <3864>;
-+		ti,x-plate-ohms = /bits/ 16 <180>;
-+		ti,pressure-max = /bits/ 16 <255>;
-+		ti,debounce-max = /bits/ 16 <10>;
-+		ti,debounce-tol = /bits/ 16 <3>;
-+		ti,debounce-rep = /bits/ 16 <1>;
-+		ti,settle-delay-usec = /bits/ 16 <150>;
-+		ti,keep-vref-on;
-+		wakeup-source;
-+	};
-+
-+	can0: can@1 {
-+		compatible = "microchip,mcp251xfd";
-+		reg = <1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_can>;
-+		clocks = <&clk40m>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
-+		microchip,rx-int-gpios = <&gpio5 4 GPIO_ACTIVE_LOW>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&ethphy0 {
-+	leds {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@0 {
-+			reg = <0>;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			function = LED_FUNCTION_LAN;
-+			linux,default-trigger = "netdev";
-+		};
-+
-+		led@1 {
-+			reg = <1>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_LAN;
-+			linux,default-trigger = "netdev";
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	pca9534: gpio@22 {
-+		compatible = "nxp,pca9534";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		/* RGB_SEL */
-+		lvds-brg-enable-hog {
-+			gpio-hog;
-+			gpios = <7 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+			line-name = "rgb_sel";
-+		};
-+	};
-+
-+	/* Capacitive touch controller */
-+	ft5x06_ts: touchscreen@38 {
-+		compatible = "edt,edt-ft5206";
-+		reg = <0x38>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_captouch>;
-+		reset-gpios = <&pca6408_2 4 GPIO_ACTIVE_LOW>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+		wakeup-source;
-+	};
-+
-+	extcon_ptn5150: typec@3d {
-+		compatible = "nxp,ptn5150";
-+		reg = <0x3d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_extcon>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
-+
-+		port {
-+			typec1_dr_sw: endpoint {
-+				remote-endpoint = <&usb1_drd_sw>;
-+			};
-+		};
-+	};
-+
-+	rtc@68 {
-+		compatible = "dallas,ds1337";
-+		reg = <0x68>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rtc>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-+		wakeup-source;
-+	};
-+};
-+
-+&i2c4 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c4>;
-+	pinctrl-1 = <&pinctrl_i2c4_gpio>;
-+	scl-gpios = <&gpio5 20 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 21 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	pca6408_1: gpio@20 {
-+		compatible = "nxp,pcal6408";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pca6408>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	pca6408_2: gpio@21 {
-+		compatible = "nxp,pcal6408";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	st33ktpm2xi2c: tpm@2e {
-+		compatible = "st,st33ktpm2xi2c", "tcg,tpm-tis-i2c";
-+		reg = <0x2e>;
-+		label = "tpm";
-+		reset-gpios = <&pca9534 0 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&pcie_phy {
-+	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
-+	fsl,tx-deemph-gen1 = <0x2d>;
-+	fsl,tx-deemph-gen2 = <0xf>;
-+	clocks = <&pcie0_refclk>;
-+	status = "okay";
-+};
-+
-+&pcie0 {
-+	reset-gpios = <&pca6408_2 3 GPIO_ACTIVE_LOW>;
-+	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>, <&pcie0_refclk>,
-+		 <&clk IMX8MM_CLK_PCIE1_AUX>;
-+	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
-+			  <&clk IMX8MM_CLK_PCIE1_CTRL>;
-+	assigned-clock-rates = <10000000>, <250000000>;
-+	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
-+				 <&clk IMX8MM_SYS_PLL2_250M>;
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm>;
-+	status = "okay";
-+};
-+
-+&snvs_pwrkey {
-+	status = "okay";
-+};
-+
-+&snvs_rtc {
-+	status = "disabled";
-+};
-+
-+/* Console */
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	wakeup-source;
-+	status = "okay";
-+};
-+
-+/* Header */
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+/* Header */
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "otg";
-+	hnp-disable;
-+	srp-disable;
-+	adp-disable;
-+	usb-role-switch;
-+	disable-over-current;
-+	samsung,picophy-pre-emp-curr-control = <3>;
-+	samsung,picophy-dc-vol-level-adjust = <7>;
-+	status = "okay";
-+
-+	port {
-+		usb1_drd_sw: endpoint {
-+			remote-endpoint = <&typec1_dr_sw>;
-+		};
-+	};
-+};
-+
-+&usbotg2 {
-+	dr_mode = "host";
-+	samsung,picophy-pre-emp-curr-control = <3>;
-+	samsung,picophy-dc-vol-level-adjust = <7>;
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+/* SD */
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	bus-width = <4>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_can: cangrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO06_GPIO1_IO6		0x16
-+			MX8MM_IOMUXC_SPDIF_RX_GPIO5_IO4			0x16
-+		>;
-+	};
-+
-+	pinctrl_captouch: captouchgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO14_GPIO1_IO14		0x16
-+		>;
-+	};
-+
-+	pinctrl_ecspi1: ecspi1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK		0x13
-+			MX8MM_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI		0x13
-+			MX8MM_IOMUXC_ECSPI1_MISO_ECSPI1_MISO		0x13
-+			MX8MM_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x13
-+			MX8MM_IOMUXC_GPIO1_IO12_GPIO1_IO12		0x13
-+			MX8MM_IOMUXC_SAI2_RXC_GPIO4_IO22		0x13
-+		>;
-+	};
-+
-+	pinctrl_extcon: extcongrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x19
-+		>;
-+	};
-+
-+	pinctrl_gpio_leds: ledgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SAI1_TXD6_GPIO4_IO18		0x1c6
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL			0x400001c3
-+			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA			0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c2_gpio: i2c2-gpiogrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C2_SCL_GPIO5_IO16		0x400001c3
-+			MX8MM_IOMUXC_I2C2_SDA_GPIO5_IO17		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C4_SCL_I2C4_SCL			0x400001c3
-+			MX8MM_IOMUXC_I2C4_SDA_I2C4_SDA			0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_i2c4_gpio: i2c4-gpiogrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_I2C4_SCL_GPIO5_IO20		0x400001c3
-+			MX8MM_IOMUXC_I2C4_SDA_GPIO5_IO21		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_pca6408: pca6408grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO05_GPIO1_IO5		0x1c6
-+		>;
-+	};
-+
-+	pinctrl_pwm: pwmgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO01_PWM1_OUT		0x06
-+		>;
-+	};
-+
-+	pinctrl_vmmc_usdhc2: regvmmc-usdhc2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_RESET_B_GPIO2_IO19		0xc1
-+		>;
-+	};
-+
-+	pinctrl_restouch: restouchgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x1c0
-+		>;
-+	};
-+
-+	pinctrl_rtc: rtcgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15		0x1c1
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART1_RXD_UART1_DCE_RX		0x140
-+			MX8MM_IOMUXC_UART1_TXD_UART1_DCE_TX		0x140
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX		0x140
-+			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX		0x140
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART3_RXD_UART3_DCE_RX		0x140
-+			MX8MM_IOMUXC_UART3_TXD_UART3_DCE_TX		0x140
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x190
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d0
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d0
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0
-+			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x194
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d4
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d4
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4
-+			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x196
-+			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d6
-+			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d6
-+			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
-+			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
-+			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
-+			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2-gpiogrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0xc1
-+		>;
-+	};
-+};
--- 
-2.47.3
-
+DQo+IE9uIDEwLzA2LzIwMjYgMTA6NDAsIFNoZXJyeSBTdW4gd3JvdGU6DQo+ID4+IE9uIFR1ZSwg
+SnVuIDA5LCAyMDI2IGF0IDAzOjQ0OjA4QU0gKzAwMDAsIHNhc2hpa28tYm90QGtlcm5lbC5vcmcg
+d3JvdGU6DQo+ID4+PiBUaGFuayB5b3UgZm9yIHlvdXIgY29udHJpYnV0aW9uISBTYXNoaWtvIEFJ
+IHJldmlldyBmb3VuZCAxIHBvdGVudGlhbA0KPiA+PiBpc3N1ZShzKSB0byBjb25zaWRlcjoNCj4g
+Pj4+IC0gW01lZGl1bV0gVGhlIGB2cGNpZTN2M2F1eC1zdXBwbHlgIHByb3BlcnR5IGRlc2NyaWJl
+cyBhDQo+ID4+PiBub24tZXhpc3RlbnQNCj4gPj4gaGFyZHdhcmUgZmVhdHVyZSBvbiB0aGUgTS4y
+IEtleSBFIGNvbm5lY3RvciB0byB3b3JrIGFyb3VuZCBhIHNvZnR3YXJlDQo+ID4+IHBvbGljeS4N
+Cj4gPj4NCj4gPj4gRmVlbHMgdmFsaWQuIERlc2NyaWJlIHdoaWNoIHBpbiBvbiBNMiBjb25uZWN0
+b3IgYXJlIHlvdSByZXByZXNlbnRpbmcuDQo+ID4+DQo+ID4NCj4gPiBSZWZlciB0byBQQ0kgRXhw
+cmVzcyBNLjIgU3BlY2lmaWNhdGlvbiByNS4xIHNlYzMuMS4xIFBvd2VyIFNvdXJjZXMgYW5kDQo+
+ID4gR3JvdW5kcy4NCj4gPg0KPiA+IFBDSSBFeHByZXNzIE0uMiBTb2NrZXQgMSB1dGlsaXplcyBh
+IDMuMyBWIHBvd2VyIHNvdXJjZS4gVGhlIHZvbHRhZ2UNCj4gPiBzb3VyY2UsIDMuMyBWLCBpcyBl
+eHBlY3RlZCB0byBiZSBhdmFpbGFibGUgZHVyaW5nIHRoZSBzeXN0ZW3igJlzDQo+ID4gc3RhbmQt
+Ynkvc3VzcGVuZCBzdGF0ZSB0byBzdXBwb3J0IHdha2UgZXZlbnQgcHJvY2Vzc2luZyBvbiB0aGUN
+Cj4gPiBjb21tdW5pY2F0aW9ucyBjYXJkLg0KPiANCj4gQWdhaW46DQo+IERlc2NyaWJlIHdoaWNo
+IHBpbiBvbiBNMiBjb25uZWN0b3IgYXJlIHlvdSByZXByZXNlbnRpbmcuDQoNClNhbWUgcGluIHdp
+dGggdGhlIHZwY2llM3YzLXN1cHBseSBwcm9wZXJ0eSBpbiBjdXJyZW50IGR0LWJpbmRpbmcuDQpT
+byBmcm9tIERldmljZSB0cmVlIGJpbmRpbmdzIHBlcnNwZWN0aXZlLCB2cGNpZTN2M2F1eCBsb29r
+cyBub3QgdGhhdA0KcmVhc29uYWJsZS4gSSBhbSB3b25kZXJpbmcgaWYgdGhlcmUgYXJlIGJldHRl
+ciBzb2x1dGlvbnMgdG8gc3VwcG9ydCB0aGlzLg0KDQpCZXN0IFJlZ2FyZHMNClNoZXJyeQ0K
 
