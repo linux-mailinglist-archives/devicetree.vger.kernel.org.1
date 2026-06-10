@@ -1,311 +1,152 @@
-Return-Path: <devicetree+bounces-309711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310293-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZKvBGiVJKWqLTgMAu9opvQ
-	(envelope-from <devicetree+bounces-309711-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:23:17 +0200
+	id DUQIN8V+KmrFrAMAu9opvQ
+	(envelope-from <devicetree+bounces-310293-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:24:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6689E668B81
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:23:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA6B6705D8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:24:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Xn4PZRlg;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309711-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309711-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="WnTU/27N";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310293-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310293-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E818A3098EAD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:13:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CAFD8304F42A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2BF3403E9A;
-	Wed, 10 Jun 2026 11:12:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1053135E1AA;
+	Thu, 11 Jun 2026 09:24:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D893403B1D
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 11:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2281356759;
+	Thu, 11 Jun 2026 09:24:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781089935; cv=none; b=Jb06zEoAqXFVvzvyxy4dD1ef1BgtmJMBgoEzNI96ftUCzwa8Q8AlLgmYULnfQbNddHhIM8HqFP8T0lTzI3vjHfkBdlh2hGsmygSratFhDryIBNoRtwpBEXqgQTQqzvsrYKi9XSOTrxzNQEtJulseneEGFc0jZstuq74/y2kA90k=
+	t=1781169853; cv=none; b=IfvtbX1N77Tpo+VLSiU6paXucqtqJkt/Pe7fvePFlbOQhnEj9o8c85OYRMQibmq/vv6CiT+cPFnj0jjUaVnY/cI3mbwgWWU44VmnPu/+UuiRlI/xSbllLbeO+hjpOBx4p34XJDvHOcTF8J+djSHBsdEuBctFxMeaalY0w0bpPB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781089935; c=relaxed/simple;
-	bh=vOmQpMOTQmAD5HUHEObt2DjkT0/15ApbNdH9hc08UQc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dr8hRxAMYg1hWFvXIzXuRNgP9H3BsmL954D3Fk1gjF1Fu2xX43apD1x+ut1Q+wcVXubsL0RNHrLJmL2O8SkDrLkNCSoRPjfxV6jemTr8oonpt405fuvHhgRJzRpNjNWhy+DUh9QtyxxdNDIzt9F6Y86vcb7Jz2yfPkemRUnX+5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xn4PZRlg; arc=none smtp.client-ip=209.85.214.174
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2bf13f17da8so5419285ad.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 04:12:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781089930; x=1781694730; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ax95pId9QMw1FjsoGhe01/2Zutu0csI1tByOFuVoTk0=;
-        b=Xn4PZRlgfGC6rAE7lBHXGGN2/Hah5y/hlNrb7wE/HpbuXzEprgGcLRm4Vah1l7gE6E
-         z0gy7rAGbZsqgYnc48gXNIGF3bbmtSvIQlbBR0enwDl7NPNJoybh7AIrhW/IVgb/QVxe
-         DTfAzsFV6HxqrtL9eYtO5aXkYglr/gDEPc2OkOtrw2wNdNRUmnwQECMhG76Vh2WvcDxS
-         QJJrKYpeAQiNzYB82TB2v0XpGv6d/6xctSr6afvs3VYJXIc1MfKMHji5X4J+E65iFhPo
-         5+tvCyUtGIZ0MiQGOkDAKZLn479iU0Ouqa7PPiyeXHJQ+IjZiv9gmcTS9Y8bWR+5tnSw
-         +SmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781089930; x=1781694730;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Ax95pId9QMw1FjsoGhe01/2Zutu0csI1tByOFuVoTk0=;
-        b=k17aQk49URPHOPaCfZGVwGueGHebQ+LHKiGcBtfVbPaJmQ5IIJU554fkcSFbDmqAQW
-         J5xc0bLblSWYFTyqQIXmRsktffYS8RxHcwneXSs/HuM5myKKm6Nd1Mj2BWjxPnwRhykc
-         vMxedZoeZamjthVf+mLR+NfIR6Cn0UFPDIvCP5zUM9xCvjMLsBh/fg909sX5Ka/A3kjq
-         cT1jT4LlHO+h1NWR3x/Mx/e2R7/i6hBRN+5amIGZxLG+clMZ1d2P50te3yxyg3/1Y7e8
-         rEmMQWKk14PrnpigdyYIC4QeAQbroDRaViIUkmZADC47Zm06YMPO174XuI5iygEzSSlx
-         l63Q==
-X-Forwarded-Encrypted: i=1; AFNElJ/8RkD5IRW8M8lXHkdmYjPGTqbRbNATQr+62PyQX2fN8x6AcHh/vzAyeeBScAr9luLc0tGid/Hj4OZh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkzrDBXKqqWWFN1+sTVI01dezfXaD9c5p3H6gCl2CYe0PLx4c2
-	Pj92Ne6pIO1gVgzNdb6BUKu4UIhb8zsUGxVNp0O/2Y5jkwkFz6dlZaBP
-X-Gm-Gg: Acq92OGFqGWCVktgNkNn6kFSeZXxyMUBIXtWLTbddauH6Xyx7kXgBxYBXWsrm0ToiHA
-	ubPbzivvTvHNkeLxwMSk9pIYOaZF0vt2nn6C5Acxkd2dUW8zzqXQCtEoM3MIdn+uOI2k1MW3oRe
-	9vy69QGK4PgMGuv59KgGL+5/fAo5K0L+v5RorrNhbORHeINPTnWKKaKVxnrA+FYsox49WWNQvv/
-	Dko0v9MjspyXQi2BzVLs6PsJMRlp8bQXjQ4lUv9qUrTyLvV17eCcHIT/MTCxybxN3IrhOlfaWMR
-	CgJpt1iV/glnN/ks1uRelvsqLFOYDe3il/oFd/04ekr5d0IflyD57SIyCKZHs5rJOn42Ijxq7nm
-	igOB/BQ5UcSMhgDfxuAi8y1gOaj89AI30+H8+NHvEx1OjuF/PqH9HIyGOWJY4iYGjTh2kDIExAe
-	kkdbC/5HCZkP4QaLZxWKPeQa2V072bFslSYsogsifS2oPkNDI=
-X-Received: by 2002:a17:903:46cf:b0:2c1:13cf:19a0 with SMTP id d9443c01a7336-2c1e8332ademr127346645ad.3.1781089929478;
-        Wed, 10 Jun 2026 04:12:09 -0700 (PDT)
-Received: from chenyou.. ([140.116.39.229])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c16609e234sm251328535ad.53.2026.06.10.04.12.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2026 04:12:08 -0700 (PDT)
-From: Chen-Yu Yeh <chenyou910331@gmail.com>
-To: unicorn_wang@outlook.com,
-	inochiama@gmail.com
-Cc: Chen-Yu Yeh <chenyou910331@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Han Gao <rabenda.cn@gmail.com>,
-	Nutty Liu <liujingqi@lanxincomputing.com>,
-	Longbin Li <looong.bin@gmail.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	sophgo@lists.linux.dev (open list:SOPHGO DEVICETREES and DRIVERS),
-	linux-riscv@lists.infradead.org (open list:RISC-V ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 2/2] riscv: dts: sophgo: Add Milk-V Duo 256M board support
-Date: Wed, 10 Jun 2026 19:11:21 +0800
-Message-ID: <20260610111136.1514155-2-chenyou910331@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260610111136.1514155-1-chenyou910331@gmail.com>
-References: <20260610111136.1514155-1-chenyou910331@gmail.com>
+	s=arc-20240116; t=1781169853; c=relaxed/simple;
+	bh=mfT8gSVDCWk4JyRaaMo+/qGlPesjAc/rwMATv4G2nsg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=U5/h00SUWjS/d5LhLoDewpElEXhlmupuESbMwTlkFX5FTWzhGaRWF9JM4ITSnh42IJjY5IyAE+69PW7QWiH9dQh3f2bd0uzF78tjthYpAh+waTJBV4uth7pnZxLd5QZnJ6WwjMe26nfUw4wntdac0MHaRLZHnrq71DttvM0Km08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WnTU/27N; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F7A51F00893;
+	Thu, 11 Jun 2026 09:24:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781169852;
+	bh=kaDbe2Wtadm1CovoX1M+pm7BWifn8mTlFUxuaDqLi0Y=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=WnTU/27NgzOoYes/IzeMe1761wQ9wdP19YpDfXsYUpxxGG6XZMQ25Hl4AFte7UTPd
+	 BL8I0iSXCAKoGHxIb9Ayper7xIpPamXXxwv5m5VsIiasCQHvnvOZuqv9I5+4qGtxV3
+	 XbwKGgLUZRH+j7fA58Q7D/JhvHB0y0wcsc6r2X3U98aesHk1zaDTi+9qcueDmAeR+J
+	 uAZns5DnSAzUES0mpChef3CG3k+CVsNG+l2VlDg1dyvN6UstFwo7GOoSJ0aO6k7pYP
+	 puMZojS8gK/7CxwD2v0LuFfPk9L1CJ7Si0BZmcwSj1+lCPXpKE5+MQ1KAquwU90sVk
+	 P5Dpa3PvD9p2w==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Michael Zhang <zhangyi@everest-semi.com>, 
+ Diederik de Haas <diederik@cknow-tech.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+In-Reply-To: <20260607105913.355966-1-diederik@cknow-tech.com>
+References: <20260607105913.355966-1-diederik@cknow-tech.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: everest,es8389: Document audio
+ graph port
+Message-Id: <178108992684.232889.2776738169377861702.b4-ty@b4>
+Date: Wed, 10 Jun 2026 12:12:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1142; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=mfT8gSVDCWk4JyRaaMo+/qGlPesjAc/rwMATv4G2nsg=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqKn65dqvazU4B177fGwRd8nxToenUhgxdKVsld
+ sQPpxJGuxuJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaip+uQAKCRAk1otyXVSH
+ 0F0bB/9PSDgrxCKFj6Vx5OG4742eNYZfdMZGWRmtZMqx1jEsWbsOTc1La2BjnRVl1v3bTjNqWTT
+ o6OyxjkETr5eVJG+c6mpNoJYNumnURYwFUK9NKXk0eHHcLxw2LN62kTG1il1q4kOemlEGKb5CT3
+ OCM98D214M1rKGCcpeR+A50ik03quJF8PL0hBYuTfgpczE/pOXGDSJKanc50sAq2bdnRTWZPbpr
+ 5eDQxgiESXTCYokAEvP+SExqeDHFdz8g5NLcy4C2Je93hx8+x9hcaTVkSAgjC+JB9srp6dwIrp7
+ Tj2XVH18GBsUMlpB/cJ9mj9CStveBRbsE+xJYp4NQTRBXHP8
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309711-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[outlook.com,gmail.com];
-	FORGED_SENDER(0.00)[chenyou910331@gmail.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:unicorn_wang@outlook.com,m:inochiama@gmail.com,m:chenyou910331@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:rabenda.cn@gmail.com,m:liujingqi@lanxincomputing.com,m:looong.bin@gmail.com,m:devicetree@vger.kernel.org,m:sophgo@lists.linux.dev,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:rabendacn@gmail.com,m:looongbin@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lanxincomputing.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chenyou910331@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zhangyi@everest-semi.com,m:diederik@cknow-tech.com,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,everest-semi.com,cknow-tech.com];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310293-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6689E668B81
+X-Rspamd-Queue-Id: 5BA6B6705D8
 
-The Milk-V Duo 256M is a small form factor development board based on
-the Sophgo SG2002 SoC.
+On Sun, 07 Jun 2026 12:58:49 +0200, Diederik de Haas wrote:
+> ASoC: dt-bindings: everest,es8389: Document audio graph port
 
-This patch adds basic device tree support for the board, including:
-- UART console
-- SD/MMC controller
-- USB host
-- Onboard blue status LED (connected to PWR_GPIO[2] / porte 2)
+Applied to
 
-Tested on actual Milk-V Duo 256M hardware, verified boot to shell and
-heartbeat LED functionality.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.2
 
-Signed-off-by: Chen-Yu Yeh <chenyou910331@gmail.com>
----
- arch/riscv/boot/dts/sophgo/Makefile           |   2 +
- .../boot/dts/sophgo/sg2002-milkv-duo256m.dts  | 119 ++++++++++++++++++
- 2 files changed, 121 insertions(+)
- create mode 100644 arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts
+Thanks!
 
-diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-index 6f65526d4193..e49c8233ae1f 100644
---- a/arch/riscv/boot/dts/sophgo/Makefile
-+++ b/arch/riscv/boot/dts/sophgo/Makefile
-@@ -2,7 +2,9 @@
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano-b.dtb
-+dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-milkv-duo256m.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-evb-v1.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-evb-v2.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2044-sophgo-srd3-10.dtb
-+
-diff --git a/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts b/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts
-new file mode 100644
-index 000000000000..882fba441396
---- /dev/null
-+++ b/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts
-@@ -0,0 +1,119 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sg2002.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "Milk-V Duo 256M";
-+	compatible = "milkv,duo256m", "sophgo,sg2002";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+		serial4 = &uart4;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-blue {
-+			label = "milkv:blue:status";
-+			gpios = <&porte 2 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			default-state = "on";
-+		};
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		coprocessor_rtos: region@83f40000 {
-+			reg = <0x83f40000 0xc0000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&osc {
-+	clock-frequency = <25000000>;
-+};
-+
-+&pinctrl {
-+	uart0_cfg: uart0-cfg {
-+		uart0-pins {
-+			pinmux = <PINMUX(PIN_UART0_TX, 0)>,
-+				 <PINMUX(PIN_UART0_RX, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <10800>;
-+			power-source = <3300>;
-+		};
-+	};
-+
-+	sdhci0_cfg: sdhci0-cfg {
-+		sdhci0-clk-pins {
-+			pinmux = <PINMUX(PIN_SD0_CLK, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <16100>;
-+			power-source = <3300>;
-+		};
-+
-+		sdhci0-cmd-pins {
-+			pinmux = <PINMUX(PIN_SD0_CMD, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <10800>;
-+			power-source = <3300>;
-+		};
-+
-+		sdhci0-data-pins {
-+			pinmux = <PINMUX(PIN_SD0_D0, 0)>,
-+				 <PINMUX(PIN_SD0_D1, 0)>,
-+				 <PINMUX(PIN_SD0_D2, 0)>,
-+				 <PINMUX(PIN_SD0_D3, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <10800>;
-+			power-source = <3300>;
-+		};
-+
-+		sdhci0-cd-pins {
-+			pinmux = <PINMUX(PIN_SD0_CD, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <10800>;
-+			power-source = <3300>;
-+		};
-+	};
-+};
-+
-+&sdhci0 {
-+	pinctrl-0 = <&sdhci0_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	bus-width = <4>;
-+	no-1-8-v;
-+	no-mmc;
-+	no-sdio;
-+	disable-wp;
-+};
-+
-+&uart0 {
-+	pinctrl-0 = <&uart0_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&usb {
-+	dr_mode = "host";
-+	status = "okay";
-+};
--- 
-2.43.0
+[1/1] ASoC: dt-bindings: everest,es8389: Document audio graph port
+      https://git.kernel.org/broonie/sound/c/aa283db3bb8d
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
