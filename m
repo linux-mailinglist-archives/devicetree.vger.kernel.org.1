@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-309948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309950-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KnJeL1uPKWo0ZgMAu9opvQ
-	(envelope-from <devicetree+bounces-309948-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:22:51 +0200
+	id RjNSMHSTKWrCZwMAu9opvQ
+	(envelope-from <devicetree+bounces-309950-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:40:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA8666B649
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:22:51 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF3F66B947
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:40:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nCPADgkZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309948-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309948-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QaFMb8av;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309950-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309950-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AD061311AE3B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:16:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8151B33B3418
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:16:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216292D060B;
-	Wed, 10 Jun 2026 16:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0852D978A;
+	Wed, 10 Jun 2026 16:16:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF88C2D7DD7
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 16:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF342D1303
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 16:16:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781108188; cv=none; b=kAQRJjIA/5DyvJyoDNfVMlgIDhFTWysrMEy2TYv6o5nNDAnOCYM8Gbc3+4yPHvs8Mb+jWUEChzIyy/L41iuxrQops8C6biGbavK4PROJAWY1UmPeD+Y2Trf0HmYm3awRRdW0sZrj/seP6DE7J9GNFUTY4APz/5K0dyg/33SLrBc=
+	t=1781108190; cv=none; b=ExcCdi/sKwDJBJE2taxBYnMRU57tHkVRZsZPPjv6NMEvnDdOGlHXr73zF5xsBv5XAnyeL27mMCJtHSXx2U/RgbQ0oGPdRON/Xc/My5+iBEjl8LKx3jF3YOYcHQt1XsFylOn5GD5lsgEClQXf5XMwA41p5qOBTqRVLmt5SF2IoVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781108188; c=relaxed/simple;
-	bh=kLzvSdcZJI8CbkKrMwJrQ9qtYeY4qy5m3lt2NSp9FNY=;
+	s=arc-20240116; t=1781108190; c=relaxed/simple;
+	bh=PwQhu1z+5crkgR9b1HebsACJVxVoWjOcJ83WjGp85IM=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=OVQ0Uhi3HpzR7UppD+RZGiOQTN98HtV0hXIRqA9HZTmsch17wXg/7Qzzmzhme/am+ut7juh7+a0R2EFbc4c1QoeKNSvyFxf21fRL1cySa57OpQmMgNBWHCtpeU2qtIzbKCeKmNAEGtEOmuFEDhBltXtaA4R6236Gsz7N3hxYQsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nCPADgkZ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FF641F00899;
-	Wed, 10 Jun 2026 16:16:26 +0000 (UTC)
+	 Message-Id; b=RIyHMJjBqROmoUynRcBvRkgjbkbFyot/MUl0AS5g5ifA+Y6jULJAKrgoRg58KdCMCplSuIZL6PDAmIdBcuvXUisQb2IFHp4sF9dplWZB/TtBnpu8BSk3TpVIaDe8YE+YXqVEp+djAXKABfsl0DH4D3+U/W2/K6ZnIDpnpNPcDhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QaFMb8av; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82B131F00899;
+	Wed, 10 Jun 2026 16:16:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781108186;
-	bh=qeB5+E/K9z1KLpPRj0JcU4+n+vw2qCHFyhdGYcXQr6g=;
+	s=k20260515; t=1781108188;
+	bh=CfaVnOIeKq6eG0IPa/2W53IauIgNTq+i65seOoUnRCg=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=nCPADgkZjyBSnnYWAn8DBP5sER08DNsbxVjbxobaYULUeumUk96C5ag9tGspsKj8x
-	 OHRTbOl5+wMmPx4q2B3uNNLhn9JO1nW1Isj+1zgbRXphPl2PTCRMTL/uivn/QizjkF
-	 sBHyleByANoaXaoq6GLFAnIgj3kk+wblqRH36AjQbRkCOQUwL2QM5XMXme2P6HyQyw
-	 Bjxr8U0jM7MPvA/sPDlzaQW2UNm2/VG5n/OcEAlAq5P69d0ELcWt0/RmIShZPnA3rT
-	 Vgq8gHu+mIs5IG7oB5+p43VBIP1vnEeO+iz6JgEjKKDtCVNWWrhmwaGm6W+geV++JB
-	 FmUD9wrI5fFdA==
+	b=QaFMb8avozmWOI2zT2yy2HS8Ve4BRqX4SOouLlWrD3zfqQkPyUAoXB5uU2foE/ojS
+	 Rh8Gb/673LYeFzWe/fYXrSwDokEHql7QpAZZhj9XfJQLv7Sr3Uw9Hglz6DJK0eePjJ
+	 ARN29ledyo9M6HPJ4xDH1A9NuOz4JJAT56ZmteTXzy/iT92vXOwNlWw3niBFZCButB
+	 RGK3W+uO+4FH2JKG7545NKOfr7VCwiXS/PPxmA5GoMCr4mNOXasJjlJBS2shiRgfvC
+	 LH1TBBegmVNfQqaRE7dVIiIwyPVX0hhHcCI4hhahXl5fcrraV18PSOmsyQusPbkXYs
+	 MyE5ENF7NDgdA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v6 09/12] net: phylink: add .pcs_link_down PCS
- OP
+Subject: Re: [PATCH net-next v6 11/12] net: pcs: airoha: add PCS driver for
+ Airoha AN7581 SoC
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Christian Marangi" <ansuelsmth@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260609151212.29469-10-ansuelsmth@gmail.com>
-References: <20260609151212.29469-10-ansuelsmth@gmail.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260609151212.29469-12-ansuelsmth@gmail.com>
+References: <20260609151212.29469-12-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 16:16:26 +0000
-Message-Id: <20260610161626.8FF641F00899@smtp.kernel.org>
+Date: Wed, 10 Jun 2026 16:16:27 +0000
+Message-Id: <20260610161628.82B131F00899@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,24 +71,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309948-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309950-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
@@ -98,115 +98,245 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3AA8666B649
+X-Rspamd-Queue-Id: 2FF3F66B947
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+Thank you for your contribution! Sashiko AI review found 9 potential issue(=
 s) to consider:
-- [Critical] Memory leak/Use-After-Free due to missing notifier unregistrat=
-ion.
-- [High] Hardware Teardown Sequence Error violating symmetric LIFO teardown.
-- [High] Data Race and list corruption in `pcs_list`.
-- [Low] Incorrect grammar in callback documentation.
+- [Critical] Passing the address of a local stack variable (`&priv`) to `fw=
+node_pcs_add_provider()` causes a fatal use-after-free when dereferenced la=
+ter.
+- [High] A division by zero will occur during RX PR calibration if the freq=
+uency output perfectly matches the target.
+- [High] Integer underflow and misuse of the `abs()` macro on unsigned type=
+s breaks frequency calibration.
+- [High] The `pcs-airoha` module is silently not generated when configured =
+as a loadable module (`M`).
+- [High] Shared device-level hardware resets and PLL configurations disrupt=
+ other active ports on multi-port devices.
+- [High] Missing bounds check on user-provided device tree arguments leads =
+to out-of-bounds array access.
+- [High] Missing `FORCE_SEL` bits in `regmap_update_bits` values causes the=
+ hardware to ignore the forced configurations.
+- [Medium] `regmap_set_bits` performs a read-modify-write on Write-1-to-Cle=
+ar (W1C) interrupt status registers, silently dropping unhandled interrupts.
+- [Low] Missing `fallthrough;` or `break;` annotation in `switch` statement=
+ causes an implicit fallthrough compiler warning.
 --
 
-commit db8b84b7398b2a4cfe29ace55d1aefced615f8e2
+commit a1f0ba4cb5341a223ae17b71c3dfd06228567ad5
 Author: Christian Marangi <ansuelsmth@gmail.com>
+Date:   Tue Jun 9 15:12:07 2026 +0000
 
-net: phylink: add .pcs_link_down PCS OP
+net: pcs: airoha: add PCS driver for Airoha AN7581 SoC
 
-This commit introduces a new pcs_link_down callback for PCS drivers to defi=
-ne
-specific teardown operations. It updates phylink_link_down to invoke this
-new operation before taking down the MAC. This allows PCS drivers to perform
-necessary resets or counter clearing when the link goes down.
+This commit introduces the PCS driver for the Airoha AN7581 SoC, supporting
+Ethernet, PON, PCIe, and USB SERDES. It implements phylink PCS operations a=
+nd
+handles the configuration of the PCS and PMA blocks.
 
-> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
-> index 65b67c33e12fd..38428b375eca3 100644
-> --- a/drivers/net/phy/phylink.c
-> +++ b/drivers/net/phy/phylink.c
+> diff --git a/drivers/net/pcs/airoha/Makefile b/drivers/net/pcs/airoha/Mak=
+efile
+> new file mode 100644
+> index 0000000000000..25cb8f090c214
+> --- /dev/null
+> +++ b/drivers/net/pcs/airoha/Makefile
+> @@ -0,0 +1,7 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +obj-y                          :=3D pcs-airoha.o
+
+[Severity: High]
+Will this correctly build as a loadable module? It appears that using obj-y
+forces static inclusion, which means the module won't be generated when
+CONFIG_PCS_AIROHA is set to 'm'. Should this use obj-$(CONFIG_PCS_AIROHA)
+instead?
+
+> diff --git a/drivers/net/pcs/airoha/pcs-airoha-common.c b/drivers/net/pcs=
+/airoha/pcs-airoha-common.c
+> new file mode 100644
+> index 0000000000000..ead0bc8083967
+> --- /dev/null
+> +++ b/drivers/net/pcs/airoha/pcs-airoha-common.c
+[ ... ]
+> +static int airoha_pcs_setup_scu(struct airoha_pcs_priv *priv,
+> +                               int index, phy_interface_t interface)
+> +{
+[ ... ]
+> +       /* TODO better handle reset from MAC */
+> +       ret =3D reset_control_bulk_assert(ARRAY_SIZE(priv->rsts),
+> +                                       priv->rsts);
+
+[Severity: High]
+Does unconditionally triggering these global reset lines disrupt other acti=
+ve
+ports on multi-port devices like PCIe? It seems that initializing a second
+port will assert these resets and could drop the link on an already active
+first port.
 
 [ ... ]
+> +static void airoha_pcs_interrupt_init_usxgmii(struct airoha_pcs_priv *pr=
+iv,
+> +                                             int index)
+> +{
+[ ... ]
+> +       /* Clear any pending interrupt */
+> +       regmap_set_bits(maps->usxgmii_pcs, AIROHA_PCS_USXGMII_PCS_INT_STA=
+_2,
+> +                       AIROHA_PCS_USXGMII_RPCS_FSM_DEC_ERR_INT |
+> +                       AIROHA_PCS_USXGMII_R_TYPE_E_INT |
+> +                       AIROHA_PCS_USXGMII_R_TYPE_T_INT |
+> +                       AIROHA_PCS_USXGMII_R_TYPE_D_INT);
 
-> @@ -1735,6 +1741,8 @@ static void phylink_link_down(struct phylink *pl)
-> =20
->  	phylink_deactivate_lpi(pl);
-> =20
-> +	phylink_pcs_link_down(pl->pcs);
-> +
->  	pl->mac_ops->mac_link_down(pl->config, pl->act_link_an_mode,
->  				   pl->cur_interface);
+[Severity: Medium]
+Could using regmap_set_bits() on a Write-1-to-Clear (W1C) interrupt status
+register cause unhandled interrupts to be silently dropped? This performs a
+read-modify-write, which might write back 1s to pending interrupts not
+targeted by this bitmask. Should this use a direct regmap_write() instead?
 
-[Severity: High]
-Does this break the symmetric LIFO teardown order? During phylink_link_up(),
-the PCS is initialized before the MAC. Calling phylink_pcs_link_down() befo=
-re
-mac_link_down() leaves the MAC nominally active while the underlying PCS
-connection is severed. Could this inconsistency lead to MAC hardware lockup=
-s,
-AXI bus hangs, or transmit queue timeouts?
-
-> diff --git a/include/linux/phylink.h b/include/linux/phylink.h
-> index b65f91c78d8cc..79a1496fa519c 100644
-> --- a/include/linux/phylink.h
-> +++ b/include/linux/phylink.h
-> @@ -528,6 +528,7 @@ struct phylink_pcs {
->   * @pcs_an_restart: restart 802.3z BaseX autonegotiation.
->   * @pcs_link_up: program the PCS for the resolved link configuration
->   *               (where necessary).
-> + * @pcs_link_down: torn down link between MAC and PCS.
+[ ... ]
+> +static void airoha_pcs_an_restart(struct phylink_pcs *pcs)
+> +{
+[ ... ]
+> +       case PHY_INTERFACE_MODE_USXGMII:
+> +               regmap_set_bits(maps->usxgmii_pcs, AIROHA_PCS_USXGMII_PCS=
+_AN_CONTROL_0,
+> +                               AIROHA_PCS_USXGMII_AN_RESTART);
+> +               udelay(3);
+> +               regmap_clear_bits(maps->usxgmii_pcs, AIROHA_PCS_USXGMII_P=
+CS_AN_CONTROL_0,
+> +                                 AIROHA_PCS_USXGMII_AN_RESTART);
+> +       default:
+> +               return;
 
 [Severity: Low]
-this isn't a bug, but there is a grammar mistake here (torn down instead of
-tear down).
+Does this missing break or fallthrough annotation trigger compiler warnings?
+It looks like the PHY_INTERFACE_MODE_USXGMII case falls through to default
+without explicitly declaring it.
 
-[Severity: Critical]
-Is there a missing notifier unregistration for the fwnode_pcs_nb block?
-Looking at phylink_create(), it registers the embedded notifier block:
-
-drivers/net/phy/phylink.c:phylink_create() {
-        ...
-        register_fwnode_pcs_notifier(&pl->fwnode_pcs_nb);
-        ...
-}
-
-However, phylink_destroy() and the error paths in phylink_create() do not
-seem to unregister it. When the phylink struct is freed via kfree(pl), the
-embedded notifier remains linked in the global chain. Will any subsequent
-PCS provider registration system-wide iterate over the freed memory and cau=
-se
-a kernel panic? (Note: introduced by the earlier patch net: phylink: support
-late PCS provider attach in the same series).
+[ ... ]
+> +static struct phylink_pcs *airoha_pcs_get(struct fwnode_reference_args *=
+pcsspec,
+> +                                         void *data)
+> +{
+[ ... ]
+> +       if (pcsspec->nargs)
+> +               index =3D pcsspec->args[0];
+> +
+> +       return &priv->ports[index].pcs;
 
 [Severity: High]
-Is there a data race when mutating pcs_list in phylink_destroy()?
+Is there a risk of an out-of-bounds array access here? The index is extract=
+ed
+directly from the device tree via pcsspec->args[0] without verifying if it =
+is
+less than priv->data->num_port.
 
-The pcs_provider_notify() callback asynchronously adds newly discovered PCS
-providers to pl->pcs_list while holding the rtnl_lock(). However,
-phylink_destroy() iterates over and deletes entries from pl->pcs_list witho=
-ut
-holding the rtnl_lock():
+[ ... ]
+> +static int airoha_pcs_probe(struct platform_device *pdev)
+> +{
+[ ... ]
+> +       priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+[ ... ]
+> +       return fwnode_pcs_add_provider(dev_fwnode(dev), airoha_pcs_get,
+> +                                      &priv);
 
-drivers/net/phy/phylink.c:phylink_destroy() {
-        ...
-        /* Remove every PCS from phylink PCS list */
-        list_for_each_entry_safe(pcs, tmp, &pl->pcs_list, list)
-                list_del(&pcs->list);
-        ...
-}
+[Severity: Critical]
+Could passing the address of the local stack variable &priv cause a
+use-after-free? When the MAC driver later calls airoha_pcs_get(), it will
+dereference this stack pointer after airoha_pcs_probe() has returned. Should
+this pass 'priv' instead of '&priv'?
 
-If there is a concurrent PCS provider registration via the global notifier
-chain, could this lead to unsynchronized mutations and list corruption?
-(Note: introduced by the earlier patch net: phylink: support late PCS
-provider attach in the same series).
+> diff --git a/drivers/net/pcs/airoha/pcs-an7581.c b/drivers/net/pcs/airoha=
+/pcs-an7581.c
+> new file mode 100644
+> index 0000000000000..22cf7b4b0108f
+> --- /dev/null
+> +++ b/drivers/net/pcs/airoha/pcs-an7581.c
+[ ... ]
+> +static void an7581_pcs_jcpll_bringup(struct airoha_pcs_priv *priv,
+> +                                    int index, phy_interface_t interface)
+> +{
+[ ... ]
+> +       /* This comment only apply to Serdes PCIe that expose
+> +        * 2 PCS.
+> +        *
+> +        * The Serdes PCIe expose 2 PCS but always require
+> +        * the PMA for the first PCS to be configured
+> +        * for correct functionality for JCPLL.
+> +        */
+> +       pcs_pma =3D priv->pcs_pma[0];
+
+[Severity: High]
+Does forcing pcs_pma to index 0 clobber the active PLL configuration of Port
+0 when Port 1 is being initialized? It appears this might disrupt the active
+connection on the first port.
+
+[ ... ]
+> +static void an7581_pcs_tx_bringup(struct airoha_pcs_priv *priv,
+> +                                 int index, phy_interface_t interface)
+> +{
+[ ... ]
+> +       regmap_update_bits(pcs_pma, AIROHA_PCS_PMA_PXP_TX_TERM_SEL,
+> +                          AIROHA_PCS_PMA_FORCE_SEL_DA_TX_CKIN_DIVISOR |
+> +                          AIROHA_PCS_PMA_FORCE_DA_TX_CKIN_DIVISOR |
+> +                          AIROHA_PCS_PMA_FORCE_SEL_DA_TX_TERM_SEL |
+> +                          AIROHA_PCS_PMA_FORCE_DA_TX_TERM_SEL,
+> +                          AIROHA_PCS_PMA_FORCE_SEL_DA_TX_CKIN_DIVISOR |
+> +                          FIELD_PREP(AIROHA_PCS_PMA_FORCE_DA_TX_CKIN_DIV=
+ISOR,
+> +                                     ckin_divisor) |
+> +                          FIELD_PREP(AIROHA_PCS_PMA_FORCE_DA_TX_TERM_SEL=
+, 0x0));
+
+[Severity: High]
+Will the hardware ignore this forced configuration? The mask includes
+AIROHA_PCS_PMA_FORCE_SEL_DA_TX_TERM_SEL, but the value part omits it, which
+might clear the force override bit.
+
+[ ... ]
+> +static u32 an7581_pcs_rx_prcal_idac_major(struct airoha_pcs_priv *priv,
+> +                                         int index, u32 target_fl_out)
+> +{
+[ ... ]
+> +               fl_out =3D an7581_pcs_apply_cdr_pr_idac(priv, index, cdr_=
+pr_idac_tmp);
+> +
+> +               /* Use absolute values to find the closest one to target =
+*/
+> +               fl_out_diff_new =3D abs(fl_out - target_fl_out);
+
+[Severity: High]
+Since fl_out and target_fl_out are both unsigned integers, doesn't this
+subtraction cause an underflow if fl_out is less than target_fl_out? Also,
+the abs() macro generally expects signed types. Could this cause the
+calibration loop to become inaccurate?
+
+[ ... ]
+> +static u32 an7581_pcs_rx_prcal_idac_minor(struct airoha_pcs_priv *priv, =
+int index,
+> +                                         u32 target_fl_out, u32 cdr_pr_i=
+dac_major)
+> +{
+[ ... ]
+> +               fl_out_diff_new =3D abs(fl_out - target_fl_out);
+[ ... ]
+> +               if (fl_out_diff_new > fl_out_diff &&
+> +                   (abs(fl_out_diff_new - fl_out_diff) * 100) / fl_out_d=
+iff > 10) {
+
+[Severity: High]
+Is there a risk of a divide-by-zero condition here? If the initial fl_out
+reading perfectly matches target_fl_out, fl_out_diff will evaluate to 0,
+which would cause the division to panic the kernel.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609151212.2946=
-9-1-ansuelsmth@gmail.com?part=3D9
+9-1-ansuelsmth@gmail.com?part=3D11
 
