@@ -1,167 +1,136 @@
-Return-Path: <devicetree+bounces-309691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309692-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id i2V8CVxBKWpsTAMAu9opvQ
-	(envelope-from <devicetree+bounces-309691-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:50:04 +0200
+	id WZh5CARFKWp7TQMAu9opvQ
+	(envelope-from <devicetree+bounces-309692-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:05:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99BBA66871A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:50:03 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6874668922
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:05:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=codeconstruct.com.au header.s=2022a header.b="i7RE3I/s";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309691-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309691-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=codeconstruct.com.au;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fsNosMwq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309692-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309692-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D9AD4313A967
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:49:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D673730CD57A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:59:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D5A93D7D90;
-	Wed, 10 Jun 2026 10:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3431D3DEAC2;
+	Wed, 10 Jun 2026 10:58:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2679E3EA97E;
-	Wed, 10 Jun 2026 10:49:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C81F5403B09;
+	Wed, 10 Jun 2026 10:58:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781088572; cv=none; b=AT/maqYzEO24YkqmJk/yQRHbgh9N+CuhC7tIFDXrtxPG6TcdVmHSCrqfw1SIZjFJymo0vP6ADMa5paZj5vSKXF5kO4q73nA5AwqKkmIQidtXtK4f5kUEyhNI3QKt2LtdPtG911zXyhdl2KO7qTZ/ecH+Plc+0t1NizqX1DjWPo8=
+	t=1781089132; cv=none; b=aiWyYPoCuzqR7Z5pidqFOuYFNL86ExCccI/Tn4jiu9Psch+OArq2Tivu03BpvRrAkmpq3xIWpmaXkDVLrH+mxBXYQQaLWSBG25SnLRVKy8Km/7lIs6Xpnw715vrc4TCVAjKoODrfQbVGfUBd2WbATy7ekQNkBNNV0do9WObAeUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781088572; c=relaxed/simple;
-	bh=MPeEvHMGfoWYTBvZ0/qNot4IE3D1fON95vQKTR1vGN4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=R2Ftk2Vkbnvu8El4gvFHME2GvGa4ErI/c0rKRZbIv3NnFC5ua5xwYXWkpr5qL3XszNvqb7OzPv57nzTr5p4zTir4MSwtK+CF7r9ExP1YtvoBezYrGPK6ZYWrHKI3hj0LhUtMjRKJAPqTsjgNgZRWQTeDXgftfYMoojJGmqElHNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=i7RE3I/s; arc=none smtp.client-ip=203.29.241.158
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1781088567;
-	bh=PqEFgoVcPTbXIJdGqrarSTorUnykUPeJIUIL/0osaWo=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=i7RE3I/sTan/oSKn8Qc6B9mcLy8Wmu7Y/N//Gdf6xE0g0Or7mwR2cH4uPL0vl4FWz
-	 71DL/2wn+wzrb/bPYh3seH/KmK+MnJpjkr7TRdfORrPbYnbm8ZAZ4q/HNzKxW9z1A7
-	 225g0jFNg9ocENgzxXdrMy74VV6bFgoG5qCSzmrDpOi3Ld+zPVyfJkO6/vQlkJHXXf
-	 f4sRcOsBn3V9otOhioMLpQHgq40picwOARmyDWq3VQqzKwgVWhxi3/DlUeA4a1QS0m
-	 8upqiKFml/izYTH5j5u0DPRCdoQZbRgdIzvcH0379Jo3Bwp/7BJ2rgaA12TJRQg/bc
-	 PfQpNdcK+Lp6Q==
-Received: from [192.168.68.117] (unknown [180.150.112.11])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E5EA460A19;
-	Wed, 10 Jun 2026 18:49:26 +0800 (AWST)
-Message-ID: <ff53862950a6075c43bb8f1e47c14389d6fc7575.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v4 2/3] arm: dts: nuvoton: npcm7xx: Drop redundant FIU
- clock-names
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Tomer Maimon <tmaimon77@gmail.com>, broonie@kernel.org, robh@kernel.org,
- 	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: openbmc@lists.ozlabs.org, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- avifishman70@gmail.com, 	tali.perry1@gmail.com, venture@google.com,
- yuenn@google.com, 	benjaminfair@google.com
-Date: Wed, 10 Jun 2026 20:19:26 +0930
-In-Reply-To: <20260609163919.3321228-3-tmaimon77@gmail.com>
-References: <20260609163919.3321228-1-tmaimon77@gmail.com>
-	 <20260609163919.3321228-3-tmaimon77@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1781089132; c=relaxed/simple;
+	bh=NmdinjyHxF/fIyT2G04rr9xV3v6p21ep4MTgBtwha50=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sDthqaiOWIRw2uCWwhhzzk2Ws6vn5arhU6d3TgI4GWKYLCDzjPtalFoXBh9oDVinJ2nNYe2BQms99Oxw9B/DstOSWNaY6arAHgl0P/rMrTooIHHx0ZKmBBlXD7JrRDFiBZPUWC1X9FzQYgWdTFtUjFfu6kvELxaZgBb2F+QmTj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fsNosMwq; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACC531F0089B;
+	Wed, 10 Jun 2026 10:58:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781089127;
+	bh=kBy1ftOH0spfNVWjIV7Ntkw3pqs6LML0cP/jONPpwTs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=fsNosMwq4bKiMs5RBf7mOYdv1RLHMGJupqb+byWs+/LD7mgKrNe9GxhVTj1RPN8La
+	 nsqB1YNuXDO8uR0tLPTHjd3+8LbbuqjZl0YfC1aPeV2/HoIVxRYjc07ZYiJxaoQEOF
+	 v6hMIAqsobSJdMWXt1YdmmWz/yi/1qcb1j+37ztfciEdFIyWYMrrpvySWp3r/hXX5v
+	 TS3seEi4FfqTBsL0xhJzRZF1dMnpT0YGB5yg9o7lR/veq752ZXDwpYoKIGKE0KClOm
+	 gPUKqFbHDtazesfDlDhnOyRnLFQvxur28bdKMCbyK6+SDnHJRxo/9TuhO4/6DvCFxA
+	 URiutjp3L+0kg==
+Date: Wed, 10 Jun 2026 11:58:41 +0100
+From: Lee Jones <lee@kernel.org>
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <dujemihanovic32@gmail.com>
+Cc: Karel Balej <balejk@matfyz.cz>, devicetree@vger.kernel.org,
+	phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH 2/3] mfd: 88pm886: Initialize battery page
+Message-ID: <20260610105841.GK4151951@google.com>
+References: <20260526-88pm886-vbus-v1-0-f2bd1fd3c19e@dujemihanovic.xyz>
+ <uME6Hy8mQeKxnZAg1Q4aPA@gmail.com>
+ <20260608085524.GG4151951@google.com>
+ <ZyFElwT1QjOADA-7NXdGRw@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZyFElwT1QjOADA-7NXdGRw@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
-	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:tmaimon77@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-309691-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	FORGED_SENDER(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-309692-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dujemihanovic32@gmail.com,m:balejk@matfyz.cz,m:devicetree@vger.kernel.org,m:phone-devel@vger.kernel.org,m:~postmarketos/upstreaming@lists.sr.ht,m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[lists.ozlabs.org,vger.kernel.org,gmail.com,google.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[matfyz.cz,vger.kernel.org,lists.sr.ht,kernel.org,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 99BBA66871A
+X-Rspamd-Queue-Id: A6874668922
 
-On Tue, 2026-06-09 at 19:39 +0300, Tomer Maimon wrote:
-> The NPCM7xx FIU controller driver gets its single clock with
-> devm_clk_get_enabled(dev, NULL) and does not perform a named
-> clock lookup. Drop the redundant clock-names properties from the
-> FIU controller nodes so the DTS describes only the resources the
-> driver actually uses.
+On Mon, 08 Jun 2026, Duje Mihanović wrote:
 
-The devicetree is a description of the hardware in the form documented
-by the bindings. Generally it's not right to discuss Linux drivers
-here: they're only relevant in the context of Linux, but the devicetree
-binding governs devicetrees over multiple projects.
+> On Monday, 8 June 2026 10:55:24 Central European Summer Time Lee Jones wrote:
+> > On Sun, 07 Jun 2026, Duje Mihanović wrote:
+> 
+> [...]
+> 
+> > > Lee, do you by chance know how to proceed here?
+> > 
+> > You can move them.
+> > 
+> > Please take into consideration data-size as well, rather than blindly
+> > following RCT.  Larger items (structs) at the top down to smaller (ints
+> > and bools) as the bottom.  Luckily the larger (data size) items also end
+> > up being longer (string).
+> 
+> Am I to consider the sizes of the pointers or the structs they point to?
 
-From a quick look it seems that these names are not described in the
-corresponding binding, therefore no drivers should be using them and as
-such they can (and should) be dropped. A driver would only be worth
-mentioning if it did use the undocumented names (as that would be a
-complication).
+No - group all structs in RCT.
 
-Can you please rework the description?
-
-Andrew
-
->=20
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
-> =C2=A0arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi | 3 ---
-> =C2=A01 file changed, 3 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi b/arch=
-/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-> index a16450abea0e..83cd10b47273 100644
-> --- a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-> +++ b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-> @@ -193,7 +193,6 @@ fiu0: spi@fb000000 {
-> =C2=A0			reg =3D <0xfb000000 0x1000>;
-> =C2=A0			reg-names =3D "control";
-> =C2=A0			clocks =3D <&clk NPCM7XX_CLK_SPI0>;
-> -			clock-names =3D "clk_spi0";
-> =C2=A0			status =3D "disabled";
-> =C2=A0		};
-> =C2=A0
-> @@ -204,7 +203,6 @@ fiu3: spi@c0000000 {
-> =C2=A0			reg =3D <0xc0000000 0x1000>;
-> =C2=A0			reg-names =3D "control";
-> =C2=A0			clocks =3D <&clk NPCM7XX_CLK_SPI3>;
-> -			clock-names =3D "clk_spi3";
-> =C2=A0			pinctrl-names =3D "default";
-> =C2=A0			pinctrl-0 =3D <&spi3_pins>;
-> =C2=A0			status =3D "disabled";
-> @@ -217,7 +215,6 @@ fiux: spi@fb001000 {
-> =C2=A0			reg =3D <0xfb001000 0x1000>;
-> =C2=A0			reg-names =3D "control";
-> =C2=A0			clocks =3D <&clk NPCM7XX_CLK_SPIX>;
-> -			clock-names =3D "clk_spix";
-> =C2=A0			status =3D "disabled";
-> =C2=A0		};
-> =C2=A0
+-- 
+Lee Jones
 
