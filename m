@@ -1,61 +1,66 @@
-Return-Path: <devicetree+bounces-309657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309658-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xx9HGOY3KWowSgMAu9opvQ
-	(envelope-from <devicetree+bounces-309657-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:09:42 +0200
+	id daD7Kww4KWozSgMAu9opvQ
+	(envelope-from <devicetree+bounces-309658-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:10:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8E3668225
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:09:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11BB2668231
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:10:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=andestech.com (policy=reject);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309657-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309657-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309658-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309658-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 41C72301DAC9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:03:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D9AD4327A21B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:03:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA89F3BCD2B;
-	Wed, 10 Jun 2026 10:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBF6F3E3160;
+	Wed, 10 Jun 2026 10:03:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from Atcsqr.andestech.com (atcsqr.andestech.com [220.128.198.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CBD13B38B1
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 10:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6BA3B38B1
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 10:03:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781085784; cv=none; b=di6uF5HFokY4No2myEdcGKwO6xaB+d8dBOg0LfooH/M8sRScd4Bny5PRQ/T4PlMoAu/laltwQg16I7SzqxYNDfA//2PGl0X+WIipDxbikKZTKYuxRgjEquKhDPV6YNcuWw5Cw6JecLEywHRL08UVlZfOF0UzH9rk6D6o0rxI/dk=
+	t=1781085793; cv=none; b=OuZRDBs5J8liiMF0qUo2+J4JyueZbxXr/JSHQC2h5f3TIlJgQt5jjIPPaXPdOBdGGbHsNfUqfdgehUcdbblF4yu4i05TNdvqLlRoUJGirTpX2Ts1F9mw857Dt8qmvWjXGLrwVkOytVFCCC2NeezsE+pVoQSrjUNjmIMfD0MA6+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781085784; c=relaxed/simple;
-	bh=TeCnY+5ryURVyWzpfvFfragz+52zK1Vn31lPFBY7mP4=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gt9i/lKh+KPUAgv2PAnbVTGZTGEywgiCkPAsicqECO0tB0UUxCzBI+a/M+kF8QZYhq/uMMjDA0q4tZAujfko8/FKMYISAUHiYbVx/hQqGPTniTToLakzKjCx6ZXf1+O5K9uaddBwBmCIJHWwDFNtMdDze0dwA547mWqfmN/MmF0=
+	s=arc-20240116; t=1781085793; c=relaxed/simple;
+	bh=x1ntVEPXBZggV4PzToUxUW8i0TVdfMRXZZsNxGs65sM=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bEvU4QlYk/XqXp1r8pxPmviBpW7mQO4DkMLevMN5Oc+AzirXUqU+S89ljvNRGZuL7rHYWA/hNn6xVeyVLZRMj/d2lOnCOsS/5PbuAOoBhdGYA6zLhyi6Ho0gklOwY+syYl0iPoQT/JApHRvL1x5keAVQTdcBYoyQCV1BWyDRLek=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=220.128.198.184
 Received: from Atcsqr.andestech.com (localhost [127.0.0.2] (may be forged))
-	by Atcsqr.andestech.com with ESMTP id 65A9vgV4075451
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 17:57:42 +0800 (+08)
+	by Atcsqr.andestech.com with ESMTP id 65A9vlGR075546
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 17:57:47 +0800 (+08)
 	(envelope-from cl634@andestech.com)
 Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
-	by Atcsqr.andestech.com with ESMTPS id 65A9vWCQ075344
+	by Atcsqr.andestech.com with ESMTPS id 65A9vaER075387
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-	Wed, 10 Jun 2026 17:57:32 +0800 (+08)
+	Wed, 10 Jun 2026 17:57:36 +0800 (+08)
 	(envelope-from cl634@andestech.com)
 Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
  (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 10 Jun
- 2026 17:57:32 +0800
+ 2026 17:57:36 +0800
 From: CL Wang <cl634@andestech.com>
 To: <vkoul@kernel.org>, <Frank.Li@kernel.org>, <robh@kernel.org>,
         <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
         <dmaengine@vger.kernel.org>
 CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <tim609@andestech.com>, <cl634@andestech.com>
-Subject: [PATCH v5 0/3] dmaengine: atcdmac300: Add Andes ATCDMAC300 DMA driver
-Date: Wed, 10 Jun 2026 17:57:21 +0800
-Message-ID: <20260610095724.1980622-1-cl634@andestech.com>
+        <tim609@andestech.com>, <cl634@andestech.com>,
+        Conor Dooley
+	<conor.dooley@microchip.com>
+Subject: [PATCH v5 1/3] dt-bindings: dmaengine: Add support for ATCDMAC300 DMA engine
+Date: Wed, 10 Jun 2026 17:57:22 +0800
+Message-ID: <20260610095724.1980622-2-cl634@andestech.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260610095724.1980622-1-cl634@andestech.com>
+References: <20260610095724.1980622-1-cl634@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,94 +74,141 @@ X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
 X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
 X-DNSRBL: 
 X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 65A9vgV4075451
+X-MAIL:Atcsqr.andestech.com 65A9vlGR075546
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [2.04 / 15.00];
 	DMARC_POLICY_REJECT(2.00)[andestech.com : SPF not aligned (relaxed), No valid DKIM,reject];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:tim609@andestech.com,m:cl634@andestech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_FROM(0.00)[bounces-309657-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309658-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:tim609@andestech.com,m:cl634@andestech.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER(0.00)[cl634@andestech.com,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cl634@andestech.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	R_DKIM_NA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[andestech.com:mid,andestech.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[cl634@andestech.com,devicetree@vger.kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,andestech.com:email,andestech.com:mid,andestech.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AA8E3668225
+X-Rspamd-Queue-Id: 11BB2668231
 
-This patch series adds support for the Andes ATCDMAC300 DMA controller,
-a memory-to-memory and peripheral DMA controller that provides
-scatter-gather, cyclic, and slave transfer capabilities.
+Document devicetree bindings for Andes ATCDMAC300 DMA engine
 
-The ATCDMAC300 IP is embedded in AndesCore-based platforms or SoCs
-such as AE350 and Qilai.
+ATCDMAC300 is the IP name, which is embedded in AndesCore-based
+platforms or SoCs such as AE350 and Qilai.
 
-Changes in v5:
-  - Update copyright year to 2026
-  - Remove redundant headers (init.h, iopoll.h, mod_devicetable.h)
-  - Move atcdmac_init_iocp() before of_dma_controller_register() in probe
-  - Change builtin_platform_driver() to module_platform_driver()
-  - Implement .remove callback to support safe module unloading
-  - Update Kconfig entry from bool to tristate
-  - Add MODULE_AUTHOR, MODULE_DESCRIPTION, MODULE_LICENSE macros
+Signed-off-by: CL Wang <cl634@andestech.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Changes in v4:
-  - Use items list format with descriptions for reg property in DT binding
-    as suggested by Conor Dooley
-  - Re-add Acked-by from Conor Dooley for DT binding patch
+---
+  Changes for v5:
+    - No changes from v4
 
-Changes in v3:
-  - Rename DT binding file from andestech,qilai-dma.yaml to
-    andestech,ae350-dma.yaml
-  - Deprecate IP-core-based compatible usage and align with
-    SoC/platform-based strings
-  - Dropped Acked-by from Conor Dooley due to the above binding change
-  - Remove "andestech,atcdmac300" from of_device_id table
-  - Replace deprecated tasklet with threaded IRQ using
-    devm_request_threaded_irq() and IRQF_ONESHOT
-  - Update locking from spin_lock_bh() to spin_lock_irqsave()
-  - Use builtin_platform_driver() instead of module_platform_driver()
-  - Remove "select DMATEST" from Kconfig
-  - Add separate MAINTAINERS patch (patch 3/3)
+  Changes for v4:
+    - Use items list format with descriptions for reg property
+      as suggested by Conor Dooley
 
-Please kindly review.
-
-CL Wang (3):
-  dt-bindings: dmaengine: Add support for ATCDMAC300 DMA engine
-  dmaengine: atcdmac300: Add driver for Andes ATCDMAC300 DMA controller
-  MAINTAINERS: Add entry for Andes ATCDMAC300
-
- .../bindings/dma/andestech,ae350-dma.yaml     |   67 +
- MAINTAINERS                                   |    6 +
- drivers/dma/Kconfig                           |   11 +
- drivers/dma/Makefile                          |    1 +
- drivers/dma/atcdmac300.c                      | 1518 +++++++++++++++++
- drivers/dma/atcdmac300.h                      |  296 ++++
- 6 files changed, 1899 insertions(+)
+  Changes for v3:
+    - Rename DT binding file from andestech,qilai-dma.yaml to
+      andestech,ae350-dma.yaml.
+    - Deprecate IP-core-based compatible usage and align with
+      SoC/platform-based strings.
+    - Dropped Acked-by tag from Conor Dooley due to the above change.
+---
+ .../bindings/dma/andestech,ae350-dma.yaml     | 67 +++++++++++++++++++
+ 1 file changed, 67 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
- create mode 100644 drivers/dma/atcdmac300.c
- create mode 100644 drivers/dma/atcdmac300.h
 
+diff --git a/Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml b/Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
+new file mode 100644
+index 000000000000..f040a2bf7d4b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/andestech,ae350-dma.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Andes ATCDMAC300 DMA Controller
++
++maintainers:
++  - CL Wang <cl634@andestech.com>
++
++allOf:
++  - $ref: dma-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - andestech,qilai-dma
++          - const: andestech,ae350-dma
++      - const: andestech,ae350-dma
++
++  reg:
++    minItems: 1
++    items:
++      - description: DMA controller register range
++      - description: cache control in IOCP controller
++
++  reg-names:
++    minItems: 1
++    items:
++      - const: dma
++      - const: iocp
++
++  interrupts:
++    maxItems: 1
++
++  "#dma-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#dma-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        dma-controller@f0c00000 {
++            compatible = "andestech,ae350-dma";
++            reg = <0x0 0xf0c00000 0x0 0x1000>,
++                  <0x0 0xe8000000 0x0 0x10>;
++            reg-names = "dma", "iocp";
++            interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
++            #dma-cells = <1>;
++        };
++    };
++...
 -- 
 2.34.1
 
