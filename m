@@ -1,179 +1,145 @@
-Return-Path: <devicetree+bounces-309997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309998-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fz5sIDixKWpGcAMAu9opvQ
-	(envelope-from <devicetree+bounces-309997-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 20:47:20 +0200
+	id mn69MJGxKWpZcAMAu9opvQ
+	(envelope-from <devicetree+bounces-309998-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 20:48:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F77366C5BA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 20:47:20 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A22E966C5E4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 20:48:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=hkZ9ibz1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309997-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309997-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Z5N58tyF;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309998-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-309998-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E78FA301AFD3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:47:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B8ECA30072BA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:48:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F45A31353C;
-	Wed, 10 Jun 2026 18:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FE9833D4F0;
+	Wed, 10 Jun 2026 18:48:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877407DA66;
-	Wed, 10 Jun 2026 18:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2566232B105;
+	Wed, 10 Jun 2026 18:48:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781117236; cv=none; b=gTa80XaivQCFGmwle2arvJvVeJQtU/hQktVHNwuKZ/c8ErNvw8geQs7ctU9CIQHMFW+aabLRyz6Ilo5/o1wZUXjioQMkWKIX6PClXnY8KIjAV+xhVPoqnUR90bg1gnrkMWe8f5r0Zd/A8GgQTfNywHBKg8kyA9KpT1HSSgYnWWc=
+	t=1781117324; cv=none; b=nVFHRJDbjMx3/KSTTE8qMwcSy9i154Fp+jr3GHY1mFrRX3gxqbjLY+ly7iuD5oXkQDHDRPTQd1U7UBJghmDGBhLs5FXn2honHnR6vf5LlXUvAtiMUR6Evd+4+fablz1Q3wjobK+CIfBLytQ1p/2POTymmWlOMp912tpEaLcRdpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781117236; c=relaxed/simple;
-	bh=XJn1nN80Mrs0zfneGaUZpf4iFT0ELWNA2OOHfHR7TjI=;
+	s=arc-20240116; t=1781117324; c=relaxed/simple;
+	bh=e7juAKMdbJE8c41ddoVMN0a+q6SHhmeQ5SmeOwcgzYU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DWL7sImzRo8sJi48iAL4rTtRT0mMCKpNAudzm+Wxp5/nR7nVpwqcpCKaroN1ifq8g34Fhvzrubhzf/PVraJGUm4Ht4Y5Tul47AafwrEfAaVbgrqW6kBIeP0IiAbj3wcYZHzWz+p4SPVBPN7rME22nNh7Qp72wUc97V/6UE+8Y0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hkZ9ibz1; arc=none smtp.client-ip=192.198.163.12
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781117235; x=1812653235;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=XJn1nN80Mrs0zfneGaUZpf4iFT0ELWNA2OOHfHR7TjI=;
-  b=hkZ9ibz1WkwKpzctFQ6KyshrYOe9R1rib7fEuFQmd1IdMPru7ODYNrZ9
-   7ukBbVsbOEiBnQhJjhJl47Ch0N3+5wOOL1nEX7bCkOkj3nMMe77zPK1/i
-   +jQHMOyUfGD7urgqZom27yJDkTABJiK0/kJ3rhiw27H1d3zkz7kUubWoH
-   K2cDGTeoPsQ1dCaeDs15Tce2SjKp36TAxGkkVAW03UBY5N9XJi7DgcMfs
-   Fna3rXtsCrCfKdnXR6OcCRQiSYOseNuTJpUoU8mCA691QPFyo0Fd9/MoZ
-   OKa72FcefpYcz69SFEuWb8Oinf/KIfCo2rGtflmV6gqEaSdNAm4AqDRHB
-   g==;
-X-CSE-ConnectionGUID: y5+KJpPfT7mZPfUw0mBFrg==
-X-CSE-MsgGUID: t4b0h80tRR2jCQaLUQQuVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="85761837"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; 
-   d="scan'208";a="85761837"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2026 11:47:15 -0700
-X-CSE-ConnectionGUID: ivWHGwvZSiytIpJqYiLNEQ==
-X-CSE-MsgGUID: GJXOPYqCQs++8PYQ2zipPg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; 
-   d="scan'208";a="246110154"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.38])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2026 11:47:09 -0700
-Date: Wed, 10 Jun 2026 21:47:07 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Helge Deller <deller@gmx.de>,
-	Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v4 07/14] mfd: lm3533: Switch sysfs_create_group() to
- device_add_group()
-Message-ID: <aimxK3asZjebYrNt@ashevche-desk.local>
-References: <20260606045738.21050-1-clamor95@gmail.com>
- <20260606045738.21050-8-clamor95@gmail.com>
- <aihl9yIqN3adKWLr@ashevche-desk.local>
- <CAPVz0n2+27QVeWNgPm3PH6V2Ceuym6sbMtUrh7hSHe9PcRmfMA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=biQCYEN1kGBwvurB/8FRha5+L0UVn3OpSjbPqq0BqTE/NLfXAib7bRbc4MjVTqHF6p2UpiPF6Xbj03LpFB3IASsYYpSx0KTUmFgVK+Rikwc6Lv668oLTDC/z2VDJx9PEF4C2I0cNAwuSYQArfH5cTvCU6gTRAzDydtp9WE5HCrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z5N58tyF; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87DB71F00893;
+	Wed, 10 Jun 2026 18:48:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781117322;
+	bh=IeaOgv8VGi8NiS/EDinHm2Q+9rwa2YqYo89AIX6kVBw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Z5N58tyF9roa6CWq4gbKB7l16zKv7j1T52ICIRV+2JEGOByBessKPyUmNLtpng/n5
+	 01It/aEyXBYdFM1JUBWjN2Gl1w11fM4CfxXePTanpUfDPY8m8TOquE5dih4a7XPlgg
+	 btBlortY85j/zu8nYrc2DaUFvL/EFLsl3Xw//gKj/OKOnegGnJ3DuGlfoIp82T9kdN
+	 +LeNPNctygUsNJydo8PzVwS54vo/JQP2aFu7ZBQ4ue9Ra7gi/BwVyIT/oKRXJpC5Nw
+	 SfPYoqrejZxl/5hYBuvFWtJR+cpsHk3syvcyCIXUMdFTuPxg1ih8UEmJjb5oemikYV
+	 cFj/czkl27sVA==
+Date: Wed, 10 Jun 2026 13:48:41 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: David Laight <david.laight.linux@gmail.com>
+Cc: Saravana Kannan <saravanak@kernel.org>, devicetree@vger.kernel.org,
+	linux-hardening@vger.kernel.org, Arnd Bergmann <arnd@kernel.org>,
+	linux-kernel@vger.kernel.org, Kees Cook <kees@kernel.org>
+Subject: Re: [PATCH next v2] drivers/of/overlay: Use memcpy() to copy known
+ length strings
+Message-ID: <178111732108.625216.12806954968096989058.robh@kernel.org>
+References: <20260608185121.22331-1-david.laight.linux@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPVz0n2+27QVeWNgPm3PH6V2Ceuym6sbMtUrh7hSHe9PcRmfMA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20260608185121.22331-1-david.laight.linux@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309997-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309998-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:clamor95@gmail.com,m:lee@kernel.org,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:deller@gmx.de,m:johan@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:linux-fbdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:david.laight.linux@gmail.com,m:saravanak@kernel.org,m:devicetree@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:arnd@kernel.org,m:linux-kernel@vger.kernel.org,m:kees@kernel.org,m:davidlaightlinux@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,intel.com:dkim,intel.com:email,intel.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TAGGED_RCPT(0.00)[devicetree];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0F77366C5BA
+X-Rspamd-Queue-Id: A22E966C5E4
 
-On Wed, Jun 10, 2026 at 05:38:38PM +0300, Svyatoslav Ryhel wrote:
-> вт, 9 черв. 2026 р. о 22:14 Andy Shevchenko <andriy.shevchenko@intel.com> пише:
-> > On Sat, Jun 06, 2026 at 07:57:31AM +0300, Svyatoslav Ryhel wrote:
-> > > Switch from sysfs_create_group() to device_add_group() including device
-> > > managed where appropriate.
-> >
-> > This should use .dev_groups member of struct device_driver.
+
+On Mon, 08 Jun 2026 19:51:21 +0100, David Laight wrote:
+> Avoid calls to strcpy().
+> The lengths of the strings have been used for the kzalloc(), replace
+> the strcpy() calls with memcpy() using the known lengths.
 > 
-> Specify pls, device_add_group literally uses dev_groups, I don't
-> understand what is wrong.
-
-dev_groups of the struct device_driver. It means that the data should be
-static and be available before driver probe is called.
-
-...
-
-> > > +     ret = devm_device_add_group(&bd->dev, &lm3533_bl_attribute_group);
-> >
-> > This will make Greg KH very grumpy. (For the record, original code as well
-> > but it already is in upstream. So, thanks for trying to address this, just
-> > needs a bit more of work.)
+> Signed-off-by: David Laight <david.laight.linux@gmail.com>
+> ---
 > 
-> In the prev iteration YOU asked to me to adjust this. I have adjusted
-> and now you say that this is not appropriate. I will just drop this
-> commit altogether.
+> v2: Improve commit message
+> 
+> This is one of a group of patches that remove potentially unbounded
+> strcpy() calls.
+> 
+> They are mostly replaced by strscpy() or, when strlen() has just been
+> called, with memcpy() (usually including the '\0').
+> 
+> Calls with copy string literals into arrays are left unchanged.
+> They are safe and easily detected as such.
+> 
+> The changes were made by getting the compiler to detect the calls and
+> then fixing the code by hand.
+> 
+> Note that all the changes are only compile tested.
+> 
+> Some Makefiles were changed to allow files to contain strcpy().
+> As well as 'difficult to fix' files, this included 'show' functions
+> as they really need to use sysfs_emit() or seq_printf().
+> 
+> All the patches are being sent individually to avoid very long cc lists.
+> Apologies for the terse commit messages and likely unexpected tags.
+> (There are about 100 patches in total.)
+> 
+>  drivers/of/overlay.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-Yes, and I still tell that this is the way to fix that issue.
-
-You can even do it yourself in a few clicks (hint: `git log --grep` is the tool
-of the day): 93afe8ba9b01 ("ACPI: TAD: Use dev_groups in struct device_driver").
-This is an example of what I meant.
-
-> > > +     if (ret < 0)
-> > > +             return dev_err_probe(&pdev->dev, ret,
-> > > +                                  "failed to create sysfs attributes\n");
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Applied, thanks!
 
 
