@@ -1,336 +1,178 @@
-Return-Path: <devicetree+bounces-309780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309776-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WQSZNzZWKWreVAMAu9opvQ
-	(envelope-from <devicetree+bounces-309780-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:19:02 +0200
+	id n+sdDRpXKWoTVQMAu9opvQ
+	(envelope-from <devicetree+bounces-309776-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:22:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B554669305
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:19:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CA2C669388
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:22:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=AcmjuJ91;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309780-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309780-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DCCOFGer;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309776-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309776-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 57CD03021EE1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:18:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3EA6932E9CBC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C44B6406826;
-	Wed, 10 Jun 2026 12:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4FA740629C;
+	Wed, 10 Jun 2026 12:18:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4128F406815
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 12:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA2753AFD08
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 12:18:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781093924; cv=none; b=N3wadhaw9+A5NFCMEvofGaEBdV/4DU0vclIZ5pHzG0HF5o8kIT+KfFQxXv+Nx0mquZGvhNb++ktmngxVRkxtxr+nFSHLhfNY2CkKgNeMyheE1yh126NT2veYKTg3JDqUSTGKm3VgRMlqA8aIXunbMyo3uNyYVwUG1/HkxIe2ot8=
+	t=1781093905; cv=none; b=D2i1ME7Dkq+cOekzO0ECxayvfo89fa2XL+jOjHqeEzsK88uMxO29n1kO3ZFRjIb9w453U2pSqOcqk5d6gDqr0hAfeF9Cvw3FCvQAPxvKj6qZ/b/cgSkQfoFuD6q2O+mD2PsemP+MrK9NVOZMtYrjrPmxN7PuSXSVeeCDtf/uxqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781093924; c=relaxed/simple;
-	bh=JsztznW3Xmh/xeI6ZlgYjv1v61PArbh6D8QyccieYy0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=n1K7KuQFIZzUesN1qKRhFoPYN+Y7paIOc+HJjAw0MQ/Phk1mg+1aFUoWwmxatBBuv05qHb7dZxLFi7aWRcqJhMRQe94KhzsCdnoqZcTa0Os2jHMwGEOFExnkii+SE7rzZcIOIcTM1CgNVWtAfTgEZEPbB4k6+KFTysFDNvrD9do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AcmjuJ91; arc=none smtp.client-ip=209.85.128.45
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-490bc6a7958so59393675e9.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 05:18:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781093920; x=1781698720; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hVBJJGFYjcbuEOi6xjg9aXQreuuYV6xXp7Ov8MwZ6W0=;
-        b=AcmjuJ91/vEPVNZVsA9ynB/T1eoWWt1qJ8U29dNiGoltyEN3nZkSmQJJCzj3cFIOHH
-         5iVxg8+iNbN+Ho8pahfSXKr+MMOC78j7Jo1bH/idRxo0QpGMizDbpajiPyLpZ+qrtYnP
-         qO6I/x8jdJS6ZNL7bdgGPdp1OUORyfoAZNBaawQ1SclDkgMtG+78uiJxUbfa32dn8Qz5
-         WKwCtKciPQUwbJob5Tw0rqEjSu37l5CCWr+mNSOUXMZM/9nTK3WufkmtZ4K6Cle3j/SE
-         vj+Rqjt16booH6N0vjnhJKow61s2Pp9Eqf/J5GgJFh0umeA3b5aFQN8gxkM7Thw3fPz6
-         nsmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781093920; x=1781698720;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=hVBJJGFYjcbuEOi6xjg9aXQreuuYV6xXp7Ov8MwZ6W0=;
-        b=ZmBshE6CaJIiaat/yZcOn8FZMaA2UF0noh4pDCe4/+qXdh2Io/icrjuXsDTN0mHBjF
-         i1Z3NDUCoJ5b3eiSN5Q8X7FkyN5G/JnVTuVGMgCZ8gBdGabCUkmGAjoDYWTLwsKDCxse
-         rqrj4CVYSeBD103yiC6zy4viKxnVLQ89IwGBTArM3hosVySHyw4dwtWu+49mXZaX+TIt
-         9P9KcioQTdaxmWUrmGQPv5XoL3HSzC4UjmlvsmrvqP7vnE8pI/nATjeXdq0FTix1n7av
-         ZnRAxJAVsR5W6MgHt5ImXuZlv5JaIboCUKzOUD8TqnoMmMQouZgtlIc9tF0Whv186iUi
-         psRQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+9IaJc9PIL/U0yfKduBwoZZt3/VoxlD2mxyUBKCipAgFNZZwprcnnOJhZliyS+zbIO6eOEwF2EGxIg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTj5fycseJ1mZtLTBmcW10KmueATIN1QUR+fryNCch/FfzQ5xK
-	GZSR14nTVr+3l8V2YvHa9UEsqAnqVhzL3Y6ZZ2yZVNoE/YAvrEBVsehmpwa44Q==
-X-Gm-Gg: Acq92OFvQ7cSd6SdJM8j/B3yRL36dRqpfbEb03PJ75iGeYzQTNHu89RZ0sj3HaF0IC0
-	nDnOGWVlMduAy93aGl84q+/L6+F1xlsDQFbJQzLvD1gSIkBRdC58STNPflvyoNllCeUBX5Gbcwq
-	UE1eYhtFjIzXqiOgBWh5hkej8TAkL1S2W5l6TmPBsosyrBSIWRjqBHA2WV7RRBfkEdp3/ce9MdF
-	QAhk/eYkqc2dZGYiYmKyTAf+YI8T3HuY1PpNeMtRvr76uukg8D+10LV241DeJ7Vfu5FQN+E9QMA
-	UxM4qfAUQt6YBOwCx59j0grvy20IRrgaXbRWEwmz5ZkaP3cD9DvhO7wvvh3R0tGckPH0LCmIF1N
-	wk7n8zfoEZO5jLFigVnEA3OTAW0ewXQQelNiagt3U1WO+YFCTZCJZWzHrxdofnFXzPwAEYHCof9
-	NAHAxzB6N20f4H+HLpIeAB5Bb0729Jnf287yczPPoS4mc4
-X-Received: by 2002:a05:600c:8519:b0:490:3cf0:8d81 with SMTP id 5b1f17b1804b1-490c2d0e9a2mr302554865e9.13.1781093920430;
-        Wed, 10 Jun 2026 05:18:40 -0700 (PDT)
-Received: from taln60.nuvoton.co.il ([212.199.177.18])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc413adbsm566553095e9.15.2026.06.10.05.18.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2026 05:18:40 -0700 (PDT)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: andrew@codeconstruct.com.au,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: openbmc@lists.ozlabs.org,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	avifishman70@gmail.com,
-	tmaimon77@gmail.com,
-	tali.perry1@gmail.com,
-	venture@google.com,
-	yuenn@google.com,
-	benjaminfair@google.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v5 3/3] spi: dt-bindings: nuvoton,npcm750-fiu: Convert to DT schema
-Date: Wed, 10 Jun 2026 15:18:22 +0300
-Message-Id: <20260610121822.2524634-4-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260610121822.2524634-1-tmaimon77@gmail.com>
-References: <20260610121822.2524634-1-tmaimon77@gmail.com>
+	s=arc-20240116; t=1781093905; c=relaxed/simple;
+	bh=BlDSP6Bs2iRj9J9QAfqQw2733nlKCiTxFINluU/KZUg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Y9CIObWwRebIAhNgS+7u33r+ZU6TefMNLv3s2ibfG3Be2WWZgxLfOlXQrXPYym8YWnqeNq6DpanmNwPNRLO6rDC+8HlsGw1/FZABUDZJ2W9heFCea48DZlFniivPdf/cztyRnnB2VOGhp5/8UbuT7BHte7FMAcHnkJdef/Bvf28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DCCOFGer; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 111631F00893;
+	Wed, 10 Jun 2026 12:18:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781093904;
+	bh=lmexZrCeU9+HbvwvfuRt3zc3yavo3Y5jIZGJuSHvWJk=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=DCCOFGerpZT4/5t0XFPU+bxutUTEZIrxuV8k0+1lezWxaMM2uKTp30g9ztP0SuzM1
+	 +qQe549k8TqPSoSQ2tvBo6MB0lGWFT7hlBR9aE4+RoZBVUbxK4c8TzsYVA7TZt0nZc
+	 qJh2axSsA5lnjubpG7hkE4DpblnFzyBYtCIQ/wxkBYfHLVcdC8sywCGQdGN38cRiD0
+	 MHfehvh5ZRjbanAa2z/qBaPnc8x3pdhYkQMxcQ4F60rX+OENPZHKc1UOrjAMJocGiE
+	 OPsGAMyr9Ec0EgDGGz/bNDIl+2r1I1OjxiQyjuNj1MP0hWxd59IoEFf4CvdLDJioAb
+	 DJDGmkCS4KWvw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: msm8996: Add VDD_MX to QUSB2 PHYs
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Konrad Dybcio" <konradybcio@kernel.org>
+Cc: vkoul@kernel.org, neil.armstrong@linaro.org, olteanv@gmail.com, linux-phy@lists.infradead.org, robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260610-topic-8996_61x5_qusb2phy-v1-3-d7135980e78f@oss.qualcomm.com>
+References: <20260610-topic-8996_61x5_qusb2phy-v1-3-d7135980e78f@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 10 Jun 2026 12:18:23 +0000
+Message-Id: <20260610121824.111631F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309780-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.ozlabs.org,vger.kernel.org,gmail.com,google.com,oss.qualcomm.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tmaimon77@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309776-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:konradybcio@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:olteanv@gmail.com,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,gmail.com,lists.infradead.org,vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	ALIAS_RESOLVED(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5B554669305
+X-Rspamd-Queue-Id: 5CA2C669388
 
-Convert the Nuvoton NPCM FIU binding to DT schema format.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Adding the VDD_MX power domain interacts brokenly with the PHY dri=
+ver's runtime PM implementation, permanently pinning the VDD_MX power rail =
+and causing a severe battery drain regression during system idle.
+--
 
-Document the required control registers and the optional direct-
-mapped flash window separately, matching the driver behavior
-when the direct mapping is not described.
+commit f3735b6dfcc42f0f55443d0f81c7b256532b0e25
+Author: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>=0D
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- .../bindings/spi/nuvoton,npcm-fiu.txt         | 58 ------------
- .../bindings/spi/nuvoton,npcm750-fiu.yaml     | 93 +++++++++++++++++++
- 2 files changed, 93 insertions(+), 58 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.=
-txt
- create mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm750-f=
-iu.yaml
+arm64: dts: qcom: msm8996: Add VDD_MX to QUSB2 PHYs
 
-diff --git a/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt b/D=
-ocumentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt
-deleted file mode 100644
-index fb38e96d395f..000000000000
---- a/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt
-+++ /dev/null
-@@ -1,58 +0,0 @@
--* Nuvoton FLASH Interface Unit (FIU) SPI Controller
--
--NPCM FIU supports single, dual and quad communication interface.
--
--The NPCM7XX supports three FIU modules,
--FIU0 and FIUx supports two chip selects,
--FIU3 support four chip select.
--
--The NPCM8XX supports four FIU modules,
--FIU0 and FIUx supports two chip selects,
--FIU1 and FIU3 supports four chip selects.
--
--Required properties:
--  - compatible : "nuvoton,npcm750-fiu" for Poleg NPCM7XX BMC
--			     "nuvoton,npcm845-fiu" for Arbel NPCM8XX BMC
--  - #address-cells : should be 1.
--  - #size-cells : should be 0.
--  - reg : the first contains the register location and length,
--          the second contains the memory mapping address and length
--  - reg-names: Should contain the reg names "control" and "memory"
--  - clocks : phandle of FIU reference clock.
--
--Required properties in case the pins can be muxed:
--  - pinctrl-names : a pinctrl state named "default" must be defined.
--  - pinctrl-0 : phandle referencing pin configuration of the device.
--
--Optional property:
--  - nuvoton,spix-mode: enable spix-mode for an expansion bus to an ASIC or=
- CPLD.
--
--Aliases:
--- All the FIU controller nodes should be represented in the aliases node u=
-sing
--  the following format 'fiu{n}' where n is a unique number for the alias.
--  In the NPCM7XX BMC:
--  		fiu0 represent fiu 0 controller
--  		fiu1 represent fiu 3 controller
--  		fiu2 represent fiu x controller
--
--  In the NPCM8XX BMC:
--  		fiu0 represent fiu 0 controller
--  		fiu1 represent fiu 1 controller
--  		fiu2 represent fiu 3 controller
--  		fiu3 represent fiu x controller
--
--Example:
--fiu3: spi@c00000000 {
--	compatible =3D "nuvoton,npcm750-fiu";
--	#address-cells =3D <1>;
--	#size-cells =3D <0>;
--	reg =3D <0xfb000000 0x1000>, <0x80000000 0x10000000>;
--	reg-names =3D "control", "memory";
--	clocks =3D <&clk NPCM7XX_CLK_AHB>;
--	pinctrl-names =3D "default";
--	pinctrl-0 =3D <&spi3_pins>;
--	flash@0 {
--			...
--	};
--};
--
-diff --git a/Documentation/devicetree/bindings/spi/nuvoton,npcm750-fiu.yaml=
- b/Documentation/devicetree/bindings/spi/nuvoton,npcm750-fiu.yaml
-new file mode 100644
-index 000000000000..965904a98785
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/nuvoton,npcm750-fiu.yaml
-@@ -0,0 +1,93 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/nuvoton,npcm750-fiu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Nuvoton NPCM Flash Interface Unit (FIU) SPI Controller
-+
-+maintainers:
-+  - Tomer Maimon <tmaimon77@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-controller.yaml#
-+
-+description: |
-+  NPCM FIU supports single, dual and quad communication interface.
-+
-+  The NPCM7XX supports three FIU modules:
-+    FIU0 and FIUx support two chip selects
-+    FIU3 supports four chip selects.
-+
-+  The NPCM8XX supports four FIU modules:
-+    FIU0 and FIUx support two chip selects
-+    FIU1 and FIU3 support four chip selects.
-+
-+  The FIU control register block is always required. The direct-mapped
-+  flash window is optional because the controller can still access flash
-+  through the UMA path when that mapping is not described.
-+
-+  Alias convention:
-+    The '/aliases' node should define:
-+      For NPCM7xx:  fiu0=3D&fiu0; fiu1=3D&fiu3; fiu2=3D&fiux;
-+      For NPCM8xx:  fiu0=3D&fiu0; fiu1=3D&fiu3; fiu2=3D&fiux; fiu3=3D&fiu1;
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nuvoton,npcm750-fiu # Poleg NPCM7XX
-+      - nuvoton,npcm845-fiu # Arbel NPCM8XX
-+
-+  reg:
-+    description:
-+      The first resource is the FIU control register block. An optional se=
-cond
-+      resource describes the direct-mapped flash window used for direct
-+      read/write accesses.
-+    minItems: 1
-+    items:
-+      - description: FIU control registers
-+      - description: Memory-mapped flash contents
-+
-+  reg-names:
-+    description:
-+      Resource names for the control registers and optional direct-mapped
-+      flash window.
-+    minItems: 1
-+    items:
-+      - const: control
-+      - const: memory
-+
-+  clocks:
-+    maxItems: 1
-+    description: FIU reference clock.
-+
-+  nuvoton,spix-mode:
-+    type: boolean
-+    description: Enable SPIX mode for an expansion bus to an ASIC or CPLD.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
-+    spi@fb000000 {
-+        compatible =3D "nuvoton,npcm750-fiu";
-+        reg =3D <0xfb000000 0x1000>, <0x80000000 0x10000000>;
-+        reg-names =3D "control", "memory";
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+        clocks =3D <&clk NPCM7XX_CLK_SPI0>;
-+
-+        flash@0 {
-+            compatible =3D "jedec,spi-nor";
-+            reg =3D <0>;
-+            #address-cells =3D <1>;
-+            #size-cells =3D <1>;
-+        };
-+    };
+This commit adds the VDD_MX power rail description to the QUSB2 PHYs in the
+msm8996 device tree. It explicitly sets the power domain and required OPPs
+for both primary and secondary PHY nodes.
+
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/=
+qcom/msm8996.dtsi
+> index 2f67e665996f3..b7cd1928335c8 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -3192,7 +3192,12 @@ hsusb_phy1: phy@7411000 {
+>  			clock-names =3D "cfg_ahb", "ref";
+> =20
+>  			resets =3D <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+> +
+> +			power-domains =3D <&rpmpd MSM8996_VDDMX>;
+> +			required-opps =3D <&rpmpd_opp4>;
+
+[Severity: High]
+Does adding this power domain permanently pin the VDD_MX rail?
+
+Looking at the driver in drivers/phy/qualcomm/phy-qcom-qusb2.c,
+qusb2_phy_probe() sets up runtime PM like this:
+
+	pm_runtime_set_active(dev);
+	pm_runtime_forbid(dev);
+	ret =3D devm_pm_runtime_enable(dev);
+
+Because the driver forbids runtime suspend by default, the device stays
+permanently active.=20
+
+If we attach the PM domain and require an OPP here, won't the generic PM
+domain framework apply the OPP4 performance state permanently, preventing t=
+he
+SoC from scaling down its logic voltage during system idle?
+
+> +
+>  			nvmem-cells =3D <&qusb2p_hstx_trim>;
+> +
+>  			status =3D "disabled";
+>  		};
+> =20
+> @@ -3206,7 +3211,12 @@ hsusb_phy2: phy@7412000 {
+>  			clock-names =3D "cfg_ahb", "ref";
+> =20
+>  			resets =3D <&gcc GCC_QUSB2PHY_SEC_BCR>;
+> +
+> +			power-domains =3D <&rpmpd MSM8996_VDDMX>;
+> +			required-opps =3D <&rpmpd_opp4>;
+> +
+>  			nvmem-cells =3D <&qusb2s_hstx_trim>;
+> +
+>  			status =3D "disabled";
+>  		};
+
 --=20
-2.34.1
-
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610-topic-8996=
+_61x5_qusb2phy-v1-0-d7135980e78f@oss.qualcomm.com?part=3D3
 
