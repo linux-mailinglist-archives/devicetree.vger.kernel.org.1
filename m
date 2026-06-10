@@ -1,55 +1,97 @@
-Return-Path: <devicetree+bounces-309379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309381-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VDN0CJ7MKGq/JgMAu9opvQ
-	(envelope-from <devicetree+bounces-309379-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 04:31:58 +0200
+	id +fQ9FjnUKGozKgMAu9opvQ
+	(envelope-from <devicetree+bounces-309381-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 05:04:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 627B7665731
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 04:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A57F2665895
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 05:04:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Mrrjybhu;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309379-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309379-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=dNyad0LH;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309381-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309381-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0C203308B783
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 02:30:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AFF9F30B846C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 03:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54456274B5C;
-	Wed, 10 Jun 2026 02:30:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B1C33D4F0;
+	Wed, 10 Jun 2026 03:04:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 491A027FD4B;
-	Wed, 10 Jun 2026 02:30:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 261DB33CE8A
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 03:04:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781058610; cv=none; b=Qw3trnhGmDaYZz6dZct/Ti0qyYKmBd+zT4H3R5jAkCBJymYwXtYDjjVcK5aPmhJxTVYGMQyPOXOifZJDLxSKjfT8AQGE2uPTNA2KR+nDhkSuweOHMD4xF2wEVTyb0jwH+T1kTqjCKsbVYQuE9Jt1TMxdVq8lyHgaQmrdKttVV6s=
+	t=1781060654; cv=none; b=azFT3Zk0QaWWB9aCfxRghW11IdhLlnz+stGODP5WSYjTrrLvuqQnAuJKh9o42LLRRI4IyBctUMR9cz+YYB+tnLeVhuGZOl/RNcN1qMYn8NySt71PPqx3xUWQScQ4PyHcHTNExWzzKhB6J8022jMVHoRgbuXR5uIy/BkEWF29Nec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781058610; c=relaxed/simple;
-	bh=Cl0Yw24+JnYENiMvJKdJq3a73HcfLt5QPvi2HAeay/4=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=BRLzr+wueu2n8Px8jTckUMEgRZ6MujX45yc8uAIvhd6F2coob/hGenvGkTEI2g9TpcXJghY1w8wsduuanUw/4RL/rFZ3svH2MfE/jvi2s7n5b3yvYk/LCfp7seD6l50ch1LExRT5pzL6+2G/hQU8AxgWBx0UjyAGOcXSaWH+1ig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mrrjybhu; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B74621F00893;
-	Wed, 10 Jun 2026 02:30:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781058608;
-	bh=AkjbPNJOOQcXYpV91PWjTYmuXBqesqJApQu5jGEYqLk=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=MrrjybhuN7VNbc2JQwLNuny/9bcmcEA4pmP8qR2DGD0FM5j+ZB36ATHU/NojfOXhB
-	 EzTdzD6BuG1YJgKA4g0fa55Lb2j++elzhPTfx44yANUxvmP9E8iggYO2hnILQOqmH3
-	 0+1msz24DWTRSjsLUFQ2s0i9hQ5cjYsvBVVlGMx0tDeqftqc03xiXl11g75uXh7gw9
-	 D9tHVq0QclpRhrFKZzuYmZ8gvd7YkrrqGF98cP2kbkPCe/aKCgpXlWoVrm2OAlmmZy
-	 ToKN1adb9WxzcOvkL+hP6xc0jixiaDM9IuJwY2obObbLHFAAjxigU++zfpmwTrH6ff
-	 M0gjy1LsAx57g==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 198443930A20;
-	Wed, 10 Jun 2026 02:30:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1781060654; c=relaxed/simple;
+	bh=htNF8eueg3Mn/3D5su9idQmcI9VgZFrt/5LRaQPDiJk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cKtWxeXe47CfdNYkE3f4X99/M/oMkQwBNJmr54aM8+FI0VIhnv99NR7dflEshaWixeUeAP3P/6Vd2jXMXhsR8WEDDTm4oX9CXCyvUr1U6DZiJTRrSKcO5l9T9Re72zx2A/bm1wlQCc097+m1LfMTA0HlUoQFmEGYa+bHhjYlanY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dNyad0LH; arc=none smtp.client-ip=209.85.215.176
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-c85a2ca7bf7so2288371a12.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 20:04:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781060652; x=1781665452; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=B1xEqocq617yA3Nhtp5XMsU0wUBI4nxN63OSaZK9x2k=;
+        b=dNyad0LHKEqVJzUvnHWyCciLMxrEsab/vzCR1cqnEEet80xodzdBrfardNIiNTDYsJ
+         ClRZIOewDtqEJ7PC5KtMXHCNc13b4CNaP6pb90hi4pJ7cMF1h5W5E2jA1+lfhRq/Ml4n
+         sSHdIUSdqVMygnOu4s2U9OCTMWUkCGgsQUQE4oEYUukIHlXchToSgPTWj4wct4c0ALUg
+         Niw2rh0EcscKvF6orI5FGK+RyXs4bGHZiIjU1ArHY8ecqIuKXiKdOxXc3Hh36JkeuD15
+         3jV57LTlIgVr9vRhLLuLzenS1SnUmY9sEMk4qnrSdcEKkLGJ9WcH2Cu2S5/fClnMXW2A
+         9ifQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781060652; x=1781665452;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B1xEqocq617yA3Nhtp5XMsU0wUBI4nxN63OSaZK9x2k=;
+        b=qnjE3Hd+NAW61MsKZsqqrMC1unn8TFb4g5ZD0MrkI7iNxH/Un6NhNO3rj3mskepbKI
+         EK1sv/LMBLM4od9w8NrOyxIQ2bCynyXhKo2AkE3IkKF1mZuOWtSvxZHgFV2KXMBKqU26
+         a+U3MGEY9KFNVzQjLIEzf59MkZXAq03PQ3E9TU0EJj/NCAi1wLJjQpnSnX4P6DfmIIpZ
+         rh/MMhMFlJv4mRUUkHjHQcq69AvgHQH74SHdyuyYsG3ZoTLNYeUhs4wi1rQdrt6Ur1gF
+         HGLOEFrglAxwdd3+Z+CpQCXut3R2rpGhkYiPAyIdD1YhKFQU2hITM/visjLvNjCcECQS
+         m2ew==
+X-Forwarded-Encrypted: i=1; AFNElJ9CFuNz+J5X02VDEbL69AXGX5dn5ceeUpvpyPwQaGU22ETz01MVvBTb5doSgRsCxicOZJ699CvCc1f2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxf5K4uiBxEUyQMQFvT9cNjKbXC7cqdqVz3N5+krrs5kfDr3sMc
+	qQ/ksI0Q17ivUPDiiwZ85kSz6Fb8Gkmu/+bdrdYnChGKkS1LsCiZHTEh
+X-Gm-Gg: Acq92OGD4/fhPrNJK+uHQ4yr0Mq7McbdxjVfATJYoMNXVk6yQmBQN+ttWcU15Brb7Z+
+	kORlDszqQcIbkexwVMU9EPruHE02ZXW1VqtRDcioVF7XHl/0FJfMpDX4fsaWu1X3iubTOdokIm1
+	LStJ/JxCqKl3Dt0eAjp2ggeHekFaewe9V4xBuB+kMsVTJL+FtmK1rQSMWvdGz1de/8JZR+2RHw/
+	otWTo3oRWwlmLEiGeOFvIKoFvyXFY1DDKw5DNPnBTHlROuYJJIQObHi6luDWMHk532P96g48LA7
+	Hq0E3GcPjGQWR3Pj3cvY0OtKvYDCNfXRDV9b+n93dBY+OZRn3FQkXxlfY4Bd/LmUBHClZ0vWIK2
+	OEqsfCrRmKH3wd1L5SciOeTNHcJMKasBVofcqceTn1tu55OrCmlpouEI1Nk2kv8MqShBhptdILl
+	LnwBgFXb0DSBw7qsweqbFOmSCHL/AIEfpOnGNrP7wYcrJ8r8ytlZyCnrYmLs1gc8qqPnJrN3gJC
+	ghknHP/mumHzF0GP4C2
+X-Received: by 2002:a05:6300:6d8b:20b0:39b:ba95:b14c with SMTP id adf61e73a8af0-3b4ccf4051dmr17145756637.24.1781060652242;
+        Tue, 09 Jun 2026 20:04:12 -0700 (PDT)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c85df0a61b3sm19927082a12.17.2026.06.09.20.04.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Jun 2026 20:04:11 -0700 (PDT)
+From: Zi-Yu Chen <zychennvt@gmail.com>
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: Jacky Huang <ychuang3@nuvoton.com>,
+	Shan-Chun Hung <schung@nuvoton.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Zi-Yu Chen <zychennvt@gmail.com>
+Subject: [PATCH v4 0/3] i2c: ma35d1: Add support for MA35D1 I2C controller
+Date: Wed, 10 Jun 2026 11:02:05 +0800
+Message-Id: <20260610030208.2020275-1-zychennvt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,85 +99,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 1/2] dt-bindings: net: pse-pd:
- microchip,pd692x0:
- add port disable GPIO
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <178105860664.2800834.1034333038308969425.git-patchwork-notify@kernel.org>
-Date: Wed, 10 Jun 2026 02:30:06 +0000
-References: <20260607165600.1260210-1-robert.marko@sartura.hr>
-In-Reply-To: <20260607165600.1260210-1-robert.marko@sartura.hr>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: o.rempel@pengutronix.de, kory.maincent@bootlin.com, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, daniel.machon@microchip.com,
- luka.perkov@sartura.hr
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309379-lists,devicetree=lfdr.de,netdevbpf];
+	TAGGED_FROM(0.00)[bounces-309381-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[nuvoton.com,kernel.org,pengutronix.de,vger.kernel.org,lists.infradead.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:robert.marko@sartura.hr,m:o.rempel@pengutronix.de,m:kory.maincent@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel.machon@microchip.com,m:luka.perkov@sartura.hr,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andi.shyti@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:zychennvt@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FROM_NO_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 627B7665731
+X-Rspamd-Queue-Id: A57F2665895
 
-Hello:
+This series adds support for the I2C controller found in the Nuvoton
+MA35D1 SoC. The driver supports controller and optional target mode
+and runtime power management.
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+The implementation has been tested on the Nuvoton MA35D1 SOM board.
 
-On Sun,  7 Jun 2026 18:55:35 +0200 you wrote:
-> Microchip PSE controllers have a dedicated port disable input that like it
-> name suggest, will disable PoE on all ports.
-> 
-> So, lets document that GPIO.
-> 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> 
-> [...]
+Changes in v4:
+  - Patch 1 (dt-bindings):
+    - Update example interrupt number.
+  - Patch 2 (driver):
+    - Remove redundant spinlocks and fix 'irq' type to signed.
+    - Fix target address recovery in ma35d1_i2c_reset().
+    - Refactor IRQ handler for multi-msg reads and NACK/IGNORE_NAK.
+    - Fix timeout UAF via explicit IRQ disabling during recovery.
+    - Drop IRQF_SHARED and fix PM paths in probe/unregistration.
+    - Limit suspend/resume wakeup logic to target mode only.
+  - Patch 3 (dts):
+    - Add missing i2c0 node to dtsi.
+    - Switch SoM configuration from i2c1 to i2c2 with updated pinctrl.
+    - Add nau8822 audio codec node under i2c2 on the SoM board.
+    - Drop redundant i2c0 alias and clean up dtsi property ordering.
+  v3: https://lore.kernel.org/r/20260512073953.564323-1-zychennvt@gmail.com/
 
-Here is the summary with links:
-  - [net-next,v3,1/2] dt-bindings: net: pse-pd: microchip,pd692x0: add port disable GPIO
-    https://git.kernel.org/netdev/net-next/c/a1c4fa71bbbd
-  - [net-next,v3,2/2] net: pse-pd: pd692x0: support disabling disable ports GPIO
-    https://git.kernel.org/netdev/net-next/c/90e63d535495
+Changes in v3:
+  - Fix minor DTS formatting issues (whitespace, missing newline)  
+  v2: https://lore.kernel.org/r/20260316063726.41048-1-zychennvt@gmail.com
 
-You are awesome, thank you!
+Changes in v2:
+  - Overall:
+    - Rebase on linux-i2c/i2c-next
+    - Switched terminology from "master/slave" to "controller/target".  
+  - Patch 1 (dt-bindings):
+    - Simplified description and fixed 'reg' size in example.
+  - Patch 2 (driver):
+    - Modernized using devm_*, generic device properties, and FIELD_PREP/GENMASK.
+    - Optimized power management by moving clock control to runtime PM.
+    - Simplified code by removing redundant .remove(), .owner, and inlines.
+    - Added dev_err_probe() and default bus frequency handling.
+  - Patch 3 (dts):
+    - Moved i2c aliases to board dts and reordered nodes alphabetically.
+  v1: https://lore.kernel.org/r/20260302020822.13936-1-zychennvt@gmail.com
+
+Zi-Yu Chen (3):
+  dt-bindings: i2c: nuvoton,ma35d1-i2c: Add MA35D1 I2C controller
+  i2c: ma35d1: Add Nuvoton MA35D1 I2C driver support
+  arm64: dts: nuvoton: Add I2C nodes for MA35D1 SoC
+
+ .../bindings/i2c/nuvoton,ma35d1-i2c.yaml      |  63 ++
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  20 +
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |  72 ++
+ drivers/i2c/busses/Kconfig                    |  13 +
+ drivers/i2c/busses/Makefile                   |   1 +
+ drivers/i2c/busses/i2c-ma35d1.c               | 778 ++++++++++++++++++
+ 6 files changed, 947 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/nuvoton,ma35d1-i2c.yaml
+ create mode 100644 drivers/i2c/busses/i2c-ma35d1.c
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.34.1
 
 
