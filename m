@@ -1,205 +1,359 @@
-Return-Path: <devicetree+bounces-309862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309867-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4edIAHtzKWo/XAMAu9opvQ
-	(envelope-from <devicetree+bounces-309862-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:23:55 +0200
+	id +wRlEp92KWrlXAMAu9opvQ
+	(envelope-from <devicetree+bounces-309867-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:37:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA23C66A2E1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:23:53 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A83D166A46B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:37:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oPzTxMah;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309862-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309862-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=cknow-tech.com header.s=key1 header.b=VhFcql5D;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309867-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309867-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=cknow-tech.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A452C3010F11
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:21:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 07C593014761
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E12C328611;
-	Wed, 10 Jun 2026 14:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6D2633F36D;
+	Wed, 10 Jun 2026 14:28:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com [95.215.58.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0321732E72F
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 14:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AEE0331EC0
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 14:28:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781101251; cv=none; b=sjH+er4Wa2ynGDGO2kPLSdNmn/RQ5rxssyWYyl2speEkxYJHB/ovDS9H8ucTrUo87rDiV21pRAerqNd8YVC6KY96vwjXE6YPzstxVfmg4AQh9gnMPdTTTR3zDy+3jZQAPC9mdqn5+4TD6cWccNO+bHsJA5ZhktVLs/X9egQKPyU=
+	t=1781101712; cv=none; b=C65XjfwVbdSlN/g44a3IiHIZprdVm9lgX1/l9gnIL6jAPn8l7KcmjV+0HfVVyD7fVq30EoFnEMnseB2aXIlKCqyep7QfVe4zMsKyP9UNwVAoRGAJo2RN7VgLwYVjjFCmmj9BMenytuCUdmKe8bw1q1V5KxaC3666vdJIU0G2lhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781101251; c=relaxed/simple;
-	bh=1YD9hruAXg/3mayhsw85wv4dNSNp3/vb5gV5ajKkBoA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=HgsvajmR8diSDtJm5GKsBakMbQdvvX6r3Zw9Gk+2xJ4FivvGkMpYFQBcHfGVHSGA+Jy9BAaDI8nCZOYfCyjdk3eS45SJtSVUWA+t8cAzzSW/rPK8aHT8Ur4UkAqqcos5xYDn98YDSRxtFfixZkRbv8o6eYu0N4zo8ugFBl+MwO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oPzTxMah; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93E0A1F00893;
-	Wed, 10 Jun 2026 14:20:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781101249;
-	bh=dvjH8PpKWuNshDDU8XKeJ/5dsMusVknO63gXe/22Gkw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=oPzTxMahDJEGhjYfpz6kU+v5ELp+IlBT4pYjb6apK6LHoe8Mw9mwhXdcbgsxCrB9g
-	 GhxxfqMw+Szm8UpeomATPsdoa6JrVIUs+w974yXc6S6A12m2WnSDp8NHF7i881L39a
-	 +wmWVvtIgJ7T2wAdIIeho6Pu9pEWo/Rhvbw08zJMh2BexqQGZiTkZJWKjow7snJsRx
-	 19utffPy5zTzv0mgdhSiS20yxbaPWZp6bjP45eZF4f8aQZt8eGPEDakWs3R8sP88iM
-	 RaOYxMRfo7hl2yeQy6PelF7aau6wtxcMKv90uijoo46wu7iMKWdRYwVeUmP/+1r4Mv
-	 pYOvuPEQ3IYfQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 2/2] riscv: dts: sophgo: Add Milk-V Duo 256M board
- support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Chen-Yu Yeh" <chenyou910331@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260610121026.1517621-2-chenyou910331@gmail.com>
-References: <20260610121026.1517621-2-chenyou910331@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 14:20:48 +0000
-Message-Id: <20260610142049.93E0A1F00893@smtp.kernel.org>
+	s=arc-20240116; t=1781101712; c=relaxed/simple;
+	bh=c6R0JTbj+5VsxDTHpRq3vL/TbhDnzh5/oe8YCzkiny8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=fL7MqQK5wp6FyYkx4Dc9IPJh3MGTg8kKuINfqqU4iCmJAZFU+5PHeeyNzWKkzsHR0PSOcFawrC3qLC4ERKeJTtEeNcyq7W3DBs7+Wucq5Ji+tSK+i6l+x2qCYFpVDvxnjqRobh0N2yTw19d6skUOrJyTE8DK5iEaAjdxhuFpYhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=VhFcql5D; arc=none smtp.client-ip=95.215.58.182
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
+	s=key1; t=1781101707;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=KIoAahAV4CuoU8RbqIQS/+Rbt/OxgplfKmIf4NRFcyo=;
+	b=VhFcql5DYudJf2O1tHGaMXlSFbta4Hk/KSAZdvHEIwHdxAevssxXYmt1DQFTU2wg59pr/Z
+	Jxh4OBD23Smk9eRs5uoR+Ysku8D1mqYpwZdQnU6IiH4tPqCDOwU8YfyBTWm4TWlHvJNIZr
+	Nc+AXrTI011Jg4KyWK8V+kIc+InaporAeG2xb5FBCDO9eHm7UV0w/1/Za+FaNTKF/3wtwN
+	3G2FYV3RqMj7tKuBU2TMA8gpfATvlp1ScRWi9g4BtOn7NfLUudpryRB8CrrojBwhwGhTqR
+	7hUOW6IaelyYgrpdLchs+sqF226D35NbMxGeKWnN8yT0aPNVH1QO2SSR1Ta9Ag==
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 10 Jun 2026 16:28:17 +0200
+Message-Id: <DJ5FUW50YM2N.6ZTY4WK27ZP5@cknow-tech.com>
+To: "Midgy Balon" <midgy971@gmail.com>, "Diederik de Haas"
+ <diederik@cknow-tech.com>
+Cc: "Chaoyi Chen" <chaoyi.chen@rock-chips.com>, <tomeu@tomeuvizoso.net>,
+ <ogabbay@kernel.org>, <heiko@sntech.de>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <joro@8bytes.org>,
+ <will@kernel.org>, <robin.murphy@arm.com>,
+ <dri-devel@lists.freedesktop.org>, <linux-rockchip@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <iommu@lists.linux.dev>, <linux-kernel@vger.kernel.org>, "Simon Xue"
+ <xxm@rock-chips.com>, "Finley Xiao" <finley.xiao@rock-chips.com>, "Jonas
+ Karlman" <jonas@kwiboo.se>
+Subject: Re: [RFC PATCH v3 0/9] accel: rocket: Add RK3568 NPU support
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <diederik@cknow-tech.com>
+References: <20260604135255.62682-1-midgy971@gmail.com>
+ <3d99569e-9c3a-49d1-93fb-1335382523e9@rock-chips.com>
+ <CA+GS1Y1s78PwN63X2YJoS8VEGp7CpTERo_K65yKs00U4VRAw4Q@mail.gmail.com>
+ <e5058919-9485-4de5-8eea-331ebfc2987c@rock-chips.com>
+ <CA+GS1Y3ysdWZ3qCq3ip_Pbw+v4LxHZd95aBo=jwB+orYaMBBNw@mail.gmail.com>
+ <CA+GS1Y0kAM_XGLQuKPTphif2HcQg18ZXhd8RHHr2xPOEMCDvXA@mail.gmail.com>
+ <bcedaff0-abf8-4585-a0ea-057062cd0411@rock-chips.com>
+ <CA+GS1Y2-hRqpGgsknh+oOX+-uZ3DZtdekdP9viTP6a40zhhUhg@mail.gmail.com>
+ <b05f7154-e85f-4207-80ae-f080282ba780@rock-chips.com>
+ <DJ5A9XL183RZ.20J3ASQ3EWUZ6@cknow-tech.com>
+ <CA+GS1Y1xAq-9eMyMmoVE6NG9KLG7XRxgPoSr5RkW=6fT5D820g@mail.gmail.com>
+In-Reply-To: <CA+GS1Y1xAq-9eMyMmoVE6NG9KLG7XRxgPoSr5RkW=6fT5D820g@mail.gmail.com>
+X-Migadu-Flow: FLOW_OUT
+X-Rspamd-Action: add header
+X-Spamd-Result: default: False [9.34 / 15.00];
+	URIBL_BLACK(7.50)[catirclogs.org:url];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
+	MV_CASE(0.50)[];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309862-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309867-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:midgy971@gmail.com,m:diederik@cknow-tech.com,m:chaoyi.chen@rock-chips.com,m:tomeu@tomeuvizoso.net,m:ogabbay@kernel.org,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:dri-devel@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:xxm@rock-chips.com,m:finley.xiao@rock-chips.com,m:jonas@kwiboo.se,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	R_DKIM_ALLOW(0.00)[cknow-tech.com:s=key1];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
+	GREYLIST(0.00)[pass,body];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_TO(0.00)[gmail.com,cknow-tech.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:chenyou910331@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[cknow-tech.com:+];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[cknow-tech.com,quarantine];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip6:2600:3c04:e001:36c::/64:c];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,cknow-tech.com:dkim,cknow-tech.com:email,cknow-tech.com:mid,cknow-tech.com:from_mime,sr.ht:url,catirclogs.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EA23C66A2E1
+X-Rspamd-Queue-Id: A83D166A46B
+X-Spam: Yes
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] The device tree references an undefined label `&usb`, which will c=
-ause a fatal dtc compilation error.
-- [Medium] The commit message claims to add support for an 'Onboard blue st=
-atus LED', but the corresponding LED node is completely missing from the de=
-vice tree.
-- [Low] Accidental removal of the trailing newline at the end of the Makefi=
-le.
-- [Low] Potentially stale or incomplete copyright attribution in the new DT=
-S file.
---
+On Wed Jun 10, 2026 at 3:36 PM CEST, Midgy Balon wrote:
+> Hello Chaoyi & Diederik,
+>
+> I compared the RK3568 and RK3588 NPU power-domain + DTS as you
+> suggested, and it lines up
+> exactly with what you described.
+>
+> The difference is the `need_regulator` capability. RK3588's NPU domain is
+> `DOMAIN_RK3588("npu", =E2=80=A6, false, true)` =E2=80=94 the trailing `tr=
+ue` is
+> `regulator`/`need_regulator`.
+> The mainline RK3568 macro `DOMAIN_RK3568(name, pwr, req, wakeup)` has
+> no regulator parameter at
+> all, so `RK3568_PD_NPU` can't be marked need_regulator. My v4 adds
+> that: a regulator-capable
+> RK3568 NPU domain (need_regulator =3D true) plus `domain-supply =3D
+> <&vdd_npu>` on the NPU node =E2=80=94
+> i.e. the same shape as RK3588.
+>
+> And the fix you referenced (Frank Zhang's "pmdomain: rockchip: Fix init g=
+enpd as
+> GENPD_STATE_ON before regulator ready", plus "quiet regulator error on
+> -EPROBE_DEFER") is
+> already in my base (v7.1-rc6), so the `if (need_regulator)
+> rockchip_pd_power(pd, false)`
+> default-off path is in effect. That's what resolves the actual problem
+> for me: with rocket
+> built as a module (the normal config), need_regulator on the NPU
+> domain, and those pmdomain
+> patches in place, the board boots cleanly and NPU jobs run with no RCU
+> stall / no deadlock. My
+> earlier hang was an artifact of a self-contained rocket=3Dy image
+> probing in the initcalls before
+> the I2C regulator core was up =E2=80=94 as a module it loads ~6.8 s in, w=
+ell
+> after, so it's gone.
+>
+> I also went back and checked the `fw_devlink=3Dpermissive` question
+> myself =E2=80=94 and good news, it
+> turns out it is NOT needed. I rebooted the exact same kernel with
+> permissive removed from the
+> cmdline (strict fw_devlink, the default), and the board boots cleanly,
+> the NPU probes
+> (`rocket fde40000.npu: Rockchip NPU core 0 version: 0`), and NPU jobs
+> submit and run five times
+> in a row with no deadlock and no RCU stall. So strict fw_devlink
+> resolves the NPU/PMIC ordering
+> fine via deferred probe.
+>
+> The one remaining thing is cosmetic: at power-domain-controller probe
+> (~2.94 s) I still get,
+> in BOTH modes (with or without permissive):
+>
+>   rockchip-pm-domain =E2=80=A6: Failed to create device link (0x180) with
+> supplier 0-0020 =E2=80=A6power-domain@6
+>
+> i.e. genpd can't form the link to the rk809 (the I2C PMIC supplying
+> vdd_npu) because the PMIC
+> isn't registered yet at that point. It's non-fatal =E2=80=94 the domain
+> defaults off (Frank's patch),
+> the rail comes up via the regulator core, the NPU probes a few seconds
+> later, and all jobs run.
+>
+> One question: on RK3588 with need_regulator, do you also see that
+> "Failed to create device
+> link =E2=80=A6 supplier <pmic>" line at pmdomain probe, or does it order
+> cleanly? If RK3588 is clean,
+> is there a DTS detail (e.g. the regulator's bus/probe order) I should
+> mirror on RK3568 to make
+> the link form in time =E2=80=94 or is this line just expected/harmless an=
+d
+> best left as-is?
 
-commit 1a0c595fbd52010c818ad842d5ef53c54212434e
-Author: Chen-Yu Yeh <chenyou910331@gmail.com>
+[    2.110935] rockchip-pm-domain fd8d8000.power-management:power-controlle=
+r: Failed to create device link (0x180) with supplier 2-0042 for /power-man=
+agement@fd8d8000/power-controller/power-domain@8
+[    2.557459] sdhci-dwcmshc fe2e0000.mmc: Can't reduce the clock below 52M=
+Hz in HS200/HS400 mode
+[    2.647174] rockchip-pm-domain fd8d8000.power-management:power-controlle=
+r: Failed to create device link (0x180) with supplier 2-0042 for /power-man=
+agement@fd8d8000/power-controller/power-domain@8
+[    2.945089] rockchip-pm-domain fd8d8000.power-management:power-controlle=
+r: Failed to create device link (0x180) with supplier spi2.0 for /power-man=
+agement@fd8d8000/power-controller/power-domain@12
 
-riscv: dts: sophgo: Add Milk-V Duo 256M board support
+8 =3D NPU; 12 =3D GPU
 
-The Milk-V Duo 256M is a small form factor development board based on
-the Sophgo SG2002 SoC.
+on both nanopc-t6-lts and nanopc-t6-plus (both RK3588).
+And on a 6.18 dmesg output I have for Rock 5B, I see the ~ same, but then
+it's 1-0042 instead of 2-0042.=20
 
->     - Onboard blue status LED (connected to PWR_GPIO[2] / porte 2)
->    =20
->     Tested on actual Milk-V Duo 256M hardware, verified boot to shell and
->     heartbeat LED functionality.
+I don't know if it's bad or harmless, but it is consistent.
 
-[Severity: Medium]
-Is the LED node missing from the device tree? The commit message mentions
-support and verification for an onboard blue status LED, but there does
-not seem to be a corresponding leds or gpio-leds node in the patch.
+HTH,
+  Diederik
 
-> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/so=
-phgo/Makefile
-> --- a/arch/riscv/boot/dts/sophgo/Makefile
-> +++ b/arch/riscv/boot/dts/sophgo/Makefile
+> @Diederik =E2=80=94 thanks; the DCDC_REG2 change and Jonas's USB-suspend
+> series look like generally
+> useful RK356x robustness fixes, though for this specific NPU
+> device-link the need_regulator +
+> Frank's pmdomain patches seem to be the relevant piece. I'll keep them
+> in mind for suspend.
+>
+> The convolution-output / compute-completion issue is still separate
+> and open (@Finley =E2=80=94 that's
+> the PVTPLL/NoC one); the power-domain side is in good shape for v4.
+>
+> Thanks y'all for your help :)
+>
+> Kind regards,
+> Midgy
+>
+> Le mer. 10 juin 2026 =C3=A0 12:05, Diederik de Haas
+> <diederik@cknow-tech.com> a =C3=A9crit :
+>>
+>> Hi,
+>>
+>> On Wed Jun 10, 2026 at 3:14 AM CEST, Chaoyi Chen wrote:
+>> > Hi Midgy,
+>> >
+>> > On 6/9/2026 7:11 PM, Midgy Balon wrote:
+>> >> Hello Chaoyi,
+>> >>
+>> >> You were right - building rocket as a module fixes it. Thanks for the=
+ pointer.
+>> >>
+>> >> I rebuilt with CONFIG_DRM_ACCEL_ROCKET=3Dm (everything else the same:
+>> >> need_regulator on
+>> >> the RK3568 NPU power domain via a DOMAIN_M_R variant, domain-supply =
+=3D
+>> >> <&vdd_npu>, and the
+>> >> regulator-always-on workaround dropped). The board now boots cleanly
+>> >> and, more importantly,
+>> >> an NPU job submit no longer hangs: I ran the test workload five times
+>> >> with no RCU stall and
+>> >> no freeze.
+>> >>
+>> >> So with rocket=3Dm the need_regulator approach works on RK3568, and I=
+'ll
+>> >> keep it for v4
+>> >> (domain-supply + need_regulator, instead of marking vdd_npu
+>> >> always-on). rocket=3Dm is the
+>> >> normal configuration anyway; my earlier hang came from building it =
+=3Dy
+>> >> in a self-contained
+>> >> image, so it probed in the initcalls (around 2 s) and the genpd ->
+>> >> I2C-PMIC regulator
+>> >> transition ran before the system was ready. As a module it loads from
+>> >> udev much later
+>> >> (~6.8 s here), after the I2C controller and regulator core are fully =
+up.
+>> >>
+>> >> On your question of when the device-link error is printed - it is at
+>> >> power-domain
+>> >> controller probe, not at the rocket probe:
+>> >>
+>> >>   [    2.700618] vdd_npu: Bringing 500000uV into 825000-825000uV
+>> >>   [    2.749637] rockchip-pm-domain fdd90000.power-management:power-c=
+ontroller:
+>> >>                  Failed to create device link (0x180) with supplier 0=
+-0020 for
+>> >>                  /power-management@fdd90000/power-controller/power-do=
+main@6
+>> >>   [    2.945955] platform fde40000.npu: Adding to iommu group 3
+>> >>   ...
+>> >>   [    6.840374] rocket: loading out-of-tree module taints kernel.
+>> >>   [    6.877647] [drm] Initialized rocket 0.0.0 for rknn on minor 0
+>> >>   [    6.879950] rocket fde40000.npu: Rockchip NPU core 0 version: 0
+>> >>
+>> >> So the device-link to the rk809 PMIC (0-0020) fails to form at ~2.75
+>> >> s, well before rocket
+>> >> loads at ~6.8 s. It is non-fatal here - the vdd_npu rail is brought u=
+p
+>> >> by the regulator core
+>> >> and all jobs run - and there is no "failed to get ack on domain npu"
+>> >> NoC warning this boot
+>> >> (the always-on kernel had one). The complete boot log is attached.
+>> >>
+>> >> Two notes / one question:
+>> >> - This boot used fw_devlink=3Dpermissive on the command line. Is the
+>> >> "Failed to create device
+>> >>   link ... supplier 0-0020" at pmdomain probe expected/benign, or is
+>> >> there a clean way to make
+>> >>   it order correctly (so it also works without permissive, and a =3Dy
+>> >> build wouldn't deadlock in
+>> >>   the initcalls)?
+>> >
+>> > We encountered the same issue on the RK3588 NPU before. And it was
+>> > resolved with the following patch at that time.
+>> >
+>> > https://lore.kernel.org/all/20251216055247.13150-1-rmxpzlb@gmail.com/
+>> >
+>> > Please compare the differences in NPU pmdomain and DTS configuration
+>> > between the RK3568 and RK3588.
+>>
+>> About a month ago on #linux-rockchip we were discussing PM 'stuff':
+>> https://libera.catirclogs.org/linux-rockchip/2026-05-15#39939137;
+>> which references this paste
+>> https://paste.sr.ht/~diederik/89d9f84e22474e837b55286d213b67f03859ce2e
+>> I've since removed the DCDC_REG2 for PineTab2 and the 'fix' should likel=
+y
+>> be extended to cover all RK3566/RK3568 devices though.
+>>
+>> It's what I made at the time hoping to fix a suspend/resume issue when
+>> trying upstream TF-A. It didn't fix the issue at the time, but may still
+>> be useful/needed and I think it's what Chaoyi hinted at.
+>>
+>> Just yesterday, Jonas posted this patch which may be useful/needed too:
+>> https://lore.kernel.org/linux-rockchip/20260609154124.445182-1-jonas@kwi=
+boo.se/
+>>
+>> HTH,
+>>   Diederik
+>>
+>> >> - (The convolution output is still uniform zero-point / the job times
+>> >> out - that is the
+>> >>   separate NPU compute-completion issue, unrelated to the power-domai=
+n
+>> >> work. Finley, that is
+>> >>   the one I flagged earlier re PVTPLL/NoC.)
+>> >>
+>> >> Kind regards,
+>> >> Midgy
+>> >>
+>>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
-[ ... ]
-
->  dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2042-evb-v1.dtb
->  dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2042-evb-v2.dtb
-> -dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2044-sophgo-srd3-10.dtb
-> +dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2044-sophgo-srd3-10.dtb
-> \ No newline at end of file
-
-[Severity: Low]
-this isn't a bug, but was the trailing newline accidentally removed from
-the end of the Makefile?
-
-> diff --git a/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts b/arch/r=
-iscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts
-> new file mode 100644
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts
-> @@ -0,0 +1,108 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + */
-
-[Severity: Low]
-this isn't a bug, but is this copyright attribution stale? The file appears
-to use a template from 2023, and it might be missing the 2026 copyright for
-the current author.
-
-> +
-> +/dts-v1/;
-> +
-> +#include "sg2002.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-
-[Severity: Medium]
-Is this header still required? It seems unused in the newly added device
-tree file, possibly because the LED node was accidentally dropped.
-
-[ ... ]
-
-> +&uart0 {
-> +	pinctrl-0 =3D <&uart0_cfg>;
-> +	pinctrl-names =3D "default";
-> +	status =3D "okay";
-> +};
-> +
-> +&usb {
-> +	dr_mode =3D "host";
-> +	status =3D "okay";
-> +};
-
-[Severity: High]
-Will this compile successfully? It looks like the usb label is not defined
-in the included base SoC device tree files, which could cause a dtc syntax
-error during the build.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610121026.1517=
-621-1-chenyou910331@gmail.com?part=3D2
 
