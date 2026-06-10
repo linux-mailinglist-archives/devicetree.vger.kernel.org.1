@@ -1,280 +1,203 @@
-Return-Path: <devicetree+bounces-309384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309380-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DAanBpPUKGpRKgMAu9opvQ
-	(envelope-from <devicetree+bounces-309384-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 05:05:55 +0200
+	id e9UeF9LTKGoRKgMAu9opvQ
+	(envelope-from <devicetree+bounces-309380-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 05:02:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CDF06658CF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 05:05:54 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 995A366587F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 05:02:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="itfaN/Lz";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309384-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309384-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=sM76bZHc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309380-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309380-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B43F531207B7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 03:04:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5A3C7302C5E4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 03:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F138340A6B;
-	Wed, 10 Jun 2026 03:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C195D33CE8A;
+	Wed, 10 Jun 2026 03:02:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7264133F38E
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 03:04:32 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781060674; cv=none; b=L/gZvDyBFXpTCa+ZwJO0tqL5xVj/oKA3k0MbgTfLczZPVW/AoIwVSn4bdwqBYCdT0hPAYw/rcDHPmcTEkbRPtYEe/hXKj8UP1PTzO8xwuLixln2kQOq+yGFbI3HjJV08vDfHECkM9+G14Sj7mB2ttppZqtU0AtNPfnF0EeBaYwA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781060674; c=relaxed/simple;
-	bh=9V0Bctfe83qD6wrm60uNu+uq1PpD9Naah0bpNVRvkYs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pnmB9TRXdqU6/yK1pJIg3V3jDYFnSyWS9/nHderO0qxA3B3Qq3NUpfB6WefcT0a8rRTEY8G2X2CqoRlwE9/nzs/LfbJKrzE0/AgC3/NGso/KW9rGKopXh5FpXJSUKr26g/fD52J3mujFz1mV/ls2wPdwCCGcPS5TXK2U6geU7t8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=itfaN/Lz; arc=none smtp.client-ip=209.85.210.175
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-842264dde84so3587029b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 20:04:32 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D0B83016E1
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 03:02:38 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781060559; cv=pass; b=sgbPpm64lcMaVXlyMySitJB6epxoE3NNLqJ3pejtmHHYyyy8MavfaVGjFIV2y9784NQ+UK9n0PCMBHSLMHbi1DSq9wfzr1delJVU/rFo+HH5YknLs/Y+VOrUNuG2Tgav7sHY2VkPTVK+dOTSzFQobYz43WJ58cKEYS1u+SFVtlo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781060559; c=relaxed/simple;
+	bh=BELWqzWUWTPdsciv6CHCfEhJicXEFTQV3kH47jXL4jk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dfwSHy2Q1ngHfJ+Pzg3rnsuVUx2SvV5UWWJ/+onxpHgdu5UDS0cm7VKeOwNEy4Eids1gPQZIkmaHo1rlt+bpLx34KyfNhpR1M8AhPuptIUSOY1mc7nXIWAZP5/DuMHYywZvH4Am5UQaBrqYvU+aZ4l67RU6lIw8omXNi7dPSN7E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=sM76bZHc; arc=pass smtp.client-ip=209.85.216.49
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-36b9d265355so3816418a91.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 20:02:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781060558; cv=none;
+        d=google.com; s=arc-20240605;
+        b=RipHDMJQK1ZbpI+s+DBbFtxYRo9swEw/+SWjOjMmJz5heeDfdSGJPN/6znDQ3YWj2J
+         YQgDIH37+Cml0eG3RkvorHqGgQMLFyoqkn49YnDs8Ssgv7b2/36f9BmbTra0IyirYqLY
+         UcnSHnbF58fHUY9zQLr27EEk98gYqq4xA47pdmAyOi1Luf2WlvPfT+w/6TSbdkgjBiS2
+         uwU3Xh1D0QFzscSwUVuu+A+mVgjVSQtKOjojGD+bWe/B9c5bpOQfyTtXHPHAC4lacMIP
+         wm1D5iQnMDp1RR0N6gM84z48+S+6iaZC7STcXxpqO0MT7NUIECZVd9PD41GBzX7CUCxA
+         ecYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=c0SVE56YDnDAezQJQ1qqqgFaaJdg1RckTtuMzgghSGU=;
+        fh=RiNpAO0zxJM5Nv+5oLOVYEYZRHVCpYq2X8tpgSWTE94=;
+        b=UTS/s94MZc8PSKZOvqFaxRVDn+xPJM5xApKd39CdZW5f5J2ezs3UeroF81+5VGeB3s
+         DxsbFFfMleGDD5TBMVRKjnpEOCjXrcifSg1TViVAx9MtTIG3BvVb2aC+bxfmB/nDv5xJ
+         Ueq2LS6UZW76OkUP0J5s0232w1d50ch5SBfMF4LTljhrTrbOjWDDttcJh9PKfT976zTC
+         EBcgPOuoVmYiJcxGRcQ3gb+zkecf+297fbAMUmQobKwvUhqX6Ufm/tYKb1AGvXWTBZlp
+         9BeO5ThAeGskBvJGMMwc+zYkmpUgaZOJghxVz8UbUyZdmbUBz9AVwey4ECxvZQSvNtfu
+         OEtw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781060672; x=1781665472; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lLwdnFJkTban4EYcPq7DmxYQAfDer3UBe95lCccalhU=;
-        b=itfaN/LzhxYIh6byJjTuqK+LdMmMNOX/ZgWmetbgTd7lGAi/56KBdOpJ91K8uFySiR
-         HCil/ZoPiA7+wDA/sBDMD3RjaOwobumOTPK4h+83DW8/lVgoggvvByDcFfX728GPtJOv
-         HXgs7stDt9fzJhJC/SU6jFoiePsBdIFIRfC3pXvFkGJpdsVG/K8WiOk5+l9w9DjNbJKf
-         We2LtbfpBlm00qK+tqc9weTmsZsoFoIG5bswD+gaW7xx98N7KuDYwfFgsuPBWY0j3WUG
-         ll9RYLgdCx3GOS/MFaC796l9AhfHqXvLEZc8ZTqMeIwy8zCwxdphMniLz4n8FtiDtgww
-         PJoQ==
+        d=gmail.com; s=20251104; t=1781060558; x=1781665358; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=c0SVE56YDnDAezQJQ1qqqgFaaJdg1RckTtuMzgghSGU=;
+        b=sM76bZHc/3eJL+X8ILCMQv3sA2XtzTJ3PY+2QxYGtJjVWtmMXvKYJ7UIT/0Hl4D1aq
+         ft3eZyL1tMrDW3L1eNYHvm1Kizt8Dxg5zaBc4VgZ37LXFhEkCSNBvx3leO+1S2ezWqX7
+         7wZ8aBlDdZDjbck9+ZcG+Z2ihArrt7OOAlVqoZ+0gsvbt2Y4YqZ4svz04Xwxb7wE/RKf
+         rxbsxO/IaRaGbhTDDQwNH7qBmxd4u/U8gi2pA5r+ZTwu7QgbQBLuoIFKqjFd+Byl5a5A
+         /qvAyHvoOHyvEqJq0G9O2Wj1lYFb60SW0OS3Dsp0bMYlJl1Uo0/e8o6NxeEjKE8k3Dqx
+         lHFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781060672; x=1781665472;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lLwdnFJkTban4EYcPq7DmxYQAfDer3UBe95lCccalhU=;
-        b=bFzjqrUC8BPR5HJhi29o8so+Xw13aDxBbKy+4OnI2rJeZBeqfOFHESHfb/5yjg362S
-         62CCYlC/FIICn6uvlPm3Y1HrDT0xkFm6xu60hbiMueR+f0cGt7niik9FsihgrvCJe1xv
-         5CCxb9f7CzSpZFJDNTsjsa2B+3hGZltcYY9rd+nbWQ1dW1mRgJ7993eKr3ACdyhZi3EJ
-         nikdAWDbmlDzlKIRHqJF5f+j0tcV8JLl1Cndx6/UrxQpqebqO7dJzV0Qu1WJaEn5Z/R5
-         SLVqH1RMSK+s0gIztDj80/mAgKxC7sgh4yPYVBFOLLA01VN8ccXe44OObDYwS4+bhmtE
-         RYBg==
-X-Forwarded-Encrypted: i=1; AFNElJ8HaJwvcq7EC/fxkm7ou7BJ8iqmMv4XdgUBbtZgaYMn3i/cO21Ij2u3yjd4yjfxXwhd70sNwnDpa+R0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGgRdpSicQsdKkzyvc+OKA8fPbHzRpl1ucCRzDZI2rlQC+iLn+
-	6WfywFwVIOcdRH7ufVDoBH6qj2a8t0jkTQsrTA3P0o25UNSlroIOhJyx
-X-Gm-Gg: Acq92OHGFtp2UmGX3HaJt05yVfgeDNUmxS+UVReYJhgtGrRJhA5KM4mvyx+u6u6kVJc
-	V3oRepHfXtZfxbSix/0fne+bzAzYkFXUpS9PaPiqKvb1HJe9OiupaiDxjYMOhkZ4H+rxiQ31ZC9
-	zb9p9xICofsCo1uetB4rBFbgyx2DWH2PlUdHwwOMieS90r55pd3fBHmEgZdh3d7TVHG/UuBwzvW
-	XxTZZmcf4fhKYDMSI/YD6Mx8SV6hogIOoSUo2WYSaxzDA/qMQx88ax0olc2VdmJmOSoLn9CAH/Z
-	JKHvsh5WySMMQIdhBfWSfBsk36J3tWS88JjHFaFe/9HQ+9DnIrD75gmgR+au6Z2uSLSIQzaTgFu
-	Xrzq+JVcemzzeTWesJijPxkqDA32FGtiAPVjO6bb5ZaTpnkeJ8uelBrJtS9zY3xqTP7gkMgFOXF
-	UApyDW9uH7YGrGEUWjFIbtWrDAsMqSie1v6tpLeZzjp6b9EzUVAFZQlqQd10+edYqF0yIqOCv4L
-	25N0t41PAHz8Emtwe4B
-X-Received: by 2002:a05:6a20:4387:b0:3b4:661d:8405 with SMTP id adf61e73a8af0-3b4d39f7d02mr20694441637.4.1781060671689;
-        Tue, 09 Jun 2026 20:04:31 -0700 (PDT)
-Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c85df0a61b3sm19927082a12.17.2026.06.09.20.04.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Jun 2026 20:04:31 -0700 (PDT)
-From: Zi-Yu Chen <zychennvt@gmail.com>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Jacky Huang <ychuang3@nuvoton.com>,
-	Shan-Chun Hung <schung@nuvoton.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Zi-Yu Chen <zychennvt@gmail.com>
-Subject: [PATCH v4 3/3] arm64: dts: nuvoton: Add I2C nodes for MA35D1 SoC
-Date: Wed, 10 Jun 2026 11:02:08 +0800
-Message-Id: <20260610030208.2020275-4-zychennvt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260610030208.2020275-1-zychennvt@gmail.com>
-References: <20260610030208.2020275-1-zychennvt@gmail.com>
+        d=1e100.net; s=20251104; t=1781060558; x=1781665358;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c0SVE56YDnDAezQJQ1qqqgFaaJdg1RckTtuMzgghSGU=;
+        b=h0e9JKe5zgZv8XpK1IVEc7BvZKitS9WgGU94mmmJWcvwBGq3a9bsSOeuy4g8XiyFKw
+         Z7GPGIXpyX1TdeMSkD7iycirSuBEMbO1V9vsmg/urSXokh8p7boYx0CVYVsKClyL81C/
+         56AGvWCngWkhopy2OPPHfb3RLA68RZrZnjTnwj1OzBysXQSqzSDKtm3MumicYqKFeAVq
+         6pl+ep5I9sItmKkL4PRfwie7wUkRw/eiaugi5nq3rzVSWdRZZuuHltqg1fStUpI8yrg0
+         PlMxWuboM5RlKv4O4D2eIISc1ql16mj5uif+ZxB3WckuJJeyLhqOKjGFph0JArQz+sG1
+         XYGQ==
+X-Forwarded-Encrypted: i=1; AFNElJ84a6BgWurDrsJPQdNk13qjamGcB+00L1Lre1eAo8PBF9xKGhKkIf2UIlh8fuGMb/8gOXKKiEvhR6lX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwLaJDnCWsrA5RSjqbuVvDYXZd3c6Atii3rtspcBV/D11mU5Sd
+	wNPFQzfBhFzhA7qRsurAsvGFLSCT8n3qsjGP0Ef/yGr8PBk4ZzJYpY97NY59SlGs4AK4KvtkKEi
+	zMAWLVsOg+yNrWHkkDIwA17W5vyh3TwE=
+X-Gm-Gg: Acq92OFnhLAjzUkM/JfGYlRPFTYs9bPzjVLOPtzTobjImnUKjieBy0oy5zmNOVlDmn9
+	A5C5QP5iXvga5p7mCLxGbK4EKT2/8ASzZTQ2GsY194X8HgGazr5UOFiCYTdaTd3DvOmGUvZ8Zyf
+	jmlrttkZDA+fWnwGnKREFuVKIsi5dlc9mm2UFOjy5uNDduuFugPRoimF7TSkya3RbOKwjNmqiy/
+	2Dm7vQV74K1B3wC5eGIWjnrkqH30OQFg4Zo5iL4iXaycCrGHMczNnjHOa6kcq1k2ZrpTBerWgQp
+	HgjbgdHXS/6M75b3Ide+kuJXAHYqCWZQRad6i5+bwT/YpePM/1mekwwkRpY=
+X-Received: by 2002:a17:90b:5783:b0:36a:4074:9aa6 with SMTP id
+ 98e67ed59e1d1-370ee82fcb9mr23111578a91.6.1781060557754; Tue, 09 Jun 2026
+ 20:02:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260609113836.45079-1-phucduc.bui@gmail.com> <20260609113836.45079-12-phucduc.bui@gmail.com>
+ <aiigtwDM-qEBxjH5@sirena.co.uk>
+In-Reply-To: <aiigtwDM-qEBxjH5@sirena.co.uk>
+From: Bui Duc Phuc <phucduc.bui@gmail.com>
+Date: Wed, 10 Jun 2026 10:02:26 +0700
+X-Gm-Features: AVVi8CfBRh81q-V9vKQU8QeMWprqYN4zKvZvg-BCK79uayFJBD6bEhlpmrZ0dxE
+Message-ID: <CAABR9nGVNFs6GPZaKA6JA=+G6J3+WdGcn2T+sac1YL5N0VS=wQ@mail.gmail.com>
+Subject: Re: [PATCH v6 11/11] ASoC: renesas: fsi: Add SPU clock control in hw_startup/shutdown
+To: Mark Brown <broonie@kernel.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309384-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[nuvoton.com,kernel.org,pengutronix.de,vger.kernel.org,lists.infradead.org,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_RECIPIENTS(0.00)[m:broonie@kernel.org,m:kuninori.morimoto.gx@renesas.com,m:geert+renesas@glider.be,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-309380-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:andi.shyti@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:zychennvt@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zychennvt@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[renesas.com,glider.be,gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6CDF06658CF
+X-Rspamd-Queue-Id: 995A366587F
 
-Add I2C controller nodes to the MA35D1 SoC dtsi file.
-Also, enable the I2C2 interface on the MA35D1 SOM board and
-configure its pinctrl to allow communication with the onboard
-NAU8822 audio codec
+Hi Mark,
 
-Signed-off-by: Zi-Yu Chen <zychennvt@gmail.com>
----
- .../boot/dts/nuvoton/ma35d1-som-256m.dts      | 20 ++++++
- arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       | 72 +++++++++++++++++++
- 2 files changed, 92 insertions(+)
+Thank you for your reviews.
 
-diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-index f6f20a17e501..4b9ff6d00631 100644
---- a/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-+++ b/arch/arm64/boot/dts/nuvoton/ma35d1-som-256m.dts
-@@ -55,6 +55,18 @@ &clk {
- 			   "integer";
- };
- 
-+&i2c2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+
-+	nau8822: nau8822@1a {
-+		compatible = "nuvoton,nau8822";
-+		reg = <0x1a> ;
-+		nuvoton,spk-btl;
-+	};
-+};
-+
- &pinctrl {
- 	uart-grp {
- 		pinctrl_uart0: uart0-pins {
-@@ -98,6 +110,14 @@ pinctrl_uart16: uart16-pins {
- 			power-source = <1>;
- 		};
- 	};
-+
-+	i2c-grp {
-+		pinctrl_i2c2: i2c2-pins {
-+			nuvoton,pins = <1 8 4>,
-+				       <1 9 4>;
-+			bias-disable;
-+		};
-+	};
- };
- 
- &uart0 {
-diff --git a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-index e51b98f5bdce..fe9e0895beb4 100644
---- a/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/ma35d1.dtsi
-@@ -372,6 +372,78 @@ uart15: serial@407f0000 {
- 			status = "disabled";
- 		};
- 
-+		i2c0: i2c@40800000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40800000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C0_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C0>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c1: i2c@40810000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40810000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C1_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C1>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c2: i2c@40820000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40820000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C2_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C2>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c3: i2c@40830000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40830000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C3_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C3>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c4: i2c@40840000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40840000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C4_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C4>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c5: i2c@40850000 {
-+			compatible = "nuvoton,ma35d1-i2c";
-+			reg = <0x0 0x40850000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk I2C5_GATE>;
-+			clock-frequency = <100000>;
-+			resets = <&sys MA35D1_RESET_I2C5>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
- 		uart16: serial@40880000 {
- 			compatible = "nuvoton,ma35d1-uart";
- 			reg = <0x0 0x40880000 0x0 0x100>;
--- 
-2.34.1
+> >  static int fsi_hw_shutdown(struct fsi_priv *fsi,
+> >                           struct device *dev)
+> >  {
+> > +     int ret;
+> >       /* stop master clock */
+> > -     if (fsi_is_clk_master(fsi))
+> > -             return fsi_clk_disable(dev, fsi);
+> > +     if (fsi_is_clk_master(fsi)) {
+> > +             ret = fsi_clk_disable(dev, fsi);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +     /* stop spu bus bridge clock */
+> > +     clk_disable(fsi->master->clk_spu);
+>
+> ...but the matching disable is skipped if !fsi_is_clk_master().
 
+I understand your point now.
+The reason I originally implemented it that way was that I was
+concerned about a potential system hang
+if hw_shutdown() failed while the SPU clock had already been disabled.
+At the moment, it is still unclear
+to me whether any further register accesses could occur after
+hw_shutdown() returns an error.
+
+However, I agree that maintaining a balanced enable/disable sequence
+is more important here.
+Therefore, I will modify the code as follows:
+
++ int ret = 0;
+
++ if (fsi_is_clk_master(fsi))
++       ret = fsi_clk_disable(dev, fsi);
+
++ /* stop spu bus bridge clock */
++ clk_disable(fsi->master->clk_spu);
+
++ return ret;
+
+If we later find that a system hang still occurs in the master case,
+I will investigate and address that issue separately.
+
+Best regards,
+Phuc
 
