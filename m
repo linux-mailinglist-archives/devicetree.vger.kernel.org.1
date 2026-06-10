@@ -1,185 +1,268 @@
-Return-Path: <devicetree+bounces-309468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309470-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Ubb+BqcVKWrGQAMAu9opvQ
-	(envelope-from <devicetree+bounces-309468-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:43:35 +0200
+	id uipZCycWKWoXQQMAu9opvQ
+	(envelope-from <devicetree+bounces-309470-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:45:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817A0666B77
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:43:34 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34526666BDF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:45:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=MKzBnPJT;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309468-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309468-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linaro.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309470-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309470-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9FC3F306A963
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 07:42:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 26C1F300B9D4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 07:44:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC2A8397E75;
-	Wed, 10 Jun 2026 07:41:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3CEC391E4C;
+	Wed, 10 Jun 2026 07:44:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022106.outbound.protection.outlook.com [52.101.126.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEFF7394EAD
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 07:41:55 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781077318; cv=none; b=dLgVXtzl6+/xrJ5JbBBW4ZfC7nUDROMXNTcgBw2nZIO0XfgHWe54YdBF8BwWtHKQjF6ezNi5LBXTQ9RETjuqkjNBtC4YldU66s9p6I8zyOybl1RIKHBtEU/dHIo26YPFMJeHSMMNfa7ioXFtKDsoQ2z94Df7wKkfYBF43ADEoIc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781077318; c=relaxed/simple;
-	bh=RUQYACSew3cfYX34zgSR284JiIolXCPlfeeA2gfHrsM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HybEhtwuSTddsFgGnGXp0ssoyYyH2nU9T5xNS67ywzSoIRBZDISL5cbH4dV6bjZ7o2f/oWtQkM9bsn8u05WuWC6ZxvP2m208FaD8s01qV2XlJ52qaFBwsEOXWzWPno8AMXzBvUOa9oTdUr2EazUcfoEpoCjbRm9ZIXcWuOv3xNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MKzBnPJT; arc=none smtp.client-ip=209.85.221.46
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-45eedcdaeaaso4406385f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 00:41:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1781077314; x=1781682114; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OrqigCCHxDsMi9xkcr3nQgEkjpdgCmWeRsU/XEzQWc0=;
-        b=MKzBnPJTID6e6EF21YmyQCtBRczubFhoGJDzbSdVy7gb2kD0euOVSRjXSe1e+IAWqg
-         cc/EHBgRUM2N8gPFVYRIrTH7Kol3lLzyM7Ss1EspMX418JCPCD/DAiGZspM2bOQKXo3L
-         j9Z94F14mslPsMEBa1JZS+MoDF3c5UjjIeAS8v3p1dSSgrSOW/oz5Yqh/S2O+9GV1Cow
-         Rimy+6BUwQ0y9vBBmLpWE7piLRWowY/bzGof73kJZcwOyscKfXpkzUV+8EEcG7otXWKj
-         8KxSrsL32F9u9A8yj5dAdgO+qPu5Ho68cl9twdBau3WpSJ2CSalYxpac7UNE7igmTl88
-         TE6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781077314; x=1781682114;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=OrqigCCHxDsMi9xkcr3nQgEkjpdgCmWeRsU/XEzQWc0=;
-        b=VDX7CjlHnkcqmCCPA9rC0B+JuSvrgq0TGbTKvm4Y5Jn1b/bG4PHFXuqMVi1trrRf3G
-         Y6y1O612al+e1iQFokY6yXpkZP35lZCYehvOuSd+BlAD4NN8MChsNOjiBvWkTG6mDRYl
-         wqYYu9D/QClL/pFzCbd9GkHSKhDozGAO+ZIT6US+bZXUZZB7QS8l6bpTowDCZkJ3YSl2
-         FtriTp4aNAeOmqnaXrZN9UUnUm9Pbs+sLvtD4jlZPQOPBuMelbCR8wiYo+Z4g4B+qk3i
-         M6QpRxT1JF+FmL0eIEmJ9Syipr0+fUvC7v/5jnx9SN4STu+UAnohF76OsRNOo2r9GMvx
-         DBWg==
-X-Forwarded-Encrypted: i=1; AFNElJ8+i0/vEAOdsinHyE1Jf0pOgTOMapM5cTNcuSZQDaYlfqD0qKuR0pNlWP6RCGo3pkFmEqmiqTcroV9r@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTrm+sXRS4VGqSYnzFl6VVRzja1Cv7Fgu9imdsXa4uCUIcpcg9
-	8e9deQTdE+wUy1guSvnA/BSAN9OLofxB/SlF8P2eGBHaJw1A1WyNJrmyENyZENYIWFzbUi2u8zL
-	vP1ld
-X-Gm-Gg: Acq92OHrUl6sAPWR6YGJd8KBg/HskaLbyrnbUo2aplU2ehDKvgdjvQjvYSaG6RQzJam
-	rbedczNAOPR3kcH7t+v+WmUyMe16+a7qv5rICwkeN8z0CLIOyjainNQDqjMU7ngzXQ4wGKyBisf
-	tcjUsG+VmhR6zo8+bklu7f02tSALSAb450Mv2F+Fw4PJuX1vJqvs7L3e4BNkViQSkFBL6Tb0Pt2
-	FmUP5SzUCP02/YL/I9bdfb2gCR/Pqi6DKJejeGhqP7lPpPWKlEY0OQop8llS92l7KBlrImEtdBj
-	Uwi/2jouHJBrrb3rtSmTgXdvaHCTdtheAJvsKevCw/QgJH1AnnIEs76Wh+pFOiDYEMVB1j/LNJW
-	O659zAxEQuK+x4RPl/r+rYIOFVKAlkK7JMD3OtxI/mjhlsiWMRufUj0ZqTn4jEaVZUzdCtMrUCW
-	unRKUiZlPrBb0SfB2CpwRNaSgTo17wUbKjvJz5yL0GxPshXYvObwhhjDs=
-X-Received: by 2002:adf:efc6:0:b0:45e:fa7b:a7cf with SMTP id ffacd0b85a97d-460304ee122mr26773651f8f.2.1781077314148;
-        Wed, 10 Jun 2026 00:41:54 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4601f3444fesm69161344f8f.20.2026.06.10.00.41.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2026 00:41:53 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 10 Jun 2026 09:41:48 +0200
-Subject: [PATCH 4/4] ASoC: dt-bindings: qcom,sm8250: Add Ayaneo Pocket S2
- sound card
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E82D38E8D5;
+	Wed, 10 Jun 2026 07:44:05 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781077447; cv=fail; b=Yn+1g1drauKK9cSt52ZdKtoZ9+fGsR8gZXsz2VnkFvNx/C/igACvjw6Ny3PXmvHG+yqRC71PBaxmBES0i5TH9unfZnwzVrKHI5G3LsOOWOJ6Ww2ByBBEm9qhs5tCeo6IyJJx/t4ZCWJliMetlOLWSA1XSXOoOt95rlBly+xkTRc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781077447; c=relaxed/simple;
+	bh=46VjYmOlaSaNS6Gq4RC8e17azVu7ePRsb/1oIXyFueI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AxTDn982Pvm6g8A17vhFzVAzLzD+9VyN0Rfq704gandWAR6ekFihpNuEpO9QWofLtBI2cULgQ09mB+wVBJNoI0WD7XGkCLcE9N/xW+XrEjesAa2ZVsfeejkqTYViViReLkY32xxPEp6IH+fT7SGxD1PvYxiflmEE/8KKzoMty6w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.106
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DM9rzgkrQWX9msKUehw1c1er16GIxnLo5a5pJfU74pDlAHvLQjnDuMqf4mcM+YePOA4eZ0naxlZRZFyu+LomV8KSJEHmkqIpLhfojDOFDjGyEp5vfNpAO/XjAM6GAUmImuSBUfHe5ZHpSmriMVjh2nITh2xBQyPNSwdNUcVm4dEK642Bsr9/qbVo00MrzA39f5wkh8iWhDczOptsaRsB9ks985qh3rX/0N7EX/dbBUd67al7pe6ob4RG7E4WmZKf5CkpEpXQNj/NxabaYlurOd2B6OHn3h+/1ntjKIGPt0zZTLjHKt6FSphRHCIPnYrRhHG4BGKBQ+cxZBywVWRwzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kpBvpmCe4WH0pO0hg0uZk2zeEEhtNXDrMWMFRarIwIg=;
+ b=mPwGsxT6Dj+R+bbdG0ZmrkXfNFJZY30egaalWlNojCBfNzfpk23eNzdQdsmGvXs9liHM1EqNnMOVY6ziJxVsGEvUKt6JPp2eEKFMlYl1tSmeaTEjaVtji0YRbEl0Jaex++0Nw1xrmDVk+fQCILU3AcLENkVO63az6W/S+j4ZaDEL3K7aqW5gVX62T/Cr6193ZoQRv6UVY7RVcMli/SC30QiowT1jBBOHG2Y8BXlWUz1cz2Y2kLp0zLGP98foVL5sem/mpHd6eJL59YWTORZNBpIaHqu7iwmWjPCDIdMsM64N1Lwxvvfx5c+xVF0M0GyqlQs9yChMctu5R6uOWnllIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TY4PR01CA0066.jpnprd01.prod.outlook.com (2603:1096:405:370::7)
+ by TYSPR06MB6442.apcprd06.prod.outlook.com (2603:1096:400:483::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.11; Wed, 10 Jun
+ 2026 07:44:01 +0000
+Received: from TY2PEPF0000AB87.apcprd03.prod.outlook.com
+ (2603:1096:405:370:cafe::50) by TY4PR01CA0066.outlook.office365.com
+ (2603:1096:405:370::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.11 via Frontend Transport; Wed,
+ 10 Jun 2026 07:44:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB87.mail.protection.outlook.com (10.167.253.6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.113.7 via Frontend Transport; Wed, 10 Jun 2026 07:44:00 +0000
+Received: from gary-System-Product-Name (unknown [172.16.64.196])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 1456F408426D;
+	Wed, 10 Jun 2026 15:43:59 +0800 (CST)
+Date: Wed, 10 Jun 2026 15:42:25 +0800
+From: Gary Yang <gary.yang@cixtech.com>
+To: Yunseong Kim <yunseong.kim@est.tech>
+Cc: Peter Chen <peter.chen@cixtech.com>,
+	Fugang Duan <fugang.duan@cixtech.com>,
+	Guomin Chen <Guomin.Chen@cixtech.com>,
+	Hans Zhang <hans.zhang@cixtech.com>,
+	Joakim Zhang <joakim.zhang@cixtech.com>,
+	Jerry Zhu <jerry.zhu@cixtech.com>,
+	CIX Linux Kernel Upstream Group <cix-kernel-upstream@cixtech.com>,
+	<devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Yunseong Kim <ysk@kzalloc.com>,
+	Yunseong Kim <yunseong.kim@ericsson.com>
+Subject: Re: [Question] Enabling CoreSight TRBE in firmware on CIX Orion O6
+Message-ID: <aikVYZDMYuPscIKR@gary-System-Product-Name>
+References: <5d1bdf6d-ed77-4de9-b788-cf04a98d054d@est.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260610-topic-sm8650-ayaneo-pocket-s2-wsa2-fix-v1-4-18bb19c5ca22@linaro.org>
-References: <20260610-topic-sm8650-ayaneo-pocket-s2-wsa2-fix-v1-0-18bb19c5ca22@linaro.org>
-In-Reply-To: <20260610-topic-sm8650-ayaneo-pocket-s2-wsa2-fix-v1-0-18bb19c5ca22@linaro.org>
-To: Srinivas Kandagatla <srini@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: kancy2333@outlook.com, linux-sound@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=911;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=RUQYACSew3cfYX34zgSR284JiIolXCPlfeeA2gfHrsM=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBqKRU8wuDWQxwbLtSGmJeawuYayQs0Qcj0laB5GNNz
- X7mZs6iJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaikVPAAKCRB33NvayMhJ0eykD/
- 47yri/yFEa9A9JkT/e28+Ty0O9LdEXHm1iWQMBFYse3uP5q3qDm4PyuXsgzjBhkrbOdtrgt38OY/P9
- 8goI3bThbQ0y2BaxrAlVTveukcI9xRdNXOae7Ul29NITYrtHCIKNHFO7Zk9S4VZLwbyojH+Iq3WQny
- HTYCrPzx+2v4DPmePsGaTDRCDpc6yVFtpm3NjuwahOFzpLOAMxYupiXLqRRJvZv3BnvOn20Om57HHq
- UdDrKaatlJP6ElvH3540DXldo2UtPr8hpOlA7HFqKEkZ0WA4qOBle1RvbQRjQi1eyKZch5SDmJdTSp
- i1HL+N/NnVSzQZcw2yKdM0tWXfGSO/kJpHuVb/hi1XMGd2VFaGLpaoUy7+blqCybW3VkgRSer24a5C
- 4JpTz7H+6fsTmfL4vohISWvgSBSE/2wocxDQm/Ve+BsdSdpbuB2buXyH0KM1zsX3D14BXf7+C7dXbz
- PvmsmlBVez4cT4Zuiolubyg66PkkgjOUoWKhiQWeDoVz/z5HIB45kWVD5gcoXzumukHymQPsCh4QyL
- zje233G+4XG86o6qRjVx7aZrLTgF+IxH3l37vm1rpfzJ0S+yW+yjhZO1DhPRp9V79OnoVi+4KosAzl
- WjAf2ezex07diTiV4OJxOw4zIX/ea50YPFI98KXrD+07tOiD4zN8iGgt38WA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <5d1bdf6d-ed77-4de9-b788-cf04a98d054d@est.tech>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB87:EE_|TYSPR06MB6442:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ac86d5c-7be2-4531-6189-08dec6c4093e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|23010399003|376014|36860700016|1800799024|82310400026|6133799003|56012099006|3023799007|5023799004|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	nESZ/GtQbSQp7ajgWyJfnuC/+xiOIakjlAKr/gJwdf4DkGm2kWL1XvJns0k837ocBnRlBRTbgyw8NVMQwGFsWd4v/YWa3Gv3phOBJidRdoMOywS8s6FVV0wKa7GX4QgawbyP2/i/Z1ZuGRZn4FH2PGwZoktcugoXG1ycYU52JXrZXVmfXo1ax9qHMit1ghU3h5rx4k7UhwokBLgvte/aum32LGAHt08LmYtnX8cuVCr752oSLyrPqptHfliWTRfkTLBFuQ10I/AF9FnG7/DOTU/DZ/nJ8hiuim4g+YyoxCVm1SRtQ1nMFUWYYocWHzolSflY94d8amCqN59AZ1Lubtdrgt4UoLb4a19vxdiAf+BpZ/HnBF2xaCvB9obAHnlJPhsuUelF/wQ6KgM7dJmAy4Q0CsaTc4UjjpDmSshF+g/glco3YfeUURkAE2snJaXyrlF7mbs512n5J8ehpCeVPO6TJ15txkNqP0ePaIrgHSdhF3Xai2P3hqOu8RDMAPVDqtIIOxvJHjfYkIgEJOpcx7ibmNqPefieTXrYm5gq1lXHZTzYj4ZoHFf9/inr/PpEhD/LPqnedvZCvc1cOrSeJ+0Q4kM7t4JaZPJXe6bL4mufwX0VIQlduguhHSFhzoyNXEuo2/TdztWpR6vo8L40pFyFQINILnID/vcoDxQgAbncZrgnA5riZBcecZTlWSGkQdWgtdZHtuVCjbnNmeHVSGoDEevuR6RV1IfUMY4uJBY=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(376014)(36860700016)(1800799024)(82310400026)(6133799003)(56012099006)(3023799007)(5023799004)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	zLYEWrerBjdpQGlPBQ8vxo+bxEn13P45tiTrcIB6V7tPL2ut+f5+V10TD332/bS2UOv2a3c8haFKFMs8V0GoRqRuBCGsuMYyjr/fjrVuGowZb/BSgoRAH/8NcBXTJ4dmL189xZ89fsM1n9bLsMAfIkgD98iKDMDM1aqquiVwTR28WfchJyKl39CLQ0jyUcvqTwUIN18o/T/oWehvr+a3j/XNLSNCdgWhkDcqYm4NnZmWqwaD9vNv+LBtW+aKJVNDB9LIQ4BMeTOOBVDgrcs31PYQzsrb4Pjy9i4bQa5SRAez93uzA9GKQRhRr0SzXsn991Kx6ZT1vLnVe1TzH3GyEhda0AvxOtl7W9q9wvg2KW0V0b2uyvPcFrkyVva1FJy1lNffA7cksfWzS6DIPV+maYo7QPtpCRHRv9LFyo0vi5UMYmvQzMVhCgx6oC1bF2oL
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2026 07:44:00.1241
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ac86d5c-7be2-4531-6189-08dec6c4093e
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB87.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR06MB6442
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [1.04 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309468-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,aka.ms:url,vger.kernel.org:from_smtp,gary-System-Product-Name:mid];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kancy2333@outlook.com,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:neil.armstrong@linaro.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,perex.cz,suse.com];
-	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[outlook.com,vger.kernel.org,linaro.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309470-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[cixtech.com];
+	FORGED_RECIPIENTS(0.00)[m:yunseong.kim@est.tech,m:peter.chen@cixtech.com,m:fugang.duan@cixtech.com,m:Guomin.Chen@cixtech.com,m:hans.zhang@cixtech.com,m:joakim.zhang@cixtech.com,m:jerry.zhu@cixtech.com,m:cix-kernel-upstream@cixtech.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ysk@kzalloc.com,m:yunseong.kim@ericsson.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ALIAS_RESOLVED(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:from_mime]
+	ALIAS_RESOLVED(0.00)[];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 817A0666B77
+X-Rspamd-Queue-Id: 34526666BDF
 
-Document the bindings for the sound card on the Ayaneo Pocket S2
-which uses the special speaker connection incompatible with
-the default SM8650 sound card.
+On 2026-06-09 10:40, Yunseong Kim wrote:
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> [Some people who received this message don't often get email from yunseong.kim@est.tech. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> EXTERNAL EMAIL
+> 
+> CAUTION: Suspicious Email from unusual domain.
+> 
+> Hi CIX team,
+> 
+> I'm working on vock (https://github.com/yskzalloc/vock), a tool that maps
+> userspace programs to the exact kernel code they exercise using hardware
+> trace. On arm64, this relies on CoreSight ETM (--mode hw, for non-kcov
+> enabled kernel) to collect kernel coverage without requiring CONFIG_KCOV.
+> Without firmware enabling TRBE or exposing TMC/ETR, I cannot verify or test
+> the arm64 CoreSight code path on the Orion O6 at all.
+> 
+> I've been testing on a CIX Orion O6 board running Debian sid latest generic kernel
+> and found that CoreSight trace is not functional due to firmware-level restrictions.
+> 
+> Test environment running Debian sid arm64 kernel:
+> 
+>   Board:    CIX Orion O6
+>   Kernel:   Debian arm64 generic (7.1+unreleased-arm64, CONFIG_CORESIGHT=m)
+>   CPU:      Cortex-A520 (0xd81) + Cortex-A720 (0xd80), 12 cores
+>   Firmware: UEFI/ACPI (no device tree)
+> 
+> What works:
+> 
+>   - coresight_etm4x module loads successfully
+>   - cs_etm PMU appears at /sys/bus/event_source/devices/cs_etm (type=12)
+>   - nr_addr_filters = 8
+> 
+>   $ lsmod | grep coresight
+>   coresight_etm4x       118784  0
+>   coresight             110592  1 coresight_etm4x
+> 
+>   $ ls /sys/bus/event_source/devices/cs_etm/type
+>   12
+> 
+> What fails:
+> 
+>   1. No CoreSight bus devices are registered:
+> 
+>      $ ls /sys/bus/coresight/devices/
+>      (empty)
+> 
+>   2. perf AUX mmap fails (no trace sink available):
+> 
+>      $ perf record -e cs_etm// -- ls
+>      intel_pt: aux mmap: Cannot allocate memory
+> 
+>   3. TRBE module loads but registers no devices (firmware blocks access):
+> 
+>      $ sudo modprobe coresight-trbe
+>      $ ls /sys/bus/coresight/devices/
+>      (empty)
+> 
+>   4. dmesg shows only configuration manager, no ETM/TRBE device probes:
+> 
+>      [ 4479.881313] cs_system_cfg: CoreSight Configuration manager initialised
+> 
+>   5. DSDT has no CoreSight ACPI devices (no ARMHC500/ARMHC501/ARMHC97C HIDs)
+> 
+> Root cause:
+> 
+>   The Cortex-A520 and Cortex-A720 cores support both ETM and TRBE in
+>   hardware, but the firmware (TF-A/EL3) does not enable OS-level access:
+> 
+>   - TRBE: MDCR_EL3.NSTBE is likely not set, preventing non-secure
+>     trace buffer access
+>   - TMC/ETR: No MMIO-mapped trace sinks are described in the ACPI DSDT
+>   - Self-hosted trace: MDCR_EL3.NSTB / CPTR_EL3.TTA may not be configured
+> 
+> 
+> Can you check enabling CoreSight trace support in the Orion O6 firmware by either:
+> 
+>   (1) (Preferred) Enable TRBE access from non-secure EL1/EL2:
+>      - Set MDCR_EL3.NSTBE = 1 in TF-A
+>      - This allows the per-CPU Trace Buffer Extension to work as a sink
+>        without any additional MMIO hardware
+> 
+>   (2) Or expose the full CoreSight topology in ACPI:
+>      - Add ARMHC97C (TMC-ETR) device with MMIO base address
+>      - Add ARMHC502 (funnel) devices if applicable
+>      - Reference: ARM DEN0067 (CoreSight Architecture ACPI bindings)
+> 
+> (1) is simpler and doesn't require ACPI table changes, it's a single register
+> bit in the secure firmware.
+> 
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-index 15f38622b98b..1fc458276ab3 100644
---- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
-@@ -29,6 +29,7 @@ properties:
-               - qcom,sm8750-sndcard
-           - const: qcom,sm8450-sndcard
-       - enum:
-+          - ayaneo,pocket-s2-sndcard
-           - fairphone,fp4-sndcard
-           - fairphone,fp5-sndcard
-           - qcom,apq8096-sndcard
+Thank you for your interest in the Radxa O6 board and for the detailed report 
+on the CoreSight trace support.
 
--- 
-2.34.1
+The firmware (TF-A) for the Radxa O6 is provided and maintained by Radxa. We 
+will forward your request to the Radxa firmware team and ask them to evaluate 
+enabling TRBE access from non-secure EL1/EL2 (i.e. setting MDCR_EL3.NSTBE = 1 
+in TF-A), as you suggested.
 
+We will notify you via email once there is a firmware update available.
+
+Best Regards
+Gary
+> 
+> Thank you!
+> 
+> Best regards
 
