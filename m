@@ -1,182 +1,269 @@
-Return-Path: <devicetree+bounces-309484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309481-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xSMIHEEZKWpzQgMAu9opvQ
-	(envelope-from <devicetree+bounces-309484-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:58:57 +0200
+	id e4hcBDQYKWohQgMAu9opvQ
+	(envelope-from <devicetree+bounces-309481-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:54:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAC9F666DD1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:58:56 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BEBC666CEB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:54:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b="V/wa91DK";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309484-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309484-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linaro.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="ek/dWC9P";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309481-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309481-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 55216314693B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 07:54:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AA028304E537
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 07:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCEDF3932FD;
-	Wed, 10 Jun 2026 07:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50692386C36;
+	Wed, 10 Jun 2026 07:53:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5711A38E8A3
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 07:54:00 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781078041; cv=pass; b=KxL1NA3LjzpU8SDoA1+EVjKx3NLvFLCjHEMk2H2hORkPDVAVJPMJhT1U/NcN9iq+ZeMKAGovWH9XEPmCbBdytLZUICHYvZOw4VwysXjGCwKJHSkDWGLM8dYjj0pLMgQwrVHZbPuJTCptQRGQ4ZgRl3oj8ZHl6YM+yYyztI9WW54=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781078041; c=relaxed/simple;
-	bh=FirkQ9b3WjcBRyWWTk9l4j2fUhJzIUeGfuR4crWVpwU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ljk+DbmoKztAebnRpJajdkLXcZEYH3WTPe6ij/GyRd8TXjGWR2SeFlMxBGd6i+gZtZNt1R8n9zz0A9iN9UVYi1kxX7jW70TFTYWvRCVOpcs3e9ZApfOw8huvBYrxRd1VdHSlr1DspbkOytDmkuJUH8wzwRFzOaDnsDKoxtLCJdM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V/wa91DK; arc=pass smtp.client-ip=209.85.218.51
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-bec3ffb95dbso1066557466b.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 00:54:00 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781078039; cv=none;
-        d=google.com; s=arc-20240605;
-        b=L8HJhUk/PsKeX1PAJlJYkaC9LtNZZlJ8GY9cfo1IQ3DWEohOyXxp5eQC+D6Hotses0
-         QS3iSYtjl133Cyyu7Gy/AfAinVcU1sLpk+NQpjTpKKEfrfPHNYRnXj+ewysW2o5U97Wu
-         4DQDlmiGFzU8oHKHF0rs7d2N3PX903xrQh1D4PSB1Yl/WcMi04VlkvWWYBYv8WGnnqLM
-         WvqRir29haTWdo8j7Wfn78dHsCuoPpsk1JKPC/VTFN96a9hvZ+bciy5jhr2j23kdGYcF
-         RmgIXBBN/hQSGkVIR+GJFxdMp8B3lhTxB9yiompqispnE9sfgiKBGdx/n+Xp5UP+fS0v
-         1f5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=kQVHlh3s1LVk2DUq8WGmvLFnNuxxdslZRijXwJj3LTA=;
-        fh=F/cb35ozDoEXB32EZ8hAVWmt+AVyAmmkAsIqVQtGPi0=;
-        b=APnJzkqTf2rFymKZWRD4j//ncimlBtz/TC2omczY7FpRnHFJhbfs2+Cw63LpCvbuWR
-         OKDgb+S3Hr+dzyu086OuT+8uliyOQ4DsUhXVOCx5LfOG6GsE1gMBuUiLcHzTKDyY6vky
-         PQX1Af0TXICLQ9EiAEXRhmQBvcZwNYF1WxcC2JV/idVX3douBMheuMM5ALjzTDDlyRwY
-         vxd+azmQ/MvDREn2vE3CgTtmgkygXqEop34s4rEnq/A6/IaMzz8ozWKhM8oh+3sNfZIs
-         PV1umSMbpQn0fThnXdJXxBpPvG2PojFQicV6iTeoPCxsLDL4KxTXTsvrrlrwVtgfp6fi
-         X3Ew==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1781078039; x=1781682839; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kQVHlh3s1LVk2DUq8WGmvLFnNuxxdslZRijXwJj3LTA=;
-        b=V/wa91DKWIImVSxUTa6NO84KWNEvsYjd9eOi72KMswNDVQocj0Zo76yA+9VVru8iBG
-         rTkPzY8Kyjzafq7AQSHKtjPZjEjX3rcaFuXDQqXm84K0d+NPJXKUA1yIlhijH4ONPurV
-         GA1t4L8DI1S1IBtIFXqc1knUil6h2Ioh37FUkQyCc0VQsnw3RnT8am+MThZNglwTg4Qp
-         GyhbGoQZmHLR1m5SR+nL4pZRwhELzuCVS+cokT9eH2UyhYcQu+4pTDBqZyfCcJauOaaz
-         IJf1SB2oFStPuhS9hhrtjSRc5yV8S/EsaZXEnDd2UbUIBvqjz15zk8layGNMKop66DRm
-         plGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781078039; x=1781682839;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kQVHlh3s1LVk2DUq8WGmvLFnNuxxdslZRijXwJj3LTA=;
-        b=YFNOtpBhldM7j71+GNiJtNqNymzDlRTcuEMgz69WN8ZabHLjJqyKUnLNZ4NID+zNru
-         iVaqx8sv0/0gL1dW8PRpMHVwZhkQBY0RrBD0NuOhAhGg48k3QYV2M3SrfuAJE/gCdqnA
-         OGE4NUfs3BZAaJpE7g8marnbkNSA0807kELzYXqZAyzH2mS+vnGxnt24/kg+jVxoRUGN
-         JyfDQY/x9gSTt3XJcu5m5a8nAYi/9bAoAFtWScMSOiXuT+jDDG1g/+9d8bt+ILJKWp6q
-         kdZF/pda4QIRNgcG3Kyk2C9GtAj/zoIO715Zgp1xfAetjQjRpMBD9XoCpcHoqtSi7bGI
-         zJXA==
-X-Forwarded-Encrypted: i=1; AFNElJ+lUVHGLN3ThKc9G3M33hpFZGIRNee+BzAOsd8UcF8f7ro7J4tD2e25Ffo+ycJSdPgM5HLDDMp9AzT0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzykc+kVLLZeyAvwISUQ0XDDhQuyBCw2MjeK13Z0jpuhNwQMIrX
-	bwv9gX7W4jLRjddAlZizucNzh/G/Z03YO0t1koF353HduWUawvrlnid7/8SyRPNKRNOVKGo+MLJ
-	k/GrlDrrxkX76lKyCoVYyDuo+ZQ5GopGKWOIxcuKEQA==
-X-Gm-Gg: Acq92OHea6KN8nwdce6tk2luQS2xfzdqvKWEQow31sAbGSR2wihcrsAwANMX0m2e8Ug
-	vAwVxudxWZGeT9I+o7JEHDhWox5Xsc+gMSYtX7+QAjWJiWBB4ffLrx2x95dw8cGdGgk93kPLDC2
-	uuSZ5D4pnZ0VZwFPbCE+1glZl1CPn6w7JeXZ+UZblbNbDL/RdWto4uxMNvMYcGYQocaoMFaVTbl
-	d3qRD7ebkm1OGKBiITCkV1w6FLRysmJl5TLAQr3EF5MhomW+vJljFd492MS2+14dRpLdr/kzYSS
-	+t10hRQOIpsoUZDhb6q2kjA8n+6azyQZYWIO0CgxEb0E8k7ObvSA
-X-Received: by 2002:a17:907:ca1:b0:bf4:6aca:6ff1 with SMTP id
- a640c23a62f3a-bf46aca72d8mr639120166b.49.1781078038780; Wed, 10 Jun 2026
- 00:53:58 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91F438E8BD
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 07:53:49 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781078031; cv=none; b=KQ09OWD/lUP28gUTeq9ZgWG4X/0sN7tEH3HvamtiRWCwgELu5yyXD4k1DdzEavFmjZIhPzvTPbNy3Yve1yCgHr0G11bpJpcJBBNxRWrj2xyGlfWcBKytIPXIe/UCT6gOEA40lfbcyVw7RQE1ORXBY4yFKx3SHzaZqYMye/12RQ0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781078031; c=relaxed/simple;
+	bh=duNt+TBIi70gOtV4W22kLh5zbVsdYJjKhKdBOpd5/yw=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=jMG1yXLNxo9/OSQmPaQikkhZJ5GT2x4zf18y5SRovKlJgbD2Dhhgmt3m97PPhW49d8KPqumzi6cX1dXhKYu7f8FXOQrwc0LXgP9G/wyiD2m1JmG3mj3pK9Y8TDpg/GhpfBsBxiL2O/fHNSt9TdjGVhF6DuwxAoc6Af6mAqNgwyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ek/dWC9P; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B2F51F00893;
+	Wed, 10 Jun 2026 07:53:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781078029;
+	bh=7lbnN85sgS5oknwwODCG6LAuSnA3+en2yvmHmTbXJF4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=ek/dWC9PzQWpOEziTXuqgCnMZxfF077G083ed1Z0N71jHXVw8FlLANA1EgMeD9A8k
+	 tpnESk9UdDe8Cb119GoJiKT2eRQJ8zWFzHXLenFKMNaCV3S5GEqdITkcnoSxXNIMbZ
+	 Vy8KVF+kKaWKcUxwkYvzuyX+woVkGwwREhiDXeSRhN6Ttfwy8M/2620NxiUDfz84C4
+	 TcakwxAMfUPQahc4fPrfCA8Xz6t096UXRaBosJS4BL3CfdzCtudYzi8knb8pdWUvx0
+	 6DzGws7D6kx+VPtIygg+zj0VAPl0YD6KbOluDsGZO/AyN8CLPaxMzM4i4U+aNXHVZ/
+	 J/tHhcKg4h+mg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 4/8] block: implement NVMEM provider
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Loic Poulain" <loic.poulain@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260609-block-as-nvmem-v4-4-45712e6b22c6@oss.qualcomm.com>
+References: <20260609-block-as-nvmem-v4-4-45712e6b22c6@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 10 Jun 2026 07:53:48 +0000
+Message-Id: <20260610075349.5B2F51F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <CGME20260610050335epcas2p3ec1c019e86b75e9a4edd965a8b27ebd3@epcas2p3.samsung.com>
- <20260610050326.2903402-1-sh86.bae@samsung.com> <20260610050326.2903402-2-sh86.bae@samsung.com>
-In-Reply-To: <20260610050326.2903402-2-sh86.bae@samsung.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 10 Jun 2026 08:53:47 +0100
-X-Gm-Features: AVVi8CdBLIK1BYMIyty7W9TdEhhqe-w6-7EwqDM-mk3y9etMhibeEUIwfHY2zNo
-Message-ID: <CADrjBPqhODqeV36+-758h_=34YrL=DYHJh5vCwB+Q+qeEkOHtQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: soc: samsung: exynos-sysreg: Add hsi0
- for ExynosAutov920
-To: Sanghoon Bae <sh86.bae@samsung.com>
-Cc: robh@kernel.org, krzk@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, 
-	alim.akhtar@samsung.com, kishon@kernel.org, krzk+dt@kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, sowon.na@samsung.com
-Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sh86.bae@samsung.com,m:robh@kernel.org,m:krzk@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:alim.akhtar@samsung.com,m:kishon@kernel.org,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:sowon.na@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-309484-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309481-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,linaro.org:dkim,linaro.org:email,linaro.org:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url,config.dev:url,makrotopia.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BAC9F666DD1
+X-Rspamd-Queue-Id: 9BEBC666CEB
 
-On Wed, 10 Jun 2026 at 06:03, Sanghoon Bae <sh86.bae@samsung.com> wrote:
->
-> Add hsi0 compatible on samsung,exynos-sysreg
-> To support ExynosAutov920 PCIe settings:
-> - PCIe PHY power control
-> - PLL settings for PCIe
-> - PCIe device direction (RC/EP)
->
-> Signed-off-by: Sanghoon Bae <sh86.bae@samsung.com>
-> ---
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
+- [High] Assigning the 64-bit block device size to the `int` typed `config.=
+size` field causes an integer overflow for partitions between 2GB and 4GB, =
+disabling NVMEM bounds checking.
+- [High] Opening the block device per-read with `BLK_OPEN_RESTRICT_WRITES` =
+and closing it via `__free(fput)` causes unpredictable `-EBUSY` failures fo=
+r concurrent writers and floods system workqueues.
+- [High] Using `devm_nvmem_register()` on a driverless block device creates=
+ an unresolvable reference cycle, permanently leaking both the block device=
+ and the NVMEM device on teardown.
+- [High] The NVMEM provider stores `devt` as private data, leading to a sil=
+ent Wrong Device Access if the original block device is removed and its `de=
+vt` is recycled.
+--
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+commit 14c60083ba6e54d749e04b67cf95e61484f8571f
+Author: Daniel Golle <daniel@makrotopia.org>
 
->  .../devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml   | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> index 9c63dbcd4d77..fcdb9ffd2644 100644
-> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
-> @@ -37,6 +37,7 @@ properties:
->                - samsung,exynos8895-peric1-sysreg
->                - samsung,exynos990-peric0-sysreg
->                - samsung,exynos990-peric1-sysreg
-> +              - samsung,exynosautov920-hsi0-sysreg
->                - samsung,exynosautov920-hsi2-sysreg
->                - samsung,exynosautov920-peric0-sysreg
->                - samsung,exynosautov920-peric1-sysreg
-> --
-> 2.45.2
->
->
+block: implement NVMEM provider
+   =20
+On embedded devices using an eMMC it is common that one or more partitions
+on the eMMC are used to store MAC addresses and Wi-Fi calibration EEPROM
+data. Allow referencing the partition in device tree for the kernel and
+Wi-Fi drivers accessing it via the NVMEM layer.
+
+> diff --git a/block/blk-nvmem.c b/block/blk-nvmem.c
+> new file mode 100644
+> index 0000000000000..a6e62fa98675e
+> --- /dev/null
+> +++ b/block/blk-nvmem.c
+[ ... ]
+> +static int blk_nvmem_reg_read(void *priv, unsigned int from,
+> +			      void *val, size_t bytes)
+> +{
+> +	blk_mode_t mode =3D BLK_OPEN_READ | BLK_OPEN_RESTRICT_WRITES;
+> +	dev_t devt =3D (dev_t)(uintptr_t)priv;
+> +	size_t bytes_left =3D bytes;
+> +	loff_t pos =3D from;
+> +	int ret =3D 0;
+> +
+> +	struct file *bdev_file __free(fput) =3D bdev_file_open_by_dev(devt, mod=
+e, priv, NULL);
+
+[Severity: High]
+Does releasing the block device file via standard fput() instead of bdev_fp=
+ut()
+cause unpredictable -EBUSY failures for concurrent writers?
+
+Since blk_nvmem_reg_read() opens the block device with
+BLK_OPEN_RESTRICT_WRITES, it exclusively blocks writers. The standard
+__free(fput) defers the release asynchronously to a workqueue.
+
+Because bdev_fput() is bypassed, the write restriction isn't synchronously
+yielded, which can spuriously block other system utilities or writers with
+-EBUSY. Furthermore, if a driver reads NVMEM data in small chunks, will this
+instantiate and defer thousands of file closures, heavily loading system
+workqueues?
+
+> +	if (IS_ERR(bdev_file))
+> +		return PTR_ERR(bdev_file);
+[ ... ]
+> +static int blk_nvmem_register(struct device *dev)
+> +{
+> +	struct block_device *bdev =3D dev_to_bdev(dev);
+> +	struct nvmem_config config =3D {};
+> +
+> +	/* skip devices which do not have a device tree node */
+> +	if (!dev_of_node(dev))
+> +		return 0;
+> +
+> +	/* skip devices without an nvmem layout defined */
+> +	struct device_node *child __free(device_node) =3D
+> +		of_get_child_by_name(dev_of_node(dev), "nvmem-layout");
+> +	if (!child)
+> +		return 0;
+> +
+> +	/*
+> +	 * skip block device too large to be represented as NVMEM devices,
+> +	 * the NVMEM reg_read callback uses an unsigned int offset
+> +	 */
+> +	if (bdev_nr_bytes(bdev) > UINT_MAX) {
+> +		dev_warn(dev, "block device too large to be an NVMEM provider\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	config.id =3D NVMEM_DEVID_NONE;
+> +	config.dev =3D dev;
+> +	config.name =3D dev_name(dev);
+> +	config.owner =3D THIS_MODULE;
+> +	config.priv =3D (void *)(uintptr_t)dev->devt;
+
+[Severity: High]
+Can using a dynamically recycled device number lead to reading from the wro=
+ng
+device?
+
+blk_nvmem_register() stores the block device's devt in config.priv, which
+is then passed to blk_nvmem_reg_read() to open the device. If the original
+block device is removed, its devt is freed and can be reallocated to a newly
+plugged block device.
+
+If a kernel consumer still holds a reference to the nvmem_device and perfor=
+ms
+a read, will bdev_file_open_by_dev() dynamically resolve the recycled devt
+and successfully open the new device, potentially exposing arbitrary data
+to the driver?
+
+> +	config.reg_read =3D blk_nvmem_reg_read;
+> +	config.size =3D bdev_nr_bytes(bdev);
+
+[Severity: High]
+Is it possible for the assignment of bdev_nr_bytes() to config.size to cause
+an integer overflow that bypasses NVMEM bounds checking?
+
+bdev_nr_bytes() returns a 64-bit loff_t, and the limit check in
+blk_nvmem_register() allows block devices up to UINT_MAX. However, the size
+field in struct nvmem_config is defined as a signed 32-bit int.
+
+If the block device size is between 2GB and 4GB-1, will assigning it to
+config.size result in a negative value (e.g., -1073741824)? When the NVMEM
+core later copies this into nvmem->size (which is a 64-bit size_t), this
+negative value sign-extends to a massive positive value, potentially allowi=
+ng
+consumers to read far past the end of the block device.
+
+> +	config.word_size =3D 1;
+> +	config.stride =3D 1;
+> +	config.read_only =3D true;
+> +	config.root_only =3D true;
+> +	config.ignore_wp =3D true;
+> +	config.of_node =3D to_of_node(dev->fwnode);
+> +
+> +	return PTR_ERR_OR_ZERO(devm_nvmem_register(dev, &config));
+> +}
+> +
+> +static struct class_interface blk_nvmem_bus_interface __refdata =3D {
+> +	.class =3D &block_class,
+> +	.add_dev =3D &blk_nvmem_register,
+> +};
+
+[Severity: High]
+Will using devm_nvmem_register() on a driverless block device create a
+reference cycle that leaks both devices?
+
+Block devices are driverless class devices, so devres_release_all() is only
+invoked in device_release() when the device's reference count reaches zero.
+However, nvmem_register() creates a child nvmem_device that takes a referen=
+ce
+on its parent block device.
+
+Since blk_nvmem_bus_interface lacks a .remove_dev callback, the NVMEM device
+is never manually unregistered when the block device is removed. Does this =
+mean
+the NVMEM device perpetually holds its reference to the parent block device,
+preventing the parent's reference count from reaching zero and causing an
+indefinite memory leak of both devices?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609-block-as-n=
+vmem-v4-0-45712e6b22c6@oss.qualcomm.com?part=3D4
 
