@@ -1,202 +1,187 @@
-Return-Path: <devicetree+bounces-309775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309777-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /gmqCIdVKWqgVAMAu9opvQ
-	(envelope-from <devicetree+bounces-309775-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:16:07 +0200
+	id 6Qj+Lh1WKWrVVAMAu9opvQ
+	(envelope-from <devicetree+bounces-309777-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:18:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE756692B2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:16:06 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EC466692EC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:18:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TcnXzgdb;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309775-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309775-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=JszroMch;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309777-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309777-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 04C243049FD1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:13:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C5CB6300CB39
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:18:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 015B13EDE48;
-	Wed, 10 Jun 2026 12:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9EC3AFD08;
+	Wed, 10 Jun 2026 12:18:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD12D3FE375;
-	Wed, 10 Jun 2026 12:13:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70DC93FB07E
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 12:18:34 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781093616; cv=none; b=MmrSh0QnzLx20bEtzNVLzd/8oySRIgaDPvLVe74uGidanMNOC/c9w7zlQRJFCBzg+sj0FkY6p5gCwgCDWbGhYKm9KztXUnm4h+IILNwbfjGsL/GZFAM0ydqDNSFo41g4I67i27r9LAB3/PYJGNQuTphwUaS/KhMGIEX6wCMDGEI=
+	t=1781093915; cv=none; b=RiHiaAHHbQ3eJTKWtCUwCnK8xjPcKvzwNwaCJhu9sA2fpCTVvD+XPLghzmqRtBKX9UC54Sq2nA/MMp/OPZo4G+yiLaCkjQ5wnDH0/LQ6sYG/iApQIrUsSWLAljUS7eIwM9sDujsf59WLDo7ZSa6Pewyd9qt+8c+XL7CnVNid6vA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781093616; c=relaxed/simple;
-	bh=/xiMunDatToBsmStrrTWrLizGI4ssFXYAuwPgP9sK/4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ahcw13FJFqjISUETZ4Uk6hH9Fs4CI/SXJnos9XZCPHS1n61mM8N4zFi8DrwI0Pa2jV5S0KhnrrtTVfOkWTUoV0Y7/FxAcow1EtaIE4yaQaRBfV1/UvzT4PXdxKN0GoFlqhdCw0uXBVAm//Z1/9xS+vtSEUNLNSWsj3QvQCSZKU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TcnXzgdb; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C47A1F00898;
-	Wed, 10 Jun 2026 12:13:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781093614;
-	bh=PLw6uU78BIy4nXyeh53q4Xa1pNL6CePfrXCw0nypxAU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=TcnXzgdbLkOizHQIcF3GC5DDqA6io8RAwuHhATh49oW4LHZf6ujvKtBj/62MrPh7w
-	 qYsGbXW5zdovitKU9GyHW1SN1CXv5W0pQUCIpioYDaRXi14VlLkUeQY3rtr1r6akEk
-	 Aa9MgDtBeDrRhTJVinx1s9tQQ/fve2V+ak286zMKtwRWRf6Dy66p/WPJRxYg7JKiQU
-	 PhLUsrz+3sd4WrKZGXGZupb8EVDgspBYyN0YJFO9nawGgRX6qQpeAeiSNnhlolOWd4
-	 kXQi2aubed0kstXpSJkGEv9oiUVd7ZJOGcbt/SQoc218UDv412E7huhnj/t8lm/eHG
-	 hay1dkBUiTlzA==
-Message-ID: <cae24847-407b-459f-9886-4b49c4efd511@kernel.org>
-Date: Wed, 10 Jun 2026 14:13:28 +0200
+	s=arc-20240116; t=1781093915; c=relaxed/simple;
+	bh=Nu8HpBISkhyyT78YFJLyyTWj8tTNef3kNVTDFyhfXic=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=YZh3tb9PjG7H/BgvMmSe6jM4oou/nBy5tOHaSHybBP/xdBxqysa6HfY9RCjK5rr3OQzDSFSgYuwSf6Ap3IWXwT3kEr/bl+PcLhzY+LlztuCXCOZWR0ixNKrQMp+E9iNVyo2rpTKRgEpkPvRo+KeIAGiXyg4ftFLVu56KOUFfjDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JszroMch; arc=none smtp.client-ip=209.85.128.46
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4908b92904fso76870085e9.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 05:18:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781093913; x=1781698713; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0VPo0DaS3Hezc7yA/0Ri7xBuqxAb55K5gZJtR7wfkmI=;
+        b=JszroMchCWBfh0pJQhV3XUqYP4c1meYDadJdffU6n3Qdez4b+s4GfjSCnclOyTqPLd
+         V42n/usgKmbhir9bPt7E/0o5r5npnaZ/ALqUSMewruW5zsyg1M6ADqHxN0yz5IRjnD+M
+         jvUsBVNzPlpAGpdlavzA1R2n14B8Mmywu5lRZdwjzAiriD6Y5mPo3dJ5SGWAfS2BnLsq
+         NVcQybrEgdmcHRL++wJ4sOzmHRL+/PYNQ3ezb2PZrwE7d8Y37/in0cCcG6waTc3wZnT1
+         kgLfX1cqCJlXCk1IzpR9FhPBa4my8mbCG7Vpu3Z7JSZIBQYdMp9fIZvueWG/zH1hcddK
+         seoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781093913; x=1781698713;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0VPo0DaS3Hezc7yA/0Ri7xBuqxAb55K5gZJtR7wfkmI=;
+        b=mYJYDhRA85AKp8mhH3mgftHKzga9QACFggUsu0fcK3x5yFnXP3ZSYtxOhuBcgm63YQ
+         bZDRugSxwSaew+0yqVuCNYvXekKXwr12ZSoz2dgha2KyjIjo1jk4ExtMrF59C/SxC/vk
+         zBshk3vUrDb/KWf7gAge52WRAQ+TRRqTBz9OCgS0cKj7G8gJbnV52R29G6eFnDqZ2NnN
+         3/9hzZW2c0RM2UVs+tyr5wfUlNWVk+HPL+ll+G+31S27g21t0RVGoQnD9xGqUzG/zabf
+         xeAOQtJQg7gRMvb/BGWL8Lqb/uvwV/6l3aD7FLKhJ1e4ItkRafxPMgQwIChNNKs4NnNQ
+         mVjA==
+X-Forwarded-Encrypted: i=1; AFNElJ8uapo4+pp4rQd+DVnq5N7l8sRSd62ywyVTXYWz/xmUHaME+i7iBKzJWuNv+ABWJFej/0cUlVkcHcYT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxB8Ndc2vohNHY37LiX1eOKo7g59hIL7F1z3x+843MNQdBOT0MF
+	ESSMVIh5wSA0aIvFFLZv3zmFOqoZ4ICN4+SHALwVnMiPw/5Rq2Bklvh7S1JQ+w==
+X-Gm-Gg: Acq92OF1gcGq0dJ/0nHdyoscuoTjKrdYx53uo0FvVqVCdlrizGT0H0Rj28H4WpP6Ts9
+	H6uinPr1v8cqvHI4sVaqf4Dh5DMkJMT38tS7yjJnuH+akPU4mROud7gj7A2RKscyu5jKGK8i3yM
+	mJHXEo/FHDhRvxAHHe1A57NYqJ9G1e/XmlYhkXwxs4KKId0sHWZiI9nGR1P2vgmF8/8sLqxFyTi
+	fGt3v635yGMHxRpGmQU9rknnOvOzddsi3d2JgtqYEAfOCrS/sTcKLw7jpI9xviihvUpKC6/fQfa
+	BT32KJYwTUU4Lr3aTWoT22l68SK0MqvnbwE9DQ84fnItNj242DwKeVeASrtEmDaMDXzOEcZA1G6
+	6OnqYP71/rE6k/EEP+X4U7w1NpUgOxxfVbXu28+pIscDza7oBfNq+0UfngYU7+otTEoh9MRGuKJ
+	S77zGaY/w2Bl/r+89mGRWa30UIvTAtS5/7niaE4qEprqyj
+X-Received: by 2002:a05:600c:34c7:b0:490:bb45:79ee with SMTP id 5b1f17b1804b1-490c2525299mr414522655e9.0.1781093912703;
+        Wed, 10 Jun 2026 05:18:32 -0700 (PDT)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc413adbsm566553095e9.15.2026.06.10.05.18.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jun 2026 05:18:32 -0700 (PDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: andrew@codeconstruct.com.au,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: openbmc@lists.ozlabs.org,
+	linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	avifishman70@gmail.com,
+	tmaimon77@gmail.com,
+	tali.perry1@gmail.com,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com
+Subject: [PATCH v5 0/3] Nuvoton NPCM FIU DTS fixes and binding conversion
+Date: Wed, 10 Jun 2026 15:18:19 +0300
+Message-Id: <20260610121822.2524634-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/9] arm64: dts/media: qcom: keep PLL8 out of Purwa camss
- hot path
-To: Ramshouriesh <rshouriesh@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>,
- Bryan O'Donoghue <bod@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Aleksandrs Vinarskis <alex@vinarskis.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20260610-a14-himax-hm1092-v1-0-0c9907da47ed@gmail.com>
- <20260610-a14-himax-hm1092-v1-6-0c9907da47ed@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20260610-a14-himax-hm1092-v1-6-0c9907da47ed@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rshouriesh@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mchehab@kernel.org,m:bryan.odonoghue@linaro.org,m:vladimir.zapolskiy@linaro.org,m:loic.poulain@oss.qualcomm.com,m:bod@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:alex@vinarskis.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-phy@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,oss.qualcomm.com];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lists.ozlabs.org,vger.kernel.org,gmail.com,google.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309777-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tmaimon77@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-309775-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6AE756692B2
+X-Rspamd-Queue-Id: 5EC466692EC
 
-On 10/06/2026 13:09, Ramshouriesh wrote:
-> cam_cc_pll8 (defined in camcc-x1e80100.c) doesn't latch on Purwa
-> silicon. "Lucid PLL latch failed. Output may be unstable!" fires from
-> wait_for_pll() whenever something asks for a PLL8-sourced rate, and
-> the camera pipeline ends up dead with "Failed to start media
-> pipeline: -32" even after the qcom,x1p42100-camss compatible is in
-> place.
-> 
-> PLL8 sneaks into the streaming path via two RCG freq tables: the
-> slow_ahb RCG defaults to its 64 MHz entry (PLL8-sourced) when CSID
-> pulls it during csid_set_power, and vfe_lite picks its highest entry
-> (480 MHz, also PLL8) at streamon.
-> 
-> Fix this from the DT side:
-> 
->   * pin slow_ahb at 80 MHz via assigned-clock-rates in purwa.dtsi so
->     the RCG is reprogrammed to PLL0_OUT_EVEN at clk-init time and
->     never reaches PLL8;
->   * drop the 480 MHz entry from the Purwa vfe_lite clock_rate array
->     so the driver caps at 400 MHz (PLL0_OUT_ODD).
-> 
-> I went poking at the Qualcomm Windows BSP shipped for the UX3407QA to
-> see what rates the vendor side actually uses. The AeoB resource blob
-> at qccamplatform_ext8380/CAMP_{PERF,RES}_MTP.bin lists the camera
-> clocks Windows enables, and PLL8 isn't referenced once. For CCI in
-> particular Windows runs at 37.5 MHz off PLL0_OUT_EVEN, not the
-> 30 MHz/PLL8 alternative the Linux driver happens to pick first.
-> Whether PLL8 is fused off, trust-zone-only, or just unwired on this
-> SoC I don't know, but treating it as unavailable matches what the
-> vendor does.
-> 
-> Signed-off-by: Ramshouriesh <rshouriesh@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/purwa.dtsi       | 12 ++++++++++++
->  drivers/media/platform/qcom/camss/camss.c | 16 ++++++++--------
+This series fixes the in-tree NPCM7xx FIU controller nodes so their
+resources match what the DTS actually describes, and converts the legacy
+Nuvoton NPCM FIU binding to YAML DT schema.
 
-You cannot combine such changes. DTS must be separate, see submitting
-patches in DT, DTS coding style, SoC maintainer profile...
+Patch 1 drops the bogus "memory" entry from reg-names on the NPCM7xx FIU
+nodes.
 
-Best regards,
-Krzysztof
+Patch 2 drops redundant clock-names from those single-clock FIU
+controllers.
+
+Patch 3 renames the schema to nuvoton,npcm750-fiu.yaml, explains why the
+direct-mapped flash window is optional, keeps the requested example
+ordering, and simplifies reg/reg-names to the ordered minItems form.
+
+Changes since version 4:
+ - Rework patch 2 commit message to describe the DT binding rationale for
+   dropping the undocumented FIU clock-names properties.
+ - Keep the patch contents unchanged from version 4.
+
+Changes since version 3:=0D
+ - Split the DTS cleanup so the reg-names fix stands alone as patch 1.=0D
+ - Added review tag to Drop bogus FIU memory reg-names commit.=0D
+=0D
+Changes since version 2:=0D
+ - Drop redundant FIU clock-names from the NPCM7xx DTSI together with the=0D
+   bogus reg-names cleanup.=0D
+ - Rename the schema to nuvoton,npcm750-fiu.yaml and keep reg/reg-names=0D
+   immediately after compatible in the example.=0D
+ - Explain why the direct-mapped flash window is optional and model=0D
+   reg/reg-names as ordered minItems arrays.=0D
+ - Drop clock-names from the schema to match the driver and updated DTS.=0D
+=0D
+Changes since version 1:=0D
+ - Drop interrupts property.=0D
+ - Drop unused label.=0D
+ - Keep reg as the second property, followed by reg-names.=0D
+
+Tomer Maimon (3):
+  arm: dts: nuvoton: npcm7xx: Drop bogus FIU memory reg-names
+  arm: dts: nuvoton: npcm7xx: Drop redundant FIU clock-names
+  spi: dt-bindings: nuvoton,npcm750-fiu: Convert to DT schema
+
+--=20
+2.34.1
 
