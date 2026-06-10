@@ -1,135 +1,138 @@
-Return-Path: <devicetree+bounces-309641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309646-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id atumM+orKWq+RwMAu9opvQ
-	(envelope-from <devicetree+bounces-309641-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:18:34 +0200
+	id Wbu0HfAwKWqvSAMAu9opvQ
+	(envelope-from <devicetree+bounces-309646-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:40:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44C62667BEA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:18:34 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E43667EC6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:39:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=cknow-tech.com header.s=key1 header.b=cG5a62YZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309641-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309641-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=cknow-tech.com;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309646-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309646-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 884703016021
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:18:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E3DD33299BC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D6EE3DB62E;
-	Wed, 10 Jun 2026 09:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304233DCDA7;
+	Wed, 10 Jun 2026 09:25:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB1663DB31B
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 09:18:27 +0000 (UTC)
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B6843C109D;
+	Wed, 10 Jun 2026 09:25:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781083111; cv=none; b=hKe51VBGmhVFRCeQWm068wELmoUDIpcSJvh0ov83gr0qRstP8J7yl/GiM1CllCfsAxDpR66Za9pxqVSroEKQ+5i7/bWVnQSr2oAmtb0JLKVkn3+zC6Yf7S5/JLiX4o5iAAAg7AzOGVSB136DTYx+ZwclHFDQIcK/SnXN3OR0+xk=
+	t=1781083549; cv=none; b=brQ3Wld6bBZx8H7jDVTu+fjnhgK1+DN6Rcu+8NVa4+pPst214RhbzwXiU4/O21wkSt9zzzoiYqYJzONDjqlmI8tks/tH8sLDbjDPBeh27HIzAcaG4mS8V+yYXylWaI5HVGYOVvdAOARR7uXwTiHtnpZDim1NSETiT8gtTGMM4vU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781083111; c=relaxed/simple;
-	bh=fj5/imBeGlxCMfzWuU3hJd17ZZDy39YfrvaEnktXuOU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=e8HizzBk4c+QHqSJo4STbN3LoTrT+gp9XGu18gyywVGp++XsGw9ZZKdwc6BZc3cNBqKwyzaiAzRaHQBhpXZXd4r+0mJWs8x+ZalHu3ij28+bSRJiaZGq1DB1tiX/U3MCW4Wa3Fh6hrUiLaAqSvpQjrn3z/QYKp05vrOxF0HtT9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow-tech.com; spf=pass smtp.mailfrom=cknow-tech.com; dkim=pass (2048-bit key) header.d=cknow-tech.com header.i=@cknow-tech.com header.b=cG5a62YZ; arc=none smtp.client-ip=91.218.175.179
+	s=arc-20240116; t=1781083549; c=relaxed/simple;
+	bh=hTh8Z4WzJirzBjWW9JmGHvJTie+/I/fSkwcPwxv2iTE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=D9Dc6khtWeNi6BgvhYFRB+S0EjC4biLQkEF6u/rHQzM00+dldg+rS8Em1HXzwq28HQVG0Uer7CAnnLxFSWONuo/SR29sYo9gTfCOG0Bj8X3aKW6chWhXGV9PlCmzdcZd1iIU651JsNzu10NHIvKp/9UnL5XsyGVSoY8YlhZCEQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
+Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
+ ajax-webmail-app2 (Coremail) ; Wed, 10 Jun 2026 17:25:20 +0800 (GMT+08:00)
+Date: Wed, 10 Jun 2026 17:25:20 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ben-linux@fluff.org, ben.dooks@codethink.co.uk,
+	p.zabel@pengutronix.de, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com
+Subject: Re: Re: [PATCH v7 1/2] dt-bindings: pwm: dwc: Add eswin compatible
+ and resets property
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <c4fa85f1-365e-49ab-9549-d6d46529a68b@kernel.org>
+References: <20260605082242.1541-1-dongxuyang@eswincomputing.com>
+ <20260605082318.1599-1-dongxuyang@eswincomputing.com>
+ <20260605-scrupulous-tasteful-nuthatch-5d8ce3@quoll>
+ <643f9b98.722f.19eabb8fe3e.Coremail.dongxuyang@eswincomputing.com>
+ <c4fa85f1-365e-49ab-9549-d6d46529a68b@kernel.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow-tech.com;
-	s=key1; t=1781083105;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ug7T5MCyWOrBz7+vEzcRwNA8uq82DdVzduyuYbrljug=;
-	b=cG5a62YZ/AkUIwamW+e2RmoL/AJIB9UDW5YcxkiElVFBeBc8yyX0u15UgZgPl6GYb1gq/B
-	duoL1i1F3AphaV2L68ndc90K4z1ovFJZDbr5WEBf4MYGtuNcwehEDzQHXlSBEp6vLqHhSm
-	FssBXKsCLQle0f3fb5n6QW54TmVxaPeUkuaKDOpG3h11kZocmpl5yeP6dR8smVn+zmrnlh
-	XWeodjwwjcJDtBaxE4AznxNsYkxpz9h3X3yRXwWgoAjKwBjmnMSlvaJssOPzYKDQXTH0Cx
-	ShZWHzhmRjCemulQUUZaAaZd/lK9YORE9Dydo2Tl+rzgfXGPWy02YWfAlV6vXg==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 10 Jun 2026 11:18:22 +0200
-Message-Id: <DJ599LMGW2UX.12U9YA1MOW7O0@cknow-tech.com>
-Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- "Jonas Karlman" <jonas@kwiboo.se>, "Marcin Juszkiewicz"
- <marcin@juszkiewicz.com.pl>
-Subject: Re: [PATCH 0/2] Cleanup and fix for NanoPC-T6 Plus
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <diederik@cknow-tech.com>
-To: "Diederik de Haas" <diederik@cknow-tech.com>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
-References: <20260610081400.758687-1-diederik@cknow-tech.com>
-In-Reply-To: <20260610081400.758687-1-diederik@cknow-tech.com>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Message-ID: <25b0baf0.731a.19eb0d9bf07.Coremail.dongxuyang@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgA3TJ+ALSlqTM4lAA--.5583W
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAgEOAmooQJYbE
+	gAAsS
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VW7Jw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[cknow-tech.com,quarantine];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[cknow-tech.com:s=key1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:ukleinek@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ben-linux@fluff.org,m:ben.dooks@codethink.co.uk,m:p.zabel@pengutronix.de,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ningyu@eswincomputing.com,m:linmin@eswincomputing.com,m:xuxiang@eswincomputing.com,m:wangguosheng@eswincomputing.com,m:pinkesh.vaghela@einfochips.com,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309641-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:jonas@kwiboo.se,m:marcin@juszkiewicz.com.pl,m:diederik@cknow-tech.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[cknow-tech.com:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-309646-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[diederik@cknow-tech.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	HAS_X_PRIO_THREE(0.00)[3];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,cknow-tech.com:dkim,cknow-tech.com:mid,cknow-tech.com:from_mime,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,eswincomputing.com:mid,eswincomputing.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 44C62667BEA
+X-Rspamd-Queue-Id: E2E43667EC6
 
-On Wed Jun 10, 2026 at 10:14 AM CEST, Diederik de Haas wrote:
-> Several nodes were enabled/configured when support for the NanoPC-T6 Plus=
- was
-
-s/Plus/LTS/ in Subject and here ...=20
-
-Still working on a submission for the NanoPC-T6 Plus ;-)
-
-Cheers,
-  Diederik
-
-> added, but later those same nodes got enabled/configured in the dtsi file=
-,
-> making those in the dts file superfluous, so remove them.
->
-> The MTT USB 2.0 Hub is connected to USB20 HOST1, so the phy-supply belong=
-s to
-> u2phy3_host, not u2phy2_host as that is for USB20 HOST0.
->
-> Diederik de Haas (2):
->   arm64: dts: rockchip: Drop duplicate USB nodes on NanoPC-T6 LTS
->   arm64: dts: rockchip: Fix USB hub phy-supply config for NanoPC-T6 LTS
->
->  .../dts/rockchip/rk3588-nanopc-t6-lts.dts     | 19 +------------------
->  1 file changed, 1 insertion(+), 18 deletions(-)
-
+PiAKPiBPbiAwOS8wNi8yMDI2IDExOjMxLCBYdXlhbmcgRG9uZyB3cm90ZToKPiA+Pj4KPiA+Pj4g
+RUlDNzcwMCB1c2UgRGVzaWduV2FyZSBJUCBmb3IgUFdNIGNvbnRyb2xsZXJzLiBBZGQgRVNXSU4g
+RUlDNzcwMCBzdXBwb3J0Cj4gPj4+IGluIHNucHMsZHctYXBiLXRpbWVycy1wd20yLnlhbWwuCj4g
+Pj4+Cj4gPj4+IFRoZSBEZXNpZ25XYXJlIFBXTSBpbmNsdWRlcyBzZXBhcmF0ZSByZXNldCBzaWdu
+YWxzIGRlZGljYXRlZCB0byBlYWNoIGNsb2NrCj4gPj4+IGRvbWFpbjoKPiA+Pj4gVGhlIHByZXNl
+dG4gc2lnbmFsIHJlc2V0cyBsb2dpYyBpbiBwY2xrIGRvbWFpbi4KPiA+Pj4gVGhlIHRpbWVyX05f
+cmVzZXRuIHNpZ25hbCByZXNldHMgbG9naWMgaW4gdGhlIHRpbWVyX05fY2xrIGRvbWFpbi4KPiA+
+Pj4gVGhlIHJlc2V0cyBhcmUgYWN0aXZlLWxvdy4KPiA+Pj4KPiA+Pj4gVGhlIGdlbmVyaWMgc25w
+cyxkdy1hcGItdGltZXJzLXB3bTIgYmluZGluZyBhbGxvd3Mgb25lIG9yIHR3byBvcHRpb25hbAo+
+ID4+Cj4gPj4gSSBkb24ndCBrbm93IHdoYXQgaXMgdGhlIGdlbmVyaWMgYmluZGluZywgYnV0IGl0
+IGRvZXMgbm90IGFsbG93LiBPcGVuCj4gPj4gdGhlIGZpbGU6IHRoZXJlIGFyZSBubyByZXNldHMg
+YXQgYWxsLCBzbyBpdCBkb2VzIG5vdCBhbGxvdyB0aGVtLiBPciB5b3UKPiA+PiBtaXhlZCB0ZW5z
+ZXMgaGVyZSBhbmQgeW91IHdhbnRlZCB0byBkZXNjcmliZSB0aGUgY2hhbmdlPwo+ID4+Cj4gPiAK
+PiA+IEhpIEtyenlzenRvZiwKPiA+IAo+ID4gVGhhbmtzIGZvciB5b3VyIGNvbW1lbnRzIGFuZCB0
+aW1lLgo+ID4gCj4gPiBSZWdhcmRpbmcgc25wcyxkdy1hcGItdGltZXJzLXB3bTIsIHdlIHByZXZp
+b3VzbHkgaW50ZW5kZWQgdG8gYWRkIHRoZcKgCj4gPiByZXNldHMgcHJvcGVydHkgaW4gdGhlIHNh
+bWUgcGF0Y2guwqAKPiA+IEhvd2V2ZXIsIGFzIHlvdSBzdWdnZXN0ZWQsIHdlIHdpbGwgc3BsaXQg
+aXQgaW50byBhIHNlcGFyYXRlIHBhdGNoLgo+IAo+IEkgZmluZCBjb21taXQgbXNnIHN0aWxsIGNv
+bmZ1c2luZy4gUGxlYXNlIGFsd2F5cyBjbGVhcmx5IGV4cGxhaW4gV0hZIHlvdQo+IGFyZSBkb2lu
+ZyBjaGFuZ2VzLgo+IAoKSGkgS3J6eXN6dG9mLAoKVGhhbmtzIGZvciB5b3VyIGNvbW1lbnRzLgoK
+QWNjb3JkaW5nIHRvIHRoZSBEZXNpZ25XYXJlIElQIGZvciBQV00gY29udHJvbGxlcnMgbWFudWFs
+LCBpdCBzZWVtcyB0byBtZcKgCnRoYXQgQmVuJ3MgcHJldmlvdXMgc3VibWlzc2lvbiBtYXkgaGF2
+ZSBtaXNzZWQgdGhlIG9wdGlvbmFsIHJlc2V0cyBwcm9wZXJ0eS4KClRoZXJlZm9yZSwgSSB3b3Vs
+ZCBsaWtlIHRvIGNvbmZpcm06IHNob3VsZCBJIHN1Ym1pdCBhIHNlcGFyYXRlIGZpeCBwYXRjaCBm
+b3IKdGhlIHJlc2V0cyBwcm9wZXJ0eSwgb3IgaW5jbHVkZSBpdCBhcyBhIGZlYXR1cmUgcGF0Y2gg
+aW4gdGhpcyBzZXJpZXM/CgpCZXN0IHJlZ2FyZHMsClh1eWFuZyBEb25nCg==
 
