@@ -1,182 +1,205 @@
-Return-Path: <devicetree+bounces-309861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309862-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JcLIIdR0KWqBXAMAu9opvQ
-	(envelope-from <devicetree+bounces-309861-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:29:40 +0200
+	id 4edIAHtzKWo/XAMAu9opvQ
+	(envelope-from <devicetree+bounces-309862-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:23:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2D366A38A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:29:39 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA23C66A2E1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:23:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=mFBlZdnP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309861-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309861-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oPzTxMah;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309862-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309862-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 09D2230BDD41
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:20:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A452C3010F11
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:21:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD9831A04D;
-	Wed, 10 Jun 2026 14:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E12C328611;
+	Wed, 10 Jun 2026 14:20:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71AA926A1A7;
-	Wed, 10 Jun 2026 14:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0321732E72F
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 14:20:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781101248; cv=none; b=fcvPNedIy55vHFRmSTpHlLteEOMqj+yE0z3bsZb5vdbLVk+5rlSxx4aWcNUYyYaO6FfxPzKfGUmLfPsXVdA2Tib6MHngGDb6F9wlulUzuTxAy3+27uxJ9TaPdj1mnj2vLCvZRc0cTTE/WpZvXfFTCbbeK88/AiWIZjyE36r7Z2k=
+	t=1781101251; cv=none; b=sjH+er4Wa2ynGDGO2kPLSdNmn/RQ5rxssyWYyl2speEkxYJHB/ovDS9H8ucTrUo87rDiV21pRAerqNd8YVC6KY96vwjXE6YPzstxVfmg4AQh9gnMPdTTTR3zDy+3jZQAPC9mdqn5+4TD6cWccNO+bHsJA5ZhktVLs/X9egQKPyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781101248; c=relaxed/simple;
-	bh=SSfdvGJ95M79HPR7Rt+qyNUmSfnZ+9rC3nohuvkXv/U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AQPSK4R30vShXf/p0t7x8o7q9wTs/d/p/ZcBcVRfLuqnspC00Xj+wgVxDeoew5VvkPPaNASmrI06BDcVmSX63myfuC5j2q8YAcpcdgy7lALa0yday7Lk0iP9Hnh4PXTR/6tE0iNqZz23llrzSYlJfuy9nihcZB3XwV6aDm9sX8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mFBlZdnP; arc=none smtp.client-ip=192.198.163.15
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781101247; x=1812637247;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SSfdvGJ95M79HPR7Rt+qyNUmSfnZ+9rC3nohuvkXv/U=;
-  b=mFBlZdnPuaxg5Nz3LucM29TVsBxRc3lQtrsFw9LOg5ZEWkzzuAbb9QyH
-   QVp0Q/q/wPgdsptp5riyF9XMfn3qAWIPB+dQFNlbS377bJXHXp1mVTmGK
-   1f1/56lQuYJtwsikp+X7JdH+dGFPlWJCIiCOzUWJGwotfh5fdBGukMIVQ
-   ISjsE8366DRTE+WngCJoIbeLrauwiLPMUQALe1a56qaTvhPs7qe3d+qgP
-   SZJ+l+JirczLRalcW2LzvdjLSs6dPCUOhf504LwMfhwC/zsfIWeBo8nR9
-   Hz7aj2hvltJSo5tRT3siumDxK4WuJ+rrCd1kkmPyrLrRbrPiXgtsZiM0C
-   w==;
-X-CSE-ConnectionGUID: 3ZAKxBI9TpaMGs+Z9HcGGA==
-X-CSE-MsgGUID: P4m3AN50Sqy9EtrhyWMLsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="82004238"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; 
-   d="scan'208";a="82004238"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2026 07:20:46 -0700
-X-CSE-ConnectionGUID: DIH6p4zGTWGAJtG8z8Ek8Q==
-X-CSE-MsgGUID: RvpnyJBWQpKGe5LiDKyd+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; 
-   d="scan'208";a="251095296"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.38])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2026 07:20:41 -0700
-Date: Wed, 10 Jun 2026 17:20:38 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Bartosz Golaszewski <brgl@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Alan Stern <stern@rowland.harvard.edu>, linux-acpi@vger.kernel.org,
-	driver-core@lists.linux.dev, linux-pm@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>
-Subject: Re: [PATCH v2 04/16] usb: hub: Return actual error from
- hub_configure() in hub_probe()
-Message-ID: <ailytpKQcvYTUH7j@ashevche-desk.local>
-References: <20260610084053.2059858-1-wenst@chromium.org>
- <20260610084053.2059858-5-wenst@chromium.org>
+	s=arc-20240116; t=1781101251; c=relaxed/simple;
+	bh=1YD9hruAXg/3mayhsw85wv4dNSNp3/vb5gV5ajKkBoA=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=HgsvajmR8diSDtJm5GKsBakMbQdvvX6r3Zw9Gk+2xJ4FivvGkMpYFQBcHfGVHSGA+Jy9BAaDI8nCZOYfCyjdk3eS45SJtSVUWA+t8cAzzSW/rPK8aHT8Ur4UkAqqcos5xYDn98YDSRxtFfixZkRbv8o6eYu0N4zo8ugFBl+MwO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oPzTxMah; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93E0A1F00893;
+	Wed, 10 Jun 2026 14:20:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781101249;
+	bh=dvjH8PpKWuNshDDU8XKeJ/5dsMusVknO63gXe/22Gkw=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=oPzTxMahDJEGhjYfpz6kU+v5ELp+IlBT4pYjb6apK6LHoe8Mw9mwhXdcbgsxCrB9g
+	 GhxxfqMw+Szm8UpeomATPsdoa6JrVIUs+w974yXc6S6A12m2WnSDp8NHF7i881L39a
+	 +wmWVvtIgJ7T2wAdIIeho6Pu9pEWo/Rhvbw08zJMh2BexqQGZiTkZJWKjow7snJsRx
+	 19utffPy5zTzv0mgdhSiS20yxbaPWZp6bjP45eZF4f8aQZt8eGPEDakWs3R8sP88iM
+	 RaOYxMRfo7hl2yeQy6PelF7aau6wtxcMKv90uijoo46wu7iMKWdRYwVeUmP/+1r4Mv
+	 pYOvuPEQ3IYfQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/2] riscv: dts: sophgo: Add Milk-V Duo 256M board
+ support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Chen-Yu Yeh" <chenyou910331@gmail.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260610121026.1517621-2-chenyou910331@gmail.com>
+References: <20260610121026.1517621-2-chenyou910331@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 10 Jun 2026 14:20:48 +0000
+Message-Id: <20260610142049.93E0A1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260610084053.2059858-5-wenst@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309861-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:stern@rowland.harvard.edu,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,gmail.com,linux.intel.com,collabora.com,rowland.harvard.edu,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309862-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:chenyou910331@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,vger.kernel.org:from_smtp,intel.com:dkim,intel.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linux.intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AD2D366A38A
+X-Rspamd-Queue-Id: EA23C66A2E1
 
-On Wed, Jun 10, 2026 at 04:40:38PM +0800, Chen-Yu Tsai wrote:
-> The addition of power sequencing descriptor handling in the USB hub code
-> requires dealing with deferred probing from pwrseq_get(). The power
-> sequencing provider may not yet be available when the USB hub probes.
-> 
-> Return the actual error code from hub_configure() when it fails, so that
-> the driver core can notice the deferred probe request.
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
+- [High] The device tree references an undefined label `&usb`, which will c=
+ause a fatal dtc compilation error.
+- [Medium] The commit message claims to add support for an 'Onboard blue st=
+atus LED', but the corresponding LED node is completely missing from the de=
+vice tree.
+- [Low] Accidental removal of the trailing newline at the end of the Makefi=
+le.
+- [Low] Potentially stale or incomplete copyright attribution in the new DT=
+S file.
+--
 
-Makes sense to me.
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+commit 1a0c595fbd52010c818ad842d5ef53c54212434e
+Author: Chen-Yu Yeh <chenyou910331@gmail.com>
 
-One nit-pick, though.
+riscv: dts: sophgo: Add Milk-V Duo 256M board support
 
-...
+The Milk-V Duo 256M is a small form factor development board based on
+the Sophgo SG2002 SoC.
 
-> -	if (hub_configure(hub, &desc->endpoint[0].desc) >= 0) {
-> +	ret = hub_configure(hub, &desc->endpoint[0].desc);
-> +	if (ret >= 0) {
->  		onboard_dev_create_pdevs(hdev, &hub->onboard_devs);
->  
->  		return 0;
->  	}
->  
->  	hub_disconnect(intf);
-> -	return -ENODEV;
-> +	return ret;
+>     - Onboard blue status LED (connected to PWR_GPIO[2] / porte 2)
+>    =20
+>     Tested on actual Milk-V Duo 256M hardware, verified boot to shell and
+>     heartbeat LED functionality.
 
-Can we convert to regular pattern, id est checking for errors first?
+[Severity: Medium]
+Is the LED node missing from the device tree? The commit message mentions
+support and verification for an onboard blue status LED, but there does
+not seem to be a corresponding leds or gpio-leds node in the patch.
 
-	ret = hub_configure(hub, &desc->endpoint[0].desc);
-	if (ret < 0) {
-		hub_disconnect(intf);
-		return ret;
-	}
+> diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/so=
+phgo/Makefile
+> --- a/arch/riscv/boot/dts/sophgo/Makefile
+> +++ b/arch/riscv/boot/dts/sophgo/Makefile
 
-	onboard_dev_create_pdevs(hdev, &hub->onboard_devs);
+[ ... ]
 
-	return 0;
+>  dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2042-evb-v1.dtb
+>  dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2042-evb-v2.dtb
+> -dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2044-sophgo-srd3-10.dtb
+> +dtb-$(CONFIG_ARCH_SOPHGO) +=3D sg2044-sophgo-srd3-10.dtb
+> \ No newline at end of file
 
--- 
-With Best Regards,
-Andy Shevchenko
+[Severity: Low]
+this isn't a bug, but was the trailing newline accidentally removed from
+the end of the Makefile?
 
+> diff --git a/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts b/arch/r=
+iscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts
+> new file mode 100644
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/sophgo/sg2002-milkv-duo256m.dts
+> @@ -0,0 +1,108 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + */
 
+[Severity: Low]
+this isn't a bug, but is this copyright attribution stale? The file appears
+to use a template from 2023, and it might be missing the 2026 copyright for
+the current author.
+
+> +
+> +/dts-v1/;
+> +
+> +#include "sg2002.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+
+[Severity: Medium]
+Is this header still required? It seems unused in the newly added device
+tree file, possibly because the LED node was accidentally dropped.
+
+[ ... ]
+
+> +&uart0 {
+> +	pinctrl-0 =3D <&uart0_cfg>;
+> +	pinctrl-names =3D "default";
+> +	status =3D "okay";
+> +};
+> +
+> +&usb {
+> +	dr_mode =3D "host";
+> +	status =3D "okay";
+> +};
+
+[Severity: High]
+Will this compile successfully? It looks like the usb label is not defined
+in the included base SoC device tree files, which could cause a dtc syntax
+error during the build.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610121026.1517=
+621-1-chenyou910331@gmail.com?part=3D2
 
