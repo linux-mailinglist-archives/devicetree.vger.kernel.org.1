@@ -1,164 +1,136 @@
-Return-Path: <devicetree+bounces-309595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309597-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pGOSDSsoKWrERgMAu9opvQ
-	(envelope-from <devicetree+bounces-309595-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:02:35 +0200
+	id SFzmNCQrKWqaRwMAu9opvQ
+	(envelope-from <devicetree+bounces-309597-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:15:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96D866790E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:02:34 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6B74667B83
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:15:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=A5287b4J;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309595-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309595-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nrV72KXM;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309597-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309597-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5E04B30E23B3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:56:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 337B3311F882
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9ED3B0AE8;
-	Wed, 10 Jun 2026 08:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2EE3B42FB;
+	Wed, 10 Jun 2026 08:55:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10603B14D2
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 08:55:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5020D3B42E3;
+	Wed, 10 Jun 2026 08:55:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781081736; cv=none; b=CX3KKJY86R98EiAifmm9fbujtFwTLXFSs928gXjYVBmiGtqbFEUXZJeey1djp2BxbDOTDXb/ko5Gz2aKfQ89uqkwhR2esx2zQwVUQYofmfQvEGVO1BweL5oqLNnfTqwQVelNtOcjSFGnGo88bpBjvKXElK+/7IVc68KEdHGkHMo=
+	t=1781081750; cv=none; b=au/+53xUqDPkykeiWbTNmdRumw4Diq7g3/GBKdQpyT4TLhPG9Z6cSGPmHah1lC+e5TtAshsbNmyIX/6NJB6rP96UXyuk2Pdb5FcNlhR/jhcJove/QzpondIZ5La4V0fBlnChHtefe11Z2QGS1pqWK4l5oShrShlTheo6pfrv1Kc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781081736; c=relaxed/simple;
-	bh=2Ue6L1lmxGXOGJQEgij9zhvyvTPp5/79eKlMcCxDd/4=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=cUrYJMVr9x59Hh6OIX5kvj1cE+l6iB/wBIBXR4+wOHWoar9iasi+ueWD48F0LInNQdjHvBvGjMghEUebqicGJ3rvHPd7sudrIWGLjysxv4LA5P+9cslzO7U6H2kQlajo1RVK2LV9/DMhtJGs8hEzRxXOqoyU1bMVtgNi4n6mZh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A5287b4J; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56D2D1F00893;
-	Wed, 10 Jun 2026 08:55:35 +0000 (UTC)
+	s=arc-20240116; t=1781081750; c=relaxed/simple;
+	bh=a+sRRfUHrctTpYK/ApL0KiB3sJRFNC0i7dDQnfFBUMc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bjoh0w4Tact5BEHVvzAfyytG1KWhbWWbGYmME35iU6IL6EuMz4XW9p6tlqwPqIvIhxxbWlL5+NfvDiKbzSBiJsACLgVaqQLkyWq29VF1D6TusbMDPHLBrwomSzR0esoCofTkxT+xOdix2ixrI1pTGTyYymF4478jeIVXMqN255Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nrV72KXM; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6DAB1F00893;
+	Wed, 10 Jun 2026 08:55:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781081735;
-	bh=bdXSAgTnBoBqjzn69bwO/SSCQIBKDmceLIPebweWGuU=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=A5287b4JOfN8K8Euq688ms3HsKIbMZemjX6DF5Hk1gmNb/D7d2PrSUkfjN+TKt+80
-	 /ZKKGpB7anIs7TuWjmyYwpN0Zs+q1ET1kkutUWPFdtsKeSFQVOka3mgyVjU7G3JiyB
-	 fH07JG6GHpGvFwV8yxP1MHYVDOSK/7QO7nhImsK06i8CtRifZFt95IeJeJSP97qy2E
-	 vVPuP4preObRfngwPhwkW9MTRG6sWK28zM8A2wquvdV7GhNtdtr3NyfnIgu6mgtOiV
-	 QrW/p6XaxP9kvGuA2QO1LPZNuSAmcZnXKEk0mFQ9uNHxgwC6LTCTa0IS2RJea7mXAC
-	 +cU1k8Lz2OiIg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 03/16] power: sequencing: Change
- CONFIG_POWER_SEQUENCING to bool
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Chen-Yu Tsai" <wenst@chromium.org>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260610084053.2059858-4-wenst@chromium.org>
-References: <20260610084053.2059858-4-wenst@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 08:55:34 +0000
-Message-Id: <20260610085535.56D2D1F00893@smtp.kernel.org>
+	s=k20260515; t=1781081748;
+	bh=24kKy5m5HqAQmbOX/28c8jXJQdgJGurt3Jbpga0TnVg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=nrV72KXMNgv+FyEiA6zBLSfuTrO1Oyl0jd/qHTN9eyMrqIGYaSWqpYAxv047yykcu
+	 +H5l6v4Ao/iBZfhF+al+Ku7JuwuEiCGtGVAMjpW6pgYdVzuVXJrhbdEkIbBw1FHTwX
+	 8jnFqibXksS/KsdyuiBDfm4BBstgFacRznXa7h2InV2ux4SjeyozM3Kvf6Mii58xfk
+	 P0zab4JHJghv3X2dC0em6As9xbLwfhK0C59OOdqM1flbQ46O+gG+3BH8BlFcRouVy9
+	 gBEz7jx3xeD86orh0OUftlU6DgE0tPWgwa3Yt/NnrVLO/temtCjus8nFVm6ROENHec
+	 +hdIZYx7MgEzA==
+Date: Wed, 10 Jun 2026 10:55:44 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
+	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: crypto: qcom,inline-crypto-engine:
+ Document Maili ICE
+Message-ID: <20260610-mighty-dalmatian-of-piety-2fa184@quoll>
+References: <20260609-maili-crypto-v1-0-0f577df56a61@oss.qualcomm.com>
+ <20260609-maili-crypto-v1-2-0f577df56a61@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260609-maili-crypto-v1-2-0f577df56a61@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309595-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_RECIPIENTS(0.00)[m:jingyi.wang@oss.qualcomm.com,m:herbert@gondor.apana.org.au,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:andersson@kernel.org,m:aiqun.yu@oss.qualcomm.com,m:tingwei.zhang@oss.qualcomm.com,m:trilok.soni@oss.qualcomm.com,m:yijie.yang@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309597-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,chromium.org:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email,vger.kernel.org:from_smtp,quoll:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C96D866790E
+X-Rspamd-Queue-Id: C6B74667B83
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The commit message incorrectly justifies changing CONFIG_POWER_S=
-EQUENCING to bool by falsely claiming that USB support is a boolean option,=
- which unnecessarily prevents building the power sequencing subsystem as a =
-module.
---
+On Tue, Jun 09, 2026 at 02:08:57AM -0700, Jingyi Wang wrote:
+> The Inline Crypto Engine found on Maili SoC is compatible with the common
+> baseline IP 'qcom,inline-crypto-engine'. Hence, document the compatible as
+> such.
+> 
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> index db895c50e2d2..c9489f6b8081 100644
+> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> @@ -16,6 +16,7 @@ properties:
+>            - qcom,eliza-inline-crypto-engine
+>            - qcom,hawi-inline-crypto-engine
+>            - qcom,kaanapali-inline-crypto-engine
+> +          - qcom,maili-inline-crypto-engine
 
-commit 80f4a7ca3dbefd1dc2ae2274d131e8b5461c5c66
-Author: Chen-Yu Tsai <wenst@chromium.org>
+Why clocks are flexible?
 
-power: sequencing: Change CONFIG_POWER_SEQUENCING to bool
+Best regards,
+Krzysztof
 
-This commit changes the POWER_SEQUENCING Kconfig option from tristate
-to bool, citing that USB support cannot be built as a module.
-
-> USB support, including the core and hub driver, is bool, no modules. To
-> be able to use the power sequencing API in the USB core, the former must
-> also be bool to avoid the latter being built as a module.
-
-[Severity: Medium]
-Is this description of USB support accurate? Looking at drivers/usb/Kconfig,
-CONFIG_USB is actually defined as a tristate:
-
-config USB
-        tristate "Support for Host-side USB"
-
-Since the USB core can indeed be built as a loadable module, does
-POWER_SEQUENCING strictly need to be restricted to bool here? Could standard
-Kconfig patterns like depends on POWER_SEQUENCING || POWER_SEQUENCING=3Dn be
-used instead if linkage dependencies need to be resolved?
-
-> diff --git a/drivers/power/sequencing/Kconfig b/drivers/power/sequencing/=
-Kconfig
-> index 1c5f5820f5b76..27448fba9dc5d 100644
-> --- a/drivers/power/sequencing/Kconfig
-> +++ b/drivers/power/sequencing/Kconfig
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> =20
->  menuconfig POWER_SEQUENCING
-> -	tristate "Power Sequencing support"
-> +	bool "Power Sequencing support"
-
-[Severity: Medium]
-Given that CONFIG_USB is a tristate, does this change unnecessarily prevent
-the power sequencing subsystem from being built as a module?
-
->  	help
->  	  Say Y here to enable the Power Sequencing subsystem.
->
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610084053.2059=
-858-1-wenst@chromium.org?part=3D3
 
