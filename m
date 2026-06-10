@@ -1,319 +1,213 @@
-Return-Path: <devicetree+bounces-309869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309871-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Q5CbFAl4KWpNXQMAu9opvQ
-	(envelope-from <devicetree+bounces-309869-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:43:21 +0200
+	id OKvfNSt4KWpdXQMAu9opvQ
+	(envelope-from <devicetree+bounces-309871-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:43:55 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0E3966A550
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:43:20 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 816B366A57A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:43:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Vp1sREQa;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309869-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309869-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=WFfICjz2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309871-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309871-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EE1B6314BABC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:32:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B1CD33158E04
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:32:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8599133D4F8;
-	Wed, 10 Jun 2026 14:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81E90381AE0;
+	Wed, 10 Jun 2026 14:32:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com [74.125.82.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C155232B9A1;
-	Wed, 10 Jun 2026 14:32:03 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781101925; cv=none; b=kdl2N3Fl1yji3zP41T2TM+/Uuo/hKQd2UewRosZRyGpHWp8GV/nv0w5XhRFHxQMP+P/9Sf+7eV+BhDKyRzSEVD8hKBtsHQKyWbB9/Vv5d6ZPSzXQjWtvb5KZ1yu1nV4tpRCzawjbegyf/JAJcNtxzGtRZXJaDtXGeAw+g6tVI88=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781101925; c=relaxed/simple;
-	bh=TE2NBpz4e7/8/JNrsJ+jLCydcPyeueKbxIt/0ak6lWg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=st9GBTkEekC5Rd6DkUY/fZxuQnMC+ScQQuXbK1ONZ40PbcuWl2s7DIkLBNJ6b1j7SBsBXO0raD5sOycQmZ4t4UPFS3E/BSv7mCRPu6vNUuAhpmk2POk3j75XybrUt639zSBD+8JHtuP6ubUXXSUgREPqTSk7RFb16JF0s10tNgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Vp1sREQa; arc=none smtp.client-ip=192.198.163.18
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781101924; x=1812637924;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TE2NBpz4e7/8/JNrsJ+jLCydcPyeueKbxIt/0ak6lWg=;
-  b=Vp1sREQaPKQUizyNnzB0K/1sR40n5tyO2uZzxS2mvPvByr7EsPCwntdO
-   vvVkm8yRtey7i0Yvx3/7YS/sOZ+7G9zE7Eyg1Qb8MhD9xU/3dBghrCzrK
-   4c8NIw0Zm5pwyYAkS7NRUaWSpQsYGH+nhz58la4TZA9tCSBmijzmjUJGM
-   VOFxKk7VQikKZCLT4ezWv8QkwkuGj70nZphKDVYPVXAWk/7YVw63ZLpov
-   pWB4m42L2yrHmESXabqYlfhvpv/9PKL6uoA6yfKr4Q7Kvy4iQol+8cpHv
-   VCG4ChSTOoSxWhC78jKQ+c8eXavNL/l/2WUW1bonSyRQrurSrcp4c9x5B
-   w==;
-X-CSE-ConnectionGUID: 52+MJ6rwT4aNPAE/Duf+LA==
-X-CSE-MsgGUID: I6Fda/K4R2W/i8WCWwJHaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="81025831"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; 
-   d="scan'208";a="81025831"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2026 07:32:03 -0700
-X-CSE-ConnectionGUID: K9g6FQwnS+qDRNOjV2yavg==
-X-CSE-MsgGUID: TgOSRGQ9QAi/6+QvT0ZrdQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; 
-   d="scan'208";a="269868091"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.38])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2026 07:31:58 -0700
-Date: Wed, 10 Jun 2026 17:31:56 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Bartosz Golaszewski <brgl@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Alan Stern <stern@rowland.harvard.edu>, linux-acpi@vger.kernel.org,
-	driver-core@lists.linux.dev, linux-pm@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>
-Subject: Re: [PATCH v2 07/16] usb: hub: Power on connected M.2 E-key
- connectors
-Message-ID: <ail1XLTIkU7YVvs1@ashevche-desk.local>
-References: <20260610084053.2059858-1-wenst@chromium.org>
- <20260610084053.2059858-8-wenst@chromium.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C4121531E8
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 14:32:32 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781101953; cv=pass; b=D9o0kEGZK+wABABO/Hhu9Tw7MzsEHzZ44S8llqIjmoUir7vMGlzUdmfGXb509Jev/YGKQ1g4jwC0VRI5Oob5xD5od41b1ax7Xrq3S7dDz3W/rrUtQmnTIX+P37wudbv1Xk+BE8RbInLjZ2ZscbKCbdUKn1DXa6cD1xjo5d21wZQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781101953; c=relaxed/simple;
+	bh=ES4Wwnm7LDTekDfxBkRjueXtU+JExOHrirYIoXL7mMA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rqoHqdCzT8k3seltqwwaNK+IJIjZgwwS1bXaDj/5QtPfgpi5Q+nQZlSRz1X5j+TYPFQpUVEmYxrMQHKUhfSrdGkqxEFL73syjE2AAOQ7fznjiLvN3j6YzFUbqxfxTtqiR65ZVv0KbnL3seZSxl2cS9j/TUi3aT/VsRWiULdyuRM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WFfICjz2; arc=pass smtp.client-ip=74.125.82.169
+Received: by mail-dy1-f169.google.com with SMTP id 5a478bee46e88-30749947917so2882207eec.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 07:32:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781101951; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Dhp9PKCBJZDXAyg+sh+64QlJiPq9BfA3w/ULCi1xfmQgJsUAiEx1dqRI6DgMDUBolT
+         pCn21LIgtFhkJXrQyrp3Fc/1rfDvIzh1zgudC9PSIV7ws9T6rU2fY+IuHyFuBxQCXjz6
+         wjSxqAT4EqwY/NCSJXlyNmAEUl0bWtMcsnfnRl51TyBy5yg71CgwRripCPE9TLMO/6sq
+         vurhUiZ4N9drxaWMzZQiSxrkINbFZM7isekhAAHdANdjVVljkJTDw/Zl7TgUrAZ8vk8/
+         3SOlySQ85+AmCBD0xuwyrY+3dzY1TBUXSEvA3mdH7XBPwLvLHWPyWt7EhmEnaDC4kP3h
+         N9iA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=oYlaQ1NUVVCcD2TPrqOfDsKTXd5iB9hu+Glwj3KNaZ4=;
+        fh=vxxOi6JivRy7IrTlZWG17CkSh0wLxoI8Oymsfsn4yeI=;
+        b=F8KOU5CZ3hKqGKHe163z/p9qudz/fsuO1HnqhjscDE8offszfmJSbVrUNvwhSk7ynK
+         d4t/u0112iS+BKBZhy72TMnbj6H3uKuPUqFQ53pbgRlkgq4lcoNreZteMDJUMn6oN+gi
+         o9bk9JBYI2CVjhwSWEghfM88VgoBbxat2aIAlMvAzHn+TnGNOe9GFBhZd+jtsi82Plgr
+         MfnsQUrCukjyjr06TU96j2EK7beRSehk5U15XtHHlEWIlHkZ8bjeULqGiluidEoUfcNr
+         TUztWMKAxS6U2VVCgXWfNAWbSfyCdtJcuK36SeNQaFKAiSFnjG3as0gtuvRDpgPw167x
+         urBg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781101951; x=1781706751; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oYlaQ1NUVVCcD2TPrqOfDsKTXd5iB9hu+Glwj3KNaZ4=;
+        b=WFfICjz241T2kl0XBGu8welhc92Wlr0xtBHWITgpIxMHe5DxxLf3s5BWWcXF40Xct6
+         DrvQRQNtctSuTLpSt0XKQtpeKOMV/lQcK/UvwFeXNjn58A0px0zqWy+yvwvzd5LMmEYX
+         mgPRZFEgtH8pZsOaQdbUlGyeI/lmOxLN9cIAZLWnYPpLijeRi/9z+aVo5dChJ3yYHZWx
+         TtiLfrcb3JcHBjf/RXCLb4KPIBxjVQ0LTSWoe9A9ENoedrCLZMrUGAR5UZPoW5xv1ta0
+         LI5J7MH/UfQFJ2bFvddlrEMHUSicdIIpUCEsQ2tt4o2yFLWF7f3YdQP7G4W0Fa3Xbp2O
+         V1bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781101951; x=1781706751;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=oYlaQ1NUVVCcD2TPrqOfDsKTXd5iB9hu+Glwj3KNaZ4=;
+        b=FYGRyx6xpyz9db4D57jI62/lYmBRQwEA8luTkDQnOoJJ+B+ApUoiJjIVReVQnXMs8V
+         03HBLPuqqJIZfY0l0yOOL/+VzyTVBVzNo7ccMUzsy0jleATI8TeS/YY4sP0JTTKhoiIF
+         mNXmiHUqxNtbcG46VRnwZa4AIdAYVfwWZ0clQ7CbMQPwaL/ypJNwQC9seMz4Ml7Mw9Zc
+         O67mxkXiUD5gDRGhY2ZGxiT6qYf/BLRG+EKIj+4T7Fb50roVxK3IcE7+a+u8MfkVQPDd
+         zOqn5G7GwpdN9hyTOiaanM3LIhkHLJzDTtvmvqYaSXrhoHnRkyVeBuT+zVi9F99WZ3Ve
+         tD2w==
+X-Forwarded-Encrypted: i=1; AFNElJ9FumtEmRuWP5Z2V+418QOXRukzAeVS8Cg1Jy6z6xvkarrMOXamnoFyRxCmnrQO3iSRGeB42O7nzDjv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZDWB6zNr3zifsqr1gHEKUX+DcG/jr22v6mgKDR9YvtVmNr3Xj
+	w6acG9gk6iR+vrEGs8TQ4QjrkY9oVPLidcjVRq5R2dNzQKaLsPll2TMVAIYM0dyX/KruYNbRZwe
+	8IFA3jiCW7E3pn8sWTSLXeHAZPnTAxSU=
+X-Gm-Gg: Acq92OEO6Sn0JhHo0xx25VA27IiJ2sQG+eQgxK6qBvFW66KnT9YJD3wzYFyUxCce5AW
+	RXyl4QUXv2ejeVY9ZNSD8vk8D7B4MsmkTmajsPEIutlZyNz7RuyKcaaOvCXykekbBQeKGQuASjo
+	2y7J0E62O+8XhzuYcDdHB0gUC8/dAkdevRkAcn88ffOJ4Qj8pWwljfrhURh5Nzwm4iNF18KIANV
+	jtVcPhm217jzRmmNyvzUsDi5SLnsJH5948R90fZUldsFATGltocvLHxLXvh8t5d5U0BbDl5pJFY
+	xRj138pALIa10EvaDVk=
+X-Received: by 2002:a05:7300:7304:b0:2be:2cfe:68b7 with SMTP id
+ 5a478bee46e88-3077b3c7767mr18495535eec.11.1781101951047; Wed, 10 Jun 2026
+ 07:32:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260610084053.2059858-8-wenst@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20260606045738.21050-1-clamor95@gmail.com> <20260606045738.21050-3-clamor95@gmail.com>
+ <aiPDzdKuccdLIvlF@ashevche-desk.local> <CAPVz0n2rdgw8Xr3uxVdQGwrHTNFqK4SKQDFU2FEB8LzLwPhQ_A@mail.gmail.com>
+ <aihjVZ9xvM2BRFu4@ashevche-desk.local>
+In-Reply-To: <aihjVZ9xvM2BRFu4@ashevche-desk.local>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Wed, 10 Jun 2026 17:32:19 +0300
+X-Gm-Features: AVVi8CeI8hlh1GbQ3AYGIMwG28HB2xx8su6lqiYAmfvLYDOtgithK37JF5bkrak
+Message-ID: <CAPVz0n1fHWCpHN93v-dKfzGYhvB-dC1E3JgQmXpvfr6bGNLqcA@mail.gmail.com>
+Subject: Re: [PATCH v4 02/14] mfd: lm3533: Remove driver specific regmap wrappers
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Helge Deller <deller@gmx.de>, Johan Hovold <johan@kernel.org>, 
+	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:lee@kernel.org,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:deller@gmx.de,m:johan@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:linux-fbdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309871-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309869-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:stern@rowland.harvard.edu,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,gmail.com,linux.intel.com,collabora.com,rowland.harvard.edu,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,intel.com:dkim,ashevche-desk.local:mid,linux.intel.com:from_mime,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,intel.com:email,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B0E3966A550
+X-Rspamd-Queue-Id: 816B366A57A
 
-On Wed, Jun 10, 2026 at 04:40:41PM +0800, Chen-Yu Tsai wrote:
-> The new M.2 E-key connector can have a USB connection. For the USB device
-> on this connector to work, its power must be enabled and the W_DISABLE2#
-> signal deasserted. The connector driver handles this and provides a
-> toggle over the power sequencing API.
-> 
-> This feature currently only supports a directly connected (no mux in
-> between) M.2 E-key connector. Existing USB connector types are not
-> covered. The USB A connector was recently added to the onboard devices
-> driver. USB B connectors have historically been managed by the USB
-> gadget or dual-role device controller drivers. USB C connectors are
-> handled by TCPM drivers.
-> 
-> The power sequencing API does not know whether a power sequence provider
-> is not needed or not available yet, so we only request it for connectors
-> that we know need it, which at this time is just the E-key connector.
-> 
-> On the USB side, the port firmware node (if present) is tied to the
-> usb_port device. This device is used to acquire the power sequencing
-> descriptor. This allows the provider to tell the different ports on one
-> hub apart.
-> 
-> This feature is not implemented in the onboard USB devices driver. The
-> power sequencing API expects the consumer device to make the request,
-> but there is no device node to instantiate a platform device to tie
-> the driver to. The connector is not a child node of the USB host or
-> hub, and the graph connection is from a USB port to the connector.
-> And the connector itself already has a driver.
-> 
-> Power sequencing is not directly enabled in the connector driver as
-> that would completely decouple the timing of it from the USB subsystem.
-> It would not be possible for the USB subsystem to toggle the power
-> for a power cycle or to disable the port.
-> 
-> This change depends on another change to make the power sequencing
-> framework bool instead of tristate. The USB core and hub driver are
-> bool, so if the power sequencing framework is built as a module, the
-> kernel will fail to link.
+=D0=B2=D1=82, 9 =D1=87=D0=B5=D1=80=D0=B2. 2026=E2=80=AF=D1=80. =D0=BE 22:02=
+ Andy Shevchenko <andriy.shevchenko@intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Sat, Jun 06, 2026 at 10:22:43AM +0300, Svyatoslav Ryhel wrote:
+> > =D1=81=D0=B1, 6 =D1=87=D0=B5=D1=80=D0=B2. 2026=E2=80=AF=D1=80. =D0=BE 0=
+9:53 Andy Shevchenko <andriy.shevchenko@intel.com> =D0=BF=D0=B8=D1=88=D0=B5=
+:
+> > > On Sat, Jun 06, 2026 at 07:57:26AM +0300, Svyatoslav Ryhel wrote:
+>
+> ...
+>
+> > > > +     ret =3D regmap_assign_bits(als->lm3533->regmap, LM3533_REG_AL=
+S_ZONE_INFO,
+> > > > +                              LM3533_ALS_INT_ENABLE_MASK, enable);
+> > >
+> > > In cases like this perhaps leaving mask would be fine and together wi=
+th
+> >
+> > I prefer to remove intermediate variables it the helper allows to
+> > directly pass needed value.
+> >
+> > >         struct regmap *map =3D als->lm3533->regmap;
+> >
+> > next patch drops lm3533 so there will be als->regmap which IMHO is
+> > more logical instead of passing entire lm3533 to child devices.
+>
+> Still it's longer than map. A local variable may help with making lines
+> shorter.
+>
 
->  int usb_hub_set_port_power(struct usb_device *hdev, struct usb_hub *hub,
->  			   int port1, bool set)
->  {
-> -	int ret;
-> +	struct usb_port *pwrseq_port = hub->ports[port1 - 1];
-> +	int ret = 0;
+Introducing and assigning a local variable for a single use regmap
+operation seems excessive especially since next patch removes operator
+chaining leaving only als->regmap.
 
-Don't touch ret here. It's easier to maintain when assignment is closer to it's
-first user (because it's getting validated there).
-
-> +	/* non-SuperSpeed USB port holds pwrseq descriptor reference. */
-> +	if (hub->ports[port1 - 1]->is_superspeed && hub->ports[port1 - 1]->peer)
-> +		pwrseq_port = hub->ports[port1 - 1]->peer;
-
-	ret = 0;
-
-> +	if (set && !pwrseq_port->pwrseq_on)
-> +		ret = pwrseq_power_on(pwrseq_port->pwrseq);
-> +	else if (!set && pwrseq_port->pwrseq_on)
-> +		ret = pwrseq_power_off(pwrseq_port->pwrseq);
-> +	if (ret)
-> +		return ret;
->  
->  	if (set)
->  		ret = set_port_feature(hdev, port1, USB_PORT_FEAT_POWER);
->  	else
->  		ret = usb_clear_port_feature(hdev, port1, USB_PORT_FEAT_POWER);
->  
-> -	if (ret)
-> +	if (ret) {
-> +		if (set && !pwrseq_port->pwrseq_on)
-> +			pwrseq_power_off(pwrseq_port->pwrseq);
-> +		else if (!set && pwrseq_port->pwrseq_on)
-> +			pwrseq_power_on(pwrseq_port->pwrseq);
->  		return ret;
-
-Can we rather have a couple of helpers? It might be hard to follow all this.
-In such a case you won't even need the ret assignment here.
-
-
-> +	}
->  
-> -	if (set)
-> +	if (set) {
->  		set_bit(port1, hub->power_bits);
-> -	else
-> +		pwrseq_port->pwrseq_on = 1;
-> +	} else {
->  		clear_bit(port1, hub->power_bits);
-> +		pwrseq_port->pwrseq_on = 0;
-> +	}
-
-Just
-
-	pwrseq_port->pwrseq_on = set; // or explicit comparison
-	assign_bit(port1, hub->power_bits, pwrseq_port->pwrseq_on);
-
->  	return 0;
->  }
-
-...
-
-> +static bool port_pwrseq_is_supported(struct usb_port *port_dev)
-> +{
-> +	struct device *dev = &port_dev->dev;
-> +	struct fwnode_handle *port = dev->fwnode;
-
-+ blank line here, because for RAII we assume the C99 definitions inside
-the code, so one can insert the code in between. Doing it before ep validation
-may lead to interesting errors in the future.
-
-> +	struct fwnode_handle *ep __free(fwnode_handle) =
-> +			fwnode_graph_get_next_port_endpoint(port, NULL);
-> +	if (!ep)
-> +		return false;
-> +
-> +	struct fwnode_handle *remote __free(fwnode_handle) =
-> +			fwnode_graph_get_remote_port_parent(ep);
-> +	if (!remote)
-> +		return false;
-> +
-> +	if (!fwnode_device_is_compatible(remote, "pcie-m2-e-connector")) {
-> +		dev_dbg(dev, "remote endpoint %pfw is not a supported connector", remote);
-> +		return false;
-> +	}
-> +
-> +	return true;
-> +}
-
-...
-
-> +	if (IS_ERR(port_dev->pwrseq)) {
-> +		retval = PTR_ERR(port_dev->pwrseq);
-> +		dev_err_probe(&port_dev->dev, retval,
-> +			      "failed to get power sequencing descriptor\n");
-
-		retval = dev_err_probe(PTR_ERR(...));
-
-> +		goto err_put_kn;
-> +	}
-
-...
-
->  	retval = component_add(&port_dev->dev, &connector_ops);
->  	if (retval) {
->  		dev_warn(&port_dev->dev, "failed to add component\n");
-
-dev_warn_probe() // however it's not in your patch and was before...
-
-> -		goto err_put_kn;
-> +		goto err_pwrseq_off;
->  	}
-
-...
-
-> +err_pwrseq_off:
-> +	if (port_dev->pwrseq_on)
-> +		pwrseq_power_off(port_dev->pwrseq);
-
-Hmm... I would rather see pwrseq framework to provide something like
-_is_powered_on().
-
-	if (pwrseq_is_powered_on())
-		_power_off();
-
-...
-
-> +	if (port_dev->pwrseq_on)
-> +		pwrseq_power_off(port_dev->pwrseq);
-
-Ditto.
-
-And perhaps even _power_off_if_on() that combines the check and the call.
-
-However it seems that is reference counted and this _power_off() calls won't
-guarantee actual power off.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> > > this be nice one-liner:
+> > >
+> > >         ret =3D regmap_assign_bits(map, LM3533_REG_ALS_ZONE_INFO, mas=
+k, enable);
+> > >
+> > > >       if (ret) {
+> > > >               dev_err(&indio_dev->dev, "failed to set int mode %d\n=
+",
+> > > >                                                               enabl=
+e);
+> > >
+> > > In many cases it won't increase LoC count.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
