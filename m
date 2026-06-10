@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-309944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309946-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id h6w3L5CTKWrJZwMAu9opvQ
-	(envelope-from <devicetree+bounces-309944-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:40:48 +0200
+	id GMEFJ5aTKWrLZwMAu9opvQ
+	(envelope-from <devicetree+bounces-309946-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:40:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 651DB66B964
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:40:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2CAF66B96C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 18:40:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hbDvygeA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309944-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309944-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UYFUpNk0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309946-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309946-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0707132685EB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:16:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 369BB32B9104
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7301288C81;
-	Wed, 10 Jun 2026 16:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1C92D8376;
+	Wed, 10 Jun 2026 16:16:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A3827FB18
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 16:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4B72BF3F3
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 16:16:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781108185; cv=none; b=T7KxcimOk7riPWjEjLGNdZHRUIVoZTn/1mN7Dx7aE6pQcT8NB3Rh+4r1MB3QkeoOCEE2+7yp638pi62Uvao64Zjukct4lqWhzqvqDT40vZwXh46yhf/dYbW4k7gbwbQh0/S3XP/P2aXENnksi2Y6m/uJDHOZzXh2rWw+UriByAU=
+	t=1781108186; cv=none; b=QHVmvZncQTo/4zM6fNzrxzJ3+BtIbjTvQIiC3aM5nBB0nSD7qq/jFayddoL5yvpIFDLQHSZ5zYhJoRS6KZQ+HW3nQONLsVgh5wnLEoQpbHYbsLUzYd+wofVpmKhnkoMPYz4TsoVonDMfC5QGEz34UHfMpWGNVBD5uXG+om4PKpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781108185; c=relaxed/simple;
-	bh=/CCUmu4Km1nustBlHIX+Vr8aqjOkANS9U3vUfJBjc0w=;
+	s=arc-20240116; t=1781108186; c=relaxed/simple;
+	bh=abdbajGVyQ8OIVQkWWIu7JgktO3YxlJPyDtsqDtJL1M=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=qwOYmoy+ZIJ5NAW+O0jZ75+nKqevEMbw0vJG4lL7co+0SBJxIjCHNpN7P/Y839lout2LDbFjgSsO0PyIeCgkb7lYkKw/Y/2PL8FA2DEhwL/MnzNnDOtiTFcapNBuUGjDAUvpRP9dGqfLl6K+B+ypoP3/I055HXdcXgPiT+ZbPiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hbDvygeA; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B87F31F00898;
-	Wed, 10 Jun 2026 16:16:23 +0000 (UTC)
+	 Message-Id; b=cJUua5DnBIJQl0vfYdrpxMSl/lxfN6MD1GUOJQ1CN+eP17gQTWo6MSY7Z6KYWD+JqDe+/Otop1nBFdlLGf+dhE5FPKT8Zywl+ZJt0Gow2LW5NPivCHU1haMp9oQEKoxheBzohnsxb1QMjLyBAI+GMGeVWuVV/5VO9RXM6Bhijl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UYFUpNk0; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 272F61F00893;
+	Wed, 10 Jun 2026 16:16:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781108184;
-	bh=8hJJhUDjeSJB6qGUTnQiuEjXoLqcKcZs6uNtq+ZP+oI=;
+	s=k20260515; t=1781108185;
+	bh=gaRMkL9YzHGSUJLBB/Fev0REPcwsg3uSIg3Hn4r3rSo=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=hbDvygeAz/fF9cit2rm5gotOMUy0WD5u/4RGryWMlfwi6Jb5BRgD4lmg+suFALS6L
-	 zlZbA/eTd+hZkqMBh/b61hIj87rfsGfYcPL9+HWMam3hDBKi0E25xZ/qm/93GO1Q4+
-	 e/OCjtTLomi5Px3uMxQ0iqXSdqafrk5SYoHw082fjDVPZGysUdiOjjY7QGZbynJG1r
-	 CgK7G1n6wdEAcS54wcp3/zpZJD5Mb8nmmJHvaHjHrEYr++jd6FNBpdpWCsVjVWdBma
-	 EbhYi33kvKfNOikkTZrY8WJZntVDLnyYmnCk81339hzd7Ltb2m22CTCuYt1OqkA2Ey
-	 +ezznI2kSuPDQ==
+	b=UYFUpNk06+fAq1+w8ClpLCbfcUqvscD5muzyDIBpFL3o9qr9QdLgnTD9dU4qZSIHY
+	 HvcYiovgGPByrQaavflujOXwK0tV3g4LMDnV89lSsJUuSxbFLseKto/HdoITCigTCE
+	 ijq2M7SyqUqcYinrB2oqdCFhUC/Hjs7xX4jea5p1ymcIF51Hzaknq/iVRGNQl46Zg4
+	 knd97V8Ie2eKZjufxspD/+Bip9Z+OQZvvSV6lKCwT5pcSnJ29rPo8iaWOhKr40ebwR
+	 sDPDzuqMLTcE3z9SS/MakqW0+ZbDghIYlPnge8NqaqWBB6yJqsN69/HshW3EGuTCKZ
+	 233MXKgTn0ClQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v6 02/12] net: phylink: introduce internal
- phylink PCS handling
+Subject: Re: [PATCH net-next v6 03/12] net: phylink: add
+ phylink_release_pcs() to externally release a PCS
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Christian Marangi" <ansuelsmth@gmail.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260609151212.29469-3-ansuelsmth@gmail.com>
-References: <20260609151212.29469-3-ansuelsmth@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260609151212.29469-4-ansuelsmth@gmail.com>
+References: <20260609151212.29469-4-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 16:16:23 +0000
-Message-Id: <20260610161623.B87F31F00898@smtp.kernel.org>
+Date: Wed, 10 Jun 2026 16:16:24 +0000
+Message-Id: <20260610161625.272F61F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,19 +71,19 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309944-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309946-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -99,249 +99,148 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 651DB66B964
+X-Rspamd-Queue-Id: B2CAF66B96C
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-
-New issues:
-- [High] phylink_stop() permanently deletes PCS-supported interfaces from t=
-he phylink mask.
-- [High] Inactive PCSs attached to the phylink instance can spuriously trig=
-ger link changes.
-- [Medium] PCS selection logic inconsistently applies pcs_interfaces, causi=
-ng validation and configuration mismatches.
-- [Low] Mutual exclusion check for PCS methods is placed in a validation lo=
-op, causing excessive log spam.
-
-Pre-existing issues:
-- [High] Missing cleanup of `pcs->phylink` for legacy `.mac_select_pcs` cod=
-e paths leads to Use-After-Free.
-- [High] Missing `IS_ERR` check on `mac_select_pcs` return value in `phylin=
-k_inband_caps`.
+- [High] Unsynchronized modification of `pl->pcs_list` and TOCTOU access to=
+ `pl->pcs` in `phylink_release_pcs()` leads to data races, list corruption,=
+ and use-after-free.
+- [High] `phylink_release_pcs()` silently fails to remove the PCS from `pl-=
+>pcs_list` if the interface is stopped, leading to a Use-After-Free.
+- [Medium] Releasing an actively running PCS bypasses `phylink_pcs_disable(=
+)`, leaving the hardware permanently enabled.
 --
 
-commit 0ed3c25ac9713ad466d414b45a844576296e0982
+commit ef373ddee33a54496ae5ebacb3521d9195428672
 Author: Christian Marangi <ansuelsmth@gmail.com>
-Subject: net: phylink: introduce internal phylink PCS handling
-Summary: This patch introduces internal PCS handling for phylink as an alte=
-rnative to the MAC .mac_select_pcs callback. It allows MAC drivers to provi=
-de an array of available PCSs during creation, which phylink manages as a l=
-inked list to dynamically select and validate the appropriate PCS.
+
+net: phylink: add phylink_release_pcs() to externally release a PCS
+
+Add phylink_release_pcs() to externally release a PCS from a phylink
+instance. This can be used to handle case when a single PCS needs to be
+removed and the phylink instance needs to be refreshed.
 
 > diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
-> index 4d59c0dd78dbf..4d6ffda0cdd61 100644
+> index 4d6ffda0cdd61..b45bee9273007 100644
 > --- a/drivers/net/phy/phylink.c
 > +++ b/drivers/net/phy/phylink.c
-[ ... ]
-> @@ -518,22 +523,59 @@ static void phylink_validate_mask_caps(unsigned lon=
-g *supported,
->  	linkmode_and(state->advertising, state->advertising, mask);
->  }
-> =20
-> +static int phylink_validate_pcs_interface(struct phylink_pcs *pcs,
-> +					  phy_interface_t interface)
-> +{
-> +	/* If PCS define an empty supported_interfaces value, assume
-> +	 * all interface are supported.
-> +	 */
-> +	if (phy_interface_empty(pcs->supported_interfaces))
-> +		return 0;
-> +
-> +	/* Ensure that this PCS supports the interface mode */
-> +	if (!test_bit(interface, pcs->supported_interfaces))
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
->  static int phylink_validate_mac_and_pcs(struct phylink *pl,
->  					unsigned long *supported,
->  					struct phylink_link_state *state)
->  {
-> -	struct phylink_pcs *pcs =3D NULL;
->  	unsigned long capabilities;
-> +	struct phylink_pcs *pcs;
-> +	bool pcs_found =3D false;
->  	int ret;
-> =20
->  	/* Get the PCS for this interface mode */
->  	if (pl->mac_ops->mac_select_pcs) {
-> +		/* Make sure either PCS internal validation or .mac_select_pcs
-> +		 * is used. Return error if both are defined.
-> +		 */
-> +		if (!list_empty(&pl->pcs_list)) {
-> +			phylink_err(pl, "either phylink_pcs_add() or .mac_select_pcs must be =
-used\n");
-> +			return -EINVAL;
-> +		}
-
-[Severity: Low]
-Is this the best place for this structural check? Since
-phylink_validate_mac_and_pcs() is called iteratively for every supported
-interface mode during mask validation, won't a misconfigured driver
-trigger this error message dozens of times? Could this check be moved to a
-one-time initialization path like phylink_create()?
-
-> +
->  		pcs =3D pl->mac_ops->mac_select_pcs(pl->config, state->interface);
->  		if (IS_ERR(pcs))
->  			return PTR_ERR(pcs);
-> +
-> +		pcs_found =3D !!pcs;
-> +	} else {
-> +		/* Check every assigned PCS and search for one that supports
-> +		 * the interface.
-> +		 */
-> +		list_for_each_entry(pcs, &pl->pcs_list, list) {
-> +			if (!phylink_validate_pcs_interface(pcs, state->interface)) {
-> +				pcs_found =3D true;
-> +				break;
-> +			}
-> +		}
+> @@ -923,6 +923,55 @@ static void phylink_resolve_an_pause(struct phylink_=
+link_state *state)
 >  	}
-
-[Severity: Medium]
-Does this validation logic properly account for the pcs_interfaces mask?
-In phylink_major_config(), the PCS list is only searched if the interface
-requires a dedicated PCS via test_bit(state->interface,
-pl->config->pcs_interfaces). Since this loop unconditionally checks the
-PCS list, could it incorrectly constrain validation by the PCS capabilities
-even if the MAC handles the interface directly?
-
-[ ... ]
-> @@ -965,12 +1004,22 @@ static unsigned int phylink_inband_caps(struct phy=
-link *pl,
->  					 phy_interface_t interface)
->  {
->  	struct phylink_pcs *pcs;
-> +	bool pcs_found =3D false;
-> =20
-> -	if (!pl->mac_ops->mac_select_pcs)
-> -		return 0;
-> +	if (pl->mac_ops->mac_select_pcs) {
-> +		pcs =3D pl->mac_ops->mac_select_pcs(pl->config,
-> +						  interface);
-> +		pcs_found =3D !!pcs;
-
-[Severity: High]
-This is a pre-existing issue, but does this correctly handle error
-pointers returned by mac_select_pcs()? If it returns an ERR_PTR on
-failure, !!pcs evaluates to true, causing phylink_pcs_inband_caps() to
-dereference the error pointer later in this function. Could we add an
-IS_ERR() check here?
-
-> +	} else {
-> +		list_for_each_entry(pcs, &pl->pcs_list, list) {
-> +			if (!phylink_validate_pcs_interface(pcs, interface)) {
-> +				pcs_found =3D true;
-> +				break;
-> +			}
-> +		}
-> +	}
-
-[Severity: Medium]
-Similar to phylink_validate_mac_and_pcs(), this iterates the PCS list
-without checking if the interface requires a PCS via
-pl->config->pcs_interfaces. Is it possible for this to return inaccurate
-inband capabilities if a MAC supports an interface directly without using
-an available PCS?
-
-[ ... ]
-> @@ -1953,10 +2081,16 @@ EXPORT_SYMBOL_GPL(phylink_create);
->   */
->  void phylink_destroy(struct phylink *pl)
->  {
-> +	struct phylink_pcs *pcs, *tmp;
-> +
->  	sfp_bus_del_upstream(pl->sfp_bus);
->  	if (pl->link_gpio)
->  		gpiod_put(pl->link_gpio);
-> =20
-> +	/* Remove every PCS from phylink PCS list */
-> +	list_for_each_entry_safe(pcs, tmp, &pl->pcs_list, list)
-> +		list_del(&pcs->list);
-> +
->  	cancel_work_sync(&pl->resolve);
->  	kfree(pl);
 >  }
+> =20
+> +/**
+> + * phylink_release_pcs - Removes a PCS from the phylink PCS available li=
+st
+> + * @pcs: a pointer to the phylink_pcs struct to be released
+> + *
+> + * This function release a PCS from the phylink PCS available list if
+> + * actually in use. It also refreshes the supported interfaces of the
+> + * phylink instance by copying the supported interfaces from the phylink
+> + * conf and merging the supported interfaces of the remaining available =
+PCS
+> + * in the list and trigger a resolve.
+> + */
+> +void phylink_release_pcs(struct phylink_pcs *pcs)
+> +{
+> +	struct phylink *pl;
+> +
+> +	ASSERT_RTNL();
+> +
+> +	pl =3D pcs->phylink;
+> +	if (!pl)
+> +		return;
 
 [Severity: High]
-This is a pre-existing issue, but is it possible for a legacy PCS to
-access freed memory here? For MAC drivers using the legacy
-.mac_select_pcs callback, phylink_major_config() sets pcs->phylink =3D pl,
-but that pointer is never cleared during teardown. If the PCS driver
-outlives the phylink instance and triggers phylink_pcs_change(), it would
-dereference the freed phylink pointer.
+Does this early return cause a use-after-free if the interface is stopped?
 
-[ ... ]
-> @@ -2437,6 +2571,7 @@ static irqreturn_t phylink_link_handler(int irq, vo=
-id *data)
->   */
->  void phylink_start(struct phylink *pl)
->  {
-> +	struct phylink_pcs *pcs;
->  	bool poll =3D false;
-> =20
->  	ASSERT_RTNL();
-> @@ -2463,6 +2598,10 @@ void phylink_start(struct phylink *pl)
-> =20
->  	pl->pcs_state =3D PCS_STATE_STARTED;
-> =20
-> +	/* link available PCS to phylink struct */
-> +	list_for_each_entry(pcs, &pl->pcs_list, list)
-> +		pcs->phylink =3D pl;
+When the interface is brought down, phylink_stop() clears pcs->phylink =3D =
+NULL
+for all available PCS instances, while keeping them linked in pl->pcs_list.
+
+If phylink_release_pcs() is called while the interface is stopped, it encou=
+nters
+a NULL pointer here and returns immediately without executing
+list_del(&pcs->list). The caller likely assumes the PCS was successfully
+detached and frees its memory, leaving a dangling pointer in pl->pcs_list.=
+=20
+
+When the interface is later brought up, phylink_start() will iterate over
+pl->pcs_list and dereference the freed memory.
+
 > +
+> +	list_del(&pcs->list);
+> +	pcs->phylink =3D NULL;
+> +
+> +	/* Check if we are removing the PCS currently
+> +	 * in use by phylink. If this is the case,
+> +	 * force phylink resolve to reconfigure the interface
+> +	 * mode and set the phylink PCS to NULL.
+> +	 */
+> +	if (pl->pcs =3D=3D pcs) {
 
 [Severity: High]
-Does attaching all available PCSs to the phylink instance create a risk
-of spurious link changes? Since all PCSs in the list receive the phylink
-pointer, any of them can call phylink_pcs_change(). Because
-phylink_pcs_change() does not verify if the calling PCS is the actively
-selected one (pl->pcs), couldn't an interrupt from an inactive PCS
-(like a loss of signal) falsely trigger a link state change and disrupt
-the active connection?
+Can modifying the list and checking pl->pcs outside the state_mutex race wi=
+th
+the workqueue?
 
-[ ... ]
-> @@ -2507,6 +2646,8 @@ EXPORT_SYMBOL_GPL(phylink_start);
->   */
->  void phylink_stop(struct phylink *pl)
->  {
-> +	struct phylink_pcs *pcs;
+While this function enforces the RTNL lock, pl->pcs_list is concurrently
+traversed by phylink_major_config() from the phylink_resolve workqueue, whi=
+ch
+holds only pl->state_mutex. Modifying the list outside of pl->state_mutex c=
+ould
+cause the workqueue to dereference LIST_POISON1.
+
+Additionally, checking if (pl->pcs =3D=3D pcs) before acquiring state_mutex=
+ creates
+a Time-of-Check to Time-of-Use race. A concurrent phylink_resolve could upd=
+ate
+pl->pcs between the lockless check and acquiring state_mutex, causing this =
+code
+to inadvertently clear a newly configured PCS.
+
+> +		mutex_lock(&pl->state_mutex);
 > +
->  	ASSERT_RTNL();
-> =20
->  	if (pl->sfp_bus)
-> @@ -2524,6 +2665,14 @@ void phylink_stop(struct phylink *pl)
->  	pl->pcs_state =3D PCS_STATE_DOWN;
-> =20
->  	phylink_pcs_disable(pl->pcs);
+> +		pl->force_major_config =3D true;
+> +		pl->pcs =3D NULL;
+
+[Severity: Medium]
+If pl->pcs is cleared to NULL here, will the released PCS ever be cleanly
+disabled?
+
+During the subsequent reconfiguration triggered by phylink_run_resolve(),
+phylink_major_config() detects a PCS change and attempts to disable the old=
+ PCS
+by calling phylink_pcs_disable(pl->pcs).=20
+
+However, since pl->pcs was already cleared to NULL here, the
+pcs->ops->pcs_disable() callback will never be invoked for the released PCS,
+leaving it hardware-enabled.
+
 > +
-> +	/* Drop link between phylink and PCS */
-> +	list_for_each_entry(pcs, &pl->pcs_list, list)
-> +		pcs->phylink =3D NULL;
+> +		mutex_unlock(&pl->state_mutex);
+> +	}
 > +
-> +	/* Restore original supported interfaces */
+> +	/* Refresh supported interfaces */
 > +	phy_interface_copy(pl->supported_interfaces,
 > +			   pl->config->supported_interfaces);
->  }
-
-[Severity: High]
-Will unconditionally clearing the supported interfaces permanently
-break PCS capabilities on a link down/up cycle? During phylink_create(),
-pl->supported_interfaces aggregates capabilities from all attached PCSs.
-When phylink_stop() resets this to the base MAC capabilities, the PCS
-capabilities are lost because phylink_start() does not reconstruct the
-aggregated mask. Could this prevent the link from coming back up in modes
-that rely on a PCS after the interface is bounced?
+> +	list_for_each_entry(pcs, &pl->pcs_list, list)
+> +		phy_interface_or(pl->supported_interfaces,
+> +				 pl->supported_interfaces,
+> +				 pcs->supported_interfaces);
+> +
+> +	phylink_run_resolve(pl);
+> +}
+> +EXPORT_SYMBOL_GPL(phylink_release_pcs);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609151212.2946=
-9-1-ansuelsmth@gmail.com?part=3D2
+9-1-ansuelsmth@gmail.com?part=3D3
 
