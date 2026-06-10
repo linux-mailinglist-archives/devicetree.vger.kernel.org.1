@@ -1,261 +1,227 @@
-Return-Path: <devicetree+bounces-309883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309891-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1hkMEm17KWqPXgMAu9opvQ
-	(envelope-from <devicetree+bounces-309883-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:57:49 +0200
+	id 1GhCF2J9KWowXwMAu9opvQ
+	(envelope-from <devicetree+bounces-309891-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 17:06:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A397066A7DA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:57:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8840A66A8CD
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 17:06:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="PS+V+z/l";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309883-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309883-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OegVQ8wZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309891-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309891-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4AB7326605C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:45:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 334C0306640B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:58:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2934A413230;
-	Wed, 10 Jun 2026 14:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80EE62F7F03;
+	Wed, 10 Jun 2026 14:58:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f176.google.com (mail-dy1-f176.google.com [74.125.82.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC7941167E
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 14:45:40 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781102742; cv=pass; b=uJko2yW04L3MhlMHZCPErK0jmTU7mepfOywmuPhtZ2Cn62Vxk1rHVH9MDcJk/kF3f16c2t2+VjRXDDaOOauXBPi6Wu2AmR0T+hWReNeGiKwJR4AtVEKdd5iUbxgyFNZ4NLF4cJ+HGhlroR/psS5NPEnTBGU1K/l508DC8fuv4AQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781102742; c=relaxed/simple;
-	bh=GswxPypzPfEQ3WUnspGh8ax+2FMG/mXlBTk2AXjL34M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Wy8GvSYQqAslZWkNw/1ByHNWZEBlQ0ozArkdzsAU4yfMqCOiXDHSDBBQ6b0XPIc661utIUK8ohY3AWv9dwFldjIiSe9kra1Dq2AXiV7vhTU3FlVEmjerN6sPj5kL2v/yx5HULrRigCnPD99FZ3ugQ5Mr8cAN06BkU/E2fnubkLY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PS+V+z/l; arc=pass smtp.client-ip=74.125.82.176
-Received: by mail-dy1-f176.google.com with SMTP id 5a478bee46e88-3075ce9c05aso919282eec.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 07:45:40 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781102740; cv=none;
-        d=google.com; s=arc-20240605;
-        b=R0gu8zmuym4buUCFdgtFY/pOu9F0+U6aSHEFdzgbJ4eFFtldkOpcegRLip140hQL2i
-         NwFC/N0rzt5vVvGINF0sCL6HFyKE3Z4FWmeERUXiY28WKqGHmiUJG6dd8mvAOJi+NARn
-         Dfh44vIi2gUbXsynwSLyFjaktwpxHCE5xc+ukKv1j0UgeOoY8F1A5PO4LkiOphuwZ8zE
-         DrVJ3j4P0PqGY2/XAtLI7drkOUDh9jX7obWOcFDqDHo0ZzLB3rOuWnQD9JtUYoE2QvD9
-         6MPa5Ud8rncY+ooV9C52FaU2xW4Wjinr9vP46Bkyr2l33N2raPtleEWcofJW9pCP5sdt
-         lu5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=c9jdnGhl8zT/c5+VTx28YYMOorOCQjdA4WuOVZ2PMo0=;
-        fh=4rbCAr6B/jSDSviBpNzEfl+1nEGKwRNStf1Mb/yaTdU=;
-        b=Swtnrh0F4RcKJqL2RZdZSSUEu2ksLgUKs7u2ggsJ7tDbRHrckRMDq9sn1cHpCv5kdH
-         N3eef1mR6a3rp6Ci2VX5/nNLkmweZt5r8uJ9nnR9XOfBOj5CUFakDjDejjMwvxvMTfw/
-         DUBvlNcQPkv6cwok2rVhMJCpc/MO4FdySFG+B1gcQuHoCJlU4h3OHeR+SzyECoET0MHB
-         EgxUGT1xFSdTaGorltYj4bz+C3QK/mmiKyTARu+32PWWwOLQigfKotU0qEJpMFvukFN/
-         aAserrKuGjN8agVPqtsRALE5wF/Seg/DBpBuULgXamWx1yxCUTkfu1WO5s39BtZqcFfL
-         C1Xg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781102740; x=1781707540; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c9jdnGhl8zT/c5+VTx28YYMOorOCQjdA4WuOVZ2PMo0=;
-        b=PS+V+z/lvGHsNMiNLqAsuwXOJkGXmiJ7LdnOhP8LK5ZZ9ZfeboGuHxsVDIoBJsGeST
-         qNCto5PN+wb7quOFQQdpV0kU4Hu+YaoYXZVqPMUurk6HluuoWyOPymeXxzolPkocYUDi
-         EwsWfEFqo2XSpWWX6Cu3HFv3RqI2SdG0afwCDT3XMDVcNs6XGHQMbZZmqaCDuX5eWFrL
-         N8ewC4XeYxBO9tSOG2FAnC2X43MxtriY0lh9PedRNcZ0ghV2JV4L2BiKDAq4fkJLKD57
-         ghmcWTg4mfbxLje27RUG6Uu4P33Mr8oUt0b858zMNFeohBFYIPUxGY55huG86dzO6Thl
-         ZSRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781102740; x=1781707540;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=c9jdnGhl8zT/c5+VTx28YYMOorOCQjdA4WuOVZ2PMo0=;
-        b=C6pnG0YwyjJXhkN5xDf6d9kEnEDIDRxGIIxaIPs7Twisd0Kqnx1+J0RmyIzDNLnOZt
-         gjrG2O67R1ov1c+tYicW8IUzGuR217TnW5PmZx3Bg7NmfJaRVweHVCmt8BmjKPIO86Ee
-         OAIVeG8uv8k0JnsX0/WgxEA2MPMfR6Q72W2oOdakpYFGL7epflv05+taMPF2F/4ngvWR
-         AbUJOIykgjsaSeOwLFgrHw1y9Tl6AqI8WLtQPJxIY91Nymlemu8vM1coqbJr2AKJ+sYN
-         4/ioFsJ0HeWMqkqGkcWizdaZVqWsUIhKCmjn6RqqNKGarZYbkeBEypAjGfuyupTVJ6+a
-         Xl/Q==
-X-Forwarded-Encrypted: i=1; AFNElJ9gT03hdcajjBu2Ts0ZEANena4cldl3oBX/1fOee7lQQw+XdCcZNAypIkKoo6lbgG18xR3pTUlbFFNj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxT8vUiPJ/LyImeGauCO/DqCpQ/7Yn8ITFRnGb9Srtt68pgLLKx
-	3WVHU3BK3BsXUE5fwVxOqw1LUGikQv0U7VxFEsOafWpz3hG1oWmCJMj8+MMzYhA+AtGHqnk3HSR
-	9NCNz4ywmUV+AOo3u2gEZZnDPep50wfY=
-X-Gm-Gg: Acq92OFToFwSmB89GVswB/4wJlNd6Cb4wZie3RFMgH/1xTBiZKg3r1x0NalTfHc5tfg
-	9RKu/Y5L+veA0FRsvHeOqTWy4is4yL6S2W9ffuBahR5X+uVAWLpptxACyvDIe9DIb5KWOVksFOn
-	zRGzy7iuGzkb7P7M8YG45f1P8oNLYDcbmlpYToAbL1Eo7CL/PABZua3/LzQxmXlgS7774d5vE7J
-	wWpPwXxMs+j+l9VurO1Z6KqYl+zo/AFQOYWgsMTeCAqg4LePTgbLmbFElMZDUdz0+OASAexhvFM
-	jh3uua2qjPPFC9lCf48=
-X-Received: by 2002:a05:7300:4307:b0:2ce:3aa1:d39b with SMTP id
- 5a478bee46e88-3077b1e1921mr16407205eec.20.1781102739833; Wed, 10 Jun 2026
- 07:45:39 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507C2408635
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 14:58:17 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781103499; cv=none; b=SeeQJQP6B1xkWclS/TLUaV2OTfRgFaldFs3VeiqSQcDDNrClFBMMHSyzwEL6MZ0MMXhsFw61T4SYopas+Gz9IKkglOBbjV5ae+KMN1vQjaeJkuQKFuDc6TL9R2Tms2Meg66gfOzsonvEXVMBTiqPJN9b+RrZ6v4j7XrVN4JpIYQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781103499; c=relaxed/simple;
+	bh=RS8mUZSmTZPW+M/cMB7Pzk6IP+dGbr1QLuA8quS8G5k=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=BZtwb2j55uB9cX43YKc4RxID0l7HzoNtPQDEOfN3sKodYC1w+OP8l28xZSm+JHo+clontPBNQg6wP8deH0jvLG5qVIhCQHZ2AOgEJ2EF6cRWgCleiRGcDVFFvPbmuEOu4cgHKxYw89auh07bgz912DGbAjttKe2Yv0thdBHHRNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OegVQ8wZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A564F1F0089A;
+	Wed, 10 Jun 2026 14:58:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781103497;
+	bh=7U8JeLF7DiPAqwwSdI5g0CwAo5Ou2sSAnhlE41tLCag=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=OegVQ8wZHJqAkgrbWqdnJSoYRSkja7l5PW1YntO/MQMU5DteuCt4/+pxGCFcPEL3i
+	 ZP0le6aVrq6f8znSayYquhXHaWyZ7qz7qidmpTEIlrBbeKE2YDuDNdvDqjDscwN21u
+	 sU3pq4F9UDsf5gv9+TYexnJdSvRPTb3nGPd+pGs1h4JqTo9oxUHg6ZXuJVhkN+vfuV
+	 1Y7hH/QAiVVwbzAsfeCEAYTa3ogLcvauJsy930KL+AUis394Ei2/ZxN/bw0VWct3FB
+	 NZkqu3gta8+fIfes9GlRf4pwFGaW7DHLgBj49OyBrDlh6DDFEgqzo3AmVyX18Q7/Wx
+	 Jz6sGjyCVpVaQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V7 4/6] drm/panel: anbernic-td4310: Add RG Vita Pro
+ panel
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Chris Morgan" <macroalpha82@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260610144407.438846-5-macroalpha82@gmail.com>
+References: <20260610144407.438846-5-macroalpha82@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 10 Jun 2026 14:58:17 +0000
+Message-Id: <20260610145817.A564F1F0089A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260606045738.21050-1-clamor95@gmail.com> <20260606045738.21050-15-clamor95@gmail.com>
- <aihoH9Pmzufa9pnE@ashevche-desk.local>
-In-Reply-To: <aihoH9Pmzufa9pnE@ashevche-desk.local>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Wed, 10 Jun 2026 17:45:28 +0300
-X-Gm-Features: AVVi8CdnB8ApS2xg5kxxnd98RqCsR1fmVPgPcGfJlrd3mQBMI1CAmZLqR9DFIrc
-Message-ID: <CAPVz0n0m+i7wexfC0BWwvdOuJxDk_=x+EpxEbNmoHN1AsEmfNg@mail.gmail.com>
-Subject: Re: [PATCH v4 14/14] video: leds: backlight: lm3533: Support getting
- LED sources from DT
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Helge Deller <deller@gmx.de>, Johan Hovold <johan@kernel.org>, 
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:lee@kernel.org,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:deller@gmx.de,m:johan@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-leds@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-iio@vger.kernel.org,m:linux-fbdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-309883-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309891-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,vger.kernel.org:from_smtp,intel.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A397066A7DA
+X-Rspamd-Queue-Id: 8840A66A8CD
 
-=D0=B2=D1=82, 9 =D1=87=D0=B5=D1=80=D0=B2. 2026=E2=80=AF=D1=80. =D0=BE 22:23=
- Andy Shevchenko <andriy.shevchenko@intel.com> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Sat, Jun 06, 2026 at 07:57:38AM +0300, Svyatoslav Ryhel wrote:
-> > Add Control Bank to HVLED/LVLED muxing support based on the led-sources
-> > defined in the device tree.
->
-> ...
->
-> >  static int lm3533_led_setup(struct lm3533_led *led)
-> >  {
-> > -     int ret;
-> > +     u32 output_cfg_shift =3D 0;
->
-> No need to assign the default to this.
->
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] Incorrect power-down sequencing in the error path and unprepare =
+function risks backpowering the panel.
+- [Low] The driver calls `devm_drm_panel_add()`, which does not exist in th=
+e kernel API, causing a build failure.
+--
 
-This is a personal preference, compiler will optimize it if this is not nee=
-ded.
+commit ab0aaf4898e0640c3a73b98bb981eeb9023b2012
+Author: Chris Morgan <macromorgan@hotmail.com>
 
-> > +     u32 output_cfg_val =3D 0;
-> > +     u32 output_cfg_mask =3D 0;
-> > +     int ret, i;
->
-> No need to add 'i'.
->
+drm/panel: anbernic-td4310: Add RG Vita Pro panel
 
-This is personal preference as well. There is no strict rule that
-iteration variable must be defined strictly in the for loop.
+The panel used by Anbernic in the RG Vita-Pro is a DSI panel based
+on the TD4310 controller IC. It measures approximately 5.5 inches
+diagonally and is 1080x1920 in resolution.
 
-> > +     if (led->num_leds) {
-> > +             for (i =3D 0; i < led->num_leds; i++) {
->
->                 for (unsigned int i =3D 0; i < led->num_leds; i++) {
->
-> > +                     if (led->leds[i] >=3D LM3533_LVCTRLBANK_MAX)
-> > +                             continue;
-> > +
-> > +                     output_cfg_shift =3D led->leds[i] * 2;
-> > +                     output_cfg_val |=3D led->id << output_cfg_shift;
-> > +                     output_cfg_mask |=3D OUTPUT_LVLED_MASK << output_=
-cfg_shift;
-> > +             }
-> > +
-> > +             /* LVLED1, LVLED2 and LVLED3 */
-> > +             ret =3D regmap_update_bits(led->regmap, LM3533_REG_OUTPUT=
-_CONF1,
-> > +                                      output_cfg_mask << OUTPUT_CONF1_=
-SHIFT,
-> > +                                      output_cfg_val << OUTPUT_CONF1_S=
-HIFT);
-> > +             if (ret)
-> > +                     return ret;
-> > +
-> > +             /* LVLED4 and LVLED5 */
-> > +             ret =3D regmap_update_bits(led->regmap, LM3533_REG_OUTPUT=
-_CONF2,
-> > +                                      output_cfg_mask >> OUTPUT_CONF2_=
-SHIFT,
-> > +                                      output_cfg_val >> OUTPUT_CONF2_S=
-HIFT);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
->
-> ...
->
-> > +     if (led->num_leds > 0) {
-> > +             ret =3D device_property_read_u32_array(&pdev->dev, "led-s=
-ources",
-> > +                                                  led->leds, led->num_=
-leds);
-> > +             if (ret) {
-> > +                     dev_err(&pdev->dev, "failed to get led-sources\n"=
-);
-> > +                     goto err_deregister;
-> > +             }
-> > +     }
->
-> This and other pieces may benefit from local variable
->
->         struct device *dev =3D &pdev->dev;
->
-> defined at the top of the function.
->
+> diff --git a/drivers/gpu/drm/panel/panel-anbernic-td4310.c b/drivers/gpu/=
+drm/panel/panel-anbernic-td4310.c
+> new file mode 100644
+> index 0000000000000..9a1b4525423c4
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-anbernic-td4310.c
+[ ... ]
+> +static int panel_anbernic_td4310_prepare(struct drm_panel *panel)
+> +{
+[ ... ]
+> +	ret =3D regulator_enable(ctx->vdd);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D gpiod_set_value_cansleep(ctx->enable_gpio, 1);
+> +	if (ret)
+> +		goto err_enable;
+> +
+> +	if (ctx->panel_info->enable_delay)
+> +		mipi_dsi_msleep(&dsi_ctx, ctx->panel_info->enable_delay);
+> +
+> +	ret =3D gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+[ ... ]
+> +err_reset:
+> +	gpiod_set_value_cansleep(ctx->enable_gpio, 0);
+> +err_enable:
+> +	regulator_disable(ctx->vdd);
+> +	return ret;
+> +}
 
-Yes, but this would require an additional patch, which I will not add
-to this already overinflated series.
+[Severity: Medium]
+Does this error path miss asserting the reset gpio before disabling the ena=
+ble
+gpio and the vdd regulator?
 
-> ...
->
-> >  static int lm3533_bl_setup(struct lm3533_bl *bl)
->
-> As per above.
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+The power-up sequence enables vdd, asserts the enable gpio, and then cycles
+the reset gpio. To prevent backpowering or latch-up, shouldn't the shutdown
+sequence strictly reverse this order by asserting the reset gpio first?
+
+> +
+> +static int panel_anbernic_td4310_unprepare(struct drm_panel *panel)
+> +{
+> +	struct anbernic_panel_td4310 *ctx =3D panel_to_anbernic_panel_td4310(pa=
+nel);
+> +	struct mipi_dsi_device *dsi =3D ctx->dsi;
+> +	struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D dsi };
+> +
+> +	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, ctx->panel_info->unprepare_delay);
+> +	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, ctx->panel_info->disable_delay);
+> +
+> +	gpiod_set_value_cansleep(ctx->enable_gpio, 0);
+> +
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+
+[Severity: Medium]
+Will this sequence risk backpowering the panel?
+
+By disabling the enable gpio before asserting the reset gpio, it violates t=
+he
+reverse power-up sequence mentioned above. Should the reset gpio be asserted
+first before turning off the enable gpio?
+
+> +
+> +	regulator_disable(ctx->vdd);
+> +
+> +	return 0;
+> +}
+[ ... ]
+> +static int panel_anbernic_td4310_probe(struct mipi_dsi_device *dsi)
+> +{
+[ ... ]
+> +	dsi->lanes =3D ctx->panel_info->lanes;
+> +	dsi->format =3D ctx->panel_info->format;
+> +	dsi->mode_flags =3D ctx->panel_info->mode_flags;
+> +
+> +	ret =3D drm_panel_of_backlight(&ctx->panel);
+> +	if (ret)
+> +		return ret;
+> +
+> +	devm_drm_panel_add(dev, &ctx->panel);
+
+[Severity: Low]
+Is this call to devm_drm_panel_add() correct?
+
+The function devm_drm_panel_add() doesn't appear to exist in the DRM panel
+API (only drm_panel_add() does). Will this result in a build failure?
+
+> +
+> +	ret =3D devm_mipi_dsi_attach(dev, dsi);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
+> +
+> +	return 0;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610144407.4388=
+46-1-macroalpha82@gmail.com?part=3D4
 
