@@ -1,179 +1,124 @@
-Return-Path: <devicetree+bounces-309593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309594-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id UOaNJsIoKWr7RgMAu9opvQ
-	(envelope-from <devicetree+bounces-309593-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:05:06 +0200
+	id ZCfAFyIoKWq9RgMAu9opvQ
+	(envelope-from <devicetree+bounces-309594-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:02:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E35846679CE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:05:05 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5A95667902
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:02:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kT9zESSi;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309593-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309593-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WFTFhevg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309594-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309594-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 545D833DCA56
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:56:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A9B2030DCEB5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE36C3B95F6;
-	Wed, 10 Jun 2026 08:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D113B95EC;
+	Wed, 10 Jun 2026 08:55:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82C63B7B96
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 08:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5193B14B1;
+	Wed, 10 Jun 2026 08:55:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781081705; cv=none; b=OK/cRZb71u0AH4ozAKxJbZNHQLjWS2QRmpiKe8GkrHpoy2uEt6fug30ABkAf7J1Cf26idkIVj797NYMHoPUq8K21ouOEz9h9XhkdwlaP6eieO1WzW9vvGtBvFU06As3FhT9qyCa2pXdD51yIm/9rXOb639I8TFcfqWJoFJtPrsI=
+	t=1781081711; cv=none; b=aQHx5p7nr4FS4iXitqu1mvrur+/I+MBrWeTRbQIHLIPiZ7Zy22ovqx7eDjlawaEcA/tdTbgd5WxLUmcAGAWCl4Qdg1G7JlMXw5b6DgBtiaMsbPP0DqmGGrp9UCrNU2jeJGlAuU5IGWnyZR/l7tCWsKSfcxqmb0JiD+dyoE4b2E0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781081705; c=relaxed/simple;
-	bh=/u4Ocaun+kNY0Aq81L6/HbjD+g6b28403yF0NyAW9Tc=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=RjJSB4KDp4WPX0zd1AmungytU4nvaRr6COmEDTlYXW6gob0WAxwpPxFdACWRgPja8KQXLim8e8v/6gZa3xztXMurRQq5elBRLDizzRZKHWfQteyFUzt8qS7Gww7joVPsoDy+vs8NudmukrpKvLBUjSSxk9s/1EIV//1U0HxDKu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kT9zESSi; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24D521F00893;
-	Wed, 10 Jun 2026 08:55:04 +0000 (UTC)
+	s=arc-20240116; t=1781081711; c=relaxed/simple;
+	bh=DuXhchlQRc/ktqxlkDooSIAF8Anm4npGNhalnWTsdOE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kriMMi+lhU31pRWPS892P2smx6xpTamSHc+CSFa4XFh5S0DGMo67ECSEVSRqcBVQY0MUCk4kkEbEvcW6y9DYQqfhYQRg3Fg2lARRguZiUnQevT+sYuygkWYSR+dGFROielsiIwoiU/OpYa/zIP/+HxLxjgAeyXxPPY5rfEVuP6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WFTFhevg; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1AAA1F00893;
+	Wed, 10 Jun 2026 08:55:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781081704;
-	bh=B3pEkNlrL+311+nTDSlI+Spu+0X2NGo3ZGOPQkcokqQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=kT9zESSi4zQvQ25yrRc8oUUk5U4b9UzfD2lJuiesJMd9vWWqZRFVlzGFbnAjOq869
-	 +QG0QQ1FT6D09T1P45lBvG8TgkLo28al5pHgnnIMwiQWpD+Dcuhs5n1rXc5HohJQd0
-	 1jsAYlpWWR4fRXMYIEPAAvueH6FMv7z7PH1kWvCS4I5b3CPL3KowiB8/e9oj8o64nm
-	 Z59NFUaRoV0aL3SFdlfhKI8DmWdWs0It9YReYY4eKtzHK85XboCeOnyHI3U9QgO9Fg
-	 yVR5cKtPz3Lz4J0ZP2Kr7HhG3tAQT97jghbvM0WyhfoJfYQ5ISGB3h9TFxwjFBf1de
-	 cqxv3Lszj4Sdg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 01/16] device property: Add
- fwnode_graph_get_port_by_id()
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Chen-Yu Tsai" <wenst@chromium.org>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260610084053.2059858-2-wenst@chromium.org>
-References: <20260610084053.2059858-2-wenst@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 08:55:03 +0000
-Message-Id: <20260610085504.24D521F00893@smtp.kernel.org>
+	s=k20260515; t=1781081710;
+	bh=TRTyM5MS3WUrXryQN7PJQVfhWuatgRYyBVXvwmd2zTE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=WFTFhevgbbLMPMRo1DQ+HhUgrsa6YL87dv+/P14TPw2SeAnJ4j/R5BzbzBuw6GKmF
+	 L2C59ozuazxirlRTHP0jo7MXXuo09SkNSfOrvrLWC9rTCpRna2CIC92Xzcygd8tzsG
+	 cTTj/j6hJWCS5Qc8RPHK7EtEc1TV/Yv1ERTi9YUzWZbEeKPcrknqB7DtkZJ6F5Jjxr
+	 UnyYIHnn9Nm7uApSxihY272Xjo5Gz/KB6n88X2T11FNm8Ei2EQMz4rLsghIdE5GneS
+	 C7RTMULy+gPjqiYjCfQzqxNV5jpA+p1LBHteyCGP2JBI5QVOsEx+0C2Cfx4HXNji9a
+	 EXduVOAXdSySg==
+Date: Wed, 10 Jun 2026 10:55:06 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
+	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: qcom,prng: Document Maili TRNG
+Message-ID: <20260610-spirited-scarlet-tortoise-fad4da@quoll>
+References: <20260609-maili-crypto-v1-0-0f577df56a61@oss.qualcomm.com>
+ <20260609-maili-crypto-v1-1-0f577df56a61@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260609-maili-crypto-v1-1-0f577df56a61@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309593-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_RECIPIENTS(0.00)[m:jingyi.wang@oss.qualcomm.com,m:herbert@gondor.apana.org.au,m:davem@davemloft.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:andersson@kernel.org,m:aiqun.yu@oss.qualcomm.com,m:tingwei.zhang@oss.qualcomm.com,m:trilok.soni@oss.qualcomm.com,m:yijie.yang@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-crypto@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309594-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,chromium.org:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,quoll:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E35846679CE
+X-Rspamd-Queue-Id: E5A95667902
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] fwnode_graph_get_port_by_id() incorrectly fails to find valid port=
-s if they lack active endpoints, have unconnected endpoints, or are connect=
-ed to disabled devices.
---
+On Tue, Jun 09, 2026 at 02:08:56AM -0700, Jingyi Wang wrote:
+> Maili SoC has the True Random Number Generator (TRNG) which is compatible
+> with the baseline IP "qcom,trng". Hence, document the compatible as such.
+> 
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-commit 4e84277140473261d2e5a644f3a43bf00c37b050
-Author: Chen-Yu Tsai <wenst@chromium.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-device property: Add fwnode_graph_get_port_by_id()
+Best regards,
+Krzysztof
 
-This commit introduces the fwnode_graph_get_port_by_id() helper to retrieve
-a port firmware node matching a given id. It is intended for cases where
-drivers need a reference to the port firmware node, such as USB power
-sequencing integration.
-
-> diff --git a/drivers/base/property.c b/drivers/base/property.c
-> --- a/drivers/base/property.c
-> +++ b/drivers/base/property.c
-
-[ ... ]
-
-> @@ -1346,6 +1346,28 @@ int fwnode_graph_parse_endpoint(const struct fwnod=
-e_handle *fwnode,
->  }
->  EXPORT_SYMBOL(fwnode_graph_parse_endpoint);
-> =20
-> +/**
-> + * fwnode_graph_get_port_by_id - get the port matching a given id
-> + * @fwnode: parent fwnode_handle containing the graph
-> + * @id: id of the port
-> + *
-> + * Return: A 'port' firmware node pointer with refcount incremented.
-> + *
-> + * The caller is responsible for calling fwnode_handle_put() on the retu=
-rned
-> + * fwnode pointer.
-> + */
-> +struct fwnode_handle *fwnode_graph_get_port_by_id(struct fwnode_handle *=
-fwnode, u32 id)
-> +{
-> +	struct fwnode_handle *ep;
-> +
-> +	ep =3D fwnode_graph_get_endpoint_by_id(fwnode, id, 0, FWNODE_GRAPH_ENDP=
-OINT_NEXT);
-
-[Severity: High]
-Will this fail to find valid ports if they lack active endpoints or have
-disabled remote targets?
-
-By calling fwnode_graph_get_endpoint_by_id() without passing the
-FWNODE_GRAPH_DEVICE_DISABLED flag, it appears this enforces an implicit
-availability check. This skips any endpoints that are unconnected or whose
-remote target is disabled.
-
-Additionally, since port discovery is routed exclusively through endpoint
-iteration, will this completely miss valid port nodes that contain no
-endpoint child nodes?
-
-> +	if (!ep)
-> +		return NULL;
-> +
-> +	return fwnode_get_next_parent(ep);
-> +}
-> +EXPORT_SYMBOL_GPL(fwnode_graph_get_port_by_id);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610084053.2059=
-858-1-wenst@chromium.org?part=3D1
 
