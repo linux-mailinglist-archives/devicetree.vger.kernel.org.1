@@ -1,139 +1,170 @@
-Return-Path: <devicetree+bounces-309411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309412-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Msk5EAwDKWpHOwMAu9opvQ
-	(envelope-from <devicetree+bounces-309411-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:24:12 +0200
+	id lMWCJrQDKWpvOwMAu9opvQ
+	(envelope-from <devicetree+bounces-309412-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:27:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9878566633A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:24:11 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D5E56663BD
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:27:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=IMTQiNER;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309411-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309411-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=km68t2iL;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309412-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309412-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 866AB3023A6C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 06:23:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1F2783086DB6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 06:24:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B7C372663;
-	Wed, 10 Jun 2026 06:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 643C0372670;
+	Wed, 10 Jun 2026 06:24:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 710E81A6814;
-	Wed, 10 Jun 2026 06:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515AA3019BA
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 06:24:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781072617; cv=none; b=KnqOi2/Scm7giSRcAzHE7iuSAlfpjX8jNOzfLqGgkXUC+q1Nf0IyYdBMLtoiVB+R+Y9hOnMtfPpbhuZooLYS82a1KS0GpDwZyfInIzIQ0lgECy5KwjLEtUrj49eSPsvHERKQ1MjZvf0hZFcIiK85Yvc4wyuTOpr/TuUnuc/BWH4=
+	t=1781072657; cv=none; b=Fl/lPhOEOjYAmELzVTUZculN5CsmfxWkwgIBOjrOlN3hxlrN2enTIXo4NNFKoWjKt26QfprgCPPNKz5FYncMNcu/utu8KUOtb+ZG2dSLIh4o5mKQSn5VZYYayKdbSP9pJlYFRr4KVoBRhwssZBaN6hXBB8eG2+dXoS24P5gTgKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781072617; c=relaxed/simple;
-	bh=rFJSbHbDtoePohRS2EsLsjmHLP6vVMSmcHIITysF5r0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jv+IW5+d88v08txMhxS9+t66+vdStrKMtjYpr+Pg9Oxfv8szHjMuce1xqa1e3/X3+sa8ieFOQHHM8vakUVSY7ojlJV1sK3qmSYRaTVsczsjrChnwH3/2LkKLWz8moED9D2SJ1y2lKDDGAMi8/fvh+41tf5pv7UUkMtnTmustR54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IMTQiNER; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17CBC1F00893;
-	Wed, 10 Jun 2026 06:23:34 +0000 (UTC)
+	s=arc-20240116; t=1781072657; c=relaxed/simple;
+	bh=Ji+Y9S1gns4/Us2kyxnnXCXVEvbToU5JSMTdsm1PS/0=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=tIuWlQFvM90gr+PsM35S+ZQbNh/+cLe9J0KDAt/cfAPN0f1D+MH7/SUtP2rs2e1bs+zf2JT6XtOAXYfTfrYxyOdLSzXhxwyTjym7bfH3ZDEPSWcHr3EXJUOrmI+eFhLRp+SsMO2wuBubydH1IIdvBDJhrDrCL2NKsO1+Y/aHq5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=km68t2iL; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C28A91F00893;
+	Wed, 10 Jun 2026 06:24:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781072616;
-	bh=7pJCdmP/I1O9qQOYy3P6wkUiGVmzpOS2+Rao0WrGW64=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=IMTQiNERSJazYilIigjjFiYbyNChVIRknRAokvryq5rlvBubewjeD3JaSHn+6UQxN
-	 UM9NOS+leh5PE1n1YNYL93aPK8iSU9m9SNeO8MunUBtPna3GrIpBLTNu4clPEKGxTT
-	 cg0pPPk+9TKrWQ5nOw408qsJSzgtfpJf1HR0mMaUceQYe1IOdH1FEP+Et0hhSuLa/9
-	 CnXaKcNAvdnTZNs27XPdO/+3VCRmOqKwaU0h0UYHFPM7YcMa0A98weK2Jtd0q7/GqO
-	 6C1vGN9GI5ZtUyTqdUKkOFomXKK1ytB9mMvnYH58YnAH1gBlOBEvVFarNPfoPJFvw6
-	 Sy93YFxIdW4tg==
-Date: Wed, 10 Jun 2026 08:23:32 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Luca Weiss <luca.weiss@fairphone.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Ajit Pandey <ajit.pandey@oss.qualcomm.com>, Imran Shaik <imran.shaik@oss.qualcomm.com>, 
-	Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 1/7] dt-bindings: clock: qcom: Add video clock
- controller on Qualcomm Eliza SoC
-Message-ID: <20260610-lovely-bumblebee-of-fame-505a1c@quoll>
-References: <20260609-b4-eliza_mm_cc_v6-v6-0-17df09e5940c@oss.qualcomm.com>
- <20260609-b4-eliza_mm_cc_v6-v6-1-17df09e5940c@oss.qualcomm.com>
+	s=k20260515; t=1781072656;
+	bh=W9c3A1HN7GQ5wHtCSxnx/uCofDdQpuQh7NjRzv91E9U=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=km68t2iLIxkOL6zUfcTU/x3SPWiny+mVD4KYSijUFlvkuv2teSQ4zy8qdi705Cdju
+	 bsCHOTZFBd+7RHc7iRrSG5qwNTt97exKWv/z22UReROjHFL+1Es2G4eE5gvAFr5ZEZ
+	 ATlmK/mmo0dwkT60nMFeMDEt2qZwniT0gcQ/WOQIXqXpSnQ5+stJBeD1BO70ihV0qo
+	 99q1zqAkuDUodj9tP/nDy9BzEgKSVhfhyB4jdCGMzZnF8EeANIaWw/fleL2NoAaNBL
+	 QCycD/piq3EF2CxRRw1Gp6VfN4Np70RN827f+2iR5T8zF3nJyK01P5mlBndsOhStf5
+	 WV+JhnC9lSCgg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 3/5] dt-bindings: clock: cix,sky1-audss-clock: add
+ audss clock controller
+Reply-To: sashiko-reviews@lists.linux.dev
+To: joakim.zhang@cixtech.com
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260610061712.3203984-4-joakim.zhang@cixtech.com>
+References: <20260610061712.3203984-4-joakim.zhang@cixtech.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 10 Jun 2026 06:24:15 +0000
+Message-Id: <20260610062415.C28A91F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260609-b4-eliza_mm_cc_v6-v6-1-17df09e5940c@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:taniya.das@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:luca.weiss@fairphone.com,m:konradybcio@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:ajit.pandey@oss.qualcomm.com,m:imran.shaik@oss.qualcomm.com,m:jagadeesh.kona@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309411-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,redhat.com,fairphone.com,gmail.com,foss.st.com,oss.qualcomm.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309412-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:joakim.zhang@cixtech.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,quoll:mid,qualcomm.com:email]
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,smtp.kernel.org:mid,devicetree.org:url,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,cixtech.com:email,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9878566633A
+X-Rspamd-Queue-Id: 2D5E56663BD
 
-On Tue, Jun 09, 2026 at 08:32:52PM +0530, Taniya Das wrote:
-> Eliza Video clock controller is on CX and MX rails similar to Milos.
-> Add compatible string for Eliza video clock controller to the existing
-> Milos videocc binding and add the dt-bindings header for Eliza.
-> 
-> The video clock controller exposes power domains, so '#power-domain-cells'
-> must be present in the device node. Add it to the required properties list
-> to enforce this in binding validation.
-> 
-> There is no ABI breakage and no impact to the existing devices, since the
-> nodes using this binding already specify the '#power-domain-cells' property
-> for videocc.
-> 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> ---
->  .../bindings/clock/qcom,milos-videocc.yaml         | 10 ++++--
->  include/dt-bindings/clock/qcom,eliza-videocc.h     | 37 ++++++++++++++++++++++
->  2 files changed, 45 insertions(+), 2 deletions(-)
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The newly introduced `cix,sky1-audss-clock` schema causes a `dt_bin=
+ding_check` validation failure in the parent `cix,sky1-system-control.yaml`=
+ example.
+--
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+commit 266331103ef923d7816fb4abbe0e462ec90cdfb6
+Author: Joakim Zhang <joakim.zhang@cixtech.com>
 
-Best regards,
-Krzysztof
+dt-bindings: clock: cix,sky1-audss-clock: add audss clock controller
 
+The AUDSS CRU contains an internal clock tree of muxes, dividers and
+gates for DSP, I2S, HDA, DMAC and related blocks. The clock provider is
+a child node of the cix,sky1-audss-system-control syscon and accesses
+registers through the parent MMIO region.
+
+> diff --git a/Documentation/devicetree/bindings/clock/cix,sky1-audss-clock=
+.yaml b/Documentation/devicetree/bindings/clock/cix,sky1-audss-clock.yaml
+> new file mode 100644
+> index 0000000000000..dff56f3a425b9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/cix,sky1-audss-clock.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/cix,sky1-audss-clock.yaml#
+
+[ ... ]
+
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - power-domains
+
+[Severity: Low]
+Will this cause a dt_binding_check validation failure in the parent
+cix,sky1-system-control.yaml example?
+
+The parent binding contains an incomplete subnode example that will fail
+validation against this newly introduced clock schema:
+
+Documentation/devicetree/bindings/soc/cix/cix,sky1-system-control.yaml:
+        clock-controller {
+            compatible =3D "cix,sky1-audss-clock";
+        };
+
+Could the example in cix,sky1-system-control.yaml be updated to include the=
+se
+newly required properties to prevent validation errors?
+
+> +
+> +additionalProperties: false
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610061712.3203=
+984-1-joakim.zhang@cixtech.com?part=3D3
 
