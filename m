@@ -1,198 +1,190 @@
-Return-Path: <devicetree+bounces-309366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309359-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lF1ICAa+KGqpIwMAu9opvQ
-	(envelope-from <devicetree+bounces-309366-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 03:29:42 +0200
+	id u1N6NmC8KGpiIwMAu9opvQ
+	(envelope-from <devicetree+bounces-309359-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 03:22:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CE47665369
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 03:29:41 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39D916652FC
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 03:22:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=rock-chips.com header.s=default header.b="JMc/acb2";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309366-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309366-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=rock-chips.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=quora.org header.s=google header.b=qMjegCCc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309359-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309359-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7ED20301BECB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 01:29:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D9F553168A12
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 01:15:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC85D263C8F;
-	Wed, 10 Jun 2026 01:29:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AEBA2472AE;
+	Wed, 10 Jun 2026 01:15:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973189.qiye.163.com (mail-m1973189.qiye.163.com [220.197.31.89])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C61FD2773E5;
-	Wed, 10 Jun 2026 01:29:32 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781054976; cv=none; b=T6H/QX+M/Yq+gEKKKBjjOCoNfF9iUoLsOaAgPt495dss3S61R2s92FkwtRAumwvHqJ18AbkL3U1D0x+nomzfyeVXf614jpQSCczLCBoNbByPB006B3gm/LxBdnlQyb/Cj+E/leEDMIq+hlxJ0GRuKjdYZDnWbbp0WJ7e5Tb7GM0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781054976; c=relaxed/simple;
-	bh=fqfLMJY/chnkgj0kUutKJERe3LT9Zo86vEHEspY85FQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d3BzA4aZHnwggpT6IubtpwZzeWaqtPERl+i2jKSHwSWZXkLz58ftga9ohqnUaC4TUdk0h+Nr6cSF/N9h5z/V0FnA/IOsKusgLN3nCY9lA0DsEgeBByZdbGaDp3/iJgeAx+PtdH58lCW66kgXWF3UirM61cofbCeobenS30p2mzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=JMc/acb2; arc=none smtp.client-ip=220.197.31.89
-Received: from [172.16.12.90] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 41bfeee6e;
-	Wed, 10 Jun 2026 09:14:04 +0800 (GMT+08:00)
-Message-ID: <b05f7154-e85f-4207-80ae-f080282ba780@rock-chips.com>
-Date: Wed, 10 Jun 2026 09:14:02 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40D9724BBF4
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 01:15:07 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781054108; cv=pass; b=DNMB4mdQrtBEf7RTcL28loa5+XRvIsPknO7crmdPDCHxGLV6jk7aSBSAsGtMMWRYCKOI5ewWwITL0trdFs4NncPUkK83FcyYnFLVce7KmSk76dGSF0rIZ2uWb4bb4bRtBtjHVC1oAt+uQwgE9XUl8F7HVamhZ6frR9UM5wx9GDM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781054108; c=relaxed/simple;
+	bh=UeAssUqYMd9I/hNomjKDWuBothPBNmM7nGphuECKV1Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=e1hCBdohnHPef55KEtTsfHIVsohKHI3er19vs1FeIU9ics7ocwFREip0Cxk3TQ0dSW1rD8Jk9LVZppGkV1YOvcsHfDWpAy4aapkeSUfSLWrQjC7RaJ68i6yLXuZVctQcPi7KgR/YIooSJdaG4z4HDmdUzsng87k80og71KEPEiI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=quora.org; spf=pass smtp.mailfrom=quora.org; dkim=pass (1024-bit key) header.d=quora.org header.i=@quora.org header.b=qMjegCCc; arc=pass smtp.client-ip=209.85.214.179
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2c132ac5ec2so61027305ad.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Jun 2026 18:15:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781054106; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HSKyW5h2+stJ7fef86jA/mT/NhoWkQ9uDqMzXctwjJYUn5ma9CkfU2k8O0OjXbS0X3
+         xBlo/7aYMsTHymiuj5pB2Delnesy5QaYvznhsQ/KAxiyJpU0Pb5db5LqNWhlYXLxrK5A
+         V+eQ1EiccLlaROBzdq7hGEnvcXvMRbBh15VhY2DraHHNr6YfsQKOUahdUJAj4QFeHTmz
+         q5AyissECMYF03YVE1xgaJ7AbZHdVFp4xhhQAhkMXqze7H+dRlnKzZeKvpP1srSkSdhp
+         3tKdfIF4Hq+pPsB2nsC1ESHx0IwyNelNdIg84PWxp7v7fQNeyp2u9PbUYLLdDs4yVHb4
+         oTNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=2Bj40WPn3U8Z/ILKnmF/fVa3Ekp1JSrXZv/lmEeSBo0=;
+        fh=1XSi7XFGdcycMYX7061aVnwKeno/WDRCg0NCM0OA2po=;
+        b=EWug5yUXhKG8Q+0+W4Mjjy9dtqjZP1kpACyW+dQqRMQEXvSOvHoX1CZFYyCuXy8SUS
+         4Fljsa+ZCxG4cS1wUGQtQ1JyNmqB3e94o+Udiulk5f5QQuywOFcgtcQYG1o4Y5MIEuT8
+         +OtPbe+OprIBtYbMn3nBms4uBOnqPWTg2YOOTVxdCo0sxWU7GXYF8V7Z8pMCCcPpUSNI
+         VsJwhslZFD4IR/WQZQnSvog8d1Ir4qzA465rSrJTTYyRvi8uFomBlY8nH9KUgrMlf5tt
+         FuuqXMnu4JHl+2Y4vmPvyQYQsgDScpppoTtb3NWZDQp30HyhbfVqu0Us65Nhg9qFCznx
+         dbqw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=quora.org; s=google; t=1781054106; x=1781658906; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Bj40WPn3U8Z/ILKnmF/fVa3Ekp1JSrXZv/lmEeSBo0=;
+        b=qMjegCCcUBDxXDPpfJ9kUjrMc0PeKNq3qpNPV4QavlcRiZSK99bDy4G24FJO3temQ/
+         f7Zv3uYHOTUIwARONd/StE6tPPjor/oI5kCeJZ7TFLqJn5c/8P0M0BEh1vLajwJaYBUD
+         Myg4BfP5r5PX5ieSW2QJ6eVoar+LkRDgNl6GQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781054106; x=1781658906;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2Bj40WPn3U8Z/ILKnmF/fVa3Ekp1JSrXZv/lmEeSBo0=;
+        b=GD3Iw9vhYG4QmlIgQEW4FzyKktSR8AP2kt4QbfskCXh5L8F1VsLhSDKwg3SXlvEP8Z
+         8e6OtTmoDWZJ3OrieR9lTdTACF0fnXdacbY74wjSvfYEE/YYLGQG0jH4fxhBEl+uQmj9
+         FDwMxAoMtX8AI31IqqPliNXKBNqbEC/ukaCx3L0dwtpvUpezsFWR30c3niv7DP1PE8Js
+         Lihf98cpllLDf3eO6qdXhjqBM4ytFq2cHSYhV9GKPHrguWBnpkPXYC4jURcDBiSHhiwW
+         KutaSyXjCa3lzHGQAspqJO+p6fkTomwVJokaK7YDh0HfEgXGf5GriM9Xj66m2WZR7iCs
+         y/Og==
+X-Forwarded-Encrypted: i=1; AFNElJ8EQspYe8K+qOOyIMJgoCZ3HzKPZT2ZsANmuib9XUGWtUQPmLLct8vAB8oQGm3NVUDvXHJOWlv+qQes@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/iGRSvbMikXHOGTJsp9G3kywmtWipIkUvL5foLJhvHTd9T4vo
+	S4/KRd4wksz1+CpmEBwBXWWvkwTmmjos5g0XOmpN+1M/plseUg72fc3UoxowZC2Av3H6emuIUeK
+	AHNJ8cFDw2DEXnX7A49URDuhWvABVF/An5df7hSGlYQ==
+X-Gm-Gg: Acq92OFYpORUgYC7UCt9viwQXwgYYH/shVB5WZARNtVT40NOeoaFv/ntH0umIUYX7Wj
+	giJsh96BRKTY4hrE7/KSm9xU4KhehF21Pbetaaq6H9jWRDyhObxXrC4z3y9GSupy4h/d3LePtET
+	Fpf3L3MtAkNHiC0D8U8djC8907xEUVDRzHynz//NE6n5rsz1i8Iy8dvM9uXlHWsMISAwF74Hbi9
+	5hmJFJIKHl5Ox7lBV/RitVKxZfNddLUWhBHK2CEVbYG8O/9nXA0Sxw1SmLPKvUXhFbznGJ1TF6+
+	vuICHzK3F+fQoxvEhTgNRQCTQRN0Ed965kJJ5i1Y7TKbnOQke0grB7i22/KB5ywbw2a55OJV6aW
+	NyNv+uPUwm3I2jLfU1cW9vxQL+EPXlezxPu6t8eMkBd27XdwmwcgvRiSVQe9h874K2uFE3g69mZ
+	NtyiQ6I6MT21+Qw+w3HcIc+MTo1WRoqYF6fjoVLyZeeuODOpyCSbuJTcBDjC/j
+X-Received: by 2002:a17:903:708:b0:2b7:abc0:3bd7 with SMTP id
+ d9443c01a7336-2c1e7e3adb6mr148795125ad.9.1781054106527; Tue, 09 Jun 2026
+ 18:15:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v3 0/9] accel: rocket: Add RK3568 NPU support
-To: Midgy Balon <midgy971@gmail.com>
-Cc: tomeu@tomeuvizoso.net, ogabbay@kernel.org, heiko@sntech.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joro@8bytes.org,
- will@kernel.org, robin.murphy@arm.com, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- linux-kernel@vger.kernel.org, Simon Xue <xxm@rock-chips.com>,
- Finley Xiao <finley.xiao@rock-chips.com>
-References: <20260604135255.62682-1-midgy971@gmail.com>
- <3d99569e-9c3a-49d1-93fb-1335382523e9@rock-chips.com>
- <CA+GS1Y1s78PwN63X2YJoS8VEGp7CpTERo_K65yKs00U4VRAw4Q@mail.gmail.com>
- <e5058919-9485-4de5-8eea-331ebfc2987c@rock-chips.com>
- <CA+GS1Y3ysdWZ3qCq3ip_Pbw+v4LxHZd95aBo=jwB+orYaMBBNw@mail.gmail.com>
- <CA+GS1Y0kAM_XGLQuKPTphif2HcQg18ZXhd8RHHr2xPOEMCDvXA@mail.gmail.com>
- <bcedaff0-abf8-4585-a0ea-057062cd0411@rock-chips.com>
- <CA+GS1Y2-hRqpGgsknh+oOX+-uZ3DZtdekdP9viTP6a40zhhUhg@mail.gmail.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <CA+GS1Y2-hRqpGgsknh+oOX+-uZ3DZtdekdP9viTP6a40zhhUhg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9eaf17f7ca03a7kunm086ddc0f265e19
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTkIaVhgaT0JNSExLGhoeQlYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQk1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=JMc/acb2P5/j0WDgBoNYDEgabsrTG6UUouYskrbbIrI3+e1FIjV+cY3SVNG0i6tQBYa65TADufI1IrcgOpVVxNrpxG7VhU9HVuUDORdfhEobuPvJC/wPn9SI+ziLIe3dHBTZ3H2EfowPzM3i1R4/7UXBr2WSPouPPyabXZj+Hlc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=xT9TRXqNVQ4NrOZ7G30C+sE2EpbR+Jn/B+pjkgNcIuw=;
-	h=date:mime-version:subject:message-id:from;
+References: <20260601041336.9497-1-daniel@quora.org> <ecavEnqJTDXvfFykc9uJb5No7ioighpjrCdw2CFZ4c8Izr5DxpTs-606Bg7K0RtHTaOqksWivHxWQLzMBP6qow==@protonmail.internalid>
+ <20260601041336.9497-2-daniel@quora.org> <ec7c564e-745a-4998-af9a-e9632fe063f7@kernel.org>
+ <CAMVG2ssnyH=KUKrdfnUOtPYU7p17inyzcYWcKhT4EAZxDzDjfg@mail.gmail.com> <cb37e7cc-4fb0-4c24-8f89-f6f9eb08a107@oss.qualcomm.com>
+In-Reply-To: <cb37e7cc-4fb0-4c24-8f89-f6f9eb08a107@oss.qualcomm.com>
+From: Daniel J Blueman <daniel@quora.org>
+Date: Wed, 10 Jun 2026 09:14:55 +0800
+X-Gm-Features: AVVi8CdzfDox6mz_iOGKn72MQqEfSSNkYmI5x8N9Awxjs-n8z1eY5R0tOZeJjNw
+Message-ID: <CAMVG2svgnGKix5vSe8kG694Vm1dU=0Z=MZqR4M5LFOxCXoXYXQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: hamoa: Reserve low IOVA range for Iris
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, 
+	Abhinav Kumar <abhinav.kumar@linux.dev>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	stable@vger.kernel.org, "Bryan O'Donoghue" <bod@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[quora.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:midgy971@gmail.com,m:tomeu@tomeuvizoso.net,m:ogabbay@kernel.org,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joro@8bytes.org,m:will@kernel.org,m:robin.murphy@arm.com,m:dri-devel@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:xxm@rock-chips.com,m:finley.xiao@rock-chips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[chaoyi.chen@rock-chips.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_RECIPIENTS(0.00)[m:vikash.garodia@oss.qualcomm.com,m:dikshita.agarwal@oss.qualcomm.com,m:abhinav.kumar@linux.dev,m:andersson@kernel.org,m:konradybcio@kernel.org,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:stable@vger.kernel.org,m:bod@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[quora.org];
+	FORGED_SENDER(0.00)[daniel@quora.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-309366-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
+	TAGGED_FROM(0.00)[bounces-309359-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chaoyi.chen@rock-chips.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@quora.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[quora.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,mail.gmail.com:mid,ui.com:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0CE47665369
+X-Rspamd-Queue-Id: 39D916652FC
 
-Hi Midgy,
+On Thu, 4 Jun 2026 at 14:39, Vikash Garodia
+<vikash.garodia@oss.qualcomm.com> wrote:
+> On 6/2/2026 9:05 PM, Daniel J Blueman wrote:
+> > On Tue, 2 Jun 2026 at 18:27, Bryan O'Donoghue <bod@kernel.org> wrote:
+> >> On 01/06/2026 05:13, Daniel J Blueman wrote:
+> >>> On X1-family hamoa platforms, Iris DMA below IOVA 0x25800000 (600MB)
+> >>> triggers unhandled SMMU page faults
+> >>
+> >> How do we know that is a correct address - does it come from qcom
+> >> documentation or trial and error ?
+> >
+> > @Vikash, beyond your comment I linked in the patch [1] kindly cite a
+> > source for the different stream-ID <600MB behaviour, and share
+> > specifics, eg if silicon, firmware, or driver and constraint, defect
+> > or otherwise, so I can include a definitive description.
+> >
+> > Also good to know if my workaround is good for long-term, or on the
+> > other hand handling streams <600MB is important/useful.
+>
+> Thanks Daniel for raising this patch. Did you also try the memory fix i
+> mentioned in the bug [1] discussion ?
 
-On 6/9/2026 7:11 PM, Midgy Balon wrote:
-> Hello Chaoyi,
-> 
-> You were right - building rocket as a module fixes it. Thanks for the pointer.
-> 
-> I rebuilt with CONFIG_DRM_ACCEL_ROCKET=m (everything else the same:
-> need_regulator on
-> the RK3568 NPU power domain via a DOMAIN_M_R variant, domain-supply =
-> <&vdd_npu>, and the
-> regulator-always-on workaround dropped). The board now boots cleanly
-> and, more importantly,
-> an NPU job submit no longer hangs: I ran the test workload five times
-> with no RCU stall and
-> no freeze.
-> 
-> So with rocket=m the need_regulator approach works on RK3568, and I'll
-> keep it for v4
-> (domain-supply + need_regulator, instead of marking vdd_npu
-> always-on). rocket=m is the
-> normal configuration anyway; my earlier hang came from building it =y
-> in a self-contained
-> image, so it probed in the initcalls (around 2 s) and the genpd ->
-> I2C-PMIC regulator
-> transition ran before the system was ready. As a module it loads from
-> udev much later
-> (~6.8 s here), after the I2C controller and regulator core are fully up.
-> 
-> On your question of when the device-link error is printed - it is at
-> power-domain
-> controller probe, not at the rocket probe:
-> 
->   [    2.700618] vdd_npu: Bringing 500000uV into 825000-825000uV
->   [    2.749637] rockchip-pm-domain fdd90000.power-management:power-controller:
->                  Failed to create device link (0x180) with supplier 0-0020 for
->                  /power-management@fdd90000/power-controller/power-domain@6
->   [    2.945955] platform fde40000.npu: Adding to iommu group 3
->   ...
->   [    6.840374] rocket: loading out-of-tree module taints kernel.
->   [    6.877647] [drm] Initialized rocket 0.0.0 for rknn on minor 0
->   [    6.879950] rocket fde40000.npu: Rockchip NPU core 0 version: 0
-> 
-> So the device-link to the rk809 PMIC (0-0020) fails to form at ~2.75
-> s, well before rocket
-> loads at ~6.8 s. It is non-fatal here - the vdd_npu rail is brought up
-> by the regulator core
-> and all jobs run - and there is no "failed to get ack on domain npu"
-> NoC warning this boot
-> (the always-on kernel had one). The complete boot log is attached.
-> 
-> Two notes / one question:
-> - This boot used fw_devlink=permissive on the command line. Is the
-> "Failed to create device
->   link ... supplier 0-0020" at pmdomain probe expected/benign, or is
-> there a clean way to make
->   it order correctly (so it also works without permissive, and a =y
-> build wouldn't deadlock in
->   the initcalls)?
+With this patch, my Lenovo Slim 7x spontaneously rebooted after
+opening 3 tabs of https://ui.com rather than 1 without it. No
+crash/reboot is reproducible with the patch I proposed.
 
-We encountered the same issue on the RK3588 NPU before. And it was
-resolved with the following patch at that time.
+> 0-600MB range, VPU hardware would reserve this to generate different
+> stream-IDs primarily for internal (non-pixel) buffers.
 
-https://lore.kernel.org/all/20251216055247.13150-1-rmxpzlb@gmail.com/
+Thanks for the clearer description; I'll respin my patch with this and
+the DT fixes shortly to get the X1 user experience under control until
+a real fix.
 
-Please compare the differences in NPU pmdomain and DTS configuration
-between the RK3568 and RK3588.
+@all I appreciate the ideas and discussion already ensured!
 
-> - (The convolution output is still uniform zero-point / the job times
-> out - that is the
->   separate NPU compute-completion issue, unrelated to the power-domain
-> work. Finley, that is
->   the one I flagged earlier re PVTPLL/NoC.)
-> 
-> Kind regards,
-> Midgy
-> 
-
+Dan
 -- 
-Best, 
-Chaoyi
+Daniel J Blueman
 
