@@ -1,122 +1,161 @@
-Return-Path: <devicetree+bounces-309663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309664-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xS/dN9NAKWozTAMAu9opvQ
-	(envelope-from <devicetree+bounces-309663-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:47:47 +0200
+	id P0yLMm06KWqrSgMAu9opvQ
+	(envelope-from <devicetree+bounces-309664-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:20:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A70696686CD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:47:46 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD6D166832D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:20:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309663-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-309663-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mThRrkQu;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309664-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309664-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6FA9930060A1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:06:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 84E0B3008D03
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F8003E0224;
-	Wed, 10 Jun 2026 10:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81A813E9C0D;
+	Wed, 10 Jun 2026 10:11:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from r3-47.sinamail.sina.com.cn (r3-47.sinamail.sina.com.cn [202.108.3.47])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D8537DADD
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 10:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642713E834B;
+	Wed, 10 Jun 2026 10:11:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781086014; cv=none; b=MW5tqJxXpRJADAWhs5A2dqWjdg3YX6i6I8xKNSHB7iWGCGzX/e52Q/Qww9QhJWPHLcVSPOsrFNK0D+eK7n1mnKOA67pdB+tLdGEVbZ73RglvhYLRotFYsWL4NxxClQ7EJz8BJNmTJZO/1hILtJ5GymmehJvOjQKBnf76fn8PprM=
+	t=1781086313; cv=none; b=Y9NufuykGK3CynW+yC8S3Pg6iSSklqCbx8RnK4gAhvG14z7nbblcP+l4BhtHIH52e0Jrr++WVx0JMpD4+wbk65ox9Ki3I8QpEcexRIbUa+9vojDlH3BQdL+cYzf7khINKRZ6rDQsj7ZEvWzbfaMiyiRJvaLFCFsN0kQo/P2Ibi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781086014; c=relaxed/simple;
-	bh=CE1nX27oBcL6Tl6vMv7Z3wZ/+naPHmaEsSzFKbyRHkY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=W5UZ75QGy3sFyJrBgfdTw4Gb4fB7bYAXsMenhiTxKQ0PsIdJdG9yWc9QLtcM+x3S3dToORBkGL/F7iW6Fzut9v/Z/UELjgREmC1paaqurfhYV3DclMrRUW7qnukqtf8WoM9FB6rG3sKF73uvT6GAieTscbKo8644TMEXiebkQnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=202.108.3.47
-Received: from unknown (HELO zy-virtual-machine.localdomain)([58.38.107.94])
-	by sina.net (10.54.253.39) with ESMTP
-	id 6A29372F00006380; Wed, 10 Jun 2026 18:06:40 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-X-SMAIL-MID: EE711B62DD7844089AB2C86FCA8A4203
-X-SMAIL-UIID: EE711B62DD7844089AB2C86FCA8A4203-20260610-180640
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: krzk@kernel.org
-Cc: alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	tiwai@suse.com,
-	zhangyi@everest-semi.com
-Subject: RE: [PATCH 2/7] ASoC: codecs: ES8389: Fix the issue about mclk_src
-Date: Wed, 10 Jun 2026 18:06:37 +0800
-Message-Id: <20260610100637.25568-1-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20260609-visionary-truthful-viper-ceff75@quoll>
-References: <20260609-visionary-truthful-viper-ceff75@quoll>
+	s=arc-20240116; t=1781086313; c=relaxed/simple;
+	bh=TGppL9hDgW5mi5BZI2txZVKn4B8Bduk6VVtIfcRfxcU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=WsPG+8R9kLW05mK98qCdZ9VfO1T5r5chJyHocPW7I08G0QJcqpVwmIktFGdvurissZPveO+2eGKm9WNzs+4xjPJ3QUCizzmhDUK6Pf2iUKGMg9tFRhRZWhV1mb4SCRDoYT9AA238mMyMjIYBwhQXYqTPPDgn1ja8OAKMmMb0nhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mThRrkQu; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA1611F00893;
+	Wed, 10 Jun 2026 10:11:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781086312;
+	bh=w2L/TnCaqDd4KnTRIQ+TaHnC3QgS/VxXV74wjJWXoG4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=mThRrkQusiGr8imwkIt5HOS7tZlAK8UwMj6FPIg9iAPFP3GvN1zrRtUbLN/07uPKo
+	 KFScJG5xbtLlguGnyc7HGTvMXwNRu54MlEe8cCOVkV6BeaOP+Hu49Dhlku0k1hbE/t
+	 X8IxNyArUuf6I8IE8OmVUlI3pYh142nnxX7dfSCBFGxSaeclD7bwt3M2ZSLjSJK2yf
+	 wE/noCbSn109cGucbeMzbCuWObtn2bjiHHWfWqo3O6HDhCx/jAwBsLqnQhya5m1Oeh
+	 m6kUSl6w1JsIAVMH56Rva12S08hcJwd2e3omZrFSKxyThxaLU0+7MJRJVlF6sn9mgO
+	 XcLE+IHndrALg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: dmaengine: Add support for
+ ATCDMAC300 DMA engine
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "CL Wang" <cl634@andestech.com>
+Cc: Frank.Li@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, dmaengine@vger.kernel.org, robh@kernel.org, vkoul@kernel.org
+In-Reply-To: <20260610095724.1980622-2-cl634@andestech.com>
+References: <20260610095724.1980622-2-cl634@andestech.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 10 Jun 2026 10:11:50 +0000
+Message-Id: <20260610101151.AA1611F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [5.04 / 15.00];
-	R_BAD_CTE_7BIT(3.50)[unknown];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-309663-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	GREYLIST(0.00)[pass,body];
-	DMARC_NA(0.00)[everest-semi.com];
-	FORGED_SENDER(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:alsa-devel@alsa-project.org,m:broonie@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:tiwai@suse.com,m:zhangyi@everest-semi.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309664-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:cl634@andestech.com,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dmaengine@vger.kernel.org,m:robh@kernel.org,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,andestech.com:email,sashiko.dev:url,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A70696686CD
+X-Rspamd-Queue-Id: AD6D166832D
 
-> > Fix the issue with incorrect modifications to mclk_src
-> 
-> What issue? Your commit msgs are really poor - explain nothing. You just
-> duplicated subject... and anything can be a fix.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The schema uses `additionalProperties: false` instead of `unevaluat=
+edProperties: false` while referencing a common subsystem schema.
+--
 
-I'm sorry I didn't explain that clearly.
-When the system needs to be configured to use the MCLK from the SCLK pin,
-the old code still sets the relevant registers to use the MCLK from the MCLK pin.
-I will include a more detailed description in future versions.
+commit 0c4fc28dab967baedae4dfdcb32dfa0eb77d45a5
+Author: CL Wang <cl634@andestech.com>
 
-> >  	struct es8389_private *es8389 = snd_soc_component_get_drvdata(component);
-> >  
-> > -	ret = device_property_read_u8(component->dev, "everest,mclk-src", &es8389->mclk_src);
-> 
-> Why are you changing implemented ABI?
+dt-bindings: dmaengine: Add support for ATCDMAC300 DMA engine
 
-In the old ABI, `mclk_src` was defined as `u8`, which meant that users could set `mclk_src` to any value in the DTS¡ªsuch as `0x02`,
-but the code wouldn't recognize what that value represented.
-The actual purpose of `mclk_src` is to indicate whether `sclk` should be used as `mclk`.
-So I've changed it to bool.
+This commit documents devicetree bindings for the Andes ATCDMAC300 DMA
+engine, which is embedded in AndesCore-based platforms such as AE350 and
+Qilai.
 
+> diff --git a/Documentation/devicetree/bindings/dma/andestech,ae350-dma.ya=
+ml b/Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
+> new file mode 100644
+> index 0000000000000..f040a2bf7d4b9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
+
+[ ... ]
+
+> +allOf:
+> +  - $ref: dma-controller.yaml#
+
+[ ... ]
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#dma-cells"
+> +
+> +additionalProperties: false
+
+[Severity: Low]
+Does using additionalProperties: false here prevent the use of common DMA
+properties defined in dma-controller.yaml (like dma-channels or
+dma-requests)?=20
+
+Since this binding includes another schema under allOf, should it use
+unevaluatedProperties: false instead, so that dt-validate correctly
+evaluates and permits those inherited properties?
+
+> +
+> +examples:
+> +  - |
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610095724.1980=
+622-1-cl634@andestech.com?part=3D1
 
