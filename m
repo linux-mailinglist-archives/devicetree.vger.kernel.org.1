@@ -1,167 +1,182 @@
-Return-Path: <devicetree+bounces-309480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309484-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0HZOIKYXKWr/QQMAu9opvQ
-	(envelope-from <devicetree+bounces-309480-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:52:06 +0200
+	id xSMIHEEZKWpzQgMAu9opvQ
+	(envelope-from <devicetree+bounces-309484-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:58:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63324666CA0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:52:05 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC9F666DD1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:58:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HW41CMX4;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309480-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-309480-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=linaro.org header.s=google header.b="V/wa91DK";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309484-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309484-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9289830013A3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 07:51:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 55216314693B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 07:54:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C064306D26;
-	Wed, 10 Jun 2026 07:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCEDF3932FD;
+	Wed, 10 Jun 2026 07:54:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D7C372670
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 07:51:53 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781077914; cv=none; b=Wx78d8n7xaItfxxIih6NHVtH6bjlmqOjd1VHQtBTDXlVS+umKm/SxshW98b4xk1QCkhvg+ClpryLH401IgobaQk3ugwOFtIbP2HiWE6PhmWAP3GQ3IK4U4oeLCnwQQZrx9fj0DqYHr0BTa8oAwjW2R0cd2SYBoFUQa7Owv9kaIw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781077914; c=relaxed/simple;
-	bh=kDxr/brGQG4LT2VW8BHWVtw68xdamrVjCotuSCMIJ6M=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=cpgSTGx7KbiJkLN3Rdkm/kSeMbzCBP/mRmfKg4TMNwrae4TYcwFyilXasJmGVP1XWLybFfamhlew6MhnaLW6n0EBu3nEF1EkhbEfkCtv58gfsc/Ufj99h+x1kldnKIcPI+Qgz9uO9GnpvCbFZ3nZcKDAELDWjc3bwp7TEuPP0Jg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HW41CMX4; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0F851F00893;
-	Wed, 10 Jun 2026 07:51:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781077913;
-	bh=71AsV5E6aX9bdiMGywiAHMqc13lYiPbvh9UExlx22CI=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=HW41CMX4Rbrff3cpD14vpEwGyd7ZH4Vh2n9v0BWDZZu7J+R4BpYmr0d4n65od27SM
-	 a9aMjFkETbsZcqF5pDPELkjrU+wcsXpJ9tJANeMmcpXfFAWybXioaaD4ArtGBJLZRG
-	 HQHZfnDszTMI0KROlCFqbsI8BJvV5y0gOQaSNqAWfTa3caGkEL1AOym36gSFWjWaWS
-	 ldR2Fe7PWZOxwNVn8IczMpNs9HbY+mZNdh+vhARwvIshNlnqyk0Dgklpp5pX0ZVx/b
-	 z/jXoOX97sSqOvb7dnXGXfo5RvD85xb9HOgF0U6IHp+sZ8JcMEObfBEQV8G2jDb4Aa
-	 QgTYQ0NGwCGvg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 2/4] arm64: dts: renesas: rzg3e-smarc-som: Add Versa3
- clock generator
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "John Madieu" <john.madieu.xa@bp.renesas.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, wsa+renesas@sang-engineering.com
-In-Reply-To: <20260610074702.1743334-3-john.madieu.xa@bp.renesas.com>
-References: <20260610074702.1743334-3-john.madieu.xa@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 07:51:52 +0000
-Message-Id: <20260610075152.D0F851F00893@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5711A38E8A3
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 07:54:00 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781078041; cv=pass; b=KxL1NA3LjzpU8SDoA1+EVjKx3NLvFLCjHEMk2H2hORkPDVAVJPMJhT1U/NcN9iq+ZeMKAGovWH9XEPmCbBdytLZUICHYvZOw4VwysXjGCwKJHSkDWGLM8dYjj0pLMgQwrVHZbPuJTCptQRGQ4ZgRl3oj8ZHl6YM+yYyztI9WW54=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781078041; c=relaxed/simple;
+	bh=FirkQ9b3WjcBRyWWTk9l4j2fUhJzIUeGfuR4crWVpwU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ljk+DbmoKztAebnRpJajdkLXcZEYH3WTPe6ij/GyRd8TXjGWR2SeFlMxBGd6i+gZtZNt1R8n9zz0A9iN9UVYi1kxX7jW70TFTYWvRCVOpcs3e9ZApfOw8huvBYrxRd1VdHSlr1DspbkOytDmkuJUH8wzwRFzOaDnsDKoxtLCJdM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V/wa91DK; arc=pass smtp.client-ip=209.85.218.51
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-bec3ffb95dbso1066557466b.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 00:54:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781078039; cv=none;
+        d=google.com; s=arc-20240605;
+        b=L8HJhUk/PsKeX1PAJlJYkaC9LtNZZlJ8GY9cfo1IQ3DWEohOyXxp5eQC+D6Hotses0
+         QS3iSYtjl133Cyyu7Gy/AfAinVcU1sLpk+NQpjTpKKEfrfPHNYRnXj+ewysW2o5U97Wu
+         4DQDlmiGFzU8oHKHF0rs7d2N3PX903xrQh1D4PSB1Yl/WcMi04VlkvWWYBYv8WGnnqLM
+         WvqRir29haTWdo8j7Wfn78dHsCuoPpsk1JKPC/VTFN96a9hvZ+bciy5jhr2j23kdGYcF
+         RmgIXBBN/hQSGkVIR+GJFxdMp8B3lhTxB9yiompqispnE9sfgiKBGdx/n+Xp5UP+fS0v
+         1f5g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=kQVHlh3s1LVk2DUq8WGmvLFnNuxxdslZRijXwJj3LTA=;
+        fh=F/cb35ozDoEXB32EZ8hAVWmt+AVyAmmkAsIqVQtGPi0=;
+        b=APnJzkqTf2rFymKZWRD4j//ncimlBtz/TC2omczY7FpRnHFJhbfs2+Cw63LpCvbuWR
+         OKDgb+S3Hr+dzyu086OuT+8uliyOQ4DsUhXVOCx5LfOG6GsE1gMBuUiLcHzTKDyY6vky
+         PQX1Af0TXICLQ9EiAEXRhmQBvcZwNYF1WxcC2JV/idVX3douBMheuMM5ALjzTDDlyRwY
+         vxd+azmQ/MvDREn2vE3CgTtmgkygXqEop34s4rEnq/A6/IaMzz8ozWKhM8oh+3sNfZIs
+         PV1umSMbpQn0fThnXdJXxBpPvG2PojFQicV6iTeoPCxsLDL4KxTXTsvrrlrwVtgfp6fi
+         X3Ew==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1781078039; x=1781682839; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=kQVHlh3s1LVk2DUq8WGmvLFnNuxxdslZRijXwJj3LTA=;
+        b=V/wa91DKWIImVSxUTa6NO84KWNEvsYjd9eOi72KMswNDVQocj0Zo76yA+9VVru8iBG
+         rTkPzY8Kyjzafq7AQSHKtjPZjEjX3rcaFuXDQqXm84K0d+NPJXKUA1yIlhijH4ONPurV
+         GA1t4L8DI1S1IBtIFXqc1knUil6h2Ioh37FUkQyCc0VQsnw3RnT8am+MThZNglwTg4Qp
+         GyhbGoQZmHLR1m5SR+nL4pZRwhELzuCVS+cokT9eH2UyhYcQu+4pTDBqZyfCcJauOaaz
+         IJf1SB2oFStPuhS9hhrtjSRc5yV8S/EsaZXEnDd2UbUIBvqjz15zk8layGNMKop66DRm
+         plGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781078039; x=1781682839;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kQVHlh3s1LVk2DUq8WGmvLFnNuxxdslZRijXwJj3LTA=;
+        b=YFNOtpBhldM7j71+GNiJtNqNymzDlRTcuEMgz69WN8ZabHLjJqyKUnLNZ4NID+zNru
+         iVaqx8sv0/0gL1dW8PRpMHVwZhkQBY0RrBD0NuOhAhGg48k3QYV2M3SrfuAJE/gCdqnA
+         OGE4NUfs3BZAaJpE7g8marnbkNSA0807kELzYXqZAyzH2mS+vnGxnt24/kg+jVxoRUGN
+         JyfDQY/x9gSTt3XJcu5m5a8nAYi/9bAoAFtWScMSOiXuT+jDDG1g/+9d8bt+ILJKWp6q
+         kdZF/pda4QIRNgcG3Kyk2C9GtAj/zoIO715Zgp1xfAetjQjRpMBD9XoCpcHoqtSi7bGI
+         zJXA==
+X-Forwarded-Encrypted: i=1; AFNElJ+lUVHGLN3ThKc9G3M33hpFZGIRNee+BzAOsd8UcF8f7ro7J4tD2e25Ffo+ycJSdPgM5HLDDMp9AzT0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzykc+kVLLZeyAvwISUQ0XDDhQuyBCw2MjeK13Z0jpuhNwQMIrX
+	bwv9gX7W4jLRjddAlZizucNzh/G/Z03YO0t1koF353HduWUawvrlnid7/8SyRPNKRNOVKGo+MLJ
+	k/GrlDrrxkX76lKyCoVYyDuo+ZQ5GopGKWOIxcuKEQA==
+X-Gm-Gg: Acq92OHea6KN8nwdce6tk2luQS2xfzdqvKWEQow31sAbGSR2wihcrsAwANMX0m2e8Ug
+	vAwVxudxWZGeT9I+o7JEHDhWox5Xsc+gMSYtX7+QAjWJiWBB4ffLrx2x95dw8cGdGgk93kPLDC2
+	uuSZ5D4pnZ0VZwFPbCE+1glZl1CPn6w7JeXZ+UZblbNbDL/RdWto4uxMNvMYcGYQocaoMFaVTbl
+	d3qRD7ebkm1OGKBiITCkV1w6FLRysmJl5TLAQr3EF5MhomW+vJljFd492MS2+14dRpLdr/kzYSS
+	+t10hRQOIpsoUZDhb6q2kjA8n+6azyQZYWIO0CgxEb0E8k7ObvSA
+X-Received: by 2002:a17:907:ca1:b0:bf4:6aca:6ff1 with SMTP id
+ a640c23a62f3a-bf46aca72d8mr639120166b.49.1781078038780; Wed, 10 Jun 2026
+ 00:53:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <CGME20260610050335epcas2p3ec1c019e86b75e9a4edd965a8b27ebd3@epcas2p3.samsung.com>
+ <20260610050326.2903402-1-sh86.bae@samsung.com> <20260610050326.2903402-2-sh86.bae@samsung.com>
+In-Reply-To: <20260610050326.2903402-2-sh86.bae@samsung.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Wed, 10 Jun 2026 08:53:47 +0100
+X-Gm-Features: AVVi8CdBLIK1BYMIyty7W9TdEhhqe-w6-7EwqDM-mk3y9etMhibeEUIwfHY2zNo
+Message-ID: <CADrjBPqhODqeV36+-758h_=34YrL=DYHJh5vCwB+Q+qeEkOHtQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: soc: samsung: exynos-sysreg: Add hsi0
+ for ExynosAutov920
+To: Sanghoon Bae <sh86.bae@samsung.com>
+Cc: robh@kernel.org, krzk@kernel.org, conor+dt@kernel.org, vkoul@kernel.org, 
+	alim.akhtar@samsung.com, kishon@kernel.org, krzk+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, sowon.na@samsung.com
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sh86.bae@samsung.com,m:robh@kernel.org,m:krzk@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:alim.akhtar@samsung.com,m:kishon@kernel.org,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:sowon.na@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-309480-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,renesas.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:john.madieu.xa@bp.renesas.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-309484-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,linaro.org:dkim,linaro.org:email,linaro.org:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 63324666CA0
+X-Rspamd-Queue-Id: BAC9F666DD1
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The device tree configuration contradicts the commit message reg=
-arding Versa3 output 5.
---
+On Wed, 10 Jun 2026 at 06:03, Sanghoon Bae <sh86.bae@samsung.com> wrote:
+>
+> Add hsi0 compatible on samsung,exynos-sysreg
+> To support ExynosAutov920 PCIe settings:
+> - PCIe PHY power control
+> - PLL settings for PCIe
+> - PCIe device direction (RC/EP)
+>
+> Signed-off-by: Sanghoon Bae <sh86.bae@samsung.com>
+> ---
 
-commit ec1059eb98c4c04f3768f67639d5fd666ce6ef3b
-Author: John Madieu <john.madieu.xa@bp.renesas.com>
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
-arm64: dts: renesas: rzg3e-smarc-som: Add Versa3 clock generator
-
-This patch adds the Renesas 5P35023 (Versa3) programmable clock generator
-on the I2C2 bus for the RZ/G3E SMARC EVK. It configures outputs 0 through 4
-to provide the necessary reference, audio, and Ethernet clocks.
-
-> diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm6=
-4/boot/dts/renesas/rzg3e-smarc-som.dtsi
-> index d978619155d24..89428c804efb4 100644
-> --- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-
-[ ... ]
-
-> @@ -130,6 +136,20 @@ raa215300: pmic@12 {
-> =20
->  		interrupts-extended =3D <&pinctrl RZG3E_GPIO(S, 1) IRQ_TYPE_EDGE_FALLI=
-NG>;
->  	};
-> +
-> +	versa3: clock-generator@68 {
-> +		compatible =3D "renesas,5p35023";
-> +		reg =3D <0x68>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&x2>;
-> +
-> +		assigned-clocks =3D <&versa3 0>, <&versa3 1>,
-> +				  <&versa3 2>, <&versa3 3>,
-> +				  <&versa3 4>, <&versa3 5>;
-> +		assigned-clock-rates =3D <24000000>, <12288000>,
-> +				       <11289600>, <12288000>,
-> +				       <25000000>, <25000000>;
-
-[Severity: Medium]
-The commit message states "Output 5 (DIFF2) is left out, as it is not
-connected on this board."  Is the inclusion of <&versa3 5> in the
-assigned-clocks property intentional?
-
-The arrays configure output 5 to 25MHz, which contradicts the commit
-message and might unnecessarily enable an unconnected clock output.
-
-> +	};
->  };
-> =20
->  &i3c {
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610074702.1743=
-334-1-john.madieu.xa@bp.renesas.com?part=3D2
+>  .../devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml   | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> index 9c63dbcd4d77..fcdb9ffd2644 100644
+> --- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+> @@ -37,6 +37,7 @@ properties:
+>                - samsung,exynos8895-peric1-sysreg
+>                - samsung,exynos990-peric0-sysreg
+>                - samsung,exynos990-peric1-sysreg
+> +              - samsung,exynosautov920-hsi0-sysreg
+>                - samsung,exynosautov920-hsi2-sysreg
+>                - samsung,exynosautov920-peric0-sysreg
+>                - samsung,exynosautov920-peric1-sysreg
+> --
+> 2.45.2
+>
+>
 
