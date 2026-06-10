@@ -1,164 +1,162 @@
-Return-Path: <devicetree+bounces-309537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309538-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JZ2GE8ggKWqCRAMAu9opvQ
-	(envelope-from <devicetree+bounces-309537-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:31:04 +0200
+	id b2rzM+IgKWqLRAMAu9opvQ
+	(envelope-from <devicetree+bounces-309538-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:31:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1BC76672E5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:31:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EDD66672FE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:31:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eeHa93M8;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309537-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309537-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=lunn.ch header.s=20171124 header.b=NoPoQkhJ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309538-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309538-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=lunn.ch;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6F63F303CD66
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:26:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 443A63002895
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:26:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E68AA3164A1;
-	Wed, 10 Jun 2026 08:26:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DEB438E5C5;
+	Wed, 10 Jun 2026 08:26:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E192640D564
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 08:26:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D377840D564;
+	Wed, 10 Jun 2026 08:26:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781079965; cv=none; b=jmh/h5uFEOhlEpZFSLMf3ktnonnBKEYjxEZ/XZZlJPQ0YP+v4kGB4SrTysuxORWAcGeVfLUdk4ORc/sBBYLDgup8Go4WhWL1ohTfyvGdbhunCgWQiKYj7hKgjXahQE9+/ahyLC3N+qH3X6U7y/giSWvTW+AUUDkVd/ZZ/gD06oE=
+	t=1781079990; cv=none; b=Grxbc7ZAqPA42sU12grN7tPDqLLVhAf+N8+I9bsHoWZebR/8mJeMVlwlbr8oikqZGXwIXyjXxHL4q5Tst5gy7WZu9ZLuup8TJ9xHtvTJRKYbO6xb23dEEQRKV9UHm1SM2PU5YVi0adEXElr/ZUFNkbszDOFRVFXuqE0DgQvSJrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781079965; c=relaxed/simple;
-	bh=uey3v178wvBM6mflUSYyAvM/wdqYyQyoVhHSEGuZ71Y=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=p/e8+lxzXC8jXXLqyOfiz4/yBpZGI6GOCTfrtiec2qk6i0avDOItKrTmYqphh9dZAed5eECujrBgXGFTfdH6Oq6hHYyciiDDWfPsTsCzBy4ecsXHXX/Jp6IrttAlYgBEeS5TaSdRU/qT9FS02GDjyU3oGPHbbeGmMIlqokfMP5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eeHa93M8; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DCB61F00893;
-	Wed, 10 Jun 2026 08:26:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781079964;
-	bh=cRggMLT+rUlz6l8KsEwcxklGmlUb3uPE+MEnS/k5oYo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=eeHa93M8l5JH8wkGLYq8w24sgZJYtC/pWVM74gY2B91VZjsx8RsoBPPJupGnpK2eU
-	 f8hDNEWnVQEiD+pe6jN64D3bS+8wcbhot2pZTW4NmkjaY+I2f9HKi2MoavZ5h4DrFb
-	 Suj4hoRW6dRZMmZAGHyK7KZu7R9v4l7Yt3/Xab+zwrqkmyJi4MXBVlkCJeu0DiKTxC
-	 y63j/gGQmmPct3woJb8VcsbyO5sa9i195pKkD461h9+ewa9vwRpJ1J1w4PgJ0iShzj
-	 4lL+OPoy9LV/boS5PECpBV7xJR+zj4O7KjCYSKS3CDJ/oSqhQ7qCrqpUbQQbkjvmrq
-	 P7YMfAPDTqToQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 2/2] clk: amlogic: Add A9 peripherals clock
- controller driver
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jian Hu via B4 Relay" <devnull+jian.hu.amlogic.com@kernel.org>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, neil.armstrong@linaro.org, linux-amlogic@lists.infradead.org
-In-Reply-To: <20260610-a9_peripherals-v3-2-d07a78085f71@amlogic.com>
-References: <20260610-a9_peripherals-v3-2-d07a78085f71@amlogic.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 08:26:03 +0000
-Message-Id: <20260610082604.4DCB61F00893@smtp.kernel.org>
+	s=arc-20240116; t=1781079990; c=relaxed/simple;
+	bh=CE6fif61sNWUh9FU6JTE4s11+udFuO0BVYvsdYApmkk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WVqbiHw140fC8upSuL/oUXI9XWZHldi4qOIjLI+xDKx4Cg2MSgurXHyvTpbMlfzN040zvkm6tnd5QXreuWQGhRdY7iX70g2HzL2b8MFY+J8jyjMzi+pIes06aNMhM5qzKRw1PvdRelXiJcsJftWMPnxLDG8ZTxuwyo8az1f3ElY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NoPoQkhJ; arc=none smtp.client-ip=156.67.10.101
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=udwkBPqowRrP2z38Fo4TtqpDwr4OIjaawCNIBaU9tK0=; b=NoPoQkhJCPn0NMZ75AIyKkFAoH
+	Phf2hgxwfQxcCn/Z7qGX5KI4gtSy0kfZM45c88McpV9qd85cKDqr+0IDFm9fQ51YjGLVz+cIuHFsm
+	hcpvMU06/Yvhd3WW5MnBHIpGaIjZ06ebNFJk4/lpl7PVY94htTZN8qy4HyiXH2NukyBc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wXEGK-006wlD-R1; Wed, 10 Jun 2026 10:26:12 +0200
+Date: Wed, 10 Jun 2026 10:26:12 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Minda Chen <minda.chen@starfivetech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor@kernel.org>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	devicetree@vger.kernel.org
+Subject: Re: [net-next v1 2/6] net: stmmac: Checking whether priv->phylink if
+ NULL in NCSI case
+Message-ID: <f3a32c42-27b2-496f-b236-02c33bee1773@lunn.ch>
+References: <20260610072420.64699-1-minda.chen@starfivetech.com>
+ <20260610072420.64699-3-minda.chen@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260610072420.64699-3-minda.chen@starfivetech.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309538-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-309537-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid,amlogic.com:email,vger.kernel.org:from_smtp,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devnull+jian.hu.amlogic.com@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:neil.armstrong@linaro.org,m:linux-amlogic@lists.infradead.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_RECIPIENTS(0.00)[m:minda.chen@starfivetech.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:joabreu@synopsys.com,m:mcoquelin.stm32@gmail.com,m:linux@armlinux.org.uk,m:peppe.cavallaro@st.com,m:alexandre.torgue@foss.st.com,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor@kernel.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:devicetree@vger.kernel.org,m:andrew@lunn.ch,m:mcoquelinstm32@gmail.com,m:robh@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,synopsys.com,gmail.com,armlinux.org.uk,st.com,foss.st.com,vger.kernel.org,st-md-mailman.stormreply.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,jian.hu.amlogic.com,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lunn.ch:dkim,lunn.ch:mid,lunn.ch:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E1BC76672E5
+X-Rspamd-Queue-Id: 6EDD66672FE
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The newly added Kconfig symbol `COMMON_CLK_A9_PERIPHERALS` impli=
-es a non-existent config symbol `COMMON_CLK_A9_PLL`.
---
+> +static inline bool stmmac_phylink_expects_phy(struct phylink *link)
+> +{
+> +	if (link)
+> +		return phylink_expects_phy(link);
+> +
+> +	return false;
+> +}
+> +
+> +static inline int stmmac_phylink_pcs_pre_init(struct phylink *link, struct phylink_pcs *pcs)
+> +{
+> +	if (link)
+> +		return phylink_pcs_pre_init(link, pcs);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline void stmmac_phylink_start(struct phylink *link)
+> +{
+> +	if (link)
+> +		phylink_start(link);
+> +}
+> +
+> +static inline void stmmac_phylink_stop(struct phylink *link)
+> +{
+> +	if (link)
+> +		phylink_stop(link);
+> +}
 
-commit 01c948d65d7fdd0d90013ab36dfe236bd635347c
-Author: Jian Hu <jian.hu@amlogic.com>
+Please take a step back and think about the Linux big picture
+architecture.
 
-clk: amlogic: Add A9 peripherals clock controller driver
+What is stmmac specific here? If you were to add NCSI support to
+another driver which uses phylink, would it need to replicate all
+this?
 
-This commit adds the peripherals clock controller driver for the Amlogic A9=
-=20
-SoC family. It introduces the COMMON_CLK_A9_PERIPHERALS Kconfig symbol and=
-=20
-the corresponding driver source.
+When you consider how the MAC is configured, does it need to know it
+is connected to an NCSI? Can the MAC tell the difference between NSCI,
+fixed-link, a PHY or an SFP? Or does the MAC just need to know RGMII,
+the link is up, send frames?
 
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -132,6 +132,21 @@ config COMMON_CLK_A1_PERIPHERALS
->  	  device, A1 SoC Family. Say Y if you want A1 Peripherals clock
->  	  controller to work.
-> =20
-> +config COMMON_CLK_A9_PERIPHERALS
-> +	tristate "Amlogic A9 SoC peripherals clock controller support"
-> +	depends on ARM64 || COMPILE_TEST
-> +	default ARCH_MESON
-> +	select COMMON_CLK_MESON_REGMAP
-> +	select COMMON_CLK_MESON_CLKC_UTILS
-> +	select COMMON_CLK_MESON_DUALDIV
-> +	select COMMON_CLK_MESON_VID_PLL_DIV
-> +	imply COMMON_CLK_SCMI
-> +	imply COMMON_CLK_A9_PLL
+Please look at adding generic support for NSCI in phylink, and see if
+the existing phylink mac ops covers everything needed for configuring
+the MAC.
 
-[Severity: Medium]
-Does the COMMON_CLK_A9_PLL config symbol exist?=20
-
-Looking through the Kconfig files, there doesn't appear to be a definition=
-=20
-for COMMON_CLK_A9_PLL anywhere in the tree. While an unresolved imply doesn=
-'t
-cause a hard build failure like select or depends on, it has no effect and
-might indicate a missing PLL driver in this patch series or a typo in the=20
-symbol name.
-
-> +	help
-> +	  Support for the peripherals clock controller on Amlogic A311Y3 based
-> +	  device, AKA A9. Peripherals are required by most peripheral to operat=
-e.
-> +	  Say Y if you want A9 peripherals clock controller to work.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610-a9_periphe=
-rals-v3-0-d07a78085f71@amlogic.com?part=3D2
+	Andrew
 
