@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-309739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309740-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GI0IAVRPKWqFUgMAu9opvQ
-	(envelope-from <devicetree+bounces-309739-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:49:40 +0200
+	id oxuJMXdPKWqUUgMAu9opvQ
+	(envelope-from <devicetree+bounces-309740-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:50:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5895C668F57
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21E8E668F65
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:50:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Eqk+UP9M;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309739-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309739-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=F84zi30a;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309740-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309740-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D22CD30E7251
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:44:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ABE0B31F0E31
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE8D5402447;
-	Wed, 10 Jun 2026 11:44:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E681405844;
+	Wed, 10 Jun 2026 11:44:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E930B403B09;
-	Wed, 10 Jun 2026 11:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9DC6403AF6;
+	Wed, 10 Jun 2026 11:44:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781091841; cv=none; b=O/AVX1BsiGMfBbrxaJFbUeMGDuFpEKizIkjRa3WPJS4MeGSVW+824eUHdPKr+L2KYa+/qXzvI+GJdKgqeZaiWXtwPsTJw5JHAQOP2av058uK07Xm+SJqsvmFjuqiwRzKNbFl/24eRkuUXMCd8DDaa9sver+WHrpJySFLl3sDIPY=
+	t=1781091846; cv=none; b=TZ1Tx+iLcQK4udCbUY772B60MNMCfF7cTRVidhdJxPtmQjDDeXwD3ChyWle/kAgUm1sR6kNWVfi4VfEmmwJk1wUHHm6vKf581cdqmqlUHL7QP6oJOj/Xfa94y/9bH/4doZCCk/uxx55Ed/HHXg87lbXTFCHy0OHUa3MnnbWCo98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781091841; c=relaxed/simple;
-	bh=OvO6vLRXyJDNLP8bLEQAIFJBN247vRVumNJYdOzxHVI=;
+	s=arc-20240116; t=1781091846; c=relaxed/simple;
+	bh=p/iSawAIPqjA82qXj9fFb+48v097PuZQFwOqZ29Dc3Y=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EaJhVFRr7qzc+OTjUi1LFQcg8CkA35LsMlFZWZv1UikyQsUqObtB5+GIAQ3hRQCaFQqrL4NqpdCaqzX9CRPViwzv9WAWJ2Dphyqjo4qba1pugezXNTOQ3LicAN6IOfZi4tTHadOR1didCHAR4gOTzFY0fLXlaSBEvOAbYAwqtt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eqk+UP9M; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A91D31F00898;
-	Wed, 10 Jun 2026 11:43:54 +0000 (UTC)
+	 In-Reply-To:To:Cc; b=I5iNlmo8XBPky77MGZkdVMurqEJOgePNNzA+Vsjc0kWBghgte5CSh8NeFjM7yWQdgcfyiglO3NorV98CRprwBV1blNJ4ILzoIXYCsmzpoUOh+F4SLWgBUh1LothQ3FqiBfSgao0oAygbKRU//9SpTfx9HziCvAS9xNNkTiTlXsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F84zi30a; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C10001F00899;
+	Wed, 10 Jun 2026 11:43:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781091838;
-	bh=K0jELDYMU+kS91YArcWRrjgyrw/8KUjt3+T4n2Vb80U=;
+	s=k20260515; t=1781091842;
+	bh=9pXHGO84RTiIhAOggSiCFNtg6jRVCp72eNq4mx1RVDk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Eqk+UP9Mq3lhyYU5JmzL9+Jj7TC9MktAfNccoSpJyeU6iGvLUJwlBVmFIeZ6xu8+5
-	 KuxslwvFptqpkOvpFC5qc1/zQFtvMzCOovPOXPnrGg2wQ1huA2MpUdMoE9WDdPo2HM
-	 RioEC1jNSEx4IzSlVRneIGW0yTl7mZxx1fD41lsYs9xT0C0QcCUhnR1Ot2sUrO+seI
-	 6W70fCe0lb7mJ+TpuUFDYteeLqcDt4xOjGZJAkNb1tW74fseF4e0RcwBtvtVRykS0m
-	 FvmykhAv/M6DdTxGO2q0OvdKvHf4oI2/68grmUOVTr7/ejlF5eFYAGjSKwy5kJMQI9
-	 WygGuIFmlRfJA==
+	b=F84zi30arrIh/GUFxpdSloOd67t2FA5cOKd5mKPlpY8wn+h9F/pSTVNY+sWjmzlMk
+	 UoQK3jCUUit3amj6IpCC/6dOQ9W+0k1VspfyinsequPPYXV7x4jDlPmcvKxbsnZwCz
+	 ALgDZnYSebE+489hpT8sDo/95AZFMLNQp1FIeH61m/YLCiph1rsgMFQjFEyXfw1/Pm
+	 2CXdkvjtAij4LmJVfdRp0GSMWQuRVfr8t6Uxcu4QMbzr8LYhANm3whjJeWLRNDJVFV
+	 JbwJkRThQHIvZurH6aItffJXDPfrDGwOX1uNxFaDUuquG7FTvOttCKHY8bJZbUsCcK
+	 b9+QdTIbedV1g==
 From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Wed, 10 Jun 2026 13:43:46 +0200
-Subject: [PATCH 1/5] arm64: dts: qcom: msm8998-sony-yoshino: Drop extra
- bias-disable
+Date: Wed, 10 Jun 2026 13:43:47 +0200
+Subject: [PATCH 2/5] arm64: dts: qcom: msm8976-longcheer-l9360: Fix
+ accidental node override
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260610-topic-june26_dts_fixes-v1-1-2e0c953a6c08@oss.qualcomm.com>
+Message-Id: <20260610-topic-june26_dts_fixes-v1-2-2e0c953a6c08@oss.qualcomm.com>
 References: <20260610-topic-june26_dts_fixes-v1-0-2e0c953a6c08@oss.qualcomm.com>
 In-Reply-To: <20260610-topic-june26_dts_fixes-v1-0-2e0c953a6c08@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -71,11 +71,11 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, 
  Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1781091829; l=1063;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781091829; l=1235;
  i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=0DXKxcyvNIDsWj5cwtHSf4cRpIqy81OE0w9RFoGjKSs=;
- b=e+LEmu6qJoiLwcm3fsPeJNpLU6uUIE0jPVd1NPhyaN+797TCvV4UesZroUQz35QrIu1yjcUb/
- n5RR+jPQPMzBiptKBMAjpshBbLwdAQkXl5sigojwUcFUiW1pCFHRoSh
+ bh=NLYdFsUXA3/y2oHZFx8IqHlKyFH0fy33Pl2kHmGFDDE=;
+ b=0qAQ3vKXX3/GejwjM15FtSgcMOWjdt0BoZW3BLWtG6uMY1snqFXm0W4ewmak0XJ+zgcroLj5y
+ tOBRjYElD2PBUWYR3VEQf6ieU9ZjdAXKr7SkYo+k4qUvd7qWsmV3CNL
 X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Rspamd-Action: no action
@@ -98,7 +98,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	FORGED_SENDER(0.00)[konradybcio@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-309739-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-309740-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -110,41 +110,44 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email,oss.qualcomm.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5895C668F57
+X-Rspamd-Queue-Id: 21E8E668F65
 
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-The msm8998-common i2c5 pin sleep state is defined with a pull-up. The
-Sony Yoshino DTSI attempts to override that to bias-disable without
-removing the existing bias-pull-up. Remove the override and use the
-common definition to resolve a dt checker warning.
+The active and sleep pinctrl states for the touchscreen interrupt pin
+shared the same node name, creating a single node, accidentally
+overridden immediately after the definition. Alter the names to make
+them distinct and to silence DT checker warnings.
 
-The change itself shouldn't have any functional effect, maybe except
-a miniscule increase in power usage. The defaults may need revisiting
-at a later date either way.
-
+Fixes: 79b896e7da7e ("arm64: dts: qcom: msm8976-longcheer-l9360: Add initial device tree")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8976-longcheer-l9360.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-index 3650f2501886..04d4741cdb5f 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-@@ -229,10 +229,6 @@ rmi4-f11@11 {
+diff --git a/arch/arm64/boot/dts/qcom/msm8976-longcheer-l9360.dts b/arch/arm64/boot/dts/qcom/msm8976-longcheer-l9360.dts
+index 18832a3b9a1c..57f549f06f73 100644
+--- a/arch/arm64/boot/dts/qcom/msm8976-longcheer-l9360.dts
++++ b/arch/arm64/boot/dts/qcom/msm8976-longcheer-l9360.dts
+@@ -455,14 +455,14 @@ sdc2_cd_sleep: sdc2-cd-sleep-state {
+ 		bias-disable;
  	};
- };
  
--&blsp1_i2c5_sleep {
--	bias-disable;
--};
--
- &blsp1_uart3 {
- 	status = "okay";
+-	ts_int_default: ts-int-state {
++	ts_int_default: ts-int-default-state {
+ 		pins = "gpio65";
+ 		function = "gpio";
+ 		drive-strength = <2>;
+ 		bias-pull-down;
+ 	};
  
+-	ts_int_sleep: ts-int-state {
++	ts_int_sleep: ts-int-sleep-state {
+ 		pins = "gpio65";
+ 		function = "gpio";
+ 		drive-strength = <2>;
 
 -- 
 2.54.0
