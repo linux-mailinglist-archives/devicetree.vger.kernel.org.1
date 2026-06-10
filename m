@@ -1,181 +1,146 @@
-Return-Path: <devicetree+bounces-309540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309541-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cfAJEmEhKWqsRAMAu9opvQ
-	(envelope-from <devicetree+bounces-309540-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:33:37 +0200
+	id ev3gIucgKWqNRAMAu9opvQ
+	(envelope-from <devicetree+bounces-309541-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:31:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2CC8667359
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:33:36 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8773667305
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:31:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=1JqGYNOO;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309540-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309540-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=lunn.ch header.s=20171124 header.b=ODK2XDIq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309541-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309541-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=lunn.ch;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 43A59304F2E0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:27:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BAA9B304A676
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 08:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 058203AA1A9;
-	Wed, 10 Jun 2026 08:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 337A73AD51F;
+	Wed, 10 Jun 2026 08:31:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9CD397682;
-	Wed, 10 Jun 2026 08:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF3CF3ACF1E;
+	Wed, 10 Jun 2026 08:31:14 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781080028; cv=none; b=W78DiddnFexEnkhfVuPQ1xePD0tOKhmX2WnFYn3k/5tcvLfNc4vSAOXNTog/8x9gZxpCMmiHiIvD+ILOtSRQHPUWGnbYkzwZ42GPCWAQootMtEKemX449IYCnG1aOdeRqfvRgSVreh0uAjGpfJj0jYCwlLuH0JoeHt3qfcMwDXE=
+	t=1781080276; cv=none; b=prSgfS/MQY5JbXXsIMEPxTdPUTZKrPYaKCaEmscBEiV4i9FEPPPqgq0FlFEFlYcF13fXVXAswDC1GDpmxZJ/+bYDb9u35OotCGMLQlP27kbRG/9V+PfkULA3vV7VRAgYuNcdqCd4VERwyt75OQvG+Wqcpj2Ww4m8TMq1ZwcsLYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781080028; c=relaxed/simple;
-	bh=6xnEBD+qu7YLDUTxDEOXY/2rGV0YEc1qGNsJfrZkUN0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WC9MCYqF5SwvUE5BEe6XK7O5Xg1I3Y8YEu28f+6Xz4wCaHPYHXzdsRyyy02vysMT2bvVSPdb/w6qTnLWyN4fHIt1shMmqgunmYu8Xdi9fqS2pMuXayt4AWRL3zxvFjUEGBKlrCwUSjeG7i2y7TMJ8oRBJOhnYmZJXn79qO4pYkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1JqGYNOO; arc=none smtp.client-ip=185.171.202.116
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 86151C5146A;
-	Wed, 10 Jun 2026 08:27:05 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8A7325FFC9;
-	Wed, 10 Jun 2026 08:27:03 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 81A4F106B9056;
-	Wed, 10 Jun 2026 10:26:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1781080022; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=Whfl4QLl7rlDdWuJnD1FYGrTxAzK/P2e2aQDPSeDeSQ=;
-	b=1JqGYNOOL1Pl5I9EUrbk8Gh6N8JpYRafqUk235S6QQUxecR7HLECmGB54SN7PPv4uNYCcf
-	0N503XbHO4hBTdwsh/tzzj5j7oLUxc8Wlt5VT0aBcomUHRwC44BrID/CP2VW4ZlcrIR/l7
-	wPrerAVivv5Dta96h0JcuCaS69Uul6GoEWqp+ilBENCM90FKwZ187AmYNy7K0Z5VNUKIFO
-	KSaURLkQpn7Ml/WV93S/y4viL5xCmFxdk1GYve8IGrdpBGpgUdF5oGnAx1oB1X3ictlFE8
-	Ft7rQMA58/2cDT0y4WGvLyyQ8k5f3inDbfI6/9BvuK72Nzrb5G9RbANHO60Ibw==
-Message-ID: <eaa645fc-be06-4a15-8c2f-6e82129c4715@bootlin.com>
-Date: Wed, 10 Jun 2026 10:26:50 +0200
+	s=arc-20240116; t=1781080276; c=relaxed/simple;
+	bh=PK40UC0Cuwdj+kNKlzd4w4ysQSjORd+ABlzoa2ZGCxY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NZHml5C91+Jcxdmn3K/eYLPdyRR7ueDFQby3l60Ya+nATcp4p0l6pCkU9Ei85epZ00Od8STy45dKax5qlac4YZLFYiRtSkCNmFoUH1aJ61S17olFsUiQV1dgxGoZyc7lsVGYZE4VpRAzXRKs6Wehr1Kgg0QTDKqSp8xT9pTFyVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ODK2XDIq; arc=none smtp.client-ip=156.67.10.101
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=8UN9oOsVv2qY70YnR1nWnUx9vc4hSaMSPCT1GPSh1VU=; b=ODK2XDIqxkUJqdW3q1VuQqQddk
+	f+Jn4zURB9xRTBhq2BK0Gi8ALnGoXpQ9Srz3At2gjtQr5H9zwUBIc4mrUPhFRllL7ImT8UYP1zzsR
+	EiqLa8bUDAopimpCLGT9NkopHgPlSyEK8Zhdv4TY1uIqVFzfQMjRo687R1pFoo4IecW0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1wXEKy-006wnb-W9; Wed, 10 Jun 2026 10:31:00 +0200
+Date: Wed, 10 Jun 2026 10:31:00 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Minda Chen <minda.chen@starfivetech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor@kernel.org>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	devicetree@vger.kernel.org
+Subject: Re: [net-next v1 6/6] net: stmmac: ethtool: Do NOT call phylink
+ function in NCSI mode.
+Message-ID: <a4c1c716-572b-4fb2-8d01-9842d559063e@lunn.ch>
+References: <20260610072420.64699-1-minda.chen@starfivetech.com>
+ <20260610072420.64699-7-minda.chen@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v8 3/6] net: stmmac: eic7700: make RGMII delay
- properties optional
-To: lizhi2@eswincomputing.com, devicetree@vger.kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk, pjw@kernel.org,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- pinkesh.vaghela@einfochips.com, pritesh.patel@einfochips.com,
- weishangjuan@eswincomputing.com, horms@kernel.org, lee@kernel.org
-References: <20260610012727.848-1-lizhi2@eswincomputing.com>
- <20260610012937.911-1-lizhi2@eswincomputing.com>
-Content-Language: en-US
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-In-Reply-To: <20260610012937.911-1-lizhi2@eswincomputing.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260610072420.64699-7-minda.chen@starfivetech.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309540-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309541-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[eswincomputing.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FORGED_RECIPIENTS(0.00)[m:minda.chen@starfivetech.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:joabreu@synopsys.com,m:mcoquelin.stm32@gmail.com,m:linux@armlinux.org.uk,m:peppe.cavallaro@st.com,m:alexandre.torgue@foss.st.com,m:robh+dt@kernel.org,m:krzk+dt@kernel.org,m:conor@kernel.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:devicetree@vger.kernel.org,m:andrew@lunn.ch,m:mcoquelinstm32@gmail.com,m:robh@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:lizhi2@eswincomputing.com,m:devicetree@vger.kernel.org,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:pabeni@redhat.com,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:rmk+kernel@armlinux.org.uk,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-riscv@lists.infradead.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ningyu@eswincomputing.com,m:linmin@eswincomputing.com,m:pinkesh.vaghela@einfochips.com,m:pritesh.patel@einfochips.com,m:weishangjuan@eswincomputing.com,m:horms@kernel.org,m:lee@kernel.org,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,m:rmk@armlinux.org.uk,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,synopsys.com,gmail.com,armlinux.org.uk,st.com,foss.st.com,vger.kernel.org,st-md-mailman.stormreply.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,bootlin.com:dkim,bootlin.com:mid,bootlin.com:from_mime,eswincomputing.com:email]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid,lunn.ch:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F2CC8667359
+X-Rspamd-Queue-Id: E8773667305
 
-Hi,
-
-On 6/10/26 03:29, lizhi2@eswincomputing.com wrote:
-> From: Zhi Li <lizhi2@eswincomputing.com>
-> 
-> Make rx-internal-delay-ps and tx-internal-delay-ps optional in the
-> EIC7700 DWMAC driver.
-> 
-> The driver previously required both properties to be present and would
-> fail probe when they were missing. This restricts valid hardware
-> configurations where RGMII timing is instead provided by the PHY or
-> board design.
-> 
-> Update the driver to treat missing delay properties as zero delay,
-> allowing systems without explicit MAC-side delay tuning to operate
-> correctly.
-> 
-> This aligns the driver behavior with the updated device tree binding
-> and provides a safe default configuration when MAC-side delay
-> programming is not required.
-> 
-> Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c | 6 ------
->  1 file changed, 6 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
-> index 4ac979d874d6..ec99b597aeaf 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
-> @@ -165,9 +165,6 @@ static int eic7700_dwmac_probe(struct platform_device *pdev)
->  		dwc_priv->eth_clk_dly_param &= ~EIC7700_ETH_RX_ADJ_DELAY;
->  		dwc_priv->eth_clk_dly_param |=
->  				 FIELD_PREP(EIC7700_ETH_RX_ADJ_DELAY, val);
-> -	} else {
-> -		return dev_err_probe(&pdev->dev, -EINVAL,
-> -			"missing required property rx-internal-delay-ps\n");
->  	}
+> @@ -424,6 +436,9 @@ stmmac_get_pauseparam(struct net_device *netdev,
+>  {
+>  	struct stmmac_priv *priv = netdev_priv(netdev);
 >  
->  	/* Read tx-internal-delay-ps and update tx_clk delay */
-> @@ -187,9 +184,6 @@ static int eic7700_dwmac_probe(struct platform_device *pdev)
->  		dwc_priv->eth_clk_dly_param &= ~EIC7700_ETH_TX_ADJ_DELAY;
->  		dwc_priv->eth_clk_dly_param |=
->  				 FIELD_PREP(EIC7700_ETH_TX_ADJ_DELAY, val);
-> -	} else {
-> -		return dev_err_probe(&pdev->dev, -EINVAL,
-> -			"missing required property tx-internal-delay-ps\n");
->  	}
-
-I think then you need to handle RGMII, RGMII_ID, RGMII_RXID and RGMII_TXID,
-by using default delays for these (usually around 2ns), as here all delays
-will be set to 0, regardless of the RGMII mode in use.
-
-
-Maxime
-
+> +	if (priv->plat->use_ncsi)
+> +		return;
+> +
+>  	phylink_ethtool_get_pauseparam(priv->phylink, pause);
+>  }
 >  
->  	dwc_priv->eic7700_hsp_regmap =
+> @@ -433,6 +448,9 @@ stmmac_set_pauseparam(struct net_device *netdev,
+>  {
+>  	struct stmmac_priv *priv = netdev_priv(netdev);
+>  
+> +	if (priv->plat->use_ncsi)
+> +		return -EOPNOTSUPP;
+> +
+>  	return phylink_ethtool_set_pauseparam(priv->phylink, pause);
+>  }
 
+Why is pause not supported with NCSI? There are two modes for
+Pause. It can be negotiated, or it can be forced. Negotiation cannot
+be used, there is not a link peer as such, but it should be possible
+to force the configuration.
+
+I am however assuming that pause frames do get forwarded by the other
+end of the link. Does the NCSI standard say anything about that?
+
+	Andrew
 
