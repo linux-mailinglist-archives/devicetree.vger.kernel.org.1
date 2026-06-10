@@ -1,125 +1,176 @@
-Return-Path: <devicetree+bounces-310031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310032-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BUr2N5LXKWreeAMAu9opvQ
-	(envelope-from <devicetree+bounces-310031-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 23:30:58 +0200
+	id 8KhOG9zdKWp7egMAu9opvQ
+	(envelope-from <devicetree+bounces-310032-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 23:57:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BBCC66D175
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 23:30:58 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B7A66D231
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 23:57:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310031-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310031-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=YDY3X5Xr;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310032-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310032-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1D78F300D347
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 21:30:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 422B03006D63
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 21:57:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38CBA33260B;
-	Wed, 10 Jun 2026 21:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 447E33233F4;
+	Wed, 10 Jun 2026 21:57:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C852772D
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 21:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A8191F4C8E
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 21:57:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781127057; cv=none; b=Xa00fhAhcztoG9bHaUT67RT+6G4JRF/c9M7ZRolxPsg87RKdbxeXatplgRDbVjbTqkZe4ATtOy6gLKSm2gg8VDv6reFBZ0RDBtuoyT0zt/DAyvPU6xQCBJpVT1SN1En5yr8HrC7qCg9PGZOCnvujKM7QPLuW0BLl+754nhfwARo=
+	t=1781128663; cv=none; b=jEy4tcqqDOlLjDBdhrLqLOMj6uGOcangXiByoGK4y/e7tgPCNeBZDxv+Dl+RynDiq01WbuzielcEI+8IcIXJZWwnhcFHrZZG5KFm+1BRj9ZH4bx9xVgm0ICVECCbPSawZhDQneoSbjnvbL0UBX/K3ddj/MjLbXsO8YMVym0eTBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781127057; c=relaxed/simple;
-	bh=fo07MFVHTfR6bcAVNR/8k7WT43GO6TGfyOdGzscgzKY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cUosKOBX+h7R/Z01+W3i5bZAh+MVAsgshWDTboXw2F2H2BO3ZGcLB2FoYgnFe75Hf9wapJTrAVCCR1iupKwsyWiIWYtE3TWtN9Z7roshVSN6Q+vR+13EFjjuggvJULl9cfmlZOn5SAZhnOlrIGH2Pf/+7OPB/U+XbqmrBRNS8Ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <l.stach@pengutronix.de>)
-	id 1wXQVb-0003zV-Mm; Wed, 10 Jun 2026 23:30:47 +0200
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.96)
-	(envelope-from <l.stach@pengutronix.de>)
-	id 1wXQVb-002707-1x;
-	Wed, 10 Jun 2026 23:30:47 +0200
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: [PATCH] dt-bindings: vendor-prefixes: add Gira
-Date: Wed, 10 Jun 2026 23:30:47 +0200
-Message-ID: <20260610213047.500701-1-l.stach@pengutronix.de>
-X-Mailer: git-send-email 2.47.3
+	s=arc-20240116; t=1781128663; c=relaxed/simple;
+	bh=E+Zp7aKAkCaPAlEiWIYLdJ/S3c8DkcPjJtmk3WQDEjI=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=nyC6MwhQqD/xtD95/tZvhbPZxPQ0AhwLUtax1lHNrWnfa0esfxn3/5dAM4eiuumhv1LjcS68HijZE60Sd9Bx3i6DlV+kU7Deef644uwZY27Rl1lEJmv97df2VnAvLsMloP+lDYgI94xMVim3VlpKg19XRA8IZpitdJNPS9whioY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YDY3X5Xr; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 431DE1F00893;
+	Wed, 10 Jun 2026 21:57:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781128662;
+	bh=l+CfX1Yyg08CnY7Cv8qYsE/Y2gCVBBgo3v0K2jRuL1U=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=YDY3X5Xrq4L2W6AxyTkE9+hQ/gIc8cJv8P0uARszYzj+rkvoWH4tPaH/uicvGSvXT
+	 NoFwn9roXV+wdgD4ueCbDJdlha2Jz8JliXqb3zI0G525saWZmy5LeAN5L/kBEcSnQI
+	 uRVbjk7uMUmCuw0nzjp65pl3X1cyctB37IZnHLplvMzj/cPZBREE2KFN1zMQGA1GJa
+	 ycw+nm/F8PwRYjD5XCzQHN6+ybw2GlAq0hq9xHet6vS00zTviH96kVI5dq3zYoZ7ZJ
+	 RmF7oB+QwM1KDdgkdKoA4lRhhsJeQgdAXOAPMGji+43qqUwCxJoSF9/MvwwTx8tQmO
+	 DdzQxJkEweDLw==
+From: sashiko-bot@kernel.org
+Subject: Re: [net-next 3/3] arm64: dts: renesas: r8a779g0: Add gPTP node
+Reply-To: sashiko-reviews@lists.linux.dev
+To: =?utf-8?b?TmlrbGFzIFPDtmRlcmx1bmQ=?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, wsa+renesas@sang-engineering.com
+In-Reply-To: <20260609215711.2960150-4-niklas.soderlund+renesas@ragnatech.se>
+References: <20260609215711.2960150-4-niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 10 Jun 2026 21:57:40 +0000
+Message-Id: <20260610215741.431DE1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310031-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310032-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[l.stach@pengutronix.de,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,ragnatech.se:email,smtp.kernel.org:mid,lists.linux.dev:replyto];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:niklas.soderlund+renesas@ragnatech.se,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:niklas.soderlund@ragnatech.se,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:kernel@pengutronix.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[l.stach@pengutronix.de,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCPT_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7BBCC66D175
+X-Rspamd-Queue-Id: 45B7A66D231
 
-Add vendor prefix for Gira Giersiepen GmbH & Co. KG
-Link: https://www.gira.de/
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Device Tree Resource Conflict due to overlapping memory, clock, an=
+d reset regions between `tsn0` and `gptp`.
+--
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+commit 225abba0fdcd1f7e4ebd535f168ba1447d871a7e
+Author: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.se>
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 28784d66ae7b..2b7bf7d7b9c2 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -656,6 +656,8 @@ patternProperties:
-     description: Giantec Semiconductor, Inc.
-   "^giantplus,.*":
-     description: Giantplus Technology Co., Ltd.
-+  "^gira,.*":
-+    description: Gira Giersiepen GmbH & Co. KG
-   "^glinet,.*":
-     description: GL Intelligence, Inc.
-   "^globalscale,.*":
--- 
-2.47.3
+arm64: dts: renesas: r8a779g0: Add gPTP node
 
+The gPTP module is shared between the RAVB and RTSN Ethernet devices on
+the SoC.
+
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/=
+dts/renesas/r8a779g0.dtsi
+> index 82a7278836e57..758c4ca0ae5f2 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> @@ -603,6 +603,15 @@ tsn0: ethernet@e6460000 {
+>  			status =3D "disabled";
+>  		};
+> =20
+> +		gptp: gptp@e6449000 {
+> +			compatible =3D "renesas,r8a779g0-gptp", "renesas,rcar-gen4-gptp";
+> +			reg =3D <0 0xe6449000 0 0x500>;
+> +			clocks =3D <&cpg CPG_MOD 2723>;
+> +			power-domains =3D <&sysc R8A779G0_PD_ALWAYS_ON>;
+> +			resets =3D <&cpg 2723>;
+
+[Severity: High]
+Will this introduce a regression by duplicating resources already claimed by
+the existing tsn0 node?
+
+Looking at the tsn0 node earlier in this file:
+
+		tsn0: ethernet@e6460000 {
+			compatible =3D "renesas,r8a779g0-ethertsn", "renesas,rcar-gen4-ethertsn";
+			reg =3D <0 0xe6460000 0 0x7000>,
+			      <0 0xe6449000 0 0x500>;
+			reg-names =3D "tsnes", "gptp";
+			interrupts =3D <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
+				     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names =3D "tx", "rx";
+			clocks =3D <&cpg CPG_MOD 2723>;
+			power-domains =3D <&sysc R8A779G0_PD_ALWAYS_ON>;
+			resets =3D <&cpg 2723>;
+			status =3D "disabled";
+		};
+
+It appears tsn0 already claims the 0xe6449000 memory region, CPG_MOD 2723 c=
+lock,
+and reset 2723.
+
+If both drivers are enabled, will the second driver to probe fail when
+requesting these overlapping resources, such as receiving -EBUSY from
+devm_ioremap_resource() or request_mem_region()?
+
+Should the overlapping resources be removed from the tsn0 node now that the
+gPTP module is represented as a standalone shared node?
+
+> +			status =3D "disabled";
+> +		};
+> +
+>  		i2c0: i2c@e6500000 {
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260609215711.2960=
+150-4-niklas.soderlund+renesas@ragnatech.se?part=3D1
 
