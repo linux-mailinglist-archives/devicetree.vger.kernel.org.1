@@ -1,130 +1,127 @@
-Return-Path: <devicetree+bounces-309906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309907-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3JfmHXSDKWp8YQMAu9opvQ
-	(envelope-from <devicetree+bounces-309906-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 17:32:04 +0200
+	id KKfUGwOEKWq3YQMAu9opvQ
+	(envelope-from <devicetree+bounces-309907-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 17:34:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 036FA66ACDD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 17:32:04 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 021AF66AD75
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 17:34:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bv9l36Or;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309906-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309906-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309907-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309907-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 03E6D3094BA5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 15:25:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1F55F30ACDE2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 15:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315033314C2;
-	Wed, 10 Jun 2026 15:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5668930C366;
+	Wed, 10 Jun 2026 15:24:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10A7E3264EF;
-	Wed, 10 Jun 2026 15:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D4B32BE05F;
+	Wed, 10 Jun 2026 15:24:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781105056; cv=none; b=rnfnVT9/X9Iky8tzBP3NxvKfg7K8VVbfwm5AMEErP/BYm6mNQuIR4bDkNSrMW01zv+3gDzne+197MSUzNEX7j/QEhDOprMdK9t8L6cks/t4POU/PoX9bvwnX7mKWrvvNNxpFESdCV3MW+yjEjV4uzdH2jz/aHSBFKUWk2KLIFhs=
+	t=1781105094; cv=none; b=tEIo+xhRoKM/CbE/a3Bfi51M+XrfSJR9iZZzmS5axKIp+q+2v5bxOCHalVcOYvMCg3vkeUUc/kVzfK/wI6hAMp/fo5E1jjdLgtc75hrcS95rfRW7V7Dc7ZgUEDIHXp9hkEosMYsa2tCA99riKmSx4O+v7cyaPa09367KyrajDZo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781105056; c=relaxed/simple;
-	bh=BJuK9kwni8qBU6p6SXRoQgD1FOCWkZNkazcw1n718sA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=f896HBjOVD8UOGEKBVCVNMOOFAdlp1rGsdzhVUxKp1aVQLFJmiH1Ep6OpdoIoRGdg0WUIhrTS3EI9M+Q03pdpNk38IyHi3Qnncl4DlR3LoWTh7R5nRWtXuVeS5dSmk8TJgkleLWdbDJQzLS4P+fVOGY1zfL3d/R5/MZ47/mFIAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bv9l36Or; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B502F1F00893;
-	Wed, 10 Jun 2026 15:24:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781105054;
-	bh=NGrCtNcthl7bLbYvYkyeOQLb1Gq5xm78jI9bMuqILvc=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=bv9l36Or4x6/+rKllVdhxBLz5RkQCQNQizuO30uNsSsaA6ijkMdegbPYTSbt0wnNP
-	 JbmzKTeQfQaExi4EAME6VcZdHf2nNcT0AyTBccOlu3P5cM//eLAN4ZBkZAt0kZOzBf
-	 /y/tlRa+FrAxJnMDCipsxqYUcz2VScsfXz/zq2E79kRvCvRp2kKqCvfLKY3ZyclC3r
-	 qUFpF7fIcf1/78Rv+3xjIkL9KMOY7FWtWuGX1g4ZN5fkCkWQsyxX+0SZtRmflE18PE
-	 71IGtA1pl+12SwhK9FT30svby3nwH2agLX3+XBpo6cUiz6xBmhAdausD3R9aEFUq6K
-	 CrgyeLqGjWXjg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 1/2] dt-bindings: hwmon: temperature: add support
- for EMC1812
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Marius Cristea" <marius.cristea@microchip.com>
-Cc: robh@kernel.org, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260610-hw_mon-emc1812-v11-1-cef809af5c19@microchip.com>
-References: <20260610-hw_mon-emc1812-v11-1-cef809af5c19@microchip.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 10 Jun 2026 15:24:13 +0000
-Message-Id: <20260610152413.B502F1F00893@smtp.kernel.org>
+	s=arc-20240116; t=1781105094; c=relaxed/simple;
+	bh=8IzCxAQXih+Sb8cJNqqX04/FqubEw8GSFBCCrdW1htE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ahBLbF8j95GAMzsD/py1Gxlp4RVal7BcdSXIiEu8AQjnlH6TwsvnRctcxOkiPlPdQRqafjdioJkckAf8pbFgxD54n9oxGd+NOvEOVWFTnBV3DhZjZb0b+ctMjgQi8ldfEDEKvurNqN6r1hO88sUiO4Aw3N6NEa3nKAjvDUtwnFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF3CE1F00898;
+	Wed, 10 Jun 2026 15:24:49 +0000 (UTC)
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: [PATCH v2] dt-bindings: interrupt-controller: renesas,r9a09g077-icu: Fix reg size in example
+Date: Wed, 10 Jun 2026 17:24:45 +0200
+Message-ID: <364ff570c8a1845fab24bd89557f06c9e406f8de.1781105007.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309906-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:cosmin-gabriel.tanislav.xa@renesas.com,m:tglx@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:geert+renesas@glider.be,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,m:geert@glider.be,s:lists@lfdr.de];
+	DMARC_NA(0.00)[glider.be];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,microchip.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:marius.cristea@microchip.com,m:robh@kernel.org,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[renesas.com,kernel.org,gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER(0.00)[geert@glider.be,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-309907-lists,devicetree=lfdr.de,renesas];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	FROM_NEQ_ENVFROM(0.00)[geert@glider.be,devicetree@vger.kernel.org];
+	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,glider.be:mid,glider.be:from_mime,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 036FA66ACDD
+X-Rspamd-Queue-Id: 021AF66AD75
 
-> This is the devicetree schema for Microchip EMC1812/13/14/15/33
-> Multichannel Low-Voltage Remote Diode Sensor Family. It also
-> updates the MAINTAINERS file to include the new driver.
->=20
-> EMC1812 has one external remote temperature monitoring channel.
-> EMC1813 has two external remote temperature monitoring channels.
-> EMC1814 has three external remote temperature monitoring channels and
-> channels 2 and 3 support anti parallel diode.
-> EMC1815 has four external remote temperature monitoring channels and
-> channels 1/2  and 3/4 support anti parallel diode.
-> EMC1833 has two external remote temperature monitoring channels and
-> channels 1 and 2 support anti parallel diode.
-> Resistance Error Correction is supported on channels 1/2 and 3/4.
->=20
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+According to Figure 5.1 ("Unified memory map"), the safety register
+block is 64 KiB large, just like the non-safety register block.
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+---
+v2:
+  - Drop Fixes tag,
+  - Add Acked-by.
+---
+ .../bindings/interrupt-controller/renesas,r9a09g077-icu.yaml    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260610-hw_mon-emc=
-1812-v11-0-cef809af5c19@microchip.com?part=3D1
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,r9a09g077-icu.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,r9a09g077-icu.yaml
+index 78c01d14e765721b..a809bc4f75159c60 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/renesas,r9a09g077-icu.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,r9a09g077-icu.yaml
+@@ -165,7 +165,7 @@ examples:
+     icu: interrupt-controller@802a0000 {
+       compatible = "renesas,r9a09g077-icu";
+       reg = <0x802a0000 0x10000>,
+-            <0x812a0000 0x50>;
++            <0x812a0000 0x10000>;
+       #interrupt-cells = <2>;
+       #address-cells = <0>;
+       interrupt-controller;
+-- 
+2.43.0
 
 
