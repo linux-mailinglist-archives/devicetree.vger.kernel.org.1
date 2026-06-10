@@ -1,254 +1,320 @@
-Return-Path: <devicetree+bounces-309829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309831-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VZw5G45pKWq0WQMAu9opvQ
-	(envelope-from <devicetree+bounces-309829-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 15:41:34 +0200
+	id QOApGf1oKWqSWQMAu9opvQ
+	(envelope-from <devicetree+bounces-309831-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 15:39:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F3AE669D73
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 15:41:33 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA38D669D28
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 15:39:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=C6dvPlbV;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309829-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-309829-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=OWTgv2oa;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=IOzlYEZR;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309831-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-309831-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9DC213019A10
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:35:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 15E7F3040D97
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 13:36:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A8EB40BCB2;
-	Wed, 10 Jun 2026 13:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EEC63E4503;
+	Wed, 10 Jun 2026 13:36:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D2C40B38C
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 13:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CECF63DEFE3
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 13:36:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781098519; cv=none; b=aMlFBeGMkhDLUnPolsqdTcRhUlWSjwiq2+LWhwrF0Tyzh7/yAR9DI9hBN7nz9/M+yhrSAQUwpvQeL3UWhL1t1ApH5IgJyuMiSrfWF1lk8P5LTNnA5QLQT0kAjSvLJpGc5OBD7QFvLyPeXKITMQsiOE4S4u/z9nahE5r3+37pNQc=
+	t=1781098593; cv=none; b=ZUmBjyAduB7uPwA8+ZzCmoa0vvxUeWp0nfI/ODI/036g//iH1vQuCuSUpymc3iDh07ykO7aLXzdDuILCjecw1psHLlH3U6esqUqb6fwOC3jtfWFvCmt3jviOzAu6r9ZNguQYzvXwnmJgvD1q09CeYjOj0iDx7Lvm+UoZWjsZb8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781098519; c=relaxed/simple;
-	bh=YUdqjoFhiPqQLaf4gJadZcw3eGr2LIScfANZVbT6QL4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZfjotuBU2KNxGw/J8m8YuFmtRGE6DzDEA2vjy4iMHV/BAJTIIPbuKebCTbF8ZjcESRwr10GXYfNIgY7t44/2EPVR5OW7qQLLclZDfJ7q8ZZAoVIzioeT4dX/UrHRthfQsNf7qRhLBB5SWvu2lI9HO8i3ut7n9ccKZ4JPn2CAUZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C6dvPlbV; arc=none smtp.client-ip=209.85.167.51
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5aa7a7c9711so7694539e87.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 06:35:12 -0700 (PDT)
+	s=arc-20240116; t=1781098593; c=relaxed/simple;
+	bh=AGdgc/LNIiNu/Pqb58ZW43s1W2veDo5Rgo02Lj4z3iA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W5KRhXI7AwsL1O8vajhlCmDoX9bCT17rhNNvqKWtrdNwByy3aM1X1X1dHIOPfnEEuXF/rcxvlnDX8wZ/8LSJKlIXA4SsFxe2YFSQP8YaiIjcu85zWqGE4lJ2R/peQM3VBnFZcvH4jfGWcvB4q6Q9BKZepdlo0jZaQr70jm4F9/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OWTgv2oa; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IOzlYEZR; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65ACBd7G1137374
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 13:36:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	niaQqv0TO5ktLYqg+JO/ci5vasrTsTgygjoHApXMLdA=; b=OWTgv2oaKoYu+Oxi
+	VNZ76vqVmqiS/eGjNkXMa2iUd0Tl4HisiGBqKPqVFt94l8QR17+d5j8gFNk8Qt2f
+	U4ntb1tbPqN3YksGILZG8O/TWQlSdpm1BECXv5okFUjBKo2j8s8a/Ug2QMTnmFGr
+	asxkwXaPH/LE+4XDsdvyLfd2jdHcqIb5rJgd4giZCnsZ6/IeZmyjkbALdGyKM198
+	ltTLB33uASNfRwhjLXG0kpnLsiGzw4w4pSf2jVlx0hv9tw6O/bOmueZUkoQn1bAC
+	P20aoUCkr7MtPvQnhyWXZsoAPOm7iWWz3lLq1vhWqRBn6iF1jCex4ECoapCqWvcL
+	ivZvCg==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4epwnh2qay-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 13:36:26 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-915a547f4b3so160666785a.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 06:36:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781098511; x=1781703311; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iLX2dOT9Bw/pz1APJXL+k95y9Wnfgl8Z5/bITb57NwI=;
-        b=C6dvPlbViT5sQbueoeZFAHUlk1cv5y8IiGRqg1/olB6Gua5BTgZu3cJxvjvYtoEZ4t
-         b1IEy/yWt322rHj+/2pceZ7ffykMIQF1BCQlkolvcKbF+zJaHesswH1PcJXTshnP/WU4
-         kGK8DT8m9XtNs7NLSyd811yFkKlqx5ttKYyGPf2Bq0EARL7hFqGZf9uME91/g+fln++k
-         nTNTHBPqCpxHMueDgB/lQ26N1qf1F1cnw79ABy8ICJq6XaRsdPQMQiGWJY6xfHg41/l/
-         1bVz1So83U+K/tcFXQp1tXAwTwwam7IUObhC1fZZEWnv4npdVR2+O4jvYmbi2QME2wn9
-         DXoA==
+        d=oss.qualcomm.com; s=google; t=1781098586; x=1781703386; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=niaQqv0TO5ktLYqg+JO/ci5vasrTsTgygjoHApXMLdA=;
+        b=IOzlYEZRlG8nj50T25Iv33du+LSCd/ZqbSRljisgkGedVg3slCqLi+hZL8HTqsjvAB
+         tTmOzEXa67SpYLzwqgK93uq9jJX5PeCn/a4zi94zE4p2anGhsL6GuGFIHvylrSXS28nd
+         7Yxqjt/n1CGksRfROVLsc2XHxHOttP4ziME6bGjTLry+0Ziht05qaqff0+wAz9XTOQcb
+         sCAHKA13ICDT0D3saIbZhhQ91a9dW9mpME2cv0Cru3C/7KrodWHrJcYR8YWMdct9pG55
+         Lj44FqSg1GgvtOpIcmUXKIY2wFOuIYJJOP8ugf/DLSVLjO1zB4TS1vfEB06+4dD8o5J9
+         Hd2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781098511; x=1781703311;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=iLX2dOT9Bw/pz1APJXL+k95y9Wnfgl8Z5/bITb57NwI=;
-        b=jyfzHW/qq+dqBs0Dj/jLWZhoVCRIE566RsYR7jlSeQQIOyH/YZrMEToO/0M5kiFMut
-         x8R0AwJap0PI4KKlvn1pi6RQxeetobevJ1PtMliOBqzL9JWkWFER3Klzgn/6dBEsoNGi
-         05nvoYVtwBOUTup9UcHYzTuumv4CsFDnBL/ks/YfkJXLzvcqG//fqiWPEpHdTnU1+f3A
-         olr/GPohTEV81N9KL046xH994V/sdEijeJ5W+6o/KzycQ19rVSX+Q9dkrOVvokw+gNrz
-         JNokWZ6/8ibGduD+K19hM9u+/GBxnUJQELibWlM+B2TgH4JEeqeiMErFZijXXimRQI/G
-         8aww==
-X-Forwarded-Encrypted: i=1; AFNElJ8PXpmBpNv2ZZ9wlHEXMsnnOYFHSo8foMx1RVAx3mgeeEut2oUp+IzveeV4JJb4gQBRGnxk6yfu3E4J@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrTq+6TJ/sKQtIBnYtM8auDihWUWo6IwU4vAtyLcc35Jm6D5Tb
-	EZSlCudzIX9PpEOfGgx8olHCNiYH0MS5ITF78jMlq+yRpzB4MGbXrE58
-X-Gm-Gg: Acq92OF1+YGYmKxb+LtCJNj+AgDsliHWlxRbdQXWmWmwx/Y3Qk2bjiDbcqg1evEuYKv
-	98OcqjocaKRWAEJEaPepXQk8g8pNcpe9SVDnb+wfgkU3iwJGRVJelBHSdfOXwuQz7SpoMBOCN2X
-	9MXsSVtCmwbRdGdQgSvBpZ80aaR8yHzHoJ++7MocuJoE7461t4YvUc6cO2bjFqKagBizqYC4emD
-	rzFhwQAmPhh1cv2d5FDsflV9fgZtZ/YG5HVv4W1EYOKeUnERiCiAbOmpBVl8nSLr68xtYTqZcz1
-	H/PtP3hGDyt1VMG8gtbSziolXDkUIZo+i674YPSVsW+/h3/3Hb9mu08omwEKUXeeiPM2o7N1fCc
-	5O/3vmNUJKgY0KLKRulNOd/hyEqF2LU2M2A62JW9YafU8w8qemczepW93MByThLsGAiVwTBjR5C
-	4t9MEco6jYwxe1eoXO+zQuopyAOancd7L/Xk5Ok2tew6wJFb6hUQ==
-X-Received: by 2002:a05:6512:1346:b0:5aa:7a7d:c7d2 with SMTP id 2adb3069b0e04-5aa886ca133mr5697683e87.18.1781098510327;
-        Wed, 10 Jun 2026 06:35:10 -0700 (PDT)
-Received: from arch.localdomain ([2409:8a28:a54:e741:3a5a:3245:d3dc:4b5d])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-396abf66ea9sm62000751fa.2.2026.06.10.06.35.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Jun 2026 06:35:08 -0700 (PDT)
-From: Jun Yan <jerrysteve1101@gmail.com>
-To: conor@kernel.org
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dmitry.torokhov@gmail.com,
-	jerrysteve1101@gmail.com,
-	krzk+dt@kernel.org,
-	linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH 7/8] dt-bindings: input: microchip,cap11xx: Add CAP1114 support
-Date: Wed, 10 Jun 2026 21:34:58 +0800
-Message-ID: <20260610133458.970174-1-jerrysteve1101@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260609-ebook-tantrum-4846384c02d5@spud>
-References: <20260609-ebook-tantrum-4846384c02d5@spud>
+        d=1e100.net; s=20251104; t=1781098586; x=1781703386;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=niaQqv0TO5ktLYqg+JO/ci5vasrTsTgygjoHApXMLdA=;
+        b=phR4Ycc1uxs4Rjjyc7xjKJWp8sPlM4lrpj+S1/n7w145pMXGdOclA9OtfOkW6ohf1B
+         rk1nB05WqfIfQVotpaGfQ8Or/82ZBsQZ0dlFhtP4aON/IuSxeoag9ynYFbG55Q7x+PJa
+         Ik4JztH+6k+W29LmC6/HAW+Hogspswa3iFwp6LtLFxERZxWcipInwdZs7rPxEn4fEqPu
+         5tm7oxoHEYqkxgrck5LHbUZ/8WGt7KyRMYBRCvhikllp5b3g1pwBGjNGogwdX/IX+eTu
+         xtyFcfSW/EhFKttOXf9NMbZYb4+KcSv7ir5RN+XzBfeiCl1p3D5T4nV+txJCpFcUU2bn
+         fuhw==
+X-Forwarded-Encrypted: i=1; AFNElJ8/52a4ACsA5NUp7MiKIAaynzz5rOy/gRgNdIMTMO1inFHZxkrQUKOCVjhgwhrGMvNHum0KiHbRiipg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQEj/kVFSQedM1FepFtFHMW034nV5B059lNIS0qpD3K4Xzm+sc
+	0Yo2CIrLJf9qTGiwYfqE2HEGof/7zCRLFHtLCgjmqslpXJs30u7ngCxkmUcKTReEGHNNHfS1phj
+	Wn1gqBVc+46C1mPFb8/i94YpC9uga5gc5Q9hxswj917VGZhHej9Ck+wgG/nbIj/k9
+X-Gm-Gg: Acq92OGVoIZc0oYqNDrD7PfoFxvCrKa57X3BmuKxvMP9EaTv/U00F/vZHOq1aLFv8Wd
+	jVtWcoPIXgos634p/Swl/XNdGLgzwOwuYTiBGGKpKvEtsCViYO8FWdYjy2o173fACKjwKMkvOOE
+	Mc1LaEw2u/SNzdejtmjoy2r7Nl8pa19cvKkqr24ZnmMghkfFqnRZDa8jcTk+P3FRHTZo2zv2yz+
+	Z+0eF2odZ92+PBOmjWlR17c20q+rtMkCL1qZRtX8EVgDgo9HcFflxIwgoELy9rpxzOjhTsKNLoV
+	wxAWMnoIzuP5x5ldyU0h4p1jaTS77wTLxcB8rznnfLj+jfEryTMOeUUhYgZj4jP7ncAEwacZf+J
+	h/THW68xrAibL0zLsF/9Vbf6d0aMT6ZxMUEqbUlcepi2/OD4vVBazNw43
+X-Received: by 2002:a05:620a:7113:b0:914:ea37:6f14 with SMTP id af79cd13be357-915a9c7736dmr2175327485a.1.1781098585655;
+        Wed, 10 Jun 2026 06:36:25 -0700 (PDT)
+X-Received: by 2002:a05:620a:7113:b0:914:ea37:6f14 with SMTP id af79cd13be357-915a9c7736dmr2175321485a.1.1781098584986;
+        Wed, 10 Jun 2026 06:36:24 -0700 (PDT)
+Received: from [192.168.120.170] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5aa7b8ed718sm5324751e87.14.2026.06.10.06.36.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Jun 2026 06:36:23 -0700 (PDT)
+Message-ID: <0947e485-4619-43a3-a127-5b887780190b@oss.qualcomm.com>
+Date: Wed, 10 Jun 2026 15:36:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] dt-bindings: phy: qcom,msm8998-qmp-usb3-phy: Add
+ support for Shikra
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <8cd564af-9646-40c5-a8ef-c7197fb3cfe9@kernel.org>
+ <95b567cc-b83c-4154-9520-e624555f1882@oss.qualcomm.com>
+ <29571bdd-23bf-42a7-a9e3-918a28c79700@kernel.org>
+ <62161822-2365-4ec7-80f7-8660bdadb177@oss.qualcomm.com>
+ <40b5e0f6-bc61-4750-9560-bdcc268f0fe3@kernel.org>
+ <d52c5039-9431-44ed-9f3b-bb00d03ae176@oss.qualcomm.com>
+ <5baeeeed-7c18-46f7-82a3-5bb299ba05ef@kernel.org>
+ <42ba6ac7-306a-419f-96b6-3427c51ef567@oss.qualcomm.com>
+ <9ed7c714-07c1-48de-8d27-cbe24356c606@kernel.org>
+ <34586ed6-4f78-490f-a916-baf7657cca7a@oss.qualcomm.com>
+ <xw7f24rvxhkfntui4jjswyyabb5be4cbkfgh7fico6vlhfvf5b@d4axfyz6gds5>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <xw7f24rvxhkfntui4jjswyyabb5be4cbkfgh7fico6vlhfvf5b@d4axfyz6gds5>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEwMDEzMCBTYWx0ZWRfX033kxL8sNG5w
+ 0lCL+3tsTW7lvE27rNwCOyApW8yrRsPf3iB4rhvKkkjDbUK6GuPzhL4FiBFsTfHH0xh6Zg6+gt5
+ C3LElfe2tfOYYbn8nd2ltoQxlBxUaxXisiOT0otdWOMBCvWlh6gD7fuTWQdgCeMkE5xoPHSbw3G
+ ges8oQ1LkkoFZlJCAa0xFheVzKbmby+HMgNdh1C6M3dGD+QfjOgYG3s4qdJWmr73zYDG6OoCRr6
+ UU932QRbd0qtPWa20jYHrvHPxrnN4xLA4YNiEPNLvgkzZuPBMrlItkUcML39NT3o6EpAsLdIjgj
+ oJRp0iILZ15u89BVididBRLTmZ1wjvT2YN005MlcBJ12Pu6OZku320XhECHHlr0CiTabnkh4MwH
+ vKAki2gKcXo0sGKOh2DnC6SyYLEE/Glgt6Kwh2WW9ZHegiw9X7WoF33Mwr1jzD5dAJhNIJwxdRf
+ 5QZVfarEp1SzTSvAFLw==
+X-Authority-Analysis: v=2.4 cv=Xce5Co55 c=1 sm=1 tr=0 ts=6a29685a cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=EUspDBNiAAAA:8 a=eIvkFyfHag2gwDMtOzUA:9 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-ORIG-GUID: -20xY1ksxGdHhyJJE_Owbi6uQisFpGoQ
+X-Proofpoint-GUID: -20xY1ksxGdHhyJJE_Owbi6uQisFpGoQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-10_03,2026-06-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 malwarescore=0 impostorscore=0 adultscore=0
+ priorityscore=1501 lowpriorityscore=0 suspectscore=0 bulkscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2605210000 definitions=main-2606100130
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309829-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-309831-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_SENDER(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:krishna.kurapati@oss.qualcomm.com,m:krzk@kernel.org,m:neil.armstrong@linaro.org,m:vkoul@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:xiangxu.yin@oss.qualcomm.com,m:johan+linaro@kernel.org,m:loic.poulain@oss.qualcomm.com,m:kathiravan.thirumoorthy@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,m:johan@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dmitry.torokhov@gmail.com,m:jerrysteve1101@gmail.com,m:krzk+dt@kernel.org,m:linux-input@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:dmitrytorokhov@gmail.com,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TO_DN_NONE(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt,linaro];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9F3AE669D73
+X-Rspamd-Queue-Id: CA38D669D28
 
-> On Tue, Jun 09, 2026 at 10:08:27PM +0800, Jun Yan wrote:
-> > > On Sat, Jun 06, 2026 at 11:04:00PM +0800, Jun Yan wrote:
-> > > > CAP1114 is a 14-channel capacitive touch sensor with 11 LED outputs
-> > > > and hardware reset support.
-> > > >=3D20
-> > > > Add the compatible string for CAP1114, include its datasheet URL,
-> > > > and update the maximum count of LED channels and linux,keycodes entri=
-> es.
-> > > >=3D20
-> > > > Add description for microchip,input-threshold: CAP1114 only provides =
-> eight
-> > > > threshold entries, which does not match its total channel count.
-> > > >=3D20
-> > > > Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
-> > > > ---
-> > > >  .../bindings/input/microchip,cap11xx.yaml     | 21 +++++++++++++++++=
-> --
-> > > >  1 file changed, 19 insertions(+), 2 deletions(-)
-> > > >=3D20
-> > > > diff --git a/Documentation/devicetree/bindings/input/microchip,cap11x=
-> x.ya=3D
-> > > ml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-> > > > index e307628350c2..08233386a433 100644
-> > > > --- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-> > > > +++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
-> > > > @@ -12,6 +12,7 @@ description: |
-> > > > =3D20
-> > > >    For more product information please see the links below:
-> > > >      CAP1106: https://ww1.microchip.com/downloads/en/DeviceDoc/000016=
-> 24B.=3D
-> > > pdf
-> > > > +    CAP1114: https://ww1.microchip.com/downloads/en/DeviceDoc/000024=
-> 44A.=3D
-> > > pdf
-> > > >      CAP1126: https://ww1.microchip.com/downloads/en/DeviceDoc/000016=
-> 23B.=3D
-> > > pdf
-> > > >      CAP1188: https://ww1.microchip.com/downloads/en/DeviceDoc/000016=
-> 20C.=3D
-> > > pdf
-> > > >      CAP1203: https://ww1.microchip.com/downloads/en/DeviceDoc/000015=
-> 72B.=3D
-> > > pdf
-> > > > @@ -26,6 +27,7 @@ properties:
-> > > >    compatible:
-> > > >      enum:
-> > > >        - microchip,cap1106
-> > > > +      - microchip,cap1114
-> > > >        - microchip,cap1126
-> > > >        - microchip,cap1188
-> > > >        - microchip,cap1203
-> > > > @@ -62,7 +64,7 @@ properties:
-> > > > =3D20
-> > > >    linux,keycodes:
-> > > >      minItems: 3
-> > > > -    maxItems: 8
-> > > > +    maxItems: 14
-> > > >      description: |
-> > > >        Specifies an array of numeric keycode values to
-> > > >        be used for the channels. If this property is
-> > > > @@ -122,6 +124,8 @@ properties:
-> > > >        is required for a touch to be registered, making the touch sen=
-> sor =3D
-> > > less
-> > > >        sensitive.
-> > > >        The number of entries must correspond to the number of channel=
-> s.
-> > > > +      CAP1114 is an exception where channels 8~14 reuse the eighth e=
-> ntry=3D
-> > > 's
-> > > > +      threshold, so counts differ.
-> > > > =3D20
-> > > >    microchip,calib-sensitivity:
-> > > >      $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > @@ -149,7 +153,7 @@ patternProperties:
-> > > >        reg:
-> > > >          description: LED channel number
-> > > >          minimum: 0
-> > > > -        maximum: 7
-> > > > +        maximum: 10
-> > > > =3D20
-> > > >      required:
-> > > >        - reg
-> > > > @@ -199,6 +203,19 @@ allOf:
-> > > >              reg:
-> > > >                maximum: 1
-> > > > =3D20
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            enum:
-> > > > +              - microchip,cap1188
-> > >=20
-> > > I don't understand this restriction, shouldn't this be
-> > > if: properties: compatible: not: contains: microchip,cap1114
-> > > so that the constraints before your change are retained?
-> > >=20
-> >=20
-> > Previously, the LED reg property had a default maximum of 7 for CAP1188.=
-> =20
-> > With the addition of CAP1114, the default maximum is now 11.=20
-> > An if-then constraint is added to limit the LED count for CAP1188.
+On 5/17/26 9:16 PM, Dmitry Baryshkov wrote:
+> On Fri, May 15, 2026 at 09:06:21PM +0530, Krishna Kurapati wrote:
+>>
+>>
+>> On 5/14/2026 8:07 PM, Krzysztof Kozlowski wrote:
+>>> On 14/05/2026 08:22, Krishna Kurapati wrote:
+>>>>
+>>>>
+>>>> On 5/14/2026 12:26 AM, Krzysztof Kozlowski wrote:
+>>>>> On 07/05/2026 13:37, Krishna Kurapati wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 5/5/2026 7:30 PM, Krzysztof Kozlowski wrote:
+>>>>>>> On 05/05/2026 15:57, Krishna Kurapati wrote:
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> On 5/5/2026 6:59 PM, Krzysztof Kozlowski wrote:
+>>>>>>>>> On 05/05/2026 15:27, Krishna Kurapati wrote:
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> On 5/5/2026 4:22 PM, Krzysztof Kozlowski wrote:
+>>>>>>>>>>> On 05/05/2026 12:49, Krzysztof Kozlowski wrote:
+>>>>>>>>>>>> On Mon, May 04, 2026 at 10:36:57PM +0530, Krishna Kurapati wrote:
+>>>>>>>>>>>>> Declare the USB-C QMP PHY present on the Qualcomm Shikra platform.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+>>>>>>>>>>>>> ---
+>>>>>>>>>>>>>       .../devicetree/bindings/phy/qcom,msm8998-qmp-usb3-phy.yaml      | 2 ++
+>>>>>>>>>>>>>       1 file changed, 2 insertions(+)
+>>>>>>>>>>>>
+>>>>>>>>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>>>>>>>>>>>
+>>>>>>>>>>> ... and then I looked at the driver. So un-reviewed. Devices are clearly
+>>>>>>>>>>> compatible. If not, explain what is not compatible.
+>>>>>>>>>>>
+>>>>>>>>>> Talos uses GCC_USB3_PRIM_PHY_AUX_CLK.
+>>>>>>>>>>
+>>>>>>>>>> In Shikra, we are using GCC_USB3_PRIM_PHY_COM_AUX_CLK. We don't have
+>>>>>>>>>> GCC_USB3_PRIM_PHY_AUX_CLK.
+>>>>>>>>>>
+>>>>>>>>>> Hence, I didn't use a fallback compatible.
+>>>>>>>>>
+>>>>>>>>> This still explains nothing. How different clock makes interface for SW
+>>>>>>>>> incompatible exactly?
+>>>>>>>>>
+>>>>>>>> So I went by the naming. AUX vs COM_AUX.
+>>>>>>>
+>>>>>>> The naming does not matter. If the clock is called
+>>>>>>> "no_one_expects_spanish_inquisition", does that make software
+>>>>>>> incompatible? Why would the name itself matter?
+>>>>>>>
+>>>>>>>>
+>>>>>>>> Can I use a fallback compatible and in DT vote for "COM_AUX" clock with
+>>>>>>>> clock-names mentioning "aux" ?
+>>>>>>>
+>>>>>>> I don't know, I asked what is different in software interface.
+>>>>>>>
+>>>>>>
+>>>>>> Hi Krzysztof,
+>>>>>>
+>>>>>>     I checked with the hw team here and found out two things.
+>>>>>>
+>>>>>>     1. Shikra is a spinoff of Agatti and its sw interface (clocks used and
+>>>>>> regulators used) is the same as agatti.
+>>>>>>
+>>>>>>     2. I thought we could use qcm2290 as a fallback since the phy register
+>>>>>> init sequence is the same for Talos/Shikra/Agatti. The difference
+>>>>>> between Talos and agatti when checked in the driver was the init load
+>>>>>> settings. I checked with the hw team and they suggested using the init
+>>>>>> load settings which talos was using.
+>>>>>>
+>>>>>>     Hence both these compatibles (qcm2290 and qcs615) cannot be used as
+>>>>>> fallback for Shikra.
+>>>>>
+>>>>> Then I do not understand why you are using qcs615_usb3phy_cfg for
+>>>>> Shikra. You say that the initialization is different, but you use
+>>>>> exactly the same initialization. So in a meaning of compatibility
+>>>>> between hardware for Devicetree they are compatible.
+>>>>>
+>>>> Hi Krzysztof,
+>>>>
+>>>>    There are 3 things:
+>>>>
+>>>> 1. Clocks used:
+>>>> -> Talos supports AUX Clock since it supports DP over USB.
+>>>> -> Agatti and Shikra use COM_AUX clock since they dont support DP over USB.
+>>>>
+>>>> 2. Phy register Init sequence - same for all 3 targets
+>>>>
+>>>> 3. Regulator init load:
+>>>> -> Different for both Talos and Agatti
+>>>> -> Recommendation is to use Talos regulator load values.
+>>>>
+>>>> SW interface wise, shikra is comaptible with agatti. If we use agatti as
+>>>> fallback, we would end up using the platform data of Agatti where the
+>>>> regulator init load is not suitable for Shikra. Hence not using Agatti
+>>>> as fallback.
+>>>>
+>>>> Coming to driver changes, I used qcs615_cfg because it has required phy
+>>>> register sequence and regulator init load as needed by shikra.
+>>>
+>>> So is it compatible with QCS615? If not, then something is incomplete or
+>>> confusing. The driver uses the same software interface.
+>>>
+>> Sorry for the confusion. The Talos compatible represents the USB/DP PHY with
+>> aux clock input, while Shikra is a USB-only PHY with com_aux input clock, so
+>> the two PHYs are not compatible with each other.
 > 
-> Ah, is this because cap1188 is the only existing device in the binding
-> that actually has LEDs?
+> According to the memory map, there is an (unused) DP registers part
+> right after the QMP USB3 PHY. So, sofware-wise it is compatible to
+> Talos. Having the different clock input means different integration of
+> the block rather than the differences in the hardware block.
+> 
+> So, the block should be compatible to qcom,qcs615-qmp-usb3-dp-phy
 
-- CAP1126: max 2 LED channels (0-1)
-- CAP1188: max 8 LED channels (0-7)
-- CAP1106, CAP12xx: no LED support
+It should still carry its own compatible though, to let the driver
+disallow powering up the DP part
 
-The LED reg property constraints for CAP1126 were added in Patch 3 [1].
-
-[1] https://lore.kernel.org/linux-input/20260606150458.250606-4-jerrysteve1101@gmail.com/
+Konrad
 
