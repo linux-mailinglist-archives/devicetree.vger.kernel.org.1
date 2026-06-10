@@ -1,216 +1,163 @@
-Return-Path: <devicetree+bounces-309651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309657-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id UTAjJFw0KWpdSQMAu9opvQ
-	(envelope-from <devicetree+bounces-309651-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:54:36 +0200
+	id xx9HGOY3KWowSgMAu9opvQ
+	(envelope-from <devicetree+bounces-309657-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:09:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73EDB6680A3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:54:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8E3668225
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 12:09:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=bn0XCStl;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=csxN7FDX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309651-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-309651-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=none;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=andestech.com (policy=reject);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309657-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309657-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3006530952C2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:50:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 41C72301DAC9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 10:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69AE43E2771;
-	Wed, 10 Jun 2026 09:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA89F3BCD2B;
+	Wed, 10 Jun 2026 10:03:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from Atcsqr.andestech.com (atcsqr.andestech.com [220.128.198.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4733BA249
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 09:49:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CBD13B38B1
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 10:03:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781084970; cv=none; b=XaVT6alUFEhiruYtqvT0EtpKxzurtE3IjBV4xOeKFz5bswaCT0CzAq9kZqy4G9Cc6E5vhZ6yseTIV/ZIRdgpNulKZpES3VUuinQpLxzvmrUw6AeH+PHBvWWmTQaSWP+LSGspUiTQ/uPXVetHJOGNmzTo6wYOUCZbzO9fzwM/lj0=
+	t=1781085784; cv=none; b=di6uF5HFokY4No2myEdcGKwO6xaB+d8dBOg0LfooH/M8sRScd4Bny5PRQ/T4PlMoAu/laltwQg16I7SzqxYNDfA//2PGl0X+WIipDxbikKZTKYuxRgjEquKhDPV6YNcuWw5Cw6JecLEywHRL08UVlZfOF0UzH9rk6D6o0rxI/dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781084970; c=relaxed/simple;
-	bh=cZcO9Jt+ROwZmqDp2yCSr6jFzdd6xM23Mwa+iIRCkiU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LYzwOXn4zk0nsnp3kzEsheubGIiFNuX+6Pt8G3RCe6M4YLdpUBYDRe7Ms0evId3cGd9fU6isYmw1StIkEnTDKKLxIYqiYBd7seBiZXtDplP1D/me8SeqO06ZDH+834Nl/iYradjqgaE93JSlJJ7lWdQFCzPBqDZN37W1rLYvp2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bn0XCStl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=csxN7FDX; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65A7hrtV3151709
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 09:49:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jC48BHG4q/pkdmu9tL4+H7RyB9xmymG8F1LR5os9RJQ=; b=bn0XCStl7MK0FEzs
-	rnDlWwoQxxDMO/KCVI8AJoDLJQJaaUQCQq/NXTY42ZGljHXZTOC4J2z6+RZZWi+b
-	TraHmuy65E8xQhrvARlp2qo0EIiRDySMynXyPP9kROVhJZZqIW780I2mWgZ3j4Mv
-	Vf05VEEydVr6zuONvYZQp3XWy4HqWS0IBbjV4gAv7CYcTw3z65aGZI19OOxDqQwh
-	B+xKx2NkKMZuziGOc8GW1FxtiAjB83iqIGewOCmrSCwNghY/mZz84pH55fLUeCLG
-	qSU506PGCW7U3x/F6OkQid7xLUP5RthKnCGj1HyS30fvoKahf9hu5m0qgqyLiIUZ
-	VdGaoQ==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4epwnesuha-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 09:49:27 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-842208d5b0eso4819902b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 02:49:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1781084966; x=1781689766; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jC48BHG4q/pkdmu9tL4+H7RyB9xmymG8F1LR5os9RJQ=;
-        b=csxN7FDXReBVJHNUPa/oGY9h3Mq27VCzJLiKhOA1YGCZGXRBpgUrYlMY+VjmVxy722
-         4gwhier6VH1QY0tQIev1CgRoNaInYfo/Cox6FPQYMpU8T3A2HWhUKyQLL2M4qVQxYsHx
-         5LEwGLgXZhXKk6Ul0jKyVVlaMVjln9bawG8EkjCmMEpZE4e1oBy8WvrXRUwSoEF1iCEc
-         K5DSh/6n77fnbBTfql/RjVIXOEw4TUnXGFj2NULhYTiSgWKlfY8ZHX/GbP4JlgZ1PluQ
-         3AtqlV9CYNTEShAsJnA3AWRYVw7YaQinJGR4d45YnwQVFZgjoZXg73mUU2u8N5Dc/cLO
-         gbJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781084966; x=1781689766;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jC48BHG4q/pkdmu9tL4+H7RyB9xmymG8F1LR5os9RJQ=;
-        b=KbNQrZ2TUw51dBhStWWr5WNVkwjR4iiUPaka83HmIs7Uw7INRRbBzY88KU0FB9hIRw
-         4MJzLfFauK4k+H5G8HGCquhz6GSABPnKoQhliBfBN0B/XWH1bt/574VtSNi+Gq5FWRME
-         Iv+jrgVqo+0zRj0QYFDrN20+r8pp5K4pL4p+xIFzL83FKOsm0QKxSlIav1Ufo/fZOVxe
-         t3hbJa2OzvrqjOvDy8b6vow6oFU7D4gVz2aIW/TDpG0OqoC1iqIBYoaKoNeUAi69eEG2
-         xn1P42v55bzNfEEFyIXJkjZMPnkmLoHlPF1bU07qVGsHolRNEEchZdEv6m5HYGa1ra0V
-         KUuw==
-X-Forwarded-Encrypted: i=1; AFNElJ/doQp6L6f0rGI9ZMl0JaLQXzCnOvb300GixIgr86Q+ogv9YEt556YZBZFaou4k6x4CQ5iqKUpus0aX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy35NANqy+zp2Q2NRL/FJDuWdC50iAQ8Me2IjuzscnCli7/lH7Q
-	CrNe98B5mF/3ZGU66/O6NrV3KTSIGPgyCVRX7I78SuflzSt/RMjuiAn8nKOGDFNia4MkftJm4Fh
-	mAMSJYE8n8YcqXkMUBHaIng6sxqQaOxjggXGflMMwt/ePCC3LbNjWHYyO6yNc5HEn
-X-Gm-Gg: Acq92OGuXO29Hh0ggOBGWmH9KTwYMgUE5JgahL79PjIdyuUFGXAmk6ge+ngWzmWHPUj
-	a46s9f2X1nKYmJccOk4a8IeIHlHjc+lhYqD+shjmwx0PdLCkbDdTHlhS3vQ5ipJw722142I8aLf
-	RS3mp3gHNsnKCUD6xTIgpIzQl4JWgqKIQAEr2TKL/F/t+eVfZgEA3JpT5t4DxO6+sCvTXxj6GjB
-	VqsWkxRpw/K1h3UoWLlhRy/2I9PX6+4Uu8aSadld4g9rcP36i5TN/4pAA6QP9ZdosDVs81466+C
-	0q2SgUeon+IwT7ee+wnTGXnyt0aMPgmXuSD734bhgomPog/eNdQEObeWZoZ+fK3kFyP+V7JLO8R
-	Hx+GizqhAWSS6ZeYe7QxJe/Am2vgM6oqytg3VuCCPWKuk0ykkbU1tf3LC927aDwyNZUuZKcLt7W
-	CU
-X-Received: by 2002:a05:6a00:2305:b0:842:6155:45d0 with SMTP id d2e1a72fcca58-842b10d9659mr24913592b3a.43.1781084966406;
-        Wed, 10 Jun 2026 02:49:26 -0700 (PDT)
-X-Received: by 2002:a05:6a00:2305:b0:842:6155:45d0 with SMTP id d2e1a72fcca58-842b10d9659mr24913568b3a.43.1781084965977;
-        Wed, 10 Jun 2026 02:49:25 -0700 (PDT)
-Received: from [10.151.37.217] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84282220d1bsm25722217b3a.12.2026.06.10.02.49.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Jun 2026 02:49:25 -0700 (PDT)
-Message-ID: <1df97802-0956-4d2b-97f1-0c1570d0c3d7@oss.qualcomm.com>
-Date: Wed, 10 Jun 2026 15:19:20 +0530
+	s=arc-20240116; t=1781085784; c=relaxed/simple;
+	bh=TeCnY+5ryURVyWzpfvFfragz+52zK1Vn31lPFBY7mP4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gt9i/lKh+KPUAgv2PAnbVTGZTGEywgiCkPAsicqECO0tB0UUxCzBI+a/M+kF8QZYhq/uMMjDA0q4tZAujfko8/FKMYISAUHiYbVx/hQqGPTniTToLakzKjCx6ZXf1+O5K9uaddBwBmCIJHWwDFNtMdDze0dwA547mWqfmN/MmF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=220.128.198.184
+Received: from Atcsqr.andestech.com (localhost [127.0.0.2] (may be forged))
+	by Atcsqr.andestech.com with ESMTP id 65A9vgV4075451
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 17:57:42 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 65A9vWCQ075344
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Wed, 10 Jun 2026 17:57:32 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 10 Jun
+ 2026 17:57:32 +0800
+From: CL Wang <cl634@andestech.com>
+To: <vkoul@kernel.org>, <Frank.Li@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <dmaengine@vger.kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tim609@andestech.com>, <cl634@andestech.com>
+Subject: [PATCH v5 0/3] dmaengine: atcdmac300: Add Andes ATCDMAC300 DMA driver
+Date: Wed, 10 Jun 2026 17:57:21 +0800
+Message-ID: <20260610095724.1980622-1-cl634@andestech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] regulator: qcom-refgen: add support for the IPQ9650
- SoC
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20260602-ipq9650_refgen-v1-0-55e2afa5ff64@oss.qualcomm.com>
- <20260602-ipq9650_refgen-v1-2-55e2afa5ff64@oss.qualcomm.com>
- <b7c5441c-de69-4a1b-9121-3d15bc24612e@oss.qualcomm.com>
-Content-Language: en-US
-From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-In-Reply-To: <b7c5441c-de69-4a1b-9121-3d15bc24612e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 8oSAhy3Dnn2v4-8WiiyMSs_15yBW1ang
-X-Authority-Analysis: v=2.4 cv=ebYNubEH c=1 sm=1 tr=0 ts=6a293327 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=EUspDBNiAAAA:8 a=cPk82LopJyZTTbnMm5cA:9 a=QEXdDO2ut3YA:10
- a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-ORIG-GUID: 8oSAhy3Dnn2v4-8WiiyMSs_15yBW1ang
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEwMDA5MyBTYWx0ZWRfX2eD+zELugROs
- oT7BEHn3KkQJzlnyCGOcmFVboCp147D3l/Vw6zQiFfoyJUPJ0JRLq1X8XkvXzYl0m27wu5DqL3D
- F/evRb6ERGrghBvXnS9FqYacuDtxgz/tfFKytI1IogaU2OPyN4pqZWLtW3CBfaNNG0GRHtwgWyM
- FCt0zYloQ2faFm4RwyLWxmfTaiEv+m2KR7FQ0kASLf8quQQui3VOQNPvKDPHM2cEywbTr0e8Lv1
- gFIisd2KQGIOpbm+m71B1G0xo+NRFVmPY3FOTnMGAZAKWgcduRd3mWkCGJhJhMn3+xi3FlfoJJi
- JlX+/1wDgmBGFz072KnK+LwIem/suJ834YKjM6bOIbcilRwDzaQ0J0bwV8tdYL+ErLBCRAl5hlM
- FVdCeCwahqodaaSi5dgR9wcsXm1SS89NV1/9GiIoEeYDA0zDL7O+lzaoY+o7f5rHqTCvB7M/9S7
- QQn9FW9I7aPAjSGV93Q==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-10_02,2026-06-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 impostorscore=0 spamscore=0 bulkscore=0 clxscore=1015
- suspectscore=0 phishscore=0 adultscore=0 lowpriorityscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2605210000
- definitions=main-2606100093
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 65A9vgV4075451
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [2.04 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[andestech.com : SPF not aligned (relaxed), No valid DKIM,reject];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-309651-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,qualcomm.com:dkim,qualcomm.com:email];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,gmail.com,kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:tim609@andestech.com,m:cl634@andestech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_FROM(0.00)[bounces-309657-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[cl634@andestech.com,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cl634@andestech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[andestech.com:mid,andestech.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 73EDB6680A3
+X-Rspamd-Queue-Id: AA8E3668225
 
+This patch series adds support for the Andes ATCDMAC300 DMA controller,
+a memory-to-memory and peripheral DMA controller that provides
+scatter-gather, cyclic, and slave transfer capabilities.
 
-On 6/9/2026 7:18 PM, Konrad Dybcio wrote:
-> On 6/2/26 11:22 AM, Kathiravan Thirumoorthy wrote:
->> IPQ9650 SoC has 2 REFGEN blocks providing the reference current to the
->> PCIe and USB, UNIPHY PHYs. For the other SoCs, clocks for this block is
->> enabled on power up but that's not the case for IPQ9650 and we have to
->> enable those clocks explicitly to bring up the PHYs properly.
->>
->> As per the design team, REFGEN block provides the reference current.
->> Hence marked the regulator type as REGULATOR_CURRENT.
->>
->> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
->> ---
-> I'm slightly confused. Is there no register programming needed?
+The ATCDMAC300 IP is embedded in AndesCore-based platforms or SoCs
+such as AE350 and Qilai.
 
-Yeah, no programming is needed. Similar to Kodiak, PHYs in IPQ9650 does 
-the HW votes. No SW vote is needed.
+Changes in v5:
+  - Update copyright year to 2026
+  - Remove redundant headers (init.h, iopoll.h, mod_devicetable.h)
+  - Move atcdmac_init_iocp() before of_dma_controller_register() in probe
+  - Change builtin_platform_driver() to module_platform_driver()
+  - Implement .remove callback to support safe module unloading
+  - Update Kconfig entry from bool to tristate
+  - Add MODULE_AUTHOR, MODULE_DESCRIPTION, MODULE_LICENSE macros
 
-> Can we at least retrieve the running state in .is_enabled() by reading
-> some value?
+Changes in v4:
+  - Use items list format with descriptions for reg property in DT binding
+    as suggested by Conor Dooley
+  - Re-add Acked-by from Conor Dooley for DT binding patch
 
-Based on the discussion with IP team, I can use the REFGEN_STATUS 
-register. Let me update the is_enabled() to query this information.
+Changes in v3:
+  - Rename DT binding file from andestech,qilai-dma.yaml to
+    andestech,ae350-dma.yaml
+  - Deprecate IP-core-based compatible usage and align with
+    SoC/platform-based strings
+  - Dropped Acked-by from Conor Dooley due to the above binding change
+  - Remove "andestech,atcdmac300" from of_device_id table
+  - Replace deprecated tasklet with threaded IRQ using
+    devm_request_threaded_irq() and IRQF_ONESHOT
+  - Update locking from spin_lock_bh() to spin_lock_irqsave()
+  - Use builtin_platform_driver() instead of module_platform_driver()
+  - Remove "select DMATEST" from Kconfig
+  - Add separate MAINTAINERS patch (patch 3/3)
 
->
-> Konrad
+Please kindly review.
+
+CL Wang (3):
+  dt-bindings: dmaengine: Add support for ATCDMAC300 DMA engine
+  dmaengine: atcdmac300: Add driver for Andes ATCDMAC300 DMA controller
+  MAINTAINERS: Add entry for Andes ATCDMAC300
+
+ .../bindings/dma/andestech,ae350-dma.yaml     |   67 +
+ MAINTAINERS                                   |    6 +
+ drivers/dma/Kconfig                           |   11 +
+ drivers/dma/Makefile                          |    1 +
+ drivers/dma/atcdmac300.c                      | 1518 +++++++++++++++++
+ drivers/dma/atcdmac300.h                      |  296 ++++
+ 6 files changed, 1899 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/andestech,ae350-dma.yaml
+ create mode 100644 drivers/dma/atcdmac300.c
+ create mode 100644 drivers/dma/atcdmac300.h
+
+-- 
+2.34.1
+
 
