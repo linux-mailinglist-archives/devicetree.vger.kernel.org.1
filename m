@@ -1,138 +1,234 @@
-Return-Path: <devicetree+bounces-309646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309642-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Wbu0HfAwKWqvSAMAu9opvQ
-	(envelope-from <devicetree+bounces-309646-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:40:00 +0200
+	id VL9kE78wKWqnSAMAu9opvQ
+	(envelope-from <devicetree+bounces-309642-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:39:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2E43667EC6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:39:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D883667EAA
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 11:39:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309646-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309646-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=nxp.com header.s=selector1 header.b=Exu9K9El;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309642-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309642-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=nxp.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3E3DD33299BC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:25:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A131C30CD887
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 09:25:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304233DCDA7;
-	Wed, 10 Jun 2026 09:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22CEC3AFD1F;
+	Wed, 10 Jun 2026 09:25:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B6843C109D;
-	Wed, 10 Jun 2026 09:25:41 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781083549; cv=none; b=brQ3Wld6bBZx8H7jDVTu+fjnhgK1+DN6Rcu+8NVa4+pPst214RhbzwXiU4/O21wkSt9zzzoiYqYJzONDjqlmI8tks/tH8sLDbjDPBeh27HIzAcaG4mS8V+yYXylWaI5HVGYOVvdAOARR7uXwTiHtnpZDim1NSETiT8gtTGMM4vU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781083549; c=relaxed/simple;
-	bh=hTh8Z4WzJirzBjWW9JmGHvJTie+/I/fSkwcPwxv2iTE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=D9Dc6khtWeNi6BgvhYFRB+S0EjC4biLQkEF6u/rHQzM00+dldg+rS8Em1HXzwq28HQVG0Uer7CAnnLxFSWONuo/SR29sYo9gTfCOG0Bj8X3aKW6chWhXGV9PlCmzdcZd1iIU651JsNzu10NHIvKp/9UnL5XsyGVSoY8YlhZCEQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
-Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
- ajax-webmail-app2 (Coremail) ; Wed, 10 Jun 2026 17:25:20 +0800 (GMT+08:00)
-Date: Wed, 10 Jun 2026 17:25:20 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ben-linux@fluff.org, ben.dooks@codethink.co.uk,
-	p.zabel@pengutronix.de, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com
-Subject: Re: Re: [PATCH v7 1/2] dt-bindings: pwm: dwc: Add eswin compatible
- and resets property
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <c4fa85f1-365e-49ab-9549-d6d46529a68b@kernel.org>
-References: <20260605082242.1541-1-dongxuyang@eswincomputing.com>
- <20260605082318.1599-1-dongxuyang@eswincomputing.com>
- <20260605-scrupulous-tasteful-nuthatch-5d8ce3@quoll>
- <643f9b98.722f.19eabb8fe3e.Coremail.dongxuyang@eswincomputing.com>
- <c4fa85f1-365e-49ab-9549-d6d46529a68b@kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011071.outbound.protection.outlook.com [52.101.70.71])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21293D7D6F;
+	Wed, 10 Jun 2026 09:24:58 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781083502; cv=fail; b=nzxOic+W2GsIdYEW5y3EFMj3hy7HT2R07r/Lhumx1eAtuyPJvhiCQyu1bKitJJ20MmstR3QsX1wmvvEoFIOvYqpwQPGJgOUvEMlmZ8zkJzaOvOUQvC6znG3Ey3qyx3G7KZvkYICJg/cqOeun+Ib6D7SBTAdsn1np842ZCpPUpww=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781083502; c=relaxed/simple;
+	bh=mzDMlbBA01+aBB0mCPswesN01CNOapkxu7QxTON8LR8=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=lyY2f17QmZfEtjHXcWFvjJ7ipYFskVqHk1gbw0gIZA+oSObdcURjJNLTjh8v9g98XKbEutL6RgeBERXCpmdxnKTof3sxY5QfjoZTUpA/XV9IefsPTESvRxdbcti7Ac+d94b7/jZ8o+NiiQ4jLh4+iszRJr6s8PdtDIw5wUvNJe0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Exu9K9El; arc=fail smtp.client-ip=52.101.70.71
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=g10tSxNHCMJLuh2E938VwrRA1PASEj5Ys38Wp4iOtlfgwzDtxmPre+U/DavxJ7/cW04+qxIOfpYviH1bAKVnCO2YhSxEvZwAvGMQDCXVHjHYT3veDXDfqmWZEHTcHAzpZXMhTxvyiJUaDCcrxyCUUgqtnV5cgjqazoVLjye/UOOufiPoYaZ0oN6wo2SiseqDLFXysBjAMWyxWRF/xgbldEKZe+5L1HptueYUUgTCjQ/s9XYBLu/wJ8ohEArpN0IIAajxml76bPXgOcUCbdJjotsGkuxPDqf2YCmP2/zzV2/wRFIYn2a9U5SttQ+xG+gdJx6mEs/JKsca7+hSyLDdgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OO+mqwNBXoJKzeXK6uZk39tZBrEH/X4HkxiATpy8Pg4=;
+ b=VIDl8J7VFkz7+H1AhtOOCyDDiVi3qxZPfP29mTS3QbLFhvt6wtvDeuxUAMQX5tZGWZVp00Xis8ezfgia9PLEXHbR3+G6eSyHR+u1KZGDyHUcmJ78401RjlzGnDfJERMZWgZdUI5IkwqM9bG2NSiW910DwkTl7sgJ71MRH6hwn0vjWz0qr4OfkFjMi/HZj8kgg/xTcsU8ndPl42qpRu0oV8KYOotw6zzcBXpTKuNXXTnOpEoQGKcJPHl2GTInTvkGJAzXEirNJGMjWixzM3lM4hsQdsY8yqUXT6Q3LJ/E8hnw2NG0JUEkVKPGdVIMamo/7k5IzbL+VPrgoUMskDXpNA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OO+mqwNBXoJKzeXK6uZk39tZBrEH/X4HkxiATpy8Pg4=;
+ b=Exu9K9ElWFTsk2ygDPQqFenXIPh7eiMj3urEcjE/ze9IMyUOoyWx4BqDHxIPGJd144yz766L4Q5A6Ct9Q3W//P1Ksfq6MiW5MJv8v5+/d2hPsRydfsHm45gNn/yXWifcgOD+vpcMgP07oENrnF+IyCxvys0LiRsnypGgfQ6OM6FUndAQJIYciQGJ7nYG73smBgMwWGGKIwkYnpa0mgsl45e7AB1Q03bKZ7L5X1vRtGeb7LMR0ooFNjvyIJsjl5xo2ywucXr5uYOHcEaq7rqAEBFSm/AjqN11akRznLDX+9mrPPlTIEIMj5YC60NQoD8TWLsJ83DVMTy7Z55VANKDPg==
+Received: from AS1PR04MB9287.eurprd04.prod.outlook.com (2603:10a6:20b:4dd::8)
+ by AM9PR04MB8860.eurprd04.prod.outlook.com (2603:10a6:20b:40b::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.14; Wed, 10 Jun
+ 2026 09:24:56 +0000
+Received: from AS1PR04MB9287.eurprd04.prod.outlook.com
+ ([fe80::6f30:763d:17d2:b79c]) by AS1PR04MB9287.eurprd04.prod.outlook.com
+ ([fe80::6f30:763d:17d2:b79c%3]) with mapi id 15.21.0113.011; Wed, 10 Jun 2026
+ 09:24:55 +0000
+From: Liu Ying <victor.liu@nxp.com>
+Subject: [PATCH v3 0/3] arm64: dts: imx93-11x11-evk: Add DY1212W-4856 LVDS
+ panel
+Date: Wed, 10 Jun 2026 17:26:20 +0800
+Message-Id: <20260610-imx93-ldb-v3-0-c9b65d742753@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALwtKWoC/22NwQ6CMBAFf4X0bE23BRRP/ofxQLeL1CiQFhsM4
+ d9t8YAHj5O8mTczT86SZ6dsZo6C9bbvIqhdxrCtuxtxayIzKWQpClDcPqdK8YfRHIs6hyqnHJB
+ Y3A+OGjutrcv1y/6l74RjCqRFa/3Yu/d6FiDt/nUDcMENABaoEKE6nLtp2GP/ZKka5OaV4vjry
+ eiBhoZKCbox9eYty/IBeiSGQ+oAAAA=
+X-Change-ID: 20260513-imx93-ldb-c5a4194e41ce
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Marco Felsch <m.felsch@pengutronix.de>, Liu Ying <victor.liu@nxp.com>
+X-Mailer: b4 0.15.2
+X-ClientProxiedBy: SI2PR02CA0049.apcprd02.prod.outlook.com
+ (2603:1096:4:196::7) To AS1PR04MB9287.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4dd::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <25b0baf0.731a.19eb0d9bf07.Coremail.dongxuyang@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgA3TJ+ALSlqTM4lAA--.5583W
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAgEOAmooQJYbE
-	gAAsS
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VW7Jw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS1PR04MB9287:EE_|AM9PR04MB8860:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4fd870a5-fe62-49b7-560d-08dec6d22252
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|23010399003|7416014|19092799006|376014|366016|1800799024|11063799006|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	Yy5dQqHS9Jo+gbU8KOflcTqksBC26CMDcGN//PJZaBfaEEHCcCLqswJd1vyeNvl9wXbEhn68r0vdBxoOmqdYaBmmIH/v0wx3mnzknAGO0KbBxuEhGBgQc3dlCZWM84bFGxWzQnSRbovcd+VjmqJ0WDaZ5IPEk21XqwxXu0NojE1efYDbb60k5+dcvS0PfRHprH4HXzqkdUNjmqsUoex4gzHpXzkMxQHzLasqK8gxSfMdRGX+L1ZGLbrN7HDB4/woj83AodQiAiuKS7OJ0+zgDvQBSXzHn1uPm81g887p1tFfy48QbHOizwQwzQcmj/pezxxBmBjvBcM12M8eaMCODV/uMqMPd0nUT4HDWLjvUhKXxcObnlt1Bvq91dIGWxwAcWuWhyoJyO9fMN08bFcTuQR2J3wLJmapjufWCRgMykTYO5HEB+c+WSjOnmUUKJJkMWI1xlV1Y1c7UkoQw2ptg89Py5lGVMkPHUvs2+odXe8C3PSwNzqh0PsiG0sn6l5Vm0rKKWNjfSz9/ROUXgYMGk3QZaFrH4EnS/FBDXBgzJcwA5P2vWoQQbQsq47qs9d2vJyrN0ddbassndwJQWQauR5koTp/9bKVH3CDKAxIQ7MC9M+dGwYRv6XMnU9OGapYkbv0pKaxWHtcACeiDhSiJw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR04MB9287.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(19092799006)(376014)(366016)(1800799024)(11063799006)(18002099003)(56012099006);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bW5IL0xGOEdjbmN3QkxXOHpWZm9JWEJUd2xvWXM2a0RkK0txOHhDaHJyUkVj?=
+ =?utf-8?B?TW5QVitpV3A3NnFEeEJuNEdMZ1RaYy9oSnlpdk9DR29xdXhVdUp2Y3lTVzNM?=
+ =?utf-8?B?T2c4T2RBM2RPZmNNSEhjZ2RMcXVHWXA4ODhhN2NzYm11NlhkdEVObHNFQk1E?=
+ =?utf-8?B?NkdmL0pDQWN6ZEdpZ2w0bURSQlU4M2MrTXZQc0ptU2VxVC9uRFdLVC9RRC9W?=
+ =?utf-8?B?K3FURWZ4ZW4raE9XNE8wT05TelFNTHVpVUVaTjVQWmtEM3kyZzZUQXF1YTc2?=
+ =?utf-8?B?OUlWWWNLeTBjWmVoZmJuaUorYzZJUk1Ya1BYMVduTktLWWU3TWpXS2RwTGE4?=
+ =?utf-8?B?YTNvV3JaSUlWMXArNTRiRW8vYWlLaktEcVN5YTA4VktrcE9QQjl1c0RMNWs1?=
+ =?utf-8?B?Snpoc2pWM2lTZTY5b1VZR2ZNc0NBR20zQ1haRVdtWU5DRnJDbjJ1TnN2ZHdi?=
+ =?utf-8?B?VnJJdXVuZXBkRm5ZbFdVOU9ZNU0yZ2tWK3JWK0RUSkNuL2ZINmF0bCtWbm50?=
+ =?utf-8?B?amVHc1YySEYzamJuMFEyb0Y3cHhUOW5udVlaQzdJNDZ1QnFZM0hYdFdSN2VE?=
+ =?utf-8?B?SDVqZ2NZejBlaWovb0NwYThkWDM3bGRWUi92ZHpqd0dCYVZOd3B1ZkZIT0Fm?=
+ =?utf-8?B?TURHYkpGalowczJvcGtpb1NtUW40WXJmQ3dBdGExVnRldkF6M2pRaTJFUWZD?=
+ =?utf-8?B?eGN4WURSajA2MWZCNUhyaVlpNloyU0MzWHkyYzJ1WUhhRFEvNXRzV1VMYzh1?=
+ =?utf-8?B?UFlTR2JvQ3ZVWktQZjU5Ry9EUFRKZzl6bFRBUGxnVXUwZCt4NVduUnFVR0xW?=
+ =?utf-8?B?OGZBU2hqUUFnZGJ4OUR6OEhyNE9FdVN5STNYeVpMYmZvb3ZuOVFGYmFDeXZ6?=
+ =?utf-8?B?NzRxYWRZWTdMbWoyRXl1UzlIdXk1VG5jRVNMRHBuYkVQT2lZSk1CL0NSQk1r?=
+ =?utf-8?B?S2dSdExjMEFrcS9iZCtTT1VKandwcllBMkF6NDh1ODFkWEV1Vm04ckwrYi82?=
+ =?utf-8?B?enNrbUUzNW1YemRCR3czY25Dd3FHQkhXVDRiQjZFWmMzYlBIZFY2SlVNVEo1?=
+ =?utf-8?B?U2FuMm0relZETnVqUkY1WUZXWnJUa3BuMzJNMjJUd0l6VnlpZW9zRnYyNDlw?=
+ =?utf-8?B?WjRaZ2hJdXQ0NnZwaUdhT3VWNWdYQzdwQlVVSHpoTlVtdERZS2szbEZkNVMy?=
+ =?utf-8?B?SkVrNlNJN3ZQVytzWTk4UXNuT0xVU0hybzVRNnN3dC9ZWVJ0Z05zMllnRDV6?=
+ =?utf-8?B?K25WM1ZYOXJPWWMvMUpKdGFlUGJKSFA1YmxtaFF0NVNISzU4c0tiVXhXZU1m?=
+ =?utf-8?B?VjQwck5TNTBjcWRreGY0WkEwSWU0em1Ba05wVVBTejQ3em1tZlRKU3VZdVlT?=
+ =?utf-8?B?aTVFV3FoY3dybEI3aXAyTVova2JaVzVkenlkMFRLRHZqWXY1TGl5Q2J4My8x?=
+ =?utf-8?B?WTRuN3ArcE55UjREd2c4NzVGZDhqV2RaS3dBSkM0eDlUZXlxM0ttdFEzVDhZ?=
+ =?utf-8?B?RDFWd24wb0JjT2xmOVBEcWhIVkxJNm9kdkk5ZHlvZ21KMlVTNytPR25zWWxK?=
+ =?utf-8?B?ajFsQkh6VHJwZGhSSHBaczBUQU1RQ0dtUVVTZ0p3MHl6MkMydkg2MHNjRDN3?=
+ =?utf-8?B?N0FtOVE1dStVUVlKcUFLQkpkTzJlV2VSdFUraEFmRFhuNDJxZ0sybldhMkJn?=
+ =?utf-8?B?ZkYvcDdqVGhYc2txMGovYnBYRXcxalppUVZyY3RQYWQ5MUlmaWp4VDlpZ2x1?=
+ =?utf-8?B?VDFjMnltMkJ6NmpTMWpVSEZJQ3VzT3QybTBkKzJMRXhXWVphRE9nMWhjV0la?=
+ =?utf-8?B?RGRjZFBZUzNjd3BWUHdyVGliZlNuOUIyWnZZQ21hT0t1aWU3cm1YZC90a25p?=
+ =?utf-8?B?VmZqWGZqcHRSWDNSVUdjVmVGUEpZc2lJVEdjeTROMTYxZTRGSG4reUFCRFNq?=
+ =?utf-8?B?WkgxU0kvMkR0NDFlY2dPTTZsU2xVZEVKd29kc2krdDdJZlIwdXhJbWhnV0Nl?=
+ =?utf-8?B?em1lNzNxRWNwblVCbDYvYys0T1ZvNTJhTzdnQWdSQ3ZPYWE1Ri9UVTd4K1di?=
+ =?utf-8?B?cS9ZSWtncm1NYUc0a09SYklPbXh0NW15blAvdzZmdzdxZnQyZlVlTm5pU05Q?=
+ =?utf-8?B?TDF5QnkybXBlS2NSSDQxMHRtU3VTT2tLY2RYNGhZbVg4N0ZiVy91OEtxVzVl?=
+ =?utf-8?B?R3FPL2xCdStTQkxsZHNLcmZNcmxtN09mOUE5V2NUTWV4bktNbm9FaUIvcFo2?=
+ =?utf-8?B?c1djRVhtU05OeE12T1U3eDFiRXBqQlNTQXl5SjM1YnNrTlRpWWh1QnYzbVpB?=
+ =?utf-8?B?QnNYbk55MUpyRjZ2dkt4Z2hsM2xSbUtCeHJuZlE1c09RUTRJeHU1Zz09?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fd870a5-fe62-49b7-560d-08dec6d22252
+X-MS-Exchange-CrossTenant-AuthSource: AS1PR04MB9287.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2026 09:24:55.8554
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CnZncIXqvqVqSWlWY/oIU0S6sr4brzfDK/3fKPAstlbZJybL0ZWeVE6Bfn5z+bjyscbivDEOhTif4pMdyaa1ng==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8860
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:ukleinek@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ben-linux@fluff.org,m:ben.dooks@codethink.co.uk,m:p.zabel@pengutronix.de,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ningyu@eswincomputing.com,m:linmin@eswincomputing.com,m:xuxiang@eswincomputing.com,m:wangguosheng@eswincomputing.com,m:pinkesh.vaghela@einfochips.com,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-309646-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-309642-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:Frank.Li@nxp.com,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:peng.fan@nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:m.felsch@pengutronix.de,m:victor.liu@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[victor.liu@nxp.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[victor.liu@nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,eswincomputing.com:mid,eswincomputing.com:from_mime]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,msgid.link:url,vger.kernel.org:from_smtp,nxp.com:url,nxp.com:from_mime,nxp.com:dkim,nxp.com:email,nxp.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E2E43667EC6
+X-Rspamd-Queue-Id: 9D883667EAA
 
-PiAKPiBPbiAwOS8wNi8yMDI2IDExOjMxLCBYdXlhbmcgRG9uZyB3cm90ZToKPiA+Pj4KPiA+Pj4g
-RUlDNzcwMCB1c2UgRGVzaWduV2FyZSBJUCBmb3IgUFdNIGNvbnRyb2xsZXJzLiBBZGQgRVNXSU4g
-RUlDNzcwMCBzdXBwb3J0Cj4gPj4+IGluIHNucHMsZHctYXBiLXRpbWVycy1wd20yLnlhbWwuCj4g
-Pj4+Cj4gPj4+IFRoZSBEZXNpZ25XYXJlIFBXTSBpbmNsdWRlcyBzZXBhcmF0ZSByZXNldCBzaWdu
-YWxzIGRlZGljYXRlZCB0byBlYWNoIGNsb2NrCj4gPj4+IGRvbWFpbjoKPiA+Pj4gVGhlIHByZXNl
-dG4gc2lnbmFsIHJlc2V0cyBsb2dpYyBpbiBwY2xrIGRvbWFpbi4KPiA+Pj4gVGhlIHRpbWVyX05f
-cmVzZXRuIHNpZ25hbCByZXNldHMgbG9naWMgaW4gdGhlIHRpbWVyX05fY2xrIGRvbWFpbi4KPiA+
-Pj4gVGhlIHJlc2V0cyBhcmUgYWN0aXZlLWxvdy4KPiA+Pj4KPiA+Pj4gVGhlIGdlbmVyaWMgc25w
-cyxkdy1hcGItdGltZXJzLXB3bTIgYmluZGluZyBhbGxvd3Mgb25lIG9yIHR3byBvcHRpb25hbAo+
-ID4+Cj4gPj4gSSBkb24ndCBrbm93IHdoYXQgaXMgdGhlIGdlbmVyaWMgYmluZGluZywgYnV0IGl0
-IGRvZXMgbm90IGFsbG93LiBPcGVuCj4gPj4gdGhlIGZpbGU6IHRoZXJlIGFyZSBubyByZXNldHMg
-YXQgYWxsLCBzbyBpdCBkb2VzIG5vdCBhbGxvdyB0aGVtLiBPciB5b3UKPiA+PiBtaXhlZCB0ZW5z
-ZXMgaGVyZSBhbmQgeW91IHdhbnRlZCB0byBkZXNjcmliZSB0aGUgY2hhbmdlPwo+ID4+Cj4gPiAK
-PiA+IEhpIEtyenlzenRvZiwKPiA+IAo+ID4gVGhhbmtzIGZvciB5b3VyIGNvbW1lbnRzIGFuZCB0
-aW1lLgo+ID4gCj4gPiBSZWdhcmRpbmcgc25wcyxkdy1hcGItdGltZXJzLXB3bTIsIHdlIHByZXZp
-b3VzbHkgaW50ZW5kZWQgdG8gYWRkIHRoZcKgCj4gPiByZXNldHMgcHJvcGVydHkgaW4gdGhlIHNh
-bWUgcGF0Y2guwqAKPiA+IEhvd2V2ZXIsIGFzIHlvdSBzdWdnZXN0ZWQsIHdlIHdpbGwgc3BsaXQg
-aXQgaW50byBhIHNlcGFyYXRlIHBhdGNoLgo+IAo+IEkgZmluZCBjb21taXQgbXNnIHN0aWxsIGNv
-bmZ1c2luZy4gUGxlYXNlIGFsd2F5cyBjbGVhcmx5IGV4cGxhaW4gV0hZIHlvdQo+IGFyZSBkb2lu
-ZyBjaGFuZ2VzLgo+IAoKSGkgS3J6eXN6dG9mLAoKVGhhbmtzIGZvciB5b3VyIGNvbW1lbnRzLgoK
-QWNjb3JkaW5nIHRvIHRoZSBEZXNpZ25XYXJlIElQIGZvciBQV00gY29udHJvbGxlcnMgbWFudWFs
-LCBpdCBzZWVtcyB0byBtZcKgCnRoYXQgQmVuJ3MgcHJldmlvdXMgc3VibWlzc2lvbiBtYXkgaGF2
-ZSBtaXNzZWQgdGhlIG9wdGlvbmFsIHJlc2V0cyBwcm9wZXJ0eS4KClRoZXJlZm9yZSwgSSB3b3Vs
-ZCBsaWtlIHRvIGNvbmZpcm06IHNob3VsZCBJIHN1Ym1pdCBhIHNlcGFyYXRlIGZpeCBwYXRjaCBm
-b3IKdGhlIHJlc2V0cyBwcm9wZXJ0eSwgb3IgaW5jbHVkZSBpdCBhcyBhIGZlYXR1cmUgcGF0Y2gg
-aW4gdGhpcyBzZXJpZXM/CgpCZXN0IHJlZ2FyZHMsClh1eWFuZyBEb25nCg==
+Hi,
+
+This patch series aims to add DY1212W-4856 [1] LVDS panel to i.MX93 11x11
+EVK board.
+
+Patch 1 allows LVDS Display Bridge (LDB) child node in i.MX93 mediamix
+blk-ctrl DT binding.
+Patch 2 adds LDB child node to mediamix blk-ctrl node in imx93.dtsi.
+Patch 3 adds a DT overlay to support the DY1212W-4856 LVDS panel on
+i.MX93 11x11 EVK board.
+
+[1] https://www.nxp.com/design/design-center/development-boards-and-designs/dy1212w-4856-tft-lcd-panel-with-lvds-interface:DY1212W-4856
+
+Signed-off-by: Liu Ying <victor.liu@nxp.com>
+---
+Changes in v3:
+- Explain in patch 1's commit message that mixing addressable and
+  non-addressable DT child nodes is allowed.  (Krzysztof)
+- Link to v2: https://patch.msgid.link/20260608-imx93-ldb-v2-0-1b1fe621bfda@nxp.com
+
+Changes in v2:
+- Rebase on next-20260605.
+- Disallow bridge@20 for i.MX91 in patch 1.  (Sashiko bot)
+- Cc Marco.
+- Link to v1: https://patch.msgid.link/20260513-imx93-ldb-v1-0-d11c5c3cc197@nxp.com
+
+---
+Liu Ying (3):
+      dt-bindings: soc: imx: fsl,imx93-media-blk-ctrl: Allow LVDS Display Bridge child node
+      arm64: dts: imx93: Add LVDS Display Bridge support
+      arm64: dts: imx93-11x11-evk: Add DY1212W-4856 LVDS panel
+
+ .../bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml | 39 +++++++++++
+ arch/arm64/boot/dts/freescale/Makefile             |  4 ++
+ .../freescale/imx93-11x11-evk-dy1212w-4856.dtso    | 81 ++++++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx93.dtsi           | 37 ++++++++++
+ 4 files changed, 161 insertions(+)
+---
+base-commit: 6e845bcb78c95af935094040bd4edc3c2b6dd784
+change-id: 20260513-imx93-ldb-c5a4194e41ce
+
+Best regards,
+--  
+Regards,
+Liu Ying
+
 
