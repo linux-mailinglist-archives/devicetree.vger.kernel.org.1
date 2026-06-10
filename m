@@ -1,91 +1,101 @@
-Return-Path: <devicetree+bounces-309857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-309858-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1xe4KQlyKWoNXAMAu9opvQ
-	(envelope-from <devicetree+bounces-309857-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:17:45 +0200
+	id Y1d6GsVxKWoDXAMAu9opvQ
+	(envelope-from <devicetree+bounces-309858-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:16:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1495366A2A1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:17:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B23E466A293
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 16:16:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Iwoij6XD;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309857-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-309857-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=linaro.org header.s=google header.b=N0LL6f+u;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-309858-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-309858-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 39BA830C425E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:09:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BE18032D4AA4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jun 2026 14:09:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B715D40BCD3;
-	Wed, 10 Jun 2026 14:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F21B40E8EC;
+	Wed, 10 Jun 2026 14:09:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52CA6280018;
-	Wed, 10 Jun 2026 14:08:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D6BC405C41
+	for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 14:09:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781100538; cv=none; b=sb3NxFeQqoB0J+C5slYl2/aImGE4+bgPPHxnrWSIbGpo1G1o07DJKfrwHDqXh6w9sOVycfOuQMyuS+KX6GEC+PBIG9sjHpZjIXTr44oiOhnFZfIIsKqN4m4xdgyJeFeG5W7s9M0jQkCLvdOlBLysvc7D+zVtqVOy2Sk63HR5xkE=
+	t=1781100574; cv=none; b=rAIwlKXWlS9fdxgAbekjV1/Xmdt2E+rtSZIxdEe1QEpg86wI4W9JE0o5AQI4XBtac6JDijy8QsJg87h8AZCkj86zjj7UeGn4u+ZpM/uZe31MMZiUeQVEK8BRzfGK9xm5zFQAyfEQhV6xybNMiGeFx2ANu+SKsugLoRKdg5BWcpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781100538; c=relaxed/simple;
-	bh=QGKcjDdt8a0tH/Hc9o5DwcTP+oPWZPnZGQMex0Xb5Oo=;
+	s=arc-20240116; t=1781100574; c=relaxed/simple;
+	bh=xOBnAKbfMwDSEwiOfNlKTQ/sIOMtTg3T6ON0DZHh4gk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RqA9mMfWDaMNAHShIVKcG7a2qYW/c76vNDb9z7rlk9ISJlliM6dPWBFg7blyYJvqKdcJsJPcb0SlSLbVklhNo1Eed0//JI6SxGaWjVFX4xTG0aFPB5PFXQUe8hbT4gvHfyRVVjp6kUAlsTp1U0WdE3RqOW+/rrinz0RIZ00xe80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Iwoij6XD; arc=none smtp.client-ip=192.198.163.16
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781100537; x=1812636537;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QGKcjDdt8a0tH/Hc9o5DwcTP+oPWZPnZGQMex0Xb5Oo=;
-  b=Iwoij6XDWstgxX2MuMNM7a7Xej+HWxJVCrwmrNn/9NtHAgiVZ+SLAFFz
-   DLM27qbNqFnKcJfD/IrkQyoAmHaRrXqNS5OhzjYEXPcPLMZyJ56TtckSs
-   t6y1TOoYVU6tRph6nRz4k7wMMqzVnbj/GCMwO5O3+eyJ9gZ8ynnGJIQf4
-   ANUpltL75kTD4VmGRxAZawyeSZ3JUAT/0o9tRMXuY/kIPTAU5pSxUm00F
-   VXV5QENZSSi9odnG+1Nnkt57NAs4V3o10q6C3Rs0TdeH2KaNocZOEiyYd
-   TiSeiPlbU6z4RHHPdIdUWgm20Klauywg5WR1Nose/Vz3yCpxOYMe17RsI
-   w==;
-X-CSE-ConnectionGUID: caT0G3k2RlCLv4M0XQ4K4A==
-X-CSE-MsgGUID: 4G9uQZv4QzaQEgkeNV8VWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="69433448"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; 
-   d="scan'208";a="69433448"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2026 07:08:56 -0700
-X-CSE-ConnectionGUID: 5PnXmGmkSf+nphIwuCI86Q==
-X-CSE-MsgGUID: 8weCnpoUTs+XY1kL6aY/tQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; 
-   d="scan'208";a="246269709"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.244.38])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jun 2026 07:08:51 -0700
-Date: Wed, 10 Jun 2026 17:08:48 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Bartosz Golaszewski <brgl@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=VBVHeGxBf6832qb+HJPkfOm5LdkYKpCVvCCJ1NalvZeqm9q/AVi+YfXaOwzuJ+NwezMqF3nz3dLQUnkTdH/yMwTRnxkj9oiHzckDtlFKHvEGCqSohETSaiDzVP0gpXSJ2xQQVKIKCtEOcg3w7uM7vcCLOwsd+kOKKm1f/pNh8IM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N0LL6f+u; arc=none smtp.client-ip=209.85.128.53
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-490ae94a89eso58079685e9.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 07:09:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1781100570; x=1781705370; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8Yp7dQIH3qFqTFCTwClldJqvJ4eJdBAvpo4TLN8Qmpc=;
+        b=N0LL6f+uTVBdblveTqDHTS79wedP5+/lItTb5xiZmk11jHcWHRP0qYD7PTINm6tfrP
+         sWcUsVITDTYAG2HLwO0cM16/KVaXPtGa6IcDvQq7FKmQczuWXbwGKo1UnJ4+VbYOZci9
+         8IHDBDqrLzLUxh1UXLsvXtwM7GMxwj30OnAOUNFDy5nqS/0SA65VjbCgkCS3RxR1mxnd
+         P6WpfwyME7QQo+niO5/H2jBNkwIeIm3W4Q40dV9/zdTBUnT/JJPlhPs8hDFE9hIclAEd
+         WpNvFp1lrmvrYOOsEJpiZQpy/+9DFz2iXJ2kgaanNCk4Rc/zaH8mmXfGGPBFO92VXSi0
+         9I2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781100570; x=1781705370;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8Yp7dQIH3qFqTFCTwClldJqvJ4eJdBAvpo4TLN8Qmpc=;
+        b=g5vPq2TDpjZIlIDqhvC6thMsHXq+y8/EPOwquh6a22VVz0CYOcP3AESgKGAevA6rmU
+         Qt7GrX7XlyOu2g2DuUyxfAPhH4fjnQ0rqPfjG8rqamFtXrz8wq+BGV6P/PoP5zCfEMXw
+         Buv5WKLV9nn6Yi9F/HW/7XCMN2NY2fy+5atktONijmX5rTpBFgFpykmTCJP8eGbHk70d
+         o5WtOddusAXb9DKhpeo4b7Mtw+21u8h2YwnK6rvGb/w7UP17Ef8Eu76RH24FUmFfg7ub
+         nn+ZauuTnhtI33hc7RZRu+fo4EL0O+6LRsC8W/abLyuv80CDkxq9n5et9eCGf+hcVpHe
+         n94A==
+X-Forwarded-Encrypted: i=1; AFNElJ95hM9Mk0ibKGNo1KHS5oInb6QGOD+G91Dl7mxZ4oDSgr3qae5+t8Gi/c0+9gIyyN9iUM+9c8wHIn8G@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfgxC0t0+4hgdQNHtp66frkGOXcYrDmnpjrVUEb8qIuW5WrEl7
+	AaLklTY404R97nBwT3T1vITDSUaiAFZKxkLFrWus6g+qTRSI6WS4s6D6Hvnd7Pdog+U=
+X-Gm-Gg: Acq92OE+XzJyTMsB4zsbXTdSQHEYVnJHoA6LQXzguvzPE+sqKzhunCO1UoiTajWZ81/
+	RsboQ3sCZ3/VwehV8mbvRKIeNswftDrI1hiXeHDhLVUkvvHt1AxD5LbtSadylzeOyikPAV4ktkN
+	2JY6jfnnppciCveV2J708oOm4xtgafafRhYBZg92Ei73sVtEzQf76tj+ynDaT5GZtde3nprDAnj
+	dq2Gzokv3T+uIKWNYx1VKIg7xswQ1eCBeYk3pfDBtKqLkePFO4UCtM3bgTI23ZA08burPQuAaA3
+	ErtKJscg4WtFjM1CAmE78unYGTLs/2XOEYIJUtxICODN7N8XamKcbgpMY07viv3z3U15OieV9Wq
+	RqVTnmZ/bmcZflx6tZBvnJDIsi0sqrWZBOK3KkaFPMlvfTCRVPXPoVuQwhV/zbjHYHnaD8SoqDF
+	4SCncvP+BSNMG13V18N1ivISHHOO50leRiwuDZNXEj246p/J4=
+X-Received: by 2002:a05:600c:4e14:b0:490:4e3e:b483 with SMTP id 5b1f17b1804b1-490c2600ebdmr362021485e9.22.1781100570315;
+        Wed, 10 Jun 2026 07:09:30 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff23:4441:7c57:ff85:2733:9342])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490bc3cc0f8sm559839415e9.8.2026.06.10.07.09.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Jun 2026 07:09:29 -0700 (PDT)
+Date: Wed, 10 Jun 2026 16:09:24 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+	Shawn Guo <shengchao.guo@oss.qualcomm.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Alan Stern <stern@rowland.harvard.edu>, linux-acpi@vger.kernel.org,
-	driver-core@lists.linux.dev, linux-pm@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>
-Subject: Re: [PATCH v2 02/16] device property: Add
- fwnode_graph_get_next_port_endpoint()
-Message-ID: <ailv8HpnrCH3Zb8C@ashevche-desk.local>
-References: <20260610084053.2059858-1-wenst@chromium.org>
- <20260610084053.2059858-3-wenst@chromium.org>
+	Taniya Das <taniya.das@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 07/12] clk: qcom: gcc-mdm9607: Drop incorrect
+ apss_tcu_clk_src
+Message-ID: <ailwFPgY13_7dZ-C@linaro.org>
+References: <20260609-qcom-clk-mdm9607-fixes-v1-0-5e9717faf842@linaro.org>
+ <20260609-qcom-clk-mdm9607-fixes-v1-7-5e9717faf842@linaro.org>
+ <f55526ad-ecd2-47b2-8b8f-5aec429bc1c0@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,121 +104,88 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260610084053.2059858-3-wenst@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <f55526ad-ecd2-47b2-8b8f-5aec429bc1c0@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	TAGGED_FROM(0.00)[bounces-309858-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-309857-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:djrscally@gmail.com,m:heikki.krogerus@linux.intel.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:stern@rowland.harvard.edu,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,gmail.com,linux.intel.com,collabora.com,rowland.harvard.edu,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_RECIPIENTS(0.00)[m:konrad.dybcio@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:djakov@kernel.org,m:shengchao.guo@oss.qualcomm.com,m:bryan.odonoghue@linaro.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:taniya.das@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ashevche-desk.local:mid,intel.com:dkim,vger.kernel.org:from_smtp,linux.intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gerhold.net:email,vger.kernel.org:from_smtp,linaro.org:dkim,linaro.org:mid,linaro.org:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1495366A2A1
+X-Rspamd-Queue-Id: B23E466A293
 
-On Wed, Jun 10, 2026 at 04:40:36PM +0800, Chen-Yu Tsai wrote:
-> Due to design constraints of the power sequencing API, the consumer
-> must first be sure that the other side is actually a provider, or it
-> will continually get -EPROBE_DEFER when requesting the power
-> sequencing descriptor.
+On Wed, Jun 10, 2026 at 03:50:11PM +0200, Konrad Dybcio wrote:
+> On 6/9/26 4:14 PM, Stephan Gerhold wrote:
+> > From: Stephan Gerhold <stephan@gerhold.net>
+> > 
+> > This clock does not seem to exist on MDM9607. Reading/writing the registers
+> > always results in 0 or crashes. The math in the frequency table is also
+> > broken. GPLL2 on MDM9607 runs at 480 MHz, so:
+> > 
+> >  - F(155000000, P_GPLL2, 6, 0, 0), // 480 MHz/6 = 80 MHz, not 155 MHz
+> >  - F(310000000, P_GPLL2, 3, 0, 0), // 480 MHz/3 = 160 MHz, not 310 MHz
+> > 
+> > Presumably, this definition was mistakenly copied as-is from gcc-msm8916
+> > (which uses 930 MHz for GPLL2). There are no branch consumers of this root
+> > clock inside gcc-mdm9607 (notably, gcc_apss_tcu_clk has bimc_ddr_clk_src as
+> > parent instead of this clock), so we can just drop it.
+> > 
+> > Cc: stable@vger.kernel.org
+> > Fixes: 48b7253264ea ("clk: qcom: Add MDM9607 GCC driver")
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > ---
 > 
-> In the upcoming USB power sequencing integration, the USB hub driver
-> first needs to check whether a graph connection exists, and whether
-> the other side of the connection is a supported connector type. The
-> USB port is tied to a "port" firmware node, and this new helper will
-> be used to get the endpoint under the known "port" firmware node.
+> It does, CMD_RCGR @ 0x37000
+> 
+> Interestingly, there's also an SMMU instance.. although downstream doesn't
+> seem bothered with it
+> 
 
-...
+Thanks for checking, but that still doesn't give us enough to work with
+it. In particular:
 
-> +/**
-> + * fwnode_graph_get_next_port_endpoint - Get next endpoint firmware node in port
-> + * @port: Pointer to the target port firmware node
-> + * @prev: Previous endpoint node or %NULL to get the first
-> + *
-> + * The caller is responsible for calling fwnode_handle_put() on the returned
-> + * fwnode pointer. Note that this function also puts a reference to @prev
-> + * unconditionally.
-> + *
-> + * Return: an endpoint firmware node pointer or %NULL if no more endpoints
-> + * are available.
+ - What are the frequency tables? Which parents exist with which IDs?
+ - What is the hid_width?
+ - Where do we hook it up to some children?
 
-Yeah, you see, even here is inconsistency with previously added kernel-doc.
+The way it is right now it's definitely wrong. I don't think we'll need
+it so removing it like this patch is probably the easiest thing to do...
 
-> + */
-> +struct fwnode_handle *fwnode_graph_get_next_port_endpoint(const struct fwnode_handle *port,
-> +							  struct fwnode_handle *prev)
-> +{
-> +	struct fwnode_handle *ep;
+Thanks,
+Stephan
 
-Unused?
-
-> +	while (1) {
-
-This is usually harder to read and follow. It's like "pay much attention on
-the code", but here no rocket science, no code to really pay attention to.
-
-> +		prev = fwnode_get_next_child_node(port, prev);
-> +		if (!prev)
-> +			break;
-> +
-> +		if (WARN(!fwnode_name_eq(prev, "endpoint"),
-> +			 "non endpoint node is used (%pfw)", prev))
-> +			continue;
-> +
-> +		break;
-> +	}
-> +
-> +	return prev;
-> +}
-
-So, this can be rewritten as
-
-	ep = prev;
-	do {
-		ep = fwnode_get_next_child_node(port, ep);
-		if (fwnode_name_eq(ep, "endpoint"))
-			break;
-
-		WARN_ON(ep, ...);
-	} while (ep);
-
-	return ep;
-
-But also big question why? to WARN*(). There is no use in the entire
-property.c.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+PS: This platform has the weird TZ-managed SMMU (like MSM8916), so there
+isn't much you can do with it from Linux. Unless you are running TF-A,
+then you can describe it as "arm,mmu-500" and use it for everything
+pretty much exactly like you would normally expect. But you still don't
+need to do anything with this clock.
 
 
