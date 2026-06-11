@@ -1,181 +1,145 @@
-Return-Path: <devicetree+bounces-310173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310178-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fXShI6RbKmpHoAMAu9opvQ
-	(envelope-from <devicetree+bounces-310173-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:54:28 +0200
+	id nhzwK8ZeKmoqoQMAu9opvQ
+	(envelope-from <devicetree+bounces-310178-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:07:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB62366F2DD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD6D66F3F3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:07:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mEmu3rxn;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310173-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310173-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=thorsis.com header.s=dkim header.b=RjqQxvEw;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310178-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310178-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=thorsis.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 64D7230D6CD2
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 06:54:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 19500304BDA2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B3D38AC92;
-	Thu, 11 Jun 2026 06:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8364838A706;
+	Thu, 11 Jun 2026 07:07:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail.thorsis.com (mail.thorsis.com [217.92.40.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF750368D5B;
-	Thu, 11 Jun 2026 06:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE62E31E845
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 07:07:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781160860; cv=none; b=A+2O5Yh1v7reizz6ywVlaHw6h/IXIQDuQ2EkTZ6CBbRa8RXMCYLULDNv0yaTLDJ/ryp78uFAw1eOeuRtWN9tIXmlHfNVaG75RljL35LKlD4weqSFO0jIWyJNpLcfth5NpyUscY6C9oVv8M+M8NqsnAcNWARL8ZwEI2sYPFktCyQ=
+	t=1781161632; cv=none; b=XhEnhVNa9WnR5HMrimL4A11L6NBXy8WeD6ADGEKhtCl9PFbQCM7Wnp0LsHU0ceyoOC6CWxqOD3hsY+prcpmMjLkIfxjwUwKkNn06ayHcDfO3a5EiIkZptfmflRsF+N36dN4QyjU90jADA2VCAHsYbnl9ZMPXlhxlzj4Nj5clBi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781160860; c=relaxed/simple;
-	bh=uHbE209o+S2zjt6Lj5QRHSxUY0nqCKSHlAiQ6D/fLRo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=k6x8KfVcMujWTaMwPZzfRHz+QI92TemiJTTLNWXrqtdmnRzjAy0SfqithKiDZSIES79o6bGFBaNKl/dtOPPD2axBFETxjiH1d04j6eHX1pB4R0uQzGXOxo1s6xi7H7jrh1Pdt5qIuWwhBC+sNS3gHZ8wW4VzF69dIxCgkBl/DNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mEmu3rxn; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 147741F00893;
-	Thu, 11 Jun 2026 06:54:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781160855;
-	bh=pXixa372b14KKbySQMTQlSQy82hIaK1jH6zCVzAv1rU=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To;
-	b=mEmu3rxnEI93mltW7ykfywO6UE37j+L2ZCngnegSkQfIt+1E5LxydBQChdbmtD1ql
-	 Cb7Ddlmq36vBUkpVuVpZ63F709VSuKEpmMZycc5G000XMbhUryymLN0gBcmezaDIE6
-	 FkfKUTcSPINu3S/CPl/Aj3oGM/p548MwHOMXpxwjnoTzzjN2y5QjVGNpr0Shvdw5jW
-	 QK0TCzgh1ETbU1e1IB7oqXTPMK6+c3yK/x5ZRB+SAPJi961gR0oZYbrwFEl+7U1NlC
-	 CcrYMuoVqatLSZ6PTtkQgQ5UcG6RBuF87782Xxrsg9H3w078Y4X8j0tUBoXh6EIfun
-	 l5u62UYiphgGQ==
-Message-ID: <eda67f3d-9395-4386-9311-d6f6b1c62304@kernel.org>
-Date: Thu, 11 Jun 2026 08:54:09 +0200
+	s=arc-20240116; t=1781161632; c=relaxed/simple;
+	bh=X8QIjsZZWXW897hPColjBZEXTSACcoUe4LSm0gnfD3o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ee07GfdbOX1shxfRRSpDnC0zRoUiT7RiQmeQ8LrfuMdsFKueKOOzZYkXHTMtIffYC92CZJQOBvXgTYo9TcPLZM0BRj5U+DCKnss3Kuicq6vdSMDlhk87tqSHVQ/xJqvhNdhJh9e3L8o3C8tIIsQXyHcEGCtFwpmGZ39dEuwDrO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=thorsis.com; spf=pass smtp.mailfrom=thorsis.com; dkim=pass (2048-bit key) header.d=thorsis.com header.i=@thorsis.com header.b=RjqQxvEw; arc=none smtp.client-ip=217.92.40.78
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D70211488786;
+	Thu, 11 Jun 2026 08:58:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=dkim;
+	t=1781161083; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=n54BnaL2jE54uh4/tKk3tFrCdyT542DJzjBEBpUb3WE=;
+	b=RjqQxvEwWmEqPy0Z9A7YKLVbaDd1vfsYtog/GKAKlAuxRdQKnpqmXPiWbySoyfCNWUS+Ce
+	HI95rCn+JQMlLOaM58BUPxjDjV4tRPamTMLdT5DlWrwM0bLobn1tm1B4TDwDbfD5R2gx+4
+	KtyQHYuaTsEc9F+C62AEkLd+4NFepyKiTLeDOxw5ah+yJXqRYIGAa7X5HTJz/GK5y4+rJY
+	qVE9crCIrq30nLot1ZpP+aHTsD9LS8UR40TeAyGr6JdWjQ7X0f/xrNPTAfD8SA9hHF9zq+
+	vyvG30b0kL2f3zanU8qpUYaz5MO4rINVIghBtUy7Lr1VEZ86xkSd7wW4/oSyuw==
+Date: Thu, 11 Jun 2026 08:57:49 +0200
+From: Alexander Dahl <ada@thorsis.com>
+To: Lucas Stach <l.stach@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add Gira
+Message-ID: <20260611-tamale-renter-d603ca346198@thorsis.com>
+Mail-Followup-To: Lucas Stach <l.stach@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	kernel@pengutronix.de
+References: <20260610213047.500701-1-l.stach@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/3] dt-bindings: timer: mips,p8700-gcru
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: aleksa.paunovic@htecgroup.com, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Paul Walmsley <pjw@kernel.org>, John Stultz <jstultz@google.com>,
- Stephen Boyd <sboyd@kernel.org>, Vivian Wang <wangruikang@iscas.ac.cn>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org,
- Djordje Todorovic <djordje.todorovic@htecgroup.com>,
- Chao-ying Fu <cfu@mips.com>, Conor Dooley <conor.dooley@microchip.com>
-References: <20260610-riscv-time-mmio-v8-0-a865206675c6@htecgroup.com>
- <20260610-riscv-time-mmio-v8-1-a865206675c6@htecgroup.com>
- <5e36909c-caf3-4078-b8ec-a77e385d20cf@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <5e36909c-caf3-4078-b8ec-a77e385d20cf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260610213047.500701-1-l.stach@pengutronix.de>
+User-Agent: Mutt/2.2.13 (2024-03-09)
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[thorsis.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[thorsis.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-310173-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:l.stach@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:kernel@pengutronix.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:aleksa.paunovic@htecgroup.com,m:daniel.lezcano@linaro.org,m:tglx@linutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:paul.walmsley@sifive.com,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:pjw@kernel.org,m:jstultz@google.com,m:sboyd@kernel.org,m:wangruikang@iscas.ac.cn,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:djordje.todorovic@htecgroup.com,m:cfu@mips.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[ada@thorsis.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310178-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[ada@thorsis.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[thorsis.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[htecgroup.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pengutronix.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DB62366F2DD
+X-Rspamd-Queue-Id: ECD6D66F3F3
 
-On 11/06/2026 08:51, Krzysztof Kozlowski wrote:
-> On 10/06/2026 10:22, Aleksa Paunovic via B4 Relay wrote:
->> From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
->>
->> Add dt-bindings for the GCR.U memory mapped timer device for RISC-V
->> platforms. The GCR.U memory region contains shadow copies of the RISC-V
->> mtime register and the hrtime Global Configuration Register.
->>
->> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+Hello Lucas,
+
+Am Wed, Jun 10, 2026 at 11:30:47PM +0200 schrieb Lucas Stach:
+> Add vendor prefix for Gira Giersiepen GmbH & Co. KG
+> Link: https://www.gira.de/
 > 
-> You keep ignoring reviews you received (14th May!) and sending same mistake.
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+
+Newline between text and trailers, and no newline in between trailers?
+
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Can you address the emails?
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 28784d66ae7b..2b7bf7d7b9c2 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -656,6 +656,8 @@ patternProperties:
+>      description: Giantec Semiconductor, Inc.
+>    "^giantplus,.*":
+>      description: Giantplus Technology Co., Ltd.
+> +  "^gira,.*":
+> +    description: Gira Giersiepen GmbH & Co. KG
+
+Reviewed-by: Alexander Dahl <ada@thorsis.com>
+
+Greets
+Alex
+
+>    "^glinet,.*":
+>      description: GL Intelligence, Inc.
+>    "^globalscale,.*":
+> -- 
+> 2.47.3
 > 
-> NAK for this patch.
-
-Hm, maybe it's b4 relay issue, so here is the report:
-
-https://lore.kernel.org/all/20260514055333.A29B8C2BCB7@smtp.kernel.org/
-
-Best regards,
-Krzysztof
+> 
 
