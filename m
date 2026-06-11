@@ -1,159 +1,277 @@
-Return-Path: <devicetree+bounces-310465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310466-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id j86RFse0KmpPvgMAu9opvQ
-	(envelope-from <devicetree+bounces-310465-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 15:14:47 +0200
+	id TKk8KJy1Kmp7vgMAu9opvQ
+	(envelope-from <devicetree+bounces-310466-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 15:18:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71FC3672443
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 15:14:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEC91672488
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 15:18:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MaXShn7s;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310465-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310465-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="rgADs/dF";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310466-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310466-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 755033007AFA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:08:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 94CD5301990F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FD1404BFC;
-	Thu, 11 Jun 2026 13:08:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F4E74071DE;
+	Thu, 11 Jun 2026 13:17:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8FC3FBEB3;
-	Thu, 11 Jun 2026 13:08:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3638409135
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 13:17:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781183284; cv=none; b=At/AE+BPl4etAHHF7QNwpjoSW+1zxdhHQYNrlztCZPIyyAzL9+6BF73xF22gbjixxcL8LTH+CC57t3+uc0gsodqEvEQ0JzV/xt3cpTAJV6VDciQzVQ1QBT/YoCd9XwJrBoGiGGVHrBOtNDjZio9zfL9gDziWWAtkj47gOHSnRdQ=
+	t=1781183867; cv=none; b=Rwf3jaHqgdToocgp7KZBUYC6fUikVkx+1uh8bQ6pQelmAQF0K7sboaxln9RBkTretqww4UuenKh/gAmJK134qzahNGqRiukSqozrc24NrjK17akaopeTbZcZT0jdZ7ghkUosvN1LeAZr5rVpeoBlWom9cETveumEBZCdSbwtLnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781183284; c=relaxed/simple;
-	bh=YRSxXGEdBMckTZWMiUzxt6dGytOXJeqbKrl0zoZEiLE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jCVsnFawLf4KgGwZJH1/Yxzl/MoFNTIf5G8Ehgjh6BwOP4v+nryjFyJXjOZFTmEc9XVOk1KKqKYGHajLgokPBdb9NL1ZHzG5r4mMPUeOViJmAOM7O09fJUKPMp+MBpRN/Li03UaXmmw0ylgXIkP7XBVv4ruPKQrvegsHou30Uuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MaXShn7s; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B196E1F00893;
-	Thu, 11 Jun 2026 13:07:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781183283;
-	bh=P1FYUXcpGczkI76lcKKzluH/jwJAQaC7J1OAjGYdPcI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=MaXShn7s9AgR4EjVMsTuJiFCI6wArgzLEPjT5bVoPRgUurzF9WQsUHU16hHMr8ic+
-	 AKyOQ13NpTR77DttWP/rtPqRW8aiT5XsOR/b8GsQte7FwnzlBb/QM4bA7vDFA+O7NE
-	 vYoJwRUDk23A/3PJ15Nn/x98JhX2HRWZ4ExUsF2vAgXN+r47OPiECoQ4jxP1Ww5Aw6
-	 4ElAVBYhAIJ0xvM9xOkK/dGnJnyStUQ8QnVJ4WmdOV5Lefqoit1dC6uQCrVPoAMy+w
-	 SYvy2Z2C272qhVC+XdjdluFcnXkvwxx3cHt2w6H4IgvlNMis36/3ahNm98Cmyuk0V9
-	 czDzmPT5/SQSA==
-Date: Thu, 11 Jun 2026 14:07:53 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Md Shofiqul Islam <shofiqtest@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, krzk@kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: accel: Convert lis302 binding to YAML
- schema
-Message-ID: <20260611140753.6158ad06@jic23-huawei>
-In-Reply-To: <20260610192338.GB626285-robh@kernel.org>
-References: <20260610110051.1228-1-shofiqtest@gmail.com>
-	<20260610165640.411c1477@jic23-huawei>
-	<20260610192338.GB626285-robh@kernel.org>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1781183867; c=relaxed/simple;
+	bh=ioxeCNvToivxf1SJbAe6EIhY0aEComaoX+8RNwBtunE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=fzJjmb2PK9iPaMSK4l57rfAzNnbmOhPSYozmkzGX6qn+0c6/N33TtrzYwJ6WwYwYK0bqHcFSu9NdOTicY6KKp5jMRKBS6Kii06kcZeIhCtu+ufBbLurRBtWAJdFqFIaDLZ0HOi61uQ5/oSZoHvHIMNDA83Xxlio1cfDMhwYUjBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rgADs/dF; arc=none smtp.client-ip=209.85.210.173
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-842288702fbso3375986b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 06:17:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781183864; x=1781788664; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=P/xQJbFkRRowzEJ+ZDzKMiiLUlhrEmEVF/BkBQLOp88=;
+        b=rgADs/dFrcS2wSQ6pF4C3j8MXVBZdH/204/249icRSwj73ux9Eohy09XT+1TRb9ZE7
+         m3onpTDhBMYWhhEN2/5rhOhYb6ynpWjkrHCds0muxivzkHps6Mglqsm8R6/5GlefuG4S
+         vcikiANUc4zDeJUZ0f+L7fCXkRJcIYBzgRNPGYrtN1ysFkT7B4clARonymUG6ui1pUKP
+         O2EQsIlJX+emuJkBOgLMWDbZa2Oqkzb12NgAuq3k57SQxmLBMFCV/t8GdBAt2mHssBwq
+         JH5UgwFoCLQ3ZdL2HOkTaah97Rc9SFveUWkjdLP3fbPseMBeZ5WF1/JLry0KVC7YgRCY
+         jWbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781183864; x=1781788664;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P/xQJbFkRRowzEJ+ZDzKMiiLUlhrEmEVF/BkBQLOp88=;
+        b=gIFyMT2MTpCGcU5cNWcJZuf/QwDnUFUtO5QXSOG2S+SCixfslip5WnUM/ddhVjdfFD
+         fpF1KtyE8h4aVA1lWwrPeU8CYSn2W/V9YL4Ed/CkG+mclP31keSIzUSjy/yWbE79ZFM+
+         puu0CazbhD3KQQ4aXrSKe6S1A0VTFhn1UTX/wg2F66WNquze6STdH66FAgNI9J7bQctB
+         q5gAFfAKZOfKFlljk7qiaWxaTH4PmqNhwVd5W0OTZsJN5Q/+mLbUcDcWZ7TuexXpAl8O
+         iVNhUValh9pKbadADmrFJc8LQkxtf5ryWulHfk4zhWGSCMcruWnzF/6/rUxXulHHVZcb
+         vm8w==
+X-Forwarded-Encrypted: i=1; AFNElJ8XOEpqVwckUHEceiiTWyqKEVaikYBKaieZjnOKxhZZYwAGpT3IOxzSOk0ZUbyI1IVf0L209ZMTV1o+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmJOoAoZWB1t9Jjx4Yq1HhS7MX+YPFaILL2PlqG7yZi9cKisjh
+	H3ZdEj9Fu0Admd3eA6Pi42T4zmVCe7/CDnoYsGXFep1luDZzPtiuVCEW
+X-Gm-Gg: Acq92OHgRSH2iKZegX+sTFDTofXUF8BzGSUfQpCL0TCiq/7ON/D59NRlTxmV15+Nhcz
+	jAOVOZhZSkjkil+9AopSKlqRe0W9WXf+ZORsK/mIFwpUvSjbCjHFDuzEUVXY1Fy3aHyR9L25zbq
+	qyoO8N5Kxr0/rAciwIqhihEJ7uEk9LeZUDh5E3a5UpK7/eAVaQNVhDPRSrXlGDGFNYfPmFOjRA2
+	rc7G04Sp4+R8Z4zKPE05p8qQY5iUhTEOw9YiIHT4Q2xQklfRPbJ2dXaFod9OK/7gtznsREAqnx9
+	lUkAFbvJfGZExvSwzDuD7jNFo+scKQRirO1QHzvDYxM9AGQoTbtrO+JVPw0qD2LZaWWWvZlCHfe
+	Gql+Y3eWeR1q8X2eHEF8lcMZ1FrfVLlNO02DrxlKluIsewyMEcA6aZPqi/1nrzcDs8XIxZvzuUl
+	npliHjoMat
+X-Received: by 2002:a05:6a00:9517:b0:842:33f3:da68 with SMTP id d2e1a72fcca58-8433679e608mr3293724b3a.8.1781183863777;
+        Thu, 11 Jun 2026 06:17:43 -0700 (PDT)
+Received: from [127.0.1.1] ([2a12:a305:4::302d])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-843382e5caesm1986491b3a.44.2026.06.11.06.17.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jun 2026 06:17:43 -0700 (PDT)
+From: Guodong Xu <docular.xu@gmail.com>
+Date: Thu, 11 Jun 2026 09:17:28 -0400
+Subject: [PATCH v3] riscv: dts: spacemit: Use symbolic PDMA request numbers
+ on K1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20260611-b4-k1-pdma-req-macros-v3-1-ae8416052571@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAGe1KmoC/4WNTQ6CMBgFr0K69jNtoa248h7GRf+AqgVskWgId
+ 5fiho1xOcl7MxOKNjgb0TGbULCji65rF8h3GdKNbGsLziyMKKYccyxAFXAj0BsvIdgHeKlDF+F
+ gqOAGE8pNhZZvH2zlXqv3fPlyfKqr1UOSpUXj4tCF9xoeSdr9a4wEMDBFZV4yhrHQp9pLd9/rz
+ qPUGOnWUv6y0GQxzAhVlkKxYmuZ5/kDFDYsGBIBAAA=
+X-Change-ID: 20260607-b4-k1-pdma-req-macros-8d276d0126df
+To: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, Guodong Xu <docular.xu@gmail.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4245; i=docular.xu@gmail.com;
+ h=from:subject:message-id; bh=ioxeCNvToivxf1SJbAe6EIhY0aEComaoX+8RNwBtunE=;
+ b=owGbwMvMwCXWtEl1Z3CGpCDjabUkhiytrbnvZJce2757oSbnnvVLs9gtdA5sj2HeuHBP9bul/
+ NbcJsdmdpSyMIhxMciKKbIcPtqSvfWVT7Tvc84fMHNYmUCGMHBxCsBE6tIY/kfE/V+SIxx451+e
+ 5NKwM/kq3b3dLoKG8+eunnZRuPvuP32G/3lXSuROr9onNc390cECnuzV5S68Jt0vp72MnP1EQen
+ wDQ4A
+X-Developer-Key: i=docular.xu@gmail.com; a=openpgp;
+ fpr=90B1DC3DF0BD10FD1227BD6344F254AF42F143EE
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-310466-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310465-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:shofiqtest@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:docular.xu@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:docularxu@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[docularxu@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,baylibre.com,analog.com,kernel.org];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[docularxu@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,jic23-huawei:mid]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,msgid.link:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,spacemit.com:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 71FC3672443
+X-Rspamd-Queue-Id: DEC91672488
 
-On Wed, 10 Jun 2026 14:23:38 -0500
-Rob Herring <robh@kernel.org> wrote:
+Add a local DTS header, k1-pdma.h, that gives symbolic names to the K1
+PDMA request numbers. These request numbers are hardware-fixed; their
+allocation can be found in K1 manual.
 
-> On Wed, Jun 10, 2026 at 04:56:40PM +0100, Jonathan Cameron wrote:
-> > On Wed, 10 Jun 2026 14:00:51 +0300
-> > Md Shofiqul Islam <shofiqtest@gmail.com> wrote:
-> >   
-> > > Convert the STMicroelectronics LIS302DL/LIS3LV02D accelerometer device
-> > > tree binding from plain text format to YAML schema format.
-> > > 
-> > > The binding covers two variants matched via their respective bus drivers:
-> > > - SPI: st,lis302dl-spi (drivers/misc/lis3lv02d/lis3lv02d_spi.c)
-> > > - I2C: st,lis3lv02d   (drivers/misc/lis3lv02d/lis3lv02d_i2c.c)
-> > > 
-> > > Document all vendor-specific properties read by the driver via
-> > > of_property_read_*(), including click detection, IRQ routing, free-fall/
-> > > wake-up engines, high-pass filtering, axis remapping, output data rate,
-> > > and self-test limits.
-> > > 
-> > > Also correct the click threshold property names: the driver reads
-> > > "st,click-threshold-{x,y,z}" but the old .txt documented them as
-> > > "st,click-thresh-{x,y,z}".
-> > > 
-> > > Validated with: make dt_binding_check   DT_SCHEMA_FILES=Documentation/devicetree/bindings/iio/accel/st,lis302dl.yaml
-> > > 
-> > > Signed-off-by: Md Shofiqul Islam <shofiqtest@gmail.com>  
-> > 
-> > Hi.
-> > 
-> > So the conundrum here is whether we want to keep carrying this binding
-> > as it dates to a previous era.
-> > 
-> > The driver never made it to IIO and is still in drivers/misc.
-> > The majority of what is the text document should never have been
-> > in DT in the first place. I'll guess this dates all the way back
-> > to the wild west days before we had regular binding review.  
-> 
-> Where the driver is doesn't matter for the binding. Unless the 1 
-> apparent user is will to change things, we should just document what is 
-> in use (and nothing more). Some of this looks like it can be droppped.
+Replace the hard-coded numbers in the SPI3 "dmas" property with the
+K1_PDMA_SPI3_RX/TX macros.
 
-I don't mind documenting it, but with a big warning at the top to make
-sure no one copies it for a newer part! 
+Signed-off-by: Guodong Xu <docular.xu@gmail.com>
+---
+Add a local DTS header naming the K1 PDMA request lines and convert the
+current user (the K1 SPI3 node) to the new K1_PDMA_* macros. The request
+numbers come from the SpacemiT K1 User Manual [1], Chapter 9.4.3 DMA
+Connectivity & Assignments.
 
-Jonathan
+[1]: https://www.spacemit.com/community/document/info?lang=en&nodepath=hardware/key_stone/k1/k1_docs/k1_usermanual/9.Top_System.md
 
-> 
-> Rob
+Changes in v3:
+- Move the request-number macros from include/dt-bindings/dma/ to a local
+  DTS header arch/riscv/boot/dts/spacemit/k1-pdma.h (Conor).
+- Squash the header and its user into a single patch.
+- Link to v2: https://patch.msgid.link/20260609-b4-k1-pdma-req-macros-v2-0-5d5d7b997b54@gmail.com
+
+Changes in v2:
+- Drop the #dma-cells description change in spacemit,k1-pdma.yaml; the request
+  numbers are hardware-fixed and unused by the driver (Conor)
+- Link to v1: https://patch.msgid.link/20260607-b4-k1-pdma-req-macros-v1-0-5b2a3955007c@gmail.com
+
+BR,
+Guodong Xu
+---
+ arch/riscv/boot/dts/spacemit/k1-pdma.h | 56 ++++++++++++++++++++++++++++++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi   |  4 ++-
+ 2 files changed, 59 insertions(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/spacemit/k1-pdma.h b/arch/riscv/boot/dts/spacemit/k1-pdma.h
+new file mode 100644
+index 0000000000000..65112d5847add
+--- /dev/null
++++ b/arch/riscv/boot/dts/spacemit/k1-pdma.h
+@@ -0,0 +1,56 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * This header provides DMA request number for non-secure peripherals of
++ * SpacemiT K1 PDMA.
++ *
++ * Copyright (c) 2026 Guodong Xu <docular.xu@gmail.com>
++ */
++
++#ifndef _DTS_SPACEMIT_K1_PDMA_H
++#define _DTS_SPACEMIT_K1_PDMA_H
++
++#define K1_PDMA_UART0_TX	3
++#define K1_PDMA_UART0_RX	4
++#define K1_PDMA_UART2_TX	5
++#define K1_PDMA_UART2_RX	6
++#define K1_PDMA_UART3_TX	7
++#define K1_PDMA_UART3_RX	8
++#define K1_PDMA_UART4_TX	9
++#define K1_PDMA_UART4_RX	10
++#define K1_PDMA_I2C0_TX		11
++#define K1_PDMA_I2C0_RX		12
++#define K1_PDMA_I2C1_TX		13
++#define K1_PDMA_I2C1_RX		14
++#define K1_PDMA_I2C2_TX		15
++#define K1_PDMA_I2C2_RX		16
++#define K1_PDMA_I2C4_TX		17
++#define K1_PDMA_I2C4_RX		18
++#define K1_PDMA_SPI3_TX		19
++#define K1_PDMA_SPI3_RX		20
++#define K1_PDMA_I2S0_TX		21
++#define K1_PDMA_I2S0_RX		22
++#define K1_PDMA_I2S1_TX		23
++#define K1_PDMA_I2S1_RX		24
++#define K1_PDMA_UART5_TX	25
++#define K1_PDMA_UART5_RX	26
++#define K1_PDMA_UART6_TX	27
++#define K1_PDMA_UART6_RX	28
++#define K1_PDMA_UART7_TX	29
++#define K1_PDMA_UART7_RX	30
++#define K1_PDMA_UART8_TX	31
++#define K1_PDMA_UART8_RX	32
++#define K1_PDMA_UART9_TX	33
++#define K1_PDMA_UART9_RX	34
++#define K1_PDMA_I2C5_TX		35
++#define K1_PDMA_I2C5_RX		36
++#define K1_PDMA_I2C6_TX		37
++#define K1_PDMA_I2C6_RX		38
++#define K1_PDMA_I2C7_TX		39
++#define K1_PDMA_I2C7_RX		40
++#define K1_PDMA_I2C8_TX		41
++#define K1_PDMA_I2C8_RX		42
++#define K1_PDMA_CAN0_RX		43
++#define K1_PDMA_QSPI_RX		44
++#define K1_PDMA_QSPI_TX		45
++
++#endif /* _DTS_SPACEMIT_K1_PDMA_H */
+diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+index 08a0f28d011fe..7d414e15d2cc2 100644
+--- a/arch/riscv/boot/dts/spacemit/k1.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+@@ -6,6 +6,8 @@
+ #include <dt-bindings/clock/spacemit,k1-syscon.h>
+ #include <dt-bindings/phy/phy.h>
+ 
++#include "k1-pdma.h"
++
+ /dts-v1/;
+ / {
+ 	#address-cells = <2>;
+@@ -1094,7 +1096,7 @@ spi3: spi@d401c000 {
+ 				clock-names = "core", "bus";
+ 				resets = <&syscon_apbc RESET_SSP3>;
+ 				interrupts = <55>;
+-				dmas = <&pdma 20>, <&pdma 19>;
++				dmas = <&pdma K1_PDMA_SPI3_RX>, <&pdma K1_PDMA_SPI3_TX>;
+ 				dma-names = "rx", "tx";
+ 				status = "disabled";
+ 			};
+
+---
+base-commit: 793cc54475b49b5b558902b5c13e4bfe66530a50
+change-id: 20260607-b4-k1-pdma-req-macros-8d276d0126df
+
+Best regards,
+--  
+Guodong Xu <docular.xu@gmail.com>
 
 
