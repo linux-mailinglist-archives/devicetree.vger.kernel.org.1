@@ -1,129 +1,307 @@
-Return-Path: <devicetree+bounces-310242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310243-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NsUuHu11KmrPpgMAu9opvQ
-	(envelope-from <devicetree+bounces-310242-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:46:37 +0200
+	id VPgcOFJ2KmoGpwMAu9opvQ
+	(envelope-from <devicetree+bounces-310243-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:48:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE74266FFCD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:46:36 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AF4D66FFFB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:48:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nFQEdgRH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310242-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310242-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LfB7zZdc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310243-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310243-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 93F713021D34
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:46:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B8D8B303264E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:47:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB89A3BA222;
-	Thu, 11 Jun 2026 08:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393261A6806;
+	Thu, 11 Jun 2026 08:47:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B3C34D901;
-	Thu, 11 Jun 2026 08:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC54B30C366;
+	Thu, 11 Jun 2026 08:47:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781167588; cv=none; b=lF838U78PO3HNUZKxFuU9PCUZ+ztP9/52ZDBPkllVB2MiJ4tiffVaZzJVp5Clut5W1BJuVIcxFFXDHD1xZpyYN7DqrOL34iKMR9Q0pHR8H8URB6yTPn5hUaL4ACcCezOvmrEe0sl/3XrgpIkrXvrqd642KBNpFYFBnA8twRyPww=
+	t=1781167652; cv=none; b=EKM1YhGHj34B9D+3n4YwiUm6lfEeKmmLlM51LhlXu66VsG9poJioWxEZ3raL/k+nmAMWhuxzCZxS6T/rkaKzeyr3GXe+YZGWDLzSJkpxFfgLssjLWeE3Lvu9wfo0JMhFzcrlBrcf7Vdcm0sQr9dX2wd5sw1GoYEw+e8jiBdq2LA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781167588; c=relaxed/simple;
-	bh=5pvQ8v3SMjwGogRWrF+Ov4Ds5DzEHsb00w0xVEE/07g=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ILlaS1bEVta7VEpCgoZqA/79PIDnUEP4j41n/aQiLGiapmF0r80yh8ZiXPEtSJxwxep/qypDojAAwYwsVN9VWfafOOCJgp71h80iwYrl6eazcwhzL23AdpQPhJVfNr1iNfI5Je/hr+v7H1eM2hLsIS57o3af7XOyk22ij3VKbDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nFQEdgRH; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4AC41F00893;
-	Thu, 11 Jun 2026 08:46:24 +0000 (UTC)
+	s=arc-20240116; t=1781167652; c=relaxed/simple;
+	bh=67pHZ3TSGynPxEzu+fLDmz+mdHGIJ6SXEOKQqQadXPs=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=oYREMuteKWcoMn2p7YDqfr6Yc0kTztJZgQuCXz46noyp4vvYZL4tR01iv2kOoiBKpD7JJ8vacALEuMnvtuDP+z2TvTjuljxoyBa93hXAFoee8HrvEbhG+UdmTeE2VhBRz/WheBMHPFD0BOvcoyisIJtaEcNzV9ZHqlyXlMAttps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfB7zZdc; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 638101F00898;
+	Thu, 11 Jun 2026 08:47:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781167587;
-	bh=2IIKlhb3svN4EPd89ooG0cnVxCK3GU+JlZ80wFVg5BE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=nFQEdgRHCPlaDppgNORMWkZO4wA854yfVwzCTMLEFdNqjtJ7ksYrCCAthGYjPQiGp
-	 rpX+y/d8juuDwYat3Rij5nuou/Hbl11diPdFieep+eOn2PNZ2g1rHbJVjnGcKpikwD
-	 WyEIv1xUzV0tMHKYIyjEc/T6zO8Z5tSi5tfLRUwMiOhHfXxGl8zQCEh+UFeXkoxh76
-	 XNjctmygrPSqtLV9asIrsf0LWuquijaxdu9zAnPg3drK5DTTasjx2Ec4H3OC0bBbQE
-	 O0u0wfmfYHMdgxILcA5T3LIglS18amCXgz5SlG5vc25S7WTzNfMw7JEEl6OJpin3ko
-	 64l/KQLzvkx0Q==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, ukleinek@kernel.org, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com, 
- alexandre.torgue@foss.st.com, linusw@kernel.org, 
- Manish Baing <manishbaing2789@gmail.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20260523173251.72540-2-manishbaing2789@gmail.com>
-References: <20260523173251.72540-2-manishbaing2789@gmail.com>
-Subject: Re: (subset) [PATCH v4 1/2] dt-bindings: mfd: st,stmpe: Add
- missing properties for PWM subnode
-Message-Id: <178116758438.933112.378885249487702601.b4-ty@b4>
-Date: Thu, 11 Jun 2026 09:46:24 +0100
+	s=k20260515; t=1781167650;
+	bh=gSTauo0ljBCyKajozHATxAGtJgJBeZKLMPCocLiUM9E=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=LfB7zZdcMO115naXFitnLW7tMYot/pc7c/P4p62Mt1ugDWt9zoJuoqzkp0tvnde5G
+	 /+Bt4yB9psGeJU9TWf0EcKsg+5AT4FrEToUxc8kNohcSbvD87TZx2HksZ/LpWOuU8r
+	 ftYtwTVGVLpOdr2DrWD2s9T7oWrxC12Y9HsRriCaS0GTxjUpnPztg/w5Foo58JbU+M
+	 ntHT8czv7KfgjGU4rlTxJyrP1Am9mpR7R5prbDINrKBhKibkYCQZ1tdjUkQShKcwpG
+	 AthmomoGBzCyveqFyJ6bmuDxdn+9HLM70WqsYRk0fvqT1KF8RSnO86bB2hY1VO7jrx
+	 cCJmEBSTXcNMQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v10] PCI: mediatek: Add support for EcoNet EN7528 SoC
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Caleb James DeLisle" <cjd@cjdns.fr>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260611082329.243515-1-cjd@cjdns.fr>
+References: <20260611082329.243515-1-cjd@cjdns.fr>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 11 Jun 2026 08:47:29 +0000
+Message-Id: <20260611084730.638101F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.16-dev-ad80c
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-310243-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:ukleinek@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:linusw@kernel.org,m:manishbaing2789@gmail.com,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,foss.st.com];
-	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdns.fr:email,lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:cjd@cjdns.fr,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-310242-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CE74266FFCD
+X-Rspamd-Queue-Id: 2AF4D66FFFB
 
-On Sat, 23 May 2026 17:32:50 +0000, Manish Baing wrote:
-> The st,stmpe-pwm binding is already covered by the MFD schema in
-> Documentation/devicetree/bindings/mfd/st,stmpe.yaml. However, the
-> PWM subnode was missing a 'required' properties block. This allowed
-> Device Tree nodes to pass validation even if the 'compatible'
-> string was omitted. This omission could lead to probe failures
-> at runtime.
-> 
-> [...]
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
 
-Applied, thanks!
+New issues:
+- [High] Premature loop termination in `mtk_pcie_retrain` prevents remainin=
+g root ports from being retrained.
+- [Low] Calling `dev_err_probe()` on a child device from the parent's probe=
+ context.
 
-[1/2] dt-bindings: mfd: st,stmpe: Add missing properties for PWM subnode
-      commit: b07f7904e0523170856876e4412be852377d492a
-
+Pre-existing issues:
+- [High] IRQ domains are leaked and leave dangling pointers when a PCIe por=
+t fails to start up.
+- [High] The PCIe port startup callbacks sleep while executing in the atomi=
+c noirq system resume phase.
+- [High] The `resource_size(mem)` parameter is silently truncated on 64-bit=
+ platforms because `fls()` only accepts a 32-bit unsigned int.
 --
-Lee Jones [李琼斯]
 
+commit f0ee2a994c044496f2233db60f4bbc71d16d530c
+Author: Caleb James DeLisle <cjd@cjdns.fr>
+Date:   Thu Jun 11 08:23:28 2026 +0000
+
+    PCI: mediatek: Add support for EcoNet EN7528 SoC
+   =20
+    Add support for the PCIe present on the EcoNet EN7528 (and EN751221) So=
+Cs.
+   =20
+    These SoCs have a mix of Gen1 and Gen2 capable ports, but the Gen2 ports
+    require re-training after startup.
+   =20
+    Co-developed-by: Ahmed Naseef <naseefkm@gmail.com>
+    Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
+    Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+
+diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controlle=
+r/pcie-mediatek.c
+index 6d0ee089ca74b..f4963af0d6085 100644
+--- a/drivers/pci/controller/pcie-mediatek.c
++++ b/drivers/pci/controller/pcie-mediatek.c
+
+[ ... ]
+
+> @@ -750,6 +761,134 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie=
+_port *port)
+>  	return 0;
+>  }
+> =20
+> +static int mtk_pcie_startup_port_en7528(struct mtk_pcie_port *port)
+> +{
+> +	struct mtk_pcie *pcie =3D port->pcie;
+> +	struct pci_host_bridge *host =3D pci_host_bridge_from_priv(pcie);
+
+[ ... ]
+
+> +	/* Assert all reset signals */
+> +	writel(0, port->base + PCIE_RST_CTRL);
+> +
+> +	/*
+> +	 * Enable PCIe link down reset, if link status changed from link up to
+> +	 * link down, this will reset MAC control registers and configuration
+> +	 * space.
+> +	 */
+> +	writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
+> +
+> +	msleep(PCIE_T_PVPERL_MS);
+
+[Severity: High]
+This is a pre-existing issue in the driver's power management design, but
+will adding msleep() here cause a "scheduling while atomic" BUG?
+
+The driver's PM ops configure mtk_pcie_resume_noirq() to run during the
+system resume_noirq phase, which executes with local hardware interrupts
+disabled.
+
+Since mtk_pcie_resume_noirq() unconditionally calls mtk_pcie_enable_port(),
+which then invokes this startup callback, will calling sleepable functions
+like msleep() and regmap_read_poll_timeout() here trigger a panic during
+system resume?
+
+> +
+> +	/* De-assert PHY, PE, PIPE, MAC and configuration reset */
+> +	val =3D readl(port->base + PCIE_RST_CTRL);
+> +	val |=3D PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
+> +	       PCIE_MAC_SRSTB | PCIE_CRSTB;
+> +	writel(val, port->base + PCIE_RST_CTRL);
+> +
+> +	writel(PCIE_CLASS_CODE | PCIE_REVISION_ID,
+> +	       port->base + PCIE_CONF_REV_CLASS);
+> +	writel(EN7528_HOST_MODE, port->base);
+> +
+> +	link_mask =3D (port->slot =3D=3D 0) ? EN7528_RC0_LINKUP : EN7528_RC1_LI=
+NKUP;
+> +
+> +	/* 100ms timeout value should be enough for Gen1/2 training */
+> +	err =3D regmap_read_poll_timeout(pcie->cfg, EN7528_LINKUP_REG, val,
+> +				       !!(val & link_mask), 20,
+> +				       PCI_PM_D3COLD_WAIT * USEC_PER_MSEC);
+> +	if (err) {
+> +		dev_err(pcie->dev, "EN7528: port%d link timeout\n", port->slot);
+> +		return -ETIMEDOUT;
+
+[Severity: High]
+This is a pre-existing issue, but does returning an error here leak IRQ
+domains?
+
+When this function returns -ETIMEDOUT for an empty slot, the caller
+mtk_pcie_enable_port() executes its error path and calls
+mtk_pcie_port_free().
+
+However, mtk_pcie_port_free() frees the port struct using devm_kfree(), but
+it never tears down the IRQ domains using irq_domain_remove(). Does this
+permanently leak the IRQ domains on every empty slot timeout and leave their
+domain->host_data pointers dangling to the freed port struct?
+
+> +	}
+> +
+> +	/* Activate INTx interrupts */
+> +	val =3D readl(port->base + PCIE_INT_MASK);
+> +	val &=3D ~INTX_MASK;
+> +	writel(val, port->base + PCIE_INT_MASK);
+> +
+> +	if (IS_ENABLED(CONFIG_PCI_MSI))
+> +		mtk_pcie_enable_msi(port);
+> +
+> +	/* Set AHB to PCIe translation windows */
+> +	val =3D lower_32_bits(mem->start) |
+> +	      AHB2PCIE_SIZE(fls(resource_size(mem)));
+
+[Severity: High]
+This is a pre-existing issue, but is resource_size(mem) silently truncated
+here on 64-bit platforms?
+
+The resource_size(mem) function returns a resource_size_t, which is a 64-bit
+integer on 64-bit architectures. Since fls() only accepts a 32-bit unsigned
+int, if the resource size is 4GB (0x100000000) or larger, will the lower 32
+bits evaluate to zero or be truncated, causing fls() to return an
+incorrectly small value and misconfiguring the inbound translation window?
+
+> +	writel(val, port->base + PCIE_AHB_TRANS_BASE0_L);
+
+[ ... ]
+
+> +static int mtk_pcie_retrain(struct device *dev, struct pci_host_bridge *=
+host)
+> +{
+> +	struct pci_dev *rp;
+> +	int ret =3D -ENOENT;
+> +	u16 lnksta =3D 0;
+> +	u32 speed;
+> +
+> +	/* Should already have been warned about during startup_port */
+> +	if (!IS_BUILTIN(CONFIG_PCIE_MEDIATEK))
+> +		return 0;
+> +
+> +	guard(rwsem_read)(&pci_bus_sem);
+> +
+> +	for_each_pci_bridge(rp, host->bus) {
+> +		if (pci_pcie_type(rp) !=3D PCI_EXP_TYPE_ROOT_PORT)
+> +			continue;
+> +
+> +#if IS_BUILTIN(CONFIG_PCIE_MEDIATEK)
+> +		ret =3D pcie_retrain_link(rp, true);
+> +#endif
+> +
+> +		if (ret)
+> +			return dev_err_probe(&rp->dev, ret,
+> +					     "failed to retrain port\n");
+
+[Severity: High]
+Does returning early here prevent the remaining root ports on the bus from
+being retrained?
+
+If pcie_retrain_link() fails for any port (for example, due to a timeout on
+an empty slot), this aborts the loop. Since mtk_pcie_probe() intentionally
+ignores the return value of mtk_pcie_retrain(), the early return doesn't
+propagate the error but causes subsequent ports to be permanently stuck at
+Gen1 speeds.
+
+Should this instead log the error and continue to the next port?
+
+[Severity: Low]
+Additionally, is it correct to call dev_err_probe() on the root port
+(rp->dev) here?
+
+Since this function executes as part of the parent host controller's probe
+sequence (mtk_pcie_probe()), the root port is not the device actively
+probing. Will calling dev_err_probe() on a device that is not currently
+probing print a misleading message (like 'probe of <device> failed')?
+
+Should standard pci_err(rp, ...) be used instead?
+
+> +
+> +		pcie_capability_read_word(rp, PCI_EXP_LNKSTA, &lnksta);
+> +		speed =3D lnksta & PCI_EXP_LNKSTA_CLS;
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260611082329.2435=
+15-1-cjd@cjdns.fr?part=3D1
 
