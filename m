@@ -1,132 +1,216 @@
-Return-Path: <devicetree+bounces-310363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310364-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id d3gGE2KVKmr8swMAu9opvQ
-	(envelope-from <devicetree+bounces-310363-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:00:50 +0200
+	id nq9JIjmWKmoytAMAu9opvQ
+	(envelope-from <devicetree+bounces-310364-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:04:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2FD86711DE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:00:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D334A671212
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:04:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=KN9qenms;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310363-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310363-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310364-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310364-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F290B3232623
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:59:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B492D30356CF
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:04:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96CBC3D9693;
-	Thu, 11 Jun 2026 10:59:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DABCE3C873B;
+	Thu, 11 Jun 2026 11:04:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BEC83D47B9;
-	Thu, 11 Jun 2026 10:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFEBB3DBD7A
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 11:04:04 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781175589; cv=none; b=tNhvV38sDUZqU4QKfhSWp+oeRUNvAv2Z0465ppS33SCkd0G5iNCJk4TZkdkPuuuQnZEMFEdkVOoS3Ljr+OvLtpH7CUIpwXeFmEr+OdOqRfIUbtvP3/ITrfbmLWB+5DbNWJr3OX4QAHBd+YRFYsIf2+IHSVZhtJvWNsQF0GcNMv0=
+	t=1781175846; cv=none; b=DDAC1e0hPXs87BX/RjUN1SC79eOIHvmNjKrgj+7Ni6sdTa90p0tFUFCvfdYrbCuM7UT2r6MNY5TFV1FbFZrV5+inYyr591SBI1cywTcRUkjuzSlgh6WuSMuao3O/CxJTXgQp/Q2PSLMF3p+h6L6TOm4T2OJgo5AvvULdzjwZQZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781175589; c=relaxed/simple;
-	bh=mYy8SrYNX0hSFw6iIYsujkPIlY8TTwbQVZPbmBDyeDU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fJHY/qvXO5ZcWuO0X7XT4oNLy+sGA0y5+q86i4LAEFa+upyX7I+SWrwBRCrdAF+Gi4k2E9tjwmv/yvOStF31hT4xJT2sag9Z2adff/g0WZcNs3QcEWIurH/tIOvCvEuVJ5b6GZ4ANjFYxdY8SGt5lTcviLHlpc/cEN+E1jRGYl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KN9qenms; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07F5D1F00893;
-	Thu, 11 Jun 2026 10:59:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781175588;
-	bh=mwc9Bper1UY3wwxKaGEuMDkCvCSrvItL4irShhMuQTg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=KN9qenmsuPwMXwQfUUz3bpy75Su8+LsxupaoigatkiJaj/S8yBaj0EAscJUrgknNp
-	 gAPDITk26Fp+DqbxFhGGPQwcrx29gCas7KyWKg3W304WTbk2YRPRB/khx2IiRSBbqN
-	 v2NRDFSRFHgPZ0/KD0BDBB16RameHh+ugeIPRbefmMTANPkBSTi/oUVhWIPrrVfXXO
-	 Ji50kZLC8UCd3t2Ug9fRCSxlF69+Q26mzWEgckFhE42fH5wxXyjuH2hYnPklV9O3U+
-	 FyxZmoXChu9WilhqwnC90BMi+7sr+eQ316z800ETMxogtMFQmKa8dz+eYp9m5ofg6h
-	 pkMmLQ0HhlJGw==
-Date: Thu, 11 Jun 2026 11:59:38 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
- dlechner@baylibre.com, jean-baptiste.maneyrol@tdk.com,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- andriy.shevchenko@intel.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V11 0/9] Add Invensense ICM42607
-Message-ID: <20260611115938.27712b66@jic23-huawei>
-In-Reply-To: <20260610175455.19006-1-macroalpha82@gmail.com>
-References: <20260610175455.19006-1-macroalpha82@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1781175846; c=relaxed/simple;
+	bh=0I311zuEXmpbYeS9LW04CVnyA07XyPu8cY6Eunqtxbw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bazDBRkklphYe4/yqSERQ38CROB0TCAvhHSvTiDNGQWmy7PLW2+GnnDyMy/h+srJYqg9AwHv4ldsjb5Hn3TRzxiPFRWsKjSELveZCE6pvbel13jWVHmS20xt+E003Rd0QrOw1MLmMUGgX3NHAums2EPTidxFe9Lm/krTdsBKd18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1wXdCA-0003nc-4z; Thu, 11 Jun 2026 13:03:34 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1wXdC3-002CdD-1k;
+	Thu, 11 Jun 2026 13:03:27 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1wXdC3-0000000ENxp-1khf;
+	Thu, 11 Jun 2026 13:03:27 +0200
+Date: Thu, 11 Jun 2026 13:03:27 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Jonas Jelonek <jelonek.jonas@gmail.com>
+Cc: Kory Maincent <kory.maincent@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Daniel Golle <daniel@makrotopia.org>,
+	=?utf-8?B?QmrDuHJu?= Mork <bjorn@mork.no>
+Subject: Re: [PATCH net-next 0/2] net: pse-pd: add Realtek/Broadcom PSE MCU
+ support
+Message-ID: <aiqV_10qQahSHXca@pengutronix.de>
+References: <20260608205758.1830521-1-jelonek.jonas@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260608205758.1830521-1-jelonek.jonas@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	TAGGED_FROM(0.00)[bounces-310364-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:andriy.shevchenko@intel.com,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-310363-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,intel.com,hotmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:jelonek.jonas@gmail.com,m:kory.maincent@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:bjorn@mork.no,m:jelonekjonas@gmail.com,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RSPAMD_EMAILBL_FAIL(0.00)[jic23@kernel.org:query timed out];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,jic23-huawei:mid,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D2FD86711DE
+X-Rspamd-Queue-Id: D334A671212
 
-On Wed, 10 Jun 2026 12:54:44 -0500
-Chris Morgan <macroalpha82@gmail.com> wrote:
+Hi Jonas,
 
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Mon, Jun 08, 2026 at 08:57:55PM +0000, Jonas Jelonek wrote:
+> This series adds a PSE-PD driver for the microcontroller (MCU) that fronts
+> the PSE silicon on a range of managed switches, together with its DT
+> binding.
 > 
-> Add support for the ICM42607 IMU. This sensor shares the same
-> functionality but a different register layout with the existing
-> ICM42600.
+> Hardware model
+> ==============
 > 
-> This driver should work with the ICM42607 and ICM42607P over both I2C
-> and SPI, however only the ICM42607P over I2C could be tested.
-Hi Chris,
+> These boards do not expose the PSE chips to the host directly. A small
+> microcontroller sits on an I2C/SMBus or UART bus and manages one or more PSE
+> chips behind it; the host CPU only ever talks to that MCU, using a fixed
+> 12-byte request/response protocol with a trailing checksum. The PSE silicon
+> never appears on the bus.
+> 
+> The same protocol family is used by MCUs fronting Realtek PSE chips
+> (RTL8238B, RTL8239, RTL8239C) and Broadcom PSE chips (BCM59111, BCM59121),
+> diverging in opcode numbering and a few response layouts. The driver
+> abstracts that behind a per-dialect opcode table and parser hooks, selected
+> by the compatible. The specific PSE chip behind the MCU is detected at
+> runtime and only influences per-chip constants (power scaling and the
+> per-port cap).
+> 
+> Why the compatible names the protocol, not the chip
+> ===================================================
+> 
+> The compatibles are "realtek,pse-mcu-rtk" and "realtek,pse-mcu-bcm". This is
+> a deliberate choice and the part most likely to raise questions, so the
+> reasoning up front.
+> 
+> The node names the protocol dialect, not a part:
+> 
+>   - The DT node describes the MCU, not a PSE chip: the PSE chips are behind
+>     the MCU and never appear on the bus, so naming the node after one (e.g.
+>     "realtek,rtl8239") would describe hardware that isn't at that address.
+> 
+>   - The PSE chips are, in principle, usable without this MCU (host-driven
+>     directly) - different hardware with a different programming model that
+>     would warrant its own binding. Claiming the PSE-chip compatibles here
+>     would collide with that.
+> 
+>   - Naming the MCU silicon is equally wrong: these are ordinary
+>     general-purpose microcontrollers (GigaDevice, Nuvoton, ...) that vary
+>     across boards and are not dedicated to this application.
+> 
+>   - What is fixed, and all the driver needs at DT-parse time, is the
+>     protocol dialect, so the compatible encodes exactly that. The two
+>     dialects share one protocol family and one binding, kept in a single
+>     "realtek" vendor namespace because this MCU front-end is found almost
+>     exclusively on Realtek-based switches; a "-rtk"/"-bcm" suffix selects
+>     the dialect. This follows the "google,cros-ec-*" pattern: a compatible
+>     for a firmware/protocol interface implemented by varying
+>     microcontrollers.
+> 
+> One compatible per dialect spans both transports:
+> 
+>   - The 12-byte wire protocol is identical over I2C/SMBus and UART; only the
+>     plumbing differs (SMBus vs native framing on I2C, baud rate on UART),
+>     and the transport is already expressed structurally by the node's parent
+>     bus (i2c@... vs serial@...). A "-i2c"/"-uart" suffix would only
+>     duplicate that, for a protocol that does not change across transports.
+> 
+>   - This is the multi-transport model used by e.g. "bosch,bmi160" (one
+>     compatible, separate i2c and spi drivers binding it), rather than the
+>     cros-ec model of per-transport compatibles - cros-ec splits because its
+>     on-wire framing genuinely differs per bus, which is not the case here.
+> 
+> The binding documents both points as well.
+> 
+> Testing
+> =======
+> 
+>  - Linksys LGS328MPCv2  (RTL8238B, I2C)
+>  - Zyxel GS1900-10HP A1 (BCM59121, UART)
+>  - Zyxel GS1900-10HP B1 (RTL8238B, UART)
+>  - Zyxel XMG1915-10EP   (RTL8239C, UART)
+>  - Zyxel XS1930-12HP    (RTL8239, SMBus)
+> 
+ 
+Thank you for your work!
 
-Just a quick reminder to check if there is useful feedback at:
-https://sashiko.dev/#/patchset/20260610175455.19006-1-macroalpha82%40gmail.com
+Overall, LGTM. Can you please take a look at this report:
+https://sashiko.dev/#/patchset/20260608205758.1830521-1-jelonek.jonas%40gmail.com 
 
-I didn't look into most of the but the last one about no avail mask bits
-being set for gyro channels was easy to verify as correct and suggests
-a testing gap.
+kzalloc_obj - seems to be a false positive. Some other have good points.
 
-Jonathan
-
+Best Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
