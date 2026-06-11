@@ -1,132 +1,236 @@
-Return-Path: <devicetree+bounces-310418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310421-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aqw8IjKkKmrauAMAu9opvQ
-	(envelope-from <devicetree+bounces-310418-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:04:02 +0200
+	id eoNPDtCkKmoQuQMAu9opvQ
+	(envelope-from <devicetree+bounces-310421-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:06:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1C1B6719DD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8172A671A70
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:06:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="Fw+RE/J6";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310418-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310418-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=linux.dev header.s=key1 header.b="C7VD/ntP";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310421-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310421-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linux.dev;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C36030C9563
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:04:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 47FE331951F5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91C83E3C41;
-	Thu, 11 Jun 2026 12:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E498F3CB2D4;
+	Thu, 11 Jun 2026 12:04:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D49493D47A7
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 12:03:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277773ED5AE
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 12:04:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781179439; cv=none; b=mk5sQfiQjVA30uR7C7F8/2eZkwUIGyEceUi+t2rQnCRRFSnY/oixyIG2u/XGiTRRSo5UxOOtEFBSNSL51wqEGQh/4bdrx4r7llUri/fpqWUiKo3IqDVeUBzvLxZczM7nd//Z9EW3L6jHEsX/oCMJvD6+GWW5FWBhmJ9ZAVAPCqc=
+	t=1781179467; cv=none; b=W/+n8JwwPIJyEMQCc37O+26oN6jFAEuoOvvP97uhMRwRCqG64j3p+nb06u6OijbOWU4Ko5NIx2eBVOdEFpgZmfcvLJqIHe1kZCpibYi3GVXAjpKhI5YODbyGm7Zt6B5cXfjgY3ZQK1DeU0ytFCp541ZTI4H9YAWdwVthI3t6Xhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781179439; c=relaxed/simple;
-	bh=hFMbfqFQZE48xb3pCYJaM3mP/1q6DdQKHna/4Uf+I6w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ffSwNPisqbO0dMSKn0WZXjjTWC4KPMBGI/ilcK3Rv911q2YSr5SDz/zC6dksb1bxJDRv1HZUx5pfxNdUrD6SWxMVcxOvS3uBeiu590G+G7XqcwQY1UBRyvIceWOxQspzt0dWQrDbJVfRvwwdDPNEWtjwSQQ16ag5biT3OH34euA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fw+RE/J6; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81A9D1F00893
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 12:03:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781179438;
-	bh=hFMbfqFQZE48xb3pCYJaM3mP/1q6DdQKHna/4Uf+I6w=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=Fw+RE/J6HGSyFMe+JY6JHuSjMtbJHsHfOU/qgLW4B5D1jqo5mZG98Ll+gijn1kZG6
-	 s/nIJD9dlOlhrBPdiUPl78eifWso25YKAV6IG4+VTIXnRy2ROJWGWvQYbapMuFu7xl
-	 mUwGMmvfUiscHmk6LviPL2VcxmvteW+9xWgGInByWccyEYEWlee4b+H9mnMinFiJVd
-	 hnYRcNbenrppn4peknKFPLsfwP44Gpc4Je6Cwk4bxeuKIuk/2QgdZGqKPALAgkU5TK
-	 zKpaf7NqvhAvS22/qr337OOnSTX6rvQhqe19I39kNvTNqBqMSXnQICQ3cDXrHBWaWW
-	 9JmxSRKpe2GDA==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5aa65a184f2so8345499e87.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:03:58 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ8bgDT3zSWkU2lWoNL7vetZfcCsWf8RF84z6nc+Q4B/ZNeYgAk/lMzovCyi9kE68XST8zBLhZ0t+Rzv@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMO/RRkSGYZNxv0sKbWnJLv7FUqpHfHl4JDuLxZZ2qi8U7wfN6
-	He+Lo+brZzhhGjDaQSOEcEPDmXTiDFw5Z8NxI+/FpWGgxH+iaAtCI10FDW1z6m0ukNJlFGkWeKF
-	9AZL5rOv6cUtoEpGhsOs9D5V1V9Np0Qs=
-X-Received: by 2002:a05:6512:2351:b0:5aa:77e2:51b0 with SMTP id
- 2adb3069b0e04-5ad27fb704amr771517e87.45.1781179437327; Thu, 11 Jun 2026
- 05:03:57 -0700 (PDT)
+	s=arc-20240116; t=1781179467; c=relaxed/simple;
+	bh=sEAiz1VLA18B6EqKeEzrbhdLCmp9xlqT08l2BvnWjsw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XVqKTXwBZeDvJpRkuH3yFY1YzDxEw0i0gYmMrbznnbc/Jnb08KHg7oH9hGjWqtKa6BwNLjtOZtCq8/58OKYvhYHs7wAwHD8kowafM7H39ZaVYfF9z/D2FQjRhdbMKOEuUdwk1DjX5U96BTZRD8PbV43IkuM7+izl7id87M+7S0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=C7VD/ntP; arc=none smtp.client-ip=91.218.175.185
+Date: Thu, 11 Jun 2026 20:03:53 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1781179452;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=f/j69pXYfj34ZmqA6bJCKc0nePFg+h49mJ8/N7zh1iA=;
+	b=C7VD/ntPHBl4YIG9Watr5T2GZLCvEmAzup5tfdjNbozip65PyigVCCrPseQbQKMgC2+M7G
+	fYJkNSWFsX/dRktAsP7CNtY62sQ3fk1oEHQwJa+H4KpymFRmYbGmZ4jTCJo6jBN0nw2upe
+	Z54mPkCYOx99N+izHFLdL+L2Fx6cijE=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Baoquan He <baoquan.he@linux.dev>
+To: Wandun <chenwandun1@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	loongarch@lists.linux.dev, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, kexec@lists.infradead.org,
+	iommu@lists.linux.dev, zhaomeijing@lixiang.com,
+	Rob Herring <robh@kernel.org>, saravanak@kernel.org, bhe@redhat.com,
+	rppt@kernel.org, pjw@kernel.org, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, chenhuacai@kernel.org, kernel@xen0n.name,
+	catalin.marinas@arm.com, will@kernel.org, alex@ghiti.fr,
+	akpm@linux-foundation.org, pasha.tatashin@soleen.com,
+	pratyush@kernel.org, ruirui.yang@linux.dev,
+	m.szyprowski@samsung.com, robin.murphy@arm.com
+Subject: Re: [PATCH v3 00/11] kdump: reduce vmcore size and capture time
+Message-ID: <aiqkKe1gXPZ5LZ7t@MiWiFi-R3L-srv>
+References: <20260527032917.3385849-1-chenwandun1@gmail.com>
+ <7ed207fa-4c86-426a-8570-495902ce04c3@gmail.com>
+ <a3993db0-6975-455d-9674-4fd7cfcf80fc@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260608094122.1245189-1-pshete@nvidia.com>
-In-Reply-To: <20260608094122.1245189-1-pshete@nvidia.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 11 Jun 2026 14:03:45 +0200
-X-Gmail-Original-Message-ID: <CAD++jL=c8MNB-xUE5B=H4p_gMW5ky2fkTnFzfZBJPKVJyW-WAw@mail.gmail.com>
-X-Gm-Features: AVVi8Ce38LENIr5p5lQNFRA8_GAnmdBuYPQ8c0ImlrI4j4vlm4FvrJsRZsp81_k
-Message-ID: <CAD++jL=c8MNB-xUE5B=H4p_gMW5ky2fkTnFzfZBJPKVJyW-WAw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: tegra238: add missing AON pin groups
-To: Prathamesh Shete <pshete@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Arnd Bergmann <arnd@arndb.de>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a3993db0-6975-455d-9674-4fd7cfcf80fc@gmail.com>
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310418-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:chenwandun1@gmail.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:kexec@lists.infradead.org,m:iommu@lists.linux.dev,m:zhaomeijing@lixiang.com,m:robh@kernel.org,m:saravanak@kernel.org,m:bhe@redhat.com,m:rppt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:chenhuacai@kernel.org,m:kernel@xen0n.name,m:catalin.marinas@arm.com,m:will@kernel.org,m:alex@ghiti.fr,m:akpm@linux-foundation.org,m:pasha.tatashin@soleen.com,m:pratyush@kernel.org,m:ruirui.yang@linux.dev,m:m.szyprowski@samsung.com,m:robin.murphy@arm.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:pshete@nvidia.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:arnd@arndb.de,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[baoquan.he@linux.dev,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[linux.dev:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[baoquan.he@linux.dev,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-310421-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,nvidia.com:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linux.dev:dkim,linux.dev:from_mime,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C1C1B6719DD
+X-Rspamd-Queue-Id: 8172A671A70
 
-On Mon, Jun 8, 2026 at 11:41=E2=80=AFAM Prathamesh Shete <pshete@nvidia.com=
-> wrote:
+On 06/11/26 at 11:09am, Wandun wrote:
+> 
+> 
+> On 6/11/26 10:09, Wandun wrote:
+> > 
+> > 
+> > On 5/27/26 11:29, Wandun Chen wrote:
+> >> From: Wandun Chen <chenwandun@lixiang.com>
+> >>
+> >> On SoCs that carve out large firmware-owned reserved memory (GPU
+> >> firmware, DSP, modem, camera ISP, NPU, ...), kdump currently dumps
+> >> those carveouts as part of system RAM even though their contents are
+> >> firmware state that is not useful for kernel crash analysis.
+> >>
+> >> This series introduces an opt-in 'dumpable' flag [1] on struct
+> >> reserved_mem and uses it to filter the elfcorehdr PT_LOAD ranges on
+> >> DT-based architectures (arm64, riscv, loongarch). By default reserved
+> >> regions are treated as non-dumpable; CMA regions are explicitly opted
+> >> in because their pages are returned to the buddy allocator and may
+> >> carry key crash-analysis data.
+> >>
+> >> The series is organized as follows:
+> >> Patches 1-3: Pre-existing fixes and a small prep change.
+> >> Patches 4-5: Restructure to allow appending /memreserve/ entries.
+> >> Patches 6-7: Add a dumpable flag and append /memreserve/ entries.
+> >> Patch 8: Add generic kdump helpers.
+> >> Patches 9-11: Wire the helpers into arm64, riscv and loongarch kdump
+> >>                elfcorehdr preparation.
+> > Hi,
+> > 
+> > Gentle ping on this series.
+> > 
+> > Status summary:
+> > -patch 03: respun separately per Rob's suggestion, picked up for 7.2
+> > -patch 06: Acked-by: Marek Szyprowski -patch 09: Acked-by: Will Deacon
+> > The remaining patches (01, 02, 04, 05, 07, 08, 10, 11) are still
+> > awaiting review. your feedback would be greately appreciated. I know we
+> > are at the end of 7.1 -rc cycle, I don't want to rush this series, just
+> > collecting more feedback, and will send next version based on 7.2-rc1.
+> > If spliting the series into smaller logical group would make review
+> > easier, please let me know. Best regards, Wandun
+> 
+> Apologies for the formatting issue in my previous email.
+> Here is the properly formatted version.
+> 
+> Gentle ping on this series.
 
-> Add 24 pin groups, and their matching drive groups, on ports EE, FF,
-> GG and HH to the Tegra238 AON pinmux binding. These groups are present
-> on the AON pin controller, so device trees that mux these pins through
-> it validate against the schema.
->
-> Fixes: 9323f8a0e12c ("dt-bindings: pinctrl: Document Tegra238 pin control=
-lers")
-> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
+Thanks for the effort, the overral looks good to me at 1st glance. I will
+check if there's concern on generic part. And meanwhile, I am wondering
+if there's any chance x86 or other ARCH-es w/o OF/FDT can also choose to
+not dump some areas, e.g GPU stolen memory. Surely, that's another story.
 
-Patch applied.
-
-Yours,
-Linus Walleij
+> 
+> Status summary:
+> - patch 03: respun separately per Rob's suggestion, picked up for 7.2
+> - patch 06: Acked-by: Marek Szyprowski
+> - patch 09: Acked-by: Will Deacon
+> 
+> The remaining patches (01, 02, 04, 05, 07, 08, 10, 11) are still
+> awaiting review. Your feedback would be greatly appreciated.
+> 
+> I know we are at the end of 7.1-rc cycle, I don't want to rush this
+> series, just collecting more feedback, and will send next version based
+> on 7.2-rc1.
+> 
+> If splitting the series into smaller logical groups would make review
+> easier, please let me know.
+> 
+> Best regards,
+> Wandun
+> 
+> 
+> >>
+> >> v2 --> v3:
+> >> 1. Fix out-of-bounds issue if device tree lacks /reserved-memory node.[2]
+> >> 2. Fix UAF issue when alloc_reserved_mem_array() fails.
+> >> 3. Add some prepare patches.
+> >>
+> >> v1 --> v2:
+> >> 1. v1 added an opt-out DT property ('linux,no-dump'). Per Rob's
+> >>     feedback [1], v2 drop that property and exclude reserve memory
+> >>     by default.
+> >> 2. Split some prepared patches from the original patches.
+> >> 3. Address coding-style comments on patch 5 from Rob.
+> >>
+> >> [1] https://lore.kernel.org/lkml/20260506144542.GA2072596-
+> >> robh@kernel.org/
+> >> [2] https://sashiko.dev/#/patchset/20260520091844.592753-1-
+> >> chenwandun%40lixiang.com?part=4
+> >>
+> >> Wandun Chen (11):
+> >>    of: reserved_mem: handle NULL name in of_reserved_mem_lookup()
+> >>    kexec/crash: provide crash_exclude_mem_range() stub when
+> >>      CONFIG_CRASH_DUMP=n
+> >>    of: reserved_mem: avoid post-init UAF when alloc_reserved_mem_array()
+> >>      fails
+> >>    of: reserved_mem: zero total_reserved_mem_cnt if no valid
+> >>      /reserved-memory entry
+> >>    of: reserved_mem: split alloc_reserved_mem_array() from
+> >>      fdt_scan_reserved_mem_late()
+> >>    of: reserved_mem: add dumpable flag to opt-in vmcore
+> >>    of: reserved_mem: save /memreserve/ entries into the reserved_mem
+> >>      array
+> >>    of: reserved_mem: add kdump helpers to exclude non-dumpable regions
+> >>    arm64: kdump: exclude non-dumpable reserved memory regions from vmcore
+> >>    riscv: kdump: exclude non-dumpable reserved memory regions from vmcore
+> >>    loongarch: kdump: exclude non-dumpable reserved memory regions from
+> >>      vmcore
+> >>
+> >>   arch/arm64/kernel/machine_kexec_file.c     |   6 ++
+> >>   arch/loongarch/kernel/machine_kexec_file.c |   6 ++
+> >>   arch/riscv/kernel/machine_kexec_file.c     |   4 +
+> >>   drivers/of/fdt.c                           |  11 +-
+> >>   drivers/of/of_private.h                    |   3 +
+> >>   drivers/of/of_reserved_mem.c               | 117 +++++++++++++++++++--
+> >>   include/linux/crash_core.h                 |   6 ++
+> >>   include/linux/of_reserved_mem.h            |  15 +++
+> >>   kernel/dma/contiguous.c                    |   1 +
+> >>   9 files changed, 157 insertions(+), 12 deletions(-)
+> >>
+> > 
+> 
 
