@@ -1,153 +1,124 @@
-Return-Path: <devicetree+bounces-310209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310208-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pIeMG9hqKmoqpAMAu9opvQ
-	(envelope-from <devicetree+bounces-310209-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:59:20 +0200
+	id pxAlMuBpKmrsowMAu9opvQ
+	(envelope-from <devicetree+bounces-310208-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:55:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B94C366FA2F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:59:19 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B87566F9A8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:55:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310209-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310209-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hGppIqnC;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310208-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310208-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AD9A13009F93
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:55:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0603630087D6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9CD36F8EB;
-	Thu, 11 Jun 2026 07:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DCBD36F8E3;
+	Thu, 11 Jun 2026 07:55:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DCA3355057
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 07:55:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE2235E957;
+	Thu, 11 Jun 2026 07:55:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781164522; cv=none; b=mb21YLfdnRvaVCb6DCwoK4dytDLhrRjxNAE9OKXk1eAowXz97SLMtn6KrjBekn0PsO3QSD0uq4nUxT/w7yjF0OJhmATHxjPgmEOj8fctv+i5Pd935hO+WcJ+8iv2++Q8TVgiKnREJK6sdavkj6koDdillGxP7MlOg5QBf+Uk3Bw=
+	t=1781164510; cv=none; b=iavOUddB4eWcPJE56Sx/jV78QCk1zDkezHeB5Bl9hK+o5CZIKTm+Zsywazsynq3e9L2aAX+kD3Rd/HGstIrVYYjnEec517q4iuigx+puKfvejpg2k6cbEuKmxlm1a7q9tq/HfOGOh03LUurcyB3V/Y3Zf3zvA0iIzjBarFS4mME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781164522; c=relaxed/simple;
-	bh=5zL0Z6X7165+7ISPsPo8Jg+DzQNbIFkl5tKsObApxbQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kQw7+Dkhu2zXZ4yh+0rCVXn9C7GB9WhnPoGJGyEDqDOryzrzElG8u5XPraQRkl6Pmx2bPNWRX9bfXipP4ah4IMYFbhsa17Ket5bor0EI7lljzJ1NP3TMUSRU16fX5xk3nLZO+4Hxe1VuGMUv6XxZs8BFsXwOGnsooUM54bpapMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-6cfdcc79789so2998296137.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 00:55:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781164519; x=1781769319;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wg1AD3f/1jWyYR3P0Z5p8wEPI+MYZzqh5FcI4v1k2P8=;
-        b=EeI2Yk5kP41GS/dj811wxXNmQvJoatIcSrzkwQqFcBTG/UpsUflfnutwh0Xa4bUBfX
-         cP9RQwE/Z8tyVCNxs91kTlXx4PmI4T+3OyLPCTuy9cDv9DqLPxtgI/hGK0qnu7GJyUuV
-         vsGF0vj1sIvj7rj2uMxw5OzizrOQh49UAzdy66HJ2uoXNjvX8sh8eQBo30+iPZXHswIs
-         /7R+Esk9SoNOQmcXx8tHh7q1/lnMpnyorjwDm1RbgRScXeikKlCO6x1GS9GeCEVbsB0x
-         1jIIiBmN1lMP45go2v0T3awA+P8A5gAUDHicivtFpj9C9NL/hqNUyNAPzF5m8t1edxb9
-         woXQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/59RZUyuQCLSQOome7iaiW1Ywb2mJIOooPyqQ9F7BRh3MHAaWlUFkrI27IdtOGyVPMz0wy7guRPOo5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhycBzd9H7i2rzADVQVsWlacFv+Feil1BOOp63cNTrxiLAFgGp
-	JGzla+Xt/d07uc0p7H6/TNz7UJl+R6Md6bLDArLeXG8ky94Bfm20TTUaWUbleXRlMDo=
-X-Gm-Gg: Acq92OGcsNwmRdipOrL4Ofr2SrID+Cp9tz/frmr8sgQ0/1+QjO/8B7Wxk+/8byV4YB5
-	5lBNRnkRUI7XjWbj4UICy6aY8WVxJVT+hcohGXQVBHCbZSZRAz+McZxPuMcf3PmQoIg8C7sGkge
-	funlHCQpCGjuPQW5+rFSHa8G7TSqOy03XgKAeUDV+qDquMZl3KvPNIcERMb8sZZIJaZcOBRDDQS
-	SzGlTEi+ZQyAomUyqLXBhmeU8czQXY01q/hv3WV/PMr30SlJOohmcxWbwoInoM73yKeoRXBBx36
-	pFFgyQyD/v2qwfdpa6zf4JyvpUMeoA7CL3if6f/0dSPD5L70eTtXZh1A/TUq4faQUmzdtneNRFA
-	n7Wo7M2isSi/CFwG/iDSXnwFYB1yhntdsg54AP5If+CqzWHq+c56xLT4rcma52CWTlL6zE/AzE1
-	W2SfBaimeagyxb/dubYTxa9zkGK3udBVDSBL0fc0s8/cpapPYOQLeSfYLerf7nFItem61jasZo8
-	wTpDPKcDA==
-X-Received: by 2002:a05:6102:f9a:b0:631:2472:e832 with SMTP id ada2fe7eead31-71d5d99f84dmr432849137.8.1781164519324;
-        Thu, 11 Jun 2026 00:55:19 -0700 (PDT)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-96662efcae2sm442665241.1.2026.06.11.00.55.16
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jun 2026 00:55:18 -0700 (PDT)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-96395a77d04so2376875241.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 00:55:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/8LdBAh9gxDjO/IlwewFHHbVKb48VyxS0v6KA50WTnnu3EyyEZAD0LLoIo/cA/oUsTRIVsp1gKORTx@vger.kernel.org
-X-Received: by 2002:a05:6102:54a0:b0:631:28c1:155c with SMTP id
- ada2fe7eead31-71d5d8a78fdmr441637137.7.1781164516527; Thu, 11 Jun 2026
- 00:55:16 -0700 (PDT)
+	s=arc-20240116; t=1781164510; c=relaxed/simple;
+	bh=0/+W8pphNjt+RhjbEaLAZAg/KX17utLn/JdAkkS+svU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=l8Il8WJgP+JQuVPMNWx5rTB5kcpy4gNuApXMADZbjTp8NDm3SSHb4oNX9UraBeJ5xjbFpbLEPxPo9Q4VJW96tT1FPa8b4geuoHmIs5TUGfCgj7WK+8qMRFcuLIm6WrUACVq3dP46sHepAUKJi/LbvImUbJHF6EIDTBFxAP16F8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hGppIqnC; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 532491F00893;
+	Thu, 11 Jun 2026 07:55:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781164509;
+	bh=0/+W8pphNjt+RhjbEaLAZAg/KX17utLn/JdAkkS+svU=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=hGppIqnC+uVVqFLgGNRQZY5fvrPULahfJBklgJK/JSIbjjNVcsYwws1EewL8g5mmk
+	 o2Fcq4SOlC9j9KukZOua+hb8stAwdq7V3aHikUjfIXyeN4xfhWTQ3xRdA+D2uUdRmH
+	 UPrMrMZdbj6ElWst9MmZWdqNSky6u0ykcxCFBjl2OdQlpbwH/ZT8js8IN3ju49kUJ6
+	 C1da3S/3PLKPUBE3FPIxgC4kbN90zieAlfE7c4/xWDIXuDt9sSK5gsw9VRvIMRJit/
+	 rxzO4io8v7ZFLIuREugPQsmbreRCd+B1Bcoaf63hNiwqAlS23X6CJJQ/NJx1AijpRw
+	 si5ebMfcTsl4A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: pmbus: Add bindings for
+ Silergy SQ24860
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Ziming Zhu" <zmzhu0630@163.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260611074335.4415-2-zmzhu0630@163.com>
+References: <20260611074335.4415-2-zmzhu0630@163.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 11 Jun 2026 07:55:08 +0000
+Message-Id: <20260611075509.532491F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260611005952.146825-1-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260611005952.146825-1-marek.vasut+renesas@mailbox.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 11 Jun 2026 09:55:01 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVkxCo3p6SEB4a=wUY+qXE9AxqmYtsGyLH_+wb_e328Pw@mail.gmail.com>
-X-Gm-Features: AVVi8CfMFk11kDzU1W7A90vpbtR6Nnss2ELpEbzCC4jdTDTJHmSm7MM16QZwFsU
-Message-ID: <CAMuHMdVkxCo3p6SEB4a=wUY+qXE9AxqmYtsGyLH_+wb_e328Pw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: renesas: r8a77965-salvator-x: Enable GPU support
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Frank Binns <frank.binns@imgtec.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, Matt Coster <matt.coster@imgtec.com>, 
-	Maxime Ripard <mripard@kernel.org>, =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, 
-	Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310209-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_RECIPIENTS(0.00)[m:marek.vasut+renesas@mailbox.org,m:linux-arm-kernel@lists.infradead.org,m:conor+dt@kernel.org,m:airlied@gmail.com,m:frank.binns@imgtec.com,m:krzk+dt@kernel.org,m:maarten.lankhorst@linux.intel.com,m:magnus.damm@gmail.com,m:matt.coster@imgtec.com,m:mripard@kernel.org,m:niklas.soderlund@ragnatech.se,m:robh@kernel.org,m:simona@ffwll.ch,m:tzimmermann@suse.de,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-renesas-soc@vger.kernel.org,m:marek.vasut@mailbox.org,m:conor@kernel.org,m:krzk@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lists.infradead.org,kernel.org,gmail.com,imgtec.com,linux.intel.com,ragnatech.se,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310208-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:zmzhu0630@163.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[163.com];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B94C366FA2F
+X-Rspamd-Queue-Id: 6B87566F9A8
 
-On Thu, 11 Jun 2026 at 03:00, Marek Vasut
-<marek.vasut+renesas@mailbox.org> wrote:
-> Enable GPU on Salvator-X with R-Car M3-N.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> From: Ziming Zhu <ziming.zhu@silergycorp.com>
+>=20
+> Add devicetree binding documentation for the Silergy SQ24860 eFuse.
+>=20
+> The device is a PMBus hardware monitoring device which reports voltage,
+> current, power, and temperature telemetry. The board-specific IMON
+> resistor value is described with silergy,rimon-micro-ohms.
+>=20
+> Signed-off-by: Ziming Zhu <ziming.zhu@silergycorp.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v7.3.
+Sashiko has reviewed this patch and found no issues. It looks great!
 
-Gr{oetje,eeting}s,
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260611074335.4415=
+-1-zmzhu0630@163.com?part=3D1
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
