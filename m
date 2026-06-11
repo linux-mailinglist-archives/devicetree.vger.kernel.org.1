@@ -1,69 +1,68 @@
-Return-Path: <devicetree+bounces-310056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310057-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id at6cGM4TKmpZiQMAu9opvQ
-	(envelope-from <devicetree+bounces-310056-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 03:47:58 +0200
+	id ZOhkN/kTKmp4iQMAu9opvQ
+	(envelope-from <devicetree+bounces-310057-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 03:48:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B06966DABD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 03:47:58 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B38B166DAF1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 03:48:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="cSj/CwE/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310056-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310056-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eUNBz3PY;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310057-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310057-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A9C5B300ACB3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 01:47:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 908043011575
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 01:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E20823909C;
-	Thu, 11 Jun 2026 01:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4ED827EFF7;
+	Thu, 11 Jun 2026 01:47:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AFC722156C;
-	Thu, 11 Jun 2026 01:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5DEB265620;
+	Thu, 11 Jun 2026 01:47:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781142473; cv=none; b=m1G1qQJvOG0llhF3VEB+yKENJl0He3JqUE1v0lJDeII32QXdQZ3XW7/3OEttdqQNd5cGrlLIB4Q9LpwzNabS/1sAsy/yMzefp/NowML3RWLjzrXEDJJXcGoF7qPsv1Z7TwZxxnu1u1ZG2AQfsPEYkFSelDqW1bap+1JgphoORKU=
+	t=1781142475; cv=none; b=DZHmkgFqN7UqaMaHKdb27/E80b1uAiLfQeQJtJG7TnCsR366IVl//f4XA0RyR6UMQnYeE1KswRE0Fwl/ZOt9wjayalVOAbotcrYyt75wJzjL541IfMnZym1JaTqSEQR165YAwHaPRmTRGNMOE4tZ/15r5rn15aGkRxo2NDJlT+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781142473; c=relaxed/simple;
-	bh=b0wlz/vaX75E20iY8x3VE79SMlxJn8+i/s5P+DnOUls=;
+	s=arc-20240116; t=1781142475; c=relaxed/simple;
+	bh=GuQJgjKfeC8lE+5MU+T/2VjLycXSLPbj6ZOkqgaU8N4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DDm9Da/54BymOVDpiXJaIvItq8h8M1NWhSalxLg1PpgTffhZ6Rp2XNByKsoLxqOknRVv2q4rNG8Ec7MuAq1Up9GmarbAo5QS5LM/I2tBtQ3aMz0Cap+H48JGLtjRa/30VH/Op57Y4h3YaY0KF6kUKoEL5PMss9yzgF1e9dzbPo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cSj/CwE/; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33EDE1F00893;
-	Thu, 11 Jun 2026 01:47:51 +0000 (UTC)
+	 MIME-Version:Content-Type; b=sMzi9Fq9+eqvMQGLg9QH5PK89ABZIDGHrBCot1pJDc8mW4R3gm+y/CnI2L1i6nF6ITR14buyELLLVH5N+Frv7EDEU9WcY1qFE2OBtgLiFy/yA9nOgcIHD9sAwz5+SwI6kGsBQtZ7TNrenjIpuQkWJQz2k/liSiQOBLPLtUJPyJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eUNBz3PY; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B89B21F00893;
+	Thu, 11 Jun 2026 01:47:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781142472;
-	bh=ocfHmUE2159OtvIR3JSDxLuTY6+2jLY/vkBsagTQDNw=;
+	s=k20260515; t=1781142474;
+	bh=QgI9TH0K9M08zgUhlImJ1Lz1hSkKFM10JZT6HcfOXRM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=cSj/CwE/uFZQnilhW/orot5YG3n8o86DKcQS53FDGcN6wFAQwHpRjJuajeUd/LtpK
-	 f/BalcCq7H93E+ry9QETjuWOqg9Z88dxhFg+IAvPTk40m88OUnWsil9COk5gsaPQmf
-	 RS6Gtl5MLWUs/1bUKB+kJ9A7G/kZAF2G9BSS7+DyZLRsKxecS+Nkr6+fqnfcVNl+jy
-	 O0tv1GOxAftLfxdNtl1Z+MrR6k+W/JbMgsLGNSL6n8K+xlPRA2rcgftT5JFY4maiJn
-	 CxiLfdX3S+EojalzRVKlB6qGTDc9Ub9Z2QNZVMoa0jtyAdHL2s3ll+WgdCpHK8gT1S
-	 Xzvpvj29BgtrA==
+	b=eUNBz3PYM95OA5i57LYharcxwl9QvD3LG2sAhswZ+wx3oosYOKkThi0jxo5NG+H8O
+	 r6NqpL6j+uLFDn05TNmvoUxlWnhQyCRgvJqTwKq5GVNs/0xaKCNqpJcSEIlfHn4f3y
+	 dFEH5x0XQZO0MRWVZfbW6kcxMugToygTA0K7P/8WxDCzSRPXW68n65tjXYTQcI8ZsK
+	 nqJvhVG10CoHwEuWpXIkS4mTEfxlspuQql9dN+uSGkSAGfX/gRHsxAhNYveZcyltF1
+	 WLNAjj9hYOuplsZmVcvnNK8Xkpahqwo3lZwasfQBNl89KPXEmnzWh8ALXACvwzTPeu
+	 U4w1apG7nZMzw==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Mathieu Poirier <mathieu.poirier@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
 Cc: linux-arm-msm@vger.kernel.org,
 	linux-remoteproc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v3 0/2] remoteproc: qcom: Add Shikra remoteproc support
-Date: Wed, 10 Jun 2026 20:47:40 -0500
-Message-ID: <178114245724.590736.6193089236503038513.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 1/2] dt-bindings: remoteproc: qcom,sm8550-pas: Add Hawi ADSP compatible
+Date: Wed, 10 Jun 2026 20:47:43 -0500
+Message-ID: <178114245711.590736.10294919878949624614.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260521-shikra-rproc-v3-0-2fca0bbe1ad7@oss.qualcomm.com>
-References: <20260521-shikra-rproc-v3-0-2fca0bbe1ad7@oss.qualcomm.com>
+In-Reply-To: <20260427190614.3679937-1-mukesh.ojha@oss.qualcomm.com>
+References: <20260427190614.3679937-1-mukesh.ojha@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,56 +72,55 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-310057-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310056-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:komal.bajaj@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:bibek.patro@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mani@kernel.org,m:mukesh.ojha@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3B06966DABD
+X-Rspamd-Queue-Id: B38B166DAF1
 
 
-On Thu, 21 May 2026 18:51:36 +0530, Komal Bajaj wrote:
-> Add Peripheral Authentication Service (PAS) support for the Qualcomm
-> Shikra SoC. This series introduces the device tree bindings and the
-> driver resource configurations for the three remoteproc cores present
-> on Shikra: CDSP, LPAICP and MPSS.
+On Tue, 28 Apr 2026 00:36:13 +0530, Mukesh Ojha wrote:
+> Document compatible string for the ADSP Peripheral Authentication
+> Service on the Hawi SoC, which is compatible with the Qualcomm SM8550
+> ADSP PAS and can fallback to SM8550 except for the one additional
+> interrupt ("shutdown-ack").
 > 
 > 
 
 Applied, thanks!
 
-[1/2] dt-bindings: remoteproc: qcom,shikra-pas: Document Shikra PAS remoteprocs
-      commit: 39176cdac9c7206ad4e70f22f134a6984a89be8b
-[2/2] remoteproc: qcom: pas: Add Shikra remoteproc support
-      commit: 23dd0092bc150b55a62347ed4814c14fda7a32c2
+[2/2] dt-bindings: remoteproc: qcom,sm8550-pas: Add Hawi CDSP compatible
+      commit: a9697e35887e7e3dc1135dd97efd39d46d910e73
 
 Best regards,
 -- 
