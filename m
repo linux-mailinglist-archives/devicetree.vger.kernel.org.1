@@ -1,195 +1,178 @@
-Return-Path: <devicetree+bounces-310128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310132-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /t9cIidGKmo3lgMAu9opvQ
-	(envelope-from <devicetree+bounces-310128-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:22:47 +0200
+	id N4bpGcxGKmpYlgMAu9opvQ
+	(envelope-from <devicetree+bounces-310132-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:25:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A5EF66E82F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:22:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0943B66E872
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:25:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=qaG0ltjS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310128-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310128-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mUNB6KXk;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310132-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310132-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 98525300C301
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:22:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7E121300C03C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698E6355F35;
-	Thu, 11 Jun 2026 05:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11A135677A;
+	Thu, 11 Jun 2026 05:25:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05979306742
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:22:39 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781155362; cv=pass; b=uspsBucRq3CEY6Kv32rH9RirenV8GGQSONnM3D8v6gj77yYJk5dYSjMLXg41zmnzayrJDU6hyN6PCrcJPVzms3OYvBnbMwWoviqMqPV7HAB6VGge9dV+PT8K2z8ghEaUHl5B+AifudcKrPnNZRJ90+ShVf+Rhwb7GIG/478h3CQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781155362; c=relaxed/simple;
-	bh=Vv8xc/JE73ka4IbiLvsyGTHwvLLeofhoh5T3QOJOdJ0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BFb0ognacXkpv5V1Ef7QYeIyaRCN3coh9T/y4tbgjijejyrn2jP7RrvCw1S9BRvbi0wMPJwfqF47+gjkGdABkuMJmamkUziQetz+k6791PYoGmYMbX6lMjEQWBJlzqt7L3dse39GMQi1SF42By8DItGzqzyYYY4AWGupb52roNw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qaG0ltjS; arc=pass smtp.client-ip=209.85.208.169
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-3965bc493caso69911871fa.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 22:22:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781155358; cv=none;
-        d=google.com; s=arc-20240605;
-        b=P6iv/rdFx1iO32eoAxStk/0LBaVc8zjhtG47RozghfNaJNl+sN034kIR/wtnUXDLUm
-         22cZooRgKWCc/D2q+8lqv8MlBcll9oaVoVKG5DJ6uGUjIPa4Mjw+BKR5jBSR2r96ZfQx
-         A4hr1jOAdiY2ybh0h8dslQYm7jrE8O5CZ5T2r1hjfkJTcmQ+JYUhsaqgPbc1ui4j6vWj
-         zdce8tscB0hZl1MXDSiFoP4DU7HtkLs+Os4/KilBKeZuVVp9DDptE+mhosxs1jZxNfkt
-         mu0ie2wlHcFPPCR/QTpqItKCiWXkDhphwtNn8b2la0nLuIJATJifipCblTI6KTeDhcto
-         tCxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Vv8xc/JE73ka4IbiLvsyGTHwvLLeofhoh5T3QOJOdJ0=;
-        fh=jd7NNSgZXSe3DCkk1R5DGy66/CyBy8aThUccBGLe0tI=;
-        b=NsLbKaBSqKe/OiPMUA/W5ZhSQheDleWE0eOXRxZenR5pN971gGPU5s7RQfG67QIN2N
-         V5bFUBacU2nlXpKEVcom05QJCrRD82pb5yxNfrtUfe2iCbkJdABBZTW09evrNZJXjcu3
-         GqaBIfC3IXpeu10M+uF6njy71qs795tdbV/QD2Aan01fwLMVMBosspr+qOGjb1c8b2wd
-         8y8m6hJxSEadKNrX61suuXvrvxj+DhuXi89yMtveKGOc9UO8GwxNRMNhF0ahzvmGVfCi
-         OvLC76fr8P4a+2KXOZz11KGTyMc9tC+N9YtFeyW7oTWfpYzAjDYBXzfEQwFs2lOMUy+7
-         XmHQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781155358; x=1781760158; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Vv8xc/JE73ka4IbiLvsyGTHwvLLeofhoh5T3QOJOdJ0=;
-        b=qaG0ltjSIEuUhSAUlwsthBNKFo933btKs+b4Othi9CiNDf9IaWu1uspeWb9YbWuKC+
-         F4BCshKmrAS0Oeq49NeW3TNwf9d5r8uqpupclie08o/+5ntaia92Ow2G3wOeWOxRwgQP
-         CJnrz3SaYhB6frS/OVjp3xWYu5oggFq0kFPkl13OU9dNtFwhU2wXMxH0l0kudYTGN8hK
-         a2wdSdY8FXr8XxUu65X2WjU3D4l4a8YoMbDpWD9t0GwCV5rx25ZyRWeMwIvFDCrvoa6u
-         uyCepitLl+l9g03J2FZtidIMyC11H1bPIj4GHFdQWD7NR7t0jHoT5uo95NhcQ7tBrBjn
-         ZO3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781155358; x=1781760158;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Vv8xc/JE73ka4IbiLvsyGTHwvLLeofhoh5T3QOJOdJ0=;
-        b=PLWhNohSEsdkGi+zVXVqYAayZUCcX6q5mh2gFUq7d49HLvf+9/1AEUzw20Gx+qY1mJ
-         aYFZ9pLnz3m6uBZ8qyY1tkag6yvKkherXKncMBnJFSrT4fWWK/vg/g+4tvg4AS6HtNVA
-         zEoDyaSrihTQ02zOlHPm9ErJDof4rVCxMCXrZOI8UJgSOg5sRODDjmG+xtDKueDlyFPc
-         M0x7mQLtVvPoI658vSvwU0FEqFu2+EjdNocZW4bH5RLZTR89LXdF272VfY4QgF2MD91R
-         5dGCVp0a7JL4B3i9T53NUkBI5qTymzEJ8IEkN4hSmxy3NGQY1i0faszaBxE5WzpYhsOd
-         UkwA==
-X-Forwarded-Encrypted: i=1; AFNElJ83qEPeHBoMUcarPPCz9ach12Zb2BcysTA/QTHJ/V5Z0tKfZWMatuUixz4Zm+/KkqeDwToD6+3QCPld@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxT9mXj80xjkhVQmjctg5FKu+qk4M3ILBfOVGjzdoRO8nYvSCE
-	BGpv8Za6CyzwOQbFHrqlgxeyHrNwqKDZwK3bIm1eJCfAa64ElmCTCr1hfx40KqbUR+xNYkeNWU/
-	mfk7xcDlf3Hjr7aaD4ch9LX24/m/gnI4=
-X-Gm-Gg: Acq92OEGH+MB78JQWApi7CzLsHW5SAmqqlQAOOwJsMPwMXR2Ncz2VLVBBGLNaEnHhZ0
-	ufOcalgK4ekW34hTpNeG3P4Tl6CG5q8EHKTCSO7ylV55LIs/92htuBojbJaG6QgXHkOkyFb2gHf
-	e9Ki7MPxxsHlvYm62GZ12MAvpBrjXDj7vf1WQxtKH1qmqgMW8Au8bP8vNFf4JMDuoD7KHj6cc87
-	3GDQpjgTB7sjY1DH+UY67Llhoj/DMuoH4MLOi3b16hn9Pe8OemhFUCxRWh6BlneWTmBKE6LJCf4
-	65b4y295cOavM2X7ZHg=
-X-Received: by 2002:a2e:a583:0:b0:38e:d3e6:a89a with SMTP id
- 38308e7fff4ca-3991a083973mr2593601fa.20.1781155357644; Wed, 10 Jun 2026
- 22:22:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 760232BE7D1
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:25:24 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781155529; cv=none; b=qeIUoWUePNWxqZ+H3RfL0ch2/Rr0ehNZBQT2IlVwoUpXJ+JYGo5usqpEFwDD/cri2dy27/f6+NddCk2h7mQskvsedLDAPv4j1NopjXdNvOB2xmQqeHas5R7c09MgFSQA4SpjM0N5ubnugZKkc811esf0Q1OOpW4FH0JA9pgm200=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781155529; c=relaxed/simple;
+	bh=BgKqMYr8Fm6Wquqq7jwdAlDh3DLJdmpXOmPeUN+NqTs=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=sbZ3m4J6+ueXG8jL05yLBAMDsEz62onC59JKhdy+ndugIXwUGx7/gpIlrf296vwMFxqS2/TTq04FPJ7mz6OOZsaSI/fBK9BW1DBcSV3Ddp89vVwsVBBvGFc9rcuaJVtRlGVXD6W0wmAKAa29xl51V9g/Agrq83to/7BbqcWtdMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mUNB6KXk; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF3DB1F00893;
+	Thu, 11 Jun 2026 05:25:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781155524;
+	bh=GWpi6YPNM1TIcT6BPIxnYY+fZli3agzw50CwiZxB0ew=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=mUNB6KXkQ5//H0tWZf1nhuPKEWRDKk2gEbvvZeKgSxHxsXmPY+Cli5kSmjoxHHljP
+	 9EO4f7KYOOZ/houMmWRtAOeLcZHW6i3tDVzkOp9bA6BmQWu+AoiYRXwxD79/yQJm2j
+	 X6V8QEc0xF8W0bAVxSsKCBxoBNkUiE9lEA3sjtGbE0n9LeextTTdkue5LLdLatdoF3
+	 mnoPHdBGBFZ3TPpNGSllpXCkWz/IZ1K5tguF1wMxff6XMHEklaYAwf4ctwxMOt3MWg
+	 k5DgA65vWByMOBttINspevy4S+pA/vS9YICYyVdPzDRrpoOnoywR2d6DTDPcS7w1TU
+	 lFrRHZsn1kmcw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 33/37] arm64: dts: qcom: sm8550: Move PCIe phy and
+ GPIOs to root port node
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Krishna Chaitanya Chundru" <krishna.chundru@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260611-wake-v2-33-2744251b1181@oss.qualcomm.com>
+References: <20260611-wake-v2-33-2744251b1181@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 11 Jun 2026 05:25:23 +0000
+Message-Id: <20260611052523.CF3DB1F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20260610-ventura2_initial_dts-v6-0-375d8e9d7ebf@gmail.com>
- <20260610-ventura2_initial_dts-v6-2-375d8e9d7ebf@gmail.com> <a8cdc7c23166823a8e1969408c667e6a8d758fe7.camel@codeconstruct.com.au>
-In-Reply-To: <a8cdc7c23166823a8e1969408c667e6a8d758fe7.camel@codeconstruct.com.au>
-From: Kyle Hsieh <kylehsieh1995@gmail.com>
-Date: Thu, 11 Jun 2026 13:24:08 +0800
-X-Gm-Features: AVVi8Cckj1KMTx5QCbBfuV37allJnJRrSd1WRpg0xdewL4kFILvgYndyDD6MebM
-Message-ID: <CAF7HswMxtzD5KoQRGx4ckA4fUbFr6P7XXnTff_Z+_DmN8i37vQ@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310128-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-aspeed@lists.ozlabs.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[kylehsieh1995@gmail.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310132-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kylehsieh1995@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:krishna.chundru@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,mail.gmail.com:mid,codeconstruct.com.au:email]
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,qualcomm.com:email,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2A5EF66E82F
+X-Rspamd-Queue-Id: 0943B66E872
 
-On Wed, Jun 10, 2026 at 7:22=E2=80=AFPM Andrew Jeffery
-<andrew@codeconstruct.com.au> wrote:
->
-> Hi Kyle,
->
-> On Wed, 2026-06-10 at 09:22 +0800, Kyle Hsieh wrote:
-> > Add linux device tree entry related to the Meta(Facebook) rmc-node.
-> > The system uses an AT2600 BMC.
-> > This node is named "ventura2".
-> >
-> > Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
->
-> I have some comments on v5 that are applicable here too.
->
-> https://lore.kernel.org/all/3d56889c004fc2d11b76ace6033c7ccfb8a37d03.came=
-l@codeconstruct.com.au/
->
-Hi Andrew,
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The commit message claims that the `phy-names` property is moved=
+ to the root port nodes, but the property is actually deleted.
+--
 
-Thanks for the review and suggestions!
+commit 0b50a2794d4f364375fa966171b8c7483fa1b1b6
+Author: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 
-To briefly answer your question: Ventura2 is Rack Management
-Controller. It is a modular device primarily designed to manage liquid
-cooling systems and monitor rack-level hardware states. Its key
-hardware features include an extensive I2C/GPIO topology for
-tray-level and rack-level liquid leakage detection, as well as MCTP
-over I2C support for asynchronous device communications.
+arm64: dts: qcom: sm8550: Move PCIe phy and GPIOs to root port node
 
-I will remove the redundant sentence and include this detailed
-description of the platform's purpose and architecture in the commit
-message for v7.
+This patch moves the PCIe phy reference and the perst/wake GPIO properties
+from the root complex controller node to the root port node. It updates
+several sm8550-based device tree files to reflect these moves and renames
+perst-gpios to reset-gpios.
 
-Also, the Sashiko AI bot just caught a missing `idle-state`
-configuration for the MCTP I2C mux, so I will include that fix in v7
-as well.
+>     Move phys and phy-names from the controller to
+>     the existing pcieport0 and newly labeled pcie1_port0, allowing
 
-I will send out the v7 patch shortly.
+[Severity: Medium]
+The commit message states that both phys and phy-names are moved to the root
+port nodes. However, phy-names was removed from the controller but never
+re-added to the port nodes. Does this omission introduce a regression, or
+was the property intentionally dropped?
 
-Best regards,
-Kyle Hsieh
-> Andrew
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/q=
+com/sm8550.dtsi
+> index 912525e9bca6f..a8eccaebcf2d7 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+[ ... ]
+> @@ -2100,6 +2097,8 @@ pcieport0: pcie@0 {
+>  				#address-cells =3D <3>;
+>  				#size-cells =3D <2>;
+>  				ranges;
+> +
+> +				phys =3D <&pcie0_phy>;
+
+[Severity: Medium]
+Should phy-names be included here to match the commit message, or should the
+commit message be updated to reflect that phy-names is intentionally droppe=
+d?
+
+[ ... ]
+> @@ -2288,7 +2284,7 @@ opp-32000000-4 {
+>  				};
+>  			};
+> =20
+> -			pcie@0 {
+> +			pcie1_port0: pcie@0 {
+>  				device_type =3D "pci";
+>  				reg =3D <0x0 0x0 0x0 0x0 0x0>;
+>  				bus-range =3D <0x01 0xff>;
+> @@ -2296,6 +2292,8 @@ pcie@0 {
+>  				#address-cells =3D <3>;
+>  				#size-cells =3D <2>;
+>  				ranges;
+> +
+> +				phys =3D <&pcie1_phy>;
+
+[Severity: Medium]
+Similarly for pcie1_port0, should phy-names be added here as well?
+
+>  			};
+>  		};
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260611-wake-v2-0-=
+2744251b1181@oss.qualcomm.com?part=3D33
 
