@@ -1,69 +1,60 @@
-Return-Path: <devicetree+bounces-310545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310546-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4uNbH93yKmqRzwMAu9opvQ
-	(envelope-from <devicetree+bounces-310545-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 19:39:41 +0200
+	id Ms1MLhrzKmqlzwMAu9opvQ
+	(envelope-from <devicetree+bounces-310546-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 19:40:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7446967410D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 19:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F5E67414D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 19:40:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Tgf95f7o;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310545-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310545-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cs2CfFyE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310546-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310546-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 60D203033D2A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 17:39:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 12F963028EEF
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 17:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77548472775;
-	Thu, 11 Jun 2026 17:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 195718248B;
+	Thu, 11 Jun 2026 17:40:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E519527380A;
-	Thu, 11 Jun 2026 17:39:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDBC4332EBC
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 17:40:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781199567; cv=none; b=CCsexsc614zwlOO0TupWQ+cJ5T7JwVPD4l2rO/gJnidDIUdK1TyxIrLFmC6QmfUWp6RW+UjuVP3Q8NiEBllT01MCvPAyjfB+UX6MWPdlumRXydGb5UJoCFHrkVhLIr2yBnGz0fC54/APtOiqF59n5dLHzH/RoU38+cRjKi2RxZY=
+	t=1781199637; cv=none; b=jtdLYPgYqN86zP559YWCCRAZ5Hk3GJzNwK7CWLd9OpcgzNR5D6cSdixn3a33KAZgHFW9/5IUNU2KWYLXy3JfNKLfSVCV4TeKYIEKgCREzo0Qfyl5zcrcOnfzj8zBymphr7XnbWUznhLuK6i5Xd2JGhxiwuCovys51JlUBOGEApw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781199567; c=relaxed/simple;
-	bh=FMNsqxa5yfbSDypz5Gq4f5IE6X4crxLSQ+REFu3hw14=;
+	s=arc-20240116; t=1781199637; c=relaxed/simple;
+	bh=B6fPCFajjqx+bqSKTPcLkjoZWKhORO9MGEFzRdQ9TWk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bQWMBFgpGNPXYIWkJeVifcGhm+/n6oaJlKyraEW28VIgPnCSTOE0x5HR+LNI3DePS/kFHSpljHLGDAySgPeh8l8fc5SMLOadsFJJupvjtLjVwEbKI0hx9MLCADpqniYjYTQweQu5JQPl9U39rvcy+8RCyJ/+v9Wh75fWD6Y+Qtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tgf95f7o; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCB501F00898;
-	Thu, 11 Jun 2026 17:39:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=q4E/LE75fyLvKTLCAsr9XMhzF0J7/ufREDf/DAj0hmPkn2YKH4Hrfc+nrzYtFkfMdFhlx6pdylxbF1VyJWa05s7QSgo//VlCWileLk8G1iVxKhfW9+0Pvv19DTefxbXrOe68upld9vjm33ZXQt8ZDdY+P6lx/SS15eUFFd+y2u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cs2CfFyE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29DAC1F00893;
+	Thu, 11 Jun 2026 17:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781199564;
-	bh=zecCFZ8Srn7GiJ4aEDliOVYKyOCo+jfQkMceICQfEXU=;
+	s=k20260515; t=1781199635;
+	bh=dGY6gRpDw/FAnqooubUhL6f+5QZqWpLz1cM5Q+PhkxQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Tgf95f7oTSS3MaNiLsaHbRgvzIf0S9ca7hX2UT6P0d9HTH1KyIQsLIUwZ0uB4A3dR
-	 K3rAOgo8Omp6Mi8GyxItsEKwz7uQOgF2gODKWfHyKhTsgxjj5eNzj2WSI355eSWmuA
-	 4wkoA90TjXf+w3IF6Lwn2bitk2TpIydg00SuG71SK6dkf6peyXQM32ZnYg2azcJQTA
-	 uknqvGfXCPZZiEU3nJdGYf9tSEuJVLHXVEMmGEMe32+UrER386OdKZs69GtyH1c364
-	 qAOIhSdrAsUsVvyRuBGM378Y5/NxdN1CztJ9G0P0axYmXOLyURJQzck/KrKXR0RT2d
-	 WmZ8QInRUgAsw==
-Date: Thu, 11 Jun 2026 18:39:19 +0100
+	b=cs2CfFyEUgif8Vr3NmTvuk8fEVqQtQR3QOR1ahHqzP5Tz5ReeABg3vUArco3rAWR4
+	 HcUv7of+PVoQL1A/UzVrxzbhtCefqUrKajPajyF9xFd3VdaJouRRFHHFcuLur3YFrY
+	 T8iNUDi/Hc3KfGWRNFJKIh3P8T5le/5E77Ga0bFWrUsvjmXACj6r0zcJxKMYYZOCqr
+	 bdvPjjVVKKktWd8tZ3Rx5VMG/QLUScRkaWTC1MFJyILzKRdR+FPd96xxuO1zAIaOOS
+	 v3ljD95lBKliDAV5cc7hDxETJ2t2LMM/n+h+pwua+VordAG/9S49C2xwk10ves8VM4
+	 5pxBmBYNEZURg==
+Date: Thu, 11 Jun 2026 18:40:32 +0100
 From: Conor Dooley <conor@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC 1/2] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
- gpio irq property
-Message-ID: <20260611-ungloved-snowplow-522e7c0b7a51@spud>
-References: <20260611-gpio-to-irq-v1-0-12201716f23f@amlogic.com>
- <20260611-gpio-to-irq-v1-1-12201716f23f@amlogic.com>
+To: Lucas Stach <l.stach@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add Gira
+Message-ID: <20260611-swiftly-imaging-d624308d16b3@spud>
+References: <20260610213047.500701-1-l.stach@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,110 +62,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="VEw7ILEoyX+SpPI8"
+	protocol="application/pgp-signature"; boundary="vwwu2srQgu/T3eE7"
 Content-Disposition: inline
-In-Reply-To: <20260611-gpio-to-irq-v1-1-12201716f23f@amlogic.com>
+In-Reply-To: <20260610213047.500701-1-l.stach@pengutronix.de>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
+X-Spamd-Result: default: False [-6.76 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_RECIPIENTS(0.00)[m:xianwei.zhao@amlogic.com,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:linux-amlogic@lists.infradead.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310545-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:l.stach@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:kernel@pengutronix.de,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310546-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,baylibre.com,googlemail.com,lists.infradead.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,spud:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,spud:mid,pengutronix.de:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7446967410D
+X-Rspamd-Queue-Id: 00F5E67414D
 
 
---VEw7ILEoyX+SpPI8
+--vwwu2srQgu/T3eE7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 11, 2026 at 07:54:33AM +0000, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Wed, Jun 10, 2026 at 11:30:47PM +0200, Lucas Stach wrote:
+> Add vendor prefix for Gira Giersiepen GmbH & Co. KG
+> Link: https://www.gira.de/
 >=20
-> Add the hw-irq property for each GPIO bank and enable interrupt-parent
-> for pinctrl so that gpiod_to_irq() can translate GPIO lines to IRQs.
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 
-Uhhhhh, what? Why can't you just use the normal interrupts property?
+Where is the user?
 
->=20
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml | 5 ++=
-+++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4=
-=2Eyaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-> index b69db1b95345..65ec9121300e 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-> @@ -37,6 +37,8 @@ properties:
-> =20
->    ranges: true
-> =20
-> +  interrupt-parent: true
-> +
->  patternProperties:
->    "^gpio@[0-9a-f]+$":
->      type: object
-> @@ -65,6 +67,9 @@ patternProperties:
->        gpio-ranges:
->          maxItems: 1
-> =20
-> +      hw-irq:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
->      required:
->        - reg
->        - reg-names
->=20
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index 28784d66ae7b..2b7bf7d7b9c2 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -656,6 +656,8 @@ patternProperties:
+>      description: Giantec Semiconductor, Inc.
+>    "^giantplus,.*":
+>      description: Giantplus Technology Co., Ltd.
+> +  "^gira,.*":
+> +    description: Gira Giersiepen GmbH & Co. KG
+>    "^glinet,.*":
+>      description: GL Intelligence, Inc.
+>    "^globalscale,.*":
 > --=20
-> 2.52.0
->=20
+> 2.47.3
 >=20
 
---VEw7ILEoyX+SpPI8
+--vwwu2srQgu/T3eE7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCairyxwAKCRB4tDGHoIJi
-0m/hAQCp/1LdXn73XJ882JgpI44MDQ6+BcDG0bj2pr1l/UPp1gEAgr7myM1tdKUn
-TGrp5V8PbizLw4otN8AaIarajA+ocwM=
-=e3OE
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCairzEAAKCRB4tDGHoIJi
+0hr1AP9aZt2FGffm5aovrzrK3EYDLJS745E4ba0dekxVr2XcbwEA6e0grA/0OY+H
+xrsldYVLBLhFRYuruI4Mn4R0hjte8wo=
+=dv6u
 -----END PGP SIGNATURE-----
 
---VEw7ILEoyX+SpPI8--
+--vwwu2srQgu/T3eE7--
 
