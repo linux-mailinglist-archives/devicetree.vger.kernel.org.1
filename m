@@ -1,158 +1,133 @@
-Return-Path: <devicetree+bounces-310553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310554-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rcfOE9j6Kmrz0QMAu9opvQ
-	(envelope-from <devicetree+bounces-310553-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:13:44 +0200
+	id CaoBGxD8Kmqz0gMAu9opvQ
+	(envelope-from <devicetree+bounces-310554-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:18:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 091176745D1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:13:44 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6089F674634
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:18:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310553-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310553-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fZvC0BiE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310554-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310554-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E551B30DDF9F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 18:13:16 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 80ED13010809
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 18:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F114A3419;
-	Thu, 11 Jun 2026 18:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398714BC024;
+	Thu, 11 Jun 2026 18:18:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75F0D3161BF
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 18:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6452544A739;
+	Thu, 11 Jun 2026 18:18:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781201592; cv=none; b=mbaFGRC9hBQx8VHLNYyrzvKXpUPqbc9TTTiP3wkPCaFWBrvcTRLXpODyURSjecoR3V6DLCSZ0eV/dJWkz4jV0PCi0JtvVJuSHkQVgLggPsU4DSThdY0z0+Rtho3mtmHWFroifPCfDNKYRcqM+jnTtthOM04uysc6UERA4yBwsh0=
+	t=1781201925; cv=none; b=m0nOECI+PhofYrsQhded4cy8LprM3+ys4EE46ytLkXarbefHR/SRav5QZdQ1dOuI7FmusMulo/scimsx5GGU7V9fYFuhSLfo5N5gsbEFjwnffyep8qv1HulQDHfAXsAoxb2ZgkUvwFH3Jgu88Kjiobcuj6rLKGsZOuM5E4y1hfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781201592; c=relaxed/simple;
-	bh=yhiGW+BamBre+FTmJNxSqskC0ympU0V8SkDlwE7b0zs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VytUVatLmOb9Q7SO44uwXl1mrP8kYFVZRUOpE4Df+JVk4lqxbuj2VqjIsThDZT1NG49RclJsh0Yta346B1PsZFj0PGAYUGWjoWmxPVIBXOrskg8vLsVCkDf2M/mWcBsZI99HhedT24fGUzLNQN2SrCBTAfO14J97DOwB08P9Olg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1wXjtM-0003nV-U3; Thu, 11 Jun 2026 20:12:36 +0200
-Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1wXjtM-002Fqw-17;
-	Thu, 11 Jun 2026 20:12:36 +0200
-Received: from [::1] (helo=dude05.red.stw.pengutronix.de)
-	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1wXjtM-00000003Ffp-13AL;
-	Thu, 11 Jun 2026 20:12:36 +0200
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Date: Thu, 11 Jun 2026 20:12:35 +0200
-Subject: [PATCH 3/3] ARM: dts: stm32: fairytux2: change stdout-path baud
- rate from 9600 to 115200
+	s=arc-20240116; t=1781201925; c=relaxed/simple;
+	bh=031qLjuDRfakEuZQ/std6tMWIl4uwcgzuDI8YGO20Qo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pqDLX3FDNghgNnGUTGerTE1Y/bbYI/NjlUyt3NUqfJtW+/o8uD0nRq+KvIordig2qTdaX6obHRHcBK7v87GIq/yrKvkszb6DfQELqaktLD+TO6a8r/Qq1CUcu9H9JawyIfEBx5byewkzyNhYAFPlFpfpZ/e+R9Ec0dSbi/zWr3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fZvC0BiE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9023D1F000E9;
+	Thu, 11 Jun 2026 18:18:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781201922;
+	bh=hFDThq6/pkUuUwQ7LYJNLndIpy/hj5He8RSY5SpOSt8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=fZvC0BiEi32YEBEdq5HvP5IDSdLpIuV9cUDrDHwtdZou2rrIQMM0GccYpPAWbQDBp
+	 W02MrzBwmpHNpLj87aspCMDaAPfDCIohPlhA0unELniCoZYpFuLapjdy9UalsAttX4
+	 xawD7WHb7gwdyhDsutvgskPg14AGRFZylTCAPBUKSI02BdDpwlQGPyKOEusJtYzEug
+	 4w6LXBbeSC/LE3EGxzXOeCDvi1K5YCVwTe7/l7CSjuGkvJ+W8T0Fb3nbz93FvMhwUY
+	 Hqh0OtjqAtjAmSNY24k3ccNGdcct7+d82HTKY4MJCIXyDARba7v+uLOVYvttbpt/vT
+	 doJIkh0NBBjrA==
+Date: Thu, 11 Jun 2026 13:18:41 -0500
+From: Rob Herring <robh@kernel.org>
+To: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Ulf Hansson <ulfh@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-mmc@vger.kernel.org,
+	monish.chunara@oss.qualcomm.com
+Subject: Re: [PATCH v5 1/5] dt-bindings: arm: qcom: Document Shikra and its
+ EVK boards
+Message-ID: <20260611181841.GA3163205-robh@kernel.org>
+References: <20260611-shikra-dt-v5-0-103ed26a8529@oss.qualcomm.com>
+ <20260611-shikra-dt-v5-1-103ed26a8529@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260611-lxa-stdout-path-baudrate-v1-3-59b60a5069ff@pengutronix.de>
-References: <20260611-lxa-stdout-path-baudrate-v1-0-59b60a5069ff@pengutronix.de>
-In-Reply-To: <20260611-lxa-stdout-path-baudrate-v1-0-59b60a5069ff@pengutronix.de>
-To: Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
- Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Alexandre Torgue <alexandre.torgue@st.com>, devicetree@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- kernel@pengutronix.de, Ahmad Fatoum <a.fatoum@pengutronix.de>
-X-Mailer: b4 0.15.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260611-shikra-dt-v5-1-103ed26a8529@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[pengutronix.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexandre.torgue@foss.st.com,m:mcoquelin.stm32@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:l.goehrs@pengutronix.de,m:mkl@pengutronix.de,m:alexandre.torgue@st.com,m:devicetree@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@pengutronix.de,m:a.fatoum@pengutronix.de,m:mcoquelinstm32@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[foss.st.com,gmail.com,kernel.org,pengutronix.de];
-	FORGED_SENDER(0.00)[a.fatoum@pengutronix.de,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-310553-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310554-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:komal.bajaj@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:quic_wcheng@quicinc.com,m:ulfh@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-mmc@vger.kernel.org,m:monish.chunara@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[a.fatoum@pengutronix.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,pengutronix.de:email,pengutronix.de:mid,pengutronix.de:from_mime]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 091176745D1
+X-Rspamd-Queue-Id: 6089F674634
 
-The default baud rate when none is specified is up to the DT consumer.
+On Thu, Jun 11, 2026 at 03:40:08PM +0530, Komal Bajaj wrote:
+> Shikra is a Qualcomm IoT SoC available in a System-on-Module (SoM)
+> form factor. The SoM integrates the Shikra SoC, PMICs, and essential
+> passives, and is designed to be mounted on carrier boards.
+> 
+> Three eSoM variant are introduced:
+>   - CQM: retail variant with integrated modem (PM4125 and PM8005 PMIC)
+>   - CQS: retail variant without modem (PM4125 and PM8005 PMIC)
+>   - IQS: industrial-grade variant without modem (PM8150 PMIC)
+> 
+> Each SoM variant pairs with a common EVK carrier board provides debug
+> UART, USB, and other peripheral interfaces.
+> 
+> Add compatible strings for the CQ2390M, CQ2390S, IQ2390S SoM variant and
+> its corresponding EVK boards.
+> 
+> Signed-off-by: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
 
-In the case of the Linux STM32 serial driver, it defaults to 9600 baud,
-which differs from the 115200 baud that this board's barebox bootloader
-configured.
-
-This went unnoticed, because barebox automatically fixes up a console=
-command-line option that looks like this on the LXA boards:
-
-  console=ttySTM0,115200n8
-
-This had precedence over the 9600 fallback baud rate.
-
-But when EFI booting a kernel via GRUB, we run into this issue, because
-the barebox-provided command-line is disregarded by GRUB.
-
-Fix this by explicitly setting the baud rate to the correct 115200.
-
-Fixes: 8c6d469f5249 ("ARM: dts: stm32: lxa-fairytux2: add Linux Automation GmbH FairyTux 2")
-Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
----
- arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi b/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi
-index 7d3a6a3b5d09..d30b626a18c2 100644
---- a/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi
-@@ -28,7 +28,7 @@ aliases {
- 	};
- 
- 	chosen {
--		stdout-path = &uart4;
-+		stdout-path = "serial0:115200n8";
- 	};
- 
- 	backlight: backlight {
-
--- 
-2.47.3
-
+Missing Krzysztof's reviewed-by.
 
