@@ -1,148 +1,223 @@
-Return-Path: <devicetree+bounces-310547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310548-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id n462Aa30KmoC0AMAu9opvQ
-	(envelope-from <devicetree+bounces-310547-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 19:47:25 +0200
+	id 8G2QIJr4Kmrw0AMAu9opvQ
+	(envelope-from <devicetree+bounces-310548-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:04:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68920674228
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 19:47:24 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFA1A674479
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:04:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VlHeHWFK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310547-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310547-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=FIOSQKBt;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310548-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310548-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 16AC13017FA4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 17:47:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3065331EA988
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 17:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF083E171A;
-	Thu, 11 Jun 2026 17:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DC841325C;
+	Thu, 11 Jun 2026 17:48:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B6B314B73;
-	Thu, 11 Jun 2026 17:47:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3143D88EC
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 17:48:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781200041; cv=none; b=kjt1Wfd2PDCobmMN0SiEW6jcRWXe8W8CGe6O8IHJblRDZkzHg6qQ/gkSbPQ9qcjlRs1gihnJ262+atqgIs8dbac78y57MTXehmi1tpKyD3q8AExdhrXetIInrYaLH45XuGuFZuF8WRTsKNVHxsPYRwz97Juh2wBpGWvCt2Rj2Uk=
+	t=1781200099; cv=none; b=nHY3niezyb5yqDm5QLEh0Tq4R0adRS5NMrxWE/O8rKYmo+0McP88ehG7PpPM5LQ0DPXMKwDNyBcAyM1NEM40d/igIdegt8XbROMWnk+MZv1iG6O6+j16ZBkOOprrJYYT4yVKmfBecNBDrs7Qdr9Z5Dgw6inFF6caY2KSye0lDuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781200041; c=relaxed/simple;
-	bh=Jd4FaYfImOuu+ZqaDqiD0yyDQkR7M4/wUsvH9n7Vg94=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cn97s2QEa6ZATnn4dOYEv3ElvnUAY3i2tgDzEK2IYMbNlX5iLQBQoyC0yvsAC+18Rwnkl47uzCHmWIKavrw8kaeiKcS2LJuyvbIREpOXPbyTXRKcOXeqRmOQ9VhZImgdQocOzh/10sVw9e8q9PmBDBmQNMNqhwd8G2OUasNoHzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VlHeHWFK; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ABEA1F00893;
-	Thu, 11 Jun 2026 17:47:18 +0000 (UTC)
+	s=arc-20240116; t=1781200099; c=relaxed/simple;
+	bh=0NnpuMH9mRrqKjeW+evfNHbhZ2m/HYQNG2dp962jKrE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=h1wzrfV6jcOWoL4m/TRibkn0qKG7nujezO/7S9Z/JxEN9TYxix3YK09ZutKloFp92+X3trLVWyAK3iLD/vA22NbXfrcISXV1339BjXRY5ONvrlVfvFoTk+Io5qboDY2BVSmUxQ9rQsJ7tSYWnbchgE0sQI4GFMw9gyzw45/xhp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FIOSQKBt; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF9A81F0089D
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 17:48:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781200040;
-	bh=qBEOa87CSFATJjqvcZVwKVEXC2OOUzxrPyM6chWCTcg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=VlHeHWFKRueUJu+LCgT1hYFJsusHQrOInpIDLQMi24+C6H7to0uFZEBe07ydfQcYm
-	 nIAnRzgyJ+F/ZoziBzJckwlZNxoapNvfgmXsxE5dXOjbSANIqBoRQ/tcyioJO/v1sE
-	 aNFYM/qYqf4BJFmUfbU7CVInY01vltQbmJy9nGe426uO5FSF9ttEQXB/s1gI1BQFRM
-	 KlgZHQw5WXIoJiHQ+qw4eRkxd9oAwCMhBWGUbu0t6nm0zJcJWGJvXLGMXUuotB9aY9
-	 PTn2ibXIgMdP/YXXwHrYzTAiDQqcneE9ODiZmjS2SBB/dMHiEU1rwFxKFPn8bZhNUw
-	 v1l18f5LY0xxg==
-Date: Thu, 11 Jun 2026 18:47:16 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Nguyen Minh Tien <zizuzacker@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add TI ADS1220
-Message-ID: <20260611-cavalier-punctured-62aa44182f1d@spud>
-References: <20260610151342.44274-1-zizuzacker@gmail.com>
- <20260610151342.44274-2-zizuzacker@gmail.com>
+	s=k20260515; t=1781200097;
+	bh=/1eVH1A0ZUb/+x3mXdbMrec+jqDfQZJHavxWMtMR4QI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=FIOSQKBt2vsmAwv8sxPq/hofX+YM60zhseGh9hqu4r6H1cVhi/mdAQRd0OSyEBP38
+	 AfoTEGacsSld/tIuQIwvPnHH9sot6j2hlGIO38DVUkj2ph/Vj9DijcmyrJwpDdytM/
+	 t6ZcN/+HOvKWpoGIUIoiQV+aLli4Fkcgw37/RxQoAme4ewlb0wDfEDxwSa8+aeM00H
+	 5XdoB4UvUfNdIrxgO4ZdN/9TARKaJim4xICWabFyx9TgI/Kj6MXCNceBSHc04xzPRz
+	 XPzkVhQo8ywdCCjLZgwbwt3hQ9lJPTojDczsBqfp3muVu7V/jN1ofnoYm7u9HLdv+N
+	 G7cl5HVL8KOsg==
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-beb1bee8c16so19220466b.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 10:48:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/7s5fGeH+GX3Z9O7A8py6BXCJN8kbetjH6pgNHTpNoMvTZPKaCya0KcQ54/JMa4NkagdfGq4+uxXHv@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywd7Mpoe32TjvIAueXjp9A6PXXpq/azUL1HWbr+WlxXX2Q4ztgG
+	F8NPcdGBO20NlapdqVlx3C7U7DtJV/iJhg0DrQD70YKOYTOHOZ3xyubMc+RMY8v70LgRD9s6Mrj
+	s1VEu3aaIpHdwndul8sTZEdVBKC29Ng==
+X-Received: by 2002:a17:907:97c1:b0:bd8:bc4e:fb8c with SMTP id
+ a640c23a62f3a-bfc7631119dmr169369466b.4.1781200096526; Thu, 11 Jun 2026
+ 10:48:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="+EuFVgbjNCLF9nry"
-Content-Disposition: inline
-In-Reply-To: <20260610151342.44274-2-zizuzacker@gmail.com>
+References: <20260610110051.1228-1-shofiqtest@gmail.com> <20260610165640.411c1477@jic23-huawei>
+ <20260610-cytoplast-pessimism-dea888887526@spud> <20260611140640.4b144bc2@jic23-huawei>
+ <20260611-spoken-prewar-b5a4b94787cd@spud>
+In-Reply-To: <20260611-spoken-prewar-b5a4b94787cd@spud>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 11 Jun 2026 12:48:04 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+DmxwmA0RT3LGiatioo9_tJzkSZV-Nko6ojicb-rKg6A@mail.gmail.com>
+X-Gm-Features: AVVi8CcUq-hF14IYKJrkCRRUQp5ZXm6YA64TylY6ZXaHAH6s5RwlXdSY6lEtClI
+Message-ID: <CAL_Jsq+DmxwmA0RT3LGiatioo9_tJzkSZV-Nko6ojicb-rKg6A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: iio: accel: Convert lis302 binding to YAML schema
+To: Conor Dooley <conor@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Md Shofiqul Islam <shofiqtest@gmail.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, dlechner@baylibre.com, nuno.sa@analog.com, 
+	andy@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, krzk@kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310547-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS(0.00)[m:zizuzacker@gmail.com,m:jic23@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310548-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:jic23@kernel.org,m:shofiqtest@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,baylibre.com,analog.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 68920674228
+X-Rspamd-Queue-Id: CFA1A674479
 
+On Thu, Jun 11, 2026 at 12:09=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Thu, Jun 11, 2026 at 02:06:40PM +0100, Jonathan Cameron wrote:
+> > On Wed, 10 Jun 2026 17:40:04 +0100
+> > Conor Dooley <conor@kernel.org> wrote:
+> >
+> > > On Wed, Jun 10, 2026 at 04:56:40PM +0100, Jonathan Cameron wrote:
+> > > > On Wed, 10 Jun 2026 14:00:51 +0300
+> > > > Md Shofiqul Islam <shofiqtest@gmail.com> wrote:
+> > > >
+> > > > > Convert the STMicroelectronics LIS302DL/LIS3LV02D accelerometer d=
+evice
+> > > > > tree binding from plain text format to YAML schema format.
+> > > > >
+> > > > > The binding covers two variants matched via their respective bus =
+drivers:
+> > > > > - SPI: st,lis302dl-spi (drivers/misc/lis3lv02d/lis3lv02d_spi.c)
+> > > > > - I2C: st,lis3lv02d   (drivers/misc/lis3lv02d/lis3lv02d_i2c.c)
+> > > > >
+> > > > > Document all vendor-specific properties read by the driver via
+> > > > > of_property_read_*(), including click detection, IRQ routing, fre=
+e-fall/
+> > > > > wake-up engines, high-pass filtering, axis remapping, output data=
+ rate,
+> > > > > and self-test limits.
+> > > > >
+> > > > > Also correct the click threshold property names: the driver reads
+> > > > > "st,click-threshold-{x,y,z}" but the old .txt documented them as
+> > > > > "st,click-thresh-{x,y,z}".
+> > > > >
+> > > > > Validated with: make dt_binding_check   DT_SCHEMA_FILES=3DDocumen=
+tation/devicetree/bindings/iio/accel/st,lis302dl.yaml
+> > > > >
+> > > > > Signed-off-by: Md Shofiqul Islam <shofiqtest@gmail.com>
+> > > >
+> > > > Hi.
+> > > >
+> > > > So the conundrum here is whether we want to keep carrying this bind=
+ing
+> > > > as it dates to a previous era.
+> > > >
+> > > > The driver never made it to IIO and is still in drivers/misc.
+> > > > The majority of what is the text document should never have been
+> > > > in DT in the first place. I'll guess this dates all the way back
+> > > > to the wild west days before we had regular binding review.
+> > >
+> > > I'd say this should be treated like a staging binding but for the fac=
+t
+> > > that this has a user in arm. Problem of course is that it's probably
+> > > impossible to get that board and so doing any rework is probably not
+> > > realistic for this submitter?
+> > > Is there a general policy for iio devices in misc? Do they get rework=
+ed
+> > > to be moved?
+> >
+> > It is tricky if we have upstream users because the ABI will change on t=
+hem.
+> >
+> > I'm not sure how easy this would be to add to the existing st sensors d=
+river
+> > as these are very early parts.  If we could maybe we'd do so and just d=
+eal
+> > with the mess of having to disable one or other driver.
+> >
+> > My gut feeling here is ancient part, let it get dropped in a year or
+> > two and not worry about adding support to a standard IIO driver unless
+> > anyone actually has hardware and wants to do it.
+> >
+> > >
+> > > The user funnily enough has the binding's click-thresh properties:
+> > >             st,click-single-x;
+> > >             st,click-single-y;
+> > >             st,click-single-z;
+> > >             st,click-thresh-x =3D <10>;
+> > >             st,click-thresh-y =3D <10>;
+> > >             st,click-thresh-z =3D <10>;
+> > >             st,irq1-click;
+> > >             st,irq2-click;
+> > >             st,wakeup-x-lo;
+> > >             st,wakeup-x-hi;
+> > >             st,wakeup-y-lo;
+> > >             st,wakeup-y-hi;
+> > >             st,wakeup-z-lo;
+> > >             st,wakeup-z-hi;
+> > > Dunno what that ultimately means in terms of which should be used
+> > > though.
+> > Set those as defaults in the driver if all upstream users have those
+> > values and then drop reading them from dt?
+>
+> Actually, there's more than one user in arm, but there's a mix of
+> compatibles and properties used. Probably not really viable unless these
+> are all unique compatible + property combinations. FWIW, there's more
+> compatibles used than those documented, that fall back to the documented
+> ones.
 
---+EuFVgbjNCLF9nry
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+There's only 1 for SPI. For I2C, I guess it is a question of which
+driver is used:
 
-On Wed, Jun 10, 2026 at 10:13:41PM +0700, Nguyen Minh Tien wrote:
+drivers/iio/accel/st_accel_i2c.c:               .compatible =3D "st,lis3lv0=
+2d",
+drivers/misc/lis3lv02d/lis3lv02d_i2c.c: { .compatible =3D "st,lis3lv02d" },
 
-> +      diff-channels:
-> +        description:
-> +          Differential input pair routable by the ADS1220 multiplexer.
-> +        oneOf:
-> +          - items: [const: 0, const: 1]
-> +          - items: [const: 0, const: 2]
-> +          - items: [const: 0, const: 3]
-> +          - items: [const: 1, const: 2]
-> +          - items: [const: 1, const: 3]
-> +          - items: [const: 2, const: 3]
-> +          - items: [const: 1, const: 0]
-> +          - items: [const: 3, const: 2]
-
-Maybe this is a silly question, but what is the difference between 3,2
-and 2,3? Which pin is considered the positive value?
-
---+EuFVgbjNCLF9nry
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCair0pAAKCRB4tDGHoIJi
-0hFQAP4yNFL18XM3mBg0BnNBrCMrSEhPZ10DWYYcwOvk79OyNgEAwbKsF6+f82W9
-XDDP484gg92bL0mHDp4t8BAeIP6V+ws=
-=1hHH
------END PGP SIGNATURE-----
-
---+EuFVgbjNCLF9nry--
+Rob
 
