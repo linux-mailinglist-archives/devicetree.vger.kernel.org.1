@@ -1,340 +1,299 @@
-Return-Path: <devicetree+bounces-310325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310327-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RQ2OMsaJKmrwrwMAu9opvQ
-	(envelope-from <devicetree+bounces-310325-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:11:18 +0200
+	id BKOKB/WJKmoFsAMAu9opvQ
+	(envelope-from <devicetree+bounces-310327-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:12:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22598670B80
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:11:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABADD670BA6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:12:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="HbVv/1BP";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310325-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310325-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=EuYgqavH;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="HD/k18/h";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310327-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310327-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 827DE3273B69
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:09:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0399532BCDD6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:10:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA41D3A254C;
-	Thu, 11 Jun 2026 10:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAADF3C98BA;
+	Thu, 11 Jun 2026 10:10:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D9F37B400;
-	Thu, 11 Jun 2026 10:09:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC62342523
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 10:10:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781172574; cv=none; b=DAt8I6omelnMaB5x75eK1pmVzNuP7yA6g+whSpB0TZNHu40REvu+L39/v0xnQw26wGcZ8wi2FLf/vItomLY6djE9NtQlQ1WPjnK6lGhZwVsQderZB1KdvUKlsSdrVR+TfztqWl+ueaLdTIpl3SrP8FRLA2mMiGZKr0w4d+D/bZE=
+	t=1781172624; cv=none; b=dmK1ixLPEo6iCYwiwbVZe4BS+gNEmiqS0lPF1z9pUw2xI/yRksFZRMo1GmLBoEFZjBdCIesk2F9OtZ1ZfDDDEl5foj9D6u0AhSks1U7+OaTHif9RFnVPCBTGvVXoZhDBkxJPLs3aARLyd2pqFqXfhPlVA6a2/Jbj7+LgfHa2+vY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781172574; c=relaxed/simple;
-	bh=hvZZ+YuPc85ySKxaosgcvprbDMTpHEnZSABgrGv3B8g=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nQWxJ8qLKvk8I5GuzXzk9gv30MVUFsV4w1ccXuTvto4Ojdz9h7iQnsmq4jESFoKskY4mkHzvlTbvo2oApW0mYznYI12IDuTEsRUulMNxeEMKq3y5SQ3VfmCyOGIehpMHw0RvemBpGkMJ5k6LWo2+xIuvTmLq3pTUP5vCcdROM7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HbVv/1BP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 755EA1F00893;
-	Thu, 11 Jun 2026 10:09:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781172573;
-	bh=2O+YpFdrat6Z+OWdtzL/T/F6ubPYSmkO7DCAVXANdMw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=HbVv/1BPi5cphjIYqcqt9CSgxy4GLILFmzXk5gM8lhFpVSdu9eZT/MEJvD0i/iOny
-	 PkQiOwDN54P9nu0KjiQwY8TdlMTFsbp2JX4ZSUR9ziGSnRYWDqRUrCsyZu2cwJw830
-	 7vkzX+iigaMJ+NFT90uMnM4f5heCoDQEho6pwhR/uIH4rxQwRe0nj91+hvcgv+nfeb
-	 pl+X05JQmPCTgdlxGq/xJJ3n+6Tn3Z9XJq3zTPEl7GoFo+9jjKSQbiba0sjJi15WA5
-	 xkyUHS8go8JuY2iOGwSDPYOcfAIZZg4nzBEl2KG4nljwfsTBQwb0zSbrz1N2ZkuWbm
-	 HCRDOUq9aVXow==
-Date: Thu, 11 Jun 2026 11:09:23 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Petar Stepanovic <pstepanovic@axiado.com>
-Cc: Akhila Kavi <akavi@axiado.com>, Prasad Bolisetty
- <pbolisetty@axiado.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: add Axiado SARADC driver
-Message-ID: <20260611110923.2f55d280@jic23-huawei>
-In-Reply-To: <20260611-axiado-ax3000-ax3005-saradc-v2-2-913c9de7c64c@axiado.com>
-References: <20260611-axiado-ax3000-ax3005-saradc-v2-0-913c9de7c64c@axiado.com>
-	<20260611-axiado-ax3000-ax3005-saradc-v2-2-913c9de7c64c@axiado.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1781172624; c=relaxed/simple;
+	bh=qwwBqiUVQhsEEk8IMHKN6+o4JIzdec3YADBMvEXeMO8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OB8eIvfTwk71aS1Jm85phDZIZ6WUzJDEm5x+nerKrn8NV/EpHCUc1gxTrqoQc82Sq60ZPq424OV+KzuHRU0BpfBuJSkFJ6e26Qc98xxK2S7pK5quJ8Ub6kwpm9WSalT0bCyILlka6oWIEl5x66vhK+o1bg7X5Hm8/2D2GReUn4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EuYgqavH; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HD/k18/h; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65BA1V01168341
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 10:10:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=YqRP6zDTIs74HF9sx2xYRh
+	n3mKkqsdODgZ5PXkmDO38=; b=EuYgqavH13xCJ2sM6C8hG8QMUEv63rc4IhGRI8
+	hbfmZvSjD7I6DULRbBKLVF84YDgkkPmrf8a6jghvzXG0wYx9S4nV9E7SsVKOJNdN
+	36EpJhZYPlxrY77LJkVtH5nDtRZizzm66xxOccNWiY/4JLZnJyh2jc/Kleer+ybC
+	ev7SVtM9cLLE/0wYssJ6lgoA83+yQgVEjrnxHm++siO4VYc3l7gWYLCpwJjMKMG8
+	ovwxvrVu3HbRiJU49b1bbD0ANlBDgRhfdjOaBDY5afY0Pj3uyW4WaxLiWXICzc5A
+	z8jYciOlXRZNP7EjDb11zojeZPUvNrk6j5wF8PeVNDlJ2ong==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eqe6uav5d-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 10:10:21 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-c8584e80bfcso3453119a12.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 03:10:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1781172621; x=1781777421; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YqRP6zDTIs74HF9sx2xYRhn3mKkqsdODgZ5PXkmDO38=;
+        b=HD/k18/hYk8jwhCdZUm/ueIw8GDNq/J2bdMhfe2HcZiLzunspe2bCEyogPzXvs2FMZ
+         A+3Z5p00RnZ+PLpfoTZPs4bN0x/1X7BiZPU0zSvXNyoA3vmq3gPvwAAUHuf3RVv4dnIh
+         g75pjDMwfHIInTX8UE3yFAItoS9Ze8OiZ6eI0v0nb/EZ5rzStAQxyatcfjQCaUyMBcsp
+         zjG2YPBB+IEZycfoRXJpjD6yZL9utSvTAzOVsY0GQ3YOWGKEHjIHNF0uo1Bqa8B8NLht
+         n064oC7/1GMZ/6f9UPhzBm2vGQsX2z599KY1Wu01q1yzGLrUPrL3dE9Rp01mw+At5BjK
+         qkKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781172621; x=1781777421;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YqRP6zDTIs74HF9sx2xYRhn3mKkqsdODgZ5PXkmDO38=;
+        b=fAmc8XOFFVu8xnACYuHcANHnEISkVpUNLWOXQ6+xEYoplUkKIM3avQxsk8U05iyT0g
+         3L9h4kxkvBhPLc44TEsyVL4S0NuBjCDnIEh3o5Pp8tqTDONebEvd3dFHfYM18XEnR3In
+         4ERVo93OGIkCeRzIK3DCqP8Q6M2+aHZgpVUqn8AD+WYtviguw7lY/SRLoi9rH2CLpMbh
+         20l/V/zaIK5EtFUl5rPADLUMVSAsvq8UT83FJp9YBh5YpVBk0QuMMfXw3fDPokq/wJQ+
+         //vb2hVVzrScTlJSP7k7b4MTueDbTc9h5hrEJMDeyfUHFaCehwsdZxeeowAO+sWOyjcJ
+         Nntg==
+X-Forwarded-Encrypted: i=1; AFNElJ832xbe5niw4SvBbcSvLRdlXkxcgkkzadBsyUHqefZwqw92VhZyOnWLa7FiIEDJkdvo2/BwMomlmuw+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym6LGwXe3Yyr1++v7Zpjt4O2qW4N6bEaP3NPUCcrHMcUJohWj3
+	Eq4jnOTvksCNV4UIKmMkAuxcHYbJKRzKQijzeeIF8iIGEMP6XP9wgm9vT/ttom4I3bcg+J6Dc24
+	ga9ilDt0bR/l9ucZim3SFC/x3DkkYMEASz0J9/L5CU7QGKn8hhg8GNwzKCgWNru/d
+X-Gm-Gg: Acq92OEGMTbb7r3y4xOaEUEJ4LVbfW3FK4QerXbWO3LMsRx1Vxnnunc/73zB85L/3pp
+	FP/GN7N2/xrG3m+zhwrm66JTuUAwSC80/9evk2fs/RwLYah9zfwSfluLBCsqXVBCZXloerCZxuk
+	1VJMceOj/Yi9kroAgmR1YEj1PPXefc9eaACDHZ/owh7TK0kluGlgxhrnTgcnEAN21lemO5zYq9f
+	OGXKkmc4/Ph4myXcgBn9omcnerBmkzmqS59MZHW/E1taxGIw4h0qn56yIPmPgchLcnO383W0pVi
+	Eex4j90UzDlCyytEGB9sdPJj8st5woQpKXXxSNJce9N0dKkBatttC6T1tGdXDwjlzK5aVDOm13r
+	QkcHs3OqLjInxhRyViY7fEh4i9py/rn7PCajivsbedAOuRf0=
+X-Received: by 2002:a05:6a21:610c:b0:3b4:80db:f1b6 with SMTP id adf61e73a8af0-3b5e3191983mr2487538637.6.1781172620578;
+        Thu, 11 Jun 2026 03:10:20 -0700 (PDT)
+X-Received: by 2002:a05:6a21:610c:b0:3b4:80db:f1b6 with SMTP id adf61e73a8af0-3b5e3191983mr2487508637.6.1781172620116;
+        Thu, 11 Jun 2026 03:10:20 -0700 (PDT)
+Received: from [10.213.101.118] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c865860f3d4sm1279646a12.19.2026.06.11.03.10.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jun 2026 03:10:19 -0700 (PDT)
+From: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
+Subject: [PATCH v5 0/5] arm64: dts: qcom: Add initial device tree support
+ for Shikra
+Date: Thu, 11 Jun 2026 15:40:07 +0530
+Message-Id: <20260611-shikra-dt-v5-0-103ed26a8529@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAH+JKmoC/6XS207jMBAG4Fepco2R7fExV7wHQpVP01o0SYlDx
+ Ar13ddpC5sVIJC4sTRR/i+Z8bw2JY05labdvDZjmnPJQ18LebNpwt71u0RyrHXDKVdUMkbKPj+
+ OjsSJRC2j1UIKJVRT3z+OCfPL2bp/uNRjenqu5HR5+E9sN2dPcPvm7UIg47GrZzg8FsKpFSkiI
+ njaznLhu1SKW6clNdf0tnP54IeXrevjtirby4cKmYEwoqxBkyR6AHs3lHL79OwOYei623r8Qub
+ fyx8aBvrWcO5SR3zuY+53xGnvbeTIVOTtzD6LSvo++xLWSUSJzkeKP0hOoYzv0TpdpoxNglp9j
+ XpXElkayFO7cT4pyQzo4MEK1CpqME47LTRwjsGBR6a9a5bL3ucyDeOf8x5Va7nt68rw1crMjFC
+ imRJgAGiM9OPUFmzma8CuAV6BQJm3FL0AK78AYAXw//4AKmAoYkzGQQziC0CsAb0GRAW8DI6ho
+ 3Uw/BPgdDr9BR4b6bZZAwAA
+X-Change-ID: 20260511-shikra-dt-d75d97454646
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>, Ulf Hansson <ulfh@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-mmc@vger.kernel.org, monish.chunara@oss.qualcomm.com,
+        Komal Bajaj <komal.bajaj@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Monish Chunara <quic_mchunara@quicinc.com>,
+        Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
+        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+        Sneh Mankad <sneh.mankad@oss.qualcomm.com>,
+        Vishnu Santhosh <vishnu.santhosh@oss.qualcomm.com>,
+        Xueyao An <xueyao.an@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781172612; l=4628;
+ i=komal.bajaj@oss.qualcomm.com; s=20250710; h=from:subject:message-id;
+ bh=qwwBqiUVQhsEEk8IMHKN6+o4JIzdec3YADBMvEXeMO8=;
+ b=SeTICSgt8xeYx9/zvEW0plaXxOwnexE1sXl0CQBgwnTqRlBrb5+SzSC2VALH4i7BTgTh6R/iI
+ 0GFuY6GnlLjBVeKljMqXqvoIs99wLs8oDejlH/Ekv/dS+SmFmbi60H5
+X-Developer-Key: i=komal.bajaj@oss.qualcomm.com; a=ed25519;
+ pk=wKh8mgDh+ePUZ4IIvpBhQOqf16/KvuQHvSvHK20LXNU=
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjExMDEwMSBTYWx0ZWRfX5Vjk7+wlumle
+ 7a4IWlkP5CCvv9qfo+8Z8gl6/GEcfBReIT8DfjW9tB6rb4vjzCyBhjjukqGyu7WibG52ONnk6wn
+ vi5kh1DCNMw/DszptmjrE6SLK8ehVwk=
+X-Authority-Analysis: v=2.4 cv=atOCzyZV c=1 sm=1 tr=0 ts=6a2a898d cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=thxruFBVZ7uuMI2BP_UA:9 a=QEXdDO2ut3YA:10
+ a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjExMDEwMSBTYWx0ZWRfX4bemS7OsKBaj
+ xRJscXzhxdADNJeKNp4Z0Gvss+2gBBcSBnTpep8Co6D08axhz7xOTnA9HAs02dRwRrRMUzs+ChH
+ eZ149aZ2gDPSNQRwrtgs1zleXCMRbmN+nt6XAGhYfNEHgBvNFn5yETihyHIPeV0bPw7dhRcdVzV
+ 0wMJ96fDtXAIi59VfWN6wzCn8ZBDtfYdbaHVpodubMyM+wa11L2emfUtK5aL0eVxHU0vh5JLJef
+ QiLp/hmmnRBCICh6hqLd/ijJo9/LZUDceFOd1o9Nga0JaLrvZssredY8JyyUNSByWOXx+PWYKYK
+ YlklwK9Id27olLRCSjgG8a1s+o3obhGDNmGMp0KdpgeBaXRHgeLppDKhIZrn+o7g9lh5TDEE6Xs
+ 62cJWjdn3Yifm0Ya9jGzJDm839d7x2+joMKF2cPu45DAAKUzHlJzcMYGN9KA0AvZz5cCdKQ+fQQ
+ WNX4eiad9ms2sjmXPsQ==
+X-Proofpoint-GUID: M9CrOzElbwF1Ni5CHYqqX9U8R5XuF71m
+X-Proofpoint-ORIG-GUID: M9CrOzElbwF1Ni5CHYqqX9U8R5XuF71m
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-11_02,2026-06-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 impostorscore=0 bulkscore=0 clxscore=1015 spamscore=0
+ malwarescore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606040000
+ definitions=main-2606110101
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:pstepanovic@axiado.com,m:akavi@axiado.com,m:pbolisetty@axiado.com,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:hshah@axiado.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310327-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
+	FORGED_SENDER(0.00)[komal.bajaj@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:quic_wcheng@quicinc.com,m:ulfh@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-phy@lists.infradead.org,m:linux-mmc@vger.kernel.org,m:monish.chunara@oss.qualcomm.com,m:komal.bajaj@oss.qualcomm.com,m:imran.shaik@oss.qualcomm.com,m:quic_mchunara@quicinc.com,m:rakesh.kota@oss.qualcomm.com,m:raviteja.laggyshetty@oss.qualcomm.com,m:sneh.mankad@oss.qualcomm.com,m:vishnu.santhosh@oss.qualcomm.com,m:xueyao.an@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-310325-lists,devicetree=lfdr.de];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[komal.bajaj@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[jic23-huawei:mid,vger.kernel.org:from_smtp,axiado.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 22598670B80
+X-Rspamd-Queue-Id: ABADD670BA6
 
-On Thu, 11 Jun 2026 02:37:44 -0700
-Petar Stepanovic <pstepanovic@axiado.com> wrote:
+Add initial device tree support for the Qualcomm Shikra SoC.
+Shikra ships in a SoM form factor; this series covers the CQ2390M,
+CQ2390S and IQ2390S SoM variants and their EVK boards.
+The series adds:
+- dt-bindings for the Shikra SoC, CQ2390M/CQ2390S/IQ2390S EVK boards
+- SoC base DTSI
+- CQ2390M SoM DTSI with PM4125 and PM8005 PMIC regulator definitions
+- IQ2390S SoM DTSI with PM8150 PMIC regulator definitions
+- EVK DTS files enabling UART and eMMC on the carrier board
 
-> Add support for the SARADC controller found on Axiado AX3000 and
-> AX3005 SoCs.
-> 
-> The driver supports single-shot voltage reads through the IIO
-> subsystem. The number of available input channels is selected from
-> the SoC match data, allowing AX3000 and AX3005 variants to use the
-> same driver.
-> 
-> Signed-off-by: Petar Stepanovic <pstepanovic@axiado.com>
+Note: USB support is intentionally dropped from this series. It will be
+sent separately once the USB driver changes for Shikra are concluded.
 
-Hi Petar,
+Signed-off-by: Komal Bajaj <komal.bajaj@oss.qualcomm.com>
 
-Looking good. There are a few formatting things that I think need a little
-more polish though.  Given IIO is closed for this cycle, there is lots
-of time so if you can clean those up for v3 (rather than me tweaking whilst
-applying), that would be great.  Obviously give it a few days on list first
-as others may take a look!
+---
+Changes in v5:
+- Add qcom,rpmcc-qcm2290 fallback compatible to rpmcc node in shikra.dtsi
+- Link to v4: https://lore.kernel.org/r/20260527-shikra-dt-v4-0-b5ca1fa0b392@oss.qualcomm.com
 
-Jonathan
+Changes in v4:
+- Updated commit message for 1/5 and 3/5 (Krzysztof, Konrad)
+- Incorporated Konrad's comment
+- Collected Reviewed-By tags
+- Link to v3: https://lore.kernel.org/r/20260522-shikra-dt-v3-0-80ffde8a3dc4@oss.qualcomm.com
 
-> diff --git a/drivers/iio/adc/axiado_saradc.c b/drivers/iio/adc/axiado_saradc.c
-> new file mode 100644
-> index 000000000000..d2f4071c932c
-> --- /dev/null
-> +++ b/drivers/iio/adc/axiado_saradc.c
+Changes in v3:
+- Drop USB nodes from this series; will be sent separately pending
+  conclusion of USB driver changes for Shikra
+- Fix memory base (0xa0000000 -> 0x80000000) (sashiko-bot)
+- Fix power-domain macro: QCM2290_VDDCX -> RPMPD_VDDCX for sdhc (sashiko-bot)
+- Fix INTC GIC_PPI number from 8 to GIC_PPI 9 (sashiko-bot)
+- Rename SoM variant CQ7790M to CQ2390M (Konrad)
+- Add PMIC DTSI includes to CQ2390M and IQ2390S SoM
+- Link to v2: https://lore.kernel.org/r/20260519-shikra-dt-v2-0-c01b90fb4395@oss.qualcomm.com
 
-> +/* Register offsets */
-> +#define AX_SARADC_GLOBAL_CTRL_REG 0x0004
-> +#define AX_SARADC_MANUAL_CTRL_REG 0x0008
-> +#define AX_SARADC_DOUT_REG 0x001C
-> +
-> +/* GLOBAL_CTRL register fields */
-> +#define AX_SARADC_GLOBAL_CTRL_CH_EN_MASK	GENMASK(31, 16)
-> +#define AX_SARADC_GLOBAL_CTRL_SAMPLE_MASK	GENMASK(6, 5)
-> +#define AX_SARADC_GLOBAL_CTRL_MODE_MASK		GENMASK(4, 3)
-> +#define AX_SARADC_GLOBAL_CTRL_PD		BIT(2)
-> +#define AX_SARADC_GLOBAL_CTRL_ENABLE		BIT(0)
-> +
-> +/* GLOBAL_CTRL register values */
-> +#define AX_SARADC_GLOBAL_CTRL_SAMPLE_16		\
-> +	FIELD_PREP(AX_SARADC_GLOBAL_CTRL_SAMPLE_MASK, 0)
-> +
-> +#define AX_SARADC_GLOBAL_CTRL_MODE_MANUAL	\
-> +	FIELD_PREP(AX_SARADC_GLOBAL_CTRL_MODE_MASK, 1)
-> +
-> +/* MANUAL_CTRL register fields */
-> +#define AX_SARADC_MANUAL_CTRL_ENABLE           BIT(0)
-> +#define AX_SARADC_MANUAL_CTRL_CH_SEL_MASK      GENMASK(4, 1)
-> +
-> +#define AX_SARADC_MANUAL_CTRL_EN(ch)           \
-> +	(AX_SARADC_MANUAL_CTRL_ENABLE |          \
+Changes in v2:
+- Update SoM/EVK combination bindings (Krzysztof)
+- Add per-CPU-type PMU nodes with PPI partitions for the heterogeneous
+  cluster (Cortex-A55 + Cortex-A78C) (Konrad)
+- Use full product names CQ2390M/CQ2390S in commit messages (Krzysztof)
+- Update RPM interconnect tags and power-domain to RPMPD for sdhc (sashiko-bot)
+- Update to use MPM for ss_phy_irq instead of direct GIC for usb (sashiko-bot)
+- Add IQ2390S SoM (PM8150 PMIC) and IQS EVK board support
+- Link to v1: https://lore.kernel.org/r/20260512-shikra-dt-v1-0-716438330dd0@oss.qualcomm.com
 
-Why tabs to place the \ above and spaces here?  I don't mind
-that much which you use, but aim for consistency.
+---
+Komal Bajaj (5):
+      dt-bindings: arm: qcom: Document Shikra and its EVK boards
+      arm64: dts: qcom: Introduce Shikra SoC base dtsi
+      arm64: dts: qcom: Add Shikra CQ2390M SoM platform
+      arm64: dts: qcom: Add Shikra IQ2390S SoM platform
+      arm64: dts: qcom: Add Shikra EVK boards
 
-> +	 FIELD_PREP(AX_SARADC_MANUAL_CTRL_CH_SEL_MASK, ch))
-> +
-> +#define AX_RESOLUTION_BITS 10
-> +#define AX_SARADC_CONV_CYCLES 13
-> +#define AX_SARADC_CONV_DELAY_MARGIN_US 10
-> +
-> +struct axiado_saradc {
-> +	void __iomem *regs;
-> +	struct clk *clk;
-> +	unsigned long clk_rate;
-> +	int vref_uV;
-> +	struct mutex lock; /* Serializes ADC conversions. */
-> +};
-> +
-> +static int axiado_saradc_conversion(struct axiado_saradc *info,
-> +				    struct iio_chan_spec const *chan, int *val)
-> +{
-> +	unsigned long usecs;
-> +
-> +	guard(mutex)(&info->lock);
-> +
-> +	/* Select the channel to be used and trigger conversion */
-> +	writel(AX_SARADC_MANUAL_CTRL_EN(chan->channel),
-> +	       info->regs + AX_SARADC_MANUAL_CTRL_REG);
-> +
-> +	/* Hardware requires 13 conversion cycles at clk_rate */
-> +	usecs = DIV_ROUND_UP(AX_SARADC_CONV_CYCLES * USEC_PER_SEC,
-> +			     info->clk_rate);
-> +	fsleep(usecs + AX_SARADC_CONV_DELAY_MARGIN_US);
-> +
-> +	*val = readl(info->regs + AX_SARADC_DOUT_REG) &
-> +	       GENMASK(AX_RESOLUTION_BITS - 1, 0);
-Align as:
-	*val = readl(info->regs + AX_SARADC_DOUT_REG) &
-		     GENMASK(AX_RESOLUTION_BITS - 1, 0);
+ Documentation/devicetree/bindings/arm/qcom.yaml |  18 +
+ arch/arm64/boot/dts/qcom/Makefile               |   3 +
+ arch/arm64/boot/dts/qcom/shikra-cqm-evk.dts     |  40 ++
+ arch/arm64/boot/dts/qcom/shikra-cqm-som.dtsi    | 156 +++++
+ arch/arm64/boot/dts/qcom/shikra-cqs-evk.dts     |  40 ++
+ arch/arm64/boot/dts/qcom/shikra-evk.dtsi        |  15 +
+ arch/arm64/boot/dts/qcom/shikra-iqs-evk.dts     |  40 ++
+ arch/arm64/boot/dts/qcom/shikra-iqs-som.dtsi    | 170 +++++
+ arch/arm64/boot/dts/qcom/shikra.dtsi            | 842 ++++++++++++++++++++++++
+ 9 files changed, 1324 insertions(+)
+---
+base-commit: abe651837cb394f76d738a7a747322fca3bf17ba
+change-id: 20260511-shikra-dt-d75d97454646
+prerequisite-change-id: 20260429-shikra-gcc-rpmcc-clks-2094edfff3b0:v5
+prerequisite-patch-id: 59bb0a7828e41f546f734f127d81da83c0adcda9
+prerequisite-patch-id: 197da6bcb15cadc47869dba88c8020987b25c335
+prerequisite-patch-id: 8ec9c1eb03f052ae232ed54117abed38672c23f6
+prerequisite-patch-id: 350db4f4bcdfc0fad9ed57cd5b1723f85ad44f5d
+prerequisite-message-id: 20260508-shikra_mailbox_and_rpm_changes-v3-1-698f8e5fb339@oss.qualcomm.com
+prerequisite-patch-id: e80ea7940b9817449cec21afa6e9e443e007166f
+prerequisite-patch-id: 2526e0507d3b5c065eafd75a657d7f903af8488f
+prerequisite-patch-id: c3b7e18cd60d1f779b88ace2fae1227d3d37d83e
+prerequisite-message-id: 20260508-shikra_mailbox_and_rpm_changes-v3-2-698f8e5fb339@oss.qualcomm.com
+prerequisite-patch-id: e80ea7940b9817449cec21afa6e9e443e007166f
+prerequisite-patch-id: 2526e0507d3b5c065eafd75a657d7f903af8488f
+prerequisite-patch-id: c3b7e18cd60d1f779b88ace2fae1227d3d37d83e
+prerequisite-change-id: 20260430-shikra-imem-binding-a7bb9d2f16d2:v1
+prerequisite-patch-id: 80d8ab865b7b0663c5b2878b45b55e2e4fde9c19
+prerequisite-change-id: 20260501-shikra-scm-binding-a7ff5fabd0f2:v1
+prerequisite-patch-id: 8e645e1c6ad6182de4813a726c293654324de1df
+prerequisite-change-id: 20260501-shikra-tcsr-binding-fff1689e4097:v1
+prerequisite-patch-id: f6781d2cf0829ccb32f1400623c95739972f2ee2
 
-Check for any other instances of not aligning after the (.
-I may well have missed some!
-
-> +
-> +	/* Stop manual conversion */
-> +	writel(0, info->regs + AX_SARADC_MANUAL_CTRL_REG);
-> +
-> +	return 0;
-> +}
-
-
-> +static void axiado_saradc_disable(void *data)
-> +{
-> +	struct axiado_saradc *info = data;
-> +
-> +	writel(AX_SARADC_GLOBAL_CTRL_PD,
-> +	       info->regs + AX_SARADC_GLOBAL_CTRL_REG);
-
-See below. If you change that one to be on one line, then this one should
-probably be so as well for consistency.
-
-> +}
-> +
-> +static int axiado_saradc_probe(struct platform_device *pdev)
-> +{
-> +	const struct axiado_saradc_soc_data *soc_data;
-> +	struct device *dev = &pdev->dev;
-> +	struct axiado_saradc *info;
-> +	struct iio_dev *indio_dev;
-> +	u32 regval;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*info));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	info = iio_priv(indio_dev);
-> +
-> +	info->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(info->regs))
-> +		return PTR_ERR(info->regs);
-> +
-> +	info->clk = devm_clk_get_enabled(dev, NULL);
-> +	if (IS_ERR(info->clk))
-> +		return PTR_ERR(info->clk);
-> +
-> +	info->clk_rate = clk_get_rate(info->clk);
-> +	if (!info->clk_rate)
-> +		return dev_err_probe(dev, -EINVAL, "invalid clock rate\n");
-> +
-> +	info->vref_uV = devm_regulator_get_enable_read_voltage(dev, "vref");
-> +	if (info->vref_uV < 0)
-> +		return dev_err_probe(dev, info->vref_uV,
-> +				     "failed to get vref voltage\n");
-Really minor but I'd prefer the 'side effect free' route of:
-
-	ret = devm_regulator_get_enable_read_voltage(dev, "vref");
-	if (ret < 0)
-		return dev_err_probe(dev, ret, "failed to get vref voltage\n");
-	info->vref_uv = ret;
-
-Obviously makes not real difference as on failure we free info anyway,
-so not worth a new version for just this.
-
-> +
-> +	soc_data = device_get_match_data(dev);
-> +	if (!soc_data)
-> +		return dev_err_probe(dev, -EINVAL, "failed to get match data\n");
-> +
-> +	ret = devm_mutex_init(dev, &info->lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	regval = FIELD_PREP(AX_SARADC_GLOBAL_CTRL_CH_EN_MASK,
-> +			 GENMASK(soc_data->num_channels - 1, 0)) |
-
-For readability that G should be under the a of the line above so it's
-obvious this line starts with a parameter of FIELD_PREP.
-
-The particular form of indentation you have here with an effective 8 spaces
-after the start of the function call seems to be something I'm commenting
-on a lot at the moment. Is some tool defaulting to that?
-
-
-> +	      AX_SARADC_GLOBAL_CTRL_SAMPLE_16 |
-> +	      AX_SARADC_GLOBAL_CTRL_MODE_MANUAL |
-> +	      AX_SARADC_GLOBAL_CTRL_ENABLE;
-> +
-> +	writel(AX_SARADC_GLOBAL_CTRL_PD,
-> +		  info->regs + AX_SARADC_GLOBAL_CTRL_REG);
-
-Ok. No idea where that indent came from as it is not 8 spaces or
-a whole number of tabs. Should be.
-
-	writel(AX_SARADC_GLOBAL_CTRL_PD,
-	       info->regs + AX_SARADC_GLOBAL_CTRL_REG);
-
-Or I'm fine with it being just a little over 80 chars on one line.
-
-	writel(AX_SARADC_GLOBAL_CTRL_PD, info->regs + AX_SARADC_GLOBAL_CTRL_REG);
-
-> +	writel(regval, info->regs + AX_SARADC_GLOBAL_CTRL_REG);
-> +
-> +	ret = devm_add_action_or_reset(dev, axiado_saradc_disable, info);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->name = soc_data->name;
-> +	indio_dev->info = &axiado_saradc_iio_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = axiado_saradc_iio_channels;
-> +	indio_dev->num_channels = soc_data->num_channels;
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-
-> +static struct platform_driver axiado_saradc_driver = {
-> +	.driver = {
-> +		.name =  "axiado-saradc",
-> +		.of_match_table = axiado_saradc_match,
-> +	},
-> +	.probe = axiado_saradc_probe,
-> +};
-> +
-
-Trivial but convention common adopted which I like is no blank line
-here. Keeps the macro tightly coupled with the structure.
-If nothing major comes up I'll tweak this whilst applying.
-
-> +module_platform_driver(axiado_saradc_driver);
-> +
-> +MODULE_AUTHOR("AXIADO CORPORATION");
-> +MODULE_DESCRIPTION("AXIADO SARADC driver");
-> +MODULE_LICENSE("GPL");
-> 
+Best regards,
+-- 
+Komal Bajaj <komal.bajaj@oss.qualcomm.com>
 
 
