@@ -1,131 +1,133 @@
-Return-Path: <devicetree+bounces-310437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310438-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EP+dEiGqKmqQugMAu9opvQ
-	(envelope-from <devicetree+bounces-310437-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:29:21 +0200
+	id gFxHDEGqKmqTugMAu9opvQ
+	(envelope-from <devicetree+bounces-310438-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:29:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD984671D61
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E2B671D71
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:29:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SnlHs3vu;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310437-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310437-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=SRH1Iqmo;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310438-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310438-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9C2E3308B9A6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:26:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BD0B932681C1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:27:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0679E3F4111;
-	Thu, 11 Jun 2026 12:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54316346FA0;
+	Thu, 11 Jun 2026 12:27:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0974B3EFD03
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 12:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6AE82848BE
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 12:27:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781180778; cv=none; b=iHPZvhFogxPNkLoXxpKFvmP26Ql0e39SnawwPf3A4srSoTOxddDv0Ddp+Exzm8xXzUxv4pr8upQZpdGBUmB3XmFUx/rXXbiDpYFYSrdEw66UJ9wi7XdEywT3N5Zk3imY6zSZr4ELlCrsqGC7UCWS2FmmXN6kOb5R+lFo3GSimlk=
+	t=1781180832; cv=none; b=r/ZGBelrYnhFca2r+gePjSdeQ9Yp3GcAuOOu9+upfBu3REif07xVMd9erpHF03oaM1BR9XrC8xNotS0ijzCgSdPjP2k45bAyhXt5bafdswccaJDdV73dHyEE3R5X72oO4Tq2jyRBQRQR67ONE2DZocgnSnX096nZHtSDI8GrWyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781180778; c=relaxed/simple;
-	bh=g/VnuIKvkGWSAajf8vvIgUd13LyTGZr4shl0aUhfam8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Nhw4If7KZ3rSL+vGc5S24DBfZhjRdfuu73uWjQEhGGb5NtAgIcw/LukxjoxW0DOEGYqWQAEVPzamCMeykl0tAI0IsAFcP81UGrdVNqMEYeqd5/g2Q1pxiylxKQ41wYS3RowSam+ZbLwPNWNAXq6FsldfSEC3Qt1oUpnOX8t4mxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SnlHs3vu; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C03941F00893
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 12:26:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781180777;
-	bh=Nj6I30dESBei2Zmp1z0LfF/1I7GCQA0Q3yZdhfFji1I=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=SnlHs3vuJPcJW75myJnz3dI4AwoX607x4PnuASHDNWxd28IFxcdcFVf/1P7kLzdvu
-	 DvJpAMullkHv6B4OijQvNEyBpRxRTaPYwpIGPlzdSOvNsFGSBlsb0kVjrqTxuWeXVw
-	 xtBOpjHiysyHhBYOpwaP2X54HdpJaahbYXByLRHb8wbf3A4hqIjolX6auq26e2Fv3s
-	 CFJ1Wrc+j1E/XRsDyAiJg05zC/44qa+5k+yWpYSdnL2o3n5USwz8jyfEMvJ1ExZ5WY
-	 pkg7EyKleS4vpAiYz1qIMTf/AOpycZwOJCC+YthxdPuZAVI+QdWQxunCzgxIqXZnpo
-	 T3c3vBBCX0sbw==
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5aa6cdebc33so7248259e87.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:26:17 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ9uen6QG+3apFqZNl+uHj0cNg/3qPNqDZwRtxh85UyfvXJCBawGVTR9P+xVJxJ3tj1qT5Ny4nXWOvB1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6Z9RFnHHuu4ejK06MhSOHJ5dSBtqEntaqpbms/rDACg3tv9CZ
-	hGNoKH8CLvQqzXfDmK7V/yCYtfBJ6FKmNbVgQ+Xk50F/HEek/7WR9R+tdN6qlC0Gbd9P7CcyUZF
-	vL9tbOKOBQxBm+gPqSaXXUS/zzYsG8TU=
-X-Received: by 2002:a05:6512:1282:b0:5a8:8db6:b3d with SMTP id
- 2adb3069b0e04-5ad27ae3258mr738931e87.24.1781180776604; Thu, 11 Jun 2026
- 05:26:16 -0700 (PDT)
+	s=arc-20240116; t=1781180832; c=relaxed/simple;
+	bh=07XhFOZIzFvouZx4+034ijG/oHYdilZ0gKzqtG233e8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PRE4azbuFKmEoz4BNAIMWSB0srbd0QsiYUb65HoYkzqhH8PRrpDylXsQ7mBeiEoDCmSdciRJtz8T+9thnGyoNsU02h1Rt5epWPSbdSqYFqxXVo3mes9iOOKX+LRsJzZI4U6NrtnYvIeWntyATmJBaBtaD1DB+g+aXSmJJoU/fbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=SRH1Iqmo; arc=none smtp.client-ip=194.117.254.33
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=pzCWhYTTaHarIV
+	WSw9dJjxLQ5h4uRp5jhIoJCVn4y5Q=; b=SRH1IqmoDon1gNM50cL9B7fNXPfWgj
+	RcT1fqj3DDhQC1KVVIrc2UB8alJqNgWPzXkw2IGsABQ0pNNvCAoI54D0l0qEWY3K
+	xHMUsPkEPlL+spAvJ6xGt3yFA0yi4fRzxgdsdVSlygCpp5NUzy1nu5Rjp87zDVBz
+	ELhL1bMq7QPZ5zRF+ojpvpdgP+7i5dkN7bEdTAoPIhGJFw6cH4m05Dn7yUE7F8Yn
+	6zNcK4I711pBK/yUcyUciIug0LvdjZjQA0mNIFAKg/RLdYVycSBkNl0AbD8QbeF0
+	B8BoH2LOSC/Xh3V9OLmNAIho2WdJvG3iuz64WcF281lPeRGHMRJ8mCjw==
+Received: (qmail 2112875 invoked from network); 11 Jun 2026 14:27:07 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Jun 2026 14:27:07 +0200
+X-UD-Smtp-Session: l3s3148p1@dxKCevlToKUujnvX
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-i2c@vger.kernel.org
+Cc: Thierry Reding <treding@nvidia.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Peter Rosin <peda@lysator.liu.se>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: i2c: i2c-mux-pinctrl: change maintainer
+Date: Thu, 11 Jun 2026 14:26:24 +0200
+Message-ID: <20260611122704.7559-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260610-pmg1110-gpio-v1-0-a9c50cd8b5d9@oss.qualcomm.com>
-In-Reply-To: <20260610-pmg1110-gpio-v1-0-a9c50cd8b5d9@oss.qualcomm.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 11 Jun 2026 14:26:03 +0200
-X-Gmail-Original-Message-ID: <CAD++jL=SSUOZTyE29C_z0Gj_1iKgdLnqWaMQc5BKdsY1h5OAUQ@mail.gmail.com>
-X-Gm-Features: AVVi8CeqWNRQFQ5gUdmKUsibk9c4XCoQP1UEG8vW5TTxaputcf1j1B_Elc7vDYQ
-Message-ID: <CAD++jL=SSUOZTyE29C_z0Gj_1iKgdLnqWaMQc5BKdsY1h5OAUQ@mail.gmail.com>
-Subject: Re: [PATCH 0/2] EDITME: cover title for pmg1110-gpio
-To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Collins <david.collins@oss.qualcomm.com>, 
-	Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, 
-	Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>, kernel@oss.qualcomm.com, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310437-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-310438-lists,devicetree=lfdr.de,renesas];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[sang-engineering.com];
+	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:fenglin.wu@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:andersson@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:david.collins@oss.qualcomm.com,m:subbaraman.narayanamurthy@oss.qualcomm.com,m:kamal.wadhwa@oss.qualcomm.com,m:kernel@oss.qualcomm.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux-i2c@vger.kernel.org,m:treding@nvidia.com,m:wsa+renesas@sang-engineering.com,m:peda@lysator.liu.se,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:wsa@sang-engineering.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CD984671D61
+X-Rspamd-Queue-Id: 74E2B671D71
 
-On Wed, Jun 10, 2026 at 9:05=E2=80=AFAM Fenglin Wu <fenglin.wu@oss.qualcomm=
-.com> wrote:
+The YAML conversion added me as maintainer but I can't recall being
+asked nor do I want to maintain it. Thierry has created the YAML file
+and works for the company which contributed the driver.
 
-> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-> ---
-> Fenglin Wu (2):
->       dt-bindings: pinctrl: qcom,pmic-gpio: Document PMG1110 GPIO support
->       pinctrl: qcom: spmi-gpio: Add PMG1110 GPIO support
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
 
-The series:
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+@Thierry: are you okay with this change?
 
-Yours,
-Linus Walleij
+ Documentation/devicetree/bindings/i2c/i2c-mux-pinctrl.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pinctrl.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pinctrl.yaml
+index 2e3d555eb96c..f7502da71909 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-mux-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pinctrl.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Pinctrl-based I2C Bus Mux
+ 
+ maintainers:
+-  - Wolfram Sang <wsa@kernel.org>
++  - Thierry Reding <treding@nvidia.com>
+ 
+ description: |
+   This binding describes an I2C bus multiplexer that uses pin multiplexing to route the I2C
+-- 
+2.51.0
+
 
