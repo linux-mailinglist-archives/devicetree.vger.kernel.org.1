@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-310641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310643-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id j4ZxDuwuK2op3wMAu9opvQ
-	(envelope-from <devicetree+bounces-310641-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 23:55:56 +0200
+	id G0Q5M+8uK2ow3wMAu9opvQ
+	(envelope-from <devicetree+bounces-310643-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 23:55:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EC896757FF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 23:55:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AEA2675810
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 23:55:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=GdILK1R9;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310641-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310641-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=nWnrCgGg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310643-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310643-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 319B632CD212
+	by sea.lore.kernel.org (Postfix) with ESMTP id A56C132E40C5
 	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 21:55:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A7F23890E4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F546389DF0;
 	Thu, 11 Jun 2026 21:55:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F9C37B402;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550E33806A1;
 	Thu, 11 Jun 2026 21:55:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781214953; cv=none; b=uGSEmHGmj4fIU/NGc/VBmld4mn8DwNGRB/aIFcksA5sv8hGq5LNIDYrrSjcLK7z+JHa4ASr6+lJyN/csBgty3UO8N9U9hR9oZUhXGfjX9+VqOab8iO9PqpmSX6SYpeg+I/yeVYvHFsQyaHapdQGk4AJ2JJOx3ZmY3l0kE8IOQXQ=
+	t=1781214953; cv=none; b=nuZRyxdu5dMzKdS7KfoAPHplUath6FCgTX8baXHv+/zTkwLQ3Oxpxjy/74vJe06B8eGb2ktniewCaU8rom21a+oQdM1taqqiRkbir59DlMf6UTE5yoPGhblQ0uROTPSuSZhF8/SNQxwvm8XuU1easBpKm6UDW+T+O1k8Dh0zdKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1781214953; c=relaxed/simple;
-	bh=Pacrb1hpDheZGvPj5b6lI5qmEiVD7X2w+vLnvcN2HfM=;
+	bh=Mx5f6xZMrf4AEZMl2qB5kpZYfcH4Mh0IHXybydzATbc=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=awWg6kW28z/5nER8ND2wFRvf6seJxQQdwrmmGJgBLyofK5ao7jhsApc83czXV4zFXwvs+xhYkK77S5UsQIcd85tl1YTHlmE2quuREzb0udDX/DhiDUncXb+mBYMl1lvKgehIEb5xunf6yN25RAj7Il7SrmNmVDOIve9qxmy4wLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GdILK1R9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 165DDC4AF10;
+	 In-Reply-To:To:Cc; b=oVZjGzS7h1UTsO5hXtV3L8vlgLdvU+nJ7z0eFvSAVqdiMjMqBjxa9ctzzXRO5ZB43rLiCdlf+Vcecdi4cBbKS2QWHs/S/uR3NKd8SFoTfBiro7XnW4k/9QxL6cZ6fr3z5ctCGoT/jq7qX2ENxuJC7KqGLgHeL07j8XbwrLw0wBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nWnrCgGg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 24CABC4AF14;
 	Thu, 11 Jun 2026 21:55:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1781214953;
-	bh=Pacrb1hpDheZGvPj5b6lI5qmEiVD7X2w+vLnvcN2HfM=;
+	bh=Mx5f6xZMrf4AEZMl2qB5kpZYfcH4Mh0IHXybydzATbc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=GdILK1R9hVKxL4Wds1s071usBrLyabBWvFR3w/ptHrdV3gMv007OmWy8JWob9IQ5h
-	 lztevHeu4xvdYmOeuQbX9hikTxpRXWX4AqhVsv/T375I9Ljzbc5Hk0fmzWuhh4ene6
-	 q+Mj3uRc+yFpR+DkL7zpUBW9uH7+Q56oWqSod0VabJK+ZUdJn7k1Oyvfj/x7d0Nbbw
-	 YuWz5MA0J1H9iFw0WDfwo89BgfADg98RrNaWClM+cIi8KChZ/RtYetW7bmRA6XP/a1
-	 fdmNUO2oXApz18CZjDcfbdXfRDalgX+FjRKLoX8468vTjLSho4mNEibKarYGNcE7OJ
-	 jdxTdkd+4bnbg==
+	b=nWnrCgGgvXn/y5NuFB712CZdR/pnwhv3JeoMG+Bkw4UM3vfrAOYouQuc4YwFRhx8+
+	 33/1UPjt7BCU75EEYQwB6r8+Grbmx6RL0oRzZxsEFiNowLYOWEbGuoDu6Y1TBa+SBT
+	 H9yYj5YTKu0wRA+R4kuOlHtmDduZcUNyqz8VFDHRSgLuTE6qwqsKtDaajYDfv7V23Y
+	 IYTeZoNsn0gAHqzkvUKc6NVds/5L/TLd0w8JM+HPEoT+/sS68Wv5lGPFEZ9p5GwGsH
+	 QDTlbk8zFIx2V4RY5sa4uFxa76i9ko5OYQ1jCqgojnanJ6M1upr7j7YW+xfFJGNcw5
+	 yu9re3urX96NQ==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AE01CD98C7;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B8A2CD98D6;
 	Thu, 11 Jun 2026 21:55:53 +0000 (UTC)
 From: Selvamani Rajagopal via B4 Relay <devnull+Selvamani.Rajagopal.onsemi.com@kernel.org>
-Date: Thu, 11 Jun 2026 14:55:39 -0700
-Subject: [PATCH net v5 2/4] net: ethernet: oa_tc6: mdiobus->parent
- initialized with NULL
+Date: Thu, 11 Jun 2026 14:55:40 -0700
+Subject: [PATCH net v5 3/4] net: ethernet: oa_tc6: Remove FCS size in RX
+ frame
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260611-level-trigger-v5-2-4533a9e85ce2@onsemi.com>
+Message-Id: <20260611-level-trigger-v5-3-4533a9e85ce2@onsemi.com>
 References: <20260611-level-trigger-v5-0-4533a9e85ce2@onsemi.com>
 In-Reply-To: <20260611-level-trigger-v5-0-4533a9e85ce2@onsemi.com>
 To: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, 
@@ -77,11 +77,11 @@ Cc: Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
  Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>, 
  Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1781214947; l=1364;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781214947; l=1897;
  i=Selvamani.Rajagopal@onsemi.com; s=20260531; h=from:subject:message-id;
- bh=t+dmUxmhz+NSvTxVN33pXrsCLCkCj0A5Bx5yqncn/ig=;
- b=SkapaNnxGJcsM1J0VF4hAwiBSRzQVsHp2MRugT+VyfsnajInTDc6CHmD91efGhifz9rwphcyU
- OqMNQogUT66BNFLmw8wD9e4B5NjEBaK2lLeP+tQYDBPaEKoo81bJrON
+ bh=YZshO9vJiupuwF8u2s55Iy23XRYxDayecyVSa8eiy20=;
+ b=UpSME0oOCYqxWCD3IkDDk6YqIiDW9UbcinlWaws8ptJWT3MI53GJpjSZRJBoA+TIa5JosNOcq
+ VOciggEh+NDBc6So4IKCVhZQ05xrhAiD2XSK4/vbOSoL89whQr0k5UX
 X-Developer-Key: i=Selvamani.Rajagopal@onsemi.com; a=ed25519;
  pk=5QRdM0HS/LGWWcUZZ9hVfZ+qbPQGZCumcTXOiN7Fyug=
 X-Endpoint-Received: by B4 Relay for
@@ -99,7 +99,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310641-lists,devicetree=lfdr.de,Selvamani.Rajagopal.onsemi.com];
+	TAGGED_FROM(0.00)[bounces-310643-lists,devicetree=lfdr.de,Selvamani.Rajagopal.onsemi.com];
 	FORGED_RECIPIENTS(0.00)[m:parthiban.veerasooran@microchip.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pier.beruto@onsemi.com,m:andrew@lunn.ch,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor.dooley@microchip.com,m:devicetree@vger.kernel.org,m:Parthiban.Veerasooran@microchip.com,m:Selvamani.Rajagopal@onsemi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
@@ -122,49 +122,57 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[onsemi.com:replyto,onsemi.com:email,onsemi.com:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7EC896757FF
+X-Rspamd-Queue-Id: 6AEA2675810
 
 From: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
 
-As "dev" pointer in oa_tc6 structure is never initialized,
-mbiobus->parent was initialized with NULL.  This change
-fixes it by initializing it with device pointer of spi.
+OA TC6 MAC-PHY appends FCS to the incoming frame. It must be
+removed from the frame before being passed to the stack.
 
-Fixes: 8f9bf857e43b ("net: ethernet: oa_tc6: implement internal PHY initialization")
+With FCS in the frame, many applications, like ping or any
+application that uses IP layer may work as they may
+carry the packet size information in the protocol.
+
+Application like ptp4l, particularly if it uses layer 2
+for its communication, it will fail with "bad message" due to
+the extra 4 bytes added by the presence of FCS.
+
+Fixes: d70a0d8f2f2d ("net: ethernet: oa_tc6: implement receive path to receive rx ethernet frames")
 Signed-off-by: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
 
 ---
-changes in v5:
-  Changed Fixes: commit ID to accurately reflect where issue originated
-changes in v4:
-   new patch
+changes in v5
+  - Removed FCS present at the end of the MAC frame before being
+    passed to the stack.
+  - new patch
 ---
- drivers/net/ethernet/oa_tc6.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/net/ethernet/oa_tc6.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/drivers/net/ethernet/oa_tc6.c b/drivers/net/ethernet/oa_tc6.c
-index f3ac2875adfb..477ceefde2c5 100644
+index 477ceefde2c5..0727d53345a3 100644
 --- a/drivers/net/ethernet/oa_tc6.c
 +++ b/drivers/net/ethernet/oa_tc6.c
-@@ -110,7 +110,6 @@
+@@ -785,6 +785,17 @@ static int oa_tc6_process_rx_chunk_footer(struct oa_tc6 *tc6, u32 footer)
  
- /* Internal structure for MAC-PHY drivers */
- struct oa_tc6 {
--	struct device *dev;
- 	struct net_device *netdev;
- 	struct phy_device *phydev;
- 	struct mii_bus *mdiobus;
-@@ -520,7 +519,7 @@ static int oa_tc6_mdiobus_register(struct oa_tc6 *tc6)
- 	tc6->mdiobus->read_c45 = oa_tc6_mdiobus_read_c45;
- 	tc6->mdiobus->write_c45 = oa_tc6_mdiobus_write_c45;
- 	tc6->mdiobus->name = "oa-tc6-mdiobus";
--	tc6->mdiobus->parent = tc6->dev;
-+	tc6->mdiobus->parent = &tc6->spi->dev;
- 
- 	snprintf(tc6->mdiobus->id, ARRAY_SIZE(tc6->mdiobus->id), "%s",
- 		 dev_name(&tc6->spi->dev));
+ static void oa_tc6_submit_rx_skb(struct oa_tc6 *tc6)
+ {
++	/* MAC-PHY delivers each frame with its Ethernet FCS attached.
++	 * Strip it before handing over to the stack, unless the user
++	 * has asked to keep it via NETIF_F_RXFCS. Keeping the FCS
++	 * in the frame is harmless for IP traffic, but is parsed as
++	 * a (malformed) suffix TLV by PTP, which makes ptp4l reject
++	 * every message with "bad message" error.
++	 */
++	if (!(tc6->netdev->features & NETIF_F_RXFCS) &&
++	    tc6->rx_skb->len > ETH_FCS_LEN)
++		skb_trim(tc6->rx_skb, tc6->rx_skb->len - ETH_FCS_LEN);
++
+ 	tc6->rx_skb->protocol = eth_type_trans(tc6->rx_skb, tc6->netdev);
+ 	tc6->netdev->stats.rx_packets++;
+ 	tc6->netdev->stats.rx_bytes += tc6->rx_skb->len;
 
 -- 
 2.43.0
