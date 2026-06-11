@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-310634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310635-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2eBVK38gK2oW3AMAu9opvQ
-	(envelope-from <devicetree+bounces-310634-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 22:54:23 +0200
+	id RGpcKHofK2r52wMAu9opvQ
+	(envelope-from <devicetree+bounces-310635-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 22:50:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0093A675527
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 22:54:22 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 663B16754E8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 22:50:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UnXdyI1+;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310634-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310634-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=O4hDeUtD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310635-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310635-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F3D63347799
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:46:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7F5B1301A2CA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE9E376A14;
-	Thu, 11 Jun 2026 20:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8979388E43;
+	Thu, 11 Jun 2026 20:46:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D73C8379C4A
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 20:46:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7502BE65B
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 20:46:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781210765; cv=none; b=LcWo9uhB8SPySh4MCDc8UNQGRFqyUrYQg7P995uMrAEyB3qlwjhk0VnxOxfZlXWiSeJGJscIzP1i7YCysiGihZPdL50h9xUkR6pMT6wx7680dKOklvJvuy26akNCIK86+X93N8RQKxIlHolWta8cIw/tALaZiWuVUnMjnm8EBXI=
+	t=1781210801; cv=none; b=AmgKCAJN2am9CuGUOt07W7mlYdqDPziYCVRSt5Pnu8diAwL7qJc35ysoxB4isrx8Yg1Shd/XHe3M1IAvo5PUVrh6Sngah4cuxPKRPcedaJKX9NqKWABwGkd5B2Kx5wvbrEivU8rB9bb/xHv0+TU93m/G6NgfqpiYFEnJdpvk7n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781210765; c=relaxed/simple;
-	bh=iKqGxIB5UzLvMfuyeiFXr0vwO/XhRboXn6Kp9dw7NR4=;
+	s=arc-20240116; t=1781210801; c=relaxed/simple;
+	bh=z0UwF1+wwTAx9PHo5KOqQBELenB6alx0eoLnHGQ9Sog=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=jvUNb8vPXTpOYmH76rEQ8hH5sccG9fC0Af9xCaGnf4VCtDZtrHZGclyDWbLXic5dl0pc3s6HEx7Yq6XKLlLh+qV2lQNzPC+gV2ZR2Fd/omySv++6G6/iJWuKhDtuIiIDu5dYScWx5DTqklLox1RN7L7t8S60juj4wmPlo2tQx8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UnXdyI1+; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FC611F000E9;
-	Thu, 11 Jun 2026 20:46:04 +0000 (UTC)
+	 Message-Id; b=ZHrm6B/ChUvhEYdFA8H4EwrLkiaJUbL15xUiQ15QZW36QiV7nY/jRUXGxj46RDY+YOL63rC02z/+rIrFy0vmq1S24qOHi/O9/JLddC3s4o2XtvcU/LaMo1Lqrc89mWRiokjOxiAGGI8XhbQWJ6zm7eHEpgZzeNjcVO6NnFwOhU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O4hDeUtD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3523A1F000E9;
+	Thu, 11 Jun 2026 20:46:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781210764;
-	bh=I2gb5bcGZ6C0RdFe1tg/RbbzcRCMKeSvDfNMZsYk54s=;
+	s=k20260515; t=1781210800;
+	bh=xbUtFH/JV6n/KHhtWN6v+tbalRaNaeSENmJDuvFhdzQ=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=UnXdyI1+ezt27SB9dZzVx0/T9Z0kPvzx4B2jCuyqP2Fv+9guiEpAuGasgmADRkMTt
-	 K3lf8F2h0r35UbkxHqpwbDevnsX2MpUgugAKdNRU8odqh8v7Q2k6DOUUH/eEAtMf99
-	 gBy6PxXwvtirjGYY6ohw3L8JbnKjUOgl3d9D4sCx1AYO9drsIktzgl6I1E0DOpVNg+
-	 LBlGyI/ZeebEVRkFB7xsdoiRVVANw4nxGYAYtfWoY8Z2uS6wvx0KLG5X9FisucQQUB
-	 xP6z+DYl/JzfiExTDzRdR4j+FFkNq9uhl4yoiSOoxNdZtWOIXkBztTTbh0TJM3y0BQ
-	 qm4Bi4cmvjUcg==
+	b=O4hDeUtD9ke0UXiTKtjRcKN54XkUuz2XgGKXLX9cOe+nQpuJxfwVSdxLdQsfMGPRI
+	 /fOSMURVXQybDVeTpT7ShwOXODyT9+bzQtA8nWqgg634lKcUerj5UCwQI3jLtNC1km
+	 3Sm8ajqRwL+XRFUALwpYUlDkm/H4U2om9l7ennaMXaKe4Sd8IAQWTUQcrrzGg0KyqL
+	 GgkbAfUsFxnMkXPHEzHRAEuz2Dm9Smkr9ReKiVg5yhKhpvYGbksQapl9T/JiSW8Jhf
+	 P8N1jxg2qYdUAZYmx5Gv3LIOujf3uATH8NbyyQYJ6usuVaveTk6ZnHkL1cZ76udiUe
+	 f40QWU6jS8IiQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V12 5/9] iio: imu: inv_icm42607: Add PM support for
+Subject: Re: [PATCH V12 6/9] iio: imu: inv_icm42607: Add Temp Support in
  icm42607
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Chris Morgan" <macroalpha82@gmail.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260611202607.85376-6-macroalpha82@gmail.com>
-References: <20260611202607.85376-6-macroalpha82@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260611202607.85376-7-macroalpha82@gmail.com>
+References: <20260611202607.85376-7-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 11 Jun 2026 20:46:03 +0000
-Message-Id: <20260611204604.2FC611F000E9@smtp.kernel.org>
+Date: Thu, 11 Jun 2026 20:46:39 +0000
+Message-Id: <20260611204640.3523A1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,19 +71,19 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310634-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310635-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -99,98 +99,127 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0093A675527
+X-Rspamd-Queue-Id: 663B16754E8
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] The driver incorrectly waits for the sensor's startup stabilizat=
-ion time (up to 30ms) when powering OFF the sensor, adding unnecessary late=
-ncy to the runtime suspend path.
+- [High] The DMA buffer `buffer` is placed at the beginning of `struct inv_=
+icm42607_state`, sharing a cacheline with subsequent members like `hw`, `ma=
+p`, and `lock`. This can lead to memory corruption and deadlocks during DMA=
+ operations.
+- [High] The temperature sensor is permanently left enabled after a single =
+raw read, continuously wasting power and adding unnecessary latency to subs=
+equent runtime resumes.
 --
 
-commit f784e6048473d95cc560f84d8b8134e476cbc4ad
+commit 18abfa4e34a17ed9cef9a8a6e5d8c222ba930a49
 Author: Chris Morgan <macromorgan@hotmail.com>
 
-iio: imu: inv_icm42607: Add PM support for icm42607
+iio: imu: inv_icm42607: Add Temp Support in icm42607
    =20
-Add power management support for the ICM42607 device driver.
+Add functions for reading temperature sensor data.
 
-> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c b/drivers/i=
-io/imu/inv_icm42607/inv_icm42607_core.c
-> index 5d40f1ee53d6d..8073317088ec0 100644
-> --- a/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
-> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_core.c
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607.h b/drivers/iio/im=
+u/inv_icm42607/inv_icm42607.h
+> index 35c9210ca86fe..5416754907913 100644
+> --- a/drivers/iio/imu/inv_icm42607/inv_icm42607.h
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607.h
 [ ... ]
-> +static int inv_icm42607_set_pwr_mgmt0(struct inv_icm42607_state *st,
-> +				      enum inv_icm42607_sensor_mode gyro,
-> +				      enum inv_icm42607_sensor_mode accel,
-> +				      bool temp, unsigned int *sleep_ms)
+> @@ -124,6 +125,7 @@ struct inv_icm42607_suspended {
+>   *  @orientation:	sensor chip orientation relative to main hardware.
+>   */
+>  struct inv_icm42607_state {
+> +	__be16 buffer[3] __aligned(IIO_DMA_MINALIGN);
+>  	const struct inv_icm42607_hw *hw;
+>  	struct regmap *map;
+
+[Severity: High]
+Does this DMA buffer alignment ensure the end of the buffer is also padded =
+to
+the cacheline boundary?
+
+Since the buffer is only 6 bytes, fields following it like hw, map, and the
+mutex lock will share the same cacheline. When performing a DMA transfer, t=
+he
+controller might invalidate the entire cacheline, which could destroy
+concurrent writes to the lock or other shared state and lead to memory
+corruption or deadlocks.
+
+Usually, buffers used for DMA need to occupy their own cacheline. Placing
+them at the end of the struct with __aligned(IIO_DMA_MINALIGN) can prevent
+this cacheline sharing.
+
+>  	struct regulator *vddio_supply;
+
+[ ... ]
+> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_temp.c b/drivers/i=
+io/imu/inv_icm42607/inv_icm42607_temp.c
+> new file mode 100644
+> index 0000000000000..b259fc9c9fd29
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_temp.c
+> @@ -0,0 +1,76 @@
+[ ... ]
+> +static int inv_icm42607_temp_read(struct inv_icm42607_state *st, s16 *te=
+mp)
 > +{
 [ ... ]
-> +	sleepval_ms =3D 0;
-> +	if (temp && !oldtemp)
-> +		sleepval_ms =3D max(sleepval_ms, INV_ICM42607_TEMP_STARTUP_TIME_MS);
+> +	ret =3D inv_icm42607_set_temp_conf(st, true, NULL);
+> +	if (ret)
+> +		return ret;
 > +
-> +	if (accel !=3D oldaccel)
-> +		sleepval_ms =3D max(sleepval_ms, INV_ICM42607_ACCEL_STARTUP_TIME_MS);
+> +	raw =3D &st->buffer[0];
+> +	ret =3D regmap_bulk_read(st->map, INV_ICM42607_REG_TEMP_DATA1,
+> +			       raw, sizeof(*raw));
+> +	if (ret)
+> +		return ret;
 > +
-> +	if (gyro !=3D oldgyro)
-> +		sleepval_ms =3D max(sleepval_ms, INV_ICM42607_GYRO_STARTUP_TIME_MS);
-> +
-> +	if (sleep_ms)
-> +		*sleep_ms =3D sleepval_ms;
-> +	else if (sleepval_ms)
-> +		fsleep(sleepval_ms * USEC_PER_MSEC);
+> +	*temp =3D be16_to_cpup(raw);
+> +	if (*temp =3D=3D INV_ICM42607_DATA_INVALID)
+> +		return -EINVAL;
 > +
 > +	return 0;
 > +}
 
-[Severity: Medium]
-Does this unintentionally add a delay when powering off the sensors?
+[Severity: High]
+Will the temperature sensor remain permanently enabled after this read
+completes?
 
-While the temperature check correctly verifies if the sensor is being turne=
-d on
-(temp && !oldtemp), the accel and gyro checks only verify that the state has
-changed (accel !=3D oldaccel).
+Since inv_icm42607_set_temp_conf(st, true, NULL) is called but never disabl=
+ed
+before returning, st->conf.temp_en will stay true.=20
 
-When inv_icm42607_runtime_suspend() calls this function to power down the
-sensors:
+Because the driver saves and restores this state during runtime PM suspend
+and resume, the temperature sensor will stay powered on whenever the chip is
+active, consuming extra power.
 
-[ ... ]
-> +static int inv_icm42607_runtime_suspend(struct device *dev)
-> +{
-> +	struct inv_icm42607_state *st =3D dev_get_drvdata(dev);
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	/* save sensors state */
-> +	st->suspended.gyro =3D st->conf.gyro.mode;
-> +	st->suspended.accel =3D st->conf.accel.mode;
-> +	st->suspended.temp =3D st->conf.temp_en;
-> +
-> +	return inv_icm42607_set_pwr_mgmt0(st, INV_ICM42607_SENSOR_MODE_OFF,
-> +					  INV_ICM42607_SENSOR_MODE_OFF, false,
-> +					  NULL);
-> +}
+Additionally, this leaked state might force an artificial 77ms sleep delay =
+on
+every subsequent runtime PM resume. When the device resumes,
+inv_icm42607_set_pwr_mgmt0() will see the sensor transitioning from off to
+on:
 
-The accel !=3D oldaccel and gyro !=3D oldgyro conditions will evaluate to t=
-rue if
-the sensors were previously active. This appears to cause the runtime suspe=
-nd
-path to needlessly sleep for the startup stabilization time (up to 30ms) wh=
-ile
-powering down.
+inv_icm42607_set_pwr_mgmt0() {
+...
+	st->conf.temp_en =3D temp;
 
-Could the delay logic be updated to only sleep when the new mode is not
-INV_ICM42607_SENSOR_MODE_OFF?
+	sleepval_ms =3D 0;
+	if (temp && !oldtemp)
+		sleepval_ms =3D max(sleepval_ms, INV_ICM42607_TEMP_STARTUP_TIME_MS);
+...
+}
+
+Should the temperature sensor configuration be disabled before returning fr=
+om
+inv_icm42607_temp_read()?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260611202607.8537=
-6-1-macroalpha82@gmail.com?part=3D5
+6-1-macroalpha82@gmail.com?part=3D6
 
