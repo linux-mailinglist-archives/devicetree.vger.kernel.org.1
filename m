@@ -1,293 +1,148 @@
-Return-Path: <devicetree+bounces-310152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310154-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id heUCA0xMKmqhmQMAu9opvQ
-	(envelope-from <devicetree+bounces-310152-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:49:00 +0200
+	id xWu1IfJMKmoHmgMAu9opvQ
+	(envelope-from <devicetree+bounces-310154-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:51:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FA2466EC84
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8F2066EC9E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:51:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=e8AbUAMV;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310152-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310152-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gondor.apana.org.au header.s=h01 header.b=p5hKQjjA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310154-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310154-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=apana.org.au;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D79D73007C9E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:46:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 321A83052E49
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186E12E8E09;
-	Thu, 11 Jun 2026 05:46:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30BEE34BA20;
+	Thu, 11 Jun 2026 05:49:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF47134BA20
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:46:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D3223403E4;
+	Thu, 11 Jun 2026 05:49:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781156807; cv=none; b=YtthJncUu0ZPBcyGCGLFoGgvmVYVv01Or9SZV2XnceNoKBLl8v8AdP1Z6vnhVk7TP9PxxgKxIE0qNhu6r+1K+XniOP+5nZcNdeZgqI3XzKZHK8oOnd6PfESJ9Aa5wTnFxNd5Cfo7Xs+rRhFHxd/5QulSOUEZ681YWrY+ryVCMls=
+	t=1781156955; cv=none; b=RStmm/yD+7rLLtnA7xgW4QeGFcLaAntE01/m3Pp0kP1Bhl9wmyE6EsLZo1ciPFe4A6scp5j8gubTbKkH1apxXk4ldFlrxdb3KMVQHi4cO0A+VSt1iuHrxjI6+gm8w4OCCIz9rO0Vy9ZLHCnY5mwLtJxlm+2K7SHB0H4HXqa+nCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781156807; c=relaxed/simple;
-	bh=mBnd7hwDnDZ4/6RKj5OnY20wHneCq5znEvFo609x2Qs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=pIdqWOFAI4TRN1jHPbOMWj9WcDN9ZraGGCpbDUL8PLQxtyY92/S5BIvMaKY+NBv+08Q+z3EdbNjGOm0e2XLvYuPwa31cxDMlKLd4wb5uU7bgyBHRGkMs3g3V1R2MZmRMNfC7POWfy8XqLAMZFBI8NbaIUFYBWmNF5X2CGT0fD38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e8AbUAMV; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FEEF1F00893;
-	Thu, 11 Jun 2026 05:46:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781156805;
-	bh=z9UDetcYzsCJ6voQhnYWhnTbyGzhpwjDOBeBXWSaRbA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=e8AbUAMVFhQKeZ2bFF2pRuuazsX6Moz2Zw1zS/f63FhCaYT6nZcmu8LQ0qcGuj5hW
-	 YMGrtyvpotKxplmKeRQHqY8A+Tu6NWvJSPguAYaItzK0+6OSZdIzICvK4hVsIpr6/P
-	 GoEpVm3AakffbdqXxjjUG2bjPP0ORNOwuyfDGr95koQF5LAqbsbtaOuAbDpu7s9f6o
-	 qjCGpVB11YfhOomL9SYf5xxpqCYXamNUYTu4dXQ3k8YD6Qk/lhamhnLXwOFBIG7mcc
-	 RWqSlxbNUUCv0LPd0SdNeCCjrVG0k1y5PJ/4gudfBygeKhFRtXZuEml4BEkAEKWdqC
-	 H4Nq62J82DChA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v32 5/5] i2c: ast2600: Add target mode support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Ryan Chen" <ryan_chen@aspeedtech.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260611-upstream_i2c-v32-5-b66eba921d01@aspeedtech.com>
-References: <20260611-upstream_i2c-v32-5-b66eba921d01@aspeedtech.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 11 Jun 2026 05:46:44 +0000
-Message-Id: <20260611054645.3FEEF1F00893@smtp.kernel.org>
+	s=arc-20240116; t=1781156955; c=relaxed/simple;
+	bh=Cyg0gfS1CyZiOB3kXWPlXzrhcDAHMxUjdMxiF7hGPPI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IYkqToASGiUY7tgmqVGuZchVyRGXaoKLTmufx7VBME3LBQfhcO4SwOJ7ApbGDpit26GAtzTJjqXdLLFbQfordpyoH2be/y7uYaEKmgCNdLTEBgDWrd9w1mZ3BiSYQtekJiB+MFjW9mLpYvYFwiNi0eaYO98EUiQht0ZRf0xXdIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b=p5hKQjjA; arc=none smtp.client-ip=180.181.231.80
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
+	from:content-type:reply-to; bh=SmEPSkt8E7zGFX+Ycvi6FJfzrUqOPKPfjFIb6OeM/pw=; 
+	b=p5hKQjjAGfj0YdQ5mDrrhu/R/DCB+ki5ng+3e2s2eEG8tQP33b36XxRcSkiHPfknoy7FcoFEjsm
+	cASMPCcYKA/Vx0Miyv+P31MCn7Diymkah4Xid1veDdHQi8BnPDydlJhxfwB46YWarW5DQOWfFNkJz
+	ixSg3YMR4Wv7ndVvNX81hayjf1uTqq6YWsP1kTuuQCPDhvDcFxNYBk07wCvouaBZ9xawaV9LCmLT2
+	c9EPPXx5XbIkUoWIpoIUiDb5IbKJr5MsIyblYIfsF2UFJQ3RGrT4ZFnmKnBrjH1nseEYrx1uFDJkg
+	cVE1+dweS+CS1IhbWxTUBSbt2rZYT7kOI0BQ==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.98.2 #2 (Debian))
+	id 1wXYHr-00000004UYn-3J6E;
+	Thu, 11 Jun 2026 13:49:08 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 11 Jun 2026 13:49:07 +0800
+Date: Thu, 11 Jun 2026 13:49:07 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	Ruud.Derwig@synopsys.com, rbannerm@synopsys.com,
+	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
+	navami.telsang@vayavyalabs.com, bhoomikak@vayavyalabs.com
+Subject: Re: [PATCH v13 2/4] crypto: spacc - Add SPAcc ahash support
+Message-ID: <aipMU4eFuNDsXDvt@gondor.apana.org.au>
+References: <20260604165210.1141842-1-pavitrakumarm@vayavyalabs.com>
+ <20260604165210.1141842-3-pavitrakumarm@vayavyalabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260604165210.1141842-3-pavitrakumarm@vayavyalabs.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[apana.org.au,quarantine];
+	R_DKIM_ALLOW(-0.20)[gondor.apana.org.au:s=h01];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-310154-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310152-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:ryan_chen@aspeedtech.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[herbert@gondor.apana.org.au,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_RECIPIENTS(0.00)[m:pavitrakumarm@vayavyalabs.com,m:linux-crypto@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:Ruud.Derwig@synopsys.com,m:rbannerm@synopsys.com,m:manjunath.hadli@vayavyalabs.com,m:adityak@vayavyalabs.com,m:navami.telsang@vayavyalabs.com,m:bhoomikak@vayavyalabs.com,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[gondor.apana.org.au:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,aspeedtech.com:email,lists.linux.dev:replyto,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[herbert@gondor.apana.org.au,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[apana.org.au:url,apana.org.au:email,gondor.apana.org.au:dkim,gondor.apana.org.au:mid,gondor.apana.org.au:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4FA2466EC84
+X-Rspamd-Queue-Id: D8F2066EC9E
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] Incorrect chronological ordering of I2C slave events and spurious =
-event signaling in the target interrupt handler breaks backend state machin=
-es.
-- [High] Controller mode can be permanently locked out because `target_acti=
-ve` is not reliably cleared upon target transaction STOP.
-- [High] Race condition in the target mode master-abort fast path leaves st=
-ale controller interrupts pending, leading to use-after-free and data corru=
-ption of subsequent I2C transfers.
-- [High] Failure to W1C-clear target ISR error bits causes a permanent dead=
-lock where all subsequent controller transfers fail with -EBUSY.
---
-
-commit e5417daca64552c41b25f31b14fb3eb562d3e134
-Author: Ryan Chen <ryan_chen@aspeedtech.com>
-
-i2c: ast2600: Add target mode support
-
-Add target mode support to the AST2600 I2C driver, enabling dual-role=20
-capability. This includes adding target interrupt handling and address matc=
-h=20
-response logic.
-
-> diff --git a/drivers/i2c/busses/i2c-ast2600.c b/drivers/i2c/busses/i2c-as=
-t2600.c
-> index 70f37dc77468a..aace0c7eeb721 100644
-> --- a/drivers/i2c/busses/i2c-ast2600.c
-> +++ b/drivers/i2c/busses/i2c-ast2600.c
-> @@ -348,6 +353,253 @@ static int ast2600_i2c_recover_bus(struct ast2600_i=
-2c_bus *i2c_bus)
-[ ... ]
-> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
-> +static void ast2600_i2c_target_packet_buff_irq(struct ast2600_i2c_bus *i=
-2c_bus, u32 sts)
+On Thu, Jun 04, 2026 at 10:22:08PM +0530, Pavitrakumar Managutte wrote:
+>
+> +static int spacc_hash_do_one_request(struct crypto_engine *engine, void *areq)
 > +{
-> +	u8 value =3D 0;
-> +	int target_rx_len =3D 0;
-> +	u32 cmd =3D 0;
-> +	int i;
+> +	struct ahash_request *req = ahash_request_cast(areq);
+> +	struct crypto_ahash *reqtfm = crypto_ahash_reqtfm(req);
+> +	struct spacc_crypto_ctx *tctx = crypto_ahash_ctx(reqtfm);
+> +	struct spacc_crypto_reqctx *ctx = ahash_request_ctx(req);
+> +	struct spacc_priv *priv = dev_get_drvdata(tctx->dev);
+> +	const struct spacc_alg *salg = spacc_tfm_ahash(&reqtfm->base);
+> +	int rc = 0;
 > +
-> +	/* due to controller target is common buffer, need force the master sto=
-p not issue */
-> +	if (readl(i2c_bus->reg_base + AST2600_I2CM_CMD_STS) & GENMASK(15, 0)) {
-> +		writel(0, i2c_bus->reg_base + AST2600_I2CM_CMD_STS);
-> +		writel(0, i2c_bus->reg_base + AST2600_I2CM_IER);
-> +		writel(readl(i2c_bus->reg_base + AST2600_I2CM_ISR),
-> +		       i2c_bus->reg_base + AST2600_I2CM_ISR);
-> +		i2c_bus->cmd_err =3D -EBUSY;
-> +		WRITE_ONCE(i2c_bus->msgs, NULL);
-> +		writel(AST2600_I2CM_PKT_DONE | AST2600_I2CM_BUS_RECOVER,
-> +		       i2c_bus->reg_base + AST2600_I2CM_IER);
-> +		complete(&i2c_bus->cmd_complete);
-> +	}
-
-[Severity: High]
-Could this fast path abort leave stale controller interrupts pending?
-
-If the hardware asynchronously asserts PKT_DONE or PKT_ERROR shortly after =
-the
-W1C ISR read here, the complete() call wakes the waiting thread, which might
-immediately start a new controller transfer.
-
-Would the stale interrupt then fire and incorrectly apply to the new transf=
-er,
-potentially leading to a use-after-free on the new msgs buffer?
-
+> +	ctx->single_shot = 1;
+> +	ctx->total_nents = sg_nents(req->src);
 > +
-> +	/* Handle i2c target timeout condition */
-> +	if (sts & AST2600_I2CS_INACTIVE_TO) {
-> +		/* Reset timeout counter */
-> +		u32 ac_timing =3D readl(i2c_bus->reg_base + AST2600_I2CC_AC_TIMING) &
-> +				AST2600_I2CC_AC_TIMING_MASK;
+> +	tctx->tmp_sgl = kmalloc_array(2, sizeof(*tctx->tmp_sgl), GFP_KERNEL);
 > +
-> +		writel(ac_timing, i2c_bus->reg_base + AST2600_I2CC_AC_TIMING);
-> +		ac_timing |=3D AST2600_I2CC_TTIMEOUT(i2c_bus->timeout);
-> +		writel(ac_timing, i2c_bus->reg_base + AST2600_I2CC_AC_TIMING);
-> +		writel(TARGET_TRIGGER_CMD, i2c_bus->reg_base + AST2600_I2CS_CMD_STS);
-> +		writel(AST2600_I2CS_PKT_DONE, i2c_bus->reg_base + AST2600_I2CS_ISR);
-> +		i2c_slave_event(i2c_bus->target, I2C_SLAVE_STOP, &value);
-> +		WRITE_ONCE(i2c_bus->target_active, false);
-> +		return;
-> +	}
-
-[Severity: High]
-Does this early return fail to clear the AST2600_I2CS_INACTIVE_TO bit from
-the hardware register?
-
-Since it is never W1C-cleared, the ISR register might remain non-zero
-permanently.
-
+> +	if (!tctx->tmp_sgl)
+> +		goto fallback;
 > +
-> +	sts &=3D ~(AST2600_I2CS_PKT_DONE | AST2600_I2CS_PKT_ERROR);
+> +	sg_init_table(tctx->tmp_sgl, 2);
+> +	tctx->tmp_sgl[0].length = 0;
 > +
-> +	if (sts & AST2600_I2CS_SLAVE_MATCH)
-> +		WRITE_ONCE(i2c_bus->target_active, true);
+> +	if (tctx->handle < 0 || !tctx->ctx_valid) {
+> +		priv = dev_get_drvdata(salg->dev);
+> +		tctx->dev = get_device(salg->dev);
 > +
-> +	switch (sts) {
-> +	case AST2600_I2CS_SLAVE_PENDING | AST2600_I2CS_WAIT_RX_DMA |
-> +		 AST2600_I2CS_SLAVE_MATCH | AST2600_I2CS_RX_DONE | AST2600_I2CS_STOP:
-> +	case AST2600_I2CS_SLAVE_PENDING |
-> +		 AST2600_I2CS_SLAVE_MATCH | AST2600_I2CS_RX_DONE | AST2600_I2CS_STOP:
-> +	case AST2600_I2CS_SLAVE_PENDING |
-> +		 AST2600_I2CS_SLAVE_MATCH | AST2600_I2CS_STOP:
-> +		i2c_slave_event(i2c_bus->target, I2C_SLAVE_STOP, &value);
-> +		fallthrough;
+> +		rc = spacc_is_mode_keysize_supported(&priv->spacc,
+> +				salg->mode->id, tctx->keylen, 1);
 
-[Severity: High]
-Is the event ordering inverted here?
+This check could've been done before going through the crypto
+engine.  If we're just going to use the fallback, there is no
+point going all the way through the engine just to drop out right
+at the end.
 
-This unconditionally emits I2C_SLAVE_STOP first, and then falls through to
-emit I2C_SLAVE_WRITE_REQUESTED and I2C_SLAVE_WRITE_RECEIVED.
-
-Emitting the STOP condition prior to receiving the write data leaves backend
-state machines (like i2c-slave-eeprom) without a terminating event for the
-data, which typically causes writes to be dropped.
-
-[ ... ]
-> +	case AST2600_I2CS_SLAVE_MATCH | AST2600_I2CS_WAIT_TX_DMA | AST2600_I2CS=
-_RX_DONE:
-> +	case AST2600_I2CS_WAIT_TX_DMA | AST2600_I2CS_RX_DONE:
-> +	case AST2600_I2CS_WAIT_TX_DMA:
-> +		if (sts & AST2600_I2CS_SLAVE_MATCH)
-> +			i2c_slave_event(i2c_bus->target, I2C_SLAVE_WRITE_REQUESTED, &value);
-
-[Severity: High]
-Can this spuriously emit I2C_SLAVE_WRITE_REQUESTED during a repeated start
-transitioning to a Master Read (WAIT_TX_DMA)?
-
-If so, it would reset the backend's internal write pointers, corrupting
-previously received write data before I2C_SLAVE_READ_REQUESTED is processed.
-
-[ ... ]
-> +	if (cmd)
-> +		writel(cmd, i2c_bus->reg_base + AST2600_I2CS_CMD_STS);
-> +
-> +	writel(AST2600_I2CS_PKT_DONE, i2c_bus->reg_base + AST2600_I2CS_ISR);
-> +	readl(i2c_bus->reg_base + AST2600_I2CS_ISR);
-> +
-> +	if ((sts & AST2600_I2CS_STOP) && !(sts & AST2600_I2CS_SLAVE_PENDING))
-> +		WRITE_ONCE(i2c_bus->target_active, false);
-> +}
-
-[Severity: High]
-Is this condition too strict?
-
-For standard target write transactions, the hardware explicitly combines
-AST2600_I2CS_STOP and AST2600_I2CS_SLAVE_PENDING in the same interrupt even=
-t.
-
-If this evaluates to false in those normal cases, target_active would
-remain permanently true, locking out all subsequent controller mode
-transfers with -EBUSY.
-
-> @@ -682,6 +954,21 @@ static int ast2600_i2c_controller_xfer(struct i2c_ad=
-apter *adap, struct i2c_msg
->  			return ret;
->  	}
-> =20
-> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
-> +	if (READ_ONCE(i2c_bus->target_active))
-> +		return -EBUSY;
-> +	/*
-> +	 * Controller and target share the same buffer register. A target
-> +	 * transaction can update buffer state asynchronously via IRQ, so block
-> +	 * controller transfers while target is active to avoid buffer corrupti=
-on.
-> +	 */
-> +	writel(0, i2c_bus->reg_base + AST2600_I2CS_IER);
-> +	if (readl(i2c_bus->reg_base + AST2600_I2CS_ISR) || READ_ONCE(i2c_bus->t=
-arget_active)) {
-> +		writel(AST2600_I2CS_PKT_DONE, i2c_bus->reg_base + AST2600_I2CS_IER);
-> +		return -EBUSY;
-> +	}
-> +#endif
-
-[Severity: High]
-If AST2600_I2CS_INACTIVE_TO is left uncleared in the target interrupt handl=
-er,
-will this check permanently return -EBUSY for all subsequent controller
-transfers?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260611-upstream_i=
-2c-v32-0-b66eba921d01@aspeedtech.com?part=3D5
+Thanks,
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
