@@ -1,197 +1,125 @@
-Return-Path: <devicetree+bounces-310258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310259-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id M+vdHVx6KmrjqQMAu9opvQ
-	(envelope-from <devicetree+bounces-310258-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:05:32 +0200
+	id /x8KGZR5KmpVqQMAu9opvQ
+	(envelope-from <devicetree+bounces-310259-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:02:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C59086702C8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:05:31 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEFA5670241
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:02:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kLuKIqeT;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310258-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310258-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UcB6M4w5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310259-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310259-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F7873335E63
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:59:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D7F913007BAF
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46C163BB674;
-	Thu, 11 Jun 2026 08:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB65235674C;
+	Thu, 11 Jun 2026 09:02:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EAA3BB104;
-	Thu, 11 Jun 2026 08:59:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB8662E6CC8;
+	Thu, 11 Jun 2026 09:02:03 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781168360; cv=none; b=CqqZRfV8lNl+ditB2WRXPtJB9UkmLMHVZGRYLvdmhsbQISKHaxmpepd5NGA4KecBjhi3Mox74xLG/rILfodwqPRRLkoKPssUXdf9VIFmYooTwGZ+3bSDq+dCpV0SpOK5qf8jj3QdGImGSIVEF9u28JMABTAcmc1/9e6QaJpi+kw=
+	t=1781168524; cv=none; b=h0KorUipHoxYuc3OeNXs8Ea13H9so176htWcGQ0FS+Eqjjr+prrMr9WJBzFOu3avj8wuqZ/JFTTJiGz4CbHsTPIWYZFJDsZWM/1ibM3bJi+YLmgCmBHn6QT+IdHWBYMwk2wMpS+8PFH78mtGynYnqzKQO1ZpuJjGhXbApiPlUxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781168360; c=relaxed/simple;
-	bh=pMkpFpigH4TqQXtMnE2reVI+HT470LvSOcwgsJJV8gU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=os2+P8qDUomt/UgbeUixqiy5lG1GOsnWYUvNU1MgNj6/CCkbv1W+hAJkMvKFPPa927D6qhtXIopihdeXzEwVHwikuXWzaEyIkBfb8mD5q60SmGjrDaXqVu+E16wK/nWZaK4R0Ssv+xu/uKPOTAtJYj5hWxHCaip8Y0XDkYUkRas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kLuKIqeT; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3E051F00893;
-	Thu, 11 Jun 2026 08:59:15 +0000 (UTC)
+	s=arc-20240116; t=1781168524; c=relaxed/simple;
+	bh=05C7YVk+Ye4JAbAfVaQXIXbWntaA74XSmgZGjyHuK18=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XGIx9TXmn8GPJXiXBwUeWWMJ+EiBAQrYyCE2upX+Md9aK8Pw4pZuyD9yqKCx1m8/O3WfvIQB5ghG8SzLx9o9rXDOPZGGIhzWVzmfDupgwDc7SGXdw2u28cOiqHQR7+nH4DD3pS1actklLZBwms2qMydE+IZ1x8JW2FDHC9zdSY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UcB6M4w5; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCD0F1F00893;
+	Thu, 11 Jun 2026 09:02:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781168358;
-	bh=GWaNFhOOLGxPnu6rQcjVsElfwRDiUgkXC+0WSW686b4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=kLuKIqeTxvdqhVqJDS4Q4AYgfdwbJeaOBhpSD1S2lLmUnEwvofs9BIzraAwpBjiek
-	 BUZUkUN8L1fJvfx+XpWbCxH0RLhYGlJPojLPzmMO/OXLrBFE328SPJy+eOl0MTCVkZ
-	 OJz6lNHEIDcT7UQDgbnq2NcAZ8GAIW4fbg/OMM5tyZ0eQfKkPWNEky8YtCd8RB8hTa
-	 126KuOG1oL0CdlSwknm/WJ2mE8dj8l+OD+jNakZ+HOmXCqO1yIuiMBSNGzhD9fQepe
-	 vRq+IXruFUhwHDdkLXWdZbvf+m4Ax77BOax/yOSVVaN5KsaU+rA112TzT2fCmTdMAK
-	 Pc+dSAdXBcjnA==
-Message-ID: <6238983c-6b10-4639-b6ed-d1d25b00e748@kernel.org>
-Date: Thu, 11 Jun 2026 10:59:14 +0200
+	s=k20260515; t=1781168523;
+	bh=3abfMnQopptbvqv9LvYqjEn47VQFYzlpPP3q8uUXR7k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=UcB6M4w5c75MrAZlzWaH0A+4TMl9b24w4XWZAG1EcdUWJ5NKPRS9YmXKDA8v0qaZJ
+	 kLNR4euSGSaQs9F/FlDq05I66/za9rCSPQYcqCt/bdA/tBNP29VfIUga8qaXIEUas8
+	 KMHTyPT+7Zla9Z5JGw25X9j3ooKLvRl2lXEP02gos3ayh8N1m95XBzAsY/9lY0V0hJ
+	 afFKwWGJ7yhg9uBXjStkNK3iqvwdpvRwvUAxaevmWaxGeJPiwWS9BucalxqQXBSriU
+	 m9q1MVK846zcSm59UHpvJvzPeGX8a9Rh3oqzeGTX84uz98ofnvpbJokbkKwVi5JhNB
+	 ax5vZMkMzvyvQ==
+Date: Thu, 11 Jun 2026 11:02:00 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	David Collins <david.collins@oss.qualcomm.com>, 
+	Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>, Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>, 
+	kernel@oss.qualcomm.com, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom,pmic-gpio: Document
+ PMG1110 GPIO support
+Message-ID: <20260611-meteoric-mysterious-dinosaur-232bee@quoll>
+References: <20260610-pmg1110-gpio-v1-0-a9c50cd8b5d9@oss.qualcomm.com>
+ <20260610-pmg1110-gpio-v1-1-a9c50cd8b5d9@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/6] dt-bindings: sound: qcom,q6dsp-lpass-ports: add
- Audio IF clocks
-To: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Srinivas Kandagatla <srini@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260610154517.134570-1-prasad.kumpatla@oss.qualcomm.com>
- <20260610154517.134570-4-prasad.kumpatla@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20260610154517.134570-4-prasad.kumpatla@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260610-pmg1110-gpio-v1-1-a9c50cd8b5d9@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:prasad.kumpatla@oss.qualcomm.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:srini@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-sound@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:fenglin.wu@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:andersson@kernel.org,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:david.collins@oss.qualcomm.com,m:subbaraman.narayanamurthy@oss.qualcomm.com,m:kamal.wadhwa@oss.qualcomm.com,m:kernel@oss.qualcomm.com,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,gmail.com,kernel.org,perex.cz,suse.com];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-310258-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310259-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	URIBL_MULTI_FAIL(0.00)[sto.lore.kernel.org:server fail,qualcomm.com:server fail,vger.kernel.org:server fail,quoll:server fail];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,quoll:mid,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C59086702C8
+X-Rspamd-Queue-Id: EEFA5670241
 
-On 10/06/2026 17:45, Prasad Kumpatla wrote:
-> Add the LPASS Audio IF clock IDs used by newer backend interfaces.
+On Wed, Jun 10, 2026 at 12:05:46AM -0700, Fenglin Wu wrote:
+> Update the binding documentation to include the compatible string for
+> PMG1110 PMIC which is used on Maili platform.
 > 
-> Platforms using Audio IF module backends request the interface bit
-> clocks through q6prm. Add the Audio IF IBIT and EBIT IDs to the binding
-> header so these clocks can be referenced from device trees.
-> 
-> Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
 > ---
->  .../sound/qcom,q6dsp-lpass-ports.h            | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
-> 
-> diff --git a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-> index 45850f2d4..bc860fcbf 100644
-> --- a/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-> +++ b/include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
-> @@ -233,6 +233,63 @@
->  /* Clock ID for RX CORE MCLK2 2X  MCLK */
->  #define LPASS_CLK_ID_RX_CORE_MCLK2_2X_MCLK	70
->  
-> +/** Clock ID of the Audio Intf 0 internal bit clock (IBIT). */
-> +#define LPASS_CLK_ID_AUD_INTF0_IBIT 71
+>  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Missing indent
-
-> +/** Clock ID of the Audio Intf 0 external bit clock (EBIT). */
-
-This is not kerneldoc. Please do not introduce your own style.
-
-> +#define LPASS_CLK_ID_AUD_INTF0_EBIT 72
-
-Why everything has "AUD" middle prefix? What is Audio IF and how does it
-differ from Audio on this device? IOW, Why Audio has to be specified? Is
-there non-Audio block?
-
-> +/** Clock ID of the Audio Intf 1 internal bit clock (IBIT). */
-
-All these comments are pointless - you repeat the define name. Explain
-once what is ibit, ebit etc, not every time.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
+
 
