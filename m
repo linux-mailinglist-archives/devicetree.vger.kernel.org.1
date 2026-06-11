@@ -1,223 +1,120 @@
-Return-Path: <devicetree+bounces-310201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310202-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +WoqIJ5oKmqMowMAu9opvQ
-	(envelope-from <devicetree+bounces-310201-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:49:50 +0200
+	id AbbACHBpKmrTowMAu9opvQ
+	(envelope-from <devicetree+bounces-310202-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:53:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 240F566F8CF
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:49:50 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E9366F975
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:53:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=NdyGeSYJ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310201-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310201-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=m199VZ6l;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310202-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310202-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 88AC8300AC9D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:49:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2F51B3004429
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:50:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E35036E488;
-	Thu, 11 Jun 2026 07:49:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3B536E493;
+	Thu, 11 Jun 2026 07:50:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AEFB36CE1C;
-	Thu, 11 Jun 2026 07:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7ED36EAAD;
+	Thu, 11 Jun 2026 07:50:27 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781164188; cv=none; b=f/4GxC+6cFmPi3Xt52JXyme/vVWlvlPfnZXz0SERaW4YZA+yvRrjuFNvdb2At48BDKk1o26R3PY/HghUp6dbtEI3kPmWLnyVitN7sx43zGIXhWheTwepaeIfCT/5vD1LK1eEhiyx+I3dhJEO6/ne3OPwQGjA/3V0JEFK3l3Sz4k=
+	t=1781164228; cv=none; b=fnfKjO7dPtYKByv9F6pcYCnwFu5J7xdfgppALnFx5F4tzdF9LH7vB84HeV+TFHXDhlS6yO2yOQkL5Wn/YlGYyt+noJLHmCbsETTtMQKkGywZNx0Jh1SPD/beCzZJLBH684uOvO34U/shiLUn0JKQo4klaNUsy4P80QFpMHaIA0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781164188; c=relaxed/simple;
-	bh=K5X9+pmxCxTI6gxbp/ASC2g7N87EzDwCesA1chssCo0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f284ttRNmdYJ0qPB4rwblv2x5bKlVXF1nMThzPbh9yE8v+ASWk/Aj9334hZUiirB9iTfHc288vaWiWkpBRcUXc6J3n+KR4dZLht+ubpJq6G38pW1trHlBEqasY81eqaRAwQRYfOmfCnnEVHISW/A7iMX7EI1FKx5TZ0Ne6GsP98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NdyGeSYJ; arc=none smtp.client-ip=198.175.65.13
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781164187; x=1812700187;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=K5X9+pmxCxTI6gxbp/ASC2g7N87EzDwCesA1chssCo0=;
-  b=NdyGeSYJyGyXhPLT1LWITls/Oigyj65SeJK1ELB6Z0WiiwT+IA3+qO58
-   tUeaDoH4U/gGZbCyT55DAApJF0Wk7ysd2TOPoVKYdzdRXASEZkyuMuUQe
-   WUukjXPyfxSURy8E1KxbFkCibNvDMB49vw8/41/rtc+keHE9KYfyBMcKW
-   FwUbjFQ2xog4ij0Xn0Nfkk8zKdXW1+srG3KuPsKXRc11qQz7PDISYPCU1
-   DvjI/jxkQtupKBTjQAAlfkrOR/lLR3Zm0oXY5nJAz6yUQLJLmHtAEvD3+
-   0neDwNPqCBVl1o2ZltPX/FGM+I+pk4g5fKjlV8AGVjk3QdQcEAWRuH9yd
-   A==;
-X-CSE-ConnectionGUID: rHGBog9JT5W1kFBEHz+DXQ==
-X-CSE-MsgGUID: TI8z2ZBdSfS8j8x7taGyrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="93078706"
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; 
-   d="scan'208";a="93078706"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2026 00:49:47 -0700
-X-CSE-ConnectionGUID: 9gmyUkDjQM6Ss/UD92v01g==
-X-CSE-MsgGUID: 97pEHKhtS8OvqbJzmqJh+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; 
-   d="scan'208";a="251503107"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.123])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2026 00:49:43 -0700
-Date: Thu, 11 Jun 2026 10:49:41 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
-	dlechner@baylibre.com, jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V11 4/9] iio: imu: inv_icm42607: Add I2C and SPI For
- icm42607
-Message-ID: <aipolU1W3QNXdd5b@ashevche-desk.local>
-References: <20260610175455.19006-1-macroalpha82@gmail.com>
- <20260610175455.19006-5-macroalpha82@gmail.com>
+	s=arc-20240116; t=1781164228; c=relaxed/simple;
+	bh=vn0S3RJZEo9beXmiKqFTCgLVnRmNtNsXuJ9FXJwgYwg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=Mp8rxmcmZ3OO3ZH7utP+bKFhTfFB7hW4hdiJyOS8hdT7s2BvZq2bC6pFZA27G8D+IFqHF5kkRybTQiAlgvFCgD3BdFpf3acPePjTAyS1bKE/tvQUghNp9SYPxL0AuGqBPeOa9FVgDKCEs3jKDEg4+AA0wEDUeajYpDLDK8sEkw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m199VZ6l; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27B761F00893;
+	Thu, 11 Jun 2026 07:50:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781164227;
+	bh=vn0S3RJZEo9beXmiKqFTCgLVnRmNtNsXuJ9FXJwgYwg=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=m199VZ6lLawFFI9qnzJz1kNoIZx2nbhft7bNRANRIQ0hRoeNLyC5iAW7IlnvfZf8X
+	 3IFxY/uosXZoZatqXWla3ws+pU9cNToFdtty1r/ABinuMWa+Fv7MywUe3NhSypkNn7
+	 BjJsvy2nAz5gV4eTxSV8LG6JnOs4X8peUlw3NR4lTO2L32HsGSajo0tmsgqa7K/kC+
+	 nsZnDB6T/67nDWkZe2v1LGDGyPFUdFbZrXxw4pehdPJYiw8UUIQT94gdC6/dAVTQGU
+	 o+O95vfz6viG0YtLntXj7j1qNbWBr0syonUCes+2Ra8PUNj+MgnFi7KQeWopim1CEV
+	 UNCqwTQt4fC4A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 3/3] hwmon: Add documentation for SQ24860
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Ziming Zhu" <zmzhu0630@163.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260611074335.4415-4-zmzhu0630@163.com>
+References: <20260611074335.4415-4-zmzhu0630@163.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 11 Jun 2026 07:50:26 +0000
+Message-Id: <20260611075027.27B761F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260610175455.19006-5-macroalpha82@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310202-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310201-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jic23@kernel.org,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
+	FORGED_RECIPIENTS(0.00)[m:zmzhu0630@163.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[163.com];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 240F566F8CF
+X-Rspamd-Queue-Id: 99E9366F975
 
-On Wed, Jun 10, 2026 at 12:54:48PM -0500, Chris Morgan wrote:
+> From: Ziming Zhu <ziming.zhu@silergycorp.com>
+>=20
+> Document the supported sysfs attributes for the Silergy SQ24860 PMBus
+> hwmon driver.
+>=20
+> Signed-off-by: Ziming Zhu <ziming.zhu@silergycorp.com>
 
-> Add I2C and SPI driver support for InvenSense ICM-42607 devices.
-> Add necessary Kconfig and Makefile to allow building of (incomplete)
-> driver.
+Sashiko has reviewed this patch and found no issues. It looks great!
 
-...
-
->  drivers/iio/imu/Kconfig                       |   1 +
->  drivers/iio/imu/Makefile                      |   1 +
->  drivers/iio/imu/inv_icm42607/Kconfig          |  30 +++++
->  drivers/iio/imu/inv_icm42607/Makefile         |  10 ++
-
-These should be part of the previous patch.
-
-...
-
-> +config INV_ICM42607
-> +	tristate
-
-To make it compilable w.o. SPI/I2C make this as
-
-	tristate "Inven... Core driver" if COMPILE_TEST
-
-
-> +	select IIO_BUFFER
-> +	select IIO_INV_SENSORS_TIMESTAMP
-
-...
-
-> +obj-$(CONFIG_INV_ICM42607_I2C) += inv-icm42607-i2c.o
-> +inv-icm42607-i2c-y += inv_icm42607_i2c.o
-> +
-> +obj-$(CONFIG_INV_ICM42607_SPI) += inv-icm42607-spi.o
-> +inv-icm42607-spi-y += inv_icm42607_spi.o
-
-Add each of them in a separate patch.
-
-...
-
-> +#include <linux/device.h>
-
-Why?
-And a lot of missing headers (bitfield.h, dev_printk.h, mod_devicetable.h, err.h)
-
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-
-...
-
-> +static int inv_icm42607_probe(struct i2c_client *client)
-> +{
-> +	const struct inv_icm42607_hw *hw;
-> +	struct regmap *regmap;
-> +
-> +	hw = i2c_get_match_data(client);
-> +	if (!hw)
-> +		return dev_err_probe(&client->dev, -ENODEV,
-> +				     "Failed to get i2c data\n");
-
-Add
-
-	struct device *dev = &client->dev;
-
-and modify this and other eligible pieces accordingly.
-
-		return dev_err_probe(dev, -ENODEV, "Failed to get i2c data\n");
-
-> +	regmap = devm_regmap_init_i2c(client, &inv_icm42607_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(&client->dev, PTR_ERR(regmap),
-> +				     "Failed to register i2c regmap %ld\n",
-
-Do not duplicate a printing of an error code.
-
-> +				     PTR_ERR(regmap));
-
-		return dev_err_probe(dev, PTR_ERR(regmap),
-				     "Failed to register i2c regmap\n");
-
-> +	return inv_icm42607_core_probe(regmap, hw, inv_icm42607_i2c_bus_setup);
-> +}
-> +
-
-...
-
-> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_spi.c
-
-As per above.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260611074335.4415=
+-1-zmzhu0630@163.com?part=3D3
 
 
