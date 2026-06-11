@@ -1,197 +1,186 @@
-Return-Path: <devicetree+bounces-310463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310464-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VDPyG46zKmoEvgMAu9opvQ
-	(envelope-from <devicetree+bounces-310463-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 15:09:34 +0200
+	id qGu1FBm0KmokvgMAu9opvQ
+	(envelope-from <devicetree+bounces-310464-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 15:11:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A15967238F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 15:09:34 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A23D6723F0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 15:11:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310463-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310463-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EVZOAiVS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310464-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310464-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A8B0B3114CBA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:04:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 438A73061F21
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:07:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8454071CF;
-	Thu, 11 Jun 2026 13:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2F1B404BDB;
+	Thu, 11 Jun 2026 13:06:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF493FDBE8;
-	Thu, 11 Jun 2026 13:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94C263F6C50;
+	Thu, 11 Jun 2026 13:06:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781182983; cv=none; b=bkQ4veuTmy/MgdiLQuNDh/Hhh6DPCt+1m6GCwm5BZW39/NwBzwiNRPCASUGUcyurFL4DU0zRDRH629sfg5jGSNepzsNPDdXUeKbGBHHOg0BA4zPg0kNkquckcgXP0QoCqWboPXBDBtwbylKgLppJVsjUX0PsvyvEH1shUinufi4=
+	t=1781183211; cv=none; b=F/UDVXUCKd2C9qnvzvwVUZovitp6POEFr+85kX6mWHHsJiKLkKWAeThFUdA8ba7ybleCA3dXcYxErY76ZllHetEhF5gOMKT2WWSNUGjG0JUZ451rI8Nnxat2hPa34UMkQNMTlSe7nB0hLGDd4uTtYpsp3dHcep9DIJfpWdQzB6k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781182983; c=relaxed/simple;
-	bh=Dz/XeYwHL7OCjZlQZP43UoZPLeZG7Dn2a4gxL8e39U8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nGmS2skWOD/w7lmDy6oSv8fX2GFlx1Oafa5SEynzmmL1eMeTbN81O/4ZbICnEhUuUVS02y/njZs8ULpEVFcKpEcbm93bHh8RP/rezOG4MZQWr198sUwsjwKnp6FnmG+LpvSQKNlCxWILExPqLRncJ9vRNmJVBxtmQ9wN6D6d/ZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 178C01F00899;
-	Thu, 11 Jun 2026 13:02:56 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Sudeep Holla <sudeep.holla@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Ulf Hansson <ulfh@kernel.org>
-Cc: arm-scmi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH/RFC 9/9] arm64: dts: renesas: ironhide: Switch to pure SCMI
-Date: Thu, 11 Jun 2026 15:02:13 +0200
-Message-ID: <0940352910d97e24410c5fffd815a8dded3db070.1781171706.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1781171705.git.geert+renesas@glider.be>
-References: <cover.1781171705.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1781183211; c=relaxed/simple;
+	bh=YUJ74k2CphSMguflLaqqExjhGaj2IbvxuDNlWv8NVdk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DUiLSvyY59oXlyqEhEALLW07t/5P1QdWg3IGXY3yMTJi6JBBUDmukOMaZXz/HsRUGDIoE5t0Ix++Uskf4EVmjDhKLoGkQ7pqC9sGQMOu+nWwvrmKYFwo89rqsxnyf/5PRZUo7vhilHZfIJ9u/PXBDvZhUqUa4yH4SqYhYHI0oUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EVZOAiVS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD5651F00898;
+	Thu, 11 Jun 2026 13:06:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781183210;
+	bh=Nek/pAMakFxkN/bOR1BIUWPimUnqKVkhj7fkR2sfhxs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=EVZOAiVS75FBro/7Hnm1QTqHQlefZLGijsUTSlG4LwoWBQBsJJBAE0hUUTCUP2C1a
+	 2TnL2brhzgxPJmGKfQmbvoi1b7FIcOT4yYF7FOVXO2FW3yJ6SAQXS8lmWgRcUgyQce
+	 qH3GRPHdBaVWLpPmklYdQCkaZnSHBZBsR8BIQgUEXSsev4MEviDAPjZcXYYvIjCgUP
+	 I4Y+XpcdcIgSWXfP/DMH1qUm85GCT6knRqNR2AzsyGMQufxjpQAwegmJh4NZdIAsrT
+	 SMQRuiylxzjeQGofApRbu62BcncMJheKshmF+Auj5Bl6thozXhd3qKY63Q5rNnHl/4
+	 /t/H1OKyquPcg==
+Date: Thu, 11 Jun 2026 14:06:40 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Md Shofiqul Islam <shofiqtest@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ krzk@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: accel: Convert lis302 binding to YAML
+ schema
+Message-ID: <20260611140640.4b144bc2@jic23-huawei>
+In-Reply-To: <20260610-cytoplast-pessimism-dea888887526@spud>
+References: <20260610110051.1228-1-shofiqtest@gmail.com>
+	<20260610165640.411c1477@jic23-huawei>
+	<20260610-cytoplast-pessimism-dea888887526@spud>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[glider.be];
-	TAGGED_FROM(0.00)[bounces-310463-lists,devicetree=lfdr.de,renesas];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[geert@glider.be,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_RECIPIENTS(0.00)[m:sudeep.holla@kernel.org,m:cristian.marussi@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:ulfh@kernel.org,m:arm-scmi@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:geert+renesas@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310464-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@glider.be,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:shofiqtest@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,baylibre.com,analog.com,kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,glider.be:email,glider.be:mid,glider.be:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,jic23-huawei:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0A15967238F
+X-Rspamd-Queue-Id: 0A23D6723F0
 
-Switch from CPG/MDLC remapping to pure SCMI:
-  - Add SCMI IDs for selected devices, supporting SCP FW SDK v4.28,
-    v4.31, and v4.32,
-  - Enable SCMI clock domain support,
-  - Replace clocks, power-domains, and resets properties by pure SCMI
-    references.
+On Wed, 10 Jun 2026 17:40:04 +0100
+Conor Dooley <conor@kernel.org> wrote:
 
-Note that the user must uncomment the line that defines
-R_CAR_X5H_SCP_FW_SDK_VERSION to the SCP FW SDK version being used.
+> On Wed, Jun 10, 2026 at 04:56:40PM +0100, Jonathan Cameron wrote:
+> > On Wed, 10 Jun 2026 14:00:51 +0300
+> > Md Shofiqul Islam <shofiqtest@gmail.com> wrote:
+> >   
+> > > Convert the STMicroelectronics LIS302DL/LIS3LV02D accelerometer device
+> > > tree binding from plain text format to YAML schema format.
+> > > 
+> > > The binding covers two variants matched via their respective bus drivers:
+> > > - SPI: st,lis302dl-spi (drivers/misc/lis3lv02d/lis3lv02d_spi.c)
+> > > - I2C: st,lis3lv02d   (drivers/misc/lis3lv02d/lis3lv02d_i2c.c)
+> > > 
+> > > Document all vendor-specific properties read by the driver via
+> > > of_property_read_*(), including click detection, IRQ routing, free-fall/
+> > > wake-up engines, high-pass filtering, axis remapping, output data rate,
+> > > and self-test limits.
+> > > 
+> > > Also correct the click threshold property names: the driver reads
+> > > "st,click-threshold-{x,y,z}" but the old .txt documented them as
+> > > "st,click-thresh-{x,y,z}".
+> > > 
+> > > Validated with: make dt_binding_check   DT_SCHEMA_FILES=Documentation/devicetree/bindings/iio/accel/st,lis302dl.yaml
+> > > 
+> > > Signed-off-by: Md Shofiqul Islam <shofiqtest@gmail.com>  
+> > 
+> > Hi.
+> > 
+> > So the conundrum here is whether we want to keep carrying this binding
+> > as it dates to a previous era.
+> > 
+> > The driver never made it to IIO and is still in drivers/misc.
+> > The majority of what is the text document should never have been
+> > in DT in the first place. I'll guess this dates all the way back
+> > to the wild west days before we had regular binding review.  
+> 
+> I'd say this should be treated like a staging binding but for the fact
+> that this has a user in arm. Problem of course is that it's probably
+> impossible to get that board and so doing any rework is probably not
+> realistic for this submitter?
+> Is there a general policy for iio devices in misc? Do they get reworked
+> to be moved?
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-This patch is included as a PoC.
-This fails to apply, as the SCMI protocol subnodes are not added in this
-series.
----
- .../boot/dts/renesas/r8a78000-ironhide.dts    | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+It is tricky if we have upstream users because the ABI will change on them.
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts b/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
-index 00b5a010b7247722..f4093c359b21379e 100644
---- a/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a78000-ironhide.dts
-@@ -9,6 +9,45 @@
- #include <dt-bindings/soc/renesas,r8a78000-mfis.h>
- #include "r8a78000.dtsi"
- 
-+#define V4_28	4028
-+#define V4_31	4031	// Supports v4.31 and v4.32
-+
-+//#define R_CAR_X5H_SCP_FW_SDK_VERSION	V4_28
-+#define R_CAR_X5H_SCP_FW_SDK_VERSION	V4_31
-+
-+#if R_CAR_X5H_SCP_FW_SDK_VERSION == V4_28
-+
-+#define CLK_SGD4_PERW_BUS	1661
-+#define MDLC_HSCIF0		228
-+#define MDLC_HSCIF1		229
-+#define MDLC_SCIF0		209
-+#define MDLC_SCIF1		210
-+#define MDLC_UFS1		203
-+#define RESET_HSCIF0		228
-+#define RESET_HSCIF1		229
-+#define RESET_SCIF0		209
-+#define RESET_SCIF1		210
-+#define RESET_UFS1		203
-+
-+#elif R_CAR_X5H_SCP_FW_SDK_VERSION == V4_31
-+
-+#define CLK_SGD4_PERW_BUS	1657
-+#define MDLC_HSCIF0		224
-+#define MDLC_HSCIF1		225
-+#define MDLC_SCIF0		205
-+#define MDLC_SCIF1		206
-+#define MDLC_UFS1		199
-+#define RESET_HSCIF0		224
-+#define RESET_HSCIF1		225
-+#define RESET_SCIF0		205
-+#define RESET_SCIF1		206
-+#define RESET_UFS1		199
-+
-+#endif
-+
-+#define PD_APL			257
-+#define PD_UFS1			13
-+
- / {
- 	model = "Renesas Ironhide board based on r8a78000";
- 	compatible = "renesas,ironhide", "renesas,r8a78000";
-@@ -35,6 +74,7 @@ scmi: scmi {
- 			scmi_devpd: protocol@11 {
- 				reg = <0x11>;
- 				#power-domain-cells = <1>;
-+				arm,clock-domain = <&scmi_clk>;
- 			};
- 
- 			scmi_sys: protocol@12 {
-@@ -138,6 +178,10 @@ &extalr_clk {
- };
- 
- &hscif0 {
-+	clocks = <&scmi_clk MDLC_HSCIF0>, <&scmi_clk CLK_SGD4_PERW_BUS>,
-+		 <&scif_clk>;
-+	power-domains = <&scmi_devpd PD_APL>;
-+	resets = <&scmi_reset RESET_HSCIF0>;
- 	uart-has-rtscts;
- 	status = "okay";
- };
--- 
-2.43.0
+I'm not sure how easy this would be to add to the existing st sensors driver
+as these are very early parts.  If we could maybe we'd do so and just deal
+with the mess of having to disable one or other driver. 
+
+My gut feeling here is ancient part, let it get dropped in a year or
+two and not worry about adding support to a standard IIO driver unless
+anyone actually has hardware and wants to do it.
+
+> 
+> The user funnily enough has the binding's click-thresh properties:
+> 		st,click-single-x;
+> 		st,click-single-y;
+> 		st,click-single-z;
+> 		st,click-thresh-x = <10>;
+> 		st,click-thresh-y = <10>;
+> 		st,click-thresh-z = <10>;
+> 		st,irq1-click;
+> 		st,irq2-click;
+> 		st,wakeup-x-lo;
+> 		st,wakeup-x-hi;
+> 		st,wakeup-y-lo;
+> 		st,wakeup-y-hi;
+> 		st,wakeup-z-lo;
+> 		st,wakeup-z-hi;
+> Dunno what that ultimately means in terms of which should be used
+> though.
+Set those as defaults in the driver if all upstream users have those
+values and then drop reading them from dt?
+
 
 
