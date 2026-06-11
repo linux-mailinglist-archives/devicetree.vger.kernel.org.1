@@ -1,168 +1,127 @@
-Return-Path: <devicetree+bounces-310155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310156-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 371KMSlNKmo2mgMAu9opvQ
-	(envelope-from <devicetree+bounces-310155-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:52:41 +0200
+	id a5BZIOpMKmr+mQMAu9opvQ
+	(envelope-from <devicetree+bounces-310156-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:51:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E1D066ECD9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:52:41 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E36766EC96
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:51:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gondor.apana.org.au header.s=h01 header.b=PHsFQmuq;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310155-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310155-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=apana.org.au;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TvoNd8jx;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310156-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310156-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CBBBA30707C9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:51:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A833C301CFF4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:51:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E263491C9;
-	Thu, 11 Jun 2026 05:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59802FC876;
+	Thu, 11 Jun 2026 05:51:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8D9C24DFF9;
-	Thu, 11 Jun 2026 05:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011961A0BD0;
+	Thu, 11 Jun 2026 05:51:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781157059; cv=none; b=hfZgEc3k7xYObr/wyYG45ZH2tgCU/NfMO3KOUycH1Fil74+F17r/VsY1ZKxtSeKNNBRmWdhKRjfY1TzepXUpl98esGZK0YPN8Pyhe3/OcdQ47X4lm53CisvbpSnrzO/qOldxqMGEsrwVeAN8fCaXWpjt08YA+f0moH10KVbIV44=
+	t=1781157079; cv=none; b=ohbAuxfrR9jT/tyWFF9HGK+2e+ayJ8ZUXEKZOVcTWZDt/CgnXdnfyRNLg2UMt/gsJPnL9ka8HU6y7U6qM8fnm8n9DAI/UFGjgelD8r+rJL5Bsb+eVbpxYhTF4uUAs0nDsBshu6WrBoJzmZuhhUNQZ2kKd8qUzV2TpEqWkWcHPTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781157059; c=relaxed/simple;
-	bh=aFCBRapvOXew+Noti49kRnnBaKKU2jD8tcX7iyV7Sfk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hSQHfquBdwO+wuOhAL8bSMlk4jtA41NE03Ltxzu0bwdZgmUQrYt1NdcGpZr3nzTzRoE7dbv8d18Nv3xDK9geJV5rNZDLQ3FqSeRhIXjsEc7YjlpW8z828Ps8nnhez4EEjrTP66jzxGfNWgc8ESrYK8hqrbrBiLkjUprRHl6SgLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b=PHsFQmuq; arc=none smtp.client-ip=180.181.231.80
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
-	from:content-type:reply-to; bh=nqS/eIx4316IuyHGDGsTI2Mit/s75slnzsaDmUc7NhU=; 
-	b=PHsFQmuq1Z2V1HiPubIPvX4M8kGjH9eqqFv3hpzoti55/gcKnKwu9U7vyL4R+/pPRcSshgHHwBC
-	iPUn5K5MobboF+N7OlRnEfRRd7/h9ZajuV54EWlp1wOAv/QHahgcKaDYYcqDhOKq66Exo3YNEAIIU
-	LaNJIgn3QwTZfEi4OsiTMUTq7jZS/NTJNLDtjV9xt2hXVfHHLJkXD+/qHMIvvZXQFG6IwtdDLZs5l
-	6sM1CP7SrzKbKiVSjoXHer41qbnFut1jkydXowuDXP7KhcbskusC9HO4SFQslZps1OPgQC7KiCpph
-	T2Us3L5y8ic/9scnHYWkjEd+enLSYq82il/A==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.98.2 #2 (Debian))
-	id 1wXYJa-00000004UZM-0NLn;
-	Thu, 11 Jun 2026 13:50:55 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 11 Jun 2026 13:50:54 +0800
-Date: Thu, 11 Jun 2026 13:50:54 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	Ruud.Derwig@synopsys.com, rbannerm@synopsys.com,
-	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
-	navami.telsang@vayavyalabs.com, bhoomikak@vayavyalabs.com
-Subject: Re: [PATCH v13 2/4] crypto: spacc - Add SPAcc ahash support
-Message-ID: <aipMvkD_Y4NO4hfR@gondor.apana.org.au>
-References: <20260604165210.1141842-1-pavitrakumarm@vayavyalabs.com>
- <20260604165210.1141842-3-pavitrakumarm@vayavyalabs.com>
+	s=arc-20240116; t=1781157079; c=relaxed/simple;
+	bh=lWmvqh+4cHDVAXkHFCtWF9PTv/whSNrvB4Ozcvf1YL4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=gedx+yxH0LgrSGE0/u0LRAPNudZvxGizKWnouOL9qxDECceheRotM5SO4/S1IX83z4Js++4qsdPPoPc2LdVUAh4RSmBCqpv2WQEAmir37sIxgVXMDMA1jyQo9h00RK9Sn5TtQsbq9GfX80bNbe3U7GpEaNWEN5O06UEj5sHjnTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TvoNd8jx; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 620D91F00893;
+	Thu, 11 Jun 2026 05:51:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781157078;
+	bh=DfAXXx1CJ6TSjqeW+mrfldmHh9X0zU0bdX8mXNm+FG0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=TvoNd8jxPrFVrI2JGUDycYfwOPfr6PlMZSRBoAqNUDx1sQIfP63vVTszEqZiQORlt
+	 UR4zOSK1VG9t4aASu1bH6yXYQfXEINJyHICHrE3UXXrkTjG9FAdKX7FHHa3+mYsYcW
+	 xluOuxNuE4VjTGK6JyhuBXLDRH7pLIs0BynE5Ag7aEYo3PrrmukhruT0VazRVLvgy3
+	 D+5M55gy8SRQ+eJ4je8bR747BHFOkWTwzn/QjN34o/tG+7D5D5uQcmmmJn++3Zd4Sr
+	 qI7ddCHHqzXJ9bE+3M7rpl2xBbq3wIWP0RtHlzMOjVregzUxE0koBX9afi1GCnZdkI
+	 IAvmdt0YB9flw==
+From: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
+ Peng Fan <peng.fan@nxp.com>, Ye Li <ye.li@nxp.com>, 
+ Joy Zou <joy.zou@nxp.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+In-Reply-To: <20260211-b4-imx95-v2x-v4-0-10852754b267@nxp.com>
+References: <20260211-b4-imx95-v2x-v4-0-10852754b267@nxp.com>
+Subject: Re: (subset) [PATCH v4 0/3] Reserve eDMA channels 0-1 for V2X
+Message-Id: <178115707400.468137.2385832019756326414.b4-ty@kernel.org>
+Date: Thu, 11 Jun 2026 11:21:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260604165210.1141842-3-pavitrakumarm@vayavyalabs.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13.0
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[apana.org.au,quarantine];
-	R_DKIM_ALLOW(-0.20)[gondor.apana.org.au:s=h01];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310155-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:shawnguo@kernel.org,m:s.hauer@pengutronix.de,m:kernel@pengutronix.de,m:festevam@gmail.com,m:Frank.Li@nxp.com,m:peng.fan@nxp.com,m:ye.li@nxp.com,m:joy.zou@nxp.com,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:laurentiu.mihalcea@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[herbert@gondor.apana.org.au,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_RECIPIENTS(0.00)[m:pavitrakumarm@vayavyalabs.com,m:linux-crypto@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:Ruud.Derwig@synopsys.com,m:rbannerm@synopsys.com,m:manjunath.hadli@vayavyalabs.com,m:adityak@vayavyalabs.com,m:navami.telsang@vayavyalabs.com,m:bhoomikak@vayavyalabs.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[gondor.apana.org.au:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herbert@gondor.apana.org.au,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-310156-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,gondor.apana.org.au:dkim,gondor.apana.org.au:mid,gondor.apana.org.au:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,vayavyalabs.com:email,synopsys.com:email,apana.org.au:url,apana.org.au:email]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1E1D066ECD9
+X-Rspamd-Queue-Id: 0E36766EC96
 
-On Thu, Jun 04, 2026 at 10:22:08PM +0530, Pavitrakumar Managutte wrote:
-> Add ahash support to SPAcc driver.
-> Below are the hash algos supported:
-> - cmac(aes)
-> - xcbc(aes)
-> - cmac(sm4)
-> - xcbc(sm4)
-> - hmac(md5)
-> - md5
-> - hmac(sha1)
-> - sha1
-> - sha224
-> - sha256
-> - sha384
-> - sha512
-> - hmac(sha224)
-> - hmac(sha256)
-> - hmac(sha384)
-> - hmac(sha512)
-> - sha3-224
-> - sha3-256
-> - sha3-384
-> - sha3-512
-> - michael_mic
+
+On Wed, 11 Feb 2026 17:28:23 +0800, Joy Zou wrote:
 > 
-> Co-developed-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-> Signed-off-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-> Acked-by: Ross Bannerman <rbannerm@synopsys.com>
-> Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-> Signed-off-by: Manjunath Hadli <manjunath.hadli@vayavyalabs.com>
-> ---
->  drivers/crypto/dwc-spacc/spacc_ahash.c     |  897 ++++++++++++++
->  drivers/crypto/dwc-spacc/spacc_core.c      | 1311 ++++++++++++++++++++
->  drivers/crypto/dwc-spacc/spacc_core.h      |  838 +++++++++++++
->  drivers/crypto/dwc-spacc/spacc_device.c    |  275 ++++
->  drivers/crypto/dwc-spacc/spacc_device.h    |  237 ++++
->  drivers/crypto/dwc-spacc/spacc_hal.c       |  374 ++++++
->  drivers/crypto/dwc-spacc/spacc_hal.h       |  114 ++
->  drivers/crypto/dwc-spacc/spacc_interrupt.c |  329 +++++
->  drivers/crypto/dwc-spacc/spacc_manager.c   |  611 +++++++++
->  9 files changed, 4986 insertions(+)
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_ahash.c
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_core.c
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_core.h
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_device.c
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_device.h
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_hal.c
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_hal.h
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_interrupt.c
->  create mode 100644 drivers/crypto/dwc-spacc/spacc_manager.c
+> 
 
-Please also check the Sashiko comments, some of those look alarming:
+Applied, thanks!
 
-https://sashiko.dev/#/patchset/20260604165210.1141842-1-pavitrakumarm%40vayavyalabs.com
+[1/3] dt-bindings: dma: fsl-edma: add dma-channel-mask property description
+      commit: 75b28d74f90c79e788e0e86caf0173fc0b2e92aa
 
-Thanks,
+Best regards,
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+~Vinod
+
+
 
