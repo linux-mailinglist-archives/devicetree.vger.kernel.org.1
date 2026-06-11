@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-310127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310129-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FkvMGR9GKmo0lgMAu9opvQ
-	(envelope-from <devicetree+bounces-310127-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:22:39 +0200
+	id BBSEB2NGKmo+lgMAu9opvQ
+	(envelope-from <devicetree+bounces-310129-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:23:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3532B66E821
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:22:39 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD10366E846
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:23:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=boeRrAlh;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310127-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310127-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ASm29qnN;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310129-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310129-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9F5A3300C03C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:22:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 29BA6300C0C3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:23:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B62733E37C;
-	Thu, 11 Jun 2026 05:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 618E52F7F19;
+	Thu, 11 Jun 2026 05:23:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BA22E9ED6
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E74A2351C2D
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:23:39 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781155356; cv=none; b=HpMdb56NLNzgGV/kshiv8BXNAYCwEtqjQ02ivUgjKpny/98Q/59U/p5NxZLfhEpxJUpzer9XtkBBxLup4bTK/yZ68mdwtLeUUd1LWYixoiRyGvn+dWFXIhAbOGP/Be+ltCuZ4O44dm22pUasxjRshE5PoLP21NSv5mVgSaZDtxo=
+	t=1781155422; cv=none; b=FORESUmUKLBaw+ZVEkcT22MFr64fIw1KcL9dIH+o9c4H4qekqKUh+GVtHerTgGvbxdqicmBlC1leIr4WjyguQvLNLAAcXAo6XvIUYBUTUWmuLg26s9ooyTfICRmu9Vg4RU2HyQDazSo9qidRoE5wq8KeOt5HnXA+yE/39yGEct8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781155356; c=relaxed/simple;
-	bh=gdfk1k71Tvny+Ux85VmIuUNOCUB5XrsDwF0dhKKaqnY=;
+	s=arc-20240116; t=1781155422; c=relaxed/simple;
+	bh=kZqbP+aC1FyBK5ZfrHvrIXhPn2Do2Z3P3HbZxUo4toI=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=CQKT+bxk9hMopZ9Cz23ar4s9VHPfRwRfRuoU7eU+tXIcCpAVxkSgDgxTiiSf+mZ5HmyyoB2FK13otPraNWtzGPdBtod9KWIZFjfG0x8Vr74KMz9YDSxinQxFRAJnIydH0R9onQRA8tdZATGcWl8yJdSYFMcifKdkpOMYAgTo5PE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=boeRrAlh; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E495B1F00893;
-	Thu, 11 Jun 2026 05:22:31 +0000 (UTC)
+	 Message-Id; b=mu+oKI4OGh0IQU2Fzx2QEbykjNirfDG5tfn/znsftiNTacNXh/+KBXGwypPktE5Pup/zt8dUsIRDXBb2WbMGfVUvWiJSETcS+N4QDeftzZcR8R4bnegtMmlKy2MIQJITZA1v6ts8algF+4u/Pc5x6WohWkfJBRShxWPmbM8CvwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ASm29qnN; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E2981F00893;
+	Thu, 11 Jun 2026 05:23:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781155352;
-	bh=8VCUPPcSvhc3G/Kwt1PKZdUGLff5ah2+iW1xvzEYtTY=;
+	s=k20260515; t=1781155419;
+	bh=bsmsyPTXRaSjgDlM6uE/rgK0t0HvWjh6mw97ZUY1We8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=boeRrAlhy1IzyFyEPaaeB3/TqxBK3diCJ7mAszodRWCUnamPf8wioPRzVDpAvegSL
-	 uvHXV+XhQhCjEG+ZH4IkRDWIqAIq8FbKRFHjln6I39AEfRerIAml8rdHNBvGEjVkrv
-	 dO6xJkVmRRyriDOoy8i99mS+6bRQFekBvdI4BRgDjr7ICV/BHyROvYNIhN9iu4V6A7
-	 OZ4wTKW+y2wODW5ykK0qMJzgYhk92WGi9VCGWGm/bea/DI/l6QIQgVQWt/n9REg5kl
-	 8t6Z9tTsL9Fff2fMv0h1eaF0eBGP3+BxQtJswFVsb+8qTPxVthMJtKVATSZToqeX/2
-	 lVp+XlecDU7wA==
+	b=ASm29qnN9y50FYWIW9rl7Pym65Y6KHBhIIVjKQMB8EtUZ0uXrAcXvkpFH0daijhVL
+	 nKuNhPIVAVBKZs6rvyjDpTmjOu7fazSSfWKydONaXfMmGBGYuj8Dyu8C8c54MyUOKQ
+	 nFEp/1elccrmKqXWV/dmpx9uXc8YKUpvL4sCnYB03M6A2tjBuH9BVjTGI46egIm23V
+	 OZaerzye0HNY1W4gBnf6KVkru4HM46oSeZ9kroQ0A34iVfF7QUS/D5Ct9CiS/RSOwh
+	 UpHbVoX3kR2DxvGpaKL6f/rO91t7T6OyKOq4YRw9mC0OVhzWsmRGKjOXH8a8HJfajP
+	 GUgEuwV66alxA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 34/37] arm64: dts: qcom: talos: Move PCIe phy and
+Subject: Re: [PATCH v2 32/37] arm64: dts: qcom: sm8450: Move PCIe phy and
  GPIOs to root port node
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Krishna Chaitanya Chundru" <krishna.chundru@oss.qualcomm.com>
 Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260611-wake-v2-34-2744251b1181@oss.qualcomm.com>
-References: <20260611-wake-v2-34-2744251b1181@oss.qualcomm.com>
+In-Reply-To: <20260611-wake-v2-32-2744251b1181@oss.qualcomm.com>
+References: <20260611-wake-v2-32-2744251b1181@oss.qualcomm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 11 Jun 2026 05:22:31 +0000
-Message-Id: <20260611052231.E495B1F00893@smtp.kernel.org>
+Date: Thu, 11 Jun 2026 05:23:38 +0000
+Message-Id: <20260611052339.0E2981F00893@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,13 +71,13 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310127-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310129-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -87,8 +87,8 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -98,93 +98,93 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,qualcomm.com:email,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,qualcomm.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3532B66E821
+X-Rspamd-Queue-Id: AD10366E846
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] A preexisting error-handling flaw in `qcom_pcie_parse_port()` caus=
-es a resource leak of the initialized PHY. This leak will now be frequently=
- triggered due to this commit moving `reset-gpios` to the port node.
+- [Medium] The commit message claims to move `phy-names` to the root port n=
+ode, but the property is completely removed instead.
 --
 
-commit 689313d243e7ec1e4f35d3db8dcb7b5d6e32d186
-Author: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+commit 9d7dd05726a6daa00789e9da0c80d284e0e6db66
+Author: Krishna Chaitanya Chundru <krishna.chaitanya.chundru@oss.qualcomm.c=
+om>
 
-arm64: dts: qcom: talos: Move PCIe phy and GPIOs to root port node
+arm64: dts: qcom: sm8450: Move PCIe phy and GPIOs to root port node
 
-Moves the PCIe phy reference and the perst/wake GPIO properties from the
-RC controller node to the root port node. Also renames perst-gpios to
-reset-gpios to match the root port binding context.
+This commit moves the PCIe PHY reference and perst/wake GPIO properties
+from the RC controller node to the root port nodes. It also renames
+perst-gpios to reset-gpios to match the bindings.
 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/d=
-ts/qcom/qcs615-ride.dts
-> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> The PCIe phy reference and the perst/wake GPIO properties are
+> per root port and belong in the root port node (pcie@0), not in the
+> RC controller node. Move phys, phy-names, perst-gpios, and wake-gpios
+> from the controller to the existing pcieport0 and newly labeled
+> pcie1_port0, allowing board-level overrides. Rename perst-gpios to
+> reset-gpios to match the binding used in the root port context.
+
+[Severity: Medium]
+The commit message states that phy-names is being moved from the controller
+to the root port nodes. However, looking at the diff below, the property is
+removed from the controller but does not seem to be added to the destination
+nodes. Should the commit message be updated to reflect the removal, or was
+the property supposed to be added to the root ports?
+
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/q=
+com/sm8450.dtsi
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -2031,12 +2031,6 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> =20
+>  			power-domains =3D <&gcc PCIE_0_GDSC>;
+> =20
+> -			phys =3D <&pcie0_phy>;
+> -			phy-names =3D "pciephy";
+> -
+> -			perst-gpios =3D <&tlmm 94 GPIO_ACTIVE_LOW>;
+> -			wake-gpios =3D <&tlmm 96 GPIO_ACTIVE_LOW>;
+> -
+>  			pinctrl-names =3D "default";
+>  			pinctrl-0 =3D <&pcie0_default_state>;
+> =20
+> @@ -2080,6 +2074,10 @@ pcieport0: pcie@0 {
+>  				#address-cells =3D <3>;
+>  				#size-cells =3D <2>;
+>  				ranges;
+> +
+> +				phys =3D <&pcie0_phy>;
+> +				reset-gpios =3D <&tlmm 94 GPIO_ACTIVE_LOW>;
+> +				wake-gpios =3D <&tlmm 96 GPIO_ACTIVE_LOW>;
+>  			};
+>  		};
+
+[Severity: Medium]
+Does pcieport0 need phy-names =3D "pciephy"; added here, as suggested by the
+commit message?
 
 [ ... ]
 
-> @@ -444,15 +444,17 @@ &mdss_dsi0_phy {
->  };
-> =20
->  &pcie {
-> -	perst-gpios =3D <&tlmm 101 GPIO_ACTIVE_LOW>;
-> -	wake-gpios =3D <&tlmm 100 GPIO_ACTIVE_LOW>;
-> -
->  	pinctrl-0 =3D <&pcie_default_state>;
->  	pinctrl-names =3D "default";
-> =20
->  	status =3D "okay";
->  };
-> =20
-> +&pcie_port0 {
-> +	reset-gpios =3D <&tlmm 101 GPIO_ACTIVE_LOW>;
-
-[Severity: High]
-This is a pre-existing issue, but will moving these GPIOs here make it
-highly likely to trigger a PHY resource leak during probe deferral?
-
-In drivers/pci/controller/dwc/pcie-qcom.c, qcom_pcie_parse_port()
-initializes the PHY before parsing the perst GPIOs:
-
-drivers/pci/controller/dwc/pcie-qcom.c:qcom_pcie_parse_port() {
-	...
-	ret =3D phy_init(phy);
-	if (ret)
-		return ret;
-
-	INIT_LIST_HEAD(&port->perst);
-
-	ret =3D qcom_pcie_parse_perst(pcie, port, node);
-	if (ret)
-		return ret;
-
-	port->phy =3D phy;
-	INIT_LIST_HEAD(&port->list);
-	list_add_tail(&port->list, &pcie->ports);
-}
-
-If the newly moved reset-gpios cause qcom_pcie_parse_perst() to return
--EPROBE_DEFER, the function exits before adding the newly allocated port
-to the pcie->ports list.
-
-Since the cleanup routine qcom_pcie_parse_ports() iterates over the
-pcie->ports list to call phy_exit(), does this mean the initialized PHY
-reference (and its underlying clocks/regulators) will be permanently
-leaked on every probe deferral?
-
-> +	wake-gpios =3D <&tlmm 100 GPIO_ACTIVE_LOW>;
-> +};
+> @@ -2285,6 +2277,10 @@ pcie@0 {
+>  				#address-cells =3D <3>;
+>  				#size-cells =3D <2>;
+>  				ranges;
 > +
+> +				phys =3D <&pcie1_phy>;
+> +				reset-gpios =3D <&tlmm 97 GPIO_ACTIVE_LOW>;
+> +				wake-gpios =3D <&tlmm 99 GPIO_ACTIVE_LOW>;
+>  			};
+>  		};
+
+[Severity: Medium]
+Similarly, should phy-names be added here to pcie1_port0?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260611-wake-v2-0-=
-2744251b1181@oss.qualcomm.com?part=3D34
+2744251b1181@oss.qualcomm.com?part=3D32
 
