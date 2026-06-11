@@ -1,185 +1,334 @@
-Return-Path: <devicetree+bounces-310212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310215-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cqpeDNpqKmorpAMAu9opvQ
-	(envelope-from <devicetree+bounces-310212-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:59:22 +0200
+	id FZV0OAxsKmp3pAMAu9opvQ
+	(envelope-from <devicetree+bounces-310215-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:04:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A6B66FA32
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:59:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CAAA66FADC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:04:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kRuxSVm3;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310212-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310212-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Q6g52pnP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310215-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310215-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1F9AE3002520
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:59:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2F3263064454
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B483370D4F;
-	Thu, 11 Jun 2026 07:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA427374E47;
+	Thu, 11 Jun 2026 08:00:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CBB371065;
-	Thu, 11 Jun 2026 07:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C35372ECF
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 08:00:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781164753; cv=none; b=iVuoPkZslD9SbQkiQ7bgKDHO9MbD8xAC0zZL4XfavsTGIwrNB0LVQunuFJyI3l4LOPjH459RT9GUvQLdueUPC5JpM2/Z3ViNL5VCe/GuObKygrcq0IiFHZ6uKyCKW5OdoaIdkXUroiWl2Xt8sxwDRhtNog0gnJ5UZ4AYAtqKcPE=
+	t=1781164833; cv=none; b=JL2MLMe6KL5mIoMFQj5Azt/3daIuoM3BznADNIZBytBAEm8BgxkpVg0BkDqQPEfKAowOj6XCaV2jtAgEdd0GqwOsPkOVYiFGdER1nRRfanssD/NqXLVGRsD5a6HP0VgCCJ81Sy0iDTOkVZ+KduX/LyXPoarvns/RXDiP3oUqiAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781164753; c=relaxed/simple;
-	bh=sjwnPL4FlgueGCT5QoKqiahVrhEuYKmA0r1My4jx34c=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=GdbHi8zblklH2StRGsUMyluexq42vR9oSAd1aAC3V/EmRc57AYve4JZIX40yhyj9hsnUalanDnWJQ40AephzXTD9sEFS9emnmG7F0ur67wRkIauhvnuc1zrcoVKIJUvcSlSbgUAdaG/Eu4J+14Lxt799KAtBlj+BUGQQvorBQgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kRuxSVm3; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAB011F00893;
-	Thu, 11 Jun 2026 07:59:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781164752;
-	bh=C3AZ8o2HUdh7PC0h6Ws5LV32kq4gzjgfYRKxWl0KUus=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=kRuxSVm3ha76kOo8h/c0ikcanFSstCSogEkE/y4xLdI60K9hhdADRQFo+HyCdd8dM
-	 bWcjMwfEc8wbeiuvWkh7Ap4tkPx3PYRKYG7doSteaPvc1qZ45mUTw+rr26tugvxGUh
-	 vLa9nvHwPEIOoTz8kndnFRERyUewopsfBJdead+XzJe8qAlbhnH4ype6taKiOMDeuE
-	 PjxykFUJ2wc9KNQ49ZRCLgXG/Rx/XFPcBd6V/CVsbox9al42rhNI5QJkp6BZcPcTU3
-	 /5eessU8ACK12D3pYh6O5LNoazYczdQ3TwFiLlBk/yQIuUHYKXTmGcDUuwk/0Lq2fQ
-	 jIMGAjNs7V+/g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3] arm64: dts: imx94: Add Root Port node and PERST
- property
-Reply-To: sashiko-reviews@lists.linux.dev
-To: hongxing.zhu@oss.nxp.com
-Cc: conor+dt@kernel.org, imx@lists.linux.dev, robh@kernel.org, Frank.Li@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260611075057.2892593-1-hongxing.zhu@oss.nxp.com>
-References: <20260611075057.2892593-1-hongxing.zhu@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 11 Jun 2026 07:59:11 +0000
-Message-Id: <20260611075911.AAB011F00893@smtp.kernel.org>
+	s=arc-20240116; t=1781164833; c=relaxed/simple;
+	bh=5T5GPhbjbV6TAuwWoc/EO0fQlz1+1MUif1+99Yn3u/E=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=eEGMC80PEZpkYplf/5QMNfcEdTfIqdRYV0gExyqgc441fkStHMBzKEVLGdO6aykjr1XR/hOgWqgT0nKmSesBbMIjbJwQppYdF8s3gNnndpyZV6V21EseeQyLSpaacvYpSuOjP3RXgB7UOl8fXVHc35xMussUcg1ALrX4kw3JVjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q6g52pnP; arc=none smtp.client-ip=209.85.214.175
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2c0c2e8d381so14180905ad.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 01:00:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781164832; x=1781769632; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7TVjBPtkRQto1Hvuai/39HXD7EMOmQdrCbAoz9POuZM=;
+        b=Q6g52pnPLqEbiXZU7MP/BgATWsHhQQ4kb2ypCEVTiIVWK7WbFhloPoolP6ifCrhK+b
+         uAFeh0+ua0Zi6fcWPUvCvKxmjWQ5o6L/BRZYNen4ANp50DYThLh8mTOuhlwMLeaQwi+F
+         /qbC+IFqFFnBCQ7vyzgL592YJkt5NEK+nyMAfpbj52sKlG1CAwRF4vjEOb1x363PhYbJ
+         5rzeZlAqLHgV/Fn6w6yhSn+/gbiKft6ncPpb+Dlf51SNm4cFRTbMY4z8tuhooiKySkXN
+         4zrHOp+fTp9OgPlKIPEKobKv99f2+3Qd6LMK8EGepzxie/SvsE/stKs6cMsRixqpL2el
+         wY7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781164832; x=1781769632;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7TVjBPtkRQto1Hvuai/39HXD7EMOmQdrCbAoz9POuZM=;
+        b=irmo0vSYSnGwPC88wrPrgqZ6KFuvCA1uzchlHMvCQho+HIW9zfijdruxwNQpYx0W8w
+         4ORu04RoLweJjz5nLl+3j/DEsaN1/Ye+KQXmBUikbZFiUgFD+YcqknDqAgbB2cGfbEsU
+         b/+oX4yz9JXWek4jSVzwafqDGqtqvt6WxNn5RMQPaYqHOujNVe8pWRcynuyvKQlJlHRL
+         bEcR6En0sMsC+WBZz3jQrWP5/LPLeeXMi/OaCAQihjgqYjG4UST+TLrN+8zmcT3MmjyQ
+         k5AiVJzJtx05y20jSM0JllXL3pkHP4W8RatsSOFtQCkxDGdLrAFqx53ww/HTIPIgtMB4
+         iBPg==
+X-Gm-Message-State: AOJu0YxXdWS8yuFx/6hz4sgyjfXFj7Frk5yDSR5Lx9qrR7BC42fTqeye
+	GXGzkvAwxzLL2WHbclnhbjhNy67cJN3REAbA3q552EmtDoZXAuVqImTK
+X-Gm-Gg: Acq92OFDHy4XgaIny33rC6IDFPasEqJmU0Jk0AdOr5iWCNGFvIA/r7qcJXbuwQikNyC
+	7loBoKUbBq/UPvgtS+3JfILWRPJTQqjhVnUK6QqLBONHKup+oxWIvnG8pwTR/ICRhTlwWja1+Us
+	sfV1Whkm47q3WRBDM1faO8LCPbmwl9pfbGF5aqntkqbVbCppQCG3fY9WaVpcHdkYTOMdPZPdB+N
+	/XD6IaDzOTgDc8qKlPZCor3uTms75GLfx+Z6KcOMa4ler7kHx2Ij0Cb3XqQKeC30WktXaKFiuPZ
+	8ExUh7nKWI9spdZwFoM7o1wTRLSxLuZC0rL5q12+YmWUzqYEUbVcaQ4zoA8B79xwOZ0XRc1erQf
+	rXPiEja4AaEOenwJwBKlw8ZjNglEHz/EPi4Grza40s5ktRtgM7yFFfN4IsvgJ94ZKkWff/kFMVF
+	HG8hhgMetryYUiGlJyNSH04yEVTAEwnFRUTeTIYwusgLY=
+X-Received: by 2002:a17:903:1a2d:b0:2c0:af09:f3c3 with SMTP id d9443c01a7336-2c2f636bcefmr11336005ad.8.1781164830275;
+        Thu, 11 Jun 2026 01:00:30 -0700 (PDT)
+Received: from [192.168.1.3] ([2401:4900:881c:31ad:7fa5:d959:91e7:2240])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c16629d40asm259089285ad.64.2026.06.11.01.00.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jun 2026 01:00:29 -0700 (PDT)
+From: Bhargav Joshi <j.bhargav.u@gmail.com>
+Date: Thu, 11 Jun 2026 13:30:14 +0530
+Subject: [PATCH v2] dt-bindings: interrupt-controller: ti,irq-crossbar:
+ Convert to DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260611-crossbar-v2-1-231d4f88298e@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/0WNQQ6CMBBFr0JmbU3bQBFX3sOwaMsAY4SaDhIN4
+ e4WWJhZveT9NwswRkKGa7ZAxJmYwphAnzLwvR07FNQkBi21kYW+CB8Ds7NRaFdZk6tGq9xA0l8
+ RW/rsqXt9ML/dA/207TejJ55C/O6/ZrV5RzbdPzsrIUVryrb0rkIs5K0bLD3PPgxQr+v6A4F3F
+ 32yAAAA
+X-Change-ID: 20260528-crossbar-2b9a641d2146
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
+ Sricharan R <r.sricharan@ti.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ goledhruva@gmail.com, m-chawdhry@ti.com, daniel.baluta@gmail.com, 
+ simona.toaca@nxp.com, j.bhargav.u@gmail.com
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781164825; l=6816;
+ i=j.bhargav.u@gmail.com; h=from:subject:message-id;
+ bh=5T5GPhbjbV6TAuwWoc/EO0fQlz1+1MUif1+99Yn3u/E=;
+ b=zF+5OreIarstm5mck6ZXkSO9kTSqOYNKWkQwSrqXfxk5ncx6y0AxB2sMnrKXeDub7IQWZ6/DH
+ 6OqN0L+CK8zAEtJcPSM16NOj79xeE6cpzr0HbaRMxPhn6JooWtctzhz
+X-Developer-Key: i=j.bhargav.u@gmail.com; a=ed25519;
+ pk=IqNDwUZKECEA+n8wXctFLBbYL9NhFstZNbOznm/nX1k=
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-310215-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310212-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:hongxing.zhu@oss.nxp.com,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:robh@kernel.org,m:Frank.Li@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,ti.com,nxp.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[jbhargavu@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tglx@kernel.org,m:r.sricharan@ti.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:goledhruva@gmail.com,m:m-chawdhry@ti.com,m:daniel.baluta@gmail.com,m:simona.toaca@nxp.com,m:j.bhargav.u@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:danielbaluta@gmail.com,m:jbhargavu@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jbhargavu@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 27A6B66FA32
+X-Rspamd-Queue-Id: 2CAAA66FADC
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Moving `vpcie3v3aux-supply` from the Host Bridge node to the Root =
-Port node causes the PCIe controller driver to fail to find and enable the =
-auxiliary power supply.
---
+Convert TI irq-crossbar binding from text format to DT schema.
 
-commit 881f61760fe4035aacb7e254c5a7890c62c2bcbf
-Author: Richard Zhu <hongxing.zhu@nxp.com>
+As part of conversion following changes are made:
+ - Add '#interrupt-cells' as a required property which was missing in
+   text binding
+ - As irq-crossbar is interrupt-controller. Move binding from
+   bindings/arm/omap to bindings/interrupt-controller
 
-arm64: dts: imx94: Add Root Port node and PERST property
+Signed-off-by: Bhargav Joshi <j.bhargav.u@gmail.com>
+---
+Changes in v2:
+- Dropped property name change and driver updates. 
+- Link to v1: https://lore.kernel.org/r/20260606-crossbar-v1-0-f67f7cb9ee50@gmail.com
+---
+ .../devicetree/bindings/arm/omap/crossbar.txt      | 55 -------------
+ .../interrupt-controller/ti,irq-crossbar.yaml      | 96 ++++++++++++++++++++++
+ 2 files changed, 96 insertions(+), 55 deletions(-)
 
-This commit moves the reset-gpios property to the new Root Port node as
-recommended. It also moves the vpcie3v3aux-supply properties from the Host
-Bridge nodes to the newly created Root Port nodes.
+diff --git a/Documentation/devicetree/bindings/arm/omap/crossbar.txt b/Documentation/devicetree/bindings/arm/omap/crossbar.txt
+deleted file mode 100644
+index a43e4c7aba3d..000000000000
+--- a/Documentation/devicetree/bindings/arm/omap/crossbar.txt
++++ /dev/null
+@@ -1,55 +0,0 @@
+-Some socs have a large number of interrupts requests to service
+-the needs of its many peripherals and subsystems. All of the
+-interrupt lines from the subsystems are not needed at the same
+-time, so they have to be muxed to the irq-controller appropriately.
+-In such places a interrupt controllers are preceded by an CROSSBAR
+-that provides flexibility in muxing the device requests to the controller
+-inputs.
+-
+-Required properties:
+-- compatible : Should be "ti,irq-crossbar"
+-- reg: Base address and the size of the crossbar registers.
+-- interrupt-controller: indicates that this block is an interrupt controller.
+-- ti,max-irqs: Total number of irqs available at the parent interrupt controller.
+-- ti,max-crossbar-sources: Maximum number of crossbar sources that can be routed.
+-- ti,reg-size: Size of a individual register in bytes. Every individual
+-	    register is assumed to be of same size. Valid sizes are 1, 2, 4.
+-- ti,irqs-reserved: List of the reserved irq lines that are not muxed using
+-		 crossbar. These interrupt lines are reserved in the soc,
+-		 so crossbar bar driver should not consider them as free
+-		 lines.
+-
+-Optional properties:
+-- ti,irqs-skip: This is similar to "ti,irqs-reserved", but these are for
+-  SOC-specific hard-wiring of those irqs which unexpectedly bypasses the
+-  crossbar. These irqs have a crossbar register, but still cannot be used.
+-
+-- ti,irqs-safe-map: integer which maps to a safe configuration to use
+-  when the interrupt controller irq is unused (when not provided, default is 0)
+-
+-Examples:
+-		crossbar_mpu: crossbar@4a002a48 {
+-			compatible = "ti,irq-crossbar";
+-			reg = <0x4a002a48 0x130>;
+-			ti,max-irqs = <160>;
+-			ti,max-crossbar-sources = <400>;
+-			ti,reg-size = <2>;
+-			ti,irqs-reserved = <0 1 2 3 5 6 131 132>;
+-			ti,irqs-skip = <10 133 139 140>;
+-		};
+-
+-Consumer:
+-========
+-See Documentation/devicetree/bindings/interrupt-controller/interrupts.txt and
+-Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml for
+-further details.
+-
+-An interrupt consumer on an SoC using crossbar will use:
+-	interrupts = <GIC_SPI request_number interrupt_level>
+-
+-Example:
+-	device_x@4a023000 {
+-		/* Crossbar 8 used */
+-		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+-		...
+-	};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,irq-crossbar.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,irq-crossbar.yaml
+new file mode 100644
+index 000000000000..ec9a33511aae
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/ti,irq-crossbar.yaml
+@@ -0,0 +1,96 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/ti,irq-crossbar.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments IRQ Crossbar
++
++maintainers:
++  - Sricharan R <r.sricharan@ti.com>
++
++description:
++  Some socs have a large number of interrupts requests to service the needs of
++  its many peripherals and subsystems. All of the interrupt lines from the
++  subsystems are not needed at the same time, so they have to be muxed to the
++  irq-controller appropriately. In such places a interrupt controllers are
++  preceded by an CROSSBAR that provides flexibility in muxing the device
++  requests to the controller inputs.
++
++properties:
++  compatible:
++    const: ti,irq-crossbar
++
++  reg:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 3
++
++  ti,max-irqs:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Total number of irqs available at the parent interrupt controller.
++    minimum: 1
++
++  ti,max-crossbar-sources:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Maximum number of crossbar sources that can be routed.
++    minimum: 1
++
++  ti,reg-size:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Size of a individual register in bytes. Every individual
++      register is assumed to be of same size.
++    enum: [1, 2, 4]
++
++  ti,irqs-reserved:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      List of the reserved irq lines that are not muxed using crossbar. These
++      interrupt lines are reserved in the soc, so crossbar bar driver should not
++      consider them as free lines.
++
++  ti,irqs-skip:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description:
++      Similar to "ti,crossbar-irqs-reserved", but these are for SOC-specific
++      hard-wiring of those irqs which unexpectedly bypasses the crossbar. These
++      irqs have a crossbar register, but still cannot be used.
++
++  ti,irqs-safe-map:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      integer which maps to a safe configuration to use when the interrupt
++      controller irq is unused.
++    default: 0
++
++required:
++  - compatible
++  - reg
++  - interrupt-controller
++  - '#interrupt-cells'
++  - ti,max-irqs
++  - ti,max-crossbar-sources
++  - ti,reg-size
++  - ti,irqs-reserved
++
++additionalProperties: false
++
++examples:
++  - |
++    crossbar@4a002a48 {
++        compatible = "ti,irq-crossbar";
++        reg = <0x4a002a48 0x130>;
++        interrupt-controller;
++        #interrupt-cells = <3>;
++        ti,max-irqs = <160>;
++        ti,max-crossbar-sources = <400>;
++        ti,reg-size = <2>;
++        ti,irqs-reserved = <0 1 2 3 5 6 131 132>;
++        ti,irqs-skip = <10 133 139 140>;
++    };
 
-> diff --git a/arch/arm64/boot/dts/freescale/imx943-evk.dts b/arch/arm64/bo=
-ot/dts/freescale/imx943-evk.dts
-> --- a/arch/arm64/boot/dts/freescale/imx943-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-> @@ -1034,12 +1034,15 @@ &pcie0 {
->  		 <&pcie_ref_clk>;
->  	clock-names =3D "pcie", "pcie_bus", "pcie_phy", "pcie_aux",
->  		      "ref", "extref";
-> -	reset-gpio =3D <&pcal6416_i2c3_u46 3 GPIO_ACTIVE_LOW>;
-> -	vpcie3v3aux-supply =3D <&reg_m2_wlan>;
->  	supports-clkreq;
->  	status =3D "okay";
->  };
-> =20
-> +&pcie0_port0 {
-> +	reset-gpios =3D <&pcal6416_i2c3_u46 3 GPIO_ACTIVE_LOW>;
-> +	vpcie3v3aux-supply =3D <&reg_m2_wlan>;
+---
+base-commit: eb3f4b7426cfd2b79d65b7d37155480b32259a11
+change-id: 20260528-crossbar-2b9a641d2146
 
-[Severity: High]
-Does moving the vpcie3v3aux-supply property here break the auxiliary power
-regulator initialization for this controller?
+Best regards,
+-- 
+Bhargav
 
-Looking at imx_pcie_probe() in drivers/pci/controller/dwc/pci-imx6.c, the
-driver retrieves the regulator directly from the host bridge device node:
-
-	imx_pcie->vpcie_aux =3D devm_regulator_get_optional(&pdev->dev, "vpcie3v3a=
-ux");
-
-Since the pci-imx6 driver hasn't been updated to look for the supply in the
-Root Port child node, will devm_regulator_get_optional() now fail to find it
-and leave the 3.3V auxiliary regulators disabled during PCIe initialization?
-
-> +};
-> +
-
-[ ... ]
-
-> @@ -1058,12 +1061,15 @@ &pcie1 {
->  		 <&pcie_ref_clk>;
->  	clock-names =3D "pcie", "pcie_bus", "pcie_phy", "pcie_aux",
->  		      "ref", "extref";
-> -	reset-gpio =3D <&pcal6416_i2c3_u46 1 GPIO_ACTIVE_LOW>;
-> -	vpcie3v3aux-supply =3D <&reg_slot_pwr>;
->  	supports-clkreq;
->  	status =3D "okay";
->  };
-> =20
-> +&pcie1_port0 {
-> +	reset-gpios =3D <&pcal6416_i2c3_u46 1 GPIO_ACTIVE_LOW>;
-> +	vpcie3v3aux-supply =3D <&reg_slot_pwr>;
-
-[Severity: High]
-Will this similarly cause the regulator for the second PCIe controller to
-remain disabled, as the pci-imx6 driver will still search the parent &pcie1
-node for the vpcie3v3aux supply?
-
-> +};
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260611075057.2892=
-593-1-hongxing.zhu@oss.nxp.com?part=3D1
 
