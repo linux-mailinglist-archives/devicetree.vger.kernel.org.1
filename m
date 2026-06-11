@@ -1,196 +1,150 @@
-Return-Path: <devicetree+bounces-310203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310207-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id r/klKe1oKmqwowMAu9opvQ
-	(envelope-from <devicetree+bounces-310203-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:51:09 +0200
+	id 0jukGIdqKmoSpAMAu9opvQ
+	(envelope-from <devicetree+bounces-310207-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:57:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E209366F922
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:51:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0038E66FA07
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:57:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="mgOel4/S";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310203-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310203-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=JxDtzTp7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310207-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310207-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EAC0430193BB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:51:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E48F6312D83E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:54:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBC5D36EAAD;
-	Thu, 11 Jun 2026 07:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64AD370AC0;
+	Thu, 11 Jun 2026 07:54:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09A936E494;
-	Thu, 11 Jun 2026 07:51:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A04CC368D66;
+	Thu, 11 Jun 2026 07:54:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781164266; cv=none; b=jxbmiA03MTn0FvzSl4SDI4MCk/G+DoSDiA+sfSxmxcx4pmE/k4cj4Kz2L4sKJawRYRMhnr9QkYRaALwcBJxF4GUb5/7JnY4gP/tuxejWbyrs69BF2dAOPG6G8QqGmUUWc2g74jEyz9ILsIPRlFGRckdk045MneXv3o5jtc/6Hew=
+	t=1781164481; cv=none; b=pCgc9ln9x32uL+W+asygtptV3Z26pM6lfWV9XE3I8E4h79aid6HynEF0fncGx0ni7wXPQiBwkzp6NYC7ZCXjyeejPbVVgPvfEedoxdc3U73oSMJ/N7/EaVX2FEJjHQ+r1FHkjzB7G2xgwl6c1nLGiW4Xil1Y+RH4M2hPQpdudQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781164266; c=relaxed/simple;
-	bh=JX5xqztXPzF043zFhcFF9H+Qiv6KPeRxMDjy7nEKJY0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j53kU924f4+tNyMiQx3Yt5C0jMva74rVm3RNHRCOCxZKriIo6UNbR/tCS1/miOJb/Jyv6UjgrrB7SMpR8z1jLYiA45yXEnB7p8zZtmEGI4W0ANQUFgJ32ChpRUJsBylahqH1dTnw9LXy1TghfvHUb9E9wOITjvbySSU0dUopLcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mgOel4/S; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C58701F00893;
-	Thu, 11 Jun 2026 07:51:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781164265;
-	bh=QQdZIW2Jh4gHNkX695F/2i1N//qIAvLd0MxTyM6H8U8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=mgOel4/SkyrZyy3o9yQquU+46D2EcbU+48Wc8ypaqFN/Jo0NLCJ+z6//FLIuGvE9v
-	 gr0zC7rleMWDLn2o9Jl0mxIFILmJTRTQFTVn/OTCPHs00kquh4JAKvzxznz90+mdO5
-	 L+0ZdRTRggA9fDq3w6e1dr2c9yoUf5f9vQ+KKYHsc0koI1/LJ67chyK8a6XqErR8zD
-	 f1znOwmUCBJPrIssR8dMZh3IfpRM684VXnaOIj1fCmo+/rZ6zl2CemFYs79OhxhYOK
-	 uwzpHuUhfLPMQN40xh+SEjAzXlFYaLNWq9P3ME9DZWKUINC5ICKCraNkQWA6hi55P8
-	 L2+VOKu9xe51w==
-Message-ID: <a2b5c9b4-5fc0-4507-a221-8695ed9574d8@kernel.org>
-Date: Thu, 11 Jun 2026 09:50:58 +0200
+	s=arc-20240116; t=1781164481; c=relaxed/simple;
+	bh=1uthSd7P8y9Oi8VLveA0Sb1tQ9DUs9/arzzCInD1jhE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oahK6yKyw1NeqydP/p4D/+bzkJxNBWl67FDQO+jsNEEDs88iwbrGPuAuKlSEDj2EzpqhLjc3qM572QkIys6kETpK8SUYLUU1aNY6IvPF7bA5qv59W7f+thh0l09Z1bTez7O9es5sopGRTV3C1N7LU7GV4emdY6ooIafAgXIxi2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JxDtzTp7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4CC04C2BCB0;
+	Thu, 11 Jun 2026 07:54:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781164481;
+	bh=1uthSd7P8y9Oi8VLveA0Sb1tQ9DUs9/arzzCInD1jhE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=JxDtzTp7spFH1L1fbgGppE1oNse4pekP+J3kEts9FlBFMe0dH6gpcJOQxXE7skh+A
+	 PIStedid0q/NaW7ZRuXAROVOVTEc4PLvpApnjMfTTcbzbmWzQJLFL90YpxZa1NC4iU
+	 /Mga0CKQzMKjftpHjscG9pZ23n9oIrAOFZsUljICuU89f5S9WSmLFey/HXXZsqwFWz
+	 iY7jnZ/gm9LkEmT+aAln1RAGD1mIaENYZPGGjuvTb2pxTttTLp9mtB48JnvhqhUU+3
+	 5yQ4JBXe5nmhLTREQsGDGStPfhe+TmiRnoQBXXRcXMNM3AWL6NlnHXgeJemPJqE4eJ
+	 PIHgk1kSqJuQg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 34444CD98D2;
+	Thu, 11 Jun 2026 07:54:41 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH RFC 0/2] pinctrl: Add support gpiod_to_irq
+Date: Thu, 11 Jun 2026 07:54:32 +0000
+Message-Id: <20260611-gpio-to-irq-v1-0-12201716f23f@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/3] dt-bindings: timer: mips,p8700-gcru
-To: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-Cc: "alex@ghiti.fr" <alex@ghiti.fr>,
- "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, "cfu@mips.com"
- <cfu@mips.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "conor.dooley@microchip.com" <conor.dooley@microchip.com>,
- "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Djordje Todorovic <Djordje.Todorovic@htecgroup.com>,
- "jstultz@google.com" <jstultz@google.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "palmer@dabbelt.com" <palmer@dabbelt.com>,
- "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
- "pjw@kernel.org" <pjw@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "tglx@linutronix.de" <tglx@linutronix.de>,
- "wangruikang@iscas.ac.cn" <wangruikang@iscas.ac.cn>
-References: <eda67f3d-9395-4386-9311-d6f6b1c62304@kernel.org>
- <ed1e9743-1a8c-409f-9cf7-391719ea68fb@htecgroup.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <ed1e9743-1a8c-409f-9cf7-391719ea68fb@htecgroup.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALhpKmoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDUyMD3fSCzHzdknzdzKJC3aRUE3NL8xSjRCPjNCWgjoKi1LTMCrBp0Up
+ Bbs5KsbW1AGyHvH9iAAAA
+X-Change-ID: 20260520-gpio-to-irq-be4797d2a23f
+To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781164479; l=854;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=1uthSd7P8y9Oi8VLveA0Sb1tQ9DUs9/arzzCInD1jhE=;
+ b=O2aJsO0189X2Plisl9JKDVw2g1wop4vl4VFW7vG/5bm5/wT28vxWm+u1n5eBG3/Auq/FeOjBW
+ +w8IlUp0RAuCLvt5u4/zoQm689DXFrd+NhcCLNEm11fxJAq2bfhM/yg
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-310207-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310203-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:aleksa.paunovic@htecgroup.com,m:alex@ghiti.fr,m:aou@eecs.berkeley.edu,m:cfu@mips.com,m:conor+dt@kernel.org,m:conor.dooley@microchip.com,m:daniel.lezcano@linaro.org,m:devicetree@vger.kernel.org,m:Djordje.Todorovic@htecgroup.com,m:jstultz@google.com,m:krzk+dt@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:palmer@dabbelt.com,m:paul.walmsley@sifive.com,m:pjw@kernel.org,m:robh@kernel.org,m:sboyd@kernel.org,m:tglx@linutronix.de,m:wangruikang@iscas.ac.cn,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:linux-amlogic@lists.infradead.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:xianwei.zhao@amlogic.com,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,baylibre.com,googlemail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E209366F922
+X-Rspamd-Queue-Id: 0038E66FA07
 
-On 11/06/2026 09:39, Aleksa Paunovic wrote:
-> Hi Krzysztof,
-> 
-> 
-> On 6/11/26 08:54, Krzysztof Kozlowski wrote:
->> On 11/06/2026 08:51, Krzysztof Kozlowski wrote:
->>> On 10/06/2026 10:22, Aleksa Paunovic via B4 Relay wrote:
->>>> From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
->>>>
->>>> Add dt-bindings for the GCR.U memory mapped timer device for RISC-V
->>>> platforms. The GCR.U memory region contains shadow copies of the RISC-V
->>>> mtime register and the hrtime Global Configuration Register.
->>>>
->>>> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
->>> You keep ignoring reviews you received (14th May!) and sending same mistake.
->>>
->>> Can you address the emails?
-> I wasn't really sure what the etiquette was for replying to Sashiko reviews, so I decided to
-> address the comments for other patches and send a v8 without replying.
-> 
-> As for this patch, the GCR.U itself does start at 0x7F000, but the first 
-> actual register (mtime) is at 0x7F050 [1]. 
-> I'm not seeing any warnings when running dt_binding_check.
+Some users need to obtain an IRQ directly from a GPIO descriptor through gpiod_to_irq().
+Add the required DT binding and implementation to support this use case.
+Since this introduces a new DT property, the property is kept optional to
+maintain compatibility with existing SoCs and DTS files.
 
-It's still a warning which you can easily reproduce on W=1 on dts. You
-CANNOT have mismatch. If block starts at 0x7f000, first register CANNOT
-start at different address or it completely does not matter where the
-register is. It's contradictory. The block start address defines
-where... does it start.
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Xianwei Zhao (2):
+      dt-bindings: pinctl: amlogic,pinctrl-a4: Add gpio irq property
+      pinctrl: meson: amlogic-a4: support gpiod_to_irq
+
+ .../bindings/pinctrl/amlogic,pinctrl-a4.yaml       |  5 ++
+ drivers/pinctrl/meson/pinctrl-amlogic-a4.c         | 54 ++++++++++++++++++++++
+ 2 files changed, 59 insertions(+)
+---
+base-commit: 4ca496f6285e16d91751e5c84c6010e03285528c
+change-id: 20260520-gpio-to-irq-be4797d2a23f
 
 Best regards,
-Krzysztof
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
