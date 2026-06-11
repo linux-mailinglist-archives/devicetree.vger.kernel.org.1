@@ -1,71 +1,72 @@
-Return-Path: <devicetree+bounces-310162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310163-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aFCxH1dRKmoWnQMAu9opvQ
-	(envelope-from <devicetree+bounces-310162-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:10:31 +0200
+	id BoxYN9xRKmp3nQMAu9opvQ
+	(envelope-from <devicetree+bounces-310163-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:12:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4E4166EEB6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:10:30 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28BF366EED4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:12:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=JEK4OmPQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310162-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310162-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="DyQF+hs/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310163-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310163-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0B4DA3021641
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 06:10:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9461D30D6CEC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 06:12:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6D0433260C;
-	Thu, 11 Jun 2026 06:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0912347BC1;
+	Thu, 11 Jun 2026 06:12:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A4E2BD58A;
-	Thu, 11 Jun 2026 06:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE41C35893;
+	Thu, 11 Jun 2026 06:12:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781158214; cv=none; b=rh09aZZ0P4RiI5bw5YJ0h5788qiV2UdJwkOtrdByWLFiAtrP+xcfJA9CHF9GrzT435IbsSoT8JY8f/quFL+KTqYNVp5pUAFPJ0lUg1pNPhpIBhVCdoXGomz6EA9MFT/85vpEjPD22LiZk51oZ5mhjk92x8ueRKYZGqSmMybkk0I=
+	t=1781158361; cv=none; b=SZdB961wuk5Ud+ZXMWoAnf4h/OhEvGgyC4FKSGN7Xtk8yFwMxIl7D6L880C/KTqZKm8VqJO1jkW1k8xL2+W5yi+6Rb+wAeGR/RYo/EsHOUZVrORbpEuEUW5Vqn6nO2aKETGfU4FA7SF33FNi2OPh8G13DpdtOPElZhCr0IcVvNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781158214; c=relaxed/simple;
-	bh=t2WRqjUsFELcSyHpuIYWTBzanLaf8gP8z46IW8xDkiE=;
+	s=arc-20240116; t=1781158361; c=relaxed/simple;
+	bh=DWQyiCFO1FABU7yAOsD/6HABw1tfpUVXIqUq8GqvtXw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bh8aSBOl2KCjRxB60WNlwD9cMB7aRhOYTHTihDbxxPbVEtB0b6k2I2KNV65qCxIVLUF9D5nwfYoGnEEf7nxvHncYAFnSQZmt73MD78mDRazfrDgfeBmRJnret5pNCq70/ZGjYXpE8rPKeEp4CHMvIrr6SemAe36snzuiiyuQQuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JEK4OmPQ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E87C91F00898;
-	Thu, 11 Jun 2026 06:10:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q70OZACx2UgcVr/m5bjeEkn70b+dqY5NJ108Mwhef9jjgxtQmZPwjl9zMVSu8APoRKufKuR3eZVvA9NmOzMGbG4nrcUIpRHN8Mom9oVQE6m5QH6lM/NQQiicXQxRi2zBsTS1PVQiZ3HAeD8JYU4IBoV4NBgy9xfM2keB3EHvmak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DyQF+hs/; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27C451F00893;
+	Thu, 11 Jun 2026 06:12:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781158213;
-	bh=rKMmMKeuz2fRooQhiP60q8uhlHxR04FyvuIbk8BELm0=;
+	s=k20260515; t=1781158360;
+	bh=DxYpf2U0C53sMLriRY3htfPkTiuUmNi3d2UuSNLLb1k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=JEK4OmPQqu/AINjDWh7OeWFdsCKnRRBZo7pwUtVTSgBjwfAZE9reBqrQgsIt/TAJk
-	 3Ydb8VFZ+SGE02xeyV1gmLiJSx6uwkJ5s4bUXbOA2Eimf+0rr5vWXuTYdpCYWfMN0M
-	 V9OSJ6QdNopMijhZuxeFw2jRrS8RYfuwCKm8aseLa0c9V0vTDdZik09+FLH6UfbiJX
-	 oX3B4jFQeO8VIMjvLnz/nyGXoTaeHMSQWjvB7knj/lb4wX3xU0a2mjWLzrwfHedFoy
-	 TUEVe/wWovnQii8IgaJz66lLraFMn+Zc0kE5QvRLYGiluoaXF5YHobmUSyRaujyned
-	 YjxYpEXktqICA==
-Date: Thu, 11 Jun 2026 08:10:05 +0200
+	b=DyQF+hs/aG2rKRYUzz85y5O3fU0Xse5+1w9iuDQQmnRQ+ehsgd9jJayZugQvqNZBC
+	 IZ01El2IY07l9WqTKehUlYt+eq/3GzT8LRjdI2EZGQe8RLBr4FmWhR0ndQsH6m5vmi
+	 a8A/TjwN67onTgt7GOU4Aj7GdJcxqZa6DJ6mLJT0yMQLCWBMvqKIJwjUud5LM0cCEB
+	 g3WmOrfKDgGEsL3nbWKxelci3j5KEQQqGZ5MHuW7qERz8RU6ZjLrc8LKE0cOPYtcGZ
+	 IeR4rF8FJXCidMidpVwr76lKev4yXLcggRbioAc8v8v7hH1+irYI8z8a0SETZ6fol9
+	 LzXJd6ueiD3xQ==
+Date: Thu, 11 Jun 2026 08:12:26 +0200
 From: Manivannan Sadhasivam <mani@kernel.org>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	"sashiko-reviews@lists.linux.dev" <sashiko-reviews@lists.linux.dev>, 
-	"manivannan.sadhasivam@oss.qualcomm.com" <manivannan.sadhasivam@oss.qualcomm.com>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
-	"robh@kernel.org" <robh@kernel.org>, "Frank.Li@kernel.org" <Frank.Li@kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"imx@lists.linux.dev" <imx@lists.linux.dev>
-Subject: Re: [PATCH 1/2] dt-bindings: connector: pcie-m2-e: Add 3.3Vaux
- supply support
-Message-ID: <6ouch5ybqk7gws3yrvc2sylq67nioqva6klc7o7wcgbpobs2lu@ioscmsg6ufyx>
-References: <20260609033840.2006078-2-sherry.sun@oss.nxp.com>
- <20260609034408.BC69D1F00893@smtp.kernel.org>
- <20260609-unique-magnificent-eel-eb623f@quoll>
- <VI0PR04MB121140EFB8E614326D799503A921A2@VI0PR04MB12114.eurprd04.prod.outlook.com>
- <mvxoynvocxcalxcwogbiovg5yurjczxqfu2fqkji33bunmlplz@zxqjsdjts65j>
- <VI0PR04MB12114DBDD65F25FB615EA8967921A2@VI0PR04MB12114.eurprd04.prod.outlook.com>
- <ihrmgh6etb2n5zqjbrykfjjms4a6zgpzwjgrd3rvy24jufbss7@f4nfxrp7jksy>
- <VI0PR04MB12114DA25D08329D3DC2C3ADA921B2@VI0PR04MB12114.eurprd04.prod.outlook.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Qiang Yu <qiang.yu@oss.qualcomm.com>, Jeff Johnson <jjohnson@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
+	Rocky Liao <quic_rjliao@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, ath11k@lists.infradead.org, 
+	devicetree@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	linux-bluetooth@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] PCI: qcom: fix parsing of PERST# in the legacy
+ case
+Message-ID: <sqxjkxbw6k7dstj2wmcwwigjou3jpq3bk4xidkpupfdblocadc@rkts6nbun5ld>
+References: <20260608-sm8350-wifi-v2-0-efb68f1ff04c@oss.qualcomm.com>
+ <20260608-sm8350-wifi-v2-1-efb68f1ff04c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,123 +76,140 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <VI0PR04MB12114DA25D08329D3DC2C3ADA921B2@VI0PR04MB12114.eurprd04.prod.outlook.com>
+In-Reply-To: <20260608-sm8350-wifi-v2-1-efb68f1ff04c@oss.qualcomm.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310162-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:sherry.sun@nxp.com,m:krzk@kernel.org,m:sashiko-reviews@lists.linux.dev,m:manivannan.sadhasivam@oss.qualcomm.com,m:linux-pci@vger.kernel.org,m:robh@kernel.org,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:imx@lists.linux.dev,m:conor@kernel.org,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:robh@kernel.org,m:bhelgaas@google.com,m:konrad.dybcio@oss.qualcomm.com,m:qiang.yu@oss.qualcomm.com,m:jjohnson@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:quic_bgodavar@quicinc.com,m:quic_rjliao@quicinc.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-pci@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath11k@lists.infradead.org,m:devicetree@vger.kernel.org,m:brgl@bgdev.pl,m:linux-bluetooth@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310163-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FREEMAIL_CC(0.00)[kernel.org,google.com,oss.qualcomm.com,gmail.com,holtmann.org,quicinc.com,vger.kernel.org,lists.infradead.org,bgdev.pl];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,i.mx:url,ioscmsg6ufyx:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,rkts6nbun5ld:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D4E4166EEB6
+X-Rspamd-Queue-Id: 28BF366EED4
 
-On Thu, Jun 11, 2026 at 03:59:28AM +0000, Sherry Sun wrote:
-> > On Wed, Jun 10, 2026 at 10:13:00AM +0000, Sherry Sun wrote:
-> > > > On Wed, Jun 10, 2026 at 08:40:54AM +0000, Sherry Sun wrote:
-> > > > > > On Tue, Jun 09, 2026 at 03:44:08AM +0000, sashiko-bot@kernel.org
-> > wrote:
-> > > > > > > Thank you for your contribution! Sashiko AI review found 1
-> > > > > > > potential
-> > > > > > issue(s) to consider:
-> > > > > > > - [Medium] The `vpcie3v3aux-supply` property describes a
-> > > > > > > non-existent
-> > > > > > hardware feature on the M.2 Key E connector to work around a
-> > > > > > software policy.
-> > > > > >
-> > > > > > Feels valid. Describe which pin on M2 connector are you representing.
-> > > > > >
-> > > > >
-> > > > > Refer to PCI Express M.2 Specification r5.1 sec3.1.1 Power Sources
-> > > > > and Grounds.
-> > > > >
-> > > > > PCI Express M.2 Socket 1 utilizes a 3.3 V power source. The
-> > > > > voltage source, 3.3 V, is expected to be available during the
-> > > > > system’s stand-by/suspend state to support wake event processing
-> > > > > on the communications card.
-> > > > >
-> > > > > But the current vpcie3v3-supply may be gated off during system
-> > suspend.
-> > > > > So I  tried to add vpcie3v3aux-supply to let this 3.3 V power
-> > > > > source always on for PCIe M.2 Key E connector. That means
-> > > > > vpcie3v3aux-supply and vpcie3v3-supply actually refer to the same 3.3 V
-> > power source.
-> > > > >
-> > > > > @Mani, do you think this is reasonable? Or do you have any other
-> > > > > better solutions? Thanks!
-> > > > >
-> > > >
-> > > > There is no Vaux defined in the M.2 spec. So you cannot define that
-> > > > supply in the binding. You can define the custom Vaux supply as a
-> > > > fixed regulator in DT and mark it always on so that it is keeps supplying
-> > 3.3v to the card.
-> > > >
-> > >
-> > > Hi Mani, thanks for the suggestion, but adding an always on regulator
-> > > may cause board power waste, current solution ensures the 3.3v
-> > > regulator is only enabled when M.2 connector needs to work .
-> > >
-> > 
-> > What do you mean by 'need to work'? For getting the M.2 card to work, you
-> > already have 3.3v supply. If you want the board to be always ON, then you
-> > need to supply 3.3Vaux, which should be always ON too.
-> > 
-> > But who is turning off vpcie3v3-supply? M.2 connector driver or the
-> > platform?
-> > 
+On Mon, Jun 08, 2026 at 09:59:19AM +0300, Dmitry Baryshkov wrote:
+> Commit deed8aec62dc ("PCI: qcom: Handle mixed PERST#/PHY DT
+> configuration") fixed support for the "mixed" platforms which declare
+> PERST# pin the RC node and the PHY in the RP node, however it also broke
+> support for a majority of existing platforms, which declare both PERST#
+> and PHY in the RC node, because now PERST# is first acquired in
+> qcom_pcie_parse_ports(), which then returns -ENODEV (as there are no
+> PHYs in the RP nodes). Later qcom_pcie_parse_legacy_binding() tries to
+> acquire the PERST# GPIO again and fails with -EBUSY (as the GPIO has
+> already been requested).
 > 
-> Hi Mani,
-> I'm not sure if I understand your question correctly, actually it's the platform
-> driver that calls the M.2 connector driver to turn off vpcie3v3-supply.
-> Take i.MX pci device as an example, 
-> pm_suspend() -> imx_pcie_suspend_noirq() -> imx_pcie_host_exit() ->
-> pci_pwrctrl_power_off_devices() -> pwrseq_power_off() ->
-> pwrseq_unit_disable() -> pwrseq_pcie_m2_vregs_disable()
+> Move parsing of RC's perst-gpios to qcom_pcie_probe(), making it obvious
+> that it's shared for both cases and skip parsing it in both functions.
 > 
-> Taking back to M.2 Specification:
-> PCI Express M.2 Socket 1 utilizes a 3.3 V power source. The
-> voltage source, 3.3 V, is expected to be available during the
-> system’s stand-by/suspend state to support wake event processing
-> on the communications card.
-> 
-> Per my understanding of the above, the M.2 Spec actually suggest the
-> 3.3 V power source should not be turned off.
-> Should we simply enable the 3.3 V power source in pwrseq_pcie_m2_probe()
-> and remove the pwrseq_pcie_m2_vregs_unit_data?
-> 
+> Fixes: deed8aec62dc ("PCI: qcom: Handle mixed PERST#/PHY DT configuration")
+> Closes: https://lore.kernel.org/r/gieaybsg2ckxpctvqj77nlwu7utama2yeyvebkonmexsxrra3v@v3fobqasxnmy/
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Just don't call pci_pwrctrl_power_off_devices() from the suspend path.
+This issue is fixed now. You can drop this patch in next revision.
 
 - Mani
+
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 25 ++++++++++---------------
+>  1 file changed, 10 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 11fc60489892..7664c7c28c0e 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -1907,15 +1907,6 @@ static int qcom_pcie_parse_ports(struct qcom_pcie *pcie)
+>  	struct device *dev = pcie->pci->dev;
+>  	int ret = -ENODEV;
+>  
+> -	if (of_find_property(dev->of_node, "perst-gpios", NULL)) {
+> -		pcie->reset = devm_gpiod_get_optional(dev, "perst",
+> -						      GPIOD_OUT_HIGH);
+> -		if (IS_ERR(pcie->reset))
+> -			return PTR_ERR(pcie->reset);
+> -
+> -		dev_warn(dev, "Reusing PERST# from Root Complex node. DT needs to be fixed!\n");
+> -	}
+> -
+>  	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+>  		if (!of_node_is_type(of_port, "pci"))
+>  			continue;
+> @@ -1942,7 +1933,6 @@ static int qcom_pcie_parse_legacy_binding(struct qcom_pcie *pcie)
+>  	struct device *dev = pcie->pci->dev;
+>  	struct qcom_pcie_perst *perst;
+>  	struct qcom_pcie_port *port;
+> -	struct gpio_desc *reset;
+>  	struct phy *phy;
+>  	int ret;
+>  
+> @@ -1950,10 +1940,6 @@ static int qcom_pcie_parse_legacy_binding(struct qcom_pcie *pcie)
+>  	if (IS_ERR(phy))
+>  		return PTR_ERR(phy);
+>  
+> -	reset = devm_gpiod_get_optional(dev, "perst", GPIOD_OUT_HIGH);
+> -	if (IS_ERR(reset))
+> -		return PTR_ERR(reset);
+> -
+>  	ret = phy_init(phy);
+>  	if (ret)
+>  		return ret;
+> @@ -1970,7 +1956,7 @@ static int qcom_pcie_parse_legacy_binding(struct qcom_pcie *pcie)
+>  	INIT_LIST_HEAD(&port->list);
+>  	list_add_tail(&port->list, &pcie->ports);
+>  
+> -	perst->desc = reset;
+> +	perst->desc = pcie->reset;
+>  	INIT_LIST_HEAD(&port->perst);
+>  	INIT_LIST_HEAD(&perst->list);
+>  	list_add_tail(&perst->list, &port->perst);
+> @@ -2107,6 +2093,15 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  
+>  	pp->ops = &qcom_pcie_dw_ops;
+>  
+> +	if (of_find_property(dev->of_node, "perst-gpios", NULL)) {
+> +		pcie->reset = devm_gpiod_get_optional(dev, "perst",
+> +						      GPIOD_OUT_HIGH);
+> +		if (IS_ERR(pcie->reset))
+> +			return PTR_ERR(pcie->reset);
+> +
+> +		dev_warn(dev, "Reusing PERST# from Root Complex node. DT needs to be updated!\n");
+> +	}
+> +
+>  	ret = qcom_pcie_parse_ports(pcie);
+>  	if (ret) {
+>  		if (ret != -ENODEV) {
+> 
+> -- 
+> 2.47.3
+> 
 
 -- 
 மணிவண்ணன் சதாசிவம்
