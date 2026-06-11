@@ -1,202 +1,579 @@
-Return-Path: <devicetree+bounces-310398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310401-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2x3WHFGeKmoEtwMAu9opvQ
-	(envelope-from <devicetree+bounces-310398-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:38:57 +0200
+	id 62YKHameKmoptwMAu9opvQ
+	(envelope-from <devicetree+bounces-310401-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:40:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8BF66716BE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC72671730
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:40:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=O8A4zmwQ;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=iSrCheF1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310398-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310398-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=a3Obh9xB;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310401-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310401-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7988D309E0C7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:37:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 65F39306A628
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:37:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA36E3E717C;
-	Thu, 11 Jun 2026 11:37:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46CDD3E8C6F;
+	Thu, 11 Jun 2026 11:37:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67503E451A
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 11:37:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B963E451A
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 11:37:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781177823; cv=none; b=U9j1qyJ05dJRZqMvF2kjHjvbBK/dlzr9+Jd431ulpNn3idX7hAjAo3rSf27+J0zzKo/xeLmaYqvQ6pL6OWSk6XuO1TGD9QcMak6014IMHs8TQ0yBa2ZQD7KZYbwmZz218g2qIwcYt64n/7l+8px2JxdTkJeRi7gKR20N2Rh+wsw=
+	t=1781177838; cv=none; b=h5TSwawZUhOdg2wKgZoQLM57UKa5kzZhIAp8w/wgQzQ/1j6TDuSWvmrJXpHQ88Wr+xl2/4ytsjCWL+upOK93P1qwyOlnQma1nNLsB1TmLFsiwHFuRSQPXaZlJK7FYcwADYnfZZnllK+wk37cCSdB4PBw9PjPK8yTDreik3B2jUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781177823; c=relaxed/simple;
-	bh=6U2EpQbl70iTBwLkHktdUzi2+kfxjlaFpz2VtqrjLCo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EpSBeCUjXn+r1lLGSTJLiRa1UBtMqpF6tiffmtJkC0huo9V/jh/YapZVE2CSvPAwOBXZJLhajQUIrzgJpzBxLrPQdtf26dOjz8Q4RGL1FbRlH817WcGJDv0mwX49/q9C7UpaD0GOtHT4/BTKpg7H260J/g5TfgyJ+4+dEcIC2TM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O8A4zmwQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iSrCheF1; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65B9xRXW174141
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 11:37:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qoo66iTrH2qXAXuURRiKTypPfoX3zlqywZjiMI3hGVE=; b=O8A4zmwQkCIJbpoo
-	siDproRCMHs59CW2RqYoOsNvM/4WqHMKKow4gu+8wb7KACgFJpYDYG7H7jEQYW1r
-	FBVzzUIqr0RvxKcevBxAm+P9gnW3jiLs4/TmhbEtbVMeWAo4xNaXyPXd3vmZMUSY
-	8IkXjYoWtS8re6PB9VdtZ1v2OwM1i6qfER6c1zalv36JX1spdol6kp5MrhMUfcma
-	3tKS6kcKc1oelZwwyNSCfX0bf34GRLWxAa4PyuVIdQhcTVNrHbMqN7zfY+6X/a21
-	48AW/YPx4XFD61TB1NrvACilJf02TyVlsjCpO0soPK/Cc4VexkY1vXv4uhaYLpfb
-	VuoQyA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eqe6vb41b-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 11:37:02 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-9156dc90fdaso191291485a.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 04:37:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1781177821; x=1781782621; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qoo66iTrH2qXAXuURRiKTypPfoX3zlqywZjiMI3hGVE=;
-        b=iSrCheF1emv5hMXXgouVN7tbcQQe867ShizF7ghSf8vofEVqxZyD/XOOqQajqzFQhW
-         0GOQe46xaR0ET5iplK2HP0yyex08t9inafQL+/e5r95aphwWaH2BvhxtF06TBqPdT/QC
-         YKcq1Kd8P4e0V2sqInR7v8aliJzgLDsT/qUNTA70WC2OCXqfZZBn1+nsAeGof1k6dDgs
-         9zQ5hY3Zj74J51iHDsrlnRtlPx5jcjRwHVnkIYa7ZETq3yG5ygkH9JYAPLTRgisopg1+
-         9/XbV4FGeo94giBuvHiDj4R0cci7By79HHfJEYuf5dehnoza4RCoKsLK1gE1rvYNm9cC
-         ipwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781177821; x=1781782621;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qoo66iTrH2qXAXuURRiKTypPfoX3zlqywZjiMI3hGVE=;
-        b=bt/YOUslTF71tYxY3vEj2Ju4LihkACt7LBGSswWM+/fH67nOtd4BjIusDBpP7OetIS
-         0jhUKDrV8jTSDGdwLdURNNn6zKySsNmXUOPQVsS65W5r9ZG5NHpNxxVStBzMI3urqdgd
-         F1RBhUu8Glv3s1cw19cq/71qMp/NJbTjyJzrA4Z+HRZf0bq3ctnIUOhPL9zq0yGWrerX
-         6Is2HSl50bOjDQ3+nYifXFJ295mwB0jl3Bsh/tGmXaU0IUOTAlSe/mo6ivjkbRu/2i+G
-         81eyp4q/gLdrAw8zRlm1NoXlANHfyyFLXVoyqLGo0BYIBbktBEgaOf/idGw9374fdLC9
-         /19Q==
-X-Forwarded-Encrypted: i=1; AFNElJ8/SUYwyrc0U8OXNQ2YrtASGPrCIbACGL5j0k/BsfEZtZb9DlLGqKwz+GRvh5DngWVhtSmDvJfGgZ6s@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLsVXMKyvG+33VjXCnkh0q9d1HF0PaupcVzMpf+0hdgo5LLRN+
-	0O3+MAwLDxhbzbRh8WI5POyKTMXrofVbodY2xgjrL7xS1XJQNZKMNOiQ/r/zJskvwc76zxti1Ai
-	AIqF/HgpOizbPjRoBl03j41tEdtHkEjUnD1oS5FXrzxeUr7SfZwZfossqmDNW6wS5
-X-Gm-Gg: Acq92OENOwWaREbbnZ7+PS7b/lxhJ+jn8KasymJgAqed3IYHlIkuPmMmQaNAWhFoZHD
-	K98B5M8N/jC0g4sPCZDcnWEiYprm8rBBEn/wLkhn93gzYmS67jJyUWfXRfwAVnSfQ47o9POKi3B
-	yJoHe+QfL/h8eR0V8AgCEc91YE7a54BsRyT1r7rWhd4oXFEWlR5fsBJRbcVJFTBIYGICgWLctrB
-	aAtz9AE31cARd+Tn6DrkAGfgcZaH4K55H8Ox4weKp8Cs/1KLah4xmUMtsulmDMIP1NopRYQ/xMo
-	5y5Rb82+W66TUh6i2WpOGqvblUcW03OwA+T2bVsb0RsfR1I0OhrBI1qF+R+uE9LKutSCGgRzmMJ
-	qRsjPtojYL0cgLkD/Cmb2zTnch7j1XVqww1UQ3pPyai6arMfw1l0haODO
-X-Received: by 2002:a05:620a:4553:b0:8f1:9e59:2208 with SMTP id af79cd13be357-9160acc6f24mr193368285a.4.1781177821097;
-        Thu, 11 Jun 2026 04:37:01 -0700 (PDT)
-X-Received: by 2002:a05:620a:4553:b0:8f1:9e59:2208 with SMTP id af79cd13be357-9160acc6f24mr193364885a.4.1781177820650;
-        Thu, 11 Jun 2026 04:37:00 -0700 (PDT)
-Received: from [192.168.120.170] ([178.235.128.140])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bfcb0f147e2sm53745066b.7.2026.06.11.04.36.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jun 2026 04:36:59 -0700 (PDT)
-Message-ID: <36162ade-51a8-4229-9134-144b452e3a29@oss.qualcomm.com>
-Date: Thu, 11 Jun 2026 13:36:58 +0200
+	s=arc-20240116; t=1781177838; c=relaxed/simple;
+	bh=C0kKRMIh6HI0T1/XUBhk37bZFRTSO4ZNr/+RwNnakaw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dhucvfNlAOjN+xChjNi3bYtHu/7Qdvye0mS0likE4QKxmNcjcsR+/Y/tPUtt3GgAxNvLYvFlNEK/e37QJiabgEflxrWxcAkfPp47ieKZl5gou6veD9dnr8xzRKB1Na0KFPWwmpxpST/fraWejhH4dNQvS29+2GIPO8/tryIgM+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a3Obh9xB; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1495E1F008A0
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 11:37:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781177835;
+	bh=gJDHZAUL0K+utDUnXsy7ITPlImx9umJXO30cxi5KeqI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=a3Obh9xBEHyiPmLvZ5Myc+oVGKdj6SSpqRsbuvVjuAX/xeIrQi3sDS+w722yLwVGp
+	 w8b1Yq2izHL0Tt0IuXSlfrxotsjmjFsATRyUSz7W++5MpQSQzgVLgToka4y3sc2W4h
+	 xxjVG0l8opCnObQHf8urxxDO+68Ii2F7fNnU00A03D9ZnGXkodIAA7jfoNtzdmOClz
+	 n/IVEq+yMID1CgaxQ23oYKsUdvSYewxsJELvXmWF7YS4q0z5s3FSak2qfFqrD5Ouwo
+	 Kx/UIizOLLiKZuttqMIvqvz3O+g9856l5ISHNV8+Ck7aedFiwLVvbG/XBhAE0fHucQ
+	 kMbSscD3QOASg==
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-39666ac91a2so7425641fa.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 04:37:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/yxUp7D5SVqWasn6uO0Yxt99wdnKvvhB4tDzDuxCUXILc8QvPCl5mOqZNaWX8DPjbm20SmLgZKUxB7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiDNmlBe06r7Uj/9vQ5msUjcrUZ4A/I7Fh6f5y4/MW0DQZr40s
+	zIaQlAel+YEWMZ+c7yq4hSt0vyND6BoPTEJzWXiPaRQcNxlgtajIx8zF2z+8mSrR98frHqqF+os
+	vnfDhHPzyq8fr5nMeJBGRgZOoOd0mbNU=
+X-Received: by 2002:a05:6512:ac4:b0:5aa:63c2:49ed with SMTP id
+ 2adb3069b0e04-5ad285e7e19mr612607e87.6.1781177833719; Thu, 11 Jun 2026
+ 04:37:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 11/18] arm64: dts: qcom: sm8650: Add minidump SRAM
- config to SCM node
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Guru Das Srinagesh <linux@gurudas.dev>
-Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260522195009.2961022-1-mukesh.ojha@oss.qualcomm.com>
- <20260522195009.2961022-12-mukesh.ojha@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260522195009.2961022-12-mukesh.ojha@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: CF74R95qTUe3WqWixN-RFJWT5xkRjVD5
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjExMDExNiBTYWx0ZWRfX9gng79xG3pbL
- XMyYRGb1dS4zis5RRiY2FigjQmsZeAVOQaaOpoBOd8ypgsWUt9+d1Kqawaw9VjtWtez9RLChfPV
- vAECi/F8J0JdWixdVK3HZP4UQ90/RsM=
-X-Proofpoint-GUID: CF74R95qTUe3WqWixN-RFJWT5xkRjVD5
-X-Authority-Analysis: v=2.4 cv=UsRT8ewB c=1 sm=1 tr=0 ts=6a2a9dde cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
- a=EUspDBNiAAAA:8 a=ZpVAhvDm8T4WZmbhYYoA:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjExMDExNiBTYWx0ZWRfX6sOsdVgU9H9/
- IrtmjDUH355AnXbrH6Qh+2RuarxedpyQbUtL5uMYo1wEGReWk6tvIsyWBqhrYP1C6icf+HAKSJT
- 79yy/OSTx3b0pCehafA2jKRuC486FHMkbeudx2Rne1JhKcy8BlYSm1JTSAeqg9kscAM7WF9jTp+
- WoLcmS579TeLlE3SQB/BDH5RX+R0djkbBJmILsQuLrEj7mBWWUfH1twex3TkkAKTSuoCyfyOgf2
- PNAgnbXv4bf3xpBHXuOgtbqWxIzOU7tik++79DqbF7SQisoQE1S83ljfh5fpqAXM3fpUMbcoXFj
- FbLLxHopU8UlVvQ74UWvkWbCk1yDoS3+xbKSOOVDuX1yGWMF7ecoEmNFy+VJeaORmINOiwbwF1v
- jX1wN4Q6dK2PJEJ7oh2IAF6sf5aGuEcXGRVjKxAazbv7EQBoZx24D9alaO6g6CWojVkB+4h7F+z
- O4xTqbOOl6awJiVJ21w==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-11_02,2026-06-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 clxscore=1015 lowpriorityscore=0 spamscore=0
- adultscore=0 bulkscore=0 suspectscore=0 impostorscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606110116
+References: <20260603055347.66845-1-changhuang.liang@starfivetech.com> <20260603055347.66845-5-changhuang.liang@starfivetech.com>
+In-Reply-To: <20260603055347.66845-5-changhuang.liang@starfivetech.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 11 Jun 2026 13:37:01 +0200
+X-Gmail-Original-Message-ID: <CAD++jL=Qd8ADR_kX2Q7msM4Dd0xFayPGM4ZzB3uv2ufvkuybtQ@mail.gmail.com>
+X-Gm-Features: AVVi8CdGj_YwambI610tLybs-x5ald-wA5S466t0-a_TiSheoDD3ZLXzuT_SxD0
+Message-ID: <CAD++jL=Qd8ADR_kX2Q7msM4Dd0xFayPGM4ZzB3uv2ufvkuybtQ@mail.gmail.com>
+Subject: Re: [PATCH v3 04/21] pinctrl: starfive: Add StarFive JHB100 sys0
+ controller driver
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>, Paul Walmsley <pjw@kernel.org>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Bartosz Golaszewski <brgl@kernel.org>, linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-310401-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310398-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:mukesh.ojha@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:robimarko@gmail.com,m:linux@gurudas.dev,m:cros-qcom-dts-watchers@chromium.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,gurudas.dev];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:changhuang.liang@starfivetech.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kernel@esmil.dk,m:pjw@kernel.org,m:aou@eecs.berkeley.edu,m:palmer@dabbelt.com,m:alex@ghiti.fr,m:p.zabel@pengutronix.de,m:brgl@kernel.org,m:linux-gpio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:lianfeng.ouyang@starfivetech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D8BF66716BE
+X-Rspamd-Queue-Id: DBC72671730
 
-On 5/22/26 9:50 PM, Mukesh Ojha wrote:
-> Point the SCM node at the minidump config slot in the always-on SRAM.
-> Boot firmware reads this word before DDR is initialised on a warm reset
-> to decide where to deliver the minidump.
-> 
-> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> ---
+Hi Changhuang,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+thanks for your patch!
 
-Konrad
+On Wed, Jun 3, 2026 at 7:54=E2=80=AFAM Changhuang Liang
+<changhuang.liang@starfivetech.com> wrote:
+
+> Add pinctrl driver for StarFive JHB100 SoC System-0(sys0) pinctrl
+> controller.
+>
+> Co-developed-by: Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
+> Signed-off-by: Lianfeng Ouyang <lianfeng.ouyang@starfivetech.com>
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+
+This patch adds generic infrastructure "JHB100" that is then used
+by several drivers does it not?
+
+Write something about that and some about the design in the
+commit message.
+
+> +++ b/drivers/pinctrl/starfive/pinctrl-starfive-jhb100-sys0.c
+> @@ -0,0 +1,123 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Pinctrl / GPIO driver for StarFive JHB100 SoC System-0 domain
+> + *
+> + * Copyright (C) 2024 StarFive Technology Co., Ltd.
+> + * Author: Alex Soo <yuklin.soo@starfivetech.com>
+
+Shouldn't this person be in the Signed-off-by?
+
+I guess it's not legally necessary but feels appropriate.
+
+> +static struct config_reg_layout_desc jhb100_sys0_pinctrl_crl_desc[] =3D =
+{
+> +       {
+> +               .pin_start                      =3D 0,
+> +               .pin_cnt                        =3D 4,
+> +               .drive_strength_2bit            =3D { .shift =3D 0, .widt=
+h =3D 2 },
+> +               .input_enable                   =3D { .shift =3D 2, .widt=
+h =3D 1 },
+> +               .pull_down                      =3D { .shift =3D 3, .widt=
+h =3D 1 },
+> +               .pull_up                        =3D { .shift =3D 4, .widt=
+h =3D 1 },
+> +               .slew_rate                      =3D { .shift =3D 5, .widt=
+h =3D 1 },
+> +               .schmitt_trigger_select         =3D { .shift =3D 6, .widt=
+h =3D 1 },
+> +               .reserved                       =3D { .shift =3D 7, .widt=
+h =3D 8 },
+> +               .debounce_width                 =3D { .shift =3D 15, .wid=
+th =3D 17 },
+> +       },
+> +       {
+> +               .pin_start                      =3D 4,
+> +               .pin_cnt                        =3D 5,
+> +               .schmitt_trigger_select         =3D { .shift =3D 0, .widt=
+h =3D 1 },
+> +               .reserved                       =3D { .shift =3D 1, .widt=
+h =3D 31 },
+> +       },
+> +       {
+> +               .pin_start                      =3D 9,
+> +               .pin_cnt                        =3D 1,
+> +               .drive_strength_2bit            =3D { .shift =3D 0, .widt=
+h =3D 2 },
+> +               .slew_rate                      =3D { .shift =3D 2, .widt=
+h =3D 1 },
+> +               .reserved                       =3D { .shift =3D 3, .widt=
+h =3D 29 },
+> +       },
+> +       {
+> +               .pin_start                      =3D 10,
+> +               .pin_cnt                        =3D 1,
+> +               .drive_strength_2bit            =3D { .shift =3D 0, .widt=
+h =3D 2 },
+> +               .input_enable                   =3D { .shift =3D 2, .widt=
+h =3D 1 },
+> +               .pull_down                      =3D { .shift =3D 3, .widt=
+h =3D 1 },
+> +               .pull_up                        =3D { .shift =3D 4, .widt=
+h =3D 1 },
+> +               .slew_rate                      =3D { .shift =3D 5, .widt=
+h =3D 1 },
+> +               .schmitt_trigger_select         =3D { .shift =3D 6, .widt=
+h =3D 1 },
+> +               .reserved                       =3D { .shift =3D 7, .widt=
+h =3D 25 },
+> +       },
+> +       { 0xff },
+> +};
+
+Would it be appropriate to index the different register variants with
+a enum with a good name so it is easy to understand which
+variant each entry in the array is?
+
+> +#include <linux/string.h>
+> +#include <linux/sort.h>
+
+Hm why... I guess I will see.
+
+> +#define JHB100_DEBOUNCE_WIDTH_STAGES_MAX       0x1FFFFU
+
+Is that a GENMASK(16,0)?
+
+Since it seems to have something to do with bitfield widths.
+
+> +/* i2c open-drain pull-up select */
+> +#define JHB100_I2C_OPEN_DRAIN_PU_600_OHMS      0
+> +#define JHB100_I2C_OPEN_DRAIN_PU_900_OHMS      1
+> +#define JHB100_I2C_OPEN_DRAIN_PU_1200_OHMS     2
+> +#define JHB100_I2C_OPEN_DRAIN_PU_2000_OHMS     3
+
+Very nice and to the point! It's easy to read and understand drivers
+that are writing things out explicitly like this!
+
+> +#define JHB100_NR_GPIOS_PER_BANK               32
+(...)
+> +static inline struct jhb100_gpio_bank *jhb100_gc_to_bank(struct gpio_chi=
+p *gc)
+> +{
+> +       return container_of(gc, struct jhb100_gpio_bank, gc);
+> +}
+> +
+> +static unsigned int jhb100_gpio_to_pin(struct gpio_chip *gc, unsigned in=
+t gpio)
+> +{
+> +       struct jhb100_gpio_bank *bank =3D jhb100_gc_to_bank(gc);
+> +
+> +       return bank->id * JHB100_NR_GPIOS_PER_BANK + gpio;
+> +}
+
+This usually tells me that GPIO_GENERIC can be used but maybe
+this has been discussed before...
+
+> +static const struct pinctrl_ops jhb100_pinctrl_ops =3D {
+> +       .get_groups_count =3D pinctrl_generic_get_group_count,
+> +       .get_group_name   =3D pinctrl_generic_get_group_name,
+> +       .get_group_pins   =3D pinctrl_generic_get_group_pins,
+> +       .dt_node_to_map   =3D pinctrl_generic_pins_function_dt_node_to_ma=
+p,
+> +       .dt_free_map      =3D pinctrl_utils_free_map,
+> +};
+
+Nice use of the generic helpers!
+
+> +static void jhb100_set_gpioval(struct jhb100_pinctrl *sfp, unsigned int =
+pin,
+> +                              unsigned int val)
+> +{
+> +       const struct jhb100_pinctrl_domain_info *info =3D sfp->info;
+> +       unsigned int offset =3D 4 * (pin / 32);
+> +       unsigned int shift =3D 1 * (pin % 32);
+> +       unsigned int fs_offset =3D 4 * (pin / 16);
+> +       unsigned int fs_shift =3D 2 * (pin % 16);
+> +       u32 func_sel_mask;
+> +       u32 dout, doen, fs;
+> +       void __iomem *reg_gpio_o;
+> +       void __iomem *reg_gpio_oen;
+> +       void __iomem *reg_gpio_func_sel;
+> +       unsigned long flags;
+> +
+> +       reg_gpio_o =3D sfp->base + info->regs->output + offset;
+> +       reg_gpio_oen =3D sfp->base + info->regs->output_en + offset;
+> +       reg_gpio_func_sel =3D sfp->base + info->regs->func_sel.reg + fs_o=
+ffset;
+
+The part from here:
+
+> +       func_sel_mask =3D GENMASK(info->regs->func_sel.width_per_pin - 1,=
+ 0) << fs_shift;
+(...)
+> +
+> +       raw_spin_lock_irqsave(&sfp->lock, flags);
+> +       fs =3D readl_relaxed(reg_gpio_func_sel);
+> +       if (fs & func_sel_mask) {
+> +               fs &=3D ~func_sel_mask;
+> +               writel_relaxed(fs, reg_gpio_func_sel);
+> +       }
+
+..to here seems to reimplement the shortcut
+.gpio_request_enable() in struct pinmux_ops.
+
+Then this:
+
+> +       dout =3D val << shift;
+> +       doen =3D 0;
+
+> +       dout |=3D readl_relaxed(reg_gpio_o) & ~BIT(shift);
+> +       writel_relaxed(dout, reg_gpio_o);
+> +       doen |=3D readl_relaxed(reg_gpio_oen) & ~BIT(shift);
+> +       writel_relaxed(doen, reg_gpio_oen);
+
+Seems more like the actual code that should be here.
+
+> +       raw_spin_unlock_irqrestore(&sfp->lock, flags);
+
+Please use guards for these spinlocks. They make for less
+bugs.
+
+guard(raw_spinlock_irqsave)(&sfp->lock);
+
+> +static const struct pinmux_ops jhb100_pinmux_ops =3D {
+> +       .get_functions_count =3D pinmux_generic_get_function_count,
+> +       .get_function_name   =3D pinmux_generic_get_function_name,
+> +       .get_function_groups =3D pinmux_generic_get_function_groups,
+> +       .set_mux             =3D jhb100_set_mux,
+> +};
+
+Implement .gpio_request_enable() (see above) and
+.gpio_set_direction() see below.
+
+Maybe also .gpio_disable_free() if you need to deconfigure
+stuff when a pin is release from GPIO.
+
+> +static const struct pinconf_ops jhb100_pinconf_ops =3D {
+> +       .pin_config_get         =3D jhb100_pinconf_get,
+> +       .pin_config_set         =3D jhb100_pinconf_set,
+> +       .pin_config_group_get   =3D jhb100_pinconf_group_get,
+> +       .pin_config_group_set   =3D jhb100_pinconf_group_set,
+> +       .is_generic             =3D true,
+> +};
+
+Overall this looks nice, good use of the group config!
+
+> +static int jhb100_gpio_get_direction(struct gpio_chip *gc,
+> +                                    unsigned int gpio)
+> +{
+> +       struct jhb100_gpio_bank *bank =3D jhb100_gc_to_bank(gc);
+> +       struct jhb100_pinctrl *sfp =3D gpiochip_get_data(gc);
+> +       const struct jhb100_pinctrl_domain_info *info =3D sfp->info;
+> +       unsigned int offset =3D 4 * bank->id;
+> +       u32 doen;
+> +       void __iomem *reg_gpio_oen;
+> +
+> +       reg_gpio_oen =3D sfp->base + info->regs->output_en + offset;
+> +
+> +       doen =3D (readl_relaxed(reg_gpio_oen) & BIT(gpio)) >> gpio;
+> +
+> +       return doen =3D=3D GPOEN_ENABLE ? GPIO_LINE_DIRECTION_OUT : GPIO_=
+LINE_DIRECTION_IN;
+> +}
+> +
+> +static int jhb100_gpio_direction_input(struct gpio_chip *gc,
+> +                                      unsigned int gpio)
+> +{
+> +       struct jhb100_pinctrl *sfp =3D gpiochip_get_data(gc);
+> +       struct device *dev =3D sfp->dev;
+> +       struct config_reg_layout_desc *crl_desc;
+> +       unsigned int pin =3D jhb100_gpio_to_pin(gc, gpio);
+> +
+> +       crl_desc =3D get_crl_desc_by_pin(sfp, pin);
+> +       if (!crl_desc) {
+> +               dev_err(dev, "pin %d can't not found reg layout descripto=
+r\n",
+> +                       pin);
+> +               return -EINVAL;
+> +       }
+> +
+> +       jhb100_padcfg_rmw(sfp, pin,
+> +                         RL_DESC_GENMASK(crl_desc, input_enable) |
+> +                         RL_DESC_GENMASK(crl_desc, schmitt_trigger_selec=
+t),
+> +                         RL_DESC_GENMASK(crl_desc, input_enable) |
+> +                         RL_DESC_GENMASK(crl_desc, schmitt_trigger_selec=
+t));
+
+Instead of doing these writes directly into the config registers, implement
+.gpio_set_direction() in struct pinmux_ops and call the pinmux
+generic back-end.
+
+> +static int jhb100_gpio_direction_output(struct gpio_chip *gc,
+> +                                       unsigned int gpio, int value)
+> +{
+> +       struct jhb100_pinctrl *sfp =3D gpiochip_get_data(gc);
+> +       struct device *dev =3D sfp->dev;
+> +       struct config_reg_layout_desc *crl_desc;
+> +       unsigned int pin =3D jhb100_gpio_to_pin(gc, gpio);
+> +
+> +       jhb100_set_one_pin_mux(sfp, pin, 0,
+> +                              value ? GPOUT_HIGH : GPOUT_LOW);
+> +
+> +       crl_desc =3D get_crl_desc_by_pin(sfp, pin);
+> +       if (!crl_desc) {
+> +               dev_err(dev, "pin %d can't not found reg layout descripto=
+r\n",
+> +                       pin);
+> +               return -EINVAL;
+> +       }
+> +
+> +       jhb100_padcfg_rmw(sfp, pin,
+> +                         RL_DESC_GENMASK(crl_desc, input_enable) |
+> +                         RL_DESC_GENMASK(crl_desc, schmitt_trigger_selec=
+t) |
+> +                         RL_DESC_GENMASK(crl_desc, pull_down) |
+> +                         RL_DESC_GENMASK(crl_desc, pull_up),
+> +                         0);
+
+Dito.
+
+> +static int jhb100_gpio_get(struct gpio_chip *gc, unsigned int gpio)
+> +{
+> +       struct jhb100_gpio_bank *bank =3D jhb100_gc_to_bank(gc);
+> +       struct jhb100_pinctrl *sfp =3D gpiochip_get_data(gc);
+> +       const struct jhb100_pinctrl_domain_info *info =3D sfp->info;
+> +       unsigned int offset =3D 4 * bank->id;
+> +       u32 doen =3D 0;
+> +       void __iomem *reg_gpio_oen;
+> +       void __iomem *reg;
+> +       unsigned long flags;
+> +
+> +       reg_gpio_oen =3D sfp->base + info->regs->output_en + offset;
+> +       reg =3D sfp->base + info->regs->gpio_status + offset;
+> +
+> +       raw_spin_lock_irqsave(&sfp->lock, flags);
+> +       doen =3D readl_relaxed(reg_gpio_oen) | BIT(gpio);
+> +       writel_relaxed(doen, reg_gpio_oen);
+> +       raw_spin_unlock_irqrestore(&sfp->lock, flags);
+
+Why *on* *earth* are you read-modify-writing the output enable
+register in the *get* function? Is this a copy-on-paste error??
+
+> +       return !!(readl_relaxed(reg) & BIT(gpio % 32));
+
+Also you never actuall read reg .... ehhhh this is a glaring bug.
+
+> +static int jhb100_gpio_set(struct gpio_chip *gc, unsigned int gpio, int =
+value)
+> +{
+> +       struct jhb100_gpio_bank *bank =3D jhb100_gc_to_bank(gc);
+> +       struct jhb100_pinctrl *sfp =3D gpiochip_get_data(gc);
+> +       const struct jhb100_pinctrl_domain_info *info =3D sfp->info;
+> +       unsigned int offset =3D 4 * bank->id;
+> +       void __iomem *reg_dout;
+> +       u32 dout;
+> +       unsigned long flags;
+> +
+> +       reg_dout =3D sfp->base + info->regs->output + offset;
+> +       dout =3D (value ? GPOUT_HIGH : GPOUT_LOW) << gpio;
+> +
+> +       raw_spin_lock_irqsave(&sfp->lock, flags);
+> +       dout |=3D readl_relaxed(reg_dout) & ~BIT(gpio);
+> +       writel_relaxed(dout, reg_dout);
+> +       raw_spin_unlock_irqrestore(&sfp->lock, flags);
+> +
+> +       return 0;
+> +}
+
+This looks right, did you only test output and not input..?
+
+> +static const struct irq_chip jhb100_irq_chip =3D {
+> +       .irq_ack        =3D jhb100_irq_ack,
+> +       .irq_mask       =3D jhb100_irq_mask,
+> +       .irq_mask_ack   =3D jhb100_irq_mask_ack,
+> +       .irq_unmask     =3D jhb100_irq_unmask,
+> +       .irq_set_type   =3D jhb100_irq_set_type,
+> +       .irq_set_wake   =3D jhb100_irq_set_wake,
+> +       .irq_print_chip =3D jhb100_irq_print_chip,
+> +       .flags          =3D IRQCHIP_SET_TYPE_MASKED |
+> +                         IRQCHIP_IMMUTABLE |
+> +                         IRQCHIP_ENABLE_WAKEUP_ON_SUSPEND |
+> +                         IRQCHIP_MASK_ON_SUSPEND |
+> +                         IRQCHIP_SKIP_SET_WAKE,
+> +       GPIOCHIP_IRQ_RESOURCE_HELPERS,
+> +};
+
+The irqchip looks good!
+
+> +static int field_compare(const void *a, const void *b)
+> +{
+> +       const struct field_info *fa =3D (const struct field_info *)a;
+> +       const struct field_info *fb =3D (const struct field_info *)b;
+> +
+> +       if (fa->shift < fb->shift)
+> +               return -1;
+> +
+> +       if (fa->shift > fb->shift)
+> +               return 1;
+> +
+> +       return 0;
+> +}
+
+Are you sure the kernel doesn't already have a helper like this...
+
+> +       sfp->num_banks =3D DIV_ROUND_UP(sfp->ngpios, JHB100_NR_GPIOS_PER_=
+BANK);
+> +
+> +       for (unsigned int i =3D 0; i < sfp->num_banks; i++) {
+> +               if (sfp->ngpios > (i + 1) * JHB100_NR_GPIOS_PER_BANK)
+> +                       sfp->banks[i].gc.ngpio =3D (i + 1) * JHB100_NR_GP=
+IOS_PER_BANK;
+> +               else
+> +                       sfp->banks[i].gc.ngpio =3D sfp->ngpios - i * JHB1=
+00_NR_GPIOS_PER_BANK;
+
+This looks completely bananas, shouldn't this be simply:
+
+sfp->banks[i].gc.ngpio =3D JHB100_NR_GPIOS_PER_BANK;
+
+???
+
+What is getting assigned to ngpios looks like a gpiochip base, and have
+all the signs of a real bad AI hallucination.
+
+> +
+> +               sfp->banks[i].id =3D i;
+> +
+> +               sfp->banks[i].gc.parent =3D dev;
+> +               sfp->banks[i].gc.label =3D dev_name(dev);
+> +               sfp->banks[i].gc.owner =3D THIS_MODULE;
+> +               sfp->banks[i].gc.request =3D pinctrl_gpio_request;
+
+Use
+gpiochip_generic_request
+
+> +               sfp->banks[i].gc.free =3D pinctrl_gpio_free;
+
+Use
+gpiochip_generic_free
+
+These calls will do what you want, and also check that the
+right gpio ranges are available.
+
+Make sure you add GPIO ranges (the mapping between pin control
+pins and corresponding GPIO offsets) for this to work properly.
+
+I'm pretty sure you can have a generic pin config backend as well.
+
+sfp->banks[i].gc.set_config =3D gpiochip_generic_config;
+
+This will make config calls to the gpiochip call into the pinctrl
+backend =3D what you want.
+
+> +               sfp->banks[i].gc.get_direction =3D jhb100_gpio_get_direct=
+ion;
+> +               sfp->banks[i].gc.direction_input =3D jhb100_gpio_directio=
+n_input;
+> +               sfp->banks[i].gc.direction_output =3D jhb100_gpio_directi=
+on_output;
+> +               sfp->banks[i].gc.get =3D jhb100_gpio_get;
+> +               sfp->banks[i].gc.set =3D jhb100_gpio_set;
+> +               sfp->banks[i].gc.set_config =3D gpiochip_generic_config;
+> +               sfp->banks[i].gc.base =3D -1;
+> +               sfp->banks[i].gc.of_gpio_n_cells =3D 3;
+> +               sfp->banks[i].gc.of_node_instance_match =3D starfive_of_n=
+ode_instance_match;
+
+Since you have a threecell scheme with 32 gpios
+(JHB100_NR_GPIOS_PER_BANK)  per instance (right? the ngpios
+code above made me really confused....)
+you should be able so select GPIO_GENERIC,
+#include <linux/gpio/generic.h> and use
+the generic GPIO pretty much the same way
+drivers/gpio/gpio-spacemit-k1.c does it, check that driver
+out (especially spacemit_gpio_add_bank()).
+
+Yours,
+Linus Walleij
 
