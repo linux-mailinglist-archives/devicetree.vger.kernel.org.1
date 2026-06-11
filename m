@@ -1,125 +1,132 @@
-Return-Path: <devicetree+bounces-310417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310418-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jgIYKzWlKmo2uQMAu9opvQ
-	(envelope-from <devicetree+bounces-310417-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:08:21 +0200
+	id aqw8IjKkKmrauAMAu9opvQ
+	(envelope-from <devicetree+bounces-310418-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:04:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1AA671AB9
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:08:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1C1B6719DD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 14:04:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310417-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310417-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="Fw+RE/J6";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310418-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310418-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4426F3114CA4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:02:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6C36030C9563
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:04:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B921D3DB303;
-	Thu, 11 Jun 2026 12:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91C83E3C41;
+	Thu, 11 Jun 2026 12:03:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from r3-175.sinamail.sina.com.cn (r3-175.sinamail.sina.com.cn [202.108.3.175])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA883CB2D4
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 12:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D49493D47A7
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 12:03:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781179329; cv=none; b=ARHpuN00hg80MAsfMr4mrEjQauuoCwVev8cR7za4Hmp6KJglwS9MNWzreSiAxHP2cI+mqL62Dv/f3OZudO9yvjW9ZPm9vHvKmKr7EKeH3xUlp/3Pn2ILvAG6cw1kpHq/MkuWhHmHsOdgU2W4mpxfW2weBITSq8QHycCTzWxBJM4=
+	t=1781179439; cv=none; b=mk5sQfiQjVA30uR7C7F8/2eZkwUIGyEceUi+t2rQnCRRFSnY/oixyIG2u/XGiTRRSo5UxOOtEFBSNSL51wqEGQh/4bdrx4r7llUri/fpqWUiKo3IqDVeUBzvLxZczM7nd//Z9EW3L6jHEsX/oCMJvD6+GWW5FWBhmJ9ZAVAPCqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781179329; c=relaxed/simple;
-	bh=3Mz1buIldYgIfV+mCp3fBzQK/aC8n/L3gRN7gf7mPno=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=TLOWHilmKHlNFFmIUW6hbEGyemWwei2fF6ZW1tLZntCK3NJ8FbrwAXcEy/CxJ6IwuZqOFxrA15IKNO4g4Ok0LFvRHmjr1Zg+XCRRNCnkwkW8OcPj15Uvl5wO//UjZQVgBOKq8J9P9XxH30/apU8YKum3Jy2FsjTVQIub93DZl+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=202.108.3.175
-Received: from unknown (HELO zy-virtual-machine.localdomain)([58.38.107.94])
-	by sina.net (10.54.253.38) with ESMTP
-	id 6A2AA3B200002418; Thu, 11 Jun 2026 20:01:55 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-X-SMAIL-MID: 65226D66B1E341D581A6ACA05DEDBBF9
-X-SMAIL-UIID: 65226D66B1E341D581A6ACA05DEDBBF9-20260611-200155
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: krzk@kernel.org
-Cc: broonie@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-sound@vger.kernel.org,
-	robh@kernel.org,
-	tiwai@suse.com,
-	zhangyi@everest-semi.com
-Subject: RE: [PATCH v1 3/7] ASoC: codecs: ES8389: Fix the issue about mclk_src
-Date: Thu, 11 Jun 2026 20:01:53 +0800
-Message-Id: <20260611120153.5915-1-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20260611-likable-ultraviolet-moth-fdf2f6@quoll>
-References: <20260611-likable-ultraviolet-moth-fdf2f6@quoll>
+	s=arc-20240116; t=1781179439; c=relaxed/simple;
+	bh=hFMbfqFQZE48xb3pCYJaM3mP/1q6DdQKHna/4Uf+I6w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ffSwNPisqbO0dMSKn0WZXjjTWC4KPMBGI/ilcK3Rv911q2YSr5SDz/zC6dksb1bxJDRv1HZUx5pfxNdUrD6SWxMVcxOvS3uBeiu590G+G7XqcwQY1UBRyvIceWOxQspzt0dWQrDbJVfRvwwdDPNEWtjwSQQ16ag5biT3OH34euA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fw+RE/J6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81A9D1F00893
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 12:03:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781179438;
+	bh=hFMbfqFQZE48xb3pCYJaM3mP/1q6DdQKHna/4Uf+I6w=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=Fw+RE/J6HGSyFMe+JY6JHuSjMtbJHsHfOU/qgLW4B5D1jqo5mZG98Ll+gijn1kZG6
+	 s/nIJD9dlOlhrBPdiUPl78eifWso25YKAV6IG4+VTIXnRy2ROJWGWvQYbapMuFu7xl
+	 mUwGMmvfUiscHmk6LviPL2VcxmvteW+9xWgGInByWccyEYEWlee4b+H9mnMinFiJVd
+	 hnYRcNbenrppn4peknKFPLsfwP44Gpc4Je6Cwk4bxeuKIuk/2QgdZGqKPALAgkU5TK
+	 zKpaf7NqvhAvS22/qr337OOnSTX6rvQhqe19I39kNvTNqBqMSXnQICQ3cDXrHBWaWW
+	 9JmxSRKpe2GDA==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5aa65a184f2so8345499e87.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:03:58 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8bgDT3zSWkU2lWoNL7vetZfcCsWf8RF84z6nc+Q4B/ZNeYgAk/lMzovCyi9kE68XST8zBLhZ0t+Rzv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMO/RRkSGYZNxv0sKbWnJLv7FUqpHfHl4JDuLxZZ2qi8U7wfN6
+	He+Lo+brZzhhGjDaQSOEcEPDmXTiDFw5Z8NxI+/FpWGgxH+iaAtCI10FDW1z6m0ukNJlFGkWeKF
+	9AZL5rOv6cUtoEpGhsOs9D5V1V9Np0Qs=
+X-Received: by 2002:a05:6512:2351:b0:5aa:77e2:51b0 with SMTP id
+ 2adb3069b0e04-5ad27fb704amr771517e87.45.1781179437327; Thu, 11 Jun 2026
+ 05:03:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260608094122.1245189-1-pshete@nvidia.com>
+In-Reply-To: <20260608094122.1245189-1-pshete@nvidia.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 11 Jun 2026 14:03:45 +0200
+X-Gmail-Original-Message-ID: <CAD++jL=c8MNB-xUE5B=H4p_gMW5ky2fkTnFzfZBJPKVJyW-WAw@mail.gmail.com>
+X-Gm-Features: AVVi8Ce38LENIr5p5lQNFRA8_GAnmdBuYPQ8c0ImlrI4j4vlm4FvrJsRZsp81_k
+Message-ID: <CAD++jL=c8MNB-xUE5B=H4p_gMW5ky2fkTnFzfZBJPKVJyW-WAw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: tegra238: add missing AON pin groups
+To: Prathamesh Shete <pshete@nvidia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Arnd Bergmann <arnd@arndb.de>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [5.04 / 15.00];
-	R_BAD_CTE_7BIT(3.50)[unknown];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-5.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-310417-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	GREYLIST(0.00)[pass,meta];
-	DMARC_NA(0.00)[everest-semi.com];
-	FORGED_SENDER(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:broonie@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:linux-sound@vger.kernel.org,m:robh@kernel.org,m:tiwai@suse.com,m:zhangyi@everest-semi.com,m:conor@kernel.org,s:lists@lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhangyi@everest-semi.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-310418-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:pshete@nvidia.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:arnd@arndb.de,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-tegra@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,everest-semi.com:email,everest-semi.com:mid,everest-semi.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,nvidia.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EB1AA671AB9
+X-Rspamd-Queue-Id: C1C1B6719DD
 
-> > Fix the issue with incorrect modifications to mclk_src When the system 
-> > needs to be configured to use the MCLK from the SCLK pin, the code 
-> > still sets the relevant registers to use the MCLK from the MCLK pin 
-> > And setting `mclk_src` to `u8` is inappropriate, because the purpose 
-> > of `mclk_src` is to determine whether to use SCLK as MCLK.
-> > Therefore, we will change the `mclk_src` member from `u8` to `bool`.
-> > 
-> > Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
-> 
-> NAK, same comments as before. You just ignore feedback.
+On Mon, Jun 8, 2026 at 11:41=E2=80=AFAM Prathamesh Shete <pshete@nvidia.com=
+> wrote:
 
-I thought I had responded to your feedback, but I haven't received a reply since then.
+> Add 24 pin groups, and their matching drive groups, on ports EE, FF,
+> GG and HH to the Tegra238 AON pinmux binding. These groups are present
+> on the AON pin controller, so device trees that mux these pins through
+> it validate against the schema.
+>
+> Fixes: 9323f8a0e12c ("dt-bindings: pinctrl: Document Tegra238 pin control=
+lers")
+> Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
 
-I¡¯d like to know if I need to respond to all of the AI¡¯s feedback.
-Much of the AI¡¯s feedback concerns pre-existing issues that are unrelated to my patch.
+Patch applied.
 
-At the same time, I assumed that when you saw a ¡°High¡± severity level on Sashiko,
-you wouldn't be able to view the patches, which is why I sent the following patches and assumed they were all v0.
-https://lore.kernel.org/all/20260608083540.12581-1-zhangyi@everest-semi.com/
-https://lore.kernel.org/all/20260609025605.16945-1-zhangyi@everest-semi.com/
-https://lore.kernel.org/all/20260609030623.17404-1-zhangyi@everest-semi.com/
-
-If you can see my reply, should the patch I send next be v2 or v5? I think it should be v2.
-I'm sorry for the trouble I've caused you
+Yours,
+Linus Walleij
 
