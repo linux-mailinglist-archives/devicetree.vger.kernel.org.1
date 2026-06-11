@@ -1,224 +1,237 @@
-Return-Path: <devicetree+bounces-310159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310161-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dHbBJiRNKmo0mgMAu9opvQ
-	(envelope-from <devicetree+bounces-310159-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:52:36 +0200
+	id gliAAyZOKmrvmgMAu9opvQ
+	(envelope-from <devicetree+bounces-310161-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:56:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 558E466ECD6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:52:35 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9119366ED6E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:56:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ragnatech.se header.s=fm3 header.b=lAsbN2lW;
-	dkim=pass header.d=messagingengine.com header.s=fm1 header.b="D Bz0Luq";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310159-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310159-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=ragnatech.se;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=YxXIIxAA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310161-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310161-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 37ED3300F63B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:52:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 852C6300B466
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D86DB358360;
-	Thu, 11 Jun 2026 05:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A5F8352010;
+	Thu, 11 Jun 2026 05:56:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DBAE3161A4
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:52:15 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781157137; cv=none; b=SPX4unBsr3Ac8B4pey9147+9akXdn8w7Q3RoRcB0qkiAocNP2cT0LwFLbMR64M0JCUxR46DOiTwxGri6hiBzWY1XQInn1n6uledxfZuAuTHxG8AcX3Lm2IcOK7lAQ6H4mweJl8NdpPdZzL4KnUvhajKV2lep/mX1oVmLSk9jECM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781157137; c=relaxed/simple;
-	bh=xPx7RgR67G3N4/jEoI1W3Zf2pLG40IugenK3jJd85L8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mmX6F9Ht+s269Y4qZXCXLFuWiV4J/JqM7OgcSdULsdKTqt5I8CZhCz+kOydgh8OBBvJoBW7ekJ5moGp6MQHp9DxRtdaR6p5h2PPyOcihkJuE1fFHFb2Iy9L3pxzMNFj9EMjMEjBjDDXXMxni+1zIMyVAZFt4TlZmaEM6W2LeH3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=lAsbN2lW; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=DBz0LuqF; arc=none smtp.client-ip=202.12.124.147
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfout.stl.internal (Postfix) with ESMTP id 9578E1D0013F;
-	Thu, 11 Jun 2026 01:52:14 -0400 (EDT)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-01.internal (MEProxy); Thu, 11 Jun 2026 01:52:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1781157134;
-	 x=1781243534; bh=1ZeUt6nlhejJriS9GvQS3C2Gq5MFPsTxMtlG7fd3reo=; b=
-	lAsbN2lWahqo19Z6Cln0JYeGti/09a36CXD6FA8gC4R8rmbIHH26RRjMxREnmH3b
-	KGKtM4oq5airJ0MLBZA04xRbd2snQ+a6FfoH1S670w1YNToh0sf1i2/FSWU1Ca+J
-	EW+lvLAXLc4mdbZdLJjEDpGYrCi6oyD6CYEgyxIs1bQUwiu6N2sWHnBHOVLDyAQu
-	u9Pdq2GbPgNMcIhOjy61F+zhZ3w3IMDbc2g2dQyQBwQwAQM8ZmCUevWOCcs/uNa2
-	p8CrG9Dwf4wF98clg6nWnQ5Ze6kjNTAy8dYkQATXYz/LW4BQqOvmi9SnLDPHNB80
-	qRYXDcanY4l5GcGg5SXRew==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1781157134; x=
-	1781243534; bh=1ZeUt6nlhejJriS9GvQS3C2Gq5MFPsTxMtlG7fd3reo=; b=D
-	Bz0LuqFgUZ/CIdfmH6TVMR+vQ/7cIwGaRorX1lsBVFh7mhm1jvfUTPkZu7tW0SwT
-	GwjPUsqIOBskBc5BAP34rmNOdIoBBzxtuVLagPbmN7+ooWm3tp/xykb9ncnaEZD8
-	mpGco/WVOZ3FCEhHQyP0oqPox1u3hPbKojveQvKfIjOtiDjOyOGGsgtTCSH9+rmp
-	eYS0sBopuD/n6GM4jOQg0s6zbJqlcTej7vOJ8O5WT4fXYa6VgpGZqpWp28qw4Zlv
-	NO7sow4dN2Pyn92eKu8yzYttXhSzJRwREKVUA+xYPwk3I/8U1BxWXpDvD8WxqJB7
-	1qiMqeNrxoLhkMl9Iscew==
-X-ME-Sender: <xms:DU0qaitkhIzWB71tPzyO4-LKQtLsKyVWVYsKIPbV22VpxDbc41j38A>
-    <xme:DU0qao9you2VT96pmdH0gdTPYNqPBLDItVXoor7AvzEtO8Rs0at-tkCGjWSnsm9Dh
-    zSkU91AnVgfCA4Zp4WQjOfRpAOr8cgJwWktOqSJfKXElJQj2iSAPc8>
-X-ME-Received: <xmr:DU0qat39APTXXJHZyqjjolrU4twbjH8X4y7pjR8BBrint5SmtPz2LO2lSI6PnI2jSYR0pK2cjChNc5cb5z8IFd8EJpTo>
-X-ME-Proxy-Cause: dmFkZTF5ejwB0PiDCFBkkA0hhMb8yAuL344uA5eIAtpn5j1WKv5dOpjeDgMU+lNorbXBV6
-    8uVVvtdC/w5pA6wOr2DFWXjFctDS4fHVg4E5Y1JzYqYKfnga3328Oi94QjoGoLNyHQCZvN
-    dsXQ4R6MTxdg6+jkpznUx3rcf/7wwqnDPxZDn6yO7oxBbEEo+H6miEIowXE6IRgMmOijev
-    FY3Dt0+psNgeBi7QujV66Ya+8gdRYz2oiwJ+STGVheOiq4EOAZdpwdWlgBgFO61XuzU/cd
-    wEMoLnjFto+BwZ5jGfGrOO7RmRV6HvzqUDta8oUANJ4ffvxC+w7TsdG5BC7t6KQqpzdkHs
-    02iDCPQqXyUtlGm5hw/fJq+pODHiNYAZPfFYX00WPDeB4GY0YKWEiP9IWY2QwA6XlYHOBn
-    RzIxOJG4sUWa8X9ihIjOs+482KIY7a3kQyzZpjByvXKvhcVJqwawOpAPrYKmsOkiz2j+DP
-    uyU1H2QffhAux1XC80kPC+ylS3UBTYm2KD2xgzhg9i5T3hqZ5fXWZZ76roLJKofmsvRoEh
-    ZjxLcsKz0c1cl6b94oSILOi7ZBhiPH7WSswf9eTLYiwc53xXE58LGD5xx+wZIDq5+7goY7
-    a1rR/+59TGcJCeuZ3a62ZNJBfpke0CS5E5MFhHdknI3BQ76oCG3EcdNtbD2g
-X-ME-Proxy: <xmx:DU0qatD-OHpeYKfR_PHaZRVqenlcEUB1QZkmsoOkPUDlf89ERsjt1g>
-    <xmx:DU0qapemLN2z3CYKYO3zWwpKXe1SX05YVjf60X720tndu2f-XWr2WQ>
-    <xmx:DU0qaq7ZU8YQxC721jNmpzPcjyK5h_5NqJqlJijbeSnapGyBkamvMQ>
-    <xmx:DU0qasVdcaDKzZGrWZZtHxxwXErzGqCaeXzwjZxoOUjQ3OhyLBnRcA>
-    <xmx:Dk0qauMkIhMfHv-ndXu3hKJans39FcNt3r1rt6IE_EWD4x50c5SiwLIj>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 11 Jun 2026 01:52:13 -0400 (EDT)
-Date: Thu, 11 Jun 2026 07:52:11 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: sashiko-reviews@lists.linux.dev
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org,
-	wsa+renesas@sang-engineering.com
-Subject: Re: [net-next 3/3] arm64: dts: renesas: r8a779g0: Add gPTP node
-Message-ID: <20260611055211.GA69568@ragnatech.se>
-References: <20260609215711.2960150-4-niklas.soderlund+renesas@ragnatech.se>
- <20260610215741.431DE1F00893@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34EAB3446BE
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:56:48 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781157409; cv=pass; b=bMTgPKtjKrLBR+IhaIoWxkrj/VUeGEC3vgrd09jqRELoEIhmTtujtdAFNjE5x+u6zx/9oiJNPvuNG64YrHntywdbGBbjRpt9zT9VVzhuv05e0SpHolnczaFhgnqHsA0I2AJ5gIk8/2E66RPXm8bb3aGh69mMGVU7SftODv+jxdw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781157409; c=relaxed/simple;
+	bh=znNxsoZmlaB6W/mqj3T/8VIN1JDA05KdwQQHBufosGc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TF0NLYrpLV2v/EXEJgLzPGO++8UHk+vR4jjwGQzG12S9F+gwmRbpQn1cKcVV/HXV6X9biB3V2p0hoHR/Ew+FQFvXQLxFZwcAUlr+ok0jdT/d+CZSIFjDXuNg4zc6DDmW91CV1kYaSeMpU2Lm6/lPezG9hr14Z63J0Ld7XjSHlW8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YxXIIxAA; arc=pass smtp.client-ip=209.85.217.50
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-6efdb57d98fso2226230137.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 22:56:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781157407; cv=none;
+        d=google.com; s=arc-20240605;
+        b=NFRYfqfkLqrRS0Rl0rDAbfIG0ZmSP6D6fah9hVT30+1JsLKkEvk1TlF1mkVfRTWz/3
+         t0iD5H+H9u9tFBim29vVztLGHjpnUsF59XjweP+IiELgxEIUIzZLd7TZw7aK2q4mxcs4
+         1GCZYQnx20AjxckHNrNneWnIZTmeiLsI1b/ntfT0JmRAwm3Qw+RSsKFdDGye9pxFCbn7
+         G/amGyXEXhKp1myevnIG0KXJe4i+Gjvw85OHTHc5QclmCOVfNuCgRG/WKu67PyYc0D3m
+         bwsrJeddMs6a28FanQvDZ0gJmm4t1JIr3irVvVO7oWhBG9hXqCx/pJ2Cd88AI6jOrEXB
+         TsUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=znNxsoZmlaB6W/mqj3T/8VIN1JDA05KdwQQHBufosGc=;
+        fh=cwxDSUg3WIInWCpOee0fWgEjsFkhqTFLzt+eNLKU+Lg=;
+        b=jig65rJyN5FbzWE2dRvfjuCgFhcdFiAEbbcuCT8RkjyfnuKcxl8nxyk7yTEhgLdWrQ
+         W6BWZXoAca/pv6ZHTg25NtwZ9wYB4vWCU2gRmzHVPP/5fHSdFasa2JFm89HrziNPGHah
+         bRWtJL0w+BtuMhxUJWRF5n0NO644/sb3crWEMCqLqhXm8UFO9nXZcAgaBdoE1/tNknfs
+         2KtRtHZDivxdhLTksx8k+bnE063lAZIVdTT8g/8P7KrQck2pbTDq03cmmEz6qUiQ06Kr
+         i6zPWCKiwn7uXj0Ze87i0jqSXOrXz+ftMMOlKrocu0ztBY22eaLT6QHtytqNSGYuenJQ
+         3q7A==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781157407; x=1781762207; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=znNxsoZmlaB6W/mqj3T/8VIN1JDA05KdwQQHBufosGc=;
+        b=YxXIIxAA4HcxF5oQKrkLaP3UTGHL5tb3BGmT60A9OtRe6Er/mSDZM0H+Jm9Hotfy9H
+         4Bz1PMKkJYuq5TeZ6NYF7shvDhlHsfrsVRwOdEm+68ajpcO1V03ZDBTJgDXerJJ8SQ8A
+         BVMdrNeSfnZwEq+SuB8XYpae4Pcl6ZLKJYoc5C1PqQPtCsKDTeAukDyQufwmsgWKkTrj
+         bDbE1Ib4wHKzwOsjTZAIZWoeDezLZK5q4At5jAda9dSZhMbW+tYIra+PHuJbHmtoePs0
+         +MKPinPt7481Y+LYP52h+aypYUWBNGAnZfzw2yYooBSeVhrTPUX4EFp50OVXJ618XAVo
+         eFTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781157407; x=1781762207;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=znNxsoZmlaB6W/mqj3T/8VIN1JDA05KdwQQHBufosGc=;
+        b=gaaGVQkkwbdE0ANhNlW2P02GiMRPA2Q6djW2/KjRjFgpeTiBiB45oHtNWhROw3BG74
+         qhuHYp41WaenLo/F4t9yjfG9Gi0Ip6pjwj29ZyMdzsUoAgR9c7RkvOyZb20hCz3nQh/U
+         +uSgJ3ev/OB2xgSDCEc7kGgzkFf4pZIpcW+K0o2xY5dKzcJubDoEBApJtKsXJFRdBqpM
+         3KAfOs3VTn9Jtg035MJOrKj6jEgKJ/fdkiij139eJNaqnOJUFJSb0NvNqHP6eRv0zGR4
+         hCSw2oqghoa4ivFvVaX5XjUMDrHU1+m5BsRaHZLMgBv+zwDXUpJsH7wGg4Za5Z+5/MkX
+         r06w==
+X-Forwarded-Encrypted: i=1; AFNElJ9Kv3Qa6T+RFvE6xaukmQQiPoUIeoX8WIYRu8nWDrO9EcHyh3gzQJjkbYSTqeil8wcrDF7VHvOnXkPh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAhJTi8YYuSLqi1bhCfbKV4czTJuTklIUB6a67MrZVwsqIladr
+	P1ecbKj8JZtM2TVHl6NpKr2KC+/+xcHGRkoVVPAl5yI0wNHNGiGWW0iQIMkM3rT1PqOoVqjLVzg
+	munNmgmmfG91EBkUXaX3+Nkyo+T4S0So=
+X-Gm-Gg: Acq92OEtcwZsn1oQhU15lAMbNABRDDfLH0+Co+dwxwnQAjv0g9CpBaS6eDhNmywL/IH
+	9BpApDmsIp2JAe1WU9iWHdr/7ZYh/S1GN3roz+bYOBF417IfTrYjC/WkDVOGHZbindHOoq+4N5O
+	+7CAW22Anz8L+fSNmls+t4/Vrl9LBbjKfo/argUSKGayEy0bilggpTB9CMWOvfhh0KU7PkANRJb
+	gBLdw5skaoJ7CdqmQwxjM/mC9HSt4/dFXkLPjgwKtICzfd1tCvw6cm1x5UqTgs+ZhLuBItiVvOI
+	PypRjfGwCGPxZv1UUNfa2w34w96wPb7Y91iTmYF1Vl6isOq3rg==
+X-Received: by 2002:a05:6102:3f48:b0:6c2:e290:cc69 with SMTP id
+ ada2fe7eead31-71d5cd7d1bdmr411153137.23.1781157407193; Wed, 10 Jun 2026
+ 22:56:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260610215741.431DE1F00893@smtp.kernel.org>
+References: <20260602081451.3808833-1-zhengxingda@iscas.ac.cn>
+ <178040480680.1778078.1165164069560552075.b4-review@b4> <bc4644a6c1e30a99f1ed5d967c64ba7f5da77fbc.camel@iscas.ac.cn>
+ <178073773007.397244.9871455646149843167.b4-reply@b4> <7ecda3d0f91b0d96bcec44ddf485ed5146788220.camel@iscas.ac.cn>
+ <178073918523.417326.15121723011916371966.b4-reply@b4> <1c33b1dd7d187b17b21b17339a4f1990e59d2f77.camel@iscas.ac.cn>
+ <CAH2e8h7y9PivdMh-h78VSqMf8i2vSR2fvVaO0P1eYBT8qgEdUA@mail.gmail.com> <bd5ad1b53eb009377d0ee492b0e007e45d36f6a1.camel@iscas.ac.cn>
+In-Reply-To: <bd5ad1b53eb009377d0ee492b0e007e45d36f6a1.camel@iscas.ac.cn>
+From: Pengyu Luo <mitltlatltl@gmail.com>
+Date: Thu, 11 Jun 2026 13:55:29 +0800
+X-Gm-Features: AVVi8CcBDu6kzdtgQfGLhHAE9rTe4a2guqHrI7e7tsESyItQdgpIn_y5SMh1rkc
+Message-ID: <CAH2e8h5jFP=A_WTYvqZJxv4gifu5yO7ikhT=ZK-rKLCZXj6sEQ@mail.gmail.com>
+Subject: Re: [PATCH 0/6] arm64: dts: qcom: sc8280xp: set GPI DMA channels
+ according to DSDT
+To: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ragnatech.se,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[ragnatech.se:s=fm3,messagingengine.com:s=fm1];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:wsa+renesas@sang-engineering.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	DKIM_TRACE(0.00)[ragnatech.se:+,messagingengine.com:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310159-lists,devicetree=lfdr.de,renesas];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[niklas.soderlund@ragnatech.se,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[niklas.soderlund@ragnatech.se,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TAGGED_FROM(0.00)[bounces-310161-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:zhengxingda@iscas.ac.cn,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,messagingengine.com:dkim,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,ragnatech.se:dkim,ragnatech.se:email,ragnatech.se:mid,ragnatech.se:from_mime]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,vger.kernel.org:from_smtp,mail.gmail.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 558E466ECD6
+X-Rspamd-Queue-Id: 9119366ED6E
 
-Hello,
+On Sun, Jun 7, 2026 at 4:49=E2=80=AFPM Icenowy Zheng <zhengxingda@iscas.ac.=
+cn> wrote:
+>
+> =E5=9C=A8 2026-06-06=E5=85=AD=E7=9A=84 21:51 +0800=EF=BC=8CPengyu Luo=E5=
+=86=99=E9=81=93=EF=BC=9A
+> > On Sat, Jun 6, 2026 at 9:21=E2=80=AFPM Icenowy Zheng
+> > <zhengxingda@iscas.ac.cn> wrote:
+> > >
+> > > =E5=9C=A8 2026-06-06=E5=85=AD=E7=9A=84 17:46 +0800=EF=BC=8CPengyu Luo=
+=E5=86=99=E9=81=93=EF=BC=9A
+> > > > On 2026-06-06 17:28:35+08:00, Icenowy Zheng wrote:
+> > > > > =E5=9C=A8 2026-06-06=E5=85=AD=E7=9A=84 17:22 +0800=EF=BC=8CPengyu=
+ Luo=E5=86=99=E9=81=93=EF=BC=9A
+> > > > >
+> > > > > > On 2026-06-02 21:21:27+08:00, Icenowy Zheng wrote:
+> > > > > >
+> > > > > > The magnetic keyboard (USB HID) can't be connected somehow,
+> > > > > > others
+> > > > > > are
+> > > > > > fine, such as the spi touchscreen (not upstream yet), which
+> > > > > > utilizes
+> > > > > > DMA definitely. My config is here
+> > > > > > https://pastebin.com/SdjuyJYk
+> > > > >
+> > > > > Is this a defconfig?
+> > > > >
+> > > >
+> > > > Yes.
+> > > >
+> > > > > BTW it seems that CONFIG_ASYNC_TX_DMA needs to be selected too
+> > > > > for
+> > > > > exhibiting the problem (because there should be "public" GPI
+> > > > > DMA
+> > > > > consumers to trigger the stuck/reset).
+> > > > >
+> > > >
+> > > > Is this still necessary? I checked the fedora discussion and your
+> > > > GPI
+> > > > DMA fix. And GPI DMA is only for the QUP-supported peripherals as
+> > > > the
+> > > > binding mentioned, devicetree/bindings/dma/qcom,gpi.yaml
+> > >
+> > > The devicetree without this fix seems to be still incorrect,
+> > > because
+> > > with the device tree fix even if the GPI DMA driver misbehaves the
+> > > system won't be stuck (although it will iterate all GPI channels
+> > > and
+> > > then fail to function at all).
+> > >
+> >
+> > Back to the start. You said some GPI interfaces aren't available to
+> > HLOS, your mask is 0xb(0b1011), so I use 0x4(0b100) did a quick test,
+> > and spi6 consumed it, no stuck or reset. Could you give me a
+> > unavailable channel?
+>
+> I think channel 0b10000 of gpi_dma2 could be an example?
+>
+> It seems that 4 channels are tried on gpi_dma2 before hang on my
+> gaokun3, but as gaokun3 has no known serial access, it's possible that
+> 0b100000 or 0b1000 is problematic.
+>
 
-On 2026-06-10 21:57:40 +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [High] Device Tree Resource Conflict due to overlapping memory, clock, and reset regions between `tsn0` and `gptp`.
-> --
-> 
-> commit 225abba0fdcd1f7e4ebd535f168ba1447d871a7e
-> Author: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> 
-> arm64: dts: renesas: r8a779g0: Add gPTP node
-> 
-> The gPTP module is shared between the RAVB and RTSN Ethernet devices on
-> the SoC.
-> 
-> > diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-> > index 82a7278836e57..758c4ca0ae5f2 100644
-> > --- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-> > @@ -603,6 +603,15 @@ tsn0: ethernet@e6460000 {
-> >  			status = "disabled";
-> >  		};
-> >  
-> > +		gptp: gptp@e6449000 {
-> > +			compatible = "renesas,r8a779g0-gptp", "renesas,rcar-gen4-gptp";
-> > +			reg = <0 0xe6449000 0 0x500>;
-> > +			clocks = <&cpg CPG_MOD 2723>;
-> > +			power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
-> > +			resets = <&cpg 2723>;
-> 
-> [Severity: High]
-> Will this introduce a regression by duplicating resources already claimed by
-> the existing tsn0 node?
+I see. I may test it on the weekend. Thanks!
 
-Yes.
+Best wishes,
+Pengyu
 
-That is the idea of this work. To break free the ptp memory region from 
-the RTSN (on V4H) and RSWITCH (on S4) so it can be shared with RAVB.
-
-This is discussed in the cover letter of the series.
-
-> 
-> Looking at the tsn0 node earlier in this file:
-> 
-> 		tsn0: ethernet@e6460000 {
-> 			compatible = "renesas,r8a779g0-ethertsn", "renesas,rcar-gen4-ethertsn";
-> 			reg = <0 0xe6460000 0 0x7000>,
-> 			      <0 0xe6449000 0 0x500>;
-> 			reg-names = "tsnes", "gptp";
-> 			interrupts = <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
-> 				     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>;
-> 			interrupt-names = "tx", "rx";
-> 			clocks = <&cpg CPG_MOD 2723>;
-> 			power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
-> 			resets = <&cpg 2723>;
-> 			status = "disabled";
-> 		};
-> 
-> It appears tsn0 already claims the 0xe6449000 memory region, CPG_MOD 2723 clock,
-> and reset 2723.
-> 
-> If both drivers are enabled, will the second driver to probe fail when
-> requesting these overlapping resources, such as receiving -EBUSY from
-> devm_ioremap_resource() or request_mem_region()?
-> 
-> Should the overlapping resources be removed from the tsn0 node now that the
-> gPTP module is represented as a standalone shared node?
-> 
-> > +			status = "disabled";
-> > +		};
-> > +
-> >  		i2c0: i2c@e6500000 {
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20260609215711.2960150-4-niklas.soderlund+renesas@ragnatech.se?part=1
-
--- 
-Kind Regards,
-Niklas Söderlund
+> (The reason gpi_dma2 is checked first is because it's the GPI DMA
+> controller with the smallest address)
+>
+> BTW I just took the values from Windows DSDT, which is quite
+> conservative.
+>
+> Thanks,
+> Icenowy
+>
+> >
+> > Best wishes,
+> > Pengyu
+>
 
