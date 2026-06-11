@@ -1,177 +1,163 @@
-Return-Path: <devicetree+bounces-310051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310053-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wxoeHrUIKmqIhgMAu9opvQ
-	(envelope-from <devicetree+bounces-310051-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 03:00:37 +0200
+	id vLwmKfUPKmpniAMAu9opvQ
+	(envelope-from <devicetree+bounces-310053-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 03:31:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B4B966D946
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 03:00:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 024B466DA52
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 03:31:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=ECISjwSd;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=QwNgjnwT;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310051-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310051-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=mailbox.org;
+	dkim=pass header.d=huawei.com header.s=dkim header.b="3gZH/hNn";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310053-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310053-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=huawei.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CC8353010BD0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 01:00:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A68FE3110BA1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 01:31:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C686715E5DC;
-	Thu, 11 Jun 2026 01:00:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D1D4175A83;
+	Thu, 11 Jun 2026 01:31:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from canpmsgout02.his.huawei.com (canpmsgout02.his.huawei.com [113.46.200.217])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A6D2CCB9;
-	Thu, 11 Jun 2026 01:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF8C20C00C
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 01:31:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781139634; cv=none; b=TgGwbu5nAAawAvZ/8TU9RzdjP3iWqDizk8ckCNvBqnUokv1i2pYzPHMs117QHne6aLyV0dBcrUhmAm7gAExj+lCRkmAoRjTYC6vVSnzsyWSMheiLZAalx3DkYund6cwLWD0xxH9h60vJa8/UV/V1ojkZfJJbXl+CloDLbMwhtHE=
+	t=1781141469; cv=none; b=qsxtTeB3cjSl7j8uS2qsnY4BUDsy2J2z3PbdicMrK04VhhcHNG+J83eMEpvJ7Q39MiZP0XlkXrg4k8HZ6kDiVyT6i9D/klBPxg/Td0iKbYOsrbmVSKMwuU/5F4IxNqL4RVrVQ5j31vSOtMUOqusnsLziV+oII1zSqD203A1ekm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781139634; c=relaxed/simple;
-	bh=jIQvQXG/DWNdxP8GQiJ9fD7TwmaLNXzu+9c9WJqhPB8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=N/qoyJjTMuIl+g6iZXXHC5e4TeSyCvupNaVgsICaTo81Qo5oOGVrPhlpl1PezwVgQ9WgwawpCkkR9mREewv4W3DY+C/5DIA3WHdQcPJJtzque2GUABJF3woftMP9RBPyez0rbWVRFnp+qQFlyt5ljZu7HmPhkK3VZGQqxN7SJw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ECISjwSd; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=QwNgjnwT; arc=none smtp.client-ip=80.241.56.152
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4gbPTC4BSKz9vNd;
-	Thu, 11 Jun 2026 03:00:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1781139631;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dDncZbVMMSc+BHIOspAcsIqJHhTcal4soa4ghV1QVjo=;
-	b=ECISjwSdwODZNwIJa4ihFfq0OAZ2U+lFaAK3dQbuLARGgnJ/PkCMWIDto1/67slWhoJx9t
-	UoPubEdRTP/ldqdP+KxLZzEfz6+soljbCC+KAfG6KtT5XT1yjPT2RDhmmuImAf0LULyDtp
-	vIptmnaYh4KCuXGgBNADJNmjmw+i7qtxoIvkDLrxHKgPhQ2SA7SSg33XG8kg+7r8onfXH4
-	uQ0qhSMicvBinWp7ngqJx16vjJSMZ5HMyPVu2F6XCylQsJaqRRz25RO4hToJgpJypJKB8+
-	Xv1DeTuD7QtxMIbiIfXXE3nntko9rW23KG+zC+X2+uJZtW+tGTaj4nIBb6w5WA==
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1781139629;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dDncZbVMMSc+BHIOspAcsIqJHhTcal4soa4ghV1QVjo=;
-	b=QwNgjnwTQ1DlUwdFOxVTClqY4yr5JlTo0j14AtQ7WXxqo6H9XTaPFpkInZfCgPZnSVtDwm
-	DzOkNAHkwf7bBJ1PEKCephoKHeUNmLFP4/ODwj+0q5MoIqN4yqzo8NK/b09hIjqdQZyjyM
-	Isj9JTopaiUx1lDz2nthO6+G5F8ysW+iBN5vkORhiGBlMiaotzJsKCcp9T1ZqN6jcBMT/u
-	6bf98WaEur7lYbsC8I4HYcXdA9sPWKJCBZtrtNGuN79Jj4e8HKPBs2r35CeELzTSy5OoZo
-	VupdwAYKwp0y/71MYxNkmVN1RZq1aGuPwqc1Wc9yByLbABIZy/r3isk3EK4Zdg==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-	Rob Herring <robh@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: renesas: r8a77965-ulcb: Enable GPU support
-Date: Thu, 11 Jun 2026 02:57:31 +0200
-Message-ID: <20260611005952.146825-3-marek.vasut+renesas@mailbox.org>
-In-Reply-To: <20260611005952.146825-1-marek.vasut+renesas@mailbox.org>
-References: <20260611005952.146825-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1781141469; c=relaxed/simple;
+	bh=IQSVmJWAh9rSyjJ/S7l6egCVlHMBKoRs1p3/gSZx/Wo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ba3fY8rJ+o6QHkiI67rP36AFwtclyvSydTi9NWuOaoYP3eOONWX/cNGBZQfhJzzXe2czynMtteL0Kemx4BQqOJqjdPlZM7glQXslkYuoAZZA5B0wJUXsPrgJ3lXtqP/wuNOl+a10KuErIQWZVJmJl+gg0sJOkVZ3/7SySlqVCgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=3gZH/hNn; arc=none smtp.client-ip=113.46.200.217
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=RBlgvudl+cGjprXWFObeeRS2MUnS8N5YzsCKOc0pnqk=;
+	b=3gZH/hNn+g7QWrpLfYH3VIVhOi+KC+luwjGIe9WtEed6xfgF9PTswIocwyjpaWEgUrlrl483x
+	xRsRvhaB6WhwMvFr8+me5PjwErrqXqd54SKqfYa3Ow2i+D3OOZmZcCexoeWlyy5YNsYoV0Xjm9e
+	xyc3UBr9eQflKVxitdNqgYY=
+Received: from mail.maildlp.com (unknown [172.19.162.140])
+	by canpmsgout02.his.huawei.com (SkyGuard) with ESMTPS id 4gbPys18dZzcb1Y;
+	Thu, 11 Jun 2026 09:22:45 +0800 (CST)
+Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
+	by mail.maildlp.com (Postfix) with ESMTPS id 4E7252025F;
+	Thu, 11 Jun 2026 09:30:58 +0800 (CST)
+Received: from [10.67.109.254] (10.67.109.254) by
+ dggpemf500011.china.huawei.com (7.185.36.131) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Thu, 11 Jun 2026 09:30:55 +0800
+Message-ID: <37f31716-095b-477c-9b0b-946a15275c2e@huawei.com>
+Date: Thu, 11 Jun 2026 09:30:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v16 00/10] arm64/riscv: Add support for crashkernel CMA
+ reservation
+To: Andrew Morton <akpm@linux-foundation.org>
+CC: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
+	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
+	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
+	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
+	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
+	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>, <bhe@redhat.com>,
+	<rppt@kernel.org>, <pasha.tatashin@soleen.com>, <pratyush@kernel.org>,
+	<ruirui.yang@linux.dev>, <rdunlap@infradead.org>, <peterz@infradead.org>,
+	<feng.tang@linux.alibaba.com>, <dapeng1.mi@linux.intel.com>,
+	<kees@kernel.org>, <elver@google.com>, <kuba@kernel.org>,
+	<lirongqing@baidu.com>, <ebiggers@kernel.org>, <paulmck@kernel.org>,
+	<leitao@debian.org>, <coxu@redhat.com>, <Liam.Howlett@oracle.com>,
+	<ryan.roberts@arm.com>, <osandov@fb.com>, <jbohac@suse.cz>,
+	<cfsworks@gmail.com>, <tangyouling@kylinos.cn>, <sourabhjain@linux.ibm.com>,
+	<ritesh.list@gmail.com>, <adityag@linux.ibm.com>, <liaoyuanhong@vivo.com>,
+	<seanjc@google.com>, <fuqiang.wang@easystack.cn>, <ardb@kernel.org>,
+	<chenjiahao16@huawei.com>, <guoren@kernel.org>, <x86@kernel.org>,
+	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <loongarch@lists.linux.dev>,
+	<linuxppc-dev@lists.ozlabs.org>, <linux-riscv@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <kexec@lists.infradead.org>
+References: <20260608073459.3119290-1-ruanjinjie@huawei.com>
+ <20260608091000.d88d7f5cc1bc4fa17f5774fe@linux-foundation.org>
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+In-Reply-To: <20260608091000.d88d7f5cc1bc4fa17f5774fe@linux-foundation.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: 3z87w3ndeakzfhsi4buxw55mu6h7mqt4
-X-MBO-RS-ID: fc35fc77e4364adcec3
+X-ClientProxiedBy: kwepems200001.china.huawei.com (7.221.188.67) To
+ dggpemf500011.china.huawei.com (7.185.36.131)
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-7.66 / 15.00];
+	WHITELIST_DMARC(-7.00)[huawei.com:D:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310051-lists,devicetree=lfdr.de,renesas];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[mailbox.org,kernel.org,gmail.com,imgtec.com,glider.be,linux.intel.com,ragnatech.se,ffwll.ch,suse.de,vger.kernel.org,lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:linux-arm-kernel@lists.infradead.org,m:marek.vasut+renesas@mailbox.org,m:conor+dt@kernel.org,m:airlied@gmail.com,m:frank.binns@imgtec.com,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:maarten.lankhorst@linux.intel.com,m:magnus.damm@gmail.com,m:matt.coster@imgtec.com,m:mripard@kernel.org,m:niklas.soderlund@ragnatech.se,m:robh@kernel.org,m:simona@ffwll.ch,m:tzimmermann@suse.de,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-renesas-soc@vger.kernel.org,m:marek.vasut@mailbox.org,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:akpm@linux-foundation.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:catalin.marinas@arm.com,m:will@kernel.org,m:chenhuacai@kernel.org,m:kernel@xen0n.name,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:chleroy@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:tglx@kernel.org,m:mingo@redhat.com,m:bp@alien8.de,m:dave.hansen@linux.intel.com,m:hpa@zytor.com,m:robh@kernel.org,m:saravanak@kernel.org,m:bhe@redhat.com,m:rppt@kernel.org,m:pasha.tatashin@soleen.com,m:pratyush@kernel.org,m:ruirui.yang@linux.dev,m:rdunlap@infradead.org,m:peterz@infradead.org,m:feng.tang@linux.alibaba.com,m:dapeng1.mi@linux.intel.com,m:kees@kernel.org,m:elver@google.com,m:kuba@kernel.org,m:lirongqing@baidu.com,m:ebiggers@kernel.org,m:paulmck@kernel.org,m:leitao@debian.org,m:coxu@redhat.com,m:Liam.Howlett@oracle.com,m:ryan.roberts@arm.com,m:osandov@fb.com,m:jbohac@suse.cz,m:cfsworks@gmail.com,m:tangyouling@kylinos.cn,m:sourab
+ hjain@linux.ibm.com,m:ritesh.list@gmail.com,m:adityag@linux.ibm.com,m:liaoyuanhong@vivo.com,m:seanjc@google.com,m:fuqiang.wang@easystack.cn,m:ardb@kernel.org,m:chenjiahao16@huawei.com,m:guoren@kernel.org,m:x86@kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:loongarch@lists.linux.dev,m:linuxppc-dev@lists.ozlabs.org,m:linux-riscv@lists.infradead.org,m:devicetree@vger.kernel.org,m:kexec@lists.infradead.org,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,soleen.com,linux.dev,infradead.org,linux.alibaba.com,google.com,baidu.com,debian.org,oracle.com,fb.com,suse.cz,kylinos.cn,vivo.com,easystack.cn,huawei.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-310053-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[huawei.com:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marek.vasut@mailbox.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[mailbox.org:+];
+	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[63];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:dkim,huawei.com:email,huawei.com:mid,huawei.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5B4B966D946
+X-Rspamd-Queue-Id: 024B466DA52
 
-Enable GPU on M3NULCB with R-Car M3-N.
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Frank Binns <frank.binns@imgtec.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Matt Coster <matt.coster@imgtec.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: "Niklas Söderlund" <niklas.soderlund@ragnatech.se>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- arch/arm64/boot/dts/renesas/r8a77965-ulcb.dts | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77965-ulcb.dts b/arch/arm64/boot/dts/renesas/r8a77965-ulcb.dts
-index 71704b67a20e1..127eb2ea3c920 100644
---- a/arch/arm64/boot/dts/renesas/r8a77965-ulcb.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a77965-ulcb.dts
-@@ -31,3 +31,7 @@ &du {
- 	clock-names = "du.0", "du.1", "du.3",
- 		      "dclkin.0", "dclkin.1", "dclkin.3";
- };
-+
-+&gpu {
-+	status = "okay";
-+};
--- 
-2.53.0
+On 6/9/2026 12:10 AM, Andrew Morton wrote:
+> On Mon, 8 Jun 2026 15:34:49 +0800 Jinjie Ruan <ruanjinjie@huawei.com> wrote:
+> 
+>> The crash memory allocation, and the exclude of crashk_res, crashk_low_res
+>> and crashk_cma memory are almost identical across different architectures,
+>> This patch set handle them in crash core in a general way, which eliminate
+>> a lot of duplication code.
+>>
+>> And add support for crashkernel CMA reservation for arm64 and riscv.
+> 
+> fyi, AI review might have found a bunch of issues in arch-specific
+> code, all of them pre-existing.
+
+Hi, Andrew，
+
+As Mike conveyed, Baoquan proposed splitting out the unrelated bug fixes
+into a separate patch set, in order to keep v16 from growing excessively.
+
+Link: https://lore.kernel.org/all/ah2Lx7KHI60tzd0v@MiWiFi-R3L-srv/
+
+Best Regards,
+Jinjie
+
+> 
+> 	https://sashiko.dev/#/patchset/20260608073459.3119290-1-ruanjinjie@huawei.com
+> 
 
 
