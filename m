@@ -1,195 +1,145 @@
-Return-Path: <devicetree+bounces-310358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310359-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZotDMXyUKmqXswMAu9opvQ
-	(envelope-from <devicetree+bounces-310358-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:57:00 +0200
+	id dQkEBpGUKmqfswMAu9opvQ
+	(envelope-from <devicetree+bounces-310359-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:57:21 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA4167117A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:57:00 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 503C1671180
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:57:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mJ+4agAK;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310358-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310358-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eL4RBtpD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310359-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310359-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE0F8336B6F7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:52:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B5637337100A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 814BE3D813E;
-	Thu, 11 Jun 2026 10:52:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BC193D8131;
+	Thu, 11 Jun 2026 10:52:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62AA73D47B9;
-	Thu, 11 Jun 2026 10:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D25F25C6EE;
+	Thu, 11 Jun 2026 10:52:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781175120; cv=none; b=lFdVt+xwC5YiGf/qQARzsI9Yg63NyoeOgkuKMTZy3k5SVksQhRczSXZt3k7fVXwT6CXwBy2XmhOf1+Yq4dUYb6/Obr0LNpRLgc2rAUOH6i7JI+W6IeINDzJDO5LVxfgLfuPgUaKG2hkEUMAzIuSgzhZVEZ+6HzKXkDg45XSq41s=
+	t=1781175151; cv=none; b=GO0POa6agXtE52BeXW8dpa6IvHggeLHXZUqmZYXgcov+3u5NuZJOkVJ8uXzAvZM2cnoqPTycs2FA69On6OOgkcGml+FpncN0xVt5atWcvlXNF/OF36y87XIMSgwDe6cOB3t1Roo0MNKUhaubio1UBkvjIXHN3WOlVdScUIsNSo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781175120; c=relaxed/simple;
-	bh=XsAwsfbpUsMLhQg5kQCP6nIjC9CFE9yy3cQ1S5sKI8E=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Lwm1llFKq9p64KbYU16yQ9QnRyiPmCKflJ0Wh4DHKXfUV5lif+yu5RBoHcJlmUJDukhCusH3Ta5SezJzaa5Sy6gcP+J2rarefitvsWD8aFdTxflkXfVxpahzVFmon/qCfe0oZ73Z6RVuF87a9PyNvTj8MC4CGX1ECOCQR/8CPS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mJ+4agAK; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4281F0089B;
-	Thu, 11 Jun 2026 10:51:56 +0000 (UTC)
+	s=arc-20240116; t=1781175151; c=relaxed/simple;
+	bh=Y2UxIhcnIXS6hiR8WYbCaCta2v+gagQ8NnQkMFwotgs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KYDUHeotmC96ayA7kCRJnBllHOUG9LrD5CnsGp2cQORFCYNcSdFWz2jmj4U4d2M3jKAIxWIY2IOvcpKzgMtCpQ+59pUt5kcEJnKBUSilZOGdDWuZ5K4X5hJTHGwcucedpAukJDwadypAn49ktcruVA91Gs5ufjXWNPuBrnXK5RA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eL4RBtpD; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF7F91F00893;
+	Thu, 11 Jun 2026 10:52:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781175119;
-	bh=LVV67R3x6hGXlKRw2JHMhwc1bj0uJDygKzOfGTw5BSQ=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To;
-	b=mJ+4agAK1204hfFWf2M4hFMunYvkK9gkhPqKE36B9y8SyNwT5dodrn2+1KwDZ3u7w
-	 s/2QP6Pb1LeGL4BQFkEsFFlLsyO0jKzRvQ7hjl8NJKlimj5iQOdLukK9YqsRON+70p
-	 3mZcnVyLEaY1yH0AJxaee12fXphHI28pZYpX3rzWbU1/MVct58MLQGpJZseCIF8DsC
-	 pZn6zxPnOPSj692FwKXZkDC4w+h4UeNsqRElivaK2+SFN+Sa2yevywhFA8NpNqAqtG
-	 rdXyBA+JPve8rwrgUjdRhYPey0Ecz3R1zTpvTEn9AISuRI9iM1Wzs7YGpSkuHIw8aq
-	 KI3dShs9GQHwQ==
-Message-ID: <c6d33f8d-fcd3-4b23-81d0-6583d943b9d9@kernel.org>
-Date: Thu, 11 Jun 2026 12:51:55 +0200
+	s=k20260515; t=1781175150;
+	bh=jryDJyoQuOPseqrNNz87t6jVz7MBbbeS4jrOFkWcCPo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=eL4RBtpDo6T1lxpec7dkBsOXEp3HcE3lCIB7JqsvI+BepK0wZvN8JG0lvLZW0t/x3
+	 QA9WrQMnQ4dUlyXNooG9H6zaz+uBTQcj6PnlVlIcHh6tHUU7NF4P6tV5tzudDAlng/
+	 M584BTkGHJEz/PCo8+B5YmnaQA3jlM8YDlmGukTNM4G7YcFUWTDoRyml0tWKXO5EKV
+	 PzIFFLCDa1Mj4pUOjmtZ2BKyikZKMYvmZS3HgwzcqiMruqObJE1Hl2JC0/Qnd32TSt
+	 YcDH29LbwYWeDr3/IThMF8FlWfZ9mY8NeUnpr6GP/v8Hpek1YPDAsYCLQAPcMxdRpu
+	 Jxz0LrITCtGCQ==
+Date: Thu, 11 Jun 2026 11:52:19 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Chris Morgan <macroalpha82@gmail.com>, linux-iio@vger.kernel.org,
+ andy@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
+ jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V11 4/9] iio: imu: inv_icm42607: Add I2C and SPI For
+ icm42607
+Message-ID: <20260611115219.318fe543@jic23-huawei>
+In-Reply-To: <aipolU1W3QNXdd5b@ashevche-desk.local>
+References: <20260610175455.19006-1-macroalpha82@gmail.com>
+	<20260610175455.19006-5-macroalpha82@gmail.com>
+	<aipolU1W3QNXdd5b@ashevche-desk.local>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/7] ASoC: dt-bindings: ES8389: Add members about HPF
- and clock
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Zhang Yi <zhangyi@everest-semi.com>
-Cc: linux-sound@vger.kernel.org, broonie@kernel.org,
- devicetree@vger.kernel.org, tiwai@suse.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-References: <20260611031824.4628-1-zhangyi@everest-semi.com>
- <20260611031824.4628-2-zhangyi@everest-semi.com>
- <20260611-mamba-of-legendary-anger-af76a9@quoll>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20260611-mamba-of-legendary-anger-af76a9@quoll>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310358-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310359-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:linux-sound@vger.kernel.org,m:broonie@kernel.org,m:devicetree@vger.kernel.org,m:tiwai@suse.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,everest-semi.com:email]
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,jic23-huawei:mid,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3DA4167117A
+X-Rspamd-Queue-Id: 503C1671180
 
-On 11/06/2026 12:45, Krzysztof Kozlowski wrote:
-> On Thu, Jun 11, 2026 at 11:18:18AM +0800, Zhang Yi wrote:
->> Add members related to HPF and mclk_source
->> The value of HPF is not dB, it is just the value of registers
->> And add HPF settings to the example
->>
->> Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
->> ---
->>  .../bindings/sound/everest,es8389.yaml        | 23 +++++++++++++++++++
->>  1 file changed, 23 insertions(+)
->>
+On Thu, 11 Jun 2026 10:49:41 +0300
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+
+> On Wed, Jun 10, 2026 at 12:54:48PM -0500, Chris Morgan wrote:
 > 
-> So this is like third time you send the same.
+> > Add I2C and SPI driver support for InvenSense ICM-42607 devices.
+> > Add necessary Kconfig and Makefile to allow building of (incomplete)
+> > driver.  
 > 
-> You never responded to feedback, I don't see improvements and you keep
-> sending the same v1.
+> ...
 > 
-> Version your patches correctly - read help of git format-patch or just
-> use b4.
+> >  drivers/iio/imu/Kconfig                       |   1 +
+> >  drivers/iio/imu/Makefile                      |   1 +
+> >  drivers/iio/imu/inv_icm42607/Kconfig          |  30 +++++
+> >  drivers/iio/imu/inv_icm42607/Makefile         |  10 ++  
 > 
-> NAK again because you just ignore us.
+> These should be part of the previous patch.
+> 
+> ...
+> 
+> > +config INV_ICM42607
+> > +	tristate  
+> 
+> To make it compilable w.o. SPI/I2C make this as
+> 
+> 	tristate "Inven... Core driver" if COMPILE_TEST
+Hi Andy,
 
-This was v1:
-https://lore.kernel.org/all/20260608083540.12581-1-zhangyi@everest-semi.com/
+Is it worth it?  I'm not convinced - we will get pretty 
+good build coverage with a dependence on either SPI or I2C.
+Plus as someone who always builds with COMPILE_TEST this
+seems overly noisy to me.
 
-Then you send v2 calling it v1:
-https://lore.kernel.org/all/20260609025605.16945-1-zhangyi@everest-semi.com/
-
-Then you sent it again:
-https://lore.kernel.org/all/20260609030623.17404-1-zhangyi@everest-semi.com/
-
-And now you send v4 (??!?) calling it v1:
-https://lore.kernel.org/all/20260611031824.4628-1-zhangyi@everest-semi.com/
-
-All within three days. And in the same time you never responded to
-actual feedback.
-
-This is not acceptable. Please stop spamming the list with the same
-version and respond to the feedback. I expect addressing EVERY email you
-received with reviews.
-
-Best regards,
-Krzysztof
+Jonathan
 
