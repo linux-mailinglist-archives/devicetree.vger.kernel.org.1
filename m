@@ -1,54 +1,66 @@
-Return-Path: <devicetree+bounces-310502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310501-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8/PADzDVKmoUxwMAu9opvQ
-	(envelope-from <devicetree+bounces-310502-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 17:33:04 +0200
+	id X6QHLZjUKmr6xgMAu9opvQ
+	(envelope-from <devicetree+bounces-310501-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 17:30:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D991D67317A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 17:33:03 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07994673149
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 17:30:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=jcdt.org.jm header.s=default header.b=JpwGagRQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310502-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310502-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=jcdt.org.jm;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="ciZs+/De";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310501-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310501-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7B03F300EEBB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 15:33:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B4753144ACA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 15:29:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0488030C15A;
-	Thu, 11 Jun 2026 15:33:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0CF40C5A4;
+	Thu, 11 Jun 2026 15:29:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps125955.inmotionhosting.com (vps125955.inmotionhosting.com [173.231.240.237])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C236280CD5
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 15:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91BA1403B17;
+	Thu, 11 Jun 2026 15:29:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781191980; cv=none; b=Rct8TsjYL+vjm0cmRv8ef6aPTRSyq4lR3TwaCnroJTjL+IK3e5WbL4jJRANqZySK8m/BWmrsvTrBy6dxt/p70AtcO9swR/5cBi2za0E7XW+ndtUmi8F9D6x3rfiwUHgZ/yPAplKIc9jkUC89cehe5sbIpNyxx0FsennL99CwOwc=
+	t=1781191796; cv=none; b=I67qxIOhhDEKmmON81P7WBefMXcfndVB9aqonNLjCpxo/Erfg+B27qq9aKFNvHz+asG0oiTvZdNJ6D3z3aLPfO9uOQhhcy4msEJ9LLqFDNFGqG7gHyAwTuG+ooj+3aeGJUrqp/fqN0gnF3vK+aRvoiR9ArDk4+NAuPuq2f1VOoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781191980; c=relaxed/simple;
-	bh=OO2xzbzxtpu5o8L0beFgsl3gsvs0DQok5PhNZ2Oh5N4=;
-	h=To:Subject:Date:From:Message-ID:MIME-Version:Content-Type; b=rrZtobBeIocQpGwUoKuY7H6P5x3vZTdWWeuLwuhsAm1o+GQXmLQc+dNZQZusUaLJfcZAhFXPcGDgmh/2L1Se88VkWN702HdC7GY2J3myIzHRiHKTY871lR6p5cQiSpQnAvi3HcqVBm0j325iYQ2JdAgHfuwafLMclEITQ9PJXTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jcdt.org.jm; spf=none smtp.mailfrom=vps125955.inmotionhosting.com; dkim=pass (1024-bit key) header.d=jcdt.org.jm header.i=@jcdt.org.jm header.b=JpwGagRQ; arc=none smtp.client-ip=173.231.240.237
-Received: by vps125955.inmotionhosting.com (Postfix, from userid 1002)
-	id 867A9450D5; Thu, 11 Jun 2026 10:26:21 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=jcdt.org.jm;
-	s=default; t=1781191581;
-	bh=OO2xzbzxtpu5o8L0beFgsl3gsvs0DQok5PhNZ2Oh5N4=;
-	h=To:Subject:Date:From:Reply-To;
-	b=JpwGagRQPG8tPmQ/mIQvSmhlbZgmPnY4zX/45RiBuVI+xr0z0fActx8HhLZKwtBsq
-	 GOGAfP7FpmTLFZ4372HePDEyH3paiLKzkVrXwzWDyruN334iWbLAJgsK3EVAW4zwFm
-	 tf234QP0fx7Pc55LX4+hM5spKT8lifNEhOPKfXZI=
-To: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Copy of: I promised.
-X-PHP-Originating-Script: 1002:PHPMailer.php
-Date: Thu, 11 Jun 2026 10:26:21 -0500
-From: JCDT | Notification <noreply@jcdt.org.jm>
-Reply-To: sarBlova <devicetree@vger.kernel.org>
-Message-ID: <8JmkOEByesBwiTjAnjfZ4DFEfusImjyhgDfYOVCTh0@jcdt.org.jm>
+	s=arc-20240116; t=1781191796; c=relaxed/simple;
+	bh=3THXNP0OySDzs9gfN+yJpV3WQlqOYoKVWbwHtCObJZY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J3kZnBPSD1KI3lpVGAWs7KPKG72spND07FQ09AXdhz1Waxa+2VTw5eNQik96ceHIoIl7pFKymUqZWDpJNPRnlYbgGylFgifJdULxBZWTQQvjkFtVmROgNFxTDZJSf0f8wXPRpm0a5lYc+1ZROOc38P6eW3/lvVBtLsV8fTQ0Fgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ciZs+/De; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7715A1F00893;
+	Thu, 11 Jun 2026 15:29:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781191795;
+	bh=XMXAduZhXMi7sPl7wXbg3EtVrGgXmUglUtg25rqA6sk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=ciZs+/DefC3FEetqmSahSCuzh6jGeMeQK5b4Os2DLrT6x8XwCcZ6miyLrc41TLVLE
+	 2b8fO2LcXAv3deQMiZcAHtFSiKZ1pj/dRQRBnjUJFO7IP7wa2kyqAjqd+1xn7IDHEy
+	 n99HHux03s27GRli38vb8VjILwRg3+AFUc7nMqrB9tF5YaoDUAXlMfpDTJTGfCHyDz
+	 KdJ8qbVvvi6MbW84TrdyPpAFiJtDJAS5hCKNsgHriUUP1NDq3sEsTF1sjVN8w7nI5W
+	 NbSvugawn36bUM3j8mftsVeiYpbVbjSZ8sn9HTCRM/z7T7IXNnpkK9REqhTnSzMa0J
+	 GPIkUGgnI9Ktg==
+Date: Thu, 11 Jun 2026 20:59:51 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: palash.kambar@oss.qualcomm.com
+Cc: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mani@kernel.org, alim.akhtar@samsung.com,
+	bvanassche@acm.org, andersson@kernel.org,
+	dmitry.baryshkov@oss.qualcomm.com, abel.vesa@oss.qualcomm.com,
+	luca.weiss@fairphone.com, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+	nitin.rawat@oss.qualcomm.com
+Subject: Re: [PATCH v3 3/3] phy: qcom-qmp-ufs: Add UFS PHY support on Hawi
+Message-ID: <airUb6wT-I-7cOXK@vaman>
+References: <20260526090956.2340262-1-palash.kambar@oss.qualcomm.com>
+ <20260526090956.2340262-4-palash.kambar@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,49 +68,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260526090956.2340262-4-palash.kambar@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[jcdt.org.jm,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[jcdt.org.jm:s=default];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-310501-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310502-lists,devicetree=lfdr.de];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,s:lists@lfdr.de];
-	RCPT_COUNT_ONE(0.00)[1];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:palash.kambar@oss.qualcomm.com,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mani@kernel.org,m:alim.akhtar@samsung.com,m:bvanassche@acm.org,m:andersson@kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:abel.vesa@oss.qualcomm.com,m:luca.weiss@fairphone.com,m:linux-arm-msm@vger.kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:nitin.rawat@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[noreply@jcdt.org.jm,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_X_POS(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[noreply@jcdt.org.jm,devicetree@vger.kernel.org];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[jcdt.org.jm:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	HAS_REPLYTO(0.00)[devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	REDIRECTOR_URL(0.00)[tinyurl.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:replyto,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vaman:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D991D67317A
+X-Rspamd-Queue-Id: 07994673149
 
-This is a copy of the following message you sent to Info via Jamaica Conservation and Development Trust
+On 26-05-26, 14:39, palash.kambar@oss.qualcomm.com wrote:
+> From: Palash Kambar <palash.kambar@oss.qualcomm.com>
+> 
+> Add the init sequence tables and config for the UFS QMP phy found in
+> the Hawi SoC.
 
-Photos for my escort application are uploaded.   
-Let me know if the quality is good.   
-Preview: https://tinyurl.com/5adbz2mn#aUz4yw
+This fails to build for me on phy/next
 
+In file included from drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:24:
+drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:1878:26: error: ‘QSERDES_V8_COM_PLL_IVCO_MODE1’ undeclared here (not in a function); did you mean ‘QSERDES_V6_COM_PLL_IVCO_MODE1’?
+ 1878 |         QMP_PHY_INIT_CFG(QSERDES_V8_COM_PLL_IVCO_MODE1, 0x1f),
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/phy/qualcomm/phy-qcom-qmp-common.h:22:27: note: in definition of macro ‘QMP_PHY_INIT_CFG’
+   22 |                 .offset = o,            \
+      |                           ^
+drivers/phy/qualcomm/phy-qcom-qmp-ufs.c:1879:26: error: ‘QSERDES_V8_COM_CMN_IETRIM’ undeclared here (not in a function); did you mean ‘QSERDES_V6_COM_CMN_IETRIM’?
+ 1879 |         QMP_PHY_INIT_CFG(QSERDES_V8_COM_CMN_IETRIM, 0x07),
+      |                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/phy/qualcomm/phy-qcom-qmp-common.h:22:27: note: in definition of macro ‘QMP_PHY_INIT_CFG’
+   22 |                 .offset = o,            \
+
+And so on. Looks like QSERDES_V8_COM_PLL_IVCO_MODE1 etc are not define.
+Please rebase test and send again
+
+-- 
+~Vinod
 
