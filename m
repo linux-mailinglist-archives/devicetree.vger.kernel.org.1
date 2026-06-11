@@ -1,172 +1,132 @@
-Return-Path: <devicetree+bounces-310362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310363-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9X/cHHGUKmqTswMAu9opvQ
-	(envelope-from <devicetree+bounces-310362-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:56:49 +0200
+	id d3gGE2KVKmr8swMAu9opvQ
+	(envelope-from <devicetree+bounces-310363-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:00:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27D1F67116A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 12:56:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2FD86711DE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 13:00:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="XjiNWG/H";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310362-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310362-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=KN9qenms;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310363-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310363-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 38E233049E3F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:56:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F290B3232623
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:59:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCF343D9DC3;
-	Thu, 11 Jun 2026 10:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96CBC3D9693;
+	Thu, 11 Jun 2026 10:59:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F1B33D9DB5
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 10:56:11 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781175373; cv=pass; b=gsDuu07/5ZlC+shFP62kXzx+wiVqrXMiCs0THbrBswEMUJKC1ZX/U1PxptchW+f+0xePF+wXefHS0Tk/gyiXrXgI6YOnkLOhpUBZefs9fK1Fik77EoUDDu5+NKZ9AcxzEajVtKXbhOVC2KNEM2s0lLpKEVSpUObn5KooF7+DAzQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781175373; c=relaxed/simple;
-	bh=luwhS5VkVprOXRSpKOHs4TEOxJfjtiFwMOP/OMytiOg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nsup5um+MbVBQsDnMaQ8mnhID6RB1U01KWJc3MS+p9917mlXCG+OBQn1DPFlSWIt3Nzj2Ee3GGPXsuqszqqsxkeg/IOVAOMv/HUDC1p9kvu7SZ7lyjNNWBXQJ8sHfUWg0MN+XBScnfTziMDUflMC+00Zx16CxYpLGKHEN07momg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XjiNWG/H; arc=pass smtp.client-ip=209.85.208.51
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-68e5f7c1131so14728536a12.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 03:56:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781175370; cv=none;
-        d=google.com; s=arc-20240605;
-        b=lCCI+DPdjlQpjqLKwG8sbYUZj/5fo69XYwetWvdde9bcMILZGg/OCsHUNjUx1fN/Dh
-         FUZPG3RMZTHB7kxWwGMrwPNcGoFgNnX391x0mkTUHjFbl/B8yMAELKDJ2G7qHLF8xbjE
-         tivmK59aifYi1awmmGnqRUQQviKJ0MB5zeV8mWHQSphFuC98dBqMij1N78HSbREGEsd1
-         N1nfrLBh96yJ/mugISQ0scAFlJmSc/6zohMCJ4UCYOELTFAo4HuOSBEjVssQmM6SP39T
-         vc1WLSzp3/LVyQN0ZVeqz3r32HLZ9WbfXeTgZN6sJ4wkWwJc9moQNGEVNv1QI6Jk8hvp
-         cHBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=luwhS5VkVprOXRSpKOHs4TEOxJfjtiFwMOP/OMytiOg=;
-        fh=vpdUHBtIz2LmnfVkilUt5wXaGx6q65aRfDKj5YR+CHQ=;
-        b=k7Eb2Bq8uhH+Dp+oayFkwq/VXV0AnAiiUFIrDJIJ/1M/KwXy6tRZPZDREnr2LqA/7N
-         OUD972V+lWEnSa5AMCcY4lZoQDbWKL3LZDuMgZLR70uG9oSbDOaNNZvt74ImfXRkpKl5
-         e3gOnwqWW8P+xf0jr0grNmXiRgr0tqYdUxFEhPQNSgTtnOG/e6XyH1DKO7wZwNg45NAq
-         5kVuJL3k1+3lcv8OoVEGt6QeyTwcyGlcQNef3H6oovTHWGWEreQcaKebcBtwROIVONcP
-         Ri0BUeXe8IvR6rAWQS2PJwlUfMTAbBaR2WnFtY88umHeKiZfZv+aYEjH4Wv0xL7FsQ0T
-         MaaA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781175370; x=1781780170; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=luwhS5VkVprOXRSpKOHs4TEOxJfjtiFwMOP/OMytiOg=;
-        b=XjiNWG/HKl11GxBEljH/pT4h0OIKpvBMwaymPl1yCDeBzSQGr7e68n0PZStPwI3EmQ
-         5/n8KIAUkJaEwVnhU9Jx3gWQjlvc24LNktuqD9Ga8BJfo/QW8YJOM/AllV5XfHBtVJ/q
-         4zmAPeSeeJ3rlmQfcAFdeZd0PutFjXSA6pU9VmYmss/0s6VB8oz8CfqCsS9HDsMO0p2c
-         Clh832MEooLeTul/r5B6AFuLSVVUdAlyttCB0Gdh6KgPLVZNeA6aVyWbwI2UdGwhury7
-         vO7VZL1VuqsERRdPoG9yN+UoitYR45+kA9kZu8GS1TqaUqq2hu/N42lByk9sx1lyV6Yw
-         mpRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781175370; x=1781780170;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=luwhS5VkVprOXRSpKOHs4TEOxJfjtiFwMOP/OMytiOg=;
-        b=T5Ggp6OTDt2FnQb9t1H9RXEsVoSFhKzBUry7ZI7oLEANaYk3WMsZ2J+98SiCZgA5Wa
-         uMmhS8F72fpFUU7T94E48B47cbge4Lx2vUeXKcp6EZTivCE6CHECglGBhdEp5MN6W2xB
-         2bw58eP8adqviziqZmVFFldYKxbeK2p6v1yG634wpTDMtozuq0DNIyKq/s9VccxIB+rL
-         dtvyNrEyC5pCqp1o4jljtQNGHPu2HJnwEuzg6IH+0Ltwt8XmTOeNvtjrBezWOxhKVhfC
-         /ElzWKrF8voe7bvXrzIwBEORFl22cyYa4sDZbrYDMob4EREu60G9NnlnItETBenJdg5b
-         gvAQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+DtRMq+kIC4K9CIHgjegsVK/HyPkdGRx4lg64Wedgs+fG06BeLhrb176Ep35ebJ46u2RIhExeCSWAI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcAg5mLRXP5KGaR7JPe65sze7aZBmH8+5tlWOjJRojFDgJt4aK
-	VT7iDNWvSi2yytPiBjvNWToBlzBqsD2hLrgmGNWTlNsYxesBF8sKXFdwrYoX+9iQC2cWzloU4n1
-	wdw2CiPFcw+cjn3iHIDdKjNAkugxl4WL4NuF/zwo=
-X-Gm-Gg: Acq92OG1yrTfzhxvYCT3yoajYb96en2CoqMRB9E5mZeovX/gaFYXDrl8ope3fbMO6wW
-	AUngipRqx0Cw5Hl4LHNHZe8001hZIwhHEkZ37PGdnjiKwM/9TlhucKdfaT4Sfm8Xg0xCVxz70kt
-	uyhoWtQEgcvQNByuazsneq9F09fpqkhgb0Ht0+USTHJXZTnquTXiXNKPrqGIJd+tbMKviSgHbH9
-	h58yCM9Hs6w66YOy5Zm28C1cxw0XqvhcXgoTaFdEvu+q3tVndijT44sK12PjAhtoVbSL4qpfCKU
-	sy/AboUri2lF64HOw9/SRejBhcRpKuyNNwLZ3N/Z/s3mXYIrngOtEqptMI8VkG7p6oTHcnRkDYT
-	7mt0ufFQ19cb7tA8=
-X-Received: by 2002:a05:6402:1469:b0:68b:31c5:86f7 with SMTP id
- 4fb4d7f45d1cf-6930e32ca54mr1052454a12.16.1781175370165; Thu, 11 Jun 2026
- 03:56:10 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BEC83D47B9;
+	Thu, 11 Jun 2026 10:59:48 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781175589; cv=none; b=tNhvV38sDUZqU4QKfhSWp+oeRUNvAv2Z0465ppS33SCkd0G5iNCJk4TZkdkPuuuQnZEMFEdkVOoS3Ljr+OvLtpH7CUIpwXeFmEr+OdOqRfIUbtvP3/ITrfbmLWB+5DbNWJr3OX4QAHBd+YRFYsIf2+IHSVZhtJvWNsQF0GcNMv0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781175589; c=relaxed/simple;
+	bh=mYy8SrYNX0hSFw6iIYsujkPIlY8TTwbQVZPbmBDyeDU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fJHY/qvXO5ZcWuO0X7XT4oNLy+sGA0y5+q86i4LAEFa+upyX7I+SWrwBRCrdAF+Gi4k2E9tjwmv/yvOStF31hT4xJT2sag9Z2adff/g0WZcNs3QcEWIurH/tIOvCvEuVJ5b6GZ4ANjFYxdY8SGt5lTcviLHlpc/cEN+E1jRGYl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KN9qenms; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07F5D1F00893;
+	Thu, 11 Jun 2026 10:59:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781175588;
+	bh=mwc9Bper1UY3wwxKaGEuMDkCvCSrvItL4irShhMuQTg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=KN9qenmsuPwMXwQfUUz3bpy75Su8+LsxupaoigatkiJaj/S8yBaj0EAscJUrgknNp
+	 gAPDITk26Fp+DqbxFhGGPQwcrx29gCas7KyWKg3W304WTbk2YRPRB/khx2IiRSBbqN
+	 v2NRDFSRFHgPZ0/KD0BDBB16RameHh+ugeIPRbefmMTANPkBSTi/oUVhWIPrrVfXXO
+	 Ji50kZLC8UCd3t2Ug9fRCSxlF69+Q26mzWEgckFhE42fH5wxXyjuH2hYnPklV9O3U+
+	 FyxZmoXChu9WilhqwnC90BMi+7sr+eQ316z800ETMxogtMFQmKa8dz+eYp9m5ofg6h
+	 pkMmLQ0HhlJGw==
+Date: Thu, 11 Jun 2026 11:59:38 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+ dlechner@baylibre.com, jean-baptiste.maneyrol@tdk.com,
+ linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ andriy.shevchenko@intel.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V11 0/9] Add Invensense ICM42607
+Message-ID: <20260611115938.27712b66@jic23-huawei>
+In-Reply-To: <20260610175455.19006-1-macroalpha82@gmail.com>
+References: <20260610175455.19006-1-macroalpha82@gmail.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260610-a14-himax-hm1092-v1-0-0c9907da47ed@gmail.com> <8be0a964-e2fc-4c0a-a5ca-0e9e42b3d747@linaro.org>
-In-Reply-To: <8be0a964-e2fc-4c0a-a5ca-0e9e42b3d747@linaro.org>
-From: Ramshouriesh R <rshouriesh@gmail.com>
-Date: Thu, 11 Jun 2026 16:25:58 +0530
-X-Gm-Features: AVVi8CeoYZl3tGdsy3kf7c0CBQMbyXc8Ifs4B6x18dtA99RJC4z5NJ6-soBhOkM
-Message-ID: <CAJTcUFSLoQN0Opn_2LY1QT3EiSo7+nybebbOoscUSaTWF_HGAQ@mail.gmail.com>
-Subject: Re: [PATCH 0/9] media/arm64: HM1092 IR camera and ASUS Zenbook A14
- (X1P42100) camera support
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
-	Loic Poulain <loic.poulain@oss.qualcomm.com>, "Bryan O'Donoghue" <bod@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Aleksandrs Vinarskis <alex@vinarskis.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:vladimir.zapolskiy@linaro.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mchehab@kernel.org,m:bryan.odonoghue@linaro.org,m:loic.poulain@oss.qualcomm.com,m:bod@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:alex@vinarskis.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-phy@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-310362-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[rshouriesh@gmail.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:andriy.shevchenko@intel.com,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-310363-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rshouriesh@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linaro.org:email,vger.kernel.org:from_smtp,mail.gmail.com:mid]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,intel.com,hotmail.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RSPAMD_EMAILBL_FAIL(0.00)[jic23@kernel.org:query timed out];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,jic23-huawei:mid,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 27D1F67116A
+X-Rspamd-Queue-Id: D2FD86711DE
 
-On Thu, 11 Jun 2026 at 15:31, Vladimir Zapolskiy
-<vladimir.zapolskiy@linaro.org> wrote:
-> This patch should be removed from consideration, since it is not based on
-> the upstream codebase.
->
-> I'd suggest you to upstream the sensor driver only through linux-media, which
-> is patches 2/9 and 3/8, all other changes should go only after it.
+On Wed, 10 Jun 2026 12:54:44 -0500
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-Will do, thanks. This is my first submission, so I hadn't realised the
-sensor driver should go on its own. For v2, I'll send the HM1092 binding
-and driver as a standalone linux-media series, and then I'll post the
-A14 DTS and
-PHY enablement separately once the driver and its prerequisites have landed
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add support for the ICM42607 IMU. This sensor shares the same
+> functionality but a different register layout with the existing
+> ICM42600.
+> 
+> This driver should work with the ICM42607 and ICM42607P over both I2C
+> and SPI, however only the ICM42607P over I2C could be tested.
+Hi Chris,
 
---
+Just a quick reminder to check if there is useful feedback at:
+https://sashiko.dev/#/patchset/20260610175455.19006-1-macroalpha82%40gmail.com
+
+I didn't look into most of the but the last one about no avail mask bits
+being set for gyro channels was easy to verify as correct and suggests
+a testing gap.
+
+Jonathan
+
 
