@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-310181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310182-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Jb3iFuxfKmqFoQMAu9opvQ
-	(envelope-from <devicetree+bounces-310181-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:12:44 +0200
+	id 44UxHXthKmrwoQMAu9opvQ
+	(envelope-from <devicetree+bounces-310182-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:19:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6297866F486
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:12:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6184366F539
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:19:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fiFBYq3P;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310181-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310181-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OldRZJg4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310182-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310182-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B101C30086AB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:12:22 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 63200300868F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5B693B5307;
-	Thu, 11 Jun 2026 07:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF3B35E1B6;
+	Thu, 11 Jun 2026 07:19:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8990D3B3C11;
-	Thu, 11 Jun 2026 07:12:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 086E51F5821;
+	Thu, 11 Jun 2026 07:19:15 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781161939; cv=none; b=tYNb4B7M7BM1tD1TdVcL7UiWlHlou7E7dnMhuyXfaIiYsO00ItxJsu0KQFc7be8/o5HXFHX2b/6onkPv+lkKq8npJvKsMngUbEJFxdOkP1LZqE8C/MKl+tRyJe+Jy0xQnM7vd4JPVCTtCm705jiX0rx/nk08KViXDeQjVA2IA4I=
+	t=1781162355; cv=none; b=Swv/JkHVFVvcqVAuvW6xDs+plgMT3q0PtM1Zwdkl0VGld2RHIR34Z19JGHSDqARFB3tj899KSgJE1cH2Av3AjWCJHYosApSfkPotN3izmuHGjG/VkqiUq2TbUeE3x23pZpt4wIMyo2kp76C1o3EJYeX7rUvUB8RVb8JR2A10MBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781161939; c=relaxed/simple;
-	bh=EJEYQub8wlf0di/iU4ofyqbowmH56ypDX5pVy3n+lc0=;
+	s=arc-20240116; t=1781162355; c=relaxed/simple;
+	bh=qWiheM4BZI9VVY77CZq618g3xfyg6lVDaj5UYiTUw1o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l2sZrbZi90MM+PvuVoLi+XBpZFyupNuHoLmgshrsdcg72lEdc2T+jGzwl5EZMJhmP8NaMXYSCUIjnrT1uXcWPdh47zJdDUzYvOPbwPV5bZoCRsji3m1QZxRA4WsYLY3he1TewUeKSnOte/w/aK5HqiJLmkx4L5j9JmtSoU7WODk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fiFBYq3P; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF6551F00893;
-	Thu, 11 Jun 2026 07:12:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BAfH9OoL/nMjjKeiuOBMn5RmRWjGjcoU5l3BTqkF0a9hlf6AHrZsg5GFRok5O3wCHq0QSgCpKzwSpBTSbIUOAYkyuaRA996Ho20jobLcYVr6Wl4sHzeOIZS8ZZbQcX5pJdDDw50fqFRQJbg3yWjhEb4IQVefgeiOnUHS3RBl/cU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OldRZJg4; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C8521F00893;
+	Thu, 11 Jun 2026 07:19:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781161938;
-	bh=cb1adLE4OteerCSBk+VBYHwOKwVKIC0OX9Sh5Jg4D0I=;
+	s=k20260515; t=1781162354;
+	bh=fJDlxxsLRKCJxE4tq/bQfb7kaHEjPHmrFHttZV3A8Tw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=fiFBYq3PHbybtvQ0Ie7WxptQtEeUaCk6mxPymiXzx2z3zGvV4UAnunhiFpDcL+3ds
-	 8T2iILHFOT5A0QEZ7fBhoMFfMu7p5pdP443UE44k4Op87dski55918WHX+SvKCTWH3
-	 q+v+nE2/qmkjWRxh8ZAVFYaYRYvkSN6mmb8gnVGLWDqHg2r4kyfa74bFTSt+dKNj3Y
-	 ASPKu70fz3eU/2+djxAYm/9Yxva6fleJpBa5FfW0yLlD6mJ1CqrEpgJTmgSLDT+aeB
-	 8dP2VE/RzFF39igauJHUJwvKT1wdM6ivedxpLvfNDVSie0T1A1t0C/MU4X5FUZwHHm
-	 v+w9+NxVjIkpQ==
-Date: Thu, 11 Jun 2026 09:12:08 +0200
+	b=OldRZJg4cl2BkuUG5C8sWo2X/W1MHVERfrYW+skyNmJ+xGMaTofH37rv9MxovbJTd
+	 1iVHx8limBNypRMyzcf2bmxW5hH3OUjdwkwt3G6G9Jw3gDmGDZPkppGSDtz3zmUcxg
+	 JFUya95s27aInYuvlzGbZ/uOWV1xozzE0AeQr659eeswVfaa6vJ9h9ZLrxkGCLq2ck
+	 lqnfUyTBJ272ZyNlm8r0v9P7LmIDg5shmHeJhy7dVwWpO0YQXhg4N3L/yOKl/yvKpn
+	 +OxM+JbYKxc5gQoiFTcrRK5nsPCOyVGWQxG25V+VNdfvOgKEkzwFKlZcEDCzCKxr4K
+	 VElwRlj3C54AQ==
+Date: Thu, 11 Jun 2026 09:19:01 +0200
 From: Manivannan Sadhasivam <mani@kernel.org>
-To: Caleb James DeLisle <cjd@cjdns.fr>
-Cc: linux-pci@vger.kernel.org, linux-mips@vger.kernel.org, 
-	naseefkm@gmail.com, ryder.lee@mediatek.com, helgaas@kernel.org, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	ansuelsmth@gmail.com, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 0/3] Add EcoNet EN7528 (and EN751221) PCIe support.
-Message-ID: <qwjq6jt3akjk6m4qp4s7xpqf2kzc3tyhsrmcoqhc3canknauxh@leu5dbmv5ngl>
-References: <20260521171951.1495781-1-cjd@cjdns.fr>
+To: Chunkai Deng <chunkai.deng@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, yijie.yang@oss.qualcomm.com, 
+	Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Vishnu Santhosh <vishnu.santhosh@oss.qualcomm.com>, 
+	Deepak Kumar Singh <deepak.singh@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mailbox: qcom: Add IPCC support for Maili
+ Platform
+Message-ID: <dwe3yexvmaciuvhw5ahbnqe3fww534hulpbt7hkx2nblujafr2@pgyjmkkfr3ze>
+References: <20260526-mailbox-qcom-maili-v1-1-1b689a42f33e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,14 +68,13 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260521171951.1495781-1-cjd@cjdns.fr>
+In-Reply-To: <20260526-mailbox-qcom-maili-v1-1-1b689a42f33e@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
@@ -82,103 +82,67 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:cjd@cjdns.fr,m:linux-pci@vger.kernel.org,m:linux-mips@vger.kernel.org,m:naseefkm@gmail.com,m:ryder.lee@mediatek.com,m:helgaas@kernel.org,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:ansuelsmth@gmail.com,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310181-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:chunkai.deng@oss.qualcomm.com,m:andersson@kernel.org,m:jassisinghbrar@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:yijie.yang@oss.qualcomm.com,m:jingyi.wang@oss.qualcomm.com,m:vishnu.santhosh@oss.qualcomm.com,m:deepak.singh@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310182-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,mediatek.com,kernel.org,collabora.com,lists.infradead.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,oss.qualcomm.com,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[leu5dbmv5ngl:mid,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6297866F486
+X-Rspamd-Queue-Id: 6184366F539
 
-On Thu, May 21, 2026 at 05:19:48PM +0000, Caleb James DeLisle wrote:
-> Tested on TpLink Archer VR1200V-V2 (EN751221 with Gen2 device)
+On Tue, May 26, 2026 at 11:38:03AM +0800, Chunkai Deng wrote:
+> Document the Inter-Processor Communication Controller on the Qualcomm
+> Maili Platform, which will be used to route interrupts across various
+> subsystems found on the SoC.
 > 
-> Changes since v8:
-> * guard(rwsem_read)(&pci_bus_sem); in mtk_pcie_retrain
-> * v8: https://lore.kernel.org/linux-mips/20260520183827.908243-1-cjd@cjdns.fr
-> 
-> Changes from v7:
-> * mtk_pcie_retrain retrain all root ports not just first
-> * Include fix from Manivannan Sadhasivam, wrong usage of virt_to_phys()
-> * v7: https://lore.kernel.org/linux-mips/20260514151318.3444959-1-cjd@cjdns.fr
-> 
-> Changes from v6:
-> * s/reset/resets/ in .yaml
-> * s/re-train/retrain/g
-> * s/Root bridge/Root port/
-> * If module not builtin, log at mtk_pcie_startup_port_en7528()
-> * Do not fail if error in mtk_pcie_retrain()
-> * v6: https://lore.kernel.org/linux-mips/20260513191652.3200607-1-cjd@cjdns.fr
-> 
-> Changes from v5:
-> * s/errno-base.h/errno.h/
-> * Breakout mtk_pcie_retrain() into a function
-> * Use for_each_pci_bridge() to find root bridge
-> * v5: https://lore.kernel.org/linux-mips/20260413140339.16238-1-cjd@cjdns.fr/
-> 
-> Changes from v4:
-> * Fixed missing Acked-by
-> * Rebased to commit 66672af7a095 ("Add linux-next specific files for 20260410")
-> * v4: https://lore.kernel.org/linux-mips/20260404182854.2183651-1-cjd@cjdns.fr/
-> 
-> Changes from v3:
-> * s/initiallized/initialized/
-> * Use PCIE_T_PVPERL_MS for sleep time
-> * Use PCI_PM_D3COLD_WAIT for startup wait time
-> * Clarify comment "Activate INTx interrupts"
-> * Add MTK_PCIE_RETRAIN quirk for devices which require link re-train
-> * Do not retrain *all* bridges, only root bridge
-> * Better comments and logging in retraining logic
-> * v3: https://lore.kernel.org/linux-mips/20260320094212.696671-1-cjd@cjdns.fr/
-> 
-> Changes from v2:
-> * mediatek-pcie.yaml -> s/power-domain/power-domains/ and drop example
-> * Patch 3 dropped as it has been applied (Thanks!)
-> * v2: https://lore.kernel.org/linux-mips/20260316155157.679533-1-cjd@cjdns.fr/
-> 
-> Changes from v1:
-> * mediatek-pcie.yaml slot0 needs device-type = "pci", fix dt_binding_check
-> Link: https://lore.kernel.org/linux-mips/177334026016.3889069.9474337544951486443.robh@kernel.org
-> * v1: https://lore.kernel.org/linux-mips/20260312165332.569772-1-cjd@cjdns.fr/
-> 
-> This was split from a larger PCIe patchset which crossed multiple
-> subsystems. I'm not labeling this a v3 because it's a new patchset, but
-> I'm keeping the historical record anyway.
-> 
-> Changes from econet-pcie v2:
-> * mediatek-pcie.yaml add missing constraints to PCI node properties
-> * econet-pcie v2: https://lore.kernel.org/linux-mips/20260309131818.74467-1-cjd@cjdns.fr
-> 
-> Changes from econet-pcie v1:
-> * pcie-mediatek.c Exclude pcie_retrain_link() when building as a module
-> * econet-pcie v1: https://lore.kernel.org/linux-mips/20260303190948.694783-1-cjd@cjdns.fr/
-> 
-> 
-> Caleb James DeLisle (2):
->   dt-bindings: PCI: mediatek: Add support for EcoNet EN7528
->   PCI: mediatek: Add support for EcoNet EN7528 SoC
+> Signed-off-by: Chunkai Deng <chunkai.deng@oss.qualcomm.com>
 
-Patch 3 doesn't apply cleanly. So I applied patches 1 and 2. Please rebase patch
-3 on top of pci/controller/mediatek branch and resend it.
+Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
 
 - Mani
+
+> ---
+>  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> index f5c584cf2146..4b69a281971a 100644
+> --- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
+> @@ -27,6 +27,7 @@ properties:
+>            - qcom,eliza-ipcc
+>            - qcom,glymur-ipcc
+>            - qcom,kaanapali-ipcc
+> +          - qcom,maili-ipcc
+>            - qcom,milos-ipcc
+>            - qcom,qcs8300-ipcc
+>            - qcom,qdu1000-ipcc
+> 
+> ---
+> base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
+> change-id: 20260512-mailbox-qcom-maili-7c5cce6e672f
+> 
+> Best regards,
+> --  
+> Chunkai Deng <chunkai.deng@oss.qualcomm.com>
+> 
 
 -- 
 மணிவண்ணன் சதாசிவம்
