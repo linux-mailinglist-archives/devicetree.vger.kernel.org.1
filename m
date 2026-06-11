@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-310616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310618-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mWLtJHgaK2rm2gMAu9opvQ
-	(envelope-from <devicetree+bounces-310616-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 22:28:40 +0200
+	id izV6JX4aK2rw2gMAu9opvQ
+	(envelope-from <devicetree+bounces-310618-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 22:28:46 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8C3675250
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 22:28:40 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B28767526E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 22:28:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=W+I0TCVR;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310616-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310616-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=IADPiKbd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310618-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310618-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 287CA31718A3
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9039A315CC2B
 	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:28:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444DB3B8124;
-	Thu, 11 Jun 2026 20:28:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07C623B8BCC;
+	Thu, 11 Jun 2026 20:28:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0026A3A75A3
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 20:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD6AA3A8744
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 20:28:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781209717; cv=none; b=LppwcxHiCRp/T9Zn1VAS2XJk5Ay+JUuzGvx3nfFjJPZd2203AzB0VQoJvTRGWNTahtgEksuX2BJsA5WW+ZTUt2XP+alsv9/2+M0167VBs71/xflzNl/FW2i5o4w5yKNtfC4bnW4uRT/pZ7UcPXEsGFwaBgQ3PjD/Oy7JoaIKG90=
+	t=1781209717; cv=none; b=KgLGYfVA6T1FnhH3DYmSV92a59q+01A+lUiNHT/S/mWlofXnga+jrIO7IjzFDpcP+tkI9lc/YR0TSu5R7K+cv9keFxGSRToI6nw/g6M8eFYtvd//6ou6oGCdSNxccJOgtxYl7MApbp3vafhdOVBQdr2wiBrt9Rl6GLF/fLjirRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1781209717; c=relaxed/simple;
-	bh=44wlK79p2iFBlaDNEJYYoVrsZ4V64y2DhfrkrngDWyE=;
+	bh=fMKaNCHqvdnEkQNOcz/+Evogzl4yJdpF2G3aArECXqg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Eu9hU7K1CAvl0D7OZwGaCgTzSNH+ii9YQ1jz6njYZJSu8kiQNj2YbbQVgcGptZsETJNQGKotTj9BxupTeKWRPbLRA1EGyNFFwYee0brdbW5A+FkonI1PN0frAKoGfY9d4w+NhqoZfGp8qlkl40oJWy13z1twrBbs0vApJ2RdrWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W+I0TCVR; arc=none smtp.client-ip=209.85.161.44
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-69de9bc590aso240868eaf.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 13:28:35 -0700 (PDT)
+	 MIME-Version; b=W6/5W4XWAz8h4FLjlEsyK/+s+DLyUOSIAh+zr9NpHcXaZCEhEmdEevpejEj3XDBTi+I4hm3voGNm6BhMdaEN+C+w1qcSTaNR/JAloiBi/QUaA3+rvcw7PnF21W9c0oyyDAMJTLfdUTVCF3LjcNHV0an7ncatR4OPlksWvRb0YY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IADPiKbd; arc=none smtp.client-ip=209.85.160.42
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-43ccd4f6f6eso263731fac.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 13:28:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781209715; x=1781814515; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1781209716; x=1781814516; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KaUmQ9JpbnpkUCaTH5UXy4GKoNzMoHaVL3LWpQbAxts=;
-        b=W+I0TCVRDA11kccuECYsfkJQ9k+Vb+Gu/III/3veZvp4Qvmpo+Daw6qFKWSphfcmOG
-         z7uPBPyWwfkaupak27fCK4TzdSgRBYhMn6dYxpka+Ym29MCDgzZy0zr/J2yLUb9uoepV
-         eQCgSzeylw2jvGqhWNpmAHXUswg/w7by+b/X59BWFJyALiqA2GC5Cns7tAZvYd3j7/5c
-         dE5LNjS0xc2I3pvmfGVxXedBwR8HGePKUtkqnmeAMOhqoULMZfBkR1OGk8kELKVnO5F+
-         HAIWUSvsU/fEi6LD9XOja507fmNHCR0VWculGsMQ/pL4vsNlP+xAG+GStmhIqJFLO9pz
-         KGXg==
+        bh=AG46e6wh0vfo+H1QfKvpne8/nrh3wipAUO48FCP+P1g=;
+        b=IADPiKbdaOS+6TmS1BOdm/8aiB+cw+a2F8RY++/6yDKB1lwxYdVvQ029JnToG2XwYH
+         LP6knBI/YP/jHSDV19Or1kgVl+lheRJgJf/k442fsQC1aQwQ+JsnQUNZV2oQCyhUjiBQ
+         MwE17w8j13x/9EldJ8Locul3cNvIr5dPWmrFUH3oDCbvj2i7suhaSCgYNHcdhMhgn2C9
+         K1XeMw8Gyefrf32ULXzqvT1e1wuKHTDAPJfsQ56QslbQumtwUrbZAUuPcpnXtEnGqprO
+         eCvucVHSlZP5S3ToYvKfpxg/WAiw3zkbPcKQkksbpV576BT8kkaMVa5GD0k07sYh0kco
+         VBhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781209715; x=1781814515;
+        d=1e100.net; s=20251104; t=1781209716; x=1781814516;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=KaUmQ9JpbnpkUCaTH5UXy4GKoNzMoHaVL3LWpQbAxts=;
-        b=h1OPkeaO5OWGjWX7BhbJqQec//IfwAGGtqsDVxQjaiU/OoWk3rgqyMi42LJ6/9mdL8
-         gDUdlmTFe9fDerirI0wSwuJMSnJcI3iXIi7AVV7JrfJtK7RbGbemBFHurzm5ac1Lss7b
-         tYuOCwoxI4r55Pe4JQ02O4TTfbRvy/7+JH2SUpHbX4rGtR9T+ibVAwE4hUhEcf/fvcMD
-         WzYqwakqmFUIiYB4jN/NrUT0m/ty796fZ5MiG8dKCv3fSUbAU7R8vUGUp0ilHqFC8R6e
-         dOIoAXL+1jVvuqmkAcGT8ks+9KRUTDezl3hQJ91q2yqz2jjS8Oym8PcYlP9fC1kPYnqH
-         xQgg==
-X-Forwarded-Encrypted: i=1; AFNElJ9DFmSI0o5387hSkTsn59+lXKag4NcsprUf+ymrPU0KpaUxYdHwOg9W8qS520Vvt/lFcNx4MC/9GuC1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdQXioQaswR3MPtRCuLzaTwjjhhAVTCuZS8+O6h39K3XTZc0Xn
-	hFjGTRs4CJ5uWBdhlYMtClB9EumZCFFqaRUyMKjNApXhMBPpBx5UWqgW
-X-Gm-Gg: Acq92OHl36ztpsUXGMZfMTTvQdT7i0ax+kMkY0qMQuMVY+6PCW5Yo3y02qcC7zND+4a
-	Unjslhd3x9WL7v+brGmkmYmD5OWa1BtJa8vBMCXatVElZFykJWRcjcfY/n0x7QiRaLgD7gqFOso
-	3bXI2AzzujZfG4smrdlaN5RG2C4rFl3fORre8Ii91LA/Q9p+kUZjfFHoIKauUou2x4PAKaEraoa
-	bu0xpARY9F/D6yBV1qc3wjMSo8pqRF9dIhOz2weW+7FvGsjwXcRAZh2kHQ3CQ51JzIDR8mi3E+D
-	PZxuBXK/xUmjxIsgzNgfuQ9d3Ph+8nrWPQqVYCHFX8i3Xnw4AcZR2szzbdO65Z8XotlTFzs5iBb
-	iwpqxXe017NbBkpctgP0UJTXWrgT+CIdrMoWXaNtundIaWuwPrHaBi8v79CduOpARc0QevSZqke
-	8IWjK9nYYCRZNxi+tEd7g8axq0Q61eyeuw
-X-Received: by 2002:a05:6820:16a2:b0:69e:2cc3:16c4 with SMTP id 006d021491bc7-69ecadbf2ccmr3008961eaf.8.1781209715020;
+        bh=AG46e6wh0vfo+H1QfKvpne8/nrh3wipAUO48FCP+P1g=;
+        b=bNfbkAg46MhkeL/RGjArOahlAY0ig1d0b9jXm59xeX6MPt21N/zhd4+deVpCm6/QYQ
+         +XEp1rFEjBll817t2d0vmtt14+QSyfUlT8NUYQfvTTceOv2vPolx4+0oa9EVYmniNNIl
+         3c3Z8KD06LErawJcXgqSeBkpYNw5EO4CUYAyTxZcBwEDr492JkrvjpkhYQ+DJ0m8DFEx
+         9YyuO6THErf+tKbb08Emsa8AR71Ly0ZJH9F6vtxE2t0wcnq2dNZ1pfyuaST0cbGJWl6g
+         yyEZOOp8po56khOTMUDx6wAqSR8on5etL07VoEJ8+c1bGtO+Rn+8oUBwS72Gwah2riF4
+         R+Ng==
+X-Forwarded-Encrypted: i=1; AFNElJ9pdx+oastg9g6w9FNQQx3iBlvFTw3myKeMi2ot9/m1C/sdkUvcZlPWIx56n3oy++XIFxvpIxNtiFrv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfWKlXJkxPnvhLmjvu3Lo+d6VCKW398bcKeCVp1+0DLgftVENA
+	7qSeUqf9r265TKwf1HKsr0G6hZj+okyXtTLF11LWICzAWYj52yR6albt
+X-Gm-Gg: Acq92OFl9UeI1C6DdP1jG7kr0W0tKtI2dkWQyrvJnGbcZJ34ewhqw12pREaVReru9DK
+	+WjmhdB6ai6b6R66G6z45jpFy+kfPCfeH5F12y5zkhYuuvmpOQc79u2SYMoAO2QiCz1pjQw3kWy
+	d3H7HPpqMaolTSiZnbKR/DnNzmKWdFM28VQjCotqNhwJEXbaJKWj4gUD1XmxbmFQ8j+Yxlo+5Bd
+	NeWXWRQ5+8EZl5iTFV4mn51npXQBAigZ8VkQSaHZWZk+Qi2oeiafpGpiqZNAzRI1NY6w3KLnT8D
+	ZoWPOMnBsRfP8pOY1kpDQvfRC4tD/jMLnTmx1LW0W1azoFWNLzH3OpUaVgTG2qMviEc334hVD3x
+	27xOZBOtEx2OTEZMc4nIgdKenLm1ZpGyQaSR88BFMPmR8m57zjRnBtpEtAAVeHP8/mWXah5VWox
+	9N/VozL80y6Ju3koEBu5xh0Khn9GzwbIfS
+X-Received: by 2002:a05:6870:f289:b0:43d:2d44:5ec0 with SMTP id 586e51a60fabf-44241d43bdbmr2944367fac.26.1781209715705;
         Thu, 11 Jun 2026 13:28:35 -0700 (PDT)
 Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-44244cd05c9sm1796134fac.18.2026.06.11.13.28.34
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-44244cd05c9sm1796134fac.18.2026.06.11.13.28.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jun 2026 13:28:34 -0700 (PDT)
+        Thu, 11 Jun 2026 13:28:35 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-iio@vger.kernel.org
 Cc: andy@kernel.org,
@@ -92,9 +92,9 @@ Cc: andy@kernel.org,
 	andriy.shevchenko@intel.com,
 	Chris Morgan <macromorgan@hotmail.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH V12 1/9] dt-bindings: iio: imu: icm42600: Add mount-matrix to icm42600
-Date: Thu, 11 Jun 2026 15:25:58 -0500
-Message-ID: <20260611202607.85376-2-macroalpha82@gmail.com>
+Subject: [PATCH V12 2/9] dt-bindings: iio: imu: icm42600: Add icm42607
+Date: Thu, 11 Jun 2026 15:25:59 -0500
+Message-ID: <20260611202607.85376-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260611202607.85376-1-macroalpha82@gmail.com>
 References: <20260611202607.85376-1-macroalpha82@gmail.com>
@@ -112,12 +112,12 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310616-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310618-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com,oss.qualcomm.com];
 	FREEMAIL_FROM(0.00)[gmail.com];
@@ -136,37 +136,66 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0B8C3675250
+X-Rspamd-Queue-Id: 3B28767526E
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add mount-matrix attribute to schema. This attribute has been supported
-since the first revision of this driver, but was not documented.
+Add the ICM42607 and ICM42607P inertial measurement unit.
+
+This device is functionally very similar to the icm42600 series with a
+very different register layout. The driver does not require an
+interrupt for these specific chip revisions.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- .../devicetree/bindings/iio/imu/invensense,icm42600.yaml        | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/iio/imu/invensense,icm42600.yaml  | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-index 119e28a833fd..9b2af104f186 100644
+index 9b2af104f186..81b6e85decd5 100644
 --- a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
 +++ b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-@@ -53,6 +53,8 @@ properties:
-   drive-open-drain:
-     type: boolean
+@@ -30,6 +30,8 @@ properties:
+       - invensense,icm42600
+       - invensense,icm42602
+       - invensense,icm42605
++      - invensense,icm42607
++      - invensense,icm42607p
+       - invensense,icm42622
+       - invensense,icm42631
+       - invensense,icm42686
+@@ -67,10 +69,24 @@ properties:
+ required:
+   - compatible
+   - reg
+-  - interrupts
  
-+  mount-matrix: true
-+
-   vdd-supply:
-     description: Regulator that provides power to the sensor
+ allOf:
+   - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - invensense,icm42600
++              - invensense,icm42602
++              - invensense,icm42605
++              - invensense,icm42622
++              - invensense,icm42631
++              - invensense,icm42686
++              - invensense,icm42688
++    then:
++      required:
++        - interrupts
+ 
+ unevaluatedProperties: false
  
 -- 
 2.43.0
