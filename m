@@ -1,125 +1,138 @@
-Return-Path: <devicetree+bounces-310288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310289-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CnPcDfx9KmpmrAMAu9opvQ
-	(envelope-from <devicetree+bounces-310288-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:21:00 +0200
+	id ntT/FGJ9KmoIrAMAu9opvQ
+	(envelope-from <devicetree+bounces-310289-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:18:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C5D9670589
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:20:59 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EFA2670551
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:18:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=C+2ob+7N;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310288-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310288-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=GyKZbZEG;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310289-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310289-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 63E50324DA0B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:15:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D5B0A301AF27
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7ED83A1684;
-	Thu, 11 Jun 2026 09:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44CAE3B0ACB;
+	Thu, 11 Jun 2026 09:15:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFD513BB134;
-	Thu, 11 Jun 2026 09:15:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3CA3A6B9C
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 09:15:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781169309; cv=none; b=VEPDR2Ng0QNhVer2Hc4Ex6aA34+5TMOdErFFDJ5r8vXgFGGC5E1K78IoY7Yv0MYBFikj2JKNPe7LWsBx1EevkqmlVHQA8JnIQN5d8BY/B+X6W8U9Uq8361MsjyxhVaZdJhptjkIgHKPnLrRhMLU+ANe7B3QPj7jZtp5XOTHjgmY=
+	t=1781169311; cv=none; b=AWeaKSExzMPnBangV0is2G3Ewby6OmD35iV7WEF23KL7uBX1uedijebVXFjS3y1L4lQdFfCNJ9k5pl3AihYpPSn3CwGbGcUYLb7aA/ejOkcsaYhGCjxLVM774IPF9oc+dXNwDcHIwVgXeIwpeo8YK2+VpMZQ6dbPrrl2dLluXwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781169309; c=relaxed/simple;
-	bh=vL+KAPwmGDi8Z1ihP1tz+SOOBD0kJiZE8IMdQfmRgoY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qT45Mk0aHUx1wBD3qg1pkEe0Lzz1gX+jvwrwHJM6Ph2g8JUqWy4BH4rX8p8VN6bhOLolNvEIW4Z+WGFeNpaiOFJypGE5yq28Xjj4qhi4+hztb8nHtJ3MqvCJ4N4hq7uyUB45gpeNr0jRG4cnjUJxnfXZvvgX6AbUGKAP1oPzwJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C+2ob+7N; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25BFF1F00893;
-	Thu, 11 Jun 2026 09:15:07 +0000 (UTC)
+	s=arc-20240116; t=1781169311; c=relaxed/simple;
+	bh=1Dk0uiE6hYQnxA/reUwzj6Fl9+M3PF0yZCgiXZxD6r4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=MGP1BK2WokS0xCYP67ZRI6g3ejsZWEQ40AK3Fk1CJfyaXWDmYlCmrLwJaWSmuM9gNOpmdyJzxW3tD3hf7IB52kWGgHY48T5sjtENAXOLzAaGqKgji115YlR5WTcw/iglze7LS7b6BMfKHqZkKil815MKx3lQDtlGwr05ptjniOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GyKZbZEG; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E09F1F00898;
+	Thu, 11 Jun 2026 09:15:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781169308;
-	bh=7JXC/K/YYswCgRaONX63U5Y+XfOJObbnQSDICLmsE9s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=C+2ob+7N2q/Y4M88HEOUYnGbTnKgY9zysmYinGNyA8rRdr9LH6UR5MK49d84rBrXQ
-	 Nt/JNsdnI3FEp9oN4RpKebghpbGBhz5eOryavbOnECa716OVqTUR3qShmV8ue25qnH
-	 9MsJKOqfc9MFmUhYvvzIhkb8cq39sIjf37hp5Kj2BrmBFTdx9zP+l/LJMZUg0aMuTB
-	 Y1lexqTBu7fBJ7kQM9AwhiCfktbW0TDt5DOe45wBVJ9y35hHcTXzJ5NhU2D+bl7QW5
-	 9uVVYz761uk5YAa/tZlItZI46N9WrdiWl2Za+pe/ZepZlkK3qzIE7R5FYOv/xfn7fr
-	 8vtIBtnOen/1w==
-Date: Thu, 11 Jun 2026 11:15:06 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ramshouriesh <rshouriesh@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Loic Poulain <loic.poulain@oss.qualcomm.com>, 
-	Bryan O'Donoghue <bod@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Aleksandrs Vinarskis <alex@vinarskis.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH 8/9] dt-bindings: phy: qcom: add MIPI CSI2 mode constants
-Message-ID: <20260611-happy-shapeless-capybara-dadd28@quoll>
-References: <20260610-a14-himax-hm1092-v1-0-0c9907da47ed@gmail.com>
- <20260610-a14-himax-hm1092-v1-8-0c9907da47ed@gmail.com>
+	s=k20260515; t=1781169309;
+	bh=/p+Lvt8ewbTVk2z2hFitilux2l9kt1Db/QRRfFyX00g=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=GyKZbZEGGB9hjiWZiY1sQa9IiC5sIQpM6CyxyFHJY50b74+Du1XhXefQ9TcZYzdTS
+	 OY+aREpqTErUceWsgAwmiEw/MzeABFtQoxZlt8BCjj9QsijwD0l3wDDqfRmKNjjwoe
+	 6Vyb0xx3hvspooGfDvKC7EHUux9AAwdQWA/JqBl+oWDB9AEJMB+vOPvUyNYRVN933L
+	 ue2m0W2GCI3qHQqoLWfPgRUsJ4mKt33MyuUMDl6l2StC6YK6/iLMhgQT8CX0f8VMIi
+	 VHr/ucc9xsc8JAFdUUyjdqBJP72ynKyYztxesSxpjix1mFTcC/aerkr5XfI11ENWfC
+	 LVCLpq/RRAc0w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] arm64: defconfig: Enable USB_UAS in arm64 configuration
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Akash Kumar" <akash.kumar@oss.qualcomm.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260611090946.2790631-1-akash.kumar@oss.qualcomm.com>
+References: <20260611090946.2790631-1-akash.kumar@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 11 Jun 2026 09:15:08 +0000
+Message-Id: <20260611091509.6E09F1F00898@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260610-a14-himax-hm1092-v1-8-0c9907da47ed@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310289-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:rshouriesh@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mchehab@kernel.org,m:bryan.odonoghue@linaro.org,m:vladimir.zapolskiy@linaro.org,m:loic.poulain@oss.qualcomm.com,m:bod@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:alex@vinarskis.com,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-phy@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:akash.kumar@oss.qualcomm.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-310288-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8C5D9670589
+X-Rspamd-Queue-Id: 3EFA2670551
 
-On Wed, Jun 10, 2026 at 04:39:33PM +0530, Ramshouriesh wrote:
-> The CSI2-PHY binding references <dt-bindings/phy/phy-qcom-mipi-csi2.h>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Mismatch between Author email and Signed-off-by email.
+--
 
-No, it does not reference it.
+commit 8dd2d2a3035d6deca9f623e43d26b74e60f0f6d7
+Author: Akash Kumar <akash.kumar@oss.qualcomm.com>
 
-  $ git grep phy-qcom-mipi-csi2.h
+arm64: defconfig: Enable USB_UAS in arm64 configuration
 
-Zero results.
+This commit enables CONFIG_USB_UAS=3Dy in the default arm64 configuration
+to provide better out-of-the-box performance for USB storage devices.
 
-Best regards,
-Krzysztof
+> Author: Akash Kumar <akash.kumar@oss.qualcomm.com>
+[ ... ]
+>     Signed-off-by: Akash Kumar <akakum@qti.qualcomm.com>
 
+[Severity: Low]
+This isn't a bug, but there is a mismatch between the Author email and the
+Signed-off-by email.=20
+
+The Author is listed as akash.kumar@oss.qualcomm.com, but the Signed-off-by
+tag uses akakum@qti.qualcomm.com.=20
+
+Should these match to satisfy the standard Developer Certificate of Origin
+expectations for patch submission?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260611090946.2790=
+631-1-akash.kumar@oss.qualcomm.com?part=3D1
 
