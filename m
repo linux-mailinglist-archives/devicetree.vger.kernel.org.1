@@ -1,45 +1,45 @@
-Return-Path: <devicetree+bounces-310065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310069-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0f98JBgpKmqujQMAu9opvQ
-	(envelope-from <devicetree+bounces-310065-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:18:48 +0200
+	id 92tGIicpKmq3jQMAu9opvQ
+	(envelope-from <devicetree+bounces-310069-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:19:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2252766DF38
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:18:48 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9A5866DF48
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:19:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310065-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310065-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310069-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310069-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 67C0330B0E94
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 03:18:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 78D0A30FE5C4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 03:18:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11405305E28;
-	Thu, 11 Jun 2026 03:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F43D2E7398;
+	Thu, 11 Jun 2026 03:18:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp153-176.sina.com.cn (smtp153-176.sina.com.cn [61.135.153.176])
+Received: from smtp153-182.sina.com.cn (smtp153-182.sina.com.cn [61.135.153.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A562EB5CD
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 03:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF8C82E06E6
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 03:18:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781147924; cv=none; b=gFFfe6qTpzvGskFaK5TsCy69coCPq+qL3rmor95ukhutUQIjz9J1a3sUv8u6dwQU+W2jOC36hHLuxGH7VJDrGVR4W/s5RDxshslXlOf/FLgtJfYd4N37rd2JwtFesG1P3YtOJb3tBkcVuvrTcwTRHK4Qoa9ad3WhSZ3j21Vb3Ng=
+	t=1781147926; cv=none; b=gt/QekvGgbHIsxJhpWUxEyDM2DTjAs4W/gyeHtkEKJQbVfuZPWpat+uDppDwCgc5BsFqZns4UTnBL6bwlOZHnJVV7qzhotRShxagQeCUs9t2O6Vls49V+oBjd0U96eTnCioM5XBBl4tdFdHwdPJ3RZ8iiWdW+JvMbgT9OqiQ0vI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781147924; c=relaxed/simple;
-	bh=sdl+PHQsGQzr8k/0B7mgp8Ik3SGi8fGKNsMsjweHNck=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=GVqqFRO3KwOlrD4ywcvwtathlkQOllEfft+RekTetm+YI/DaOZT3dRSV1ZGcfa2333Y86zcLDoUeJQJV9iMD2yYGldW92Jh5NLxFr8yBCwGfRktXJK7dECosont6WmefqLz/0B6R83iZyhkLnBkp1crn+/YQHHiSAjbCi8fnInc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=61.135.153.176
+	s=arc-20240116; t=1781147926; c=relaxed/simple;
+	bh=wcuXqRZFARDZr0HdqZfZekYVkFYOJj3VFbZWolgB5c8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=pAvGevnePRtmzoNwcwtgL9/E66qDHAzNitGrBNTBQvPUtzcGqyEEv1x0ABHII/bFnYX3/mTIOS3NVBybsz5m9J0uUcg7E5Sl/4BMroQI6DjOc3AGpeuKtLeNB7Hm5Ew4Ox+gP6aJ4ne/+elIjjjuvJPDruSSp6VQkk2pZhVV8GM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=61.135.153.182
 Received: from unknown (HELO zy-virtual-machine.localdomain)([58.38.107.94])
 	by sina.net (10.54.253.38) with ESMTP
-	id 6A2A29030000377C; Thu, 11 Jun 2026 11:18:32 +0800 (CST)
+	id 6A2A29030000377C; Thu, 11 Jun 2026 11:18:33 +0800 (CST)
 X-Sender: zhangyi@everest-semi.com
 X-Auth-ID: zhangyi@everest-semi.com
-X-SMAIL-MID: 29CDD3AE2E0B4FAFAAD83F7615188A08
-X-SMAIL-UIID: 29CDD3AE2E0B4FAFAAD83F7615188A08-20260611-111832
+X-SMAIL-MID: B459201F147348CCA1F3E6ADD24FF568
+X-SMAIL-UIID: B459201F147348CCA1F3E6ADD24FF568-20260611-111833
 From: Zhang Yi <zhangyi@everest-semi.com>
 To: linux-sound@vger.kernel.org,
 	broonie@kernel.org,
@@ -49,9 +49,9 @@ Cc: tiwai@suse.com,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
 	Zhang Yi <zhangyi@everest-semi.com>
-Subject: [PATCH v1 5/7] ASoC: codecs: ES8389: Modify the initial configuration
-Date: Thu, 11 Jun 2026 11:18:22 +0800
-Message-Id: <20260611031824.4628-6-zhangyi@everest-semi.com>
+Subject: [PATCH v1 6/7] ASoC: codecs: ES8389: Add private members related to HPF
+Date: Thu, 11 Jun 2026 11:18:23 +0800
+Message-Id: <20260611031824.4628-7-zhangyi@everest-semi.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20260611031824.4628-1-zhangyi@everest-semi.com>
 References: <20260611031824.4628-1-zhangyi@everest-semi.com>
@@ -66,12 +66,12 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-310065-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310069-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[everest-semi.com];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -88,41 +88,76 @@ X-Spamd-Result: default: False [1.54 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2252766DF38
+X-Rspamd-Queue-Id: D9A5866DF48
 
-Modify the initial configuration
+Add private members related to HPF.
+And defines ES8389_HPF_DEFAULT
 
 Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
 ---
- sound/soc/codecs/es8389.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ sound/soc/codecs/es8389.c | 18 ++++++++++++++++--
+ sound/soc/codecs/es8389.h |  1 +
+ 2 files changed, 17 insertions(+), 2 deletions(-)
 
 diff --git a/sound/soc/codecs/es8389.c b/sound/soc/codecs/es8389.c
-index 647d9d628..284eb707f 100644
+index 284eb707f..2460cf977 100644
 --- a/sound/soc/codecs/es8389.c
 +++ b/sound/soc/codecs/es8389.c
-@@ -793,7 +793,7 @@ static void es8389_init(struct snd_soc_component *component)
+@@ -36,6 +36,8 @@ struct	es8389_private {
+ 	unsigned int sysclk;
+ 	int mastermode;
  
- 	regmap_read(es8389->regmap, ES8389_MAX_REGISTER, &reg);
- 	es8389->version = reg;
--	regmap_write(es8389->regmap, ES8389_ISO_CTL, 0x00);
-+	regmap_write(es8389->regmap, ES8389_ISO_CTL, 0x56);
- 	regmap_write(es8389->regmap, ES8389_RESET, 0x7E);
- 	regmap_write(es8389->regmap, ES8389_ISO_CTL, 0x38);
- 	regmap_write(es8389->regmap, ES8389_ADC_HPF1, 0x64);
-@@ -845,7 +845,7 @@ static void es8389_init(struct snd_soc_component *component)
- 	regmap_write(es8389->regmap, ES8389_SCLK_DIV, 0x04);
- 	regmap_write(es8389->regmap, ES8389_LRCK_DIV1, 0x01);
- 	regmap_write(es8389->regmap, ES8389_LRCK_DIV2, 0x00);
--	regmap_write(es8389->regmap, ES8389_OSC_CLK, 0x00);
-+	regmap_write(es8389->regmap, ES8389_OSC_CLK, 0x10);
- 	regmap_write(es8389->regmap, ES8389_ADC_OSR, 0x1F);
- 	regmap_write(es8389->regmap, ES8389_ADC_DSP, 0x7F);
- 	regmap_write(es8389->regmap, ES8389_ADC_MUTE, 0xC0);
++	u8 hpfl;
++	u8 hpfr;
+ 	u8 vddd;
+ 	bool mclk_src;
+ 	int version;
+@@ -743,8 +745,8 @@ static int es8389_mute(struct snd_soc_dai *dai, int mute, int direction)
+ 			regmap_update_bits(es8389->regmap, ES8389_DAC_FORMAT_MUTE,
+ 						0x03, 0x00);
+ 		} else {
+-			regmap_update_bits(es8389->regmap, ES8389_ADC_HPF1, 0x0f, 0x0a);
+-			regmap_update_bits(es8389->regmap, ES8389_ADC_HPF2, 0x0f, 0x0a);
++			regmap_update_bits(es8389->regmap, ES8389_ADC_HPF1, 0x0f, es8389->hpfl);
++			regmap_update_bits(es8389->regmap, ES8389_ADC_HPF2, 0x0f, es8389->hpfr);
+ 			regmap_update_bits(es8389->regmap, ES8389_ADC_FORMAT_MUTE,
+ 						0x03, 0x00);
+ 		}
+@@ -902,6 +904,18 @@ static int es8389_probe(struct snd_soc_component *component)
+ 
+ 	es8389->mclk_src = device_property_read_bool(component->dev, "everest,mclk-from-sclk");
+ 
++	ret = device_property_read_u8(component->dev, "everest,hpfl", &es8389->hpfl);
++	if (ret != 0) {
++		dev_dbg(component->dev, "hpfl return %d\n", ret);
++		es8389->hpfl = ES8389_HPF_DEFAULT;
++	}
++
++	ret = device_property_read_u8(component->dev, "everest,hpfr", &es8389->hpfr);
++	if (ret != 0) {
++		dev_dbg(component->dev, "hpfr return %d\n", ret);
++		es8389->hpfr = ES8389_HPF_DEFAULT;
++	}
++
+ 	for (i = 0; i < ARRAY_SIZE(es8389_core_supplies); i++)
+ 		es8389->core_supply[i].supply = es8389_core_supplies[i];
+ 	ret = devm_regulator_bulk_get(component->dev, ARRAY_SIZE(es8389_core_supplies), es8389->core_supply);
+diff --git a/sound/soc/codecs/es8389.h b/sound/soc/codecs/es8389.h
+index 7f1212219..81353dcec 100644
+--- a/sound/soc/codecs/es8389.h
++++ b/sound/soc/codecs/es8389.h
+@@ -105,6 +105,7 @@
+ 
+ #define ES8389_MIC_SEL_MASK           (7 << 4)
+ #define ES8389_MIC_DEFAULT            (1 << 4)
++#define ES8389_HPF_DEFAULT            (0x0A << 0)
+ 
+ #define ES8389_MASTER_MODE_EN         (1 << 0)
+ 
 -- 
 2.17.1
 
