@@ -1,334 +1,208 @@
-Return-Path: <devicetree+bounces-310215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310213-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FZV0OAxsKmp3pAMAu9opvQ
-	(envelope-from <devicetree+bounces-310215-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:04:28 +0200
+	id kf3hBiJrKmo8pAMAu9opvQ
+	(envelope-from <devicetree+bounces-310213-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:00:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CAAA66FADC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:04:28 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id F307566FA4B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 10:00:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Q6g52pnP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310215-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310215-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=intel.com header.s=Intel header.b=GP5I+hPO;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310213-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310213-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2F3263064454
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:00:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5619C30066B0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 08:00:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA427374E47;
-	Thu, 11 Jun 2026 08:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72D6374A1A;
+	Thu, 11 Jun 2026 08:00:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71C35372ECF
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 08:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D361372ECF;
+	Thu, 11 Jun 2026 08:00:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781164833; cv=none; b=JL2MLMe6KL5mIoMFQj5Azt/3daIuoM3BznADNIZBytBAEm8BgxkpVg0BkDqQPEfKAowOj6XCaV2jtAgEdd0GqwOsPkOVYiFGdER1nRRfanssD/NqXLVGRsD5a6HP0VgCCJ81Sy0iDTOkVZ+KduX/LyXPoarvns/RXDiP3oUqiAI=
+	t=1781164825; cv=none; b=tYD4+SxCU5niYEaMli+nGOkL7GolhXgUDOnHgXrwEfu0JJU3TTqR7rDVYU4J5oHFPJydCQrJGat6IaoJgaxT73QgUG2e04paZ3Ij0biK88jNDQrC/WXkTA+YuK4Zw/lGFUUzb7naWqzlshQKUdiT/Eq7NBi+TMSXJfQ97BEBwVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781164833; c=relaxed/simple;
-	bh=5T5GPhbjbV6TAuwWoc/EO0fQlz1+1MUif1+99Yn3u/E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=eEGMC80PEZpkYplf/5QMNfcEdTfIqdRYV0gExyqgc441fkStHMBzKEVLGdO6aykjr1XR/hOgWqgT0nKmSesBbMIjbJwQppYdF8s3gNnndpyZV6V21EseeQyLSpaacvYpSuOjP3RXgB7UOl8fXVHc35xMussUcg1ALrX4kw3JVjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q6g52pnP; arc=none smtp.client-ip=209.85.214.175
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2c0c2e8d381so14180905ad.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 01:00:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781164832; x=1781769632; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7TVjBPtkRQto1Hvuai/39HXD7EMOmQdrCbAoz9POuZM=;
-        b=Q6g52pnPLqEbiXZU7MP/BgATWsHhQQ4kb2ypCEVTiIVWK7WbFhloPoolP6ifCrhK+b
-         uAFeh0+ua0Zi6fcWPUvCvKxmjWQ5o6L/BRZYNen4ANp50DYThLh8mTOuhlwMLeaQwi+F
-         /qbC+IFqFFnBCQ7vyzgL592YJkt5NEK+nyMAfpbj52sKlG1CAwRF4vjEOb1x363PhYbJ
-         5rzeZlAqLHgV/Fn6w6yhSn+/gbiKft6ncPpb+Dlf51SNm4cFRTbMY4z8tuhooiKySkXN
-         4zrHOp+fTp9OgPlKIPEKobKv99f2+3Qd6LMK8EGepzxie/SvsE/stKs6cMsRixqpL2el
-         wY7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781164832; x=1781769632;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7TVjBPtkRQto1Hvuai/39HXD7EMOmQdrCbAoz9POuZM=;
-        b=irmo0vSYSnGwPC88wrPrgqZ6KFuvCA1uzchlHMvCQho+HIW9zfijdruxwNQpYx0W8w
-         4ORu04RoLweJjz5nLl+3j/DEsaN1/Ye+KQXmBUikbZFiUgFD+YcqknDqAgbB2cGfbEsU
-         b/+oX4yz9JXWek4jSVzwafqDGqtqvt6WxNn5RMQPaYqHOujNVe8pWRcynuyvKQlJlHRL
-         bEcR6En0sMsC+WBZz3jQrWP5/LPLeeXMi/OaCAQihjgqYjG4UST+TLrN+8zmcT3MmjyQ
-         k5AiVJzJtx05y20jSM0JllXL3pkHP4W8RatsSOFtQCkxDGdLrAFqx53ww/HTIPIgtMB4
-         iBPg==
-X-Gm-Message-State: AOJu0YxXdWS8yuFx/6hz4sgyjfXFj7Frk5yDSR5Lx9qrR7BC42fTqeye
-	GXGzkvAwxzLL2WHbclnhbjhNy67cJN3REAbA3q552EmtDoZXAuVqImTK
-X-Gm-Gg: Acq92OFDHy4XgaIny33rC6IDFPasEqJmU0Jk0AdOr5iWCNGFvIA/r7qcJXbuwQikNyC
-	7loBoKUbBq/UPvgtS+3JfILWRPJTQqjhVnUK6QqLBONHKup+oxWIvnG8pwTR/ICRhTlwWja1+Us
-	sfV1Whkm47q3WRBDM1faO8LCPbmwl9pfbGF5aqntkqbVbCppQCG3fY9WaVpcHdkYTOMdPZPdB+N
-	/XD6IaDzOTgDc8qKlPZCor3uTms75GLfx+Z6KcOMa4ler7kHx2Ij0Cb3XqQKeC30WktXaKFiuPZ
-	8ExUh7nKWI9spdZwFoM7o1wTRLSxLuZC0rL5q12+YmWUzqYEUbVcaQ4zoA8B79xwOZ0XRc1erQf
-	rXPiEja4AaEOenwJwBKlw8ZjNglEHz/EPi4Grza40s5ktRtgM7yFFfN4IsvgJ94ZKkWff/kFMVF
-	HG8hhgMetryYUiGlJyNSH04yEVTAEwnFRUTeTIYwusgLY=
-X-Received: by 2002:a17:903:1a2d:b0:2c0:af09:f3c3 with SMTP id d9443c01a7336-2c2f636bcefmr11336005ad.8.1781164830275;
-        Thu, 11 Jun 2026 01:00:30 -0700 (PDT)
-Received: from [192.168.1.3] ([2401:4900:881c:31ad:7fa5:d959:91e7:2240])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c16629d40asm259089285ad.64.2026.06.11.01.00.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Jun 2026 01:00:29 -0700 (PDT)
-From: Bhargav Joshi <j.bhargav.u@gmail.com>
-Date: Thu, 11 Jun 2026 13:30:14 +0530
-Subject: [PATCH v2] dt-bindings: interrupt-controller: ti,irq-crossbar:
- Convert to DT schema
+	s=arc-20240116; t=1781164825; c=relaxed/simple;
+	bh=PGULIhFtjwYzNe2T+HganJaxHbOTqAPqzyO4Ra14zMw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cY/EyhNgfmXUDPpZDch3QlBI5MEf5xOeN27fl11c6lT/UHPAzdxc6bPctbMuhcVPmpA8Jtta3Xl74NlVYjC+0rExwZx1evQe/HvzJ/zk0FosRF6x8kiJv7+7bT3NyXxk/exMz73oarIaHEec1qdMZWSZzzDNgULNBiZhNuAAhh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GP5I+hPO; arc=none smtp.client-ip=192.198.163.17
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1781164825; x=1812700825;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PGULIhFtjwYzNe2T+HganJaxHbOTqAPqzyO4Ra14zMw=;
+  b=GP5I+hPOgvvjXqG0h6ZQFdUM8kQokmpUbbFLFP/+ZofNhWY7IwReK00A
+   XV1/Jq09B5Rp2TN7M3l8D+c+a9U5LDCb7hdGKSmrxFixNP25A6ma/pjk6
+   hpDbC98pcq5C38X0impzuKkYuWs8TWGxmh0A3xgIhFiDMTDtnrrG930VS
+   qC9bB/DFwcPbP5SKh+Mtoj3WFL4MkViAJpyuia2QeEHWTWXzx9dK+5qet
+   9Dbv65mAFOkBLhzhr/L58aMrp5IUVjmxpu0kTq13uZ73vWHbhZvuzPrA0
+   JPF4VUmgbtcSgl/6eOP0JnMRHNvwpFAu1xnTfKG7g93F1quWDYNZhRA0L
+   w==;
+X-CSE-ConnectionGUID: gaSR+8vfQqCpLWrhB60ZHw==
+X-CSE-MsgGUID: EyVlsuQaQFG6zlSaDcLSYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81819779"
+X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; 
+   d="scan'208";a="81819779"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2026 01:00:24 -0700
+X-CSE-ConnectionGUID: Y7KQgdkzTPS+9Dm6DR5iiQ==
+X-CSE-MsgGUID: 92yebZMCSiCz1nbtISMqyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,198,1774335600"; 
+   d="scan'208";a="284493565"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.123])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2026 01:00:20 -0700
+Date: Thu, 11 Jun 2026 11:00:17 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V11 5/9] iio: imu: inv_icm42607: Add PM support for
+ icm42607
+Message-ID: <aiprEfu5K7rP0LRr@ashevche-desk.local>
+References: <20260610175455.19006-1-macroalpha82@gmail.com>
+ <20260610175455.19006-6-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260611-crossbar-v2-1-231d4f88298e@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/0WNQQ6CMBBFr0JmbU3bQBFX3sOwaMsAY4SaDhIN4
- e4WWJhZveT9NwswRkKGa7ZAxJmYwphAnzLwvR07FNQkBi21kYW+CB8Ds7NRaFdZk6tGq9xA0l8
- RW/rsqXt9ML/dA/207TejJ55C/O6/ZrV5RzbdPzsrIUVryrb0rkIs5K0bLD3PPgxQr+v6A4F3F
- 32yAAAA
-X-Change-ID: 20260528-crossbar-2b9a641d2146
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
- Sricharan R <r.sricharan@ti.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- goledhruva@gmail.com, m-chawdhry@ti.com, daniel.baluta@gmail.com, 
- simona.toaca@nxp.com, j.bhargav.u@gmail.com
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1781164825; l=6816;
- i=j.bhargav.u@gmail.com; h=from:subject:message-id;
- bh=5T5GPhbjbV6TAuwWoc/EO0fQlz1+1MUif1+99Yn3u/E=;
- b=zF+5OreIarstm5mck6ZXkSO9kTSqOYNKWkQwSrqXfxk5ncx6y0AxB2sMnrKXeDub7IQWZ6/DH
- 6OqN0L+CK8zAEtJcPSM16NOj79xeE6cpzr0HbaRMxPhn6JooWtctzhz
-X-Developer-Key: i=j.bhargav.u@gmail.com; a=ed25519;
- pk=IqNDwUZKECEA+n8wXctFLBbYL9NhFstZNbOznm/nX1k=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260610175455.19006-6-macroalpha82@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310215-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,ti.com,nxp.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[jbhargavu@gmail.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tglx@kernel.org,m:r.sricharan@ti.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:goledhruva@gmail.com,m:m-chawdhry@ti.com,m:daniel.baluta@gmail.com,m:simona.toaca@nxp.com,m:j.bhargav.u@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:danielbaluta@gmail.com,m:jbhargavu@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310213-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jic23@kernel.org,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RSPAMD_EMAILBL_FAIL(0.00)[andriy.shevchenko@intel.com:query timed out];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbhargavu@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2CAAA66FADC
+X-Rspamd-Queue-Id: F307566FA4B
 
-Convert TI irq-crossbar binding from text format to DT schema.
+On Wed, Jun 10, 2026 at 12:54:49PM -0500, Chris Morgan wrote:
+> Add power management support for the ICM42607 device driver.
 
-As part of conversion following changes are made:
- - Add '#interrupt-cells' as a required property which was missing in
-   text binding
- - As irq-crossbar is interrupt-controller. Move binding from
-   bindings/arm/omap to bindings/interrupt-controller
+...
 
-Signed-off-by: Bhargav Joshi <j.bhargav.u@gmail.com>
----
-Changes in v2:
-- Dropped property name change and driver updates. 
-- Link to v1: https://lore.kernel.org/r/20260606-crossbar-v1-0-f67f7cb9ee50@gmail.com
----
- .../devicetree/bindings/arm/omap/crossbar.txt      | 55 -------------
- .../interrupt-controller/ti,irq-crossbar.yaml      | 96 ++++++++++++++++++++++
- 2 files changed, 96 insertions(+), 55 deletions(-)
+>  struct inv_icm42607_state {
+>  	struct mutex lock;
+>  	const struct inv_icm42607_hw *hw;
+>  	struct regmap *map;
+>  	struct regulator *vddio_supply;
+> +	bool vddio_en;
+>  	struct iio_mount_matrix orientation;
+>  	struct inv_icm42607_conf conf;
+> +	struct inv_icm42607_suspended suspended;
+>  };
 
-diff --git a/Documentation/devicetree/bindings/arm/omap/crossbar.txt b/Documentation/devicetree/bindings/arm/omap/crossbar.txt
-deleted file mode 100644
-index a43e4c7aba3d..000000000000
---- a/Documentation/devicetree/bindings/arm/omap/crossbar.txt
-+++ /dev/null
-@@ -1,55 +0,0 @@
--Some socs have a large number of interrupts requests to service
--the needs of its many peripherals and subsystems. All of the
--interrupt lines from the subsystems are not needed at the same
--time, so they have to be muxed to the irq-controller appropriately.
--In such places a interrupt controllers are preceded by an CROSSBAR
--that provides flexibility in muxing the device requests to the controller
--inputs.
--
--Required properties:
--- compatible : Should be "ti,irq-crossbar"
--- reg: Base address and the size of the crossbar registers.
--- interrupt-controller: indicates that this block is an interrupt controller.
--- ti,max-irqs: Total number of irqs available at the parent interrupt controller.
--- ti,max-crossbar-sources: Maximum number of crossbar sources that can be routed.
--- ti,reg-size: Size of a individual register in bytes. Every individual
--	    register is assumed to be of same size. Valid sizes are 1, 2, 4.
--- ti,irqs-reserved: List of the reserved irq lines that are not muxed using
--		 crossbar. These interrupt lines are reserved in the soc,
--		 so crossbar bar driver should not consider them as free
--		 lines.
--
--Optional properties:
--- ti,irqs-skip: This is similar to "ti,irqs-reserved", but these are for
--  SOC-specific hard-wiring of those irqs which unexpectedly bypasses the
--  crossbar. These irqs have a crossbar register, but still cannot be used.
--
--- ti,irqs-safe-map: integer which maps to a safe configuration to use
--  when the interrupt controller irq is unused (when not provided, default is 0)
--
--Examples:
--		crossbar_mpu: crossbar@4a002a48 {
--			compatible = "ti,irq-crossbar";
--			reg = <0x4a002a48 0x130>;
--			ti,max-irqs = <160>;
--			ti,max-crossbar-sources = <400>;
--			ti,reg-size = <2>;
--			ti,irqs-reserved = <0 1 2 3 5 6 131 132>;
--			ti,irqs-skip = <10 133 139 140>;
--		};
--
--Consumer:
--========
--See Documentation/devicetree/bindings/interrupt-controller/interrupts.txt and
--Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml for
--further details.
--
--An interrupt consumer on an SoC using crossbar will use:
--	interrupts = <GIC_SPI request_number interrupt_level>
--
--Example:
--	device_x@4a023000 {
--		/* Crossbar 8 used */
--		interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
--		...
--	};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,irq-crossbar.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,irq-crossbar.yaml
-new file mode 100644
-index 000000000000..ec9a33511aae
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/ti,irq-crossbar.yaml
-@@ -0,0 +1,96 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/ti,irq-crossbar.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments IRQ Crossbar
-+
-+maintainers:
-+  - Sricharan R <r.sricharan@ti.com>
-+
-+description:
-+  Some socs have a large number of interrupts requests to service the needs of
-+  its many peripherals and subsystems. All of the interrupt lines from the
-+  subsystems are not needed at the same time, so they have to be muxed to the
-+  irq-controller appropriately. In such places a interrupt controllers are
-+  preceded by an CROSSBAR that provides flexibility in muxing the device
-+  requests to the controller inputs.
-+
-+properties:
-+  compatible:
-+    const: ti,irq-crossbar
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 3
-+
-+  ti,max-irqs:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Total number of irqs available at the parent interrupt controller.
-+    minimum: 1
-+
-+  ti,max-crossbar-sources:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Maximum number of crossbar sources that can be routed.
-+    minimum: 1
-+
-+  ti,reg-size:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Size of a individual register in bytes. Every individual
-+      register is assumed to be of same size.
-+    enum: [1, 2, 4]
-+
-+  ti,irqs-reserved:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      List of the reserved irq lines that are not muxed using crossbar. These
-+      interrupt lines are reserved in the soc, so crossbar bar driver should not
-+      consider them as free lines.
-+
-+  ti,irqs-skip:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      Similar to "ti,crossbar-irqs-reserved", but these are for SOC-specific
-+      hard-wiring of those irqs which unexpectedly bypasses the crossbar. These
-+      irqs have a crossbar register, but still cannot be used.
-+
-+  ti,irqs-safe-map:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      integer which maps to a safe configuration to use when the interrupt
-+      controller irq is unused.
-+    default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - ti,max-irqs
-+  - ti,max-crossbar-sources
-+  - ti,reg-size
-+  - ti,irqs-reserved
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    crossbar@4a002a48 {
-+        compatible = "ti,irq-crossbar";
-+        reg = <0x4a002a48 0x130>;
-+        interrupt-controller;
-+        #interrupt-cells = <3>;
-+        ti,max-irqs = <160>;
-+        ti,max-crossbar-sources = <400>;
-+        ti,reg-size = <2>;
-+        ti,irqs-reserved = <0 1 2 3 5 6 131 132>;
-+        ti,irqs-skip = <10 133 139 140>;
-+    };
+When adding a new member to the data structure always consult with `pahole`
+tool to see if the layout is the best fit.
 
----
-base-commit: eb3f4b7426cfd2b79d65b7d37155480b32259a11
-change-id: 20260528-crossbar-2b9a641d2146
+...
 
-Best regards,
+> +/*
+> + * Suspend delay assumed from other icm42600 series device, not
+> + * documented in datasheet.
+> + */
+> +#define INV_ICM42607_SUSPEND_DELAY_MS			2000
+
+2 * USEC_PER_MSEC
+
+...
+
+> +	sleepval = 0;
+> +	if (temp && !oldtemp)
+> +		sleepval = max(sleepval, INV_ICM42607_TEMP_STARTUP_TIME_MS);
+> +
+> +	if (accel != oldaccel)
+> +		sleepval = max(sleepval, INV_ICM42607_ACCEL_STARTUP_TIME_MS);
+> +
+> +	if (gyro != oldgyro)
+> +		sleepval = max(sleepval, INV_ICM42607_GYRO_STARTUP_TIME_MS);
+> +
+> +	if (sleep_ms)
+> +		*sleep_ms = sleepval;
+> +	else if (sleepval)
+> +		fsleep(sleepval * USEC_PER_MSEC);
+
+Also good to have a _ms suffis in sleepval.
+
+...
+
+> +	dev_set_drvdata(dev, st);
+
+This what requires device.h. So, you can start with it whenever you first need
+dev_printk.h, devres/*.h, but it doesn't mean you are supposed to drop other
+non-device.h related headers, such as err.h.
+
+...
+
+> +EXPORT_NS_GPL_DEV_PM_OPS(inv_icm42607_pm_ops, IIO_ICM42607) = {
+> +	SYSTEM_SLEEP_PM_OPS(inv_icm42607_suspend, inv_icm42607_resume)
+> +	RUNTIME_PM_OPS(inv_icm42607_runtime_suspend,
+> +		       inv_icm42607_runtime_resume, NULL)
+
+Keep it logically split, either as
+
+	RUNTIME_PM_OPS(inv_icm42607_runtime_suspend, inv_icm42607_runtime_resume, NULL)
+
+or as
+
+	RUNTIME_PM_OPS(inv_icm42607_runtime_suspend,
+		       inv_icm42607_runtime_resume,
+		       NULL)
+
+> +};
+
 -- 
-Bhargav
+With Best Regards,
+Andy Shevchenko
+
 
 
