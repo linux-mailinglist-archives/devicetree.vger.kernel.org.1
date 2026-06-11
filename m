@@ -1,173 +1,151 @@
-Return-Path: <devicetree+bounces-310192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310195-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NjKjI1xoKmp+owMAu9opvQ
-	(envelope-from <devicetree+bounces-310192-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:48:44 +0200
+	id shAhKYxnKmpHowMAu9opvQ
+	(envelope-from <devicetree+bounces-310195-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:45:16 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 864BF66F8A0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:48:43 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C40966F807
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:45:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bCp2cWJi;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310192-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310192-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=163.com header.s=s110527 header.b=mvJqFNJB;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310195-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310195-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=163.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id ECDAE3005155
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:42:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 819AC3043C25
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE50367F54;
-	Thu, 11 Jun 2026 07:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8264C3B19C2;
+	Thu, 11 Jun 2026 07:44:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A5E4367F3D;
-	Thu, 11 Jun 2026 07:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2C43369217;
+	Thu, 11 Jun 2026 07:44:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781163744; cv=none; b=lRRrNo6Opea/V2z7jiyTc1plkk6eLOO0QJNytItNbb+R+X5Ad/N6gdKUpgUJKreBFCWt5Aeb+pI9y6PJk5vdhROfZsxn4iwQoUBpCCDWyymqM6/1YxoqqIQN2eV8Zavso1JksGvlu40X/bmC7YwYeT3ne4HxWge3B5Q4YOBQpv8=
+	t=1781163868; cv=none; b=Ouw94ri0OTW04m7/1MB+GxebwHeATeDI4WWD9o6kRNRYJkuht44jt7k3XW4xAb3nUnd2JzJq1YMZpYl3einW4GktVUaj7JSoWTj27QnLiUJJQDI6Xe4W9UnXM/jvrc8LbF/suV5+k8/mA6tge3qy7I8E99o4BpPx9nFk98IeliQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781163744; c=relaxed/simple;
-	bh=Y7KBfZD5DQHBGMMzc6u2sq3+VfCL6Fo7fCWIEQYW7ao=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lG0rbHVWstrSz/Tvf6K9xLXcKKLsTiPJs9OaLhIWT7STyqabsKOLGr6J/Nxcv16s44d15sufPFu15gpy0D+fryhY8Xp8299rfqheldr0KgZ02z514DM6BSVXJwH+hieOr31YdigUzdzm8rudjIWTJgBGpSFZHS9cqC0cJVJwPGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bCp2cWJi; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 267111F00893;
-	Thu, 11 Jun 2026 07:42:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781163742;
-	bh=GfHjmALeSuAk8b8lLGyqi6fhpxEvnN4bOx0UqElVopI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=bCp2cWJiqRWgpB/BNvv79HOpoVV4VIpHSU6U7tGRxtVlSVxeckYlbOag//8OLoChE
-	 3q8Fqlx4Jr9E5wtUgb7aChD49Uz9Rsq7xxyKfJcZyogIyMjJ04w7zJsA0kJBIewTZl
-	 pU2lrXflp414X/EzBFAp9skrggETc2wzK7Ttx94XQBi5H+e9lZERPELsQH4kPqsurZ
-	 CkakpoFvSGdg8J5e08ep3IpQqW6KcUewwJlwZ05ipwk9o/7u59XgQNg41LNaINc74i
-	 COvSRxZHjiEW+OwWyh9uEpBoxBvV6ms1zGv/cr7mXSTOM0+RtSNt+Ew/lDCJP9n8kW
-	 AK62cURfu4lcA==
-Date: Thu, 11 Jun 2026 09:42:20 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: joakim.zhang@cixtech.com
-Cc: mturquette@baylibre.com, sboyd@kernel.org, bmasney@redhat.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, 
-	gary.yang@cixtech.com, cix-kernel-upstream@cixtech.com, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 3/5] dt-bindings: clock: cix,sky1-audss-clock: add
- audss clock controller
-Message-ID: <20260611-numbat-of-unmistakable-excitement-f6cfed@quoll>
-References: <20260610075645.3581145-1-joakim.zhang@cixtech.com>
- <20260610075645.3581145-4-joakim.zhang@cixtech.com>
+	s=arc-20240116; t=1781163868; c=relaxed/simple;
+	bh=jdtZgwe7NYlJ+5fp6xjdH+kqGQa2JnRPx0F7n9kTkdA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TFSYPP/MIehyMBIsPxOsKZojQH8LEC4yDecUeVt4PtKo3xahYNuEhfdrJn3gxfEZGLn8Y9rZddKxyQlcDCSD979grmJ7MYbUtYKiNQN3ZqVqmUC5uo3pfSKyJCgB15FHvWUIXBIsdQO9QWHcGPymo4u+fmgrKuqlmjC2SlU34VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=mvJqFNJB; arc=none smtp.client-ip=117.135.210.4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=42
+	LYPuJsnjlkHJxHjNhe9RhRHJyyVgPC83eS53Wa25k=; b=mvJqFNJBipt77zo2LL
+	ZrrXV+znfQ5MgLVtBlvVy587l0AGsW8VWr9E4hBn2pB6N/mrsYkzPsYlWn0QB65Q
+	KjZQ374CGJwntmfVzYbR4Q3coqhRD+dZiwGCKbckdZP9DEhCI2ezr/V88NFNA3PM
+	SSnzvKQY7xIoU7lZIa6cz3s7k=
+Received: from ZM.localdomain (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wD3PvcqZypqI94RCw--.19273S2;
+	Thu, 11 Jun 2026 15:43:38 +0800 (CST)
+From: Ziming Zhu <zmzhu0630@163.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Ziming Zhu <ziming.zhu@silergycorp.com>
+Subject: [PATCH v3 0/3] Add Silergy SQ24860 support
+Date: Thu, 11 Jun 2026 15:43:32 +0800
+Message-Id: <20260611074335.4415-1-zmzhu0630@163.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260610075645.3581145-4-joakim.zhang@cixtech.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3PvcqZypqI94RCw--.19273S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJr18KrW7Xr4xAw1UXw13urg_yoW8WFWfpa
+	ykurZ3ta4DJr17Xwsayw48WFW5Ar18Xw4YkFyDJ3WSvFn5ZFyIvrW3KF98Z3srCr1fJF12
+	vF95KrnY93Z7AFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UNtxDUUUUU=
+X-CM-SenderInfo: x2p2x3aqwtiqqrwthudrp/xtbCvwsJAmoqZytHpgAA3S
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310192-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:joakim.zhang@cixtech.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:gary.yang@cixtech.com,m:cix-kernel-upstream@cixtech.com,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-310195-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[zmzhu0630@163.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:ziming.zhu@silergycorp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[163.com];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zmzhu0630@163.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[163.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,silergycorp.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 864BF66F8A0
+X-Rspamd-Queue-Id: 1C40966F807
 
-On Wed, Jun 10, 2026 at 03:56:43PM +0800, joakim.zhang@cixtech.com wrote:
-> +  '#clock-cells':
-> +    const: 1
-> +    description:
-> +      Clock indices are defined in include/dt-bindings/clock/cix,sky1-audss.h.
-> +
-> +  clocks:
-> +    items:
-> +      - description: I2S parent clock for sampling rates multiple of 8kHz.
-> +      - description: I2S parent clock for sampling rates multiple of 11.025kHz.
-> +      - description: clock feeding most devices in audss (NOC, DSP, SRAM, HDA, DMAC, I2S, and Mailbox).
-> +      - description: clock feeding for HDA, Timer and Watchdog, which is a delicated 48MHz clock.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: x8k
-> +      - const: x11k
-> +      - const: sys
-> +      - const: 48m
-> +
-> +  resets:
-> +    maxItems: 1
-> +    description: Audio subsystem NoC (or bus) reset line.
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +    description: Audio subsystem power domain.
+From: Ziming Zhu <ziming.zhu@silergycorp.com>
 
-Same comments as last time, but let's keep discussion in previous patch.
+Add devicetree bindings, PMBus hwmon driver support, and documentation
+for the Silergy SQ24860 eFuse.
 
-> +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/cix,sky1.h>
-> +
-> +    clock-controller {
-> +        compatible = "cix,sky1-audss-clock";
-> +        power-domains = <&smc_devpd 0>;
-> +        #clock-cells = <1>;
-> +        clocks = <&scmi_clk CLK_TREE_AUDIO_CLK0>, <&scmi_clk CLK_TREE_AUDIO_CLK2>,
-> +                 <&scmi_clk CLK_TREE_AUDIO_CLK4>, <&scmi_clk CLK_TREE_AUDIO_CLK5>;
-> +        clock-names = "x8k", "x11k", "sys", "48m";
-> +        resets = <&s5_syscon 31>;
-> +    };
-> diff --git a/include/dt-bindings/clock/cix,sky1-audss.h b/include/dt-bindings/clock/cix,sky1-audss.h
-> new file mode 100644
-> index 000000000000..033046407dee
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/cix,sky1-audss.h
+The device provides voltage, current, power, and temperature telemetry.
+The driver also supports peak, average, and minimum history reporting,
+sample count configuration, and maps the manufacturer-specific VIREF
+register to the generic input over-current fault limit attribute.
 
-Filename must match the compatible.
+Changes in v3:
+- fix remaining checkpatch issues in the SQ24860 driver
+- use C comments consistently in the driver
+- drop unused header files
+- make GIMON a constant in the gain calculation helper
+- use proper 64-bit division for the calibration gain calculation
+- return -EINVAL when the calculated gain does not fit
+- reject PMBUS_IIN_OC_FAULT_LIMIT values outside the hardware range
+- treat malformed silergy,rimon-micro-ohms as an error
+- sort sq24860 correctly in Documentation/hwmon/index.rst
 
-Best regards,
-Krzysztof
+Ziming Zhu (3):
+  dt-bindings: hwmon: pmbus: Add bindings for Silergy SQ24860
+  hwmon: pmbus: Add support for Silergy SQ24860
+  hwmon: Add documentation for SQ24860
+
+ .../bindings/hwmon/pmbus/silergy,sq24860.yaml |  74 +++
+ Documentation/hwmon/index.rst                 |   1 +
+ Documentation/hwmon/sq24860.rst               |  96 ++++
+ drivers/hwmon/pmbus/Kconfig                   |  19 +
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/sq24860.c                 | 430 ++++++++++++++++++
+ 6 files changed, 621 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/silergy,sq24860.yaml
+ create mode 100644 Documentation/hwmon/sq24860.rst
+ create mode 100644 drivers/hwmon/pmbus/sq24860.c
+
+-- 
+2.25.1
 
 
