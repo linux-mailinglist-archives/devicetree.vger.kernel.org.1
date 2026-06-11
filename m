@@ -1,173 +1,202 @@
-Return-Path: <devicetree+bounces-310640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310644-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id INhoGV8tK2q83gMAu9opvQ
-	(envelope-from <devicetree+bounces-310640-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 23:49:19 +0200
+	id 02ftCvEuK2ox3wMAu9opvQ
+	(envelope-from <devicetree+bounces-310644-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 23:56:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F9A16757D2
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 23:49:18 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71045675817
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 23:56:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=arndb.de header.s=fm3 header.b=RLz0tpBe;
-	dkim=pass header.d=messagingengine.com header.s=fm1 header.b="E EQlzAK";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310640-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310640-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=arndb.de;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=fYVkFY5g;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310644-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310644-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EAE6E3007E2E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 21:49:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CF1DD32E962C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 21:55:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A04636CDE2;
-	Thu, 11 Jun 2026 21:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8204E38A70B;
+	Thu, 11 Jun 2026 21:55:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a5-smtp.messagingengine.com (fout-a5-smtp.messagingengine.com [103.168.172.148])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1E48155A5D;
-	Thu, 11 Jun 2026 21:49:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55174382393;
+	Thu, 11 Jun 2026 21:55:53 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781214554; cv=none; b=lORC3OVqhcxOOE1hbb9RGNyK2LzeA92/cAbMp9p6Djn+8Lmeg7Qw5dft5Wk53XQ1MJHFlPvm3yk92d4JhOHRQ+PNh0ZaNFex88j0Zh00Ok8QJKL6C24edkbac5ovT/bewqI2D6StIVoJzzQWC42f9ysAmH86ZY07ND8fr7Tc1Cc=
+	t=1781214953; cv=none; b=PbVIx+xYC76T48uTHd8/f65HmKAn6Aggd4bB+gXlzsC1eVABGc42+cTL6a+hUmc/Tcrm0uJFOvM4HdhYk9W1Gsl9LBgf84y7aVQAqx9piptKgWmGc+UzsQEqdVusC+ugGKjPzTCjHzhFYiruA27t7fARatPcph8XACWj06uIZFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781214554; c=relaxed/simple;
-	bh=I4URXZTDAX0QX4GCP4W8fFsHSKtaz/NwacgObngP8Ww=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=rKJuRkRhHTdkyZ+QcDIyWQTtahPI1TQGLFt6QaT0r563cKPF97eRsqVRwWsq6pdgYK4epgSpdCvYCpVVYa78Qpqgp6ym2WMj2y46fXBx1eSB7uYc+34ystA/r44YgI1TVYcvjIQVe3MpleUEVNVIWgOhonPJZv9PqQaR8bPOxMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=RLz0tpBe; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=EEQlzAKa; arc=none smtp.client-ip=103.168.172.148
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfout.phl.internal (Postfix) with ESMTP id E75D3EC00D2;
-	Thu, 11 Jun 2026 17:49:11 -0400 (EDT)
-Received: from phl-imap-05 ([10.202.2.95])
-  by phl-compute-04.internal (MEProxy); Thu, 11 Jun 2026 17:49:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1781214551;
-	 x=1781300951; bh=m3jKUzw1DA57ndb+qyd6HXvDCRAlgjXNw7DsDlmljVM=; b=
-	RLz0tpBebAYx/pMK6JZiLzzgyhGrPzg2Jc1hMen653GiUmJXgFb9eP9l1EbT49Ze
-	+7B1ykOjEqdqiPnX8iVTFvtUhQLME8KvGh6Lu0LOmL80A+WekV/N/z0KMzAYCSqy
-	HPufn7p3rw5VfQ1lssemZiZVm9pW/uUHsWnUFI9OYjFUYLY7h14zvBOAK2MOY5q4
-	Hf/TWs981pkgA5EUZLIDxVsyP6IiX1Fo2ZPokY9dqLhHiMcGSCQa4mRoq8+eKQuZ
-	su0GfCWGUIobnDyaVceVOkde53FrjkO6tRlfO9jMZArN8fXK8EIAp7d2rr7aQKAb
-	8UfgQuoXn+0yOi5KklGsSQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1781214551; x=
-	1781300951; bh=m3jKUzw1DA57ndb+qyd6HXvDCRAlgjXNw7DsDlmljVM=; b=E
-	EQlzAKazvoz+UuYDqGVSLlMQopR98anQWtKKX50sQrPShkLHF9l0GEbOcmlv009C
-	RDTCxdFU/3e845e7hg+LG3gfOMhEOyEXe1HvEI/bfdA5TwUVflDMRyZmjRhjjdof
-	OIiRpTqV3jE7sHnxUWE2V5485Qlg9SIeWB2RQVpAigJeI3XYPKL96z5K+9VS4m92
-	F5qmck4bin/i2wAAPnonNYphXiKNknxJ7gBDZJpxaX9gR73tzr5OQw6KZYFNwun8
-	e0lSojAZ+3YaxD1IZRvYFz1+QDPA8YdZeAVbG/tyjv5kGMbB+xNrhwCrhyJjihBz
-	xEXf5Qlu6vOTHRlC7r/9Q==
-X-ME-Sender: <xms:Vy0raqXmdhMDtxNI6Gh4d6BYTIh7eo7DGoHCzQVw521Q6-qch3iz5A>
-    <xme:Vy0rahZGg65i9xHnsITqJzXlIuAjO-BpIOUe0a_4va3Z017ync6gS-lmOz5iu5Y9s
-    Q6jfVCB6U76n_ab5BrpICWkJvJWTyF_f44iW86o1sg8Bhl5cEDKE0On>
-X-ME-Proxy-Cause: dmFkZTEv68Te2GZ7h3XuEhKQ+ysSWDX0V9MP739tmwV8Wek3q0SijvWTpriLzYO2vJXOVF
-    utFDHDyukerFQttdEeKhfVppRRlP1wr7wkFnFJTQsR286WQF23XLo9ielto0G4gG30hCk3
-    sVpxmjf15NyK0BYGiTvSxGe3GaiP3ZpRF46WstGdSdADrsnLFUkBB6Pka7iealiMU3JR3M
-    Nhn5iPMxcUgqZ51gBCk7tDP8B39S7p6REcv6UC7wdrokeCzZLG4bX9VIpssQe31b/qNQps
-    Au4pDopG9XLJCEPB8Zb93Cfavf0fvVCa6XRUGoWaKWxK7f324gmVcE+Kh/l7juiAdGWHn3
-    mP95WyRpVnpqqJ8/CBFLNtdjnNsBMzFmnEvZEKrpljSdf5paARPX5+X1uGwKvmX4R2lnHn
-    bDh98MRs60pulOlDIyDLicrknyJOxEtTYRQVTCBw/dyCxYFjPFdb0UC6VWw6qD8K7QTN+C
-    Mo05L2neB8X6Y6Yt9ZY2fp/GkWdUCmTKbjgfQFwcxu9lHog2NIFODzJxr2JcW+9lAVOJhb
-    E9eI+yLpd5uzLiJKl/bCM/hNmr8uIw6WdZP973qC0XiTz6NIybb6aerbQpZEhEJAltTbN6
-    cb4eeByDtJdfW8uvs7++XWm6g5Qn9YBN2FQe1mLoY2ZYNa/+d9mqD85L2PyQ
-X-ME-Proxy: <xmx:Vy0raol0O6XfJ3uurxHVvBLmka-FpHWaUi9z7FmcswiHtmKWm8EZCA>
-    <xmx:Vy0rarinFZ-SvZCrsatzAVkBMbyEugwwfTLZ8No-QibZhSpm9V29Mw>
-    <xmx:Vy0ravQG_yV4PSP0BhRBIeaW1zB7Quc9FICGJ3CIzLKvNy63IRwjnA>
-    <xmx:Vy0ral91RX_beBK_AmMgMXKDStpb9Z_XYYAtFNYKMUWcO1JFsEoRVw>
-    <xmx:Vy0ralURSPeGEVJi-EUf0FbfQv1LFIWuUIO5pFai688RsJx_0-Xn4D7r>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 6BF81182007E; Thu, 11 Jun 2026 17:49:11 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1781214953; c=relaxed/simple;
+	bh=G8O/fgkg40yzWQsZV7+qSg2DX9SUdeFeRtf+xvaV66c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JGHFg0z4c/Hi/qb/gEO2oT+gHE9N4Hu96pvRM+p+veWvIzvPDKxAcGrwft1BwbdYynbnusE8i4gTTwrt1K0ujv/fU26810uIXwoTqT4X2Z69CoRCR4lpAQNLB2iMH1yS4XcK2tKuPci2KGXFUtXjQLzMigiQNO7fRv5GVbeciXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fYVkFY5g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E1B6DC2BCB9;
+	Thu, 11 Jun 2026 21:55:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781214953;
+	bh=G8O/fgkg40yzWQsZV7+qSg2DX9SUdeFeRtf+xvaV66c=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=fYVkFY5ghFjUVtNKLogRoNOMEobOvXQn1CFFGTlwIqHPE4zmKfkdnn45ChQTezzSI
+	 +QvyE8p9cGYXMAaULInwTOFZqdMzhY4Xii0ykasbMC8gf7xdR1LS1wAZ9ZiFy3qrzf
+	 H4F+6igkWb8Tr7T7afFMqRWzPoQ84v0cC9nBR1zzOjFvMSq81Fuk/vA0AJaGuk1Ncn
+	 rs80PAA8Lav8gHJet1Vh0xtMq4yinCkrqzDt8M2eBGWaiIkB7yNCOStkoOOVbUW3+9
+	 QrPVt0K4j3m3ctcgXgtWuQQdENye0boZC653AYNsC6KIfL2FGLRKW9SQ3SXwjEG6SO
+	 G26tnBE7gN7RA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D7621CD98CC;
+	Thu, 11 Jun 2026 21:55:52 +0000 (UTC)
+From: Selvamani Rajagopal via B4 Relay <devnull+Selvamani.Rajagopal.onsemi.com@kernel.org>
+Subject: [PATCH net v5 0/4] MAC-PHY interrupt changed to level triggered
+ interrupt
+Date: Thu, 11 Jun 2026 14:55:37 -0700
+Message-Id: <20260611-level-trigger-v5-0-4533a9e85ce2@onsemi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: A7B3IU8_UIqB
-Date: Thu, 11 Jun 2026 23:48:22 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Karthikeyan Mitran" <kmitran@axiado.com>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Prasad Bolisetty" <pbolisetty@axiado.com>, "Tzu-Hao Wei" <twei@axiado.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- "Drew Fustini" <fustini@kernel.org>, "Linus Walleij" <linusw@kernel.org>,
- "Harshit Shah" <hshah@axiado.com>
-Message-Id: <1dc47bbd-d13f-4e46-9d52-c2c94eba8394@app.fastmail.com>
-In-Reply-To: 
- <20260611-maintainers-addition-and-axiado-ax3000_dtsi-update-v6-1-00bdcddc0c29@axiado.com>
-References: 
- <20260611-maintainers-addition-and-axiado-ax3000_dtsi-update-v6-1-00bdcddc0c29@axiado.com>
-Subject: Re: [PATCH RESEND v6] MAINTAINERS: Add Axiado reviewer and Maintainers
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANouK2oC/12NywqDMBREf0Xuuil5+Oyq/1G6iOaqFzQpiYQW8
+ d8bsmpdzgznzA4BPWGAW7GDx0iBnE2huhQwzNpOyMikDJLLmldKsAUjLmzzNE3oWTv0QrdKj1y
+ VkJiXx5He2fcAixs8UzlT2Jz/5I+o8pR1NT/romKcGd0obLhId/LubMCVroNbsyqWv3h3xsuE1
+ 6NqO90bI7p//DiOLwZj3WLvAAAA
+X-Change-ID: 20260531-level-trigger-8cb1a83af034
+To: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Piergiorgio Beruto <pier.beruto@onsemi.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+ devicetree@vger.kernel.org, 
+ Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>, 
+ Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781214947; l=2947;
+ i=Selvamani.Rajagopal@onsemi.com; s=20260531; h=from:subject:message-id;
+ bh=G8O/fgkg40yzWQsZV7+qSg2DX9SUdeFeRtf+xvaV66c=;
+ b=Q7Ins9Yrrl0dk8bb2U2sSVW/lnT974k5lqVNm7Gn8eZR3FMWqKX/E4xuR37i5FbXrecRpOjzT
+ K6VyCS9kQOEDM+fBFTje55mc0+k3LiF1fY4xnZ4vLq3z+V1LREywOWH
+X-Developer-Key: i=Selvamani.Rajagopal@onsemi.com; a=ed25519;
+ pk=5QRdM0HS/LGWWcUZZ9hVfZ+qbPQGZCumcTXOiN7Fyug=
+X-Endpoint-Received: by B4 Relay for
+ Selvamani.Rajagopal@onsemi.com/20260531 with auth_id=803
+X-Original-From: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+Reply-To: Selvamani.Rajagopal@onsemi.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.65 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[arndb.de,none];
-	R_DKIM_ALLOW(-0.20)[arndb.de:s=fm3,messagingengine.com:s=fm1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310640-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-310644-lists,devicetree=lfdr.de,Selvamani.Rajagopal.onsemi.com];
+	FORGED_RECIPIENTS(0.00)[m:parthiban.veerasooran@microchip.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pier.beruto@onsemi.com,m:andrew@lunn.ch,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor.dooley@microchip.com,m:devicetree@vger.kernel.org,m:Parthiban.Veerasooran@microchip.com,m:Selvamani.Rajagopal@onsemi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:kmitran@axiado.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pbolisetty@axiado.com,m:twei@axiado.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:alexandre.belloni@bootlin.com,m:fustini@kernel.org,m:linusw@kernel.org,m:hshah@axiado.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[Selvamani.Rajagopal@onsemi.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[arnd@arndb.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[arndb.de:+,messagingengine.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,app.fastmail.com:mid,linux.dev:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,messagingengine.com:dkim,arndb.de:dkim,arndb.de:from_mime,axiado.com:email]
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,onsemi.com:replyto,onsemi.com:email,onsemi.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4F9A16757D2
+X-Rspamd-Queue-Id: 71045675817
 
-On Thu, Jun 11, 2026, at 22:19, Karthikeyan Mitran wrote:
-> From: Prasad Bolisetty <pbolisetty@axiado.com>
->
-> Adding 3 new maintainers Prasad,Tzu-Hao, and Karthikeyan
-> Removed previous maintainer as the previous maintainer moved from project
->
-> Signed-off-by: Prasad Bolisetty <pbolisetty@axiado.com>
-> Acked-by: Harshit Shah <hshah@axiado.com>
-> Signed-off-by: Tzu-Hao Wei <twei@axiado.com>
-> Signed-off-by: Karthikeyan Mitran <kmitran@axiado.com>
-> ---
+According to OPEN Alliance 10BASE-T1x MAC-PHY Serial Interface
+specification, MAC-PHY interrupt is "active low, level triggered".
+The specification mentions about the conditions in which the IRQ
+is asserted and deasserted.
 
-I've picked up the patch now for 7.2.
+Bug is inadvertently introduced by treating the IRQ in the OA TC6
+framework driver and in dt-binding YAML file as edge triggered.
 
-For future content that you want to get merged after it
-has been reviewed, please make sure to send the patches
-or pull requests to soc@lists.linux.dev, and follow the
-additional explanations from
-Documentation/process/maintainer-soc.rst
+With the changes to use level triggered interrupt, use of threaded
+irq is more efficient than the current method that has interrupt hander
+working with work queue.
 
-Thanks,
+This change of interrupt handler mechanism exposed couple of race
+conditions due to the fact that interrupts were not masked on protocol
+error. And pointers were not initialized with null after skbs are freed.
 
-     Arnd
+Changes are done in two files
+ - OA TC6 framework Ethernet driver
+ - YAML file for the vendor that already uses OA TC6 framework.
+
+Maintainer for this driver is already informed and aware of these
+changes. Testing for these changes was done in onsemi's setup and
+found to be working.
+
+Changes in v5:
+  - Removed the extraneous FCS that came with the frame before passing
+    to the stack
+  - Base commit was upadted on few patches to ensure that it is pointing
+    to the correct commit ID.
+  - Commit messages have been updated to be more descriptive and
+    gives more detail now.
+  - Couple of race conditions pointed out by AI review is fixed.
+
+- Link to v4: https://lore.kernel.org/r/20260609-level-trigger-v4-0-6f389abdd192@onsemi.com
+
+Changes in v4:
+
+- IRQ handler is changed to interrupt handler + wake up thread
+  to interrupt handler + threaded irq. Threaded irq mechanism
+  is better suited for level triggered interrupt. Because it can
+  keep the interrupt disabled until interrupting conditions are 
+  handled by a handler thread.
+- SPI data handling function is called again on EAGAIN error code
+  as it indicates RX buffer overflow error, which requires draining
+  the bad data chunks.
+ 
+  - Changed wakeup thread to threaded IRQ 
+  - RX buffer overflow is handled before threaded irq returns
+
+- Link to v3: https://lore.kernel.org/r/20260601-level-trigger-v3-0-da73e7010532@onsemi.com
+
+Signed-off-by: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+---
+Selvamani Rajagopal (4):
+      net: ethernet: oa_tc6: Interrupt is active low, level triggered.
+      net: ethernet: oa_tc6: mdiobus->parent initialized with NULL
+      net: ethernet: oa_tc6: Remove FCS size in RX frame
+      dt-bindings: net: updated interrupt type to be active low, level triggered
+
+ .../devicetree/bindings/net/microchip,lan8650.yaml |   2 +-
+ drivers/net/ethernet/oa_tc6.c                      | 140 +++++++++++++--------
+ 2 files changed, 89 insertions(+), 53 deletions(-)
+---
+base-commit: 22e2036479cb77df6281ebbd376ae6c330774790
+change-id: 20260531-level-trigger-8cb1a83af034
+
+Best regards,
+--  
+Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+
+
 
