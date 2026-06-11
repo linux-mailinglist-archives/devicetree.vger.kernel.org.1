@@ -1,203 +1,260 @@
-Return-Path: <devicetree+bounces-310267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310271-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id k2kaNpx7KmrsqgMAu9opvQ
-	(envelope-from <devicetree+bounces-310267-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:10:52 +0200
+	id SQX0JYp6KmoQqgMAu9opvQ
+	(envelope-from <devicetree+bounces-310271-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:06:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42DA2670426
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:10:52 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37A0D670312
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 11:06:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=GcH+PdUQ;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=dPNQeGhz;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310267-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310267-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310271-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310271-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C9B7332DEF3E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:05:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2772E301B3D2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 09:05:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315DC380FF3;
-	Thu, 11 Jun 2026 09:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C573038E8D5;
+	Thu, 11 Jun 2026 09:05:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB9093603D8
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 09:04:55 +0000 (UTC)
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889F3390226;
+	Thu, 11 Jun 2026 09:05:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781168697; cv=none; b=uNEGJBE4zOWCj0o5FD8ffVPG6h0ooN6wbkOwp4/B+UJshe5eWYt1F6+ZPH/vi46gMIwnSGZJwur1VY3hTguftg8acWoOwRM0pwuW27y1S//l2NZj+OEEql26fG1dRgJo1HLr3O1sFgYW3DcBDcVoHm7OFCUhijyFCDmZTdpuMXQ=
+	t=1781168733; cv=none; b=M+O4f1pk6mxxh5i9z/Vjcz2/r3gd32rH/QwOnc7Xlu+cjyer6T0ItLPCzNRM9j2ieBfaiDK+apPR5C68U7f0ywm9kMjqdT/uGuOkXfnfzMFXMbLD/IGlYFn0Xu6f8yviygfrkG5lrU5PP7Xg4Wz1GtL3QzNQwPKyOitRDUDK08M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781168697; c=relaxed/simple;
-	bh=Ah7Hp7ftJHUPWtLQZ0o+NHG8g+aUB0BccvnJf0PTTVc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MoWdteRKwhT3hf8cAmbhz6HpilXGB0JDiJtIoKpm9abamyOW8YQU/SANWYUcyXVh4HIbnvxi/lcKmwxMxKR2kxmsVTzzQx/OUGsswgN4qIAcRo1iPTw56Ietrrm677cIYfvIL4mfZ+MTEDTmytcy1gVYZ4Q2vAnGHqenYs5YnfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GcH+PdUQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dPNQeGhz; arc=none smtp.client-ip=205.220.168.131
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65B5GIFD3791680
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 09:04:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	42ytVJQyLSNNdfS3jOnCdpT27ZxKZp4RInVBR5BAPyY=; b=GcH+PdUQYWcC35Tn
-	4/cw48A6pCYIIrrLVRliK1ncR5ScUg2SJiV3W1X9JcJNeioridAgQBiZkWK9T2gt
-	Ax3JO8tf1mIDXdXx9d/8dqFCcZmoPsHdBafeeBxiojm/nED+uMIAPW6uBo72qWG7
-	J74/qMV6VqbpnYSXqoj1Tn6qY/j8evBVdNVt05muRfQ/gtm7hAP+A3Ib+9PMdL5Z
-	rAv7aHXObo7bBozu8nrUorD7Iq5JMfiA3AsTb++oL8EUOSCcIzbfzrppXHswPIav
-	2DJ7atJYa3TUr2ToMEPZrqZJsyds2JTuSjM4hmdxd4xdSgH7T2iYdFLVs+n4pfQW
-	oRwqPA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eqe702mr5-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 09:04:55 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-5177b12d7bbso14426101cf.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 02:04:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1781168694; x=1781773494; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=42ytVJQyLSNNdfS3jOnCdpT27ZxKZp4RInVBR5BAPyY=;
-        b=dPNQeGhz5gb0rphKRglGqAqpVRZQ5KeOZx1Mi+q2NcRCuVlFIA5bAGybUqM9ieM0zd
-         1SsrMpSdhesEax5ydNWj2Vu+bWDHQpygcguKrZx3ysWeaVfHm1ruiXzneEBBmFT7F+Gr
-         PqJjP7swQNy2GBGKRbiyPHByxpG9+A1FyHqYP5eSe5AFJiQN/C/OV+r7OmeseuR0ESGy
-         5++1Qjzo3Bw1BuyEw99KRJNqTIJISWVtDPjS6AFUgBCBQntKiwR83zVjpGgttPPgyVOK
-         k0aed6kSGx0Oy4UU89yOJEc9kiNROpEAYOs+njIQYYhfV6S3WLBMFFHk6UsBmCwNU9zc
-         K3Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781168694; x=1781773494;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=42ytVJQyLSNNdfS3jOnCdpT27ZxKZp4RInVBR5BAPyY=;
-        b=pZiDbNVS/CneWwHy8fR2HgrwsarT8LB/TfX+9uNwNqbgKdmNwm8nIjJOEpntnhFWme
-         /dUhaSNmXyK8s9wEgmLLapNSWjFBotCFdWZrdFuRnJquSn0dc8G4uBWir83Mmgg1ru3s
-         C3+ginvSuPn9idrUbP1cb52Xmr+cEiR2b2M7OpFuOQYGBTMQfC0hTm3bnksJuGYkj5BA
-         3HkkvViFhQotzxvkgn/EFtMec1B6ro6HxdqAOAwUAe/kUhwbEoknPwO3Kti668LH4G1S
-         IS3a8Xg72gOJd95VYrRe5BlgZcX0OQpSyPep0YBkJ2twwAQHUkm8Paf1M2DWLHdvxHtV
-         SEWQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+zrSZVUx5gLnpsps04Jb5IEOl3LlivBlWcShulCGZ674k+AU2FeqnnH4n+0eeoqv9/JJriM5Qi0J8w@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4LgRXnhwJ/lZxgJYZ6cfTzcPOnoDJMJpDufaZOluv1Qp+U1qT
-	LICzMM4rZv53se/xrapF0gl9s7LMDHThyKaB7wgYrKvG8qBr7hBNVX60bpKCRMWVRH6QAhAI6hF
-	FH4IHEmXdMsVOnZIWsMAPTpugtdBZJLnJlJjSHguz6+rtCsF0O0Ov+ss+jK9CpGm6
-X-Gm-Gg: Acq92OF0OUxQIkpEVoedEkJBOmg/DQFCTp1WOHQ6ahhDXhdDUbmNfvUT0ltdDrOm8HK
-	h0qK1bLDTSczQoqYOwoHTGJSnV/4CSGDu1UGiT6M0HqCVraDYgRyC3n4tbCWsC2WTflByv9KURI
-	GLkJ/SIL3nZVxtSupM4U/aBSDycXyIzoQ6Y/J5EinC5dH9wiKhrxHgZ01lAcIOTChrvMmCqrcrk
-	8VRW5s/lFcYpn3HcEZkPWwMbqeNbb2XetjNa37GtV89mInZIZbPQtXNL0KclGUDYOdLSf2rfWpA
-	3agchNMGOaI6oHaMAlTp5Hx+0wfZKZe+Gy1DrmbhU6NzdVB6r3Jx91gioHD2foV1XBZVi797l+W
-	SWEl0Wd22Wu8UBLZVDs5nR+92rPQxcTkCudeDn/+JyRh+ZXrHfe+A1RZi
-X-Received: by 2002:a05:622a:89:b0:50e:5cc1:1de9 with SMTP id d75a77b69052e-517ee27fe16mr16805001cf.7.1781168694214;
-        Thu, 11 Jun 2026 02:04:54 -0700 (PDT)
-X-Received: by 2002:a05:622a:89:b0:50e:5cc1:1de9 with SMTP id d75a77b69052e-517ee27fe16mr16804711cf.7.1781168693670;
-        Thu, 11 Jun 2026 02:04:53 -0700 (PDT)
-Received: from [192.168.120.170] ([178.235.128.140])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bfcb668c9f4sm35813866b.56.2026.06.11.02.04.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jun 2026 02:04:52 -0700 (PDT)
-Message-ID: <1cc052aa-8274-4560-886d-2b821715aa0d@oss.qualcomm.com>
-Date: Thu, 11 Jun 2026 11:04:49 +0200
+	s=arc-20240116; t=1781168733; c=relaxed/simple;
+	bh=pHizmCAfXQI1dtVo74oqoHEUeeKBax2QAr7ygVBz//k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bk3kbKNpul/0D3SZxk8A/x9FrcQ0vCNEhqpZ29zH7XOHsIIPeDSaGvdGtXyyPk7bwOdxHFXmqR7LXbJE/gQjCvpCOOAejrCmraFUdV1SHi8M/d/IBt1KLVitFBGWcCo+8HAq5p/CP6Y08zTmOAZs/6rh/b2XWTVWpab7Qbo1RgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
+Received: from E0005156LT.eswin.cn (unknown [10.12.96.79])
+	by app2 (Coremail) with SMTP id TQJkCgD3DKBEeipqQsUmAA--.10346S2;
+	Thu, 11 Jun 2026 17:05:10 +0800 (CST)
+From: hehuan1@eswincomputing.com
+To: linux@roeck-us.net,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	luyulin@eswincomputing.com,
+	dongxuyang@eswincomputing.com,
+	Huan He <hehuan1@eswincomputing.com>
+Subject: [PATCH v7 0/2] Add driver support for ESWIN EIC7700 PVT controller
+Date: Thu, 11 Jun 2026 17:05:05 +0800
+Message-ID: <20260611090505.734-1-hehuan1@eswincomputing.com>
+X-Mailer: git-send-email 2.47.1.windows.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] regulator: qcom-refgen: correct the regulator type
- to CURRENT
-To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, stable@vger.kernel.org
-References: <20260611-ipq9650_refgen-v2-0-d96a91d5b99e@oss.qualcomm.com>
- <20260611-ipq9650_refgen-v2-1-d96a91d5b99e@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260611-ipq9650_refgen-v2-1-d96a91d5b99e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjExMDA4OSBTYWx0ZWRfXw3vgTIqm7XuY
- LNI/l9OxvnXIltlhzI60SYIt3JSEUYENz3E41lp5LVpIjwqH04Quc5WKMaUiM2DoTZ9ztIa1Ks0
- WFLVR0St2szWzaLUrkdhelXMRdSYI6Q+OGECP+UgCfLzJkRoNs/AgGCTqXaWeX7GgsxL0i7U9xj
- XkVXS+xZPz8OUfuCfyYGM4apaAyhGWxsXMYhLsWPF5yr6HQeIfuX/RRVSlGzfY2TtZ1f+FuAsG4
- ZgasypKlcJ9xugPZdZsRjqRKsfIx0s5+RFDyMAOCMNC3B3aj/LNpcNvdFZqH4qNqrjrxRJ0rBLm
- ti6uVapuaWo5vD6/2uWc0m1vv7zDe7E2fTB+0ZFAChpB68WmbkKGc9AmLI0GXl35M6mXa+GveHL
- 8l6nO0vi4FwXHhXGMszqPCpyP2C18yD89eVvoKLlgG+j64JBWlF2ZnildYRadqReqWE3c/5fTF0
- Xlxpgc6cHpRLnRp1eJg==
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjExMDA4OSBTYWx0ZWRfXzplLp2SFmENE
- jxa56d8EXTsx/4W5Vlm/q+UND4p6ChQoJpfHzu2H2pTseF6kQVWfVySu0cJzobLNRSe1VFbDA8e
- P63seU7NzphAsENrKC+cK34D7weM/ms=
-X-Proofpoint-GUID: wcZb3I6msWYEfY2Ym6y5nUNHP-0A2wdY
-X-Proofpoint-ORIG-GUID: wcZb3I6msWYEfY2Ym6y5nUNHP-0A2wdY
-X-Authority-Analysis: v=2.4 cv=Z5Tc2nRA c=1 sm=1 tr=0 ts=6a2a7a37 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=NMBPdCelTQKdMlTKoVgA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-11_01,2026-06-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 adultscore=0 impostorscore=0 malwarescore=0
- spamscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606110089
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgD3DKBEeipqQsUmAA--.10346S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Jw4UJFy3XryUZr1UJrWxtFb_yoWxXFykpF
+	W8W3yYkF4DXrWSqFWDt3W09rWfJan3JFW3Ar4xWw18Z3W5K34jvFyfK3WYvFyDZrn5X3Wa
+	qa4Yqw17C3WqyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUmjgxUUUUU=
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310267-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:ningyu@eswincomputing.com,m:linmin@eswincomputing.com,m:pinkesh.vaghela@einfochips.com,m:luyulin@eswincomputing.com,m:dongxuyang@eswincomputing.com,m:hehuan1@eswincomputing.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310271-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[eswincomputing.com];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,vger.kernel.org:from_smtp];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,gmail.com,kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:kathiravan.thirumoorthy@oss.qualcomm.com,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:stable@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	R_DKIM_NA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email,eswincomputing.com:mid,eswincomputing.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 42DA2670426
+X-Rspamd-Queue-Id: 37A0D670312
 
-On 6/11/26 11:03 AM, Kathiravan Thirumoorthy wrote:
-> As per the REFGEN IP team, this block supplies the reference current to
-> the PHYs in the SoC. So, correct the regulator type to REGULATOR_CURRENT
-> to match with the HW behavior.
-> 
-> Fixes: 7cbfbe237960 ("regulator: Introduce Qualcomm REFGEN regulator driver")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
-> ---
+From: Huan He <hehuan1@eswincomputing.com>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Add support for the ESWIN EIC7700 PVT (Voltage, Temperature) sensor
 
-Konrad
+Features:
+The driver supports monitoring of voltage and temperature parameters
+through the hardware monitoring subsystem. It provides an access to the
+sampled Temperature and Voltage.
+
+Test:
+Tested this patch on the SiFive HiFive Premier P550 (which uses the ESWIN
+EIC7700 SoC).
+
+Updates:
+
+  Changes in v7:
+  - Remove the unused reset control pointer from struct pvt_hwmon and keep
+    the reset control handle local to eic7700_pvt_probe()
+  - Update eic7700_pvt_init_iface() to disable PVT_ENA_EN before clearing
+    the interrupt status, preventing a possible level-triggered interrupt
+    storm if the bootloader leaves the conversion engine running
+  - Update eic7700_pvt_disable_pm_runtime() to explicitly disable runtime
+    PM and avoid an unbalanced disable_depth
+
+  Changes in v6:
+  - Fix the !CONFIG_PM probe error path by disabling the clock if IRQ
+    request fails before the PM cleanup action is registered
+  - Replace pm_runtime_put_noidle() with pm_runtime_put() in the IRQ
+    handler to avoid a runtime PM reference-count race with the read path
+  - Remove the unused pvt_clear_data() devres action and its associated
+    devm_add_action() registration
+
+  Changes in v5:
+  - Update eswin,eic7700-pvt.yaml
+    - Drop the label enum constraint and remove label from the required
+      list
+    - Add '#thermal-sensor-cells' to the required list
+    - Rename the example node to the generic sensor@... form
+    - Update the binding description to describe one temperature sensor
+      and one voltage sensor
+  - Update eic7700-pvt.c
+    - Register the hwmon device with the fixed name "pvt"
+    - Remove label-based instance identification from the driver
+    - Fix CONFIG_PM=n support by keeping the clock enabled when runtime PM
+      is unavailable
+    - Add pm_runtime_force_suspend() in the cleanup path to avoid leaving
+      the device active during unbind
+    - Switch system sleep callbacks to pm_runtime_force_suspend() and
+      pm_runtime_force_resume()
+    - Guard ISR register accesses with pm_runtime_get_if_active()
+    - Add synchronize_irq() on the timeout path to avoid stale completion
+      races
+    - Remove temp_offset support because the raw trim register does not
+      match the hwmon ABI
+    - Align the commit message with the implementation (one temperature
+      sensor, one voltage sensor)
+
+  Changes in v4:
+  - Update eswin,eic7700-pvt.yaml
+    - Delete reviewed-by tag of Conor Dooley, because the label enum
+      constraint is introduced
+  - Update eic7700-pvt.c and eic7700-pvt.h
+    - Remove the unused LVT/ULVT/SVT process-monitoring channels
+    - Remove the probe-time power check since the PVT block is always
+      powered on EIC7700 and the extra verification is unnecessary
+    - Stop requesting the interrupt as shared and use the dedicated PVT IRQ
+      only
+    - Reorder probe initialization so the interface is initialized before
+      the clock is disabled, avoiding register accesses with the clock gated
+    - Fix runtime PM reference handling on error paths by balancing
+      pm_runtime_get_noresume() with pm_runtime_put_noidle()
+    - Add pm_runtime_put_noidle() handling for failed pm_runtime_get_sync()
+      calls in hwmon read/write paths
+    - Switch the PM callback registration from pm_sleep_ptr() to pm_ptr()
+
+  Changes in v3:
+  - Update eswin,eic7700-pvt.yaml
+    - Remove redundant label property description and use 'label: true' to
+      reference the definition in hwmon-common.yaml
+    - Replace 'additionalProperties: false' with
+      'unevaluatedProperties: false'
+    - Remove the description for '#thermal-sensor-cells'
+  - Update eic7700-pvt.c and eic7700-pvt.h
+    - Fix clock reference count imbalance with Runtime PM:
+      Replace devm_clk_get_enabled() with devm_clk_get() and manually
+      manage clock enable/disable to avoid double-disable in remove() when
+      Runtime PM is active. Clock is now enabled only during probe for
+      eic7700_pvt_check_pwr(), then disabled before enabling Runtime PM,
+      which takes full control of the clock thereafter
+    - Add detailed comment explaining the spurious interrupt risk in
+      eic7700_pvt_check_pwr()
+    - Replace wait_for_completion_interruptible() with
+      wait_for_completion_timeout() to prevent infinite wait
+
+  Changes in v2:
+  - Update eswin,eic7700-pvt.yaml
+    - Reference the hwmon-common.yaml file
+    - Remove the clock-names and reset-names properties
+    - Move additionalProperties: false after the required block
+    - Remove one example node to avoid redundancy
+  - Update eic7700-pvt.c and eic7700-pvt.h
+    - Remove unused sensor macros (PVT_SENSOR_FIRST, PVT_SENSOR_LAST,
+      PVT_SENSORS_NUM)
+    - Drop the unnecessary hwmon-sysfs.h header
+    - Replace dynamic sensor info allocation with a static array and unify
+      sensor labels
+    - Remove unused hwmon_temp_type attribute
+    - Eliminate redundant validation checks
+    - Remove mutex and related locking, relying on hwmon core
+      serialization
+    - Replace per-sensor caches and completions with a single data cache
+      and completion object
+    - Remove pvt->sensor tracking. ISR no longer depends on the currently
+      selected sensor
+    - Move devm_add_action() registration after init_completion() for
+      safer cleanup, and update cleanup function (pvt_clear_data)
+    - Replace devm_reset_control_get_optional_exclusive() with
+      devm_reset_control_get_exclusive_deasserted()
+    - Replace eic7700_pvt_remove() with eic7700_pvt_disable_pm_runtime()
+      and move it after PM runtime enable to avoid resource leaks on probe
+      failure and remove clock disable and reset assert from
+      eic7700_pvt_disable_pm_runtime() as it is already handled by devm_*
+      framework
+    - Remove redundant clock presence check in runtime_resume
+
+  - Link to v1: https://lore.kernel.org/all/20260109090718.442-1-hehuan1@eswincomputing.com/
+
+Huan He (2):
+  dt-bindings: hwmon: Add Eswin EIC7700 PVT sensor
+  hwmon: Add Eswin EIC7700 PVT sensor driver
+
+ .../bindings/hwmon/eswin,eic7700-pvt.yaml     |  63 +++
+ drivers/hwmon/Kconfig                         |  12 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/eic7700-pvt.c                   | 497 ++++++++++++++++++
+ drivers/hwmon/eic7700-pvt.h                   |  98 ++++
+ 5 files changed, 671 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/eswin,eic7700-pvt.yaml
+ create mode 100644 drivers/hwmon/eic7700-pvt.c
+ create mode 100644 drivers/hwmon/eic7700-pvt.h
+
+-- 
+2.25.1
+
 
