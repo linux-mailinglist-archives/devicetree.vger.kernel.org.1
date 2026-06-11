@@ -1,187 +1,161 @@
-Return-Path: <devicetree+bounces-310566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310567-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id t9pTM4YEK2pp1QMAu9opvQ
-	(envelope-from <devicetree+bounces-310566-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:55:02 +0200
+	id mWLKFYIFK2qx1QMAu9opvQ
+	(envelope-from <devicetree+bounces-310567-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:59:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E09567499F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:55:02 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE4B8674A24
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 20:59:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=K0+ZBT0n;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310566-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310566-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=KHN8CpDH;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310567-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310567-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D3EF13028B52
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 18:54:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6A4773037A76
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 18:59:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946AD42B733;
-	Thu, 11 Jun 2026 18:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D23F4D8DB6;
+	Thu, 11 Jun 2026 18:59:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F4D379C5A;
-	Thu, 11 Jun 2026 18:54:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5DC49218D;
+	Thu, 11 Jun 2026 18:59:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781204091; cv=none; b=Sg/xF3NfTZ8iT8Uq4JuLKOvqhSxjY63YpyZ5hepFel2E3XRqcXZfFcdAxuf8OJiS1ClIKWE0BybmooBhOsD/VAtXms0P8wfjyv5E+0e2pGk8s4FqUlQYZsruWReHQEfPssVzAZuBq4uRgTgfjrpWUVCxDh56APDLWXg7t/ligRs=
+	t=1781204352; cv=none; b=k6KP4DU8vcW4L7a+8MUQlDC9F1AnSD8LOgxReYQfUtRbqnFJnD1afBZllhW5oecg4OYWZL9RLoyCKF1u+KdrzfgP8vHaz8+JbqQ/IA2u8xxUQ33nc21C+8vPOhnlq5AHdxh2zgDLrfVxJOUU9eZfdYAUzOsP53BYYLgHr9OmaXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781204091; c=relaxed/simple;
-	bh=T54buALKRrnV/NkHhNnF9DYrF9mnjHeDsPLsjZLccVc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WFM7PhMtpFSCVJQUk7C+hL4PW1hF930nidbEyz8Y3sEcVuI3ksSBEh4vMfY/ey/x/pzmR6dLVdHc3D2RuOr6sYfe3OnbG9p/IJBn+nLr1rkT+arRAJ9RyHdF3dai8fI9fM4VGNX7PfVG9t4SRXMjNE1/z0i3japIT2xfysZohLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K0+ZBT0n; arc=none smtp.client-ip=192.198.163.8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781204091; x=1812740091;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=T54buALKRrnV/NkHhNnF9DYrF9mnjHeDsPLsjZLccVc=;
-  b=K0+ZBT0nkOFcS8gaMxOMMP0Lb9pTVV6zWJ2CiHfsodGaZonTK8th1/Wk
-   8ipifrAzbV/3CDmcJ8UwAGAslH+7S9JQks4cMWh5H9Jdi5nX0ItoAp4+T
-   sewGv0VX/vbAxt3rbzgcF1J1gvmVARqxyXIHSLlBKgVgHCqIhJRg6IJfo
-   psXOfnWHHb/paYKSSHVKfenMWg1rYfm0Ojv1ozYt9BbgJV/TDODTppeDx
-   +vRWk1ABkCR++wQ6IFuARVqLQf+dQWasE9i49YwVz0cJavUMglzA6rrfO
-   l8ysO56MxM69OCHGU4Pcm7upaxxvwUVg0BVn4U7/+CwEMCfnHvYuKoAYK
-   A==;
-X-CSE-ConnectionGUID: /XFFNp+7THWDROoJ7XkEVQ==
-X-CSE-MsgGUID: +LisPtMbRwqvm/1XbrwxGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="99606446"
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; 
-   d="scan'208";a="99606446"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2026 11:54:50 -0700
-X-CSE-ConnectionGUID: 8c6VWJAfS46EAVViB8yt6A==
-X-CSE-MsgGUID: zgLRcfSXSzCuoVc837orwQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; 
-   d="scan'208";a="246654990"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.123])
-  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2026 11:54:44 -0700
-Date: Thu, 11 Jun 2026 21:54:41 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Bartosz Golaszewski <brgl@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Alan Stern <stern@rowland.harvard.edu>, linux-acpi@vger.kernel.org,
-	driver-core@lists.linux.dev, linux-pm@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH v2 05/16] usb: hub: Associate port@ fwnode with USB port
- device
-Message-ID: <aisEccAOm3qoXjxd@ashevche-desk.local>
-References: <20260610084053.2059858-1-wenst@chromium.org>
- <20260610084053.2059858-6-wenst@chromium.org>
- <ailxrP-_9_NL8qnN@ashevche-desk.local>
- <CAMRc=MdiwQM6yk8FXcc+RisVP2iqWKWzVsn2-Yy6dyJXt-1X=Q@mail.gmail.com>
- <aipz2zMFcdnZYTxS@ashevche-desk.local>
- <CAMRc=MdRN7YitmMX8PknbzLh+MdsWm+dDg0MLtCVYOorqNobTw@mail.gmail.com>
- <airY6IMz2KFz_z9j@kuha>
+	s=arc-20240116; t=1781204352; c=relaxed/simple;
+	bh=xXx1jucA/9s5kzhCVKi8XcrAGjZlbqnwFgFQ0ueHREg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Is6u+W/TGb7zCwhrdzBHVOAqgsArS/i1U1BB/dxwtWcaTwQ6fPbWaqLMVgCzqhYpedc+LZget2ENN6kci5X/QmxRI7b62qAmoSQy5rt5zCL+2ASFe3yOhLaJjS7dtibOIN1yZFTTBWohn3UmOIl5fSdSLk76C5cSWe/rN9SourQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KHN8CpDH; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D92051F000E9;
+	Thu, 11 Jun 2026 18:58:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781204351;
+	bh=6ePKOTEBr3Zye33oBfPPCqMMmmGHBNbLgrW8NCTLnyE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=KHN8CpDHe+Ej5FzosN8LT+67neziPAUPiC5yusdGcnIyC+ffzU3aMdxgz/I95N+X+
+	 TxjukzNkQM3/V8hrrJ46lSf33IZN94ME6oaItqH3LD+07kzzzTW/md6qgFvF/p1/nr
+	 1nyoRcQdTOOSPl26AL0hsUq+s5qouSwv2X9r0guvuJAChdFzV6N3CtuqxG8qvhV5rP
+	 7n7cgwZikPwdspeWNeSR54KXpUp1HjxCcfeD9xeajctzOyeX2LrCMh027xT0YP9z3c
+	 5CPvW3yvIYbJFpKbun6/hwwj9Flj3xDSai/0cmEMxY0BUGXnRyRbWIhHktzJLexAWh
+	 MadKP2ABbh1hQ==
+From: Mark Brown <broonie@kernel.org>
+To: andrew@codeconstruct.com.au, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, Tomer Maimon <tmaimon77@gmail.com>
+Cc: openbmc@lists.ozlabs.org, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ avifishman70@gmail.com, tali.perry1@gmail.com, venture@google.com, 
+ yuenn@google.com, benjaminfair@google.com
+In-Reply-To: <20260609163919.3321228-1-tmaimon77@gmail.com>
+References: <20260609163919.3321228-1-tmaimon77@gmail.com>
+Subject: Re: (subset) [PATCH v4 0/3] Nuvoton NPCM FIU DTS fixes and binding
+ conversion
+Message-Id: <178120421867.467928.992304316732142101.b4-ty@b4>
+Date: Thu, 11 Jun 2026 19:56:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <airY6IMz2KFz_z9j@kuha>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.16-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1424; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=xXx1jucA/9s5kzhCVKi8XcrAGjZlbqnwFgFQ0ueHREg=;
+ b=owEBbQGS/pANAwAKASTWi3JdVIfQAcsmYgBqKwU935LBj9sJj9JbwPjU75Lf4E7AcC6iMIjxw
+ GKO/U/RBweJATMEAAEKAB0WIQSt5miqZ1cYtZ/in+ok1otyXVSH0AUCaisFPQAKCRAk1otyXVSH
+ 0FsEB/wJ+NDrOPaCKpYs5fpCZe7iE/Ff/1x2rOiJqSWMRu/Uqa5P3lcFSXqUGsIyBiK3/9QhX4M
+ oos2AEmxBEBJzOfXD4dc/0SwoyDcXf0VPk44pDXZt5les6kyrKPB6q6Sd94SGDbM0fe1+6NFsvD
+ a0sedlR9vjZ0fW0WzXgAuW7D5D6fYCLA8LCSCK6fXGhI6fudlvU1dueMbG6D0zHI2+YEtkfJq/e
+ cQjlMeGnV/0FmPCbG1kJctft1AE/b/ArdlvX1RCGVC2yumNwajQQedw8fAsxhKTeg4/08ravZ7x
+ VzCkYCwwTRaIMFQ/QSusc3ihpAwCyIgSXSMl+8/ZEMmIQ6BO
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:tmaimon77@gmail.com,m:openbmc@lists.ozlabs.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310566-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:heikki.krogerus@linux.intel.com,m:brgl@kernel.org,m:gregkh@linuxfoundation.org,m:djrscally@gmail.com,m:sakari.ailus@linux.intel.com,m:rafael@kernel.org,m:dakr@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:stern@rowland.harvard.edu,m:linux-acpi@vger.kernel.org,m:driver-core@lists.linux.dev,m:linux-pm@vger.kernel.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:mani@kernel.org,m:wenst@chromium.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,gmail.com,linux.intel.com,collabora.com,rowland.harvard.edu,vger.kernel.org,lists.linux.dev,lists.infradead.org,chromium.org];
+	FREEMAIL_TO(0.00)[codeconstruct.com.au,kernel.org,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-310567-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.ozlabs.org,vger.kernel.org,gmail.com,google.com];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ashevche-desk.local:mid,intel.com:dkim,intel.com:email,linux.intel.com:from_mime,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6E09567499F
+X-Rspamd-Queue-Id: EE4B8674A24
 
-On Thu, Jun 11, 2026 at 06:48:56PM +0300, Heikki Krogerus wrote:
-> On Thu, Jun 11, 2026 at 11:35:13AM +0200, Bartosz Golaszewski wrote:
-> > On Thu, Jun 11, 2026 at 10:37 AM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-> > > On Thu, Jun 11, 2026 at 04:20:58AM -0400, Bartosz Golaszewski wrote:
-> > > > On Wed, 10 Jun 2026 16:16:12 +0200, Andy Shevchenko
-> > > > <andriy.shevchenko@linux.intel.com> said:
-> > > > > On Wed, Jun 10, 2026 at 04:40:39PM +0800, Chen-Yu Tsai wrote:
-> > > > >> When a USB hub port is connected to a connector in a firmware node
-> > > > >> graph, the port itself has a node in the graph.
-> > > > >>
-> > > > >> Associate the port's firmware node with the USB port's device,
-> > > > >> usb_port::dev. This is used in later changes for the M.2 slot power
-> > > > >> sequencing provider to match against the requesting port.
-> > > > >
-> > > > > Okay, would this affect ACPI-based systems? if so, how?
-> > > > > Can you elaborate on that, please?
-> > > >
-> > > > Is it possible that there's an ACPI device node associated with the port like
-> > > > on some DT systems? I don't think so and there should be no impact IMO but I
-> > > > also don't know enough about ACPI.
+On Tue, 09 Jun 2026 19:39:16 +0300, Tomer Maimon wrote:
+> Nuvoton NPCM FIU DTS fixes and binding conversion
 > 
-> There are device nodes for the USB ports in ACPI, and I think they get
-> always assigned in drivers/usb/core/usb-acpi.c.
+> This series fixes the in-tree NPCM7xx FIU controller nodes so their
+> resources match what the DTS actually describes, and converts the legacy
+> Nuvoton NPCM FIU binding to YAML DT schema.
 > 
-> > > The API is agnostic. There is a possibility to have software nodes associated
-> > > with the port. I think the best is to be sure that ACPI-aware people who are
-> > > experts in USB will check this (Heikki?).
+> Patch 1 drops the bogus "memory" entry from reg-names on the NPCM7xx FIU
+> nodes.
 > 
-> I can't say what's the impact from this patch - I'm not an expert with
-> this side of USB. Is there a danger that we end up overwriting the
-> ACPI node for the port, or something else?
+> [...]
 
-Exactly this one is my worrying, but I haven't checked the actual flow.
+Applied to
 
-> > Even if there is a software node - it shouldn't really matter. It will
-> > just be assigned to the port device.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.2
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks!
 
+[3/3] spi: dt-bindings: nuvoton,npcm750-fiu: Convert to DT schema
+      https://git.kernel.org/broonie/misc/c/3da90b29241d
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
