@@ -1,236 +1,195 @@
-Return-Path: <devicetree+bounces-310131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310128-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pgFHFRVJKmpclwMAu9opvQ
-	(envelope-from <devicetree+bounces-310131-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:35:17 +0200
+	id /t9cIidGKmo3lgMAu9opvQ
+	(envelope-from <devicetree+bounces-310128-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:22:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9761366EA42
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:35:16 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A5EF66E82F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 07:22:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=H047UReR;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310131-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310131-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qaG0ltjS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310128-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310128-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DBCE4303206B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:24:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 98525300C301
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jun 2026 05:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AE692E9ED6;
-	Thu, 11 Jun 2026 05:24:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698E6355F35;
+	Thu, 11 Jun 2026 05:22:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4E63537C8
-	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:24:07 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781155449; cv=none; b=U/YNhV+XnWN2+tH3z6jtZqJoATpRIsK17NyirBrCMshZkkO6pTfB1KPqzohAX1k/H5C0kKDgCKboA0gSgVSyYdMPy7d94lcVt7SHkwLVyAS4Nv8knilQ6Ywku1Rll2Dd8VQ+mxc6QcjXeZ5TWGShwsDW2k9WWVwOudDwyWt3MdY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781155449; c=relaxed/simple;
-	bh=RneMvmmVDJuIhbVM5rfm3ODQnRKO4xEiuVUi+14BHf0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=D9xeqfaIcftmxM6M6m83pkFOU/PZQ0Ig6k5Tkt4z1/mla30o0I7+iQj7t+mPDpCn/Vzty4bCbk0j1VuBzO48+06xA9FeP/BfPnB7DwqD9/ym0VFaCdOs2mPtJBLra8yJlKgNYqIpbEmTmm8mM8FTGLo/yNXwcFqhd8/lXhx3pTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H047UReR; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 910431F00898;
-	Thu, 11 Jun 2026 05:24:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781155446;
-	bh=K36JIFBgKLKe5Me88ZJXI2U9MiznfjR2cf4Ngaddi+8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=H047UReRh5DrA8gIf/7zElpb1s36zbYxdGDXjjJD4SltYwxss2wJCuofWPFLiSRRx
-	 oik8QzuPg9pThXZx8Kbu6B2sCHWqW1aHAexFCgHoEz7HJK4S0HqIoD3SzoKMDmcECC
-	 0Sd5vNKbKmPih06Ff8KgLGryPjd2ajD39iGftweQ5yx8udIpdXkD4++B57w7CYTNi1
-	 n+59Lg1PMauwU45JTNvlbDhSkDCqJJ1Z9tD28drOLL0IEpIRzjZwuu7hH6NQpOi317
-	 NjV7QgZ1/wrqXP4W5ilm4kZfkzhjNSrEg7SzlNNt+2sPuA0nwaPj4479WK6LsXI8c0
-	 icFQ8xAeEKIJg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 30/37] arm64: dts: qcom: sm8250: Move PCIe phy and
- GPIOs to root port node
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Krishna Chaitanya Chundru" <krishna.chundru@oss.qualcomm.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260611-wake-v2-30-2744251b1181@oss.qualcomm.com>
-References: <20260611-wake-v2-30-2744251b1181@oss.qualcomm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 11 Jun 2026 05:24:06 +0000
-Message-Id: <20260611052406.910431F00898@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05979306742
+	for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 05:22:39 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781155362; cv=pass; b=uspsBucRq3CEY6Kv32rH9RirenV8GGQSONnM3D8v6gj77yYJk5dYSjMLXg41zmnzayrJDU6hyN6PCrcJPVzms3OYvBnbMwWoviqMqPV7HAB6VGge9dV+PT8K2z8ghEaUHl5B+AifudcKrPnNZRJ90+ShVf+Rhwb7GIG/478h3CQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781155362; c=relaxed/simple;
+	bh=Vv8xc/JE73ka4IbiLvsyGTHwvLLeofhoh5T3QOJOdJ0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BFb0ognacXkpv5V1Ef7QYeIyaRCN3coh9T/y4tbgjijejyrn2jP7RrvCw1S9BRvbi0wMPJwfqF47+gjkGdABkuMJmamkUziQetz+k6791PYoGmYMbX6lMjEQWBJlzqt7L3dse39GMQi1SF42By8DItGzqzyYYY4AWGupb52roNw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qaG0ltjS; arc=pass smtp.client-ip=209.85.208.169
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-3965bc493caso69911871fa.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Jun 2026 22:22:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781155358; cv=none;
+        d=google.com; s=arc-20240605;
+        b=P6iv/rdFx1iO32eoAxStk/0LBaVc8zjhtG47RozghfNaJNl+sN034kIR/wtnUXDLUm
+         22cZooRgKWCc/D2q+8lqv8MlBcll9oaVoVKG5DJ6uGUjIPa4Mjw+BKR5jBSR2r96ZfQx
+         A4hr1jOAdiY2ybh0h8dslQYm7jrE8O5CZ5T2r1hjfkJTcmQ+JYUhsaqgPbc1ui4j6vWj
+         zdce8tscB0hZl1MXDSiFoP4DU7HtkLs+Os4/KilBKeZuVVp9DDptE+mhosxs1jZxNfkt
+         mu0ie2wlHcFPPCR/QTpqItKCiWXkDhphwtNn8b2la0nLuIJATJifipCblTI6KTeDhcto
+         tCxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=Vv8xc/JE73ka4IbiLvsyGTHwvLLeofhoh5T3QOJOdJ0=;
+        fh=jd7NNSgZXSe3DCkk1R5DGy66/CyBy8aThUccBGLe0tI=;
+        b=NsLbKaBSqKe/OiPMUA/W5ZhSQheDleWE0eOXRxZenR5pN971gGPU5s7RQfG67QIN2N
+         V5bFUBacU2nlXpKEVcom05QJCrRD82pb5yxNfrtUfe2iCbkJdABBZTW09evrNZJXjcu3
+         GqaBIfC3IXpeu10M+uF6njy71qs795tdbV/QD2Aan01fwLMVMBosspr+qOGjb1c8b2wd
+         8y8m6hJxSEadKNrX61suuXvrvxj+DhuXi89yMtveKGOc9UO8GwxNRMNhF0ahzvmGVfCi
+         OvLC76fr8P4a+2KXOZz11KGTyMc9tC+N9YtFeyW7oTWfpYzAjDYBXzfEQwFs2lOMUy+7
+         XmHQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781155358; x=1781760158; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Vv8xc/JE73ka4IbiLvsyGTHwvLLeofhoh5T3QOJOdJ0=;
+        b=qaG0ltjSIEuUhSAUlwsthBNKFo933btKs+b4Othi9CiNDf9IaWu1uspeWb9YbWuKC+
+         F4BCshKmrAS0Oeq49NeW3TNwf9d5r8uqpupclie08o/+5ntaia92Ow2G3wOeWOxRwgQP
+         CJnrz3SaYhB6frS/OVjp3xWYu5oggFq0kFPkl13OU9dNtFwhU2wXMxH0l0kudYTGN8hK
+         a2wdSdY8FXr8XxUu65X2WjU3D4l4a8YoMbDpWD9t0GwCV5rx25ZyRWeMwIvFDCrvoa6u
+         uyCepitLl+l9g03J2FZtidIMyC11H1bPIj4GHFdQWD7NR7t0jHoT5uo95NhcQ7tBrBjn
+         ZO3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781155358; x=1781760158;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Vv8xc/JE73ka4IbiLvsyGTHwvLLeofhoh5T3QOJOdJ0=;
+        b=PLWhNohSEsdkGi+zVXVqYAayZUCcX6q5mh2gFUq7d49HLvf+9/1AEUzw20Gx+qY1mJ
+         aYFZ9pLnz3m6uBZ8qyY1tkag6yvKkherXKncMBnJFSrT4fWWK/vg/g+4tvg4AS6HtNVA
+         zEoDyaSrihTQ02zOlHPm9ErJDof4rVCxMCXrZOI8UJgSOg5sRODDjmG+xtDKueDlyFPc
+         M0x7mQLtVvPoI658vSvwU0FEqFu2+EjdNocZW4bH5RLZTR89LXdF272VfY4QgF2MD91R
+         5dGCVp0a7JL4B3i9T53NUkBI5qTymzEJ8IEkN4hSmxy3NGQY1i0faszaBxE5WzpYhsOd
+         UkwA==
+X-Forwarded-Encrypted: i=1; AFNElJ83qEPeHBoMUcarPPCz9ach12Zb2BcysTA/QTHJ/V5Z0tKfZWMatuUixz4Zm+/KkqeDwToD6+3QCPld@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxT9mXj80xjkhVQmjctg5FKu+qk4M3ILBfOVGjzdoRO8nYvSCE
+	BGpv8Za6CyzwOQbFHrqlgxeyHrNwqKDZwK3bIm1eJCfAa64ElmCTCr1hfx40KqbUR+xNYkeNWU/
+	mfk7xcDlf3Hjr7aaD4ch9LX24/m/gnI4=
+X-Gm-Gg: Acq92OEGH+MB78JQWApi7CzLsHW5SAmqqlQAOOwJsMPwMXR2Ncz2VLVBBGLNaEnHhZ0
+	ufOcalgK4ekW34hTpNeG3P4Tl6CG5q8EHKTCSO7ylV55LIs/92htuBojbJaG6QgXHkOkyFb2gHf
+	e9Ki7MPxxsHlvYm62GZ12MAvpBrjXDj7vf1WQxtKH1qmqgMW8Au8bP8vNFf4JMDuoD7KHj6cc87
+	3GDQpjgTB7sjY1DH+UY67Llhoj/DMuoH4MLOi3b16hn9Pe8OemhFUCxRWh6BlneWTmBKE6LJCf4
+	65b4y295cOavM2X7ZHg=
+X-Received: by 2002:a2e:a583:0:b0:38e:d3e6:a89a with SMTP id
+ 38308e7fff4ca-3991a083973mr2593601fa.20.1781155357644; Wed, 10 Jun 2026
+ 22:22:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20260610-ventura2_initial_dts-v6-0-375d8e9d7ebf@gmail.com>
+ <20260610-ventura2_initial_dts-v6-2-375d8e9d7ebf@gmail.com> <a8cdc7c23166823a8e1969408c667e6a8d758fe7.camel@codeconstruct.com.au>
+In-Reply-To: <a8cdc7c23166823a8e1969408c667e6a8d758fe7.camel@codeconstruct.com.au>
+From: Kyle Hsieh <kylehsieh1995@gmail.com>
+Date: Thu, 11 Jun 2026 13:24:08 +0800
+X-Gm-Features: AVVi8Cckj1KMTx5QCbBfuV37allJnJRrSd1WRpg0xdewL4kFILvgYndyDD6MebM
+Message-ID: <CAF7HswMxtzD5KoQRGx4ckA4fUbFr6P7XXnTff_Z+_DmN8i37vQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] ARM: dts: aspeed: ventura2: Add Meta ventura2 BMC
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310131-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310128-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-aspeed@lists.ozlabs.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:krishna.chundru@oss.qualcomm.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[kylehsieh1995@gmail.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kylehsieh1995@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,smtp.kernel.org:mid,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,mail.gmail.com:mid,codeconstruct.com.au:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9761366EA42
+X-Rspamd-Queue-Id: 2A5EF66E82F
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+On Wed, Jun 10, 2026 at 7:22=E2=80=AFPM Andrew Jeffery
+<andrew@codeconstruct.com.au> wrote:
+>
+> Hi Kyle,
+>
+> On Wed, 2026-06-10 at 09:22 +0800, Kyle Hsieh wrote:
+> > Add linux device tree entry related to the Meta(Facebook) rmc-node.
+> > The system uses an AT2600 BMC.
+> > This node is named "ventura2".
+> >
+> > Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
+>
+> I have some comments on v5 that are applicable here too.
+>
+> https://lore.kernel.org/all/3d56889c004fc2d11b76ace6033c7ccfb8a37d03.came=
+l@codeconstruct.com.au/
+>
+Hi Andrew,
 
-New issues:
-- [Medium] The commit message claims to move `phy-names` to the root port n=
-odes, but the property is actually deleted and not added.
-- [Medium] `wake-gpios` is moved to the root port child node, but it is not=
- permitted by the `qcom,pcie-common.yaml` schema for child nodes.
+Thanks for the review and suggestions!
 
-Pre-existing issues:
-- [High] Missing `phy_exit()` on error paths in `qcom_pcie_parse_port()` an=
-d `qcom_pcie_parse_legacy_binding()` leading to PHY resource leaks.
---
+To briefly answer your question: Ventura2 is Rack Management
+Controller. It is a modular device primarily designed to manage liquid
+cooling systems and monitor rack-level hardware states. Its key
+hardware features include an extensive I2C/GPIO topology for
+tray-level and rack-level liquid leakage detection, as well as MCTP
+over I2C support for asynchronous device communications.
 
-commit b2d52b29841e8c337d148f97ebcff12f728d5a5f
-Author: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+I will remove the redundant sentence and include this detailed
+description of the platform's purpose and architecture in the commit
+message for v7.
 
-arm64: dts: qcom: sm8250: Move PCIe phy and GPIOs to root port node
+Also, the Sashiko AI bot just caught a missing `idle-state`
+configuration for the MCTP I2C mux, so I will include that fix in v7
+as well.
 
-The PCIe phy reference and the perst/wake GPIO properties are
-per root port and belong in the root port node (pcie@0), not in the
-RC controller node.
+I will send out the v7 patch shortly.
 
-> Move phys, phy-names, perst-gpios, and wake-gpios
-> from the controller to the existing pcieport0 and newly labeled
-> pcie1_port0 and pcie2_port0, allowing board-level overrides. Rename
-
-[Severity: Medium]
-The commit message explicitly states that phy-names is being moved to the
-root port nodes. However, the diff shows it is being deleted from the parent
-controller nodes but never added to the destination root port child nodes.
-
-While omitting phy-names might be structurally correct according to the
-bindings, does the implementation contradicting the stated intent in the
-commit message represent a regression?
-
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/q=
-com/sm8250.dtsi
-> index eca66d1c1c5b7..a5e2a16f6213e 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -2198,12 +2198,6 @@ pcie0: pcie@1c00000 {
-> =20
->  			power-domains =3D <&gcc PCIE_0_GDSC>;
-> =20
-> -			phys =3D <&pcie0_phy>;
-> -			phy-names =3D "pciephy";
-> -
-> -			perst-gpios =3D <&tlmm 79 GPIO_ACTIVE_LOW>;
-> -			wake-gpios =3D <&tlmm 81 GPIO_ACTIVE_LOW>;
-> -
->  			pinctrl-names =3D "default";
->  			pinctrl-0 =3D <&pcie0_default_state>;
->  			dma-coherent;
-> @@ -2218,6 +2212,10 @@ pcieport0: pcie@0 {
->  				#address-cells =3D <3>;
->  				#size-cells =3D <2>;
->  				ranges;
-> +
-> +				phys =3D <&pcie0_phy>;
-> +				reset-gpios =3D <&tlmm 79 GPIO_ACTIVE_LOW>;
-> +				wake-gpios =3D <&tlmm 81 GPIO_ACTIVE_LOW>;
-
-[Severity: Medium]
-Could moving wake-gpios to the pcie@0 child node introduce a schema
-validation regression?
-
-In Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml, the
-patternProperties for ^pcie@ has unevaluatedProperties: false and only
-explicitly permits reg and phys. If wake-gpios is not a standard property
-defined in /schemas/pci/pci-pci-bridge.yaml#, might this fail
-dt_binding_check?
-
-
-[Severity: High]
-This is a pre-existing issue, but missing phy_exit() on error paths in
-qcom_pcie_parse_port() and qcom_pcie_parse_legacy_binding() appears to
-lead to PHY resource leaks.
-
-In qcom_pcie_parse_port():
-
-drivers/pci/controller/dwc/pcie-qcom.c:qcom_pcie_parse_port() {
-    ...
-	ret =3D phy_init(phy);
-	if (ret)
-		return ret;
-
-	INIT_LIST_HEAD(&port->perst);
-
-	ret =3D qcom_pcie_parse_perst(pcie, port, node);
-	if (ret)
-		return ret;
-    ...
-}
-
-If qcom_pcie_parse_perst() fails (e.g., returning -EPROBE_DEFER when
-failing to acquire the reset GPIO), the function returns the error
-immediately without calling phy_exit(phy).
-
-Because the newly allocated port has not yet been added to the pcie->ports
-list, the error handling path in qcom_pcie_parse_ports() will not see this
-PHY. Does this repeatedly leak clocks and regulators on probe deferral,
-preventing power domains from collapsing?
-
-The same pattern exists in qcom_pcie_parse_legacy_binding():
-
-drivers/pci/controller/dwc/pcie-qcom.c:qcom_pcie_parse_legacy_binding() {
-    ...
-	ret =3D phy_init(phy);
-	if (ret)
-		return ret;
-
-	port =3D devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
-	if (!port)
-		return -ENOMEM;
-
-	perst =3D devm_kzalloc(dev, sizeof(*perst), GFP_KERNEL);
-	if (!perst)
-		return -ENOMEM;
-    ...
-}
-
-Could these devm_kzalloc() calls also fail and leak the initialized PHY?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260611-wake-v2-0-=
-2744251b1181@oss.qualcomm.com?part=3D30
+Best regards,
+Kyle Hsieh
+> Andrew
 
