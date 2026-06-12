@@ -1,168 +1,120 @@
-Return-Path: <devicetree+bounces-310765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310767-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kg+POX6/K2oQEQQAu9opvQ
-	(envelope-from <devicetree+bounces-310765-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:12:46 +0200
+	id bbUVIkO+K2q6EAQAu9opvQ
+	(envelope-from <devicetree+bounces-310767-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:07:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71742677AEF
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:12:46 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67059677A49
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:07:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=microchip.com header.s=mchp header.b=wpoXW6eY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310765-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310765-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=microchip.com;
+	dkim=pass header.d=sang-engineering.com header.s=k1 header.b="NSAjnw/R";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310767-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310767-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D91D931A727B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:04:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C1C0F3058A01
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57FB374E4C;
-	Fri, 12 Jun 2026 08:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74475363C46;
+	Fri, 12 Jun 2026 08:04:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D157C3655F8;
-	Fri, 12 Jun 2026 08:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F97A36B05C
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 08:04:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781251417; cv=none; b=F5xcIRoAB1VD6FFJZtn6Pjwsb8catCm0z9Uk9lRG6GCCyICmjoh4tgII2YK31uzdOrO5lUYMLf3g9Y3WCeItC3x3aklXruo+kPuOyxbfU44pfDZ4o7f3u9aXCceja4bsTyN4e3mL316DDK+xaprAYKlcPgPyDwQKqHxUPOEfewY=
+	t=1781251467; cv=none; b=pRpzI5giwXquj3mnD/Fj0HeLYecm4Gm9QMJJiMdNPHYXh9mZgjzR+vzG40eSNWEsD+qB3ujxvwRzjNiKNWMh8obFVNILOERfRIif3XN8bb4+C2wCt7lTTff+OxAKVyUkDTOdEwHFJtxyEFYKcXdcaD70hSBg5U4GYl6HKOPLvao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781251417; c=relaxed/simple;
-	bh=P4iVxiPDmbhbJzaqrUHlLYRHYp3weiZW/it8LSxUNyk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PHg8TDqcAfurZRnzzaJwEOyxaJmqTBedbOQ+hnDOWp224E2Wt4XdSqfqVK9Gzy/73JckkgbRdC/d10ou2PUxwXu3FbM5DkrEGJHlPXbGu3mbCsO6EoZiiN8OLYBlf73EQtBBxCtzWyeQ8KKPas1gZ1VoUPo6TDpDLgnsC4UZxkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=wpoXW6eY; arc=none smtp.client-ip=68.232.153.233
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1781251412; x=1812787412;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=P4iVxiPDmbhbJzaqrUHlLYRHYp3weiZW/it8LSxUNyk=;
-  b=wpoXW6eYrX31Z4q6ScGwG1tUik1NzrEzngtpN5DTugmdDTv62Gk5P/0Y
-   r36/HXM3N2EgUfFT/Htfclf2A4QOkUSFf99p7oHBpieiKbRbXL9bLw5i0
-   p9NGDGBvQZItdv+zMbAKea/+M+vsTGpu6cOctzgJ+ncrFpEqC6fODNocK
-   XM+Hzn7r4yHdJdO37tPSat4rkCaFeAyZEv6z7fUdXuwbHpMtC1FNj8E+M
-   jW2t0ySPz0FWKIH0l1gbI5NYUPI6dnVArwGY86kqX4CzTvxea/oQlc9/H
-   tdgbbcKVXuuYy1tkTPeJ2pPdW3cLb03iUrKo4WviSAepO/1iPo09cKbJd
-   A==;
-X-CSE-ConnectionGUID: OS0RNmxnQE6XK0OgLov9Ng==
-X-CSE-MsgGUID: l5iiYcgQRueWpaWqOIGeaQ==
-X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; 
-   d="asc'?scan'208";a="68064594"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jun 2026 01:03:25 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
- chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.41; Fri, 12 Jun 2026 01:03:25 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
- Transport; Fri, 12 Jun 2026 01:03:20 -0700
-Date: Fri, 12 Jun 2026 09:02:34 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Guodong Xu <docular.xu@gmail.com>
-CC: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert
- Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Zong Li
-	<zong.li@sifive.com>, Deepak Gupta <debug@rivosinc.com>, Anup Patel
-	<anup@brainfault.org>, Atish Patra <atish.patra@linux.dev>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, Chen Wang
-	<unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>,
-	<linux-doc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>,
-	<kvm-riscv@lists.infradead.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Conor Dooley <conor@kernel.org>, <devicetree@vger.kernel.org>,
-	<spacemit@lists.linux.dev>, <sophgo@lists.linux.dev>,
-	<linux-kselftest@vger.kernel.org>, Palmer Dabbelt <palmer@sifive.com>
-Subject: Re: [PATCH v4 01/16] dt-bindings: riscv: sort multi-letter Z
- extensions alphanumerically
-Message-ID: <20260612-strength-body-303e6a57218d@wendy>
-References: <20260611-rva23u64-hwprobe-v2-v4-0-3f01a2449488@gmail.com>
- <20260611-rva23u64-hwprobe-v2-v4-1-3f01a2449488@gmail.com>
+	s=arc-20240116; t=1781251467; c=relaxed/simple;
+	bh=SD6udC50xqZVQxPXlHTu+aZ4viUT2akMMWggNWejb70=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UUIOPLTBrOaaHbzVmFY+FuBNLFfpsiaZg+s84dioPPp7lJglP9UFvIGSCb2SY1PG5qizcyBYLBev9loW9c1IUWi+D3MhY4h+yFCZhkUmMYEzhjyeTAkz+yqnHzN61rxZ1SLyOwLxOPFrn2PHLz9lEik6MOrIuvUKJdP0DFs3jqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=NSAjnw/R; arc=none smtp.client-ip=194.117.254.33
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=Xe30Lk+zeo5LYt
+	5BDIEDOR0jr3l6SkDT59cNfjB+Tkc=; b=NSAjnw/RMqDmiDQRvIW1BHss34wUzi
+	TDpaNkwdnLfFTbzwdFjGWBKpNTVD56CB+CgdDz9j8I9cH4XBhYejkuXx6D+IdnD6
+	KbTepUQvuVfS+GpfQVe1rL/pAkz3iGzYWdK9HoxqfwKR89wqsGmMQ0+yrKGb14IY
+	3fYBUaNls1/gYtBUkrXXHn8oD7vcxA3K9IY0NZMozF1ziXpDPX/jQ/Y+L8vHVZvF
+	7Xo8pPO5/2k/ZPnE95M5AYWtFG+4aGyIu9LFBrYWxBAZ70alfsKSdCTQ77Rn2W8A
+	/hp4RA1uoXjsBgqNEHyrC0S2L9Y0JhQx46ehC4sYQVZH12NQEOiHz+MA==
+Received: (qmail 2443762 invoked from network); 12 Jun 2026 10:04:10 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Jun 2026 10:04:10 +0200
+X-UD-Smtp-Session: l3s3148p1@WXr16wlUrKcujnsK
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH 0/2] ARM: dts: renesas: r9a06g032-rzn1d400-eb: Enable SPI and FRAM
+Date: Fri, 12 Jun 2026 10:03:54 +0200
+Message-ID: <20260612080354.57459-4-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/HoYz/XLHMn+tyAX"
-Content-Disposition: inline
-In-Reply-To: <20260611-rva23u64-hwprobe-v2-v4-1-3f01a2449488@gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310765-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:docular.xu@gmail.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:zong.li@sifive.com,m:debug@rivosinc.com,m:anup@brainfault.org,m:atish.patra@linux.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:unicorn_wang@outlook.com,m:inochiama@gmail.com,m:linux-doc@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kvm@vger.kernel.org,m:kvm-riscv@lists.infradead.org,m:paul.walmsley@sifive.com,m:conor@kernel.org,m:devicetree@vger.kernel.org,m:spacemit@lists.linux.dev,m:sophgo@lists.linux.dev,m:linux-kselftest@vger.kernel.org,m:palmer@sifive.com,m:docularxu@gmail.com,m:krzk@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[sang-engineering.com];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[sang-engineering.com,kernel.org,vger.kernel.org,glider.be,gmail.com];
+	TAGGED_FROM(0.00)[bounces-310767-lists,devicetree=lfdr.de,renesas];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:linux-renesas-soc@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:geert+renesas@glider.be,m:krzk+dt@kernel.org,m:magnus.damm@gmail.com,m:robh@kernel.org,m:wsa@sang-engineering.com,m:conor@kernel.org,m:geert@glider.be,m:krzk@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,sifive.com,rivosinc.com,brainfault.org,linux.dev,outlook.com,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:dkim,microchip.com:email,microchip.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,wendy:mid,vger.kernel.org:from_smtp]
+	SEM_URIBL_FRESH15_UNKNOWN_FAIL(0.00)[sang-engineering.com:query timed out,vger.kernel.org:query timed out];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RBL_SEM_IPV6_FAIL(0.00)[2600:3c09:e001:a7::12fc:5321:query timed out];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,sang-engineering.com:dkim,sang-engineering.com:mid,sang-engineering.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 71742677AEF
+X-Rspamd-Queue-Id: 67059677A49
 
---/HoYz/XLHMn+tyAX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Here are the patches to enable the SPI-FRAM with FIFO (no DMA yet, needs
+more work) on the RZ/N1D Extension board.
 
-On Thu, Jun 11, 2026 at 04:12:38PM -0400, Guodong Xu wrote:
-> The multi-letter extension enum is documented as being sorted
-> alphanumerically (see the "multi-letter extensions, sorted
-> alphanumerically" comment), but several Z entries have drifted out of
-> order.
->=20
-> Reorder the affected entries so the multi-letter Z list is sorted
-> alphanumerically again.
->=20
-> Signed-off-by: Guodong Xu <docular.xu@gmail.com>
+Wolfram Sang (2):
+  ARM: dts: renesas: r9a06g032: Describe SPI controllers
+  ARM: dts: renesas: r9a06g032-rzn1d400-eb: Enable SPI-FRAM
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: na
+ .../dts/renesas/r9a06g032-rzn1d400-eb.dts     | 25 ++++++
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi      | 90 +++++++++++++++++++
+ 2 files changed, 115 insertions(+)
 
---/HoYz/XLHMn+tyAX
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.47.3
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiu9GgAKCRB4tDGHoIJi
-0v7zAQDekEYV7GQZKWhpOKggyOP7/VEDaNNIVjsPa4Gj++QaKwD/VvZF9CIz96Nk
-FWyOnzPaRHO4UyHIBXkZHWJO29UlYA0=
-=WZTL
------END PGP SIGNATURE-----
-
---/HoYz/XLHMn+tyAX--
 
