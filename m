@@ -1,221 +1,181 @@
-Return-Path: <devicetree+bounces-311151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311160-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PlIpMThrLGqVQgQAu9opvQ
-	(envelope-from <devicetree+bounces-311151-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 22:25:28 +0200
+	id DmK1HxZuLGowQwQAu9opvQ
+	(envelope-from <devicetree+bounces-311160-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 22:37:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F76D67C476
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 22:25:28 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 678E867C5B2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 22:37:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=nxp.com header.s=selector1 header.b=nkKp88Lo;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311151-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311151-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=nxp.com;
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="CK9my/HF";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311160-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311160-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E3717307BACB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 20:25:26 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 943DF3004C8D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 20:37:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B0C93A0B3B;
-	Fri, 12 Jun 2026 20:25:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BDD63126D7;
+	Fri, 12 Jun 2026 20:37:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011010.outbound.protection.outlook.com [52.101.70.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04EB3812F5;
-	Fri, 12 Jun 2026 20:25:24 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781295926; cv=fail; b=jQZoOjRN6vumIAij+sp7mJqbtdTengciq8dqi5NjmrKV585179uxUdELX3lQu6ZrVDnwYTlbDKTOLhHWUvwjBrnB66LlGVp5ay/BKGga03gTttDsp7CHBrRPoSEjWThzG8IL6kKJCf80h3/RXtPX8jA3Fqh2p/OFLv1/NUQFbBs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781295926; c=relaxed/simple;
-	bh=iBaCjAHnpd2p5cYZWzciMlFsBhAvWtOH+5VlOctTX9A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=nAkUDtHdxmPx1UmVxsUIPSnMRrA9674D0Rt6+4RUWAjOQCyT+DT7mN5cm+ZJCaRsDQjd39ziIEX2oA1iJmWlj3C62NO72RC3NyZbEEXcG1cLXA3h7OSkga8MxOZ0CuYgFR/84zHkEYQ7fJdUqTsgAvBzIlLEFVjYalFwqQWn8ZY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=nkKp88Lo; arc=fail smtp.client-ip=52.101.70.10
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U3S8ANY/ob//8h1OXWJOpKOMvhUgaYJj1fVhXBKQz/x46+iqLrE6ejct4z3G1s1iAEbs76kf0XXFpiTXM61E3oHfODV/ZdjgjR3VAJnZz1joxByDqXCeIm9OYxdAD5/3354qIp0RQVFsTYM2I6gubt6UzW/NbX4s/jXEaOulBuOpOsq02zQFyHw2mcJhsHzyarqCF4MS4kmRi69e1mDBE1XxdjXTErkFVVxtIqFvUHBi1xn3nHSWVHjWnXq2vqTVqGAcoMgyi9or9BgpsGiyj6nInXGipQvCFNep3h1h+sPFHi2T2zFHcqjLmdh0nexkHK7rVBustE1Qpl9f6OFPjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EO4V5ByzoOUfUOvtGGnQNrCFUcLhqCo3frLlVqTdmm0=;
- b=wwYuxG5dFodFoCm6E4sQI0D5fk0koLJp4Fqj9vqoPlOOsczM+JUVwN6PL5CKKy4w+Z0VQCNL5Y8pkikA0SfXHy+MWw2jJYFwdz4g/qfGiU0HSH6yww2SI60XgppWzh6OMp7H+M+gzcsNxS6qIerf9qhfcu+GG86hiqCvfhLBhfemWoEUl2tIAC+4Rrabr4xbaJ0T8bF8SCa7+lXoTsPjDaTbJysxTN8Ge0egycok6ZnajgEud049SWnyIiR0MgBAfvwCVWTiVmyQ2SAhLii2t96hjODO9A9bNAfv55Vq0eg0uoukswy1Riu/wyZnx3eiv4Q8xLP8Lr/DhGHgMfxR8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EO4V5ByzoOUfUOvtGGnQNrCFUcLhqCo3frLlVqTdmm0=;
- b=nkKp88Lo6UPxyB94zmI3p2Thy/MMUjzxXG5mt9/f1qO9OWWNAFM8tETIHT2KxqQtg6++2HjZ4p8Bmsz/gO/ycs1XTRGqkTUM91Lu6gLAFruJDWWoSVTsMTPK+7TBrzmPlr/a2FO3Vu67pWbeN0chdVvIHDOGipUcpcMDHtx+sR0oIKvW2JJI5U0E81NfQTOSYxhxtGoYNn81qxBrxMs5kEHcUU7qSC/IRAzmOZlpHdMQ1klalHUMT9Ig6BXkWUfFBhXqAKj/GbrKW5dIl6QGD2F0Q1PA374OLiqwYehqQ2RRgD7kZvydgvbKf9c1ZIsnHkJ3o0fViEmwLy92dIdoJQ==
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10)
- by DBBPR04MB7802.eurprd04.prod.outlook.com (2603:10a6:10:1f0::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.14; Fri, 12 Jun
- 2026 20:25:21 +0000
-Received: from AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023]) by AM0PR04MB6900.eurprd04.prod.outlook.com
- ([fe80::7fda:8431:ca1b:b023%5]) with mapi id 15.21.0113.011; Fri, 12 Jun 2026
- 20:25:21 +0000
-Date: Fri, 12 Jun 2026 23:25:17 +0300
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-	Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Tanjeff Moos <tanjeff.moos@westermo.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v1 phy-next 7/8] soc: fsl: guts: implement the RCW
- override procedure
-Message-ID: <20260612202517.tyxmohxy5lyn3zbq@skbuf>
-References: <20260611193940.44416-1-vladimir.oltean@nxp.com>
- <20260611193940.44416-8-vladimir.oltean@nxp.com>
- <20260612-twenty-diary-4aab5327f9c2@spud>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260612-twenty-diary-4aab5327f9c2@spud>
-X-ClientProxiedBy: WA2P291CA0035.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1f::11) To AM0PR04MB6900.eurprd04.prod.outlook.com
- (2603:10a6:208:17d::10)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5EC2BE051;
+	Fri, 12 Jun 2026 20:37:35 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781296656; cv=none; b=N9nczAb9zQWy061AR/1VNw7fjUdFmmx2wSXki7slSOWAkTG/c2+Vbx40TOEFa1JqW4tfNxxfcxCyUPLpV/MTaf5gUvmS5wAkvIQ7TbvRnQ5OtiFpliCT8B0cSFKhf0i3uf+SRdeliw8zGgvW6s6GDOKJV28V8FsgIbxCIsmRsXs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781296656; c=relaxed/simple;
+	bh=5xMU7jYPjEpgMvv2At42ASj8xs+7FtNbVL+1MBxmtwg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=gDoxTmXQudC5TVxrK5oJFFf43lz3LTfK5uXiei+QVrKfzOpsZlFdL4KU/qOrxF3zScILuGJkOGcvzwdFHnQLNzSUnHKcQCZMVjyzVCfiyA0zQKTqlWJvrGsuQJAbyGZuiFPDSyMq1giwemArBzjTE3/njI7P701e3HQMNPNUnA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CK9my/HF; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C43DC1F00A3A;
+	Fri, 12 Jun 2026 20:37:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781296655;
+	bh=ll6oLUGeBbDzLHebdObHEFeG7v9OBSZ5q9PnL4B1E1g=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=CK9my/HFAKL8pIdwGWNEDYRYRtks02YI6s2mseGwQl3l+GdioVfsJ5NyVi0P13vb2
+	 HAOjf7jT0mEBGwo81zQ08n8A7VZJyajoLdwXf+kr5RO4HZGpJ94IhwyHJLdbtzM8YT
+	 gu079TcnV5Wai6unX5rUIlZ9PK7fIJ73JWNxYEY2G6vS+QWmLbtxAA+XcXBfxM2gP7
+	 3h/rpq3HrKvZqFfTaC956eJnoczviJ+FLQ8Z34B532xx+NjwnVe/ulCQ8x+hyD3eOW
+	 Xk1Fr8yXjks8BXRMdt6gBoFRxlDm5caFrKAW8cm/TMEA+z2doQSOEYRs0h9P/NI6MR
+	 zy0N4EC0D5r+w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 1/7] dt-bindings: mfd: mt6397: Add MT6392 PMIC
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Luca Leonardo Scorcia" <l.scorcia@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-input@vger.kernel.org, conor+dt@kernel.org, dmitry.torokhov@gmail.com, robh@kernel.org
+In-Reply-To: <20260612200717.361018-2-l.scorcia@gmail.com>
+References: <20260612200717.361018-2-l.scorcia@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 12 Jun 2026 20:37:34 +0000
+Message-Id: <20260612203734.C43DC1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6900:EE_|DBBPR04MB7802:EE_
-X-MS-Office365-Filtering-Correlation-Id: 90fd379e-25a8-48fa-b589-08dec8c0ba06
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|23010399003|19092799006|366016|1800799024|10070799003|376014|7416014|56012099006|4143699003|11063799006|3023799007|6133799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	6jLB3c86VLBy2AqshfHIqSAbHuKg3GCy3uBs1hs6Ygmk0WMzm1SokrK3MDKNT7p9ZF11iR+JRzi95oIKic/mDkuWtxbpQ3Moq5RalRBzDOdMaKdTFBhFtFyIc41Tn3Nt9+xAoeLlukZxyuPqIFcMe0bzAMqkzsBTzGJzzfLviyQeJwRem6sHfUBEfqBajwVGksHsd0K2W1JJCGPHJF1YSCmwmMIG5ctLHchWVsWu1i1an+Tgb7hhjQdx9ERAcYr+q0tWxbNCo2UfOAmLgYtiJMwRiyTuKO+g96RCqs1nRabBE7IvzQ8jK42fPU5L7dDUkyKXr2JaRjo7bHLyvdEncsY0JQIT1tA8EWImnQ9lL1b5V+2hjTsJtEbKmNUjkcw8a9IzDWkqtAt66xjH1iK8MfK8CMQ3sUt99znJNo+6FkgG077s7iqwlfKmliYF0FHZV1ghAp+pbdLdd/NJu5FC9vFEJMuKO90cos4lGFi6uGaRW/KADTzCLw87sOSVoqLbt/W4udrK0832Cc63i1AcBHYqIQOT7TlrVZaq22v+Nhg4doOUNgZAOX+oqOYfjzo63w024GurTkr7a+zuCVlupItULVCt3lSnm/MMTEmKCyGN1jhORfPWTbwkDmkjW27OCvS0YMzVUzHjOfomcMg608OEmQO0ImYx3EnQJQj4sbqhvx6UaWFnCX/phl3tDYgB
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6900.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(19092799006)(366016)(1800799024)(10070799003)(376014)(7416014)(56012099006)(4143699003)(11063799006)(3023799007)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?3hMPJlDPMfSzCPqI31eVaNG+k33mShsOaHVqNireeVRLEptM5q+g66d9vRyt?=
- =?us-ascii?Q?MLO7ITXIyzg03UFFBpIK4CyGVoAOt65TC3X7yNOxmUpdM9x98kZLqRLNNdfG?=
- =?us-ascii?Q?fb+oc5ti/jNTwAwG8Vr/aHYMs2kXV14K2G41vYjCXu0T5kGZqgmHtaK4Dd0X?=
- =?us-ascii?Q?xjYBvStHDdFAZ0tyP/jMYWCcAZqsf7ffYH0Wtx8ue6eqtD9TkasKQbeXbIL2?=
- =?us-ascii?Q?Fv6mu6b8md+QZf35+JH2P85yLpSVATT0ecUayCRzzy4sZpWT/qF3TaqgwMas?=
- =?us-ascii?Q?TS1NpLutMSq810qFnXDdGHxLQDqbruIJqdLtnD/VzSPX6xOf1nSgocDY8j4M?=
- =?us-ascii?Q?mA/tFNxpHMifyaOMMf6VJGOe5P82NFHr1UaeIAXpM5egOp18dYjPMRH4XNRu?=
- =?us-ascii?Q?/Rchp2nC1jYn4nKkB8XWmaL91gkddWAq3/3An0nXq9/OgW0QXrrkM0WHDj/z?=
- =?us-ascii?Q?FSKQibMZ6kUJ8oyPn3XyXleP+s7EprDI1Q3Pv+k/O+srkopWWxywihAfu7x/?=
- =?us-ascii?Q?U6bjV+SkRe13aH+5BSpuiU4dVu7/clCoNSY7ZSirxoqj/tIvrTC5Jb6mtqmC?=
- =?us-ascii?Q?OwXCd/H6EXFfpG7XGIFGEK7uRYjkUzAsevSglzXFXTyfJMFtLZKpRzNtLSw7?=
- =?us-ascii?Q?a2Dl1sHCLsCBu2vWCDdgBjrh7zYXMaknmqvtEfxr9rI+ACHa9Vwyw99qgToi?=
- =?us-ascii?Q?CWTuE7wOl4cbVz/mFirTo7Dc+FCrU2hfx2bI6qA+gbtEolfYPRtTR5Dz8KHJ?=
- =?us-ascii?Q?C/MtCAb9NWOBL9FXNblrtCy6xmAgHaU0lHqjFtX5uNGjmJpDTX+1rbn14zXZ?=
- =?us-ascii?Q?yNuny69pnZqSG2dJUaJVgccV9Oo165MxZfjGy4UBzGmTozkySgCKIbiVlMIP?=
- =?us-ascii?Q?R8UTj4NLlWMhI/bbF8HFXK60Y/9ol/ISY5Kty8pjqsW8ebBSDRP4oPm10mtx?=
- =?us-ascii?Q?Gatd8AFPJm1vMcZt9ljkNP8hPKayIWj6LEayPLIob9udhH+STowv33O9myrI?=
- =?us-ascii?Q?cE8qHE6FVYWSmrYCKHkREjiMdpz0GdISwxESA50tohJBi/rehktyyzcOjm8L?=
- =?us-ascii?Q?qyvJ/6XtpYa9cbNN+Dn87rTs0sx6OZMmOtKC7E38yQLrScxFRhMjzCrzlRG0?=
- =?us-ascii?Q?YL1mWrPZVbCkvx57a4TWzqK5o8pt6Oc1KoNUZzlxzXGbRTuLj+KB695SGUyj?=
- =?us-ascii?Q?MUMAcg5Zr48yvwn5Uf0FQjPYae6Dzp3U75CViltBVxAPxRpEjc+FaVt3vk0x?=
- =?us-ascii?Q?dp2aZ+48U2uRcUO2+Tt+w3nHgrB6+MLLUzLg1wxU0t/xzSxUKvucjI6qNcj4?=
- =?us-ascii?Q?pIGAAdlojIw8PacSt20LzO+KWVgcHShUyqQNJ22JzZzLmhB8QXPBurAuaSs5?=
- =?us-ascii?Q?LgWKj0RacT9GV27AFgWLxMsqHAuZKxksDyecIYd8OaCwUM3LfdvIliblkvi+?=
- =?us-ascii?Q?NpzogoWoSx5VPSlYVnc1DhsDtVsWAeEJYUUcjupTkUFYepOi134v2P4sTi0t?=
- =?us-ascii?Q?/cZYpVsij6ZQpyjK+rryqJ1OpkbavAgYPCLGxmDUGBGXrJJXe63Jvtgje/QK?=
- =?us-ascii?Q?JWwf4kIeNIz7pLgkKvOrkpbQ1zRG/DPRY0TSxZwetFslXEU3N5PID85TTEK9?=
- =?us-ascii?Q?3wmm9QQ/Pu6OCmWM0X8TljwblfS72sTIwa5YwB04jhC2PFVR49WYWlO4QUOW?=
- =?us-ascii?Q?bsTLE21uJz4XZ8G/QJgIOXg846fGdrF3po8S76C+8WvR55IgcLTL4T3+u/2Q?=
- =?us-ascii?Q?IWfBE5KudC0NG+jUA07o5/OldMz+Ydc8PwWyPJs8QHgzbgc1qZaD4DMLCZCl?=
-X-MS-Exchange-AntiSpam-MessageData-1: sxNAIOqcBKIuSg==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90fd379e-25a8-48fa-b589-08dec8c0ba06
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6900.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 20:25:21.5105
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: r29ESwO5G3hmVSd5IU4EIugIkE0q5yAWEL9Uuo1P10mZxciA7b+DS83uoXKq3GkQdQ49C0DRcWITaUW5fmITTQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7802
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311151-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[vladimir.oltean@nxp.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:l.scorcia@gmail.com,m:devicetree@vger.kernel.org,m:linux-input@vger.kernel.org,m:conor+dt@kernel.org,m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:lscorcia@gmail.com,m:conor@kernel.org,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311160-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:linux-arm-kernel@lists.infradead.org,m:ioana.ciornei@nxp.com,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:tanjeff.moos@westermo.com,m:chleroy@kernel.org,m:mwalle@kernel.org,m:shawnguo@kernel.org,m:Frank.Li@nxp.com,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski+dt@linaro.org,m:robh@kernel.org,m:krzysztof.kozlowski@linaro.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vladimir.oltean@nxp.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email,nxp.com:from_mime,skbuf:mid,vger.kernel.org:from_smtp,linaro.org:email]
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1F76D67C476
+X-Rspamd-Queue-Id: 678E867C5B2
 
-On Fri, Jun 12, 2026 at 04:44:30PM +0100, Conor Dooley wrote:
-> On Thu, Jun 11, 2026 at 10:39:39PM +0300, Vladimir Oltean wrote:
-> > From: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > 
-> > Add support for the RCW override procedure which enables runtime
-> > reconfiguration of the protocol running on a SerDes lane. The procedure
-> > is done through the DCFG DCSR space which now can be defined as the
-> > second memory region of the guts DT node.
-> > Support is added on the following SoCs: LS1046A, LS1088A, LS2088A.
-> > 
-> > The procedure is exported to the "client" driver - the Lynx10G SerDes
-> > PHY driver - through the following functions:
-> > - fsl_guts_lane_init() used to notify the initial / boot time lane mode
-> >   running on a SerDes lane.
-> > - fsl_guts_lane_validate() used to validate that changing the protocol
-> >   on a specific lane is supported.
-> > - fsl_guts_lane_set_mode() which can be used to request the RCW
-> >   procedure be executed for a specific lane.
-> > 
-> > Since the RCW override procedure is different depending on the SoC, the
-> > private fsl_soc_data structure is updated with two new per SoC callbacks
-> > (.serdes_get_rcw_override() and .serdes_init_rcwcr()) which get used
-> > from the generic fsl_guts_lane_set_mode() function. These two callbacks
-> > hide all the SoC specific register offsets, masks and values so that the
-> > _set_mode() procedure is straightforward.
-> > 
-> > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> > ---
-> > Cc: Conor Dooley <conor@kernel.org>
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> 
-> Wrong CC list for this specific patch?
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] The dt-bindings schema for the MT6392 PMIC omits the 'mediatek,m=
+t6392-regulator' compatible string for the 'regulators' child node. Since t=
+he 'regulators' node is unconditionally marked as required in the schema, a=
+ny complete device tree correctly describing the MT6392 hardware must inclu=
+de it. Omitting the MT6392-specific regulator compatible string from the sc=
+hema forces DT authors to either write incomplete DTs (which fail validatio=
+n because the node is required) or use incorrect/generic compatible strings=
+, causing schema validation failures when they attempt to properly describe=
+ the hardware with 'mediatek,mt6392-regulator'.
+--
 
-No, it was intentional. Provided for context, so DT reviewers can check
-that extra properties not defined in the schema aren't being used.
+commit a20444c8e4c98a81558d6d5c619b650c00235e18
+Author: Fabien Parent <parent.f@gmail.com>
+
+dt-bindings: mfd: mt6397: Add MT6392 PMIC
+
+Add the initial bindings for the MT6392 PMIC and its RTC device.
+
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml b=
+/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> index 3cbc0dc12c319..e39e81aa99249 100644
+> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
+
+[ ... ]
+
+> @@ -72,6 +76,10 @@ properties:
+>                - mediatek,mt6331-rtc
+>                - mediatek,mt6358-rtc
+>                - mediatek,mt6397-rtc
+> +          - items:
+> +              - enum:
+> +                  - mediatek,mt6392-rtc
+> +              - const: mediatek,mt6323-rtc
+
+[Severity: Medium]
+Should the mediatek,mt6392-regulator compatible string be added to the
+regulators child node as well?
+
+Since the regulators node is unconditionally marked as required in the sche=
+ma,
+any complete device tree describing the MT6392 hardware must include it.
+
+Does this missing string cause a regression where DT authors are forced to
+either write incomplete DTs (which fail validation) or use incorrect compat=
+ible
+strings?
+
+This causes schema validation failures when authors attempt to properly des=
+cribe
+the hardware with mediatek,mt6392-regulator:
+
+Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml:
+  regulators:
+    ...
+    properties:
+      compatible:
+        oneOf:
+          - enum:
+              - mediatek,mt6323-regulator
+              - mediatek,mt6328-regulator
+              ...
+
+>            - items:
+>                - enum:
+>                    - mediatek,mt6359-rtc
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260612200717.3610=
+18-1-l.scorcia@gmail.com?part=3D1
 
