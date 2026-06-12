@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-311070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311073-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6NWgLUI0LGqRNgQAu9opvQ
-	(envelope-from <devicetree+bounces-311070-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:30:58 +0200
+	id 1FsiEvs0LGq+NgQAu9opvQ
+	(envelope-from <devicetree+bounces-311073-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:34:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A32367AF16
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:30:58 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42CA767AF86
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:34:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Eiqba53p;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311070-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311070-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WLaDllXV;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311073-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311073-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 84E163207075
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:24:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BEA9630093B5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:28:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D78853859F5;
-	Fri, 12 Jun 2026 16:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C1433985;
+	Fri, 12 Jun 2026 16:27:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE99381B1D
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85AC911CA9
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:27:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781281416; cv=none; b=l28zZri+bQPwFZhyN987S1MoQw9PxNYhSoaBcV2vN6lvkddcbXm5y8UmIXtctm57k7mi/+T6Nbf6Yqba4ayo7SDOJ8AzebG3dlnCWrm9+de5MjvKV2S9E/QsOd7yprk2kHe620NpbRGrD0HWidV5Tzqg4FUL/2FXjpclCEPPBXQ=
+	t=1781281679; cv=none; b=C391/K9OSayWHnmyLea2AVC0wfQ369uRzWoQMaRWoqlB7aoazkb+izs+buDrscbmJl6jX736OKKr2XOEa9sr2q2D5bhOdxOQiGtapVefzbuQJLMW5RIKMf7m2HLMuzk5IdWmWmJaMwWzyRJpLBOhdN6wISRiyu3DxB/w/7PGbJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781281416; c=relaxed/simple;
-	bh=6wVbBnB2Itm3XdwxaEqm5T59Ehin1Jaqvd7CnKfnlaU=;
+	s=arc-20240116; t=1781281679; c=relaxed/simple;
+	bh=LjxJt28S1BNQ4oZ4S4ExxeQcXICMCAhYTtJ57ouGZ+0=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=lssb4QhXbmJcdRzB16rdM1BQxJqByv4N8k0AyX/4+GftX6VvK9jXo8KUkpWnejUw3QNTmb1fylI7zxx1IJhihseq1bmc82CMMYzIXo3suPpUexpMnsa2/friSrLWaXXq48/mw1+xhnfGhLFRQs/GE34+zYVQG/UTgYZjspUazN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eiqba53p; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F9361F000E9;
-	Fri, 12 Jun 2026 16:23:35 +0000 (UTC)
+	 Message-Id; b=pR0rWYEPYhIcVc4lfpkZY6wiPpGXnMy6NYrhHCCQnKaytHEvaLMDMyUpeLrAmIVWOJ2GzXE9Zq+DpsvxHRoMhUPSs5UYuVGuAvjU5WW0yrkvRiEmaj+Q5IBK6dYMr9lrKqqcIwCUNmdz7djUIWqbUR0xsAehwjk1UZK65ss5fv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WLaDllXV; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD4131F000E9;
+	Fri, 12 Jun 2026 16:27:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781281415;
-	bh=OBNnJvOuiKkEWQ9r2pjYu0A1ur5Qd26STMCQabmtbho=;
+	s=k20260515; t=1781281678;
+	bh=VxnzDZ8OzuCdfuLXMeTGXgWYMK2qgo+iv86B/JQxuV4=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Eiqba53pVy0yYULMQ8CBYH1mzKIF4bYrTygl8UUiWFzOhvpc9kcNsg/PXL7hskN9H
-	 kiP2f7VoKwht5Bn+QM9pdc706Kai/AWdsIUkHaEh5NonFpDAnR7t1tAP+I7EOQ6cGI
-	 dT6J0XODHq/L/6bAhFMevKzSeT1IYy94y6E2P5yKmSfaUkYA+nJcoqtBz4wKZ5YMny
-	 Rd5fSip/DEls1KQRhA0kJ2U2+ZDK19UQnGRNmhaKjoMhg+ddrDislP6l7vWMC4czvW
-	 Jz/1Sk3GFC+Z5W1btqwMHqMEp4ifwZu+H5tP9Do1tba+aXSgpVcCozqHEM0JuebybH
-	 Tizfl2kkPpmnA==
+	b=WLaDllXVaeUqMkYu7HQdy6/1KwD/w0paS4DbrI0DMb6Tak8dpiauJUxyeERvKeucm
+	 l8OpptFStXdaO/N1J+5BLr32XYAZt7nIW8/pR4+s6pX0tGn/x8QQcBa4Sk9/I73ghy
+	 tS74eeRij4tvLOJdSfXGitHEFcrDaxjUd5I0naPyO/TbTcgPteh4HIVB0XOHZ97/bP
+	 NO/fcknAcF0LrVe4ElBnBGc+gkGO17GDFmsc6CkA/AZRmzgQAK+AlLDCM1IssapVQv
+	 qBE/gO2yBx8sEGozW5PzX+KnDzCN530Jo6g2EFj+SJsoTsiK7JS9e2IPHRqTD5SS1D
+	 aMJLPm2cE8wHg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 4/5] arm64: dts: exynos: add initial support for Samsung
- Exynos8855 smdk
+Subject: Re: [PATCH 3/5] pinctrl: samsung: Add Exynos8855 pinctrl
+ configuration
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Alim Akhtar" <alim.akhtar@samsung.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260612163020.411761-5-alim.akhtar@samsung.com>
-References: <20260612163020.411761-5-alim.akhtar@samsung.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260612163020.411761-4-alim.akhtar@samsung.com>
+References: <20260612163020.411761-4-alim.akhtar@samsung.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 12 Jun 2026 16:23:34 +0000
-Message-Id: <20260612162335.1F9361F000E9@smtp.kernel.org>
+Date: Fri, 12 Jun 2026 16:27:57 +0000
+Message-Id: <20260612162757.DD4131F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,24 +71,26 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311070-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311073-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:alim.akhtar@samsung.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:alim.akhtar@samsung.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[104.64.211.4:from];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.90.174.1:received,100.103.45.18:received];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -98,160 +100,106 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,samsung.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,samsung.com:email,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2A32367AF16
+X-Rspamd-Queue-Id: 42CA767AF86
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Missing Required Property in UART node `serial_0`
-- [Medium] Device Tree Topology Error: `cluster1` skips `core2`
-- [Low] Device Tree Binding Violation in `timer` node interrupts
-- [Low] DT Binding Violation: Missing `-gpio-bank` suffix on GPIO bank nodes
-- [Low] Device Tree Syntax Error: `gic` node defines `#size-cells =3D <1>` =
-without `#address-cells =3D <1>`
+
+New issues:
+- [Medium] Assigning `.eint_gpio_init =3D exynos_eint_gpio_init` for the AL=
+IVE and CMGP pin controllers is incorrect and will trigger an unconditional=
+ `dev_err` on boot.
+
+Pre-existing issues:
+- [High] Out-of-bounds shift and integer truncation in `exynos_wkup_irq_set=
+_wake` due to sparse `eint_offset` values in Exynos8855 pin banks.
 --
 
-commit fb7d1034f06462e074dc2aa5a08df68787706d6c
+commit 44d88e7478f7688359e44e48fa60a820ac3e8dfa
 Author: Alim Akhtar <alim.akhtar@samsung.com>
 
-arm64: dts: exynos: add initial support for Samsung Exynos8855 smdk
-   =20
-Add initial devicetree support for Samsung smdk board using
-Exynos8855 SoC.
+pinctrl: samsung: Add Exynos8855 pinctrl configuration
 
-> diff --git a/arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi b/arch/ar=
-m64/boot/dts/exynos/exynos8855-pinctrl.dtsi
-> new file mode 100644
-> index 0000000000000..f5d30fd299b62
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi
-> @@ -0,0 +1,581 @@
+Add pinctrl configuration for Exynos8855. The bank type macros are
+reused from Exynos850 SoC.
+
+> diff --git a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c b/drivers/pin=
+ctrl/samsung/pinctrl-exynos-arm64.c
+> index fe9f92cb037ea..ba2a11f8e19d8 100644
+> --- a/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
+> +++ b/drivers/pinctrl/samsung/pinctrl-exynos-arm64.c
+
 [ ... ]
-> +&pinctrl_alive {
-> +	gpa0: gpa0 {
-> +		gpio-controller;
-> +		#gpio-cells =3D <2>;
 
-[Severity: Low]
-Does this missing suffix violate the Exynos pinctrl dt-binding schema?
+> +/* pin banks of exynos8855 pin-controller 1 (CMGP) */
+> +static const struct samsung_pin_bank_data exynos8855_pin_banks1[] __init=
+const =3D {
+> +	EXYNOS850_PIN_BANK_EINTW(1, 0x00,  "gpm0",  0x00),
 
-Nodes such as gpa0 and gpm0 appear to be missing the required
--gpio-bank suffix, which the schema expects to match the pattern:
-
-    ^[a-z0-9-]+-gpio-bank$
-
-Without this suffix, the nodes will fail DT schema validation, even though
-the Linux pinctrl driver will still parse them by iterating over child node=
-s.
-
-> +
-> +		interrupt-controller;
-> +		#interrupt-cells =3D <2>;
 [ ... ]
-> diff --git a/arch/arm64/boot/dts/exynos/exynos8855.dtsi b/arch/arm64/boot=
-/dts/exynos/exynos8855.dtsi
-> new file mode 100644
-> index 0000000000000..cffa40b6bb986
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/exynos8855.dtsi
-> @@ -0,0 +1,214 @@
-[ ... ]
-> +			cluster1 {
-> +				core0 {
-> +					cpu =3D <&cpu4>;
-> +				};
-> +				core1 {
-> +					cpu =3D <&cpu5>;
-> +				};
-> +				core3 {
-> +					cpu =3D <&cpu6>;
-> +				};
 
-[Severity: Medium]
-Is it intentional to skip core2 in the cpu-map topology array?
-
-The cluster1 node defines core0, core1, and core3, completely skipping
-core2. Device tree topology indices are generally expected to be contiguous.
-
-Skipping core2 might misrepresent the actual hardware topology and confuse
-kernel topology parsers or the task scheduler.
-
-> +			};
-> +
-> +			cluster2 {
-[ ... ]
-> +		gic: interrupt-controller@10200000 {
-> +			compatible =3D "arm,gic-v3";
-> +			#interrupt-cells =3D <4>;
-> +			#address-cells =3D <0>;
-> +			#size-cells =3D <1>;
-
-[Severity: Low]
-Is this #size-cells assignment a device tree syntax error?
-
-The gic node explicitly specifies #address-cells =3D <0>, but sets
-#size-cells =3D <1>. In Device Tree syntax, if #address-cells is 0, the nod=
-e's
-children cannot have sizes, so #size-cells must also be 0 or omitted.
-
-This mismatch will trigger the avoid_unnecessary_addr_size dtc compiler
-warning.
-
-> +			reg =3D <0x10200000 0x10000>,
-> +			      <0x10240000 0x100000>;
-[ ... ]
-> +		serial_0: serial@15500000 {
-> +			compatible =3D "samsung,exynos850-uart";
-> +			reg =3D <0x15500000 0x100>;
-> +			interrupts =3D <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			pinctrl-names =3D "default";
-> +			pinctrl-0 =3D <&uart0_bus>;
-> +		};
+> +	EXYNOS850_PIN_BANK_EINTW(1, 0x280, "gpm20", 0x50),
+> +	EXYNOS850_PIN_BANK_EINTW(1, 0x2a0, "gpm21", 0x54),
+> +};
 
 [Severity: High]
-Does this node need clocks and clock-names properties?
+This is a pre-existing issue, but does the configuration of these eint_offs=
+et
+values (up to 0x54) expose an out-of-bounds shift issue?
 
-The samsung_tty driver unconditionally requests the uart clock during its
-probe() function via devm_clk_get(). Without these properties, the driver's
-probe will fail with -ENOENT and abort.
+Looking at exynos_wkup_irq_set_wake() in
+drivers/pinctrl/samsung/pinctrl-exynos.c, it sets wake mask bits using:
 
-Since serial_0 is set as the stdout-path in the board DTS, this failure
-would result in a non-functional serial console.
+    unsigned long bit =3D 1UL << (2 * bank->eint_offset + irqd->hwirq);
 
-> +	};
-> +
-> +	timer {
-> +		compatible =3D "arm,armv8-timer";
-> +		/* Hypervisor Virtual Timer interrupt is not wired to GIC */
-> +		interrupts =3D
-> +		     <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
+If eint_offset is 0x54, the shift amount becomes 168, which invokes C
+undefined behavior. Even for shifts between 32 and 63, the 64-bit value is
+bitwise OR'd into a u32, dropping the upper bits and breaking the hardware
+wakeup masks for these pins.
 
-[Severity: Low]
-Are these interrupt definitions violating the GICv3 device tree bindings?
+Will this logic need updating to support these sparse CMGP banks?
 
-The timer node defines its GICv3 PPI interrupts using the
-GIC_CPU_MASK_SIMPLE(8) macro and IRQ_TYPE_LEVEL_LOW.
+[ ... ]
 
-Under GICv3 device tree bindings, the 3rd cell must only encode trigger type
-and level flags; embedding CPU affinity masks violates the schema.
-Additionally, GIC device tree bindings standardly expect
-IRQ_TYPE_LEVEL_HIGH or IRQ_TYPE_EDGE_RISING.
+> +static const struct samsung_pin_ctrl exynos8855_pin_ctrl[] __initconst =
+=3D {
+> +	{
+> +		/* pin-controller instance 0 ALIVE data */
+> +		.pin_banks	=3D exynos8855_pin_banks0,
+> +		.nr_banks	=3D ARRAY_SIZE(exynos8855_pin_banks0),
+> +		.eint_wkup_init =3D exynos_eint_wkup_init,
+> +		.eint_gpio_init =3D exynos_eint_gpio_init,
+> +	}, {
+> +		/* pin-controller instance 1 CMGP data */
+> +		.pin_banks	=3D exynos8855_pin_banks1,
+> +		.nr_banks	=3D ARRAY_SIZE(exynos8855_pin_banks1),
+> +		.eint_wkup_init =3D exynos_eint_wkup_init,
+> +		.eint_gpio_init =3D exynos_eint_gpio_init,
+> +	}, {
 
-This will trigger dtbs_check validation warnings, though the Linux GICv3
-driver safely masks out the unsupported bits at runtime.
+[Severity: Medium]
+Is it correct to assign exynos_eint_gpio_init to the eint_gpio_init
+callback for the ALIVE and CMGP controllers?
 
-> +		     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
-> +		     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
-> +		     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>;
-> +	};
-> +};
+Because these controllers only contain EINT_TYPE_WKUP and EINT_TYPE_NONE
+banks, they do not support standard GPIO interrupts and typically lack an
+interrupts property in the device tree.
+
+When exynos_eint_gpio_init runs and sees no irq, won't it unconditionally
+log an error during boot:
+
+    dev_err(dev, "irq number not available\n");
+   =20
+and return -EINVAL? Does this initialization need to be omitted here,
+similar to how it is handled in exynos850_pin_ctrl?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260612163020.4117=
-61-1-alim.akhtar@samsung.com?part=3D4
+61-1-alim.akhtar@samsung.com?part=3D3
 
