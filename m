@@ -1,157 +1,265 @@
-Return-Path: <devicetree+bounces-310669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310671-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Lk9lEoFbK2qN7wMAu9opvQ
-	(envelope-from <devicetree+bounces-310669-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 03:06:09 +0200
+	id RqXyAlpeK2rk8AMAu9opvQ
+	(envelope-from <devicetree+bounces-310671-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 03:18:18 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D6856760B2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 03:06:07 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5682D676183
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 03:18:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ultrarisc.com header.s=dkim header.b=ggtzVOge;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310669-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310669-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=ultrarisc.com;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=XBu3YVp9;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=ZM6cEeLq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310671-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310671-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 562E53193DAC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 01:06:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C7C75314A108
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 01:18:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A744A306778;
-	Fri, 12 Jun 2026 01:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 316983385BC;
+	Fri, 12 Jun 2026 01:18:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ultrarisc.com (unknown [218.76.62.146])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF9A3043CE;
-	Fri, 12 Jun 2026 01:05:58 +0000 (UTC)
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A34A331A7B
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 01:18:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781226363; cv=none; b=DaqhRYpFS5EsnV8vUMLJa0HqIHTIwHOeCcuAc5O8ZiKksoGll60d9WIAeJZwatQovZgB0buuUuPbwT6BQPb1cP1fZnDAeO3AeTJyB3+XP3SZgksnk8jxQFVBJSj6rYInK9ddGucYklczHEaXBeKkSY2DSbY8PtJKSzfoOZrhfRY=
+	t=1781227085; cv=none; b=arD/c/xb5z/srK0od1sTy5lFhipBhQDc54tsCS2H1rt3E3jN1NOB4zCvT8k9/lScOnfEJwidPHeD89KdIxhMnmjTXH3e+OW9uSYLwfJdcdHN4bd7HNcloRvUnC0c4OEDDdWYgmzcDqLWzT4rtVAQ1xmS8seShbxWdp7Om2Wg7LU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781226363; c=relaxed/simple;
-	bh=6H7FhgPeV1C+qbcIVAYT/9XGIYXJqd5LkhNSGJ8wEVQ=;
-	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=I+weR7CRtDcRRegsOrzI/RrjHSt8TItUUWlm/kS5kmPqCPjJsq6mqT7IfYa1ok71MDM9NK7aPfS6SPCYwDElzpRkWJcBxoXreZ84zlOjRYaVBjOKwgXgUzS1Iz3RMewUEoG0NWFOhFBmDNv8Y98wV04h5VjU9WLKAsM/lrMe1xU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ultrarisc.com; spf=none smtp.mailfrom=ultrarisc.com; dkim=pass (1024-bit key) header.d=ultrarisc.com header.i=@ultrarisc.com header.b=ggtzVOge; arc=none smtp.client-ip=218.76.62.146
+	s=arc-20240116; t=1781227085; c=relaxed/simple;
+	bh=Zuowp69okHqoeqjXee0h4XdV2JsffR3X6Im4oI1USEs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KsUwaPcebd40RlRk2hJ+m9WooUe9QiFzeLBoxf3mY2aKNQRc3SbTC92LYL2Y5HY+wb9YvHOWlWPuHdTm4hknpH1RWukMSDiqKR0t3P1T4v4GaNatW1VptSC7innwguXf+9QEUrGGQP981FVGS901b11xS6sYHnRWpsjKR9dSLCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XBu3YVp9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZM6cEeLq; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65BMUZId1864462
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 01:18:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=4EqFMpSpAm2KuA9gUkjE2CCc
+	/4B8cxyegXiUK2f5fww=; b=XBu3YVp99cQ3B1+pNoy0HhauSovp/N5ocz9wrTuE
+	st0uvVVGpJC/imYHuAyuCfMWq9Y2f+YFz3tEoEE707ud5wssH40gKLpi/7K0oaAj
+	ynXYaAHZBL5QkrkN/Rgme/fRnO9EAQ0rReo6w/dRP8DfcJsNObvUaSmWcoUcdzJX
+	1pXAFWvtT27wqlQMz/UMHgLzWSEZVR6kWzCLllsvQIYam2/N4ENo/3UvPrXE04Ot
+	PgpUQymgMW4sUc9FfTMt27QSzn7wU0o3rDYWQFR7/aWOEktvTCHmm0iZ9Fx7H/xU
+	oYK7xIcTvXDJPEzw4nJIaaIDnwsCt99q2yARUQp9pcmtpw==
+Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4er1xchekj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 01:18:01 +0000 (GMT)
+Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-304f23c55b2so761218eec.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 18:18:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ultrarisc.com; s=dkim; h=Received:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Subject:From:To:Cc:In-Reply-To:
-	References:Date:Message-Id; bh=HWDkY6clhQmlnL2nYh2AFuK/BAC+DEPZz
-	jkqMqByAlE=; b=ggtzVOgeKGNythdxi52riCaLnWoylWJgqeEcfqoG9/SK1u6K7
-	IdwnuUaQJjE8i/Dx4RUkenG3BLx+4U3IhGXFIwaNWY8fJxWf2USo/EkQDBXT7HOc
-	Iz0p8l1jD9hfK0YkyDHEDspWYabFOFgvIsnWdjmFAV9JZSecbOMNWxtpMk=
-Received: from [127.0.0.1] (unknown [192.168.100.1])
-	by localhost.localdomain (Coremail) with SMTP id AQAAfwA3cUKPWytqZ0kKAA--.9062S2;
-	Fri, 12 Jun 2026 09:06:23 +0800 (CST)
+        d=oss.qualcomm.com; s=google; t=1781227081; x=1781831881; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4EqFMpSpAm2KuA9gUkjE2CCc/4B8cxyegXiUK2f5fww=;
+        b=ZM6cEeLqLkQIh+NJ+1ZYTOAwTceSCeGbC9RzQ6nctkrAE4SyQZL11DNU4EMF0oNA7Z
+         ZgdrfCTrP/hB6DYsl4jjne5n0qjmmaQaNE2+/nxhuemfaVoJ7KIh8cuc6ZZF1P+aL8MY
+         a8cMuBIQnMDc8pAyWsPzTu57dG/4CGNNg+Y09QgwwcNVbRDvLVjEwHD1Uo0svGFxzoaH
+         COA8vsCPYtPGf2Nj5M96dO4kk4O+nXvH31UmnHiTzL9tiCrF3vnGgoJHUDWGg2Lud+n3
+         y/uYDJ5rCVsilBixmTUO4v66+d4Xo8FKK2ohGuwQh3doD7dpy7l0DxSPaab5+ShxvW0o
+         NN1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781227081; x=1781831881;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4EqFMpSpAm2KuA9gUkjE2CCc/4B8cxyegXiUK2f5fww=;
+        b=MYkuiDqtCepFF6/aXyL7mars7ZuAHBqEUtuS4mD0eL7jrsxVQhzJ43G7GJE8qnULt9
+         cVXHMD3bNfWfLglaVPNJXvJJbbLIr5BODRQ2JVcylAE30CoCXBxwu6aW5nqEewFz7D8j
+         LjVpW+P5zkQEL6pzF+ysLqAzQX6VrTpBzxkDAJHgNUD7TtCvnjj/klOihb9X9TIbto/S
+         rudBA4RlI+p7ojkHeSn59ajl9Ib3WUZRhTcowLDiR7YuRyBI2npxfro/VUYWQw0Agen1
+         U9Abtmzdx7sXvMhJg055VniIJgzoC/41XM70T9+YsN88Y8l9TRrmOwS30LyCMCt7wGXU
+         jIGQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+jkrjGmhk8ZcJrXwrTScTuLrzoF2lIyqahanJprostGidJGjv1TRAbkTJ5BW5mlXj18gZrP3DlfcEk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqSHRIJfKVsSYPzX3HnndOdMQ/AS4E0nJn2t1mEKs5eG0AlQKY
+	Z+ajbsZLZWhOsQg9DBiVMlubOsaFJtazNtznNIK+up4B1fqxXxm4YYlJhbZr353jcyIWb1TThJD
+	FG+DvMbyRm3geRjESUaCpXzTBdzVQMAnvDuw8vupKjZJaO7yqVTTwbkdSF8qR4Fd5
+X-Gm-Gg: Acq92OGx/z6SVM5YyVWPSyr1F80eslsfzixsdxfLiUjXymRbNqWRrSqRIs1wSVlLy+T
+	4dg4z1MSn0u2rpfpu2RqwNYTXBwLbyMYL4BgaRoPlb46vSvXCXNrTwZ8dYTLCZLf4OgEgBa271e
+	f5f8hXfx73STX3wYad6NUlsJSAs/NkBRruJRMeio1UavTNNSjAmg7mg1WK8X3MJErYggz/ReXJn
+	J9J3D16O5qn3orclwgXDolHsSWf+lsMWGkUl+Yq6a0sUR1UA/CaVCk3WfdILfqhFq0oPj6bcXyw
+	Bv3Lf0Xv60Mkm6aIptzMD+oYC2lhCoB3W+ii33Al8C8AoGsu7UdQlbmHFpabd6cAvpScJBAg8DR
+	O2OHILF+i7vDhsrYTqoKTzkPDWcgWsInzIG2I928ngUejseT4wmjFmjDLQNQ+5dEiJiKnMKeJFs
+	WWGA==
+X-Received: by 2002:a05:7300:3c2c:b0:304:8361:a87e with SMTP id 5a478bee46e88-308200c5969mr426760eec.33.1781227080821;
+        Thu, 11 Jun 2026 18:18:00 -0700 (PDT)
+X-Received: by 2002:a05:7300:3c2c:b0:304:8361:a87e with SMTP id 5a478bee46e88-308200c5969mr426735eec.33.1781227080168;
+        Thu, 11 Jun 2026 18:18:00 -0700 (PDT)
+Received: from hu-mattleun-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3081e5fefecsm1203063eec.13.2026.06.11.18.17.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Jun 2026 18:17:59 -0700 (PDT)
+Date: Thu, 11 Jun 2026 18:17:57 -0700
+From: Matthew Leung <matthew.leung@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: qcom: Document the Hawi PCIe
+ Controller
+Message-ID: <aiteRU8cWykuhlVO@hu-mattleun-lv.qualcomm.com>
+References: <20260529-hawi-pcie-v2-0-de87c6cc230c@oss.qualcomm.com>
+ <20260529-hawi-pcie-v2-1-de87c6cc230c@oss.qualcomm.com>
+ <2tenqkmwcr2gshtjwh44pvban4gtlzcgrm3iibkfrs4zh6vphb@h5losfunylr6>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v4 0/2] pinctrl: ultrarisc: add DP1000 pinctrl support
-From: Jia Wang <wangjia@ultrarisc.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: wangjia@ultrarisc.com, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <CAD++jL=m6++zOfq2gP4-y4N7U6nx1buVM5KMoxWJ_9PM6RVV8A@mail.gmail.com>
-References: <20260610-ultrarisc-pinctrl-v4-0-b7e9b2a8ed84@ultrarisc.com>
- <CAD++jL=m6++zOfq2gP4-y4N7U6nx1buVM5KMoxWJ_9PM6RVV8A@mail.gmail.com>
-Date: Fri, 12 Jun 2026 09:05:46 +0800
-Message-Id: <178122634683.2408461.10784730640588716167.b4-reply@b4>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1781226347; l=813;
- i=wangjia@ultrarisc.com; s=20260515; h=from:subject:message-id;
- bh=6H7FhgPeV1C+qbcIVAYT/9XGIYXJqd5LkhNSGJ8wEVQ=;
- b=+RaRWjJ18DQyyG78WOME05B9R9HUuIwNrQ27sPO6pI5dyFXlu6PC5gTPYxawh2nIR56TX4jx+
- rQgLUv3TqOsDq3/9ksAAuMHIa3C6fT0l8VXueqb2X7oRibywk9WQH31
-X-Developer-Key: i=wangjia@ultrarisc.com; a=ed25519;
- pk=wGVm18siRScehKOkOz0WKxgxDy7IezHEszhnN4/TUCY=
-X-CM-TRANSID:AQAAfwA3cUKPWytqZ0kKAA--.9062S2
-X-Coremail-Antispam: 1UD129KBjvdXoWruw47WF43XFyDAF1xCF17KFg_yoW3Wrc_uF
-	Z5Zr1qkw1UGF4Ika1DArsxCF98KF47WrykKryvqryUAr9Fyrs8G3WrKrsxtwn5ZFsYqF93
-	CryIv3yv9F1a9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUb-kFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
-	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
-	Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr
-	1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-	jxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
-	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
-	n2IY04v7MxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04k20xvY0x0EwIxGrwCFx2
-	IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v2
-	6r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67
-	AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IY
-	s7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr
-	0_GrUvcSsGvfC2KfnxnUUI43ZEXa7VU13ku3UUUUU==
-X-CM-SenderInfo: pzdqwylld63zxwud2x1vfou0bp/1tbiAQAAEWoWakYABgBTsV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2tenqkmwcr2gshtjwh44pvban4gtlzcgrm3iibkfrs4zh6vphb@h5losfunylr6>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEyMDAwOSBTYWx0ZWRfXwk7ptu0T6rka
+ jPQsrsO7uDNgH/r33scN4COjZL68UdlF/4gnuxIJpRl9EaR5wNy9IVctB7+jXzdiVLTUBpaKTM2
+ QrsNE24nhO0ocdaOJK/M5t+buMZZQcEgQa7bqgWuZzvmubhCncIvlyWeFSQHYfXWgYtXzp75TNo
+ ZcA6T/biw9B4lVF++v9wmifYok5pWcNVW7oRfReieKuQUBVIYDlwBjgI+kHCJ+lANeiAWislUsR
+ fhb1nbV6RxC7oL+TO3n+Zh9a0mNr6U3qIGDhGiDcla4/BLuOizeLdjpU50QrYPyqsk7qJLPkrMJ
+ MbF9zK/pwhfUQcwcjtGYoyAjdIXM36AbjdencHUKnfPHOlf/qiGEFReh42ca5unO03jSOMVwnfg
+ EJCBRfwUCyh43wibm3oZL6YGjlbTywsfAeQeu9hc1SJDuZf87UYssMW+kz5W20G6NvzQMXjQ5e3
+ wWfnhIYq0kIQclyJ1RA==
+X-Proofpoint-GUID: 6wMMnRV0gXk5XF5YYqmf1LSxm_wioVSL
+X-Proofpoint-ORIG-GUID: 6wMMnRV0gXk5XF5YYqmf1LSxm_wioVSL
+X-Authority-Analysis: v=2.4 cv=NZPWEWD4 c=1 sm=1 tr=0 ts=6a2b5e49 cx=c_pps
+ a=Uww141gWH0fZj/3QKPojxA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=kj9zAlcOel0A:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=k8qvQEqTjxYPBieS1nsA:9 a=CjuIK1q_8ugA:10
+ a=PxkB5W3o20Ba91AHUih5:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjEyMDAwOSBTYWx0ZWRfX2E1LuyAR1trQ
+ 4fPSUpnH7CsREWwxXOdlhOSDeWxP4cgwhywDTKz1A8tYyE58r0cT4xj9218ahAWyS05PG7L828X
+ 5DRjBRgvAD4tCdDUyOhQHyJF8nVBHLY=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-11_05,2026-06-11_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 bulkscore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606120009
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ultrarisc.com,none];
-	R_DKIM_ALLOW(-0.20)[ultrarisc.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310671-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime,hu-mattleun-lv.qualcomm.com:mid];
+	FORGED_SENDER(0.00)[matthew.leung@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:bhelgaas@google.com,m:lpieralisi@kernel.org,m:kwilczynski@kernel.org,m:mani@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-pci@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:linusw@kernel.org,m:wangjia@ultrarisc.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:brgl@kernel.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310669-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ultrarisc.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wangjia@ultrarisc.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[matthew.leung@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ultrarisc.com:dkim,ultrarisc.com:from_mime]
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9D6856760B2
+X-Rspamd-Queue-Id: 5682D676183
 
-On 2026-06-11 14:24 +0200, Linus Walleij wrote:
-> On Wed, Jun 10, 2026 at 7:29 AM Jia Wang via B4 Relay
-> <devnull+wangjia.ultrarisc.com@kernel.org> wrote:
+On Sun, Jun 07, 2026 at 11:01:10PM +0300, Dmitry Baryshkov wrote:
+> On Fri, May 29, 2026 at 01:10:08AM +0000, Matthew Leung wrote:
+> > Add a dedicated schema for the PCIe controllers found on the Hawi
+> > platform.
+> > 
+> > Signed-off-by: Matthew Leung <matthew.leung@oss.qualcomm.com>
+> > ---
+> >  .../devicetree/bindings/pci/qcom,hawi-pcie.yaml    | 204 +++++++++++++++++++++
+> >  1 file changed, 204 insertions(+)
+> > 
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/qcom,hawi-gcc.h>
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    #include <dt-bindings/interconnect/qcom,icc.h>
+> > +    #include <dt-bindings/interconnect/qcom,hawi-rpmh.h>
 > 
-> > This series adds the devicetree schema and the pinctrl driver for the
-> > DP1000 controller using generic pinctrl bindings.
-> >
-> > Compared with v1, this series is narrowed down to the pinctrl binding
-> > and driver only. v1 patches 1, 2, 3, 5, 7, 8, and 9 (vendor prefix,
-> > CPU/SoC bindings, DTS files, and defconfig update) are not included in
-> > v2 and will be sent separately.
+> Stop referencing clocks and interconnect header files. Replace used nocs
+> with ephemeral values.
 > 
-> This is a very good looking driver so I applied the patches!
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    soc {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <2>;
 > 
-> If there are any more snags they can certainly be fixed in-tree.
->
+> Not looking around should be a sin. Take a look at other Qualcomm PCIe
+> bindings. Compare them to yours. Then fix yours to follow.
+> 
+> Hint: the extra soc node is useless. This is just an example, so use the
+> default, 1 cells for address and size.
 
-Hi Linus,
+Thank you for the feedback. This new binding follows the examples set in
+the qcom,pcie-sm8x50 bindings and retains the same formatting (extra soc
+node and header references).
 
-Thanks for applying the series!
- 
-> Yours,
-> Linus Walleij
->
- 
-Best regards,
-Jia Wang
+I understand the example can be simplified with your suggestions but
+want additional confirmation that these will be the convention for new
+bindings going forward.
 
-
+> 
+> > +
+> > +        pcie@1c00000 {
+> > +            compatible = "qcom,hawi-pcie";
+> > +            reg = <0 0x01c00000 0 0x3000>,
+> > +                  <0 0x40000000 0 0xf1d>,
+> > +                  <0 0x40000f20 0 0xa8>,
+> > +                  <0 0x40001000 0 0x1000>,
+> > +                  <0 0x40100000 0 0x100000>;
+> > +            reg-names = "parf", "dbi", "elbi", "atu", "config";
+> > +            ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
+> > +                     <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x3d00000>;
+> > +
+> > +            bus-range = <0x00 0xff>;
+> > +            device_type = "pci";
+> > +            linux,pci-domain = <0>;
+> > +            num-lanes = <2>;
+> > +
+> > +            #address-cells = <3>;
+> > +            #size-cells = <2>;
+> > +
+> > +            clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+> 
+> <&gcc_pcie_0_aux_clk>, etc.
+> 
+> > +                     <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> > +                     <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
+> > +                     <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
+> > +                     <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
+> > +                     <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
+> > +                     <&gcc GCC_CNOC_PCIE_SF_AXI_CLK>;
+> 
+> -- 
+> With best wishes
+> Dmitry
 
