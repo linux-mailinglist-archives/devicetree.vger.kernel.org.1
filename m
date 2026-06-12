@@ -1,68 +1,80 @@
-Return-Path: <devicetree+bounces-311033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311034-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id H6dGFIotLGrEMwQAu9opvQ
-	(envelope-from <devicetree+bounces-311033-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:02:18 +0200
+	id ixDuEgkvLGptNAQAu9opvQ
+	(envelope-from <devicetree+bounces-311034-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:08:41 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40AEB67AAF7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:02:17 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B47FB67AB9B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:08:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZeGOvCn0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311033-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311033-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l777kD8V;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311034-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311034-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E2E9730E5385
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:01:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7D9F432153C2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:05:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E757371CE3;
-	Fri, 12 Jun 2026 16:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113E63CE0A0;
+	Fri, 12 Jun 2026 16:05:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7451E33F36D;
-	Fri, 12 Jun 2026 16:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09CE438C2D1;
+	Fri, 12 Jun 2026 16:05:20 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781280099; cv=none; b=g7kJohP8mKVy5B6Xdey+gsC0caLeEX+oAEpUc01ypS/wQPMwC7kvIE+AMf84qq3fxkVN1FxwTwc6XpOeVWbTA/pdgCnNDsisuwpXrracF0FMHw4MSOE16ZCvYpEPWIlvCeoLpUJVurboiPccvMzvxsbGHDQnCys7jL/oIxanXlk=
+	t=1781280321; cv=none; b=W7WkvtD87KtJ9wobh/x53khAKMaCxg0HoRxJOzR1D+rIXWvLeKdGT5AY9/V+4YUCAWBuKlMCAwPZC2ZkKtJ30ykZjhtNjzyvK//xhHD9IBULijjJuxryHMTwVqHKi01TLjQSujgHGl/sGiXZn67eF2HDXpsE99MnX5WPMkk/2EI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781280099; c=relaxed/simple;
-	bh=wLhpsbDGe+7UZ439gh2ADhzTgD0l3cEk+bKY/MPu4xI=;
+	s=arc-20240116; t=1781280321; c=relaxed/simple;
+	bh=a1YIu3OtEUXW0CrC+PYF/h5Grn4bylUZo87O796R0DI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AbCsJFl7pwDfk8jLWoRctU0P6ii1QyzBkvhyW2hUbvSNjX4oCWuYUZIKw9k70Jw2tZRoRFVKwlW5LKNFfEWBZQFLJFvQG2mMp/hz+IC8zm4irYZhXrQ5NuHsFjzXXUpB7kqOpp1sSUbVehd/Y0jsh/VkTTxuw5NsbFN2J3nTWvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZeGOvCn0; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A9AD1F000E9;
-	Fri, 12 Jun 2026 16:01:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cyxUxI9b/e2F8TmVnrDLILI+NqZlK3nI1GhyB2AEIzLzAvg7R195P/T+oGOCMbqSOhh6GcrrPGmzuPvWXxkrSJJV+ZA+UOKA3d9bJRh9MWcAVle9m5dkcv6AGLL6xB0/BuK1zzW9wkYbcaztRhsSoFnw1wR9gpJv2t/TiZ33teg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l777kD8V; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B24351F00A3D;
+	Fri, 12 Jun 2026 16:05:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781280095;
-	bh=76xOZCss/+5Y44At0ONW/HJ57BghjF1azkGN0neK2Go=;
+	s=k20260515; t=1781280319;
+	bh=xD8fHD0dBqI+BHWfEGmw4yez/dwz1dD2SEmToWisjAQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ZeGOvCn0EWyp5kpiyzdrhcnHVte26Rzx1tkyatiuD738lG2fJMWhTLoC206yvr6RU
-	 vQTWeS7ZU5xCVmvuAa59u9E1tYwhgimXZOHhmePDD9Rck2qJW3SReAZU50vX3Ea2E+
-	 6peGbqwKbcFSh8v8ENSDeZqIm+694/4s13OC8zYue13RSx49ZBh5WVL8BLeh0CJUaD
-	 1I+yO26NCkLqXD39Uq7Aoy40dOumEnDwfNH81l3xNhAJuCtau6Ug1PlEkgXtgLkoUL
-	 tzxHhLvSa/EemsH/aPZHRl+U2BDcWFFL/1LGeq3dn24W8OX4t6ypwGv3xf85c+EI0y
-	 MxLuPVpjhxraA==
-Date: Fri, 12 Jun 2026 11:01:34 -0500
+	b=l777kD8VtCnF+vbkmTpbqVw2e3E1/M679W4VlXzwQeqa4kTJ/wLIFUC3feaj0o1VL
+	 WjsGN+zFA1bff5XeGcbbYx+h52tYZIErrevvGi/wzafNwNuW6kXJsX2aYx6pJ6/e1x
+	 Hm6bIYi8h8W5XlEnGnVODxXeNVRj43cJrK/WpatG0Tkx7mbrRCprxQSxz0ES2MjriZ
+	 qKidJqMVeeFO/d9+jQZOQ7GyX/tVYsJHAD6d7AYaPEvAZ4aDEjTqBw1PFeEuNBGFek
+	 TNg+rgshXRBpHq0p9RaaaZcsIUhd91sqEzXsJ1UWwP9H9Fwwn6GU/VSSnmMnSdkOIs
+	 ZIyfyJpST+yZw==
+Date: Fri, 12 Jun 2026 11:05:19 -0500
 From: Rob Herring <robh@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Abel Vesa <abel.vesa@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	rob.clark@oss.qualcomm.com,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH v2 6/7] ASoC: dt-bindings: loongson,ls-audio-card: Add
- ATK-DL2K0300B compatible
-Message-ID: <20260612160134.GA1116138-robh@kernel.org>
-References: <cover.1780538113.git.zhoubinbin@loongson.cn>
- <c03b86a9318cffe69ecf8d5c14543fc5948ab2c7.1780538113.git.zhoubinbin@loongson.cn>
+	Douglas Anderson <dianders@chromium.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: arm: qcom: Add Lenovo Yoga Slim 7x Gen11
+Message-ID: <20260612160519.GA1118842-robh@kernel.org>
+References: <20260604-topic-yoga_submission-v1-0-57c70c23d0d6@oss.qualcomm.com>
+ <20260604-topic-yoga_submission-v1-2-57c70c23d0d6@oss.qualcomm.com>
+ <7a330941-8715-4523-9f39-10b57586c69d@kernel.org>
+ <CACSVV03J7Y4-ADRNE+4qArqsWvQZ3qmTc04r7vmY64s0qDYFkw@mail.gmail.com>
+ <799fea04-e7d0-4184-b9ae-4cebfdac38d5@kernel.org>
+ <841a54ff-6287-48d2-a513-a7442d624ab6@oss.qualcomm.com>
+ <uieb6ukjokwnppc5zfr6bjychqsnpikwmiy7j7dmt2kgk7k4zi@2stv37ijv36o>
+ <ac191a18-bcb4-4fa5-a179-b72a6ac928cb@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c03b86a9318cffe69ecf8d5c14543fc5948ab2c7.1780538113.git.zhoubinbin@loongson.cn>
+In-Reply-To: <ac191a18-bcb4-4fa5-a179-b72a6ac928cb@kernel.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -79,80 +91,71 @@ X-Spamd-Result: default: False [-2.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311033-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:zhoubinbin@loongson.cn,m:zhoubb.aaron@gmail.com,m:chenhuacai@loongson.cn,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:chenhuacai@kernel.org,m:kernel@xen0n.name,m:loongarch@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-sound@vger.kernel.org,m:zhoubbaaron@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-311034-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:abel.vesa@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:rob.clark@oss.qualcomm.com,m:neil.armstrong@linaro.org,m:jesszhan0024@gmail.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dianders@chromium.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,perex.cz,suse.com,xen0n.name,lists.linux.dev,vger.kernel.org];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,chromium.org,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 40AEB67AAF7
+X-Rspamd-Queue-Id: B47FB67AB9B
 
-On Thu, Jun 04, 2026 at 10:11:46AM +0800, Binbin Zhou wrote:
-> Add new compatible for the ATK-DL2K0300B development board based on
-> Loongson-2K0300.
+On Thu, Jun 11, 2026 at 03:48:15PM +0200, Krzysztof Kozlowski wrote:
+> On 10/06/2026 15:31, Abel Vesa wrote:
+> >>>>>> @@ -68,6 +68,7 @@ properties:
+> >>>>>>
+> >>>>>>        - items:
+> >>>>>>            - enum:
+> >>>>>> +              - lenovo,yoga-slim7x-gen11
+> >>>>>
+> >>>>> I imagine you might want different panel variants, just like T14s has
+> >>>>> LCD and OLED?
+> >>>>
+> >>>> I expect this will be the case.
+> >>>
+> >>> Then better to prepare for this now, otherwise later you need to change
+> >>> bindings. If unsure what other variants are, then at least make this
+> >>> compatible panel-specific, e.g. lenovo,yoga-slim7x-gen11-oled-foo-bar.
+> >>
+> >> I took another look at psref [1] and there's only OLED SKUs (today?).
+> >> There are however, two different resolutions available and both can be
+> >> touch/notouch.
+> > 
+> > If the other SKU doesn't have touch, then you might as well mark now this
+> > one with touch suffix or something like that.
 > 
-> Unlike others, this board features GPIO-controlled headphone detection,
-> headphone mute, and speaker enable.
 > 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../sound/loongson,ls-audio-card.yaml         | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
-> index 8c214e5d04b1..e9b248e8246c 100644
-> --- a/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
-> +++ b/Documentation/devicetree/bindings/sound/loongson,ls-audio-card.yaml
-> @@ -23,6 +23,7 @@ properties:
->      enum:
->        - loongson,ls-audio-card  # Loongson-2K1000/Loongson-2K2000/LS7A
->        - loongson,ls2k0300-forever-pi-audio-card # CTCISZ Forever Pi
-> +      - loongson,ls2k0300-dl2k0300b-audio-card # ATK-DL2K0300B
->  
->    mclk-fs:
->      $ref: simple-card.yaml#/definitions/mclk-fs
-> @@ -47,6 +48,18 @@ properties:
->      required:
->        - sound-dai
->  
-> +  loongson,spkr-en-gpios:
-> +    maxItems: 1
-> +    description: The GPIO that enables the speakers
-> +
-> +  loongson,hp-mute-gpios:
-> +    maxItems: 1
-> +    description: The GPIO that mutes the headphones
-> +
-> +  loongson,hp-det-gpios:
-> +    maxItems: 1
-> +    description: The GPIO that detect headphones are plugged in
+> If you decide not to have any changes (new compatibles), then at least
+> please document the above reasoning in commit msg.
 
-We have standard properties for at least this one. If you see multiple 
-$vendor,foo-bar properties, don't add yet another vendor foo-bar 
-property.
+If the difference is just the panel or touch, then isn't that captured 
+by the panel and/or touch nodes?
+
+OTOH, if it's different firmware builds and generally treated as 2 
+different devices, then different top-level compatible is probably fine.
 
 Rob
 
