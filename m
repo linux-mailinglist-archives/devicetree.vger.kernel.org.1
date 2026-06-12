@@ -1,207 +1,226 @@
-Return-Path: <devicetree+bounces-311113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311116-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SyIUABhHLGr8OgQAu9opvQ
-	(envelope-from <devicetree+bounces-311113-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 19:51:20 +0200
+	id yyMiBY1JLGp3OwQAu9opvQ
+	(envelope-from <devicetree+bounces-311116-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 20:01:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8135D67B741
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 19:51:19 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9333B67B812
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 20:01:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=NO29Eynd;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311113-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311113-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=collabora.com header.s=mail header.b=jFz5eFue;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311116-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311116-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CFC713322B21
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 17:49:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 54776317A225
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 517CC36AB44;
-	Fri, 12 Jun 2026 17:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFB037D113;
+	Fri, 12 Jun 2026 18:00:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3DF369D6D
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 17:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B700E31F999;
+	Fri, 12 Jun 2026 18:00:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781286599; cv=none; b=Rto6yxYH7IHcCpJ6SnGk54V0zm5zlaYjQ7jqgpxf84dz3C/b7dnkTHqRl6594GmicDtF4dDBOxV+IClwNaiTlocHlyugu+dQF4JXMvZeGbEwDkLGpnzQwUq3jwEsDTB1JgpAC6G8erwPRYVv5kvcIxCqg8CBjahXMazfxIledbY=
+	t=1781287256; cv=none; b=OkZbSXbpLumXasHw/kP37ujEFQ7Tu0mHNuELGx+igpRtltLZTIVcdjkGupznDqrzH9ff5PtLLIxCJ7kZl20B7NLyadL2tESZGrjZZU+3jo0Vj6n9cLA5Zqi2wLGktYgBK89Cddxnne9xo18EGunD7sc+xAgovdq1G2bMU9qSs0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781286599; c=relaxed/simple;
-	bh=h115VTK6dungfQ4qIdCxA3kCKtoEZBfHb83D7Vo31gU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=gvx01IgdWi+9TFvYueDEvdFiEpWZmAoGqpc17sBsdfWl9ck2dJkJg7JV0Jb4pE/89rkptRRNCA4lR6k7qDVhxjumGLPjqk8zlS6c7UPReBoSiugp2Nzgj1ky/KkKJSNMIhI1Z7z0gqq3BGpNlZUL7KN0Xepgv60tkh0nFbXTHNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NO29Eynd; arc=none smtp.client-ip=209.85.128.54
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-490b1bbcf3aso10518095e9.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 10:49:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781286595; x=1781891395; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=C85wBIXdmOAkbGAX37TSwTaJxl8p7p/GigMbGhAuSmc=;
-        b=NO29EyndaZTP4L9bwqRYnxiwYwu3iC3bkQTJe8JVl/jCSqZDwSLYVhxRAxAAlsZnGq
-         z8ovA9kxiRPX3uNCAtCQQk/40+Vi6nSJYfNxnTHyn0BNUkMogapVhueSRGrJfmlWkluu
-         70Hv+BtE2YYQexNE03azSY4wCAmx8xs/khlZlG7yrX2zCOxYfp1PcbpXYhcH3pVxu8hE
-         1DBjU81toTHYhFse6lhVRyRKCjP4ZBwNZrmUtSNlAUItk9V8115ndCndbEM0uR8d0LFW
-         wom8KKabJYaS0GivkOV0K4ZgeDirCDMp4OqtqGEJSDg1kbnLQrYsMmpIhisaLIjwv5fU
-         hQRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781286595; x=1781891395;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=C85wBIXdmOAkbGAX37TSwTaJxl8p7p/GigMbGhAuSmc=;
-        b=TVv0RUXHx/L2wzHxIzv5x1xofFbjT6o+XAx9tUh0CjVP8ddMJdbvnJ6UTGTgPtzRdJ
-         uOSroBIsxYfYwrkjJFlDG6v/rQxzDTH0+chixFVLQqam0nvSpJuMWmGSmvKFBQJts+1l
-         22a3Mi/spidACQMT0N8voPTuwYDofW4mqX4DPJ8gO5P6m14mj1dU3TpRF436MA0F+D3S
-         /f3jFnMKbt2opqKirQfiu+2R8dt4UFZt0DNX0YMLwZg6RjPUTQKLT8L5EkqyJ2Zq2DnD
-         x/SpOgh3SaeOZS7rhhnVYj7NwtfzxS4QtPFgnZfdkjb+XCoBLorcCajViZUDQ0iSjM1a
-         ZRxg==
-X-Forwarded-Encrypted: i=1; AFNElJ9/r1YvYiV4JaPze5bGAmWOKLuDx4C/31EJGTJwwNs7+a2EnijUwDGLih8cYxZ6REZ1sG5tUBcg/uIs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0kk4foFFj6l7nDSAbOCRVFlYgaPurh5knMU2aE1LcmFa5/6Kd
-	rueUVMMU4mBMONdgUpc99Dgwl2tX1rmNXBNMBSUbkguaD0DSZpKG0OwbYzPbysuZ
-X-Gm-Gg: Acq92OFKywQwGQanMdNkZ7V1TuRBAPwGwS6KMaOHJrByz2LA4U59VlBAQLhlfKsObo0
-	Y14ydllCufTpX4L4wmCJlTCrpNBlvLaHvOH68ZNWe6bSfIlC7K1OZcPs9OKn2Ye0PNWsC7w7nFk
-	5MbOH8Qk//jWOtFFjLLuvnyLKQufQoIFeajZVlCiwek+tTi13F1iNWBxD0AYgCqfDHCs5s3H8Mm
-	KLNQx/fkIA5fDb8TaFA/rHung38/Jujlb7qbUblRubnVh1HuSkFhyf7ctN9HMilMr/Vp/n9bowZ
-	QhXtykXY0gEsnwkgv+ZtuvC5oX7L8oyVloOyaRZzgQYGwjUgioBJGSXVGVSfeqM5yaoxD+Nb0yW
-	EM03hhTk0FYr6nnKIeHuV6TcqoeuCkFJxULxYF5BStjgvn17usW8CMsRJfCBKpGFtk1vMM8p3g1
-	DMCVvG4X7Ik7RP9Qw3RCvjqCgVJPqFXRCqD9hIeUS4HxHMS3e+a//HVaIRKCKYmzHhLlrRop0Oq
-	ts=
-X-Received: by 2002:a05:600c:820c:b0:48e:5d91:cfe3 with SMTP id 5b1f17b1804b1-490ec4cd08fmr53203395e9.1.1781286595100;
-        Fri, 12 Jun 2026 10:49:55 -0700 (PDT)
-Received: from ?IPV6:2a00:1fa0:742:25a:e03e:6c9c:49d8:2fee? ([2a00:1fa0:742:25a:e03e:6c9c:49d8:2fee])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f26f3basm7395809f8f.12.2026.06.12.10.49.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jun 2026 10:49:54 -0700 (PDT)
-Message-ID: <31cb54ac-8cf7-45fe-9167-becc4cd2aea9@gmail.com>
-Date: Fri, 12 Jun 2026 20:49:51 +0300
+	s=arc-20240116; t=1781287256; c=relaxed/simple;
+	bh=HjTcwVoSMhghtlEQN17A56Gf9uE1m/xC9fZU3wMihsQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Yl24+urMB4qSRYFkWDp4WMbbJcdh3S+yIYx2GelIcm1WkjDGQFqbi5J0SavQDoJiWY9kIkz6mi+HLLqAKGsQeaMt4RSa9bsPhj/hA47o94MqMDuOypCfYybS8G70YhEm9dj8NGmAbfDXTAhTLShl9leJYTVMWu2vGWsM8tcKoEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jFz5eFue; arc=none smtp.client-ip=148.251.105.195
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1781287253;
+	bh=HjTcwVoSMhghtlEQN17A56Gf9uE1m/xC9fZU3wMihsQ=;
+	h=From:Subject:Date:To:Cc:From;
+	b=jFz5eFue6ft7QPXzeB6pnv3/ay7PetfA7yon2bjktDDSJuyrJpOiPtnm/6ZYV3k80
+	 S+zd7h2dFDnWhhvOdiiiF0Vj6rRx1/5OfIrYfRULbOJgZC5HXJkiHobOdhTaWujyp6
+	 zZAp9FRkB8H02AjZzP2Qn3RohxpTbsK7EmSCxygqJvWYW+SlTN6RrXJ5gbsRHBNsN2
+	 WbmA0uJBsGWR1BMdAVadRlutpei/xwr+7h6gf2S6cmcYsLb4/XwTLizda/H509j9Q4
+	 HlxfjsmjPt885vizjsWnDv9xirZCZPs1iGtDrR7a+Np1BZd8uXiwmxkOHvi+LqAYDi
+	 16j1GcmMT8K+Q==
+Received: from jupiter.universe (unknown [100.64.1.62])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B949317E0432;
+	Fri, 12 Jun 2026 20:00:52 +0200 (CEST)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 77875480027; Fri, 12 Jun 2026 20:00:52 +0200 (CEST)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCH v3 00/10] Synopsys DisplayPort Controller improvements for
+ Rockchip platforms
+Date: Fri, 12 Jun 2026 20:00:46 +0200
+Message-Id: <20260612-synopsys-dw-dp-improvements-v3-0-dc61e6352508@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next 3/9] net: ethernet: ravb: Simplify gPTP start and stop
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>, Paul Barker <paul@pbarker.dev>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Richard Cochran <richardcochran@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, netdev@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260610102432.3538432-1-niklas.soderlund+renesas@ragnatech.se>
- <20260610102432.3538432-4-niklas.soderlund+renesas@ragnatech.se>
-Content-Language: en-US
-From: Sergey Shtylyov <sergei.shtylyov@gmail.com>
-In-Reply-To: <20260610102432.3538432-4-niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAE5JLGoC/33N0QqDIBTG8VcJr+dQW1q72nuMXZgel1ApGm4Rv
+ fssGINddPn/OPzOgiIECxFdiwUFSDZaN+YoTwVSnRyfgK3OjRhhnJSswnEenY9zxPqFtcd28ME
+ lGGCcIhZaMmhqbajWKAs+gLHvXb8/cnc2Ti7M+7NEt/Xr8kM3UUxwRWh9aShnrCE35fpeti7Is
+ 3ID2uzEfl4+PfZY9rQAYXgrlRDm31vX9QMCDeLIGgEAAA==
+X-Change-ID: 20260325-synopsys-dw-dp-improvements-7da2e98df1dd
+To: Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+ Damon Ding <damon.ding@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Alexey Charkov <alchark@gmail.com>, dri-devel@lists.freedesktop.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@collabora.com, 
+ linux-arm-kernel@lists.infradead.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3621;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=HjTcwVoSMhghtlEQN17A56Gf9uE1m/xC9fZU3wMihsQ=;
+ b=kA0DAAoB2O7X88g7+poByyZiAGosSVSjkL+5iEnJ8c+arOBSV8P6FcvN8N+AF6tTKGNT9a8wB
+ YkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqLElUAAoJENju1/PIO/qavE4P/1xi
+ Ahkk4JDhi7fBISk1xjbsU+I9rcJObGlCGNqL51YaMFzJYfbSyFYYAkoutSI4SGkw10V8UpSpKah
+ FQcUeeSZicRNYYD3vx/90I18cpWNieqPiSFenJTGneASPVeV/YiOUQ6VVYjn1HjmIhnZ0HlUJ0X
+ 91uuw8iBCR7my7z+KAQ2KFsgUSKOTbTqTlz+Vt0/w/WXBci/Zjai+LKnYQHMAXEP8HzET9iYRLn
+ SK68uI0O1+mYcoTi+y/coJPoSTwJQ7UjuFSoqnLeCBSQcZ4rPoh8GnUnjHI1zu1Lh15xB9BSAAk
+ CWhpxGrlOdxK9L/6qiRRXVTVMyiQVqDSpdPSF4fRx7XGy/hgumWHsk/d03lv0mVeOjojpT5/CjG
+ lLBqndOuUq8kmD7TnKwc9io338KEAJ4bogg4SM1PBxdHH5uuwUEcERWBY+ETJLHUKuwkp0qjg7a
+ W7ZlC+2CzHJRYsdqShbFaISv2tC0qGCSdXCsRkUoEJbPApnORtEoSdISEbT/pRcr+CsgFqrhL4s
+ 0xsYotY2ThQXsdlRt0iZK4UIWlXh2P2QilgJh3dzKXZHvDA1B6qUKMIKMmNpg+QI94CAqFmvoEL
+ QwoMYAAhsbEHaJe1xinTXgtaQJywr227oTaOVKOIaN6g7BBEypXXWNaIN8tKSKTV4RWdm/YeNpq
+ vXNSv
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311113-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311116-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:niklas.soderlund+renesas@ragnatech.se,m:paul@pbarker.dev,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:richardcochran@gmail.com,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:netdev@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:niklas.soderlund@ragnatech.se,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sergeishtylyov@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[ragnatech.se,pbarker.dev,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,glider.be,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:dmitry.baryshkov@oss.qualcomm.com,m:luca.ceresoli@bootlin.com,m:cristian.ciocaltea@collabora.com,m:damon.ding@rock-chips.com,m:lumag@kernel.org,m:alchark@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:kernel@collabora.com,m:linux-arm-kernel@lists.infradead.org,m:sebastian.reichel@collabora.com,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,oss.qualcomm.com,bootlin.com];
+	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FREEMAIL_CC(0.00)[collabora.com,rock-chips.com,kernel.org,gmail.com,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sergeishtylyov@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ragnatech.se:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8135D67B741
+X-Rspamd-Queue-Id: 9333B67B812
 
-On 6/10/26 1:24 PM, Niklas Söderlund wrote:
+This patch series updates the Synopsys Designware DisplayPort bridge
+together with the only existing user: The Rockchip RK3576/RK3588:
 
-> For devices that do not support the gPTP clock in config mode the
-> somewhat oddly named flag gptp is set, compared to devices that do
-> support the gPTP clock in config and operation mode where the flag
-> ccc_gac is set instead. The two flags are mutually exclusive.
-> 
-> For the gptp-flag devices (Gen2) the clock is tied to the AVB-DMAC, when
-> it is stopped so is the gPTP clock. For ccc_gac-flag devices (Gen3) the
-> gPTP clock is available whenever the ndev is open.
-> 
-> Prepare to add Gen4 support which will add a third way by cleaning the
-> Gen2 and Gen3 cases up a bit.
-> 
-> Fold the gptp-flag start and stop calls into ravb_dmac_init() and
-> ravb_stop_dma(), which start and stops the AVB-DMAC. There are no
+ 1. follow-up bridges (PHY, USB-C connector)
+    this is needed to get USB-C DP AltMode working; I've followed the
+    Qualcomm driver as reference
 
-   s/stops/stop/.
+ 2. runtime PM
+    the initial driver has been upstreamed without RPM; add it to
+    avoid wasting power when nothing is plugged
 
-> functional change as all call sites to the construct,
+ 3. audio
+    the initial driver has been upstreamed without audio support;
+    this adds all missing bits for audio with single stream transport
 
-   s/,/:/?
+To properly make use of the bridge code the following USBDP PHY series
+is also needed:
 
-> 
->     if (info->gptp)
->         ravb_ptp_init(ndev, priv->pdev);
-> 
-> Are always just after a call to into ravb_dmac_init() and all call sites
+https://lore.kernel.org/linux-phy/20260428-rockchip-usbdp-cleanup-v4-0-7775671ece22@collabora.com/
 
-   s/Are/are/.
+There are two parts, which possibly need some discussion:
 
-> to the to the construct,
+ 1. I added a dedicated bridge callback for out-of-band hotplug events,
+    which is separate from the hotplug_notify. I have a feeling, that
+    there might be a better solution, but haven't found it.
 
-   "to the" repeated... And s/,/:/?
+ 2. The DT binding for audio support - explicitly marked as RFC - works
+    perfectly fine, but is not ready for MST. I don't intend to
+    implement that right now, but the binding should obviously take it
+    into consideration to avoid breaking it in the future. I've put
+    some points for discussion into the relevant patch.
 
-> 
->     if (info->gptp)
->         ravb_ptp_stop(ndev);
-> 
-> Are always directly followed by a call to ravb_stop_dma().
+Changes in PATCHv3:
+- Link to v2: https://lore.kernel.org/r/20260501-synopsys-dw-dp-improvements-v2-0-d7e7f6bac77f@collabora.com
+- Collect Reviewed-by on "Simplify driver data setting" patch (Andy Yan)
+- Use of_drm_get_bridge_by_endpoint instead of devm_drm_of_get_bridge (Luca Ceresoli)
+- Use FIELD_PREP_WM16 instead of FIELD_PREP_WM16_CONST (Chaoyi Chen)
+- Rebase to latest drm-misc-next (Dropped Cristian's patches)
 
-   s/Are/are/.
+Changes in PATCHv2:
+ * Link to v1: https://lore.kernel.org/r/20260326-synopsys-dw-dp-improvements-v1-0-501849162290@collabora.com
+ * rebased to latest drm-misc-next
+ * prepended the Patches from Cristian's cleanup series, as they also
+   needed a rebase and should be merged first
+   https://lore.kernel.org/dri-devel/20260327-drm-rk-fixes-v3-0-fd2e6900c08c@collabora.com/
+ * fix issue with the audio stream (un)prepare handling in last patch
 
-> 
-> There are two special cases where the calling construct covers both the
-> gptp-flag and info->ccc_gac devices, one for start and one for stop. The
-> condition that it is preceded by a call to ravb_dmac_init(), or followed
-> by a call to ravb_stop_dma() are however true for them too. Reworked the
-> two special cases to drop the check of info->gptp.
-> 
-> The end result is that the gPTP clock will be started or stopped for the
-> gptp-flag devices in tandem with the AVB-DMAC, while the info->ccc_gac
-> devices will be controlled, as before, when the ndev is opened or
-> closed.
-> 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-[...]
-MBR, Sergey
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+Sebastian Reichel (10):
+      drm/bridge: synopsys: dw-dp: Simplify driver data setting
+      drm/bridge: synopsys: dw-dp: Support MEDIA_BUS_FMT_FIXED
+      drm/bridge: synopsys: dw-dp: Add follow-up bridge support
+      drm/bridge: Add out-of-band HPD notify handler
+      drm/bridge: synopsys: dw-dp: Support software triggered OOB HPD
+      drm/rockchip: dw_dp: Implement out-of-band HPD handling
+      drm/bridge: synopsys: dw-dp: Add Runtime PM support
+      drm/rockchip: dw_dp: Add runtime PM support
+      [RFC] dt-bindings: display: rockchip: dw-dp: fix sound DAI cells
+      drm/bridge: synopsys: dw-dp: Add audio support
+
+ .../bindings/display/rockchip/rockchip,dw-dp.yaml  |   5 +-
+ drivers/gpu/drm/bridge/synopsys/dw-dp.c            | 308 ++++++++++++++++++++-
+ drivers/gpu/drm/display/drm_bridge_connector.c     |   6 +
+ drivers/gpu/drm/rockchip/dw_dp-rockchip.c          | 167 ++++++++++-
+ include/drm/bridge/dw_dp.h                         |   6 +
+ include/drm/drm_bridge.h                           |  14 +
+ 6 files changed, 493 insertions(+), 13 deletions(-)
+---
+base-commit: 2afdfc658f7a7e9ee2a67ec6663922da9c799c53
+change-id: 20260325-synopsys-dw-dp-improvements-7da2e98df1dd
+
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
