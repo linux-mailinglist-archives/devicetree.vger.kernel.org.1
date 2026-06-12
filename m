@@ -1,212 +1,153 @@
-Return-Path: <devicetree+bounces-311083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311085-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FHFJK+s3LGqCNwQAu9opvQ
-	(envelope-from <devicetree+bounces-311083-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:46:35 +0200
+	id KEuMMmQ4LGqfNwQAu9opvQ
+	(envelope-from <devicetree+bounces-311085-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:48:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0879167B0B7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 468A067B105
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:48:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lHt+T8Q6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311083-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311083-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=0leil.net header.s=20231125 header.b=XYXTpnAd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311085-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311085-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=0leil.net;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AFB90304A904
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:46:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8275B305ECE4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:47:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A31ED403142;
-	Fri, 12 Jun 2026 16:46:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4555A3E3170;
+	Fri, 12 Jun 2026 16:47:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp-8faf.mail.infomaniak.ch (smtp-8faf.mail.infomaniak.ch [83.166.143.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BE8C2DF717
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F643603C2
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:47:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781282791; cv=none; b=bJwTzHttlAdFCRgpM3lW1U5p2gWfAWb8QBaWM3NNDesC5S71anSCIuTR8CK4p7LxVo2jDQOFyOqA6YXo3agb7mJQf78wHZ3xX/izEUIXIFwlWfAdpdWasRpzdDhwnrxJKyfptbdf19I0EMJcGN2x/UcVJIh5XTM68cbYogHKfeY=
+	t=1781282876; cv=none; b=OApap0+cay0XvhSff6yNyTUvGXFsZoSNcMdNmg+MnYEePXb9OaybJi7dEB93GR+BuBkzlVPUQw+ATRupRFqRdSpKfMO2aprTQdRUuBJP9Rnkp/rHbwuHzWa97DwKi8+i6IaT7OIUZeJU1kPBsgvbd6f69nsyue0DNOt0SlJLMF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781282791; c=relaxed/simple;
-	bh=78QOt3NvrVlHZbpwnpxR/of4IkveMDoHcahOmleIMng=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=jbhmlem4KAXTthcrEVQGsvG8mv0zCrApiEHN3I8vvVersDH9tpDq40eGdtfZG6cUcCqsCnW0Ht+zjNwkgwhrJTvryJ9Q6RHdvGvFLYbyXcPitllr2jydnwGKqcTbDRxzRRqPbw2uaU5CleEPd12t/7yIxWYDh8R4L6tYPasqxOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lHt+T8Q6; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23D391F000E9;
-	Fri, 12 Jun 2026 16:46:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781282787;
-	bh=UHdLI8VRDO0F5JtRLini6t2uCes9KsUFNFotlLp+HoA=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=lHt+T8Q6BAe5WrT/w1MT8QyW2LVY1byJ8MIXqsO8dNfzOGFdf1ltzGZeygKWvWSYX
-	 wNxVnqz8bYj07NkWlpjpP+PtfZPQsxVBry9bYFLWz0PSRsLJMkT9QVEKKtQTEFlXVL
-	 3e16dSUB7owrQcjriRvDOfTzJUdQ6CnIHEf8GZW/3PDtsg6o0No4ewSCDcGrJi5YF0
-	 +hmZjvs4+mgg8E7W542KkH+djitSsHCCyBn2LFs94ZHhIClI+ck+RU5yhSgP2h7IGh
-	 q364RIx/eKWRFsKEvXQJRabbiGETae/RiaebiPSXvLBTo/5cZdAdotC167qyr6SnUB
-	 TFcbOaPLYyr4A==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 06/18] phy: rockchip: usbdp: Add missing mode_change
- update
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: robh@kernel.org, vkoul@kernel.org, neil.armstrong@linaro.org, linux-phy@lists.infradead.org, olteanv@gmail.com, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260612-rockchip-usbdp-cleanup-v5-6-efc83069869f@collabora.com>
-References: <20260612-rockchip-usbdp-cleanup-v5-6-efc83069869f@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 12 Jun 2026 16:46:26 +0000
-Message-Id: <20260612164627.23D391F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781282876; c=relaxed/simple;
+	bh=b6LkmofaeLoDrLoLRQDPlxiKyuxPQ2/MzrhFvNrbgB8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=QopWVfSUsjLWiH47mifll5JrH12435EJg7X06+0VCvNDBk7oBD5hhaq+7lDicwH//97Uzp1LrayG/JyGG8Ny4qm30jTTsKgbSRtIqvW143880ALBA9KNdm8iFUERh9O/yAqfURxzSWLcob5QgjNABDXrBHCcziVaJwQV/lmMikc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; dkim=pass (2048-bit key) header.d=0leil.net header.i=@0leil.net header.b=XYXTpnAd; arc=none smtp.client-ip=83.166.143.175
+Received: from smtp-3-0001.mail.infomaniak.ch (smtp-3-0001.mail.infomaniak.ch [10.4.36.108])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4gcQRh0QGvzRHq;
+	Fri, 12 Jun 2026 18:47:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=0leil.net;
+	s=20231125; t=1781282863;
+	bh=KlkjIw4bcij3LG7og0awnfmQnaK8D+NfJs+ZdxoZ9/E=;
+	h=From:Date:Subject:To:Cc:From;
+	b=XYXTpnAdoYDQ4BIdWgGbSu88PkILVJiWZD2BaXXkBHB9i0y5jLAPt3r8FpvawhVAR
+	 habuO6wlTnX4v1o/o6mHsYajQTF9Qlh+MyJZZEeNAx0shUtMdxXtf0KK9AOCoz4yOi
+	 au0aUm+R5dgv/mEOsu/6GzHKfskPOHHMcOnyJiAYGPzy6neKK+Nv/B5wntxWuLVHgl
+	 gRrn9yE8fWMogFwYUNeos6JwG+resk74nav2SIXlSpJG/oYL0o0MUNaXcuRTaG89Cf
+	 BWqN7FMPrmDGJ101s8YvY1QvXuQsFYA91MOKfpCmYgFfXe0o4h5P05Wza6GlTXnlmg
+	 elmr1beE+6X6A==
+Received: from unknown by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4gcQRf5dcSzrnk;
+	Fri, 12 Jun 2026 18:47:42 +0200 (CEST)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Date: Fri, 12 Jun 2026 18:47:34 +0200
+Subject: [PATCH] arm64: dts: rockchip: fix eMMC reset polarity on PP-1516
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260612-pp1516-emmc-polarity-v1-1-4816c1c909f7@cherry.de>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMTQqDMBBA4avIrB1wQhPRq4iLJI7tFH9CYkuLe
+ PdGu/wW7+2QOAonaIsdIr8lybpkUFmAf9jlzihDNqhKmcqQwhBIk0GeZ49hnWyU7Yva1qPTt8E
+ 1VENOQ+RRPte26/9OL/dkv50vOI4fc4OQ4XgAAAA=
+X-Change-ID: 20260612-pp1516-emmc-polarity-5a7fb54db917
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Heiko Stuebner <heiko.stuebner@cherry.de>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.15-dev-47773
+X-Infomaniak-Routing: alpha
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[0leil.net,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[0leil.net:s=20231125];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-311085-lists,devicetree=lfdr.de,kernel];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311083-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:robh@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:linux-phy@lists.infradead.org,m:olteanv@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:heiko.stuebner@cherry.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:quentin.schulz@cherry.de,m:stable@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[foss@0leil.net,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[0leil.net:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,lists.infradead.org,gmail.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[foss@0leil.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,cherry.de:mid,cherry.de:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0879167B0B7
+X-Rspamd-Queue-Id: 468A067B105
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+From: Quentin Schulz <quentin.schulz@cherry.de>
 
-Pre-existing issues:
-- [High] State loss on transient PHY initialization failure leaves hardware=
- permanently in reset.
-- [High] Data race in `rk_udphy_dp_phy_configure()` reading shared lane map=
-pings without holding the driver mutex.
---
+According to the Jedec 5.1 specification, the device is held in reset
+when RST_n is low, therefore the polarity of the line must be that, as
+specified in the Device Tree binding (mmc/mmc-pwrseq-emmc.yaml).
 
-commit 22525e2688f8ca90810542bfa2ad9f261c949f0b
-Author: Sebastian Reichel <sebastian.reichel@collabora.com>
+Due to the wrong polarity, eMMC devices with RST_n_FUNCTION[162]
+bitfield [1:0] set to 0x1 (the default is 0x0) will be held in reset
+forever.
 
-phy: rockchip: usbdp: Add missing mode_change update
-   =20
-rk_udphy_set_typec_default_mapping() updates the available modes,
-but does not set the mode_change as required. This results in
-missing re-initialization and thus non-working DisplayPort.
-   =20
-Fix this issue by introducing a new helper to update the available
-modes.
+Cc: stable@vger.kernel.org
+Fixes: 56198acdbf0d ("arm64: dts: rockchip: add px30-pp1516 base dtsi and board variants")
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+PP-1516 is affected by the same issue that Cobra has and for which a
+patch[1] has already been sent.
 
-> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
-chip/phy-rockchip-usbdp.c
-> index 97e53b933225f..febc148a754e0 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-> @@ -619,6 +619,15 @@ static void rk_udphy_dp_hpd_event_trigger(struct rk_=
-udphy *udphy, bool hpd)
->  	rk_udphy_grfreg_write(udphy->vogrf, &cfg->vogrfcfg[udphy->id].hpd_trigg=
-er, hpd);
->  }
-> =20
-> +static void rk_udphy_mode_set(struct rk_udphy *udphy, u8 mode)
-> +{
-> +	if (udphy->mode =3D=3D mode)
-> +		return;
-> +
-> +	udphy->mode_change =3D true;
+[1] https://lore.kernel.org/linux-rockchip/20260609081728.30616-2-jakobunt@gmail.com/
+---
+ arch/arm64/boot/dts/rockchip/px30-pp1516.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[Severity: High]
-This isn't a bug introduced by this patch, but it seems there is a
-pre-existing issue with how this flag is handled in rk_udphy_power_on().
+diff --git a/arch/arm64/boot/dts/rockchip/px30-pp1516.dtsi b/arch/arm64/boot/dts/rockchip/px30-pp1516.dtsi
+index 192791993f059..02200de695d31 100644
+--- a/arch/arm64/boot/dts/rockchip/px30-pp1516.dtsi
++++ b/arch/arm64/boot/dts/rockchip/px30-pp1516.dtsi
+@@ -33,7 +33,7 @@ emmc_pwrseq: emmc-pwrseq {
+ 		compatible = "mmc-pwrseq-emmc";
+ 		pinctrl-0 = <&emmc_reset>;
+ 		pinctrl-names = "default";
+-		reset-gpios = <&gpio1 RK_PB3 GPIO_ACTIVE_HIGH>;
++		reset-gpios = <&gpio1 RK_PB3 GPIO_ACTIVE_LOW>;
+ 	};
+ 
+ 	gpio-leds {
 
-When the PHY is partially active and a new mode is being powered on, it
-checks the re-initialization flag (also known as phy_needs_reinit in the
-broader context). It unconditionally clears the flag to false before calling
-rk_udphy_init():
+---
+base-commit: 2b414a95b8f7307d42173ba9e580d6d3e2bcbfce
+change-id: 20260612-pp1516-emmc-polarity-5a7fb54db917
 
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_power_on() {
-    ...
-    } else if (udphy->phy_needs_reinit) {
-        udphy->phy_needs_reinit =3D false;
-        ...
-        ret =3D rk_udphy_init(udphy);
-        if (ret)
-            return ret;
-    ...
-}
+Best regards,
+--  
+Quentin Schulz <quentin.schulz@cherry.de>
 
-If rk_udphy_init() fails and returns an error (like -EPROBE_DEFER from a PLL
-lock timeout), the flag is left as false. Would the next retry by the
-consumer skip initialization and falsely return success, leaving the PHY
-hardware permanently held in reset?
-
-> +	udphy->mode =3D mode;
-> +}
-> +
->  static void rk_udphy_set_typec_default_mapping(struct rk_udphy *udphy)
->  {
->  	if (udphy->flip) {
-
-[Severity: High]
-This is a pre-existing issue, but I have a question about concurrent access
-to the lane mappings.
-
-This function mutates the lane selection arrays concurrently with
-rk_udphy_dp_phy_configure() reading them:
-
-drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_dp_phy_configure() {
-    ...
-    for (i =3D 0; i < udphy->lanes; i++) {
-        lane =3D udphy->dp_lane_sel[i];
-        ...
-        regmap_update_bits(..., LN_ANA_TX_SER_TXCLK_INV,
-            FIELD_PREP(LN_ANA_TX_SER_TXCLK_INV, udphy->lane_mux_sel[lane]));
-        ...
-        rk_udphy_dp_set_voltage(udphy, udphy->bw, dp->voltage[i], dp->pre[i=
-], lane);
-    }
-    ...
-}
-
-Since rk_udphy_dp_phy_configure() reads these arrays without holding
-udphy->mutex, could a race condition result in reading partially updated
-lane assignments if a Type-C switch event occurs at the same time?
-
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260612-rockchip-u=
-sbdp-cleanup-v5-0-efc83069869f@collabora.com?part=3D6
 
