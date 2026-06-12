@@ -1,165 +1,212 @@
-Return-Path: <devicetree+bounces-311084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311083-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9xQbBPg3LGqHNwQAu9opvQ
-	(envelope-from <devicetree+bounces-311084-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:46:48 +0200
+	id FHFJK+s3LGqCNwQAu9opvQ
+	(envelope-from <devicetree+bounces-311083-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:46:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6345C67B0CD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:46:47 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0879167B0B7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:46:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Q+Kqjm9I;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311084-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311084-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lHt+T8Q6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311083-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311083-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A813630530CC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:46:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AFB90304A904
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BFB403E9C;
-	Fri, 12 Jun 2026 16:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A31ED403142;
+	Fri, 12 Jun 2026 16:46:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3E9640314F;
-	Fri, 12 Jun 2026 16:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BE8C2DF717
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:46:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781282792; cv=none; b=jQQ0bCbVCgTjq+TzPm0dzTQh48STiH08rlHokbpdHANOlH8+O1vyT2G7j6fBT2oywffSplcyxfqRRYpqLHrvZ+bB+9eNk/OpgYx0WB8VLjUqr5AvVCOv0NsdrtSZuhEdkSDAAjJtqTX2Ty/HloapTduJZTeXLJ+VYOyFEAMEfZM=
+	t=1781282791; cv=none; b=bJwTzHttlAdFCRgpM3lW1U5p2gWfAWb8QBaWM3NNDesC5S71anSCIuTR8CK4p7LxVo2jDQOFyOqA6YXo3agb7mJQf78wHZ3xX/izEUIXIFwlWfAdpdWasRpzdDhwnrxJKyfptbdf19I0EMJcGN2x/UcVJIh5XTM68cbYogHKfeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781282792; c=relaxed/simple;
-	bh=Yy2lCgISqpnQTrnW6pmiqUrBIUzjvmyKJkkaXXSl9/0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qK5n8yDvcFGSspBsczOI3IAEFx6BjTR1d5H5Wioncttr37znNyL/iGzU02PT40m6EcrQal7bxi+T1U8gk7BTMM6RETUvxwJJf2etQv0ZKDhNdUpXEssdGujbciIz4Mf2Rqa3kHemdSwokFL8sNYWnJEtJYl2GDA6ZnT+YZkFdzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q+Kqjm9I; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 813CC1F00A3A;
+	s=arc-20240116; t=1781282791; c=relaxed/simple;
+	bh=78QOt3NvrVlHZbpwnpxR/of4IkveMDoHcahOmleIMng=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=jbhmlem4KAXTthcrEVQGsvG8mv0zCrApiEHN3I8vvVersDH9tpDq40eGdtfZG6cUcCqsCnW0Ht+zjNwkgwhrJTvryJ9Q6RHdvGvFLYbyXcPitllr2jydnwGKqcTbDRxzRRqPbw2uaU5CleEPd12t/7yIxWYDh8R4L6tYPasqxOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lHt+T8Q6; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23D391F000E9;
 	Fri, 12 Jun 2026 16:46:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781282789;
-	bh=Kj4H4TJLjJ3q+MHqoxZVHAqkhVs9/S62Wt4MB8njM8M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Q+Kqjm9I81wRQho1EmOFnPEBAQpHPyryt+ovFdb7GIpq1retK3DptD+P6ej8sjNGo
-	 xFOPk6v3pOl1fxUmj/7dSKCSdmF24GMP+euhd25VYrP+pBjdqfqIuxeADA6BMSiQWF
-	 FC0sWbkH0vWeB08F7b0I+zi0aLespJTcpiSkgF4hthRR/1DYmL3DU/pPLCsAeqtF+Q
-	 NbqI/QnEdMNgcxXeWp58bhOZ0rnAEkOaMeR6QMfxXlQcRruakkLkv9W4oWdv4FxcVi
-	 NLfuMOumaaGT6/MUQJrdaX0xHFOsEmfL9YR20mSj/QJoldo2DfPRmGLdrF+3YR8R95
-	 TU4149vINS5ZA==
-Date: Fri, 12 Jun 2026 17:46:25 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: spi: snps,dw-apb-ssi: Add support
- for snps,dwc-ssi-2.00a
-Message-ID: <20260612-mute-aqueduct-029ac227314e@spud>
-References: <20260612125856.8530-1-changhuang.liang@starfivetech.com>
- <20260612125856.8530-2-changhuang.liang@starfivetech.com>
+	s=k20260515; t=1781282787;
+	bh=UHdLI8VRDO0F5JtRLini6t2uCes9KsUFNFotlLp+HoA=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=lHt+T8Q6BAe5WrT/w1MT8QyW2LVY1byJ8MIXqsO8dNfzOGFdf1ltzGZeygKWvWSYX
+	 wNxVnqz8bYj07NkWlpjpP+PtfZPQsxVBry9bYFLWz0PSRsLJMkT9QVEKKtQTEFlXVL
+	 3e16dSUB7owrQcjriRvDOfTzJUdQ6CnIHEf8GZW/3PDtsg6o0No4ewSCDcGrJi5YF0
+	 +hmZjvs4+mgg8E7W542KkH+djitSsHCCyBn2LFs94ZHhIClI+ck+RU5yhSgP2h7IGh
+	 q364RIx/eKWRFsKEvXQJRabbiGETae/RiaebiPSXvLBTo/5cZdAdotC167qyr6SnUB
+	 TFcbOaPLYyr4A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 06/18] phy: rockchip: usbdp: Add missing mode_change
+ update
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
+Cc: robh@kernel.org, vkoul@kernel.org, neil.armstrong@linaro.org, linux-phy@lists.infradead.org, olteanv@gmail.com, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260612-rockchip-usbdp-cleanup-v5-6-efc83069869f@collabora.com>
+References: <20260612-rockchip-usbdp-cleanup-v5-6-efc83069869f@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 12 Jun 2026 16:46:26 +0000
+Message-Id: <20260612164627.23D391F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="acw58VbrQU5q/tux"
-Content-Disposition: inline
-In-Reply-To: <20260612125856.8530-2-changhuang.liang@starfivetech.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-6.76 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-311084-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:changhuang.liang@starfivetech.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:broonie@kernel.org,m:linux-spi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311083-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.reichel@collabora.com,m:robh@kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:linux-phy@lists.infradead.org,m:olteanv@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,lists.infradead.org,gmail.com,vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,spud:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6345C67B0CD
+X-Rspamd-Queue-Id: 0879167B0B7
 
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
---acw58VbrQU5q/tux
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Pre-existing issues:
+- [High] State loss on transient PHY initialization failure leaves hardware=
+ permanently in reset.
+- [High] Data race in `rk_udphy_dp_phy_configure()` reading shared lane map=
+pings without holding the driver mutex.
+--
 
-On Fri, Jun 12, 2026 at 05:58:55AM -0700, Changhuang Liang wrote:
-> Add a new compatible string "snps,dwc-ssi-2.00a" for the Synopsys
-> DesignWare SSI controller version 2.00a.
+commit 22525e2688f8ca90810542bfa2ad9f261c949f0b
+Author: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-Two things. Firstly, driver patch suggests a fallback to 1.01a is
-possible. Why haven't you added one?
-Secondly, I am going to expect that when your starfive user for this
-appears in my inbox that it has a device-specific compatible, so you may
-as well add that now.
+phy: rockchip: usbdp: Add missing mode_change update
+   =20
+rk_udphy_set_typec_default_mapping() updates the available modes,
+but does not set the mode_change as required. This results in
+missing re-initialization and thus non-working DisplayPort.
+   =20
+Fix this issue by introducing a new helper to update the available
+modes.
 
-pw-bot: changes-requested
+> diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rock=
+chip/phy-rockchip-usbdp.c
+> index 97e53b933225f..febc148a754e0 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
+> @@ -619,6 +619,15 @@ static void rk_udphy_dp_hpd_event_trigger(struct rk_=
+udphy *udphy, bool hpd)
+>  	rk_udphy_grfreg_write(udphy->vogrf, &cfg->vogrfcfg[udphy->id].hpd_trigg=
+er, hpd);
+>  }
+> =20
+> +static void rk_udphy_mode_set(struct rk_udphy *udphy, u8 mode)
+> +{
+> +	if (udphy->mode =3D=3D mode)
+> +		return;
+> +
+> +	udphy->mode_change =3D true;
 
-Cheers,
-Conor.
+[Severity: High]
+This isn't a bug introduced by this patch, but it seems there is a
+pre-existing issue with how this flag is handled in rk_udphy_power_on().
 
->=20
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b=
-/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> index 8ebebcebca16..fb74243d4bdf 100644
-> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> @@ -41,6 +41,7 @@ properties:
->          enum:
->            - snps,dw-apb-ssi
->            - snps,dwc-ssi-1.01a
-> +          - snps,dwc-ssi-2.00a
->        - description: Microchip Sparx5 SoC SPI Controller
->          const: microchip,sparx5-spi
->        - description: Amazon Alpine SPI Controller
-> --=20
-> 2.25.1
->=20
+When the PHY is partially active and a new mode is being powered on, it
+checks the re-initialization flag (also known as phy_needs_reinit in the
+broader context). It unconditionally clears the flag to false before calling
+rk_udphy_init():
 
---acw58VbrQU5q/tux
-Content-Type: application/pgp-signature; name="signature.asc"
+drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_power_on() {
+    ...
+    } else if (udphy->phy_needs_reinit) {
+        udphy->phy_needs_reinit =3D false;
+        ...
+        ret =3D rk_udphy_init(udphy);
+        if (ret)
+            return ret;
+    ...
+}
 
------BEGIN PGP SIGNATURE-----
+If rk_udphy_init() fails and returns an error (like -EPROBE_DEFER from a PLL
+lock timeout), the flag is left as false. Would the next retry by the
+consumer skip initialization and falsely return success, leaving the PHY
+hardware permanently held in reset?
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiw34QAKCRB4tDGHoIJi
-0hMNAP9W880zwSMN5uujgT/owp9UHTexLLhZrT4hsC0nvS0xHQEA3Q4P82QTK1bK
-6kmefaYG62U5ZwzpYdIGRc1H6F/CewU=
-=lyV/
------END PGP SIGNATURE-----
+> +	udphy->mode =3D mode;
+> +}
+> +
+>  static void rk_udphy_set_typec_default_mapping(struct rk_udphy *udphy)
+>  {
+>  	if (udphy->flip) {
 
---acw58VbrQU5q/tux--
+[Severity: High]
+This is a pre-existing issue, but I have a question about concurrent access
+to the lane mappings.
+
+This function mutates the lane selection arrays concurrently with
+rk_udphy_dp_phy_configure() reading them:
+
+drivers/phy/rockchip/phy-rockchip-usbdp.c:rk_udphy_dp_phy_configure() {
+    ...
+    for (i =3D 0; i < udphy->lanes; i++) {
+        lane =3D udphy->dp_lane_sel[i];
+        ...
+        regmap_update_bits(..., LN_ANA_TX_SER_TXCLK_INV,
+            FIELD_PREP(LN_ANA_TX_SER_TXCLK_INV, udphy->lane_mux_sel[lane]));
+        ...
+        rk_udphy_dp_set_voltage(udphy, udphy->bw, dp->voltage[i], dp->pre[i=
+], lane);
+    }
+    ...
+}
+
+Since rk_udphy_dp_phy_configure() reads these arrays without holding
+udphy->mutex, could a race condition result in reading partially updated
+lane assignments if a Type-C switch event occurs at the same time?
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260612-rockchip-u=
+sbdp-cleanup-v5-0-efc83069869f@collabora.com?part=3D6
 
