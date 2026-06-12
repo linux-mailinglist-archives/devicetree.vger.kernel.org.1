@@ -1,437 +1,209 @@
-Return-Path: <devicetree+bounces-310883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310885-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kLqfFzbrK2oOHwQAu9opvQ
-	(envelope-from <devicetree+bounces-310883-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:19:18 +0200
+	id mzjIMbDrK2oqHwQAu9opvQ
+	(envelope-from <devicetree+bounces-310885-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:21:20 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E952678EDC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:19:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6800D678F15
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:21:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=nxp.com (policy=none);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310883-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310883-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=T1ZBtac5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310885-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310885-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 86DD93005158
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:19:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7BFCF31B77E1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:19:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018A7380FF0;
-	Fri, 12 Jun 2026 11:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC6E39DBE4;
+	Fri, 12 Jun 2026 11:18:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C1E39934D;
-	Fri, 12 Jun 2026 11:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5F139934D;
+	Fri, 12 Jun 2026 11:18:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781263121; cv=none; b=UoS4/elaVPAj7oDuCcZOk3/ZFhtE1oABeYmgtZHKEOuBfkQzs8IKnkKD0BqgoJspYfG1Hh5lAD5hjBiPUQ69JuYQE0tsshYKa2uRt4GG6GB2mK/3Y/IqZho0feBO2kV8IuEFGYxMzjpFa31VYLPXi451iPeyHTMwNGuTNvJ/Vy8=
+	t=1781263136; cv=none; b=d3JnHosAmAUQthkXWmffXIgdkmiEuJhXDsRJYnRcQkPe53Vf8+9oHuyLdbwVo1nT4EQPLfydhZYI1pC/mpNWjcXK8oC0RZ+ch8KHu5pMalpXAB3Z1+be0CVTSiuAJ1LEfAB/84hC2ms8AY5AD4ipgFZrsOwUdXI6qZ2dP4JZ5Q0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781263121; c=relaxed/simple;
-	bh=2kK6qFBAaJxOrEHIWNCv35i2NsXxf0DKy14bJ/Durtk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=q/zxjEYEYIxigibuTc1gWgtKTM+RT9NCLS+LKidJPjWTQ8L/En4upz2ZvIcZoneY2QXjb8UIwpUDhcapUHN1f1ANJgLbvgFWO+MpZ1QhFuLxxikvpHP2cCxaKkSCzuaaesN9om/9NXvj35pnpAYgIPdgQNScmaBMHTU4Z3k+QGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9A147200820;
-	Fri, 12 Jun 2026 13:18:34 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 622FC2007F9;
-	Fri, 12 Jun 2026 13:18:34 +0200 (CEST)
-Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 67EE9180007B;
-	Fri, 12 Jun 2026 19:18:33 +0800 (+08)
-From: Lakshay Piplani <lakshay.piplani@nxp.com>
-To: linux-kernel@vger.kernel.org,
-	linux-i3c@lists.infradead.org,
-	alexandre.belloni@bootlin.com,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	broonie@kernel.org,
-	lee@kernel.org,
-	Frank.Li@nxp.com,
-	lgirdwood@gmail.com
-Cc: vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com,
-	aman.kumarpandey@nxp.com,
-	Lakshay Piplani <lakshay.piplani@nxp.com>
-Subject: [PATCH v11 9/9] i3c: hub: p3h2x4x: Add SMBus slave mode support
-Date: Fri, 12 Jun 2026 16:48:16 +0530
-Message-Id: <20260612111816.3688240-10-lakshay.piplani@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260612111816.3688240-1-lakshay.piplani@nxp.com>
-References: <20260612111816.3688240-1-lakshay.piplani@nxp.com>
+	s=arc-20240116; t=1781263136; c=relaxed/simple;
+	bh=/0DITwMPaESzc0h8GdQhI1V0wGYWiihrCOuwjEOzEp0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D/SG18R+5bcLXYZ/ZQQezPfQMJM4s0Psh/r/b2L3aVxEG5ygew8vxlvp/ryHCLu+ySMjzUdMoPUYP0VBHAKYlFIi0Ng1WWLIrpG/lMcVRdYbrH4USwxsTNNJEhCxa4+5QcH89GXJrMRLMIYIDKf/ZF2aYr4quOz0lgioYIFExGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T1ZBtac5; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 740851F000E9;
+	Fri, 12 Jun 2026 11:18:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781263131;
+	bh=QA9VGCEANiXhD8chy/S02QB/G9vTT1qANH6a4eKKmnw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=T1ZBtac5KybFrVXTSufoYaF0z3TLD6NAN03qdzWjF8eLVtlKAGn49ZfebFa65YemU
+	 N7u3sySJL3UEwjXLhrzm/fIDmIEt9Le75BiZJgSxFw+boowTJa7EIS9A7bfHw5r/gP
+	 pUVXZC5O62I9UilE6bFntsAiwvyeISrUBUVegfH5qcoOHLiXskRh5jMVpAr1Q0/5K6
+	 shuUy8FR2mWh5AtXTVsJWmlfUPfyiou7wRe2qFodqlSKDbeV5fufZX1/dEO80kG3g4
+	 njqZMgq/ieRHnerkleSv7H0FbhLsgqdi/VXk9BLiLV9uVZ4O7yBmmSQAvaoTrEVfct
+	 jHy14RjEASjaA==
+Message-ID: <f810f5a1-5ff5-496a-b872-6a27c6ac6d48@kernel.org>
+Date: Fri, 12 Jun 2026 12:18:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: qcom,qcm2290-venus: document
+ shikra Iris compatible
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+ Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260612-shikra_vpu-v2-0-bf8727370a1e@oss.qualcomm.com>
+ <g-DHie7qniRKVCsx8_kFUx3ahp5F7hzKuwOEWG4xsWwfVzmvycsWRH4Q7K67aLyBcrKKUlzyRsGOUKzPJl3Okg==@protonmail.internalid>
+ <20260612-shikra_vpu-v2-1-bf8727370a1e@oss.qualcomm.com>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=bod@kernel.org; keydata=
+ xsFNBGRJNSgBEADD7Vm2ZFa+v+JGJ2QYTJqQAkqis/uOHkhdFNXqpBarVBd47QU/DMNU5Rxg
+ jedMQEmHoeDbJ6UOpjbrUQ63c5sgG1JbroHJJctwsEI75OOlekMuebEbjIJBLfgENGwPBMHv
+ piv5TgCWr0VgYaXfp2eh2LINFywzqj823HiDPibQAXDrjzvF1ogksi/6cQZs8d4if8YQkLOr
+ YISFouG+eR0nN1I7mUfIddXOWu6lJeTyqbWVurv58k2ekIXKaOC9ixLHFbcfYV0hOgRaTwQC
+ B8CYF9nfqZla19iItfsN9QxN+ZdQjcRoYipp6HPCMfJlKH7GfaFcW93LKc4DKJ2lVL+pg/OQ
+ lythZbjRPY492NG9kZ65aYstCs90uhMUEVVPuGUw7wBEku+6IEwZfrbMVKeWzLlPyM4Hv9hM
+ 8ktxSmxWsPTPqpBC8eyeAQLalMELAyVcZlkaCtEcbj7w4l/JkYz+4l37obG8ZD+B34udBUUz
+ MsAJ8foDFrBh2MOFA3hxD6G90D23mmWsri7pnKA2tZs92aQX7Ee+FbCyg6g5ln62Sq83ZDbf
+ 53DdBs55EVpBadeInWmXhzCHPQx06H+CwTEjShTYIaMmBfrewvYUDKvFTC5iKQhAEUgt6i94
+ JsbG7NoeqcxkUMcBOEUQ3uCQG1D70ugspgXc0wd3Rimiq6535wARAQABzSFCcnlhbiBPJ0Rv
+ bm9naHVlIDxib2RAa2VybmVsLm9yZz7CwZEEEwEIADsWIQTmk/sqq6Nt4Rerb7QicTuzoY3I
+ OgUCZ+R+mwIbAwULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIXgAAKCRAicTuzoY3IOimUD/94
+ BwVEJX31JRe2sxbB/e1w2p8x1bxvTw5AeIzpV3ox7coJg1bSU2mnGuj1V4o0Yxf/3zmcJzCN
+ VfVjwRF8Ii3GnC7uUXk2t+87piQfKTyJAYQABhZUKgoVJbjJq/S+C3XCKIyBA+EiezoUsgsA
+ jTzwU+FzV7zVWIXFPJNtBERLwboE9w9U3KjAExOa1kSY8eLrsg6kOwlOHWy5UsQqYOjrS96M
+ mzm2xuc1+RCjrndAyYhCnrOKvJ67HsPnBeJCjw7ImGD/U1GchwYbX8o3DO3JNHm3qfC86ZqX
+ 2sCouENg4OzgPTtLKUrueM6xsu6KMM7gj17vxsiR3KQEoJnnMB8D1xtBofN3mFZE0wD9M24m
+ 8yGunZbtntMCUHzIrlJgAPwKWKuGOYtA8UgMTFkccnUJtQrg9KotKtEF/FuftG9zLG9XEkt4
+ 5ZdNgbSoLWgelu3T47mbOJ8LHhiLaCWP7yrovtVAvLUQ1BsiA42u8ECrFCFvQj9nrejE/ICv
+ kP+uqcKtdDvP9HrIGycF1WZyfZLp0RvopKW92FLvI4I1QFWJ+wenk6+LGyJ5bzlrWzevjxmf
+ nHcXE6sJBHrE7eijlbbImDAi3uLYN8Nd9Dm11IDAy4GAIQxSiQn0yblDhPiyGtchy80EVkCm
+ g9k17Wol+2E2mC4DKgVdCkyUtTRSLgsJCs7BTQRkSTUoARAAuTnmWHBS6izRcEE93ajpzI7h
+ dgQO4U3IRvOEsvIKR5NGcNEs0ngGebwsZ/lVULjN4vYU0LleqVhPBidNXUoZCN3A0F0Z2Ov8
+ NZdef+2EhQPBVWxFO7JBzhe8Z3ALj+wFtlg8akJjBzU56azW/iJzAobqHVrudzKoO2b1/CMg
+ VbiAQ+RXjgfN5kY/HqYDU7mw+hXuUV9PbtX1L8xqQQac95oM9rHzKHHpiVwxTeJnGQsa+THi
+ Kze+YET3rCoGHMvOQEJhdrucTv5FpAakKdkOFNel9FFckLRKEuWgCzhpFsjQ7xbirQgFUxG9
+ vlk1+q4hMRGNyEqoD6svYEeqbiUSd0oPUJeioiC3rNMRCNHLVrfZ2J6SCPkxfda08uzSdDQU
+ 1/YPjOh8ZtQDMu7WctZ3XO288Z1gyBR49V7fbFs2w4sQxG+h/enlxqP7fdw1mjUlZjU5huCJ
+ ielS0oEaIpmUpkugli7x4WhwLnhK2EbSoz7nLBC0y+ALUOdMlz/Y1l9xRt+bkDhpmf4O4IcI
+ MxgZ0QMLq8rHDkGaEbsgZZHQPS58T0XE3IP30Q9SNxsruCMXtd2hYtBssf/wohc6JVsTtMg2
+ VYTPDPIFNZFSXupEJB7jlqpDWJ8ooJfJRLBatbjT5+mVQaMYB7Hs/t+zWYWaJKHyc8O6WLEC
+ NUV5Tdt5EkkAEQEAAcLBdgQYAQoAIBYhBOaT+yqro23hF6tvtCJxO7Ohjcg6BQJkSTUoAhsM
+ AAoJECJxO7Ohjcg6LuIQALnXt36OUuK43wqw6UYt0cnN6EbUqJHApAF5eNFn0jCCB2XELjSz
+ JKJwuNAweowBdabiBniJ+501WIW+ewEsz1uby5fUQjZuCEsIkuaIluyfUFPb73qrQyAGuusd
+ 7teA4WT+/jUku9g7lX5sVoRCrKQPkd16f6Bzfztyqyjcn43/X5yQI+wlboQ6HuKe/3I3yiOx
+ OgmCHzOawpC9PvhEcKj79RLM3Zz5Ts5AuHpRX70Jz8Be76LwVFLp5Msx3S24ZTU1lBo2uiJ3
+ xSkay2lTpyVWRPx9vgcwzxGguOPJQJwsQeLb7wpoJMPpD3ERoaRii7Q7hvmxklpZjhKYWB3d
+ t6nQ497Ek9loCrp3MIjRCSDN5xEGffiHks9yTeGMUQwO4tX8RE04uOJPkUY7uCFzFqN6/qey
+ X3oFfPgkULMdiHofPAL1OskZSTzGPSfTYRE46NCJw8yoZBQ/oOyWeqaUQbK0wmW/g81wm8p7
+ LKSGEglMpiX07M1AotgvylN5C8fjbouoK+/RAMsXkk8jba6rPfuuXPaDjCyyKn6zSVHETnHW
+ 3AJbgVY50T8STpnxayBQvWbCvu+6NOEjXCbyaOJig+5l0zlGN9XHjdANXC5HnwmyaGRL9YDq
+ Jh2nVXVJDincOdQRdKcJjYLqaOAoWrYWSDi1iZGspHBTDrnOvfMQzzHY
+In-Reply-To: <20260612-shikra_vpu-v2-1-bf8727370a1e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.64 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-5.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:vikash.garodia@oss.qualcomm.com,m:dikshita.agarwal@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jorge.ramirez@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310883-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:linux-i3c@lists.infradead.org,m:alexandre.belloni@bootlin.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:broonie@kernel.org,m:lee@kernel.org,m:Frank.Li@nxp.com,m:lgirdwood@gmail.com,m:vikash.bansal@nxp.com,m:priyanka.jain@nxp.com,m:aman.kumarpandey@nxp.com,m:lakshay.piplani@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-310885-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6E952678EDC
+X-Rspamd-Queue-Id: 6800D678F15
 
-Add SMBus slave mode support for the P3H2x4x hub SMBus target ports.
+On 11/06/2026 20:49, Vikash Garodia wrote:
+> Document the iris video accelerator used on shikra platforms by adding
+> the qcom,shikra-iris compatible.
+> 
+> Although QCM2290 and shikra share the same video hardware and overall
+> integration, their SMMU programming differs. QCM2290 exposes separate
+> stream IDs for the video hardware and the Xtensa path, requiring two
+> explicit IOMMU entries, whereas shikra uses a masked SMR to collapse
+> equivalent stream IDs into a single mapping. Due to QCM2290’s SID layout
+> and Xtensa isolation requirements, such SMR masking is not applicable on
+> QCM2290 platforms.
+> Since shikra uses the same video hardware as QCM2290 and shares the same
+> programming model and capabilities, it is added as a fallback compatible
+> to qcom,qcm2290-venus, with conditional handling to allow either one or
+> two IOMMU entries.
+> 
+> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+> ---
+>   .../bindings/media/qcom,qcm2290-venus.yaml         | 26 ++++++++++++++++------
+>   1 file changed, 19 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> index 5977e7d0a71b4fb5681f1c2094439c251366f01f..dec7051224d1610b8b3dcb1750152eeda95d3703 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+> @@ -13,14 +13,13 @@ description:
+>     The Venus AR50_LITE IP is a video encode and decode accelerator present
+>     on Qualcomm platforms.
+> 
+> -allOf:
+> -  - $ref: qcom,venus-common.yaml#
+> -
+>   properties:
+>     compatible:
+>       oneOf:
+>         - items:
+> -          - const: qcom,sm6115-venus
+> +          - enum:
+> +              - qcom,shikra-iris
+> +              - qcom,sm6115-venus
+I still think this is not an accurate name.
 
-The hub SMBus slave agent can receive downstream payloads into target
-buffers and report receive events through IBI. Add CONFIG_I2C_SLAVE
-to support the receive path and forward the received payloads to the
-registered I2C slave client through i2c_slave_event().
+https://lore.kernel.org/linux-arm-msm/q3sr74ncqnmzsjrd6jdbkpplxpnsnifhnvxsdplvogr2kf25p3@taadnzd2qrcu/
 
-Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
-Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
+Best practice if you _aren't_ acting on previous feedback is to document 
+it in your cover letter.
+
+https://lore.kernel.org/linux-arm-msm/20260612-shikra_vpu-v2-0-bf8727370a1e@oss.qualcomm.com
+
+Either way that naming comment still needs to be resolved.
 
 ---
-Changes in v11:
- - Improve SMBus slave mode payload validation and parsing
-
-Changes in v10:
- - Split SMBus slave mode support into a separate patch
----
----
- drivers/i3c/hub/p3h2840_i3c_hub.h        |  10 ++
- drivers/i3c/hub/p3h2840_i3c_hub_common.c |   7 +
- drivers/i3c/hub/p3h2840_i3c_hub_i3c.c    |  29 +++-
- drivers/i3c/hub/p3h2840_i3c_hub_smbus.c  | 192 +++++++++++++++++++++++
- 4 files changed, 237 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub.h b/drivers/i3c/hub/p3h2840_i3c_hub.h
-index d69fafbac584..84d9c66547c6 100644
---- a/drivers/i3c/hub/p3h2840_i3c_hub.h
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub.h
-@@ -324,4 +324,14 @@ int p3h2x4x_tp_smbus_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub);
-  */
- int p3h2x4x_tp_i3c_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub);
- 
-+/**
-+ * p3h2x4x_ibi_handler - IBI handler.
-+ * @i3cdev: i3c device.
-+ * @payload: two byte IBI payload data.
-+ */
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+void p3h2x4x_ibi_handler(struct i3c_device *i3cdev,
-+			 const struct i3c_ibi_payload *payload);
-+#endif
-+
- #endif /* P3H2840_I3C_HUB_H */
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_common.c b/drivers/i3c/hub/p3h2840_i3c_hub_common.c
-index fedcb978f07e..ca173afe1fa9 100644
---- a/drivers/i3c/hub/p3h2840_i3c_hub_common.c
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub_common.c
-@@ -318,6 +318,13 @@ static void p3h2x4x_i3c_hub_remove(struct platform_device *pdev)
- 	struct p3h2x4x_dev *p3h2x4x = dev_get_drvdata(pdev->dev.parent);
- 	u8 i;
- 
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+	if (p3h2x4x->i3cdev) {
-+		i3c_device_disable_ibi(p3h2x4x->i3cdev);
-+		i3c_device_free_ibi(p3h2x4x->i3cdev);
-+	}
-+#endif
-+
- 	for (i = 0; i < P3H2X4X_TP_MAX_COUNT; i++) {
- 		if (p3h2x4x_i3c_hub->tp_bus[i].is_registered) {
- 			if (p3h2x4x_i3c_hub->hub_config.tp_config[i].mode ==
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-index 38505dda0e81..9bef8b8e557f 100644
---- a/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-@@ -10,6 +10,14 @@
- 
- #include "p3h2840_i3c_hub.h"
- 
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+static const struct i3c_ibi_setup p3h2x4x_ibireq = {
-+	.handler = p3h2x4x_ibi_handler,
-+	.max_payload_len = P3H2X4X_MAX_PAYLOAD_LEN,
-+	.num_slots = P3H2X4X_NUM_SLOTS,
-+};
-+#endif
-+
- static inline struct tp_bus *
- p3h2x4x_bus_from_controller(struct i3c_master_controller *controller)
- {
-@@ -120,5 +128,24 @@ int p3h2x4x_tp_i3c_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_hub)
- 		p3h2x4x_hub->tp_bus[tp].is_registered = true;
- 		p3h2x4x_hub->hub_config.tp_config[tp].always_enable = true;
- 	}
--	return regmap_write(p3h2x4x_hub->regmap, P3H2X4X_TP_NET_CON_CONF, ntwk_mask);
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+	ret = i3c_device_request_ibi(p3h2x4x_hub->i3cdev, &p3h2x4x_ibireq);
-+	if (ret)
-+		return ret;
-+
-+	ret = i3c_device_enable_ibi(p3h2x4x_hub->i3cdev);
-+	if (ret) {
-+		i3c_device_free_ibi(p3h2x4x_hub->i3cdev);
-+		return ret;
-+	}
-+#endif
-+	ret = regmap_write(p3h2x4x_hub->regmap, P3H2X4X_TP_NET_CON_CONF, ntwk_mask);
-+
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+	if (ret) {
-+		i3c_device_disable_ibi(p3h2x4x_hub->i3cdev);
-+		i3c_device_free_ibi(p3h2x4x_hub->i3cdev);
-+	}
-+#endif
-+	return ret;
- }
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-index edb75f790e92..fba4345f86a7 100644
---- a/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-@@ -15,6 +15,146 @@ enum p3h2x4x_smbus_desc_idx {
- 	P3H2X4X_DESC_READ_LEN,
- };
- 
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+static void p3h2x4x_read_smbus_agent_rx_buf(struct i3c_device *i3cdev, enum p3h2x4x_rcv_buf rfbuf,
-+					    enum p3h2x4x_tp tp, bool is_of)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = i3cdev_get_drvdata(i3cdev);
-+	u8 slave_rx_buffer[P3H2X4X_SMBUS_TARGET_PAYLOAD_SIZE] = { 0 };
-+	u8 target_buffer_page, flag_clear = 0x0f, temp = 0, i, addr;
-+	u32 packet_len, slave_address, ret;
-+	struct i2c_client *client;
-+
-+	target_buffer_page = (((rfbuf) ? P3H2X4X_TARGET_BUFF_1_PAGE : P3H2X4X_TARGET_BUFF_0_PAGE)
-+				+  (P3H2X4X_NO_PAGE_PER_TP * tp));
-+	ret = regmap_write(p3h2x4x_i3c_hub->regmap, P3H2X4X_PAGE_PTR, target_buffer_page);
-+	if (ret)
-+		goto ibi_err;
-+
-+	/* read buffer length */
-+	ret = regmap_read(p3h2x4x_i3c_hub->regmap, P3H2X4X_TARGET_BUFF_LENGTH, &packet_len);
-+	if (ret)
-+		goto ibi_err;
-+
-+	if (packet_len)
-+		packet_len = packet_len - 1;
-+
-+	if (packet_len > P3H2X4X_SMBUS_TARGET_PAYLOAD_SIZE) {
-+		dev_err(&i3cdev->dev, "Received message too big for p3h2x4x buffer\n");
-+		goto ibi_err;
-+	}
-+
-+	/* read slave  address */
-+	ret = regmap_read(p3h2x4x_i3c_hub->regmap, P3H2X4X_TARGET_BUFF_ADDRESS, &slave_address);
-+	if (ret)
-+		goto ibi_err;
-+
-+	/* read data */
-+	if (packet_len) {
-+		ret = regmap_bulk_read(p3h2x4x_i3c_hub->regmap, P3H2X4X_TARGET_BUFF_DATA,
-+				       slave_rx_buffer, packet_len);
-+		if (ret)
-+			goto ibi_err;
-+	}
-+
-+	if (is_of)
-+		flag_clear = BUF_RECEIVED_FLAG_TF_MASK;
-+	else
-+		flag_clear = (((rfbuf == RCV_BUF_0) ? P3H2X4X_TARGET_BUF_0_RECEIVE :
-+				P3H2X4X_TARGET_BUF_1_RECEIVE));
-+
-+	/* notify slave driver about received data */
-+	if ((p3h2x4x_i3c_hub->tp_bus[tp].tp_smbus_client->addr & 0x7f) == (slave_address >> 1)) {
-+		client = p3h2x4x_i3c_hub->tp_bus[tp].tp_smbus_client;
-+		if (!client)
-+			goto ibi_err;
-+
-+		addr = slave_address >> 1;
-+		i2c_slave_event(client,
-+				I2C_SLAVE_WRITE_REQUESTED, &addr);
-+		for (i = 0; i < packet_len; i++) {
-+			temp = slave_rx_buffer[i];
-+			i2c_slave_event(client,
-+					I2C_SLAVE_WRITE_RECEIVED, &temp);
-+		}
-+		i2c_slave_event(client, I2C_SLAVE_STOP, &temp);
-+	}
-+
-+ibi_err:
-+	regmap_write(p3h2x4x_i3c_hub->regmap, P3H2X4X_PAGE_PTR, 0x00);
-+	regmap_write(p3h2x4x_i3c_hub->regmap, P3H2X4X_TP0_SMBUS_AGNT_STS + tp, flag_clear);
-+}
-+
-+/**
-+ * p3h2x4x_ibi_handler - IBI handler.
-+ * @i3cdev: i3c device.
-+ * @payload: two byte IBI payload data.
-+ *
-+ */
-+void p3h2x4x_ibi_handler(struct i3c_device *i3cdev,
-+			 const struct i3c_ibi_payload *payload)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub;
-+	u8 payload_byte_one, payload_byte_two;
-+	u32 target_port_status, ret, i;
-+	const u8 *data;
-+
-+	if (!payload || payload->len < P3H2X4X_MAX_PAYLOAD_LEN)
-+		return;
-+
-+	data = payload->data;
-+	payload_byte_one = data[0];
-+
-+	if (!(payload_byte_one & P3H2X4X_SMBUS_AGENT_EVENT_FLAG_STATUS))
-+		return;
-+
-+	p3h2x4x_i3c_hub = i3cdev_get_drvdata(i3cdev);
-+
-+	if (!p3h2x4x_i3c_hub || !p3h2x4x_i3c_hub->regmap)
-+		return;
-+
-+	payload_byte_two = data[1];
-+	guard(mutex)(&p3h2x4x_i3c_hub->etx_mutex);
-+
-+	for (i = 0; i < P3H2X4X_TP_MAX_COUNT; ++i) {
-+		if (p3h2x4x_i3c_hub->tp_bus[i].is_registered && (payload_byte_two >> i) & 0x01) {
-+			ret = regmap_read(p3h2x4x_i3c_hub->regmap, P3H2X4X_TP0_SMBUS_AGNT_STS + i,
-+					  &target_port_status);
-+			if (ret) {
-+				dev_err(&i3cdev->dev, "target port read status failed %d\n", ret);
-+				return;
-+			}
-+
-+			/* process data receive buffer */
-+			switch (target_port_status & BUF_RECEIVED_FLAG_MASK) {
-+			case P3H2X4X_TARGET_BUF_CA_TF:
-+				break;
-+			case P3H2X4X_TARGET_BUF_0_RECEIVE:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_0, i, false);
-+				break;
-+			case P3H2X4X_TARGET_BUF_1_RECEIVE:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_1, i, false);
-+				break;
-+			case P3H2X4X_TARGET_BUF_0_1_RECEIVE:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_0, i, false);
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_1, i, false);
-+				break;
-+			case P3H2X4X_TARGET_BUF_OVRFL:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_0, i, false);
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_1, i, true);
-+				dev_err(&i3cdev->dev, "Overflow, reading buffer zero and one\n");
-+				break;
-+			default:
-+				regmap_write(p3h2x4x_i3c_hub->regmap,
-+					     P3H2X4X_TP0_SMBUS_AGNT_STS + i,
-+					     BUF_RECEIVED_FLAG_TF_MASK);
-+				break;
-+			}
-+		}
-+	}
-+}
-+#endif
-+
- static int p3h2x4x_read_smbus_transaction_status(struct p3h2x4x_i3c_hub_dev *hub,
- 						 u8 target_port_status,
- 						 u8 data_length)
-@@ -205,11 +345,63 @@ static u32 p3h2x4x_tp_smbus_funcs(struct i2c_adapter *adapter)
- 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_BLOCK_DATA;
- }
- 
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+static int p3h2x4x_tp_i2c_reg_slave(struct i2c_client *slave)
-+{
-+	struct tp_bus *bus = i2c_get_adapdata(slave->adapter);
-+	struct p3h2x4x_i3c_hub_dev *hub = bus->p3h2x4x_i3c_hub;
-+	int ret;
-+
-+	guard(mutex)(&hub->etx_mutex);
-+
-+	if (bus->tp_smbus_client)
-+		return -EBUSY;
-+
-+	ret = regmap_set_bits(hub->regmap,
-+			      P3H2X4X_TP_SMBUS_AGNT_IBI_CONFIG,
-+			      bus->tp_mask);
-+	if (ret)
-+		return ret;
-+
-+	bus->tp_smbus_client = slave;
-+	hub->hub_config.tp_config[bus->tp_port].ibi_en = true;
-+
-+	return 0;
-+}
-+
-+static int p3h2x4x_tp_i2c_unreg_slave(struct i2c_client *slave)
-+{
-+	struct tp_bus *bus = i2c_get_adapdata(slave->adapter);
-+	struct p3h2x4x_i3c_hub_dev *hub = bus->p3h2x4x_i3c_hub;
-+	int ret;
-+
-+	guard(mutex)(&hub->etx_mutex);
-+
-+	if (bus->tp_smbus_client != slave)
-+		return -EINVAL;
-+
-+	ret = regmap_clear_bits(hub->regmap,
-+				P3H2X4X_TP_SMBUS_AGNT_IBI_CONFIG,
-+				bus->tp_mask);
-+	if (ret)
-+		return ret;
-+
-+	bus->tp_smbus_client = NULL;
-+	hub->hub_config.tp_config[bus->tp_port].ibi_en = false;
-+
-+	return 0;
-+}
-+#endif
-+
- /*
-  * I2C algorithm Structure
-  */
- static struct i2c_algorithm p3h2x4x_tp_i2c_algorithm = {
- 	.master_xfer    = p3h2x4x_tp_i2c_xfer,
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+	.reg_slave = p3h2x4x_tp_i2c_reg_slave,
-+	.unreg_slave = p3h2x4x_tp_i2c_unreg_slave,
-+#endif
- 	.functionality  = p3h2x4x_tp_smbus_funcs,
- };
- 
--- 
-2.25.1
-
+bod
 
