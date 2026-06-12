@@ -1,199 +1,188 @@
-Return-Path: <devicetree+bounces-311135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311016-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +8TlDEtbLGpVPwQAu9opvQ
-	(envelope-from <devicetree+bounces-311135-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 21:17:31 +0200
+	id dTVeKQ4nLGpNMQQAu9opvQ
+	(envelope-from <devicetree+bounces-311016-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 17:34:38 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B01167BF35
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 21:17:30 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6029767A885
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 17:34:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=nK5ym7pM;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=A7rPy1qM;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=RD9DdjJ8;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=iNpp5ScH;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311135-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311135-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=suse.de;
+	dkim=pass header.d=flipper.net header.s=google header.b=9bi2ctfT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311016-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-311016-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=flipper.net;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C9E5C3103ED8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 19:17:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C2CDE30515AB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 15:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFC4D3A8727;
-	Fri, 12 Jun 2026 19:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B036374A1E;
+	Fri, 12 Jun 2026 15:34:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B756E35E948
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 19:17:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7BA02236E0
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 15:34:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781291842; cv=none; b=D09jIPD7yoxGT2NATpxHpNbSlpT5PAJSQWf/c3d2ptLpB0UD+HC5Ps+LV9n6pwbfRgIdpxoKC9lT/BAqmVMUxbB1qnR+kS7qrAWVoqaNF5oG77TnOGxTbfXiYiDY6UyPyP/g7ufkpGsMW+JJXs0kTBbx12tJwsw5gXaRW3ujSMc=
+	t=1781278468; cv=none; b=qYCK8pwduhrXsJv4HPuUzSvTu1KlnH0iu8gFLrXypMfNaIedP9ies4OekcahgROqLh7Kdmxsd5OpASOjh8eKay1KKThFAvCifOSRwjrPmbu4rotZk6Dccjdi16e9cQbE6nuruUlnxKTA0E3FvBEhBg47ip3fKGW5zNfO5RPoLKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781291842; c=relaxed/simple;
-	bh=oheb5sC3pZhkuk7d8shVc0BtHQ1YAy5CEMlPCE96g4c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QyeiTddZNR/PrvQfVyhSnk7XMx0/GsZK2vYLmG8MfFxsCZyk9XcNxUB1MErQUaYkWmqdEUViaJR3JoVLPKNSsMa2zF1zURyNi26aprPQuS9KXcUmN8u/thHYGMjc2ZkNFYPOii5J+uRWm/bg+kUUtw/JzcGDo+8IRfM9cNVXcvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=nK5ym7pM; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=A7rPy1qM; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=RD9DdjJ8; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=iNpp5ScH; arc=none smtp.client-ip=195.135.223.131
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id CABF5457E;
-	Fri, 12 Jun 2026 15:24:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1781277886; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=E1uZmAFhIf/BpsGYDdVGvZjfqxClnkRrnP4gO1FVGUw=;
-	b=nK5ym7pMW9Z4M8QUnM4ayPb3a8K+dFo0xH73ixcZYMu2hXJrSCa0K14B8lgwERaTs0UX19
-	wOGeeHqy3Km0ENk/mYXssDLpibc/i5H8pdv2IVHk1zr+Mgs2fe6wrup60zjvo5rovztjgC
-	FUpVRghUYKTtrI+TPLKHHrSf3HdXg74=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1781277886;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=E1uZmAFhIf/BpsGYDdVGvZjfqxClnkRrnP4gO1FVGUw=;
-	b=A7rPy1qMPgVT9GJwnXaH/XQ7r5noj13QWQvuEYJNdWthII/ZdyCj4IuQI/yRAXado37oYU
-	Yw2oMxCSenVz0WAA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1781277884; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=E1uZmAFhIf/BpsGYDdVGvZjfqxClnkRrnP4gO1FVGUw=;
-	b=RD9DdjJ8H6xiTX7/QP1zmmp7O8cXO+NtSCaQp0ABphlvvBbvAlExMolznNYCj+P3SsCYRb
-	+Jth+bCfGMJn6n2kr/2LM5NxalI581vtVIhXwus+vU11vabJ0km11I/MHhubkYlCVsA04Z
-	z7bpHHvmhpaaN6LkhxKAXZNCHPeSD/M=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1781277884;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=E1uZmAFhIf/BpsGYDdVGvZjfqxClnkRrnP4gO1FVGUw=;
-	b=iNpp5ScHONDgQfBeneamoXJDuc+gZUzvF5gijJKjNmYXb76gjf++r73TRbg7ti5yFuMdq7
-	XQWrVzTbZ5B0U4CQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 203C8779A7;
-	Fri, 12 Jun 2026 15:24:44 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id MvyDBbwkLGrTVwAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Fri, 12 Jun 2026 15:24:44 +0000
-Message-ID: <5b167316-ed50-448c-aa05-6a041a6544d5@suse.de>
-Date: Fri, 12 Jun 2026 18:24:39 +0300
+	s=arc-20240116; t=1781278468; c=relaxed/simple;
+	bh=gtvNi33VQsDNDkHYG9DuFjrER9YXOntZMxm2KOrjFjs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZHJjI7XH2oTxGTKm42iskMwI58BAjL33+MDovPDi0BqKwSiMiBzBU8+44AZjBvYy3A3bqt7YDwD3osRMxx3bc+JVgPWhu2NEcTJb/t4IEZYuhEXxwe1rokhlINaVprhkguxRJeO+ydlmUc6Vb26dgms+YSVlJ8KYaolf0Diyu0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=9bi2ctfT; arc=none smtp.client-ip=209.85.221.49
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-45ef1198766so654052f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 08:34:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=flipper.net; s=google; t=1781278464; x=1781883264; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wLR5ceLyn2LWx78PSXIyJ/Cdj4UA0nZ2YxlclNxvI8g=;
+        b=9bi2ctfTx58UeYgPvayKXoZCg7GELVYmiZzdxjNvMAXepzpIAXW+JXg7TOS2MuYGk0
+         4ZMKfmOK5nyOlBD5RvVcZX0xHHpJ0FwS2PNzAhE+WfNNUUKUL+MIiXuL+mFyhGuHuu/p
+         b1ML4R9iS7mZx044b6pa1t2UU/BZyqmrpefGlP8RAlvY80nAwu9xtDGPAth5Kmdfjl3c
+         UH9BWrWRVLuhxhrEOUI1IbpGQJI7kDcLHU/0cYk2PSolfpHRwF08k13gXAq843buOlfW
+         0FQSTucbhbqQMDx836XPUhAKILzE/E9QUsd35JOgOkvx/5gL/qqhzDES2ZdlOqjBkqmT
+         9yYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781278464; x=1781883264;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wLR5ceLyn2LWx78PSXIyJ/Cdj4UA0nZ2YxlclNxvI8g=;
+        b=GpwbnQyHZNk1FOMG9jXXt50GTkEmXkewr9LOtf2SaC7b7J3k/buD0A8kiyOmCqt93N
+         jqunFoR+ambeoxN3rmbDEaQD3/4mIjVkCw16GCmQk24gwYI4phO/G+0CgGjDeueGJOPc
+         98OpWBZgISshItXDaGuOqe1mteg4fuuTC432JjMeH+SgKYsKRNQnvHMMP1kLHJjoAnKb
+         ppiu1QihAl/lgKl6SrwQKLuMLE5YcOLiZpMUSmIHTFTkbGcUU0MeBkEHy8vWpFgDRtfh
+         BHHkLrujShRA3LURjbQOPZ1ZP5KRTk39WAID4n6O9YYGbUrGJx5BfT5yGBUH48BIJPbf
+         xBMQ==
+X-Gm-Message-State: AOJu0YzVxyvpm0ymnBnpIimXnI0Xze5VPkpeqZpAKdtuU69f/ZNKFFTm
+	r3Uax8j4YoAjg5ZrZ+ERGCz+GbTpT/7cbVxJaDgcUErcHUmTqo3+fzao4OyNtWu6yOQ=
+X-Gm-Gg: Acq92OHivoZ+3TghSwMnkR/q8DmBcQm2dgfsJXmwb8rKXE2WujwNvUjIGFistazeeA3
+	rCyPI1aURjUZktDWljbOIDTMnzCVHdvX298Ybpn8VUyt310YHpxRhHXQK/G9kx5yyjhCXk8IIV/
+	9KrzAcbl+lYFmDrmWL/hYaPy+fB+hbgts2DxNR5VGZPoWoDRtQa8FB0XzbAijIrG4lyJoBDe/o9
+	Kf0qIP6lDEPGt7LRPhmZQJ1WCqoeXpZOHCh6M6FEtgOYbZ4uqH6QiimWQA70Kr35yLb8lOQ302c
+	HyBfa0BY0LDpXp7SLNrF8CQVNLtErix1jfVL5WrTIdy92oFetgFt4gGoRMYObXSnITB+ZX0gi/2
+	WxJwYPQWE09k9xBHuMlGE8HrEK25Ns9R2lYOWEcdeb0gErt3F3LqGtRrnRR3PDUG3yC5X8DmaXX
+	Ny+vFVPjraWNH6Nzp62rIbsGSbj7TUQBsdgYLMNXRg
+X-Received: by 2002:a05:6000:41f7:b0:45e:dc0a:bcb with SMTP id ffacd0b85a97d-4606d024020mr4921301f8f.22.1781278464037;
+        Fri, 12 Jun 2026 08:34:24 -0700 (PDT)
+Received: from alchark-surface.localdomain ([5.194.92.128])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f2b0d28sm6916641f8f.20.2026.06.12.08.34.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Jun 2026 08:34:23 -0700 (PDT)
+From: Alexey Charkov <alchark@flipper.net>
+Subject: [PATCH 0/4] mfd: Add support for the MCU in the UGREEN DH2300 NAS
+Date: Fri, 12 Jun 2026 19:34:13 +0400
+Message-Id: <20260612-dh2300-mcu-v1-0-ab8db1617bc0@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: pwm: Add Raspberry Pi RP1 PWM
- controller
-To: Andrea della Porta <andrea.porta@suse.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- linux-pwm@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Naushir Patuck <naush@raspberrypi.com>,
- Stanimir Varbanov <svarbanov@suse.de>, mbrugger@suse.com
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <cover.1780670224.git.andrea.porta@suse.com>
- <350c2fb454951fd2c9d959f1d94802fea8fa8152.1780670224.git.andrea.porta@suse.com>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <350c2fb454951fd2c9d959f1d94802fea8fa8152.1780670224.git.andrea.porta@suse.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Spam-Score: -3.01
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMTQ5AMBBA4avIrDXplFq4iljQThmJn7SIpHF3x
+ fJbvBchkGcKUGcRPJ0ceF0SMM/AjN0ykGCbDEqqSlaohB1VIaWYzSF0oUuLTjvEDlKweXJ8fbO
+ m/R2OfiKzvwe47wfcjLZGbgAAAA==
+X-Change-ID: 20260612-dh2300-mcu-5354d1f5f11a
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Heiko Stuebner <heiko@sntech.de>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ Alexey Charkov <alchark@flipper.net>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2017; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=gtvNi33VQsDNDkHYG9DuFjrER9YXOntZMxm2KOrjFjs=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWTpqP1lYhRlET4n1B2UyM+qz36ft0rIVjyhOk/10c72j
+ q9t9sUdE1kYxLgYLMUUWeZ+W2I71Yhv1i4Pj68wc1iZQIZIizQwAAELA19uYl6pkY6Rnqm2oZ6h
+ kY6xjhEDF6cATPXEW4wMr47Msg37u+90m55mcYB3d6rIttuMb+3yjqww4XnvoP57IyNDr/8CzVv
+ Cqxs1BQ4HV8f9+9lcvWBNYj7nh07+Pw+ttCfwAgA=
+X-Developer-Key: i=alchark@flipper.net; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311135-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[svarbanov@suse.de,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_RECIPIENTS(0.00)[m:andrea.porta@suse.com,m:ukleinek@kernel.org,m:linux-pwm@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:florian.fainelli@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:devicetree@vger.kernel.org,m:linux-rpi-kernel@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:naush@raspberrypi.com,m:svarbanov@suse.de,m:mbrugger@suse.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311016-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[suse.de:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[svarbanov@suse.de,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[kernel.org,sntech.de,gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:heiko@sntech.de,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:alchark@flipper.net,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[flipper.net:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,suse.de:dkim,suse.de:email,suse.de:mid,suse.de:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,suse.com:email,raspberrypi.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9B01167BF35
+X-Rspamd-Queue-Id: 6029767A885
 
+UGREEN DH2300 is a 2-bay SATA NAS based on the Rockchip RK3576 SoC. It
+includes an embedded controller connected over I2C which won't let the
+drives power up without its register being poked first, which precludes
+the use of the device for its main purpose.
 
+There is no public documentation or source code available, but apparently
+the MCU is also responsible for a hardware watchdog function and some type
+of wake functionality, so this series implements an MFD-regulator
+separation right away to allow for adding these functions properly later
+on.
 
-On 6/12/26 5:01 PM, Andrea della Porta wrote:
-> From: Naushir Patuck <naush@raspberrypi.com>
-> 
-> Add the devicetree binding documentation for the PWM
-> controller found in the Raspberry Pi RP1 chipset.
-> 
-> Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
-> Co-developed-by: Stanimir Varbanov <svarbanov@suse.de>
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
->  .../bindings/pwm/raspberrypi,rp1-pwm.yaml     | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/raspberrypi,rp1-pwm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/raspberrypi,rp1-pwm.yaml b/Documentation/devicetree/bindings/pwm/raspberrypi,rp1-pwm.yaml
-> new file mode 100644
-> index 0000000000000..6f8461d0454f7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/raspberrypi,rp1-pwm.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/raspberrypi,rp1-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Raspberry Pi RP1 PWM controller
-> +
-> +maintainers:
-> +  - Naushir Patuck <naush@raspberrypi.com>
+For now though a single-bit write to the MCU seems to be sufficient to get
+the drives to work with only a board DTS addition [1] - to be submitted
+separately.
 
-Could you add you or me as a maintainer as well. I'm not sure Naushir
-had agreed to maintain the bindings in mainline.
+[1] https://github.com/flipperdevices/flipper-linux-kernel/blob/2c1c5ee609f6ed4c77e9e5428df91e98b3f50cce/arch/arm64/boot/dts/rockchip/rk3576-nasync-dh2300.dts
 
-~Stan
+Signed-off-by: Alexey Charkov <alchark@flipper.net>
+---
+Alexey Charkov (4):
+      dt-bindings: vendor-prefixes: Add Ugreen Group Limited
+      dt-bindings: mfd: Add UGREEN NASync DH2300 MCU
+      mfd: Add support for UGREEN NASync DH2300 MCU
+      regulator: Add support for UGREEN NASync DH2300 MCU SATA power gate
+
+ .../devicetree/bindings/mfd/ugreen,dh2300-mcu.yaml | 62 +++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml       |  2 +
+ MAINTAINERS                                        |  7 ++
+ drivers/mfd/Kconfig                                | 16 +++++
+ drivers/mfd/Makefile                               |  1 +
+ drivers/mfd/ugreen-dh2300-mcu.c                    | 60 ++++++++++++++++
+ drivers/regulator/Kconfig                          | 12 ++++
+ drivers/regulator/Makefile                         |  1 +
+ drivers/regulator/ugreen-dh2300-mcu-regulator.c    | 80 ++++++++++++++++++++++
+ 9 files changed, 241 insertions(+)
+---
+base-commit: ec039126b7fac4e3af35ebccaa7c6f9b6875ba81
+change-id: 20260612-dh2300-mcu-5354d1f5f11a
+
+Best regards,
+--  
+Alexey Charkov <alchark@flipper.net>
+
 
