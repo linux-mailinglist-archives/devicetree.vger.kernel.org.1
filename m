@@ -1,47 +1,48 @@
-Return-Path: <devicetree+bounces-310880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310882-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QD5XNCzrK2oIHwQAu9opvQ
-	(envelope-from <devicetree+bounces-310880-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:19:08 +0200
+	id lBcCF0jrK2oSHwQAu9opvQ
+	(envelope-from <devicetree+bounces-310882-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:19:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26738678ECD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:19:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE987678EEC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:19:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=nxp.com (policy=none);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310880-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310880-lists+devicetree=lfdr.de@vger.kernel.org";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310882-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310882-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 317EB30A0461
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:18:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E2445329EC7C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:18:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F73438837D;
-	Fri, 12 Jun 2026 11:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B036E395AF7;
+	Fri, 12 Jun 2026 11:18:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF540286419;
-	Fri, 12 Jun 2026 11:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C38379C4A;
+	Fri, 12 Jun 2026 11:18:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781263112; cv=none; b=J7itiJJqHttq4v1JdQGSp6j576RqDV2Ncf2SHaLSk2sj2BsINOoT5y3cH4erGw1wfW4acogyPWP7nbhBJR1Hkth1wS/wr/TNMXFSun92DFrZnPvaAvIsT5UzWWBznM/1xTcay51Z6CxQPiixdDIkq5Gf2I/qatT88PbNY8c8IYk=
+	t=1781263113; cv=none; b=r5CLO/YhGkP6Rt1G2VuiUE8u++amcBHxQW0pSH/v1QIh1v4eq71nLNIU/jpuzBxpKYC8IHETr4ywoaoLHQ+4/8qGQ9UPfLgAwJL243Xx3UHqbAys+q7jv24QgS+xTUc/rWWgwND7LU1EiwFWhSm8HXa1tSJOTyQ3U36oJ4rEx4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781263112; c=relaxed/simple;
-	bh=nYn7GNrwj7FOyQoukt4FMk8qPEZoBLYYamFqq3tqqdo=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rApEfby34fTnBC/WOtDv8S3ZTO3wkDeQqpgQ6f+KgUcYIzbvqZQsh5tTiJrL2Koo33ruitvcw2+AdNHUHUa3/WaIQVEYhNZudJuv280DcGZKGhib+vOEuM55nv8FyNEqk1zhTqqU1T17mJjnA9ed6FpKgubJ8vvL3rXH7wzH1XM=
+	s=arc-20240116; t=1781263113; c=relaxed/simple;
+	bh=u2yuBrojzB0FrgvPDxZ+M4NRuH9femcUDb6hIRGWSTo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=bnvefbGYeZ7S3Y1D1Uyb03N3QbyiEuOSQ0V6qisM7w54gINkwOY2C2LZAfHWlHyu0ClAu7Qky+aIJcXmh1VZGjZZbrZWX45Wo/pUibG6xrls83ruar8nOg18IJmIrRWs5av7Km45ANjLHzTd6B6UutnrmTLrowBZ6+ADHuVeWV8=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
 Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B4E351A0705;
-	Fri, 12 Jun 2026 13:18:22 +0200 (CEST)
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 744721A06FD;
+	Fri, 12 Jun 2026 13:18:24 +0200 (CEST)
 Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7F2F31A06F0;
-	Fri, 12 Jun 2026 13:18:22 +0200 (CEST)
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 3E1311A06ED;
+	Fri, 12 Jun 2026 13:18:24 +0200 (CEST)
 Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 26AC8180004C;
-	Fri, 12 Jun 2026 19:18:21 +0800 (+08)
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id E2860180004C;
+	Fri, 12 Jun 2026 19:18:22 +0800 (+08)
 From: Lakshay Piplani <lakshay.piplani@nxp.com>
 To: linux-kernel@vger.kernel.org,
 	linux-i3c@lists.infradead.org,
@@ -58,10 +59,12 @@ Cc: vikash.bansal@nxp.com,
 	priyanka.jain@nxp.com,
 	aman.kumarpandey@nxp.com,
 	Lakshay Piplani <lakshay.piplani@nxp.com>
-Subject: [PATCH v11 0/9] Add support for NXP P3H2x4x I3C hub driver
-Date: Fri, 12 Jun 2026 16:48:07 +0530
-Message-Id: <20260612111816.3688240-1-lakshay.piplani@nxp.com>
+Subject: [PATCH v11 1/9] i3c: master: rename i3c_master_reattach_i3c_dev() to *_locked
+Date: Fri, 12 Jun 2026 16:48:08 +0530
+Message-Id: <20260612111816.3688240-2-lakshay.piplani@nxp.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260612111816.3688240-1-lakshay.piplani@nxp.com>
+References: <20260612111816.3688240-1-lakshay.piplani@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,14 +79,14 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310880-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310882-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:linux-i3c@lists.infradead.org,m:alexandre.belloni@bootlin.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:broonie@kernel.org,m:lee@kernel.org,m:Frank.Li@nxp.com,m:lgirdwood@gmail.com,m:vikash.bansal@nxp.com,m:priyanka.jain@nxp.com,m:aman.kumarpandey@nxp.com,m:lakshay.piplani@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -100,147 +103,64 @@ X-Spamd-Result: default: False [1.64 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[6];
 	R_DKIM_NA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:email,nxp.com:mid,nxp.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 26738678ECD
+X-Rspamd-Queue-Id: DE987678EEC
 
-This series adds a driver for the NXP P3H2x4x family of multiport I3C hub
-devices.
+Rename i3c_master_reattach_i3c_dev() to *_locked() to make the locking
+requirement explicit and consistent with other I3C core helpers that
+require the bus lock to be held by the caller.
 
-This is an MFD driver integrating I3C hub and on-die regulators.
+Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-The series introduces:
-- Core I3C master enhancements required for hub support
-- Generic I3C hub framework
-- MFD driver with regulator and I3C hub child drivers for the P3H2x4x I3C hub
-
+---
 Changes in v11:
-- Convert i3c_master_supports_ccc_cmd() to return bool and align
-  semantics with CCC support checks used by the I3C core
-- Use MFD_CELL_NAME() for child device registration
-- Rename driver names to follow subsystem conventions:
-     - Use '-' instead of '_' in driver names
-     - Drop the "_drv" suffix from driver names
-- Fix virtual hub address reattach handling and parent bus locking
-- Fix IBI request and cleanup error paths
-- Improve SMBus slave mode payload validation and parsing
-- Link to v10: https://lore.kernel.org/linux-i3c/20260525064209.2263045-1-lakshay.piplani@nxp.com/T/#u  
+ - No change, added Reviewed-By tag
 
 Changes in v10:
-- Rename i3c_master_reattach_i3c_dev() to *_locked to reflect required
-  bus locking
-- Rename i3c_master_direct_attach_i3c_dev() and i3c_master_direct_detach_i3c_dev()
-  to *_locked, as these APIs must be called with the bus lock held for write
-- Drop redundant is_p3h2x4x_in_i3c flag from p3h2840.h
-- Remove unnecessary ibi_lock handling in request/enable/disable/free
-  IBI APIs
-- Remove redundant parent pointer from struct i3c_hub and derive upstream 
-  master from hub_dev
-- Split SMBus target/slave mode support, including IBI and MCTP receive handling,
-  into a separate patch
-- Link to v9: https://lore.kernel.org/linux-i3c/20260420105222.1562243-1-lakshay.piplani@nxp.com/T/#u
+ - Rename i3c_master_reattach_i3c_dev() to *_locked to reflect required
+   bus locking
+---
+---
+ drivers/i3c/master.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Changes in v9:
-- Renamed macros to follow consistent uppercase naming conventions
-- Made REGMAP selects in the P3H2X4X MFD Kconfig conditional, to avoid I3C/I2C dependency issues
-- Referenced i3c.yaml and i2c-controller.yaml for child bus nodes
-- Dropped unnecessary #address-cells and #size-cells from child nodes
-- Added CONFIG_I2C_SLAVE guards where necessary to avoid build errors when I2C slave support is disabled
-- Link to v8: https://lore.kernel.org/linux-i3c/20260323062737.886728-1-lakshay.piplani@nxp.com/T/#u
-
-Changes in v8:
-- Add compatible in i3c example
-- Link to v7: https://lore.kernel.org/linux-i3c/20260319112441.3888957-1-lakshay.piplani@nxp.com/T/#u
-
-Changes in v7:
-- Fix kernel-doc warnings across I3C core and hub code
-- Rework DT binding schema and examples to pass dt_binding_check
-- Update MFD Kconfig to use I3C_OR_I2C
-- Convert CONFIG_I3C_HUB to tristate
-- Remove unnecessary CONFIG_I2C_SLAVE guards
-- Replace custom helpers with find_closest()
-- Use devm_regulator_get_enable_optional()
-- Link to v6: https://lore.kernel.org/linux-i3c/64c5070c-aa9e-427a-933e-91e168f0510c@kernel.org/T/#u
-
-Changes in v6:
-- Update DT binding with vendor-prefixed properties
-- Add generic I3C hub support
-- Remove generic code from P3H2x4x driver
-- Link to v5: https://lore.kernel.org/linux-i3c/20260206120121.856471-1-aman.kumarpandey@nxp.com/T/#u
-
-Changes in v5:
-- Update supply naming and descriptions
-- Improve MFD Kconfig/Makefile ordering
-- Link to v4: https://lore.kernel.org/linux-i3c/20260113114529.1692213-2-aman.kumarpandey@nxp.com/T/#u
-
-Changes in v4:
-- Split driver into MFD, regulator and I3C hub parts
-- Update I3C master for hub support
-- Fix DT binding issues
-- Link to v3: https://lore.kernel.org/linux-i3c/20250811-bittern-of-abstract-prestige-aaeda9@kuoka/T/#u
-
-Changes in v3:
-- Add MFD support for hub and regulators
-- Add regulator integration
-- Link to v2: https://lore.kernel.org/linux-i3c/17145d2f-5d07-4939-8381-74e27cde303c@kernel.org/T/#u
-
-Changes in v2:
-- Fix DT binding warnings
-- Refine DT parsing logic
-- Link to v1: https://lore.kernel.org/linux-i3c/822d6dca-b2c6-4439-ade5-219620ebc435@kernel.org/T/#u
-
-Aman Kumar Pandey (6):
-  i3c: master: Expose the APIs to support I3C hub
-  i3c: master: Add APIs for I3C hub support
-  dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
-  mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub and on-die regulator
-  regulator: p3h2x4x: Add driver for on-die regulators in NXP P3H2x4x
-    i3c hub
-  i3c: hub: p3h2x4x: Add support for NXP P3H2x4x I3C hub functionality
-
-Lakshay Piplani (3):
-  i3c: master: rename i3c_master_reattach_i3c_dev() to *_locked
-  i3c: hub: Add support for the I3C interface in the I3C hub
-  i3c: hub: p3h2x4x: Add SMBus slave mode support
-
- .../devicetree/bindings/i3c/nxp,p3h2840.yaml  | 291 +++++++++++
- MAINTAINERS                                   |  15 +
- drivers/i3c/Kconfig                           |  16 +
- drivers/i3c/Makefile                          |   2 +
- drivers/i3c/hub.c                             | 484 ++++++++++++++++++
- drivers/i3c/hub/Kconfig                       |  11 +
- drivers/i3c/hub/Makefile                      |   4 +
- drivers/i3c/hub/p3h2840_i3c_hub.h             | 337 ++++++++++++
- drivers/i3c/hub/p3h2840_i3c_hub_common.c      | 359 +++++++++++++
- drivers/i3c/hub/p3h2840_i3c_hub_i3c.c         | 151 ++++++
- drivers/i3c/hub/p3h2840_i3c_hub_smbus.c       | 481 +++++++++++++++++
- drivers/i3c/master.c                          | 173 ++++++-
- drivers/mfd/Kconfig                           |  13 +
- drivers/mfd/Makefile                          |   1 +
- drivers/mfd/p3h2840.c                         | 119 +++++
- drivers/regulator/Kconfig                     |  10 +
- drivers/regulator/Makefile                    |   1 +
- drivers/regulator/p3h2840_i3c_hub_regulator.c | 218 ++++++++
- include/linux/i3c/device.h                    |   1 +
- include/linux/i3c/hub.h                       |  99 ++++
- include/linux/i3c/master.h                    |   9 +
- include/linux/mfd/p3h2840.h                   |  26 +
- 22 files changed, 2818 insertions(+), 3 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
- create mode 100644 drivers/i3c/hub.c
- create mode 100644 drivers/i3c/hub/Kconfig
- create mode 100644 drivers/i3c/hub/Makefile
- create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub.h
- create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_common.c
- create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
- create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
- create mode 100644 drivers/mfd/p3h2840.c
- create mode 100644 drivers/regulator/p3h2840_i3c_hub_regulator.c
- create mode 100644 include/linux/i3c/hub.h
- create mode 100644 include/linux/mfd/p3h2840.h
-
+diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
+index 5cd4e5da2233..e89d73508b9a 100644
+--- a/drivers/i3c/master.c
++++ b/drivers/i3c/master.c
+@@ -1652,8 +1652,8 @@ static int i3c_master_attach_i3c_dev(struct i3c_master_controller *master,
+ 	return 0;
+ }
+ 
+-static int i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
+-				       u8 old_dyn_addr)
++static int i3c_master_reattach_i3c_dev_locked(struct i3c_dev_desc *dev,
++					      u8 old_dyn_addr)
+ {
+ 	struct i3c_master_controller *master = i3c_dev_get_master(dev);
+ 	int ret;
+@@ -1742,7 +1742,7 @@ static int i3c_master_early_i3c_dev_add(struct i3c_master_controller *master,
+ 		goto err_detach_dev;
+ 
+ 	i3cdev->info.dyn_addr = i3cdev->boardinfo->init_dyn_addr;
+-	ret = i3c_master_reattach_i3c_dev(i3cdev, 0);
++	ret = i3c_master_reattach_i3c_dev_locked(i3cdev, 0);
+ 	if (ret)
+ 		goto err_rstdaa;
+ 
+@@ -2358,7 +2358,7 @@ int i3c_master_add_i3c_dev_locked(struct i3c_master_controller *master,
+ 		if (!ret) {
+ 			old_dyn_addr = newdev->info.dyn_addr;
+ 			newdev->info.dyn_addr = expected_dyn_addr;
+-			i3c_master_reattach_i3c_dev(newdev, old_dyn_addr);
++			i3c_master_reattach_i3c_dev_locked(newdev, old_dyn_addr);
+ 		} else {
+ 			dev_err(&master->dev,
+ 				"Failed to assign reserved/old address to device %d%llx",
 -- 
 2.25.1
 
