@@ -1,193 +1,153 @@
-Return-Path: <devicetree+bounces-311063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311050-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id vN6rEjEzLGowNgQAu9opvQ
-	(envelope-from <devicetree+bounces-311063-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:26:25 +0200
+	id q7/lGyoyLGrVNQQAu9opvQ
+	(envelope-from <devicetree+bounces-311050-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:22:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A4B67AE66
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:26:24 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2856467AD88
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:22:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=awYYdslf;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311063-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311063-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=collabora.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cgODOwPE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311050-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311050-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5DADE3247461
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:23:05 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4E0B0300B506
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EFCC3EE1D3;
-	Fri, 12 Jun 2026 16:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF0583914F0;
+	Fri, 12 Jun 2026 16:21:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C4B390CBA;
-	Fri, 12 Jun 2026 16:22:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A55138F659
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:21:51 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781281328; cv=none; b=qcJ4ROjnwVxc8xUqWQOmmo9NtafyEksjMLNZ0qrmfP8TK+DBJPmm8NYco58/YZyhhBlC1rDMkgrwxNJko4AU27a9mxuhnU8F3VshurldoEGvsJSHW/UXDMz4gnp0rF5+gztho9to3kOwBymTZmGP0IPaBSQvZbIgvJ00KeMIsWA=
+	t=1781281316; cv=none; b=qWk1Ryk1BCRE2SY8UW5C0ITpbgkZtryDk4WU9fbHQsW9wpjABnW9pKAm4DWDiMHYOWrFdcrHPtgUdA2LY0fOiTpBNmG6EW7OzsE27RSSo7S5o1qKrfJYb5IXGCfVvQyhwPr0adV2Tst6ZSmwuMQcXTRJb0O/FZul2wK5Kxi8byo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781281328; c=relaxed/simple;
-	bh=nn72v3NXHYnsFH6LgmNbYwWr2AJNEbtIzUXIxz/C0k0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=J3xRYPp5xuVm0GOpIIRB1QsUh/opGhe7JHiGL2VcEzO9R9JregDxK6R3lI94vEDet6NsZn7I5HUN2b+vMZJdYQc4KWybjW0YBqUEw0cNuF0vEXaACvfrUwFHdQ/jLnb+tx1jxHSYuTKWdPOFA77sMSW2gfm5fsuKxEHquzS/4PI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=awYYdslf; arc=none smtp.client-ip=148.251.105.195
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1781281314;
-	bh=nn72v3NXHYnsFH6LgmNbYwWr2AJNEbtIzUXIxz/C0k0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=awYYdslfh/upFrIuTnUi4x4On05b76mm7FJpUg+2wlKuZvBhwVu0rbm7REgWlnRif
-	 T45l7K+73b3A9NN+D9SW+1EcRzLI6MMvc32AdvQT/04cGw6H1EPBV8SbSLFs1pfH8l
-	 5dkHuOhEw3GRDzVsmXHpJKWwGvz1EXCifpSSjQYmJQuFwF+34Qa83HEe+T2uV0kIuI
-	 ekPwAnGYS4RSzAl3v59aaDc5V/9xwdwTXXUMSMaCVjJKeryWQaPR7j4/nfKPVvlIhg
-	 jePoU3PGj3ciGRfQCA+97PCFFMJKnr5I3famn+b3sBgWJf9z/GVeUiS0PoTC8UPYYX
-	 HLwKNdSgVxsMQ==
-Received: from jupiter.universe (unknown [100.64.1.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 901D217E1104;
-	Fri, 12 Jun 2026 18:21:54 +0200 (CEST)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id D2FAD48003D; Fri, 12 Jun 2026 18:21:53 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Fri, 12 Jun 2026 18:21:48 +0200
-Subject: [PATCH v5 10/18] phy: rockchip: usbdp: Cleanup DP lane selection
- function
+	s=arc-20240116; t=1781281316; c=relaxed/simple;
+	bh=nHLFqk7uTKHilGq47CFsRkR/6AYC7LNRrVx9m17WTjw=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=O5Uc+oNjCc+aseQBoF/8aJM2m3pyztPAZ0M7M+amMEFZ6yHZfRWRVnEwpDYJ/L+0pKJiaaship8yUwNRSNNs88dfYokmtuhh/2osmdum1Be9NqiK8/5iPFxJowi+iOTHp+zjzchbr1KHHz5r0aAuIvjFTx71XAos/elfKzVbIPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cgODOwPE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 471DC1F000E9;
+	Fri, 12 Jun 2026 16:21:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781281311;
+	bh=xCs/IQzKJMEiATbdHAMNlzyS9L7I2jgvyvN+8O4FWOs=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=cgODOwPE9Qu/vsFy3P4HSs/2f3CNmSbtwgC2yElU2QVyt3YJ6XzuT0+T3kqT4Ie5w
+	 KWoHGiZh1V0ZGVIJuk6C/cCcbDStRLCrGrlyPcmOIf7XTJu8yOdfkm4JeeYfBEHMhC
+	 Rie8S3gpI3/O2iBSEPgC1hYDGU7gooFYXbqvm+oYSqbz6ZJacgvQzz7z0xEvi6iIDu
+	 QPeQfA+tRYGZJTHKvHcoWc+zvaV1cGfWgDlYvn0FYBullJHnc4gOd2H5VPnUKlf+pv
+	 gg/15BdH2In4xanjfD5cWWwmdkSX1mvkfqjodwfSdBij4NacQ0SIok2kIlrCcW94Yq
+	 Zc1IJT9WzXnPw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/5] dt-binding: pinctrl: samsung: Add
+ exynos8855-pinctrl compatible
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Alim Akhtar" <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260612163020.411761-3-alim.akhtar@samsung.com>
+References: <20260612163020.411761-3-alim.akhtar@samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 12 Jun 2026 16:21:49 +0000
+Message-Id: <20260612162151.471DC1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260612-rockchip-usbdp-cleanup-v5-10-efc83069869f@collabora.com>
-References: <20260612-rockchip-usbdp-cleanup-v5-0-efc83069869f@collabora.com>
-In-Reply-To: <20260612-rockchip-usbdp-cleanup-v5-0-efc83069869f@collabora.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Heiko Stuebner <heiko@sntech.de>, Frank Wang <frank.wang@rock-chips.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Andy Yan <andy.yan@rock-chips.com>, Dmitry Baryshkov <lumag@kernel.org>, 
- Yubing Zhang <yubing.zhang@rock-chips.com>, 
- Alexey Charkov <alchark@gmail.com>, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, kernel@collabora.com, 
- devicetree@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1889;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=nn72v3NXHYnsFH6LgmNbYwWr2AJNEbtIzUXIxz/C0k0=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGosMiGC9Js2vHRBo4IIsfXrskxlpHWaB0bnK
- UyvrLWLNhgRxYkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqLDIhAAoJENju1/PI
- O/qa9a0P/RHgIcA0g+8Mal3rdvSPll/VZVXuqzsqiIWl8kaF0YuyKXWFXW+hBG08N048Ebv56Gf
- MdOWU6ZeWgDO9Jr4GeM5COSSDhvodsnpmDSULzR+3uzpWjRnsP32KYg910bL+dLME272cCBqb7c
- ASmvm4FPHlMJoLdFa8zgOYMwjFV9dT1XYhWFUYmaTeRWngfQZLYeHW2bJYAj76IjMb7gAIiz+pm
- iA+ZLEpaxuuNkyGkmr1QYnaeSprbm31vLDDEHKqhFz51qOPWm7LIDS1kj+cH1ZFosa5tFfpNZur
- dSV289edIJauXabTZAyqYYA7rxoxhiNzf3qMP6h5dohou3cT0MLSbGv//3zZkiDOoy41N7Be1sU
- C2gL/3gYCFXD4YLwtJo+Dz59/yQT7UbErW0vv03vZPzXc+LEF/FFuRJQSFJxRaWmnfDT+nUs6RP
- 0IMDgq7pqekGwLs/QEtSZ5DJX0ss2dElAaT8NKUV6yCFcvCjWYX8TCf7y52sAWD3pKUmenJ+5CW
- IGd5/OP10J/e3jaPD3qiICi2gAZaT4+gFVi8fCQkR3zgDuB7nLYV4FYU2YCK3+lAQDI3FOVVgN1
- hn1ruXFxN2uDaIgu/1NNKmmdvrDn8accxG0nuBH6oLL2kEC4N9vW5JbMD2shVI+fo6X9j6vNwqv
- Nc5qK7L83H8GYycpeFrgq2A==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-311063-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:heiko@sntech.de,m:frank.wang@rock-chips.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andy.yan@rock-chips.com,m:lumag@kernel.org,m:yubing.zhang@rock-chips.com,m:alchark@gmail.com,m:linux-phy@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kernel@collabora.com,m:devicetree@vger.kernel.org,m:sebastian.reichel@collabora.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[rock-chips.com,kernel.org,gmail.com,lists.infradead.org,vger.kernel.org,collabora.com];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311050-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:alim.akhtar@samsung.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,linaro.org:email]
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D0A4B67AE66
+X-Rspamd-Queue-Id: 2856467AD88
 
-Use FIELD_PREP_WM16() helpers to simplify the DP lane selection
-logic.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Missing SoC-specific compatible string for Exynos8855 wake-up inter=
+rupt controller.
+--
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- drivers/phy/rockchip/phy-rockchip-usbdp.c | 28 +++++++---------------------
- 1 file changed, 7 insertions(+), 21 deletions(-)
+commit 87a449ad3230af2abf934581a9ca7d771b0d6dd7
+Author: Alim Akhtar <alim.akhtar@samsung.com>
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-usbdp.c b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-index 1bfc365e2b2c..beab20e4c512 100644
---- a/drivers/phy/rockchip/phy-rockchip-usbdp.c
-+++ b/drivers/phy/rockchip/phy-rockchip-usbdp.c
-@@ -550,30 +550,16 @@ static void rk_udphy_usb_bvalid_enable(struct rk_udphy *udphy, u8 enable)
- static void rk_udphy_dp_lane_select(struct rk_udphy *udphy)
- {
- 	const struct rk_udphy_cfg *cfg = udphy->cfgs;
--	u32 value = 0;
--
--	switch (udphy->dp_lanes) {
--	case 4:
--		value |= 3 << udphy->dp_lane_sel[3] * 2;
--		value |= 2 << udphy->dp_lane_sel[2] * 2;
--		fallthrough;
--
--	case 2:
--		value |= 1 << udphy->dp_lane_sel[1] * 2;
--		fallthrough;
-+	u32 value = FIELD_PREP_WM16(DP_LANE_SEL_ALL, 0);
-+	int i;
- 
--	case 1:
--		value |= 0 << udphy->dp_lane_sel[0] * 2;
--		break;
-+	for (i = 0; i < udphy->dp_lanes; i++)
-+		value |= field_prep(DP_LANE_SEL_N(udphy->dp_lane_sel[i]), i);
- 
--	default:
--		break;
--	}
-+	value |= FIELD_PREP_WM16(DP_AUX_DIN_SEL, udphy->dp_aux_din_sel);
-+	value |= FIELD_PREP_WM16(DP_AUX_DOUT_SEL, udphy->dp_aux_dout_sel);
- 
--	regmap_write(udphy->vogrf, cfg->vogrfcfg[udphy->id].dp_lane_reg,
--		     ((DP_AUX_DIN_SEL | DP_AUX_DOUT_SEL | DP_LANE_SEL_ALL) << 16) |
--		     FIELD_PREP(DP_AUX_DIN_SEL, udphy->dp_aux_din_sel) |
--		     FIELD_PREP(DP_AUX_DOUT_SEL, udphy->dp_aux_dout_sel) | value);
-+	regmap_write(udphy->vogrf, cfg->vogrfcfg[udphy->id].dp_lane_reg, value);
- }
- 
- static void rk_udphy_dp_lane_enable(struct rk_udphy *udphy, int dp_lanes)
+dt-binding: pinctrl: samsung: Add exynos8855-pinctrl compatible
 
--- 
-2.53.0
+This commit documents pin controller support for the Exynos8855 SoC. It adds
+the samsung,exynos8855-pinctrl compatible string to the allowed properties
+list in the samsung,pinctrl.yaml schema.
 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.ya=
+ml b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+> index 7b006009ca0e7..c4773701c92e3 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+> @@ -53,6 +53,7 @@ properties:
+>        - samsung,exynos7870-pinctrl
+>        - samsung,exynos7885-pinctrl
+>        - samsung,exynos850-pinctrl
+> +      - samsung,exynos8855-pinctrl
+
+[Severity: Low]
+Should this patch also define a corresponding SoC-specific compatible string
+for the child wake-up interrupt controller (samsung,exynos8855-wakeup-eint)
+under properties:compatible:oneOf:items:enum in the following file:
+Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.=
+yaml?
+
+Standard device tree guidelines require an SoC-specific compatible string
+for all hardware blocks to accommodate potential future quirks, rather than
+relying exclusively on a fallback like samsung,exynos850-wakeup-eint.
+
+>        - samsung,exynos8890-pinctrl
+>        - samsung,exynos8895-pinctrl
+>        - samsung,exynos9610-pinctrl
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260612163020.4117=
+61-1-alim.akhtar@samsung.com?part=3D2
 
