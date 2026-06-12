@@ -1,273 +1,155 @@
-Return-Path: <devicetree+bounces-311186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311187-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id go2CH46BLGpZRwQAu9opvQ
-	(envelope-from <devicetree+bounces-311186-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 00:00:46 +0200
+	id HPUSOiaDLGrNRwQAu9opvQ
+	(envelope-from <devicetree+bounces-311187-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 00:07:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7537967CA22
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 00:00:45 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DAF067CA7F
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 00:07:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=L5XuX0zQ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311186-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311186-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=eSeH4214;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311187-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311187-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 945A2300600B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 22:00:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E1BC930C2151
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 22:07:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B59232B10A;
-	Fri, 12 Jun 2026 22:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC29C395D86;
+	Fri, 12 Jun 2026 22:07:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28778279DAF;
-	Fri, 12 Jun 2026 22:00:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B067B389108;
+	Fri, 12 Jun 2026 22:07:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781301641; cv=none; b=BrF6q1N4hlLTuKxUVl4snIuYHjfEzUtE4KIupFNfAWYitcol3IbkW3w1YiC72vDEBj9kUne13R7yqICAdake6IWQ499B5JnLMLXD1KQ+puDMD/rKDiucXI11NQfNU5ujo5y/PUizGSRuF/yAdR5r85o06cjUAkAExNpVuLBotF0=
+	t=1781302043; cv=none; b=Pr9TfUSfV4wvyzjHmOJHm4DQLqXlaKwlGQXRvZG2cXF4v3LhNjYlHcTmvpZ8XHUc9FZiMbgzu7XffKwoNREtUtsb9fwg5Syv0ifIPHacnT6pPbFQnjKVD252O8nbAIxV9CndDtXSmogrQ5m0avRFOcyy2dQZDlly2qub7S3NCBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781301641; c=relaxed/simple;
-	bh=wlf9ZQnOV85DoqcF1uIAIGioOBiU+efF3Efz8F5pQ1I=;
+	s=arc-20240116; t=1781302043; c=relaxed/simple;
+	bh=kal8MWWC+s3/wQwF8S90+qoOyh5nANqkBNfU/7+MzhM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OTcuK3C/4dqId+3nBeENoefJHTC/qNAYtgsLtOTXlAap+Qd0BjaNh/HrQ1NCA0Xjhy8kyO/wqsLH33QVdY0L3J7xOooprD5GFJXj3nMDKr7nJLBv/g7Vw2a4omIK1JPOR764b7VRqRCTrrrmUXqbdiuVHsQxQ0A6nLMGWiotLiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L5XuX0zQ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B8201F000E9;
-	Fri, 12 Jun 2026 22:00:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QqCRd+gSN7EJkO1nNK/06IqwQe+Pf4EJu0oMzk3R1C2avPvRA/+IcYeASissnIs/19KWog2jeQGcVNY0R1BPxYzCQDSip33xcMwBvMhCj6sk7su2NlWY0iq8f+YDzRnKYl4SNK4/lsFPZCpDpuTYlBq3HB+lmru5aCsDcODOFso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eSeH4214; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A1701F000E9;
+	Fri, 12 Jun 2026 22:07:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781301639;
-	bh=D+YSTYoQ7GqxqAcW6PUBkEPM5pJV9AVmonvuxFY/zts=;
+	s=k20260515; t=1781302042;
+	bh=IN3NFdrc14uXt12CxYGdLvKSeFnCWmr06lwae8sC5PQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=L5XuX0zQInySl+v2Y6jt8M81H5uOu3ky/3e3VsMMS4h96B/NwrkuoEH5N+X58Vmca
-	 B15KOYcenCPD7kqVVAwMkNIKnkpEdNgneFuZWJp8f4772dQho+O1A0j3CCjdXOkLo+
-	 A3e2Q7jrzPx7ugdHu8bW+JxI5J2qTQDeb+vtXioNu2cYhht3vKPDk6f+SxyQVClMEF
-	 MaF3BZwZ8PJ6wXisQSi92AwKipVwDbAgKrvmxZ3NsvJ3onu9rBEa4kmqYNp6E22emT
-	 MlCRxxI03RZkzw5ujGviOqqo+3MYgu0gqr5WRcTxJKi1kusHsN/orY5xegobv3k+dK
-	 pgNmri53ae/tQ==
-Date: Fri, 12 Jun 2026 23:00:35 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Wadim Mueller <wafgo01@gmail.com>,
+	b=eSeH42147TIqEamoqMGijR7mxIS4V3VFsHwhimWdPwNNtSUKeyvlWgLd8MS9WZAAH
+	 /GU8SoIi0KbUr1+vjmG1SphztmEQwL75hCu2Eb399lVwUaPOSj6IsrDX6RzaSPlAGw
+	 iRNDVY7mR1Mo2yjBAnV5aaLOKMG5zP4KLHJHO9qjPDk/pX4dmWhfSuqLiR+mOf/lt/
+	 zg31BRI2ixfhkVcxPOECcak+LgDtoHUlyWQVCfU5gtiGa/9ickcR4bJ+TjD1nwN9ax
+	 kklPeAovejBrzj7S0qSalz76zg10S42g4ZHMnqqXLeIXn9gOTWLo3xoLozQQHA4ice
+	 rwcQE8V7io5dw==
+Date: Fri, 12 Jun 2026 17:07:21 -0500
+From: Rob Herring <robh@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Maxwell Doose <m32285159@gmail.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: flow: add Sensirion SLF3S
- liquid flow sensor
-Message-ID: <20260612-engraved-graves-6ff82d41d68e@spud>
-References: <20260530205435.37326-1-wafgo01@gmail.com>
- <20260530205435.37326-3-wafgo01@gmail.com>
- <20260601-banana-narwhal-of-music-0b4d3a@quoll>
- <20260601150959.49bbf125@jic23-huawei>
- <1dbd3ab3-de6c-44dd-8100-e8ee60f558c8@kernel.org>
- <20260604100304.11d0e003@jic23-huawei>
- <200a6c34-3321-4c2c-9746-52348e700cd9@kernel.org>
- <20260605132135.141422d8@jic23-huawei>
- <20260607-quixotic-steel-puma-133410@quoll>
- <20260612190543.34d90b87@jic23-huawei>
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Jonathan Corbet <corbet@lwn.net>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v6 1/7] dt-bindings: hwmon: Add Apple System Management
+ Controller hwmon schema
+Message-ID: <20260612220721.GA1901304-robh@kernel.org>
+References: <20251215-macsmc-subdevs-v6-0-0518cb5f28ae@gmail.com>
+ <20251215-macsmc-subdevs-v6-1-0518cb5f28ae@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2ecldXCkI3oxCYD8"
-Content-Disposition: inline
-In-Reply-To: <20260612190543.34d90b87@jic23-huawei>
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:krzk@kernel.org,m:wafgo01@gmail.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:m32285159@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311186-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,baylibre.com,analog.com,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7537967CA22
-
-
---2ecldXCkI3oxCYD8
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251215-macsmc-subdevs-v6-1-0518cb5f28ae@gmail.com>
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-2.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311187-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:jcalligeros99@gmail.com,m:sven@kernel.org,m:j@jannau.net,m:alyssa@rosenzweig.io,m:neal@gompa.dev,m:lee@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:alexandre.belloni@bootlin.com,m:jdelvare@suse.com,m:linux@roeck-us.net,m:dmitry.torokhov@gmail.com,m:corbet@lwn.net,m:asahi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-rtc@vger.kernel.org,m:linux-hwmon@vger.kernel.org,m:linux-input@vger.kernel.org,m:linux-doc@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,jannau.net,rosenzweig.io,gompa.dev,bootlin.com,suse.com,roeck-us.net,gmail.com,lwn.net,lists.linux.dev,lists.infradead.org,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,gompa.dev:email]
+X-Rspamd-Server: lfdr
+X-Rspamd-Queue-Id: 8DAF067CA7F
 
-On Fri, Jun 12, 2026 at 07:05:43PM +0100, Jonathan Cameron wrote:
-> On Sun, 7 Jun 2026 10:30:07 +0200
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
->=20
-> > On Fri, Jun 05, 2026 at 01:21:35PM +0100, Jonathan Cameron wrote:
-> > > On Thu, 4 Jun 2026 13:22:17 +0200
-> > > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > >  =20
-> > > > On 04/06/2026 11:03, Jonathan Cameron wrote: =20
-> > > > > On Wed, 3 Jun 2026 16:29:10 +0200
-> > > > > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > > >    =20
-> > > > >> On 01/06/2026 16:09, Jonathan Cameron wrote:   =20
-> > > > >>> On Mon, 1 Jun 2026 13:53:23 +0200
-> > > > >>> Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > > > >>>      =20
-> > > > >>>> On Sat, May 30, 2026 at 10:54:31PM +0200, Wadim Mueller wrote:=
-     =20
-> > > > >>>>> Document the bindings for the Sensirion SLF3S family of digit=
-al
-> > > > >>>>> liquid-flow sensors on I2C.  The family currently covers the
-> > > > >>>>> SLF3S-0600F, SLF3S-1300F and SLF3S-4000B variants.
-> > > > >>>>>
-> > > > >>>>> The driver auto-detects the variant from the product-informat=
-ion
-> > > > >>>>> register at probe time; the per-variant compatible strings ex=
-ist
-> > > > >>>>> for documentation and dt_binding_check purposes.       =20
-> > > > >>>>
-> > > > >>>> Here...
-> > > > >>>>     =20
-> > > > >>>>> +description:
-> > > > >>>>> +  Family of digital liquid-flow sensors from Sensirion with =
-I2C
-> > > > >>>>> +  interface.  All family members share the same register map=
-; sub-types
-> > > > >>>>> +  differ only in the flow scale factor and the calibrated me=
-asurement
-> > > > >>>>> +  range, both of which are detected at probe time via the
-> > > > >>>>> +  product-information register.       =20
-> > > > >>>>
-> > > > >>>> And here...
-> > > > >>>>     =20
-> > > > >>>>> +
-> > > > >>>>> +properties:
-> > > > >>>>> +  compatible:
-> > > > >>>>> +    enum:
-> > > > >>>>> +      - sensirion,slf3s-0600f
-> > > > >>>>> +      - sensirion,slf3s-1300f
-> > > > >>>>> +      - sensirion,slf3s-4000b       =20
-> > > > >>>>
-> > > > >>>> And here something else. Confusing. Didn't you say device vari=
-ants are
-> > > > >>>> auto-detectable? So you have only one compatible sensirion,slf=
-3s.     =20
-> > > > >>>
-> > > > >>> And then future fallback compatibles can never work.=20
-> > > > >>> Basically as far as I have ever been able to establish this is =
-why
-> > > > >>> generic compatibles are almost always the wrong way to go.
-> > > > >>>
-> > > > >>> If we get a future part with an unknown ID and don't have these=
- existing
-> > > > >>> specific compatibles, then we have no way to specify which one =
-it is     =20
-> > > > >>
-> > > > >> But why would you have future part with unknown ID?   =20
-> > > > >=20
-> > > > > That's what manufacturers do on a very frequent basis.  They twea=
-k something
-> > > > > that has no affect on the interface or channel scaling etc and re=
-lease a new part
-> > > > > with a different ID.  Can be something like a part suited to diff=
-erent operating
-> > > > > conditions, or with a different supply tolerance.   =20
-> > > >=20
-> > > > and it will have a different, known that time ID. How could be "unk=
-nown"? =20
-> > >=20
-> > > Known to us, sure, know to old kernel (or other software), not so muc=
-h.
-> > > For this sort of driver the main use of fallback compatibles is to wo=
-rk on
-> > > a not yet aware kernel. =20
-> >=20
-> > So you mean a case that sometime in the future, someone will write a DTS
-> > with sensirion,slf3s fallback for a sensirion,slf3s-WAHTEVER_NEW_MODEL,=
- use
-> > old kernel and be surprised it does not work?
->=20
-> To me that is exactly what a fallback compatible is promising - if we have
-> any kernel / driver that supports the part that we are saying is a valid
-> fallback then we are saying we support at least the functionality of that
-> part (sure there may be extra stuff that doesn't work)
->=20
-> We had a long discussion a few years back on whether code that did
->=20
-> 	if (read_reg_whoami() !=3D EXPECTED_ID)
-> 		return -ENODEV;
->=20
-> was correct. Someone (maybe Rob?) strongly argued that we must not
-> do that because it effectively made fallbacks pointless as we always
-> needed to upgrade the driver. I argued against this (on basis that
-> swapping in incompatible parts is annoyingly common) but was eventually
-> persuaded.
->=20
-> If that is not a valid reading of what fallback compatibles mean, is
-> there any documentation of the rules I can refer to?
->=20
-> >=20
-> > Our goal is not to stop whatever poor code people can ever come up with.
-> >=20
-> > Every future user wanting to the fallback MUST understand what the
-> > fallback means.
->=20
-> This is where we disagree.
->=20
-> This is not hard to support, it just means not using generic compatibles
-> when the device differ (and they are not self describing which these are
-> not).
+On Mon, Dec 15, 2025 at 07:37:45PM +1000, James Calligeros wrote:
+> Apple Silicon devices integrate a vast array of sensors, monitoring
+> current, power, temperature, and voltage across almost every part of
+> the system. The sensors themselves are all connected to the System
+> Management Controller (SMC). The SMC firmware exposes the data
+> reported by these sensors via its standard FourCC-based key-value
+> API. The SMC is also responsible for monitoring and controlling any
+> fans connected to the system, exposing them in the same way.
+> 
+> For reasons known only to Apple, each device exposes its sensors with
+> an almost totally unique set of keys. This is true even for devices
+> which share an SoC. An M1 Mac mini, for example, will report its core
+> temperatures on different keys to an M1 MacBook Pro. Worse still, the
+> SMC does not provide a way to enumerate the available keys at runtime,
+> nor do the keys follow any sort of reasonable or consistent naming
+> rules that could be used to deduce their purpose. We must therefore
+> know which keys are present on any given device, and which function
+> they serve, ahead of time.
+> 
+> Add a schema so that we can describe the available sensors for a given
+> Apple Silicon device in the Devicetree.
+> 
+> Reviewed-by: Neal Gompa <neal@gompa.dev>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
+> ---
+>  .../bindings/hwmon/apple,smc-hwmon.yaml  | 86 +++++++++++++++++++++++++
+>  .../bindings/mfd/apple,smc.yaml          | 36 +++++++++++
+>  MAINTAINERS                              |  1 +
+>  3 files changed, 123 insertions(+)
 
-FWIW, I think the no generic compatible approach is reasonable.
-The devices might be able to self-identify, but the featureset is not
-discoverable, which makes the self-identification much less valuable.
-Permitting drop-in replacement parts (or knock off devices from other
-manufacturers etc) to use a compatible device as a fallback seems to me
-exactly what fallbacks are intended for.
+I fixed up the error and applied. Please ensure all your patches get 
+applied.
 
-If the driver has to be updated every time a new device is created then
-I think a generic compatible has effectively no value.
-
---2ecldXCkI3oxCYD8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiyBgwAKCRB4tDGHoIJi
-0p28AP9XOSHQnbHHjhRjTvlneq0BUeJFGPwNagekD+j0yVA5JgD/RF3ZeQWplfvK
-kpDJA8GrSRLVp6jhZAyabO+COPB/6gI=
-=JqHC
------END PGP SIGNATURE-----
-
---2ecldXCkI3oxCYD8--
+Rob
 
