@@ -1,193 +1,1586 @@
-Return-Path: <devicetree+bounces-310945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310941-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id eFSmIyEGLGpEJwQAu9opvQ
-	(envelope-from <devicetree+bounces-310945-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 15:14:09 +0200
+	id 6YP7HN8CLGpRJgQAu9opvQ
+	(envelope-from <devicetree+bounces-310941-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 15:00:15 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11A3A679AED
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 15:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AB9B679965
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 15:00:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=starfivetech.com (policy=quarantine);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310945-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310945-lists+devicetree=lfdr.de@vger.kernel.org";
-	arc=reject ("cv is fail on i=2")
+	dkim=pass header.d=linaro.org header.s=google header.b="v36kY9Q/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310941-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310941-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 227D8300BC7C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:13:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7453B300159D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 12:59:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A81A3E9F7B;
-	Fri, 12 Jun 2026 13:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C713D4102;
+	Fri, 12 Jun 2026 12:59:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2123.outbound.protection.partner.outlook.cn [139.219.17.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6FA03EA940;
-	Fri, 12 Jun 2026 13:13:33 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781270018; cv=fail; b=QHeObApM0CeKWoCz+zJT0TuuRo8BRIPrOkNrRB8Lv1j1epsj4qbJAM/8pTnfx7k0i5jQeGyETee+EWibjKK7bkcY6UwEmPJq/1x7fZJcWzCzelfCoPm/OvqPcZokjAvr36AiYK07c7oZ/krsriUzkuY5MBwdJX0pYiK2XWzKt6E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781270018; c=relaxed/simple;
-	bh=WKs/+BVroKcxhyoN9GXRTuRMhgjUaA7f5gRB4RJl/RU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bjKBgnTF5Y2sik5MNs/jDIz2yzoy8BWb0NNPAGso8zzZNrsb7FPHqOw8qqGAuy0LqT1dgY+bbysoUDRKo/J10RNCPMVoY5gS0pl9dIgITQSmEdulkTuJd95EDTcCIQKU3odoIzo7d+ygHCyv+PDmx+jUrmFz4fS5jmeVS3xAngI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.123
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TV0b7BvRR+/jS4D/dKmt5cmCw3GEtF9RY95OqkXyAXHkvMHfg+or9YuQMiv2V+Ri+PAnaIwqkZvjnZAd8PfooVHfQsmBemqS8/GIY9WnuxGWggosZ4HB6UqsS4uXqHbjhFa/Lv/kHvPTqtLMLXEOk226RF+7Bo43deLTKL62EvivNtwFOQAQqNaEwjh5LuegUqzRkYVkvMk+R+450Qje2Z3IMC2tx5DIiR541aiH6w58LqFgRwyMyoKRv8P5WUFDTocqkXhrhzpg6oY3LV4iRU+u5cjJdd+wDmU+JNjpchTlvsyksMzyFrxXhMKuY/OP/DiaZk5qubrg+YrVDYXmiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=snGAmiPzCbI2MCF5iBofbJu9tA6iQmGRMbZmGltHpw8=;
- b=WC+E2wLqwrfptDk3gPsf79cOes/J3gEUOGpaNkL+7OIbk+usuNX1PWiJKHtAWvYDKgnZWTmhrzvY+PVvuVBozX/3vbMWljWXCP5OidDwAcfre1Cf98Nm3GpVpoYKZNmQ5Bqyek7gW1y7ch60Yclg5iAPFRSmpZCCVO88ZFbrdClULpuHlt54Y+3/GSdcPQAOFzqLOalAT2l5jL996DyOkayqhyv9STM1AX//oxtm+JGMNKoq5/628I8zWHFGXmympf/I9aWIprTssWMrRF1ecptNZVpomUMs0F+A72k7W8wc6t8XcPg+yl95UOpkR61sIhdevlvkALA9e9giJ8rgJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:17::6) by ZQ4PR01MB1201.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:13::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.15; Fri, 12 Jun
- 2026 12:59:10 +0000
-Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- ([fe80::e7d4:256c:b066:850d]) by
- ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
- with mapi id 15.21.0113.014; Fri, 12 Jun 2026 12:59:10 +0000
-From: Changhuang Liang <changhuang.liang@starfivetech.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>
-Cc: linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Changhuang Liang <changhuang.liang@starfivetech.com>
-Subject: [PATCH v1 2/2] spi: dw: Add support for snps,dwc-ssi-2.00a
-Date: Fri, 12 Jun 2026 05:58:56 -0700
-Message-Id: <20260612125856.8530-3-changhuang.liang@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260612125856.8530-1-changhuang.liang@starfivetech.com>
-References: <20260612125856.8530-1-changhuang.liang@starfivetech.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BJXPR01CA0063.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c211:12::30) To ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:17::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F048A397E89
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 12:59:42 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781269185; cv=none; b=Iub+VE/lKhsGTPZUzDq5FEBzGTWA+wc1y6xCG9madC/Km3P2Fj3fGnvVBY3Zw3RPttREwWFMhYjMbd2V9/VJQciibXLplamlNf9SwX/lgl8uPkyu/KjhJ5JZtROjONUR5n1TIwBY8Xu7QdsTXcdOaBCfArKGqZTvSnwF2WS5Noc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781269185; c=relaxed/simple;
+	bh=l7PKQn4G4jZ1CWm4xvKnuPcKlal1kaFGJZ8fJgoL5WA=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Ys9RQqPtcWpb344A8W3UaRdwk98QprVHi6HfH8icyeEgonSeHYqMRGm7fDKE9gT2taaXR693gRasGsMhu6wCe7JVmKYjNcm4lo9H5Cv57VEnjJ84+Jss5fNRwwZd5fvXAfK5afiB85HU//EoS64S+5rQMqaq7D//855v2Mx4aU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v36kY9Q/; arc=none smtp.client-ip=209.85.167.53
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5aa6091635aso131099e87.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 05:59:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1781269181; x=1781873981; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HvrBNPuQQgjSQ8oBr8I/pNkbn3Z013FOtecv+Tv5e40=;
+        b=v36kY9Q/xhzScAppugoPV+rEdDCzDj3ztVweiFb3PFaoSiO3QdqsYH/u9dV+TVHvm8
+         94YZvxY9Zyi8FCoDhinIsdfCjKu9ENoTpEhxNg5CwTHR3iEWa9jN62KXM9wsgLiyn/DE
+         74NO+bylhVoiifLtKcve7aOAvK42/XW9+ba6ljquLyznIxle2EbcjO4rBIlMj91c6LQQ
+         0HgQEvqoLXDOTIFmASRSP3cOksqi69fCDgVI89w/Dnx8RFajbTRb4DDN4BesNiIlasle
+         K7JLz3Y6zg2pKuj9C9GXSuqlkivPtnaJ55Dy0hmCf9hilP1OKw8nwcEDdvuM+vnBBHJ1
+         OrhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781269181; x=1781873981;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HvrBNPuQQgjSQ8oBr8I/pNkbn3Z013FOtecv+Tv5e40=;
+        b=OuNfQOmzwx/Fvwn2dfc9LyVZyZnx/WJf1blyz2VTHeV1eORy03k6LRd74l4SFs5Eku
+         jzSA+Vh2ZXYXPvcUcTzdX3bvGgrHxkuSCSSdk4gnqM1etJyKBrCE+Dcq554eisNlzvTt
+         A9MS1Ak+wXnD7wyAfuURjBZIWhox/cW1BuwKyJzGKun4i2ylB+tBoHhtrl+oGUBJ2U32
+         NdM2T3LGgYZy2yODbinCUKTVc00Ze4yIbqo3WGvEkKbA/X33/SeXtYTHxNnGbhqGYKOm
+         dIxfjusUdKn2SLqXrG2LGVltx03H49OdYO67QrWZnb6nxsRabeCnsLDD4lVNNWn40C78
+         hFKQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9B8cOUAgbFiNGpPBO97V0Q1QoCEfUGkdIcLBbRcXN28IwjhYzQUIRZ6/F391JKNDScw1FJzSmnjFmm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9aSBc9DA3xMMmj8+7j3jb8l3crq2ZyXh6M82tgr6IntZbEMuV
+	ThRvQp2HL50D58Z+pVU8j8WOokNtOWSn0Uqe6rJn1JSsoAJM3LMAPPa9Hi57puI6CDw=
+X-Gm-Gg: Acq92OE+Ur+oN40QVNBhAj1su9V8sjtub/LU4E6lHJvMc0uYFcM/7ZNaFfC2TQJ79ri
+	1I6fU86Ain4kLC8d0NXOH7/J7GUjRYhre79qKbWp88JyxNKKQM28NVkytaBoEmDIPJambPBCix1
+	qjQH1P/sXqJTaj8b6g7YOs5MhcncOj0896Y6SINJiHgIaLy8EQneEs5MmA4IdUs0Ze4MycXONhs
+	mwBJljblCtwwnTq7ASrfnGkNeO6VXEkkeL2KLnASIHf1mLHmBmJ25UA+lrag1Cnklzqt3Es4V8Q
+	GX7uNfdt7TjOxTN/BuZBJDEgpB0iIrnFHseKeYyYEc76USGrOkyqcBV9DZZ+1oWpDVR1cMXnuAo
+	WiJtg05395La5rMkv8LQMQ58JGaHEYpsL7BUHK05Nq+j7F0rfKJ4C5YoI3OD2l8aZA4jRa4mgvB
+	lEbFC7Icm1JbpwzaCNqC5QqVt8ug1OJ+FMqov/YaYT1zyLcRxTB7C7iyKuGAw0epDs4y30qV7yN
+	zGL8A==
+X-Received: by 2002:a05:6512:3b0a:b0:5aa:67a9:e9da with SMTP id 2adb3069b0e04-5ad2dac06afmr398860e87.0.1781269180995;
+        Fri, 12 Jun 2026 05:59:40 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5ad2e1b08d4sm517795e87.66.2026.06.12.05.59.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jun 2026 05:59:40 -0700 (PDT)
+Message-ID: <f05ad4ae-140a-40a7-a6ef-9ac2ddb0a939@linaro.org>
+Date: Fri, 12 Jun 2026 15:59:39 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1201:EE_
-X-MS-Office365-Filtering-Correlation-Id: 322ccde9-edf2-468b-e872-08dec88264fd
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|23010399003|52116014|1800799024|376014|366016|38350700014|56012099006|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info:
-	PCv/l5WWbYmYGSvm8bL/8lP3XVbLt42C1z9HfTvOMRn3IujlIkgTl2qx/0ffmaSL6t8E5ElCKVdnOIv2E0FBsuB7WK5JOaYNUSMLvOkE7tIVmCaP/o/chj5TBWOpVHoHeq7JKe4G/SbzheTztc0++OhIrFJoktll7gvwL6kl345Wy/CwElg9dqzBuOG5SrTX98ZS58QbB+m4mZWCT7St9x6vsc36TBVk2VRuAP96iDUBC7qahwbSEhkFks3+RBuxtigM5RdwDthx6f+cYgBguOYtuvRJeM5qMoDpp7TJu+RdOZItR/nACEMeSGivnHq1w4Nh54NRNSLwnZu+I5zYYq5lGKBDC3aYsmjvHN7AtwJdShl/9IetS059xMHzKRtx+Diu8+HKfn0jcSpRvF/hitdrSbCW3C8F9EYM4Pt71j8fhP2l/O64gpTe0fEIHFHWTJdbXt2q9+zYkhquH10MS0AUyMLCc0g5nNJ8t92jX3PKE7b2K3xZqPJHifzJ/kcSGLXEe/D/vI4F5if2DSawVhMDdT2HVhwLJdcSxIdK0FrBwQexybdUtlrkZNCXV+Ef
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(52116014)(1800799024)(376014)(366016)(38350700014)(56012099006)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?tOz+sfkLAj097Sudk4UktFJzZHKsysdMOYJ6x/apMsou6UzNIuFSJfpXCHoI?=
- =?us-ascii?Q?YoXuY23dZu5SX7IifhUtSMNSMql1p2LGtK6PaL08oPU6+9DZM4OUo4CITPZe?=
- =?us-ascii?Q?5HSscC8VT3Kx++Faay7Q9q6quESBdCwxYZw81KYGjGJYpbU7Gpd/rwD9TiPZ?=
- =?us-ascii?Q?d2au8fMnBm9JliqbeoTcVonHaPz9og+XafeKUHNxRrtGdX3s74zjYMtKCebz?=
- =?us-ascii?Q?wh01ARdBML1pA7PIjVCsvS2KXEtWotk8EuIQiXMaHyFRIzaajIkZgZMeQnuw?=
- =?us-ascii?Q?Sywd45Tx1b9esh7OqEN3Y9EbDNZ/xhfKBnhnf0HrWYZKHP5zCJ5mFiRYVEPy?=
- =?us-ascii?Q?5JENpGbY5WVcxULS4MSiqqMe/tv94S+8oHqKzdYLHn/4b7erZCOWru2g17EO?=
- =?us-ascii?Q?w9uiHznOOQwHepXa+4jU1LVbJrB3Fn04NIV9jgAHrbbP87hR5BOHApkfX5y0?=
- =?us-ascii?Q?cKLfJI8Sx/sCiZIsAtbCW1RSewVvVErCYQ6xn4eHCzihxr50YcSCK256bcAF?=
- =?us-ascii?Q?3ZemtXc6x4DFi7nzYRi//x+Z7G2yom85crdx6bUMtkPZY+4gped6gHLL0y7a?=
- =?us-ascii?Q?T1BUclx+nc/S0vyhkcMPQ1wKrNURGIvdXYZGuMAu2ahq2qS8vRu08B1Jwvy9?=
- =?us-ascii?Q?0aYpM5rhaJSeYOQ4ETfKim8S18LMzTHmuprldG/Yb0jESMS1Js3BPWjkoYuR?=
- =?us-ascii?Q?NuH3TraDcCokxf9Oysf8+7DB6xyndIE0WoPCinnWvabi2aXBZgW6SIHeLrCb?=
- =?us-ascii?Q?hWxAvldU2j+XEHvhd4cJ103Ymq8to2tNIYU7ES16fSDfYeEy6RYyMfAF1E4a?=
- =?us-ascii?Q?pKK9pLBv4h24VdBODbLNhTC+vfRI54BvD6lIhgXPqgoyGYKhYnS63iPy8gFm?=
- =?us-ascii?Q?LUm2t1PuEElXhXEDrZ8kA0Gh9opLksQx/C4pDkikjAFKTsZlAPkymueMnLPi?=
- =?us-ascii?Q?27XUeWTcxIoZlIh/b7YoemBa8EgXDq5URI8Xo1Jp9E4hRP7HFahKz/+tn9Xp?=
- =?us-ascii?Q?cjGNCFFRXMg+l5q5AGjBck4shr5/XjPfATowAAZ4U+35LAAbVNYwQbR/vrE5?=
- =?us-ascii?Q?cFWktO1akCmgYK5ur0h5JbKRu6Z+n/bVuutKte8LoQ28w5qEox3GdY65ewg7?=
- =?us-ascii?Q?B6jd86hCu6RsqRoZJC2OMduexxq7qzD+9IsDrVsoy+xqPj8lz0/BU0SRzXJ8?=
- =?us-ascii?Q?bvpB/Ev1HUEYywtUmtzxRxMR4ZfRaiK0fAxw3kEtsEYkWV21uS+gb4D1PS5h?=
- =?us-ascii?Q?nNjci0jV9aCsOvhe2Qj3rAjrQZs5SXkdZMLS+lvBFRXqIqyM2klaUzRA72QU?=
- =?us-ascii?Q?ElwTRW5bQHTdU+N1L39NXpNbJ6+7lI4U3z98tUCttTPCjEANWM5AoKdic0wm?=
- =?us-ascii?Q?qQOF/VZoQseKWmhPiC4ICv9KB5SpFkGkRUxdkoAGlZ1adQjjINR77fbwJspz?=
- =?us-ascii?Q?9AelsVuuz/LUna794Iu+xgFqYmRvHMtH2L4QgJbWvyzR/cVquelhPHDFm+Qn?=
- =?us-ascii?Q?Y1S9pYLiyaxk0aey3iIG8U0bA+oVV7frzDROqnOCQf98+1cCQ7HHPsU0aiN6?=
- =?us-ascii?Q?OMMbbHwD7nkglU67f1kuBu/JFPOQ39uBbnlE088QIGQWk/rLGlVwJ67OqVfx?=
- =?us-ascii?Q?nqYQX+EVlta2barY9EIM36CtGmdI91JbvWEzo04Q3eGUDLM/t+iakIWOwbzb?=
- =?us-ascii?Q?M0UOHaUUcxJ4wDleqRO7m4tTpCKSKMKDKfwr/UZf128BJL/UKbOM+M+OsGR8?=
- =?us-ascii?Q?N7RirYfXfoQQ0/TJKKXswc4212lnkEvsN1VNSRK6kCW79qx49Pl4?=
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 322ccde9-edf2-468b-e872-08dec88264fd
-X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 12:59:09.9594
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BRWC2jlfmR7LycHGj1YUUU8RHZ0YGsffaGkRrIghff+zYyB66gB2vxlZdiRSSuHP+IaxTmNmgGQ5rA2UMyJ+CzQLjIt2eUZnkRi/HPzLcNu/P5j5Yd0dyostM4JQd/CQ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1201
+User-Agent: Mozilla Thunderbird
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: qcom: kodiak: Sort pinctrl subnodes by pins
+To: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+References: <20260612-kodiak-cam-mclk-v1-0-fd294ff003a2@fairphone.com>
+In-Reply-To: <20260612-kodiak-cam-mclk-v1-0-fd294ff003a2@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-310945-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310941-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:~postmarketos/upstreaming@lists.sr.ht,m:phone-devel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:luca.weiss@fairphone.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:broonie@kernel.org,m:linux-spi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:changhuang.liang@starfivetech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,starfivetech.com:email,starfivetech.com:mid,starfivetech.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:email,linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:from_mime,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 11A3A679AED
+X-Rspamd-Queue-Id: 6AB9B679965
 
-Add a new compatible entry "snps,dwc-ssi-2.00a" for the Synopsys
-DesignWare SSI controller version 2.00a. This variant uses the same
-initialization routine as snps,dwc-ssi-1.01a (dw_spi_hssi_init).
+As documented in the "Devicetree Sources (DTS) Coding Style" document,
+pinctrl subnodes should be sorted by the pins property. Do this once for
+kodiak.dtsi so that future additions can be added at the right places.
 
-Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+No functional change intended, verified with dtx_diff.
+
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- drivers/spi/spi-dw-mmio.c | 1 +
- 1 file changed, 1 insertion(+)
+  arch/arm64/boot/dts/qcom/kodiak.dtsi | 1382 +++++++++++++++++-----------------
+  1 file changed, 691 insertions(+), 691 deletions(-)
 
-diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-index 4fc864d38cff..603e81a92c57 100644
---- a/drivers/spi/spi-dw-mmio.c
-+++ b/drivers/spi/spi-dw-mmio.c
-@@ -438,6 +438,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
- 	{ .compatible = "amazon,alpine-dw-apb-ssi", .data = dw_spi_alpine_init},
- 	{ .compatible = "renesas,rzn1-spi", .data = dw_spi_pssi_init},
- 	{ .compatible = "snps,dwc-ssi-1.01a", .data = dw_spi_hssi_init},
-+	{ .compatible = "snps,dwc-ssi-2.00a", .data = dw_spi_hssi_init},
- 	{ .compatible = "intel,keembay-ssi", .data = dw_spi_hssi_no_dma_init},
- 	{
- 		.compatible = "intel,mountevans-imc-ssi",
+diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi b/arch/arm64/boot/dts/qcom/kodiak.dtsi
+index fa540d8c2615..62daef726d32 100644
+--- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
++++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
+@@ -5835,6 +5835,676 @@ tlmm: pinctrl@f100000 {
+  			gpio-ranges = <&tlmm 0 0 175>;
+  			wakeup-parent = <&pdc>;
+  
++			qup_i2c0_data_clk: qup-i2c0-data-clk-state {
++				pins = "gpio0", "gpio1";
++				function = "qup00";
++			};
++
++			qup_spi0_data_clk: qup-spi0-data-clk-state {
++				pins = "gpio0", "gpio1", "gpio2";
++				function = "qup00";
++			};
++
++			qup_uart0_cts: qup-uart0-cts-state {
++				pins = "gpio0";
++				function = "qup00";
++			};
++
++			qup_uart0_rts: qup-uart0-rts-state {
++				pins = "gpio1";
++				function = "qup00";
++			};
++
++			qup_uart0_tx: qup-uart0-tx-state {
++				pins = "gpio2";
++				function = "qup00";
++			};
++
++			qup_spi0_cs: qup-spi0-cs-state {
++				pins = "gpio3";
++				function = "qup00";
++			};
++
++			qup_spi0_cs_gpio: qup-spi0-cs-gpio-state {
++				pins = "gpio3";
++				function = "gpio";
++			};
++
++			qup_uart0_rx: qup-uart0-rx-state {
++				pins = "gpio3";
++				function = "qup00";
++			};
++
++			qup_i2c1_data_clk: qup-i2c1-data-clk-state {
++				pins = "gpio4", "gpio5";
++				function = "qup01";
++			};
++
++			qup_spi1_data_clk: qup-spi1-data-clk-state {
++				pins = "gpio4", "gpio5", "gpio6";
++				function = "qup01";
++			};
++
++			qup_uart1_cts: qup-uart1-cts-state {
++				pins = "gpio4";
++				function = "qup01";
++			};
++
++			qup_uart1_rts: qup-uart1-rts-state {
++				pins = "gpio5";
++				function = "qup01";
++			};
++
++			qup_uart1_tx: qup-uart1-tx-state {
++				pins = "gpio6";
++				function = "qup01";
++			};
++
++			qup_spi1_cs: qup-spi1-cs-state {
++				pins = "gpio7";
++				function = "qup01";
++			};
++
++			qup_spi1_cs_gpio: qup-spi1-cs-gpio-state {
++				pins = "gpio7";
++				function = "gpio";
++			};
++
++			qup_uart1_rx: qup-uart1-rx-state {
++				pins = "gpio7";
++				function = "qup01";
++			};
++
++			qup_i2c2_data_clk: qup-i2c2-data-clk-state {
++				pins = "gpio8", "gpio9";
++				function = "qup02";
++			};
++
++			qup_spi2_data_clk: qup-spi2-data-clk-state {
++				pins = "gpio8", "gpio9", "gpio10";
++				function = "qup02";
++			};
++
++			qup_uart2_cts: qup-uart2-cts-state {
++				pins = "gpio8";
++				function = "qup02";
++			};
++
++			qup_uart2_rts: qup-uart2-rts-state {
++				pins = "gpio9";
++				function = "qup02";
++			};
++
++			qup_uart2_tx: qup-uart2-tx-state {
++				pins = "gpio10";
++				function = "qup02";
++			};
++
++			qup_spi2_cs: qup-spi2-cs-state {
++				pins = "gpio11";
++				function = "qup02";
++			};
++
++			qup_spi2_cs_gpio: qup-spi2-cs-gpio-state {
++				pins = "gpio11";
++				function = "gpio";
++			};
++
++			qup_uart2_rx: qup-uart2-rx-state {
++				pins = "gpio11";
++				function = "qup02";
++			};
++
++			qspi_data0: qspi-data0-state {
++				pins = "gpio12";
++				function = "qspi_data";
++			};
++
++			qup_i2c3_data_clk: qup-i2c3-data-clk-state {
++				pins = "gpio12", "gpio13";
++				function = "qup03";
++			};
++
++			qup_spi3_data_clk: qup-spi3-data-clk-state {
++				pins = "gpio12", "gpio13", "gpio14";
++				function = "qup03";
++			};
++
++			qup_uart3_cts: qup-uart3-cts-state {
++				pins = "gpio12";
++				function = "qup03";
++			};
++
++			qspi_data1: qspi-data1-state {
++				pins = "gpio13";
++				function = "qspi_data";
++			};
++
++			qup_uart3_rts: qup-uart3-rts-state {
++				pins = "gpio13";
++				function = "qup03";
++			};
++
++			qspi_clk: qspi-clk-state {
++				pins = "gpio14";
++				function = "qspi_clk";
++			};
++
++			qup_uart3_tx: qup-uart3-tx-state {
++				pins = "gpio14";
++				function = "qup03";
++			};
++
++			qspi_cs0: qspi-cs0-state {
++				pins = "gpio15";
++				function = "qspi_cs";
++			};
++
++			qup_spi3_cs: qup-spi3-cs-state {
++				pins = "gpio15";
++				function = "qup03";
++			};
++
++			qup_spi3_cs_gpio: qup-spi3-cs-gpio-state {
++				pins = "gpio15";
++				function = "gpio";
++			};
++
++			qup_uart3_rx: qup-uart3-rx-state {
++				pins = "gpio15";
++				function = "qup03";
++			};
++
++			qspi_data23: qspi-data23-state {
++				pins = "gpio16", "gpio17";
++				function = "qspi_data";
++			};
++
++			qup_i2c4_data_clk: qup-i2c4-data-clk-state {
++				pins = "gpio16", "gpio17";
++				function = "qup04";
++			};
++
++			qup_spi4_data_clk: qup-spi4-data-clk-state {
++				pins = "gpio16", "gpio17", "gpio18";
++				function = "qup04";
++			};
++
++			qup_uart4_cts: qup-uart4-cts-state {
++				pins = "gpio16";
++				function = "qup04";
++			};
++
++			qup_uart4_rts: qup-uart4-rts-state {
++				pins = "gpio17";
++				function = "qup04";
++			};
++
++			qup_uart4_tx: qup-uart4-tx-state {
++				pins = "gpio18";
++				function = "qup04";
++			};
++
++			qspi_cs1: qspi-cs1-state {
++				pins = "gpio19";
++				function = "qspi_cs";
++			};
++
++			qup_spi4_cs: qup-spi4-cs-state {
++				pins = "gpio19";
++				function = "qup04";
++			};
++
++			qup_spi4_cs_gpio: qup-spi4-cs-gpio-state {
++				pins = "gpio19";
++				function = "gpio";
++			};
++
++			qup_uart4_rx: qup-uart4-rx-state {
++				pins = "gpio19";
++				function = "qup04";
++			};
++
++			qup_i2c5_data_clk: qup-i2c5-data-clk-state {
++				pins = "gpio20", "gpio21";
++				function = "qup05";
++			};
++
++			qup_spi5_data_clk: qup-spi5-data-clk-state {
++				pins = "gpio20", "gpio21", "gpio22";
++				function = "qup05";
++			};
++
++			qup_uart5_tx: qup-uart5-tx-state {
++				pins = "gpio22";
++				function = "qup05";
++			};
++
++			qup_spi5_cs: qup-spi5-cs-state {
++				pins = "gpio23";
++				function = "qup05";
++			};
++
++			qup_spi5_cs_gpio: qup-spi5-cs-gpio-state {
++				pins = "gpio23";
++				function = "gpio";
++			};
++
++			qup_uart5_rx: qup-uart5-rx-state {
++				pins = "gpio23";
++				function = "qup05";
++			};
++
++			qup_i2c6_data_clk: qup-i2c6-data-clk-state {
++				pins = "gpio24", "gpio25";
++				function = "qup06";
++			};
++
++			qup_spi6_data_clk: qup-spi6-data-clk-state {
++				pins = "gpio24", "gpio25", "gpio26";
++				function = "qup06";
++			};
++
++			qup_uart6_cts: qup-uart6-cts-state {
++				pins = "gpio24";
++				function = "qup06";
++			};
++
++			qup_uart6_rts: qup-uart6-rts-state {
++				pins = "gpio25";
++				function = "qup06";
++			};
++
++			qup_uart6_tx: qup-uart6-tx-state {
++				pins = "gpio26";
++				function = "qup06";
++			};
++
++			qup_spi6_cs: qup-spi6-cs-state {
++				pins = "gpio27";
++				function = "qup06";
++			};
++
++			qup_spi6_cs_gpio: qup-spi6-cs-gpio-state {
++				pins = "gpio27";
++				function = "gpio";
++			};
++
++			qup_uart6_rx: qup-uart6-rx-state {
++				pins = "gpio27";
++				function = "qup06";
++			};
++
++			qup_i2c7_data_clk: qup-i2c7-data-clk-state {
++				pins = "gpio28", "gpio29";
++				function = "qup07";
++			};
++
++			qup_spi7_data_clk: qup-spi7-data-clk-state {
++				pins = "gpio28", "gpio29", "gpio30";
++				function = "qup07";
++			};
++
++			qup_uart7_cts: qup-uart7-cts-state {
++				pins = "gpio28";
++				function = "qup07";
++			};
++
++			qup_uart7_rts: qup-uart7-rts-state {
++				pins = "gpio29";
++				function = "qup07";
++			};
++
++			qup_uart7_tx: qup-uart7-tx-state {
++				pins = "gpio30";
++				function = "qup07";
++			};
++
++			qup_spi7_cs: qup-spi7-cs-state {
++				pins = "gpio31";
++				function = "qup07";
++			};
++
++			qup_spi7_cs_gpio: qup-spi7-cs-gpio-state {
++				pins = "gpio31";
++				function = "gpio";
++			};
++
++			qup_uart7_rx: qup-uart7-rx-state {
++				pins = "gpio31";
++				function = "qup07";
++			};
++
++			qup_i2c8_data_clk: qup-i2c8-data-clk-state {
++				pins = "gpio32", "gpio33";
++				function = "qup10";
++			};
++
++			qup_spi8_data_clk: qup-spi8-data-clk-state {
++				pins = "gpio32", "gpio33", "gpio34";
++				function = "qup10";
++			};
++
++			qup_uart8_cts: qup-uart8-cts-state {
++				pins = "gpio32";
++				function = "qup10";
++			};
++
++			qup_uart8_rts: qup-uart8-rts-state {
++				pins = "gpio33";
++				function = "qup10";
++			};
++
++			qup_uart8_tx: qup-uart8-tx-state {
++				pins = "gpio34";
++				function = "qup10";
++			};
++
++			qup_spi8_cs: qup-spi8-cs-state {
++				pins = "gpio35";
++				function = "qup10";
++			};
++
++			qup_spi8_cs_gpio: qup-spi8-cs-gpio-state {
++				pins = "gpio35";
++				function = "gpio";
++			};
++
++			qup_uart8_rx: qup-uart8-rx-state {
++				pins = "gpio35";
++				function = "qup10";
++			};
++
++			qup_i2c9_data_clk: qup-i2c9-data-clk-state {
++				pins = "gpio36", "gpio37";
++				function = "qup11";
++			};
++
++			qup_spi9_data_clk: qup-spi9-data-clk-state {
++				pins = "gpio36", "gpio37", "gpio38";
++				function = "qup11";
++			};
++
++			qup_uart9_cts: qup-uart9-cts-state {
++				pins = "gpio36";
++				function = "qup11";
++			};
++
++			qup_uart9_rts: qup-uart9-rts-state {
++				pins = "gpio37";
++				function = "qup11";
++			};
++
++			qup_uart9_tx: qup-uart9-tx-state {
++				pins = "gpio38";
++				function = "qup11";
++			};
++
++			qup_spi9_cs: qup-spi9-cs-state {
++				pins = "gpio39";
++				function = "qup11";
++			};
++
++			qup_spi9_cs_gpio: qup-spi9-cs-gpio-state {
++				pins = "gpio39";
++				function = "gpio";
++			};
++
++			qup_uart9_rx: qup-uart9-rx-state {
++				pins = "gpio39";
++				function = "qup11";
++			};
++
++			qup_i2c10_data_clk: qup-i2c10-data-clk-state {
++				pins = "gpio40", "gpio41";
++				function = "qup12";
++			};
++
++			qup_spi10_data_clk: qup-spi10-data-clk-state {
++				pins = "gpio40", "gpio41", "gpio42";
++				function = "qup12";
++			};
++
++			qup_uart10_cts: qup-uart10-cts-state {
++				pins = "gpio40";
++				function = "qup12";
++			};
++
++			qup_uart10_rts: qup-uart10-rts-state {
++				pins = "gpio41";
++				function = "qup12";
++			};
++
++			qup_uart10_tx: qup-uart10-tx-state {
++				pins = "gpio42";
++				function = "qup12";
++			};
++
++			qup_spi10_cs: qup-spi10-cs-state {
++				pins = "gpio43";
++				function = "qup12";
++			};
++
++			qup_spi10_cs_gpio: qup-spi10-cs-gpio-state {
++				pins = "gpio43";
++				function = "gpio";
++			};
++
++			qup_uart10_rx: qup-uart10-rx-state {
++				pins = "gpio43";
++				function = "qup12";
++			};
++
++			qup_i2c11_data_clk: qup-i2c11-data-clk-state {
++				pins = "gpio44", "gpio45";
++				function = "qup13";
++			};
++
++			qup_spi11_data_clk: qup-spi11-data-clk-state {
++				pins = "gpio44", "gpio45", "gpio46";
++				function = "qup13";
++			};
++
++			qup_uart11_cts: qup-uart11-cts-state {
++				pins = "gpio44";
++				function = "qup13";
++			};
++
++			qup_uart11_rts: qup-uart11-rts-state {
++				pins = "gpio45";
++				function = "qup13";
++			};
++
++			qup_uart11_tx: qup-uart11-tx-state {
++				pins = "gpio46";
++				function = "qup13";
++			};
++
++			dp_hot_plug_det: dp-hot-plug-det-state {
++				pins = "gpio47";
++				function = "dp_hot";
++			};
++
++			qup_spi11_cs: qup-spi11-cs-state {
++				pins = "gpio47";
++				function = "qup13";
++			};
++
++			qup_spi11_cs_gpio: qup-spi11-cs-gpio-state {
++				pins = "gpio47";
++				function = "gpio";
++			};
++
++			qup_uart11_rx: qup-uart11-rx-state {
++				pins = "gpio47";
++				function = "qup13";
++			};
++
++			qup_i2c12_data_clk: qup-i2c12-data-clk-state {
++				pins = "gpio48", "gpio49";
++				function = "qup14";
++			};
++
++			qup_spi12_data_clk: qup-spi12-data-clk-state {
++				pins = "gpio48", "gpio49", "gpio50";
++				function = "qup14";
++			};
++
++			qup_uart12_cts: qup-uart12-cts-state {
++				pins = "gpio48";
++				function = "qup14";
++			};
++
++			qup_uart12_rts: qup-uart12-rts-state {
++				pins = "gpio49";
++				function = "qup14";
++			};
++
++			qup_uart12_tx: qup-uart12-tx-state {
++				pins = "gpio50";
++				function = "qup14";
++			};
+
+I understand and support the intention to keep this change non-functional,
+but this pad "gpio50" is for qup16 also, right?
+
+Similarly pads "gpio54"/"gpio55" for qup14 function, "gpio62"/"gpio63"
+for qup16 function, I find all of these are missing on the original list.
+
++
++			qup_spi12_cs: qup-spi12-cs-state {
++				pins = "gpio51";
++				function = "qup14";
++			};
++
++			qup_spi12_cs_gpio: qup-spi12-cs-gpio-state {
++				pins = "gpio51";
++				function = "gpio";
++			};
++
++			qup_uart12_rx: qup-uart12-rx-state {
++				pins = "gpio51";
++				function = "qup14";
++			};
++
++			qup_i2c13_data_clk: qup-i2c13-data-clk-state {
++				pins = "gpio52", "gpio53";
++				function = "qup15";
++			};
++
++			qup_spi13_data_clk: qup-spi13-data-clk-state {
++				pins = "gpio52", "gpio53", "gpio54";
++				function = "qup15";
++			};
++
++			qup_uart13_cts: qup-uart13-cts-state {
++				pins = "gpio52";
++				function = "qup15";
++			};
++
++			qup_uart13_rts: qup-uart13-rts-state {
++				pins = "gpio53";
++				function = "qup15";
++			};
++
++			qup_uart13_tx: qup-uart13-tx-state {
++				pins = "gpio54";
++				function = "qup15";
++			};
++
++			qup_spi13_cs: qup-spi13-cs-state {
++				pins = "gpio55";
++				function = "qup15";
++			};
++
++			qup_spi13_cs_gpio: qup-spi13-cs-gpio-state {
++				pins = "gpio55";
++				function = "gpio";
++			};
++
++			qup_uart13_rx: qup-uart13-rx-state {
++				pins = "gpio55";
++				function = "qup15";
++			};
++
++			qup_i2c14_data_clk: qup-i2c14-data-clk-state {
++				pins = "gpio56", "gpio57";
++				function = "qup16";
++			};
++
++			qup_spi14_data_clk: qup-spi14-data-clk-state {
++				pins = "gpio56", "gpio57", "gpio58";
++				function = "qup16";
++			};
++
++			qup_uart14_cts: qup-uart14-cts-state {
++				pins = "gpio56";
++				function = "qup16";
++			};
++
++			qup_uart14_rts: qup-uart14-rts-state {
++				pins = "gpio57";
++				function = "qup16";
++			};
++
++			qup_uart14_tx: qup-uart14-tx-state {
++				pins = "gpio58";
++				function = "qup16";
++			};
++
++			qup_spi14_cs: qup-spi14-cs-state {
++				pins = "gpio59";
++				function = "qup16";
++			};
++
++			qup_spi14_cs_gpio: qup-spi14-cs-gpio-state {
++				pins = "gpio59";
++				function = "gpio";
++			};
++
++			qup_uart14_rx: qup-uart14-rx-state {
++				pins = "gpio59";
++				function = "qup16";
++			};
++
++			edp_hot_plug_det: edp-hot-plug-det-state {
++				pins = "gpio60";
++				function = "edp_hot";
++			};
++
++			qup_i2c15_data_clk: qup-i2c15-data-clk-state {
++				pins = "gpio60", "gpio61";
++				function = "qup17";
++			};
++
++			qup_spi15_data_clk: qup-spi15-data-clk-state {
++				pins = "gpio60", "gpio61", "gpio62";
++				function = "qup17";
++			};
++
++			qup_uart15_cts: qup-uart15-cts-state {
++				pins = "gpio60";
++				function = "qup17";
++			};
++
++			qup_uart15_rts: qup-uart15-rts-state {
++				pins = "gpio61";
++				function = "qup17";
++			};
++
++			qup_uart15_tx: qup-uart15-tx-state {
++				pins = "gpio62";
++				function = "qup17";
++			};
++
++			qup_spi15_cs: qup-spi15-cs-state {
++				pins = "gpio63";
++				function = "qup17";
++			};
++
++			qup_spi15_cs_gpio: qup-spi15-cs-gpio-state {
++				pins = "gpio63";
++				function = "gpio";
++			};
++
++			qup_uart15_rx: qup-uart15-rx-state {
++				pins = "gpio63";
++				function = "qup17";
++			};
++
+  			cam_mclk3_default: cam-mclk3-default-state {
+  				pins = "gpio67";
+  				function = "cam_mclk";
+@@ -5898,24 +6568,14 @@ cci3_sleep: cci3-sleep-state {
+  				bias-pull-down;
+  			};
+  
+-			dp_hot_plug_det: dp-hot-plug-det-state {
+-				pins = "gpio47";
+-				function = "dp_hot";
++			pcie1_clkreq_n: pcie1-clkreq-n-state {
++				pins = "gpio79";
++				function = "pcie1_clkreqn";
+  			};
+  
+-			edp_hot_plug_det: edp-hot-plug-det-state {
+-				pins = "gpio60";
+-				function = "edp_hot";
+-			};
+-
+-			mi2s0_data0: mi2s0-data0-state {
+-				pins = "gpio98";
+-				function = "mi2s0_data0";
+-			};
+-
+-			mi2s0_data1: mi2s0-data1-state {
+-				pins = "gpio99";
+-				function = "mi2s0_data1";
++			pcie0_clkreq_n: pcie0-clkreq-n-state {
++				pins = "gpio88";
++				function = "pcie0_clkreqn";
+  			};
+  
+  			mi2s0_mclk: mi2s0-mclk-state {
+@@ -5928,696 +6588,36 @@ mi2s0_sclk: mi2s0-sclk-state {
+  				function = "mi2s0_sck";
+  			};
+  
++			mi2s0_data0: mi2s0-data0-state {
++				pins = "gpio98";
++				function = "mi2s0_data0";
++			};
++
++			mi2s0_data1: mi2s0-data1-state {
++				pins = "gpio99";
++				function = "mi2s0_data1";
++			};
++
+  			mi2s0_ws: mi2s0-ws-state {
+  				pins = "gpio100";
+  				function = "mi2s0_ws";
+  			};
+  
+-			mi2s1_data0: mi2s1-data0-state {
+-				pins = "gpio107";
+-				function = "mi2s1_data0";
+-			};
+-
+  			mi2s1_sclk: mi2s1-sclk-state {
+  				pins = "gpio106";
+  				function = "mi2s1_sck";
+  			};
+  
++			mi2s1_data0: mi2s1-data0-state {
++				pins = "gpio107";
++				function = "mi2s1_data0";
++			};
++
+  			mi2s1_ws: mi2s1-ws-state {
+  				pins = "gpio108";
+  				function = "mi2s1_ws";
+  			};
+  
+-			pcie0_clkreq_n: pcie0-clkreq-n-state {
+-				pins = "gpio88";
+-				function = "pcie0_clkreqn";
+-			};
+-
+-			pcie1_clkreq_n: pcie1-clkreq-n-state {
+-				pins = "gpio79";
+-				function = "pcie1_clkreqn";
+-			};
+-
+-			qspi_clk: qspi-clk-state {
+-				pins = "gpio14";
+-				function = "qspi_clk";
+-			};
+-
+-			qspi_cs0: qspi-cs0-state {
+-				pins = "gpio15";
+-				function = "qspi_cs";
+-			};
+-
+-			qspi_cs1: qspi-cs1-state {
+-				pins = "gpio19";
+-				function = "qspi_cs";
+-			};
+-
+-			qspi_data0: qspi-data0-state {
+-				pins = "gpio12";
+-				function = "qspi_data";
+-			};
+-
+-			qspi_data1: qspi-data1-state {
+-				pins = "gpio13";
+-				function = "qspi_data";
+-			};
+-
+-			qspi_data23: qspi-data23-state {
+-				pins = "gpio16", "gpio17";
+-				function = "qspi_data";
+-			};
+-
+-			qup_i2c0_data_clk: qup-i2c0-data-clk-state {
+-				pins = "gpio0", "gpio1";
+-				function = "qup00";
+-			};
+-
+-			qup_i2c1_data_clk: qup-i2c1-data-clk-state {
+-				pins = "gpio4", "gpio5";
+-				function = "qup01";
+-			};
+-
+-			qup_i2c2_data_clk: qup-i2c2-data-clk-state {
+-				pins = "gpio8", "gpio9";
+-				function = "qup02";
+-			};
+-
+-			qup_i2c3_data_clk: qup-i2c3-data-clk-state {
+-				pins = "gpio12", "gpio13";
+-				function = "qup03";
+-			};
+-
+-			qup_i2c4_data_clk: qup-i2c4-data-clk-state {
+-				pins = "gpio16", "gpio17";
+-				function = "qup04";
+-			};
+-
+-			qup_i2c5_data_clk: qup-i2c5-data-clk-state {
+-				pins = "gpio20", "gpio21";
+-				function = "qup05";
+-			};
+-
+-			qup_i2c6_data_clk: qup-i2c6-data-clk-state {
+-				pins = "gpio24", "gpio25";
+-				function = "qup06";
+-			};
+-
+-			qup_i2c7_data_clk: qup-i2c7-data-clk-state {
+-				pins = "gpio28", "gpio29";
+-				function = "qup07";
+-			};
+-
+-			qup_i2c8_data_clk: qup-i2c8-data-clk-state {
+-				pins = "gpio32", "gpio33";
+-				function = "qup10";
+-			};
+-
+-			qup_i2c9_data_clk: qup-i2c9-data-clk-state {
+-				pins = "gpio36", "gpio37";
+-				function = "qup11";
+-			};
+-
+-			qup_i2c10_data_clk: qup-i2c10-data-clk-state {
+-				pins = "gpio40", "gpio41";
+-				function = "qup12";
+-			};
+-
+-			qup_i2c11_data_clk: qup-i2c11-data-clk-state {
+-				pins = "gpio44", "gpio45";
+-				function = "qup13";
+-			};
+-
+-			qup_i2c12_data_clk: qup-i2c12-data-clk-state {
+-				pins = "gpio48", "gpio49";
+-				function = "qup14";
+-			};
+-
+-			qup_i2c13_data_clk: qup-i2c13-data-clk-state {
+-				pins = "gpio52", "gpio53";
+-				function = "qup15";
+-			};
+-
+-			qup_i2c14_data_clk: qup-i2c14-data-clk-state {
+-				pins = "gpio56", "gpio57";
+-				function = "qup16";
+-			};
+-
+-			qup_i2c15_data_clk: qup-i2c15-data-clk-state {
+-				pins = "gpio60", "gpio61";
+-				function = "qup17";
+-			};
+-
+-			qup_spi0_data_clk: qup-spi0-data-clk-state {
+-				pins = "gpio0", "gpio1", "gpio2";
+-				function = "qup00";
+-			};
+-
+-			qup_spi0_cs: qup-spi0-cs-state {
+-				pins = "gpio3";
+-				function = "qup00";
+-			};
+-
+-			qup_spi0_cs_gpio: qup-spi0-cs-gpio-state {
+-				pins = "gpio3";
+-				function = "gpio";
+-			};
+-
+-			qup_spi1_data_clk: qup-spi1-data-clk-state {
+-				pins = "gpio4", "gpio5", "gpio6";
+-				function = "qup01";
+-			};
+-
+-			qup_spi1_cs: qup-spi1-cs-state {
+-				pins = "gpio7";
+-				function = "qup01";
+-			};
+-
+-			qup_spi1_cs_gpio: qup-spi1-cs-gpio-state {
+-				pins = "gpio7";
+-				function = "gpio";
+-			};
+-
+-			qup_spi2_data_clk: qup-spi2-data-clk-state {
+-				pins = "gpio8", "gpio9", "gpio10";
+-				function = "qup02";
+-			};
+-
+-			qup_spi2_cs: qup-spi2-cs-state {
+-				pins = "gpio11";
+-				function = "qup02";
+-			};
+-
+-			qup_spi2_cs_gpio: qup-spi2-cs-gpio-state {
+-				pins = "gpio11";
+-				function = "gpio";
+-			};
+-
+-			qup_spi3_data_clk: qup-spi3-data-clk-state {
+-				pins = "gpio12", "gpio13", "gpio14";
+-				function = "qup03";
+-			};
+-
+-			qup_spi3_cs: qup-spi3-cs-state {
+-				pins = "gpio15";
+-				function = "qup03";
+-			};
+-
+-			qup_spi3_cs_gpio: qup-spi3-cs-gpio-state {
+-				pins = "gpio15";
+-				function = "gpio";
+-			};
+-
+-			qup_spi4_data_clk: qup-spi4-data-clk-state {
+-				pins = "gpio16", "gpio17", "gpio18";
+-				function = "qup04";
+-			};
+-
+-			qup_spi4_cs: qup-spi4-cs-state {
+-				pins = "gpio19";
+-				function = "qup04";
+-			};
+-
+-			qup_spi4_cs_gpio: qup-spi4-cs-gpio-state {
+-				pins = "gpio19";
+-				function = "gpio";
+-			};
+-
+-			qup_spi5_data_clk: qup-spi5-data-clk-state {
+-				pins = "gpio20", "gpio21", "gpio22";
+-				function = "qup05";
+-			};
+-
+-			qup_spi5_cs: qup-spi5-cs-state {
+-				pins = "gpio23";
+-				function = "qup05";
+-			};
+-
+-			qup_spi5_cs_gpio: qup-spi5-cs-gpio-state {
+-				pins = "gpio23";
+-				function = "gpio";
+-			};
+-
+-			qup_spi6_data_clk: qup-spi6-data-clk-state {
+-				pins = "gpio24", "gpio25", "gpio26";
+-				function = "qup06";
+-			};
+-
+-			qup_spi6_cs: qup-spi6-cs-state {
+-				pins = "gpio27";
+-				function = "qup06";
+-			};
+-
+-			qup_spi6_cs_gpio: qup-spi6-cs-gpio-state {
+-				pins = "gpio27";
+-				function = "gpio";
+-			};
+-
+-			qup_spi7_data_clk: qup-spi7-data-clk-state {
+-				pins = "gpio28", "gpio29", "gpio30";
+-				function = "qup07";
+-			};
+-
+-			qup_spi7_cs: qup-spi7-cs-state {
+-				pins = "gpio31";
+-				function = "qup07";
+-			};
+-
+-			qup_spi7_cs_gpio: qup-spi7-cs-gpio-state {
+-				pins = "gpio31";
+-				function = "gpio";
+-			};
+-
+-			qup_spi8_data_clk: qup-spi8-data-clk-state {
+-				pins = "gpio32", "gpio33", "gpio34";
+-				function = "qup10";
+-			};
+-
+-			qup_spi8_cs: qup-spi8-cs-state {
+-				pins = "gpio35";
+-				function = "qup10";
+-			};
+-
+-			qup_spi8_cs_gpio: qup-spi8-cs-gpio-state {
+-				pins = "gpio35";
+-				function = "gpio";
+-			};
+-
+-			qup_spi9_data_clk: qup-spi9-data-clk-state {
+-				pins = "gpio36", "gpio37", "gpio38";
+-				function = "qup11";
+-			};
+-
+-			qup_spi9_cs: qup-spi9-cs-state {
+-				pins = "gpio39";
+-				function = "qup11";
+-			};
+-
+-			qup_spi9_cs_gpio: qup-spi9-cs-gpio-state {
+-				pins = "gpio39";
+-				function = "gpio";
+-			};
+-
+-			qup_spi10_data_clk: qup-spi10-data-clk-state {
+-				pins = "gpio40", "gpio41", "gpio42";
+-				function = "qup12";
+-			};
+-
+-			qup_spi10_cs: qup-spi10-cs-state {
+-				pins = "gpio43";
+-				function = "qup12";
+-			};
+-
+-			qup_spi10_cs_gpio: qup-spi10-cs-gpio-state {
+-				pins = "gpio43";
+-				function = "gpio";
+-			};
+-
+-			qup_spi11_data_clk: qup-spi11-data-clk-state {
+-				pins = "gpio44", "gpio45", "gpio46";
+-				function = "qup13";
+-			};
+-
+-			qup_spi11_cs: qup-spi11-cs-state {
+-				pins = "gpio47";
+-				function = "qup13";
+-			};
+-
+-			qup_spi11_cs_gpio: qup-spi11-cs-gpio-state {
+-				pins = "gpio47";
+-				function = "gpio";
+-			};
+-
+-			qup_spi12_data_clk: qup-spi12-data-clk-state {
+-				pins = "gpio48", "gpio49", "gpio50";
+-				function = "qup14";
+-			};
+-
+-			qup_spi12_cs: qup-spi12-cs-state {
+-				pins = "gpio51";
+-				function = "qup14";
+-			};
+-
+-			qup_spi12_cs_gpio: qup-spi12-cs-gpio-state {
+-				pins = "gpio51";
+-				function = "gpio";
+-			};
+-
+-			qup_spi13_data_clk: qup-spi13-data-clk-state {
+-				pins = "gpio52", "gpio53", "gpio54";
+-				function = "qup15";
+-			};
+-
+-			qup_spi13_cs: qup-spi13-cs-state {
+-				pins = "gpio55";
+-				function = "qup15";
+-			};
+-
+-			qup_spi13_cs_gpio: qup-spi13-cs-gpio-state {
+-				pins = "gpio55";
+-				function = "gpio";
+-			};
+-
+-			qup_spi14_data_clk: qup-spi14-data-clk-state {
+-				pins = "gpio56", "gpio57", "gpio58";
+-				function = "qup16";
+-			};
+-
+-			qup_spi14_cs: qup-spi14-cs-state {
+-				pins = "gpio59";
+-				function = "qup16";
+-			};
+-
+-			qup_spi14_cs_gpio: qup-spi14-cs-gpio-state {
+-				pins = "gpio59";
+-				function = "gpio";
+-			};
+-
+-			qup_spi15_data_clk: qup-spi15-data-clk-state {
+-				pins = "gpio60", "gpio61", "gpio62";
+-				function = "qup17";
+-			};
+-
+-			qup_spi15_cs: qup-spi15-cs-state {
+-				pins = "gpio63";
+-				function = "qup17";
+-			};
+-
+-			qup_spi15_cs_gpio: qup-spi15-cs-gpio-state {
+-				pins = "gpio63";
+-				function = "gpio";
+-			};
+-
+-			qup_uart0_cts: qup-uart0-cts-state {
+-				pins = "gpio0";
+-				function = "qup00";
+-			};
+-
+-			qup_uart0_rts: qup-uart0-rts-state {
+-				pins = "gpio1";
+-				function = "qup00";
+-			};
+-
+-			qup_uart0_tx: qup-uart0-tx-state {
+-				pins = "gpio2";
+-				function = "qup00";
+-			};
+-
+-			qup_uart0_rx: qup-uart0-rx-state {
+-				pins = "gpio3";
+-				function = "qup00";
+-			};
+-
+-			qup_uart1_cts: qup-uart1-cts-state {
+-				pins = "gpio4";
+-				function = "qup01";
+-			};
+-
+-			qup_uart1_rts: qup-uart1-rts-state {
+-				pins = "gpio5";
+-				function = "qup01";
+-			};
+-
+-			qup_uart1_tx: qup-uart1-tx-state {
+-				pins = "gpio6";
+-				function = "qup01";
+-			};
+-
+-			qup_uart1_rx: qup-uart1-rx-state {
+-				pins = "gpio7";
+-				function = "qup01";
+-			};
+-
+-			qup_uart2_cts: qup-uart2-cts-state {
+-				pins = "gpio8";
+-				function = "qup02";
+-			};
+-
+-			qup_uart2_rts: qup-uart2-rts-state {
+-				pins = "gpio9";
+-				function = "qup02";
+-			};
+-
+-			qup_uart2_tx: qup-uart2-tx-state {
+-				pins = "gpio10";
+-				function = "qup02";
+-			};
+-
+-			qup_uart2_rx: qup-uart2-rx-state {
+-				pins = "gpio11";
+-				function = "qup02";
+-			};
+-
+-			qup_uart3_cts: qup-uart3-cts-state {
+-				pins = "gpio12";
+-				function = "qup03";
+-			};
+-
+-			qup_uart3_rts: qup-uart3-rts-state {
+-				pins = "gpio13";
+-				function = "qup03";
+-			};
+-
+-			qup_uart3_tx: qup-uart3-tx-state {
+-				pins = "gpio14";
+-				function = "qup03";
+-			};
+-
+-			qup_uart3_rx: qup-uart3-rx-state {
+-				pins = "gpio15";
+-				function = "qup03";
+-			};
+-
+-			qup_uart4_cts: qup-uart4-cts-state {
+-				pins = "gpio16";
+-				function = "qup04";
+-			};
+-
+-			qup_uart4_rts: qup-uart4-rts-state {
+-				pins = "gpio17";
+-				function = "qup04";
+-			};
+-
+-			qup_uart4_tx: qup-uart4-tx-state {
+-				pins = "gpio18";
+-				function = "qup04";
+-			};
+-
+-			qup_uart4_rx: qup-uart4-rx-state {
+-				pins = "gpio19";
+-				function = "qup04";
+-			};
+-
+-			qup_uart5_tx: qup-uart5-tx-state {
+-				pins = "gpio22";
+-				function = "qup05";
+-			};
+-
+-			qup_uart5_rx: qup-uart5-rx-state {
+-				pins = "gpio23";
+-				function = "qup05";
+-			};
+-
+-			qup_uart6_cts: qup-uart6-cts-state {
+-				pins = "gpio24";
+-				function = "qup06";
+-			};
+-
+-			qup_uart6_rts: qup-uart6-rts-state {
+-				pins = "gpio25";
+-				function = "qup06";
+-			};
+-
+-			qup_uart6_tx: qup-uart6-tx-state {
+-				pins = "gpio26";
+-				function = "qup06";
+-			};
+-
+-			qup_uart6_rx: qup-uart6-rx-state {
+-				pins = "gpio27";
+-				function = "qup06";
+-			};
+-
+-			qup_uart7_cts: qup-uart7-cts-state {
+-				pins = "gpio28";
+-				function = "qup07";
+-			};
+-
+-			qup_uart7_rts: qup-uart7-rts-state {
+-				pins = "gpio29";
+-				function = "qup07";
+-			};
+-
+-			qup_uart7_tx: qup-uart7-tx-state {
+-				pins = "gpio30";
+-				function = "qup07";
+-			};
+-
+-			qup_uart7_rx: qup-uart7-rx-state {
+-				pins = "gpio31";
+-				function = "qup07";
+-			};
+-
+-			qup_uart8_cts: qup-uart8-cts-state {
+-				pins = "gpio32";
+-				function = "qup10";
+-			};
+-
+-			qup_uart8_rts: qup-uart8-rts-state {
+-				pins = "gpio33";
+-				function = "qup10";
+-			};
+-
+-			qup_uart8_tx: qup-uart8-tx-state {
+-				pins = "gpio34";
+-				function = "qup10";
+-			};
+-
+-			qup_uart8_rx: qup-uart8-rx-state {
+-				pins = "gpio35";
+-				function = "qup10";
+-			};
+-
+-			qup_uart9_cts: qup-uart9-cts-state {
+-				pins = "gpio36";
+-				function = "qup11";
+-			};
+-
+-			qup_uart9_rts: qup-uart9-rts-state {
+-				pins = "gpio37";
+-				function = "qup11";
+-			};
+-
+-			qup_uart9_tx: qup-uart9-tx-state {
+-				pins = "gpio38";
+-				function = "qup11";
+-			};
+-
+-			qup_uart9_rx: qup-uart9-rx-state {
+-				pins = "gpio39";
+-				function = "qup11";
+-			};
+-
+-			qup_uart10_cts: qup-uart10-cts-state {
+-				pins = "gpio40";
+-				function = "qup12";
+-			};
+-
+-			qup_uart10_rts: qup-uart10-rts-state {
+-				pins = "gpio41";
+-				function = "qup12";
+-			};
+-
+-			qup_uart10_tx: qup-uart10-tx-state {
+-				pins = "gpio42";
+-				function = "qup12";
+-			};
+-
+-			qup_uart10_rx: qup-uart10-rx-state {
+-				pins = "gpio43";
+-				function = "qup12";
+-			};
+-
+-			qup_uart11_cts: qup-uart11-cts-state {
+-				pins = "gpio44";
+-				function = "qup13";
+-			};
+-
+-			qup_uart11_rts: qup-uart11-rts-state {
+-				pins = "gpio45";
+-				function = "qup13";
+-			};
+-
+-			qup_uart11_tx: qup-uart11-tx-state {
+-				pins = "gpio46";
+-				function = "qup13";
+-			};
+-
+-			qup_uart11_rx: qup-uart11-rx-state {
+-				pins = "gpio47";
+-				function = "qup13";
+-			};
+-
+-			qup_uart12_cts: qup-uart12-cts-state {
+-				pins = "gpio48";
+-				function = "qup14";
+-			};
+-
+-			qup_uart12_rts: qup-uart12-rts-state {
+-				pins = "gpio49";
+-				function = "qup14";
+-			};
+-
+-			qup_uart12_tx: qup-uart12-tx-state {
+-				pins = "gpio50";
+-				function = "qup14";
+-			};
+-
+-			qup_uart12_rx: qup-uart12-rx-state {
+-				pins = "gpio51";
+-				function = "qup14";
+-			};
+-
+-			qup_uart13_cts: qup-uart13-cts-state {
+-				pins = "gpio52";
+-				function = "qup15";
+-			};
+-
+-			qup_uart13_rts: qup-uart13-rts-state {
+-				pins = "gpio53";
+-				function = "qup15";
+-			};
+-
+-			qup_uart13_tx: qup-uart13-tx-state {
+-				pins = "gpio54";
+-				function = "qup15";
+-			};
+-
+-			qup_uart13_rx: qup-uart13-rx-state {
+-				pins = "gpio55";
+-				function = "qup15";
+-			};
+-
+-			qup_uart14_cts: qup-uart14-cts-state {
+-				pins = "gpio56";
+-				function = "qup16";
+-			};
+-
+-			qup_uart14_rts: qup-uart14-rts-state {
+-				pins = "gpio57";
+-				function = "qup16";
+-			};
+-
+-			qup_uart14_tx: qup-uart14-tx-state {
+-				pins = "gpio58";
+-				function = "qup16";
+-			};
+-
+-			qup_uart14_rx: qup-uart14-rx-state {
+-				pins = "gpio59";
+-				function = "qup16";
+-			};
+-
+-			qup_uart15_cts: qup-uart15-cts-state {
+-				pins = "gpio60";
+-				function = "qup17";
+-			};
+-
+-			qup_uart15_rts: qup-uart15-rts-state {
+-				pins = "gpio61";
+-				function = "qup17";
+-			};
+-
+-			qup_uart15_tx: qup-uart15-tx-state {
+-				pins = "gpio62";
+-				function = "qup17";
+-			};
+-
+-			qup_uart15_rx: qup-uart15-rx-state {
+-				pins = "gpio63";
+-				function = "qup17";
+-			};
+-
+  			sdc1_clk: sdc1-clk-state {
+  				pins = "sdc1_clk";
+  			};
+
+
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+
 -- 
-2.25.1
-
+Best wishes,
+Vladimir
 
