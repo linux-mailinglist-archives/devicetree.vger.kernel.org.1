@@ -1,457 +1,196 @@
-Return-Path: <devicetree+bounces-310790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310793-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JdcKE1HHK2qAEwQAu9opvQ
-	(envelope-from <devicetree+bounces-310790-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:46:09 +0200
+	id j6iTEVPIK2q/EwQAu9opvQ
+	(envelope-from <devicetree+bounces-310793-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:50:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12E2677ECF
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:46:08 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C32677F60
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:50:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=NXP1.onmicrosoft.com header.s=selector1-NXP1-onmicrosoft-com header.b=fZ8fZ4Hr;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310790-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310790-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=fail reason="SPF not aligned (relaxed), DKIM not aligned (relaxed)" header.from=nxp.com (policy=none);
-	arc=reject ("cv is fail on i=2")
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310793-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310793-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 83A3731B3A7B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:43:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0929E31AB612
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C1D377034;
-	Fri, 12 Jun 2026 08:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2E636654C;
+	Fri, 12 Jun 2026 08:47:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010059.outbound.protection.outlook.com [52.101.84.59])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E8AF362152;
-	Fri, 12 Jun 2026 08:43:57 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781253839; cv=fail; b=GiGhLtMqJkeKUYP162qeSEojFlD9w5jnYK2Ul8JRrmKCX4cGm9fCkV1OxAw0EP/Y6fc1oXXu/Og04mEIk6/5FHtjEu8Cdr0NcHvjJBLZA6D6L43eLJllMZ+ddCz7wO3KFc3JMBv5EhsYNocXDM0PPrcN6W3JhQnMb+IA11+Ul9M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781253839; c=relaxed/simple;
-	bh=gbgSHjyDbtf2t/Pk+SimwQoNVI3oOiuL2Gq7Lm/2WhA=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=DAUFvIh5Sl9QjiNX9XRtRIJ3UTbqnpw91v6qIJAnKI+Tkb6kII8UlwiiJAgMKX6Tg8PnjoqXtIYKNAA41Pck/N/KaP2wAun4ecdpfSG8HUdT+x5090t13dvw2+tpeM0m6LtBtboZFDy9U83793ANOVac5zFr7rgCLrOlYoyhOSU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=fZ8fZ4Hr; arc=fail smtp.client-ip=52.101.84.59
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UVUFDaZY7psKwzz3sJFcxDC7h7ZzUfVnQ9Pz7ltblPVzR8vnYSF1fnM32wUjQYDz2jbDjYUC1j4FkT+z++tnDUn5z1v+tU0kUDbQdHwnhjNc7mot/Qi9P/FTri+f90jEzFKE6NuzYuhhT3qhheV3omVCxc9MT9kHcp0flMVmM2g/43Tuzxgu9ZUmZTErNSc0X0KZQiUOl5n8+Oegj7CLZBOdSW62uGlqPZZC92cCuuo6fsuUQn8DnKlkE3u3KgQ4ORe93bKH6ypFKrDA5MlQbUdWh//IAvpjqkVaLCGhMztbJAkSNCryHcWO2KEw9W0nMerQv5JxcC5KSV7W0zmK0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ddtUxbuU5hjHBxeCK9kjY327enFieNmTZTebw+7q6bw=;
- b=Ps+zHQFoeS6ijOJMyk/8HTBlkY+FjkJhKtdXoAKkKLEfJiV/akvQGgKfm/tYBWCWiaQxJp9WEgyUQq3hA68Glhx0SOin26rciWzzYoAOn0RJ2bb9aYHr0YdGKYmX3V8RArFgdAm9vDZW/nS318rAg2uUhFFzKI/qSt3ZJMYm0UOIQgiDftjn2cyue4J3f5qQ/Tfl+zJzHvwm1P8A2VWbomiCl7RALbh3R0X5rbmy+8IByec6girbzlqqxZicFSnqjz/2rtdf0BnUx1BM9xqIDZ7LV1qDo8s7Z0oFYCa+sJg9f15cnJOxBC/xFo1r8YfFai+dKB+rbtmi1r4N/ngqhg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ddtUxbuU5hjHBxeCK9kjY327enFieNmTZTebw+7q6bw=;
- b=fZ8fZ4Hr+X+juMYLDTtNotheCnu0HXxfWE/HwU82nH+moMWF+mpdCLmAIshwTlhtdbwMnEjt1rBrs1/WlilN7iv2US2UTIa1WZgabw8DdF37wMUN9iYAUpiR5z1N+qB4tVE+451jjtMRwuQpB61qJhJpYDqHlsNViHuiEWHd4S4XCHvInBiCBOgHhQtBdcb3nMuqTKxC9SdRAXgoKAr6HA3g4FFfMrAYouG1we6QRFBdwKKgwQTDF8de3dwvaeS501em3okiTsgMUqwxWj8dyhAuL2yUkDSB4Rq929kjws9mm7x+dSGORXUCOKFnl+M5bbT640kCwmUNKWIo6HSDlw==
-Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
- by GV2PR04MB12293.eurprd04.prod.outlook.com (2603:10a6:150:32b::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.17; Fri, 12 Jun
- 2026 08:43:53 +0000
-Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
- ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
- ([fe80::ac38:1699:6f18:c5d9%4]) with mapi id 15.21.0113.013; Fri, 12 Jun 2026
- 08:43:53 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Fri, 12 Jun 2026 16:46:28 +0800
-Subject: [PATCH v10 6/6] clk: scmi: Add i.MX95 OEM extension support for
- SCMI clock driver
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260612-clk-v10-v10-6-eb92484eda38@nxp.com>
-References: <20260612-clk-v10-v10-0-eb92484eda38@nxp.com>
-In-Reply-To: <20260612-clk-v10-v10-0-eb92484eda38@nxp.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@kernel.org>, 
- Cristian Marussi <cristian.marussi@arm.com>, 
- Sebin Francis <sebin.francis@ti.com>
-Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, arm-scmi@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.16-dev-7bc12
-X-ClientProxiedBy: MA0PR01CA0090.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ae::19) To AM8PR04MB7874.eurprd04.prod.outlook.com
- (2603:10a6:20b:24d::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B559335555
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 08:47:52 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781254073; cv=none; b=AuCy5T/uyyGl48rTwQDouYajVaCRNe3mILGke0tVeiLlIlJ/KX9sw5ogai3ZZnM7EOt4EGEoqhOv2So1awr9Ug85XzkLX9B6hOufiLZ8L3V+AtQNWtqnY9cd86xL+qvZv6R3tD6Ilbk8EloqKgj1EHxyh2jhJvyXs4ABPu5nD4s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781254073; c=relaxed/simple;
+	bh=65uwZgvej5il4TwgSj3WG4tlATD19TKgvXSd8rKCPgQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oWs2FAkseVdCrOfIDLMJOKO+va6Abvu+FoGV8/2A488mLG7e1KBRSQKLzgZJNOFUKfoJZvc5D3lnqzFONKA27S39is9Yvz1Sxe07U6Gy2DJayEzJuvNJ67cw6lZIXdWge3oAAjaXFb+obGd2LoDEEUM3Hm5rFPD46Kwgn2E/I08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-5b22b023e1dso412656e0c.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 01:47:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781254071; x=1781858871;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tQlK0t9ztcQvgDtgl79EcKdVjd3bkrWM0eY0EPTL4QA=;
+        b=YMsuy/oK6z2sBCJOliaVPbhrK/vd8G1LTHTsEWy6RUCd/T0ikS2zh63dkwXTpbDXtj
+         7pHG9NCNRAuKcXMnkaEtwhLQN94OjqezahPMc2mk1LwUAJSjLnLFNFVdPeLQ2Jgj3LTz
+         ORiKXqYMJA/4zP73Aod1YBgWhRvrkHDAzW4Razo47cY72syAZHatX7KDinSANfw56+1g
+         csdwpSsvSiJyIitn/AjyQiShXBvMCdsm++ay4ZKf+vTTqW0G2t+/QIAgLDsGJ8+BC63e
+         gADNc8ouXSrDDswsG7BaxJ8E3Oq9f6itJCFOOfPkSIZioC67fBIkcaDnfExTBIjvC08W
+         hcdA==
+X-Forwarded-Encrypted: i=1; AFNElJ+i1P6wvgZDE+46eEH0OmQq6DcFyKptVwaPzeC7XCqpSXD0ND2yiT5FOlJTZ/94SOUzwMaB6E2BnrSV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZuxsrle3bO6SZgQKUNdlmCZaI1Y+W2SiOEEEDmw7GeUrC/lWw
+	WYx8jQBl5z8QdidIAE/hMfmK8X2GK1EgMAd+4vxmiGT9zSIIeA2mSTYPHLfgevyd
+X-Gm-Gg: Acq92OGrON5h+Twq1LHAZygoerfIt2EHdNRJk3KzVFodfkpCTi8G7iI0bwJZrUzzYc5
+	Y6yNc3a5LfPGJmQrfhFae8eALx0vf+xq+Lj3clV8L7WOwbvhCdFBYOvZYqUjnnC0aJwTGeayemZ
+	lFl76i29RdTiCvhLjoLz48be5OQP4n+ESJnpeGwcg/YJi0vTxqA97Jzua2vhxnxzN25OAz12UQs
+	ivzuByRc8STEdDvnWksO1sks7EgIKQE4MXJvwH8tDFwoQIXdq0i48I6+9k2xTdjQtPC+tDzg3xY
+	eXcxmgX9+Rcr4VVSSMyTzTGCkjfUSNyNoqFK1rAU0IM6AF+8+yQ1twrBz8aogeoGIVeuBtIv9iR
+	sV2DDM+Co18OXe08upIq/2puYwZnmD6khHMRsvvxVsgFFTXxtb9uahPtx//Oc7ydNSAcjZbbz/Q
+	NvNsOyM0zhC+zJVZ7wBtX3q3WCZ9tTYKuEMRaVe/YW/iLCXMA8HEGY4D2jFIaq
+X-Received: by 2002:a05:6122:1d89:b0:576:1a8d:8989 with SMTP id 71dfb90a1353d-5bb6bddd1d0mr756179e0c.0.1781254071296;
+        Fri, 12 Jun 2026 01:47:51 -0700 (PDT)
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5bb691bc485sm1935462e0c.12.2026.06.12.01.47.50
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jun 2026 01:47:50 -0700 (PDT)
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-6c4db0bf752so485372137.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 01:47:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/I1w/vHACInFHALP62d1vMNJ+zfTmL7sMTLFqASwHXNuoBy9YoBGks5CVhrWT6Ou7oXMmK4dUkbVc1@vger.kernel.org
+X-Received: by 2002:a05:6102:2ac3:b0:643:80f1:350a with SMTP id
+ ada2fe7eead31-71e88b99e6emr940155137.2.1781254070220; Fri, 12 Jun 2026
+ 01:47:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|GV2PR04MB12293:EE_
-X-MS-Office365-Filtering-Correlation-Id: b642d0b4-a0ba-422c-17cb-08dec85ebb4a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|7416014|23010399003|1800799024|376014|3023799007|18002099003|22082099003|5023799004|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info:
-	WnoC0Nqr91D5u55ncPZOQYG1a9cab+k4O4sQVaCDTccyDQD5DSO6Qxrd0SncFziMlmlW1kMLB7ZyI0LZSGtV4duS4/E6E95awxb2drc+dS093K2NiGz/l+aI5faqEs3Ttah6V6aE6hsSO1xmHMI/L9wCGVXiaisl2uIKkx9As66/N9CB9G5kTSM/akI4WsKoyVOZsBJ1q4X2sQ4vRJYSACmlxHqGsTEyHiHL3XJ4GTYP/YbLKxMA3tXnIZOREsUdd4DmkNP5Fe+LJKtvbt6MnRDGIp4d+qKmDNgT2Brl9+dvpluhHSxgQa4jIRxOzz4GwAZUxNon65DFCqfQ7F6qS13RgnbPLHVH9Ovr0bwPKvN+b9KW/kh3ZjaVqS2GA4G3P3ZQT01HB1pFLvHx2C+Tv+lvjH8XU1M/kuRo4kSs5zLskYf0+9l16gWEJBb9GiR74JjW8COGnGzKaNuEND8IQZWJpmMR/faarsxd8Oo2CdKAgwOZmY8/zYX3IJhfLdRY6UeibAleXGI4kNEC+erZeo73pPNI34uUq4vmoJEEQ3Uux3EDo1tALyAEGDoPQgRJV7PxyI5GGFASO2iAQvd3b+pdiwD/QXi8mUXOrP7giKdPOIKFMutxLZBlCSOOhNGwf64lFBNr7EEFodDXT9yZCX8m4PzsrDVOKMrzMUxrFiZkHqSz3Rfa18t2ql0fQggx
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(23010399003)(1800799024)(376014)(3023799007)(18002099003)(22082099003)(5023799004)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?V2hJN3JqejFqNkxsV3ZUVWczTGNOUzQ5amdoNFJHcFhZTDVRdE9Ed0xBUXBv?=
- =?utf-8?B?L3UwVHFVRlFZWXlUNVlXeDRRemdNcm1MYURrTEV6bzlmYjJTZEF0cXNSZTVv?=
- =?utf-8?B?ZlZKTDJMOVFId3hJUlBEbXJxaGEyQ2RRUDVnWHZRMTV4eEd1amZ0aVJDbXNr?=
- =?utf-8?B?Nk5BSVMyQjYyQnZ5eWdXa1haMlZHdnJvZWxGNW16eUZvY2h6dm5PRy9YaWpC?=
- =?utf-8?B?MHdXUDlQYkZ2aHcvQ0U1NVh0aUhITGV6VE8wcldjNXE5ZDhmWkNwVDIrZGhv?=
- =?utf-8?B?aUVFUWdNVUU0VmZzSWs3WlpmZXNRbWJXd2NqUmlZbmMyTGRqQnlVbjNyZmpt?=
- =?utf-8?B?TjFCelhsV0g0VWdzTi9vd3p3NEpxWEt5QVA0VURmWHpaU0hLbVRVa2l1Ukh3?=
- =?utf-8?B?RnFJbDZXNXdZUnhjMWJJSVJCWUtNR2dVREIwWnlHT25uU3lGQnhQZENvVzVQ?=
- =?utf-8?B?bU5ZWi9RZWFDcVRXZGlHVGtqS3lZOGpWdHFXeWwxNzEwNHUvMkovOGxKYUlv?=
- =?utf-8?B?KytBZlNyQ0FNQjUwb21PdDJHUGhGbjMyT0Y3N3I2cVdWbHB6VW5qOVI4S3o0?=
- =?utf-8?B?dGd6R1lxdjN1ZDJWWWpRMFpJL3ZzZFNCellQcmRXRmZPUW04V2pWMlE5c1lo?=
- =?utf-8?B?ZmgyT3BDckVRYVRHUyt2cTVnUWxRWk1sVDF5ZTREQlZjYWdzUkVYbnVMeEJ5?=
- =?utf-8?B?THgxcWVIRGl2ZkxwdzVsTzEzbnh2UlpZd1BMRnpNTFJ3cmR5eldRcWhWVlBO?=
- =?utf-8?B?eXJCY0ZxdWYwSDZ4TG1qK3FDVE1RWG45THpxMERVOGw4N0p3QVJTWVdtKzVF?=
- =?utf-8?B?VjNhVHZoRTJoWFJ0cWZwQVNIck02L0hEbDBzR1lBdHluVDJQR1F2VmhROElN?=
- =?utf-8?B?dG9BZWo5MG8vU2JaeWxLV213NmN4RTNvVElsTXQzcVpBWTZsbzd2WkdrQy9p?=
- =?utf-8?B?M05xWUpzYm8ySDYvUlNVbFpPNkFTcTlOaDA5TWx3UUxDNGJ6eVpISkNUbVBv?=
- =?utf-8?B?SlkwbzV5S2ZPM05GU2U1SVZKV3FsUHBFMzI1aWtOQm9JYzFmRG9DRkdTS0ti?=
- =?utf-8?B?WU42YnBKRTRJUlYxMDNNNTVjZnlobllkRWJCL0pzSFBMeG1xKzR1ampKRTlv?=
- =?utf-8?B?ckttbkVwdGVrZjFjaTlPNEdsWGhvVGhrRU9EMXdYbmpqTmNEdnpYS1Q2MWlr?=
- =?utf-8?B?bEFTWWp1aUZ2SFh0bkZDV3JtUHAxaTB5b2NxQVFCSEhINEM3UUVITnlOWDF0?=
- =?utf-8?B?OHA5ZWRrUXBlbUZTemRLNjRCY3BDYm9ROTFaSkRBREZ6U1o3N2gwQkcrMTdZ?=
- =?utf-8?B?dmxaVjJoaTZoeWhsZk81NzB5bk9KazBUUkc0a3Y4SUV0RUFneThpWWxNVy9n?=
- =?utf-8?B?eFljNTVJK2NQSGJTcWZqWXRNVmdsbU90d2JvK29ScGhsc1FTcGc1cDNOT1pJ?=
- =?utf-8?B?bHYrREFBWnBBOTNMSEZRMFdNdExGdG5QVFBZTHRDd1pWM2ovUnlKK09BNk5Y?=
- =?utf-8?B?eEZEeHdaV1ZRWSsydjBna1VEc3JTaVlrS1MxK080ZUgzM2o3MzlPeVk1d2xX?=
- =?utf-8?B?T2ZFTE1vcTAzTEtqZFEzVmFOcndRSDcwem4ya2V3K2lSc0J5ZVE5MjRMSGc5?=
- =?utf-8?B?a0Vta29wRC9qdmJ4a3EyWDlOek9LOGhHNzRLUUMzUHNnUkVyTUk1cFZIT1JC?=
- =?utf-8?B?dVV0aGNEaTRzY1I2WVYrc2pDNTRSSlcyNDNWdTdWcjJuTitzOUg3WXYzS2RR?=
- =?utf-8?B?OWljdGZ1Y3hzUDY3UVpvalIrTzdsNDN1ZWhWZm54ejErS2ZVMjZ0ZEhMSWRH?=
- =?utf-8?B?TW9tQlJoYkdqemlFdW1ZRmQ1aGV3L1NUTkd6aWo0dnpQUjRsYXA4UzliZi9t?=
- =?utf-8?B?MkhacnVneHlJTlJzbDUwZy80Snd1OTFLS1NrVlVIQUptRGVEQW56RFRIa2Na?=
- =?utf-8?B?THNlVHUvb3FuK0FDWEZmem9wVXR6dWc1Q0U2R3BSeVhrdVJsMDBYRVdNdEpa?=
- =?utf-8?B?a0hqZVA3akFoaEN5TkVnak5XMy9wL3BHOSsveENJMjBqTzNOVWJTSmM0U2dN?=
- =?utf-8?B?RWdKVE93VU02RUZJalRQSWZsVlhKT1NiRGt6TktzZ2JkeDJtT1plTTRsbDcw?=
- =?utf-8?B?dHpxM2NkNGx5eWpBUG9hQXpqdFI3Z0V0eVorMFY3WThhZEF3THFOUEt0Qk1P?=
- =?utf-8?B?QnZHNjNQMDJSQ2owR09vV1N5NXc3Q0YvUjFQREl1U2VzMWgrUXFyV0QzdEZ0?=
- =?utf-8?B?WGJhZ2NkdU96QzVDVG5NYmhNY25WWlhvOEtvZ0xUV3NpSGdXMG9TaERVSTZm?=
- =?utf-8?B?dTVaVUlabldtNHYwZm82ZitVWmN5QVBqWkRvODZuY3FxVUNiaER1WnA1N2ly?=
- =?utf-8?Q?M2zhZPD86Dl1r16gGnYoJ09sjVtOvUnAvmyaq?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b642d0b4-a0ba-422c-17cb-08dec85ebb4a
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 08:43:52.9788
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: monjWyoFZwEqLCwAVKMngH8JhdDrQQrJhaRPYYiIgOaQzsAadz1TUkSO3QDqPb+808/bX5yaEFw7i94EQ86jvCVD/wSdEYMWuIe4s6fFdahY+Pwsnnu93avhu3F4e9SW
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB12293
+References: <20260612080354.57459-4-wsa+renesas@sang-engineering.com> <20260612080354.57459-6-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20260612080354.57459-6-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 12 Jun 2026 10:47:37 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWEJT8JYuSGQmNsbUZuU+zx7prwMHVikOuOS-iXYKenbw@mail.gmail.com>
+X-Gm-Features: AVVi8CffWxOPh1eaDcqwf9PB86jCpddX7GaCPj1O4xWGWk3HI6WTfQ9pJBKeEFw
+Message-ID: <CAMuHMdWEJT8JYuSGQmNsbUZuU+zx7prwMHVikOuOS-iXYKenbw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: renesas: r9a06g032-rzn1d400-eb: Enable SPI-FRAM
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.94 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-1.46 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310790-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sudeep.holla@kernel.org,m:cristian.marussi@arm.com,m:sebin.francis@ti.com,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:arm-scmi@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:peng.fan@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peng.fan@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-310793-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_RECIPIENTS(0.00)[m:wsa+renesas@sang-engineering.com,m:linux-renesas-soc@vger.kernel.org,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:wsa@sang-engineering.com,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B12E2677ECF
+X-Rspamd-Queue-Id: B8C32677F60
 
-From: Peng Fan <peng.fan@nxp.com>
+Hi Wolfram,
 
- - Introduce 'clk-scmi-oem.c' to support vendor-specific OEM extensions
-   for the SCMI clock driver, allows clean integration of vendor-specific
-   features without impacting the core SCMI clock driver logic.
- - Extend 'clk-scmi.h' with 'scmi_clk_oem' structure and related
-   declarations.
- - Initialize OEM extensions via 'scmi_clk_oem_init()'.
- - Support querying OEM-specific features and setting spread spectrum.
- - Pass 'scmi_device' to 'scmi_clk_ops_select()' for OEM data access.
+On Fri, 12 Jun 2026 at 10:04, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Activate the FRAM and the SPI bus which it is attached to.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Reviewed-by: Sebin Francis <sebin.francis@ti.com>
-Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/clk/Makefile       |   2 +-
- drivers/clk/clk-scmi-oem.c | 108 +++++++++++++++++++++++++++++++++++++++++++++
- drivers/clk/clk-scmi.c     |  19 ++++++--
- drivers/clk/clk-scmi.h     |  11 +++++
- 4 files changed, 136 insertions(+), 4 deletions(-)
+Thanks for your patch!
 
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 6a726331b6c9e..c2ae700ec0f2a 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -98,7 +98,7 @@ obj-$(CONFIG_COMMON_CLK_RP1)            += clk-rp1.o
- obj-$(CONFIG_COMMON_CLK_RPMI)		+= clk-rpmi.o
- obj-$(CONFIG_COMMON_CLK_HI655X)		+= clk-hi655x.o
- obj-$(CONFIG_COMMON_CLK_S2MPS11)	+= clk-s2mps11.o
--obj-$(CONFIG_COMMON_CLK_SCMI)           += clk-scmi.o
-+obj-$(CONFIG_COMMON_CLK_SCMI)           += clk-scmi.o clk-scmi-oem.o
- obj-$(CONFIG_COMMON_CLK_SCPI)           += clk-scpi.o
- obj-$(CONFIG_COMMON_CLK_SI5341)		+= clk-si5341.o
- obj-$(CONFIG_COMMON_CLK_SI5351)		+= clk-si5351.o
-diff --git a/drivers/clk/clk-scmi-oem.c b/drivers/clk/clk-scmi-oem.c
-new file mode 100644
-index 0000000000000..be11d359b4ec3
---- /dev/null
-+++ b/drivers/clk/clk-scmi-oem.c
-@@ -0,0 +1,108 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * The Vendor OEM extension for System Control and Power Interface (SCMI)
-+ * Protocol based clock driver
-+ *
-+ * Copyright 2025 NXP
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of.h>
-+#include <linux/scmi_imx_protocol.h>
-+#include <linux/scmi_protocol.h>
-+
-+#include "clk-scmi.h"
-+
-+#define SCMI_CLOCK_CFG_IMX_SSC			0x80
-+#define SCMI_CLOCK_IMX_SS_PERCENTAGE_MASK	GENMASK(7, 0)
-+#define SCMI_CLOCK_IMX_SS_MOD_FREQ_MASK		GENMASK(23, 8)
-+#define SCMI_CLOCK_IMX_SS_ENABLE_MASK		BIT(24)
-+
-+/*
-+ * Selection is based on SCMI vendor_id/sub_vendor_id and optional machine
-+ * compatible string, without involving impl_ver. impl_ver‑specific behavior
-+ * should be considered a bug and handled via SCMI Quirk framework.
-+ */
-+struct scmi_clk_oem_info {
-+	char *vendor_id;
-+	char *sub_vendor_id;
-+	char *compatible;
-+	const void *data;
-+};
-+
-+static int
-+scmi_clk_imx_set_spread_spectrum(struct clk_hw *hw,
-+				 const struct clk_spread_spectrum *ss_conf)
-+{
-+	struct scmi_clk *clk = to_scmi_clk(hw);
-+	int ret;
-+	u32 val;
-+
-+	/*
-+	 * extConfigValue[7:0]   - spread percentage (%)
-+	 * extConfigValue[23:8]  - Modulation Frequency
-+	 * extConfigValue[24]    - Enable/Disable
-+	 * extConfigValue[31:25] - Reserved
-+	 */
-+	val = FIELD_PREP(SCMI_CLOCK_IMX_SS_PERCENTAGE_MASK, ss_conf->spread_bp / 10000);
-+	val |= FIELD_PREP(SCMI_CLOCK_IMX_SS_MOD_FREQ_MASK, ss_conf->modfreq_hz);
-+	if (ss_conf->method != CLK_SPREAD_NO)
-+		val |= SCMI_CLOCK_IMX_SS_ENABLE_MASK;
-+	ret = scmi_proto_clk_ops->config_oem_set(clk->ph, clk->id,
-+						 SCMI_CLOCK_CFG_IMX_SSC,
-+						 val, false);
-+	if (ret)
-+		dev_warn(clk->dev,
-+			 "Failed to set spread spectrum(%u,%u,%u) for clock ID %d\n",
-+			 ss_conf->modfreq_hz, ss_conf->spread_bp, ss_conf->method,
-+			 clk->id);
-+
-+	return ret;
-+}
-+
-+static int
-+scmi_clk_imx_query_oem_feats(const struct scmi_protocol_handle *ph, u32 id,
-+			     unsigned int *feats_key)
-+{
-+	int ret;
-+	u32 val;
-+
-+	ret = scmi_proto_clk_ops->config_oem_get(ph, id,
-+						 SCMI_CLOCK_CFG_IMX_SSC,
-+						 &val, NULL, false);
-+	if (!ret)
-+		*feats_key |= BIT(SCMI_CLK_EXT_OEM_SSC_SUPPORTED);
-+
-+	return 0;
-+}
-+
-+static const struct scmi_clk_oem scmi_clk_oem_imx = {
-+	.query_ext_oem_feats = scmi_clk_imx_query_oem_feats,
-+	.set_spread_spectrum = scmi_clk_imx_set_spread_spectrum,
-+};
-+
-+static const struct scmi_clk_oem_info info[] = {
-+	{ SCMI_IMX_VENDOR, SCMI_IMX_SUBVENDOR, NULL, &scmi_clk_oem_imx },
-+};
-+
-+int scmi_clk_oem_init(struct scmi_device *sdev)
-+{
-+	const struct scmi_handle *handle = sdev->handle;
-+	int i, size = ARRAY_SIZE(info);
-+
-+	for (i = 0; i < size; i++) {
-+		if (strcmp(handle->version->vendor_id, info[i].vendor_id) ||
-+		    strcmp(handle->version->sub_vendor_id, info[i].sub_vendor_id))
-+			continue;
-+		if (info[i].compatible &&
-+		    !of_machine_is_compatible(info[i].compatible))
-+			continue;
-+
-+		break;
-+	}
-+
-+	if (i < size)
-+		dev_set_drvdata(&sdev->dev, (void *)info[i].data);
-+
-+	return 0;
-+}
-diff --git a/drivers/clk/clk-scmi.c b/drivers/clk/clk-scmi.c
-index d88e78cc9a12e..2dd50c5b4ea8f 100644
---- a/drivers/clk/clk-scmi.c
-+++ b/drivers/clk/clk-scmi.c
-@@ -13,6 +13,8 @@
- #include <linux/module.h>
- #include <linux/scmi_protocol.h>
- 
-+#include "clk-scmi.h"
-+
- const struct scmi_clk_proto_ops *scmi_proto_clk_ops;
- 
- static unsigned long scmi_clk_recalc_rate(struct clk_hw *hw,
-@@ -210,6 +212,7 @@ static int scmi_clk_ops_init(struct device *dev, struct scmi_clk *sclk,
- static const struct clk_ops *
- scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
- {
-+	struct scmi_clk_oem *oem_data = dev_get_drvdata(dev);
- 	struct clk_ops *ops;
- 
- 	ops = devm_kzalloc(dev, sizeof(*ops), GFP_KERNEL);
-@@ -256,11 +259,15 @@ scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
- 		ops->set_duty_cycle = scmi_clk_set_duty_cycle;
- 	}
- 
-+	if (oem_data && (feats_key & BIT(SCMI_CLK_EXT_OEM_SSC_SUPPORTED)))
-+		ops->set_spread_spectrum = oem_data->set_spread_spectrum;
-+
- 	return ops;
- }
- 
- /**
-  * scmi_clk_ops_select() - Select a proper set of clock operations
-+ * @sdev: pointer to the SCMI device
-  * @sclk: A reference to an SCMI clock descriptor
-  * @atomic_capable: A flag to indicate if atomic mode is supported by the
-  *		    transport
-@@ -285,8 +292,8 @@ scmi_clk_ops_alloc(struct device *dev, unsigned long feats_key)
-  *	   NULL otherwise.
-  */
- static const struct clk_ops *
--scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
--		    unsigned int atomic_threshold_us,
-+scmi_clk_ops_select(struct scmi_device *sdev, struct scmi_clk *sclk,
-+		    bool atomic_capable, unsigned int atomic_threshold_us,
- 		    const struct clk_ops **clk_ops_db, size_t db_size)
- {
- 	int ret;
-@@ -294,6 +301,7 @@ scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
- 	const struct scmi_clock_info *ci = sclk->info;
- 	unsigned int feats_key = 0;
- 	const struct clk_ops *ops;
-+	struct scmi_clk_oem *oem_data = dev_get_drvdata(&sdev->dev);
- 
- 	/*
- 	 * Note that when transport is atomic but SCMI protocol did not
-@@ -318,6 +326,9 @@ scmi_clk_ops_select(struct scmi_clk *sclk, bool atomic_capable,
- 						 &val, NULL, false);
- 		if (!ret)
- 			feats_key |= BIT(SCMI_CLK_DUTY_CYCLE_SUPPORTED);
-+
-+		if (oem_data && oem_data->query_ext_oem_feats)
-+			oem_data->query_ext_oem_feats(sclk->ph, sclk->id, &feats_key);
- 	}
- 
- 	if (WARN_ON(feats_key >= db_size))
-@@ -375,6 +386,8 @@ static int scmi_clocks_probe(struct scmi_device *sdev)
- 	clk_data->num = count;
- 	hws = clk_data->hws;
- 
-+	scmi_clk_oem_init(sdev);
-+
- 	transport_is_atomic = handle->is_transport_atomic(handle,
- 							  &atomic_threshold_us);
- 
-@@ -406,7 +419,7 @@ static int scmi_clocks_probe(struct scmi_device *sdev)
- 		 * to avoid sharing the devm_ allocated clk_ops between multiple
- 		 * SCMI clk driver instances.
- 		 */
--		scmi_ops = scmi_clk_ops_select(sclk, transport_is_atomic,
-+		scmi_ops = scmi_clk_ops_select(sdev, sclk, transport_is_atomic,
- 					       atomic_threshold_us,
- 					       scmi_clk_ops_db,
- 					       ARRAY_SIZE(scmi_clk_ops_db));
-diff --git a/drivers/clk/clk-scmi.h b/drivers/clk/clk-scmi.h
-index 6ef6adc77c836..d7f63f36c56d1 100644
---- a/drivers/clk/clk-scmi.h
-+++ b/drivers/clk/clk-scmi.h
-@@ -7,6 +7,7 @@
- #define __SCMI_CLK_H
- 
- #include <linux/bits.h>
-+#include <linux/clk-provider.h>
- #include <linux/scmi_protocol.h>
- #include <linux/types.h>
- 
-@@ -19,6 +20,7 @@ enum scmi_clk_feats {
- 	SCMI_CLK_RATE_CTRL_SUPPORTED,
- 	SCMI_CLK_PARENT_CTRL_SUPPORTED,
- 	SCMI_CLK_DUTY_CYCLE_SUPPORTED,
-+	SCMI_CLK_EXT_OEM_SSC_SUPPORTED,
- 	SCMI_CLK_FEATS_COUNT
- };
- 
-@@ -37,4 +39,13 @@ struct scmi_clk {
- 
- extern const struct scmi_clk_proto_ops *scmi_proto_clk_ops;
- 
-+struct scmi_clk_oem {
-+	int (*query_ext_oem_feats)(const struct scmi_protocol_handle *ph,
-+				   u32 id, unsigned int *feats_key);
-+	int (*set_spread_spectrum)(struct clk_hw *hw,
-+				   const struct clk_spread_spectrum *ss_conf);
-+};
-+
-+int scmi_clk_oem_init(struct scmi_device *dev);
-+
- #endif
+> --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+> +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+
+> @@ -152,6 +156,13 @@ pins_sdio1_clk: pins-sdio1-clk {
+>                 drive-strength = <12>;
+>         };
+>
+> +       pins_spi1: pins-spi1 {
+> +               pinmux = <RZN1_PINMUX(156, RZN1_FUNC_SPI0_M)>,
+> +                        <RZN1_PINMUX(157, RZN1_FUNC_SPI0_M)>,
+> +                        <RZN1_PINMUX(158, RZN1_FUNC_SPI0_M)>,
+> +                        <RZN1_PINMUX(159, RZN1_FUNC_GPIO)>;
+> +       };
+> +
+>         pins_uart2: pins-uart2 {
+>                 pinmux = <RZN1_PINMUX(105, RZN1_FUNC_UART2)>,
+>                          <RZN1_PINMUX(106, RZN1_FUNC_UART2)>,
+> @@ -168,6 +179,20 @@ &sdio1 {
+>         status = "okay";
+>  };
+>
+> +&spi1 {
+> +       pinctrl-0 = <&pins_spi1>;
+> +       pinctrl-names = "default";
+
+Please document that this depends on SW2-4 being OFF.
+
+> +       status = "okay";
+> +
+> +       cs-gpios = <&gpio2a 31 GPIO_ACTIVE_LOW>;
+
+It doesn't work with hardware chip-select?
+
+> +
+> +       fram: fram@0 {
+> +               compatible = "cypress,fm25", "atmel,at25";
+> +               reg = <0>;
+> +               spi-max-frequency = <12500000>;
+
+The actual FRAM part seems to support 40 MHz, but that may
+be limited by the board wiring.
+
+> +       };
+> +};
+> +
+>  &switch {
+>         pinctrl-0 = <&pins_eth1>, <&pins_eth2>, <&pins_eth3>, <&pins_eth4>,
+>                     <&pins_mdio1>;
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-2.34.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
