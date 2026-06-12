@@ -1,167 +1,139 @@
-Return-Path: <devicetree+bounces-311006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311003-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bwgLMwQaLGrBLQQAu9opvQ
-	(envelope-from <devicetree+bounces-311006-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:39:00 +0200
+	id QTQuKCcZLGqBLQQAu9opvQ
+	(envelope-from <devicetree+bounces-311003-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:35:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A08D67A41A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:39:00 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96E8767A3C0
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:35:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311006-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311006-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=i1ZdFsrm;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311003-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311003-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F24F530F5A09
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 14:38:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BCC7430055FF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 14:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FAE1331EBF;
-	Fri, 12 Jun 2026 14:38:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A449F36BCD7;
+	Fri, 12 Jun 2026 14:32:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D5D3033F8
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 14:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F6AB3033F8;
+	Fri, 12 Jun 2026 14:32:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781275138; cv=none; b=Jb6bVmuimdxTlv+PWLWe3sQcjKAuF8LHK11E3qZbH5alNa8SU45xXTX+tQI98D5Ur/nhhy0jH/mTxCN8AKg+qAHIPlUq0ksmPoVVL2IUfTVmx8AHfrw0X8ruNdqGJoC3xB+LlbIHqxFQGP/Eb/mpeMqpr2oaLLtOn/iWK5gKZL0=
+	t=1781274737; cv=none; b=nm9iwNdZciT7IV9zeYN57omD/52Uxn8jLV4Bt8xHmA5h1ahsZ4Ypgf27cpULfxSQXXoZr8kwST8R57bYC2rVyKx9ejuZ/F+OCeCKfhel05JkFxoxjbSquHqMeS3L7Dhw10mD5sXTw5hcKBxU+i1JNWpwTcriZkgN0RV427kzlcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781275138; c=relaxed/simple;
-	bh=hA3EQ6NGh82+AwwxLF9pQfeChp6zhM8Sbh2F0J21T9I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=g+0bhovULHcRUu64fUjj0G5kMNnsrmQwF9xB95TUHR4dFZZBOeyjGSVwlkPjS+NSDJ58wz4vanhR+kT+bWPdGSsxBsRxhbi4/ZhejEWjeJM6i920Zwg59mDlvcVD6PBh/pb4LPLAKhGbbXOQgmVFEn8n5ClyaqTTUljySasMhnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.43
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-bec423a5265so198420866b.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 07:38:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781275135; x=1781879935;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7ctV4WQ6XNHzaDQh531DnVbwuxtW2dAJDIPTs6QoUPY=;
-        b=l30DPs6n4Lke8ZgPBSjQaxuq45aYXDEpJDizf9BHMWV8UNYabVXk4Jm+y5YBcBQ13/
-         217CB8O8V40aGfmf7gMLUySoS4h94s7msOY0fnzz2lv5v7AT4QjXDPX8viPu08FsGZYI
-         pIQ4nbV8eyBGhsqwOr6VRCLRdf9YK3XXN9GrGibjg6XRfRs7LXh/9UcSp3IHrTMuz43e
-         R0sI7Sa99Q66XDEa3ZDmJTRGhA/r+f4pI/ejuXaiaCG5POlGw87pvubJEJY2BaMXdDXN
-         kMJdHFayen9unlBcdyYhjDK/3zXnmdv0wCuGyC65hgp9mX5el5wvFkylPMEYA+HEKgOc
-         kJaQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8GUxVjoGb+o7atL3rNsM8lljVQe9xalV2jCLkGGt/UikIpC2g4IcANg4C/T851OD+R6mPw1slkPi18@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVi7e1y9UbPkR3BxRE5d24DQMoCCAB3LZmPsPYEWsmzfkIH0/R
-	vMBkgYokrXgYvOHwsonEWpGLMznfyF6ZlMW1D0MLhLpay8ZbV6I048bPUe8m7WnWD/0=
-X-Gm-Gg: Acq92OFKvMGl8aATFbHjeeTsRwF+7cVxGIdPX9N8IjmlE/G8YY4G1Vvdd2QopwU0KQ2
-	brMkwWyQYBTExq4Y562q1yh1CZN997WkuSTTFFzDyVVek38Ml7IO25O2BhDNtlUl3mR1VD+ONz9
-	1mKHgZymUB3S8JQu9E58CC4B71hYmnbE1uaK8aA/4SsZ1VgY+0kp92P/d5ibb4oNsbI6SVXn3Qt
-	NfiU6IP0DIIE+xqdXXKYwt5Mp+ledS8MfE/SjzIuLTQhNMX4FIzWyDlSsGx+K4T7cVOif3DLZ9Y
-	DUz36HIvcqEX+5pDgrd0iZdWwCQ1xdmCCIeq57IwVLH9xKQszv9S6sOms+TcADRvpX1OEle6cJ9
-	fXmEY9VPddrjZlWYtKVJlfn5tJ0OEtCypd0NYczigzBhpufANWqAFeI6e5Pg2etypY8+/xtfOkf
-	e8uI+MowcLCQfvNBWc8+fPuv3SkWhNKVt3TqFhOSuud13hEF3BxbEDCU+Rtd1OtKb9mn884No=
-X-Received: by 2002:a17:907:266a:b0:bed:4f1f:bf9f with SMTP id a640c23a62f3a-bfe27e0abf3mr95343266b.5.1781275135080;
-        Fri, 12 Jun 2026 07:38:55 -0700 (PDT)
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com. [209.85.208.46])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bfdb7b6df46sm112636766b.31.2026.06.12.07.38.53
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jun 2026 07:38:54 -0700 (PDT)
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-68f36e1663cso1783123a12.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 07:38:53 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/1z54hGr4mfvN5BpNH0lgrWEoUKiCfw4lsRAjOfAG9gpo6E79nqSbBo5uqfkPASas29kiTU4Kpy8ki@vger.kernel.org
-X-Received: by 2002:a05:6402:3213:b0:691:afc9:f59c with SMTP id
- 4fb4d7f45d1cf-693784eb0abmr1551827a12.1.1781274704600; Fri, 12 Jun 2026
- 07:31:44 -0700 (PDT)
+	s=arc-20240116; t=1781274737; c=relaxed/simple;
+	bh=tthL31lTK/Jt35GCWLRyLJ3gRCW6hyZ/B/sIeYrQLuE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YvLgV+BVssl4wQiyfSVERhS5N5qW91A2luung1upMKo1SGWK8dOZd23jS0JD+yoP56wJBhZnj0Xxm+HR8dsFKVDpPlys5Z6ZoX0XCOj9Z92bp6pZtfMCmoKL96ppBnsS3GOi7NeyaY6yLROC6JQgvqHYsFobi/jbL031d0N8Dn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i1ZdFsrm; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AED51F000E9;
+	Fri, 12 Jun 2026 14:32:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781274736;
+	bh=XaU+1rvSR/F7XjgGlqq7A+8Ufs+EKuf/XXOYBHAMljo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=i1ZdFsrmgYwZOab0f2Gh48s1gQfEsI4qP59TxS8eY5OYXT05tC3YH2MahwLJErBYJ
+	 019KX3MiiokOAHxoNFCd+xgrShlxZ5knZD1Vkca2q4Zc0CJ0svo9kSd3pTTpEM0k/w
+	 mzyWNul0TUMMXRhvwuN1dAOtTbC9PDKxVXl8fsZM862vsvt9GioiH3cz7q86oj0TpT
+	 V9MopHdEujJ2kcBnEdh9aoxFYYll1PhENJuqQysSvJHU1WnPZiqcVtGApbm19sckwX
+	 qgz6Obs3rnAEMin43ark8FL3KrQEBou85wytKJ52Y29lN0+hxovxseG4S6lkZZqQZb
+	 iP/sV0DoKmt0Q==
+Date: Fri, 12 Jun 2026 09:32:15 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pci@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	devicetree@vger.kernel.org,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH] dt-bindings: PCI: mediatek-gen3: Allow memory-region for
+ restricted DMA buffer
+Message-ID: <178127473464.974137.12177454800671069501.robh@kernel.org>
+References: <20260508063633.3894348-1-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260609113836.45079-1-phucduc.bui@gmail.com> <20260609113836.45079-3-phucduc.bui@gmail.com>
- <CAMuHMdXku0BVRgwWWv1vNccKpRbvTu+1b0TjYacNJH94XBDOGg@mail.gmail.com>
- <CAABR9nHFHWFeEaaYE6X9fqt_Zb-3pF=jJbHQpsiBTgkS5LyTLQ@mail.gmail.com>
- <CAMuHMdWsLeEzjCPHEa=nY-kC0n34RHL3kUMW30vneUajCWwTRg@mail.gmail.com> <CAABR9nG2kHH3=gkd0H+vhGZJtvkHLA7YMpoWt+p+XtdNV+oe=A@mail.gmail.com>
-In-Reply-To: <CAABR9nG2kHH3=gkd0H+vhGZJtvkHLA7YMpoWt+p+XtdNV+oe=A@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 12 Jun 2026 16:31:29 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVQhVQvvnh-aJxw64_h6jOcfaQFk6_Sez-T9aNV30DfRA@mail.gmail.com>
-X-Gm-Features: AVVi8CdbLq3XktR5SNY6UI5yuB8PMlJ_y93ZpORIxTU_5bqPrPMevfVX5_O9YCY
-Message-ID: <CAMuHMdVQhVQvvnh-aJxw64_h6jOcfaQFk6_Sez-T9aNV30DfRA@mail.gmail.com>
-Subject: Re: [PATCH v6 02/11] ARM: dts: renesas: r8a7740: Add clocks for FSI
-To: Bui Duc Phuc <phucduc.bui@gmail.com>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Mark Brown <broonie@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260508063633.3894348-1-wenst@chromium.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-2.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	TAGGED_FROM(0.00)[bounces-311006-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:phucduc.bui@gmail.com,m:kuninori.morimoto.gx@renesas.com,m:broonie@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:phucducbui@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-311003-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[renesas.com,kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS(0.00)[m:wenst@chromium.org,m:linux-mediatek@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:lpieralisi@kernel.org,m:conor+dt@kernel.org,m:ryder.lee@mediatek.com,m:mani@kernel.org,m:bhelgaas@google.com,m:kwilczynski@kernel.org,m:krzk+dt@kernel.org,m:linux-pci@vger.kernel.org,m:matthias.bgg@gmail.com,m:devicetree@vger.kernel.org,m:angelogioacchino.delregno@collabora.com,m:conor@kernel.org,m:krzk@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,kernel.org,mediatek.com,google.com,gmail.com,collabora.com];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,vger.kernel.org:from_smtp,linux-m68k.org:from_mime,linux-m68k.org:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,chromium.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2A08D67A41A
+X-Rspamd-Queue-Id: 96E8767A3C0
 
-Hi Phuc,
 
-On Fri, 12 Jun 2026 at 14:54, Bui Duc Phuc <phucduc.bui@gmail.com> wrote:
-> > According to my schematics (RevA), R120 is not populated, but R250 is.
-> > So the 12.288 MHz clock is fed to both the FSIACK-pin of R-Mobile A1,
-> > and the MCLK-pin of the WM8978 codec.
-> > Which revision of the schematics and board do you have?
-> >
->
-> Oh, sorry, I misread it. You're right, mine is also Rev A, and R120 is
-> not populated, but R250 is.
->
-> > I haven't located R120 and R250 yet, so I don't know which
-> > configuration my board has.
->
-> Please flip the board over; these resistors are located on the bottom
-> side of the board rather than the top.
+On Fri, 08 May 2026 14:36:32 +0800, Chen-Yu Tsai wrote:
+> On some SoCs without an IOMMU behind the PCIe controller, the PCIe
+> controller memory access could be limited to a small region by the
+> firmware configuring a memory protection unit. This memory region
+> must be assigned to the PCIe controller so that the OS knows to
+> use that region. Otherwise PCIe devices would not work properly.
+> 
+> Allow the memory-region property with one item pointing to a
+> restricted DMA buffer.
+> 
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+> This patch compliments another patch that moved the memory-region from
+> the PCIe device to the PCIe controller [1].
+> 
+> [1] https://lore.kernel.org/all/20260430120725.241779-1-wenst@chromium.org/
+> 
+>  Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-Thanks, confirmed.
-Have a nice weekend!
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
