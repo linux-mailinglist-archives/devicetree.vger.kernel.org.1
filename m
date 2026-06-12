@@ -1,420 +1,156 @@
-Return-Path: <devicetree+bounces-310919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310921-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id eVTcBhL5K2pUIwQAu9opvQ
-	(envelope-from <devicetree+bounces-310919-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 14:18:26 +0200
+	id iG80FTb9K2prJAQAu9opvQ
+	(envelope-from <devicetree+bounces-310921-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 14:36:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7B916794F7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 14:18:25 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBFCB679604
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 14:36:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Cj7yS2PP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310919-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310919-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=linaro.org header.s=google header.b=UruNWSys;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310921-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310921-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 24AD63006680
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 12:18:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 82E94313072B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 12:36:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 330AE382F28;
-	Fri, 12 Jun 2026 12:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C983D3482;
+	Fri, 12 Jun 2026 12:36:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B924E36C0CD;
-	Fri, 12 Jun 2026 12:18:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7040939C017
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 12:36:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781266703; cv=none; b=t524Pd2AO9cDDMBO7mWsSIj+ioPS6uTjuSNzyq6L5qWbqJipmytRB4Fr6uoywRyJPEq4wBr6QQ9uXTNXrIcz/kXgUq1HCtdN/cmKjtjfjJJXhqlbs3ViigSHEFWCVvpdfXWRiZBpx0eBfACNR4VAS2m9axRPsRi/seI+cLTogfA=
+	t=1781267763; cv=none; b=C2ZzQZ8a7kYorqXsbWVHRc+xDM1brFkdu/eeCbAHvUppNh/wIwsAM+HDvBnUtYfQRMq9pKpvg+mwtSPp/cRwBT4MAOJLDTeoj5+GewFCQVCCpmCmna9Qnu1LVB5toqiF8DdL4BrXVwaTHJeKPygAxM+cYfy2bIZEEvrPUSq+VdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781266703; c=relaxed/simple;
-	bh=NdkLPJlx7KrJQHOeEhzrSFgpAA/ht/yoeEQ+ehkT2G0=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=F9wzRf+sRk0Gnat6boUxN/QqG7yr+I41X3d1Pdisj0PlaifzPuSlWlf3VOxPwMcGDKnyce6nEht+GJw7kAOsrhDZmpdXUjmJpEE+BHXKcrdnx74pyb/pfOwFgd8We+sD9kKtzHSXhJgkOulHe5qKdFgZOIeTXhsdnpXIeiLZGe8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cj7yS2PP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 226781F00A3A;
-	Fri, 12 Jun 2026 12:18:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781266701;
-	bh=hEPSysnu3BtUjudGXNksTHjJ4FRqtTwcysb49YgThoo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Cj7yS2PPamWKySGwvDtcy64J7bn1eun53cGt0G7M8Hb/H+Z1sgImwr4nQLJSlSU3H
-	 r++c3nN7MNk3AxC7f89NY9KOSxfGbDUfKTmZsyxpZefhdIFCL4WVAg5nVueamw9lpC
-	 YwVYAcjZ7wtfxkQpRHL+8IQw+882nSi3mA/nn3KPBw14FCFIgYwqwJp8El33HBkefS
-	 pHFmxM0NjIYvoP4CkMDt4F7UQ8HZYbFlyEQm3PTZz7FeDoVeAN6OrFLI3Qzg47RdEK
-	 aL561VAtcxQvazu5TW884k1Empqc59s+NrudUHJKiqZd4WuEUveDb7ElFYSh9aNuGh
-	 JjE9C3CYyAO1g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 5/9] drm/imx: Add support for i.MX94 DCIF
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Laurentiu Palcu" <laurentiu.palcu@oss.nxp.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, imx@lists.linux.dev, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, Frank.Li@kernel.org
-In-Reply-To: <20260612-dcif-upstreaming-v9-5-8d0ff89aa3c5@oss.nxp.com>
-References: <20260612-dcif-upstreaming-v9-5-8d0ff89aa3c5@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 12 Jun 2026 12:18:20 +0000
-Message-Id: <20260612121821.226781F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1781267763; c=relaxed/simple;
+	bh=vD5qLfyk0vIHFZ/ccv/arbsN9b2IE5ZmgWlrJOudNf0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TsakzdW0Uv8I524RO1Y25t4qnXm7W+adGRQOOuTYbxg5Cc6jN/S4XDQmFTJrKSGKIfLY0OwCCFviNqoQKUaGhMzy08LV+9JQ615mDcboToAl1rBaJXY1PKYE08MRzikrZb6jLwhKBzkcbmSniPZbsgHERY+a1v+ky2721cjwhEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UruNWSys; arc=none smtp.client-ip=209.85.167.49
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5aa61284d58so112436e87.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 05:36:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1781267761; x=1781872561; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rK4UXsAg+++fA1AFGdqbhoeWfRkIvD32qkyOSrFCeU8=;
+        b=UruNWSyso72GgRwUer/d0IA52/3FDaRa+oq9piPJsQ68nVSYkcwMrvn46DSAytoRIM
+         gurvHitgdp24aLpDDlPHzN6oo9Cm2pSmfOMq95ByO8gH3VGAd33EPEPqamFiUR7wxgXs
+         qTlSdxLIaqA4KaIdaGA8RMwdC4FrNFM1v+whZPs5ag2Ake0KgQVzSDVLY8KoA6ojkZHT
+         WnjHhOn1c03yEJLgdmjeT7rLkYFpPTnQc+dcHyNJPfyOxvI3bCpW/zYLLp9ZpQEer7Yk
+         Uwuqz5L1k8ITCxENu9qbBNEICa4B/vwKfnPgplOm17M+DoyM8nEHecqmjuzsm1anhJ0o
+         n0ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781267761; x=1781872561;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rK4UXsAg+++fA1AFGdqbhoeWfRkIvD32qkyOSrFCeU8=;
+        b=SG2b8W6ujsa89olrfNxGmeC3jSA2QMuY9MJSrJuE1KwuMg+iI2CY8idqrZ3KWIluWy
+         XAkX4ViUWhU2AuX4XRRKyR2nNngnGatPMv4enFasbSY3Nbz4CBfPs/6lSKCCcWo66uqm
+         sMzOpOKwl6WSawtXPs1xTn79UhzBsS+Fl125+6yAhLSnw7yRemzMGHx9X4ALiqHuGps0
+         kKPVw2NpwNDw9k9MQ8zYTBcXa52KBO3B30MlqcISHelYbIKvHl9BwpSFTTdQIk9QiQB3
+         f55r9p9isXuXjvLzGNQV8jYEjjM0lNpxnTY6PNkuw4ai4xqqVZlGEVrfcEr7peGoJeQ2
+         8gVw==
+X-Forwarded-Encrypted: i=1; AFNElJ8+S1bWKGumOtEpQhaz7uQJDDBuekuaMt7i7b28DBPmLjNBJTURljVjLj77HW7YDAUCemEqiBc7jLUU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhuWuh2MuTzdHZ5Y2uKAGHJ4pvGh3AYHQ/s/FD2NRF+Nc4ZOFf
+	5UZEh38WlyMYQqWhzYcjJZH4IvQUE69vrWq7eqp391gGB/ZN8mJygVUBCcmZgkIk4a8=
+X-Gm-Gg: Acq92OGt131fynXSLUuY43Bgn4V62uSF4kjNsTKvJmt8VSUJvbzdCaRfhC2t2KIUwgb
+	EoYDC5W0DUNH53xVCfXTyOlUopYD3vpOBhi+UX1IHjMKtHXth3gL1OFySG0Yo1P87uQPzJIJe2+
+	VTTpUntXlraKlP1l33gJGorVGZ/iCguqPTxhBfNLraYf5ziHqEIIhcr2KiLYN8bo79mBygQ7xX1
+	I+tUhDOafRdyBdZII9bXhxKlj9Iz/W5GUH+e3M3zZFtUeQj7s5NjHbPvqGmW5rW0UfnnGyDKjhj
+	j4SE/8TRKllm6YtUPc3ehQxtzElp4mgoudWODsVTH59SKCAvVs3/YkD5YG+YM4HdkR3Jcr62A8x
+	igx9N+YbnkwmD9uaSp287hClP/kJtGMm7dUjeiZWT36Nx4yI2Mws0vWiDvNffLR3pcP6XbBn2x0
+	lgi7r7uTseYZQxN3arVj+7M7OPAuc/YieT6XZZdpROj4uiekxSlvsWdDlhdCgmsaG09F7jKgjq2
+	HeRgxJW5/Mv+DKS
+X-Received: by 2002:a05:6512:3f18:b0:5aa:6a2b:d457 with SMTP id 2adb3069b0e04-5ad2db5ddbcmr403229e87.4.1781267760523;
+        Fri, 12 Jun 2026 05:36:00 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5ad2e1a7328sm509490e87.45.2026.06.12.05.35.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jun 2026 05:35:59 -0700 (PDT)
+Message-ID: <802246ec-a020-4d98-a50c-edbf89f2c24e@linaro.org>
+Date: Fri, 12 Jun 2026 15:35:59 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] dt-bindings: clock: qcom: Add Glymur camera clock
+ controller
+To: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260517-glymur_camcc-v4-0-9d00acffdbf7@oss.qualcomm.com>
+ <20260517-glymur_camcc-v4-1-9d00acffdbf7@oss.qualcomm.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20260517-glymur_camcc-v4-1-9d00acffdbf7@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-310921-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310919-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:laurentiu.palcu@oss.nxp.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:imx@lists.linux.dev,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:Frank.Li@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:jagadeesh.kona@oss.qualcomm.com,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bryan.odonoghue@linaro.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,nxp.com:email,sashiko.dev:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,smtp.kernel.org:mid,vger.kernel.org:from_smtp]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A7B916794F7
+X-Rspamd-Queue-Id: CBFCB679604
 
-Thank you for your contribution! Sashiko AI review found 15 potential issue=
-(s) to consider:
-- [High] Read-modify-write (RMW) operations on Write-1-to-Clear (W1C) inter=
-rupt status registers cause lost interrupts.
-- [High] Module reference count underflow and use-after-free caused by unba=
-lanced `drm_bridge_put`.
-- [High] CRTC `bus_format` and `bus_flags` state is corrupted and permanent=
-ly lost during plane-only atomic updates.
-- [High] Unprotected hardware register accesses in the IRQ handler risk bus=
- errors on runtime suspended devices.
-- [High] System resume fails to enable the display because `pm_runtime_resu=
-me_and_get` is called while PM transitions are disabled.
-- [High] An unhandled pending vblank event in `dcif->event` during CRTC dis=
-able causes userspace to hang indefinitely and memory to leak.
-- [High] Unlocked access to `crtc->state` in `dcif_crc_source_parse` causes=
- a data race and potential use-after-free.
-- [High] Failure of `pm_runtime_resume_and_get` causes the atomic commit to=
- hang permanently.
-- [High] Use of sleeping functions and inappropriate lock guards in atomic =
-context paths.
-- [High] Ignoring the return value of `drm_crtc_vblank_get()` causes vblank=
- reference count underflow on failure.
-- [High] Disabling Layer 0 without triggering `SHADOW_LOAD_EN` causes an ab=
-rupt hardware stop and AXI bus lockup risks.
-- [High] `drm_crtc_vblank_on()` is called before software reset, permanentl=
-y breaking vblank interrupts.
-- [Medium] Dynamic plane color encoding and color range updates are silentl=
-y ignored.
-- [Medium] Transitions between active CRC sources (e.g., updating ROI coord=
-inates) are ignored.
-- [Medium] Data race (TOCTOU) on `dcif->crc_is_enabled` causes garbage CRC =
-reads.
---
+On 5/17/26 20:33, Jagadeesh Kona wrote:
+> Add device tree bindings for the camera clock controller on
+> Qualcomm Glymur SoC.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
 
-commit 4328341d625e1f0fbf8be8ca733a73ea0e76115e
-Author: Sandor Yu <sandor.yu@nxp.com>
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-drm/imx: Add support for i.MX94 DCIF
-
-This commit introduces DRM support for the i.MX94 Display Control
-Interface (DCIF). It includes core CRTC, plane, and KMS integration,
-along with CRC generation support.
-
-> diff --git a/drivers/gpu/drm/imx/dcif/dcif-crc.h b/drivers/gpu/drm/imx/dc=
-if/dcif-crc.h
-> --- /dev/null
-> +++ b/drivers/gpu/drm/imx/dcif/dcif-crc.h
-[ ... ]
-> +static inline bool enable_dcif_crc_needed(struct dcif_crtc_state *new_dc=
-state,
-> +					  struct dcif_crtc_state *old_dcstate)
-> +{
-> +	return old_dcstate->crc.source =3D=3D DCIF_CRC_SRC_NONE &&
-> +	       new_dcstate->crc.source !=3D DCIF_CRC_SRC_NONE;
-> +}
-
-[Severity: Medium]
-Does this prevent updates when transitioning directly between two active
-CRC configurations? If userspace modifies the ROI region while keeping the
-source active, both helpers will return false, meaning the hardware might
-continue capturing the old ROI coordinates.
-
-> diff --git a/drivers/gpu/drm/imx/dcif/dcif-crc.c b/drivers/gpu/drm/imx/dc=
-if/dcif-crc.c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/imx/dcif/dcif-crc.c
-[ ... ]
-> +void dcif_crc_source_disable(struct dcif_dev *dcif, int ncrc)
-> +{
-[ ... ]
-> +	regmap_clear_bits(dcif->regmap, DCIF_CRC_CTRL, DCIF_CRC_CTRL_CRC_EN(ncr=
-c));
-> +
-> +	dcif->crc_is_enabled =3D false;
-> +}
-
-[Severity: Medium]
-Is there a data race on the crc_is_enabled flag here? This flag is modified
-without holding the event_lock, while the IRQ handler evaluates it with the
-lock held. This could allow the module to power off while the IRQ handler
-attempts to read the disabled register, generating spurious payload data.
-
-[ ... ]
-> +static int dcif_crc_source_parse(struct drm_crtc *crtc, const char *sour=
-ce_name,
-> +				 enum dcif_crc_source *s, struct drm_rect *roi)
-> +{
-> +	static const char roi_prefix[] =3D "roi:";
-> +
-> +	if (!source_name) {
-> +		*s =3D DCIF_CRC_SRC_NONE;
-> +	} else if (!strcmp(source_name, "auto")) {
-> +		struct drm_display_mode *mode =3D &crtc->state->adjusted_mode;
-
-[Severity: High]
-Can this unlocked access to the atomic state lead to a use-after-free? This
-parser is called before acquiring any connection locks. A concurrent atomic
-commit could swap and free the atomic state while this thread is referencing
-the adjusted_mode.
-
-> diff --git a/drivers/gpu/drm/imx/dcif/dcif-crtc.c b/drivers/gpu/drm/imx/d=
-cif/dcif-crtc.c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/imx/dcif/dcif-crtc.c
-[ ... ]
-> +static void dcif_disable_controller(struct dcif_dev *dcif)
-> +{
-> +	u32 reg;
-> +	int ret;
-> +
-> +	/* Disable layer 0 */
-> +	regmap_clear_bits(dcif->regmap, DCIF_CTRLDESC0(0), DCIF_CTRLDESC0_EN);
-
-[Severity: High]
-Does clearing the enable bit without also triggering the shadow load bit
-leave the layer hardware active? The hardware typically ignores the register
-change without the shadow load bit, meaning it will continue fetching data
-via DMA. Severing the display controller abruptly while DMA is active could
-risk AXI bus lockups.
-
-[ ... ]
-> +static void dcif_crtc_queue_state_event(struct drm_crtc *crtc)
-> +{
-> +	struct dcif_dev *dcif =3D crtc_to_dcif_dev(crtc);
-> +
-> +	scoped_guard(spinlock_irq, &crtc->dev->event_lock) {
-> +		if (crtc->state->event) {
-> +			WARN_ON(drm_crtc_vblank_get(crtc));
-> +			WARN_ON(dcif->event);
-> +			dcif->event =3D crtc->state->event;
-
-[Severity: High]
-What happens if drm_crtc_vblank_get returns an error? The code continues to
-queue the event without having incremented the vblank reference count. When
-the interrupt handler later processes the event and calls the corresponding
-put function, it would cause a reference count underflow.
-
-[ ... ]
-> +static void dcif_crtc_query_output_bus_format(struct drm_crtc *crtc,
-> +					      struct drm_crtc_state *crtc_state)
-> +{
-> +	struct dcif_crtc_state *dcif_state =3D to_dcif_crtc_state(crtc_state);
-> +	struct drm_bridge *bridge __free(drm_bridge_put) =3D NULL;
-
-[Severity: High]
-Will the cleanup attribute here cause a use-after-free? The bridge is
-obtained via drm_bridge_chain_get_first_bridge, which does not increment
-the module reference count. When the function returns, drm_bridge_put will
-decrement a reference that was never acquired, potentially allowing the
-bridge module to unload prematurely.
-
-> +	struct drm_bridge_state *bridge_state;
-> +
-> +	dcif_state->bus_format =3D MEDIA_BUS_FMT_RGB888_1X24;
-> +	dcif_state->bus_flags =3D 0;
-> +
-> +	bridge =3D dcif_crtc_get_bridge(crtc, crtc_state);
-> +	if (!bridge)
-> +		return;
-
-[Severity: High]
-Could this overwrite destroy the existing bus_format and bus_flags during
-a plane-only update? In a plane update, the bridge is not part of the atomic
-commit state, causing the bridge state query below to return NULL. Returning
-early leaves the state permanently overwritten with default values.
-
-[ ... ]
-> +static void dcif_crtc_atomic_enable(struct drm_crtc *crtc,
-> +				    struct drm_atomic_commit *state)
-> +{
-[ ... ]
-> +	/* enable power when we start to set mode for CRTC */
-> +	ret =3D pm_runtime_resume_and_get(drm->dev);
-> +	if (ret < 0) {
-> +		drm_err(drm, "failed to resume DCIF, ret =3D %d\n", ret);
-> +		return;
-> +	}
-
-[Severity: High]
-Is pm_runtime_resume_and_get safe to call here? This is an atomic context
-path during non-blocking commits, and this PM function can sleep.
-
-Additionally, if this path executes during system resume, runtime PM
-transitions are disabled and it will return an error, leaving the display
-blanked.
-
-If it does return early, the pending event in crtc->state->event is never
-consumed. The DRM core expects the driver to consume the event, and
-abandoning it here will cause the atomic commit to hang indefinitely
-waiting for a flip completion.
-
-> +	dcif->crtc_pm_enabled =3D true;
-> +
-> +	drm_crtc_vblank_on(crtc);
-> +
-> +	dcif_crtc_mode_set_nofb(crtc_state, plane_state);
-
-[Severity: High]
-Will the software reset performed inside dcif_crtc_mode_set_nofb destroy the
-vblank interrupt enablement? Since drm_crtc_vblank_on is called right before
-the reset, the hardware state and interrupt enable bits will be cleared,
-permanently breaking vblanks.
-
-[ ... ]
-> +static void dcif_crtc_atomic_disable(struct drm_crtc *crtc,
-> +				     struct drm_atomic_commit *state)
-> +{
-[ ... ]
-> +	if (dcif->crtc_pm_enabled) {
-> +		dcif->crtc_pm_enabled =3D false;
-> +		pm_runtime_put_sync(drm->dev);
-> +	}
-> +
-> +	scoped_guard(spinlock_irq, &crtc->dev->event_lock) {
-> +		if (crtc->state->event && !crtc->state->active) {
-> +			drm_crtc_send_vblank_event(crtc, crtc->state->event);
-> +			crtc->state->event =3D NULL;
-> +		}
-> +	}
-> +}
-
-[Severity: High]
-Similar to the enable path, pm_runtime_put_sync is a sleeping function
-called in an atomic context.
-
-Also, does the use of the spinlock_irq scoped guard here cause problems?
-When exiting the scoped guard, it unconditionally re-enables hardware
-interrupts, which breaks the caller's atomic execution context.
-
-Finally, if a non-blocking commit queued an event into dcif->event, it
-seems to be ignored here. If the hardware interrupts are turned off, the
-pending event in dcif->event is stranded and never signaled, leaving
-userspace blocked.
-
-[ ... ]
-> +static int dcif_crtc_enable_vblank(struct drm_crtc *crtc)
-> +{
-> +	struct dcif_dev *dcif =3D crtc_to_dcif_dev(crtc);
-> +	int domain =3D dcif->cpu_domain;
-> +
-> +	/* Clear and enable VS_BLANK IRQ */
-> +	regmap_set_bits(dcif->regmap, DCIF_IS0(domain), DCIF_INT0_VS_BLANK);
-> +	regmap_set_bits(dcif->regmap, DCIF_IE0(domain), DCIF_INT0_VS_BLANK);
-
-[Severity: High]
-Does using a read-modify-write helper on a Write-1-to-Clear register cause
-lost interrupts? regmap_set_bits will read the register, OR the new bit, and
-write it back, which inadvertently clears any already pending interrupts
-before the handler can process them. W1C registers usually need to be
-written directly.
-
-[ ... ]
-> +static void dcif_crtc_disable_vblank(struct drm_crtc *crtc)
-> +{
-> +	struct dcif_dev *dcif =3D crtc_to_dcif_dev(crtc);
-> +	int domain =3D dcif->cpu_domain;
-> +
-> +	/* Disable and clear VS_BLANK IRQ */
-> +	regmap_clear_bits(dcif->regmap, DCIF_IE0(domain), DCIF_INT0_VS_BLANK);
-> +	regmap_clear_bits(dcif->regmap, DCIF_IS0(domain), DCIF_INT0_VS_BLANK);
-> +}
-
-[Severity: High]
-The same applies here. regmap_clear_bits will write a 1 to all pending
-interrupts while writing a 0 to the target bit, improperly clearing unrelat=
-ed
-interrupts and failing to clear the target bit.
-
-[ ... ]
-> +irqreturn_t dcif_irq_handler(int irq, void *data)
-> +{
-> +	struct drm_device *drm =3D data;
-> +	struct dcif_dev *dcif =3D to_dcif_dev(drm);
-> +	int domain =3D dcif->cpu_domain;
-> +	u32 stat0, stat1, crc;
-> +
-> +	regmap_read(dcif->regmap, DCIF_IS0(domain), &stat0);
-
-[Severity: High]
-Is it safe to read hardware registers here without verifying the power
-management active state? If the device is in runtime suspend and its clocks
-are turned off, a spurious interrupt could trigger this handler, and
-accessing unclocked registers can cause bus faults or system lockups. Should
-this be protected with pm_runtime_get_if_active?
-
-> diff --git a/drivers/gpu/drm/imx/dcif/dcif-plane.c b/drivers/gpu/drm/imx/=
-dcif/dcif-plane.c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/imx/dcif/dcif-plane.c
-[ ... ]
-> +static int dcif_plane_atomic_check(struct drm_plane *plane, struct drm_a=
-tomic_commit *state)
-> +{
-[ ... ]
-> +	/*
-> +	 * Force CRTC mode change if framebuffer stride or pixel format have ch=
-anged.
-> +	 */
-> +	if (plane->type =3D=3D DRM_PLANE_TYPE_PRIMARY && old_fb &&
-> +	    (fb->pitches[0] !=3D old_fb->pitches[0] || fb->format->format !=3D =
-old_fb->format->format))
-> +		crtc_state->mode_changed =3D true;
-
-[Severity: Medium]
-Will dynamic updates to plane color encoding or color ranges be silently
-ignored? The hardware CSC coefficients are programmed during a full modeset,
-but this check does not flag a mode change if only the color properties are
-modified.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260612-dcif-upstr=
-eaming-v9-0-8d0ff89aa3c5@oss.nxp.com?part=3D5
+-- 
+Best wishes,
+Vladimir
 
