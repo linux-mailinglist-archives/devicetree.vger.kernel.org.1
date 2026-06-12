@@ -1,210 +1,234 @@
-Return-Path: <devicetree+bounces-310778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310780-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SswJJvvBK2rqEQQAu9opvQ
-	(envelope-from <devicetree+bounces-310778-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:23:23 +0200
+	id EST8MnzCK2oYEgQAu9opvQ
+	(envelope-from <devicetree+bounces-310780-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:25:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0ADE677C4E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:23:22 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67D2D677CAF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:25:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=ahj9TDTG;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=SU9NCr3C;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310778-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310778-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310780-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310780-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 78574301A1C0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:23:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D49233012214
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CC5734252C;
-	Fri, 12 Jun 2026 08:23:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E43034252C;
+	Fri, 12 Jun 2026 08:25:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D412337269F
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 08:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28F1363C64
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 08:25:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781252600; cv=none; b=Zx4qaHSdNM8dQQqQ9IQa1Mid3kWX/WFuiDUfkDT+wXuqfLJKsjFqZ4MFvsruC+y8Kzl0uev49gL3oqoVc/sAl4+Bds9IYTKdnpe3Se1rDIAWc9cHUD5netn+TQFktIzvm2hvMg1s2xY6EsKSGtQkvCAkt+Rn6/N7BZUz8JJx0EQ=
+	t=1781252728; cv=none; b=ljuTrbn7g3Vc7c3XuKdCUmiJlF2tvoEamHUm2rprwBc4cYkgYvjDKGH2IDGwJiFpePFNVWEiI6WSRVtPK5uwy2NcesIFREbCKxeWDb+nut1syMcm4AfKDFSyQH9afm7DzS9h37RLeS07UnYK67Nq9CcDNsQh8rS1QtNDhM9hnd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781252600; c=relaxed/simple;
-	bh=/Mo39LbuWvRhC9Hu0sdWS9GvhB+uezotcg/aCka+N3k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jxyjFneKlvGyM/0B9VizCftBDJpraRhO/6dpQZaQ6S0+5kdnpnyk1/vMI3nPzgJ6wTz3wCMQ5bLp053fP/3qtZQvQadqV5UAXcwXPyYjvgIsNMDYzJevCZtyEGuLS3E3YAMaSImHItwjKuHty/afvBaqbhKYplMtS8quDTSXkRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ahj9TDTG; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SU9NCr3C; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65C3C7iY2506455
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 08:23:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=9l+5o1r9S2xr00C2d7XO//P1
-	yNID3+8R7CIuRwo4Aek=; b=ahj9TDTGVJV2NF+QoThvq+WdEYD7FRyB8Am7FKmz
-	PFSCcQis8F+vYvEw0kvxJq4zn5bMg9GkQN7F43dbhPqXAS6NIzk/4X3b2x+BMiLQ
-	xl4a6Y9RWsrfDAFfFhtCTe3aJeG819fsifCVlkJxcve3R23PBHSF5ymui4WD0FCN
-	e4sR7BYGUdcbOFtWbbqWudT/g8veev394F0ecXG/hucQOrq5J2T8r7YNmF7jKiSw
-	gQSjMM0K5ntME41jL2YIegjPmOvXtuDZMU3wQ1HjHppVUbTVpA6+b8i19IkQZRwU
-	khwkfKu9vwDRmBHl2NB6PJUUynSNwB+ItXltpj8PmBnqKg==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4er1cbjpv8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 08:23:16 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-5177b8df670so12847591cf.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 01:23:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1781252596; x=1781857396; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9l+5o1r9S2xr00C2d7XO//P1yNID3+8R7CIuRwo4Aek=;
-        b=SU9NCr3C6W5S3PlXTaSix8fLvf5c/EcNbusrOlKhPSxZQOTWMuISz4ltRFipjnaMon
-         0vzDqfn8ucb7QaG7mur6ERwWlDGWWmlFISRoXSjgS9rRfkVS4ikFFdo7Fkp5+6i79Hn0
-         IpfIdOQ9ZIfWJ4VF83eUf0Jjxig/D6YCZuhAOtMMpN+rVqlgPgOG877Suz6clCrmBXU4
-         4A02b8eoX7RYTj2aYDA1iRtxIhlKEtO3arn7BNar8dYfCWp9h5l3Xm7wcNVaOaiSQeZz
-         ezqypZkLOfNnJ7lF2qz8FjOA8tDSDpwK+4fgld4uijBc+Em/nKkVJh8yuM/v1/Ar5X3t
-         huXg==
+	s=arc-20240116; t=1781252728; c=relaxed/simple;
+	bh=GBSvLNXoZdRqGrEoUil4FgbmYpylukIOLRE6JinfAl4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DU+l4rdJJNTBIWVUI1Ch4tlkQBdxC5hdURDz9X+wzktvNj48pi9UYHTjo75/lAQrGAkGzDIR44tyYEb2T9XfusztaYf0mcTxY8YAvigKOO0lEeHamt824/afpvFHUFp7yLhv0Z4lZGPt3JDc8y3LQgHDMahkDOgf00Qf0HgC//U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-6c3a36fa9edso560300137.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 01:25:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781252596; x=1781857396;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9l+5o1r9S2xr00C2d7XO//P1yNID3+8R7CIuRwo4Aek=;
-        b=pI7cyPDKP8a7spJUUZuF6EBbTEKKKqyqaJGnl+lkP2MS2lMl9GeNavS3NUcYzZRABZ
-         yGRFVGG1Y+NsS80DWgKQ62Tjh1lXVmPBJ15o2rOXz/IlSzOJiXxV44eja+gJN70yTreN
-         SZo55DsQXN0aWs6bvxsLOqYloRTB5/ZpscsJJQ6+etk111wMnBlMsTRFwUIgsOK/epVc
-         Vk8oU1tjMWDLQHcWHMsXvfqefUrulCJMtE8fzLhm3BEu4Z1WRkGqrHKMud8/RUQ23a6y
-         5OZKR9WmKWsal7A1dk7wvQV6XhKvz4NvkD4t0z+O5rD6v5Fvt3FgPBhpAhzZ/36rg3fp
-         I0cA==
-X-Forwarded-Encrypted: i=1; AFNElJ8Fv8yFU6IO+QmdQQMb57AkdkHY8egRVSK1sCD41lBQtYZouxx4/75yL5sKY0w1BCvsyrq0OZfeX1Za@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDAMDEiIANcsU6We+9/KL1lwDhtVlMJ/owyrN+hEvvXhUfQCLS
-	fWYlJbChP99KJvwUCZLPWDVq6nslKSgepNz1YR5xuB06p8VRKlNvKwWiaTiyajJRafhtXVch0uV
-	MV8R+IBBjmNC+ZegPkXeXxcFjEOLNmjiDkA6D675iNC4lDUWmlxY7NydKfj/TCMbI
-X-Gm-Gg: Acq92OE5VykM3GBTfCAN5V1BTYTjve9ruSqWLC5KAyyS1DGB4FzSY6dFiLdl1JAh4sz
-	e4WueIZyHd5ZGzjnY+LKdlIYmJrkuC01zc0zJRMlA7QyhzQW+7yc3cA/nRXvpMkQQv0hnJRRLgm
-	6SEyZUuGOMhNYEfPby6K9OkcaXv2Ne5nA4+sYdXumNPGuXVUxlItaNxn6cISo8eLB61Zz7pEPIX
-	C8QTpmKBTpwctRAclStcxqKOF1NcW9aZ5hJknAQPItO20KFeG8iGbLXuyAQl3u3cb6TkgAUIGps
-	qTx7eCLXICFreU1ZhxaoHln/EKJT7twiNOB8IDmTis+HGgIfkFsPNMtW1zEvXgrYYzA29/1dViX
-	M21M5GDoghSli28tdUBS/qbNBgO8CwQs8nYjSGvNnu97tcpC2TAWF7UhD7Wnjpq0Jb4H8v62rJ9
-	XWu9PdGmI5oJr4eXkDFEoNfpoD0nA7/0C11XI=
-X-Received: by 2002:a05:622a:24b:b0:517:87bc:9b47 with SMTP id d75a77b69052e-517fe4eee29mr20587771cf.39.1781252595922;
-        Fri, 12 Jun 2026 01:23:15 -0700 (PDT)
-X-Received: by 2002:a05:622a:24b:b0:517:87bc:9b47 with SMTP id d75a77b69052e-517fe4eee29mr20587561cf.39.1781252595548;
-        Fri, 12 Jun 2026 01:23:15 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5ad2e16a063sm340215e87.26.2026.06.12.01.23.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2026 01:23:14 -0700 (PDT)
-Date: Fri, 12 Jun 2026 11:23:12 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, kancy2333@outlook.com,
-        linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sm8650-ayaneo-pocket-s2: switch
- sound card to ayaneo,pocket-s2-sndcard
-Message-ID: <lm3yngkad2wcw3bfjcsfsmucsekmulhov4c7oygtp3e4f54fhl@lgj7gidpma57>
-References: <20260610-topic-sm8650-ayaneo-pocket-s2-wsa2-fix-v1-0-18bb19c5ca22@linaro.org>
- <20260610-topic-sm8650-ayaneo-pocket-s2-wsa2-fix-v1-3-18bb19c5ca22@linaro.org>
- <tkgqorjdnvwcx4ddgi5m7j3g6wlawxnm5ugty6y33ftwxzbvv5@uxcai2sgglfs>
- <e7e6d38b-6d80-4c75-bfbf-eef49589ddbe@linaro.org>
+        d=1e100.net; s=20251104; t=1781252724; x=1781857524;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0BNgEMp+PgvikOQYQ6jo0rnxU2ZwAS3bRz4mmCmta0M=;
+        b=E3UKxJghqKWQUyO5jZi9DSBzo7gz62YF2UguSf0dHZHmph0ZNS00ZHs0YkcmjKlDyi
+         CftECpYn+xYnI6QwkDL5gIYia1PgKRm4uYcz1nTPOAPw3+YPtP67EM2/Xy5o8gac6JFI
+         ZTP+qrfz0NRS5NXzIwR77oksQ4WsCTdncOsNiVZe4J7C4YexIt4DLG0flXcql4UEN6Md
+         ye/cFBQehHKLFvOlCwdjAfWe3MunNgAJuAq32VVuN1xZPPLAchE3nnDc/5KjyzUTkp6M
+         zaehByJ6xltOG6NAkDo4EzkyF32jdVWNt1q2AW+Bm8780f2Qal7pGshewxTpATf7Ajvh
+         xLTg==
+X-Forwarded-Encrypted: i=1; AFNElJ8qT56F/qsMQgkZgV4d+gQG3T2Xi52HwBjMFbF4jBBQdUC5YHubUXFzfJhLhafDqsj2KpsLFPfeCXN8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUTC4VvdXcu+76M4Ft0DBqaPVWtjwG7u/u+sLxiCmRSJWefU74
+	HFJznY5MzV/I7IkZY5KPBvTcZVawuqq49aSZBOJD6ZGTdM0LiaEHH4JtXS9Avdcv
+X-Gm-Gg: Acq92OFgZXK6P6s8YbU2OZ0ZU3E9lIqz+jX6UUHWw05wQzPTLcCgfBrLuRv9xNbO6+t
+	JUQWr/J9Hw910ClOSdZfGBOqKbJYXdWDO0YTfwWibTCE6m1UJyowAU8XFMbn+VVCJdaTOTfpgza
+	pgsogK+euc5///b37DOZ4J1q1SoBWwdelwqNO5YYqn8GlY6GOsptxS2L2pkE+gdiNX4ZvMrUp/2
+	aow4yrIJdK7zjJlEKsSp77Tk1T9mJmE31Q7gTBt7MqarqJNN2hfoWUdsJ5vqfgdFrXRTvLVMExM
+	l0jwfI8cGRIRdADbckgh21rK5SlGDNInhCtCIw2LwN554Vw+R8cYNJI1WE0ujwOqzDobvCKYiTh
+	1afD989G/afFX5FeSSHt8IANE6IVxxV5sUUupao7A3jyLxHlhnUIhG8ZHFP3VpE9BOyI+3OFLEJ
+	UyxReBHEjgcui920Q3rbPnZWYWqR4FSWRaW36L1wf+Ol6SoH9GpKpPBjyaWIMs
+X-Received: by 2002:a05:6102:8385:20b0:6dc:c4aa:472 with SMTP id ada2fe7eead31-71e66c8576dmr603978137.14.1781252724259;
+        Fri, 12 Jun 2026 01:25:24 -0700 (PDT)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-9667407bbaasm851292241.11.2026.06.12.01.25.22
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jun 2026 01:25:22 -0700 (PDT)
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-96387cf6335so648786241.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 01:25:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ8AXB9Qw+VBxeEsHp45HcBP2DJUHQ0EHRI6vw0yVCIS80EcZ9VrP+57hqyeIMfbXRu9LHuZwEJoZSc+@vger.kernel.org
+X-Received: by 2002:a05:6102:8354:10b0:64e:3424:cd45 with SMTP id
+ ada2fe7eead31-71e6550cd28mr656883137.9.1781252722056; Fri, 12 Jun 2026
+ 01:25:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e7e6d38b-6d80-4c75-bfbf-eef49589ddbe@linaro.org>
-X-Proofpoint-GUID: zskXQkLT16Q8Rv4eznZDJ4bHHTRpZYlm
-X-Proofpoint-ORIG-GUID: zskXQkLT16Q8Rv4eznZDJ4bHHTRpZYlm
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjEyMDA3NSBTYWx0ZWRfXxC1r75/xYDiH
- FvOAS3v0JuZ/Q9+QRZ/iL20uBiXh1ycqNvtvd0N+2sNrg+pyis8mXVa8pSHNEWcIUMuNV+imO1g
- jQFVcGMa0dXSfdft0bLOpV84aQQeoLI=
-X-Authority-Analysis: v=2.4 cv=S57pBosP c=1 sm=1 tr=0 ts=6a2bc1f4 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=MC-EAa16RIyZf_4PNl8A:9
- a=CjuIK1q_8ugA:10 a=zgiPjhLxNE0A:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEyMDA3NSBTYWx0ZWRfXwafHA5I3tNHY
- TjM3vgbV7Ita5EuB1NrMdtoX/kfdQtQIZxwPLpYc4YMuJqEhcqovgxo9tXa7IdkXAecXuXDPMhk
- oY8qvdnpBziZ7RBvuB0FvtAmy6FIKbuRkDKeZofVsCqERtWNIVtap7eEIUJHgPf1/zuPgivC0Yf
- E7VFgVZTuFKuMOySnP/fNCq8rodU14kcIHp7kkb/Xcf1qdZJLsq17Q+i21V+CkUgzTR9seqFEti
- pqlxy76SySKazXZQW2zS6BwocMREp44Tve+ZnUVtaOUOMc8n1dU+Is7gv5MvJYrCBGMdPCoZObW
- E41EzvE29WS038wMmXKmVdHVT2NFl2I1TttMk54ZnnDyulMq7sMWXWUaccihEJcJ1qBpH05YV+c
- AinGe7M9bDkmeWUDo5gykTW/LSUcbvmCM0wiwQYLp2FeqMYmHogLMeAbuPnWV8Zjsi6xllct7/E
- rhf0bYY1bHCjYgVhEfw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-12_01,2026-06-11_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0 adultscore=0 phishscore=0 bulkscore=0
- lowpriorityscore=0 priorityscore=1501 malwarescore=0 clxscore=1015
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606040000
- definitions=main-2606120075
+References: <20260612080354.57459-4-wsa+renesas@sang-engineering.com> <20260612080354.57459-5-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20260612080354.57459-5-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 12 Jun 2026 10:25:11 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdW6tup=MKtoJBjU1u-3QW+S4zAwrKKngMNy9bqVkgpTFg@mail.gmail.com>
+X-Gm-Features: AVVi8CclvQe54KnQjvARQQ5gtHuWL5zZjaw84bM3DVCNJETR3y--hTHuieZNGgE
+Message-ID: <CAMuHMdW6tup=MKtoJBjU1u-3QW+S4zAwrKKngMNy9bqVkgpTFg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: renesas: r9a06g032: Describe SPI controllers
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310778-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kancy2333@outlook.com,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,outlook.com,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp,qualcomm.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-310780-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FORGED_RECIPIENTS(0.00)[m:wsa+renesas@sang-engineering.com,m:linux-renesas-soc@vger.kernel.org,m:magnus.damm@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:wsa@sang-engineering.com,m:magnusdamm@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F0ADE677C4E
+X-Rspamd-Queue-Id: 67D2D677CAF
 
-On Fri, Jun 12, 2026 at 09:59:02AM +0200, Neil Armstrong wrote:
-> On 6/12/26 09:57, Dmitry Baryshkov wrote:
-> > On Wed, Jun 10, 2026 at 09:41:47AM +0200, Neil Armstrong wrote:
-> > > Switch to the ayaneo,pocket-s2-sndcard since the hardware layout
-> > > is incompatible with the default SM8650 generic sound card.
-> > 
-> > Incompatible, how?
-> 
-> As explained on the cover letter, the WAS speakers are not connected
-> on the same lines as the other devices handled by this card.
+Hi Wolfram,
 
-The cover letter isn't recorded in the Git history. Somebody looking at
-the commit in a year should not have to look in the mail archive to
-understand what is incompatible.
+On Fri, 12 Jun 2026 at 10:04, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Add nodes for the 6 SPI controllers of the Renesas RZ/N1D SoC. The first
+> 4 can only be controllers, the latter 2 can only be targets. DMA nodes
+> are not added yet because DMA needs some extra code in the drivers and
+> cannot be tested yet. Basic FIFO mode works reliably, though.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
+Thanks for your patch!
 
--- 
-With best wishes
-Dmitry
+> --- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
+> +++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
+> @@ -563,6 +563,96 @@ gic: interrupt-controller@44101000 {
+>                                 <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>;
+>                 };
+>
+> +               /* Controller only */
+> +               spi1: spi@50005000 {
+> +                       compatible = "renesas,r9a06g032-spi", "renesas,rzn1-spi";
+> +                       reg = <0x50005000 0x200>;
+> +                       interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&sysctrl R9A06G032_CLK_SPI0>, <&sysctrl R9A06G032_HCLK_SPI0>;
+> +                       clock-names = "ssi_clk", "pclk";
+> +                       power-domains = <&sysctrl>;
+> +                       spi-max-frequency = <12500000>;
+
+That is 12.5 MHz (for all controllers).
+
+According to Table 3.2, the maximum SPI reference clock frequency
+depends on the instance:
+  - spi1: 125 MHz,
+  - spi2: 62.5 MHz,
+  - spi3: 31.25 MHz,
+  - spi4: 15.625 MHz.
+As the minimum divider is 2, spi-max-frequency must be half of the
+reference clock.
+
+However, spi-max-frequency also depends on the target device(s),
+and on board wiring, so typically it is overridden or set in board DTS.
+
+> +                       num-cs = <4>;
+> +                       status = "disabled";
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +               };
+
+> +               /* Target only */
+> +               spi5: spi@50009000 {
+> +                       compatible = "renesas,r9a06g032-spi", "renesas,rzn1-spi";
+> +                       reg = <0x50009000 0x200>;
+> +                       interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&sysctrl R9A06G032_CLK_SPI4>, <&sysctrl R9A06G032_HCLK_SPI4>;
+> +                       clock-names = "ssi_clk", "pclk";
+> +                       power-domains = <&sysctrl>;
+> +                       spi-max-frequency = <12500000>;
+
+spi-max-frequency doe snot make sense for a target-only controller.
+
+> +                       num-cs = <1>;
+> +                       status = "disabled";
+> +                       #address-cells = <1>;
+
+<0>
+
+> +                       #size-cells = <0>;
+
+Missing "spi-slave"
+
+> +               };
+> +
+> +               /* Target only */
+> +               spi6: spi@5000a000 {
+> +                       compatible = "renesas,r9a06g032-spi", "renesas,rzn1-spi";
+> +                       reg = <0x5000a000 0x200>;
+> +                       interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&sysctrl R9A06G032_CLK_SPI5>, <&sysctrl R9A06G032_HCLK_SPI5>;
+> +                       clock-names = "ssi_clk", "pclk";
+> +                       power-domains = <&sysctrl>;
+> +                       spi-max-frequency = <12500000>;
+> +                       num-cs = <1>;
+> +                       status = "disabled";
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+
+Likewise
+
+> +               };
+> +
+>                 /*
+>                  * The GPIO mapping to the corresponding pins is not obvious.
+>                  * See the hardware documentation for details.
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
