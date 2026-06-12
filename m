@@ -1,275 +1,262 @@
-Return-Path: <devicetree+bounces-310705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310707-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Vc2qMq6qK2qGBgQAu9opvQ
-	(envelope-from <devicetree+bounces-310705-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:43:58 +0200
+	id mCQEA4WqK2qFBgQAu9opvQ
+	(envelope-from <devicetree+bounces-310707-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:43:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28D7A676FF7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:43:58 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 708BD676FF3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:43:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=codeconstruct.com.au header.s=2022a header.b=V7d4Q44P;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310705-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310705-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=codeconstruct.com.au;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=XtH2M7oW;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=aAJhW3KD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310707-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310707-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B5B7A30A81AF
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 06:42:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 77E76304CF70
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 06:43:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D193D6683;
-	Fri, 12 Jun 2026 06:42:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42FBC3D9026;
+	Fri, 12 Jun 2026 06:43:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141DB2FD1CA;
-	Fri, 12 Jun 2026 06:42:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10012FD1CA
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 06:43:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781246579; cv=none; b=cTvnatuWk3f6Ro7j690iYzgeMr2R74l2RaMw/VfoptDb0gCRg1k/abQtn8W2K3LuS5xdsVdOX6xIjVaXM5O+6zjqvl3u6kKQdBAoZHXLN5u/1FYa5jYRmCPcOvq1n/Sb347zFeuxXlJIe1y6Jtij6ntMEShzDzCF4hSyRyvo2q4=
+	t=1781246595; cv=none; b=ueqQn6NhrdtO0P4iwYHIzqnhJCbCcfrY/Gi/+/h4bBygjVqnn+71SsZE+QCXEf8/eOtY2sRvhlvWQqNBIFKrCsMHLJXZ0mERWm/9HLXIP73x65SLm5bYmSd2RIxGWTi4WTi5zOUkdJuG5NtrehTWvrVbgHUXhhuc7fxM6vgl0nw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781246579; c=relaxed/simple;
-	bh=aQ7NPvW21A0AuWMZ6hlNS1Fsd5TWjDus7fgr6XY/uQ0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=pQpVRibxxJiFX0qtdY9ZP9DnLlKpwdJSvWXcXX+I3xS2dB2bQ7OQcDkW5e2vuQKRdp9BEUhZHuETt4fL9kUORMns/PQuDoy8G00s3+tXSJdkrtRJf6y7jnC2o6zCG8c0qT8kDORO+kuRsaDPv1kgjUmoM/xRKi/O2yxXQx8rqkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=V7d4Q44P; arc=none smtp.client-ip=203.29.241.158
+	s=arc-20240116; t=1781246595; c=relaxed/simple;
+	bh=fj2BDTolpIHjrNcpJ4WVAWJObJAgy1V02X3sJ8SSQQw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aAwtOtQ8hpqYGwrh9uxQGnDjuOQ1w6u3aSeExRY3C69BBWG0IMGwu4jf6P/YFhokt9Iu/z8J7p1cfoRKp9gCV6sT19tEFNxzDne5OEFdKGxFEgEcL8i7Mx5wn1CXMI2ODCvgxvIy3ty6KeSXjWGpEH8vHTMXqbJpgiwE3tmw3ts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XtH2M7oW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aAJhW3KD; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65C3BbFd2548181
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 06:43:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xhRQQ0HqfVlogSV46vuX6Ct/PmcPgUZ4ULZ4DIlTmCI=; b=XtH2M7oW9JPOsZWJ
+	iHfSpi9vnqUy5YGyEGCXw3UU6IzJljTcb4CeJSnQmLl1IYfbE9sCanXF0/bxt/lE
+	QZbEuCUXXxPCwUO2Tf1d/1moLY0MqDS/eGOOmSZvEehMkX526kmyZFIKOqeFor0J
+	kyvyH/6THMVBvBbVwqc7uXNDY89ULDzrS69jE2eu8DDiUunX56UiChP3S/2MJrfd
+	IQxMIwZHyH2D01w9b2S/c16DreByhIGSlTHnwf0OUbm8fHKxrwsEKrGOay0CGvSu
+	oqHcJTDteHCzvQBYWD/a/ZAloBPiw0hateVQxEjzK3xx5yGRw5lhX8oz7qWnl1wa
+	KRY/BA==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4er29ut1ut-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 06:43:12 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-36bc02d28b6so555205a91.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Jun 2026 23:43:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1781246569;
-	bh=FWJYhiXqUMaYD6VeHN0j6mrscoHhjJw3Gq3j4k/FXLw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=V7d4Q44PZOFAp2+7I7SwTT38ul/YbkTQd29va1hkNaH+zYcBobk7RogEOG2YbLVjl
-	 K4uDyb9qwqOkpcPju15Khs68B+MFbXitLbTpHJlZil1TZu0K2DEnOGhFTzpEWc3lzt
-	 eo3mS85M3neABGJ04Cqbbxs6rafta//qTCN2H8WCHcQv3ty+oyiSsinE4epJgdTRUV
-	 IuYGhuAPsHkWFRufboSGJ+F0wULuG9fYPOK3NBYJLX+rTLwCkkIffodn8voB7uRYts
-	 OXGeyQ7Fhgr5eiPEYgK9dopGq23+zCj1XGUOPLgWfUQnljeK2vTBJKZGAbOPK6T1fR
-	 kMhVRBbkiH8CA==
-Received: from [192.168.68.117] (unknown [180.150.112.11])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E6A3C60931;
-	Fri, 12 Jun 2026 14:42:46 +0800 (AWST)
-Message-ID: <b226339bb2abe42ce23e90eadbc654b426131083.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] arm64: dts: aspeed: Fix duplicate pinctrl labels and
- address scheme
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Ryan Chen <ryan_chen@aspeedtech.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	 <joel@jms.id.au>, Arnd Bergmann <arnd@arndb.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Fri, 12 Jun 2026 16:12:45 +0930
-In-Reply-To: <20260611-dtsi_fix-v1-1-ef2b7cd86d6d@aspeedtech.com>
-References: <20260611-dtsi_fix-v1-1-ef2b7cd86d6d@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+        d=oss.qualcomm.com; s=google; t=1781246592; x=1781851392; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xhRQQ0HqfVlogSV46vuX6Ct/PmcPgUZ4ULZ4DIlTmCI=;
+        b=aAJhW3KDulO3rQsYsa9fvw6c0kXxAbXCizjHJfLqgfkZjZixgfvL9+ckZEVkswK5Oh
+         EAKeXMWwX87Zv0TqOW335ayribprOazJ0n23/FqmrRuhiD5oYduS4qJDj7IirDIsBgiJ
+         jUEGci3bGjwM/jppHRZtvcAR9805XQcGrkcS0PadoR6tY+uarvUZwSAMQBoU5sVCFGwK
+         TYh4hQBcVQBjnx3Qk1yy6g3/VN3DCm2nr0Fjr7CC8ywXXyALMLPzkTNoKRSVkqt7S0y4
+         iawjmvIT7zPDp89aAamWDq7LLDJEywJ1cFkOO/5ffjjD9pctOFX6+Jw3TrE7m2ab6g4z
+         Dm1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781246592; x=1781851392;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xhRQQ0HqfVlogSV46vuX6Ct/PmcPgUZ4ULZ4DIlTmCI=;
+        b=qlgY79miKZeYWc8kwkro456nqFhmh/MavERHjlcoPymG4n3GLUIduks/rG+oRN1P5e
+         Ma1TDXGikTZ+WT8urij5nknHqLHjY5PlsbvO99ogv7FSzOCs/CiAfJrCDJuSXLkEp7/R
+         YSZRdq49ph+RsmZeyR9lIwd1wZOUH6v0eluN8nY/W7fbnMGFs5sNCOjXN7CIZ0Iv2IIw
+         pTvD9zKHxKP6rjY0vh7uBg2BBzifxgKWN64d9Kc+VDR2nm6SIE+Zbw4wdTQkYbeC5GQp
+         4nchcgmMelJpW7BMcbXFiYrSW9ccZ/ZHfO1wd3o4s/7wIinFzOF1vd+GkpsGER2fAEdW
+         qC4g==
+X-Forwarded-Encrypted: i=1; AFNElJ97CnN5ulpoFk0PHClLcMsA3E1XMVNV9F4vL1K2SK/2Ia/8GVF+zrzFBYUT4EwahMP0Q/RRMC7+oUcQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxq9O2q5wp4wfCaUwDFn+4z7F5JDVCuW3bHGfqi+DqsxDTFgHt6
+	DoAORxp9XgThwflh2IB5QFoaEsKX3EvK7KW7RqxGwKPB9BPcw+Xzzpcga7jgu3l1/Vi6EQgN9Gv
+	WlXtosGPhV+EoG2/IAlEDXwKhD49+ajiXjqVmpHmC8+VIw/gji7tywljTVwQdeQpUT3hCAVEK
+X-Gm-Gg: Acq92OHu3ftWuQX8ciaRfez5i7u7TPf3liBtfagP9ZwGDfqdJOdOwIKYbGh3LyipFzN
+	pM50UpaB7B+Y0XN6JPLv4P4feKpHGh2D/kSq2DaNmfmHn14Wybu/MBZz91p+5qaUUzPq5SV+De1
+	gcO8zS6Rtq08sPcQJs2pQeGecrAxH/94Gn7QjuNxBaabk3j+QNnpL7X8sW7CZ726SOx1WrYI7yB
+	xfwvtuEHHmMCEUMuNaOW0ud3KbDiOtYK/3jJXLttSpe7jMkYIXWfro/nCb/9KZwDSYJiSeeHNam
+	wn61m6ubOdBWm8prk2+S6XdbNw57r1o4oRH3t75iyN4/w4Bi1RK6hfodD6Hzaclur9Q79vmipGX
+	evZAIFC9VZuK51oAZqOPD+XJio+XJG3bYGlCX9RwKmj/wriqXWxC7txnomIjk+VA=
+X-Received: by 2002:a17:903:32c6:b0:2bf:1486:e6ca with SMTP id d9443c01a7336-2c41050947bmr19439255ad.12.1781246591658;
+        Thu, 11 Jun 2026 23:43:11 -0700 (PDT)
+X-Received: by 2002:a17:903:32c6:b0:2bf:1486:e6ca with SMTP id d9443c01a7336-2c41050947bmr19439015ad.12.1781246591074;
+        Thu, 11 Jun 2026 23:43:11 -0700 (PDT)
+Received: from [192.168.1.8] ([122.164.81.0])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c42f7c6c5dsm9266445ad.21.2026.06.11.23.43.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Jun 2026 23:43:09 -0700 (PDT)
+Message-ID: <a7952e7d-468e-4ad4-8d95-f6bfe9305170@oss.qualcomm.com>
+Date: Fri, 12 Jun 2026 12:13:04 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] phy: qcom: qmp-pcie: Add IPQ9650 PCIe PHY support
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong
+ <neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260602-ipq9650_pcie_phy-v1-0-d8c32a36dbd9@oss.qualcomm.com>
+ <20260602-ipq9650_pcie_phy-v1-2-d8c32a36dbd9@oss.qualcomm.com>
+ <56zkq7bwrt5smmmum6jckzrekkkqrych2gntx3obnrmamwumtv@espahwe6pc3v>
+ <7def2ccd-0319-4f85-8275-73fd254d887d@oss.qualcomm.com>
+ <fbtghwjrokuijatssy7xn2hwkp34p5fjyn3ndr5t2w67fkz2na@3izdh7uk4hst>
+ <602e893c-d346-486d-86b3-50d0f01990bf@oss.qualcomm.com>
+ <ohijjcszynmoocjarid7mo7nbtd2dqcdvqrbnzb7anjytw5m56@nguadudsz7qg>
+Content-Language: en-US
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <ohijjcszynmoocjarid7mo7nbtd2dqcdvqrbnzb7anjytw5m56@nguadudsz7qg>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjEyMDA1OSBTYWx0ZWRfX/zAkfhHAjYQ7
+ pIUa1vVrtJmWWEH9E35LCHHzUK8VBkcBJJ3jW1Jg77vkThVdq1lQgFG4XkV0tC5ouR+Q9TReq05
+ m0Cm434j/MVzCSerznRbMrVM7Y6R6wo=
+X-Proofpoint-GUID: Rfi3iUZu_KKSOOARAGv8Qp7Lojdrqec5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEyMDA1OSBTYWx0ZWRfXyRO8E7dYKPCV
+ e3tJHVHd99+I1CxEcunLMQqJkthYfq7zgxcCDnDiQBaZSnG3qD6PHF0pVXq2GIAmJqEoNy21oSS
+ wtm7xtAD7+vWqG2+t3FoMU9OVIbxjzp4atLEw6EN7a8S/OMbzaZowfx0l1PDJ33WtgmrcQGWKz/
+ xpj0/B4c8Rq6u81mcVG5evJ1Cd9lCFz2PqJacATq00ubpIbt6d1/7biqyf28RnD9YEyrKi96RMO
+ wnVrFKIwOmkfUDMEyh7dJTJ1MvQ7/C3bLWz7OJfhg/qNKgq3eqBn1y4WjAiF/tu9zWuZVilinCM
+ TLgF2dO3j4oW58spg8eYSK+mCx6wrv7hsTNOY2jx7XFm5mEJhMXN/6dSEPC1rBoLL8vIbxxVlgR
+ 31PamqKqs2wNRPuAr+L4toUALTJ7T6WsqzCk1trxlcfz8OzEWHLYRSXmDi5014C1nXSdRg2xTf5
+ 5g8MN/tH+efb6IACjDA==
+X-Authority-Analysis: v=2.4 cv=DppmPm/+ c=1 sm=1 tr=0 ts=6a2baa80 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=DVNErGSwdtF8OHn2hLoakQ==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=JfrnYn6hAAAA:8 a=EUspDBNiAAAA:8 a=hfAPQjwllD3DkVB7DTwA:9 a=QEXdDO2ut3YA:10
+ a=uKXjsCUrEbL0IQVhDsJ9:22 a=1CNFftbPRP8L7MoqJWF3:22
+X-Proofpoint-ORIG-GUID: Rfi3iUZu_KKSOOARAGv8Qp7Lojdrqec5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-12_01,2026-06-11_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
+ malwarescore=0 spamscore=0 clxscore=1015 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606120059
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[codeconstruct.com.au,none];
-	R_DKIM_ALLOW(-0.20)[codeconstruct.com.au:s=2022a];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310705-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-310707-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:ryan_chen@aspeedtech.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:arnd@arndb.de,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-aspeed@lists.ozlabs.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[codeconstruct.com.au:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@codeconstruct.com.au,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kathiravan.thirumoorthy@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,codeconstruct.com.au:dkim,codeconstruct.com.au:email,codeconstruct.com.au:mid,codeconstruct.com.au:from_mime,vger.kernel.org:from_smtp,aspeedtech.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 28D7A676FF7
+X-Rspamd-Queue-Id: 708BD676FF3
 
-Hi Ryan,
 
-On Thu, 2026-06-11 at 14:50 +0800, Ryan Chen wrote:
-> Fix duplicate pinctrl_tach{0-15} and pinctrl_n{cts,dcd,dsr,ri}5 labels
-> in aspeed-g7-soc1-pinctrl.dtsi.
->=20
-> Drop the cpu-index from secondary/tertiary container nodes: reduce the
-> "#address-cells" from 2 to 1 and update ssp_nvic/tsp_nvic unit-address
-> and reg accordingly. Also remove URL comments from the DTS.
->=20
-> Suggested-by: Andrew Jeffery <andrew@codeconstruct.com.au>
-> Fixes: e77bb5dc5759 ("arm64: dts: aspeed: Add initial AST27xx SoC device =
-tree")
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
-> This series contains follow-up fixes for the AST27xx DTS support that
-> was merged into linux-next (e77bb5dc5759).
->=20
-> Two issues were identified after merge by Andrew Jeffery during review
-> of the pending v11 series:
+On 6/12/2026 11:44 AM, Dmitry Baryshkov wrote:
+> On Fri, Jun 12, 2026 at 08:22:02AM +0530, Kathiravan Thirumoorthy wrote:
+>> On 6/12/2026 1:52 AM, Dmitry Baryshkov wrote:
+>>> On Tue, Jun 09, 2026 at 03:46:56PM +0530, Kathiravan Thirumoorthy wrote:
+>>>> On 6/8/2026 12:26 PM, Dmitry Baryshkov wrote:
+>>>>> On Tue, Jun 02, 2026 at 02:40:18PM +0530, Kathiravan Thirumoorthy wrote:
+>>>>>> The IPQ9650 platform has three Gen3 2-lane PCIe controllers and two Gen3
+>>>>>> 1-lane PCIe controllers. The PHY instances also require the on-chip refgen
+>>>>>> supply.
+>>>>>>
+>>>>>> Add the IPQ9650 Gen3 x1 and x2 QMP PCIe PHY configurations, including the
+>>>>>> refgen regulator supply.
+>>>>>>
+>>>>>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+>>>>>> ---
+>>>>>>     drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 220 +++++++++++++++++++++++++++++++
+>>>>>>     1 file changed, 220 insertions(+)
+>>>>>>
+>>>>>> @@ -3378,6 +3524,10 @@ static const char * const qmp_phy_vreg_l[] = {
+>>>>>>     	"vdda-phy", "vdda-pll",
+>>>>>>     };
+>>>>>> +static const char * const ipq9650_qmp_phy_vreg_l[] = {
+>>>>>> +	"refgen",
+>>>>>> +};
+>>>>> Now vdda-phy / vdda-pll supplies?
+>>>> Cross checked with HW team again. Along with refgen, there is a on-chip LDO
+>>>> which supplies fixed voltage to the PHYs. It is enabled upon system power on
+>>>> and no SW intervention is required.
+>>> What is it being powered by? MX? CX?
+>> It is driven by CX.
+> I assume that there is no CX collapse on IPQ9650? Is CX not scaling on
+> this chip. Please provide some details on the commit message.
 
-These were identified by the sashiko bot, not so much by me, as I
-hadn't got around to looking at the patches at the time. I did comment
-in the replies though:
+That's right. No CX collapse on IPQ9650. Let me rewrite the commit 
+message as below. Hope its okay.
 
-https://lore.kernel.org/all/20260609025708.ADBFE1F00893@smtp.kernel.org/
+--
 
-Separately, the series at hand was v9, so any subsequent revision would
-have been v10, not v11. This isn't significant on its own, but it is
-another contribution to the collection of small errors that are
-accumulating at this point, which concerns me. Please take care.
+Add support for the IPQ9650 platform, which includes three Gen3 x2 PCIe 
+controllers and two Gen3 x1 PCIe controllers. The PHY instances require 
+the on-chip refgen supply.
 
->=20
-> 1. Duplicate pinctrl state labels in aspeed-g7-soc1-pinctrl.dtsi caused
-> =C2=A0=C2=A0 dtc to abort with fatal label-redefinition errors.
+Add the IPQ9650 Gen3 x1 and x2 QMP PCIe PHY configurations along with 
+the refgen regulator supply. Note that an on-chip LDO, driven by the SoC 
+CX, supplies the PHY voltages without requiring software control. Note 
+that CX power collapse is not supported on IPQ9650.
 
-However, it didn't. soc/dt @=C2=A0564edaca1486 ("Merge tag 'sunxi-dt-for-
-7.2-2' of https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux
-into soc/dt"), which includes the v9 patches at e77bb5dc5759 ("arm64:
-dts: aspeed: Add initial AST27xx SoC device tree"), builds without
-error.
+--
 
-Why? Well, the report from sashiko appears misleading. Usually
-duplicate labels do cause an error, for example:
-
-   $ cat dle.dts
-   /dts-v1/;
-   / {
-           inner: test1 {
-                   prop-inner;
-           };
-           inner: test1 {
-                   prop-inner;
-           };
-   };
-   $ dtc -o /dev/null dle.dts
-   dle.dts:6.15-8.4: ERROR (duplicate_node_names): /test1: Duplicate node n=
-ame
-   ERROR: Input tree has errors, aborting (use -f to force output)
-  =20
-   $ cat dle-1.dts
-   /dts-v1/;
-   / { };
-   &{/} {
-           inner: test0 {
-                   prop-inner;
-           };
-           inner: test1 {
-                   prop-inner;
-           };
-   };
-   $ dtc -o /dev/null dle-1.dts
-   dle-1.dts:8.15-10.4: ERROR (duplicate_label): /test1: Duplicate label 'i=
-nner' on /test1 and /test0
-   ERROR: Input tree has errors, aborting (use -f to force output)
-
-However, a relatively minimal reproduction of the case at hand is:
-
-   $ cat dlu.dts
-   /dts-v1/;
-   / { };
-   &{/} {
-           inner: test1 {
-                   prop-inner;
-           };
-           inner: test1 {
-                   prop-inner;
-           };
-   };
-   $ dtc -o /dev/null dlu.dts
-   $
-
-This doesn't error out. I recommend not assuming reports from the bot
-are entirely accurate. Please test that its claims make sense before
-proceeding.
-
-While it's not good that there were duplicate nodes and labels, it is
-good that you've tidied them up.
-
-If there are modifications to the aspeed-g7-soc*-pinctrl.dtsi files in
-the future, I ask that you them sorted first so we can minimise the
-chance of falling into this trap again. The current order seems fairly
-haphazard and likely contributed to the oversight.
-
->=20
-> 2. The synthetic container nodes (secondary, tertiary) for sub-processor
-
-I'm not sure synthetic is the right word here. We're still describing
-the hardware, just components that have their own distinct address
-spaces.
-
-On a separate note, if you feel the need to make a list when describing
-the change (e.g. in the commit message or patch notes) it's usually an
-indicator that the change should be split into separate commits. Please
-keep this in mind for future changes.
-
-> =C2=A0=C2=A0 interrupt controllers used a 2-cell address scheme to encode=
- a
-> =C2=A0=C2=A0 <cpu-index reg-base> tuple.=C2=A0 Since the cpu-index adds n=
-o value for
-> =C2=A0=C2=A0 nodes that are purely phandle anchors, Andrew requested we d=
-rop it
-> =C2=A0=C2=A0 and use the bare register address instead.
-> ---
-> =C2=A0arch/arm64/boot/dts/aspeed/aspeed-g7-a35.dtsi=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 14 ++-
-> =C2=A0.../boot/dts/aspeed/aspeed-g7-soc1-pinctrl.dtsi=C2=A0=C2=A0=C2=A0 |=
- 102 ---------------------
-> =C2=A02 files changed, 6 insertions(+), 110 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/aspeed/aspeed-g7-a35.dtsi b/arch/arm64/b=
-oot/dts/aspeed/aspeed-g7-a35.dtsi
-> index ef283d95649a..58193c3c3696 100644
-> --- a/arch/arm64/boot/dts/aspeed/aspeed-g7-a35.dtsi
-> +++ b/arch/arm64/boot/dts/aspeed/aspeed-g7-a35.dtsi
-> @@ -84,32 +84,30 @@ l2: l2-cache0 {
-> =C2=A0	};
-> =C2=A0
-> =C2=A0	secondary {
-> -		#address-cells =3D <2>;
-> -		/* https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/=
-tree/drivers/of/address.c?h=3Dv6.16#n491=C2=A0*/
-> +		#address-cells =3D <1>;
-> =C2=A0		#size-cells =3D <0>;
-> -		/* https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/=
-tree/drivers/of/address.c?h=3Dv6.16#n430=C2=A0*/
-> =C2=A0
-> -		ssp_nvic: interrupt-controller@1,e000e100 {
-> +		ssp_nvic: interrupt-controller@e000e100 {
-> =C2=A0			compatible =3D "arm,v7m-nvic";
-> =C2=A0			#interrupt-cells =3D <2>;
-> =C2=A0			#address-cells =3D <0>;
-> =C2=A0			interrupt-controller;
-> -			reg =3D <1 0xe000e100>;
-> +			reg =3D <0xe000e100>;
-
-Some other cleanups to consider are ensuring the property ordering
-conforms to the DTS coding style:
-
-   https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-=
-of-properties-in-device-node
-
-The following grep is likely helpful:
-
-   git grep -C1 -F 'compatible =3D' arch/arm64/boot/dts/aspeed
-
-Andrew
+>
+>>>> regulator-fixed doesn't take the resource 'reg'. May be should I create
+>>>> another regulator driver which accepts 'reg', something similar to the
+>>>> qcom-refgen-regulator? Please advise.
+>>> If it doesn't require control, there is no need for a separate driver or
+>>> separate supply. For example, the refgen is being references only by
+>>> those devices which require software votes.
+>> Thanks. Then let me respin this series on top of phy-next so that Vinod can
+>> pick it up.
+>>
+>>>>>> +
+>>>>>>     static const char * const sm8550_qmp_phy_vreg_l[] = {
+>>>>>>     	"vdda-phy", "vdda-pll", "vdda-qref",
+>>>>>>     };
+>> -- 
+>> linux-phy mailing list
+>> linux-phy@lists.infradead.org
+>> https://lists.infradead.org/mailman/listinfo/linux-phy
 
