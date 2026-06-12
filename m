@@ -1,195 +1,160 @@
-Return-Path: <devicetree+bounces-311043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311044-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZBBiA8AwLGoiNQQAu9opvQ
-	(envelope-from <devicetree+bounces-311043-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:16:00 +0200
+	id vStnBPkwLGo+NQQAu9opvQ
+	(envelope-from <devicetree+bounces-311044-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:16:57 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168C567ACA4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:15:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 843AE67ACBE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:16:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=biw5zaLg;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311043-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311043-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=baylibre.com header.s=google header.b=bnSv28Ta;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311044-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311044-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 37D903018D63
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:12:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 281D6315CC35
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:14:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4CB3955D0;
-	Fri, 12 Jun 2026 16:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD84373BE9;
+	Fri, 12 Jun 2026 16:14:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 605C638D3FE;
-	Fri, 12 Jun 2026 16:12:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587F7340283
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:14:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781280757; cv=none; b=fP6fqZivAMeI/F8oh1JzwKczQf2rJ9X/Ml+EeRnqgxZxKDTBARTOSmSihpvRbwv1b6/63VTQOjJANQw2dijtfFz3EQx+98MrN25EJlVnhcRpr88InJNv/gm//30eMZ3jNp5Da9xXIBmrHhAmFEGv/FPT0VnuhoaP7IrbHyVls24=
+	t=1781280869; cv=none; b=dEivj48YYhDuNb8p6i6LdqLTJ5R+z3CfXzpuHNYV75VRn2W2dlLaE9QSllu5tdFitkJXzzwAhn75b9H4BXIwwM+R+lw1wEnSzLAAcEI2Jnv548+xPEnqSJSgPGKz3YSQ0Jk1Ps+mYwMLSOC8A6h6uLwyLKwxfZMVgyJmfHGvChY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781280757; c=relaxed/simple;
-	bh=J9eyQs2CHRbvAhdaMfyGhbERyFF7Zxyw2mXhc8bHpUc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RpD5kDXeCDt7TjU39lCZ18647F+5Uo5cPTXx3CtsHXTJdfPamTGtJ3T6M+nKhD0PZFuBUF3ZIgfk4jLQXjVqN3pYiAhDX0dfo/j7kZ6iHZrWc4M9dF6ZpKPD3WTQgNtbMckoyAEbbbRT7o06HqLdIKGltjG7P2amy7MuX6P92pg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=biw5zaLg; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ED2A1F000E9;
-	Fri, 12 Jun 2026 16:12:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781280753;
-	bh=z02Ls5D3gWOFaxVY1Vrlu09mzE4H0tHUI1xrrSHZ/To=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=biw5zaLgZJCPCNZQGYbIQFDJHZEafNvamooNnpBrPI1VpXYh7Ru7yJA/DVbBgD024
-	 ifVSs43LN/P8jXKk/96+B7KpQ8ZcXaP7ahZipJWyPqv0znFyqFOKfFe7x9EDNV9Vuc
-	 Ir40WSD2ootjyhuElMZHjDJfTBjZBKIRvCbeoHrLyuI/N6RBKN+DcarUFncuDFRntt
-	 oW7UWkGPe4/xKRFva46w7h/w/THuaMp/+suY7GNkgPJAK+UF23MfvxFgWgTq1Vj0tA
-	 +81qCprPt9YmoL0jDzrMif2VIKjaJxOC+VM3dfpgpf/CsujgAXYjwdBXDZq9jJ+xnj
-	 u4z2yid8INFmQ==
-Date: Fri, 12 Jun 2026 17:12:29 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Potin Lai <potin.lai.pt@gmail.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Zev Weiss <zev@bewilderbeest.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Cosmo Chou <cosmo.chou@quantatw.com>,
-	Mike Hsieh <Mike_Hsieh@quantatw.com>,
-	Potin Lai <potin.lai@qunatatw.com>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pmbus: ti,lm25066: add current
- limit properties
-Message-ID: <20260612-lecturer-unclad-d80218119ae5@spud>
-References: <20260611-lm25066-cl-config-v1-0-02e567bf3d91@gmail.com>
- <20260611-lm25066-cl-config-v1-1-02e567bf3d91@gmail.com>
- <20260611-mocha-strive-a7f3265dd3f4@spud>
- <CAGfYmwWPhdpTLGhOdddJ0hSj-H86+XOVGTR9eDkZSVqGRLfJvQ@mail.gmail.com>
+	s=arc-20240116; t=1781280869; c=relaxed/simple;
+	bh=iBJgYumyLmZ06Ll91fzabhgMTbaPApdwNrYiKE3VKu4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IoG0xL+1eL4UzUtJQ2yBNoS9gWYcvmGAvCsHjlim9IyfMq+y5uolsMjm0PijV+bgCj+9haQ1pK+ib1xh7N4SeGMMVFyZCEEDZrduKsMNF0S5rWjuzjDIZoyCfnRx89qU0tGqvxyCKP9LKDc+x+3RDy0d6AUvfdIboGGfmbmA3Hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=bnSv28Ta; arc=none smtp.client-ip=209.85.161.41
+Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-69d7aa0ac14so816768eaf.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 09:14:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1781280867; x=1781885667; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iBJgYumyLmZ06Ll91fzabhgMTbaPApdwNrYiKE3VKu4=;
+        b=bnSv28TaqwuZq/QSVGB0kFCIzEOsQA5cCG+wozVc/b/FtQbjJV68FFdIC/xJIgQas6
+         CRGXbZhPv4j7zdmUeuRWRfRDl+eyz5DR8HCXe8MrGyKGjBty6Uk+gu/EfgSX34bLn64R
+         3tvFdrQJLyvcs9FApapVyVKYYDvbKql2zO2PFUfqHGRsNipm67EgXJJxsc6uw3wPQ2PE
+         0kwY4JU7H59X6vwYv7Pb6VAsotqhNRNxOMIte9UWqn0ejeQwUNfzqMfSOMXaZBckVYj/
+         s2aweMj8XTFgyNW+rj5cyz6UT0dxAtcAGfFgRYnFWpFPwSkX1bRzahB1sC/+BFfA32QD
+         3Tzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781280867; x=1781885667;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iBJgYumyLmZ06Ll91fzabhgMTbaPApdwNrYiKE3VKu4=;
+        b=gfFUCIdRQamL4AzZuJOB6ia4gZngWMAk/0KlJ1Xy9xXyz+47c3KR7U3eivkM12liKV
+         EwPeBMvxKeLbnFyMvR0gXUdbINEsqxKPryDigAK6OIdwfknPWKOdiMAKv09DkMycP175
+         BNusgnFb1Uxti6Nd5un/NiXytQvQjKGd7V7sI7p9sX+H0r2Nk2RIEljgdqFhGoZFneAJ
+         SSY7qck8VdhCoN8g1GYN0qNZesvE5w6dqIJMIuKWh/OftX288k8YILdQtuiToYXOBNZE
+         iMQLQpJ9jIs2rMSzX7DKTQ1jpCyrkKRETGzUyDdv2IPtd0ECVHaR4V3nR4rMFpYIThix
+         Q8sg==
+X-Forwarded-Encrypted: i=1; AFNElJ8T1a2vZTtnovFcPee2IKPsEDAEPqPIi6I3h+8NaRbDaLQYrwQCvUvWyFVssXaRL/zvvq6FuFp0hEvf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkMo2HbHw8RZ5ZqTsNi4a/stSOpYK2KUKP3mwih7ioQ1A/NGRe
+	/1Zq9B5gcsxGuz8OsVHngAG6d3F2BGfMX6hAATC+Af0ToecGXVubnXeJzAj2HJNcWDo=
+X-Gm-Gg: Acq92OH2DHZ5rNA4yT8jVaRPZ19iT/na4vVTShlMUYYeXxCLSD/li35H7Spz7zMRCKY
+	gRH12MDzRHbDURirXXYshNiQzGjcWGw0yrDsXPBf8dgWGB5/VpdAgF0Rs0ytgsFDAd5SLjeGTOI
+	sHpM+zvIHoT8OpJUXmMSL1ElpGGTNJqgszX+rXi+gMQXcnIunbSRD+BQ0s7CpTYbZTR3wMcoSiD
+	ZyY0LlsS7hIzumIC3hIpfSd3/CkxIBzjc3XSgb2zk9Gx5vvfU9T21Dq9bt+t5eotvWZR66BCRGS
+	Qjx0FIVhY4xFMueNMRWeH27/OWvL6HpBcH8mdHBg6Jxp7tR4ofrdugA0kjBbUVtjpPRU0W3JjKA
+	56Om2ZVBG35DAAMenH5ajiVkS/En61gAnWOCGGRUEp7KsSwBdzG6yJf0HDLaNxtKJ6i7lPj902Q
+	Xza+f+li5OOiFIZhQyj1deP9AG51ltY743POiHjNB97A4UpjJTSIzXCcNM6hRABTrjGWiVvJY=
+X-Received: by 2002:a05:6820:1992:b0:69d:81ec:1a61 with SMTP id 006d021491bc7-69edc76c613mr2675655eaf.46.1781280867362;
+        Fri, 12 Jun 2026 09:14:27 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:cba0:23d4:353:6048? ([2600:8803:e7e4:500:cba0:23d4:353:6048])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4426b30ee99sm2065001fac.15.2026.06.12.09.14.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jun 2026 09:14:26 -0700 (PDT)
+Message-ID: <5beef321-021b-4432-b24b-f473661a41a2@baylibre.com>
+Date: Fri, 12 Jun 2026 11:14:26 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="S4zO5QqditTU704k"
-Content-Disposition: inline
-In-Reply-To: <CAGfYmwWPhdpTLGhOdddJ0hSj-H86+XOVGTR9eDkZSVqGRLfJvQ@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] iio: adc: Add TI ADS1220 driver
+To: Nguyen Minh Tien <zizuzacker@gmail.com>,
+ Jonathan Cameron <jic23@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ linux-kernel@vger.kernel.org
+References: <20260610151342.44274-1-zizuzacker@gmail.com>
+ <20260610151342.44274-3-zizuzacker@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260610151342.44274-3-zizuzacker@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:potin.lai.pt@gmail.com,m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zev@bewilderbeest.net,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cosmo.chou@quantatw.com,m:Mike_Hsieh@quantatw.com,m:potin.lai@qunatatw.com,m:potinlaipt@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-311043-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311044-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:zizuzacker@gmail.com,m:jic23@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[baylibre.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,spud:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 168C567ACA4
+X-Rspamd-Queue-Id: 843AE67ACBE
 
+On 6/10/26 10:13 AM, Nguyen Minh Tien wrote:
+> Add an IIO driver for the Texas Instruments ADS1220 24-bit delta-sigma
+> SPI ADC. The driver supports single-ended and differential voltage
+> channels described as device-tree child nodes, per-channel programmable
+> gain (exposed through scale) and data rate (exposed through sampling
+> frequency), the internal 2.048V reference, an external reference via a
+> regulator, or the analog supply (AVDD) as a ratiometric reference,
+> single-shot conversions and a DRDY-interrupt-driven triggered buffer.
+> Conversions are gated either on the DRDY interrupt or, when no interrupt
+> is wired, on a data-rate-derived delay. Runtime PM powers the device down
+> between conversions.
 
---S4zO5QqditTU704k
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+As I mentioned in the DT binding review, I have a driver for ADS122C14
+that I should be able to send to the mailing list next week. ADS1220
+looks like a simpler version of that but shares many of the same features.
 
-On Fri, Jun 12, 2026 at 05:10:38PM +0800, Potin Lai wrote:
-> On Fri, Jun 12, 2026 at 1:27=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
-rote:
-> >
-> > On Thu, Jun 11, 2026 at 05:58:44PM +0800, Potin Lai wrote:
-> > > Add mutually exclusive 'ti,cl-smbus-high' and 'ti,cl-smbus-low' boole=
-an
-> > > properties to configure the device's Current Limit (CL) behavior using
-> > > SMBus settings instead of physical pins.
-> > >
-> > > Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
-> > > ---
-> > >  .../devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml  | 20 ++++++++++=
-++++++++++
-> > >  1 file changed, 20 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066=
-=2Eyaml b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-> > > index a20f140dc79a..95ea7c26dec2 100644
-> > > --- a/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-> > > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-> > > @@ -46,6 +46,26 @@ properties:
-> > >
-> > >      additionalProperties: false
-> > >
-> > > +  ti,cl-smbus-high:
-> > > +    description: |
-> > > +      Configure the Current Limit (CL) to use the SMBus high setting.
-> > > +    type: boolean
-> > > +
-> > > +  ti,cl-smbus-low:
-> > > +    description: |
-> > > +      Configure the Current Limit (CL) to use the SMBus low setting.
-> > > +    type: boolean
-> >
-> > What's smbus specific about this? If the pin was connected to a GPIO,
-> > you'd then need to have different properties or use these ones with an
-> > inaccurate name.
-> >
->=20
-> The "smbus" in the property name was originally meant to indicate
-> that the setting is configured via the internal register over the SMBus (=
-I2C)
-> interface, rather than physical pins.
+So I would suggest to check that out when I send it and see if we can
+share the driver.
 
-Right, but if you do it via the physical pins using a gpio, you still
-need a way to say what limit is. The status quo only works if the limit
-pin is tied high or low.
-
->=20
-> > Please also spell out "current-limit".
-> >
->=20
-> I will rename the properties to "ti,current-limit-high" and
-> "ti,current-limit-low"
-> in the next version.
-
-Other thing that might be worth doing is making the property a string
-and just having `ti,current-limit =3D "low"` etc.
-
---S4zO5QqditTU704k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiwv7QAKCRB4tDGHoIJi
-0hrAAP9jl+N4lt/L2Aof9LFMvWZ4NkHJKwrlnrQChX8xVnY2iQD+IedBFc05axoQ
-L7i0tC+Fntx5yWCb3pFiMWOxOhI3iwE=
-=/Iuh
------END PGP SIGNATURE-----
-
---S4zO5QqditTU704k--
 
