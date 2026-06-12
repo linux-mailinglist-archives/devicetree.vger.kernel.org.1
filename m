@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-311116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311114-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yyMiBY1JLGp3OwQAu9opvQ
-	(envelope-from <devicetree+bounces-311116-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 20:01:49 +0200
+	id x91jNFpJLGpjOwQAu9opvQ
+	(envelope-from <devicetree+bounces-311114-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 20:00:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9333B67B812
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 20:01:48 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66F3267B7D0
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 20:00:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=jFz5eFue;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311116-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311116-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=A9EH7Yv6;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311114-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311114-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 54776317A225
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:00:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B0ECE30182D2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:00:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFB037D113;
-	Fri, 12 Jun 2026 18:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A0F37B01E;
+	Fri, 12 Jun 2026 18:00:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B700E31F999;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9288D1E8826;
 	Fri, 12 Jun 2026 18:00:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781287256; cv=none; b=OkZbSXbpLumXasHw/kP37ujEFQ7Tu0mHNuELGx+igpRtltLZTIVcdjkGupznDqrzH9ff5PtLLIxCJ7kZl20B7NLyadL2tESZGrjZZU+3jo0Vj6n9cLA5Zqi2wLGktYgBK89Cddxnne9xo18EGunD7sc+xAgovdq1G2bMU9qSs0c=
+	t=1781287255; cv=none; b=Loxnb5NSQJ5Pqj4mEiGY6oA48PGzOzA+v4PiqQ/Zz2KZDITocAGY02YRCfkL4rCYtsxpWo/9a+7c/knJaobwlI39y/aT8JSjRVU2UHkRMX9D3KHVZGEdmud357BLgb9LNB5x4IC9HxpYJQsgHYN1Ng/IC+ShCCt2WR6WT4v8eIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781287256; c=relaxed/simple;
-	bh=HjTcwVoSMhghtlEQN17A56Gf9uE1m/xC9fZU3wMihsQ=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Yl24+urMB4qSRYFkWDp4WMbbJcdh3S+yIYx2GelIcm1WkjDGQFqbi5J0SavQDoJiWY9kIkz6mi+HLLqAKGsQeaMt4RSa9bsPhj/hA47o94MqMDuOypCfYybS8G70YhEm9dj8NGmAbfDXTAhTLShl9leJYTVMWu2vGWsM8tcKoEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jFz5eFue; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1781287255; c=relaxed/simple;
+	bh=WsmeQvQGeyq2M87UoeoKm+GR3W7WQx6cpiY0EC6vOZA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=DnTFuxYUL9KyhiFa4iOW6Q7OCJ8GKnVOQUNtjGv/J1ab/GxTAXQFYNax5BEpLWaEk5Z4TWTQ+QUnS3/5k+fJGvWURutQh3TKOVmYxI0r0TDgQ4/g3PgsSu60rE6ybJlkzX/AUKZhtIG0+OrDx+fhSAG6dlo3Ku4y119ZgkZ0l0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=A9EH7Yv6; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1781287253;
-	bh=HjTcwVoSMhghtlEQN17A56Gf9uE1m/xC9fZU3wMihsQ=;
-	h=From:Subject:Date:To:Cc:From;
-	b=jFz5eFue6ft7QPXzeB6pnv3/ay7PetfA7yon2bjktDDSJuyrJpOiPtnm/6ZYV3k80
-	 S+zd7h2dFDnWhhvOdiiiF0Vj6rRx1/5OfIrYfRULbOJgZC5HXJkiHobOdhTaWujyp6
-	 zZAp9FRkB8H02AjZzP2Qn3RohxpTbsK7EmSCxygqJvWYW+SlTN6RrXJ5gbsRHBNsN2
-	 WbmA0uJBsGWR1BMdAVadRlutpei/xwr+7h6gf2S6cmcYsLb4/XwTLizda/H509j9Q4
-	 HlxfjsmjPt885vizjsWnDv9xirZCZPs1iGtDrR7a+Np1BZd8uXiwmxkOHvi+LqAYDi
-	 16j1GcmMT8K+Q==
+	s=mail; t=1781287252;
+	bh=WsmeQvQGeyq2M87UoeoKm+GR3W7WQx6cpiY0EC6vOZA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=A9EH7Yv6Nl2PNMowcJr6lTBfy6JU/s51xkh2vXnO5P+wNTjNFA1iyGIV7dzIkGyV2
+	 l+5a55vKE/ecjjoBlZRKdAHEVI6hKtfbwFXzdB+9gzNoPJBdP39/Jpp4hQI/AN6iEx
+	 Qsg7ePdR75pks0xQKHR+mpmzhoSuVpAatKu1NXslKCbZ/LJy3lwgh9+oW6qyDp/jGR
+	 IM38i7FJBR5hTkrqZum0V7dCNn7YLqSFv60DGy37X00CoWAYw7vEKN/3FXLTWR1dky
+	 IGq3XXg1nHrDs5UymY9Q2mNxOow8YFIa0FEelpU6V4grenBKrs/IdfZs1CJfiIDibl
+	 sTyJrYkil7VmQ==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B949317E0432;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B62CF17E03C6;
 	Fri, 12 Jun 2026 20:00:52 +0200 (CEST)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 77875480027; Fri, 12 Jun 2026 20:00:52 +0200 (CEST)
+	id 78DC4480026; Fri, 12 Jun 2026 20:00:52 +0200 (CEST)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [PATCH v3 00/10] Synopsys DisplayPort Controller improvements for
- Rockchip platforms
-Date: Fri, 12 Jun 2026 20:00:46 +0200
-Message-Id: <20260612-synopsys-dw-dp-improvements-v3-0-dc61e6352508@collabora.com>
+Date: Fri, 12 Jun 2026 20:00:47 +0200
+Subject: [PATCH v3 01/10] drm/bridge: synopsys: dw-dp: Simplify driver data
+ setting
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,11 +65,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAE5JLGoC/33N0QqDIBTG8VcJr+dQW1q72nuMXZgel1ApGm4Rv
- fssGINddPn/OPzOgiIECxFdiwUFSDZaN+YoTwVSnRyfgK3OjRhhnJSswnEenY9zxPqFtcd28ME
- lGGCcIhZaMmhqbajWKAs+gLHvXb8/cnc2Ti7M+7NEt/Xr8kM3UUxwRWh9aShnrCE35fpeti7Is
- 3ID2uzEfl4+PfZY9rQAYXgrlRDm31vX9QMCDeLIGgEAAA==
-X-Change-ID: 20260325-synopsys-dw-dp-improvements-7da2e98df1dd
+Message-Id: <20260612-synopsys-dw-dp-improvements-v3-1-dc61e6352508@collabora.com>
+References: <20260612-synopsys-dw-dp-improvements-v3-0-dc61e6352508@collabora.com>
+In-Reply-To: <20260612-synopsys-dw-dp-improvements-v3-0-dc61e6352508@collabora.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
  =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
  Andy Yan <andy.yan@rock-chips.com>, 
@@ -92,21 +90,21 @@ Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
  linux-arm-kernel@lists.infradead.org, 
  Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3621;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1218;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=HjTcwVoSMhghtlEQN17A56Gf9uE1m/xC9fZU3wMihsQ=;
- b=kA0DAAoB2O7X88g7+poByyZiAGosSVSjkL+5iEnJ8c+arOBSV8P6FcvN8N+AF6tTKGNT9a8wB
- YkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqLElUAAoJENju1/PIO/qavE4P/1xi
- Ahkk4JDhi7fBISk1xjbsU+I9rcJObGlCGNqL51YaMFzJYfbSyFYYAkoutSI4SGkw10V8UpSpKah
- FQcUeeSZicRNYYD3vx/90I18cpWNieqPiSFenJTGneASPVeV/YiOUQ6VVYjn1HjmIhnZ0HlUJ0X
- 91uuw8iBCR7my7z+KAQ2KFsgUSKOTbTqTlz+Vt0/w/WXBci/Zjai+LKnYQHMAXEP8HzET9iYRLn
- SK68uI0O1+mYcoTi+y/coJPoSTwJQ7UjuFSoqnLeCBSQcZ4rPoh8GnUnjHI1zu1Lh15xB9BSAAk
- CWhpxGrlOdxK9L/6qiRRXVTVMyiQVqDSpdPSF4fRx7XGy/hgumWHsk/d03lv0mVeOjojpT5/CjG
- lLBqndOuUq8kmD7TnKwc9io338KEAJ4bogg4SM1PBxdHH5uuwUEcERWBY+ETJLHUKuwkp0qjg7a
- W7ZlC+2CzHJRYsdqShbFaISv2tC0qGCSdXCsRkUoEJbPApnORtEoSdISEbT/pRcr+CsgFqrhL4s
- 0xsYotY2ThQXsdlRt0iZK4UIWlXh2P2QilgJh3dzKXZHvDA1B6qUKMIKMmNpg+QI94CAqFmvoEL
- QwoMYAAhsbEHaJe1xinTXgtaQJywr227oTaOVKOIaN6g7BBEypXXWNaIN8tKSKTV4RWdm/YeNpq
- vXNSv
+ bh=WsmeQvQGeyq2M87UoeoKm+GR3W7WQx6cpiY0EC6vOZA=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGosSVStviUCLo5za77nTAKT2U13SAsC3EanA
+ N5gu1xsmRuaFIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJqLElUAAoJENju1/PI
+ O/qar7AP/0p6E6UzqtGJPOsR5dk62A0zuNQL99x3zENNUW/nku7BjS+u38Y9Gq517FDFvLcKK2J
+ dXn0p114bvNl8+Otw3z3cmhOgVz6iz05jmwi0fzskXRjp0Bz3rGPbAZMX+qIp+9Zqh+jdDJ0Gv7
+ dZ/CH4Nb13A9XGy/OUlow9T2fwDy3k5Ems6/p8DOIjtRinTebqoYkk4+RkA+mDRqeQdYV6f/gNC
+ 26oaFRUB7ULrSyWxsMBbr8AeFpduRjlmsGab7wD2BsPw+nrcEC9p25bSY43jA9Exx7KB6WbSw/n
+ Usnl9hHFWK5aCPPV1DXqkLh7B5A1+SvX4kO78fmmmHtR92UqRSL8HAQzJUxLp58oXA0Oo3MDFSn
+ P1+wfwmL/DdZYO/qmnnV1uy7N46rbt1nY+zfiXMweh8XnATi5SE7yQuS7QuZufKdBOO4OR2MeAP
+ QMXV352wILWNw856ThPKbi7wv4xo18cZxZx9In/xVU5dcufTCvusP6LVUUpN988TY6Nm5ftKNGs
+ J17t5niqT9KHWLAMkv2cETQIvR5XlckJ6CoVgyZZmgba6bI7fJpoFG9szRmD/4ux73Q1YsHGAZj
+ vhZAK8dejMz8G5gJi9JFfPwZwSKd3/utBbzySrejfyzeaCKBBHfUtjFbryv1W37Boqni/QwudGf
+ SQSZtSZS6nX3tVI+vDCsxnQ==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-Rspamd-Action: no action
@@ -115,11 +113,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311116-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311114-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:dmitry.baryshkov@oss.qualcomm.com,m:luca.ceresoli@bootlin.com,m:cristian.ciocaltea@collabora.com,m:damon.ding@rock-chips.com,m:lumag@kernel.org,m:alchark@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:kernel@collabora.com,m:linux-arm-kernel@lists.infradead.org,m:sebastian.reichel@collabora.com,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,oss.qualcomm.com,bootlin.com];
@@ -139,88 +137,46 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9333B67B812
+X-Rspamd-Queue-Id: 66F3267B7D0
 
-This patch series updates the Synopsys Designware DisplayPort bridge
-together with the only existing user: The Rockchip RK3576/RK3588:
+There is no need to get the platform device just for setting up
+the driver data. Simplify the logic.
 
- 1. follow-up bridges (PHY, USB-C connector)
-    this is needed to get USB-C DP AltMode working; I've followed the
-    Qualcomm driver as reference
-
- 2. runtime PM
-    the initial driver has been upstreamed without RPM; add it to
-    avoid wasting power when nothing is plugged
-
- 3. audio
-    the initial driver has been upstreamed without audio support;
-    this adds all missing bits for audio with single stream transport
-
-To properly make use of the bridge code the following USBDP PHY series
-is also needed:
-
-https://lore.kernel.org/linux-phy/20260428-rockchip-usbdp-cleanup-v4-0-7775671ece22@collabora.com/
-
-There are two parts, which possibly need some discussion:
-
- 1. I added a dedicated bridge callback for out-of-band hotplug events,
-    which is separate from the hotplug_notify. I have a feeling, that
-    there might be a better solution, but haven't found it.
-
- 2. The DT binding for audio support - explicitly marked as RFC - works
-    perfectly fine, but is not ready for MST. I don't intend to
-    implement that right now, but the binding should obviously take it
-    into consideration to avoid breaking it in the future. I've put
-    some points for discussion into the relevant patch.
-
-Changes in PATCHv3:
-- Link to v2: https://lore.kernel.org/r/20260501-synopsys-dw-dp-improvements-v2-0-d7e7f6bac77f@collabora.com
-- Collect Reviewed-by on "Simplify driver data setting" patch (Andy Yan)
-- Use of_drm_get_bridge_by_endpoint instead of devm_drm_of_get_bridge (Luca Ceresoli)
-- Use FIELD_PREP_WM16 instead of FIELD_PREP_WM16_CONST (Chaoyi Chen)
-- Rebase to latest drm-misc-next (Dropped Cristian's patches)
-
-Changes in PATCHv2:
- * Link to v1: https://lore.kernel.org/r/20260326-synopsys-dw-dp-improvements-v1-0-501849162290@collabora.com
- * rebased to latest drm-misc-next
- * prepended the Patches from Cristian's cleanup series, as they also
-   needed a rebase and should be merged first
-   https://lore.kernel.org/dri-devel/20260327-drm-rk-fixes-v3-0-fd2e6900c08c@collabora.com/
- * fix issue with the audio stream (un)prepare handling in last patch
-
+Reviewed-by: Andy Yan <andy.yan@rock-chips.com>
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
-Sebastian Reichel (10):
-      drm/bridge: synopsys: dw-dp: Simplify driver data setting
-      drm/bridge: synopsys: dw-dp: Support MEDIA_BUS_FMT_FIXED
-      drm/bridge: synopsys: dw-dp: Add follow-up bridge support
-      drm/bridge: Add out-of-band HPD notify handler
-      drm/bridge: synopsys: dw-dp: Support software triggered OOB HPD
-      drm/rockchip: dw_dp: Implement out-of-band HPD handling
-      drm/bridge: synopsys: dw-dp: Add Runtime PM support
-      drm/rockchip: dw_dp: Add runtime PM support
-      [RFC] dt-bindings: display: rockchip: dw-dp: fix sound DAI cells
-      drm/bridge: synopsys: dw-dp: Add audio support
+ drivers/gpu/drm/rockchip/dw_dp-rockchip.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
- .../bindings/display/rockchip/rockchip,dw-dp.yaml  |   5 +-
- drivers/gpu/drm/bridge/synopsys/dw-dp.c            | 308 ++++++++++++++++++++-
- drivers/gpu/drm/display/drm_bridge_connector.c     |   6 +
- drivers/gpu/drm/rockchip/dw_dp-rockchip.c          | 167 ++++++++++-
- include/drm/bridge/dw_dp.h                         |   6 +
- include/drm/drm_bridge.h                           |  14 +
- 6 files changed, 493 insertions(+), 13 deletions(-)
----
-base-commit: 2afdfc658f7a7e9ee2a67ec6663922da9c799c53
-change-id: 20260325-synopsys-dw-dp-improvements-7da2e98df1dd
+diff --git a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
+index 0de822360c8d..35598ab9fe84 100644
+--- a/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw_dp-rockchip.c
+@@ -74,7 +74,6 @@ static const struct drm_encoder_helper_funcs dw_dp_encoder_helper_funcs = {
+ 
+ static int dw_dp_rockchip_bind(struct device *dev, struct device *master, void *data)
+ {
+-	struct platform_device *pdev = to_platform_device(dev);
+ 	const struct dw_dp_plat_data *plat_data;
+ 	struct drm_device *drm_dev = data;
+ 	struct rockchip_dw_dp *dp;
+@@ -87,7 +86,7 @@ static int dw_dp_rockchip_bind(struct device *dev, struct device *master, void *
+ 		return -ENOMEM;
+ 
+ 	dp->dev = dev;
+-	platform_set_drvdata(pdev, dp);
++	dev_set_drvdata(dev, dp);
+ 
+ 	plat_data = of_device_get_match_data(dev);
+ 	if (!plat_data)
 
-Best regards,
 -- 
-Sebastian Reichel <sebastian.reichel@collabora.com>
+2.53.0
 
 
