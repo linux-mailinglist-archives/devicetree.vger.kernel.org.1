@@ -1,218 +1,190 @@
-Return-Path: <devicetree+bounces-311159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311147-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 06b6DulrLGrZQgQAu9opvQ
-	(envelope-from <devicetree+bounces-311159-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 22:28:25 +0200
+	id TuV9Ie5mLGr7QQQAu9opvQ
+	(envelope-from <devicetree+bounces-311147-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 22:07:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A165067C527
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 22:28:24 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71D5F67C3CF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 22:07:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=FX3X4XwD;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311159-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311159-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=hyaMEE7D;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311147-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311147-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C9BFC312C0AD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 20:27:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 58A483002B60
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 20:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0228D3D301A;
-	Fri, 12 Jun 2026 20:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2D933BBB1;
+	Fri, 12 Jun 2026 20:07:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A993A16AB
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 20:27:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78F52EFDAF
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 20:07:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781296055; cv=none; b=T5+NEeiVuf3+fubF55OM1RBzAxt8IdYcR5izxnLSMZCQ66KaIv3UAh23lITGeCCtfr7svsqlUYWtdNRvuUWh2sY73pF4Jjuu5KFl7mMvmtD9T0GEY8BGZi2bNgdARNnV3JMI1mEDpYtxSL/zOQ41DFK1woVX4pe3pCrWUMXhRDk=
+	t=1781294823; cv=none; b=hpa6qQjKj7SorRWib2eohNIrhuQT1ZJE4DQ7e7nnxzclf62UktSyvtTUeLM9dgRAdi2fjN2hH7vGqA0d5+OZhI9S6qN+Og3tpjDts6hM1B1Ev6lUFChA0QhT1TtK4jmHW14KDjemRifvPkLws3Q2f5KYfiwXHnXgDZwleG527bE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781296055; c=relaxed/simple;
-	bh=CR0Lbo3n/3oeNiXmZXBO+NYu4WLlnQ0plwOZWYPDaYU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tRQt3YNUmKwby/leTx/dXKF0GknDn/C2mlg1CrcMxuyHg5OOzRDq/6QvxhDUwipf/WrJIYpTD9pUf+r/IqMNOHOIDWz7dLw5oj1fZvv8d7Hla6tfhmRMtrvHW4GncrQybL+Fa7uPaN3Nyl1IDEX65E66k8gxwx2pgYRFaECxKbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FX3X4XwD; arc=none smtp.client-ip=209.85.128.42
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4908b92904fso14631565e9.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 13:27:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781296053; x=1781900853; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2uiu84fLHByfY8NkkF/LaIKJoh0XbICVZ1vVfqMiiSs=;
-        b=FX3X4XwDidk+/aBHU4zOsuu8EexfnnSbElbBLzbr5DlEHYw8iAEGatYAm1PK+VQov2
-         GET0WP1+3RjZN2XqIWln8ct0z1Bh+1oiXP7isYi7mB7+YrNR/D7Z0fk2JJrZf6S6hdj1
-         N29LOQmumTxN07mnPsukXeTdFt5XAZ5uUVM4MYWlx3Mh9jHhxvbyRMLURbjcrhhJrxf6
-         mfuU4VQL1RA1rr+y7FhOzn/6bg7yMWnacPLhDS3+Yhj+IITX60JG/oXRykNbQ8bkp8FX
-         vLFepW0ZrjEx6o/zMWcz0VGyTM7LD8Pg81Hi8Enbnf/majjfw18Yt7z+wlEdlnGoU1qD
-         6eUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781296053; x=1781900853;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2uiu84fLHByfY8NkkF/LaIKJoh0XbICVZ1vVfqMiiSs=;
-        b=cVFbfoiuY4KdZO7gLh+5As8cICVDmaqjLDD6VOX02/CQd8zxGyfe5uXNQr1JT9nMMb
-         RaKcngcVdhijATKCY4dc7YHNlz89rxIF9N/XLWD+CuJAffy+zDRdGqu7bXoos07euEzJ
-         yltVyPhzsShMAlNCeqGR61wipq1XfWqw0tNMdRtRCmDYTGI5JgxS9c8WkmL1/5HHpP/d
-         WrvvvLjVYZV4hkg20YRyb4Jo8L4ZLFk2qByka2FcwNIhOoVwmBN68M21ynebizLjOB4d
-         C7EnsmRLd5rRQovueDlH2tJzFokEbGrqF9cTIdj4tlO+G1yIHaTMzdY62RDKy7QdHmdw
-         /HQw==
-X-Forwarded-Encrypted: i=1; AFNElJ9E0mRQcLCElrBBiMZ4An3/kFKup7JhWryuATTclPbDuV8Bm1nMVNhRIK2FQcrR0DPHKEY8EQgRKAJl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOCGXa9YKKiQmG5lzJt4HLxWOfsae5MbSZxU7r//v2gdOg7iaZ
-	LKf3IUnkAs4lv5+vwEQpG7lVt98xIU4DS7J3IiIjQSE4bbhQm4WNCpez
-X-Gm-Gg: Acq92OH0A2mqXFX5F0hSd/JjnegK/2VcaIkVWwV7vgtUB6Vy1W1HzmszBxDZ0Hw58NR
-	DnWA6hFBlvfd1kJOOA7oSZuPlfbe5aU8vdGKnuM8hXyeoyRMyrYcbYHIQ0Ib2aHtb4LCFcfxMCp
-	kPa8flqei9hOlaCwtzwb19eu8knf3cJ0QhNtJg/m2g53IYaQji+79jdTGnDtlf2Lnbu+dWsAtFW
-	srCspgjucltutV18Oi7cEPdTh+nE+S9AJUWfRbxD/+Dyfxu7Upo+w5BWx4d67GWO+U+5gbJ/hzq
-	8NDlAA1ugPai2/JW6sFmUbt5juzX3x5zeF5rGjmTaJxmR0RjX/djHS3Mji/qavRW2AVAJ4e6JY/
-	6Xv6QUe2uP7OOsOhvblNPXZ70L9oyoT80BzxC+4EgBqVsJABqYK7UTzAPSgvxvar+lXqrSf6po3
-	5+ry+Jw8W96/hFDkzz
-X-Received: by 2002:a05:6000:428a:b0:45e:edcc:f6dc with SMTP id ffacd0b85a97d-4606db9667amr6456265f8f.6.1781296052923;
-        Fri, 12 Jun 2026 13:27:32 -0700 (PDT)
-Received: from luca-vm.. ([81.56.18.151])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f26434dsm9173261f8f.1.2026.06.12.13.27.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2026 13:27:32 -0700 (PDT)
-From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-To: linux-mediatek@lists.infradead.org
-Cc: Val Packett <val@packett.cool>,
-	Luca Leonardo Scorcia <l.scorcia@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sen Chu <sen.chu@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Lee Jones <lee@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
-	Julien Massot <julien.massot@collabora.com>,
-	Fabien Parent <parent.f@gmail.com>,
-	Akari Tsuyukusa <akkun11.open@gmail.com>,
-	Chen Zhong <chen.zhong@mediatek.com>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org
-Subject: [PATCH v6 7/7] arm64: dts: mediatek: Add MediaTek MT6392 PMIC dtsi
-Date: Fri, 12 Jun 2026 22:04:12 +0200
-Message-ID: <20260612200717.361018-8-l.scorcia@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260612200717.361018-1-l.scorcia@gmail.com>
-References: <20260612200717.361018-1-l.scorcia@gmail.com>
+	s=arc-20240116; t=1781294823; c=relaxed/simple;
+	bh=ZvuOJ8Ov4fSgnIQ8EIyZRPf0RBk0sYj0XTNcTbg22kE=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=oqwXiBxg6wkojI+4JiWT4cHdQrWNxSSzAlzqlCHedowrOr27IXBTWok2btbzxz3wvamMpu5MSKvzjq0VXcmq4K6dUeHO6s+V6pmPdIh5L29ySQGjT0rjv8QhW6/V3PO4O3/mB/bNCT7T/w5JX1ig279MVe2VeAuCn76O2TuO6qQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hyaMEE7D; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FF141F000E9;
+	Fri, 12 Jun 2026 20:07:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781294820;
+	bh=kx0YCmV4X5CXccH/ZporFiWFi2CIsGzYnmfaESMqWOM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=hyaMEE7DSg1Y9voXA2Cvs6a0xNqXkBdMKQhwPHzv2vywj5GfHzia10CEmu3JjF85J
+	 x2bEvb9y0RT3Mr7ICUdsJe1QzH9/MU9gZ5jfFgLGESj2YpOYB16FWyurZDgz7ftOo8
+	 +ff+ajvgl56UbVeT96GMQpuKFf7CJgZdAiM/9+1J13Oje6i9gQnslv5oyfNhDdjDzr
+	 w+XFVH5f/nxsSub5dTbxVTA2Rs3Ctsy4UGHlV4IIBlMv8xcJvWSji7FR+Etl4/eiCp
+	 B6y/vuyqiAv2rTuj1upoHXOlBsPGgrEL9w/ofypXsUhLCV36Fajws29drhA9NIRzE5
+	 D8+cCrCxXY2Fw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v1 2/4] arm64: dts: qcom: sm8550: Add JPEG encoder node
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Atanas Filipov" <atanas.filipov@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
+In-Reply-To: <20260612194417.1737009-3-atanas.filipov@oss.qualcomm.com>
+References: <20260612194417.1737009-3-atanas.filipov@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 12 Jun 2026 20:06:59 +0000
+Message-Id: <20260612200700.5FF141F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311159-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[packett.cool,gmail.com,kernel.org,mediatek.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-mediatek@lists.infradead.org,m:val@packett.cool,m:l.scorcia@gmail.com,m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sen.chu@mediatek.com,m:sean.wang@mediatek.com,m:macpaul.lin@mediatek.com,m:lee@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:linusw@kernel.org,m:louisalexis.eyraud@collabora.com,m:julien.massot@collabora.com,m:parent.f@gmail.com,m:akkun11.open@gmail.com,m:chen.zhong@mediatek.com,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-gpio@vger.kernel.org,m:lscorcia@gmail.com,m:dmitrytorokhov@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,m:parentf@gmail.com,m:akkun11open@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311147-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:atanas.filipov@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,packett.cool:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A165067C527
+X-Rspamd-Queue-Id: 71D5F67C3CF
 
-From: Val Packett <val@packett.cool>
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [Low] Unnecessary presence of the deprecated `cell-index` property in the=
+ newly added JPEG encoder node.
+- [Low] The `interconnects` property uses the hardcoded magic number `0` fo=
+r path tags instead of semantic macros.
+- [Low] Device tree node `jpeg-encoder@ac4e000` is placed out of order base=
+d on its unit-address.
+--
 
-Add the dts to be included by all boards using the MT6392 PMIC,
-providing support for keys, pinctrl and RTC.
+commit 7c79d5580891bdc3ade6113afec02f777f964fdb
+Author: Atanas Filipov <atanas.filipov@oss.qualcomm.com>
+   =20
+arm64: dts: qcom: sm8550: Add JPEG encoder node
+   =20
+This patch adds the JPEG encoder hardware node to the SM8550 device tree.
+It configures resources like clocks, power domains, IOMMUs, and interconnec=
+ts
+to allow the qcom-jpeg V4L2 encoder driver to bind and operate.
 
-Signed-off-by: Val Packett <val@packett.cool>
-Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
----
- arch/arm64/boot/dts/mediatek/mt6392.dtsi | 41 ++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt6392.dtsi
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/q=
+com/sm8550.dtsi
+> index 912525e9bca6f..8090b8b1d7bda 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+[ ... ]
+> @@ -3677,6 +3677,48 @@ port@7 {
+>  			};
+>  		};
+> =20
+> +		qcom_jpeg_enc: jpeg-encoder@ac4e000 {
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6392.dtsi b/arch/arm64/boot/dts/mediatek/mt6392.dtsi
-new file mode 100644
-index 000000000000..b8d943e47816
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt6392.dtsi
-@@ -0,0 +1,41 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019 MediaTek Inc.
-+ * Copyright (c) 2024 Val Packett <val@packett.cool>
-+ */
-+
-+#include <dt-bindings/input/input.h>
-+
-+&pwrap {
-+	pmic: pmic {
-+		compatible = "mediatek,mt6392", "mediatek,mt6323";
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+
-+		mt6392keys: keys {
-+			compatible = "mediatek,mt6392-keys";
-+
-+			key-power {
-+				linux,keycodes = <KEY_POWER>;
-+				wakeup-source;
-+			};
-+
-+			key-home {
-+				linux,keycodes = <KEY_HOME>;
-+				wakeup-source;
-+			};
-+		};
-+
-+		mt6392pio: pinctrl {
-+			compatible = "mediatek,mt6392-pinctrl";
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+		};
-+
-+		mt6392rtc: rtc {
-+			compatible = "mediatek,mt6392-rtc",
-+				"mediatek,mt6323-rtc";
-+		};
-+	};
-+};
--- 
-2.43.0
+[Severity: Low]
+Is this node placed out of order according to its unit-address?
 
+Usually, nodes within the soc container are strictly sorted by their unit
+address. Since this is at 0xac4e000, should it be placed before
+isp@acb7000 rather than appended after it?
+
+> +			cell-index =3D <0>;
+
+[Severity: Low]
+Is the cell-index property still needed here?
+
+The device tree binding typically describes this as a legacy hardware insta=
+nce
+index, and modern upstream drivers usually do not rely on it. Could we remo=
+ve
+it to align with modern device tree conventions?
+
+> +			compatible =3D "qcom,sm8550-jenc";
+> +
+> +			reg =3D <0 0xac4e000 0 0x4000>;
+[ ... ]
+> +			iommus =3D <&apps_smmu 0x20C0 0x20>,
+> +				 <&apps_smmu 0x20E0 0x20>;
+> +
+> +			interconnects =3D <&gem_noc MASTER_APPSS_PROC 0
+> +					 &config_noc SLAVE_CAMERA_CFG 0>,
+> +					<&mmss_noc MASTER_CAMNOC_HF 0
+> +					 &mc_virt SLAVE_EBI1 0>,
+> +					<&mmss_noc MASTER_CAMNOC_SF 0
+> +					 &mc_virt SLAVE_EBI1 0>,
+> +					<&mmss_noc MASTER_CAMNOC_ICP 0
+> +					 &mc_virt SLAVE_EBI1 0>;
+
+[Severity: Low]
+Would it be better to use the standard semantic macros for the interconnect
+path tags instead of hardcoding 0?
+
+While the Qualcomm RPMh driver might map 0 to QCOM_ICC_TAG_ALWAYS internall=
+y,
+using the macro explicitly would maintain consistency with the other
+interconnect nodes in the tree and clarify the intended power and bandwidth
+configuration.
+
+> +
+> +			interconnect-names =3D "cam_ahb",
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260612194417.1737=
+009-1-atanas.filipov@oss.qualcomm.com?part=3D2
 
