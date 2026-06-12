@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-310720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310721-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bUlFLCm0K2qgCAQAu9opvQ
-	(envelope-from <devicetree+bounces-310720-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 09:24:25 +0200
+	id pu8iCSu0K2qhCAQAu9opvQ
+	(envelope-from <devicetree+bounces-310721-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 09:24:27 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22FB06772E9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 09:24:25 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E066772EE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 09:24:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=dxBtF60w;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310720-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310720-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=NEXFC43Z;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310721-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310721-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AA711304B264
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 07:23:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A95043019DB9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 07:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C9713DD51C;
-	Fri, 12 Jun 2026 07:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBEF33DB63F;
+	Fri, 12 Jun 2026 07:23:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 264EE346777
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 07:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51330391E78
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 07:23:34 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781249009; cv=none; b=Ghm6zBJOF/ob+kggX+hxqUrMfkV2crUjnalOuaYIS3dUxe/jgMYH3fNdwHxsfQopwG2SNSt0W4ENQLQeeQm5O8GWu8kRzLWNfjbNnvRa7z9r3XcjvPJer5ZokNWEnVlliNc2mXVJ2Ogk7b2QP5SHc+BoRvhdHFW+jczW3eDCYzs=
+	t=1781249015; cv=none; b=fLLjxDIq1o5ifh6Z3kkvmHI5T5jc8k1ZHiXxtL2BpPgHLm4+Trp3p0f/9KyhhEELQGtyP6eHZB02oiCyHmplbcp1fBppECeNgNlh9X2huqU0InsK4ZfrDvgJk/Wr9cxd5HyI+4wVdpEy5dxzoTJ3SV8LXuHf79Uv7rcZoQCEkCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781249009; c=relaxed/simple;
-	bh=BaV5O758oRar5RTUsmj9w+tUOf355SflKEzM/C3X95Y=;
+	s=arc-20240116; t=1781249015; c=relaxed/simple;
+	bh=sni3Vfc+Eo1D4ZxHj4qZfEnv6EajkjCp775AqH7GGvI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Qi7qvlWoYfiT1qrCkX+SPQwvreQDMw+jb6gMN85UQCM15EGpIdOE4T0GiDiUxXTJFDoQs3UlonI08dOkOPBLDxn5on+iM1FkZaCiYwDib9QDcQ3sxk1rtsett2+nOSrMOJF5Kh/wIUJKl411E87rrAYhD8U1Iko3uDO6zGnN9u8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dxBtF60w; arc=none smtp.client-ip=209.85.128.53
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-490b7866869so6015895e9.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 00:23:27 -0700 (PDT)
+	 MIME-Version; b=KxUSfnOoFsBe/M/2czbH2/9Usq93xItBzsRVytUHzsklN7qzCCTZ7zkUFzI5Bzx4aCtaPwd4AQyZlZGoOc1652qJGFkddIvDPFJlKt+FO9tXvIMWqGIX8WzmyH3TZO58CDYkCjl99YVSSgAY3UdpNc4qK4TccesSuZZb3UFc2Os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NEXFC43Z; arc=none smtp.client-ip=209.85.128.51
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-490bc6a7958so15988415e9.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 00:23:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781249006; x=1781853806; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1781249013; x=1781853813; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8T1d1Epw5U6/dAcfuifWImjl16XZ+3Fa2sK3u067DnI=;
-        b=dxBtF60wNuxOmwDy4Q0qGkFZdf/xFnGxf+BamVOG8EcgWDpuuC0pmvKbdSkPWDjXdG
-         NveZpXquJhGi2Vdze+CFJz7a6dc46eCmR0sKbrH5vFJ9a9CDSOzvhyxIGbpgNdSDEg8c
-         MfBIBfWswIJ4l/uRuBBSsF1+aqA2ztUiaKjcumF4koondFq+SCg2GrF0Edzz37YEYcYk
-         8FfOmwzNNKHr/Jy3rMHB8L3RJwzrMfIYPkVwBVZXTAWbnrCtqrlzNFZzHUi86fNC0RAU
-         dRHdGhHl4vu7a3Y0BFyAXzEsBTK1iN2Bn+mWghiWkr/zJiVmFb30ygAn1+m/a5tuZQNU
-         ItSA==
+        bh=ZzuJ81oGZTf4ZC4Q8t/Gu5IOv8ZAbUAnAwamVat/tXw=;
+        b=NEXFC43Z/YFyD0gHFlYKPAd7/kor1ZTcOg7uYMzrijBj4SnWDFG71dvUO0+GALLiRR
+         OptZxt/JNkscCieqoQooYL9owsrkoShOQ6Ik/ZsvNDZz/de2sFUHRKtMTnCzY9ez6ghq
+         p9HywbVY7J8y6V/IAJN5ZaMsCrrXEERMPGL7f/edjViBabnhyHx4VovZWjJ07f515uEb
+         T+V45XdotmKoFjIeoMRSTzI+85CxYpz6UDsbPcy34MQ294QJxLplfFqfkskfg9FzycAE
+         zJubAEfCTA50q9efLsCef8NbNcohPvevoo/XysSy2fa6AlcBqcwh9gYqoYX8ho/4lCGL
+         lIvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781249006; x=1781853806;
+        d=1e100.net; s=20251104; t=1781249013; x=1781853813;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=8T1d1Epw5U6/dAcfuifWImjl16XZ+3Fa2sK3u067DnI=;
-        b=VSaHBCSYZOHQfjEgSV1DFohfa3qgHLE9j1e9FF0P+HtY15ow6S86ErFYBYxMboj5Ql
-         57PQNDBYs7c87etIwRwJMTsV5/ofYMla/3XsYPxJar7rpIZJ/lHaygkdm7i0FACB97NE
-         tlKfGdw/k89DIUzDHrYbDlbBodgfPySnwatWOtoKZmvq3h1KYdKyAhBWf9kXqCVTMgGi
-         LAIfWmeCw9LwvGKUz6l2BoJtFe/mSRwsd63yf+ple7GvPwgzdp/JYTKF1oBWd2iW+UZ2
-         WRojpuQfV11aDKmuDMfv3HIaHxuOcVVO6d1RGPGwwgbO0JdONmSnP52j5qXr32i9Q/7n
-         GBUw==
-X-Forwarded-Encrypted: i=1; AFNElJ/F57fVFrDOTECY9jZ0s+kIByXPR8r45mcSCqiTDEJOHQSgYtTlU7jvZ0RLFIJedEJYCUI1z3dIZT3F@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+tIPuhBvAl+sBDW3LVkzSUJe9dY5mlyEIQQC8k8ACU2vAo0dG
-	dd4BncW88LcMRV2tZjRfa8V4Z5ozWhWv69jXXIPHMoPt0eVX9M1RqIPzn18stgjAUCc=
-X-Gm-Gg: Acq92OFL8MeEkpItHDaNTATuoxsd2LfssMHf7ba0TGAlwryVj4qLvIwPfzV8skGgzin
-	wvBHU+KPgeVHyfqB8Ju2qV2KLgXsMCS/QciPErId4h00iu5xm0MAZA6ktVhpRgKxSMeJNkcFSn3
-	FOKnys12/MUXy82sG3IdfBenYhi7IiyxHWlXgwfVdh6146LulZnrvTIeHMzd+68qGpSWYSqhJTE
-	NfBNM5TsPy7bvXH3cogPGbEPrpg2md20Oa1YiCzJ/3MQWMKx4ipWACjbBp0ovyDJLn2I0ABnwWk
-	R4bzPmL8dGrcLl2b51+h8aNMG1OUu0bY1K1aEjkfuDTXTp8b+6BMI+KiiF4JxYTPjcZA9BrcVQF
-	YWrB8hLyt/nIIYuQz82RYjYbOlwimieAtliGFYeA9CVifktb5aTReloxN5QLgyX7BS3fsEsGW+f
-	xG+pmUK6tKlAb9r9tBJ+0fQBEjXHZ0c4zHNhyMuV0=
-X-Received: by 2002:a7b:c7d7:0:b0:490:9588:bdb6 with SMTP id 5b1f17b1804b1-490ec5215bamr9160255e9.33.1781249006412;
-        Fri, 12 Jun 2026 00:23:26 -0700 (PDT)
+        bh=ZzuJ81oGZTf4ZC4Q8t/Gu5IOv8ZAbUAnAwamVat/tXw=;
+        b=Lu8nmWp62IdM/+nmQMCkyYiAFlLJX1IJyyC8SA/zKS0gAJmWKmJj7f8I3QwE0CYu/m
+         BtqubQb2ItBFhndXd9DdIIMmbwtRf11AAB1qY2r4VqQrEq9/H2Lgg2yAk03+OI9wgstq
+         7oZ/DvRBIvjaD6MMMgwJOjTrfRcEVRz2xzZu6eVaX0ZwlgCTctaxl+LgdbZ6apibimsX
+         ZbI8zT5SZnrfJUUb1+rpkc5NSUoVWNjjhrPT84CX5SwM8JYr1N1FkI6LKGDSxJWAjofo
+         W8ClnSk+FpfA+j9zJUDvos83KgIKkjl5nL8FRs4oV0BUo9eFyglHy43yjuuCg6XbQjK2
+         +w0Q==
+X-Forwarded-Encrypted: i=1; AFNElJ/qiS7ci8lG/i2QPxhRruqR+YtNmh2loB0D+X8IxySiQdBcFWpnDePfMdofDWTVh6djgt1fVVrr8x1P@vger.kernel.org
+X-Gm-Message-State: AOJu0YxslerInnllItlcnZW8DCXTVpz8rcKNOBS3s1RiOb8gchqOVAyA
+	rA/BJz9nsNlcrpqzTy44feOvHvi/66CnQ4CD0rVUazO79Tc7t6JKkYUD0ZcVXUSIwvE=
+X-Gm-Gg: Acq92OHYLbT8IkClloFsGenMFxJkAOgobnMG79LIYEDmLtqz6ccX1bkr/q33rQ468lA
+	1Uef//u2sW2jl5F/LkVbSVlDlaYOqG2Hy91i9A+OtmTqzbrDSNl2Dl2A2gG7ww+JJqPBt6GAOHF
+	PUmuqXwJHPuYHdVmsmky+U05DPn1meKWF514B61sgUkGKGcF2vyffSwKDzXzg+cx/R5UbsqF3IX
+	nknYoH/1Qx4lFccc39XSKvkBoVgya4uQwVZGMHE46c+a+9XQScDMHqub+h/+I3bgdIMCJ5io57J
+	Czjrf2ZtjTFVQzVtxNZNXZv+aOAzZvlOlDWjuICBWrI1Ec6DRpr/8FPnGNvzAFSbRJs5edlVVbS
+	NpuYdwhgtJ3CEPDdfKnQXZGrd2GxMBtmXvB9RsHnzpYJdUNYvPkFEV9OCkENbLTz8O9nBlOtuYF
+	9GY1TSsF38xDQoaaldU2S+jfabOWhcJD0lUudl/SM=
+X-Received: by 2002:a05:600d:8446:20b0:490:c1cb:48f4 with SMTP id 5b1f17b1804b1-490ec4d77afmr8812475e9.12.1781249012588;
+        Fri, 12 Jun 2026 00:23:32 -0700 (PDT)
 Received: from arch.localdomain ([2409:8a28:a54:e741:3a5a:3245:d3dc:4b5d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490ea963cf8sm28715245e9.2.2026.06.12.00.23.22
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490ea963cf8sm28715245e9.2.2026.06.12.00.23.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2026 00:23:26 -0700 (PDT)
+        Fri, 12 Jun 2026 00:23:32 -0700 (PDT)
 From: Jun Yan <jerrysteve1101@gmail.com>
 To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh@kernel.org>,
@@ -85,9 +85,9 @@ Cc: Jun Yan <jerrysteve1101@gmail.com>,
 	linux-input@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/9] Input: cap11xx - remove unused register macros
-Date: Fri, 12 Jun 2026 15:22:08 +0800
-Message-ID: <20260612072237.1177304-3-jerrysteve1101@gmail.com>
+Subject: [PATCH v2 3/9] dt-bindings: input: microchip,cap11xx: Update datasheet URL and LED reg range
+Date: Fri, 12 Jun 2026 15:22:09 +0800
+Message-ID: <20260612072237.1177304-4-jerrysteve1101@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260612072237.1177304-1-jerrysteve1101@gmail.com>
 References: <20260612072237.1177304-1-jerrysteve1101@gmail.com>
@@ -105,13 +105,13 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-310720-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310721-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jerrysteve1101@gmail.com,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmitrytorokhov@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
@@ -119,7 +119,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -133,130 +133,70 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,microchip.com:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 22FB06772E9
+X-Rspamd-Queue-Id: 41E066772EE
 
-Remove unused register address macros and unused definitions in
-the cap11xx_reg_defaults array and cap11xx_volatile_reg.
+- Add datasheet links for all supported CAP11xx variants.
+- Update LED node regex and replace enum constraints with minimum/maximum
+  for LED reg ranges in preparation for CAP1114 support.
 
-This cleanup reduces code clutter and makes the driver easier to
-maintain without affecting functionality.
+CAP1114 has 11 LED channels. minimum/maximum constraints are easier to
+maintain than long enum lists when expanding channel count later.
 
 Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
 ---
- drivers/input/keyboard/cap11xx.c | 58 --------------------------------
- 1 file changed, 58 deletions(-)
+ .../bindings/input/microchip,cap11xx.yaml       | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/cap11xx.c
-index 485d8ba97723..686174722204 100644
---- a/drivers/input/keyboard/cap11xx.c
-+++ b/drivers/input/keyboard/cap11xx.c
-@@ -20,53 +20,23 @@
- #define CAP11XX_REG_MAIN_CONTROL_GAIN_SHIFT	(6)
- #define CAP11XX_REG_MAIN_CONTROL_GAIN_MASK	(0xc0)
- #define CAP11XX_REG_MAIN_CONTROL_DLSEEP		BIT(4)
--#define CAP11XX_REG_GENERAL_STATUS	0x02
- #define CAP11XX_REG_SENSOR_INPUT	0x03
--#define CAP11XX_REG_NOISE_FLAG_STATUS	0x0a
--#define CAP11XX_REG_SENOR_DELTA(X)	(0x10 + (X))
- #define CAP11XX_REG_SENSITIVITY_CONTROL	0x1f
- #define CAP11XX_REG_SENSITIVITY_CONTROL_DELTA_SENSE_MASK	0x70
--#define CAP11XX_REG_CONFIG		0x20
--#define CAP11XX_REG_SENSOR_ENABLE	0x21
--#define CAP11XX_REG_SENSOR_CONFIG	0x22
--#define CAP11XX_REG_SENSOR_CONFIG2	0x23
--#define CAP11XX_REG_SAMPLING_CONFIG	0x24
--#define CAP11XX_REG_CALIBRATION		0x26
--#define CAP11XX_REG_INT_ENABLE		0x27
- #define CAP11XX_REG_REPEAT_RATE		0x28
- #define CAP11XX_REG_SIGNAL_GUARD_ENABLE	0x29
--#define CAP11XX_REG_MT_CONFIG		0x2a
--#define CAP11XX_REG_MT_PATTERN_CONFIG	0x2b
--#define CAP11XX_REG_MT_PATTERN		0x2d
--#define CAP11XX_REG_RECALIB_CONFIG	0x2f
- #define CAP11XX_REG_SENSOR_THRESH(X)	(0x30 + (X))
--#define CAP11XX_REG_SENSOR_NOISE_THRESH	0x38
--#define CAP11XX_REG_STANDBY_CHANNEL	0x40
--#define CAP11XX_REG_STANDBY_CONFIG	0x41
--#define CAP11XX_REG_STANDBY_SENSITIVITY	0x42
--#define CAP11XX_REG_STANDBY_THRESH	0x43
- #define CAP11XX_REG_CONFIG2		0x44
- #define CAP11XX_REG_CONFIG2_ALT_POL	BIT(6)
--#define CAP11XX_REG_SENSOR_BASE_CNT(X)	(0x50 + (X))
--#define CAP11XX_REG_LED_POLARITY	0x73
- #define CAP11XX_REG_LED_OUTPUT_CONTROL	0x74
- #define CAP11XX_REG_CALIB_SENSITIVITY_CONFIG	0x80
- #define CAP11XX_REG_CALIB_SENSITIVITY_CONFIG2	0x81
--
--#define CAP11XX_REG_LED_DUTY_CYCLE_1	0x90
--#define CAP11XX_REG_LED_DUTY_CYCLE_2	0x91
--#define CAP11XX_REG_LED_DUTY_CYCLE_3	0x92
- #define CAP11XX_REG_LED_DUTY_CYCLE_4	0x93
+diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+index 7ade03f1b32b..9578c7c206a2 100644
+--- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
++++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+@@ -10,6 +10,15 @@ description: |
+   The Microchip CAP1xxx Family of RightTouchTM multiple-channel capacitive
+   touch controllers and LED drivers. The device communication via I2C only.
  
--#define CAP11XX_REG_LED_DUTY_MIN_MASK	(0x0f)
--#define CAP11XX_REG_LED_DUTY_MIN_MASK_SHIFT	(0)
- #define CAP11XX_REG_LED_DUTY_MAX_MASK	(0xf0)
- #define CAP11XX_REG_LED_DUTY_MAX_MASK_SHIFT	(4)
- #define CAP11XX_REG_LED_DUTY_MAX_VALUE	(15)
++  For more product information please see the links below:
++    CAP1106: https://ww1.microchip.com/downloads/en/DeviceDoc/00001624B.pdf
++    CAP1126: https://ww1.microchip.com/downloads/en/DeviceDoc/00001623B.pdf
++    CAP1188: https://ww1.microchip.com/downloads/en/DeviceDoc/00001620C.pdf
++    CAP1203: https://ww1.microchip.com/downloads/en/DeviceDoc/00001572B.pdf
++    CAP1206: https://ww1.microchip.com/downloads/en/DeviceDoc/00001567B.pdf
++    CAP1293: https://ww1.microchip.com/downloads/en/DeviceDoc/00001566B.pdf
++    CAP1298: https://ww1.microchip.com/downloads/en/DeviceDoc/00001571B.pdf
++
+ maintainers:
+   - Rob Herring <robh@kernel.org>
  
--#define CAP11XX_REG_SENSOR_CALIB	(0xb1 + (X))
--#define CAP11XX_REG_SENSOR_CALIB_LSB1	0xb9
--#define CAP11XX_REG_SENSOR_CALIB_LSB2	0xba
- #define CAP11XX_REG_PRODUCT_ID		0xfd
- #define CAP11XX_REG_MANUFACTURER_ID	0xfe
- #define CAP11XX_REG_REVISION		0xff
-@@ -111,37 +81,15 @@ struct cap11xx_hw_model {
+@@ -124,14 +133,16 @@ properties:
+       The number of entries must correspond to the number of channels.
  
- static const struct reg_default cap11xx_reg_defaults[] = {
- 	{ CAP11XX_REG_MAIN_CONTROL,		0x00 },
--	{ CAP11XX_REG_GENERAL_STATUS,		0x00 },
--	{ CAP11XX_REG_SENSOR_INPUT,		0x00 },
--	{ CAP11XX_REG_NOISE_FLAG_STATUS,	0x00 },
- 	{ CAP11XX_REG_SENSITIVITY_CONTROL,	0x2f },
--	{ CAP11XX_REG_CONFIG,			0x20 },
--	{ CAP11XX_REG_SENSOR_ENABLE,		0x3f },
--	{ CAP11XX_REG_SENSOR_CONFIG,		0xa4 },
--	{ CAP11XX_REG_SENSOR_CONFIG2,		0x07 },
--	{ CAP11XX_REG_SAMPLING_CONFIG,		0x39 },
--	{ CAP11XX_REG_CALIBRATION,		0x00 },
--	{ CAP11XX_REG_INT_ENABLE,		0x3f },
- 	{ CAP11XX_REG_REPEAT_RATE,		0x3f },
--	{ CAP11XX_REG_MT_CONFIG,		0x80 },
--	{ CAP11XX_REG_MT_PATTERN_CONFIG,	0x00 },
--	{ CAP11XX_REG_MT_PATTERN,		0x3f },
--	{ CAP11XX_REG_RECALIB_CONFIG,		0x8a },
- 	{ CAP11XX_REG_SENSOR_THRESH(0),		0x40 },
- 	{ CAP11XX_REG_SENSOR_THRESH(1),		0x40 },
- 	{ CAP11XX_REG_SENSOR_THRESH(2),		0x40 },
- 	{ CAP11XX_REG_SENSOR_THRESH(3),		0x40 },
- 	{ CAP11XX_REG_SENSOR_THRESH(4),		0x40 },
- 	{ CAP11XX_REG_SENSOR_THRESH(5),		0x40 },
--	{ CAP11XX_REG_SENSOR_NOISE_THRESH,	0x01 },
--	{ CAP11XX_REG_STANDBY_CHANNEL,		0x00 },
--	{ CAP11XX_REG_STANDBY_CONFIG,		0x39 },
--	{ CAP11XX_REG_STANDBY_SENSITIVITY,	0x02 },
--	{ CAP11XX_REG_STANDBY_THRESH,		0x40 },
- 	{ CAP11XX_REG_CONFIG2,			0x40 },
--	{ CAP11XX_REG_LED_POLARITY,		0x00 },
--	{ CAP11XX_REG_SENSOR_CALIB_LSB1,	0x00 },
--	{ CAP11XX_REG_SENSOR_CALIB_LSB2,	0x00 },
- };
+ patternProperties:
+-  "^led@[0-7]$":
++  "^led@[0-9a-f]$":
+     type: object
+     description: CAP11xx LEDs
+     $ref: /schemas/leds/common.yaml#
  
- static bool cap11xx_volatile_reg(struct device *dev, unsigned int reg)
-@@ -149,12 +97,6 @@ static bool cap11xx_volatile_reg(struct device *dev, unsigned int reg)
- 	switch (reg) {
- 	case CAP11XX_REG_MAIN_CONTROL:
- 	case CAP11XX_REG_SENSOR_INPUT:
--	case CAP11XX_REG_SENOR_DELTA(0):
--	case CAP11XX_REG_SENOR_DELTA(1):
--	case CAP11XX_REG_SENOR_DELTA(2):
--	case CAP11XX_REG_SENOR_DELTA(3):
--	case CAP11XX_REG_SENOR_DELTA(4):
--	case CAP11XX_REG_SENOR_DELTA(5):
- 		return true;
- 	}
+     properties:
+       reg:
+-        enum: [0, 1, 2, 3, 4, 5, 6, 7]
++        description: LED channel number
++        minimum: 0
++        maximum: 7
  
+       label: true
+ 
+@@ -158,7 +169,7 @@ allOf:
+               - microchip,cap1298
+     then:
+       patternProperties:
+-        "^led@[0-7]$": false
++        "^led@": false
+ 
+   - if:
+       properties:
 -- 
 2.54.0
 
