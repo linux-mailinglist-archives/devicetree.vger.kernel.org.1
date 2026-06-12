@@ -1,209 +1,200 @@
-Return-Path: <devicetree+bounces-310885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310891-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mzjIMbDrK2oqHwQAu9opvQ
-	(envelope-from <devicetree+bounces-310885-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:21:20 +0200
+	id R95zNKruK2rlHwQAu9opvQ
+	(envelope-from <devicetree+bounces-310891-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:34:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6800D678F15
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:21:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18EC2678FDC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:34:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=T1ZBtac5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310885-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-310885-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="g6/9ijNH";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310891-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310891-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7BFCF31B77E1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:19:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DCEA63048575
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:34:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC6E39DBE4;
-	Fri, 12 Jun 2026 11:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B70013803C1;
+	Fri, 12 Jun 2026 11:33:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5F139934D;
-	Fri, 12 Jun 2026 11:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 651B93E7BCD
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 11:33:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781263136; cv=none; b=d3JnHosAmAUQthkXWmffXIgdkmiEuJhXDsRJYnRcQkPe53Vf8+9oHuyLdbwVo1nT4EQPLfydhZYI1pC/mpNWjcXK8oC0RZ+ch8KHu5pMalpXAB3Z1+be0CVTSiuAJ1LEfAB/84hC2ms8AY5AD4ipgFZrsOwUdXI6qZ2dP4JZ5Q0=
+	t=1781264039; cv=none; b=IauAM6VHiX79Cjv9FwRS2HjXojp3VEt+tMrsAhDW0Kx8y+Ii1cLmMPD6UkWblmXySr37UX1p6cgOdJ0DReSJ56sicC9IvcR4W1l0Q/MPj4Re9zTFCofdBUMFWGD+zknNtseT4xRdWgWJl7gImuUYK7U4ZsI9U0+GHvA1qMtR1d4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781263136; c=relaxed/simple;
-	bh=/0DITwMPaESzc0h8GdQhI1V0wGYWiihrCOuwjEOzEp0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D/SG18R+5bcLXYZ/ZQQezPfQMJM4s0Psh/r/b2L3aVxEG5ygew8vxlvp/ryHCLu+ySMjzUdMoPUYP0VBHAKYlFIi0Ng1WWLIrpG/lMcVRdYbrH4USwxsTNNJEhCxa4+5QcH89GXJrMRLMIYIDKf/ZF2aYr4quOz0lgioYIFExGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T1ZBtac5; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 740851F000E9;
-	Fri, 12 Jun 2026 11:18:49 +0000 (UTC)
+	s=arc-20240116; t=1781264039; c=relaxed/simple;
+	bh=JaDbjhkWvyThib1i7DjiSRWaR68zkvpJBEMOQS4gvcg=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=HdsJeuhKGks6gZnprG3k+XpXu8FH8bdE9bZVfPYt4EhRaxwNyPp0ye3qF6uFAfSf+k9mO3/VRhJ55nbEZjE0v24zEP1vB5QXmYHtkIcHyW6aAuSPLUlndoqyFtGqS8EkqElAGuHUvkTv7MMZvIvgJeiwtQUv7KCCarcy9jMBwSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g6/9ijNH; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14AA31F000E9;
+	Fri, 12 Jun 2026 11:33:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781263131;
-	bh=QA9VGCEANiXhD8chy/S02QB/G9vTT1qANH6a4eKKmnw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=T1ZBtac5KybFrVXTSufoYaF0z3TLD6NAN03qdzWjF8eLVtlKAGn49ZfebFa65YemU
-	 N7u3sySJL3UEwjXLhrzm/fIDmIEt9Le75BiZJgSxFw+boowTJa7EIS9A7bfHw5r/gP
-	 pUVXZC5O62I9UilE6bFntsAiwvyeISrUBUVegfH5qcoOHLiXskRh5jMVpAr1Q0/5K6
-	 shuUy8FR2mWh5AtXTVsJWmlfUPfyiou7wRe2qFodqlSKDbeV5fufZX1/dEO80kG3g4
-	 njqZMgq/ieRHnerkleSv7H0FbhLsgqdi/VXk9BLiLV9uVZ4O7yBmmSQAvaoTrEVfct
-	 jHy14RjEASjaA==
-Message-ID: <f810f5a1-5ff5-496a-b872-6a27c6ac6d48@kernel.org>
-Date: Fri, 12 Jun 2026 12:18:48 +0100
+	s=k20260515; t=1781264034;
+	bh=M4rNj4QcWLEHQGUaBLQEwMisVeEKG2/d81qhNxHTVhY=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=g6/9ijNHtW5JG6Rob/EwpmNb67m9kQC1sX/bAvcZFgczW/RaMfb4EWP3cG9kkMyh6
+	 U5yC9awE3FLd0zu1sKr3oyXe19B0295CWURoRMo22u61WdeWtEqB5OVJy0aKOTrR2w
+	 XI9UM7KSiRevWa8o5bqs3bVGQlDKr6bvu3J8MCahjzBFNmcZaQZsp9k/6a8EOgeK/e
+	 ZvJkWrBsTTnGRQxd5RhfECevDjzzOz9guq0+ar4PkA5zDob09LmQ//tqmY+EpQVNDp
+	 EkBfqvsctyhGsqr2jsVAcr2mEUewi5Pul+9dVVKyG3a5ULVc2CCutCPNlnkD3LV7Ue
+	 KR0PYgfNDldKA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v11 4/9] dt-bindings: i3c: Add NXP P3H2x4x i3c-hub
+ support
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Lakshay Piplani" <lakshay.piplani@nxp.com>
+Cc: Frank.Li@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, linux-i3c@lists.infradead.org
+In-Reply-To: <20260612111816.3688240-5-lakshay.piplani@nxp.com>
+References: <20260612111816.3688240-5-lakshay.piplani@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 12 Jun 2026 11:33:53 +0000
+Message-Id: <20260612113354.14AA31F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: qcom,qcm2290-venus: document
- shikra Iris compatible
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
- Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260612-shikra_vpu-v2-0-bf8727370a1e@oss.qualcomm.com>
- <g-DHie7qniRKVCsx8_kFUx3ahp5F7hzKuwOEWG4xsWwfVzmvycsWRH4Q7K67aLyBcrKKUlzyRsGOUKzPJl3Okg==@protonmail.internalid>
- <20260612-shikra_vpu-v2-1-bf8727370a1e@oss.qualcomm.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=bod@kernel.org; keydata=
- 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
-In-Reply-To: <20260612-shikra_vpu-v2-1-bf8727370a1e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:vikash.garodia@oss.qualcomm.com,m:dikshita.agarwal@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jorge.ramirez@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-310885-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310891-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lakshay.piplani@nxp.com,m:Frank.Li@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:linux-i3c@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_FIVE(0.00)[6];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6800D678F15
+X-Rspamd-Queue-Id: 18EC2678FDC
 
-On 11/06/2026 20:49, Vikash Garodia wrote:
-> Document the iris video accelerator used on shikra platforms by adding
-> the qcom,shikra-iris compatible.
-> 
-> Although QCM2290 and shikra share the same video hardware and overall
-> integration, their SMMU programming differs. QCM2290 exposes separate
-> stream IDs for the video hardware and the Xtensa path, requiring two
-> explicit IOMMU entries, whereas shikra uses a masked SMR to collapse
-> equivalent stream IDs into a single mapping. Due to QCM2290’s SID layout
-> and Xtensa isolation requirements, such SMR masking is not applicable on
-> QCM2290 platforms.
-> Since shikra uses the same video hardware as QCM2290 and shares the same
-> programming model and capabilities, it is added as a fallback compatible
-> to qcom,qcm2290-venus, with conditional handling to allow either one or
-> two IOMMU entries.
-> 
-> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-> ---
->   .../bindings/media/qcom,qcm2290-venus.yaml         | 26 ++++++++++++++++------
->   1 file changed, 19 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
-> index 5977e7d0a71b4fb5681f1c2094439c251366f01f..dec7051224d1610b8b3dcb1750152eeda95d3703 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
-> @@ -13,14 +13,13 @@ description:
->     The Venus AR50_LITE IP is a video encode and decode accelerator present
->     on Qualcomm platforms.
-> 
-> -allOf:
-> -  - $ref: qcom,venus-common.yaml#
-> -
->   properties:
->     compatible:
->       oneOf:
->         - items:
-> -          - const: qcom,sm6115-venus
-> +          - enum:
-> +              - qcom,shikra-iris
-> +              - qcom,sm6115-venus
-I still think this is not an accurate name.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] Missing GPIO provider properties and constraints in the DT bindi=
+ng schema, violating subsystem guidelines.
+- [Medium] Missing compatible strings and port constraints for the document=
+ed 4-port hardware variants (P3H2440/P3H2441).
+--
 
-https://lore.kernel.org/linux-arm-msm/q3sr74ncqnmzsjrd6jdbkpplxpnsnifhnvxsdplvogr2kf25p3@taadnzd2qrcu/
+commit cfd8cd31027f9ddcdd30fe595d5d947dc8bae49b
+Author: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 
-Best practice if you _aren't_ acting on previous feedback is to document 
-it in your cover letter.
+dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
 
-https://lore.kernel.org/linux-arm-msm/20260612-shikra_vpu-v2-0-bf8727370a1e@oss.qualcomm.com
+Adds bindings for the NXP P3H2x4x multiport I3C hub family. These devices
+connect to a host via I3C/I2C/SMBus and allow communication with multiple
+downstream peripherals.
 
-Either way that naming comment still needs to be resolved.
+> diff --git a/Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml b/Doc=
+umentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+> new file mode 100644
+> index 0000000000000..c080eeb0eeaa8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+> @@ -0,0 +1,291 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2025 NXP
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i3c/nxp,p3h2840.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP P3H2X4X I3C HUB
 
----
-bod
+[ ... ]
+
+> +description: |
+> +  P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841) is a family of multiport I3C
+> +  hub devices that connect to:-
+> +  1. A host CPU via I3C/I2C/SMBus bus on upstream side and connect to mu=
+ltiple
+> +     peripheral devices on the downstream  side.
+> +  2. Have two Controller Ports which can support either
+> +     I2C/SMBus or I3C buses and connect to a CPU, BMC or SOC.
+> +  3. P3H2840/ P3H2841 are 8 port I3C hub with eight I3C/I2C Target Port.
+> +  4. P3H2440/ P3H2441 are 4 port I3C hub with four I3C/I2C Target Port.
+> +     Target ports can be configured as I2C/SMBus, I3C or GPIO and connec=
+t to
+> +     peripherals.
+
+[Severity: Medium]
+If the target ports can be configured as GPIO, should the schema include the
+corresponding provider properties (such as gpio-controller and #gpio-cells)?
+Without these properties defined, device trees attempting to use the
+documented GPIO capabilities will be strictly rejected due to
+unevaluatedProperties: false at the top level.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,p3h2840
+
+[Severity: Medium]
+The description mentions support for the P3H2440 and P3H2441 4-port hardware
+variants, but the compatible property is restricted strictly to nxp,p3h2840.
+Should the compatible strings for the 4-port variants also be included here?
+
+[ ... ]
+
+> +patternProperties:
+> +  "^i3c@[0-7]$":
+> +    type: object
+> +    $ref: /schemas/i3c/i3c.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          The I3C HUB Target Port number.
+> +        maximum: 7
+
+[Severity: Medium]
+The maximum port number is currently hardcoded to 7 for all variants. If the
+4-port variants (P3H2440/P3H2441) are supported, wouldn't we need condition=
+al
+if-then constraints to restrict the reg maximum to 3 for the 4-port hubs?
+Otherwise, invalid device trees defining non-existent ports on 4-port hubs
+might pass validation.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260612111816.3688=
+240-1-lakshay.piplani@nxp.com?part=3D4
 
