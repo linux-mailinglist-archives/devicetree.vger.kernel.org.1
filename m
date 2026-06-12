@@ -1,232 +1,138 @@
-Return-Path: <devicetree+bounces-310804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310807-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6T54JGLMK2rdFAQAu9opvQ
-	(envelope-from <devicetree+bounces-310804-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:07:46 +0200
+	id 4McmBjrNK2o9FQQAu9opvQ
+	(envelope-from <devicetree+bounces-310807-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:11:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EE5667810C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:07:46 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 124466781D6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:11:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=XwGVSarp;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310804-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310804-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=KzEa3Bko;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310807-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310807-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9666A30E3F37
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 09:07:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 290DC300532D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 09:11:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A993A6F06;
-	Fri, 12 Jun 2026 09:06:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92C5B371D0A;
+	Fri, 12 Jun 2026 09:11:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89C8029E10B
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 09:06:48 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781255215; cv=pass; b=Rtb8hMTvaK6mvw2f19SFZ+flfFZPD37D4cKNPC/1XTWmpnquWxVQw2U8RzwcHKUucn6Qt5qpooIJozLn3FoDnScDa9xYW3RKchRDQA+D8PPLL0lFktlNFkx7poDLqHZnVSt8MTdSQYd3SGXvi7MxVFPGXFl08p5d4P79cIYiN0o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781255215; c=relaxed/simple;
-	bh=IsojegjKAwdLgtUNQObWKq5Q0mjssDHUxhr29/dEiVY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hQTRdXquVk9qXzX5jMcN77q7OFU3J4T7K92tPfl4URZ1+9nmRjUoRP/5m8y0jGmRIjihFp6r6epLa4vCNN35fUJo4GMfNktuje78BsM0MAo9TT/E15mwO+xjYrhWDykHXdGLbuCWHfMmH8grB0jlG2FKIkOaJx4Tw13PenXl7F0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XwGVSarp; arc=pass smtp.client-ip=209.85.219.47
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-8ce9df31130so12093576d6.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 02:06:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781255207; cv=none;
-        d=google.com; s=arc-20240605;
-        b=KmkDgs8sgEGI0Z6uNFKalpxeJB6hqRnN3suK14+EUJx6Lm4Nv22lGY7DN1GTLDzWiy
-         XJxOWdaF3irQdtixSBmxL1c+ABcjkk5ARLnHR3zRkcqKMXDApH6WemShbD5/Z1FV5ha+
-         WxRu2/9KtU+nQpeu09y2y6n0imCfeumChTkOMkYS9p9UBG7DFQrzTU6jkDTI24LeV7EG
-         +8qMcIztxNuv+uMlFwxbCJICbb5qXNxxrBD6sAKBcVdrG9e7TMhnXMuaWoFo6mVtJg2v
-         l58JLcX2cCMtCwWuuYYuwcqrhb0lXGvIkLqvhrdvjZ7WUuTudnklQHSJAV1znvfLXt7g
-         wwjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=jWwQjl84zpgSaQa4jqoTy8ry+T8ZHf8hg3Nkjy1g20A=;
-        fh=2XZJ8FpA/tnFHksklEIR8GOPq9Q4HTWWiC/1NcexXWk=;
-        b=cZGsUStmQxYcdRPZ0qugoczfY30jts9R584r//zg+iIJ3Ve21aYG8jtq7TTHalPniA
-         osfu3bgfwZkIiYnQoz0olVqewmwNBuHW9+dgQ2yF/Il6Tm0fRUngF8hF1VPm/LSe5kCw
-         LjaBRa5hB98jTMGNkVNIIjZmMjB/72fBu5ZhtIyLyZ/r4qhcD/Kd1nbt18Wheg/y+/5R
-         vTD7CBdTK1nIAb8HbpY1ufQDW2Bz1/rR1QBe2HzIRdW83ved0L1cgX6O0objRQsmkKV9
-         o0g58iAsq9M9FPpa4cEZWo202sLt/kdwaZB716o4W+ZmfaG6DPtbIw6Z/ucyEYS9LbvI
-         IaQw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781255207; x=1781860007; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jWwQjl84zpgSaQa4jqoTy8ry+T8ZHf8hg3Nkjy1g20A=;
-        b=XwGVSarpY5KHHgERiE6pBCGc94GK1IoXCcBCcnVYBRBvyj2Wt0A+T5qIvLFwU+r41J
-         JGOMgnfMlpdqI1IxHZbtXPwFo2QRMJaPco7bUL3SGvB1MmyDtl8Q4BP7NSQ61FvJL5rn
-         Ir0+mF4R63nc0On+F0D0eXpJmRg4zpyFnEUWaZUu+QckELQIfk+DaVZtF6SERJTjrJGQ
-         W3zWsV9U6t3tD0ba91oy4rfcUOfVR+r7+vBp+g3YmdYDr4KNH2ip3g8TPsYsENcLmn3/
-         vBctj+esOEYd5hWE1p3mTFLYpuF0AWlGgkCR0looUoHIta1lyYdaXeJiWt/VhZjyNDxH
-         lJ/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781255207; x=1781860007;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=jWwQjl84zpgSaQa4jqoTy8ry+T8ZHf8hg3Nkjy1g20A=;
-        b=NpNtEJy7CFSBy8BD0Gbti+YhFw2HT3hebUvBS+qrKq+dsCdy25BZLsaR016mlQ1hUT
-         r5ZxPGpBYjjac0LxUoAt0r2czKVQ+VI3Uj80f38nPU6x8WDNcyIrTS0YWcdN3Yy3Fao8
-         29HZ8VXReVzjdL+RH8eMrS1K+93hgkwJGgIhAg2jhHBIzJmNIq+OpH+aHu8GGbKvnQCn
-         LGU+x46ZP/UE3f0Yy8Tm7H/a3UfV00+igF7mAuE4nPVLRw2h8EL66OsiEk4Lb/9iyTbP
-         YaShLm1AMnSJvyXC/C5CU0MEZ/3uPchFttZ50kkMbwo/jHaN+xDlNKapaK7hYY9Q1531
-         jc8g==
-X-Forwarded-Encrypted: i=1; AFNElJ+s4gLSBcL4xDSCdhGOdADBIvdu1f5PEUhiK77X1mFjp4hSTmxWIOMbkO0LeWTY788Y62wIDaZzWOBP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJMei+6fEINhfHiK9EqyVOhJPMf+NAY6DYigIM6YI8XptjgpVH
-	elEbga64kfRofkw/6yWrrEhrhjSREqQuGt06V9VhfSoec1B7ub1pAlDH/y1H9l4dQgCAcPsVeAG
-	ZDFuzb6WgGf1IRwRkNxfCKgPQ132SNr0=
-X-Gm-Gg: Acq92OElZAOhgUaj0T0MsjccAjMuOvzFWYyjaj15mp9i/OnbbciwtVLdb3UEX+LrthU
-	j1+nj9V+26Xhv3Cd3TNgO/5Hx+UgiA0binWQkaIqqNTsM7TN+VXp1QpMPU2b/qPAjcL1yWCz1e9
-	+/RU6vaxK11VpO1ImgITQ11YjtVDLVk1qWk7TjxciAmD+pJfZd987Ejg/x5OQFZW1Bq8YsvhuOs
-	cmtEkCY+e224tH7fTVWppPGnFS3xUDAXg244MHxr77+7eYjysMBkK+hMa8MTUr4zvlaRP191FiG
-	5GUhEUhL
-X-Received: by 2002:a05:6214:3383:b0:8ce:e416:610c with SMTP id
- 6a1803df08f44-8d32cabe370mr33975566d6.19.1781255207244; Fri, 12 Jun 2026
- 02:06:47 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11AF29E10B;
+	Fri, 12 Jun 2026 09:11:13 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781255475; cv=none; b=On9Q5HoqzrRCxYxCXlQ9skryLS0jmBV0I1BabtFSqc2lxahmvFAi7T89vGGLlwnTNWGsnDa1JSJA9JGz6vsURpMAkO7bqPvNUa+84oU+BRmjU+hz97/hhw623XNWHZx3VYeIS+qr0phiEAYW0n7hW6g+mjyd70t9YTsBw7t90CY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781255475; c=relaxed/simple;
+	bh=sA7XHTR+hUu1GOIidIrazCy8bVz0wveq1McrnESdVO4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jX1ZTKjbwCn3iBIpsgXR2cndIHg2eMesBj8QH2Ur+BsHX8E3iCMBgk67eJu6nu+B5aYIpJi+cvAjWks+Dkal9yWUR7O6fSVVuQf9qxCb9hO4LO8SQXCmej2ZkSeONKviHM4fvcoKjqT6fA2RJh4FQ//MkWInvrBT4iDCv5M5aD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KzEa3Bko; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDCEE1F00A3A;
+	Fri, 12 Jun 2026 09:11:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781255473;
+	bh=PQ4QzvJCcyyUBvM3LmUN3c7vcUQePiRiidAiUwgM9rA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=KzEa3Bko20ri1xq7WNCzHIPuqdbpWldg0H0nLjZ+H0+FJ0oF9puLF8kMs36Dck8Pl
+	 u5ZCPpY4AllDcGfU8mUNSrX9IcNrCLCmaNfMnyzBicnUTDZ0WTn/Px5PXR28O9Vptv
+	 UTimAjUo6T864VFDA5Md0DBL6H227Pf4V4zS4qwQUu0aJa8GogeLNi/TsJn3d1YJg/
+	 H0PucKt6zk0NLyvDV2blcjEGuF9eA7iMP1fMyaw4hE655QV/K1ZmwtOJLNz1TLyqxy
+	 uOWDn5kkYeyANABJDfdTz0Hj9iww9qicGMf8s9FlRZbUmjQTWYjjrOq7eYB7vsg126
+	 IURkOOoiSyEQg==
+Date: Fri, 12 Jun 2026 11:11:11 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+Cc: Bryan O'Donoghue <bod@kernel.org>, 
+	Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: qcom,qcm2290-venus: document
+ shikra Iris compatible
+Message-ID: <20260612-faithful-literate-vulture-a3bf8d@quoll>
+References: <20260612-shikra_vpu-v2-0-bf8727370a1e@oss.qualcomm.com>
+ <20260612-shikra_vpu-v2-1-bf8727370a1e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260611-lm25066-cl-config-v1-0-02e567bf3d91@gmail.com>
- <20260611-lm25066-cl-config-v1-1-02e567bf3d91@gmail.com> <20260611-mocha-strive-a7f3265dd3f4@spud>
-In-Reply-To: <20260611-mocha-strive-a7f3265dd3f4@spud>
-From: Potin Lai <potin.lai.pt@gmail.com>
-Date: Fri, 12 Jun 2026 17:10:38 +0800
-X-Gm-Features: AVVi8CcNLcTbD6v5Tw0D33_UI0Q9NrseU5jWT3dG2q2Uo9P-neDK5VnFrDmIZiY
-Message-ID: <CAGfYmwWPhdpTLGhOdddJ0hSj-H86+XOVGTR9eDkZSVqGRLfJvQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pmbus: ti,lm25066: add current
- limit properties
-To: Conor Dooley <conor@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Zev Weiss <zev@bewilderbeest.net>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Cosmo Chou <cosmo.chou@quantatw.com>, Mike Hsieh <Mike_Hsieh@quantatw.com>, 
-	Potin Lai <potin.lai@qunatatw.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260612-shikra_vpu-v2-1-bf8727370a1e@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [-4.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zev@bewilderbeest.net,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cosmo.chou@quantatw.com,m:Mike_Hsieh@quantatw.com,m:potin.lai@qunatatw.com,m:krzk@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-310804-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[potinlaipt@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-310807-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:vikash.garodia@oss.qualcomm.com,m:bod@kernel.org,m:dikshita.agarwal@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jorge.ramirez@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[potinlaipt@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0EE5667810C
+X-Rspamd-Queue-Id: 124466781D6
 
-On Fri, Jun 12, 2026 at 1:27=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Thu, Jun 11, 2026 at 05:58:44PM +0800, Potin Lai wrote:
-> > Add mutually exclusive 'ti,cl-smbus-high' and 'ti,cl-smbus-low' boolean
-> > properties to configure the device's Current Limit (CL) behavior using
-> > SMBus settings instead of physical pins.
-> >
-> > Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
-> > ---
-> >  .../devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml  | 20 ++++++++++++=
-++++++++
-> >  1 file changed, 20 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.y=
-aml b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-> > index a20f140dc79a..95ea7c26dec2 100644
-> > --- a/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-> > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-> > @@ -46,6 +46,26 @@ properties:
-> >
-> >      additionalProperties: false
-> >
-> > +  ti,cl-smbus-high:
-> > +    description: |
-> > +      Configure the Current Limit (CL) to use the SMBus high setting.
-> > +    type: boolean
-> > +
-> > +  ti,cl-smbus-low:
-> > +    description: |
-> > +      Configure the Current Limit (CL) to use the SMBus low setting.
-> > +    type: boolean
->
-> What's smbus specific about this? If the pin was connected to a GPIO,
-> you'd then need to have different properties or use these ones with an
-> inaccurate name.
->
+On Fri, Jun 12, 2026 at 01:19:40AM +0530, Vikash Garodia wrote:
+> Document the iris video accelerator used on shikra platforms by adding
+> the qcom,shikra-iris compatible.
+>=20
+> Although QCM2290 and shikra share the same video hardware and overall
+> integration, their SMMU programming differs. QCM2290 exposes separate
+> stream IDs for the video hardware and the Xtensa path, requiring two
+> explicit IOMMU entries, whereas shikra uses a masked SMR to collapse
+> equivalent stream IDs into a single mapping. Due to QCM2290=E2=80=99s SID=
+ layout
+> and Xtensa isolation requirements, such SMR masking is not applicable on
+> QCM2290 platforms.
+> Since shikra uses the same video hardware as QCM2290 and shares the same
+> programming model and capabilities, it is added as a fallback compatible
+> to qcom,qcm2290-venus, with conditional handling to allow either one or
+> two IOMMU entries.
+>=20
+> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+> ---
+>  .../bindings/media/qcom,qcm2290-venus.yaml         | 26 ++++++++++++++++=
+------
+>  1 file changed, 19 insertions(+), 7 deletions(-)
 
-The "smbus" in the property name was originally meant to indicate
-that the setting is configured via the internal register over the SMBus (I2=
-C)
-interface, rather than physical pins.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-> Please also spell out "current-limit".
->
+Best regards,
+Krzysztof
 
-I will rename the properties to "ti,current-limit-high" and
-"ti,current-limit-low"
-in the next version.
-
-Thanks,
-Potin
-
-> pw-bot: changes-requested
->
-> Thanks,
-> Conor.
->
-> > +
-> > +dependencies:
-> > +  ti,cl-smbus-high:
-> > +    not:
-> > +      required:
-> > +        - ti,cl-smbus-low
-> > +  ti,cl-smbus-low:
-> > +    not:
-> > +      required:
-> > +        - ti,cl-smbus-high
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> >
-> > --
-> > 2.52.0
-> >
 
