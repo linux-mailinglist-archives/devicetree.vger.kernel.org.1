@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-311011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311013-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZKAyI3geLGrpLgQAu9opvQ
-	(envelope-from <devicetree+bounces-311011-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:58:00 +0200
+	id jiTzOqwfLGpQLwQAu9opvQ
+	(envelope-from <devicetree+bounces-311013-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 17:03:08 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A11E67A5DE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C7A667A652
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 17:03:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=RfWBzs1L;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311011-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311011-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=sang-engineering.com header.s=k1 header.b=G8tgumFa;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311013-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311013-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9C855311FF87
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 14:56:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 65FD030037F3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 15:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C59387361;
-	Fri, 12 Jun 2026 14:56:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFE62386C25;
+	Fri, 12 Jun 2026 15:01:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A142365A13
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 14:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B56033F399
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 15:01:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781276200; cv=none; b=uenainVNeLEOpQ7eB7kZZdEjyd4lFEKZs8yUKMJ1UsMHhPcBi7FIHxWL4Y2xYJIVI8eTfopzzI6SjZ+gWbEPJlBB+dUvd17oBbCGoypJi28LaabzcmCvD9xKMDfA7y/jOytp+3FDrpz79OoLlc9iZr0fipdMD/7Q5dZvZ70vGPU=
+	t=1781276478; cv=none; b=WXrMLvDOBWR0hxV5JTAxSVnoPoYNe9agnv6EkSHvzYFYpape0QDGScwFzRm6QZO7lS9svd1xEz2iwwdmfdGKmpVLnXRYGkRLflxxEPO9RvOm7xYotnAybgDrM7AC3G1pJUMx/nDwvmTGuCEe90maG87lbgmOllmNX9fMaI7p1KM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781276200; c=relaxed/simple;
-	bh=J2LmqgUcUVJMBphOubibieqG2LCPlyZR8S+/n4fRHSI=;
+	s=arc-20240116; t=1781276478; c=relaxed/simple;
+	bh=5UYOrm7fR5TC3T3ikxHIA8f4zcBAfFy1JMMu/bouvLY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PV2Jp2yFy/n7Ik9+/t2pqFoBD5Nk0jZYK0eayt7aDYwNmtjSM4MHTxLCSa4A55gp9CqRsSr6xi5Z/4Yo/zSku6EkPm4MEAI4sp+L+uHrl1KLBHSbgHApA1LYz9JZReQNJ8F6mXrGg7XeSg8PP+vOMqsjssnlbh5a7BU/80Vkc8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=RfWBzs1L; arc=none smtp.client-ip=194.117.254.33
+	 Content-Type:Content-Disposition:In-Reply-To; b=XcCCrSteHDAQau2lotBuw5zl5Bnh0WTXdNktwSamxXKSiqOQp4dPb+/AchhDEpty/OZRa1duftDnlM07XWbNWzR10tEIzMD+5BN7RYhvNXGqXjEnUkAoeENGhmETYu8ejOR8iPGmdDhWU6ntAHtZGJl5wa+eIK2UbzxHCFO0ZoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=G8tgumFa; arc=none smtp.client-ip=194.117.254.33
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=Sg4b
-	lf4wWbCSHna4Dl4eAW/U4a7ASNHGSnV8mUJreRQ=; b=RfWBzs1LV5L8G9ioj7nf
-	BF90yAty3e3t0DGHGgSriSoB3xdJZOsmmF8Q/DDJDHMiNEF8tzEciGcpxT73EA0j
-	Uz4qPhIrshJS5F+h89jtfMGoWbxq62Tth3vjpDIH52Xg6vJTBI2RFMD7oGu2N86P
-	ETkNVVIW483lPxBiGr/LnzbuwapD4NklehxSY5jrs3j3mdFSwaaCxmCv6X14WcTt
-	AT1V0Cl/rUz3ATIynQ/I3I5MpqTp0iq0hZSdO48NGZQg9voDCDHVgGeCvhOsmP7l
-	T4+IFmAxF76WKkSMJ2F0WG2hm88BY7IzeJ5+mUo1DbfxTaELvsDboPWumVTt+IXK
-	VQ==
-Received: (qmail 2568402 invoked from network); 12 Jun 2026 16:56:33 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Jun 2026 16:56:33 +0200
-X-UD-Smtp-Session: l3s3148p1@Gf+/rg9UKExtKXKQ
-Date: Fri, 12 Jun 2026 16:56:33 +0200
-From: wsa+renesas <wsa+renesas@sang-engineering.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: "biju.das.au" <biju.das.au@gmail.com>, Ulf Hansson <ulfh@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=5UYO
+	rm7fR5TC3T3ikxHIA8f4zcBAfFy1JMMu/bouvLY=; b=G8tgumFadEDUpz5EAgFj
+	yjS6aevHjLR4Dgpus7HDIDBiyvov6kFjI7GYfJmCCWgpwf+JOCmd2DiAnrH+oiJx
+	1yZ2P5DeO5KyLcXVs5JKxvSk8MO8WGpuSHsqbJjui0SD9ZpbNXwcQFPxZUSBpi7S
+	sfhumXuzX9+DxQO99ux+ZntPF4dppfHDkeCIq6lzO6n3XdMPETy/22DRmO/VbCdy
+	e43+8hW7QFSb+YrOULUg62UcN4aLRw5nBoRX0b4/Brq92pXQDqlBxeWVj1g0js/9
+	lgrXugD6krGiyYtJsFEqBjBtnERC60mk7B8+MSNfefbNx73+6JRuzEIOvMfhBe5H
+	sw==
+Received: (qmail 2570628 invoked from network); 12 Jun 2026 17:01:15 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Jun 2026 17:01:15 +0200
+X-UD-Smtp-Session: l3s3148p1@2ZCFvw9UMz5tKXKQ
+Date: Fri, 12 Jun 2026 17:01:14 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-i2c@vger.kernel.org
+Cc: Peter Korsgaard <peter.korsgaard@barco.com>,
+	Peter Rosin <peda@lysator.liu.se>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	"magnus.damm" <magnus.damm@gmail.com>,
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v17 00/17] Add Renesas RZ/G3L SD/eMMC support
-Message-ID: <aiweIQwqkT2NQfvT@shikoro>
-References: <20260603065731.93243-1-biju.das.jz@bp.renesas.com>
- <TY3PR01MB11346485C16AFB6299B1711FD86132@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <ah_Ve65DvPhlTZ7a@ninjato>
- <TY3PR01MB1134651DFD308D3DD8AB20FE386132@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <TY3PR01MB113460D9FC3AE79E9391DF4C286182@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: mux-gpio: name correct maintainer
+Message-ID: <aiwfOgbueeG-e5vx@shikoro>
+References: <20260611122053.7306-2-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,82 +65,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="0IL2selWreKgYn4x"
+	protocol="application/pgp-signature"; boundary="5ekrj8PLtxG4YAug"
 Content-Disposition: inline
-In-Reply-To: <TY3PR01MB113460D9FC3AE79E9391DF4C286182@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <20260611122053.7306-2-wsa+renesas@sang-engineering.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.26 / 15.00];
+X-Spamd-Result: default: False [-1.76 / 15.00];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:biju.das.jz@bp.renesas.com,m:biju.das.au@gmail.com,m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:p.zabel@pengutronix.de,m:magnus.damm@gmail.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:bijudasau@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	DMARC_NA(0.00)[sang-engineering.com];
+	TAGGED_FROM(0.00)[bounces-311013-lists,devicetree=lfdr.de,renesas];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-311011-lists,devicetree=lfdr.de,renesas];
+	FORGED_RECIPIENTS(0.00)[m:linux-i2c@vger.kernel.org,m:peter.korsgaard@barco.com,m:peda@lysator.liu.se,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,glider.be,pengutronix.de,vger.kernel.org,bp.renesas.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sang-engineering.com:email,sang-engineering.com:from_mime,vger.kernel.org:from_smtp,shikoro:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1A11E67A5DE
+X-Rspamd-Queue-Id: 0C7A667A652
 
 
---0IL2selWreKgYn4x
+--5ekrj8PLtxG4YAug
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Biju,
+On Thu, Jun 11, 2026 at 02:20:53PM +0200, Wolfram Sang wrote:
+> The YAML conversion added me as maintainer but I can't recall being
+> asked nor do I want to maintain it. Add Peter as maintainer for the
+> binding as he is maintainer of the driver.
+>=20
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-> I will send v3 with these changes, if it is ok for you.
+Applied to for-current, thanks!
 
-Sure, sure. I will review the then latest version once I have time for
-it. The more issues already found, the better, of course!
 
-Happy hacking,
-
-   Wolfram
-
---0IL2selWreKgYn4x
+--5ekrj8PLtxG4YAug
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmosHhwACgkQFA3kzBSg
-KbaP9w//abMvZMd/enqGxr2nNHkf8fts1l0q2n3Rts6qta3vNBTtXWtpIqH+VJkT
-Uxp4mRWUc0s9rRPfQ00WleRnwUnfa/J/f3NIn4bBBFV1LSYXrVi31vtsF9juW1+q
-uiotNxuwbJyFaLVjmh84wNId6SL+dkmT8x+COwSZ+i3goISL2lrrVZJSEyIJJi0B
-iSyqFgmso2bGqeYaGZjlQG4kzIjDo6h9NQQZQUShmG+ITDG1sZBVlHvK6qBCiFND
-Y4+T4NpczHRFc6fhMJSuyeEE6TtkxH/xu53AwGm3V/l1DfuqrO1NbhKBU9KLjoFQ
-G4wLDJc+Xzc1aCaheS6nw8g1i9klPrUediq26e3RMg5ovu9ppvxuuqbOro6sqw0Z
-L4ss2vk0ORYJiACpIhb0nFhP0S/yVgVmoog4IfKbgJEg1JY489JGEkmboW3vophW
-brV0OY4di7BhgzTMR/z6b9ILEI16Y3piGXcV6GbYlehkYuKNUPVn1E0FstdlAoao
-NaUOrknrZ5t8dfEAvqzUsLwqbW2xMibGgR9Fkq1e7dvmWA0rCzCI663BQ+SmvQkD
-+q0GYiN1En7vDWIvoFZYSTEtMkdEf/uaYjdKyfeF5yZUyKy07hqJro/gVs/eL8oi
-l5EzImdmkBHdH337yo3yw1v4lz6A0F/f5D52ypkF87isxIz21Xo=
-=Vjmr
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmosHzoACgkQFA3kzBSg
+Kba9lQ/5AWrn2JanrrKqNKiI+c1HMLEkB7N2jeP/a9fRJt8T6ai5CvJu+QmSKrUt
+DV0kG6BUrzs8j58I0HUCkRTIWxRJnLh0GG8CGBqr3xRPkQbNzAqbQ+VU0+zccd4N
+IlUl4VKdVZoLqLDPWc7wIMxQxw/8yqGTe/tm1FP34mbvLR0xA3Ee5VtFCFk7plIn
+m3KOQATAtTO0lw28MY6qJSAg+g2jsHw6o3AEvK9bm13AbiIOfoKAQYcMAOg6ylPR
+HBXSi4qvVogv8i2nB70WxT1935+4Sk2FFRjgqFuTie3KsRlAXQLOYSKboD1G0Pnc
+eL++nrgJ5YW8+ouuSKormYkFFUWQf4/Lvc7En2F7qFFnE6zQeJVU0ZqITryeUGGk
+yhX9Pe62Q7sIcqNtvF3CQIEN2tea9a7lokGjhbegHBPamxtCtSvB9J6mJV+jsX7m
+N6/3CiN7J5UFGpBm7CE7xEEZRJ1Pyccu9FD3PE2zuqcqoxVhS2xPA4bipYpU9Gsz
+Dn2BVEDuKZX29i409KfZE3uafnNvhssiyViEk2TueuK3lRldsbQ62O/GSnQV1BRn
+pKp95q78L9sm2h7lXRcWUEpdSEMJKp40laLp5tBLHuKFRVMYW1VYJf+y9Al5OJc7
+670LvlvgEvX27OmtewhoedZ4MMl+0Fn47IBVJYFMUBh4N5Hn8uQ=
+=W/Wo
 -----END PGP SIGNATURE-----
 
---0IL2selWreKgYn4x--
+--5ekrj8PLtxG4YAug--
 
