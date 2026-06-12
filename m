@@ -1,218 +1,221 @@
-Return-Path: <devicetree+bounces-310876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310878-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IbMPH9LlK2pHHQQAu9opvQ
-	(envelope-from <devicetree+bounces-310876-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 12:56:18 +0200
+	id QJpIDqboK2pLHgQAu9opvQ
+	(envelope-from <devicetree+bounces-310878-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:08:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ECFD678D05
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 12:56:18 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99440678DF6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:08:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=fairphone.com header.s=fair header.b=bSSBHPbS;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310876-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310876-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=fairphone.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=LrVnDpn7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310878-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310878-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 949E63019024
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:56:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0042C31928AE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 11:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4394C3812C8;
-	Fri, 12 Jun 2026 10:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3D7345731;
+	Fri, 12 Jun 2026 11:08:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05A5E38B13C
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 10:56:04 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781261767; cv=none; b=DN+leqdDEQIlDCGHhPZMTycDg+5VCbdwOo6mdj/fhAIROyGsfRLhb87Fymg+NRWa9C/lKhG7mLj4FquKgwSPAaZ3I38b/Zr/+3Wpgc0dgvFH0E5kjS5zz6KuT5BoOuR7wR5956Ahm6AuZU/aodZrxlIq3CFcOkZABtUAdNiRBEM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781261767; c=relaxed/simple;
-	bh=S/OHGyWk5LV2U9rbhDbzhVoexTBv/UEfi50dRxV4F04=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=u9piEUMZoJW8N39KkJMDklSebEwjxoE71EbbDUhpEtJe9LH0pCoEn01k91OMVRIqNyo8PYfZ2Ar2XPOWdM+k6fFXqn71zhyM3Gg+b2k2tvP4Mr/IoDKVNPAZJpaC9KtYWz+TrEea0Z4HHsnGQotAErb5utqW+p0I//N8eRhudhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=bSSBHPbS; arc=none smtp.client-ip=209.85.218.48
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-bec49f7e35eso116937366b.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 03:56:04 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A07376BEF
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 11:08:13 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781262494; cv=pass; b=T9Yxcz27CeeAhB40J5eJiC/UBhcdQtAtli1XUobtzR9lwoxArb/UaxUpg+bK9et4x5pj+/wxPLeryDPBSOiPgDjRTOw1SOKdn2uulrpv2ViEN7pEQFGxlO3r+K704eMLD7ZRlkLt8yJXj5tvnDJ4blNDUIoXHHZW5aVTMZNPKiQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781262494; c=relaxed/simple;
+	bh=46tK2SY8oxijrIbVND1wuLnWgyakUWAvGn7lOjZ9328=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EdZBT36WxneA0VPAU6r1tkP4gvACF9UDzgeXUr5j/lKzgyIQOOLUtrpyGESBisur4rhPYCxT+NhNtL7iRHvBIuVkFY6rC1RXMoz8ZIu7GuErlbbo8O4yCP04O+M8l06gxDfjTEmpA6hawnyqcg17Ik1Nc5VRIqd2sGBJvFUPqfg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LrVnDpn7; arc=pass smtp.client-ip=209.85.210.177
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-84347ad88edso536676b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 04:08:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781262493; cv=none;
+        d=google.com; s=arc-20240605;
+        b=k+09NgyaHnFcieYGP7ctLGair/NOresckpERzSY09zmMQBdXo73Ftllzd/I2QC61Gd
+         2MSIJ5Vrtba7IAx3wvsKowsCwp/1RTKHiGVgBraI3m6l8//OXP7eZuay73weuoJj8tU0
+         9NrNpo8yvQlOE20d57NbtkzYH8BMrHwan/EQaNGuxdB1FSj50JbayffzVRDUkAqeXLIR
+         ufjdgUtGl/UXuHNGTI3SREFDGLrVPhXehnG8jeO/To4gWMR39ePaDm0+NUpSL/smm+LE
+         ZfNrydB+lkVIDc2rhroiW7ktlNCdl8eqmqToxZsmbxailsQdpUMnL4fyIR7uN9hN/RqQ
+         3UTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=C8RG8wfZcQWUkvU7NuWObL4uAtXpFMwBEsyZAZlGxso=;
+        fh=1MHh/6qM5+PwA/yuVGE+Sp7ewU2Ny+m92vu/D2ksIfU=;
+        b=bzj8aed4MqM55/F3MpZ1BTUdsLLhNayqeVCx1PcTOVv0Rc9rtcW/pP3jz0uVr7sIMD
+         6vcJFixW0hOCSjxePEFf6+b1pgjzX9B6cUK4RvvcM6jHAY5PXG1Z6MIGtttmf8LKkKMp
+         f2XiOg1zZU9VFo96vGtxFViGXUP5MEkZ78TrZMMkwvQDUkmon0kelNw8lqLen9R0MWqJ
+         f6HCJ9UuT/XwcP7J4qP968dp1Ucm8FCaczike+JF7YDZ0ryuOe4SAE+PQS/HtboomGM5
+         XLzw1KrEht1pJMOiEYjfcDlFzxIx24p/990qLpQKyday1aXVOonFNamSpmUcfZrcdDYv
+         /MBQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1781261763; x=1781866563; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3GED/bZKxrj+cOmGbidsM9t/QHR2Y/ZoMvrWHOWRa/Y=;
-        b=bSSBHPbSJtlhxc1qw5Y5n4x7cGddhIslOBngyC7729CTQR8j7XAJOXYhgszsM4O94N
-         XGZggM8FQxtFicLRhX6+gmhhhziym+jNwsJsDhyz7y1VhmWXcB+s7iUai3r1otj8UuuK
-         hUqhxtw0pmp+RfZzV15b7Y1XrrTjWLE+vLgwEgCEebErXiu4SsoXAP9gTKVG11YPSyH+
-         vrWO+2SdhWJjSTC5xUSCJAOSUJntef7Fpqh4CFaFiZyl5GQGYyBLscOkISfAsqx1pVbH
-         dk2JPq5f3tZysQtGLxMYVKzZ4e5qM7xPhrB3SreI+rc3LvfW5w5U7SNuAItIfXVPssic
-         xm4Q==
+        d=gmail.com; s=20251104; t=1781262493; x=1781867293; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=C8RG8wfZcQWUkvU7NuWObL4uAtXpFMwBEsyZAZlGxso=;
+        b=LrVnDpn7bA0lGrLH2SO7PGUdXWe3BMQ4RVbOBDaQgZh+k9d6A7aYAB4AIr6AGQzvY9
+         0S1r91PPdcBldK4sTt1uTSyHmos83NTJucuawzTNsazAWSbYopGgsSSbz4GhajxMCtkb
+         cMmEOSFuGzX0hTWKC41NlYycgVV5ZvuL1WHE/9mbAB1Xusoh/VRQGC86V7/d+gjSlnuL
+         dy3Yt2pokH8DI0VRw6zE/gtWXfJw3oCZp2ptPEeJCBz4otDdC4C+1r2eLzbcbZpOweAJ
+         26nIsT+F47av8PppgoTGAtv9JNzsYTdwd0o2lT4GrNKmyfGxv0nY3o2xm4aZTxmS+RcC
+         sSDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781261763; x=1781866563;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3GED/bZKxrj+cOmGbidsM9t/QHR2Y/ZoMvrWHOWRa/Y=;
-        b=RAqytlKcKgf7/iFTWy02V0o4WcxXb/d8DdE2IlL6KWfUMFaVB7ZOxB1X4QfreN/Ym4
-         6/aC4bOqVB2mMbNQDDEy3HFewpZgapANppu+MN/EAbTlNWgoRiPX1yfn9bRHBqay9mTG
-         m+/OEIU33yNhHiysWCeFtmdtZKy6KEM79aZ161O2TneuneP84q9T7/GTRH719qDd6qGE
-         qq+WQxfGQu9l0mxorqxDw4IC9057WQ4CTNq/VYmjjQrmZcOtWxD5diY31OZZpjnZw2hr
-         18fJiRUKfEpE8EZjkcMsXUqgTMuWlyTb+ZjVE09K87HjALeUtJk+4xa5PDUwWvnjou+P
-         SqnA==
-X-Forwarded-Encrypted: i=1; AFNElJ+ZzakbMTyJLID2o1tvpXRH6rEnA9eGeIBffPnHI+C2Ynu4ME2kAP7abBM2i+SVTGHy80QHU8TUh4Y1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2zdTVbFpHqBDROTpFakslirXXxg/dfbtFQgip3xQZ5jNr57Qi
-	R0O5hZ85SWiwloh/8nsjy1ID8LLC24t46c7K3zKt8dVViqXxyhvOOtE8nQZ9mxgWhKE=
-X-Gm-Gg: Acq92OE9XeJI9N3ZSH9AtM81KyNx95GLj8jKbwBIAt8TY1avZHDiuJ+TeXOdWtpT0Fs
-	kmOcQEMRx8L6SIJoxaR4dUgHytEHrGzhFapByZU5sEeFM97FX2bANLIB8Z6hFkUkkKMYVT7CeP1
-	roU++uXLGiZkxUlZihS9Kh0bCEDi6JCcJWi2ze9RSSjSU80tmxEZX1YZgNQYfP4GUiR9iys0NVr
-	fRKqDfkg+80CYQrp8xdnyhRS5ziByj7VvfxF8FRKRWoc5dAfTGyLuHiPZJk8hDgMpHDR3Qo54aJ
-	HfhAf04YnE+lEG8byPWH7bKwshaJ1MMe9FUn4Ih4w1NDtYJKFP6M2Mt1mSXmm2IzzEzWv1YcORE
-	/KQ+ujGK2ZUAPL+Au/wZQZTNn5G6xYIJ+BDiCnD/u6cCfqtDGupayQU4NQJ65Fxm6bNryOSpEUL
-	AO4H9ZLqlXnCSzGlK94rrW7JymCEn5J5bFz7/iqOz3NOgphfD4M/81K2yWNQzrmnWWyCGQtTqD+
-	7iYUAlYJKOMtu+GhDwHk+7dbNR7kCQ3RxhCpcNNnSSZjaHb
-X-Received: by 2002:a17:907:2666:b0:bec:fd3d:4072 with SMTP id a640c23a62f3a-bfe2aa00d74mr64211766b.35.1781261763397;
-        Fri, 12 Jun 2026 03:56:03 -0700 (PDT)
-Received: from [192.168.178.182] (2001-1c00-3b89-c600-b4d0-bc9f-f60e-913a.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b89:c600:b4d0:bc9f:f60e:913a])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bfdb8b23f8fsm91583266b.53.2026.06.12.03.56.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2026 03:56:03 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 12 Jun 2026 12:55:52 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: kodiak: Add camera mclk pinctrl
- definitions
+        d=1e100.net; s=20251104; t=1781262493; x=1781867293;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C8RG8wfZcQWUkvU7NuWObL4uAtXpFMwBEsyZAZlGxso=;
+        b=RhaSlye/1mjFtrVLukrukcPvpMd1AX4+VZMD4TvOkRp+nXzuJC6IGqX8q3lCoFZ+L9
+         YSn2M9xETS47Php//bYHA701JH48rM9DSLAkgmsdhQh/qdL7AgV+KWvm7SMl/Ut0fTt1
+         /AJ4JyGI4nAgWTm2d3dIGR0tyOfix9BB+ve2iM2ZRZOA8Zx4O8XiqVKbGzFaBiL6fllx
+         rbSoeYgiH7w8Yiil91CTYabVYCglQxWlFEkzH7O+JLE4MZQDlOgfLaNPKqa+qJJPM9sr
+         NJRi3wk902ceuLOTsEyt1w3ve2a6q/OH9vGc/BMjVE3I6leX5G1icrczhsbG0uMy6sIB
+         qd6A==
+X-Forwarded-Encrypted: i=1; AFNElJ9aTSSeCB3wNwGuXkRHY0pbJf51vFJE9s2GZTv9MNqT6t5tcBwr2vkam9Ux27yFEKNX+Gpv9IwM4EWV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlVMy9yDkUSwMzZBq7kIcDae3Voqo45NACyM40YnXoG02DpOKh
+	ueD6uXXIqZYCPXBobENYlFJVWq7fsQT8AhN73RzhSg8v3lj29DhOvQwceaN6lbOT8VuMFETppDd
+	wY0Xu2KwGriYooWoo4mFXpseS1BBgL38=
+X-Gm-Gg: Acq92OHhxgAHrVJSl7xAgPkqhzQiXwYl3B5Vm2AlosDjOV3cu1hKpxWiX2JB+mu2Bls
+	3YFzcPL5Z+p1J8rBEmYPXlTiG5anVNspLIepfT5pLKBaEc6cUiBcKyfSFaRa4UUZgRFHisFJmv8
+	aLuamD8DYev6CQ9DJ2yzEr+GkKS7h8KrmeM79O1V/W/4nYVOywIpydVIw1SWFgs98V1wOHEzNIU
+	olgmhy1jvHDH2VsiM4nBDe6UsqWvcAIqO8/gT1hIJphV3aLazc59fBjlwAcM8tJe8VlPgLf3CbA
+	Q2Jq35RUiyj0Jwn+QEGPGAXD8CzYt2VWAh+YdQ==
+X-Received: by 2002:a05:6a00:805:b0:842:3be7:4d54 with SMTP id
+ d2e1a72fcca58-8434cc0b564mr2663158b3a.15.1781262492776; Fri, 12 Jun 2026
+ 04:08:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260612-kodiak-cam-mclk-v1-2-fd294ff003a2@fairphone.com>
-References: <20260612-kodiak-cam-mclk-v1-0-fd294ff003a2@fairphone.com>
-In-Reply-To: <20260612-kodiak-cam-mclk-v1-0-fd294ff003a2@fairphone.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1781261761; l=1957;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=S/OHGyWk5LV2U9rbhDbzhVoexTBv/UEfi50dRxV4F04=;
- b=FdrlD65Tt+jQROey8o9bfFEL+Xrzd4VXeXPMORyYvZw1uA6y16rBv7K1/M3qepAm6F6n5WgYQ
- B31+8R+lEdyA2f3DOrsHLDGMCHb61spniDoyjLIUdnEgCYGV7XHSw4E
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+References: <20260609113836.45079-1-phucduc.bui@gmail.com> <20260609113836.45079-3-phucduc.bui@gmail.com>
+ <CAMuHMdXku0BVRgwWWv1vNccKpRbvTu+1b0TjYacNJH94XBDOGg@mail.gmail.com>
+In-Reply-To: <CAMuHMdXku0BVRgwWWv1vNccKpRbvTu+1b0TjYacNJH94XBDOGg@mail.gmail.com>
+From: Bui Duc Phuc <phucduc.bui@gmail.com>
+Date: Fri, 12 Jun 2026 18:08:01 +0700
+X-Gm-Features: AVVi8CfMXSYu3RrDvNLF_rgtRUBfjvN1-IvBNNlzLi33SiKq9QBt8Ro97SYOt1A
+Message-ID: <CAABR9nHFHWFeEaaYE6X9fqt_Zb-3pF=jJbHQpsiBTgkS5LyTLQ@mail.gmail.com>
+Subject: Re: [PATCH v6 02/11] ARM: dts: renesas: r8a7740: Add clocks for FSI
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Mark Brown <broonie@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:geert@linux-m68k.org,m:kuninori.morimoto.gx@renesas.com,m:broonie@kernel.org,m:lgirdwood@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:linux-sound@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310878-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310876-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:~postmarketos/upstreaming@lists.sr.ht,m:phone-devel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:luca.weiss@fairphone.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[fairphone.com:+];
+	FORGED_SENDER(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[renesas.com,kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[fairphone.com:dkim,fairphone.com:email,fairphone.com:mid,fairphone.com:from_mime,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,mail.gmail.com:mid,glider.be:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5ECFD678D05
+X-Rspamd-Queue-Id: 99440678DF6
 
-On different boards the cameras are connected to different pins with the
-cam_mclk function. Add the definitions so that mclk0-5 are covered.
+Hi Geert,
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/kodiak.dtsi | 35 +++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v7.3.
+>
 
-diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-index 62daef726d32..903937947811 100644
---- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
-+++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
-@@ -6505,6 +6505,27 @@ qup_uart15_rx: qup-uart15-rx-state {
- 				function = "qup17";
- 			};
- 
-+			cam_mclk0_default: cam-mclk0-default-state {
-+				pins = "gpio64";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-disable;
-+			};
-+
-+			cam_mclk1_default: cam-mclk1-default-state {
-+				pins = "gpio65";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-disable;
-+			};
-+
-+			cam_mclk2_default: cam-mclk2-default-state {
-+				pins = "gpio66";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-disable;
-+			};
-+
- 			cam_mclk3_default: cam-mclk3-default-state {
- 				pins = "gpio67";
- 				function = "cam_mclk";
-@@ -6512,6 +6533,13 @@ cam_mclk3_default: cam-mclk3-default-state {
- 				bias-disable;
- 			};
- 
-+			cam_mclk4_default: cam-mclk4-default-state {
-+				pins = "gpio68";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-disable;
-+			};
-+
- 			cci0_default: cci0-default-state {
- 				pins = "gpio69", "gpio70";
- 				function = "cci_i2c";
-@@ -6578,6 +6606,13 @@ pcie0_clkreq_n: pcie0-clkreq-n-state {
- 				function = "pcie0_clkreqn";
- 			};
- 
-+			cam_mclk5_default: cam-mclk5-default-state {
-+				pins = "gpio93";
-+				function = "cam_mclk";
-+				drive-strength = <2>;
-+				bias-disable;
-+			};
-+
- 			mi2s0_mclk: mi2s0-mclk-state {
- 				pins = "gpio96";
- 				function = "pri_mi2s";
+Thank you for the review and for the Reviewed-by tag.
 
--- 
-2.54.0
+> I have one more general question.
+> arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts configures
+> audio for FSI (fsia_pins), but does not fill in a clock-frequency
+> in fsiack_clk.  Instead, it fills in 12.288 MHz in fsibck_clk, while
+> the schematics call it FSIACK.
+> Apparently the FSIACK pin is shared with FSIBCK on R-Mobile A1, so
+> which function is used depends on pin control.  However, the DTS does
+> not perform any pin configuration for this pin?
+>
 
+I checked the schematic in more detail.
+On sheet 12 (FSIA section), the FSIACK signal is connected to the
+WM8978 MCLK pin (pin 11).
+It is also connected to the X8 oscillator output (pin 3) through R121.
+By default, the board populates R120 (0 ohm), which routes the signal
+to R8A7740 pin K5 (FSIAOMC).
+If R120 is removed and R250 is populated instead, the signal is routed
+to pin G3 (FSIACK).
+
+From my understanding, the default resistor configuration places FSIA
+in slave mode.
+In this configuration, FSIA receives BCLK and LRCLK from the WM8978,
+while the codec receives the 12.288 MHz MCLK from oscillator X8.
+
+This matches the current DTS configuration:
+
+simple-audio-card,codec {
+          sound-dai = <&wm8978>;
+          bitclock-master;
+          frame-master;
+          system-clock-frequency = <12288000>;
+};
+
+Therefore, I do not think it is necessary to provide a 12.288 MHz
+frequency for fsiack_clk (xcka) in the current configuration.
+If the hardware were reconfigured to operate FSIA in master mode, that
+might need to be revisited.
+
+I have considered testing the alternative resistor configuration
+(removing R120 and populating R250)
+to switch FSIA into master mode, but I have not done so due to the
+risk of damaging the board.
+
+As for the relationship between FSIACK and FSIBCK, I am not sure.
+The schematic I have does not appear to describe FSIB at all.
+The HDMI section only documents video signals and does not mention audio,
+so I do not have enough information to determine whether FSIACK and
+FSIBCK share the same pin on this board.
+
+> Note that I have never tried audio on Armadillo myself.
+>
+
+You should give it a try sometime.
+The audio quality of this board is actually not bad for hardware that
+is more than a decade old :-)
+
+Best regards,
+Phuc
 
