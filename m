@@ -1,118 +1,257 @@
-Return-Path: <devicetree+bounces-311069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311070-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iTfNHNEyLGoTNgQAu9opvQ
-	(envelope-from <devicetree+bounces-311069-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:24:49 +0200
+	id 6NWgLUI0LGqRNgQAu9opvQ
+	(envelope-from <devicetree+bounces-311070-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:30:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F9F367AE29
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:24:49 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A32367AF16
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:30:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="Hw/LGPTg";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311069-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-311069-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Eiqba53p;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311070-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311070-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 43C653017E6B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:24:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 84E163207075
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:24:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B8D3368B8;
-	Fri, 12 Jun 2026 16:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D78853859F5;
+	Fri, 12 Jun 2026 16:23:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E62233CE9A;
-	Fri, 12 Jun 2026 16:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE99381B1D
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:23:35 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781281357; cv=none; b=IQxeY7/Wdr4AXDkzASIKs6lLlj9WrYTmu9glm5qzhxphi94KYi5Z8eUwc9T2bnqA5rg95Ogp2c9KZfXxN9uqm7oXE7fVYpkgY0Ww2WigT+Ja8Js1j2W4U4IKlQAADdBDD4vuuqI64Uj1c1pxLLwZi18EMeuyh3cCz262T7QS5YU=
+	t=1781281416; cv=none; b=l28zZri+bQPwFZhyN987S1MoQw9PxNYhSoaBcV2vN6lvkddcbXm5y8UmIXtctm57k7mi/+T6Nbf6Yqba4ayo7SDOJ8AzebG3dlnCWrm9+de5MjvKV2S9E/QsOd7yprk2kHe620NpbRGrD0HWidV5Tzqg4FUL/2FXjpclCEPPBXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781281357; c=relaxed/simple;
-	bh=IVvjDAiTX+EkmoCtAYwWgF9K3/13Sbwz2Oz3EOrZuyE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cDeyOoA90yyilUPxFaCIDEBMoAOAD8r9zWWDmJ0vsl5JMjsQ2FqqJgYl6NybaOTra1/8c8AuhmsK+wIEhYtfj48hAFAIodVl3TZRG0V0rP/zi+MmcHImKlOPxCAkmCcPlS9016R5XmFyu6QWyK2PMllB2uMPVITezOM4jXCh1Hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hw/LGPTg; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D15BA1F00A3D;
-	Fri, 12 Jun 2026 16:22:34 +0000 (UTC)
+	s=arc-20240116; t=1781281416; c=relaxed/simple;
+	bh=6wVbBnB2Itm3XdwxaEqm5T59Ehin1Jaqvd7CnKfnlaU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=lssb4QhXbmJcdRzB16rdM1BQxJqByv4N8k0AyX/4+GftX6VvK9jXo8KUkpWnejUw3QNTmb1fylI7zxx1IJhihseq1bmc82CMMYzIXo3suPpUexpMnsa2/friSrLWaXXq48/mw1+xhnfGhLFRQs/GE34+zYVQG/UTgYZjspUazN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eiqba53p; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F9361F000E9;
+	Fri, 12 Jun 2026 16:23:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781281355;
-	bh=OVPiKHbP5F+x5vf3YbVR/fxqVUp39ETAng9/6pe758o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Hw/LGPTguhY8NgRIzInzXZoBTpcRlDBt8peOuo8gMRS5wp3XItJevTAIyFzNXqzZH
-	 yzsfJMfBgIIMtrxwaSJNASDvLdqZYcWAI0BtcJ9txZG5kabb/Hw+wbsPCOiCumNMAG
-	 pfk1GxROopS9N08EyvAUOJ0FwbGcLNHhMDKaMrWCcIY8Ni943gMMrly58CigCaA9em
-	 aQ0JgIEiCcnHSE5z/Pdo44jqS+uWyH98+BsZybS2FlwawWaJfzZRAUWST6FUxqy69+
-	 d1t1NlTFrde0GItkmVeAhAqMq8mby3gZJ+vPoibb2OupsASfYoPbVkyadF8w9JLqd8
-	 xQVRfzTVLVlBQ==
-Date: Fri, 12 Jun 2026 11:22:34 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH] docs: dt: writing-schema: Clarify what is required in a
- schema
-Message-ID: <178128135345.1154740.3219775491208873528.robh@kernel.org>
-References: <20260609103550.234472-2-krzysztof.kozlowski@oss.qualcomm.com>
+	s=k20260515; t=1781281415;
+	bh=OBNnJvOuiKkEWQ9r2pjYu0A1ur5Qd26STMCQabmtbho=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=Eiqba53pVy0yYULMQ8CBYH1mzKIF4bYrTygl8UUiWFzOhvpc9kcNsg/PXL7hskN9H
+	 kiP2f7VoKwht5Bn+QM9pdc706Kai/AWdsIUkHaEh5NonFpDAnR7t1tAP+I7EOQ6cGI
+	 dT6J0XODHq/L/6bAhFMevKzSeT1IYy94y6E2P5yKmSfaUkYA+nJcoqtBz4wKZ5YMny
+	 Rd5fSip/DEls1KQRhA0kJ2U2+ZDK19UQnGRNmhaKjoMhg+ddrDislP6l7vWMC4czvW
+	 Jz/1Sk3GFC+Z5W1btqwMHqMEp4ifwZu+H5tP9Do1tba+aXSgpVcCozqHEM0JuebybH
+	 Tizfl2kkPpmnA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: exynos: add initial support for Samsung
+ Exynos8855 smdk
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Alim Akhtar" <alim.akhtar@samsung.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260612163020.411761-5-alim.akhtar@samsung.com>
+References: <20260612163020.411761-5-alim.akhtar@samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 12 Jun 2026 16:23:34 +0000
+Message-Id: <20260612162335.1F9361F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260609103550.234472-2-krzysztof.kozlowski@oss.qualcomm.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311069-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.kozlowski@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311070-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:alim.akhtar@samsung.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,samsung.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1F9F367AE29
+X-Rspamd-Queue-Id: 2A32367AF16
 
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
+- [High] Missing Required Property in UART node `serial_0`
+- [Medium] Device Tree Topology Error: `cluster1` skips `core2`
+- [Low] Device Tree Binding Violation in `timer` node interrupts
+- [Low] DT Binding Violation: Missing `-gpio-bank` suffix on GPIO bank nodes
+- [Low] Device Tree Syntax Error: `gic` node defines `#size-cells =3D <1>` =
+without `#address-cells =3D <1>`
+--
 
-On Tue, 09 Jun 2026 12:35:51 +0200, Krzysztof Kozlowski wrote:
-> Clarify that we do not require all properties from a binding, but above
-> schema keywords/properties.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/writing-schema.rst | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+commit fb7d1034f06462e074dc2aa5a08df68787706d6c
+Author: Alim Akhtar <alim.akhtar@samsung.com>
 
-Applied, thanks!
+arm64: dts: exynos: add initial support for Samsung Exynos8855 smdk
+   =20
+Add initial devicetree support for Samsung smdk board using
+Exynos8855 SoC.
 
+> diff --git a/arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi b/arch/ar=
+m64/boot/dts/exynos/exynos8855-pinctrl.dtsi
+> new file mode 100644
+> index 0000000000000..f5d30fd299b62
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi
+> @@ -0,0 +1,581 @@
+[ ... ]
+> +&pinctrl_alive {
+> +	gpa0: gpa0 {
+> +		gpio-controller;
+> +		#gpio-cells =3D <2>;
+
+[Severity: Low]
+Does this missing suffix violate the Exynos pinctrl dt-binding schema?
+
+Nodes such as gpa0 and gpm0 appear to be missing the required
+-gpio-bank suffix, which the schema expects to match the pattern:
+
+    ^[a-z0-9-]+-gpio-bank$
+
+Without this suffix, the nodes will fail DT schema validation, even though
+the Linux pinctrl driver will still parse them by iterating over child node=
+s.
+
+> +
+> +		interrupt-controller;
+> +		#interrupt-cells =3D <2>;
+[ ... ]
+> diff --git a/arch/arm64/boot/dts/exynos/exynos8855.dtsi b/arch/arm64/boot=
+/dts/exynos/exynos8855.dtsi
+> new file mode 100644
+> index 0000000000000..cffa40b6bb986
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/exynos/exynos8855.dtsi
+> @@ -0,0 +1,214 @@
+[ ... ]
+> +			cluster1 {
+> +				core0 {
+> +					cpu =3D <&cpu4>;
+> +				};
+> +				core1 {
+> +					cpu =3D <&cpu5>;
+> +				};
+> +				core3 {
+> +					cpu =3D <&cpu6>;
+> +				};
+
+[Severity: Medium]
+Is it intentional to skip core2 in the cpu-map topology array?
+
+The cluster1 node defines core0, core1, and core3, completely skipping
+core2. Device tree topology indices are generally expected to be contiguous.
+
+Skipping core2 might misrepresent the actual hardware topology and confuse
+kernel topology parsers or the task scheduler.
+
+> +			};
+> +
+> +			cluster2 {
+[ ... ]
+> +		gic: interrupt-controller@10200000 {
+> +			compatible =3D "arm,gic-v3";
+> +			#interrupt-cells =3D <4>;
+> +			#address-cells =3D <0>;
+> +			#size-cells =3D <1>;
+
+[Severity: Low]
+Is this #size-cells assignment a device tree syntax error?
+
+The gic node explicitly specifies #address-cells =3D <0>, but sets
+#size-cells =3D <1>. In Device Tree syntax, if #address-cells is 0, the nod=
+e's
+children cannot have sizes, so #size-cells must also be 0 or omitted.
+
+This mismatch will trigger the avoid_unnecessary_addr_size dtc compiler
+warning.
+
+> +			reg =3D <0x10200000 0x10000>,
+> +			      <0x10240000 0x100000>;
+[ ... ]
+> +		serial_0: serial@15500000 {
+> +			compatible =3D "samsung,exynos850-uart";
+> +			reg =3D <0x15500000 0x100>;
+> +			interrupts =3D <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			pinctrl-names =3D "default";
+> +			pinctrl-0 =3D <&uart0_bus>;
+> +		};
+
+[Severity: High]
+Does this node need clocks and clock-names properties?
+
+The samsung_tty driver unconditionally requests the uart clock during its
+probe() function via devm_clk_get(). Without these properties, the driver's
+probe will fail with -ENOENT and abort.
+
+Since serial_0 is set as the stdout-path in the board DTS, this failure
+would result in a non-functional serial console.
+
+> +	};
+> +
+> +	timer {
+> +		compatible =3D "arm,armv8-timer";
+> +		/* Hypervisor Virtual Timer interrupt is not wired to GIC */
+> +		interrupts =3D
+> +		     <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
+
+[Severity: Low]
+Are these interrupt definitions violating the GICv3 device tree bindings?
+
+The timer node defines its GICv3 PPI interrupts using the
+GIC_CPU_MASK_SIMPLE(8) macro and IRQ_TYPE_LEVEL_LOW.
+
+Under GICv3 device tree bindings, the 3rd cell must only encode trigger type
+and level flags; embedding CPU affinity masks violates the schema.
+Additionally, GIC device tree bindings standardly expect
+IRQ_TYPE_LEVEL_HIGH or IRQ_TYPE_EDGE_RISING.
+
+This will trigger dtbs_check validation warnings, though the Linux GICv3
+driver safely masks out the unsupported bits at runtime.
+
+> +		     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
+> +		     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>,
+> +		     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW) 0>;
+> +	};
+> +};
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260612163020.4117=
+61-1-alim.akhtar@samsung.com?part=3D4
 
