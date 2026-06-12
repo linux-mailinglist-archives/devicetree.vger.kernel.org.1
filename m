@@ -1,370 +1,195 @@
-Return-Path: <devicetree+bounces-311036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311043-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EsvzJ5cvLGq1NAQAu9opvQ
-	(envelope-from <devicetree+bounces-311036-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:11:03 +0200
+	id ZBBiA8AwLGoiNQQAu9opvQ
+	(envelope-from <devicetree+bounces-311043-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:16:00 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE56267ABFE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:11:02 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 168C567ACA4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:15:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=NZCtUWmt;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311036-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311036-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=biw5zaLg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311043-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311043-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 381403078F7C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:10:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 37D903018D63
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:12:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43D2F391E7C;
-	Fri, 12 Jun 2026 16:10:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4CB3955D0;
+	Fri, 12 Jun 2026 16:12:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9729138F94C
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 605C638D3FE;
+	Fri, 12 Jun 2026 16:12:34 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781280653; cv=none; b=QTMI3CAuYhFAGsJTz5GSujqLHawJAzNaLrpz4fzZ5jnWg2FumoSoQjU9UnRES53FF6YzprWPFGugaZKShF+VPsp8N8Mj5zv1Uu1LzCjVEON72+Fj2pxNkIwEMRpT75i8Svn36JrLQ91OTK15/v1caPdSo/2E92DafWJSWG9/FEc=
+	t=1781280757; cv=none; b=fP6fqZivAMeI/F8oh1JzwKczQf2rJ9X/Ml+EeRnqgxZxKDTBARTOSmSihpvRbwv1b6/63VTQOjJANQw2dijtfFz3EQx+98MrN25EJlVnhcRpr88InJNv/gm//30eMZ3jNp5Da9xXIBmrHhAmFEGv/FPT0VnuhoaP7IrbHyVls24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781280653; c=relaxed/simple;
-	bh=kcA8/YqeceHkDTks91P3C8LuI7xU6e5a0iE6M02dbOc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uWRBHy5bEBvF2ESYiJPVaIeZtn7c6vMLTKzyXG7aPpyDe3XNjLUwoW66tsddWtyCNyxuZ+6ac+Cl7JYRV5JZnRHhr8mUNAq4c6bnOOZRoQs93L1x8kPBJmI/23HFTQWncoph+/3+K0bGTvLDe6WNDLQuSjhSXi1etdJP1O2Hh6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=NZCtUWmt; arc=none smtp.client-ip=209.85.217.42
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-6cec1485789so412302137.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 09:10:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1781280648; x=1781885448; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GEbMYrHpODEdrCctGaUdr56/QW91l/U1sHGIDNsbyLA=;
-        b=NZCtUWmtxollHJfxm61BLshCNoKzCaTIrdMBuhu1BkpPwH7essU9wWMBRGAYNpOBFn
-         ldwnme4PcPYTiSipayO+nFO83h7ZLhOCcg9f5zcK4q91hpGKJp5+LxXrwOEH9RX62IU3
-         QUrMNfA3DVlFsI6bI7ZATu69e5CRxk98VaumNVlO9262c726P/LRUaKOoszQBqtngSJ7
-         8FPwtblPbd6fYmQtWahON0dNUbVvHKGNxi2F/Mk4rkh2+aH2eyQoMbgkMIgIuqw0Xg1F
-         Z8j3OvepQLu76Et0zItW3K1ZZiFN5v5nOFfI62zACF254djdr6SCxWcThLUFoXMhOcE9
-         VLQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781280648; x=1781885448;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GEbMYrHpODEdrCctGaUdr56/QW91l/U1sHGIDNsbyLA=;
-        b=rdiDBPtCh5CsNq4gCgF+bWi0kLcwmoAaSVWCxaN+ZRxn+iaVllbIxcDkFyF7q2mFyp
-         IezWv4CScN2V/ylu+5cfl8p3rkvtz2sGs4JYNhq3qfFgNRJKFwkDAAJSmHenq+onTjm/
-         ZJ1Mi1uUjAjuERIc/4+XMYxJvsLHtvsYtQpp9wkHEXtq/NE3/u1VGH3zKKPJfzGYttGP
-         8KO//6lBtSaBJE4dFzeHSXBEI7Cj8DPWPiOChyI3X4OZuvXKR1TNDjE6MIC6j6pVIxdE
-         clHjwm7YMhzHbud562lKMdiVCvzuOkOZhwtBE2tequgYCp6JbNTOVEYLM2Ulrsvf90e4
-         h7Zg==
-X-Forwarded-Encrypted: i=1; AFNElJ/gLgEk+uw8MPTPYHVE0TupE+WO7xTphnJMrP5QDvDAQFZwso7dG7476MmQ3ObuMoZgtdMk+sfkpb4K@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxu5hq0AHYGs+u7jlZYrAd+humMKciAUlgFm30ImueJSk9KHf7W
-	FKBCLLaSU6SrruRJ7vTso2u9/3f+QKZQ8sMBiXlM1I9iwXf0WJRiOJhrB9kTF57mjxSFT4TDcu6
-	V24ulOgU=
-X-Gm-Gg: Acq92OHKDDIw4hqM2nkyae93pwSmXeqL0SL1tdgdI1alwDU4sZBZF6otXgPuVy5jqpI
-	Z+HiqpFQ4JOQvHHRiTRy+2Z1wCRNDIpptFUf4Et8kWJ1fdIyUq/wxjZHL/+R/HDFGJsOocGMZaD
-	r00bMemtyuo8gEYOOM8vB+rHlpNpcvy5KKbYm8knMAEhReXAgcQBBGUMKU2SMeQCjj6CxZDEdYq
-	6WS96qCm7FBeWW1ISGcHXfxGqS5q979/Z51rJQKMvJGlKA5Ib3Eg0r0Rk5vSrViEP3kw0QqFDJC
-	ESc+xQJ0aaCPPbJ0hygR1AkKZ+uQVrCQviEtsd93lKDsPfE+bz/rvqKBaRpR4kffSwTKe64bqmB
-	yYci0c89SN5STHplWkCUFCLKUCyaxZdb8IHR5Zk72dfYtKXVChHXOaNgCy+44rGWkMIev7StqCl
-	XSocGlJMcHzTaLUA3pW1pslhWl2n1SrIZ2vfvNNJbuFSJ1CfaV0cWDXpdAOjW7ysjRF69qGms=
-X-Received: by 2002:a05:6102:4187:b0:639:3b08:d64c with SMTP id ada2fe7eead31-71e88c4f8abmr2050956137.13.1781280648334;
-        Fri, 12 Jun 2026 09:10:48 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:cba0:23d4:353:6048? ([2600:8803:e7e4:500:cba0:23d4:353:6048])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-96674088249sm1807953241.12.2026.06.12.09.10.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jun 2026 09:10:47 -0700 (PDT)
-Message-ID: <788b7c6f-fae8-47cd-b78a-33f2803d8c88@baylibre.com>
-Date: Fri, 12 Jun 2026 11:10:45 -0500
+	s=arc-20240116; t=1781280757; c=relaxed/simple;
+	bh=J9eyQs2CHRbvAhdaMfyGhbERyFF7Zxyw2mXhc8bHpUc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RpD5kDXeCDt7TjU39lCZ18647F+5Uo5cPTXx3CtsHXTJdfPamTGtJ3T6M+nKhD0PZFuBUF3ZIgfk4jLQXjVqN3pYiAhDX0dfo/j7kZ6iHZrWc4M9dF6ZpKPD3WTQgNtbMckoyAEbbbRT7o06HqLdIKGltjG7P2amy7MuX6P92pg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=biw5zaLg; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ED2A1F000E9;
+	Fri, 12 Jun 2026 16:12:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781280753;
+	bh=z02Ls5D3gWOFaxVY1Vrlu09mzE4H0tHUI1xrrSHZ/To=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=biw5zaLgZJCPCNZQGYbIQFDJHZEafNvamooNnpBrPI1VpXYh7Ru7yJA/DVbBgD024
+	 ifVSs43LN/P8jXKk/96+B7KpQ8ZcXaP7ahZipJWyPqv0znFyqFOKfFe7x9EDNV9Vuc
+	 Ir40WSD2ootjyhuElMZHjDJfTBjZBKIRvCbeoHrLyuI/N6RBKN+DcarUFncuDFRntt
+	 oW7UWkGPe4/xKRFva46w7h/w/THuaMp/+suY7GNkgPJAK+UF23MfvxFgWgTq1Vj0tA
+	 +81qCprPt9YmoL0jDzrMif2VIKjaJxOC+VM3dfpgpf/CsujgAXYjwdBXDZq9jJ+xnj
+	 u4z2yid8INFmQ==
+Date: Fri, 12 Jun 2026 17:12:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Potin Lai <potin.lai.pt@gmail.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Zev Weiss <zev@bewilderbeest.net>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Cosmo Chou <cosmo.chou@quantatw.com>,
+	Mike Hsieh <Mike_Hsieh@quantatw.com>,
+	Potin Lai <potin.lai@qunatatw.com>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pmbus: ti,lm25066: add current
+ limit properties
+Message-ID: <20260612-lecturer-unclad-d80218119ae5@spud>
+References: <20260611-lm25066-cl-config-v1-0-02e567bf3d91@gmail.com>
+ <20260611-lm25066-cl-config-v1-1-02e567bf3d91@gmail.com>
+ <20260611-mocha-strive-a7f3265dd3f4@spud>
+ <CAGfYmwWPhdpTLGhOdddJ0hSj-H86+XOVGTR9eDkZSVqGRLfJvQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add TI ADS1220
-To: Nguyen Minh Tien <zizuzacker@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- linux-kernel@vger.kernel.org
-References: <20260610151342.44274-1-zizuzacker@gmail.com>
- <20260610151342.44274-2-zizuzacker@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260610151342.44274-2-zizuzacker@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="S4zO5QqditTU704k"
+Content-Disposition: inline
+In-Reply-To: <CAGfYmwWPhdpTLGhOdddJ0hSj-H86+XOVGTR9eDkZSVqGRLfJvQ@mail.gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-5.26 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311036-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:zizuzacker@gmail.com,m:jic23@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:potin.lai.pt@gmail.com,m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zev@bewilderbeest.net,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cosmo.chou@quantatw.com,m:Mike_Hsieh@quantatw.com,m:potin.lai@qunatatw.com,m:potinlaipt@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[baylibre.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[baylibre.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-311043-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,spud:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EE56267ABFE
-
-On 6/10/26 10:13 AM, Nguyen Minh Tien wrote:
-> The ADS1220 is a 24-bit, 2-kSPS, 4-channel delta-sigma ADC from Texas
-> Instruments with an SPI (mode 1) interface, a programmable gain amplifier,
-> an internal 2.048V reference and a dedicated DRDY data-ready output.
-> 
-> Add a device tree binding describing the SPI device and its per-input
-> channel child nodes (single-ended AINx or the multiplexer's differential
-> pairs), the optional external/AVDD reference selection and the DRDY
-> interrupt.
-
-FYI, I have a similar chip I am working on (at least in terms of wiring)
-that I plan to submit probably next week. I think the DT bindings will
-be quite similar, so you might want to wait and see how the review goes
-for that (TI ADS122C14).
-
-It could be similar enough that you could add this chip to what I am
-doing rather than having separate files.
-
-> 
-> Signed-off-by: Nguyen Minh Tien <zizuzacker@gmail.com>
-> ---
->  .../bindings/iio/adc/ti,ads1220.yaml          | 146 ++++++++++++++++++
->  1 file changed, 146 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1220.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1220.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1220.yaml
-> new file mode 100644
-> index 000000000..1fedffc2a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1220.yaml
-> @@ -0,0 +1,146 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/ti,ads1220.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments ADS1220 ADC
-> +
-> +maintainers:
-> +  - Nguyen Minh Tien <zizuzacker@gmail.com>
-> +
-> +description:
-> +  The TI ADS1220 is a precision 24-bit, 2-kSPS, delta-sigma ADC with an SPI
-> +  (mode 1) interface. It provides two differential or four single-ended inputs
-> +  through a multiplexer, a programmable gain amplifier (gain 1 to 128), an
-> +  internal 2.048V reference and oscillator, two programmable excitation current
-> +  sources and a 50/60Hz rejection filter. A dedicated DRDY output signals when a
-> +  new conversion result is available.
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,ads1220
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-cpha: true
-> +
-> +  interrupts:
-> +    description: DRDY pin, signals that a new conversion result is ready.
-> +    maxItems: 1
-
-There are actually 2 DRDY pins, so we need some way to describe which one
-is wired up.
-
-So...
-
-  interrupt-names:
-    items:
-      - enum: [drdy, dout-drdy]
-  
-
-And we have found that when dout-drdy is used, some interrupt controllers
-can't handle it correctly and we also need a dout-drdy-gpios to read the pin.
-
-> +
-> +  avdd-supply:
-> +    description: Analog power supply (AVDD/AVSS).
-> +
-> +  dvdd-supply:
-> +    description: Digital power supply (DVDD/DGND).
-> +
-> +  vref-supply:
-> +    description:
-> +      External reference voltage (REFP0/REFN0). If omitted, the internal
-> +      2.048V reference is used unless ti,vref-avdd is set.
-
-If the pins are REFx0, then let's call it ref0-supply.
-
-There is also a ref1-supply (alternate REFP1/REFN1 function of AIN1/AIN3) so that
-needs to be included as well.
-
-Also, in the case when the sensor is an RDT, we only care about the resistor
-across these inputs rather than the voltage. So in the one I am working on,
-I added extra properties for that.
-
-> +
-> +  ti,vref-avdd:
-> +    type: boolean
-> +    description:
-> +      Use the analog supply (AVDD/AVSS) as the conversion reference instead of
-> +      the internal 2.048V reference. Suited to ratiometric single-supply
-> +      measurements (for example a potentiometer wired across AVDD), giving a
-> +      full 0..AVDD input range without an external reference. Ignored when
-> +      vref-supply is present.
-> +
-
-On the chip I am working on, we want to select the reference source per-channel
-rather than globally, so might want to do the same here.
+X-Rspamd-Queue-Id: 168C567ACA4
 
 
-There is also an optional external clock, so we need clocks property.
+--S4zO5QqditTU704k
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - avdd-supply
-> +  - dvdd-supply
-> +
-> +patternProperties:
-> +  "^channel@[0-6]$":
-> +    $ref: adc.yaml
-> +    type: object
-> +    description: Represents one ADC input configuration (channel).
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 6
+On Fri, Jun 12, 2026 at 05:10:38PM +0800, Potin Lai wrote:
+> On Fri, Jun 12, 2026 at 1:27=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Thu, Jun 11, 2026 at 05:58:44PM +0800, Potin Lai wrote:
+> > > Add mutually exclusive 'ti,cl-smbus-high' and 'ti,cl-smbus-low' boole=
+an
+> > > properties to configure the device's Current Limit (CL) behavior using
+> > > SMBus settings instead of physical pins.
+> > >
+> > > Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml  | 20 ++++++++++=
+++++++++++
+> > >  1 file changed, 20 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066=
+=2Eyaml b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
+> > > index a20f140dc79a..95ea7c26dec2 100644
+> > > --- a/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
+> > > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
+> > > @@ -46,6 +46,26 @@ properties:
+> > >
+> > >      additionalProperties: false
+> > >
+> > > +  ti,cl-smbus-high:
+> > > +    description: |
+> > > +      Configure the Current Limit (CL) to use the SMBus high setting.
+> > > +    type: boolean
+> > > +
+> > > +  ti,cl-smbus-low:
+> > > +    description: |
+> > > +      Configure the Current Limit (CL) to use the SMBus low setting.
+> > > +    type: boolean
+> >
+> > What's smbus specific about this? If the pin was connected to a GPIO,
+> > you'd then need to have different properties or use these ones with an
+> > inaccurate name.
+> >
+>=20
+> The "smbus" in the property name was originally meant to indicate
+> that the setting is configured via the internal register over the SMBus (=
+I2C)
+> interface, rather than physical pins.
 
-I would add a comment explaining that the limit here is arbitrary. Also wouldn't
-hurt to make it a bit bigger. Technically, someone could have every possible
-combination of all inputs (16 differential + 4 single-ended).
+Right, but if you do it via the physical pins using a gpio, you still
+need a way to say what limit is. The status quo only works if the limit
+pin is tied high or low.
 
-> +
-> +      diff-channels:
-> +        description:
-> +          Differential input pair routable by the ADS1220 multiplexer.
-> +        oneOf:
-> +          - items: [const: 0, const: 1]
-> +          - items: [const: 0, const: 2]
-> +          - items: [const: 0, const: 3]
-> +          - items: [const: 1, const: 2]
-> +          - items: [const: 1, const: 3]
-> +          - items: [const: 2, const: 3]
-> +          - items: [const: 1, const: 0]
-> +          - items: [const: 3, const: 2]
+>=20
+> > Please also spell out "current-limit".
+> >
+>=20
+> I will rename the properties to "ti,current-limit-high" and
+> "ti,current-limit-low"
+> in the next version.
 
-Sometimes, the same channel may be used as both positive and negative
-for a diagnostic, so I would just allow any combination instead of
-listing specific combinations.
+Other thing that might be worth doing is making the property a string
+and just having `ti,current-limit =3D "low"` etc.
 
-> +
-> +      single-channel:
-> +        description:
-> +          Single-ended input channel AINx measured against AVSS.
-> +        minimum: 0
-> +        maximum: 3
+--S4zO5QqditTU704k
+Content-Type: application/pgp-signature; name="signature.asc"
 
-On the chip I am working on, I also added properties here for required
-current outputs for the RDT case.
+-----BEGIN PGP SIGNATURE-----
 
-And as mentioned above, a property here to select the reference voltage
-that this specific channel uses It could be Internal, REFx0, REFx1 or AVDD,
-so a boolean flag is not enough.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaiwv7QAKCRB4tDGHoIJi
+0hrAAP9jl+N4lt/L2Aof9LFMvWZ4NkHJKwrlnrQChX8xVnY2iQD+IedBFc05axoQ
+L7i0tC+Fntx5yWCb3pFiMWOxOhI3iwE=
+=/Iuh
+-----END PGP SIGNATURE-----
 
-
-> +
-> +    oneOf:
-> +      - required: [diff-channels]
-> +      - required: [single-channel]
-> +
-> +    required:
-> +      - reg
-> +
-> +    unevaluatedProperties: false
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@0 {
-> +            compatible = "ti,ads1220";
-> +            reg = <0>;
-> +            spi-max-frequency = <2500000>;
-> +            spi-cpha;
-> +            interrupt-parent = <&pio>;
-> +            interrupts = <4 4 IRQ_TYPE_EDGE_FALLING>;
-> +            avdd-supply = <&reg_vcc3v3>;
-> +            dvdd-supply = <&reg_vcc3v3>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            #io-channel-cells = <1>;
-> +
-> +            channel@0 {
-> +                reg = <0>;
-> +                single-channel = <0>;
-> +            };
-> +
-> +            channel@1 {
-> +                reg = <1>;
-> +                diff-channels = <0 1>;
-> +            };
-> +        };
-> +    };
-> +...
-
+--S4zO5QqditTU704k--
 
