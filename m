@@ -1,222 +1,180 @@
-Return-Path: <devicetree+bounces-310940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311005-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iVXZOrECLGpAJgQAu9opvQ
-	(envelope-from <devicetree+bounces-310940-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 14:59:29 +0200
+	id MpiEBOMYLGplLQQAu9opvQ
+	(envelope-from <devicetree+bounces-311005-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:34:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEDE2679949
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 14:59:28 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F15B67A387
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:34:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZvZiQLdj;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310940-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-310940-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=none;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=starfivetech.com (policy=quarantine);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311005-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311005-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6708C3004C8D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 12:58:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 51E8730FDECB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 14:33:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA10538B7D2;
-	Fri, 12 Jun 2026 12:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D17453839B8;
+	Fri, 12 Jun 2026 14:33:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2117.outbound.protection.partner.outlook.cn [139.219.17.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7282D3ED1;
-	Fri, 12 Jun 2026 12:58:46 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781269127; cv=none; b=WxDzPV0PL1K+TLK6XwVCK9S28wPq/MG+9yoQQmvHXk1+MKfI/OqJtExkUZBA/qS5092MwxEnk9lpcxd3jGAdb3sukNs/EDlmIzeAlI6iTXbh63zAdhtTgTvnFi/pu1tklEWv2pxbr4HqIJm6a649PAZdG6s43PTTNxSvF9ggNps=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781269127; c=relaxed/simple;
-	bh=7d5yswDulOvhASwPvMzfBZXUp0QHUM72zuDQHecAmGo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=glDF5tcScFp8NC2vVPfLg8sYclSSAGtxdsUYCO2FhsIbrV8AfQ2CbFAbi/rG+DzlyNV/BLfL+ga+448DYbu+LXsMUgPiKJ3bxRTBPHXmdmpGxs1iaT+ayFo9cSKbiW4jJv3QLk42XxlfGo+ZAtzmmaa2ctfR7lD1zXYLsiLegVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZvZiQLdj; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34BE11F000E9;
-	Fri, 12 Jun 2026 12:58:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781269126;
-	bh=LJYgjNm9x9+c7bz10hnRcV/tZHEYYz2pJB1Q9vxcDnk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=ZvZiQLdjpP23W61D+8MmGvliZu9w517/l3EnC61/k/wyikldzNnuwHtIiTCkKINf5
-	 XNMSCxHk0SpZnOxxjAFJ0/+5aSF6EVnTpOS7d7y63uNe5QBJrDWfNWAs58gmWsT9G1
-	 LN/54dGe2KVXbkO3GQfRJGOi1BaP0ge9d5uvCG7kfWBrDNy61H+dRB+vd9I078b+ol
-	 mX0DeXoyuKychrH/DJzl9ButUoEkehbKPt8Bq/fYzr7QeOXyseidHfUXVpR61EzmCx
-	 hL7f9fRmzY+oFsjWg0Zm/a6ljvwp++CV2FT5gAQfvTq9damwNqifd3gKotzVZcOfR5
-	 MrYIrkA35g1sg==
-Date: Fri, 12 Jun 2026 13:58:36 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Salih Erim <salih.erim@amd.com>
-Cc: <andy@kernel.org>, <dlechner@baylibre.com>, <nuno.sa@analog.com>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <conall.ogriofa@amd.com>, <michal.simek@amd.com>, <linux@roeck-us.net>,
- <erimsalih@gmail.com>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 5/5] iio: adc: versal-sysmon: add oversampling
- support
-Message-ID: <20260612135836.526cc07f@jic23-huawei>
-In-Reply-To: <20260611222738.2035062-6-salih.erim@amd.com>
-References: <20260611222738.2035062-1-salih.erim@amd.com>
-	<20260611222738.2035062-6-salih.erim@amd.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E45C36B043;
+	Fri, 12 Jun 2026 14:33:28 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781274812; cv=fail; b=NCTDIiHKB37CdWuuf3YPgucapfYgTi8Zjwodl2fkfEep+4UKMENdav0vQx2k6TsXyoIdcvm302oCduuJnpboJ4lLcmtK4rfsEaWJJgrYDdlEbrP73JFnU96+BUVbySEPxE5+xbHa+ABs1QIYNtgUhceN9psLoPRJDCtYW87xTC8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781274812; c=relaxed/simple;
+	bh=fLie5pEZB21YpdkaLiUUtj+J30qtOGCjz0OoP7vfxo4=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=TNoRW0xAE5qNgKurhBH+8qqoevCqEzJEusZ5bW04tDS/PDere1L2jdhQOefieF+YJqdIsJQLGQaY70Z32XytuLsjlFCUddYYwVsuR0FCDAdldZ+j7e0Az2z717yxzn71n4SBI8GzIbdD3GC0G37sMgbjpOt4y5BWOcuhxqRoEYI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.117
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Rsi1lanv6DGhZJyBoPJgR80mokyiO1U/l0CUMmbQ6aCi5vvlB6C9NSBdX/nqOPRbiqH1mOnIRfLUqbX4zPQ/fTEjSwpk+qIbmFB3oSIo50C60xskNEuUjfMxCb/YW8ulK4NOK+TCC6W3QJ/VUws5D0KQTP8jCmhICSwxOOqtVlcMcXnfvE5SnX714NmgzvWZkfSWKqI2X1tJzMiyMbfRWIchW4hIF5yXKV0ehInIdClqBap0qEeRzjx3SF0feF15yubjOBJ+9vq5XMuqu6ihlxLV4gNh9AJarv8s/NbBwj54dZbB3jibQiG88jYOtsL61Ri0OsGYk0cXwgfuYoBuJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NV9Arc+tH+msPyEyY8KzEuiezBHhkfImdsFTfuPpOMQ=;
+ b=Si2uWh727axILiC85NGtSTxz9gflun3Kl2kWnHcNmAFHPIcfd3IwCXn9sGBe4ECPXhNk75NUz37Au8sEGr2RhoCB+D9SoXBtjclTYLrwAOINDxPnhTzoxLMFq1whV2m6AkmaXXmA24E4lsDrDPuyPgzsPbS1qDFajppj9hdegENQSoEwI01uAG68bois4wHaDLG6pWimceZwjNHFRyId9q8hDoi5mq+t0emnymEi1i0hVUcTvvFeqN+YYi3gylT58L0sl5zqDL3Ivfz1tkgEn58R3M6xx8wXAwG60fcqTvQhn4WpL42bkq0HMZMDEQsGfJed3Jw5Ng5VqvUCspFRSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::6) by ZQ4PR01MB1201.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:13::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.15; Fri, 12 Jun
+ 2026 12:59:08 +0000
+Received: from ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ ([fe80::e7d4:256c:b066:850d]) by
+ ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn ([fe80::e7d4:256c:b066:850d%5])
+ with mapi id 15.21.0113.014; Fri, 12 Jun 2026 12:59:08 +0000
+From: Changhuang Liang <changhuang.liang@starfivetech.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>
+Cc: linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Changhuang Liang <changhuang.liang@starfivetech.com>
+Subject: [PATCH v1 0/2] Add support for Synopsys DesignWare SSI controller version 2.00a
+Date: Fri, 12 Jun 2026 05:58:54 -0700
+Message-Id: <20260612125856.8530-1-changhuang.liang@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BJXPR01CA0063.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:12::30) To ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:17::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZQ4PR01MB1202:EE_|ZQ4PR01MB1201:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8d1dfe65-bafc-4d3a-2f0e-08dec882641d
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|23010399003|52116014|1800799024|376014|366016|38350700014|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	CbKbEw9F3vH4nVSIli7GR+8bOSkqF2FspXj6aPSiT+u2I7HIju8dWA5wIETyyIG1gxuMWo16PMFWf4NqdquiNTmkPqatomOlqFOVMblxPi4Ep8VUsRpf1q7cvsOADP+OiH/g/YT5NPxLKN380PCCY9U6PcUGDIJJJ0mn19SMFWWjeAFGf7+NSW+i0LbCqedDjfQnaPOQnukzWriuLN4QDt/flPodcqtxfBDSROsI84LTN58e6AkzK7W/64OqiLuAmZYxA367r/IuuPkSijbwX5s8wupt0axAd4r09tqlYyHQGlmaSsvj7347jlJ6xgmOv0nMrkbtmRFWDcueSsdOfX0xEZGxT4qdb+9m22igv46mySB6qFjk0NzEeINEwtZiNHVvvxEBSpHACtGA3rikz2+rLB+YazB3kExgcZP6//zjVoktnr4u73+J30TcTat+gZ5XdlPqL2Y4JpatO6EIgWerzzn7MhoNjHTkHbGcFP5EOXxCxKyJZqW+Msm9qvSYvkYD9sR7qv9EHQjax9NxNixwYfJCl1lZBIk17wnfS8xNrU5oobDMERli4gG6O6Cc
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(52116014)(1800799024)(376014)(366016)(38350700014)(56012099006)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?KhO+2L+4PmxQ7tU/7la8pNSiPXpIobkylCCrz4upHCFkH3hUg6Uv3WT4roeO?=
+ =?us-ascii?Q?OVkElAKUwDvrsNp7vW5O/85tR5M8TTPcQZo08HxyZJCKWaxneVmkSGsOIuE7?=
+ =?us-ascii?Q?amqlNU4ud0fcj4RwYcnY6DjZlpsqL8xp0draVFGudYAo913+JUe3UFJLvtAJ?=
+ =?us-ascii?Q?rOE4EsPljSGoYqdGAGe2R5lQfHpFIPNC6xyJrqXCDWLL59Fhbpv/424d3aAj?=
+ =?us-ascii?Q?CmPxn9sBz3QnIJnTDDSf0+EE7nsqbOMsPwa/bZHyQ9qXq75jVJCZAJlZIP3u?=
+ =?us-ascii?Q?D/ziCpbIekCXNOg45PaWz+Kv2/R7Lj1uQ/wwbqPBMu4AX3TEaikDlDMAhrg6?=
+ =?us-ascii?Q?sgWkonKSAvbLW4R/vq96GraCeJkLzARAdL6CsBAuD0ZyVIf5JbDlQlTwRPuc?=
+ =?us-ascii?Q?u1Kpm+czrfZGaHa/NrZ3aPlAXhb6I5SoVYSnkHMq3m6c+a9Z37xeugclyOxN?=
+ =?us-ascii?Q?fbXSv/QGfyi870whRI0ASYGbBxV+OMj/4lxdZ3wERNZ4eCXZc6NFpfxRj7gS?=
+ =?us-ascii?Q?yX4uoCQm2DM5A8JLw/skN9cTNSNQz5Chr6e2s1TrJfRP4ko1z1idP4XdjNN8?=
+ =?us-ascii?Q?MvdDQyg84bGZRPlNY6ycbXRCDQn+qMelfTZXK/zKP+gpEbDGBbaVF/1rVdZ1?=
+ =?us-ascii?Q?q4A3/L2IJKtc+mSTG7gpMfTyShmz7XMzWZccclYoEAkZkISKFQTxXxQb/EZQ?=
+ =?us-ascii?Q?gid+qCdGk3wyMfIQFJ+kDwuVVMF5yK/6PNxQi6FxZ2Rd3sWzaB4iw6pCqlMD?=
+ =?us-ascii?Q?dWvP+V8Vy2EuUQTMg6Ek+3WflAf0gKiG1j4DMBSfdYbVqnIJhjtE+0OI2xb9?=
+ =?us-ascii?Q?ezfCK4DoB13pFTtv3DxrrjUM5hknrXHmoaachJlaiO6EcdpMkAhrNDroyBxj?=
+ =?us-ascii?Q?wRaCPixJn4uY6KvT1Dd+6p8VDZAJbnYmEl1fzZ/rPcb1PXo6rHiF1FxBUuCv?=
+ =?us-ascii?Q?M/bMnsXSrJQdfYl4VzSdLRM8YZSzOkK4fQ+1MS1peKBkJZ65d31ejwApbvVP?=
+ =?us-ascii?Q?rWAgbwjCX7HSc0YCDdNqvLbNDPxWCIUOPF4Ey1K/eIUtzC7AH38LNJHkqXNp?=
+ =?us-ascii?Q?O1jrnEdpS6RftvmoIhsapzhIwzsd9x+InFKKiC01PBh/vsCV/Bvvl7s/cu80?=
+ =?us-ascii?Q?IESYRJWjTDv2SiGQQbjNj7zrEEf6mPDpsHvpixLVMnBJhM201e60KDC07PuF?=
+ =?us-ascii?Q?IAwaowvYvXFdk4EDTDvkwzD1Us0dxC3TULDDnhLTOm8eJWSrkLXtmK7Wo/SN?=
+ =?us-ascii?Q?hVdcfOodOJloNo34g9dH4zabik2lkIhmC8fzzLRPziQc+c2nKUl2DMNXQ1+0?=
+ =?us-ascii?Q?ttoN28R9wTf6xl7/Q1ui3rNy5Zo3JpuDblGUK7sd+Kj35kNlZNu2BAYjfYhi?=
+ =?us-ascii?Q?g4tI51oB0yDlmmxJW7ZNwdwVhzfJemYcrJquMd482Br6S1MudXomI0Zpue0d?=
+ =?us-ascii?Q?/Ttm0/jDI7EQ+EkiWhOby5WiFXSAaB43gFRwdyvmTYPhyJn+ILHUu2nReXO/?=
+ =?us-ascii?Q?+Yp8F283w/pC5o9GxEklBa1FOjFzZyASs6DXePhggbyZ7t4rCY9k0aP/tLRR?=
+ =?us-ascii?Q?ONCh/xg4RDCd19FaW75kcK4fwEYB0lAjXEREiokU2QsVRhfNFGvNNr0UkI8B?=
+ =?us-ascii?Q?zJMbZyvwCP/SNuAn21EjSji3k16VN4EYaIPXOvlHO7JtbO9wYlnAqTzR9v+5?=
+ =?us-ascii?Q?5hu9igMm8esLpGoVurmWgeRVHQI0BTp0r/fos6ie3m2Y9pVoFOeFcjVl03QO?=
+ =?us-ascii?Q?aOMe+kedsb/NAgSRpLWsC4gbs7zKLsz3GkimYLOYeJD3oz0Z+JCw?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d1dfe65-bafc-4d3a-2f0e-08dec882641d
+X-MS-Exchange-CrossTenant-AuthSource: ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 12:59:08.5652
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KzBL0BQBYcWr6Qt2WHP0gyxKJp0u191CULxyvKawH38HUd1Kp+cKpTGq3EyKtLiGUwJvMGNB4nB3uTKT1hz5m3rLlUDN9M8Od78jdgdm8xVnDOPjMDg6Z7Az0vBzNR1E
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ4PR01MB1201
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+X-Spamd-Result: default: False [3.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-310940-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:salih.erim@amd.com,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-311005-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:broonie@kernel.org,m:linux-spi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:changhuang.liang@starfivetech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,jic23-huawei:mid]
+	URIBL_MULTI_FAIL(0.00)[starfivetech.com:server fail];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[changhuang.liang@starfivetech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EEDE2679949
+X-Rspamd-Queue-Id: 7F15B67A387
 
-On Thu, 11 Jun 2026 23:27:38 +0100
-Salih Erim <salih.erim@amd.com> wrote:
+Add support for Synopsys DesignWare SSI controller version 2.00a,
+which is used on the JHB100 SoC.
 
-> Add support for reading and writing the oversampling ratio through
-> the IIO oversampling_ratio attribute. The hardware supports averaging
-> 2, 4, 8, or 16 samples, plus a ratio of 1 (no averaging).
-> 
-> Temperature and supply channels share oversampling configuration at
-> the type level (all temperature channels share one ratio, all supply
-> channels share another), exposed through info_mask_shared_by_type.
-> 
-> The hardware encoding uses sample_count / 2 in a 4-bit field within
-> the CONFIG register. Per-channel averaging enable registers must also
-> be updated to activate or deactivate averaging.
-> 
-> Signed-off-by: Salih Erim <salih.erim@amd.com>
+Changhuang Liang (2):
+  dt-bindings: spi: snps,dw-apb-ssi: Add support for snps,dwc-ssi-2.00a
+  spi: dw: Add support for snps,dwc-ssi-2.00a
 
-One minor comment inline.
+ Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 1 +
+ drivers/spi/spi-dw-mmio.c                                  | 1 +
+ 2 files changed, 2 insertions(+)
 
->  drivers/iio/adc/versal-sysmon-core.c | 147 ++++++++++++++++++++++++++-
->  drivers/iio/adc/versal-sysmon.h      |  17 ++++
->  2 files changed, 163 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iio/adc/versal-sysmon-core.c b/drivers/iio/adc/versal-sysmon-core.c
-> index 20fd3a87d44..fa8f0dc868a 100644
-> --- a/drivers/iio/adc/versal-sysmon-core.c
-> +++ b/drivers/iio/adc/versal-sysmon-core.c
-
-> +static int sysmon_osr_write(struct sysmon *sysmon, int channel_type, int val)
-
-There is almost nothing shared in here between the two channel_types.
-Might make sense to just split it into two helpers, particularly as
-there is a channel type if / else at the caller.
-
-> +{
-> +	/*
-> +	 * HW register encoding is sample_count / 2:
-> +	 * 0=none, 1=2x, 2=4x, 4=8x, 8=16x (not log2-based).
-> +	 */
-> +	int hw_val = val >> 1;
-> +	unsigned int readback;
-> +	int ret;
-> +
-> +	switch (channel_type) {
-> +	case IIO_TEMP:
-> +		ret = regmap_update_bits(sysmon->regmap, SYSMON_CONFIG,
-> +					SYSMON_CONFIG_TEMP_SAT_OSR,
-> +					FIELD_PREP(SYSMON_CONFIG_TEMP_SAT_OSR, hw_val));
-> +		if (ret)
-> +			return ret;
-> +
-> +		/*
-> +		 * Readback fence: the SysMon CONFIG register resides in the
-> +		 * PMC domain behind the NoC. A posted write may not reach the
-> +		 * hardware before the next MMIO access. Reading the register
-> +		 * back forces the interconnect to complete the write, preventing
-> +		 * a bus hang on the subsequent access.
-> +		 */
-> +		regmap_read(sysmon->regmap, SYSMON_CONFIG, &readback);
-> +
-> +		return sysmon_set_avg_enable(sysmon, SYSMON_TEMP_EN_AVG_BASE,
-> +					     SYSMON_TEMP_EN_AVG_COUNT,
-> +					     hw_val ? ~0U : 0);
-> +	case IIO_VOLTAGE:
-> +		ret = regmap_update_bits(sysmon->regmap, SYSMON_CONFIG,
-> +					SYSMON_CONFIG_SUPPLY_OSR,
-> +					FIELD_PREP(SYSMON_CONFIG_SUPPLY_OSR, hw_val));
-> +		if (ret)
-> +			return ret;
-> +
-> +		/* Readback fence -- see above */
-> +		regmap_read(sysmon->regmap, SYSMON_CONFIG, &readback);
-> +
-> +		return sysmon_set_avg_enable(sysmon, SYSMON_SUPPLY_EN_AVG_BASE,
-> +					     SYSMON_SUPPLY_EN_AVG_COUNT,
-> +					     hw_val ? ~0U : 0);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int sysmon_write_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan,
-> +			    int val, int val2, long mask)
-> +{
-> +	struct sysmon *sysmon = iio_priv(indio_dev);
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	if (mask != IIO_CHAN_INFO_OVERSAMPLING_RATIO)
-> +		return -EINVAL;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(sysmon_oversampling_avail); i++) {
-> +		if (val == sysmon_oversampling_avail[i])
-> +			break;
-> +	}
-> +	if (i == ARRAY_SIZE(sysmon_oversampling_avail))
-> +		return -EINVAL;
-> +
-> +	guard(mutex)(&sysmon->lock);
-> +
-> +	ret = sysmon_osr_write(sysmon, chan->type, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (chan->type == IIO_TEMP)
-> +		sysmon->temp_oversampling = val;
-> +	else
-> +		sysmon->supply_oversampling = val;
-> +
-> +	return 0;
-> +}
+--
+2.25.1
 
