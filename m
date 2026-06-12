@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-311038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311037-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lTfnHDMwLGroNAQAu9opvQ
-	(envelope-from <devicetree+bounces-311038-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:13:39 +0200
+	id 4t0vHC8wLGrmNAQAu9opvQ
+	(envelope-from <devicetree+bounces-311037-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:13:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B2BB67AC3A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D790267AC32
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 18:13:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=samsung.com header.s=mail20170921 header.b=ptBKKfSx;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311038-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311038-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=samsung.com header.s=mail20170921 header.b=QuAVxueh;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311037-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311037-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=samsung.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E4844324AB59
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:11:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 24B7F324050D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 16:11:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF1338D3EC;
-	Fri, 12 Jun 2026 16:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB8E3921DB;
+	Fri, 12 Jun 2026 16:11:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 399EE390C88
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC8E384CF6
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:11:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781280700; cv=none; b=V/9idlx4ndhuG8JPN0jh+bT83fPNpQeOv9Px2jHAPjdwls67hJQVx/K/4P1BmZpSGKDPUFO3oi4xyS6Q0XKyAmX1+UDq9IwWY8QOK0htSLJ1uv3vb9dHxLuRG2XsvIahxiJ/qxohGhWbhV7NSJCsSfpCS867b+K0xyeN/7ZQDdw=
+	t=1781280698; cv=none; b=ekZ9PWdo+HtJ5Aduxz0KggOSUXsIAqYzvJ9XcXvhrh5/eTPYh/IPwnX0ijsvsr48iuo314JLQFKdV5MvN4V1VQ5KCimpSyK4NTgCSMqSL4EOYdxmKRJmAF0si1vYCQgbfaLeok3v362b9o5bBSoumN78bJBjXGsNSZ3LdZdoylw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781280700; c=relaxed/simple;
-	bh=C4h9EdJZYlADWuf36oAoqn7TGOV0koyiTZfT0PDJDNM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
-	 References; b=ssgF3ConCueMS3n8mSdSFusapOc997K3FfDiqSPgHfjkDeRefC+4gKodwRzoH4zhLWnFknLN3ZEgWCslai+fetCA23k3tI/iOBG45h1IGvUJYTzbP0FJbP0IJvvzOYj9rmZxmGNKONyvP6C+Xi53kujE53bA5XXG8IxaeMT7j1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ptBKKfSx; arc=none smtp.client-ip=203.254.224.34
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20260612161130epoutp0463b7585deb2e82309720ed5298c77505~4YVm1R0T72799127991epoutp04Q
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:11:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20260612161130epoutp0463b7585deb2e82309720ed5298c77505~4YVm1R0T72799127991epoutp04Q
+	s=arc-20240116; t=1781280698; c=relaxed/simple;
+	bh=eYfoVTTY5NEjUxbcKceaFp2ZtOa8bfuibisKfUP+gSc=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
+	 Content-Type:References; b=dZh0VFcqrZOcDNrg01920jZ16urZT2sNeQSkVguiInDhkGY0gk0vwZaDqyet24YirM7rAtLXWZ3C1RYY/UuM46EVsh0ZDXZQEQcT6qmGwp2l1Uu5I8gk2pJJYtBLsE2gmKQ/3guxt9kXImwHZlri25qy8bRyKp7wBKgzn0EApwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=QuAVxueh; arc=none smtp.client-ip=203.254.224.25
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260612161135epoutp0251d4bb4e9ba0a555a7638b9b7cba2633~4YVrXImIC1807818078epoutp02H
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 16:11:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260612161135epoutp0251d4bb4e9ba0a555a7638b9b7cba2633~4YVrXImIC1807818078epoutp02H
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1781280690;
-	bh=ZSlvOETrwTn2jxfzGFRxLhh+UJTgzZUXiHMZq9fMGA8=;
-	h=From:To:Cc:Subject:Date:References:From;
-	b=ptBKKfSxUycgJ5M07OQHuV24JKqNuo891BpbY7ia707o9x4HGPxEWZAC+DsEDd6Fw
-	 livBDHhP9/yJo82uSXMGTJimGRQkzaRdQXEhGm3ZOoEbIZ3wgf9OMNQoJcyLbEULOV
-	 bgLOe5rhSbDarTlsL1Fu4OVEDHv3twjk7F3fePtE=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20260612161129epcas5p3e7ede89e23bee40f35bdaacb9cfbb384~4YVl4WjcP1858918589epcas5p3H;
-	Fri, 12 Jun 2026 16:11:29 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.95]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4gcPdr5x8Yz6B9m6; Fri, 12 Jun
-	2026 16:11:28 +0000 (GMT)
+	s=mail20170921; t=1781280695;
+	bh=wl26fAR/gW6o8YIBNsSnb/apIo7BbF6qv1tG/czd9Dg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=QuAVxueh5b+gJnIuvmTzt8X+Lea7cfhuPPZzK/pB0EKlJf1AVBQu7U89QKEab659J
+	 AwQ5SjFs4JvIWVsmE11d9V0uaGv9UjEGy3DEt6UHjkQlbZMCN8BEE4aibY3UjxYDgR
+	 nzsi+NZokCVy+RXk7VVaDaMF7F1V5rKLqjopr08g=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20260612161134epcas5p257c6031f0579b2d030c91f471d59e323~4YVqqIIPJ0551705517epcas5p2J;
+	Fri, 12 Jun 2026 16:11:34 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.38.87]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4gcPdx51P1z6B9m4; Fri, 12 Jun
+	2026 16:11:33 +0000 (GMT)
 Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20260612161128epcas5p2fe6ebf4b1a7b3ad1794804768180cbdd~4YVkfHhST0551705517epcas5p2F;
-	Fri, 12 Jun 2026 16:11:28 +0000 (GMT)
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20260612161132epcas5p154cfe97ffb995875f68d8bb6b73c22ce~4YVohhzY10799207992epcas5p1y;
+	Fri, 12 Jun 2026 16:11:32 +0000 (GMT)
 Received: from bose.samsungds.net (unknown [107.108.83.9]) by
 	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20260612161125epsmtip17a32a09a1f76610c7c663861c61459eb~4YVifqoaT2559525595epsmtip1b;
-	Fri, 12 Jun 2026 16:11:25 +0000 (GMT)
+	20260612161130epsmtip13d86a065431a729a09355266ada97c6e~4YVmu245_0270302703epsmtip1h;
+	Fri, 12 Jun 2026 16:11:30 +0000 (GMT)
 From: Alim Akhtar <alim.akhtar@samsung.com>
 To: krzk@kernel.org, peter.griffin@linaro.org, robh@kernel.org,
 	conor+dt@kernel.org, linusw@kernel.org
 Cc: linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
 	hajun.sung@samsung.com, Alim Akhtar <alim.akhtar@samsung.com>
-Subject: [PATCH 0/5] Add minimal Exynos8855 SoC support
-Date: Fri, 12 Jun 2026 22:00:15 +0530
-Message-Id: <20260612163020.411761-1-alim.akhtar@samsung.com>
+Subject: [PATCH 1/5] dt-binding: ARM: samsung: Add Samsung Exynos8855
+Date: Fri, 12 Jun 2026 22:00:16 +0530
+Message-Id: <20260612163020.411761-2-alim.akhtar@samsung.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260612163020.411761-1-alim.akhtar@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,14 +78,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260612161128epcas5p2fe6ebf4b1a7b3ad1794804768180cbdd
+X-CMS-MailID: 20260612161132epcas5p154cfe97ffb995875f68d8bb6b73c22ce
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
 CMS-TYPE: 105P
 cpgsPolicy: CPGSC10-543,Y
 X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20260612161128epcas5p2fe6ebf4b1a7b3ad1794804768180cbdd
-References: <CGME20260612161128epcas5p2fe6ebf4b1a7b3ad1794804768180cbdd@epcas5p2.samsung.com>
+X-CMS-RootMailID: 20260612161132epcas5p154cfe97ffb995875f68d8bb6b73c22ce
+References: <20260612163020.411761-1-alim.akhtar@samsung.com>
+	<CGME20260612161132epcas5p154cfe97ffb995875f68d8bb6b73c22ce@epcas5p1.samsung.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-4.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[samsung.com:d:+,kernel.org:s:+];
@@ -96,9 +98,9 @@ X-Spamd-Result: default: False [-4.16 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311038-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311037-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,samsung.com:dkim,samsung.com:mid,samsung.com:from_mime];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,samsung.com:dkim,samsung.com:email,samsung.com:mid,samsung.com:from_mime,vger.kernel.org:from_smtp];
 	FORGED_SENDER(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:peter.griffin@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:hajun.sung@samsung.com,m:alim.akhtar@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
@@ -119,47 +121,32 @@ X-Spamd-Result: default: False [-4.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1B2BB67AC3A
+X-Rspamd-Queue-Id: D790267AC32
 
-This series adds initial support for the Exynos8855 SoC and also
-initial SMDK board support. 
+Add Samsung Exynos8855 smdk board to documentation
 
-Exynos8855 has octa-core CPUs, a combination of Cortex-A720 and Cortex-A520,
-arranged in 3 clusters. And other peripheral for mobile application.
+Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+---
+ .../devicetree/bindings/arm/samsung/samsung-boards.yaml     | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-This initial support consists of CPUs, pinctrl and related nodes
-needed for initial kernel boot.
-
-With these patches, kernel can boot using initramfs till file system mounts.
-
-More platform support will be added in near future, clock driver to go next.
-
-Known issue: uart driver probe fails because of clk being not available yet.
-
-Alim Akhtar (5):
-  dt-binding: ARM: samsung: Add Samsung Exynos8855
-  dt-binding: pinctrl: samsung: Add exynos8855-pinctrl compatible
-  pinctrl: samsung: Add Exynos8855 pinctrl configuration
-  arm64: dts: exynos: add initial support for Samsung Exynos8855 smdk
-  MAINTAINERS: Add entry for Samsung Exynos8855 SoC
-
- .../bindings/arm/samsung/samsung-boards.yaml  |   6 +
- .../bindings/pinctrl/samsung,pinctrl.yaml     |   1 +
- MAINTAINERS                                   |   7 +
- arch/arm64/boot/dts/exynos/Makefile           |   1 +
- .../boot/dts/exynos/exynos8855-pinctrl.dtsi   | 581 ++++++++++++++++++
- .../arm64/boot/dts/exynos/exynos8855-smdk.dts |  37 ++
- arch/arm64/boot/dts/exynos/exynos8855.dtsi    | 214 +++++++
- .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 124 ++++
- drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
- drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
- 10 files changed, 974 insertions(+)
- create mode 100644 arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi
- create mode 100644 arch/arm64/boot/dts/exynos/exynos8855-smdk.dts
- create mode 100644 arch/arm64/boot/dts/exynos/exynos8855.dtsi
-
-
-base-commit: b99ae45861eccff1e1d8c7b05a13650be805d437
+diff --git a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+index 753b3ba1b607..273464400477 100644
+--- a/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
++++ b/Documentation/devicetree/bindings/arm/samsung/samsung-boards.yaml
+@@ -235,6 +235,12 @@ properties:
+               - winlink,e850-96                 # WinLink E850-96
+           - const: samsung,exynos850
+ 
++      - description: Exynos8855 based boards
++        items:
++          - enum:
++              - samsung,exynos8855-smdk         # Samsung SMDK
++          - const: samsung,exynos8855
++
+       - description: Exynos8895 based boards
+         items:
+           - enum:
 -- 
 2.34.1
 
