@@ -1,313 +1,245 @@
-Return-Path: <devicetree+bounces-310982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310980-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XdMNBgIPLGpSKgQAu9opvQ
-	(envelope-from <devicetree+bounces-310982-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 15:52:02 +0200
+	id hO31Gy4OLGoBKgQAu9opvQ
+	(envelope-from <devicetree+bounces-310980-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 15:48:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0A3679F9C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 15:52:01 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C5BD679F53
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 15:48:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=redhat.com header.s=mimecast20190719 header.b=OynQW16g;
-	dkim=pass header.d=redhat.com header.s=google header.b=ibIu2lwG;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310982-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310982-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=redhat.com;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
+	dkim=pass header.d=suse.com header.s=google header.b=ErY4PUEd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310980-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-310980-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=suse.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A6CD0300863D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:51:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 76C843006164
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 13:48:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEB5B3438BA;
-	Fri, 12 Jun 2026 13:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2F4330B0B;
+	Fri, 12 Jun 2026 13:48:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 103FE344D9B
-	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 13:51:40 +0000 (UTC)
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781272302; cv=pass; b=jVgI2U/T78vbg7DWONDn31is7+qCRSmHwL6d7yPDIq21hUM4NMsZ4x2ZHRRutsca+/KH7ju6pLlfj2H8CjMSaY9ztXABsKj8myb+UMWGvalgTfajpHPXrok+aqVrtbqtkKeUbcBUfp6fTrhyOGjEOwmZT83WBhc+TDIAreKvVy4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781272302; c=relaxed/simple;
-	bh=tT4YqoZd40mTDfR7B+ZovVmHGlTP3GckEXJWWqPnoqs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cZ2qENVxrsHwCThA+7Yr/TJvQWYtaXiVwPTJYFD3evw0FYfFr5NYGsnJb1aq7FHgHzp2HPYwgYbyHOgxOWlWjVXvAOrBrkQurp4ocuxD7Eg7btbt9bkl+bg2kcVMbvcJ939KCI2+1NpWZ32TVxcPZ5nsa+dKBMEWqBDPPmqR8lA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=OynQW16g; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=ibIu2lwG; arc=pass smtp.client-ip=170.10.133.124
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1781272300;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Iy/v7kxpOlqBCTDcC4jlmM2w9KphND71Hvl/We9DfQ4=;
-	b=OynQW16gkfYLqs+w3Vswg0Xt8Eoc7NhdUHEqeE6VkZ7HJt2NCXTKoAvnLpRBGp39Eeuz5b
-	7tGDlNMUqMYTUlMwiExsgcXwQK9lNNojaldLy+gOXxoMtpA51riBQWy5zXGM1lKQZzkQyc
-	hWe2mV/NQN1s4Hr/XMohPxSOjBNMBQE=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-112-8uTUn6fZMSW2e0n-FZK-0w-1; Fri, 12 Jun 2026 09:51:35 -0400
-X-MC-Unique: 8uTUn6fZMSW2e0n-FZK-0w-1
-X-Mimecast-MFC-AGG-ID: 8uTUn6fZMSW2e0n-FZK-0w_1781272295
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-91574ad6871so169420485a.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 06:51:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781272295; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Ag90ZlA+uVWbBOEe9Xc2e+YTH5DaUq7Bqi7HQqu8xV/9qiIQ07vhLBdKh/CfZJMNe1
-         LeAcHNBJb0PwvpZxk16OGkdekQ+3wiu4wQucASlrKBxLINJ84NltvfZtbctxJ3xvxLnB
-         5DPEZvhyiDnFgxgFdvweXAoLfrRvOsOG3Odf4gwBH2NMckrXqFoRCeh9ly7G9iej8l3y
-         fotm10sr86rx/X6C/0fh6h9E0qpC3XpNwLwFpLheLgG1miCYAcr4LeLZIL9AOalFnzLa
-         PckWFZYvkkJiHfWt9eMG06cP7oagRr/l75UqriIEsZ37cHKsY7nU9/Oefr+kNCbpdRAf
-         uKeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Iy/v7kxpOlqBCTDcC4jlmM2w9KphND71Hvl/We9DfQ4=;
-        fh=WBzRXTU4sq8Ky/BBy2+QVXXk92t1fImV3buRkDwKYEM=;
-        b=CV7l8jG/KLBGqBjfNOCTS+iXeSfTtSN3q/eJ8JVGd++pa+dEVigJAWQDdyb9tcv9aQ
-         nHFHKgDlFz4RjybPspzXoo3Y5s/40MI4CV2Xk1tmzxijAxj5NEvILRaK9v588CxvrCRl
-         74W+1Y/Z+qecMfT0yMQWUFnkQge1sE5SnQ5sc0oK2zH5tB3DuWNYycxLc9HRcAhiDtdJ
-         J8ol+hlY5tWkJ28utHwOsgQZYQL4APg23UFvDhdpqft1BNgd1Rb64SK5JLKBYCipnNDz
-         wGOu2ZfZkGlEr0sS+Nz40XpO6wFQiA7oCqL0IBSZzq7agoW4/w4zEaHb6ilA1hm2hUA4
-         bFww==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E2AA331EAB
+	for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 13:48:25 +0000 (UTC)
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781272107; cv=none; b=rA1kWgzpiSA311SjXlcq/a7/q8+Wp+2/AMw28FqgtsIye7jtnn9OtIaqA4nkkEonFThDTG5EpthHXl0Y5ki/Zs5eH7GtWVFmAVkDbA5CtaE6QITKg/Nlqpyxo7piCLzYjP4oDMLoR3h0FOtoTLy4Em+4LFxIBN+d50lAKrSexZQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781272107; c=relaxed/simple;
+	bh=Nm/CFb+Dox2Afi7pYSuOi5ckPQL3p9sapoD96313IHI=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iInBkmlNhPuEzXnrgCB5ODY0YCG6+xsr5PTk0HbiDFvZPL2hgJl+cKVBx9f99OOlIZEF+cTFk+1RDSmK0CR1AK9yddQf3kAkfGrEdfBjaEYklZejvy84WCGqJItJyrByAlJahdO9Qf9o5OGXqyjSErXLwglnmEEsaMSBI0/TCoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=ErY4PUEd; arc=none smtp.client-ip=209.85.128.48
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-490afc47455so4417815e9.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 06:48:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1781272295; x=1781877095; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Iy/v7kxpOlqBCTDcC4jlmM2w9KphND71Hvl/We9DfQ4=;
-        b=ibIu2lwGWGi5LJXd6uw6IrKW+nTUsdKRyOeOWPAsqY9rq9JHc9pqUcff16cSolR1vk
-         ClWmdurqIH7zKU1tp2RySSbkSM997Zt1Gq4dZGnvTrg9sRjOZQRuVF+gxuH7keIcKfOr
-         dkYawBZ1Fi6xstx1YVK2k+9Z2uBqs2SVNnvhudCZUG/LotUcEg0yAf0o9uUVVTAYupWH
-         gp8BFJ9c+pu9bZ383xN6otcx1vYBLDV6RL1WCzDSSNHB+GyIE+MkEKjKQIfT7nHuRChH
-         Y65UgaKxIxgwJzjqhTCn/DTAeJ7zBwNc8q9n95K7d2Dr2lRpCJkScUXgofmB9lWN2OYL
-         8r5A==
+        d=suse.com; s=google; t=1781272104; x=1781876904; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mipHo0l7RBc0zEMhF8Fz8QvRJ7oAxrgIKC4nNESKUfg=;
+        b=ErY4PUEdqNZ/35649bKLE7SJKD4ZSucvJLnEIfCWqyNnpZ6bTMaP5cqd0g7nIFdaOq
+         sQuem0TA3QWJrlF/oWAa2mlRhTujgwTJlYjA9wWYYt6TXC8+4Ddl3zoZGMJajhSRDp8c
+         VNVFGRAd9x1F1PjJCjffGiqSDR0fxgYfO5r/uBAOXWoYHNuRexwHSDGyL/BpruYtaMys
+         KgBqmwIztjhXLKjbJ5w/9AVZWy13oca/o3BPbbL1D6tATSL0qaRxzCj5AdfZVe1axASx
+         sTbIIGWgGUTBipISFI/OpzZU8i6uNgPM6xwmyeARuN3vOtdIvPOaYr9X1D6sohgwYPKV
+         DFSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781272295; x=1781877095;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Iy/v7kxpOlqBCTDcC4jlmM2w9KphND71Hvl/We9DfQ4=;
-        b=Uiz1/EiQ5MDJiT8575HLk2TlsykG6zbBZ4c+nEAYyE/jVFZS6veY9dW6wcwkHwqmb5
-         mDGxhf3wAwLQ7Brg1hGRX8JAZVsRmuPdkBBi4upK3WXmirXkB0FGnkQUYRwThXcitiDn
-         kpy7WmVcgy8VFIdmNc8nUkRM6NiWRy7PsSkruI2/293B5jhy7mi/Cg2ZbO0tc3N8krY7
-         2IihmlryeO8N36X+7ueKodsABSs/oefrP8PcrI7BVw916bFW3/SBcqI5xc0shsBINNh+
-         6zFr94MfnCIvFbR/71a31EtD1SDmAUP5vjDzM3TbWdV1QqRH8B+MttTg4DXfSkiFcULC
-         Av+A==
-X-Forwarded-Encrypted: i=1; AFNElJ+OxJwCsygBWD9hwAMwsyxJPOL0Y/yyeE/lgpoRZfWca/Q8c6xw+xDNHWrnEzyttxkQsGZVwdpLW8V8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNj2DWdQuGcApZw0rgvut0lsKNiimtQjltACUwvyJjew1SPZbI
-	UnGPGQGcXtQVe6SCnwvAPyxRE8DXgjzjHb59Tdjbn9awW1cjyKccLAm8qwKCowCJJG0HnZJ3JxY
-	BfX+AwUYSwq8/GH7XclA6R9SSA21vaY5YVv79AmBBahMdWFLzq1wNLMpNn3l7DL6v49UdL9/sq/
-	olU2ZmEhdCBMfOqntKKLX7UT4af/3Cfs/3BlNNrQ==
-X-Gm-Gg: Acq92OGaR/rpysOAZMkucxJSAtFxf1SiGHaytVYAga3h6VBHhc/qcPnuUWkxmTt4MlV
-	S1DaYMSDWm9pga7jIVuhq6kW+h9M+awA+JQ0VpU2BYsEfwH5PxonxXN3s7NJ+U9QexR6Glxq1sN
-	yWo8zNiVEoRBw0iZPDF3HLYBs/xJpY6AGZVUHrD7qigW2DprFUbyD20MdpXmhs9wBR+52pwmT7g
-	zaObtlTxq2/zp1CxTB/Orkii2JEbw21BuNNEw==
-X-Received: by 2002:a05:620a:4149:b0:915:d5cd:8cce with SMTP id af79cd13be357-9161bc02c6bmr425212185a.22.1781272295105;
-        Fri, 12 Jun 2026 06:51:35 -0700 (PDT)
-X-Received: by 2002:a05:620a:4149:b0:915:d5cd:8cce with SMTP id
- af79cd13be357-9161bc02c6bmr425204785a.22.1781272294560; Fri, 12 Jun 2026
- 06:51:34 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1781272104; x=1781876904;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mipHo0l7RBc0zEMhF8Fz8QvRJ7oAxrgIKC4nNESKUfg=;
+        b=LT86BVPbnPQoqzHJQuB+R0svgbNW/nmn0NWlHH7y6klyC7X04lvp7G3vCNmJBPoRnZ
+         uf/F7c9F7GkorGOupPUzsjKj1E0w5f6eoj8I8YhdKrJ3y/MjKv4BFXntwLxgX1sczls1
+         5BQlzaDJKr12gvnRdsLYm2hG7peTwwXr+uBvTTP5TmbA86JKMhc4Hz2z2kNIBNI0HGjG
+         tiK21gP2/danJLT91i5lXhUftr+CB7JgY7FyAmkXq1b4e4DfEat6QVvE5TJTW46iBSRV
+         GTOha1/+j1OBt3p75jbyNrZ4vZ0W8Y2Z125Dg8Z7hGSEuhlQTxM9zHmlJEXJQcjnaZ+E
+         NdGg==
+X-Forwarded-Encrypted: i=1; AFNElJ8dlU+3SFkXZaPJmF6F+g0RtY76qDoy8xCQoaFuYkCi80RoONhicSLqXmE+q26fz55yC9WUA2B3fj/K@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJQgc00pr+sNwVvOXPIlefUnHgYVkHgPQX8f86cYpyL2fpd7wA
+	STG9Z/GGaV+wFISdmzzrD/CsAGSyDSwnH/ILwiPhG85RZ97BtPb3vy9jFWtGGYY5Wq4=
+X-Gm-Gg: Acq92OFO8sJvjLlbqPluprMiDcc59+t6X4iKknNac0KkodQkmsAewkJswK7GM1nfKWl
+	95F8MkK7eUEjJiRcQ4keNCry7ACVGmurnOHeZz4h84NMX5rFsC8Zjgdj2pZnaq5uL3CtkV/xa5U
+	Nw43FmSG2zdf9DC2AM0Wu7fZTTGfM8vBMXa7E/OK6Qq7YgzzbHVrbS8DgLZvB6wUFjOgqg+wgBM
+	fQZys9olALhc+cpaTDkX43Ouh3Udmr/OMpczoMb5y+KK9rrYq3r2xOyiq4HVSiU5IbkSjN0Kxjv
+	0xfDm0PbjvYNBl6tQy6nwxaZZhOkYi7aE1ZxrHuZ8FNK2OYVCqlv9TrLzSh9Wg6v+nbO8b0VXot
+	dzckeiCuF4Q7Odm1Ddu+/IONzDHtT8C966HuU9fYFCQyoZ4VoJjNxAMYVCYBC5njgIkswNzHjUc
+	/ABSLqGrEeNq43NbCJaSeh
+X-Received: by 2002:a05:600c:3b15:b0:490:b189:212d with SMTP id 5b1f17b1804b1-490ec522d44mr40387895e9.33.1781272103620;
+        Fri, 12 Jun 2026 06:48:23 -0700 (PDT)
+Received: from localhost ([195.94.146.6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490ea843cbbsm76137075e9.13.2026.06.12.06.48.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Jun 2026 06:48:22 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Fri, 12 Jun 2026 15:51:44 +0200
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	sashiko-reviews@lists.linux.dev, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, robh@kernel.org,
+	Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH v4 2/3] pwm: rp1: Add RP1 PWM controller driver
+Message-ID: <aiwO8Ac6btqSes8x@apocalypse>
+References: <8eef956a5eb473f051bbda89ec4c9991c1b47de2.1780498640.git.andrea.porta@suse.com>
+ <20260603154716.1B5C41F00893@smtp.kernel.org>
+ <aiGAINsTG8VZLn28@apocalypse>
+ <aiHn5-gQMbjttrR6@monoceros>
+ <aiL-DWqU5bnIPL8B@apocalypse>
+ <aiM0VlVXAWs54v-G@monoceros>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260611-rva23u64-hwprobe-v2-v4-0-3f01a2449488@gmail.com> <20260611-rva23u64-hwprobe-v2-v4-5-3f01a2449488@gmail.com>
-In-Reply-To: <20260611-rva23u64-hwprobe-v2-v4-5-3f01a2449488@gmail.com>
-From: Jesse Taube <jtaubepe@redhat.com>
-Date: Fri, 12 Jun 2026 09:51:22 -0400
-X-Gm-Features: AVVi8Cei37Nc7wEh-QPxeO4jIlCv0ZbORPC259y2xDJU0379i8L_rI91Rp2DJbE
-Message-ID: <CADRr4bd10AYwAZwHxEiuSJEOwD5qv68L1r5DRjxXFM8pmrG+WA@mail.gmail.com>
-Subject: Re: [PATCH v4 05/16] riscv: Add Zicclsm to cpufeature and hwprobe
-To: Guodong Xu <docular.xu@gmail.com>
-Cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Zong Li <zong.li@sifive.com>, Deepak Gupta <debug@rivosinc.com>, 
-	Anup Patel <anup@brainfault.org>, Atish Patra <atish.patra@linux.dev>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yixun Lan <dlan@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, linux-doc@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
-	spacemit@lists.linux.dev, sophgo@lists.linux.dev, 
-	linux-kselftest@vger.kernel.org, Palmer Dabbelt <palmer@sifive.com>, 
-	Jesse Taube <jesse@rivosinc.com>, Conor Dooley <conor.dooley@microchip.com>, 
-	Charlie Jenkins <charlie@rivosinc.com>, Andrew Jones <andrew.jones@oss.qualcomm.com>, 
-	Andy Chiu <andybnac@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aiM0VlVXAWs54v-G@monoceros>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	URIBL_MULTI_FAIL(0.00)[infradead.org:server fail,rivosinc.com:server fail,sin.lore.kernel.org:server fail];
+	TAGGED_FROM(0.00)[bounces-310980-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310982-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[jtaubepe@redhat.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[34];
-	FORGED_RECIPIENTS(0.00)[m:docular.xu@gmail.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:zong.li@sifive.com,m:debug@rivosinc.com,m:anup@brainfault.org,m:atish.patra@linux.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:unicorn_wang@outlook.com,m:inochiama@gmail.com,m:linux-doc@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kvm@vger.kernel.org,m:kvm-riscv@lists.infradead.org,m:paul.walmsley@sifive.com,m:conor@kernel.org,m:devicetree@vger.kernel.org,m:spacemit@lists.linux.dev,m:sophgo@lists.linux.dev,m:linux-kselftest@vger.kernel.org,m:palmer@sifive.com,m:jesse@rivosinc.com,m:conor.dooley@microchip.com,m:charlie@rivosinc.com,m:andrew.jones@oss.qualcomm.com,m:andybnac@gmail.com,m:docularxu@gmail.com,m:krzk@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[redhat.com:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:u.kleine-koenig@baylibre.com,m:andrea.porta@suse.com,m:sashiko-reviews@lists.linux.dev,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:khilman@baylibre.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[suse.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jtaubepe@redhat.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,sifive.com,rivosinc.com,brainfault.org,linux.dev,outlook.com,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,microchip.com,oss.qualcomm.com];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andrea.porta@suse.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:url,infradead.org:email,rivosinc.com:email,microchip.com:email,vger.kernel.org:from_smtp,sifive.com:email,qualcomm.com:email,mail.gmail.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,suse.com:dkim,suse.com:from_mime,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2E0A3679F9C
+X-Rspamd-Queue-Id: 0C5BD679F53
 
-On Thu, Jun 11, 2026 at 4:14=E2=80=AFPM Guodong Xu <docular.xu@gmail.com> w=
-rote:
->
-> From: Jesse Taube <jesse@rivosinc.com>
->
-> Zicclsm requires misaligned support for all regular load and store
-> instructions, both scalar and vector, but not AMOs or other
-> specialized forms of memory access, to main memory regions with both
-> the cacheability and coherence PMAs, as defined in the profiles spec.
-> Even though mandated, misaligned loads and stores might execute
-> extremely slowly. Standard software distributions should assume their
-> existence only for correctness, not for performance.
->
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Andy Chiu <andy.chiu@sifive.com>
-> Reviewed-by: Charlie Jenkins <charlie@rivosinc.com>
-> Tested-by: Charlie Jenkins <charlie@rivosinc.com>
-> Signed-off-by: Jesse Taube <jesse@rivosinc.com>
+Hi Uwe,
 
-Thanks for the update! Just an fyi email has changed to
-jtaubepe@redhat.com though.
-No need to change the signoff though.
+On 22:51 Fri 05 Jun     , Uwe Kleine-König wrote:
+> Hello Andrea,
+> 
+> On Fri, Jun 05, 2026 at 06:49:17PM +0200, Andrea della Porta wrote:
+> > On 23:28 Thu 04 Jun     , Uwe Kleine-König wrote:
+> > > Thinking again, the tohw() callback could be a bit more clever and also
+> > > use period_ticks = 0xffffffff, as this fine if duty_ticks is less than
+> > > this value and if duty_ticks = period_ticks = 0xffffffff you can still
+> > > configure the hardware using period_ticks = 0xfffffffe to achieve the
+> > > 100% relative dutycycle. (But keeping the current behaviour is fine for
+> > > me, too.)
+> > 
+> > I think this is what it's currently doing in this patch iteration. I stand
+> > corrected here when I said that period_ticks should be at max U32_MAX-1: logically
+> > it can be U32_MAX but it's getting 'translated' into U32_MAX-1 as the value which 
+> > is fed to the register. So the period is still U32_MAX, accounting for the extra
+> > tick at the end. So I guess we're on the same page.
+> 
+> Not sure you got what I wrote. You can use the maximal value possible in
+> hardware, because for all but 100% relative duty cycle it works as
+> expected. You only need to map 100% relative duty cycle with that
+> maximal period to a different 100% relative duty cycle setting. I think
+> PWM_DEBUG even doesn't yell at you for that. (And if it does, that needs
+> fixing.)
 
-Thanks,
-Jesse Taube
+I see. Since you said that teh current behaviour is also fine, I'd prefer
+to stick with it to avoid complicating the code.
 
-> [Rebased, rewrote doc text, minor commit message revisions]
-> Signed-off-by: Andrew Jones <andrew.jones@oss.qualcomm.com>
-> Signed-off-by: Guodong Xu <docular.xu@gmail.com>
->
-> ---
-> v4: No change.
-> v3:
-> - Move the hwprobe.rst entry to the IMA_EXT_1 section so its
->   documentation matches the IMA_EXT_1 bit it was allocated in v2
->   (Sashiko, agreed by Andrew).
-> v2:
-> - Rebased onto v7.1-rc2; moved ZICCLSM to IMA_EXT_1 and
->   allocated a new bit for it
-> ---
->  Documentation/arch/riscv/hwprobe.rst  | 4 ++++
->  arch/riscv/include/asm/hwcap.h        | 1 +
->  arch/riscv/include/uapi/asm/hwprobe.h | 1 +
->  arch/riscv/kernel/cpufeature.c        | 1 +
->  arch/riscv/kernel/sys_hwprobe.c       | 1 +
->  5 files changed, 8 insertions(+)
->
-> diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/ri=
-scv/hwprobe.rst
-> index d9928641deb99..49d9fb68632d0 100644
-> --- a/Documentation/arch/riscv/hwprobe.rst
-> +++ b/Documentation/arch/riscv/hwprobe.rst
-> @@ -401,3 +401,7 @@ The following keys are defined:
->      as defined in version 1.0 of the RISC-V Control-flow Integrity (CFI)
->      extensions specification, ratified in commit 302a2d45c243
->      ("Update build-pdf.yml") of riscv-cfi.
-> +
-> +  * :c:macro:`RISCV_HWPROBE_EXT_ZICCLSM`: The Zicclsm extension is suppo=
-rted,
-> +    as defined in the RISC-V Profiles specification starting from commit
-> +    b1d80660 ("Updated to ratified state.")
-> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwca=
-p.h
-> index 44bf8c7d8acc5..e8f4a7dd96a93 100644
-> --- a/arch/riscv/include/asm/hwcap.h
-> +++ b/arch/riscv/include/asm/hwcap.h
-> @@ -112,6 +112,7 @@
->  #define RISCV_ISA_EXT_ZCLSD            103
->  #define RISCV_ISA_EXT_ZICFILP          104
->  #define RISCV_ISA_EXT_ZICFISS          105
-> +#define RISCV_ISA_EXT_ZICCLSM          106
->
->  #define RISCV_ISA_EXT_XLINUXENVCFG     127
->
-> diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/u=
-api/asm/hwprobe.h
-> index 9139edba0aecb..6819df159c51e 100644
-> --- a/arch/riscv/include/uapi/asm/hwprobe.h
-> +++ b/arch/riscv/include/uapi/asm/hwprobe.h
-> @@ -116,6 +116,7 @@ struct riscv_hwprobe {
->  #define RISCV_HWPROBE_KEY_ZICBOP_BLOCK_SIZE    15
->  #define RISCV_HWPROBE_KEY_IMA_EXT_1            16
->  #define                RISCV_HWPROBE_EXT_ZICFISS       (1ULL << 0)
-> +#define                RISCV_HWPROBE_EXT_ZICCLSM       (1ULL << 1)
->
->  /* Increase RISCV_HWPROBE_MAX_KEY when adding items. */
->
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
-e.c
-> index 686dde3ce3b98..1fb595581adcf 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -502,6 +502,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D {
->         __RISCV_ISA_EXT_SUPERSET_VALIDATE(zicbom, RISCV_ISA_EXT_ZICBOM, r=
-iscv_xlinuxenvcfg_exts, riscv_ext_zicbom_validate),
->         __RISCV_ISA_EXT_DATA_VALIDATE(zicbop, RISCV_ISA_EXT_ZICBOP, riscv=
-_ext_zicbop_validate),
->         __RISCV_ISA_EXT_SUPERSET_VALIDATE(zicboz, RISCV_ISA_EXT_ZICBOZ, r=
-iscv_xlinuxenvcfg_exts, riscv_ext_zicboz_validate),
-> +       __RISCV_ISA_EXT_DATA(zicclsm, RISCV_ISA_EXT_ZICCLSM),
->         __RISCV_ISA_EXT_DATA(ziccrse, RISCV_ISA_EXT_ZICCRSE),
->         __RISCV_ISA_EXT_SUPERSET_VALIDATE(zicfilp, RISCV_ISA_EXT_ZICFILP,=
- riscv_xlinuxenvcfg_exts,
->                                           riscv_cfilp_validate),
-> diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwpr=
-obe.c
-> index f8f68ba781b45..9cf62266f1890 100644
-> --- a/arch/riscv/kernel/sys_hwprobe.c
-> +++ b/arch/riscv/kernel/sys_hwprobe.c
-> @@ -205,6 +205,7 @@ static void hwprobe_isa_ext1(struct riscv_hwprobe *pa=
-ir,
->                  * in the hart_isa bitmap, are made.
->                  */
->                 EXT_KEY(isainfo->isa, ZICFISS, pair->value, missing);
-> +               EXT_KEY(isainfo->isa, ZICCLSM, pair->value, missing);
->         }
->
->         /* Now turn off reporting features if any CPU is missing it. */
->
-> --
-> 2.43.0
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
->
+> 
+> > > > I'm not sure whether an inverted polarity pin shoudl stay low when disabled.
+> > > > After all, the inactive state for a reversed pin is high.
+> > > 
+> > > Sashiko's concern is correctly stated, if you go from
+> > > 
+> > > 	polarity = inversed, enabled
+> > > 
+> > > to
+> > > 
+> > > 	polarity = normal, disabled
+> > > 
+> > > the output stays high, which is active for polarity = normal.
+> > 
+> > Ack. I'll set the polarity first so there will be no uncovered corner
+> > case.
+> 
+> You can, but as I wrote below, being lazy is also fine.
+
+Already done :)
+
+>  
+> > > However the behaviour of a disabled PWM isn't specified, so any
+> > > behaviour is fine, the only objective is to save power. And if the
+> > > consumer relies on a constant inactive output, it's supposed to not
+> > > disable it.
+> > > 
+> > > For me both behaviours are fine. Making the hardware emit the inactive
+> > > level might prevent a surprise if the consumer isn't aware of the
+> > > missing guarantee, but being lazy and so surprise the consumer is also
+> > > fine as this might uncover that wrong assumption and allow the consumer
+> > > to be fixed.
+> > > 
+> > > (And not all PWM implementations allow to configure the output level, so
+> > > a guarantee cannot be given. Some go to 0 irrespective of the configured
+> > > polarity, some go to High-Z.)
+> > 
+> > I was just curious about sashiko saying it's violating the pwm framework
+> > expectations, while according to your words it seems there's no constraints.
+> 
+> In doubt trust me :-)
+
+Sure!
+
+> 
+> > BTW, I've tried to install sashiko and use it on my patches but it's obvious
+> > that some custom settings are in order, since all I can get is some error
+> > aborting the review after 3 attempts. Any chance you can share your Settings.toml
+> > or any customization so I can test it in advance before submitting the new patchset
+> > or do you recommend just throwing the new V5 at your script?
+> 
+> Note that sashiko is not "my script", it was setup by Google engineers
+> and I have nothing to do with it (apart from benefitting from its review
+> feedback). Kevin (added to Cc) tried to setup a local instance with his
+> Claude plan, but (IIUC) it quickly ate his day's amount of tokens before
+> completing review of a series of only 4 patches.
+> 
+> So without knowing the size of Kevin's or your AI plan, probably it's
+> easier to just rely on the public instance. (And IMHO that's nothing to
+> be afraid of, just handle it like a human reviewer. For these you also
+> don't know what they will reply for your next revision.)
+
+Ack.
+
+Regards,
+Andrea
+
+> 
+> Best regards
+> Uwe
+
 
 
