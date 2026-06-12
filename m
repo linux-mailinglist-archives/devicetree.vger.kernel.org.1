@@ -1,194 +1,132 @@
-Return-Path: <devicetree+bounces-310783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-310791-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id eKH/IPrGK2pkEwQAu9opvQ
-	(envelope-from <devicetree+bounces-310783-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:44:42 +0200
+	id wWinAnjHK2qQEwQAu9opvQ
+	(envelope-from <devicetree+bounces-310791-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:46:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D07F2677E92
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:44:41 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C64677EEA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 10:46:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=microchip.com header.s=mchp header.b=rn5Vab6u;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310783-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-310783-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=microchip.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SbFHET31;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-310791-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-310791-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD1FC3011751
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:41:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CFFCD3161E5E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jun 2026 08:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91A33750B9;
-	Fri, 12 Jun 2026 08:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 811C638333B;
+	Fri, 12 Jun 2026 08:44:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A2EC31B80E;
-	Fri, 12 Jun 2026 08:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8884F37F8A4;
+	Fri, 12 Jun 2026 08:44:18 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781253716; cv=none; b=AUq6sZJd6E7ETT8PVCP+jmJEpbCVLMBbP+k15MlVG9Aw4at3rQ6UBvuAiph85YrJZRgsPdW/+QPIdB3N9CvxEZ7eXECaU6rVXV8KuGi/Du0F8v9yU21vWvcifbXH7rMM/pB83n9IamYAADN8Baee69EL9fuzj1fUX4loMUopYFM=
+	t=1781253862; cv=none; b=LDwFRPbV7V6/CSH8SEHCbUSrMqouiqydjiav5edMGxdtr5nwGKIcLd6ljw7es3jR3TXHDb/wh3oy3pSTGw1hWd+ijfVGjYplCPFJcxN31hdyxrmWDqKS4e6R7yg+qq2dOthKOBPiI1n+QR9VehEFgueo/Mcz0h5Ssm3L61alrbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781253716; c=relaxed/simple;
-	bh=cJS4+U+Lvd9JiTFvDEcycO1GrMxgHTDXXvhAFBUdHBY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H3uagPofKmJ8zg14Occ6viFjskuQMTwf3MSlOU5Kz2OHvA19i4vyfwqDQabx2q8hOMIb7dgSQ7coA9nrtmiIBqWcLOF69UDVHWA8wFLJTGHEFqOglE39VFNnykUhCuqB29ipQLsmuk6vZ2jVQTwD54qcyysCc3/VF8Vj0FfOycU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=rn5Vab6u; arc=none smtp.client-ip=68.232.153.233
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1781253717; x=1812789717;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cJS4+U+Lvd9JiTFvDEcycO1GrMxgHTDXXvhAFBUdHBY=;
-  b=rn5Vab6uWHYXd1rjInpzacx/i9ApDbJQIQ7WtIOeC3zQXDO+WTCSL/a+
-   p8tVZiSkk53fQr0hMwaWkiCfTqyj+tSTWG6evFK5wnJgtSGrrd/B/fsFQ
-   f2ckYMxMvl2UA97xxXtQwX2TjjjptF4gvHouvS4N3RhEKjj8zsbF+ltXj
-   9rqfMuWoIEn/z9XDbDR8/f3XP2LvUmOTtHbJfS78rxYptrns5AJ1bSC9/
-   YNUnsYYU5R2bfBWTKkvujfVUD6RWoE2G82RS63PMLdDROFgY818ER3qoN
-   QZ2l/rwwwX0LrYToVVAPfxLfG7QnIC0Vtb9NEUPKX0nQM4Y8t0F/8d9sd
-   Q==;
-X-CSE-ConnectionGUID: XuaeUrWDQs68NJpIlx5NwQ==
-X-CSE-MsgGUID: /IzbyA5FSWGqN1HaIZcVPg==
-X-IronPort-AV: E=Sophos;i="6.24,200,1774335600"; 
-   d="asc'?scan'208";a="59017390"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 12 Jun 2026 01:41:56 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Fri, 12 Jun 2026 01:41:53 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
- Transport; Fri, 12 Jun 2026 01:41:48 -0700
-Date: Fri, 12 Jun 2026 09:41:02 +0100
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Guodong Xu <docular.xu@gmail.com>
-CC: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert
- Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Zong Li
-	<zong.li@sifive.com>, Deepak Gupta <debug@rivosinc.com>, Anup Patel
-	<anup@brainfault.org>, Atish Patra <atish.patra@linux.dev>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, Chen Wang
-	<unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>,
-	<linux-doc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <kvm@vger.kernel.org>,
-	<kvm-riscv@lists.infradead.org>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Conor Dooley <conor@kernel.org>, <devicetree@vger.kernel.org>,
-	<spacemit@lists.linux.dev>, <sophgo@lists.linux.dev>,
-	<linux-kselftest@vger.kernel.org>, Palmer Dabbelt <palmer@sifive.com>,
-	Qingwei Hu <qingwei.hu@bytedance.com>
-Subject: Re: [PATCH v4 09/16] riscv: Add Zic64b to cpufeature and hwprobe
-Message-ID: <20260612-frays-feast-e631e3aa047d@wendy>
-References: <20260611-rva23u64-hwprobe-v2-v4-0-3f01a2449488@gmail.com>
- <20260611-rva23u64-hwprobe-v2-v4-9-3f01a2449488@gmail.com>
+	s=arc-20240116; t=1781253862; c=relaxed/simple;
+	bh=opNULbMsLFO7G0iKg0MW34aWlrvrchHIe3SdZYnnk/w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kqXf4JCARlZXoUhkRncYjAF3h6ztTAopQnuyISG43uRCIRmANNVgjz5KIHTckur7QUPahF2YApI2cS2gxiFj/JcpuM87BxoiflIb7/IcjvJK47nkCJzQOvGyUTFbE/5iy1Xbr/AuqTeqpXVy96J7dprC5l9A7GZ9Lvi4YZ63VTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbFHET31; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 327F71F000E9;
+	Fri, 12 Jun 2026 08:44:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781253857;
+	bh=CnyWSURZdvG7Ai86hnxk/cu/zFJQx0+8PaYVIH2aDoU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=SbFHET31Qk9YXEEOHwzuAoyb4t4AuSQe1pzSppz5xqB5PDKfIegG69Yp/ThE+WuYS
+	 KwU43YpOz3mp8LmDVn0t1zWptN5RCeIeV1ygPQV0TRxA1leN84q5TmSpzw/Nlpf/MD
+	 YAPazfmjPUEHF7UbRb3Sfc//wEBHSag6bW2RnxLTmUjd+6L/Fro7a6kvXVsnGf2CY+
+	 /dcR2EoGwXr4Hjh/hyOMLX/iiKlta6IE2jeCppIrJptugOTcD4i0X9EO9crUlu+9un
+	 UetTX5cqa2Dy8BmSyaf98ne1uAhssSOiB/wojsDN3Fk3b/llu5/DGsQDgPJZiEOA6B
+	 Otl/hyxzfQG+g==
+Date: Fri, 12 Jun 2026 10:44:15 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+Cc: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Piergiorgio Beruto <pier.beruto@onsemi.com>, Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net v5 4/4] dt-bindings: net: updated interrupt type to
+ be active low, level triggered
+Message-ID: <20260612-tangible-supportive-eagle-0dbff6@quoll>
+References: <20260611-level-trigger-v5-0-4533a9e85ce2@onsemi.com>
+ <20260611-level-trigger-v5-4-4533a9e85ce2@onsemi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yeEbaUwKYQ4BJ0tH"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260611-rva23u64-hwprobe-v2-v4-9-3f01a2449488@gmail.com>
+In-Reply-To: <20260611-level-trigger-v5-4-4533a9e85ce2@onsemi.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-310783-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS(0.00)[m:docular.xu@gmail.com,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:zong.li@sifive.com,m:debug@rivosinc.com,m:anup@brainfault.org,m:atish.patra@linux.dev,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlan@kernel.org,m:unicorn_wang@outlook.com,m:inochiama@gmail.com,m:linux-doc@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:kvm@vger.kernel.org,m:kvm-riscv@lists.infradead.org,m:paul.walmsley@sifive.com,m:conor@kernel.org,m:devicetree@vger.kernel.org,m:spacemit@lists.linux.dev,m:sophgo@lists.linux.dev,m:linux-kselftest@vger.kernel.org,m:palmer@sifive.com,m:qingwei.hu@bytedance.com,m:docularxu@gmail.com,m:krzk@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-310791-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:Selvamani.Rajagopal@onsemi.com,m:parthiban.veerasooran@microchip.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pier.beruto@onsemi.com,m:andrew@lunn.ch,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor.dooley@microchip.com,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,sifive.com,rivosinc.com,brainfault.org,linux.dev,outlook.com,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,bytedance.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D07F2677E92
+X-Rspamd-Queue-Id: 71C64677EEA
 
---yeEbaUwKYQ4BJ0tH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Jun 11, 2026 at 02:55:41PM -0700, Selvamani Rajagopal wrote:
+> According to OPEN Alliance 10BASE-T1x MACPHY Serial Interface (TC6)
+> specification, interrupt type is active low, level triggered interrupt.
+> 
+> Specification calls for when interrupt level will be asserted and what
+> condition it is de-asserted. By using edge triggered interrupt, there is a
+> potential chance to miss it, particularly if it is asserted when interrupt
+> is disabled.
+> 
+> Level triggered interrupt can't be missed as it gets de-asserted only on
+> interrupt handler taking actions on interrupting conditions.
+> 
+> Fixes: ac49b950bea9 ("dt-bindings: net: add Microchip's LAN865X 10BASE-T1S MACPHY")
+> Signed-off-by: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+> 
 
-On Thu, Jun 11, 2026 at 04:12:46PM -0400, Guodong Xu wrote:
-> From: Qingwei Hu <qingwei.hu@bytedance.com>
->=20
-> Zic64b mandates 64-byte naturally aligned cache blocks and is a
-> mandatory extension of the RVA22 and RVA23 profiles.  Allocate a
-> RISCV_ISA_EXT_ZIC64B id, parse "zic64b" from the ISA string with a
-> validate callback that requires each cbom/cbop/cboz cache block size to
-> be 64 bytes when it is present, and export it through hwprobe.
->=20
-> Link: https://lists.riscv.org/g/tech-unprivileged/topic/question_about_zi=
-c64b_and/119631059
-> Signed-off-by: Qingwei Hu <qingwei.hu@bytedance.com>
-> Co-developed-by: Guodong Xu <docular.xu@gmail.com>
-> Signed-off-by: Guodong Xu <docular.xu@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-> +static int riscv_ext_zic64b_validate(const struct riscv_isa_ext_data *da=
-ta,
-> +				     const unsigned long *isa_bitmap)
-> +{
-> +	/*
-> +	 * Zic64b mandates 64-byte naturally aligned cache blocks; cross-check =
-the
-> +	 * cbom/cbop/cboz block-size (when declared) device-tree properties to
-> +	 * avoid inconsistency.
-> +	 */
-> +	if ((riscv_cbom_block_size && riscv_cbom_block_size !=3D 64) ||
-> +	    (riscv_cbop_block_size && riscv_cbop_block_size !=3D 64) ||
-> +	    (riscv_cboz_block_size && riscv_cboz_block_size !=3D 64)) {
-> +		pr_err("Zic64b detected in ISA string, disabling as a CBO block size i=
-s not 64 bytes\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
+Best regards,
+Krzysztof
 
-I'm inclined to object to this, but we don't have validation on ACPI
-stuff to be able to mandate that people fill in the rhct entries.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-
---yeEbaUwKYQ4BJ0tH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaivGHgAKCRB4tDGHoIJi
-0lFLAQDha3cantxsp/CPLOnAf10qvhl6aJAKsPOLD54gW9K0AQD+I9ggy4JDJWBL
-AjJkB9ffVB058Go53e93Vc4lz51wNQw=
-=4eTb
------END PGP SIGNATURE-----
-
---yeEbaUwKYQ4BJ0tH--
 
