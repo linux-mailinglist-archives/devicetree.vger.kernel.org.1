@@ -1,64 +1,60 @@
-Return-Path: <devicetree+bounces-311388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311389-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id s+BEAV+qLWraiQQAu9opvQ
-	(envelope-from <devicetree+bounces-311388-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 21:07:11 +0200
+	id PDOZILWqLWrpiQQAu9opvQ
+	(envelope-from <devicetree+bounces-311389-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 21:08:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B15867F664
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 21:07:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0312767F67C
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 21:08:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=j8DvUjUl;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311388-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311388-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=e+ZfXxeA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311389-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311389-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E1AE03022078
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 19:07:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C8C72302AC2A
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 19:08:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092822773C3;
-	Sat, 13 Jun 2026 19:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F041E30D417;
+	Sat, 13 Jun 2026 19:08:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E883B67E;
-	Sat, 13 Jun 2026 19:07:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0610EB67E;
+	Sat, 13 Jun 2026 19:08:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781377627; cv=none; b=dSCx/srJ2SAmr9ggqmD1SsqxmvZTu9eUVdXrQwRR36TxcJ5Nt6oc1WcKX++8cRatSs/Z9triRILrGKnjmBqZLrDy6xTeU8b8mwTiRqOMZWnQT9vupYD8fHciU1prEJsY8/IbU78FWIyiUcnOnRRIEqGZYfieOZjWO/Q/6tusZMg=
+	t=1781377714; cv=none; b=DPJAbZJlmTpA60S+EjyObHxKSoaI+55bUZzSwrAYSpEoZ1vAxvaqPwq1KabYkdWqDqsAldFh/Io8lRJ4GQBz2spgjtk9oiozYKf37SE9osxdXGnPHfK0UQIfkDrdv5OeyXYqT0TU9w21kY+X8z4D8m2DKMRjg2xfFbgmYdVAJas=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781377627; c=relaxed/simple;
-	bh=rRamYDko3skFoXf/T8kTN2L6k28IYyl2C8pmLRKYw9M=;
+	s=arc-20240116; t=1781377714; c=relaxed/simple;
+	bh=LjajmdmOzuACeOv45bqV3fR22ZS4cFO+6tVp6HlGDAI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oXm5Y6Op+7NT84CklQi7ccr9pQdXjVZ1MUvFUCQcoht5CBnXXpfhqCx8XnES7sfVWaRJUJZZewFpy3tLKwqDsAQl8EOAQeYJ/+e3YW7QowafbZ4Q2YjUsugaumDxZffKyqLf2XoBfFDpalPrn7Oj8Iw4dQQniB5JQbJm/NF9bqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j8DvUjUl; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E86DA1F000E9;
-	Sat, 13 Jun 2026 19:07:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OwGkg0DoRagbkZtz0ZEa7xibbRhaaRD7tInTTnyaz/4tT/JCMXnOtc1jQ8mh7M+GZKAAXBYNsFiYO/zGtWswiKon/l2QfdVLtDppB0lPJRU/E2hColLjw2bdAyAIfvljEJrfZQTEokAvbgnl173CEKn+n6JeJl0mA2KH4hbHw3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e+ZfXxeA; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0EEE1F000E9;
+	Sat, 13 Jun 2026 19:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781377626;
-	bh=CuAWXykF7BQHKNBBvJx6xNE5z4keORn4vghIBe7B4U4=;
+	s=k20260515; t=1781377713;
+	bh=U9BebE2KDpGAjiZCajxFstfd/90NQAQxQhXQGdlCYus=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=j8DvUjUlRc+PmWW8KbjgMzQDsTWKNzrxE+y67B0BJpLV/QcjdeMxfliOnT48gAtIH
-	 y+1oPJYuMsIiRuZIeJk2ybXbbrfqUp2JNUvqf7UT5jJ6fwnjt8PJtG22t2rsheH7Q1
-	 VAwPiaFHOC+d+JTU9lAFqQJW1wyjnM3GiW1E7dvBx6i71qZNlNpyM7FHWtWG8KZqMl
-	 Kg4UMxk4dGIEZjQ2TXMfyqdUSYfYBh0elzi2OFScgDXlbe5hbRa39Rjlm7pX7dKYNf
-	 1RXOYI00xxnat+nvbWnoQNqC3AKRBuJxGEBJPXIqYG9q/xp+500p5klZySWkpI+n/1
-	 FytWNybqU6Img==
-Date: Sat, 13 Jun 2026 21:07:04 +0200
+	b=e+ZfXxeA/cDb7PF0cVNguYmDA6vjiJuTDSGdQCpVWL5VnKNwcGF5bWnY5QA43/zEs
+	 i3jivAs8zblW3mxFZgRMI0RdhN+kZuoUJRezoFANCuYObY5oIwU3o0hAPp0DyKQ0SO
+	 TLE6T1Y1vqVg7cjnabk24pxk7GGQNTAqLuFFulRLW8wN+SmzwYFpOjWeSy9RDzPdW2
+	 mUENQab7G3z8JJMNOuKDUa9676voZnq2gxWoANBd/OpJPNVaVtDwpX+vWPkAzGEqWI
+	 5VerAoa+F9bJMZeV0VEEOkrSngaGmzWktWvKKzaKYGcK39l4cvu0RPtmJwwe/qgg9+
+	 gQ/GgoQ/u2v2g==
+Date: Sat, 13 Jun 2026 21:08:30 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Markus Stockhausen <markus.stockhausen@gmx.de>
-Cc: andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk, 
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
-	netdev@vger.kernel.org, chris.packham@alliedtelesis.co.nz, daniel@makrotopia.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/8] dt-bindings: net: realtek,rtl9301-mdio: Add
- RTL83xx series
-Message-ID: <20260613-natural-spiked-chupacabra-b2fd5f@quoll>
-References: <20260613112946.1071411-1-markus.stockhausen@gmx.de>
- <20260613112946.1071411-2-markus.stockhausen@gmx.de>
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, bryan.odonoghue@linaro.org, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: ti,tps6598x: add TPS6699x compatible
+Message-ID: <20260613-adorable-sticky-skua-6eec43@quoll>
+References: <20260613162335.1490514-1-radhey.shyam.pandey@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260613112946.1071411-2-markus.stockhausen@gmx.de>
+In-Reply-To: <20260613162335.1490514-1-radhey.shyam.pandey@amd.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -81,46 +77,45 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:markus.stockhausen@gmx.de,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:netdev@vger.kernel.org,m:chris.packham@alliedtelesis.co.nz,m:daniel@makrotopia.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_TO(0.00)[gmx.de];
+	TAGGED_FROM(0.00)[bounces-311389-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:radhey.shyam.pandey@amd.com,m:gregkh@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bryan.odonoghue@linaro.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-311388-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org,alliedtelesis.co.nz,makrotopia.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,quoll:mid]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,quoll:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4B15867F664
+X-Rspamd-Queue-Id: 0312767F67C
 
-On Sat, Jun 13, 2026 at 01:29:39PM +0200, Markus Stockhausen wrote:
-                - realtek,rtl9302b-mdio
-> @@ -24,6 +34,8 @@ properties:
->                - realtek,rtl9313-mdio
->            - const: realtek,rtl9311-mdio
->        - enum:
-> +          - realtek,rtl8380-mdio
-> +          - realtek,rtl8391-mdio
->            - realtek,rtl9301-mdio
+On Sat, Jun 13, 2026 at 09:53:35PM +0530, Radhey Shyam Pandey wrote:
+ +  switch and Power Delivery controller.
+>  
+>    A variant of this controller known as Apple CD321x or Apple ACE is also
+>    present on hardware with Apple SoCs such as the M1.
+> @@ -19,6 +20,7 @@ properties:
+>    compatible:
+>      enum:
+>        - ti,tps6598x
+> +      - ti,tps6699x
 
-I don't have that context in my recent next, but anyway looks correct.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Family compatibles are not allowed. Please use specific models,
+expressing compatibility (my slides of DTS101 talkmight help you if
+something is unclear).
 
 Best regards,
 Krzysztof
