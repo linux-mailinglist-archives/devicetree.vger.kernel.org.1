@@ -1,221 +1,169 @@
-Return-Path: <devicetree+bounces-311363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311362-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Khz4GliWLWr3hgQAu9opvQ
-	(envelope-from <devicetree+bounces-311363-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 19:41:44 +0200
+	id h8yMG82VLWrlhgQAu9opvQ
+	(envelope-from <devicetree+bounces-311362-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 19:39:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5412D67F31A
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 19:41:43 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6460C67F2F5
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 19:39:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="FkzL/nFv";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311363-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311363-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ogrgEV4+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311362-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311362-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 62F8930028D4
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 17:41:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8092C3001FBC
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 17:39:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583B037F8A5;
-	Sat, 13 Jun 2026 17:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A282331EA5;
+	Sat, 13 Jun 2026 17:39:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C22321420;
-	Sat, 13 Jun 2026 17:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490521B85F8;
+	Sat, 13 Jun 2026 17:39:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781372499; cv=none; b=qdfElrvMZJJUq32MBZeBmoOJMo1T7e04sZf+4yMbe//38UZzDoCjcKDXZv7GHG/4eiVjX8aSIo/3rkSSoxLRit72m1IoQ3cSS64eyqaAR+tEyccg5zGeYdxCTDW/VUcFUT/kumjrh8evYl+UzqCoAKIaStmvCrTznHjrADyRf7k=
+	t=1781372360; cv=none; b=XXTKgJ8iFKuZNJ7Y9NQSeClld3FiuApFRtGkHv68nodVhEnMX8zcpTPrULELbyzXzxen8q+kiQT/gUyXFShc/72OoCa+/53j0oXXSext5gxcF7aEPiOgmWfXBOpCZZ9M9pfn2GTynx+2CTjYwJMRhRsqPD/1AMg/x/oy6chcPdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781372499; c=relaxed/simple;
-	bh=Yu34RnKrBOohm55m9lVO18WTTRs0FIgd/HBlln191Uw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C1jrd4TkmHMzXyfHu2A+rtqfRrAqwMuOVkxfeT737Khi2gA/vq2De2J/j2t2Huk8rwwuyU5uBq2erzJBnPNpT05p06SmpD6jchl6kWxtD8aaj7seVp52O5hphlQlPDZMMFK7lEvq/XJnp1AL6bn3odSdKPXVCT5iOX4Ab6Hl7aU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FkzL/nFv; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 2ED241F000E9;
-	Sat, 13 Jun 2026 17:41:37 +0000 (UTC)
+	s=arc-20240116; t=1781372360; c=relaxed/simple;
+	bh=bsemIgA80QN1Net2rL2KliKucnd3bqSpPpy6z3xhHVU=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ppWqzy9k8dTJ7eUhP5TmvUc5U6kyynrun8kMU1KEs8M1mvv7tQXSWEtd5+sc9y2/fXHQtjdO+ao3XlHvK28EGWsQaRM/T1SV8yEsn93kvvQeUZNxJLOl9s6wLTvU+gOqItLec46FwtO4mq5IHMHH+e0IrYAVTDaJFfCbbUh4tZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ogrgEV4+; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4DBD1F000E9;
+	Sat, 13 Jun 2026 17:39:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781372497;
-	bh=CrVbd8XiWduTJRK7vc9W39csYSLbgHJhf+UYLd6BDuM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=FkzL/nFvNt1fcsrClUg1MSbg9oBfgW/svfpZ6dVZVwz1+EGeToY0wNgOdzbvlnKqB
-	 7bp/HlnAPrb+zPhZRY5LKx2Kb65TnHsSF7hc11RG020tdbPmMffIVnbhkCjXib1H5h
-	 zrSmKndqowCxYQyP+0rpuqakU0sOlkaqKUf7Q+uHOiE5BfXTDnqwc/sRBOtV5wVZ68
-	 3VG5/njFW1mE3F1i/rhydVd0WwjU85tDFbw8N1rLKmJ7KQ1L6wlTtbzNc/bB/smo2e
-	 dIEYmdbFhdUau9TGdM3zr3ig+OOYnmP7IxY0fxNtM3kidJkJZ5zRh1+31KVQQ/AFsl
-	 YjZkEHzaoPvbw==
-Date: Sat, 13 Jun 2026 19:39:04 +0200
-From: Nicolas Schier <nsc@kernel.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Ping-Ke Shih <pkshih@realtek.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	David Sterba <dsterba@suse.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Hariharan Basuthkar <quic_hbasuthk@quicinc.com>,
-	Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
-	Filipe Manana <fdmanana@suse.com>,
-	Bitterblue Smith <rtl8821cerfe2@gmail.com>,
-	Wei Yang <richard.weiyang@gmail.com>, Takashi Iwai <tiwai@suse.de>,
-	Aurabindo Pillai <aurabindo.pillai@amd.com>,
-	Chih-Kang Chang <gary.chang@realtek.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Miguel Ojeda <ojeda@kernel.org>, Gary Guo <gary@garyguo.net>,
-	Tamir Duberstein <tamird@kernel.org>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
-	Pagadala Yesu Anjaneyulu <pagadala.yesu.anjaneyulu@intel.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Aleksander Jan Bajkowski <olek2@wp.pl>, Boris Burkov <boris@bur.io>,
-	Blake Jones <blakejones@google.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-kbuild@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] scripts/jobserver-exec: propagate child exit
- status
-Message-ID: <ai2VuFWUxVRGjGKR@levanger>
-Mail-Followup-To: Daniel Golle <daniel@makrotopia.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Ping-Ke Shih <pkshih@realtek.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	David Sterba <dsterba@suse.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Hariharan Basuthkar <quic_hbasuthk@quicinc.com>,
-	Jeff Hugo <jeff.hugo@oss.qualcomm.com>,
-	Filipe Manana <fdmanana@suse.com>,
-	Bitterblue Smith <rtl8821cerfe2@gmail.com>,
-	Wei Yang <richard.weiyang@gmail.com>, Takashi Iwai <tiwai@suse.de>,
-	Aurabindo Pillai <aurabindo.pillai@amd.com>,
-	Chih-Kang Chang <gary.chang@realtek.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Miguel Ojeda <ojeda@kernel.org>, Gary Guo <gary@garyguo.net>,
-	Tamir Duberstein <tamird@kernel.org>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
-	Pagadala Yesu Anjaneyulu <pagadala.yesu.anjaneyulu@intel.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Aleksander Jan Bajkowski <olek2@wp.pl>, Boris Burkov <boris@bur.io>,
-	Blake Jones <blakejones@google.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-kbuild@vger.kernel.org
-References: <cover.1779908995.git.daniel@makrotopia.org>
- <660368ca16e2d3845577a9fd157d2f37f0e09e85.1779908995.git.daniel@makrotopia.org>
+	s=k20260515; t=1781372359;
+	bh=8EzOUDMBGmw4x/8LM30psbSMzM7LJDnVG/eNTZr3kEM=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=ogrgEV4+X1XWWEeO3pukkUNTR9B77Vn4CuvFRmrEjzKaROns3SYDNnwS71D0cf1tJ
+	 HJ2SWobXTWqkQV8TI2lFsrDbUcHXIu3UdA8u5E64PfoY2Bapkeyf7SKRWA1/TV/yzt
+	 hI2oihbyb1y1mCAi4F57vxp/KN4nyWW7SdMErGmJ/QZin9CnVKwQPQsWOuUlDNjIib
+	 GImzti4SrihhPxtLTKsWHwvwqLHISpuWzWSgQW1VJ+o9z+vSkPpFr7uMUhVJPW4FTN
+	 PmPg2OdgsUlMefNNUFBUFkPULB6LeLamEX28N7W9YbJC/LLt8T0hwcN98RmW7vTppK
+	 oPyNJ2FEVJlFw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v10 6/6] ARM: dts: sun8i: v3s: Add support for the ISP
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Paul Kocialkowski" <paulk@sys-base.io>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev, robh@kernel.org
+In-Reply-To: <20260613152655.212490-7-paulk@sys-base.io>
+References: <20260613152655.212490-7-paulk@sys-base.io>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 13 Jun 2026 17:39:18 +0000
+Message-Id: <20260613173918.E4DBD1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <660368ca16e2d3845577a9fd157d2f37f0e09e85.1779908995.git.daniel@makrotopia.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:daniel@makrotopia.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:nathan@kernel.org,m:saravanak@kernel.org,m:pkshih@realtek.com,m:andriy.shevchenko@linux.intel.com,m:dsterba@suse.com,m:bryan.odonoghue@linaro.org,m:quic_hbasuthk@quicinc.com,m:jeff.hugo@oss.qualcomm.com,m:fdmanana@suse.com,m:rtl8821cerfe2@gmail.com,m:richard.weiyang@gmail.com,m:tiwai@suse.de,m:aurabindo.pillai@amd.com,m:gary.chang@realtek.com,m:dlechner@baylibre.com,m:ojeda@kernel.org,m:gary@garyguo.net,m:tamird@kernel.org,m:linux@weissschuh.net,m:pagadala.yesu.anjaneyulu@intel.com,m:brgl@kernel.org,m:jorge.ramirez@oss.qualcomm.com,m:masahiroy@kernel.org,m:linux@roeck-us.net,m:olek2@wp.pl,m:boris@bur.io,m:blakejones@google.com,m:corbet@lwn.net,m:mchehab+huawei@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-kbuild@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:richardweiyang@gmail.com,m:mchehab@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[36];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[nsc@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-311363-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311362-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:paulk@sys-base.io,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nsc@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,realtek.com,linux.intel.com,suse.com,linaro.org,quicinc.com,oss.qualcomm.com,gmail.com,suse.de,amd.com,baylibre.com,garyguo.net,weissschuh.net,intel.com,roeck-us.net,wp.pl,bur.io,google.com,lwn.net,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,huawei];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5412D67F31A
+X-Rspamd-Queue-Id: 6460C67F2F5
 
-On Wed, May 27, 2026 at 08:32:18PM +0100, Daniel Golle wrote:
-> main() called JobserverExec().run() and discarded its return value,
-> then the script exited with the implicit status 0. As a result, any
-> Makefile that wired a build step through jobserver-exec saw the step
-> silently succeed even when the wrapped command had failed.
-> 
-> Two in-tree callers were affected:
-> 
->   Documentation/devicetree/bindings/Makefile
->     cmd_chk_style runs a python checker via jobserver-exec and uses
->     "&& touch $@ || true" so failures leave the stamp file untouched
->     and the next make rerun reports them again. The swallowed exit
->     code made the stamp file get created even on failure, caching the
->     failed run and hiding the reported issues until the inputs change.
-> 
->   scripts/Makefile.vmlinux_o
->     cmd_gen_initcalls_lds runs scripts/generate_initcall_order.pl via
->     jobserver-exec; a perl failure was masked by the wrapper.
-> 
-> Return the subprocess exit code from main() and pass it to sys.exit()
-> so the wrapped command's status reaches make.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
-> v5: new patch; prereq for chk_style in 3/4 so style failures
->     leave the stamp file untouched instead of being cached
-> 
->  scripts/jobserver-exec | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/scripts/jobserver-exec b/scripts/jobserver-exec
-> index 758e947a6fb9..21b319e6c9a5 100755
-> --- a/scripts/jobserver-exec
-> +++ b/scripts/jobserver-exec
-> @@ -28,8 +28,8 @@ def main():
->          sys.exit("usage: " + name +" command [args ...]\n" + __doc__)
->  
->      with JobserverExec() as jobserver:
-> -        jobserver.run(sys.argv[1:])
-> +        return jobserver.run(sys.argv[1:])
->  
->  
->  if __name__ == "__main__":
-> -    main()
-> +    sys.exit(main())
-> -- 
-> 2.54.0
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] The device tree nodes `isp` and `csi0` include `interconnects` and =
+`interconnect-names` properties that are not documented in their respective=
+ YAML binding schemas (`Documentation/devicetree/bindings/media/allwinner,s=
+un6i-a31-isp.yaml` and `Documentation/devicetree/bindings/media/allwinner,s=
+un6i-a31-csi.yaml`). Because these schemas specify `additionalProperties: f=
+alse`, this causes schema validation failures during `make dtbs_check`.
+--
 
-Good catch, thanks!
+commit 299a0d91b22100c87010de21ec5908b8fed75e39
+Author: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 
-For kbuild:
-Reviewed-by: Nicolas Schier <nsc@kernel.org>
+ARM: dts: sun8i: v3s: Add support for the ISP
+   =20
+This commit adds support for the ISP on V3s and related platforms by
+introducing a dedicated compatible string and device tree node. It links the
+ISP to the CSI bus, module and ram clocks, resets, and adds a port connecti=
+on
+to CSI0. The interconnects property is also used to inherit the proper DMA
+offset.
 
--- 
-Nicolas
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/d=
+ts/allwinner/sun8i-v3s.dtsi
+> --- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+
+[ ... ]
+
+> @@ -755,5 +763,32 @@ csi1: camera@1cb4000 {
+>  			resets =3D <&ccu RST_BUS_CSI>;
+>  			status =3D "disabled";
+>  		};
+> +
+> +		isp: isp@1cb8000 {
+> +			compatible =3D "allwinner,sun8i-v3s-isp";
+> +			reg =3D <0x01cb8000 0x1000>;
+
+[ ... ]
+
+> +			resets =3D <&ccu RST_BUS_CSI>;
+> +			interconnects =3D <&mbus 5>;
+> +			interconnect-names =3D "dma-mem";
+
+[Severity: Low]
+Are these interconnect properties documented in the corresponding YAML bind=
+ing
+schemas (like Documentation/devicetree/bindings/media/allwinner,sun6i-a31-i=
+sp.yaml
+and similarly for csi0)?
+
+Since device tree schemas typically specify additionalProperties: false,=20
+leaving interconnects and interconnect-names undocumented will cause=20
+make dtbs_check to report schema validation failures for these nodes.
+
+> +			status =3D "disabled";
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260613152655.2124=
+90-1-paulk@sys-base.io?part=3D6
 
