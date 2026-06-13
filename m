@@ -1,86 +1,132 @@
-Return-Path: <devicetree+bounces-311371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311372-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1Ry7IzygLWoHiAQAu9opvQ
-	(envelope-from <devicetree+bounces-311371-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 20:23:56 +0200
+	id BRlEG7agLWoXiAQAu9opvQ
+	(envelope-from <devicetree+bounces-311372-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 20:25:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21FB367F4A1
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 20:23:56 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 708DF67F4B8
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 20:25:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=No1Ztip0;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311371-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311371-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="F/rPE5n3";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311372-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311372-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 942AD3002336
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 18:23:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 910463001394
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 18:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6CB2EEE78;
-	Sat, 13 Jun 2026 18:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D21CE3090F5;
+	Sat, 13 Jun 2026 18:25:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683962D7DF1;
-	Sat, 13 Jun 2026 18:23:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5F592F3621;
+	Sat, 13 Jun 2026 18:25:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781375032; cv=none; b=nZVEReNmnNoLEucTAdyXa1AYObiJKeTbs6PCB/DJ8oPfb6UXbM7AHKvPV7Z2FM0o/dbpEDNPDWufjaofzN4i/vT9SKrT5d5HBmM68UDB+mZ0AB0OtXzUfQEx1hqLO4KYybLWX9a8XbqMILz7ptBResbctbBi8s+aNRlP05IO8Gw=
+	t=1781375151; cv=none; b=fY8DSBRHrbB+iEJi5IiVCCGejoKFpvctqBxGV+8zE8n1diVT+TD5547hHRHH459Eu6i/fGpaYImf6ZJz/ipt8DOWOUQphnTRQiWjJEdUdzbKRPJNYhoi2aeyatOcBfWTP3ioJAErhj82itbMvQmquyS0XkTWOYT9BZvisQKLQQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781375032; c=relaxed/simple;
-	bh=1gh2xQx7ax35Ma/iu7vPLX6Mu7o7bKJI+5MUIAzfFVs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ur56iS0bKPMRf/5UhKgWtAmAzOazs5mV2mqHgoxxB4QxOJQ+LJFtTrMZpNDFFv163wPVJnq6ZE/bTdZ3h4gwZKOGPZXiYxhiioJNO974kMVf/SD6j9rdxDE6CbPM6GmyJklUIk8/0DCuijG+di2VfNySG3jx0jiAITOH7Wb6APk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=No1Ztip0; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 617DC1F000E9;
-	Sat, 13 Jun 2026 18:23:50 +0000 (UTC)
+	s=arc-20240116; t=1781375151; c=relaxed/simple;
+	bh=dlJOyiYmcEVHHFTJcrFMRn6v+n/uExmg/o5LaNz/ZGk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=c3QIn9j9iclcSHUG9p9IX+45AMhKyl34WymFN8JtXeQ+GU3xrU3l6NbDCAij0B4uODgH3gfhcOaH/TcDyxootXNp8Yc+1Lbu/rZ64cirfBv5XpF93yyLsWXyjmjkE9W5YYo1hVnD1hAkwXMqwOOpYPp97VzKGygCFqnEMkk0sWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F/rPE5n3; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBE001F000E9;
+	Sat, 13 Jun 2026 18:25:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781375031;
-	bh=bW2ZyNL9PiJBJq/IMQkuWCqxi4Vg0c2aSHkAUwoZk6M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=No1Ztip04mrjRw05vEGbGPvtUmEvkfRBo5kfLRBSnzDsATn8fI3HuMuMXdkr7IBxL
-	 U/j1GNs2mA+/8aRN9VBSYVUDpphiGvaOtc8YU87Zr300snMOrYtWc24nRjrLP0NweU
-	 X6spneq9II0WyxlKl7je+qLjEp8ef6xAvlwaIkilbKuWo1oXfq1l8jMeYI0w6DOVmj
-	 bQ775jZr+KSfKvsRKuVsdlvxI2sapb77Vj654UFyE9KYh/IjCm9nCNNoYYvPQEL8BJ
-	 0MHKiaJZUAwB+2vz5Vrcr5ciDEVX00L9OyRQ2h+orYgi81RBrVJu2yUiz8AtaqHMPz
-	 dcwVc0Ofnix0w==
-Date: Sat, 13 Jun 2026 20:23:48 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, Patrice Chotard <patrice.chotard@foss.st.com>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/2] arm: dts: st: align node patterns with
- established convention
-Message-ID: <20260613-wondrous-shapeless-pelican-6b927d@quoll>
-References: <20260613-st-mmc-v4-0-b3c385617c16@gmail.com>
- <20260613-st-mmc-v4-1-b3c385617c16@gmail.com>
+	s=k20260515; t=1781375150;
+	bh=oIqC0huXsPHlkGQx8YqR9ylcdRcZjlzJ7Ohv6r3Rb2I=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To;
+	b=F/rPE5n3b0qF44qH10DRzk3KNsysM0Rl03l2aptKufKmk2eT7pCes/k9ooIZHiL7b
+	 QfcDGqE5LZnfOAVwtcg7+jaXEAhZD6K7Qyedp6vloqUxKTyaSlfJaM3VTsQ3a0GFIm
+	 a0pwXw0X1a+SdpY66bMrw+6sMkh4qU6vWjgqooWTYq1Yt0d5lAqxDoquScX3SJu1nh
+	 BXZPVxEtgNVj55zW8pMSQBKDXZlXm+1Li2u2UnPZeKb1ZQg2TI6pLTajKnNzvKK4bV
+	 LG4wZJtBRXOTLLCnqWRpChd9uKyIZc0r/o/EjcUcqYBU/HiOxfHlIf6SLxrVOzNsBX
+	 ZPgNIpZKPzuVQ==
+Message-ID: <9c249878-9d4d-4800-8ad5-0496e586d100@kernel.org>
+Date: Sat, 13 Jun 2026 20:25:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260613-st-mmc-v4-1-b3c385617c16@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] arm: dts: st: align node patterns with established
+ convention
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ Patrice Chotard <patrice.chotard@foss.st.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260613-st-mmc-v4-0-b3c385617c16@gmail.com>
+ <20260613-st-mmc-v4-1-b3c385617c16@gmail.com>
+ <20260613-wondrous-shapeless-pelican-6b927d@quoll>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <20260613-wondrous-shapeless-pelican-6b927d@quoll>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311371-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311372-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[gmail.com];
@@ -99,31 +145,31 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 21FB367F4A1
+X-Rspamd-Queue-Id: 708DF67F4B8
 
-On Sat, Jun 13, 2026 at 09:39:39AM +0000, Charan Pedumuru wrote:
-> Update ST MMC DTS node patterns to match established convention.
+On 13/06/2026 20:23, Krzysztof Kozlowski wrote:
+> On Sat, Jun 13, 2026 at 09:39:39AM +0000, Charan Pedumuru wrote:
+>> Update ST MMC DTS node patterns to match established convention.
+>>
+>> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+>> ---
+>>  arch/arm/boot/dts/st/stih407-family.dtsi | 4 ++--
 > 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> ---
->  arch/arm/boot/dts/st/stih407-family.dtsi | 4 ++--
-
-Thanks, but please fix all the files of stih in one commit, not file by
-file. git grep gives more instances of it.
-
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Thanks, but please fix all the files of stih in one commit, not file by
+> file. git grep gives more instances of it.
 > 
-> diff --git a/arch/arm/boot/dts/st/stih407-family.dtsi b/arch/arm/boot/dts/st/stih407-family.dtsi
-> index 3e6a0542e3ae..08acba209c56 100644
-> --- a/arch/arm/boot/dts/st/stih407-family.dtsi
+
+Heh, no it isn't only that. You actually broke other users! And you
+received that comment already at v3 which you completely ignored.
+
+This looks like introducing real bugs.
 
 Best regards,
 Krzysztof
-
 
