@@ -1,234 +1,193 @@
-Return-Path: <devicetree+bounces-311339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311340-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gK5rKHVnLWqofwQAu9opvQ
-	(envelope-from <devicetree+bounces-311339-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 16:21:41 +0200
+	id OP02IHdqLWpNgAQAu9opvQ
+	(envelope-from <devicetree+bounces-311340-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 16:34:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F355B67EC06
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 16:21:40 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F7C67EC9D
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 16:34:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="p8/o14RT";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311339-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311339-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SBHqpKC7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311340-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311340-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1A951301AA7E
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 14:21:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0CA41301411B
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 14:34:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37C0631D381;
-	Sat, 13 Jun 2026 14:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5867B3128AB;
+	Sat, 13 Jun 2026 14:34:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E142BDC23
-	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 14:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55E612DB7BD
+	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 14:34:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781360475; cv=none; b=oGYWMcYoiqdPZrXjT6Su9mfy7sU4908xuqI58eiMpaZ/nYg9sKKS33eA+4QqacNDQhUSBuZitTHX5IUsfE25spwfKH5zM6YTNPVwW7o6HeEnGxaOO+GyBJAbpmO4fyxvgVSmn1dEPdMTXCcq9Py52+oLdkrzo0qGv6HFo3iP3Bg=
+	t=1781361259; cv=none; b=Zpx4/8eWhSPsBD15lJAmHQvIwMOFn2RPVFOA6aoDfliysa0iej1EAz98pxX4ImTkpaS6H3YoeD7pl1EvIVKo55JL5GfbaQIBKXiT1e2RHiby+DcGB7OVxG4bwlk1ql9pcoPVl6idI/FXe62PogoTXlAmyyVcwHANTcpjx/NFh7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781360475; c=relaxed/simple;
-	bh=HsOIQUVZP0meU1up8FjT45jfTNwDlV/UQKJQd4Y56S4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WitslWMAoSa6FpWJwduoYZowrYc2Fri6PypM/B9NooFE+Tn4JGn8pSiSCH3HpsUt02W+TQvsm2evOPEjSJ66seaelBiC+07rSjN5ZeWodcF96B4uY6ZTaSJySraCwsTp1uHPlT/F5d6JCgidz7BReT51FfSDv4T/9ADxY7kPATg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=p8/o14RT; arc=none smtp.client-ip=209.85.221.53
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-45eecb8bf67so1476918f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 07:21:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781360470; x=1781965270; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jIa0BdxxpHyXYoZXZICGHhLbBKJPg22HxWM6nxicHsU=;
-        b=p8/o14RTQfTa6VqAjq8s+BGaKlU9lC/zvyyEawRXrxnr/8N0s9SnZ3Q4VeY3BHadM1
-         FYVhgErdGVyl1LJuiycuRjUt5YJ0ZwLanBLto2T0lQz3I+MwXkpgsLgiwkN6W9tb4EgK
-         uGXnxiTKVjwKrkbuHwgn6oUIaSFLvwflLjLXkhqf8yfePuvRAER64sULlhgfuocUU26N
-         IJlFvPGF2RQT3vyrM+pz/Q3U5yFCNLlEjxjRKpheue2eWP8uaQr0CJaFf7ySaewKkVoG
-         C5GN9uKj2tO2rxRlMRR9Zo1hEGneweTbH4m9OqNzyJWEygAeQEdU48pHgPQ9/MN/uvT9
-         HERQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781360470; x=1781965270;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=jIa0BdxxpHyXYoZXZICGHhLbBKJPg22HxWM6nxicHsU=;
-        b=qv2RG3TOg2ZkKq6rwczWZWQRC6OHXEzjxIXeqRPUivuYxT+kSLHI5gBbJHIEZH0DTx
-         Wn8JmgZQEwClETy3S64j4y17zNDOqoSA+xQG4K6ZseZaoeDLAeniiCMWEI43Q38pjo8c
-         KT1aD3UTYgxx3tQSUMGxR4G+Pst6DcX1PNb5eoomTfgGifwVKBgI8uE2Xlhe81jhY+Q7
-         zvSe/X1/la3cZDd0dwFVZ8HKflQ3sk5o+xOMh+Zb+dJwyQQ/s9PC1svzjNBrc1urHVBJ
-         vz6K2k1N3IkbwScXRIWHcgTmWjd0tfRb+dTEqFTu7eZfV8HqL5eb4y6ehxK37JZFIcUs
-         U4IQ==
-X-Gm-Message-State: AOJu0YyXw2JzAjuWbS9V894h09ixo6FdLWrBwjI8/xK3lrPk+BxVnJTT
-	CaAW5UtI8cRfU0iqSlGeTaW5VB4N8f3vln7qnFmpLcYA4co5p6lUe+Zl
-X-Gm-Gg: Acq92OGA5UGYe5FDBISvnd+xLme5ErKypmy8sbCksnRqFWBm13PtKeHn1rU5jNi5uRJ
-	7KBiOYdoxCwVGZN/iN508lxPBONpL37LOB8d1Qd6lFrFiN2RjuaOdnOToCBUNXukpaPu6ukoqie
-	34UklGUs75kt3KhkK0Sa8pTFidMRsKtJhJhH0NM78UWNaJA84nFLaFhR5oy+G2bHkHeiO3Gb08y
-	ybN80ViNY2fuAjhHc66Ss3moW58x9KrV6595EEuax3V/0HFr0jvT0m1zuJAHRRUIn+zK/0FZ8UX
-	k4Gdfa9alrbWq7TYUMVoTC8jlyPkk566giR8niqQiZy0Al6tKFnZltHFufGurohmi/bzfVX2+Tk
-	aoiZ8IDMtD3Aw9U6IbvsEtfTIlbAeCMlkGqymNAkTp9eDhZwLKCC1XZO5Gj/0P4InpUQcZ6nUrx
-	JCGH4qQlDoYJOP3f7joKQ615no5rk8vqURSAWwAgpvmka7ETGIW0jKJd+vQBRoEFTTCEaOevCTq
-	yNGy5uN14Mjr1RrFrrsV8U=
-X-Received: by 2002:a05:6000:2889:b0:461:92e9:f83 with SMTP id ffacd0b85a97d-46192e912a1mr2169582f8f.36.1781360469911;
-        Sat, 13 Jun 2026 07:21:09 -0700 (PDT)
-Received: from [127.0.1.1] (93-143-178-20.adsl.net.t-com.hr. [93.143.178.20])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f26393asm16827223f8f.5.2026.06.13.07.21.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Jun 2026 07:21:09 -0700 (PDT)
-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <dujemihanovic32@gmail.com>
-Date: Sat, 13 Jun 2026 16:20:55 +0200
-Subject: [PATCH v2 3/3] regulator: 88pm886: Add Vbus regulator
+	s=arc-20240116; t=1781361259; c=relaxed/simple;
+	bh=DQB9eZVmUwCxk+upUfXxnkxbckxPsu3JLjqIaY/Ievk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y3AS9JZfk61i5sLJ9qRzvyy/yoNQTXgJ15q6IzwZEZRjwRkKGlgutCPresyX+GXOuFgcsVFGdEiT1Q1A77UPfd5Let6UbAogAtO9OylswvntynYY6TzV8msaQuGey7L7VTtPe6gqMhCEvtXzM9tHhvXG9scFmYpK16Db5LF0a+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SBHqpKC7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11AD51F000E9
+	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 14:34:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781361257;
+	bh=DQB9eZVmUwCxk+upUfXxnkxbckxPsu3JLjqIaY/Ievk=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
+	b=SBHqpKC7BREORrxBTVx7sACccSGVw8i23QX7+RIK5eckd2TmCZktg+BuSCQ9ZJ3yJ
+	 Kue7h6YyzWJ6cBULg+8t0egR8uzypz9mbNx5wzL4NFxcbQ8UVzR/0I3il5ZaLbmAgA
+	 6XI+B9N7r6a/A7QQlC/qWONiroFFhzFCSsIQAAJdjirZrH2xEDS3kjMXfmnYg1liH5
+	 WiQuomqBJ91IEiWZgyk7qRvIWJFqHdY7UpLHDvFAt7AjIty+cv7LjeO+94kXT0JuyM
+	 nlGvFoZeBf2873j+tyl+fdW1buWoPl5nc6cNVqXfr8kp/8pTAbGJRyfaYH2DP1VGd5
+	 pql7mT6lEAkeg==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5aa68dbd44fso1902166e87.2
+        for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 07:34:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ/TXjVw0Xfz8nenDPmZZ9yBVePNfG0iYvzhJwvLFd01F9UrlbJTu5xc8H/2TLsHocxz6dzk6mixQhPa@vger.kernel.org
+X-Gm-Message-State: AOJu0YzstEHKXybuhONAukUT5WRveSgkcCxrM/RizrEBpaYIM3vIf1/e
+	u9unZ8HrgqLAMl9eFLhiYr/z6OJolcTAlLYjYhL/tcAKvYR3fXSxjzuZKQ93mZLx2Vfj/j7KrX1
+	YUtgFLtqOKd6oeXsosU7cJZtKkqrrvKs=
+X-Received: by 2002:a05:6512:1596:b0:5aa:6842:7a6a with SMTP id
+ 2adb3069b0e04-5ad30d703e4mr921898e87.0.1781361255568; Sat, 13 Jun 2026
+ 07:34:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260613-88pm886-vbus-v2-3-021dfb02c6bb@dujemihanovic.xyz>
-References: <20260613-88pm886-vbus-v2-0-021dfb02c6bb@dujemihanovic.xyz>
-In-Reply-To: <20260613-88pm886-vbus-v2-0-021dfb02c6bb@dujemihanovic.xyz>
-To: Karel Balej <balejk@matfyz.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>
-Cc: devicetree@vger.kernel.org, phone-devel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2608;
- i=duje@dujemihanovic.xyz; s=20260328; h=from:subject:message-id;
- bh=LWAYeJg//k4Yt9WD2CLMT2Q79dhFXBPAg7/kBfUTROM=;
- b=owGbwMvMwCW2z0j3+uHIyKOMp9WSGLJ00wM+FEyz/7/wkkuUyf1D31RSrX4UT8qQ8t57QWd/t
- NGxE486O0pZGMS4GGTFFFmYl8pd4ksNn+hQZJsEM4eVCWQIAxenAEzkwUZGhsm6K89ryRcI3by0
- kOWC1pKol9q5afYFjekR870fbRWct5XhD/dO3R7LD4f+yS3bOaHs7Nt8lejHtwJOaJ0Xfpd2vEb
- hITcA
-X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
- fpr=9BD463017690089DAA8DC266275F544B3B1B4792
+References: <20260505134812.408316-1-wens@kernel.org> <JyKk48uGRMGhs1Z-wzq5pA@gmail.com>
+ <CAGb2v64wDvLMFn9DYs-kH1S2PpHJat-imxR5eJSQAUYjOp=Xdg@mail.gmail.com> <L1ZJMTqKQbak6NcKbwFkDg@gmail.com>
+In-Reply-To: <L1ZJMTqKQbak6NcKbwFkDg@gmail.com>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Sat, 13 Jun 2026 23:34:00 +0900
+X-Gmail-Original-Message-ID: <CAGb2v677Pi9s3eWC7aXh8j=+eJh7AV5Mucr7SDXMN9Lo8yA2nA@mail.gmail.com>
+X-Gm-Features: AVVi8CdvXAQ1C_gR9wE2a9xH-URFH8zH5uSNUhPubBOtyL4bNWe140GF1Ea1p7c
+Message-ID: <CAGb2v677Pi9s3eWC7aXh8j=+eJh7AV5Mucr7SDXMN9Lo8yA2nA@mail.gmail.com>
+Subject: Re: [PATCH 4/7] drivers: staging: media: sunxi: cedrus: add H616 variant
+To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Paul Kocialkowski <paulk@sys-base.io>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Jernej Skrabec <jernej@kernel.org>, 
+	Samuel Holland <samuel@sholland.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-media@vger.kernel.org, 
+	linux-staging@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-311339-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-311340-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[matfyz.cz,kernel.org,gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:balejk@matfyz.cz,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:devicetree@vger.kernel.org,m:phone-devel@vger.kernel.org,m:~postmarketos/upstreaming@lists.sr.ht,m:linux-kernel@vger.kernel.org,m:duje@dujemihanovic.xyz,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[dujemihanovic32@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jernej.skrabec@gmail.com,m:mripard@kernel.org,m:paulk@sys-base.io,m:mchehab@kernel.org,m:jernej@kernel.org,m:samuel@sholland.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:gregkh@linuxfoundation.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:devicetree@vger.kernel.org,m:linux-sunxi@lists.linux.dev,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dujemihanovic32@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	HAS_REPLYTO(0.00)[wens@kernel.org]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F355B67EC06
+X-Rspamd-Queue-Id: D4F7C67EC9D
 
-From: Duje Mihanović <duje@dujemihanovic.xyz>
+On Sat, Jun 13, 2026 at 6:33=E2=80=AFPM Jernej =C5=A0krabec <jernej.skrabec=
+@gmail.com> wrote:
+>
+> Dne sobota, 30. maj 2026 ob 18:43:05 Srednjeevropski poletni =C4=8Das je =
+Chen-Yu Tsai napisal(a):
+> > On Tue, May 5, 2026 at 7:18=E2=80=AFPM Jernej =C5=A0krabec <jernej.skra=
+bec@gmail.com> wrote:
+> > >
+> > > Dne torek, 5. maj 2026 ob 15:48:08 Srednjeevropski poletni =C4=8Das j=
+e Chen-Yu Tsai napisal(a):
+> > > > The Allwinner H616 SoC has a video engine hardware block like the o=
+ne
+> > > > found on previous generations such as the H6. In addition to the
+> > > > currently supported features of the H6, it is also supposed to incl=
+ude
+> > >
+> > > Remove "supposed".
+> >
+> > I can't actually verify that, so "supposed" is accurate from my point o=
+f
+> > view.
+>
+> Isn't info from manual good enough?
 
-Add support for the PMIC's Vbus regulator. This regulator is mandatory
-for USB OTG support on boards using the PMIC.
+The manual says the SoC supports it. Same was said for the H6. Then
+we discovered that the VP9 decoder was a separate Hantro block.
 
-Reviewed-by: Karel Balej <balejk@matfyz.cz>
-Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
----
-Changes in v2:
-- Drop unneeded units.h include
----
- drivers/regulator/88pm886-regulator.c | 26 ++++++++++++++++++++++++++
- include/linux/mfd/88pm886.h           |  7 +++++++
- 2 files changed, 33 insertions(+)
+So again, *I* cannot claim in the commit message that the hardware
+block supports VP9 decoding, because I have not verified it.
 
-diff --git a/drivers/regulator/88pm886-regulator.c b/drivers/regulator/88pm886-regulator.c
-index a38bd4f312b7..53cb68528cea 100644
---- a/drivers/regulator/88pm886-regulator.c
-+++ b/drivers/regulator/88pm886-regulator.c
-@@ -337,6 +337,25 @@ static struct regulator_desc pm886_regulators[] = {
- 	},
- };
- 
-+static const struct linear_range pm886_vbus_volt_ranges[] = {
-+	REGULATOR_LINEAR_RANGE(3750000, 0, 7, 250000)
-+};
-+
-+static struct regulator_desc pm886_vbus_regulator = {
-+	.name = "vbus",
-+	.regulators_node = "regulators",
-+	.of_match = "vbus",
-+	.ops = &pm886_buck_ops,
-+	.type = REGULATOR_VOLTAGE,
-+	.n_voltages = 8,
-+	.linear_ranges = pm886_vbus_volt_ranges,
-+	.n_linear_ranges = ARRAY_SIZE(pm886_vbus_volt_ranges),
-+	.vsel_reg = PM886_REG_BOOST_CONFIG1,
-+	.vsel_mask = PM886_REG_BOOST_MASK,
-+	.enable_reg = PM886_REG_BATTERY_CONFIG1,
-+	.enable_mask = PM886_REG_VBUS_EN,
-+};
-+
- static int pm886_regulator_probe(struct platform_device *pdev)
- {
- 	struct pm886_chip *chip = dev_get_drvdata(pdev->dev.parent);
-@@ -369,6 +388,13 @@ static int pm886_regulator_probe(struct platform_device *pdev)
- 					"Failed to register %s\n", rdesc->name);
- 	}
- 
-+	rcfg.regmap = chip->regmap_battery;
-+	rdesc = &pm886_vbus_regulator;
-+	rdev = devm_regulator_register(dev, rdesc, &rcfg);
-+	if (IS_ERR(rdev))
-+		return dev_err_probe(dev, PTR_ERR(rdev),
-+				      "Failed to register %s\n", rdesc->name);
-+
- 	return 0;
- }
- 
-diff --git a/include/linux/mfd/88pm886.h b/include/linux/mfd/88pm886.h
-index 2c24dd3032ab..9e96d2cb92f5 100644
---- a/include/linux/mfd/88pm886.h
-+++ b/include/linux/mfd/88pm886.h
-@@ -2,6 +2,7 @@
- #ifndef __MFD_88PM886_H
- #define __MFD_88PM886_H
- 
-+#include <linux/bits.h>
- #include <linux/i2c.h>
- #include <linux/regmap.h>
- 
-@@ -130,6 +131,12 @@
- #define PM886_GPADC_INDEX_TO_BIAS_uA(i)	(1 + (i) * 5)
- 
- /* Battery block register definitions */
-+#define PM886_REG_BATTERY_CONFIG1	0x28
-+#define PM886_REG_VBUS_EN		BIT(7)
-+
-+#define PM886_REG_BOOST_CONFIG1		0x6b
-+#define PM886_REG_BOOST_MASK		GENMASK(2, 0)
-+
- #define PM886_REG_CLS_CONFIG1		0x71
- 
- struct pm886_chip {
+> In the interest of unblocking this, I would be fine with "supposed" too,
+> but manual and all my experiments show VP9 is supported.
 
--- 
-2.54.0
+Please give an ack or reviewed-by with a comment at the end stating
+VP9 verified.
 
+
+Thanks
+ChenYu
+
+
+> Best regards,
+> Jernej
+>
+> >
+> > ChenYu
+> >
+> > > > a VP9 decoder. However software support for this is currently missi=
+ng
+> > > > and still needs to be reverse engineered from the vendor BSP.
+> > > >
+> > > > Add the compatible for the H616 variant, using the H6 variant data.
+> > > >
+> > > > Signed-off-by: Chen-Yu Tsai <wens@kernel.org>
+> > >
+> > > With that:
+> > > Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> > >
+> > > Best regards,
+> > > Jernej
+> > >
+> > >
+> >
+>
+>
+>
+>
+>
 
