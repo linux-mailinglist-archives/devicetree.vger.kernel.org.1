@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-311244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311245-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dCfdBu4HLWpnZQQAu9opvQ
-	(envelope-from <devicetree+bounces-311244-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:34:06 +0200
+	id iXwBJ9cILWqeZQQAu9opvQ
+	(envelope-from <devicetree+bounces-311245-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:37:59 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF45C67DFD5
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:34:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F238967DFEE
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:37:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="as/ZULja";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311244-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311244-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=laJLiSKE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311245-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311245-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 71F7330488CA
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 07:33:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F02F530485E8
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 07:37:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF11319852;
-	Sat, 13 Jun 2026 07:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FE57386426;
+	Sat, 13 Jun 2026 07:37:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6908A156C6A
-	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 07:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCB0378826
+	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 07:37:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781336036; cv=none; b=AUac+gdNANT5yfnefx7VpQe3w+s5i3d23ffFpU+5PjLc7YxXwdzj1hzEijNDt6utJCGWjsP/rw8mxA7Z87HW+ojKvZbgjxr1I4/vmNqHs/H5emjQ1ltf6vo6Rcqm3AoGsbAepJfM8RC+BfCCng4F68C8CeaSdt30t7Wk0Xx/3+s=
+	t=1781336276; cv=none; b=Pdn4seEnad2aho3+4m3a/n1CXn23XkPhfVKpkIB4ont06zRHTbW465izZu6Ja/Z/9rsFwF3yrtEb4Sl68KbmkEKrCGRsHaLergQWG4W49b4Z82dQhGZvmJ6fS46WYndKrEwj2uwCS6dYuMevq1lCvHqS8LDkY9iGHpQIq2km8pE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781336036; c=relaxed/simple;
-	bh=PxX9K5ZDgh0h3OcsbaIRWuSqmui98K76LJSn1C9+4nA=;
+	s=arc-20240116; t=1781336276; c=relaxed/simple;
+	bh=qLJW6iZI+DbYBLSHpRvh1fHoPbFOfRR9v4LVQsoegAw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qAr0KL2pvkEpYLcMi+Q5ZH5b0sXBYTqcDLQOgXVGBENlvbEtfibMm+87rKLdT1LsWEAm9Nc6qafCWIAmp+n8a78m5WaoW6xE20K+PAF5T4HJNZlQW1nNQo5PuZuWnQ7UNUACTNxMEeHmXcVR2udaAQzm9KSGGBy818mXoU6NNLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=as/ZULja; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D4AD1F000E9;
-	Sat, 13 Jun 2026 07:33:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CIA38eWSDCgjCyFUZiH1utLEOGQF34jW+73xvMrTcL+W2lauzMxqwnLgCKw++ETybtYySBREZ0POaw0OHGYKLCO8qpT917OGYeE6djKah5k8r/g406eEcHJBUtJDLIswmHgTvYmJYecSEXtOntikwC2MEJvlmUrHVD5yppcn7kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=laJLiSKE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B3A81F000E9;
+	Sat, 13 Jun 2026 07:37:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781336035;
-	bh=ewzja9ztBOPyrsczWsX9X0mxKc4EcOTeQhgKRFEwSmo=;
+	s=k20260515; t=1781336274;
+	bh=tQSHJmp7JNCNmTswMfi2HcByw7yaz6k/MRHxiY6lZ/A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=as/ZULjaN3KQJ1AWFBOyUUGfrxS3kL3K8RK/IZNd1Xg8aEre0XHqGgrl7rA0Ra8kY
-	 R2ukAPQqDtzz4e3JmRD93b/WTUgwgr9NwRe2OXxGvhHEZcJ6t5u8LBxGEj9R2Y/Ns7
-	 b8BNrgI/sCMZiSnRWs+PKthdzPhkRPn2jMT7VV1ZSi39GQayjIFTnOo6Y+ka7S030u
-	 uNAAbjw4yKGvS9Ov/BTvjo5gWJQ39XIWtSYbZtA8DEOG52FRLC47/o/GCHkpBbILP3
-	 ztashKoyRk7RF7+Xv+EBXro2JW5wc83FKCiqWnv6uHztQc80iV6W8rs0AAFyT5RWkz
-	 vBwrQffbSx7pA==
-Message-ID: <fbaf1829-723b-4a87-882b-b164bb544912@kernel.org>
-Date: Sat, 13 Jun 2026 09:33:51 +0200
+	b=laJLiSKEjRcTGpq9l4JAC/T0gQMV1SJ3WPcE4IRUYz/377NwZcop85p4yPBpYxDav
+	 DU+TwaWLv0I7bcXMUubQ7Bli+4KZJdqfOkxsYdE6xOyUTyVmoBlXY2Ql0M36oRKwT0
+	 l1UYFO/VhCpjxiaMwXlsUsujkR0F3onuH6s4nLPFXCs0nbjh6MXIsEE8APPXGVN2Mh
+	 R5SZlGu/rhV0JwXHvvpfoNeVM+16olk6Rai5+bez1lPBl/T5DK4z4rndk8rNmUrFwG
+	 QUCrxR01y1aupwI5fqOVXb7brHoN3ey5lS65TuCAHjyBgDXR9Mk0iFXUzeAEAAznDh
+	 kTkt+1PPuCXbA==
+Message-ID: <fa710884-e66e-4ef8-bbbd-034eeef8ee62@kernel.org>
+Date: Sat, 13 Jun 2026 09:37:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,13 +55,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] ASoC: codecs: ES8389: Fix the issue about mclk_src
+Subject: Re: [PATCH 7/7] ASoC: dt-bindings: ES8389: Add members about HPF and
+ clock
 To: Zhang Yi <zhangyi@everest-semi.com>
 Cc: alsa-devel@alsa-project.org, broonie@kernel.org, conor+dt@kernel.org,
  devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org,
  tiwai@suse.com
-References: <20260609-visionary-truthful-viper-ceff75@quoll>
- <20260610100637.25568-1-zhangyi@everest-semi.com>
+References: <20260609-vociferous-thick-lyrebird-d53eda@quoll>
+ <20260610095820.25386-1-zhangyi@everest-semi.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,9 +108,9 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20260610100637.25568-1-zhangyi@everest-semi.com>
+In-Reply-To: <20260610095820.25386-1-zhangyi@everest-semi.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -121,7 +122,7 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311244-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311245-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:alsa-devel@alsa-project.org,m:broonie@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:tiwai@suse.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
@@ -143,35 +144,54 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AF45C67DFD5
+X-Rspamd-Queue-Id: F238967DFEE
 
-On 10/06/2026 12:06, Zhang Yi wrote:
->>> Fix the issue with incorrect modifications to mclk_src
+On 10/06/2026 11:58, Zhang Yi wrote:
+>> Please organize the patch documenting the ABI (DT bindings)
+>> before the patch using that ABI.
+>> See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+> 
+> Thanks for the reminder
+> 
+>>> +  everest,mclk-from-sclk:
+>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>> +    description:
+>>> +      Indicates that SCLK is used as the internal clock.
 >>
->> What issue? Your commit msgs are really poor - explain nothing. You just
->> duplicated subject... and anything can be a fix.
+>> And what happens with mclk in such case? Is it still wired?
 > 
-> I'm sorry I didn't explain that clearly.
-> When the system needs to be configured to use the MCLK from the SCLK pin,
-> the old code still sets the relevant registers to use the MCLK from the MCLK pin.
-> I will include a more detailed description in future versions.
-> 
->>>  	struct es8389_private *es8389 = snd_soc_component_get_drvdata(component);
->>>  
->>> -	ret = device_property_read_u8(component->dev, "everest,mclk-src", &es8389->mclk_src);
->>
->> Why are you changing implemented ABI?
-> 
-> In the old ABI, `mclk_src` was defined as `u8`, which meant that users could set `mclk_src` to any value in the DTS—such as `0x02`,
-> but the code wouldn't recognize what that value represented.
-> The actual purpose of `mclk_src` is to indicate whether `sclk` should be used as `mclk`.
-> So I've changed it to bool.
+> Yes, setting mclk-from-sclk does not affect the MCLK connection.
 
-You break ABI implemented by this driver, so you must clearly document
-it with reasons, why breaking is necessary. Honestly, without proper
-reason I would just answer that you must keep it backwards compatible.
+I am asking about wiring of the device. If MCLK is used from SCLK, but
+SCLK is used as the internal clock, then how can you still have MCLK
+connected?
+
+> 
+>>> +
+>>> +  everest,hpfl:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint8
+>>> +    description:
+>>> +      the HPF value of ADCL.
+>>
+>> Is HPF value in dB? If so, use proper unit suffix and proper units.
+> 
+> No, the values here correspond to the values in the registers.
+> The value is not in dB
+
+What are the meanings of the register values?
+
+> 
+>>>          vddd-supply = <&vdd3v3>;
+>>>          vdda-supply = <&vdd3v3>;
+>>> +        everest,hpfl = [0a];
+>>
+>> <0xa>? What did you want to say here?
+> 
+> I just wanted to give an example to show how to set the values of everest,hpfl to 0x0a.
+
+So use syntax I asked.
 
 Best regards,
 Krzysztof
