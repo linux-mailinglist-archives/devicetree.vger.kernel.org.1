@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-311227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311229-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id F76nApoALWpmYwQAu9opvQ
-	(envelope-from <devicetree+bounces-311227-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:02:50 +0200
+	id CrjGDqj/LGoYYwQAu9opvQ
+	(envelope-from <devicetree+bounces-311229-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 08:58:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5161467DE80
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:02:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F5F167DE19
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 08:58:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=E+pqKl3r;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311227-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311227-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=k6AOfF3C;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311229-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311229-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F02AE335F21B
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 06:58:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 901C93009CE9
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 06:58:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C145A38C40E;
-	Sat, 13 Jun 2026 06:58:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D720F381B0D;
+	Sat, 13 Jun 2026 06:58:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F8538239B
-	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 06:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1921D393DEB
+	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 06:58:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781333923; cv=none; b=j4y7kIGZ7FDRRYIE2rmYAQq7uJClkqS4o957XlZwcdJI27X0QvIwRpRN7hf261CiwiJaPEt2z15iak+Cw5skmsbPKtEMAMap/p2L9dNR7g9IVflGQZy4A1Qcno0TLw75OZno0+yeuQFgVkMsG61WQryJgUJ95fRCrRJFpcCbnKs=
+	t=1781333925; cv=none; b=CP8fVzU3Ya4/UaLTX3n72a4hIDjciQiQ6UooWnJVsZ2XPxeZZDEsxCRxffCd3Bk3Iqrds+GMHYvBXrJarfRQ09MkgpeSSAbgwzT8RM6UecsqApFii/UzOIqwTSYmOdbiFt2rT/6hoCWU3JymDIW/eELyJV/Bfm1bPvgu7D2TwNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781333923; c=relaxed/simple;
-	bh=zamBZHvXT+SrkZYZqomb0TPLxTZiVMFSO+6rV6o1c+s=;
+	s=arc-20240116; t=1781333925; c=relaxed/simple;
+	bh=nPY3wv2mci8wkKBwmvFP6TpH+QPqSd5Lve4SBi0sdAE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=YC5ZMayqtLwBYpPJLUnpLP5wo9Or/L0Y8A0i55WAhJF2C+obNFAxn90znft14tjQSvCjGxLKOKQHS582sNYCsCtDV6ptsKmHd9hNRVyxLwFGAfLCJb2HcAkKZ9MsdAqImL4Lp8OJqBNZTvhBKolp6Ucs1upg9G72QOt1Ye79WjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E+pqKl3r; arc=none smtp.client-ip=209.85.128.54
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-490b64c8311so17694665e9.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 23:58:42 -0700 (PDT)
+	 MIME-Version; b=oQRV2MYVaN+ULbP5OWgxjGJSMkh9tziXPC7sMnXktvkxrOgbiQKsocvM0N9+ga4J/JGs3u/sQw7jL+Vzz3wMh5W37Sez1sOKMyjn0Euvo3mgpAGPk6pdD0vSMX+FCWM6kUpjj5ZWzPnJT0FpGnSRNEbY/NtbM94CxJmle4m45+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k6AOfF3C; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4905529b933so16783875e9.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jun 2026 23:58:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781333921; x=1781938721; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1781333922; x=1781938722; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ExjVQvO4/iWqbTjsUJjExpq/Pad0yGuPxgZEv8g/Xlo=;
-        b=E+pqKl3rIT9k60v9M78O5W038+7/3FkhnidutvlLT2NignySnGVjWStw6hXsYISClt
-         QzwI9jVigAxaLaAL0JQZ/wL4C4QIty+GSays1YWxaYmjxe0qMArxkXqB0e4ckz+rrRXi
-         KnmaDSID2K3/mVVDa3mAdC81RBmrbVZaZhUnd5zTN2iwd3jtlLCd6FeBdb75by0dXg/5
-         bD8fekeMWaQe9gXIYVyPzVFr7cH+LwwjEFMb+4qePW8OU21SBeX6fTO7nZ+slnkK/2+J
-         Dzk0fo0sRywr17XGM2EL2G6uRlB3x5N28Up46nSHvypH2ope45QlHgc3Z18Omhgjvc3l
-         LLhg==
+        bh=6JonI5tVCKFVj4EE3HntNYMlqngF+zGzezn1FD6cSzY=;
+        b=k6AOfF3CoM028XgK9ioM+RJZUwbKRCc/LPiJaAobCyTZCmLDSyvTVC3Dr2yzCdlhoM
+         TPTRHfgG+MVI5nS2tonIMr3jQ7zSKV27xT96MCB2d5JNl0nFBUeb++pJ5KsJpbTIsvVD
+         JdPrrXqOX4djH1gGpP9f908J+j0qPln/eI/RFCjxIvUrY7xDAqxpMPsiGZ3pfovLk9to
+         96lBSPMcBV7VQGn7ZJpR9uG8p6jTm9WdrFpEGSZsxMEP78c5ZwzAPvtoXRSzuA1ItYZF
+         /9+TDnXrRF3JQ6oCxOsYcIyTLbHy42rBQtflfRUO4vzjAMw/5EOaqQByixKntRAjPRRt
+         lbrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781333921; x=1781938721;
+        d=1e100.net; s=20251104; t=1781333922; x=1781938722;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=ExjVQvO4/iWqbTjsUJjExpq/Pad0yGuPxgZEv8g/Xlo=;
-        b=jVeu/TmJDXsIcG9hl4ZrzhBltOl5ARlR0ZvvfCnnzbPvE4iJ1U0H8bdjDWqy/wWfXv
-         Z5FprnJVQjzn5S1SnA6FHP1gOF1UeBfzoQXiP3zSl7WwFLBsFrf0GWD3yiCYSxYQdFC5
-         LQ2lqFGi6Dg9E1FgE6SbyHsuwcH5pE0fB3gvNJ3CUo3XpZy1E1l3sMldLAivTvMfdTA0
-         G8cuIIaIVn7fVsd/VKO06bPwUr6aRfXR3JEa9Y+TK6OyXX+96EFxKjDlNKdEQM7aSznk
-         iz2vW+K84tDLo25Q8r75UoK3W0kML1cxSTv1BLS5DUh5810JaHBaq6cJkBVTItHAVrMq
-         L4/A==
-X-Forwarded-Encrypted: i=1; AFNElJ8xsZvQsspypBVtaUJMAAHkn3o1C9O1sVPTNzoy0721N7I/Q5C1mSfE/tomtIfbNDn/dhwM7Hpckjx8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBfdJrr58OO3K+eu+JSFd7wohJTJobDOjyJsBj92VcxTDFyVBa
-	kR0rimvhjSfkjTkyEEKNra7kTCQTTIKlmDyjvO6ln6zxI2nr3heA3kwE
-X-Gm-Gg: Acq92OGpjp2JOqDlpgXRl7e5YBdXRDJ9gAQqVVA5zoeyhjMMpTxq8WVXVbnAiloA2Fr
-	zIIa+qgRrPBEU6MtPJQo8+XtNPJ0mcy/ShaEIbby+x4ziEYuorlk5wu/XnvzbZfMukICyyCx0gY
-	J+v6Pgm4tScZ2RYLD78Hx2FyHGlYsVJh/A6yMVwZTvFjh+zSkzKfi+xCBdb1epugzu+VDm741x8
-	gf0+f5+TXk9fcP9237x2qP2uzuzwagNP0JOHVneU5iirMp7Lsv3/m8mLjKQnVQbQpN1vz+r0otb
-	Z/9NEPU6NPlHLdX6Qxid2rSvZE0QkDXu86r0a+qNItfNuIdA3v5ttKqyjIf+Dl6da+eWSkyFipm
-	kEhAtOZM5/728T53PXfXq9Qp2po1IKHbF0lNBIRCfn69pLKK9UJ0dDX3kr2tqFDzrG0pScbAS72
-	Q/sZzPPpCuzG8U4irDxQ22OmioQ/GeLTEjuaimMhTU+w==
-X-Received: by 2002:a05:600c:a47:b0:490:52c0:744c with SMTP id 5b1f17b1804b1-490ec4ee63cmr73748795e9.20.1781333920798;
-        Fri, 12 Jun 2026 23:58:40 -0700 (PDT)
+        bh=6JonI5tVCKFVj4EE3HntNYMlqngF+zGzezn1FD6cSzY=;
+        b=YJMJFyoaCX9v2D1T0W9yOM5HIxqAR6Vh88gyB4xTU6OLcTpSg8Wc+wngywzU6117C8
+         HPdDnuGS/8WaphIIQ0wY4XWbB/m6tryBlp9LxiuWquerVTAeTyJKknELw+LtJ0rcs31j
+         sppf68Jjd2qqHOckN73y853Pf+OfR2I/835vxpxS9QdZMiXBl3CNGXy+0e/mmkWmDGxO
+         1DBjJ9dp8wHSTS1Ih5pViMVb0lLq2z3M/3oHqS16hPsAlaH24s8y8pcYfRm78xFxkUXX
+         V1d3n8o1NkqnM8KRURCm3BsL1FsMTu+3u4kSEh4yuoDmXRMJgQXA0LKC9WNCwtXpkQf0
+         MJVQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+N9anM+DhPwLrdboCh3U82okoOpAwFm9GGGbDbQOdvwOnWX1LIAL8TkHJIT0OubOz/Lkc6FsmBNbF7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzORa4VYf7WFNoDcFh/Wojee2bhE6Ou4Ophvb9qZed+8i7KuWsY
+	e+tKZIp/G83UhCbrF/0rP3p6ARltUczcDs875wshDt2XVJgrs6zRMsnU
+X-Gm-Gg: Acq92OGgyGrXt0FkaZC8tFn06WwUPoZluHykHET5GC5lW5XdnUGmeBkuapdhCTSQbFP
+	LkZuRlR4gA5cxQCuwkG7OCDzs/lJdsC6d3KLlRqgKYYGyk2KeMUfnH8yQXjP299AObtyVwioUqj
+	cQyn5kQLBCv78ORKRisaIsghQ8mbW1wAdhGCONPVYXdDWZ+GhIkVV5iQAqV0+eIA+PeGfhBKLLX
+	di92RmrDmJlILIWeJLR00zf2JizKGObGawvvYOtKob8ydmAjG7/6S9LiMtzoE6raD1EeAxXw/LS
+	rp5jol8IxJGPkdPW6SkahqZUBpLVwxkLcip2lt95DhuQH4iYo8RB6QPFjSsTdNBr4Kva4FPGagg
+	g6MW8fK0eZomeSp8SL/v0ETtQzygNAys/zper+9Q5YRG5KYLxU2W6hqFd6qoPnjR4kW6rMQBGXZ
+	o40SS5cVXXHiR5IZyazbtzLrvIEw+Wm3ul9F+01Vk1Rg==
+X-Received: by 2002:a05:600c:83c8:b0:492:1e36:d16e with SMTP id 5b1f17b1804b1-4921e36d1a9mr40797495e9.36.1781333922475;
+        Fri, 12 Jun 2026 23:58:42 -0700 (PDT)
 Received: from debian.tailb81abf.ts.net ([2a01:e0a:104a:4d80:14c0:9448:1c38:77df])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-492202e5cbasm42917705e9.2.2026.06.12.23.58.40
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-492202e5cbasm42917705e9.2.2026.06.12.23.58.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jun 2026 23:58:40 -0700 (PDT)
+        Fri, 12 Jun 2026 23:58:42 -0700 (PDT)
 From: MidG971 <midgy971@gmail.com>
 To: tomeu@tomeuvizoso.net,
 	ogabbay@kernel.org,
@@ -97,9 +97,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	diederik@cknow-tech.com,
 	jonas@kwiboo.se,
 	Midgy BALON <midgy971@gmail.com>
-Subject: [RFC PATCH v4 7/9] arm64: dts: rockchip: rk356x: Add the NPU and its IOMMU
-Date: Sat, 13 Jun 2026 09:01:14 +0200
-Message-Id: <20260613070116.438906-8-midgy971@gmail.com>
+Subject: [RFC PATCH v4 8/9] arm64: dts: rockchip: rk3568-rock-3b: Enable the NPU
+Date: Sat, 13 Jun 2026 09:01:15 +0200
+Message-Id: <20260613070116.438906-9-midgy971@gmail.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20260613070116.438906-1-midgy971@gmail.com>
 References: <20260613070116.438906-1-midgy971@gmail.com>
@@ -117,12 +117,12 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311227-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311229-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[lists.freedesktop.org,lists.infradead.org,vger.kernel.org,lists.linux.dev,rock-chips.com,cknow-tech.com,kwiboo.se,gmail.com];
 	FREEMAIL_FROM(0.00)[gmail.com];
@@ -141,89 +141,65 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5161467DE80
+X-Rspamd-Queue-Id: 1F5F167DE19
 
 From: Midgy BALON <midgy971@gmail.com>
 
-The RK3568 has an NVDLA-derived NPU at fde40000 with its own IOMMU at
-fde4b000. Add both nodes (disabled by default) and the NPU power-domain
-child under the PMU power-controller, and point rockchip,pmu at the PMU
-syscon that controls the NPU NoC bus-idle.
+Enable the NPU and its IOMMU on ROCK 3B and wire vdd_npu as the NPU
+power domain's domain-supply, so genpd brings the rail up and down with
+the domain (the domain is marked need_regulator). The PVTPLL compute
+clock is brought up later by the driver.
 
-Besides the SCMI compute clock, assign the CRU CLK_NPU so the NPU AXI
-bus clock comes up at 200 MHz rather than the 12 MHz boot default.
-
-The power-domain deliberately carries no pm_qos: qos_npu sits behind the
-NPU NoC, which is gated until the NPU is brought up, so a genpd power-off
-QoS save would fault reading it.
+The rail is no longer kept always-on, so pin it to 1000 mV (the NPU's
+1 GHz operating voltage; the driver runs a fixed compute rate with no
+devfreq voltage scaling) and mark it boot-on, so it is up before the
+power domain de-idles the NPU NoC at power-on.
 
 Signed-off-by: Midgy BALON <midgy971@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ .../arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-index 64bdd8b7754b5..313db59c1aed8 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-@@ -512,6 +512,13 @@ power-domain@RK3568_PD_GPU {
- 				#power-domain-cells = <0>;
- 			};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+index 69001e453732e..d3f9776c2bdc3 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+@@ -330,9 +330,10 @@ regulator-state-mem {
  
-+			pd_npu: power-domain@RK3568_PD_NPU {
-+				reg = <RK3568_PD_NPU>;
-+				clocks = <&cru ACLK_NPU_PRE>,
-+					 <&cru HCLK_NPU_PRE>;
-+				#power-domain-cells = <0>;
-+			};
-+
- 			/* These power domains are grouped by VD_LOGIC */
- 			power-domain@RK3568_PD_VI {
- 				reg = <RK3568_PD_VI>;
-@@ -572,6 +579,37 @@ power-domain@RK3568_PD_RKVENC {
- 		};
+ 			vdd_npu: DCDC_REG4 {
+ 				regulator-name = "vdd_npu";
++				regulator-boot-on;
+ 				regulator-initial-mode = <0x2>;
+-				regulator-min-microvolt = <500000>;
+-				regulator-max-microvolt = <1350000>;
++				regulator-min-microvolt = <1000000>;
++				regulator-max-microvolt = <1000000>;
+ 				regulator-ramp-delay = <6001>;
+ 
+ 				regulator-state-mem {
+@@ -787,3 +788,16 @@ vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+ 		remote-endpoint = <&hdmi_in_vp0>;
  	};
- 
-+	rknn_core_0: npu@fde40000 {
-+		compatible = "rockchip,rk3568-rknn-core";
-+		reg = <0x0 0xfde40000 0x0 0x1000>,
-+		      <0x0 0xfde41000 0x0 0x1000>,
-+		      <0x0 0xfde43000 0x0 0x1000>;
-+		reg-names = "pc", "cna", "core";
-+		interrupts = <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_NPU>, <&cru HCLK_NPU>,
-+			 <&scmi_clk SCMI_CLK_NPU>, <&cru PCLK_NPU_PRE>;
-+		clock-names = "aclk", "hclk", "npu", "pclk";
-+		assigned-clocks = <&scmi_clk SCMI_CLK_NPU>, <&cru CLK_NPU>;
-+		assigned-clock-rates = <200000000>, <600000000>;
-+		resets = <&cru SRST_A_NPU>, <&cru SRST_H_NPU>;
-+		reset-names = "srst_a", "srst_h";
-+		power-domains = <&power RK3568_PD_NPU>;
-+		rockchip,pmu = <&pmu>;
-+		iommus = <&rknn_mmu_0>;
-+		status = "disabled";
-+	};
+ };
 +
-+	rknn_mmu_0: iommu@fde4b000 {
-+		compatible = "rockchip,iommu";
-+		reg = <0x0 0xfde4b000 0x0 0x40>;
-+		interrupts = <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>;
-+		clock-names = "aclk", "iface";
-+		clocks = <&cru ACLK_NPU>, <&cru HCLK_NPU>;
-+		power-domains = <&power RK3568_PD_NPU>;
-+		#iommu-cells = <0>;
-+		status = "disabled";
-+	};
++&pd_npu {
++	domain-supply = <&vdd_npu>;
++};
 +
- 	gpu: gpu@fde60000 {
- 		compatible = "rockchip,rk3568-mali", "arm,mali-bifrost";
- 		reg = <0x0 0xfde60000 0x0 0x4000>;
++&rknn_core_0 {
++	npu-supply = <&vdd_npu>;
++	status = "okay";
++};
++
++&rknn_mmu_0 {
++	status = "okay";
++};
 -- 
 2.39.5
 
