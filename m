@@ -1,53 +1,59 @@
-Return-Path: <devicetree+bounces-311245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311246-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iXwBJ9cILWqeZQQAu9opvQ
-	(envelope-from <devicetree+bounces-311245-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:37:59 +0200
+	id VCetDY8JLWrSZQQAu9opvQ
+	(envelope-from <devicetree+bounces-311246-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:41:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F238967DFEE
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:37:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C31167E000
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:41:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=laJLiSKE;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311245-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311245-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=kwiboo.se header.s=fe-e1b5cab7be header.b=hAl4WAxR;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311246-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311246-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kwiboo.se;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F02F530485E8
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 07:37:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EA50A30485FC
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 07:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FE57386426;
-	Sat, 13 Jun 2026 07:37:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A5035AC17;
+	Sat, 13 Jun 2026 07:40:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCB0378826
-	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 07:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20FB031D757
+	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 07:40:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781336276; cv=none; b=Pdn4seEnad2aho3+4m3a/n1CXn23XkPhfVKpkIB4ont06zRHTbW465izZu6Ja/Z/9rsFwF3yrtEb4Sl68KbmkEKrCGRsHaLergQWG4W49b4Z82dQhGZvmJ6fS46WYndKrEwj2uwCS6dYuMevq1lCvHqS8LDkY9iGHpQIq2km8pE=
+	t=1781336458; cv=none; b=fQZlDsWxmGoagwfVY+b1u+aph2wB0pdcDQ1wuQdIceTfcHKz4FQVLrmTLb4tNdGOPgyvUKtdBLBikNwP8qZlCsm1pT3JaHmZNK3JfkEMPviKvqUv3x5iWMhFX3MGJyZrSWwAW5RSut+xGVVzVvq0+YjWZWDi4Cu0Trb1V0sfeAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781336276; c=relaxed/simple;
-	bh=qLJW6iZI+DbYBLSHpRvh1fHoPbFOfRR9v4LVQsoegAw=;
+	s=arc-20240116; t=1781336458; c=relaxed/simple;
+	bh=vKxsuOnHElxYLABaCL+A4fJkjVhRZLYiku7c7WLPJOM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CIA38eWSDCgjCyFUZiH1utLEOGQF34jW+73xvMrTcL+W2lauzMxqwnLgCKw++ETybtYySBREZ0POaw0OHGYKLCO8qpT917OGYeE6djKah5k8r/g406eEcHJBUtJDLIswmHgTvYmJYecSEXtOntikwC2MEJvlmUrHVD5yppcn7kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=laJLiSKE; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B3A81F000E9;
-	Sat, 13 Jun 2026 07:37:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781336274;
-	bh=tQSHJmp7JNCNmTswMfi2HcByw7yaz6k/MRHxiY6lZ/A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=laJLiSKEjRcTGpq9l4JAC/T0gQMV1SJ3WPcE4IRUYz/377NwZcop85p4yPBpYxDav
-	 DU+TwaWLv0I7bcXMUubQ7Bli+4KZJdqfOkxsYdE6xOyUTyVmoBlXY2Ql0M36oRKwT0
-	 l1UYFO/VhCpjxiaMwXlsUsujkR0F3onuH6s4nLPFXCs0nbjh6MXIsEE8APPXGVN2Mh
-	 R5SZlGu/rhV0JwXHvvpfoNeVM+16olk6Rai5+bez1lPBl/T5DK4z4rndk8rNmUrFwG
-	 QUCrxR01y1aupwI5fqOVXb7brHoN3ey5lS65TuCAHjyBgDXR9Mk0iFXUzeAEAAznDh
-	 kTkt+1PPuCXbA==
-Message-ID: <fa710884-e66e-4ef8-bbbd-034eeef8ee62@kernel.org>
-Date: Sat, 13 Jun 2026 09:37:50 +0200
+	 In-Reply-To:Content-Type; b=DxFV5F+xB6S1nb0hsttmL0Hak5qEwx+nK20D0fClL5IKVmfshiZNlAFx0eyAUrqGNtDNQfGIocPcWc7NK5wHSyatAlEglsaHQrJGt4aQhpHY+fPJ4MGFLk9kTxaIJ73MOMZ+0TnGteCwMXLMCa8MxscwPtUQ3VCz7pwvGdo1FN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=hAl4WAxR; arc=none smtp.client-ip=121.127.44.66
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1781336455;
+ bh=qHK4xcuZuyY3VWkKdAkc6bfYV2q4RPDKWtvw4p7wT+w=;
+ b=hAl4WAxRxs/ZvxN8Tsnh39Vx+Wd0eFIeV3w0nae8LiNv2Gtw5njjh6FZRT+97DDJZwCTQmOXD
+ PZJZVtykDki1fme3042lw0BQve7J8dGRjnRFyke/P7/3WhSf2sCYv7qaHngIvZjhF6ZFuJaEU+V
+ 9tXkGvk7in9AyhYJyQmUpgwiMO1sYxhU7pQl1AUVCzteGdaOK2b8isJBMyRJTRrDA+8DIdOCg6V
+ dAUh3ti8QlkEuvmKk8GL53oEoLIRjWAcOD4pO6R6fpNmucBH67wce6YbdiEsB71qjMOeWkU8uJo
+ eMSMPB/bHhlM3IiS2VYfj2ilKbOYSAEPTEYSDCEkhkCQ==
+X-Forward-Email-ID: 6a2d09837f2a6d9c19af5dbd
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.66
+X-Forward-Email-Version: 2.8.26
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <e0f044df-9d34-4e6e-aa48-9e4227b4bdf7@kwiboo.se>
+Date: Sat, 13 Jun 2026 09:40:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,144 +61,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] ASoC: dt-bindings: ES8389: Add members about HPF and
- clock
-To: Zhang Yi <zhangyi@everest-semi.com>
-Cc: alsa-devel@alsa-project.org, broonie@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- tiwai@suse.com
-References: <20260609-vociferous-thick-lyrebird-d53eda@quoll>
- <20260610095820.25386-1-zhangyi@everest-semi.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [RFC PATCH v4 8/9] arm64: dts: rockchip: rk3568-rock-3b: Enable
+ the NPU
+To: MidG971 <midgy971@gmail.com>
+Cc: "tomeu@tomeuvizoso.net" <tomeu@tomeuvizoso.net>,
+ "ogabbay@kernel.org" <ogabbay@kernel.org>, "heiko@sntech.de"
+ <heiko@sntech.de>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "xxm@rock-chips.com" <xxm@rock-chips.com>,
+ "chaoyi.chen@rock-chips.com" <chaoyi.chen@rock-chips.com>,
+ "finley.xiao@rock-chips.com" <finley.xiao@rock-chips.com>,
+ "diederik@cknow-tech.com" <diederik@cknow-tech.com>
+References: <20260613070116.438906-1-midgy971@gmail.com>
+ <20260613070116.438906-9-midgy971@gmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20260610095820.25386-1-zhangyi@everest-semi.com>
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20260613070116.438906-9-midgy971@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
+	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311245-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:alsa-devel@alsa-project.org,m:broonie@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:tiwai@suse.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311246-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:midgy971@gmail.com,m:tomeu@tomeuvizoso.net,m:ogabbay@kernel.org,m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ulf.hansson@linaro.org,m:dri-devel@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-pm@vger.kernel.org,m:iommu@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:xxm@rock-chips.com,m:chaoyi.chen@rock-chips.com,m:finley.xiao@rock-chips.com,m:diederik@cknow-tech.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kwiboo.se:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F238967DFEE
+X-Rspamd-Queue-Id: 9C31167E000
 
-On 10/06/2026 11:58, Zhang Yi wrote:
->> Please organize the patch documenting the ABI (DT bindings)
->> before the patch using that ABI.
->> See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
-> 
-> Thanks for the reminder
-> 
->>> +  everest,mclk-from-sclk:
->>> +    $ref: /schemas/types.yaml#/definitions/flag
->>> +    description:
->>> +      Indicates that SCLK is used as the internal clock.
->>
->> And what happens with mclk in such case? Is it still wired?
-> 
-> Yes, setting mclk-from-sclk does not affect the MCLK connection.
+Hi Midgy,
 
-I am asking about wiring of the device. If MCLK is used from SCLK, but
-SCLK is used as the internal clock, then how can you still have MCLK
-connected?
-
+On 6/13/2026 9:01 AM, MidG971 wrote:
+> From: Midgy BALON <midgy971@gmail.com>
 > 
->>> +
->>> +  everest,hpfl:
->>> +    $ref: /schemas/types.yaml#/definitions/uint8
->>> +    description:
->>> +      the HPF value of ADCL.
->>
->> Is HPF value in dB? If so, use proper unit suffix and proper units.
+> Enable the NPU and its IOMMU on ROCK 3B and wire vdd_npu as the NPU
+> power domain's domain-supply, so genpd brings the rail up and down with
+> the domain (the domain is marked need_regulator). The PVTPLL compute
+> clock is brought up later by the driver.
 > 
-> No, the values here correspond to the values in the registers.
-> The value is not in dB
-
-What are the meanings of the register values?
-
+> The rail is no longer kept always-on, so pin it to 1000 mV (the NPU's
+> 1 GHz operating voltage; the driver runs a fixed compute rate with no
+> devfreq voltage scaling) and mark it boot-on, so it is up before the
+> power domain de-idles the NPU NoC at power-on.
 > 
->>>          vddd-supply = <&vdd3v3>;
->>>          vdda-supply = <&vdd3v3>;
->>> +        everest,hpfl = [0a];
->>
->> <0xa>? What did you want to say here?
+> Signed-off-by: Midgy BALON <midgy971@gmail.com>
+> ---
+>  .../arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
 > 
-> I just wanted to give an example to show how to set the values of everest,hpfl to 0x0a.
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> index 69001e453732e..d3f9776c2bdc3 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts
+> @@ -330,9 +330,10 @@ regulator-state-mem {
+>  
+>  			vdd_npu: DCDC_REG4 {
+>  				regulator-name = "vdd_npu";
+> +				regulator-boot-on;
 
-So use syntax I asked.
+There is no need for the NPU in the bootloader, do not use DT as a
+workaround for software issues.
 
-Best regards,
-Krzysztof
+This series mention the PVTPLL NPU clk and seem to contains some
+workarounds related to how the PVTPLL clock is handled in TF-A.
+
+The PVTPLL block typically require the pclk and power domain enabled to
+function, and this series seem to add workarounds to try and ensure this,
+e.g. with noc_init to activate PVTPLL usage.
+
+I would suggest that you do not involve the PVTPLL clock in this initial
+NPU support for RK3568, set CLK_NPU to 400 MHz and use it instead of the
+SCMI clock, or keep SCMI clk rate less than or equal to 400 MHz to
+disable PVTPLL_NEED mode in TF-A.
+
+In a future series you can extend Linux with a proper PVTPLL clk driver
+and OPP support for the rocket driver to correctly ensure pclk and pd is
+enabled when a PVTPLL clock is managed.
+
+>  				regulator-initial-mode = <0x2>;
+> -				regulator-min-microvolt = <500000>;
+> -				regulator-max-microvolt = <1350000>;
+> +				regulator-min-microvolt = <1000000>;
+> +				regulator-max-microvolt = <1000000>;
+
+Please describe the HW, do not add workarounds for software issues or
+shortcomings.
+
+Regards,
+Jonas
+
+>  				regulator-ramp-delay = <6001>;
+>  
+>  				regulator-state-mem {
+> @@ -787,3 +788,16 @@ vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+>  		remote-endpoint = <&hdmi_in_vp0>;
+>  	};
+>  };
+> +
+> +&pd_npu {
+> +	domain-supply = <&vdd_npu>;
+> +};
+> +
+> +&rknn_core_0 {
+> +	npu-supply = <&vdd_npu>;
+> +	status = "okay";
+> +};
+> +
+> +&rknn_mmu_0 {
+> +	status = "okay";
+> +};
+
 
