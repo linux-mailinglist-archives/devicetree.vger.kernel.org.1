@@ -1,172 +1,288 @@
-Return-Path: <devicetree+bounces-311390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311395-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +X7SCx2rLWr7iQQAu9opvQ
-	(envelope-from <devicetree+bounces-311390-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 21:10:21 +0200
+	id 7B6WKeGtLWqGigQAu9opvQ
+	(envelope-from <devicetree+bounces-311395-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 21:22:09 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8031667F689
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 21:10:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 261A467F705
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 21:22:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bcLdb2TU;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311390-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311390-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EW+Gv6PS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311395-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-311395-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5267B3037980
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 19:10:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8312F300398B
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 19:22:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64F0339719;
-	Sat, 13 Jun 2026 19:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A957038B7D2;
+	Sat, 13 Jun 2026 19:22:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8FFA299929;
-	Sat, 13 Jun 2026 19:10:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B04B938D415
+	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 19:22:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781377818; cv=none; b=feu+3uPwUt/JJks28ldELSETXgxgvS5vpfbnH1kJMQNqmMROx+rXs6IyyLiK0Mi1d2+/SZhHHxZbt+jRoFtTlDJRHh6Q+cSMiC9cXggxrw47zKZLB5Z/J/bCZGC6g3J+2fWzXjAQe7kUBVDWwJJceLiqndlf9oNzgiuaYoaLrBc=
+	t=1781378525; cv=none; b=BGzqxey0nFWDw6R7N/6QU6IdDeSUMOMxM3+u5nSCIZ6l2mrk7I1yPSee6RBTo3eGZIc6PCmIMMzdkkOWuWa3XqroLzUJ03SmIUds4aa0J9cefUrdqurFF+/ZQIMkT+EGGh9KzmUNplTciuPwCcOD49Ia+QQOtsOTW5hadjRyWHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781377818; c=relaxed/simple;
-	bh=OfS2x75ziNEyOFpz0RFMDIPEgjsSkvFXG1vNpKZhV6c=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=XxlBq20JIXh6aHNto0dKpc17zPPIDb2RT7c+V/mvzFs/GIDb5A36TxmD/sFDe5Az24k/EKg2tCM9m+X0FgjdPU1pK3inJrZCnazZQ90z3SwSsTqH9wL1DomAInmUj/UVoTk/RTxNiz2+Qz38tkgeFrlHIHe+SmnS1XZoN9pDvDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bcLdb2TU; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A1FE1F000E9;
-	Sat, 13 Jun 2026 19:10:15 +0000 (UTC)
+	s=arc-20240116; t=1781378525; c=relaxed/simple;
+	bh=1AJzMEe8YzhobW2KJ1hAWpe+9vO7uljek17Ny6MP3EY=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=ez7RlrQsDfhX4HXPjE3pElTtphihjbbwucvyP0tjjr2GIaRs7hscgkJUiolVZcvJGlDwO9keXaOQbETVD4XhfOwfDOVq6RLZ/THl4HOzNgqy4eQj+Xem0BCgzW8LGoJDwdxfeQlPerY7hPvHFTLcnlDKlIMnDi1XlVzQ4uTEIiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EW+Gv6PS; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D43531F000E9;
+	Sat, 13 Jun 2026 19:22:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781377817;
-	bh=xxpkgSl/T43aBnkyAH6SoONMOZk321sfOjAncFOm7qk=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To;
-	b=bcLdb2TUy2Av64SlVbSw0kjHXTpqXxllUth5NkFJMmpv5P4MX1I45FoLeDIh05sYC
-	 YSDDt69CSo+yexi/op9ONT/Pyby0IL1vNtbCvXvnsUWBPxG9Xm3cvg9LU8/w4HwYPQ
-	 CjC42LaOsTVZ2ZrBNZ9eIz3Bn9c9IszSfD6TES6k4uZUXI4Wz7a2SL8VwfuKgGF1gz
-	 It9xxxXnMeWhrfd9GW0bWxjYVOxW9vlmBDXHoZQWUU6oknsv/J2MTbu26FWglI4rVT
-	 uoyVYEQlJLBgAMAv7MeFK4tRrHFvvyZ1znXaBINbcVfd7qNVGzsKbRrOpx3nJdyfZm
-	 ytNU5TVifbKOg==
-Message-ID: <9825384b-8e36-4c16-a10c-8abe9d000b56@kernel.org>
-Date: Sat, 13 Jun 2026 21:10:13 +0200
+	s=k20260515; t=1781378522;
+	bh=AomepSk2v18tebTgq3o53YRWIJwH9repuBiHt07vM0I=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=EW+Gv6PSKgVG6I+L8pCSn0u+yOQ/SijE5pLXxhVnOD8MVFOZa4qUZuyom3PO9oTPh
+	 UmDpwWGURLzJrvkYVHvf/vYfHED9fvc6TIjAbxhJwFXWroUPC4gb8NY2oKbrzm7UwL
+	 32yo3YbB+IFswVYA/1ZG/LJxurlyNuZrRHsTbkchMKYgB5cYPRQdMkdTQMwMVGTu2K
+	 OBe+7H+EB0krkbrfsnoGM2swS5I8m1zupTG4Gw16hl2JAXgdmjDG38WeLJOIW80VuZ
+	 WGhkMeohzhXPVyWJcRwvGs2cFj4sibRWbvp7Mn6vi9RyObBKXhIwM1t8nZ/lJTI9vG
+	 iFZkFUsqqcGMg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 3/3] iio: adc: Fix incorrect reading when datarate
+ changed in single mode
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Jakub Szczudlo" <jakubszczudlo40@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260613190957.654798-4-jakubszczudlo40@gmail.com>
+References: <20260613190957.654798-4-jakubszczudlo40@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 13 Jun 2026 19:22:01 +0000
+Message-Id: <20260613192201.D43531F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: ti,tps6598x: add TPS6699x compatible
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, bryan.odonoghue@linaro.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260613162335.1490514-1-radhey.shyam.pandey@amd.com>
- <20260613-adorable-sticky-skua-6eec43@quoll>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20260613-adorable-sticky-skua-6eec43@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311390-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:radhey.shyam.pandey@amd.com,m:gregkh@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bryan.odonoghue@linaro.org,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311395-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jakubszczudlo40@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	FROM_NO_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8031667F689
+X-Rspamd-Queue-Id: 261A467F705
 
-On 13/06/2026 21:08, Krzysztof Kozlowski wrote:
-> On Sat, Jun 13, 2026 at 09:53:35PM +0530, Radhey Shyam Pandey wrote:
->  +  switch and Power Delivery controller.
->>  
->>    A variant of this controller known as Apple CD321x or Apple ACE is also
->>    present on hardware with Apple SoCs such as the M1.
->> @@ -19,6 +20,7 @@ properties:
->>    compatible:
->>      enum:
->>        - ti,tps6598x
->> +      - ti,tps6699x
-> 
-> Family compatibles are not allowed. Please use specific models,
-> expressing compatibility (my slides of DTS101 talkmight help you if
-> something is unclear).
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
 
+New issues:
+- [High] Incorrect boolean cast of I2C read errors causes infinite polling =
+loop and log spam.
+- [High] The return value of `ads1100_set_config_bits()` is ignored, maskin=
+g I2C write failures.
+- [High] Polling the ST/BSY bit will always time out because the device is =
+placed in continuous conversion mode.
+- [Medium] The initial dummy `i2c_master_recv()` ignores its return value.
 
-And where is any user of this? Why do we want this binding in the first
-place?
+Pre-existing issues:
+- [High] The read path returns stale data after waking from autosuspend.
+--
 
-Best regards,
-Krzysztof
+commit 4b2f1aca65a15af2d7f4a7cbbd2f3fc74aa691ce
+Author: Jakub Szczudlo <jakubszczudlo40@gmail.com>
+
+iio: adc: Fix incorrect reading when datarate changed in single mode
+
+When device is suspended and it is in single mode then changing
+datarate doesn't make it actual wait for new measurement, so to
+be sure that read after change is correct functions that changes
+datarate and gain will wait for new data.
+
+> diff --git a/drivers/iio/adc/ti-ads1100.c b/drivers/iio/adc/ti-ads1100.c
+> index 76de2466dc53b..2ec5c104afcf9 100644
+> --- a/drivers/iio/adc/ti-ads1100.c
+> +++ b/drivers/iio/adc/ti-ads1100.c
+> @@ -123,6 +123,36 @@ static int ads1100_get_voltage_microvolts(struct ads=
+1100_data *data)
+>  	return ads1100_get_voltage_milivolts(data) * MICRO / MILLI;
+>  }
+> =20
+> +static bool ads1100_new_data_ready(struct ads1100_data *data)
+> +{
+> +	int ret;
+> +	u8 buffer[3];
+> +
+> +	ret =3D i2c_master_recv(data->client, (char *)&buffer, sizeof(buffer));
+> +	if (ret < 3) {
+> +		dev_err(&data->client->dev, "I2C read fail: %d\n", ret);
+> +		return ret;
+
+[Severity: High]
+Since this function returns a bool, doesn't returning a negative error
+code implicitly cast it to true? If i2c_master_recv() fails, this will
+cause the caller to interpret the error as data being ready.
+
+> +	}
+> +
+> +	return FIELD_GET(ADS1100_CFG_ST_BSY, buffer[2]);
+> +}
+> +
+> +static int ads1100_poll_data_ready(struct ads1100_data *data)
+> +{
+> +	u8 buffer[3];
+> +	bool data_ready;
+> +	int datarate =3D data->ads_config->data_rate[FIELD_GET(ADS1100_DR_MASK,=
+ data->config)];
+> +   // To be sure we wait 5 times more than datarate
+> +	unsigned long wait_time =3D DIV_ROUND_CLOSEST(MICRO, 5 * datarate);
+> +
+> +	/* To be sure that polled value will have value after config change */
+> +	i2c_master_recv(data->client, (char *)&buffer, sizeof(buffer));
+
+[Severity: Medium]
+Is it safe to ignore the return value of this initial dummy read?
+
+If the bus is inaccessible or the device is disconnected, the error is
+silently masked before entering the polling loop.
+
+> +
+> +	return read_poll_timeout(ads1100_new_data_ready, data_ready,
+> +				 !data_ready, wait_time,
+> +				 ADS1100_MAX_DRDY_TIMEOUT, false, data);
+
+[Severity: High]
+If ads1100_new_data_ready() returns true due to the implicit error casting
+mentioned above, !data_ready evaluates to false. Won't this cause the
+read_poll_timeout() loop to never break, resulting in a full 7.5-second
+timeout while flooding the kernel log with dev_err messages?
+
+Also, the ST/BSY bit seems to permanently read as 1 (busy) when the device
+is in continuous mode. Since pm_runtime_resume_and_get() places the device
+in continuous mode via ads1100_runtime_resume(), won't this polling loop
+always hit the timeout anyway?
+
+> +}
+> +
+[ ... ]
+> @@ -185,21 +216,40 @@ static int ads1100_set_scale(struct ads1100_data *d=
+ata, int val, int val2)
+>  	if (gain < BIT(0) || gain > BIT(3))
+>  		return -EINVAL;
+> =20
+> +	ret =3D pm_runtime_resume_and_get(&data->client->dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+>  	ads1100_set_config_bits(data, ADS1100_PGA_MASK, ffs(gain) - 1);
+
+[Severity: High]
+Should we check the return value of ads1100_set_config_bits() here?
+
+If the I2C configuration write fails, the hardware configuration and the
+internal state remain unmodified, but the code will still proceed to poll
+for data using the old configuration. We should probably propagate the
+error and ensure pm_runtime_put_autosuspend() is still called on the error
+path.
+
+> =20
+> -	return 0;
+> +	ret =3D ads1100_poll_data_ready(data);
+> +
+> +	pm_runtime_put_autosuspend(&data->client->dev);
+> +
+> +	return ret;
+>  }
+> =20
+>  static int ads1100_set_data_rate(struct ads1100_data *data, int chan, in=
+t rate)
+>  {
+>  	unsigned int i;
+>  	unsigned int size;
+> +	int ret;
+> =20
+>  	size =3D data->supports_data_rate ? ARRAY_SIZE(ads1100_data_rate) : 1;
+>  	for (i =3D 0; i < size; i++) {
+> -		if (data->ads_config->data_rate[i] =3D=3D rate)
+> -			return ads1100_set_config_bits(data, ADS1100_DR_MASK,
+> +		if (data->ads_config->data_rate[i] !=3D rate)
+> +			continue;
+> +
+> +		ret =3D pm_runtime_resume_and_get(&data->client->dev);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		ads1100_set_config_bits(data, ADS1100_DR_MASK,
+>  					FIELD_PREP(ADS1100_DR_MASK, i));
+
+[Severity: High]
+Similar to ads1100_set_scale(), does ignoring the return value of
+ads1100_set_config_bits() mask I2C write failures here?
+
+> +		ret =3D ads1100_poll_data_ready(data);
+> +
+> +		pm_runtime_put_autosuspend(&data->client->dev);
+> +		return ret;
+>  	}
+> =20
+>  	return -EINVAL;
+
+[Severity: High]
+This isn't a bug introduced by this patch, but there appears to be a
+pre-existing issue in ads1100_get_adc_result().
+
+When ads1100_get_adc_result() is called, it wakes the device with
+pm_runtime_resume_and_get(), which places the device into continuous
+conversion mode. However, the driver immediately issues an I2C read
+without waiting for the first continuous conversion to complete:
+
+ads1100_get_adc_result() {
+    ret =3D pm_runtime_resume_and_get(&data->client->dev);
+    if (ret < 0)
+        return ret;
+
+    ret =3D i2c_master_recv(data->client, (char *)&buffer, sizeof(buffer));
+    ...
+}
+
+Doesn't this cause the read path to return stale data from the previous
+active session when waking from autosuspend?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260613190957.6547=
+98-1-jakubszczudlo40@gmail.com?part=3D3
 
