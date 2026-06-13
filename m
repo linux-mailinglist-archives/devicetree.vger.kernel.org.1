@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-311243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311244-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VzqdA2oGLWr7ZAQAu9opvQ
-	(envelope-from <devicetree+bounces-311243-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:27:38 +0200
+	id dCfdBu4HLWpnZQQAu9opvQ
+	(envelope-from <devicetree+bounces-311244-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:34:06 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BEA367DFBD
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:27:37 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF45C67DFD5
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:34:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=EIaKuSuI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311243-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311243-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="as/ZULja";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311244-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311244-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0E9ED300405A
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 07:27:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 71F7330488CA
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 07:33:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D9937BE9C;
-	Sat, 13 Jun 2026 07:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF11319852;
+	Sat, 13 Jun 2026 07:33:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6C11E505;
-	Sat, 13 Jun 2026 07:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6908A156C6A
+	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 07:33:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781335652; cv=none; b=PV5OtGxozuKWGZcFDMjIz+05oALAwtszfLBQzxC8U11BzEhHjtRTfzySKL/J2E/S/wRThTWhG0sofSMAbYbAJSMCJskJXq0BmyVd5BPHq8CtronsjCsIBQaF/+UNE1Pydoa+jtk2gEPM28A0BAFtTr6Hgxx7sfHL/HBHpBNZjdg=
+	t=1781336036; cv=none; b=AUac+gdNANT5yfnefx7VpQe3w+s5i3d23ffFpU+5PjLc7YxXwdzj1hzEijNDt6utJCGWjsP/rw8mxA7Z87HW+ojKvZbgjxr1I4/vmNqHs/H5emjQ1ltf6vo6Rcqm3AoGsbAepJfM8RC+BfCCng4F68C8CeaSdt30t7Wk0Xx/3+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781335652; c=relaxed/simple;
-	bh=eCSryfYMMZE9e/BMxgwzlEZhws6L9TyR4frOVIL56qs=;
+	s=arc-20240116; t=1781336036; c=relaxed/simple;
+	bh=PxX9K5ZDgh0h3OcsbaIRWuSqmui98K76LJSn1C9+4nA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=My1tdkHLMYLdxWhz/4RH9G4Ew5+Db7Y7ONFSGlcKQ4SqIcn37NEx5cgD6tBfIV6SzGyhFjBgJVw2tHd4J3X8sWc9bSGA1V8wpgIQuZO2+xZrO/onHOk8Dv5XXJr9hzxlXgrHG68exBTBbgcRTE+tc5mmu/dbNWYe1mUTifGmwL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EIaKuSuI; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFFD91F000E9;
-	Sat, 13 Jun 2026 07:27:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qAr0KL2pvkEpYLcMi+Q5ZH5b0sXBYTqcDLQOgXVGBENlvbEtfibMm+87rKLdT1LsWEAm9Nc6qafCWIAmp+n8a78m5WaoW6xE20K+PAF5T4HJNZlQW1nNQo5PuZuWnQ7UNUACTNxMEeHmXcVR2udaAQzm9KSGGBy818mXoU6NNLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=as/ZULja; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D4AD1F000E9;
+	Sat, 13 Jun 2026 07:33:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781335651;
-	bh=YQ9O70EUh8yM5UxCgZhjwJYJ8NL5TMMK2GFpz5MwoEE=;
+	s=k20260515; t=1781336035;
+	bh=ewzja9ztBOPyrsczWsX9X0mxKc4EcOTeQhgKRFEwSmo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=EIaKuSuIYHgO8I78NMB8rUtYv/j7O3Gmc8MbJUt0kBl4+wAulcWTS6kyGKLtU/2Yz
-	 aF8Qgi1ty9V6AcQYcCZQXB3q88H99De4tQ3OrGTfMho7oa37bIgkLChAhay6I4x+lL
-	 /wb2jwRjVNAm9P3DhJutuIy4Tzs7mg8rV1jVvKXQjdjIcWGRPl0HUy7xtiitR1wwrM
-	 9ucPfhfO/y74j/JfKPC7L3hhZHaBkK1kms4NOnCi06bQMDx3/6gMAgg0FkPJF3ho5P
-	 K1uYXoqZvSq1U6xIUqkXH0SnSZfhNtS531V7sg0D5pcNNkW8YPghdBEk+FnIUmYjE3
-	 XG344D0nMHwAg==
-Message-ID: <884ab54e-a8ff-4f93-aa6f-9e6a43832ee9@kernel.org>
-Date: Sat, 13 Jun 2026 09:27:26 +0200
+	b=as/ZULjaN3KQJ1AWFBOyUUGfrxS3kL3K8RK/IZNd1Xg8aEre0XHqGgrl7rA0Ra8kY
+	 R2ukAPQqDtzz4e3JmRD93b/WTUgwgr9NwRe2OXxGvhHEZcJ6t5u8LBxGEj9R2Y/Ns7
+	 b8BNrgI/sCMZiSnRWs+PKthdzPhkRPn2jMT7VV1ZSi39GQayjIFTnOo6Y+ka7S030u
+	 uNAAbjw4yKGvS9Ov/BTvjo5gWJQ39XIWtSYbZtA8DEOG52FRLC47/o/GCHkpBbILP3
+	 ztashKoyRk7RF7+Xv+EBXro2JW5wc83FKCiqWnv6uHztQc80iV6W8rs0AAFyT5RWkz
+	 vBwrQffbSx7pA==
+Message-ID: <fbaf1829-723b-4a87-882b-b164bb544912@kernel.org>
+Date: Sat, 13 Jun 2026 09:33:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,16 +55,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: power: maxim,max17042: Fix temp types to
- signed
-To: "Rob Herring (Arm)" <robh@kernel.org>, Hans de Goede <hansg@kernel.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
- Purism Kernel Team <kernel@puri.sm>, Sebastian Reichel <sre@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260612215315.1889039-1-robh@kernel.org>
+Subject: Re: [PATCH 2/7] ASoC: codecs: ES8389: Fix the issue about mclk_src
+To: Zhang Yi <zhangyi@everest-semi.com>
+Cc: alsa-devel@alsa-project.org, broonie@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ tiwai@suse.com
+References: <20260609-visionary-truthful-viper-ceff75@quoll>
+ <20260610100637.25568-1-zhangyi@everest-semi.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,61 +107,71 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20260612215315.1889039-1-robh@kernel.org>
+In-Reply-To: <20260610100637.25568-1-zhangyi@everest-semi.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-311244-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311243-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:hansg@kernel.org,m:m.szyprowski@samsung.com,m:sebastian.krzyszkowiak@puri.sm,m:kernel@puri.sm,m:sre@kernel.org,m:conor+dt@kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:zhangyi@everest-semi.com,m:alsa-devel@alsa-project.org,m:broonie@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:tiwai@suse.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0BEA367DFBD
+X-Rspamd-Queue-Id: AF45C67DFD5
 
-On 12/06/2026 23:53, Rob Herring (Arm) wrote:
-> The max17042 binding described "maxim,cold-temp" and
-> "maxim,over-heat-temp" as unsigned values, but in-tree DTS examples
-> use negative temperatures such as a cold threshold below zero degrees.
+On 10/06/2026 12:06, Zhang Yi wrote:
+>>> Fix the issue with incorrect modifications to mclk_src
+>>
+>> What issue? Your commit msgs are really poor - explain nothing. You just
+>> duplicated subject... and anything can be a fix.
 > 
-> Document the temperature properties as signed int32 values so the
-> schema matches existing DTS data and the driver can use signed helpers.
+> I'm sorry I didn't explain that clearly.
+> When the system needs to be configured to use the MCLK from the SCLK pin,
+> the old code still sets the relevant registers to use the MCLK from the MCLK pin.
+> I will include a more detailed description in future versions.
 > 
-> Assisted-by: Codex:gpt-5-5
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../devicetree/bindings/power/supply/maxim,max17042.yaml      | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>>>  	struct es8389_private *es8389 = snd_soc_component_get_drvdata(component);
+>>>  
+>>> -	ret = device_property_read_u8(component->dev, "everest,mclk-src", &es8389->mclk_src);
+>>
+>> Why are you changing implemented ABI?
 > 
+> In the old ABI, `mclk_src` was defined as `u8`, which meant that users could set `mclk_src` to any value in the DTS—such as `0x02`,
+> but the code wouldn't recognize what that value represented.
+> The actual purpose of `mclk_src` is to indicate whether `sclk` should be used as `mclk`.
+> So I've changed it to bool.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+You break ABI implemented by this driver, so you must clearly document
+it with reasons, why breaking is necessary. Honestly, without proper
+reason I would just answer that you must keep it backwards compatible.
 
 Best regards,
 Krzysztof
