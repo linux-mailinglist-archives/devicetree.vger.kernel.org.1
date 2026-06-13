@@ -1,228 +1,190 @@
-Return-Path: <devicetree+bounces-311275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311276-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GiwRABklLWqTcgQAu9opvQ
-	(envelope-from <devicetree+bounces-311275-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 11:38:33 +0200
+	id 9aHqKWYlLWrAcgQAu9opvQ
+	(envelope-from <devicetree+bounces-311276-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 11:39:50 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E62567E3F4
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 11:38:32 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ACEF67E400
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 11:39:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=HxEk5yFF;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311275-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311275-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=LrVZpZmo;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311276-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-311276-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A3619307E695
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:38:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 22A01302254C
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 09:39:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A1703803DA;
-	Sat, 13 Jun 2026 09:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 699F130FC1B;
+	Sat, 13 Jun 2026 09:39:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2072390985
-	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 09:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4166714A619
+	for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 09:39:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781343506; cv=none; b=mikhGbf9mK8igSvUXaBPz1m7tVs7YvHo51VdvnflbUaewLj/1Mx9LL+FR28MZDLX55Dy5zSfo+2UQyb9hfo1iK+PPPxv9u1BcImdKM883lZgKoOSxeataY3cC00nONVgW6Rpy3jeXX9/+K+xHIhaRQddLxbM/uJ2KReXjpxxM8o=
+	t=1781343588; cv=none; b=Qd21F/28e9Yqwm4SzozagdqU89PhNxTPPT4DMAAwtQ6b1jsOijo0LDgduB2M9TgbsnWUMHPBlnjihTOc+suEOAB3dQ3Y37hoDUnN2pQsDwEomKLetwOvNhG+NT/Y6AjcRUnyG2cOfW66bANbG7697dXVifU+lm5fwie/CVZI57Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781343506; c=relaxed/simple;
-	bh=1sX3QYXGeCW+Lv5W+F5sZN6MOeOyiU6kXOMbPlP1lIU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lxRRwjvNCC7hvdxMFOPb0hCSAORBcANEU8hfxezFtK6lApT7tJXlbfgaod8rrtA1lArVpQMfM5Jki3IjNNuOVuei5QzDAFiwwHtvS170T+LhaSBtJIFhrOf//b8Y7jbozgpqLzzB/NmaTErJtEUZAspmKKWwscSRHIav7Evqw24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HxEk5yFF; arc=none smtp.client-ip=209.85.221.47
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-45ef56d9b67so1415374f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 02:38:21 -0700 (PDT)
+	s=arc-20240116; t=1781343588; c=relaxed/simple;
+	bh=0S6TK3LPErCSFayvbXziaRw3zak6S+hHC3Py82gYe5k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Y9BbomREaIn5pI6DTxomOx3KdBQCUtqtPBV95bnEZsLNf/Ckoecpurbq/d639dyiz1GN2sBMelYu4V5dD4Fi/c07Fu19ZIrHsrnqInackuNbVu4b09qi+IJyUBMS7QgkuhjiMEWKonfhjmEnTx1wSQiPJhDSqNYXcZ/U5vCGITM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LrVZpZmo; arc=none smtp.client-ip=209.85.215.180
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-c86214eead7so789882a12.0
+        for <devicetree@vger.kernel.org>; Sat, 13 Jun 2026 02:39:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781343500; x=1781948300; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hSPcHOrJhwoZ6fKHrLRI2q23k/nKTvAXHvk0RF9YXD0=;
-        b=HxEk5yFFIHCL60zi4VZHltwsAt+3NMC9sn6fTSLyrnV0uPjMZ4SR0x0HOibXXqKiv3
-         BNKk235u+0aihneFdDNunIHGXe4yUKx6eqY9gTKmRpqXmEnyAI1b2VoK9mLrp0W9ZN+D
-         9bOOTNPZbIYyZnMV7te/p2A98cVQh6akK5eK+6v0YqIrLExJojsynl6qm2XToUF0aMTu
-         B001eorNLnxHZunY3yMVaZRqfQYz/mlQpc3R/B4kAt0Gly13hzOoE0m1rd3/e8EXHlYG
-         123R9VC8loM3hDbZKanz17ckf33YirB0hX9w4jcPDAx2xrAtayZJP/sCxvrnpVl7R/Et
-         2I9g==
+        d=gmail.com; s=20251104; t=1781343587; x=1781948387; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=A8ETabvgyXaefxG7MMag31gPiFKWJAnshBNUt1PyL3o=;
+        b=LrVZpZmoWjD31ixI2eUdC+jqUiDzxzaWu9vywdpfEdASU3i+sqYP7WfIEID0TvVPvA
+         +YBUBe1wudYGqhtauyx9v5S/oh1dE5M6xVc/zzvWhTcQUnjatb7UNUNg0UtUWIX+82UD
+         X7Vu5PgztI922u1/P38BHOKOdRr0BreUstMCES2fg0Ikk0cL8WHZX0wUQzijsn2lRoqg
+         tW1NcAhhE9aSjdktyv3wOg7bD5lKeeXAhaH03RkTAqx7eSwW3jRINRnU2xACXYuSaRRo
+         TOph6JqTl24C24yMgbKf5C3lJMw5cItrABlMftY86L+4IY3PIR9EDRrLcQJrf+4HucGg
+         Potg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781343500; x=1781948300;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=hSPcHOrJhwoZ6fKHrLRI2q23k/nKTvAXHvk0RF9YXD0=;
-        b=YQxZZVkwra7OmDIjANC8sPHsQA8Rxij3dqSA+6esWHRt80vcbYmKOiPEDlaap95Pvx
-         MeMOvmYIkFlAkFRiIi5/FL+SYQb2O8tT54suGHKSKSYAPOyLSQAq5jZRkzzErEx747YI
-         R1GrZJBbw/qSURMqFasztW2gJf5vQwZ4UsgrB87s0SK1VM6vtegdqK26DEeLi0a+fuC/
-         rhUCuSU1Sds9GUZi+zYKdiV4BLl5/aYVOpW2sf3kVSc00+RpTcCy+7AW2UVYPAoS5oYN
-         ohUhHuOUH/PY2RCXVN8zPRNmMGnDHzZzGYY3n+8DfVeLwB361aiWc/G3NHr3Vvj9zFb9
-         vNOg==
-X-Forwarded-Encrypted: i=1; AFNElJ+cDSoHf+H7cVbjbuBN+J41Zz/8+zuDHOQMUlSdD2wMyrM6b3Kr95UDWa5l6XEBR+lMwiaX6sbiHKiO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1pISHH76tRfhgHeiRvWjCJ3v2VgGcYNH7x01xHUpH2TJ1wOrb
-	2Jgmtgdrd+fqlkqscMQxvRNWHyNMeLKkwS4U2tlCUZS1wrhbYo4oF/iF
-X-Gm-Gg: Acq92OF6xRIMUCi/lZq9lUugX7mjgK8tH4uvl8QxOEPPVG780yGL6rl9PT+Ut8OE1wl
-	/o+0FybqUL3XsHNMEZIOejCz7idYhXg4nPZqxTGt14Dbs6u5UA1zgMqpOPskn9hDPrkpppk4YF0
-	aUFXa90cMuDv3HZMZJ7aOtGHY1mfQR6YwoPexP9rYJrq94K/qob3T1hG9eLBPpFgqBuXe8DDB8/
-	fIpvmUiOoDAt3YdDOCZy0brjblzk4w35zmV8QxjBFSmtDN/GVqC4pGOmoE6QW9iWYvInX2cXKD4
-	DwMPBlQq9bYv35mXOgG+O8IK6Auw56mA15yqssbYn7TBIsaaQKjVToI7TKOY6E752VAo/nnQrO+
-	3xgKcrc8i5MFOA8xpWrTJwcnvE4CbG1bwSVP/ehR0fc49idqvxRegRETI0Y9Pq7blxVrxwTcyls
-	tkOdNWAMRFlVLpFIWkmOE9BnH6VYWEWTnOwaICt3qylCRO
-X-Received: by 2002:a05:6000:2684:b0:45e:f228:830d with SMTP id ffacd0b85a97d-46077d40be6mr3398045f8f.23.1781343500099;
-        Sat, 13 Jun 2026 02:38:20 -0700 (PDT)
-Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f2e592csm14464581f8f.36.2026.06.13.02.38.18
+        d=1e100.net; s=20251104; t=1781343587; x=1781948387;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=A8ETabvgyXaefxG7MMag31gPiFKWJAnshBNUt1PyL3o=;
+        b=QYQu3o10Y9TjFiuXjqwV6Oxd3G7NQmf6pDU5pT5GQVyrlVC1iTXhuwsGooka3NC50Q
+         H+ZpSe/HPtQiJot/+ntoprRG2X8O77is1cvUIl9+R9ru4C7eGs/kG8Nb2IFcdDh1NySm
+         SAPobdHUiQQQ0bXUdbxbD3f1QjYkJbqaGpTi0EOkyK0fwmGN/Ii5OTXxgAXgQ1b5hznJ
+         MXHbCOwNlVB8jy75j3zHXaX+BwFCQklTlqGyNrNGSndyoem+kioOCndMZj5I5pTZpAG3
+         QBmNTVnQHZzghhAu1p6dO4g0uwuH7hhWM0Xw/bBd8Ft1ZNeaeRbrlQtn8w3P6AEeaxAd
+         B/1g==
+X-Forwarded-Encrypted: i=1; AFNElJ//AX7wtcENjHz3txhgM3aFLIZM5vioUcCUjgBgGvkKSHCUOv2cKPa57S0clWl/r7+wc6gEY2Ym/PpI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiHRMboro15ese1IP+ectP3TMbUAtdurNqXNIayqi+iEZAcq9Y
+	oRL2NkyL4oyg6DFn5/789Eqt2K2dk5nS060Yh0zgjYZuTbBeW+7hn4wC
+X-Gm-Gg: Acq92OFsA4EkLbyl5LcsKUDeQqjHnuryklef2BFz8vn3+Jt0O3DuaJNSuGaIH53Iuxb
+	Mi+pHXAXwHAUnw3Dmc91KqfIwLl/57RLcL4r8EwKDhHqDF8aFRkFvGvkQ5P2j/B429NYLQLVFWi
+	gcwrPYbYA0rd5yZVQUvSMHEaOOfgQj3b7UxOW1m52kvJQTS6GA8eYVozHQ+lyQO8SOPCxAlp3Y4
+	gwiZdt/XV+ph8XikUNjfxbKRT21R8RUl9QZe1soxPBdLzajd5cuHMEdi3+6yRtRVJKsvNYwdNqF
+	Fbvu2oQza1gkl6xPGBo7U1xo0RYHZdd0qzX/KxjWyi/ozmdhLCuZ61t3E3ppoJiEBDJF5sO9dPj
+	oQLSF7HMN+Z8mJzYgIV8/lbKt/ehNiCKqXPlLVR6L/ZuvrPIqFUwuOfTGileELPg8Z05bLwHBZO
+	2rZ7DIJxrJFDtb6bHlBdGEhDjIm6amkgK8kgsrbSF98tML
+X-Received: by 2002:a05:6300:6690:b0:3b4:640e:f6c7 with SMTP id adf61e73a8af0-3b7857debcdmr5756051637.14.1781343586541;
+        Sat, 13 Jun 2026 02:39:46 -0700 (PDT)
+Received: from Black-Pearl.localdomain ([49.207.61.84])
+        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-c8661a67603sm4155826a12.0.2026.06.13.02.39.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Jun 2026 02:38:19 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>, Hans de Goede <hansg@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Andre Przywara <andre.przywara@arm.com>, Jun Yan <jerrysteve1101@gmail.com>,
- Lukas Schmid <lukas.schmid@netcube.li>,
- =?UTF-8?B?Si4gTmV1c2Now6RmZXI=?= <j.ne@posteo.net>,
- Eric Biggers <ebiggers@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Luca Weiss <luca@lucaweiss.eu>, Sven Peter <sven@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v4 6/7] arm64: dts: allwinner: a100: reserve RAM for ATF
-Date: Sat, 13 Jun 2026 11:38:17 +0200
-Message-ID: <FE7Vh4yfTmGMM24i18Wwwg@gmail.com>
-In-Reply-To: <b428d57ba5464f1226daf099877f4c25fa4fc191.camel@gmail.com>
-References:
- <20260605070923.3045073-1-alexander.sverdlin@gmail.com>
- <_6NEZ78hR8a_3V2bhBAGoQ@gmail.com>
- <b428d57ba5464f1226daf099877f4c25fa4fc191.camel@gmail.com>
+        Sat, 13 Jun 2026 02:39:45 -0700 (PDT)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Subject: [PATCH v4 0/2] dt-bindings: mmc: st,sdhci: convert
+ STMicroelectronics SDHCI-ST MMC/SD Controller controller binding to YAML
+Date: Sat, 13 Jun 2026 09:39:38 +0000
+Message-Id: <20260613-st-mmc-v4-0-b3c385617c16@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFolLWoC/13N0Q6CIBTG8VdxXHcaHMSgq96jdeHwqGyhDZyrO
+ d89tGWuy++M35+JRQqOIjtnEws0uuj6Lo38kDHbll1D4Kq0GXIsuMQTxAG8t2ANL8rKqLrWkqX
+ Hj0C1e66h6y3t1sWhD6+1O4rl+knk3HwTowABuVW5RGGlkurS+NLdj7b3bEmM+GOKy40hcBCip
+ MSKCi39M7lnemMyMZ0+QkMVatJ7Ns/zG5md3FcKAQAA
+X-Change-ID: 20260327-st-mmc-c906ad95ff83
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Patrice Chotard <patrice.chotard@foss.st.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.15.2
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311275-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:alexander.sverdlin@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:wens@kernel.org,m:samuel@sholland.org,m:hansg@kernel.org,m:dmitry.torokhov@gmail.com,m:andre.przywara@arm.com,m:jerrysteve1101@gmail.com,m:lukas.schmid@netcube.li,m:j.ne@posteo.net,m:ebiggers@kernel.org,m:michal.simek@amd.com,m:luca@lucaweiss.eu,m:sven@kernel.org,m:mripard@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-input@vger.kernel.org,m:alexandersverdlin@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:dmitrytorokhov@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,sholland.org,gmail.com,arm.com,netcube.li,posteo.net,amd.com,lucaweiss.eu,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[lists.infradead.org,lists.linux.dev,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-311276-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ulf.hansson@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:peter.griffin@linaro.org,m:patrice.chotard@foss.st.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:charan.pedumuru@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:charanpedumuru@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8E62567E3F4
+X-Rspamd-Queue-Id: 1ACEF67E400
 
-Dne sobota, 13. junij 2026 ob 10:34:42 Srednjeevropski poletni =C4=8Das je =
-Alexander Sverdlin napisal(a):
-> Hi Jernej,
->=20
-> On Sat, 2026-06-13 at 10:22 +0200, Jernej =C5=A0krabec wrote:
-> > Dne petek, 5. junij 2026 ob 09:09:20 Srednjeevropski poletni =C4=8Das j=
-e Alexander Sverdlin napisal(a):
-> > > Add reserved-memory node carving out Trusted Firmware-A region spanni=
-ng
-> > > fixed 256K from physical address 0x40000000. Even though Allwinner ATF
-> > > itself passes the address range in the fdt to U-Boot, U-Boot currently
-> > > only reserves this memory internally, but doesn't carve out the region
-> > > in the fdt passed to Linux.
-> > >=20
-> > > Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> >=20
-> > NAK. It is job of boot procedure to properly inject TF-A reserved node.
-> > Any issue should be fixed there.
->=20
->=20
-> like in commit 0d17c865118881609ea7e381c7cadbb7979cc596
-> ("arm64: dts: allwinner: Add Allwinner H616 .dtsi file")
->     Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
->=20
-> ? ;-)
+This patch series converts the legacy text-based Device Tree binding for
+STMicroelectronics SDHCI-ST MMC/SD controller to DT schema (YAML) format.
 
-I was against that too.
+Note:
+The patch "dt-bindings: mmc: st,sdhci: convert to DT schema"
+depends on the patch "arm: dts: st: align node patterns with established
+convention". If the DT schema patch is applied before the DTS
+cleanup patch, `dtbs_check` will fail due to the presence of the removed
+properties in the existing DTS.
 
-It's time to be fixed in bootloader.
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v4:
+- st,sdhci: Add minItems: 1 to clock-names and reg-names to allow single-entry
+  configurations, fixing dtbs_check failures on nodes that omit the
+  optional 'icn' clock or 'top-mmc-delay' register region.
+- st,sdhci: Modify the commit message to explain the changes.
+- Link to v3: https://patch.msgid.link/20260508-st-mmc-v3-0-81c329ed28e8@gmail.com
+
+Changes in v3:
+- st,sdhci: Edit description of reg property. Modify reg-names. Add
+  "minItems" for clocks and clock-names properties.
+- Modify the commit message to match with the updated changes.
+- Link to v2: https://patch.msgid.link/20260503-st-mmc-v2-0-11ae3216d2ce@gmail.com
+
+Changes in v2:
+- Fix node name in DTS for the MMC to match with the estableshed convention.
+- st,sdhci: drop unnecessary properties, modify "reg", "reg-names" and
+  "clock-names" properties, include an allOf with $ref to mmc-controller.
+- Link to v1: https://patch.msgid.link/20260409-st-mmc-v1-1-4c54321c3535@gmail.com
+
+---
+Charan Pedumuru (2):
+      arm: dts: st: align node patterns with established convention
+      dt-bindings: mmc: st,sdhci: Convert to DT schema
+
+ Documentation/devicetree/bindings/mmc/sdhci-st.txt | 110 ---------------------
+ .../devicetree/bindings/mmc/st,sdhci.yaml          |  92 +++++++++++++++++
+ arch/arm/boot/dts/st/stih407-family.dtsi           |   4 +-
+ 3 files changed, 94 insertions(+), 112 deletions(-)
+---
+base-commit: cf2cd8efd046c561191b8541d32a8bfe845bf06b
+change-id: 20260327-st-mmc-c906ad95ff83
 
 Best regards,
-Jernej
-
->=20
-> > Best regards,
-> > Jernej Skrabec
-> >=20
-> > > ---
-> > > Changelog:
-> > > v4:
-> > > - new patch
-> > >=20
-> > >   arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 16 ++++++++++++++++
-> > >   1 file changed, 16 insertions(+)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/ar=
-m64/boot/dts/allwinner/sun50i-a100.dtsi
-> > > index 7cb06b19b5a5..d8391663fd1d 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> > > @@ -87,6 +87,22 @@ osc32k: osc32k-clk {
-> > >   		#clock-cells =3D <0>;
-> > >   	};
-> > >  =20
-> > > +	reserved-memory {
-> > > +		#address-cells =3D <2>;
-> > > +		#size-cells =3D <2>;
-> > > +		ranges;
-> > > +
-> > > +		/*
-> > > +		 * 256 KiB reserved for Trusted Firmware-A (BL31).
-> > > +		 * This is added by BL31 itself, but some bootloaders fail
-> > > +		 * to propagate this into the DTB handed to kernels.
-> > > +		 */
-> > > +		secmon@40000000 {
-> > > +			reg =3D <0x0 0x40000000 0x0 0x40000>;
-> > > +			no-map;
-> > > +		};
-> > > +	};
-> > > +
-> > >   	timer {
-> > >   		compatible =3D "arm,armv8-timer";
-> > >   		interrupts =3D <GIC_PPI 13
->=20
->=20
-
-
-
+--  
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
 
