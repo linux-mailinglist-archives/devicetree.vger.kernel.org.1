@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-311294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311295-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MogCCVoyLWpedwQAu9opvQ
-	(envelope-from <devicetree+bounces-311294-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 12:35:06 +0200
+	id dhqDOZkzLWqLdwQAu9opvQ
+	(envelope-from <devicetree+bounces-311295-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 12:40:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3E3F67E5C8
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 12:35:04 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61EE467E5DD
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 12:40:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iIgxlFgp;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311294-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311294-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=I7zjhANK;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311295-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311295-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 033F03002F47
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 10:35:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8BCC3300A488
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jun 2026 10:40:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712F6375F82;
-	Sat, 13 Jun 2026 10:34:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1652035C183;
+	Sat, 13 Jun 2026 10:40:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E8A2147E6;
-	Sat, 13 Jun 2026 10:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 059DF24BBEB;
+	Sat, 13 Jun 2026 10:40:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781346898; cv=none; b=pBEzM+BZjZtNliqVBD68+6+5b2WCGzY13Jmro3loY6/TECWkVWQrLDYqE/mxwOir1zkaTb/vDMFoQHLmNUc7YDqNUZMd3Xd3pBn3k4DRx+PUBfAkoaEFjUGtv8KfZd0SiS2JGdPsShcUqucWRpOibxqbMreyYXDCBKEsvZHxodc=
+	t=1781347221; cv=none; b=j0uWbscndajX4hHKa43cCXA3beZjiKibLfr4gjVgcNzFkTMRsF/P4gDqIYpfOvG0FWFV7d6naWVhd8589FX3W6cYpMYi8io7bjf+2pQfVaWLMarUievdYRZ9o3KBfRWXVF2reuFwyQVfVby+Xl/SIOF7KpQogcYRfej81rwSbv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781346898; c=relaxed/simple;
-	bh=vexnXRwpBZ9lV1zmyycUMB0Umd6DtQ/y9k4itCfMZQI=;
+	s=arc-20240116; t=1781347221; c=relaxed/simple;
+	bh=mKy9p4eFuhPMz20brPJiFpP1Z8heJuVJq5aehMn1Lps=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jF/0147NLxz7bjB7FskkbB//uuMG27M8bE+12OZmWdjTT1Y9ptp2o90oOI33rjRQcUOob6AibLCl/HLtTfZY3VIfxU5BztK59rLuXLAbz7ZC/3eGqtIqb0MjSZ+QBXr11mO5XzwJ6DCURsctkX3xbjWUDNT8WGRwgmXMKiGNxxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iIgxlFgp; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D3021F000E9;
-	Sat, 13 Jun 2026 10:34:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ch/spyVf+b9ECArGt25yz3lb/QVddy+w4r3pPVzQn4AJ/4yITS5LdYdnHxTn4HNoRwWyV9+/XLvkW6lW9zrZjQmJ6a/8vlf5Ye8zgJVw+egGDxoujDFBMlk+TEZRjLWjdH5cN9KjN++5lo4rccdfEYToJpcmamLyAzOm7S2ZGJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I7zjhANK; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A6301F000E9;
+	Sat, 13 Jun 2026 10:40:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781346897;
-	bh=lg3WoegOv0vBnnwAu+Z8akfRMouXpxKcBffoZTEtats=;
+	s=k20260515; t=1781347219;
+	bh=WN1KOQKsPjYjhDch4rXEbyYyLtKjQH60TZSpwPrEm6s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=iIgxlFgpgZVZ9+L88jhlEB1dMqhOyBXhAiVYHLMPZJvVHzqnj4Bn7maK7otIPvTDZ
-	 gwg41hZvzGlW6P4LwNvPObAyxqCv9XQ44FWQ7SyzA4FsQHsY5vRKLrLigrY4/2mqQf
-	 NrZmd+awydqlbI/4oJCp5nqGEU4VyTUvWjZEQt0+KpaMLdNS21KxIWObFxEBjuoU/u
-	 0NiohZK/8WTyn2+l7X18AS+l5AubflOmKq/0X0WhM6ayPVXeCWq1XDHsdDcQkoXfWK
-	 EHUMG8gOFPmntkehyPrRAXCWb85kRDHn7kz3Gyj7qrkeyvenaa7vuEYH7SOvLx15np
-	 ElsHS/Aw7sAOA==
-Date: Sat, 13 Jun 2026 12:34:54 +0200
+	b=I7zjhANK7zNYoaZWIrOcKSIGHeCi+H+wozB4cr90UcC21rcbLyYk3K5NT7bG5ft89
+	 bopJaMAnagWYHOgLDS/hfGtQUocU7Lp5+NF2ZWsJI/SnKf2MbWsoAz80s2iZe2okSl
+	 FaJUZgYKUzigBWdRs0ZfKTDxL3fOSDLCdud4imj+RnLkka6HAeZA+2HCzAC8i2PrdS
+	 0JuYhm7ionWP5MJge6+DyIJHXmpZXi3cmKI9ZCSdm8LTzwRaQvLUhabb4D81DvG/1l
+	 7CHDh5ZpYQrs3UTJxJ1JtDzX0j9SkJzWp1bpTBIMv2usUlbHATHxnJrgiLG48OJd+e
+	 VsnQX4nj+DVgQ==
+Date: Sat, 13 Jun 2026 12:40:17 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ajay Kumar Nandam <ajay.nandam@oss.qualcomm.com>
-Cc: Srinivas Kandagatla <srini@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: qcom,sm8250: add Shikra sound
- card compatibles
-Message-ID: <20260613-lively-shellfish-of-glory-b2c5af@quoll>
-References: <20260611112946.954172-1-ajay.nandam@oss.qualcomm.com>
- <20260611112946.954172-2-ajay.nandam@oss.qualcomm.com>
+To: Biju <biju.das.au@gmail.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 01/11] dt-bindings: reset: renesas,rzg2l-usbphy-ctrl:
+ Document RZ/G3L support
+Message-ID: <20260613-careful-vehement-loon-7e808b@quoll>
+References: <20260612143048.317907-1-biju.das.jz@bp.renesas.com>
+ <20260612143048.317907-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,7 +67,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260611112946.954172-2-ajay.nandam@oss.qualcomm.com>
+In-Reply-To: <20260612143048.317907-2-biju.das.jz@bp.renesas.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -75,60 +75,112 @@ X-Spamd-Result: default: False [-4.66 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:ajay.nandam@oss.qualcomm.com,m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mohammad.rafi.shaik@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:biju.das.au@gmail.com,m:p.zabel@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:biju.das.jz@bp.renesas.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:bijudasau@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-311294-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311295-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,oss.qualcomm.com];
+	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,glider.be,gmail.com,bp.renesas.com,vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email,quoll:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,quoll:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F3E3F67E5C8
+X-Rspamd-Queue-Id: 61EE467E5DD
 
-On Thu, Jun 11, 2026 at 04:59:45PM +0530, Ajay Kumar Nandam wrote:
-> Add Shikra sound-card compatible strings to the Qualcomm sound card
-> binding so DT can describe board-specific audio topologies:
+On Fri, Jun 12, 2026 at 03:30:29PM +0100, Biju wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
 > 
-> - qcom,shikra-cqm-sndcard
-> - qcom,shikra-cqs-sndcard
-> - qcom,shikra-iqs-sndcard
+> Add device tree binding support for the RZ/G3L (r9a08g046) USB PHY
+> controller. The RZ/G3L USB PHY block is similar to RZ/G3S, but each port
+> has an OTG controller, unlike RZ/G3S, which has an OTG controller only on
+> port 1.
 > 
-> Shikra EVK variants use different codec/interface combinations and DSP
-> processing paths. Describing these variants explicitly in DT allows the
-> machine driver to select the correct DAPM routes, controls, and clocking
-> behavior for each board.
-> 
-> Co-developed-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> Signed-off-by: Ajay Kumar Nandam <ajay.nandam@oss.qualcomm.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../reset/renesas,rzg2l-usbphy-ctrl.yaml      | 20 ++++++++++++++++++-
+>  1 file changed, 19 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml b/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
+> index c83469a1b379..788e467b38db 100644
+> --- a/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
+> +++ b/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
+> @@ -23,6 +23,7 @@ properties:
+>                - renesas,r9a07g054-usbphy-ctrl # RZ/V2L
+>            - const: renesas,rzg2l-usbphy-ctrl
+>        - const: renesas,r9a08g045-usbphy-ctrl # RZ/G3S
+> +      - const: renesas,r9a08g046-usbphy-ctrl # RZ/G3L
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+These last two should be just enum, by convention.
 
-Best regards,
-Krzysztof
+>  
+>    reg:
+>      maxItems: 1
+> @@ -50,6 +51,12 @@ properties:
+>      $ref: /schemas/regulator/regulator.yaml#
+>      unevaluatedProperties: false
+>  
+> +  regulator1-vbus:
+> +    type: object
+> +    description: Port 2 USB VBUS regulator
+> +    $ref: /schemas/regulator/regulator.yaml#
+> +    unevaluatedProperties: false
+
+Instead group them under 'regulators' node and use names matching the
+datasheet.
+
+> +
+>    renesas,sysc-pwrrdy:
+>      description:
+>        The system controller PWRRDY indicates to the USB PHY if the power supply
+> @@ -78,7 +85,9 @@ allOf:
+>        properties:
+>          compatible:
+>            contains:
+> -            const: renesas,r9a08g045-usbphy-ctrl
+> +            enum:
+> +              - renesas,r9a08g045-usbphy-ctrl
+> +              - renesas,r9a08g046-usbphy-ctrl
+>      then:
+>        required:
+>          - renesas,sysc-pwrrdy
+> @@ -86,6 +95,15 @@ allOf:
+>        properties:
+>          renesas,sysc-pwrrdy: false
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a08g046-usbphy-ctrl
+> +    then:
+> +      required:
+> +        - regulator1-vbus
+
+else:
+  properties:
+    regulators: false
+
+    Best regards,
+    Krzysztof
 
 
