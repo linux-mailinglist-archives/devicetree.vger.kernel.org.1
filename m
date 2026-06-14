@@ -1,249 +1,219 @@
-Return-Path: <devicetree+bounces-311453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311454-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GoXXNPPALmrX2QQAu9opvQ
-	(envelope-from <devicetree+bounces-311453-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 16:55:47 +0200
+	id mriqIK/CLmod2gQAu9opvQ
+	(envelope-from <devicetree+bounces-311454-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 17:03:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CCE668159E
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 16:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1FCC6815D0
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 17:03:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=npvdJCHk;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311453-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311453-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BFJrY+++;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311454-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311454-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 925F6301496D
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 14:54:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A18673008766
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 15:03:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9B23C65FD;
-	Sun, 14 Jun 2026 14:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E4C2F531B;
+	Sun, 14 Jun 2026 15:03:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FED13C5836;
-	Sun, 14 Jun 2026 14:54:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFCBD846A
+	for <devicetree@vger.kernel.org>; Sun, 14 Jun 2026 15:03:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781448886; cv=none; b=TNIEgy2XiB1ED+1141cWGXMSdPwb+trFpspyGcLMg0sTxKujGwV/fC6zymJiEPEr4YpQCNbHMCz3KCU33Jwhsd1Rp9WsGMpLUO1Lp67EYGilfmThUrqIUQM76mGoKDhJc5mo7qgKNVn+PEpduqJ+o+B0R7O8DoP0l19OUvpDkNY=
+	t=1781449388; cv=none; b=SCJ9atnT3rR8jaybUXmtWfl02aH47VoqpaUrpIz8LJOlkA0L1cv3VdUJ/itvH9qQ+KUKg+G0lK2+P2shfgiNyWlNFHRTUFqlJqCfJCWmoDwYTuTJ+7UipkLWX4xonLJIthO0rbVfKVBR4VpRF68Ck6bcsReZIdu4NJijESXVCUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781448886; c=relaxed/simple;
-	bh=qzzY6h8LqddyYWPBwcIxL3r9GsVRsycqq6spKH2tM+U=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=E72RdgfTZATv+oeUAufQcgPp7KEwcOKtz696fuCgYduM0se5hfJBfww3QbpKyg75lZhsqsU/e1CtJgXX6jhNzOEoNo7Bor/f9n/NNLYwq6CVc1FxSktTXd+O9KnCLfw7YlUgC1IVnMQWK4Z628YILKqCZRpyJPodsvgkposv1e8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=npvdJCHk; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6620C1F00A3A;
-	Sun, 14 Jun 2026 14:54:39 +0000 (UTC)
+	s=arc-20240116; t=1781449388; c=relaxed/simple;
+	bh=aClykzhyTmiMNDqUNj4vrNBPfVefjJVHQ2QJVE3yXak=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=SacF7fk1gyDChNCgwIBeuxR3tsUvN4l2B//fkIw6CJh03QYbGvme9dckrrSQM1Rr7dgOCT4ZP1avd07CLiIFxaxzsuHvE/gGEfQ6B752dmwmiwbOBlLOHMNSEVExrX4LBmMv5dvv6ID3ekU6w8DDYTIW5azFjmM7mvbZ/Y/ZVgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BFJrY+++; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BD0F1F000E9;
+	Sun, 14 Jun 2026 15:03:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781448884;
-	bh=Ei+Ds3JjVfneIYj2QV09C4uT4QbM2W46FkJMShUZQ74=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=npvdJCHkIJd+CHK+6608GAhps4AyxMVigJBXIYnVuBCiQC1Kwbvv4TYQ7Njeqlwsd
-	 jsgy3p1jiP99CKl2D7WcLdsiV4lqU5K7XhT/FtYMSM6fWyY8nzGCDCpxK0nZvzeXgr
-	 TtaKP8PZCKeoVuGILT7wVsKs/dvcKr/FPp6BJbS/PJ4kI/DesHOeEPgljh1dK4l3Q+
-	 GluMsrmA9uvSebaVrMe27gQNgLIwp2FLXMcnA5TKonSAy9Miiz1HlidJUoPqsQ8qQF
-	 tOC0M40DCUamraTityQae5F5fuj2ohe173CwYibhtdWz0dldgSHSlqP4n/hvXNxXH1
-	 jXcb+jCfRlDiw==
-Date: Sun, 14 Jun 2026 15:54:33 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jakub Szczudlo <jakubszczudlo40@gmail.com>
-Cc: linux-iio@vger.kernel.org, andy@kernel.org, antoniu.miclaus@analog.com,
- conor+dt@kernel.org, devicetree@vger.kernel.org, dlechner@baylibre.com,
- duje@dujemihanovic.xyz, jishnu.prakash@oss.qualcomm.com,
- jorge.marques@analog.com, krzk+dt@kernel.org, linusw@kernel.org,
- linux-kernel@vger.kernel.org, marcelo.schmitt@analog.com,
- mazziesaccount@gmail.com, mike.looijmans@topic.nl, nuno.sa@analog.com,
- robh@kernel.org, sakari.ailus@linux.intel.com, wens@kernel.org,
- joshua.crofts1@gmail.com
-Subject: Re: [PATCH v3 3/3] iio: adc: Fix incorrect reading when datarate
- changed in single mode
-Message-ID: <20260614155433.30a11301@jic23-huawei>
-In-Reply-To: <20260613190957.654798-4-jakubszczudlo40@gmail.com>
-References: <20260613190957.654798-1-jakubszczudlo40@gmail.com>
-	<20260613190957.654798-4-jakubszczudlo40@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1781449387;
+	bh=FULkRTdND4hWwkKmX/twtBSj44aqm5DubBSILFi7DT8=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=BFJrY+++BwiUzu72DDfodswdgZBVysogPhhvF7a+uGS9dMcRfADcH6JXVeGNnnJ5O
+	 sTGlWm7F9PuvuCvLXzsBcERoSBh3a9NF4KUCJZXnMoM2D4N6MTfS9PRMUUrvOj1OGF
+	 NSQW16iMa8Xgswsop+Y3c1KGsVB6KoE++VHirOSIIUqD5gC/YglxTA6zvFCMtB6ZOu
+	 3UPiapIMor5/3PgV3D8ELnPe3bfvD2rqjJQj5djsi5hokeDTCa5SSApZmxgFJK168c
+	 o+hlmDireYZq2e72P6EiTZ930hH0SMkyjAT70ciiTbd1wO8kXMMVx0vVhrSWMr82bQ
+	 qUDr5jbcNGmqw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: hamoa: Reserve low IOVA range
+ for Iris
+Reply-To: sashiko-reviews@lists.linux.dev
+To: "Daniel J Blueman" <daniel@quora.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260614145113.84243-2-daniel@quora.org>
+References: <20260614145113.84243-2-daniel@quora.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sun, 14 Jun 2026 15:03:07 +0000
+Message-Id: <20260614150307.7BD0F1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_RECIPIENTS(0.00)[m:jakubszczudlo40@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:antoniu.miclaus@analog.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dlechner@baylibre.com,m:duje@dujemihanovic.xyz,m:jishnu.prakash@oss.qualcomm.com,m:jorge.marques@analog.com,m:krzk+dt@kernel.org,m:linusw@kernel.org,m:linux-kernel@vger.kernel.org,m:marcelo.schmitt@analog.com,m:mazziesaccount@gmail.com,m:mike.looijmans@topic.nl,m:nuno.sa@analog.com,m:robh@kernel.org,m:sakari.ailus@linux.intel.com,m:wens@kernel.org,m:joshua.crofts1@gmail.com,m:conor@kernel.org,m:krzk@kernel.org,m:joshuacrofts1@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-311453-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311454-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:daniel@quora.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,dujemihanovic.xyz,oss.qualcomm.com,gmail.com,topic.nl,linux.intel.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NO_DN(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,jic23-huawei:mid]
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,quora.org:email,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3CCE668159E
+X-Rspamd-Queue-Id: D1FCC6815D0
 
-On Sat, 13 Jun 2026 21:09:57 +0200
-Jakub Szczudlo <jakubszczudlo40@gmail.com> wrote:
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-> When device is suspended and it is in single mode then changing
-> datarate doesn't make it actual wait for new measurement, so to
-> be sure that read after change is correct functions that changes
-> datarate and gain will wait for new data.
+Pre-existing issues:
+- [High] Missing NULL check on the return value of `of_translate_dma_region=
+()` causes use of uninitialized variables and a guaranteed NULL pointer der=
+eference.
+- [High] The parser fails to advance the `maps` pointer when skipping entri=
+es for other devices, leading to misaligned parsing and potential out-of-bo=
+unds memory reads.
+--
 
-Fix should normally be the first patch in the series to make it
-easier (or at least more obvious) to backport.
+commit 9504aa19b1b75ded98afc02b95aff54f7fd1ba37
+Author: Daniel J Blueman <daniel@quora.org>
 
-Also needs a fixes tag.
+arm64: dts: qcom: hamoa: Reserve low IOVA range for Iris
 
-A few things inline,
+On X1-family hamoa platforms, the Iris VPU reserves IOVA addresses
+below 0x25800000 (600MB), primarily for non-pixel buffers accessed
+via different Stream IDs. DMA into that range triggers unhandled SMMU
+page faults that cause spontaneous device reboots. This is readily
+reproduced with one or more browser tabs driving multiple concurrent
+video decode streams.
 
-thanks,
+Link: https://github.com/qualcomm-linux/kernel-topics/issues/1157#issuecomm=
+ent-4458933574
 
-Jonathan
-
-> 
-> Signed-off-by: Jakub Szczudlo <jakubszczudlo40@gmail.com>
-> ---
->  drivers/iio/adc/ti-ads1100.c | 55 ++++++++++++++++++++++++++++++++++--
->  1 file changed, 52 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ti-ads1100.c b/drivers/iio/adc/ti-ads1100.c
-> index 76de2466dc53..195394665cd1 100644
-> --- a/drivers/iio/adc/ti-ads1100.c
-> +++ b/drivers/iio/adc/ti-ads1100.c
-> @@ -123,6 +123,36 @@ static int ads1100_get_voltage_microvolts(struct ads1100_data *data)
->  	return ads1100_get_voltage_milivolts(data) * MICRO / MILLI;
->  }
->  
-> +static bool ads1100_new_data_ready(struct ads1100_data *data)
-> +{
-> +	int ret;
-> +	u8 buffer[3];
+> diff --git a/arch/arm64/boot/dts/qcom/hamoa.dtsi b/arch/arm64/boot/dts/qc=
+om/hamoa.dtsi
+> index 051dee0764167..ce96e7f8d8c10 100644
+> --- a/arch/arm64/boot/dts/qcom/hamoa.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/hamoa.dtsi
+> @@ -716,6 +716,17 @@ smem_mem: smem@ffe00000 {
+>  			hwlocks =3D <&tcsr_mutex 3>;
+>  			no-map;
+>  		};
 > +
-> +	ret = i2c_master_recv(data->client, (char *)&buffer, sizeof(buffer));
-> +	if (ret < 3) {
-> +		dev_err(&data->client->dev, "I2C read fail: %d\n", ret);
-> +		return ret;
+> +		/*
+> +		 * The Iris VPU reserves IOVA below 0x25800000 (600MB),
+> +		 * primarily for non-pixel buffers using different Stream IDs.
+> +		 * DMA into that range triggers unhandled SMMU faults and
+> +		 * spontaneous reboots, so reserve it to keep IOMMU
+> +		 * allocations above this boundary.
+> +		 */
+> +		iris_iova: iris-iova {
+> +			iommu-addresses =3D <&iris 0x0 0x0 0x0 0x25800000>;
 
-This is odd given it returns bool (and don't print ret = 1 or 2 here as that
-is rather unexpected in an error print.).
+[Severity: High]
+This isn't a bug introduced by this patch, but adding this iommu-addresses
+property exercises a pre-existing issue in
+drivers/iommu/of_iommu.c:of_iommu_get_resv_regions().
+
+If of_translate_dma_region() fails (e.g. returning OF_BAD_ADDR), it returns
+NULL without populating the local variables iova and length. The maps
+pointer is unconditionally overwritten with this NULL value:
+
+drivers/iommu/of_iommu.c:of_iommu_get_resv_regions() {
+    ...
+    maps =3D of_translate_dma_region(np, maps, &iova, &length);
+    ...
+}
+
+The code then evaluates if (length =3D=3D 0) using uninitialized stack garb=
+age.
+
+If it proceeds to the next iteration, the while (maps < end) condition
+evaluates as true because NULL (0) is less than the valid kernel pointer
+end. The next iteration then blindly dereferences the NULL pointer with
+be32_to_cpup(maps++), causing a kernel panic.
+
+Does the IOMMU core need to be fixed to handle a NULL return from
+of_translate_dma_region() before adding new users of iommu-addresses?
 
 
-> +	}
-> +
-> +	return FIELD_GET(ADS1100_CFG_ST_BSY, buffer[2]);
-> +}
-> +
-> +static int ads1100_poll_data_ready(struct ads1100_data *data)
-> +{
-> +	u8 buffer[3];
-> +	bool data_ready;
-> +	int datarate = data->ads_config->data_rate[FIELD_GET(ADS1100_DR_MASK, data->config)];
-> +   // To be sure we wait 5 times more than datarate
+[Severity: High]
+This is a pre-existing issue, but there is a second bug in
+drivers/iommu/of_iommu.c:of_iommu_get_resv_regions() related to
+iommu-addresses parsing that makes shared memory regions unsafe.
 
-Left over from writing the code?  If you want a comment then /* */ and
-get the indent right.
+If an entry's phandle belongs to a different device, the loop skips the
+translation block:
 
-> +	unsigned long wait_time = DIV_ROUND_CLOSEST(MICRO, 5 * datarate);
-> +
-> +	/* To be sure that polled value will have value after config change */
-> +	i2c_master_recv(data->client, (char *)&buffer, sizeof(buffer));
+drivers/iommu/of_iommu.c:of_iommu_get_resv_regions() {
+    ...
+    if (np =3D=3D dev->of_node) {
+        // ...
+    }
+    // missing else branch to advance maps pointer
+    ...
+}
 
-Check return value probably even though we don't care about the data.
+Because it lacks an else branch to advance the maps pointer by the required
+#address-cells + #size-cells, the next iteration erroneously reads the first
+cell of the skipped address as a new phandle.
 
-> +
-> +	return read_poll_timeout(ads1100_new_data_ready, data_ready,
-> +				 !data_ready, wait_time,
-> +				 ADS1100_MAX_DRDY_TIMEOUT, false, data);
-> +}
-> +
->  static int ads1100_data_bits(struct ads1100_data *data)
->  {
->  	return ads1100_data_rate_bits[FIELD_GET(ADS1100_DR_MASK, data->config)];
-> @@ -165,6 +194,7 @@ static int ads1100_set_scale(struct ads1100_data *data, int val, int val2)
->  {
->  	int microvolts;
->  	int gain;
-> +	int ret;
->  
->  	/* With Vdd between 2.7 and 5V, the scale is always below 1 */
->  	if (val)
-> @@ -185,21 +215,40 @@ static int ads1100_set_scale(struct ads1100_data *data, int val, int val2)
->  	if (gain < BIT(0) || gain > BIT(3))
->  		return -EINVAL;
->  
-> +	ret = pm_runtime_resume_and_get(&data->client->dev);
-> +	if (ret < 0)
-> +		return ret;
+This desynchronizes the entire parser, potentially causing it to interpret
+an address or size value as a matching device phandle. It would then call
+of_translate_dma_region() on misaligned data, risking an out-of-bounds
+memory read since there is no bounds checking against the end of the
+property buffer.
 
-Might be worth looking at the ACQUIRE macros in pm_runtime.h as they might simpify things
-a little.
+Should the parsing logic be corrected to properly advance the maps pointer
+for non-matching devices?
 
-> +
->  	ads1100_set_config_bits(data, ADS1100_PGA_MASK, ffs(gain) - 1);
->  
-> -	return 0;
-> +	ret = ads1100_poll_data_ready(data);
-> +
-> +	pm_runtime_put_autosuspend(&data->client->dev);
-> +
-> +	return ret;
->  }
->  
->  static int ads1100_set_data_rate(struct ads1100_data *data, int chan, int rate)
->  {
->  	unsigned int i;
->  	unsigned int size;
-> +	int ret;
->  
->  	size = data->supports_data_rate ? ARRAY_SIZE(ads1100_data_rate) : 1;
->  	for (i = 0; i < size; i++) {
-> -		if (data->ads_config->data_rate[i] == rate)
-> -			return ads1100_set_config_bits(data, ADS1100_DR_MASK,
-> +		if (data->ads_config->data_rate[i] != rate)
-> +			continue;
-> +
-> +		ret = pm_runtime_resume_and_get(&data->client->dev);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ads1100_set_config_bits(data, ADS1100_DR_MASK,
->  					FIELD_PREP(ADS1100_DR_MASK, i));
-> +		ret = ads1100_poll_data_ready(data);
-> +
-> +		pm_runtime_put_autosuspend(&data->client->dev);
-> +		return ret;
->  	}
->  
->  	return -EINVAL;
+> +		};
+>  	};
 
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260614145113.8424=
+3-1-daniel@quora.org?part=3D2
 
