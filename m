@@ -1,277 +1,211 @@
-Return-Path: <devicetree+bounces-311506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311508-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id q2mLEsEUL2r27gQAu9opvQ
-	(envelope-from <devicetree+bounces-311506-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 22:53:21 +0200
+	id 1YGEOZgVL2oV7wQAu9opvQ
+	(envelope-from <devicetree+bounces-311508-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 22:56:56 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A00FB682378
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 22:53:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63C1C6823C9
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 22:56:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=pxnSti5g;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311506-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311506-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=UtciRf7y;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311508-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311508-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7BB8D30045A6
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 20:53:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6005B300E73E
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 20:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC3F4329E44;
-	Sun, 14 Jun 2026 20:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F29B533508E;
+	Sun, 14 Jun 2026 20:56:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A4673033D6
-	for <devicetree@vger.kernel.org>; Sun, 14 Jun 2026 20:53:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6C9329E44;
+	Sun, 14 Jun 2026 20:56:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781470398; cv=none; b=lbyPu33Iu3jdop1muM/njF3YJl3v76CMUzHvGBUjVxym3tM8moCuc9Y/jSaKwBZmkEDXZ2AhLm2CE+g4uKEHcLj4RZJyUOMnjbV8cw9NQeRdwHTAy214D3frOj/LZfkvLpQL76631AnTXGlUzCIZColEtV1oyKLCahKU3EE5VI4=
+	t=1781470579; cv=none; b=PA7osv0d/aMEKIn7TKGceDuK2qmygDNjK2GsP53VfgUemfwH5kpyYZPYvs3WL1/RRIo+4UNrp3kRMDa58cTzWfzV+RoX9fRaOc+PPR+R4/g1jAmV4yCgvnBLcmzQvTNmqE5/bDz/O9MByjBl504Qx1NyV1eiSS1VlyO+IcXJgRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781470398; c=relaxed/simple;
-	bh=nSDzCXKT3jQnRAcphUHmXusud9gWL+o/NpnAWujBRdg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=Xy/j0VgEVI6G6sDKjaVHQKpeuWvwljgNTxkjyIGA/aE71TMu5sNL7lKhLQoniAGok3pCD5BFUhodk2ZoZyLCHU3PJQdUHJRkKt0y69OFf3WKWO43hw3HMqQ4n6PlE1quM8hvxPZ4TWwhuu8rj56Xr1kc7taPsYP9sjR4y4KPBJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=pxnSti5g; arc=none smtp.client-ip=209.85.221.177
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-59e8ededf4dso1708511e0c.2
-        for <devicetree@vger.kernel.org>; Sun, 14 Jun 2026 13:53:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781470396; x=1782075196; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XhzWVFBovbUbRqI9wqfpVReAjsX1CU4k99CUksmW2lE=;
-        b=pxnSti5gBAr0tPxM+BI89Ue/9l3vE08b2Fatruwe3xCaUxC3vdGVpx4aB/w/lvUNqT
-         bvTO+qPRv+btYkYv97KO7+NmspEZgAXaakHWlsV7u89Oipj/RRJW4CCtMz9LRzq+cKOX
-         NxWuaMkiyY6UJHcQ3UILaVjwU8hil8BcVaUJMq11Gukjpc5Zzif1m/Zyhf7rpQd0/JTG
-         RPhrh9n/gJbODdyr+/xu7bvjUGxqQK2C6szJOi366waMVeFuUaPQx1gY/ZtaFh77DlMM
-         l2Ggf26wgpjdulNOtOTMEIOX70yJvrBfLa24y2jbomD79xMSKTpgrhB4GQe3Q3yInS+l
-         euog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781470396; x=1782075196;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XhzWVFBovbUbRqI9wqfpVReAjsX1CU4k99CUksmW2lE=;
-        b=dNH1r2amkw6g6ptfnEt1wfopoNHAwG/lbAVFAQyMYPmQiv90CTwexAgt+FTFFAbIZZ
-         nt3PELQeORWcI09ge5xkCiAvHVpLjSNWyBIklzcK5bJI9nJnvw67LNT+ldD23i1wBjQQ
-         uIJ/TOvc5T4tQiUFh0R10q88Boikd/D3jROHKddrs74h5LoGCgLxiNd2vGgPZ21/irVs
-         /PBPuwBEDiBeFKp4uW4Bwa7d3WFFgyCsAbdlit+i+ffk7YljxXaPexh2uzQShnKenqs/
-         jZ7LFxH/e+8Tyhunqiv6O/s5cMCMdGH9V7YcM58VKbVQk7D2IQsAE7+cegRParjv5cqt
-         yiIA==
-X-Forwarded-Encrypted: i=1; AFNElJ/P8s/MGsTIrLWv82oX/y3AiossGuGiFAlajwgkkqcvOgY8TIAinYJqCv7N6qXHP8Y72RImNT4Qn2GB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxR2W5RBlDdpGJTK9RET9GBKYvARTkE/NRUdxujzTQsvqVUoGmz
-	4CszfDSLpZKF5YV1OJzdQvhtuBq3pSfnlz3lhym0BxTYQLAZtFvkmKQMNFdRSA==
-X-Gm-Gg: Acq92OGiQ98MkvL37nV5pi9XUeJ9sOsgSk2+tNFSH7Dmj3Ewvo65/+FeBA+XkUJdtFN
-	YYIw+AIFz5wjbvb3MlXy16TpYrOj5dQbeJR0o7ptWVAa4VVWxSrH6qQ5jlyi0aW7qiBXjRIq4Nj
-	t9JgLvsOSufUAksRCZzSDHkEMwq6q98CEUugeRTNWsuk2l72Oe2RKkToY/Xb7e4sAkXMzhHjsBR
-	f9fJX6l2dORSPJoUXdVgQAp7SzMTr5VDISLjhNMgB0XAxHA51gbGLT01/+7bF0BK3IEGVH4F7gP
-	knFe4DrcKd9yKRr45jNghmb6nQO+O0EHt/COiH93h/d+W9pvSsLsfBNndV3LQrGoiKySZjRv56P
-	y1LcK6gQRx7nSw4VXeZkwyIVNI58J3gYN/5mLChGWJ3Jr0j9AFYecsoR4HSIgZmt+elTNjxYZxe
-	6SDbbw03PD4e6MHg==
-X-Received: by 2002:a05:6122:3c53:b0:5a2:9154:2792 with SMTP id 71dfb90a1353d-5bb6c058399mr6140865e0c.7.1781470396353;
-        Sun, 14 Jun 2026 13:53:16 -0700 (PDT)
-Received: from localhost ([2800:bf0:82:11a2:7ac4:1f2:947b:2b6])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5bb900138e8sm2216269e0c.6.2026.06.14.13.53.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Jun 2026 13:53:16 -0700 (PDT)
+	s=arc-20240116; t=1781470579; c=relaxed/simple;
+	bh=k2TwFRVIGo3UAuKkEeMphcyHzyDfz5boVP642BqB7Cw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eMbyAm4mZTzw6huJlVhLenF/9cxV5IrIaHgHeN+bnWltMjfRXOfjELNYA/IeD02R9G89/nYxfLLdV2iWYYulUqkijQZAei0vUXW1gcU8Dis1HzNmRn09z0DNq0N7ibrhhs027RA/ZdMtybguEZ2NZoB9FFgljGn+rZwWcNfXQNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UtciRf7y; arc=none smtp.client-ip=185.246.84.56
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 62D801A391E;
+	Sun, 14 Jun 2026 20:56:15 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D89E260014;
+	Sun, 14 Jun 2026 20:56:14 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7971E106C8A10;
+	Sun, 14 Jun 2026 22:56:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1781470573; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=1s1sT/c6GY/MY7ZVSH3SGCUIl59lEqQG0Hqj2B2xQT8=;
+	b=UtciRf7y+G/d7pfxrZk1IlUaUbXDpp2k8dQXrpLeAjNf2O8ktUpBHnQAgy52argPBpPzsK
+	ePID2nUloK8aMJsFsRJA50rAKX+xuLB3wBNvdwdZAH29K6w9cZ3ftdI0xF8TKIagm7jMhh
+	a4AaPWhm1RH3e0FyXX4DFz0KMr0AKwxFAbNhoqRqHhdNDjtye7kkmXwj3M2cD0o2CHM/WW
+	hNRn9yS0sYXHEUZepQ9eLYnfZHGllSN/7kRptBXX5ZUkvoG9gr+UJmFFEJvSqBh/9Poopm
+	acBAjonS+9lmPIlUIT4emxxr1P9x6eWxGB3JzZAsnG0UeXXqVBdQDNdh2768dg==
+Date: Sun, 14 Jun 2026 22:56:06 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Akhil R <akhilrajeev@nvidia.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Saket Dumbre <saket.dumbre@intel.com>, Len Brown <lenb@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Arnd Bergmann <arnd@arndb.de>, Eric Biggers <ebiggers@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Jon Hunter <jonathanh@nvidia.com>,
+	Thierry Reding <treding@nvidia.com>, linux-tegra@vger.kernel.org,
+	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+	acpica-devel@lists.linux.dev, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v3 00/13] Support ACPI and SETAASA device discovery
+Message-ID: <2026061420560674ab6fb9@mail.local>
+References: <20260423085718.70762-1-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 14 Jun 2026 15:53:14 -0500
-Message-Id: <DJ92JT0CPSXJ.1113K3KLSRHH4@gmail.com>
-Cc: "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Linus Walleij" <linusw@kernel.org>, "Bartosz
- Golaszewski" <brgl@kernel.org>, "David Lechner" <dlechner@baylibre.com>,
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
- <andy@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH 1/5] dt-bindings: iio: adc: Add TI ADS126x ADC family
-From: "Kurt Borja" <kuurtb@gmail.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Kurt Borja" <kuurtb@gmail.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260612-ads126x-v1-0-894c788d03ed@gmail.com>
- <20260612-ads126x-v1-1-894c788d03ed@gmail.com>
- <20260613-loyal-azure-goldfish-cf6d54@quoll>
-In-Reply-To: <20260613-loyal-azure-goldfish-cf6d54@quoll>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260423085718.70762-1-akhilrajeev@nvidia.com>
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311506-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:krzk@kernel.org,m:kuurtb@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[kuurtb@gmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-311508-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:akhilrajeev@nvidia.com,m:Frank.Li@nxp.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:rafael@kernel.org,m:saket.dumbre@intel.com,m:lenb@kernel.org,m:linux@roeck-us.net,m:p.zabel@pengutronix.de,m:bjorn.andersson@oss.qualcomm.com,m:geert@linux-m68k.org,m:dmitry.baryshkov@oss.qualcomm.com,m:arnd@arndb.de,m:ebiggers@kernel.org,m:wsa+renesas@sang-engineering.com,m:miquel.raynal@bootlin.com,m:jonathanh@nvidia.com,m:treding@nvidia.com,m:linux-tegra@vger.kernel.org,m:linux-i3c@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-acpi@vger.kernel.org,m:acpica-devel@lists.linux.dev,m:linux-hwmon@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kuurtb@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:url,infradead.org:email,vger.kernel.org:from_smtp,bootlin.com:dkim,bootlin.com:url,bootlin.com:from_mime,mail.local:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A00FB682378
+X-Rspamd-Queue-Id: 63C1C6823C9
 
-Hi Krzysztof,
+Hello,
 
-On Sat Jun 13, 2026 at 1:54 PM -05, Krzysztof Kozlowski wrote:
-> On Fri, Jun 12, 2026 at 05:46:19PM -0500, Kurt Borja wrote:
->> +  ti,neg-refmux:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: |
->> +      Selects the negative voltage reference input:
->> +      0: Internal 2.5 V reference
->> +      1: AIN1 pin
->> +      2: AIN3 pin
->> +      3: AIN5 pin
->> +      4: AVSS pin
->> +    minimum: 0
->> +    maximum: 4
->> +    default: 0
->> +
->> +  ti,vbias:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description: Enables the level-shift voltage on the AINCOM pin.
->> +    default: false
->
-> There is no such syntax, drop.
+On 23/04/2026 14:26:59+0530, Akhil R wrote:
+> This patch series adds SETAASA device discovery to the I3C subsystem,
+> enabling support for SPD5118 temperature sensors found on DDR5 memory
+> modules. The changes also add ACPI support for all existing DAA
+> methods like SETDASA, SETNEWDA as well as I2C devices on I3C bus.
+> 
+> SPD5118 and similar devices on DDR5 memory modules differ from typical
+> I3C devices in their initialization. They use SETAASA broadcast CCC
+> instead of ENTDAA for address assignment, and per JEDEC specification,
+> are not required to have a Provisioned ID or implement standard device
+> information CCC commands (GETPID, GETDCR, GETBCR).
+> 
+> The series enables to describe all I3C and I2C devices on both Device
+> Tree and the ACPI table, using unified device property APIs throughout
+> the I3C core and the Synopsys DesignWare I3C master driver.
+> 
+> Please note that the series modifies drivers across multiple subsystems,
+> like Device Tree bindings, ACPI, I3C and HWMON.
+> 
+> v2->v3:
+>   * Fix maximum value and indent bit list for mipi-i3c-static-method.
+>   * Move I3C_ADDR_METHOD_* macros to dt-bindings header.
+>   * Drop ACPICA commit IDs, keep only the Link: tags.
+>   * Revert the change which proceeds to register other devices if SETAASA
+>     is not supported so that it aligns with the rest of the driver and to
+>     avoid the issues pointed by Sashiko.
+>   * Rework multiple commit messages.
+> 
+> v1->v2:
+>   * Added patch to remove 16-bit addressing support for SPD5118
+>   * Guard ACPI calls with #ifdef CONFIG_ACPI
+>   * Remove CONFIG_OF guard for of_alias_get_highest_id()
+>   * Mask mipi-i3c-static-method in the driver to select only valid values.
+>   * Proceed to register other devices if SETAASA is not supported.
+>   * Update commit message and links in the description of multiple commits.
+> 
+> 
+> Akhil R (13):
+>   dt-bindings: i3c: Add mipi-i3c-static-method to support SETAASA
+>   ACPICA: Read LVR from the I2C resource descriptor
+>   i3c: master: Use unified device property interface
+>   i3c: master: Support ACPI enumeration of child devices
+>   i3c: master: Add support for devices using SETAASA
+>   i3c: master: Add support for devices without PID
+>   i3c: master: match I3C device through DT and ACPI
+>   i3c: dw-i3c-master: Add SETAASA as supported CCC
+>   i3c: dw-i3c-master: Add a quirk to skip clock and reset
+>   i3c: dw-i3c-master: Add ACPI ID for Tegra410
+>   hwmon: spd5118: Remove 16-bit addressing
+>   hwmon: spd5118: Add I3C support
+>   arm64: defconfig: Enable I3C and SPD5118 hwmon
+> 
 
-The "default: false" syntax? Sure I'll drop.
+I'd really like to apply this but I would have preferred having an
+actual ack from Rob on patch 1. Also, you are going to have to rebase on
+the current i3c-next. Can you do this?
 
->
->> +
->> +  ti,idac1-pin:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: |
->> +      Selects the analog input pin to connect IDAC1:
->> +      0: AIN0
->> +      1: AIN1
->> +      2: AIN2
->> +      3: AIN3
->> +      4: AIN4
->> +      5: AIN5
->> +      6: AIN6
->> +      7: AIN7
->> +      8: AIN8
->> +      9: AIN9
->> +      10: AINCOM
->> +      11: No Connection
->> +    minimum: 0
->> +    maximum: 11
->> +    default: 11
->> +
->> +  ti,idac1-microamp:
->> +    description: Selects the current values of IDAC1.
->> +    enum: [0, 50, 100, 250, 500, 750, 1000, 1500, 2000, 2500, 3000]
->> +    default: 0
->> +
->> +  ti,idac2-pin:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: |
->> +      Selects the analog input pin to connect IDAC2:
->> +      0: AIN0
->> +      1: AIN1
->> +      2: AIN2
->> +      3: AIN3
->> +      4: AIN4
->> +      5: AIN5
->> +      6: AIN6
->> +      7: AIN7
->> +      8: AIN8
->> +      9: AIN9
->> +      10: AINCOM
->> +      11: No Connection
->> +    minimum: 0
->> +    maximum: 11
->> +    default: 11
->> +
->> +  ti,idac2-microamp:
->> +    description: Selects the current values of IDAC2.
->> +    enum: [0, 50, 100, 250, 500, 750, 1000, 1500, 2000, 2500, 3000]
->> +    default: 0
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  '#io-channel-cells':
->> +    const: 1
->> +
->> +  '#gpio-cells':
->> +    const: 2
->> +
->> +  gpio-controller: true
->> +
->> +  adc:
->> +    $ref: /schemas/iio/adc/ti,ads1263-adc2.yaml#
->
-> Not a separate device node. Fold into the parent... or explain in
-> commit msg. You have entire commit msg to explain odd things.
->
-> In that binding description you call it "independent", so it should have
-> its own SPI chip select? Why "independent" and part of this binding?
-> Maybe not independent, so basically part of this device?
+Thanks!
 
-It's independent in the sense that it is a proper subdevice on the same
-chip. It shares the serial interface but operates completely in
-parallel.
+>  .../devicetree/bindings/i3c/i3c.yaml          |  31 +-
+>  arch/arm64/configs/defconfig                  |   3 +
+>  drivers/acpi/acpica/rsserial.c                |   6 +-
+>  drivers/hwmon/Kconfig                         |   9 +-
+>  drivers/hwmon/spd5118.c                       | 119 +++---
+>  drivers/i3c/master.c                          | 354 +++++++++++++++---
+>  drivers/i3c/master/dw-i3c-master.c            |  66 ++--
+>  include/acpi/acrestyp.h                       |   1 +
+>  include/dt-bindings/i3c/i3c.h                 |   3 +
+>  include/linux/i3c/ccc.h                       |   1 +
+>  include/linux/i3c/master.h                    |  20 +-
+>  11 files changed, 463 insertions(+), 150 deletions(-)
+> 
+> -- 
+> 2.50.1
+> 
+> 
+> -- 
+> linux-i3c mailing list
+> linux-i3c@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-i3c
 
-I decided to add a subnode because other devices might request their
-io-channels and most importantly a different voltage reference might be
-connected to it.
-
-I'll clarify this in the commmit message on the next version. Although
-after seeing this submitted bindings [1], I wonder if it's a better
-approach to do something like
-
-	spi@0 {
-		mydevice@0 {
-			...
-			adc@0 { ... };
-			adc@1 { ... };
-		};
-	};
-
-Any thoughts?
-
-> Best regards,
-> Krzysztof
-
-Ack to the rest of comments.
-
-[1] https://lore.kernel.org/linux-iio/20260519-ad5529r-driver-v3-1-267c0731=
-aa68@analog.com/
-
---=20
-Thanks,
- ~ Kurt
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
