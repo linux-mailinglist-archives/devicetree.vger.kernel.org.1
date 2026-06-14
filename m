@@ -1,214 +1,255 @@
-Return-Path: <devicetree+bounces-311463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311468-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7XvvMjTaLmoT4wQAu9opvQ
-	(envelope-from <devicetree+bounces-311463-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 18:43:32 +0200
+	id JLr7MGLeLmqP5QQAu9opvQ
+	(envelope-from <devicetree+bounces-311468-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 19:01:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2727C6818B1
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 18:43:32 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B5E2681A64
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 19:01:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=MirJXAQL;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311463-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311463-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=U6XcdyJY;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311468-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311468-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7F1F730075DC
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 16:43:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3370030015A0
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jun 2026 17:01:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA87F3955E0;
-	Sun, 14 Jun 2026 16:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC9583CBE7C;
+	Sun, 14 Jun 2026 17:01:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9884C285C8B;
-	Sun, 14 Jun 2026 16:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D3C3CA499;
+	Sun, 14 Jun 2026 17:01:05 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781455408; cv=none; b=h0veM5oW0OsDddU9cfw9YxUG7DpFmr12qVpjS48HAtuIK0f2MFKdPh2NkO05XgM+RHinffi4sJuLgA1m/+qxDFQylNuxHxYTllnV02kFwNdBkhqMZ+15oiVmAmWTxLd/x2DPYl8876mfZ1MavDURIxhrMS5xeXa5BxgxObut4Sg=
+	t=1781456465; cv=none; b=Z3hwltwPC09K86t2f43O70voQ6lfVyeXgfpGlfJ5ssp8OqYX+DKH/KfAHQt7ATJuG2EGkII/T+h2ielBy+Q/SU+s0SCSiOz9diQLFMvlX5L/Spnun1ARyzwS/sRZCs1iXZZlDAfxBag99zj6OULxVriRMxOybUZ6qbVwqJWuGPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781455408; c=relaxed/simple;
-	bh=wE/6l/nRZHv2l0ccE0H+IabZswGjTrYZVjOhrGcQXu8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lxM8bzHYDnm5jcyBTuDUPesGq8ZD5GifzPNpXwXseVugZMa5b4q6JdSiORb4Z5VQsCsb2YJy3CXgoUelfdSa6KiCeNb6WtwH4lbw2oSO924iyrhws+1pPbSWfkxoTRacs4GryPziyFM6KdY76SbzvCgsFmbnRh4bxWRArrIAhFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MirJXAQL; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11A7B1F000E9;
-	Sun, 14 Jun 2026 16:43:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781455407;
-	bh=+zQw4+hL3j1CnxUb4Aobd/oKysJEMwCgjzSj2E8RaI8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=MirJXAQLQ1ouWWPrnVTflWkZrsaooPTYk5UZWheC234L3+YabMcEFvH0ZLVALK8bR
-	 WdvoCx1xPkAvCljhKgSgdc3awm2pBpWQnsrIUeKWgUIBjQueXd1R47vZTC7+c4akcs
-	 iKOmuiNKza1kytdk3lFP6L0k8pvwMPhXoMH5aHSl1llTs324nU0ASEOz0xSdMyQKR0
-	 kKdOiJyoxyaUWMajuBvgJf3i0iU37P5DcJFr6zJok8vvETXypyi54d+HiiTtq3undz
-	 D/lHRH+jQ2XKjV1WdwWoC2s9joQkbFOM6drW+3cd+QxbfhY6PtQSaDkZjicw2Z16yS
-	 VpytERaNj8s2g==
-Date: Sun, 14 Jun 2026 17:43:17 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
- dlechner@baylibre.com, jean-baptiste.maneyrol@tdk.com,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- heiko@sntech.de, conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
- andriy.shevchenko@intel.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V12 7/9] iio: imu: inv_icm42607: Add Accelerometer for
- icm42607
-Message-ID: <20260614174317.2a47f191@jic23-huawei>
-In-Reply-To: <20260611202607.85376-8-macroalpha82@gmail.com>
-References: <20260611202607.85376-1-macroalpha82@gmail.com>
-	<20260611202607.85376-8-macroalpha82@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1781456465; c=relaxed/simple;
+	bh=OB7aGFbniwE4XzaVoqPLH9T+eUI2xxGDdBfkp/BXjTM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=K4uniEyaONKcDHIaYPOtJlVYuViuIdSpLogJroY0/fmyVdtflwImr5tKxTw60Kk23XINzamxSTyNloUg2FVXyMEZoB+lNrujRkcuTVd54lDJ4UYuRQSKMASNPH0ouPv1aYD9pu+JBh5v6TsdtLPRn0iGe8dnxh9MBSz41JDPxsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U6XcdyJY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EAEE7C2BCB0;
+	Sun, 14 Jun 2026 17:01:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781456465;
+	bh=OB7aGFbniwE4XzaVoqPLH9T+eUI2xxGDdBfkp/BXjTM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=U6XcdyJYUd5DEui41pJ3KNRDotsshAUe0WJfh38kAFXecmq6jPS/I60YYVQVXRjvH
+	 aLTXs7LFduQqiMTVP6JHDKAFdDJb8KeTytSsr33y/Txg4jRCd+inxoFDH2epM6OQ/1
+	 r9D0ueSLIxDP4ENmEiCRMIZzdg74YCPwYOOIfZxOt2+OV3VsMAa/gM5UoEMho1dR7v
+	 Ke8RyUazUuv4V8yC/EsML4yfgeqVjk0eGyfwiBy+YpiynC2Iw9v1BjELzvTFu6sfRa
+	 uHZ+JOycd4LgeYXUWB/VOhefSQYIGSMBC1ULorHsa8l8cq3k26LILTVvcYpgqoIKDH
+	 QaYSr53NGdWDQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CEBF5CD98C7;
+	Sun, 14 Jun 2026 17:01:04 +0000 (UTC)
+From: Selvamani Rajagopal via B4 Relay <devnull+Selvamani.Rajagopal.onsemi.com@kernel.org>
+Subject: [PATCH net-next v5 00/15] Support for onsemi's S2500 10Base-T1S
+ MAC-PHY
+Date: Sun, 14 Jun 2026 10:00:16 -0700
+Message-Id: <20260614-s2500-mac-phy-support-v5-0-89874b72f725@onsemi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACHeLmoC/3WOOQ6DMBBFr4KmzkTGLFmq3COiADMER8K2PAaBE
+ HePIWlTfv3l/RWYvCaGe7KCp0mztiaK4pSA6mvzItRt1CCFLEUpUmRZCIFDrdD1C/LonPUB8y6
+ r6SZF11wyiF3nqdPzsfsEQwENzQGqr8Nj8yYV9tk922sO1i/HhSk/Gj9a8Yc25SiwpUhTaabK9
+ vqwhmnQZ2UHqLZt+wBG+Vqq1wAAAA==
+X-Change-ID: 20260601-s2500-mac-phy-support-4f3ae920fb73
+To: Andrew Lunn <andrew@lunn.ch>, 
+ Piergiorgio Beruto <pier.beruto@onsemi.com>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ Parthiban Veerasooran <parthiban.veerasooran@microchip.com>, 
+ Selva Rajagopal <selvamani.rajagopal@onsemi.com>, 
+ Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+ Jerry Ray <jerry.ray@microchip.com>, 
+ Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781456462; l=5680;
+ i=Selvamani.Rajagopal@onsemi.com; s=20260531; h=from:subject:message-id;
+ bh=OB7aGFbniwE4XzaVoqPLH9T+eUI2xxGDdBfkp/BXjTM=;
+ b=gUIWk4eWL9zySBQ+B52a6btsVB742eEdlROD1BExiktCpSDAG51pmrF/8EFwu8eZiDV9QANX7
+ B5/+sN/ZgjvB17+68bu9PHVWC3bU0ZEZPX+zSS4eoRJRni25U4FHRNF
+X-Developer-Key: i=Selvamani.Rajagopal@onsemi.com; a=ed25519;
+ pk=5QRdM0HS/LGWWcUZZ9hVfZ+qbPQGZCumcTXOiN7Fyug=
+X-Endpoint-Received: by B4 Relay for
+ Selvamani.Rajagopal@onsemi.com/20260531 with auth_id=803
+X-Original-From: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+Reply-To: Selvamani.Rajagopal@onsemi.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:andriy.shevchenko@intel.com,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-311468-lists,devicetree=lfdr.de,Selvamani.Rajagopal.onsemi.com];
+	FORGED_RECIPIENTS(0.00)[m:andrew@lunn.ch,m:pier.beruto@onsemi.com,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:parthiban.veerasooran@microchip.com,m:selvamani.rajagopal@onsemi.com,m:richardcochran@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jerry.ray@microchip.com,m:Selvamani.Rajagopal@onsemi.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[lunn.ch,onsemi.com,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,microchip.com,lwn.net,linuxfoundation.org];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-311463-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[Selvamani.Rajagopal@onsemi.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,intel.com,hotmail.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2727C6818B1
+X-Rspamd-Queue-Id: 0B5E2681A64
 
-On Thu, 11 Jun 2026 15:26:04 -0500
-Chris Morgan <macroalpha82@gmail.com> wrote:
+This patch series brings support for onsemi's S2500 that iss
+IEEE 802.3cg compliant Ethernet transceiver with an integrated
+Media Access Controller (MAC-PHY)
 
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add icm42607 accelerometer sensor for icm42607.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Really trivial stuff that I'd not have mentioned if you weren't
-doing a v13 for other reasons.
+Driver implementation is compatible and works with OA TC6
+framework that is already present. S2500 driver supports
+hardware timestamping.
 
-> ---
->  drivers/iio/imu/inv_icm42607/Makefile         |   1 +
->  drivers/iio/imu/inv_icm42607/inv_icm42607.h   |  34 ++
->  .../iio/imu/inv_icm42607/inv_icm42607_accel.c | 376 ++++++++++++++++++
->  .../iio/imu/inv_icm42607/inv_icm42607_core.c  |  61 +++
->  4 files changed, 472 insertions(+)
->  create mode 100644 drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
+Driver has support for running selftest and loopback tests.
+Through ethtool, it can provide traffic stats, rmon stats,
+and timestamping related traffic stats.
 
-> diff --git a/drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c b/drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
-> new file mode 100644
-> index 000000000000..5e260ddad641
-> --- /dev/null
-> +++ b/drivers/iio/imu/inv_icm42607/inv_icm42607_accel.c
-> @@ -0,0 +1,376 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright (C) 2026 InvenSense, Inc.
-> + */
-> +
-> +#include <linux/iio/iio.h>
-> +#include <linux/mutex.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "inv_icm42607.h"
-> +#include "inv_icm42607_temp.h"
-> +
-> +#define INV_ICM42607_ACCEL_CHAN(_modifier, _index, _ext_info)		\
-> +{									\
-> +	.type = IIO_ACCEL,						\
-> +	.modified = 1,							\
-> +	.channel2 = _modifier,						\
-> +	.info_mask_separate =						\
-> +		BIT(IIO_CHAN_INFO_RAW),					\
-> +	.info_mask_shared_by_type =					\
-> +		BIT(IIO_CHAN_INFO_SCALE),				\
-> +	.info_mask_shared_by_type_available =				\
-> +		BIT(IIO_CHAN_INFO_SCALE),				\
-> +	.info_mask_shared_by_all =					\
-> +		BIT(IIO_CHAN_INFO_SAMP_FREQ),				\
-> +	.info_mask_shared_by_all_available =				\
-> +		BIT(IIO_CHAN_INFO_SAMP_FREQ),				\
-Maybe for these, just go a bit long on line length (so 81 chars).
-I don't really care either way!
+As S2500 has an internal PHY, changes have been added
+to onsemi's PHY driver to support this device.
 
-> +	.scan_index = _index,						\
-> +	.scan_type = {							\
-> +		.sign = 's',						\
-> +		.realbits = 16,						\
-> +		.storagebits = 16,					\
-> +		.endianness = IIO_BE,					\
-> +	},								\
-> +	.ext_info = _ext_info,						\
-> +}
+---
+Changes in v5:
+ - kernel doc related changes in oa_tc.c, onsemi driver files and
+  oa tc6 rst file
+- Link to v4: https://lore.kernel.org/r/20260605-s2500-mac-phy-support-v4-0-de0fbc13c6d8@onsemi.com
+
+Changes in v4:
+ - Added return value comment for genphy_read/write_phy_mmd functions
+ - Added genphy_loopback_fixed_speed helper function to be used in
+   set_loopback callbacks
+ - Updated networking documentation for OA TC6 framework to elaborate
+   on what is expected in the ptp_clock_info structure for registration.
+ - added spi-max-frequency in YAML file based on alert from sashiko-bot
+ - Removed model/version from the onsemi driver's private structure as
+   they were useful as "information-only" data.
+ - Replaced the non-standard selftest with Linux's standard selftest
+   and made it as a separate patch
+ - Changed bit manipulation, shift operations to use macros so that
+   it is clean and readable.
+ - added new read_register and write_register apis with _mms postfix
+   so that MMS (memory map selector) can be given as a parameter.
+ - Fixed the wrong condition check with NETIF_F_RXFCS to subtract
+   FCS size from the length of the frame.
+
+To: Andrew Lunn <andrew@lunn.ch>
+To: Piergiorgio Beruto <pier.beruto@onsemi.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>
+To: Russell King <linux@armlinux.org.uk>
+To: David S. Miller <davem@davemloft.net>
+To: Eric Dumazet <edumazet@google.com>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>
+To: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
+To: Selva Rajagopal <selvamani.rajagopal@onsemi.com>
+To: Richard Cochran <richardcochran@gmail.com>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Simon Horman <horms@kernel.org>
+To: Jonathan Corbet <corbet@lwn.net>
+To: Shuah Khan <skhan@linuxfoundation.org>
+Cc: netdev@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-doc@vger.kernel.org
+Cc: Jerry Ray <jerry.ray@microchip.com>
+Signed-off-by: Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
+
+---
+Selvamani Rajagopal (15):
+      net: phy: Helper to read and write through C45 without lock
+      net: phy: Helper to modify PHY loopback mode only
+      net: ethernet: oa_tc6: Move oa_tc6.c to its own directory
+      net: phy: microchip_t1s: Use generic APIs for C45 read and write
+      net: ethernet: oa_tc6: Move constant definitions to header file
+      net: ethernet: oa_tc6: Support for hardware timestamp
+      net: ethernet: oa_tc6: Support for vendor specific MMS
+      net: ethernet: oa_tc6: read, write interface with MMS option
+      net: phy: ncn26000: Support for onsemi's S2500 internal phy
+      net: phy: ncn26000: Enable enhanced noise immunity
+      net: phy: ncn26000: Support for loopback
+      onsemi: s2500: Add driver support for TS2500 MAC-PHY
+      onsemi: s2500: Added selftest support to onsemi's S2500 driver
+      dt-bindings: net: add onsemi's S2500
+      Documentation: networking: Add timestamp related APIs to OA TC6 framework
+
+ .../devicetree/bindings/net/onnn,s2500.yaml        |  67 +++
+ Documentation/networking/oa-tc6-framework.rst      |  80 +++
+ MAINTAINERS                                        |  13 +-
+ drivers/net/ethernet/Kconfig                       |  12 +-
+ drivers/net/ethernet/Makefile                      |   2 +-
+ drivers/net/ethernet/microchip/lan865x/lan865x.c   |  61 +-
+ drivers/net/ethernet/oa_tc6/Kconfig                |  16 +
+ drivers/net/ethernet/oa_tc6/Makefile               |   7 +
+ drivers/net/ethernet/{ => oa_tc6}/oa_tc6.c         | 465 +++++++++------
+ drivers/net/ethernet/oa_tc6/oa_tc6_ptp.c           |  67 +++
+ drivers/net/ethernet/oa_tc6/oa_tc6_std_def.h       | 190 +++++++
+ drivers/net/ethernet/oa_tc6/oa_tc6_tstamp.c        | 201 +++++++
+ drivers/net/ethernet/onsemi/Kconfig                |  21 +
+ drivers/net/ethernet/onsemi/Makefile               |   7 +
+ drivers/net/ethernet/onsemi/s2500/Kconfig          |  22 +
+ drivers/net/ethernet/onsemi/s2500/Makefile         |   7 +
+ drivers/net/ethernet/onsemi/s2500/s2500_ethtool.c  | 354 ++++++++++++
+ drivers/net/ethernet/onsemi/s2500/s2500_hw_def.h   | 225 ++++++++
+ drivers/net/ethernet/onsemi/s2500/s2500_main.c     | 632 +++++++++++++++++++++
+ drivers/net/ethernet/onsemi/s2500/s2500_ptp.c      | 233 ++++++++
+ drivers/net/phy/dp83867.c                          |  11 +-
+ drivers/net/phy/microchip_t1s.c                    |  32 +-
+ drivers/net/phy/ncn26000.c                         |  63 +-
+ drivers/net/phy/phy_device.c                       |  75 +++
+ include/linux/oa_tc6.h                             |  36 ++
+ include/linux/phy.h                                |   6 +
+ 26 files changed, 2655 insertions(+), 250 deletions(-)
+---
+base-commit: 2319688890d97c63da423a3c57c23b4ab5952dfc
+change-id: 20260601-s2500-mac-phy-support-4f3ae920fb73
+
+Best regards,
+--  
+Selvamani Rajagopal <Selvamani.Rajagopal@onsemi.com>
 
 
-> +
-> +static int inv_icm42607_accel_write_odr(struct iio_dev *indio_dev,
-> +					int val, int val2)
-> +{
-> +	struct inv_icm42607_sensor_conf conf = INV_ICM42607_SENSOR_CONF_INIT;
-> +	struct inv_icm42607_state *st = iio_device_get_drvdata(indio_dev);
-> +	struct device *dev = regmap_get_device(st->map);
-> +	unsigned int idx;
-> +	int ret;
-> +
-> +	for (idx = 5; idx < ARRAY_SIZE(inv_icm42607_accel_odr); ++idx) {
-> +		if (val == inv_icm42607_accel_odr[idx][0] &&
-> +		    val2 == inv_icm42607_accel_odr[idx][1])
-> +			break;
-> +	}
-> +	if (idx >= ARRAY_SIZE(inv_icm42607_accel_odr))
-> +		return -EINVAL;
-> +
-> +	conf.odr = idx;
-> +
-> +	PM_RUNTIME_ACQUIRE_AUTOSUSPEND(dev, pm);
-> +	ret = PM_RUNTIME_ACQUIRE_ERR(&pm);
-> +	if (ret)
-> +		return ret;
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	ret = inv_icm42607_set_accel_conf(st, &conf, NULL);
-> +	if (ret)
-> +		return ret;
-
-return inv_icm....
-
-> +
-> +	return 0;
-> +}
 
