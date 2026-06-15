@@ -1,85 +1,53 @@
-Return-Path: <devicetree+bounces-311823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311827-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id U8riCzrLL2rWGQUAu9opvQ
-	(envelope-from <devicetree+bounces-311823-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:51:54 +0200
+	id /Xs5EsLLL2okGgUAu9opvQ
+	(envelope-from <devicetree+bounces-311827-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:54:10 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C573C6852EA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:51:53 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2F36685314
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:54:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=U628W6tx;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311823-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311823-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CfUH64ji;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311827-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311827-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 54229303298E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 09:51:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 408C0300748C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 09:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C19AE3D25B6;
-	Mon, 15 Jun 2026 09:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA583DB319;
+	Mon, 15 Jun 2026 09:54:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE2230D40C
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 09:50:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524313BBFBA;
+	Mon, 15 Jun 2026 09:54:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781517059; cv=none; b=TGRCYEttKhfNA+JiZ+fdCZSoP01YQsy/FQiaKB6HY/l4leCs6o48nwjwPiV19KP7K63QCJOHsdcpy6rbBfY6yeyKP/9gZ34gpXqyw2mN3YYuflhtYVzYetHm5xN0bxdWig1IyQbrt1mwuMmwJ86VtI0G3icOBdDsUsQCvZH1+60=
+	t=1781517248; cv=none; b=HF7iEsFmEpeuheEEJH0U+141NpOrokd0g/Z4ZxUJ1t4vwiToLQX+RwyWwHYJ+ivHB7zkziK74n2FwaeNMsacaJXMm4tziAfGDyNTbGHcHFdMJOwHSa791KyHmDZ5xT2FXRxIWutW9a0tNJvK9etKNYlqOl8UpqKsonn8wyO68Pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781517059; c=relaxed/simple;
-	bh=1Xh/9jpvgqev0sUOAVugYLiqyO+1oxRfC2+ya3TNrUM=;
+	s=arc-20240116; t=1781517248; c=relaxed/simple;
+	bh=peZm/dA/V1NACXdcWFNQYDztQuC0ZGTliMu9Rdw8CFM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m7mXLbqVXbuQMBc2b8flxWOmyzbLpm7eHVfyzuOvrN+KC1OL9o1sejwmIB8lhiQsKwM+o4cgtiurQ8N4ThcKfreh5wiDns7p9AvtwudV+JjHwjUPmZ+x8n34CgmemfZxOtbxCym7Wy2vSf51TmwyAL9TRyfFV5j/Dzpe7BIgqRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U628W6tx; arc=none smtp.client-ip=209.85.221.47
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-45ef616daf6so3521931f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 02:50:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781517057; x=1782121857; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1Xh/9jpvgqev0sUOAVugYLiqyO+1oxRfC2+ya3TNrUM=;
-        b=U628W6txnXyDJFsRtuyotITDlzy3czwEWKAMQlGqkvW4u1JzNViylapaRD1JybGLDM
-         uPnB5pIlzCLhrSWfQZIsqQSDO+MbHHq1b4lHvwK5zM/byxG9e+foTfA11BoWwqvsFxV8
-         a5mREMxjJqZyGtPBxjPuLQcGjf/GTgLcEU3gEVTLMIwtkJ+jouUFa0F9Eo89bFIBH7xI
-         eUDruFAOFrlegD/pGwyg354c2Se5zLtMw2II/Z3Jg+/lUfmFV7+J7ilUeZxJD6g3JLb6
-         XRPNauVYxUupZJ9c8lMqtGsNEZUbdo6QwuajXUVzYlfdfztIZUNMi45SpUKDCkk6l1bB
-         Yf9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781517057; x=1782121857;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1Xh/9jpvgqev0sUOAVugYLiqyO+1oxRfC2+ya3TNrUM=;
-        b=oY7aBF2k3zswCWcVhW8u7fhR8Ieet+YKWRo6kp9vfj8AdwxFex5imIBI7ZkS77/Cgi
-         GIGt5TtmU8q1U3jWtx6bVomuBTmSaNQavq1O/g9e/ds4FdoIZny9QqHfYdVx0SO5h6Aa
-         uOL8QEyOZ/ZNzyLFVc2Zioa8YT8WuvQwnC5oGPz3+9f6YGI5foVUA6HqFxC6RY9lSWrr
-         4Ws1XH4F2e6JD5zYtolHiyhc57vMSs3PJXJLbpSjkBVEUbzTLKeiu+BryObthz5657CK
-         fFd/T7xRMYmpM1CGJq0CbHa9Do94N3XQOL1Boz4iF302Xkv9GvfpcotSp6aqjp05kVqh
-         hNQQ==
-X-Forwarded-Encrypted: i=1; AFNElJ8odM68gei53oB6L3wHToQLs0SCZ8WUoz1AkuE95STq8S6Z7nGTd1mLhwSHv9HrNSvPT9VRZ7U3XNkY@vger.kernel.org
-X-Gm-Message-State: AOJu0YxImq2NiepP3RtXIZto39NdYcrlGrnI+Yqg2QmGxOXQ8zn7sSyg
-	AtY7v3hErbUv0dsebQ9c+cy2V6RkT7biCnxYF+XvjBxHL8cfgeNDbvyM
-X-Gm-Gg: Acq92OHrktdi0a5tBYaJieymh2VtOPYxX+sGi6Ujh9iQDa1RPRJAe77bGtMYgYLuLXx
-	8TToCshMMJ6dqtTPv3tXxZsVt6RI0x4ViZBmhjhx5yVh3KvviLQAUFGpYtK0qUOhpW+LrKiQY57
-	r0e+tBruzvx0Vs5TMFdRnEHlo1+hmTupqtrBVtrRjmYzmw6UVV+ZrDgjFILVbnv+cUsRyjbY06V
-	PI2uOVTtLPbZ2oJBc3Ym1kPvvPtXAoZFjBQ482qvS/UPEYiXN864IOeeJKIe0nDbRcMBdX/Ji3c
-	q4l/vgg9HwueodI+J65cDY661c3iwzISY8HWKbyKAzc5QOgVYRnOd8l3DTaOMKpufKwOB4IAURT
-	8noxqhUCPZGcadKT9wN5YUa4wBGjHp1QSlZADX5eXqpU692pvkZxSNDRRJC4EeYnu8nAZnvONBh
-	sBDJNi2SnVKwfQ4cMCBBsfi3hSoi4iClVFqTGgxQFeXQDlbzoBC63JYQJcIv1ZqshME1bbU0VNz
-	BlOox+bXigvMmBRSFa4aY53CQ==
-X-Received: by 2002:a05:6000:1845:b0:45e:e509:d2fa with SMTP id ffacd0b85a97d-4606da69cd2mr18394666f8f.3.1781517056750;
-        Mon, 15 Jun 2026 02:50:56 -0700 (PDT)
-Received: from ?IPV6:2001:9e8:f12e:9401:c875:96a4:7b6f:72fd? ([2001:9e8:f12e:9401:c875:96a4:7b6f:72fd])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f2c3fcfsm29186872f8f.26.2026.06.15.02.50.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jun 2026 02:50:56 -0700 (PDT)
-Message-ID: <f7cee53f-c1a5-4780-9aef-a3c791b9f7f8@gmail.com>
-Date: Mon, 15 Jun 2026 11:50:55 +0200
+	 In-Reply-To:Content-Type; b=RvbZiG7iEZc4q/F6+X/cgU7wa4/8W31XE0SA/efuFwdDT29wUss1xTBeZY8RtPF2PwnfkTkDV4s83zvIws/KpZMvTs3havAsccKeS4mQJuDXPwW/qALmfrLzMhNZUMz0z7gW65Bat4u8bU3KyhtImKzxmEFi6Dd3VZvfC9L05kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CfUH64ji; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91ACB1F000E9;
+	Mon, 15 Jun 2026 09:54:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781517246;
+	bh=sFHjNnWDW/UEjcBAZ8oTGaGh+/904qdh9hRt8q+m+2k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=CfUH64ji4H9oGcYm1b7GpH9cq745QX3p0TW/wSYa43ibNjqvpx+Hd/McMrmvC3RZP
+	 fKKlFUWBKd8fCSQFcEue74uZcbpsIOc5vPi0r5bkB+XtlnaNE/sAJMnYoUHWBu3Ue4
+	 Gwj0UV4h9AXhSDoIYQ8BTwcMYtwUEy3k/tkPsuHphxDwhr+gcHH5NqS0cL+O7fKu47
+	 f5NHy1XgHmuF1GnLMgvoVNZbyt+41qW5X+KM4SlpHWXN4np1I4Y2bo4CSQPJLCWO9j
+	 ujnzgkkZ50RhQ551DWVvzeN0I9g6Rtmj3BRfzZ8cEmRdMX34R67dwkB0c/3W5T0COd
+	 WgiMNfuhfwb9g==
+Message-ID: <f21486ea-db76-4b71-9b68-86c861b0be53@kernel.org>
+Date: Mon, 15 Jun 2026 11:54:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,82 +55,148 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 2/2] net: pse-pd: add Realtek/Broadcom PSE MCU
- driver
+Subject: Re: [PATCH] of: property: Fix of_fwnode_get_reference_args() with
+ negative index
+To: Alban Bedel <alban.bedel@lht.dlh.de>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@kernel.org>, driver-core@lists.linux.dev,
+ linux-kernel@vger.kernel.org,
+ Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+References: <20260611102806.2643869-1-alban.bedel@lht.dlh.de>
+ <20260615-obedient-axolotl-of-argument-fb55ef@quoll>
+ <20260615113330.11406fbd@OMT-CWNXR4TFW5-LHT>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: kory.maincent@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- daniel@makrotopia.org, bjorn@mork.no, Simon Horman <horms@kernel.org>
-References: <20260612132944.460646-3-jelonek.jonas@gmail.com>
- <20260615090733.739423-2-horms@kernel.org> <ai_ITHd_xxt7an4q@pengutronix.de>
-From: Jonas Jelonek <jelonek.jonas@gmail.com>
-In-Reply-To: <ai_ITHd_xxt7an4q@pengutronix.de>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <20260615113330.11406fbd@OMT-CWNXR4TFW5-LHT>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-5.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-311823-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:o.rempel@pengutronix.de,m:kory.maincent@bootlin.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniel@makrotopia.org,m:bjorn@mork.no,m:horms@kernel.org,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311827-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:alban.bedel@lht.dlh.de,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:driver-core@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:tommaso.merciai.xr@bp.renesas.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jelonekjonas@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TAGGED_RCPT(0.00)[devicetree];
 	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C573C6852EA
+X-Rspamd-Queue-Id: C2F36685314
 
-Hi Oleksij,
+On 15/06/2026 11:33, Alban Bedel wrote:
+> On Mon, 15 Jun 2026 08:33:32 +0200
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> On Thu, Jun 11, 2026 at 12:28:06PM +0200, Alban Bedel wrote:
+>>> fwnode_property_get_reference_args() should return -ENOENT when an out
+>>> of bound index is passed. An issue arised with the OF backend because
+>>> the OF API use signed indexes while the fwnode API use unsigned ones.
+>>> When an index value greater the INT_MAX was passed to the OF backend
+>>> it got casted to a negative value and it returned -EINVAL instead of  
+>>
+>> INT_MAX is not out of bound for this function. It is invalid value,
+>> because OF code expects signed.
+> 
+> But this is fwnode code, it use the OF API but it should implement the
+> fwnode API which, unlike the OF API, use unsigned index.
+>>> -ENOENT. This patch add a check to of_fwnode_get_reference_args() to
+>>> catch negative index before they are passed to the OF API and return
+>>> -ENOENT right away.  
+>>
+>> I do not understand why are you fixing this issue that way. For this
+>> API, the INT_MAX is correct value, but you claim that it is wrong and
+>> should be ENOENT (even if there is entry).
+>>
+>> Fine, if this is not a correct value, then EINVAL.
+> 
+> Indices larger than INT_MAX are valid in the fwnode API, so returning
+> -EINVAL is not appropriate here.
+> 
 
-thanks for your message.
+Then neither ENOENT are.
 
-On 15.06.26 11:39, Oleksij Rempel wrote:
-> Hi Jonas,
->
-> On Mon, Jun 15, 2026 at 10:07:33AM +0100, Simon Horman wrote:
->> This is an AI-generated review of your patch. The human sending this
->> email has considered the AI review valid, or at least plausible.
->> Full review at: https://sashiko.dev
-> It probably sounds scary, but sashiko finds not all issues in one time.
-> Bigger patches and more different included frameworks - increase findings
-> probability a lot. With other words, it may more rounds than expected.
+But really, EINVAL is correct here. This is OF implementation, so this
+implementation decides what is EINVAL and what is right. Not fwnode API.
 
-Sure, I've noticed that in another series recently. I'll just be patient and
-address/discuss the review/issues accordingly :)
 
-> You may optimize it if you have access to some free or payed tokes,
-> by using sashik-cli with LLM of you choice as backend.
->
-> Best Regards,
-> Oleksij
+>> But more important I think this should be just fixed in different way -
+>> why index in OF calls is signed in the first place? All indices are
+>> supposed to be unsigned in general, because that is both logical and
+>> readable when accessing arrays.
+>  
+> I agree that would be the better fix in the long run. But that would
+> impact a lot more code and I found it difficult to ensure it would not
+> potentially break some of its users. 
+
+I don't see how this fixes anything. You basically replace correct
+return value to a different one.
 
 Best regards,
-Jonas
+Krzysztof
 
