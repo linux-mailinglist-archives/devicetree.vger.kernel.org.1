@@ -1,154 +1,386 @@
-Return-Path: <devicetree+bounces-311767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311793-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6Z3ZE0a6L2raFAUAu9opvQ
-	(envelope-from <devicetree+bounces-311767-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:39:34 +0200
+	id xgr/DPi/L2r+FgUAu9opvQ
+	(envelope-from <devicetree+bounces-311793-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:03:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B4D684A0E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:39:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73373684D93
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:03:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=samsung.com header.s=mail20170921 header.b=FT3xaMYp;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311767-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311767-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=samsung.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ceMjYg9X;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311793-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311793-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AF079303A53D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:36:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EFF8B302A6DE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:54:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB3A3D6664;
-	Mon, 15 Jun 2026 08:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A15983D3CFA;
+	Mon, 15 Jun 2026 08:53:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB9E3D300A
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:34:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB9A3C2BB4
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:53:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781512496; cv=none; b=Hnu3pwLMiE3AtWFu8zMD6gnE298OLhictNntNcVJi67yLOySXTBFYN4D4nBLZ6VK3Q7ev/n/2atLAsLrOPoL1oEHNMj5a2PMb9CwVLPHMQvL7KCbgHI+rmFdO+ChHt6ZCId3ChcjuOMDiPjC3dL3G0ZBw4uBD8YpQZpRORWcOV4=
+	t=1781513614; cv=none; b=WlFmZefaSdL3SMXZAnSSYqVsA/RhUTPVJ6vFkJwT1nK58wG21Q5Nw2whmW9E3/rkkFFb+BXeToBRyMR0xLcTBOTwqdGmXyGsT1VVwiHrBxqbdTkp5ZWSBoJnpPqhfusCPvpRKupflt+bkjc++fbXpWaTGWgXXPhn9yrrqf94B+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781512496; c=relaxed/simple;
-	bh=hqIZNEJ+ngwlZ761oj7BZgDyKDMxvbazfKsfFaHaPBQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=O9yDbg1+gvKZrawu3Jjuxk77tkE10ydCf/b9CObcIWqM1y9fxDh4WqBU/B1BCKXuU/SQ1X51Ddw+jtkfQ7ERA50teTthWDbUHljyS+jCUshU32O1uDiShPg3NalZ/n0XXnTpxIVkFewfTaeznTjUZ4mHinhPTpXZWyGFGl9r0LY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=FT3xaMYp; arc=none smtp.client-ip=203.254.224.34
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20260615083447epoutp04820629ef537d6c0a93d1d5312f4b9e6c~5NCsUT9N82334723347epoutp04D
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:34:47 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20260615083447epoutp04820629ef537d6c0a93d1d5312f4b9e6c~5NCsUT9N82334723347epoutp04D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1781512487;
-	bh=yaYCowk7JVZ5hc+4haO2BGnTeTwQ73DyggnqwLDb2as=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FT3xaMYpyHOYOK41NqHaW7zTgTnoRRAtJ9+K54AgskJ7eAqlz6h3q2IIzzQbJX134
-	 4IH2jm1+79Zq5K2Cuxvg/HvZGczXbq7VSnGa0JXgY3FpfDAZ8DguMBAflbFDy5gJra
-	 B+R7ekmfwO7lUazaEpVMmOvOVvFFQxszXSFdzANg=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20260615083446epcas5p3b6461a5cc0bb909b7e5c9cc81aa5376a~5NCr5rqgb0986209862epcas5p3g;
-	Mon, 15 Jun 2026 08:34:46 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.87]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4gf3MG12sYz6B9mD; Mon, 15 Jun
-	2026 08:34:34 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20260615083433epcas5p24e9fda698154eccaf43d044d140fdb21~5NCfg_9pC1271812718epcas5p2J;
-	Mon, 15 Jun 2026 08:34:33 +0000 (GMT)
-Received: from bose.samsungds.net (unknown [107.108.83.9]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20260615083431epsmtip1a608860123cab7350a47dc125efa3565~5NCdSlZ5m0236002360epsmtip1h;
-	Mon, 15 Jun 2026 08:34:30 +0000 (GMT)
-From: Alim Akhtar <alim.akhtar@samsung.com>
-To: krzk@kernel.org, peter.griffin@linaro.org, robh@kernel.org,
-	conor+dt@kernel.org, linusw@kernel.org
-Cc: linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	hajun.sung@samsung.com, Alim Akhtar <alim.akhtar@samsung.com>
-Subject: [PATCH v2 5/5] MAINTAINERS: Add entry for Samsung Exynos8855 SoC
-Date: Mon, 15 Jun 2026 14:22:52 +0530
-Message-Id: <20260615085252.1964423-6-alim.akhtar@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260615085252.1964423-1-alim.akhtar@samsung.com>
+	s=arc-20240116; t=1781513614; c=relaxed/simple;
+	bh=OWJaDtzTNFfYb4kwUpXR+Lmmv4hbSoZIAP9DfB4Ath4=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lOJ54zLPvow2tcB3DqqkYcCg/HkspLW3WZE4MuVxPPS934ux/Ok5fvnINxMJ33UuJjcQ8uCo4NA9ntZVIVRlmuFwi4jywaX7d/XPJIgWH3S9cwwJxRPJZED0RPRAUW+7RnP29zRlTSt8I1giP++s+xZjHynGNZsivwr1QcmKoik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ceMjYg9X; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA6391F00AC4
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:53:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781513610;
+	bh=wV8yp34yT9DNlfEB0qpaBCoOWBTx/yzawKiLgppkC2U=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc;
+	b=ceMjYg9XMCAJl+VoYZGq13Phe8avRw/gjUvaz5LB9ZxGU1siJJL90WZuJGVb64Qy7
+	 M4YuYDXAtbi98hkUXeE1y0udI+SHA6qDUkFdRgylM3ch9syH7mUGh/EvsSqfrcUcd9
+	 dZJE8/dwF0dOqR/T3ODzx0srC/bxSvf1DRTCZKeYM80E461rWOlMKjP7vjsOMX4kLq
+	 QkyFJo2JCMmF+b0IUmMJ1DVEZ9VtDiRprXNwingigKc7j3CAM67DsRkrhcSkgoJcBX
+	 X9pO4nn7e3LZwjyY56hnNQ98AaVoPoRcVUh/xeZ/EKhvl3YTTSwDA+FrsXxkzGC+pW
+	 bnWkzmdC6KJGg==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-3967725a77fso27453061fa.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 01:53:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AFNElJ//m/8N1U5eeh8QX+BkXw5uPxaUxU5WGl3BbV1RoRXMF7BDSJPVKcdbzUSeX+F+2epWwFLsiJAD2/+K@vger.kernel.org
+X-Gm-Message-State: AOJu0YysogQFjbQcP75YCtmiDkz/YZ0Au6G/zecCx0Zt8xd6gC98h8zi
+	fCcwsvexT7t8LZtX11nBSFKrcQfMRND1udNmQpGgitC805ZBOT6QrDD+QBrigC9mu6PH3jPI8aR
+	We/AuyEz20YBO/jW0NrMTgB+ZcowNx5p6LDz+finUdQ==
+X-Received: by 2002:a2e:a80e:0:b0:394:1236:ccb9 with SMTP id
+ 38308e7fff4ca-3992afa6f0dmr39903161fa.5.1781513609364; Mon, 15 Jun 2026
+ 01:53:29 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 15 Jun 2026 10:53:27 +0200
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 15 Jun 2026 10:53:26 +0200
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260612-block-as-nvmem-v5-5-95e0b30fff90@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20260615083433epcas5p24e9fda698154eccaf43d044d140fdb21
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-543,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20260615083433epcas5p24e9fda698154eccaf43d044d140fdb21
-References: <20260615085252.1964423-1-alim.akhtar@samsung.com>
-	<CGME20260615083433epcas5p24e9fda698154eccaf43d044d140fdb21@epcas5p2.samsung.com>
+References: <20260612-block-as-nvmem-v5-0-95e0b30fff90@oss.qualcomm.com> <20260612-block-as-nvmem-v5-5-95e0b30fff90@oss.qualcomm.com>
+Date: Mon, 15 Jun 2026 10:53:26 +0200
+X-Gmail-Original-Message-ID: <CAMRc=McQkLnz2OS2RREAbcrsp47cL-W3bCduq8LwPBBUcVNyJw@mail.gmail.com>
+X-Gm-Features: AVVi8CePDlRvn_yeBo8fPXp3FCAEnmQ_ET92GyWt_9-SxcNPTVPxsiTbCwGweBo
+Message-ID: <CAMRc=McQkLnz2OS2RREAbcrsp47cL-W3bCduq8LwPBBUcVNyJw@mail.gmail.com>
+Subject: Re: [PATCH v5 5/9] block: implement NVMEM provider
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-block@vger.kernel.org, linux-wireless@vger.kernel.org, 
+	ath10k@lists.infradead.org, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, daniel@makrotopia.org, Ulf Hansson <ulfh@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Jens Axboe <axboe@kernel.dk>, Johannes Berg <johannes@sipsolutions.net>, 
+	Jeff Johnson <jjohnson@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, 
+	Srinivas Kandagatla <srini@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Saravana Kannan <saravanak@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[samsung.com:d:+,kernel.org:s:+];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311767-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,samsung.com:dkim,samsung.com:email,samsung.com:mid,samsung.com:from_mime,infradead.org:email];
-	FORGED_SENDER(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:peter.griffin@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:hajun.sung@samsung.com,m:alim.akhtar@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[35];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311793-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[samsung.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:linux-mmc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-block@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:ath10k@lists.infradead.org,m:linux-bluetooth@vger.kernel.org,m:netdev@vger.kernel.org,m:daniel@makrotopia.org,m:ulfh@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:axboe@kernel.dk,m:johannes@sipsolutions.net,m:jjohnson@kernel.org,m:brgl@kernel.org,m:marcel@holtmann.org,m:luiz.dentz@gmail.com,m:quic_bgodavar@quicinc.com,m:quic_rjliao@quicinc.com,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:horms@kernel.org,m:srini@kernel.org,m:andrew@lunn.ch,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:luizdentz@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,makrotopia.org,kernel.org,kernel.dk,sipsolutions.net,holtmann.org,gmail.com,quicinc.com,davemloft.net,google.com,redhat.com,lunn.ch,armlinux.org.uk];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[config.dev:url,config.name:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,makrotopia.org:email,mail.gmail.com:mid,vger.kernel.org:from_smtp,config.id:url];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A4B4D684A0E
+X-Rspamd-Queue-Id: 73373684D93
 
-Add maintainers entry for the Samsung Exynos8855 SoC based platforms
+On Fri, 12 Jun 2026 15:20:57 +0200, Loic Poulain
+<loic.poulain@oss.qualcomm.com> said:
+> From: Daniel Golle <daniel@makrotopia.org>
+>
+> On embedded devices using an eMMC it is common that one or more partitions
+> on the eMMC are used to store MAC addresses and Wi-Fi calibration EEPROM
+> data. Allow referencing the partition in device tree for the kernel and
+> Wi-Fi drivers accessing it via the NVMEM layer.
+>
+> For now, NVMEM is only registered for the whole disk block device, as the
+> OF node is currently only associated to it.
+>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> Co-developed-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> ---
+>  block/Kconfig             |   9 ++++
+>  block/Makefile            |   1 +
+>  block/blk-nvmem.c         | 109 ++++++++++++++++++++++++++++++++++++++++++++++
+>  block/blk.h               |   8 ++++
+>  block/genhd.c             |   4 ++
+>  include/linux/blk_types.h |   3 ++
+>  include/linux/blkdev.h    |   1 +
+>  7 files changed, 135 insertions(+)
+>
+> diff --git a/block/Kconfig b/block/Kconfig
+> index 15027963472d7b40e27b9097a5993c457b5b3054..0b33747e16dc33473683706f75c92bdf8b648f7c 100644
+> --- a/block/Kconfig
+> +++ b/block/Kconfig
+> @@ -209,6 +209,15 @@ config BLK_INLINE_ENCRYPTION_FALLBACK
+>  	  by falling back to the kernel crypto API when inline
+>  	  encryption hardware is not present.
+>
+> +config BLK_NVMEM
+> +	bool "Block device NVMEM provider"
+> +	depends on OF
+> +	depends on NVMEM
+> +	help
+> +	  Allow block devices (or partitions) to act as NVMEM providers,
+> +	  typically used with eMMC to store MAC addresses or Wi-Fi
+> +	  calibration data on embedded devices.
+> +
+>  source "block/partitions/Kconfig"
+>
+>  config BLK_PM
+> diff --git a/block/Makefile b/block/Makefile
+> index 7dce2e44276c4274c11a0a61121c83d9c43d6e0c..d7ac389e71902bc091a8800ea266190a43b3e63d 100644
+> --- a/block/Makefile
+> +++ b/block/Makefile
+> @@ -36,3 +36,4 @@ obj-$(CONFIG_BLK_INLINE_ENCRYPTION)	+= blk-crypto.o blk-crypto-profile.o \
+>  					   blk-crypto-sysfs.o
+>  obj-$(CONFIG_BLK_INLINE_ENCRYPTION_FALLBACK)	+= blk-crypto-fallback.o
+>  obj-$(CONFIG_BLOCK_HOLDER_DEPRECATED)	+= holder.o
+> +obj-$(CONFIG_BLK_NVMEM)                += blk-nvmem.o
+> diff --git a/block/blk-nvmem.c b/block/blk-nvmem.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..c005f059d9fe56242ebaef9905673dff902b5686
+> --- /dev/null
+> +++ b/block/blk-nvmem.c
+> @@ -0,0 +1,109 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * block device NVMEM provider
+> + *
+> + * Copyright (c) 2024 Daniel Golle <daniel@makrotopia.org>
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + *
+> + * Useful on devices using a partition on an eMMC for MAC addresses or
+> + * Wi-Fi calibration EEPROM data.
+> + */
+> +
+> +#include <linux/file.h>
+> +#include <linux/nvmem-provider.h>
+> +#include <linux/nvmem-consumer.h>
+> +#include <linux/of.h>
+> +#include <linux/pagemap.h>
+> +#include <linux/property.h>
+> +
+> +#include "blk.h"
+> +
+> +static int blk_nvmem_reg_read(void *priv, unsigned int from, void *val, size_t bytes)
+> +{
+> +	blk_mode_t mode = BLK_OPEN_READ | BLK_OPEN_RESTRICT_WRITES;
+> +	dev_t devt = (dev_t)(uintptr_t)priv;
+> +	size_t bytes_left = bytes;
+> +	loff_t pos = from;
+> +	int ret = 0;
+> +
+> +	struct file *bdev_file __free(fput) = bdev_file_open_by_dev(devt, mode, priv, NULL);
+> +	if (IS_ERR(bdev_file))
+> +		return PTR_ERR(bdev_file);
+> +
+> +	while (bytes_left) {
+> +		pgoff_t f_index = pos >> PAGE_SHIFT;
+> +		struct folio *folio;
+> +		size_t folio_off;
+> +		size_t to_read;
+> +
+> +		folio = read_mapping_folio(bdev_file->f_mapping, f_index, NULL);
+> +		if (IS_ERR(folio)) {
+> +			ret = PTR_ERR(folio);
+> +			break;
+> +		}
+> +
+> +		folio_off = offset_in_folio(folio, pos);
+> +		to_read = min(bytes_left, folio_size(folio) - folio_off);
+> +		memcpy_from_folio(val, folio, folio_off, to_read);
+> +		pos += to_read;
+> +		bytes_left -= to_read;
+> +		val += to_read;
+> +		folio_put(folio);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +void blk_nvmem_add(struct block_device *bdev)
+> +{
+> +	struct device *dev = &bdev->bd_device;
+> +	struct nvmem_config config = {};
+> +
+> +	/* skip devices which do not have a device tree node */
+> +	if (!dev_of_node(dev))
+> +		return;
+> +
+> +	/* skip devices without an nvmem layout defined */
+> +	struct device_node *child __free(device_node) =
+> +		of_get_child_by_name(dev_of_node(dev), "nvmem-layout");
+> +	if (!child)
+> +		return;
+> +
+> +	/*
+> +	 * skip block device too large to be represented as NVMEM devices,
+> +	 * the NVMEM reg_read callback uses an unsigned int offset
+> +	 */
+> +	if (bdev_nr_bytes(bdev) > UINT_MAX) {
+> +		dev_warn(dev, "block device too large to be an NVMEM provider\n");
+> +		return;
+> +	}
+> +
+> +	config.id = NVMEM_DEVID_NONE;
+> +	config.dev = dev;
+> +	config.name = dev_name(dev);
+> +	config.owner = THIS_MODULE;
+> +	config.priv = (void *)(uintptr_t)dev->devt;
+> +	config.reg_read = blk_nvmem_reg_read;
+> +	config.size = bdev_nr_bytes(bdev);
+> +	config.word_size = 1;
+> +	config.stride = 1;
+> +	config.read_only = true;
+> +	config.root_only = true;
+> +	config.ignore_wp = true;
+> +	config.of_node = to_of_node(dev->fwnode);
+> +
+> +	bdev->bd_nvmem = nvmem_register(&config);
+> +	if (IS_ERR(bdev->bd_nvmem)) {
+> +		dev_err_probe(dev, PTR_ERR(bdev->bd_nvmem),
+> +			      "Failed to register NVMEM device\n");
 
-Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Using dev_err_probe() only makes sense with a return value. Which makes me
+think: we won't retry this after a probe deferral. I think we should return
+int from this function just for this use-case. Also: if we *do* have
+a layout, shouldn't we treat a failure to register the nvmem provider as
+a an error and propagate it up the stack?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 49a10f0ceb07..fb9b24220258 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23914,6 +23914,13 @@ F:	arch/arm64/boot/dts/exynos/exynos850*
- F:	drivers/clk/samsung/clk-exynos850.c
- F:	include/dt-bindings/clock/exynos850.h
- 
-+SAMSUNG EXYNOS8855 SoC SUPPORT
-+M:	Alim Akhtar <alim.akhtar@samsung.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+L:	linux-samsung-soc@vger.kernel.org
-+S:	Maintained
-+F:	arch/arm64/boot/dts/exynos/exynos8855*
-+
- SAMSUNG EXYNOS ACPM MAILBOX PROTOCOL
- M:	Tudor Ambarus <tudor.ambarus@linaro.org>
- L:	linux-kernel@vger.kernel.org
--- 
-2.34.1
+> +		bdev->bd_nvmem = NULL;
+> +	}
+> +}
+> +
+> +void blk_nvmem_del(struct block_device *bdev)
+> +{
+> +	if (bdev->bd_nvmem)
 
+Nvmem core already performs a NULL check.
+
+> +		nvmem_unregister(bdev->bd_nvmem);
+> +
+> +	bdev->bd_nvmem = NULL;
+> +}
+> diff --git a/block/blk.h b/block/blk.h
+> index ec4674cdf2ead4fd259ff5fc42401f591e684ee9..cd3c7ca723391c40be56f1dd4810e641b7c8a2b3 100644
+> --- a/block/blk.h
+> +++ b/block/blk.h
+> @@ -757,4 +757,12 @@ static inline void blk_debugfs_unlock(struct request_queue *q,
+>  	memalloc_noio_restore(memflags);
+>  }
+>
+> +#ifdef CONFIG_BLK_NVMEM
+> +void blk_nvmem_add(struct block_device *bdev);
+> +void blk_nvmem_del(struct block_device *bdev);
+> +#else
+> +static inline void blk_nvmem_add(struct block_device *bdev) {}
+> +static inline void blk_nvmem_del(struct block_device *bdev) {}
+> +#endif
+> +
+>  #endif /* BLK_INTERNAL_H */
+> diff --git a/block/genhd.c b/block/genhd.c
+> index 7d6854fd28e95ae9134309679a7c6a937f5b7db8..1b2382de6fb30c1e5f60f45c04dc03ed3bf5d5f2 100644
+> --- a/block/genhd.c
+> +++ b/block/genhd.c
+> @@ -421,6 +421,8 @@ static void add_disk_final(struct gendisk *disk)
+>  		 */
+>  		dev_set_uevent_suppress(ddev, 0);
+>  		disk_uevent(disk, KOBJ_ADD);
+> +
+> +		blk_nvmem_add(disk->part0);
+>  	}
+>
+>  	blk_apply_bdi_limits(disk->bdi, &disk->queue->limits);
+> @@ -704,6 +706,8 @@ static void __del_gendisk(struct gendisk *disk)
+>
+>  	disk_del_events(disk);
+>
+> +	blk_nvmem_del(disk->part0);
+> +
+>  	/*
+>  	 * Prevent new openers by unlinked the bdev inode.
+>  	 */
+> diff --git a/include/linux/blk_types.h b/include/linux/blk_types.h
+> index 8808ee76e73c09e0ceaac41ba59e86fb0c4efc64..ace6f59b860d0813665b2f62a1c03a1f4be94059 100644
+> --- a/include/linux/blk_types.h
+> +++ b/include/linux/blk_types.h
+> @@ -73,6 +73,9 @@ struct block_device {
+>  	int			bd_writers;
+>  #ifdef CONFIG_SECURITY
+>  	void			*bd_security;
+> +#endif
+> +#ifdef CONFIG_BLK_NVMEM
+> +	struct nvmem_device	*bd_nvmem;
+>  #endif
+>  	/*
+>  	 * keep this out-of-line as it's both big and not needed in the fast
+> diff --git a/include/linux/blkdev.h b/include/linux/blkdev.h
+> index 890128cdea1ce66863c5baa36f3b336ec4550807..f15d2b5bf9e4fd2368b8a70416a978e22c0d4333 100644
+> --- a/include/linux/blkdev.h
+> +++ b/include/linux/blkdev.h
+> @@ -30,6 +30,7 @@
+>
+>  struct module;
+>  struct request_queue;
+> +struct nvmem_device;
+>  struct elevator_queue;
+>  struct blk_trace;
+>  struct request;
+>
+> --
+> 2.34.1
+>
+>
+
+I like this approach better than the previous one.
+
+Thanks,
+Bartosz
 
