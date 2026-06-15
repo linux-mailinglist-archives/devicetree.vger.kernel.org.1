@@ -1,62 +1,112 @@
-Return-Path: <devicetree+bounces-312190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312191-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GPwhHGVrMGp7SwUAu9opvQ
-	(envelope-from <devicetree+bounces-312190-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 23:15:17 +0200
+	id 46KhG55uMGr8SwUAu9opvQ
+	(envelope-from <devicetree+bounces-312191-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 23:29:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0FC868A1FF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 23:15:16 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3C168A29B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 23:29:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ELwF1Yei;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312190-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312190-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=redhat.com header.s=mimecast20190719 header.b=O0oX8rgG;
+	dkim=pass header.d=redhat.com header.s=google header.b=fDeKCHMX;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312191-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312191-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=redhat.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8343730B5E2A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 21:15:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BC175301FD5B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 21:29:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034F03A9DA4;
-	Mon, 15 Jun 2026 21:15:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACBDA3ADBAF;
+	Mon, 15 Jun 2026 21:28:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038C833BBD9;
-	Mon, 15 Jun 2026 21:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BE038BF75
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 21:28:58 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781558113; cv=none; b=QzHPDxGKvwakzaI5ilpxSW7Gnrz86JeCpUMa1vyQiMoBTAZFyJ4NiWW6qoaT3WTK0jO3hHmoC7JFdrL+SD3UFEL2hscjQYls32koJo39pINq0IyjpswSEnWAelJRDMdtNTHpFUSB0kKawMjPZiS+wRzFIeCfHmgD7k3g1wRt6sg=
+	t=1781558939; cv=none; b=NuDqsnPA7Umc0JFNfzxFcJN02IMbCVX+Ulk00ThuUn6oaAMEUIxTEMdfxWDJZTsDbFsNqIc6qy8jrgzf6HIShhQmUrrhSfqiCqz6NMs0uf0SKQlUJYAkdyVtcpfpVjAKD0etLZb1ai4dtIvpdk8uL7SPTjpw2eereno1eOSMNtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781558113; c=relaxed/simple;
-	bh=S1WpUMOEPRN+THgJTlL+7X75kgLTtijIEKOOxaDy4AQ=;
+	s=arc-20240116; t=1781558939; c=relaxed/simple;
+	bh=i0JVg6NPKDqPdCm8XtH+7L8mGlKzlTAmtPgz4+TozJ8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o7yOS+LrI+biHqO1RkdWJnzVYfAAgvOiB8EN32Trmpdhz6XTxE28tYYGZlFrkR+YLr0MnzRYchBfQdMp1kFaoI6qRwKD0/KDhqxJM/ln4o/T0IcBWRG5GSYucxfe0JW0ICfn6/tuldj0ySLbYmaXRc13vc8aUnDSRI8xqadLHwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ELwF1Yei; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E3CD1F000E9;
-	Mon, 15 Jun 2026 21:15:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781558112;
-	bh=v1F2ZzzT1p3w0X8otzyBIUwMYdx0HypLdu4oZbFgfuA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ELwF1Yei7oqYXgY0gwiKte1dZgGVEmw5mkICcQ0YX4nJZ+EhwZQt2oK65GqxAJfgt
-	 KemtZYQw54YN3Xh32ZwVvTsJDsbVtlUsXqv7Hh4bZ0oq8Z/8nR3GzqMLhos6QL6b4q
-	 FHUwzNIwDSkLUYmJQpAiR8ngHAN0SWWO4JPKdDIKq8fsDkhHIX6G1Vm9Gy8G6HXD+M
-	 8VlYXdgBhmnpDoaDxHxBBkGsurQjjQALM9LJGseD1WSSFxNiN/uxnHOYtbRWcJIQ0P
-	 1yJb3OuzTItnuD0DuhYdJYPg1mRja1o6pPkMnnabNKr2j6tlpdRdKHvqXoIeOG3RFS
-	 k9aIxokuOlZWg==
-Date: Mon, 15 Jun 2026 23:15:08 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Thierry Reding <thierry.reding@kernel.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-i2c@vger.kernel.org, Thierry Reding <treding@nvidia.com>, 
-	Peter Rosin <peda@lysator.liu.se>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: i2c-mux-pinctrl: change maintainer
-Message-ID: <ajBq_yjuV-LeqgpI@zenone.zhora.eu>
-References: <20260611122704.7559-2-wsa+renesas@sang-engineering.com>
- <ajBGibftf679T6P4@arch.a226c7d-lcedt>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DhzJ14z7YXTOt5Q+TSgLvpOly7D98dUx9RFTv35LnLmAMOBhJQ/xRLa8fF/38bW1DHAyhts3hQdLBJoCah67S4LVcmHGn9gnY2Nvu2wCYMG4G/l6cFTukUFcxIvvw9V2Yx6KklJrbnk597sFk7UIN0fZqZavYKKDiNGZFoqDxa8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=O0oX8rgG; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=fDeKCHMX; arc=none smtp.client-ip=170.10.129.124
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1781558937;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8CvKAGdCUW18KUmFYuMA9APTtSF2TfQZeTic6jDx6AY=;
+	b=O0oX8rgGW7kIcNrGrvNSy9m0VCpUTeyqM7Nh9BlpSn3qRk1M3zR4PsT22HPJQ/0d0gzDq3
+	iHXOSZsxpPGR45kPBmy+UjiQ4eR4SCvdK7L7cfHjOCtufBrqUiHUJNfM+LWaEtgzdJXGGn
+	ZUnmWOQCli/vS3KpZ0qTQ30n2H5zzbs=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-171-6AIHI9OkN6uoLdvbCJyL0A-1; Mon, 15 Jun 2026 17:28:56 -0400
+X-MC-Unique: 6AIHI9OkN6uoLdvbCJyL0A-1
+X-Mimecast-MFC-AGG-ID: 6AIHI9OkN6uoLdvbCJyL0A_1781558936
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-5177f07ea82so78243381cf.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 14:28:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1781558936; x=1782163736; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8CvKAGdCUW18KUmFYuMA9APTtSF2TfQZeTic6jDx6AY=;
+        b=fDeKCHMX+lQ830Zyaxwp768jl86oEkj3stdG9OtY689Uemx7+nwYMq88jVm/28BfRD
+         ZppFZA2I554ac8zFBwZRO8qjCicF0f6bzift+15hP9ve5/okFZ8xDMVKBgFSg28YMm1K
+         j8uQopBD3/oHWfBmiycJEQwsOMIGQ3PlCRPDI8FdhOrD1p4hsr6C6VH5wIkjqfJRQ3go
+         ve860I+FpgKP5uPHmbMX96t5x+UeAnV/CJySluxTbc6ctGZwgmfaXeO6YMK2gQ2+OWrs
+         c2lVyipVoY47Xki4Lnd/+Zk2z7bwygNBlY3jHdysahBYpUe9ecmksvDSy2DaN4NJRhfv
+         673Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781558936; x=1782163736;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=8CvKAGdCUW18KUmFYuMA9APTtSF2TfQZeTic6jDx6AY=;
+        b=SUdQZzc/T3pFHymEUipfW8KIUqSKfp3bKReX5oDTWuT0r7Kj/AJmzotpAHrali0rKN
+         A9I1JDhlsNtRQKGow5S71DLgnsGAmQTBrtjUiUTGFRnn/PafyqCuzNpLaTCslBYezCvi
+         g316/HIXfRQrjqREwo2WHraDtgH8SJGzpIxOlGMkEZfah+DBeG1I8nLaBiRkxIWVIv9q
+         X8zK/0A/b5Fw97XQLLBHVxPBdI6ZcwBUM2GGchc5PvUIwdUREZXanoaQweAdvVRbdvwy
+         vQtqcYh4TefPuBi/0wYtOw+xnVLX3FuRt2mp4p5sERttnTIDtTOocfMT3g6pRcpdDICj
+         RqGQ==
+X-Forwarded-Encrypted: i=1; AFNElJ+EbbZGg+C3HNPopoBgj46rLO8mmZ2A4AaofjbmzeKy3JDhDUEzjOeI03hwzN4+TxkPYuFP1C2KAwAE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxpg2x4CzwmtdQO4gcTAF/Ag470pmg86RhnF8UwC+hfjwd8L1dJ
+	EHG1ubSlJGvwWieVmKTSfdLCCoDl8p2F9zaimSdq555uwz7dU7zdZIGWZklyCIam0Ep72C0jLVL
+	8pp2bqAkmWh9bZsUg/m71IrYuZtjlyNKa0C7KKm1htADeDvYszo52kUknmqZ4EV8=
+X-Gm-Gg: Acq92OGkayCrIfBbBSxkqvThim9aOvL9eb0ezI4W1XLbH/E05/pYPK3JXuCfCDjrPSr
+	kbbfo8Pm1npSSBrL46x4PJQS54uiSMWn/XdzhcRlaxFSggELxW7Gs56S3IH+3k/KuRebloBOFxF
+	sWt18muO5f76Fkil2S9urcA0NtbgWX2wbCzqpXHjJ3l59GvX6m6gwa8VyDpIs3dFj1OjWbkCDBG
+	e2Jrhl8UhWz9nCmlVGz7rgGeoFOYoF9RF6hncIm5M0GSnauwXMo2dluMxMqDZm5lcq3Rd39DVlf
+	K6H9FTdPZ2h50DCCiowNPd+1rELWxMRo3B6Jthmfiib4ua644W30+ZWtDt3fhwP/skMO2K7qWUc
+	oDTbiq3LYI8dHGgW25GJjhww3jo+VArdN+Vmfnpkdo/1GYosoXx0foebU
+X-Received: by 2002:a05:622a:a310:b0:517:79f0:ae3d with SMTP id d75a77b69052e-517fe23ac1dmr180027021cf.21.1781558935525;
+        Mon, 15 Jun 2026 14:28:55 -0700 (PDT)
+X-Received: by 2002:a05:622a:a310:b0:517:79f0:ae3d with SMTP id d75a77b69052e-517fe23ac1dmr180026601cf.21.1781558935056;
+        Mon, 15 Jun 2026 14:28:55 -0700 (PDT)
+Received: from redhat.com (c-73-183-52-120.hsd1.pa.comcast.net. [73.183.52.120])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-517fb6442d8sm119356571cf.11.2026.06.15.14.28.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jun 2026 14:28:54 -0700 (PDT)
+Date: Mon, 15 Jun 2026 17:28:52 -0400
+From: Brian Masney <bmasney@redhat.com>
+To: Yu-Chun Lin <eleanor.lin@realtek.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	cylee12@realtek.com, afaerber@suse.com, jyanchou@realtek.com,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-realtek-soc@lists.infradead.org, james.tai@realtek.com,
+	cy.huang@realtek.com, stanley_chang@realtek.com
+Subject: Re: [PATCH v8 00/10] clk: realtek: Add RTD1625 clock support
+Message-ID: <ajBulHwzII9cynqI@redhat.com>
+References: <20260610080824.255063-1-eleanor.lin@realtek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,69 +115,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ajBGibftf679T6P4@arch.a226c7d-lcedt>
+In-Reply-To: <20260610080824.255063-1-eleanor.lin@realtek.com>
+User-Agent: Mutt/2.3.1 (2026-03-20)
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312190-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:thierry.reding@kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:treding@nvidia.com,m:peda@lysator.liu.se,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:wsa@sang-engineering.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[andi.shyti@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312191-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:eleanor.lin@realtek.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:cylee12@realtek.com,m:afaerber@suse.com,m:jyanchou@realtek.com,m:devicetree@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-realtek-soc@lists.infradead.org,m:james.tai@realtek.com,m:cy.huang@realtek.com,m:stanley_chang@realtek.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DKIM_TRACE(0.00)[redhat.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,zenone.zhora.eu:mid]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B0FC868A1FF
+X-Rspamd-Queue-Id: CB3C168A29B
 
-Hi Thierry,
+Hi Yu-Chun,
 
-> >  maintainers:
-> > -  - Wolfram Sang <wsa@kernel.org>
-> > +  - Thierry Reding <treding@nvidia.com>
-> >  
-> >  description: |
-> >    This binding describes an I2C bus multiplexer that uses pin multiplexing to route the I2C
+On Wed, Jun 10, 2026 at 04:08:14PM +0800, Yu-Chun Lin wrote:
+> Hello,
 > 
-> By default I used to list the subsystem maintainer as the bindings
-> maintainer if the binding wasn't Tegra-specific, or in this case the
-> original author wasn't active anymore.
+> This patch series adds clock support for Realtek's RTD1625 platform.
+> The series includes:
+> 1. Device Tree: Add clock controller nodes.
+> 2. Infrastructure: reset controller, basic clocks, PLLs, gate clocks, mux
+> clocks, and MMC-tuned PLLs.
+> 3. Platform drivers: two clock controller drivers for RTD1625-CRT and
+> RTD1625-ISO.
 > 
-> I'm fine being listed as the maintainer for this if you don't want to,
-> but I prefer to use the thierry.reding@kernel.org email address for
-> communication.
+> Best regards,
+> Yu-Chun Lin
 
-Just to be clear, are you saying that in this file you want your
-kernel.org e-mail or are you referring to generic communication?
+Sashiko has some legitimate feedback about this patch set:
 
-Andi
+https://sashiko.dev/#/patchset/20260610080824.255063-1-eleanor.lin%40realtek.com
 
-> With that:
-> 
-> Acked-by: Thierry Reding <treding@nvidia.com>
+Can you go through that and post a new version? I'll review the next
+version manually in more detail.
 
+Brian
 
 
