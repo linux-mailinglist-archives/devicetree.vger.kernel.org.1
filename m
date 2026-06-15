@@ -1,85 +1,86 @@
-Return-Path: <devicetree+bounces-311825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311826-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mYaJF6fLL2oRGgUAu9opvQ
-	(envelope-from <devicetree+bounces-311825-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:53:43 +0200
+	id wxNSGNTLL2o1GgUAu9opvQ
+	(envelope-from <devicetree+bounces-311826-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:54:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD06D685306
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:53:42 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE77B68531A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:54:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=rOEMvekZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311825-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311825-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="qF/9v95P";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311826-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311826-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 54414304A871
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 09:51:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C6A7E3056608
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 09:51:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E85E3DB30C;
-	Mon, 15 Jun 2026 09:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F453DA7F8;
+	Mon, 15 Jun 2026 09:51:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01EE1307AF4
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 09:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C750933A6E0
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 09:51:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781517109; cv=none; b=WZFJOj8vyRr2lxbDnBzEydsjnQBNZMuD0dBXQrMIu9DjOyEqvS9iUDaUh/7K83uamDnHqQmt16BJdw2W8lL/AdGrbXV5OOBxfAmh9d8jGFEYN45HWqNO6u6qxuZaxqT/tpQVzocCePBTM7uZdHun0Bsh6dyiY7ZJMnyQUxJGGWU=
+	t=1781517116; cv=none; b=lECnqzIQ0QRIkYc5/48O4A/g9d1KznQTwUQ59yw1DWC6Y1awM49AjYeJo8YdLUQWnvR+cd0V+7xtgHcQ9QHgyHjs4TDzQvKL+Ti156TXyBXz/5vgpxPtfxL9pWE6HDB/s8L5pE6PJ0Y4iLJhzlcGkeCdeaFk4oFEOjo2fwG6SNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781517109; c=relaxed/simple;
-	bh=HODmTcXqpkVz8upSr1TfFa4wg8vBwZE/zjgJ/idrByE=;
+	s=arc-20240116; t=1781517116; c=relaxed/simple;
+	bh=ETGqMavWeBiOQjMJHU7tbf74DHMQeX6TYULgpbT74aQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rGqKWaxW3tPmDpYbYh6468dWwgxHizNPiQ3jZye+de7yl7zqg8PxAIz8kYoSjn+tma/OZmYskZAVD7iG7WxDF1E7wxo5D2G2GYuTHz/pu9hLoOmDjmaCxv+9XIw+o68iYPqVV4Jw3fuotvMNGfypKBdwNFvQNKoZW8MVo/FeeRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=rOEMvekZ; arc=none smtp.client-ip=209.85.215.169
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-c8584e80bd9so1126235a12.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 02:51:47 -0700 (PDT)
+	 In-Reply-To:To:Cc; b=YTI1Ol65QEVzc/sxzG/bh1f6xrtIEw6CWDYbV0MB/WOj8UDWfKUtupnIzjjtgbLW18YsKlmbXLBGGaXmeHFTn/rAVP/JSgSCgfC71eDnUGbh3820O79wNlPU13R+u6S6UUv6hn8wJJe4fJ7ePNtdRL8F1yEj2vrVLZrnhC5dU8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=qF/9v95P; arc=none smtp.client-ip=209.85.215.170
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-c85d4b4245aso2268517a12.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 02:51:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781517107; x=1782121907; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1781517110; x=1782121910; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=d/rIphLJeoUl7R3ABdw1JOIvV3ARmALyt+fJc+YgD7k=;
-        b=rOEMvekZW+VYyyHeTkvaS4nbH9OZY663o6EfAms1hfRmJ9K8pVACcsRXU7CyfaSPGB
-         0o7fDFSKAxpFHnY5ifBwLlQ571E0kK6eVoAEwunlBrz2bE3Q58Wtx1xBjWEK7P1vtXf3
-         w0+q+UH7SohXOrKfFRuOICSpmks36IdoPT57hTK1XQ5/zAyauP/3JDrIu3hxLb1yh6DV
-         Povi3WzLMjjNIwVGTVs1SXjFbb+q89HWQCeEZl6o66/KsC6mK7hn9ik8vPxl0PN1MQdG
-         WwyZts9YDfJYz0qapUALIjnZ4yJ8Dmqnjc4OddsFG8QaGgPDUIY8TLp7YkG7zOC4S/4b
-         52Tg==
+        bh=2nFkIvMOfm7ZS9BgOncXs0eGFftuYADS8e8/xvDEWbQ=;
+        b=qF/9v95PCZkp9OGYx6K5UIrsDVFGUX7W6ydkvm1UvKnle3Dj3gC24/aJOVF3//Nso2
+         JpTjoGMetXJZDLA4SqfSWkTUQdQa8BIGCdx8TMkXAGwc5ECe7doSH+Bi/Vj23oofioGG
+         UA/pRzCasotJVEKuK/NlGPARxgihV7ln2TGanMsz3xPbWpPsRtUkX2+lqlCP9DoKWvPF
+         V/f0r574+ErnnZ56TTcFrlSTDcB/VOf7VOfDuiahaMZIYxpjGdf0ZmPzUcqfoElCQYhy
+         XX1E0KzHxqh/iY8X1UlZEkG0cYrkdHhFqkLDS77qYgwTfG+yiH6G7arbDDG+qLJ+b5s0
+         iyqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781517107; x=1782121907;
+        d=1e100.net; s=20251104; t=1781517110; x=1782121910;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=d/rIphLJeoUl7R3ABdw1JOIvV3ARmALyt+fJc+YgD7k=;
-        b=fS9BSGsSUt+8c6G2EJDIokecrdvlMZFqGD1IJJ3ZSR0mclkm5g/xEXGjHZsULi91Qp
-         /M8M+MaC/ZCHcjy1FNUsiFg8fNO0MIoZbZy6q2RWLIJIuAl/Euyu4rEigINbKuF59aJ/
-         pdUOqjf7VMT6IgbSd5oeH5rL8AAmhc84fpPzIwP6zXpv1fCrbGkj/pioW3ERtgOAJqZx
-         5BI0ylfZ1z8ZJJlz+oWrBLNNn1GVM2hIYUoVC30a35tuZMrJUPiYXpI0USEcAjWnI5Nu
-         wLOxdlfBOOmDNj6mVQlhAyZo5DN8zh/wPDspDvhcBaWcXCdgEiShBFJ8wAsW/WK1b0ZP
-         M9Ng==
-X-Forwarded-Encrypted: i=1; AFNElJ+h13/WdZ0fBGTojyD78bjy8BVDrL8FnuOGnLJlsBl3RQ/k0O4B6Y6i2k9z3Qa8q5Zeu443HJHtH47F@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/5KP6cx+Ksg1lhjbKceCy0CBcnDR97uxCKuA1cTlmZGctAJu4
-	s79nJV56P6sbM7v1H2mopMGBtB/GcS9qERSzC3x6ylSQ6a2NM3DEmtq65ruRgQ==
-X-Gm-Gg: Acq92OFS1j9AueZ3coSD7RxHzYA/gZ0Bm+Up2UESStvHppkOr9kjQXhZSQ6QhWf6do8
-	Vh9EWlVmeUUGXoe1zm5O++VbQdoB6WDg1jgt8PCCsfAv1AaZzfHgsd1U269JvAwQY0z63SCHIpS
-	CC1PHv89CIUXQCGnxHplrUGlQfUOc5yYKZN4cJcmvvljqdyUGuBfbf0eONMvd03vxTUYOiix30K
-	/QsUS6f4p/2XdVwGc51PN7/6VKHAcs6FpjOblde/LCz73fy4JIVHqVhWoIPiAsDMst9UVKdvdLV
-	sEG+ZhO0mW+rUOp7Gbs2hgCX67PxubTaURVSHFVzQpXgpq8CGKvvZsPbM/ANg6XbFM5CCeSxuPA
-	12z4kDAUwQZZUgQ0JfRteCqrWfdbkVB15L5YTX98PSf0M6Xe7QXBLbuJh1ppR8qIJx+l7IkhR3l
-	A2BCYqPaJbe+IE2jjeKJiuOHBlypbhpgj5srssUvCGgqa7xk64/1Ue4VByQP/dia/zRA==
-X-Received: by 2002:a05:6a00:1993:b0:842:6004:3fd9 with SMTP id d2e1a72fcca58-8434cf1590fmr14616990b3a.29.1781517107309;
-        Mon, 15 Jun 2026 02:51:47 -0700 (PDT)
+        bh=2nFkIvMOfm7ZS9BgOncXs0eGFftuYADS8e8/xvDEWbQ=;
+        b=TOQMaaG5DxMxv7iah7oasY51wRfBgDnKMk9wf4dCaNCZkjmU1QZPhPIVmbBdzbfnwG
+         xzjdnkKuC/yZ8tMACzjy15opvLccaVIVE8HqD22OGwf1SeQwwjeZWA3crqM8m5SgkRVi
+         yCcjpz6e1HeZ4lg2lxDt7jLwIeGm9SkAuluskX852ZQln5D7m183mRamNI/wrvV9pI+O
+         Ols86nT7MKn7khdUHHxpL6rABQ1tWxyXo4T3oys1yCnBb4f8i5lri+IJne5LXx2WxY0z
+         z8S2BJfmMBkoW0JwYc0StQv9HSgdEehdJedy1cbr+DKjwID0k28hPaMF+rOjK2BxEbEf
+         8Tww==
+X-Forwarded-Encrypted: i=1; AFNElJ9YUGrZhAcr7FMXXUxd+F4kP9a6c18hO5NppTbfUFwkzuNhFA9kwqsqboN0iC9wWI1DsXQqgeKqWiDD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoViOvDGGtYbcQ0XA3a/TzwezVzAcerlme4sp2+Vc/9OCj16oy
+	PzTgyXX3/B/2qji5jODr3F/2n194DQD6St+GC4h7gej574cTl9NzqSF1sGlDNA==
+X-Gm-Gg: Acq92OHRRNHq8YNFK4X8gpY8njTijWFVnA/U1IwBdA9Re2onK1iU7NA5GovWNukmh+V
+	cWsr1CLtK42dcVaIllOdaRhW7Cq+J99/4lf3xmwDzK6w10dUH9os49Y2wF1SaLbQHMjcFQJtXgo
+	gJjfgI8nOHImEm9h0zD9IfiWKBIippD5D4WfiRdHgw7mkQZa2DDyJ0U6d+oD+8YEwezAVXOICez
+	Ji04NAaMgouGvR56J29xBc6RxRfrE5m7hRtDKUDd/YXviWhqVSAx9WoJq6yngzSVnsNX9A9VWf6
+	ZKaKOEN0ec3T5aDrYmeyQ36pm+dHMAKVreKs5RkpoD3yCas5G3PTZdBiv7cm1nskKt3QIVDZFMf
+	loK5Ak9hqfIsjlEIm+6ie5VTFIt7tV55r/CNQ/HZAY2akfC6aG8a7eW796du0hAprg9LYKtboN+
+	lxml7bC7JTAX7ZMfcF7ZTgayfzFnszSfOkzuX/0kiEECQSkycl+LgyzX+dmEi5Rts2sw1WH0Icb
+	pdO
+X-Received: by 2002:a05:6a00:2d21:b0:82c:d986:e917 with SMTP id d2e1a72fcca58-844e1a2f1aamr10649157b3a.22.1781517110139;
+        Mon, 15 Jun 2026 02:51:50 -0700 (PDT)
 Received: from [10.10.15.228] (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8434afc8a5bsm9922207b3a.33.2026.06.15.02.51.44
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8434afc8a5bsm9922207b3a.33.2026.06.15.02.51.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2026 02:51:46 -0700 (PDT)
+        Mon, 15 Jun 2026 02:51:49 -0700 (PDT)
 From: Potin Lai <potin.lai.pt@gmail.com>
-Date: Mon, 15 Jun 2026 17:49:16 +0800
-Subject: [PATCH v3 1/2] dt-bindings: hwmon: pmbus: ti,lm25066: add current
- limit properties
+Date: Mon, 15 Jun 2026 17:49:17 +0800
+Subject: [PATCH v3 2/2] hwmon: (pmbus/lm25066) add current limit
+ configuration support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260615-lm25066-cl-config-v3-1-decb4f5b0b77@gmail.com>
+Message-Id: <20260615-lm25066-cl-config-v3-2-decb4f5b0b77@gmail.com>
 References: <20260615-lm25066-cl-config-v3-0-decb4f5b0b77@gmail.com>
 In-Reply-To: <20260615-lm25066-cl-config-v3-0-decb4f5b0b77@gmail.com>
 To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
@@ -99,11 +100,11 @@ Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
  Mike Hsieh <Mike_Hsieh@quantatw.com>, Potin Lai <potin.lai@quantatw.com>, 
  Potin Lai <potin.lai.pt@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1781517101; l=1952;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781517101; l=2406;
  i=potin.lai.pt@gmail.com; s=20260522; h=from:subject:message-id;
- bh=HODmTcXqpkVz8upSr1TfFa4wg8vBwZE/zjgJ/idrByE=;
- b=7z8rPmUZMwcSfoOqG62nxNjTgm+lFLygOWMSLDLYp7uz6FWBBNI8fe3xR7e8erPbPoOuq2g3+
- fdhumYCR2VFCTdegyQSO0MRCny+XZ/g7K6Vwn8b3J0nPAkg9383HH6N
+ bh=ETGqMavWeBiOQjMJHU7tbf74DHMQeX6TYULgpbT74aQ=;
+ b=FDP8Iq+zzz6ciIgFDabF/U/Du5LF+SBtaWRalK/5mSepbgKtRAtuNmJE4X5s32CiALU4zYxsH
+ 8MQNDluhGpfCbBlW5N+Td4kCSm94Azf7GOtvVFKGcFJqGRc0qjPV04a
 X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
  pk=j3/nMxzz1ZPpp1revghyZ8IqOnwi6RWfuxXN2XrNMRE=
 X-Rspamd-Action: no action
@@ -112,11 +113,11 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311825-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311826-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zev@bewilderbeest.net,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cosmo.chou@quantatw.com,m:Mike_Hsieh@quantatw.com,m:potin.lai@quantatw.com,m:potin.lai.pt@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:potinlaipt@gmail.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[potinlaipt@gmail.com,devicetree@vger.kernel.org];
@@ -136,69 +137,89 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AD06D685306
+X-Rspamd-Queue-Id: EE77B68531A
 
-Add a 'ti,current-range' string property to configure the device's Current
-Limit (CL) behavior to "high" or "low" via the register, overriding the
+Add support for the 'ti,current-range' devicetree property to configure
+the current limit via the DEVICE_SETUP (0xD9) register, overriding the
 physical CL pin setting.
 
-This configuration is supported on LM25066, LM5064, LM5066, and LM5066i.
-LM25056 is excluded because it does not support configuring the current
-limit via the DEVICE_SETUP register (bit 2 of DEVICE_SETUP is reserved).
+This configuration is supported on all chips in this driver (LM25066,
+LM5064, LM5066, LM5066i) except LM25056.
 
-The values "low" and "high" map to the respective low/high threshold
-voltages of the chips:
+The property values "low" and "high" map to:
 - LM25066: low = 25 mV, high = 46 mV
 - LM5064, LM5066, LM5066i: low = 26 mV, high = 50 mV
 
+The Bit 4 mapping to High/Low current limit is handled dynamically on
+probe because it is swapped for LM25066 compared to the other supported
+chips.
+
 Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
 ---
- .../devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml  | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ drivers/hwmon/pmbus/lm25066.c | 37 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-index a20f140dc79a..fe42daabaaa8 100644
---- a/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/ti,lm25066.yaml
-@@ -46,12 +46,32 @@ properties:
+diff --git a/drivers/hwmon/pmbus/lm25066.c b/drivers/hwmon/pmbus/lm25066.c
+index dd7275a67a0a..53d274033d66 100644
+--- a/drivers/hwmon/pmbus/lm25066.c
++++ b/drivers/hwmon/pmbus/lm25066.c
+@@ -34,6 +34,7 @@ enum chips { lm25056, lm25066, lm5064, lm5066, lm5066i };
+ #define LM25066_READ_AVG_PIN		0xdf
  
-     additionalProperties: false
+ #define LM25066_DEV_SETUP_CL		BIT(4)	/* Current limit */
++#define LM25066_DEV_SETUP_CL_CFG	BIT(2)	/* Current limit configuration */
  
-+  ti,current-range:
-+    description: |
-+      Configure the current limit setting. When present, this property
-+      overrides the hardware setting of the physical CL pin by configuring
-+      the DEVICE_SETUP register.
-+      - "low": maps to 25 mV (LM25066) or 26 mV (LM5064, LM5066, LM5066i)
-+      - "high": maps to 46 mV (LM25066) or 50 mV (LM5064, LM5066, LM5066i)
-+    $ref: /schemas/types.yaml#/definitions/string
-+    enum:
-+      - low
-+      - high
+ #define LM25066_SAMPLES_FOR_AVG_MAX	4096
+ 
+@@ -484,6 +485,42 @@ static int lm25066_probe(struct i2c_client *client)
+ 
+ 	data->id = (enum chips)(unsigned long)i2c_get_match_data(client);
+ 
++	if (data->id != lm25056) {
++		int config_new = config;
++		const char *cl_setting;
++		int ret;
 +
- required:
-   - compatible
-   - reg
++		if (!of_property_read_string(client->dev.of_node,
++					     "ti,current-range", &cl_setting)) {
++			config_new |= LM25066_DEV_SETUP_CL_CFG;
++			if (strcmp(cl_setting, "high") == 0) {
++				if (data->id == lm25066)
++					config_new |= LM25066_DEV_SETUP_CL;
++				else
++					config_new &= ~LM25066_DEV_SETUP_CL;
++			} else if (strcmp(cl_setting, "low") == 0) {
++				if (data->id == lm25066)
++					config_new &= ~LM25066_DEV_SETUP_CL;
++				else
++					config_new |= LM25066_DEV_SETUP_CL;
++			} else {
++				dev_err(&client->dev,
++					"invalid current-range setting: %s\n",
++					cl_setting);
++				return -EINVAL;
++			}
++		}
++
++		if (config_new != config) {
++			ret = i2c_smbus_write_byte_data(client,
++							LM25066_DEVICE_SETUP,
++							config_new);
++			if (ret < 0)
++				return ret;
++			config = config_new;
++		}
++	}
++
+ 	info = &data->info;
  
- allOf:
-   - $ref: /schemas/hwmon/hwmon-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ti,lm25056
-+    then:
-+      properties:
-+        ti,current-range: false
- 
- unevaluatedProperties: false
- 
+ 	info->pages = 1;
 
 -- 
 2.52.0
