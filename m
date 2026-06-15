@@ -1,159 +1,171 @@
-Return-Path: <devicetree+bounces-311686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311687-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KA59ALacL2oFDQUAu9opvQ
-	(envelope-from <devicetree+bounces-311686-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:33:26 +0200
+	id ceSnGcecL2oSDQUAu9opvQ
+	(envelope-from <devicetree+bounces-311687-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:33:43 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38FF9683DA3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:33:25 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 462D7683DB0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:33:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cSO9daLV;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311686-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311686-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SZx677jE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311687-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311687-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 423443000E0A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:33:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2A2843001062
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:33:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FB8526E710;
-	Mon, 15 Jun 2026 06:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79BD313E15;
+	Mon, 15 Jun 2026 06:33:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D7528541A
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 06:33:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3CCB296BCD;
+	Mon, 15 Jun 2026 06:33:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781505203; cv=none; b=lt9PAjYnT5ru4A6voqHBEGQILz2a/nghQ5w1+ITbQIi5RMLQbGMeamawG+E7bumHhPrGwwUryfUs+ayOoDERllY7DytKm2YC6yRH64wzo0VTs2cSzxqDKyWilnGtNRKvJNPERgLKctxXRrAojSQ3FLuU1EMF0aYCBh8xu/I87qo=
+	t=1781505217; cv=none; b=CkEi96GJjfESa7rtnlvmeJnOVhB0vbW8RQ4YeK7SUcf+w+axGRsgJW1n6If3994wAS2MseRMtLueMsxsiV2hyBzh1V/DOlKPi3RjYJ6VNkk0arVkmluMxWAjBTEYsAoTTTILVlioZnosQYJqTkSQ91OMCI1LE0jmfH2uyE/y4K0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781505203; c=relaxed/simple;
-	bh=nzO2zgyt9J+x11p32VUmgb54uNujxbZuMjjY90xiVQw=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=IWj1ShgVUMIIh2K/+BZuoFkXvfgE4e7KvANA9BEV+nxsRsawAWqG6RUnpO9QPlot5qeKzihSjNqYnESi8QocIc/r8ETS+S0vnE63HoXedYHsaYcfwJDlZHV9tqkyFY9naqyRu11KewgSR+usqZRyMC331SF9zrOfJCT2AbI3Cz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cSO9daLV; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D12091F000E9;
-	Mon, 15 Jun 2026 06:33:21 +0000 (UTC)
+	s=arc-20240116; t=1781505217; c=relaxed/simple;
+	bh=Xe9l67nGt4Kc4L+FUqiFs8jrQ7lqDLD2IBmMl0ujvGM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eiQjRBPrFYsh7fIM6KF+ENvDNz4579V/SviBspbT5aCe06RFMNHyBCy+r9BIMgoqPg7thlMtznbNgZyEqpf2A91TYMfUt2hGbre73lAx7SaO5f7syVQ0PBCKionPMR7PzkiAd4ByUiwoUhvqkxAwqpBHV54oGmplASJnLtrp4vs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SZx677jE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 841801F000E9;
+	Mon, 15 Jun 2026 06:33:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781505202;
-	bh=Sx7iz8jFx4o/z70sjukhDvOyVkCcR2lJqbus2U/QkeE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=cSO9daLVYqULnfhp2AmnFcNrjTxHPcA48Pauu4q2+EOyMI6q4+w618zhKmCJpVbXt
-	 BixYlErmXpLfSofaVpQbR4Evp9o44YMLGE4vD1KzR+01YyVn4uwIYW7GTgQ478J7yQ
-	 Zs5WePag1vX8QtThiKS9NzORg247iNGwxsAbXx5c/4kTdIYRi3gpX/QhZJ98ZZDuAu
-	 dO7GqHFmPnmyTHcVX3LyCVR2NuBvAo8Ekp0XwtGIy7bLIoL1UCFDgLsfh8g50VXkJt
-	 gXY9Y4fm5MUyZJKAe0suXFeIdH68rRtwjM7dGDSRisZKf+i+T9pXix5rEiQgcuX2Em
-	 lTGJ5Uf0Um2Xw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 3/4] dt-bindings: iio: dac: add support for
- AD3532R/AD3532
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Kim Seer Paller" <kimseer.paller@analog.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260615-iio-ad3532r-support-v2-3-84a0af8b83fa@analog.com>
-References: <20260615-iio-ad3532r-support-v2-3-84a0af8b83fa@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 06:33:21 +0000
-Message-Id: <20260615063321.D12091F000E9@smtp.kernel.org>
+	s=k20260515; t=1781505216;
+	bh=+QxQVQJlIGn+2ZDCWDLM0UXRIyhO2e1DQA5DWZNrCss=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=SZx677jEm2tC5R3Hj+19phsHzay5QecVVID55jtGEu2sNMcLuhEjRPcs2DlaJ4oMQ
+	 anUHZXaqQkXme9XedriIJ70mFzaCYDotvliDBif99LaO+cIBsYB4lsQKZ1aQUks1Ts
+	 jZ+ojdEaQSXknVzIUkqDdaHY14O/TqF9gNtVshQ5yqQIatA8BVvePlZk0MpdKrhEFB
+	 65p91kPXpEv+zZQuEgP8KOuCOESxd22SQwFVy4bX/s+1fzDkGvBesBRiY20LAu3XYk
+	 IciQGk0QvXK7hOTZsgpAx3eh/C6cnA2YjER2beZuLrh3NtfMpGYgjR7cCti+7VB02K
+	 OaRAm1r+w3I7Q==
+Date: Mon, 15 Jun 2026 08:33:32 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alban Bedel <alban.bedel@lht.dlh.de>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@kernel.org>, driver-core@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Subject: Re: [PATCH] of: property: Fix of_fwnode_get_reference_args() with
+ negative index
+Message-ID: <20260615-obedient-axolotl-of-argument-fb55ef@quoll>
+References: <20260611102806.2643869-1-alban.bedel@lht.dlh.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260611102806.2643869-1-alban.bedel@lht.dlh.de>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-4.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311686-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:kimseer.paller@analog.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:alban.bedel@lht.dlh.de,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:driver-core@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:tommaso.merciai.xr@bp.renesas.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-311687-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 38FF9683DA3
+X-Rspamd-Queue-Id: 462D7683DB0
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The `ad3530r_chip` struct initialization redundantly initializes `.=
-input_ch_reg` twice.
---
+On Thu, Jun 11, 2026 at 12:28:06PM +0200, Alban Bedel wrote:
+> fwnode_property_get_reference_args() should return -ENOENT when an out
+> of bound index is passed. An issue arised with the OF backend because
+> the OF API use signed indexes while the fwnode API use unsigned ones.
+> When an index value greater the INT_MAX was passed to the OF backend
+> it got casted to a negative value and it returned -EINVAL instead of
 
-commit 2528c529a11e7b49d5cde3c0238451d59c5f698b
-Author: Kim Seer Paller <kimseer.paller@analog.com>
+INT_MAX is not out of bound for this function. It is invalid value,
+because OF code expects signed.
+ 
+> -ENOENT. This patch add a check to of_fwnode_get_reference_args() to
+> catch negative index before they are passed to the OF API and return
+> -ENOENT right away.
 
-iio: dac: ad3530r: Refactor setup to table-driven register bank approach
+I do not understand why are you fixing this issue that way. For this
+API, the INT_MAX is correct value, but you claim that it is wrong and
+should be ENOENT (even if there is entry).
 
-Replace direct register calls in ad3530r_setup() with per-chip register
-address arrays and bank helpers. Convert sw_ldac_trig_reg from a static
-register address to a function pointer for per-bank LDAC trigger
-register selection. Switch spi_device_id to named initializers.
+Fine, if this is not a correct value, then EINVAL.
 
-> diff --git a/drivers/iio/dac/ad3530r.c b/drivers/iio/dac/ad3530r.c
-> index d9db3226ecd64..e4346bc729ba5 100644
-> --- a/drivers/iio/dac/ad3530r.c
-> +++ b/drivers/iio/dac/ad3530r.c
+But more important I think this should be just fixed in different way -
+why index in OF calls is signed in the first place? All indices are
+supposed to be unsigned in general, because that is both logical and
+readable when accessing arrays.
 
-[ ... ]
+> 
+> This issue appeared when the following pattern was used in the LED
+> subsystem:
+> 
+>     index = fwnode_property_match_string(fwnode, "led-names", name)
+>     led_node = fwnode_find_reference(fwnode, "leds", index);
+> 
+> Unlike the same pattern with the OF API, this pattern implicitly cast
+> the signed return value of fwnode_property_match_string() to an
+> unsigned index leading to the above issue with the OF backend. It can
+> be argued that the return value of fwnode_property_match_string()
+> should be checked separately, but I think there is value in supporting
+> such simple and straight to the point patterns.
+> 
+> Link: https://lore.kernel.org/linux-leds/aimVRwJPhlGxsIUj@tom-desktop/T/#mc43cbf7e0599991b56dd0d9680714d28d145fbc8
+> Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> Signed-off-by: Alban Bedel <alban.bedel@lht.dlh.de>
+> ---
+>  drivers/of/property.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 136946f8b746f..eace2d1847b99 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1157,6 +1157,13 @@ of_fwnode_get_reference_args(const struct fwnode_handle *fwnode,
+>  	unsigned int i;
+>  	int ret;
+>  
+> +	/* This function should return -ENOENT for out of bound indexes,
 
-> @@ -344,7 +387,14 @@ static const struct ad3530r_chip_info ad3530r_chip =
-=3D {
->  	.name =3D "ad3530r",
->  	.channels =3D ad3530r_channels,
->  	.num_channels =3D ARRAY_SIZE(ad3530r_channels),
-> -	.sw_ldac_trig_reg =3D AD3530R_SW_LDAC_TRIG_A,
-> +	.sw_ldac_trig_reg =3D ad3530r_trigger_sw_ldac_reg,
-> +	.input_ch_reg =3D ad3530r_input_ch_reg,
-        ^^^^^^^^^^^^^
+/*
 
-[Severity: Low]
-Is .input_ch_reg redundantly initialized here?  It looks like .input_ch_reg
-is also assigned just a few lines down in this struct.
+Please use Linux coding style comments.
 
-> +	.interface_config_a =3D ad3530r_if_config,
-> +	.output_control =3D ad3530r_out_ctrl,
-> +	.reference_control =3D ad3530r_ref_ctrl,
-> +	.op_mode =3D ad3530r_op_mode,
-> +	.num_banks =3D ARRAY_SIZE(ad3530r_if_config),
-> +	.num_op_mode_regs =3D ARRAY_SIZE(ad3530r_op_mode),
->  	.input_ch_reg =3D ad3530r_input_ch_reg,
->  	.internal_ref_support =3D true,
->  };
+> +	 * but the OF API uses signed indexes and consider negative indexes
+> +	 * as invalid. Catch them here to correctly implement the fwnode API.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615-iio-ad3532=
-r-support-v2-0-84a0af8b83fa@analog.com?part=3D3
+Best regards,
+Krzysztof
+
 
