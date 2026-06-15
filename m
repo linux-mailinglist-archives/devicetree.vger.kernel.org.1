@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-311922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311915-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wcugN7ruL2ofJQUAu9opvQ
-	(envelope-from <devicetree+bounces-311922-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:23:22 +0200
+	id v0pNAhLuL2r7JAUAu9opvQ
+	(envelope-from <devicetree+bounces-311915-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:20:34 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5395668627E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:23:22 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DCC468621E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:20:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=einfochips.com header.s=NAESA-Selector1 header.b=runROUNY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311922-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-311922-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=einfochips.com header.s=NAESA-Selector1 header.b=c9ID4DS5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311915-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311915-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=reject) header.from=einfochips.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9884F3036FA5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:21:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0ECD1300A480
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2BB83E866C;
-	Mon, 15 Jun 2026 12:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03AE53B0ADC;
+	Mon, 15 Jun 2026 12:20:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from naesa05.arrow.com (naesa05.arrow.com [216.150.161.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700993E958C;
-	Mon, 15 Jun 2026 12:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472E5354AEB;
+	Mon, 15 Jun 2026 12:20:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781526093; cv=none; b=LXJXHl2euCuxH5Z4HUnL45MTO+YBhrKcqxbc991j/gQSI59DEF3JbnbVExuqgchzg15Nbbkj5mwOiKG1R6di1veqWBRB4ZAywAoFC6Y+JeBEbuK5DfswaTEnstJEA24YQnbrwcj1QBztLiMn+FUKNmQ6VLH6O+9sWfmoZe7gM/8=
+	t=1781526027; cv=none; b=hEPZVkm8dIgSFYr4MYVyMESZf/Wt0LlRtFtBId/ZEEn6Cr3fiyMxQlXuv/lHnGsv5rEDF1abWATpUTilnKQwfyHSAJoSh4p4cB47PRDvQQb2weDHY2XC2Sb9v8ZDGdYj8DPfCg4IQPRFORpuTZbAMY/XdWTkGD6qXIomFeWSHpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781526093; c=relaxed/simple;
-	bh=xjT3O6Wbv1sZ5vYmmAeeACQt2ByeOdf6TjKazJsl75U=;
+	s=arc-20240116; t=1781526027; c=relaxed/simple;
+	bh=r3KVjac0dfAixKGN0M9PcSwDE+/AAZuGqwZGlJwlqpI=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fWHnTvZ4EE2zirFj3bAA2Y61UvhyOk1Ok+QmypI3h7KnXkPEMJe67U7+L+d2jvpKBgFvZS3ZndJszCko5BS2bEMHyeM10gcUFz7ZzHOUdfwcqdwN6xyj8Zf7u0pZzhuzYqBq+uFUZbkY2vCZ1vcKx1xXmfU7cWfNFPFXFvew8+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=einfochips.com; spf=pass smtp.mailfrom=einfochips.com; dkim=pass (2048-bit key) header.d=einfochips.com header.i=@einfochips.com header.b=runROUNY; arc=none smtp.client-ip=216.150.161.26
+	 MIME-Version; b=qXVZUvIcam0lnnGc4OdXloslGqNWFpg6zomX5570zqBIy8101NXIZcy9sztx5YIU7ImK0qk6Np5pj0eFD4pW2Bz26muRjvquEF8RFWx9Cdq4BQc4QOlVaEAvkdoiVJV2IyKgZdn6O1NceEVLP6YFxdyr2d3vXnRSMByW6+Xv64s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=einfochips.com; spf=pass smtp.mailfrom=einfochips.com; dkim=pass (2048-bit key) header.d=einfochips.com header.i=@einfochips.com header.b=c9ID4DS5; arc=none smtp.client-ip=216.150.161.26
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=einfochips.com; i=@einfochips.com; l=973; q=dns/txt;
-  s=NAESA-Selector1; t=1781526092; x=1813062092;
+  d=einfochips.com; i=@einfochips.com; l=1125; q=dns/txt;
+  s=NAESA-Selector1; t=1781526026; x=1813062026;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=93XT2CFEttEQnwRkUkGt+mqMWaXh6HjcoOK57M858G0=;
-  b=runROUNYwXq9UV5Nvfuqu3ef4gxVibwB9rxeSOL67wP53hox6dPpyPpp
-   fzFEdWbcuMJCCXRRI0/fQmyBj7NFPezBq4N2Cg+K79Gjmx58kQNJoM2kS
-   tQsKdf/pb6zQueoDEjquSV0iz1JaU9h6EUTKva2OM9Z8Mi76CwauOM8pV
-   Dk3HAL2lfccMf1JGi37+vXQIwK4+HOx9DFrff+nmHp910G9HZdjn9CPsC
-   yT7NvCaaWaYwMZnW/40GQDdUPAMyo8w0GVSc1xD5AJFdiR8b/ZMQYlihQ
-   OBlbKB/c7DymfdcdjyXJCvvpRC1K7hOwKfIEtF72NZov7IAD5aLifWWN/
-   w==;
-X-CSE-ConnectionGUID: /1a50GmWThawflrZlgHpWw==
-X-CSE-MsgGUID: WF/9G7yfRPmsvPZ/5C+hYQ==
+  bh=hT//GF9zeXsEraSo0H7p/1xw40IC3Pcx/rQfarynoP4=;
+  b=c9ID4DS507BoyDXXM7o6WP/GLACC+iUmC/dVO+SGvk//2v7LWWkuj5dX
+   a5eeNayMN6t9nPMlkThxA3DY6uDicRpS+9D5bU770wpDOswTuECcyOI8s
+   wdjlIy8KqS2lOZk049/fjFTa41tI4xEyrL2ggofdxC4b5pIu8FELLPcBD
+   N4xPZLeSk+jJ6PUI17hVlZKmYH0ErEMm7XsnXvd732ISEUGlKjc6E8n9M
+   6ggS+ufpHr1iWcI6VajynnCm7QjdRQUeNjfdvnQ8lxdAxOIx5VdBjT+qY
+   KtrrSxB06wdcHWqE+9GT4uprPcRW2sXos284igHMk1UH3E8J7BK6lXwfk
+   Q==;
+X-CSE-ConnectionGUID: gUMV848fRQuJ6mOYHshQGw==
+X-CSE-MsgGUID: 7cuz4KxQSvCxoIf16TmHnQ==
 X-IronPort-AV: E=Sophos;i="6.24,206,1774332000"; 
-   d="scan'208";a="55984206"
+   d="scan'208";a="55984208"
 Received: from unknown (HELO eicahmirelay01.einfochips.com) ([10.100.49.50])
-  by naesa05out.arrow.com with ESMTP; 15 Jun 2026 06:20:23 -0600
+  by naesa05out.arrow.com with ESMTP; 15 Jun 2026 06:20:24 -0600
 Received: from AHMCPU1888.ap.corp.arrow.com ([172.25.5.100]) by eicahmirelay01.einfochips.com with Microsoft SMTPSVC(10.0.20348.1);
 	 Mon, 15 Jun 2026 17:50:16 +0530
 From: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
@@ -73,9 +73,9 @@ Cc: Yulin Lu <luyulin@eswincomputing.com>,
 	Darshan Prajapati <darshan.prajapati@einfochips.com>,
 	Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>,
 	Pritesh Patel <pritesh.patel@einfochips.com>
-Subject: [PATCH 4/7] dt-bindings: mfd: syscon: add ESWIN EIC7700 compatible
-Date: Mon, 15 Jun 2026 17:50:13 +0530
-Message-Id: <20260615122016.1110206-5-pinkesh.vaghela@einfochips.com>
+Subject: [PATCH 5/7] riscv: dts: eswin: add hsp power domain
+Date: Mon, 15 Jun 2026 17:50:14 +0530
+Message-Id: <20260615122016.1110206-6-pinkesh.vaghela@einfochips.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260615122016.1110206-1-pinkesh.vaghela@einfochips.com>
 References: <20260615122016.1110206-1-pinkesh.vaghela@einfochips.com>
@@ -86,7 +86,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-OriginalArrivalTime: 15 Jun 2026 12:20:16.0973 (UTC) FILETIME=[533DF7D0:01DCFCC1]
+X-OriginalArrivalTime: 15 Jun 2026 12:20:17.0021 (UTC) FILETIME=[53454AD0:01DCFCC1]
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -95,11 +95,11 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[einfochips.com,reject];
 	R_DKIM_ALLOW(-0.20)[einfochips.com:s=NAESA-Selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311922-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311915-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[pinkesh.vaghela@einfochips.com,devicetree@vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
@@ -117,39 +117,45 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[einfochips.com:dkim,einfochips.com:email,einfochips.com:mid,einfochips.com:from_mime,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,einfochips.com:dkim,einfochips.com:email,einfochips.com:mid,einfochips.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5395668627E
+X-Rspamd-Queue-Id: 9DCC468621E
 
-Document ESWIN EIC7700 SoC compatible for syscon registers.
+HSP CSR is inside the HSP power domain. HSP CFG clock must be enabled
+to access the HSP CSR registers.
+Add HSP power domain node to manage hsp cfg clock
 
 Signed-off-by: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
 ---
- Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/riscv/boot/dts/eswin/eic7700.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index e22867088063..7d3365601249 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -62,6 +62,7 @@ select:
-           - cirrus,ep7209-syscon3
-           - cnxt,cx92755-uc
-           - econet,en751221-chip-scu
-+          - eswin,eic7700-syscfg
-           - freecom,fsg-cs2-system-controller
-           - fsl,imx93-aonmix-ns-syscfg
-           - fsl,imx93-wakeupmix-syscfg
-@@ -175,6 +176,7 @@ properties:
-               - cirrus,ep7209-syscon3
-               - cnxt,cx92755-uc
-               - econet,en751221-chip-scu
-+              - eswin,eic7700-syscfg
-               - freecom,fsg-cs2-system-controller
-               - fsl,imx93-aonmix-ns-syscfg
-               - fsl,imx93-wakeupmix-syscfg
+diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi b/arch/riscv/boot/dts/eswin/eic7700.dtsi
+index 8798c50f7584..f8caf39616b2 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
+@@ -252,6 +252,19 @@ plic: interrupt-controller@c000000 {
+ 			#interrupt-cells = <1>;
+ 		};
+ 
++		hsp_power_domain: bus@50400000 {
++			compatible = "simple-pm-bus";
++			ranges = <0x0 0x50400000 0x0 0x50400000 0x0 0xa0000>;
++			clocks = <&clk EIC7700_CLK_GATE_HSP_CFG_CLK>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++
++			hsp_sp_csr: hsp-sp-top-csr@50440000 {
++				compatible = "eswin,eic7700-syscfg", "syscon";
++				reg = <0x0 0x50440000 0x0 0x2000>;
++			};
++		};
++
+ 		uart0: serial@50900000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0x0 0x50900000 0x0 0x10000>;
 -- 
 2.34.1
 
