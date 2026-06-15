@@ -1,184 +1,200 @@
-Return-Path: <devicetree+bounces-312011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312013-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id q5RLDDwMMGoAMgUAu9opvQ
-	(envelope-from <devicetree+bounces-312011-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:29:16 +0200
+	id yGH8AA8NMGopMgUAu9opvQ
+	(envelope-from <devicetree+bounces-312013-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:32:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C0CB6872CE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:29:15 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81701687349
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:32:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="DVB3J/sp";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312011-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312011-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=TYCQPqE2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312013-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312013-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 25E78300B8E8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:28:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 091FA307E032
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45A173F9F48;
-	Mon, 15 Jun 2026 14:28:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A5923F825F;
+	Mon, 15 Jun 2026 14:29:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5063D3F8233;
-	Mon, 15 Jun 2026 14:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8913F8246;
+	Mon, 15 Jun 2026 14:29:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781533703; cv=none; b=awBzFuv+yDiASmaMaVcvJcsVmsbBSPsh9enEvl+ZHCIctw35+zq5vAn5x0g6xZO8TIdW4qF2GtXdCrAnM9UMlHwtX/gZDsA4IPljek3F4OxQQmWsdVR7mnu8aZqLGfqieQAT5hb/L9s2jfxhZPyEvGrH1DH2DujAltPBmrc7xmI=
+	t=1781533759; cv=none; b=oFZWTqnvU9wTtCqLM1Fq18eEw1NyelalzcCSSsiepA8EVtAgSqq9cedtno9/T5H6u8yrd/9f8YjotmhRHORH445D2nQC4BO1SNBubpt+23hKqlTES1PFdmIMPXXGIfQV7cQa2dkI+x7HOeidRbUYjQlVOfmKQ1D9rESvzC7UJW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781533703; c=relaxed/simple;
-	bh=di8Cecoe3Fmf11lnQqBNXXiNqaQdQ8D8odDym0sxE3M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qm9Ay0NWT8GTVO6b1+Yjy+UPNwGNd24mF6XYa6Lu3Sa27h+/D+g/IwwwP4EhAIkVNcggD6eDuusf6l+Y82MqHBb6U1oeZi+imaaN2RDmInPGTjX7jQPwrfHftAp/ispnkYXHFkl26ghGAw1FfL4jATneE4oQ9An/jJpyhOxQQGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DVB3J/sp; arc=none smtp.client-ip=198.175.65.15
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781533701; x=1813069701;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=di8Cecoe3Fmf11lnQqBNXXiNqaQdQ8D8odDym0sxE3M=;
-  b=DVB3J/sp1EgSIJQbYniYKS/ZOz1O6yOq6KJXqBhU/jcdvqDjN2azwHeM
-   X9Xu6OlxnaSE456iPM1mIwZTaw4bK4ZlKfjrjM88nVLm2vVlr7ZXRph/+
-   3WcMQtsTSgUPF3YSwQ/XhnoiPNE4rJnPjOYvmxkxcNU42K20MSIQewuq6
-   fjLKlK3aQzI1kQbyGjueN28Xq6eR2/5pMFDGqtiLz+2mV7KstSL1Yit7r
-   gWgNAK0InL2bG3eEFBI5RYGRDLE9iEGP8iVgp0KIyFN0/PH9/SFVViTnF
-   XYXuCbakNDGyw9ay5L3kdOS8KqGdyAdR7OJSDXTRt9W/mrXTWPl3NO83w
-   w==;
-X-CSE-ConnectionGUID: XjjfKdL+TxqG2ua+ujquuQ==
-X-CSE-MsgGUID: T+Kl8BojTk6MCdcVeWc9qw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="85908057"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; 
-   d="scan'208";a="85908057"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026 07:28:21 -0700
-X-CSE-ConnectionGUID: 5XT6GlmcQiuqI8Lnzb3iEg==
-X-CSE-MsgGUID: 8j9GxcZLSdGo5hoTjKc6Rw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; 
-   d="scan'208";a="285597575"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.235])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026 07:28:18 -0700
-Date: Mon, 15 Jun 2026 17:28:15 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Salih Erim <salih.erim@amd.com>
-Cc: jic23@kernel.org, andy@kernel.org, dlechner@baylibre.com,
-	nuno.sa@analog.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, conall.ogriofa@amd.com, michal.simek@amd.com,
-	linux@roeck-us.net, erimsalih@gmail.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 5/5] iio: adc: versal-sysmon: add oversampling support
-Message-ID: <ajAL__3jUtSgSb7r@ashevche-desk.local>
-References: <20260614233722.2603459-1-salih.erim@amd.com>
- <20260614233722.2603459-6-salih.erim@amd.com>
+	s=arc-20240116; t=1781533759; c=relaxed/simple;
+	bh=7cbZh0H/gGZPnJCdul/uOhQlZasghqu8qchZzA/13Q4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mp1t5cezzPuTCoT9BtnVzxT4spHulSVv1Xe8Bk/xr/WEwHxLooXEJwAZc8L0u/2MAxaGVL8uVZ+qwiqpo2haFDqX9Gsc1agF8UgY7Y/T4Wih4HZNVuIyWRqhr3v5siitq5/fo2tQcw3WR3YKSwIQ/37bDI2jQPxeRMu8YC95dvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TYCQPqE2; arc=none smtp.client-ip=185.246.84.56
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 40A101A3934;
+	Mon, 15 Jun 2026 14:29:16 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0F2B660015;
+	Mon, 15 Jun 2026 14:29:16 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C2F0A106C968A;
+	Mon, 15 Jun 2026 16:29:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1781533754; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=3rMsrZ7GVRodQT0vv+F6bubXVUBI/vtcGoamkCWzv8c=;
+	b=TYCQPqE2QSvlgUb/4JT5XIhXAMpBRqUwvWyNEa+AQy1qdwmW6is6Lmk+BBvd8vCY6XZMAR
+	pwX8hKmcij0KqlCHhAlICumWm1QN2FZpcQJU6O7XsrMHtUQxNzIyv+BR6zpWNAIlARpmOg
+	pxw3LQMtXaYy7Eqkn3zjJv20NkpuRWIUcKUGeogMRyT+s0lLkwQ8735Upe2rAEiENbqn6e
+	Se7LvxooQiSsU2E8wgag4N7J85IMrGMXrMPWjlzvZT9VZa/7qXDuaAryDPwaE9RbQeRqpC
+	Ytp6PSShO0oL0EttURSQGkMNnMAEp8fQJH/9H4LNFihxMGSQWut+wskXWQ2uOQ==
+Message-ID: <7702ac09-75fd-49de-8ad2-fceaa122b627@bootlin.com>
+Date: Mon, 15 Jun 2026 16:29:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260614233722.2603459-6-salih.erim@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v7 05/12] net: phylink: support late PCS provider
+ attach
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ Saravana Kannan <saravanak@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Nathan Chancellor
+ <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ llvm@lists.linux.dev
+References: <20260615122950.22281-1-ansuelsmth@gmail.com>
+ <20260615122950.22281-6-ansuelsmth@gmail.com>
+ <867a39de-ccc2-4dcf-be24-ab2542d20ab6@bootlin.com>
+ <6a3007ce.73de60af.3a056d.d903@mx.google.com>
+Content-Language: en-US
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+In-Reply-To: <6a3007ce.73de60af.3a056d.d903@mx.google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312013-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312011-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:salih.erim@amd.com,m:jic23@kernel.org,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:lorenzo@kernel.org,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:p.zabel@pengutronix.de,m:nathan@kernel.org,m:nick.desaulniers+lkml@gmail.com,m:morbo@google.com,m:justinstitt@google.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:llvm@lists.linux.dev,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:nickdesaulniers@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,pengutronix.de,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,ashevche-desk.local:mid,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,lkml];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,bootlin.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2C0CB6872CE
+X-Rspamd-Queue-Id: 81701687349
 
-On Mon, Jun 15, 2026 at 12:37:22AM +0100, Salih Erim wrote:
-> Add support for reading and writing the oversampling ratio through
-> the IIO oversampling_ratio attribute. The hardware supports averaging
-> 2, 4, 8, or 16 samples, plus a ratio of 1 (no averaging).
+
+
+On 6/15/26 16:10, Christian Marangi wrote:
+> On Mon, Jun 15, 2026 at 04:07:03PM +0200, Maxime Chevallier wrote:
+>> Hi Christian,
+>>
+>> On 6/15/26 14:29, Christian Marangi wrote:
+>>> Add support for late PCS provider attachment to a phylink instance.
+>>> This works by creating a global notifier for the PCS provider and
+>>> making each phylink instance that makes use of fwnode subscribe to
+>>> this notifier.
+>>>
+>>> The PCS notifier will emit the event FWNODE_PCS_PROVIDER_ADD every time
+>>> a new PCS provider is added.
+>>>
+>>> phylink will then react to this event and will call the new function
+>>> fwnode_phylink_pcs_get_from_fwnode() that will check if the PCS fwnode
+>>> provided by the event is present in the pcs-handle property of the
+>>> phylink instance.
+>>>
+>>> If a related PCS is found, then such PCS is added to the phylink
+>>> instance PCS list.
+>>>
+>>> Then we link the PCS to the phylink instance and we refresh the supported
+>>> interfaces of the phylink instance.
+>>>
+>>> Finally we check if we are in a major_config_failed scenario and trigger
+>>> an interface reconfiguration in the next phylink resolve.
+>>>
+>>> In the example scenario where the link was previously torn down due to
+>>> removal of PCS, the link will be established again as the PCS came back
+>>> and is now available to phylink.
+>>>
+>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+>>> ---
+>>
+>> [...]
+>>
+>>> @@ -2151,6 +2204,10 @@ void phylink_destroy(struct phylink *pl)
+>>>  	if (pl->link_gpio)
+>>>  		gpiod_put(pl->link_gpio);
+>>>  
+>>> +	/* Unregister notifier for late PCS attach */
+>>> +	if (pl->fwnode_pcs_nb.notifier_call)
+>>> +		unregister_fwnode_pcs_notifier(&pl->fwnode_pcs_nb);
+>>
+>> I wanted to try this out, but I get :
+>>
+>> drivers/net/phy/phylink.c:2218:17: error: implicit declaration of function ‘unregister_fwnode_pcs_notifier’; did you mean ‘register_fwnode_pcs_notifier’? [-Werror=implicit-function-declaration]
+>>  2218 |                 unregister_fwnode_pcs_notifier(&pl->fwnode_pcs_nb);
+>>       |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>       |                 register_fwnode_pcs_notifier
+>>
+>> I guess you either need to stub this, or there's a missing Kconfig
+>> dependency somewhere
+>>
 > 
-> Temperature and supply channels share oversampling configuration at
-> the type level (all temperature channels share one ratio, all supply
-> channels share another), exposed through info_mask_shared_by_type.
+> Hi yes if you want toi test just enable CONFIG_FWNODE_PCS. I forgot to add
+> the static declaration for unregister_fwnode_pcs_notifier. 
+
+I'll give it a go with this yeah, I have a few devices here I'd like to
+try this on.
+
+Can you CC me for the next rounds ?
+
+Maxime
+
 > 
-> The hardware encoding uses sample_count / 2 in a 4-bit field within
-> the CONFIG register. Per-channel averaging enable registers must also
-> be updated to activate or deactivate averaging.
-
-...
-
-> +static int sysmon_osr_write_temp(struct sysmon *sysmon, int val)
-> +{
-> +	/*
-> +	 * HW register encoding is sample_count / 2:
-> +	 * 0=none, 1=2x, 2=4x, 4=8x, 8=16x (not log2-based).
-> +	 */
-> +	int hw_val = val >> 1;
-
-If, for some reason, val happens to be a small negative number, here might be
-a surprising behaviour.
-
-> +	unsigned int readback;
-> +	int ret;
-> +
-> +	ret = regmap_update_bits(sysmon->regmap, SYSMON_CONFIG,
-> +				SYSMON_CONFIG_TEMP_SAT_OSR,
-> +				FIELD_PREP(SYSMON_CONFIG_TEMP_SAT_OSR, hw_val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Readback fence: the SysMon CONFIG register resides in the
-> +	 * PMC domain behind the NoC. A posted write may not reach the
-> +	 * hardware before the next MMIO access. Reading the register
-> +	 * back forces the interconnect to complete the write, preventing
-> +	 * a bus hang on the subsequent access.
-> +	 */
-> +	regmap_read(sysmon->regmap, SYSMON_CONFIG, &readback);
-> +
-> +	return sysmon_set_avg_enable(sysmon, SYSMON_TEMP_EN_AVG_BASE,
-> +				     SYSMON_TEMP_EN_AVG_COUNT,
-> +				     hw_val ? ~0U : 0);
-
-Is the last parameter > 32-bit? If not, drop 'U' as it might have a nice
-side-effect in case this become actually > 32-bit. Same for other cases.
-In other words, using ~0U should be quite cautious.
-
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
 
 
