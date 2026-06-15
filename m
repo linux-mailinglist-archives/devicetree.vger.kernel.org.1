@@ -1,165 +1,233 @@
-Return-Path: <devicetree+bounces-312099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312096-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BNmUIjAtMGoGPgUAu9opvQ
-	(envelope-from <devicetree+bounces-312099-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:49:52 +0200
+	id zrogETYtMGoMPgUAu9opvQ
+	(envelope-from <devicetree+bounces-312096-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:49:58 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5232C688889
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:49:52 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B35688895
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:49:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lunn.ch header.s=20171124 header.b=iCrFXoYM;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312099-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-312099-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=lunn.ch;
+	dkim=pass header.d=linaro.org header.s=google header.b=H77jf2mD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312096-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312096-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 33A51301137B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:49:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 29C69300E92B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0298413630;
-	Mon, 15 Jun 2026 16:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80409410D26;
+	Mon, 15 Jun 2026 16:49:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76739413D87;
-	Mon, 15 Jun 2026 16:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2DEB40FD99
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 16:49:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781542150; cv=none; b=Y7p/Lj2LHMtLrVNDGN9E2u0VjVxJiEW/UDzOUezBZEtrDKc3Ls+l7xXiK6AgiPshE8ymPuFYjFVe2tJyJvGRITyVFARQ6dUKonEA6Dvc2qAgEk4v9GepCSz1tRfBmlcJhsfcImVPYFjCQVjp57SDO3goJ+MoEWGc08EKgGqzvzs=
+	t=1781542144; cv=none; b=ho8f10k8FBFdPGksUaiW5rPvr6yMit5acm2UPD8rtd4OQDyamRZEeg0b5UZbvoAScF4rpaDZRe9BzdIrQFExI5crYmmjxhWkXqjmWsQ+OyKGcjvMgMiXLFlCl/3Ebk+qmNPKatGBgR+zz98yOl1Ut5SoK6H/S6UrYjv0hQCM2BY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781542150; c=relaxed/simple;
-	bh=VqCsKRsvy+mxioqtQLOfn3znlkYCCyYsy9QnRBTu6do=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d2MBoJpFCPcuHChnyTpckMayZ+dIXpVgN43zwN6IRItVMr+FVKJEeKsWxVMcuVEIVkuNbSNKzetgcyqpgsAxnTfU7wZin2ZSPx6kY7GR+HJKcme2xiHFCmg9x83f5TpZUqEAKwohltGYhSD3lbbANASZLSRPhFe6kESFbI87EJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=iCrFXoYM; arc=none smtp.client-ip=156.67.10.101
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=jC3QU4FZPqQg1AwNqnbDKfJyL5YE4F9tg8zVHB4z4v8=; b=iCrFXoYMz+xsVQ6gls0oFxtpMc
-	jD3or/PzwT5ahterKZkNT0Npz5satnfMPG8wH1nDJtBSVmWfwMQ0gi/OJ7CSigQz8oAVDSSut07Ak
-	jBgGPKYkpmLEGO4onHobglR0U5s0zscMls0GFQLmRcJbnH0goFxP2CXCDxrl7Phc9I5M=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1wZAUZ-007pmW-2P; Mon, 15 Jun 2026 18:48:55 +0200
-Date: Mon, 15 Jun 2026 18:48:55 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Russell King <linux@armlinux.org.uk>, linux-arm-msm@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC 3/9] net: stmmac: qcom-ethqos: fix RGMII_ID mode to
- use DLL bypass
-Message-ID: <82705420-771d-41bf-a4d9-ed94dff86ff0@lunn.ch>
-References: <20260612-shikra_ethernet-v1-0-f0f4a1d19929@oss.qualcomm.com>
- <20260612-shikra_ethernet-v1-3-f0f4a1d19929@oss.qualcomm.com>
- <42355330-c22a-4fce-98ab-dc22b321ff16@lunn.ch>
- <ai93X/cNWHtEQsDt@oss.qualcomm.com>
+	s=arc-20240116; t=1781542144; c=relaxed/simple;
+	bh=4HjNMydN5tW67EpwgcKq0bJylrgzUaRgs8yaNRqheFs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=GQQf0sgh9FdBKuJewjg3jI2WBFljj8T1Ro4Jo8H45kkudiuelIn35phreJdM6XB6aQ2w00jKkUgkjX//pkobBrr5ju23UqZ/42Lgig+lOreJj8Hv/OOV51otcj0gclbwguaxoc4WkYFsRK9yBtLi5Bx1+zHaHUh1QByQRdLZTIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H77jf2mD; arc=none smtp.client-ip=209.85.128.52
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-490a76757e5so25887155e9.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 09:49:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1781542141; x=1782146941; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OUXv3GxUdJrnvQC/PhSLkI1Hz8IfckJ8inkqhUnweag=;
+        b=H77jf2mDtgI2h0xxEazON8CFF+z+v4AamO/Ypo8HSS3qUAbQtOG8p7EZsxOhjnRDm8
+         oOXceYVt6t5G7653ZoVTwXg7jnXWi2ZRByyf1ijpvmtRVG9olCGO1TlL8F7aKJnuoMa5
+         85nAhGQb2p7Ho9Hy+Lug79k2SeRVIhcGWzCHi48r814ttRpxhlIvxFdgvZNP9DVIF3r0
+         zsAVh7ycK6LTrAWgIQq9mwYXtQvHnsi/BnsVPCM/tS/wq7iu0GDdPKY30p7PHQ+cKIwz
+         l6ghWmtoXvDz/DC8brqq0UScwxG38Ar4O9ZLo/38iZqptXumupJMwpA9NJsSnC7Sg7kR
+         XwzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781542141; x=1782146941;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=OUXv3GxUdJrnvQC/PhSLkI1Hz8IfckJ8inkqhUnweag=;
+        b=kMbkkfKvd6ToQWKN/ur4mjZ2q6rXMHA1gcuzbVlpkJbRA/qNkKGgJwXMAWlXM2Ad+j
+         T7KA0vW83BaUvNR43bvZcIg9lC11IUmnUIq7ZoNL05zZn+6Axzb6QN1+wO2O/Hssq5Bv
+         +n0a1joVD7u3UQ4RY+n91FYXF700O3xafzWrhGzuSyi47tjibpaXpkf0u/pdSDJlTlhy
+         gCPwkGs+xqi87ly7vU0xd4UovlXZmSQTSt5q2i6qAVrVBvxsvIZ6+7s9xy8G1GlFoMrn
+         KIkelUPWBixUhzTS4dsyaI1067A8yPuEGz4/8H5zW0Y9ibcuKa4Dwn/RgyEoxXNYTUNT
+         5BNg==
+X-Forwarded-Encrypted: i=1; AFNElJ9jZsvqCVP5mZ5qq9ltp9Mlwnr3k2JOY6vTfeIphcOF2wpkg+nzygoylFcqm4GjxYozY27ywzTssSZf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxroh1zlq20ex7ZLfPPQj0vHDMsqIFq49xxiNwU7JmVh5JMuB5h
+	u0GNKE2AWWtat0kKGVmUbdrIeMbmbmz0R4QakHmYZHtgobvby5jfVdL/3fyqDGuiSpI=
+X-Gm-Gg: Acq92OGCKJV9LYBYo+4G57ODTyrtHg+iXv+anlIQ161F24o77jDqEtbDZ+9XUcwUFOP
+	NX7r6qp+J5E7MqpEzJw4L4yiT7LRDZ5s4VJsvPGhDRxjIDWvodRiAw6kTKfL8DYgvY2aYbgBaLU
+	xnEYW6/IQvuktjaBnpZn08H132NmsjEcEeIhCz3LNgyQy46tBrTNVHQyx60pG4kdNj+N1YG9Ev3
+	wCSJR/cLiJYqvee49oOcwFfFkxpI6HbHvKcmo8NpOsOBYix0uqbsr7nTOvAuv/XE/AvqbQbC9uR
+	usdWCF7S0+MXSgkv1rPAsegUYK4vd/dZPbgGOglQg4mbWmb6lRA7C/ULi749wyC03n0lw8I7Bz3
+	L7FTwDk7rPPpFtQ4OPCwOWrKz8h42bM7EEDRk+NBX7VN9715kW7gzGS+CCRgWTn5M9I9oXTCKEY
+	kykJq0Ie2sIhMIOvyUGQG2dwR6fzRfs57DGjv8M0mcfEme
+X-Received: by 2002:a05:600c:348b:b0:490:e5c1:b89e with SMTP id 5b1f17b1804b1-49220061e38mr147294985e9.10.1781542141226;
+        Mon, 15 Jun 2026 09:49:01 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4922fa58f80sm5670735e9.11.2026.06.15.09.49.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jun 2026 09:49:00 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Mon, 15 Jun 2026 18:48:56 +0200
+Subject: [PATCH v3 1/3] arm64: dts: qcom: sm8650: update the cpus
+ capacity-dmips-mhz
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ai93X/cNWHtEQsDt@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260615-topic-sm8650-upstream-cpu-props-v3-1-eeb6e9fa7581@linaro.org>
+References: <20260615-topic-sm8650-upstream-cpu-props-v3-0-eeb6e9fa7581@linaro.org>
+In-Reply-To: <20260615-topic-sm8650-upstream-cpu-props-v3-0-eeb6e9fa7581@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2456;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=4HjNMydN5tW67EpwgcKq0bJylrgzUaRgs8yaNRqheFs=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBqMCz5xS9GJqTCNHkog1BlkPNcz1FAPC6mkpwqRzjO
+ SS2fs+KJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCajAs+QAKCRB33NvayMhJ0Y9GEA
+ DChGYTSaDf5U8w0dI2k7yC8hoHsAkMGdLqQlhnx/40V6ikap6mA5qj9l3SegHMt3Q1XryIF9Sbc7c0
+ ziFWACnoDYJj4j8FlLrLaj/d/WeZsDoQWI099es7xdBoOcPcbjDTD7h9U1i9+zBNw8+fYhG1ySDFNq
+ jTyNT4wD2VS/75ShHWyLGWFvS1uH7qHUdeiAEQSnA6ksjcjSiVajOkyhcecnEggQEEba9CLm0pFpYl
+ hxY3nCtvn8LR+MyQ7yp+CNGv3Z6AkdWwYHjieu2DAEtKxqJs7QjFcjwTuwPfSC/8bsWpPTxP6rp+d3
+ eq6o1gHvc1u62OQxDPnlcpmsvAVEVsUvxzaAzt/RTTXlStYfBsvbWpFXpFsYOZJb7vsxBvkwxNMvt0
+ kjrI7zSQyVHQ1e3vJ0DqowUbPfJJOQFSzgNuUU9pNDau14/Y3r3XwfFGhzMl8y3/LPdfNFHkIfSBCi
+ niukuQp/9vJnp6aDJS3vSh80ictjhU0suyjjo66lmVG2juj4SbdUJwcBqlBlBHQw6uGN4of7AV5CgH
+ PtQcnotmZNFYn7Mcqc3wgerhuR7yhFKqTkm4Y1ZgcB+THxxvGe468gQcTeq+oPnRPM2G4T9uCwXYYh
+ rK1rWRGKnUCQgWtN+jbbJGfgDRsqSTLhzP+YGgfCJo3jtP9taaq6qjJL5XVw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312099-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312096-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_RECIPIENTS(0.00)[m:mohd.anwar@oss.qualcomm.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:richardcochran@gmail.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:linux@armlinux.org.uk,m:linux-arm-msm@vger.kernel.org,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:neil.armstrong@linaro.org,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid,lunn.ch:from_mime,vger.kernel.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:from_mime,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5232C688889
+X-Rspamd-Queue-Id: 55B35688895
 
-On Mon, Jun 15, 2026 at 09:24:07AM +0530, Mohd Ayaan Anwar wrote:
-> Hello Andrew,
-> On Thu, Jun 11, 2026 at 10:54:37PM +0200, Andrew Lunn wrote:
-> > On Fri, Jun 12, 2026 at 12:06:59AM +0530, Mohd Ayaan Anwar wrote:
-> > > When "rgmii-id" is selected the PHY supplies both TX and RX delays, so
-> > > the MAC must not add its own.  The driver currently falls through to the
-> > > generic DLL initialisation path which programs it to add a delay.
-> > > 
-> > > Power down the DLL and set DDR bypass mode for RGMII_ID, then program
-> > > the IO_MACRO via a new ethqos_rgmii_id_macro_init() helper.  Also fix
-> > > ethqos_set_clk_tx_rate() to not double the clock rate in bypass mode at
-> > > 100M/10M, and remove RGMII_ID from the phase-shift suppression in
-> > > ethqos_rgmii_macro_init() since RGMII_ID no longer reaches that path.
-> > 
-> > I'm curious how this works at the moment? Do no boards make use of
-> > RGMII ID? Are all current boards broken?
-> 
-> Searching through the DTS, I found that we have two boards using "rgmii"
-> (qcs404-evb-4000.dts and sa8155-adp.dts) and another board using
-> "rgmii-txid" (sa8540p-ride.dts). No board which uses RGMII ID.
+After some more advanced benchmarks with Integer, Floaring Point,
+Encryption, Compression, NEON, ... on the A520, A720 and X4 cpus,
+the median gain with the same frequency range is:
+- 281% of A720 over A520
+- 126% of X4 over A720
 
-So this causes problems. We cannot break existing boards, yet it would
-be good to fix the current broken behaviour.
+When adjusted with the frequency delta, we get better values
+describing the difference in capacity, showing the weakness of
+the A520 designed for very small tasks while the A720 and X4
+are much more powerful.
 
-> I don't think any of these boards have extra long wires which would add
-> PCB level delay. They are against the netdev definitions for "rgmii" and
-> "rgmii-txid".
-> 
-> But the first two boards should still be working fine since the current
-> driver programs the IO_MACRO to add the delay when operating in RGMII
-> mode.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-Which is wrong, given the current definition. No delays should be
-added, by either the MAC or the PHY.
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index 160ead25ecf7..e8e43ddc3032 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -153,7 +153,7 @@ cpu2: cpu@200 {
+ 
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2_200>;
+-			capacity-dmips-mhz = <1792>;
++			capacity-dmips-mhz = <2909>;
+ 			dynamic-power-coefficient = <238>;
+ 
+ 			qcom,freq-domain = <&cpufreq_hw 3>;
+@@ -189,7 +189,7 @@ cpu3: cpu@300 {
+ 
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2_300>;
+-			capacity-dmips-mhz = <1792>;
++			capacity-dmips-mhz = <2909>;
+ 			dynamic-power-coefficient = <238>;
+ 
+ 			qcom,freq-domain = <&cpufreq_hw 3>;
+@@ -225,7 +225,7 @@ cpu4: cpu@400 {
+ 
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2_400>;
+-			capacity-dmips-mhz = <1792>;
++			capacity-dmips-mhz = <2909>;
+ 			dynamic-power-coefficient = <238>;
+ 
+ 			qcom,freq-domain = <&cpufreq_hw 3>;
+@@ -261,7 +261,7 @@ cpu5: cpu@500 {
+ 
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2_500>;
+-			capacity-dmips-mhz = <1792>;
++			capacity-dmips-mhz = <2909>;
+ 			dynamic-power-coefficient = <238>;
+ 
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+@@ -297,7 +297,7 @@ cpu6: cpu@600 {
+ 
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2_600>;
+-			capacity-dmips-mhz = <1792>;
++			capacity-dmips-mhz = <2909>;
+ 			dynamic-power-coefficient = <238>;
+ 
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+@@ -333,7 +333,7 @@ cpu7: cpu@700 {
+ 
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2_700>;
+-			capacity-dmips-mhz = <1894>;
++			capacity-dmips-mhz = <3591>;
+ 			dynamic-power-coefficient = <588>;
+ 
+ 			qcom,freq-domain = <&cpufreq_hw 2>;
 
-Please could you contact the Maintainers of these boards and find out
-the real situation with the hardware.
+-- 
+2.34.1
 
-It could be the best way forward is that you issue a warning when
-"rgmii" is found and pass rgmii-id to the PHY. And you also change the
-two boards to use rgmii-id. Lets think about the rgmii-txid case once
-we better understand it.
-
-	Andrew
 
