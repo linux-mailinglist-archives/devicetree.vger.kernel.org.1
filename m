@@ -1,186 +1,173 @@
-Return-Path: <devicetree+bounces-311941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312182-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6yqBOibzL2qLJgUAu9opvQ
-	(envelope-from <devicetree+bounces-311941-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:42:14 +0200
+	id 5XmMOA9hMGo5SQUAu9opvQ
+	(envelope-from <devicetree+bounces-312182-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 22:31:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B00D686502
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:42:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97654689DC9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 22:31:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=byKvjkmP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311941-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311941-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=rock-chips.com header.s=default header.b=AjT6pfqX;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312182-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312182-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=rock-chips.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C012E310A51E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:35:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 309983066426
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 20:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09DF3F412C;
-	Mon, 15 Jun 2026 12:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0837E3B71B0;
+	Mon, 15 Jun 2026 20:30:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-m15580.qiye.163.com (mail-m15580.qiye.163.com [101.71.155.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2DBC3FAE01
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF353B71A0
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 20:30:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781526692; cv=none; b=liQfNK3k37lJp/3JUWCQFVBBDhoLru5iTuQ3SLIiEPoYH73HVRk9Z2p/aD31Tnuyh5+E4GJDNh+OxUsXSSp3XuloMucFg2ElliSKz2zXFlgnwveNfGmbmks3QfeRuVPSoAgkYgHsgS1XffsGhLmD244ZheyHDYqnQOWIod12rUY=
+	t=1781555414; cv=none; b=XEuJCn4So0MNEAh5iFPSj9jb+4DzK8iM91jBYEuf5sPAkrl9FbA7ufeUsQFLfUNlZgCl/wSYXTAoafp5O56y9u7MpH0fByq0oBMcOijyx44aq6arqpOuCji42gQcHmBRJfH2QcRydGSblv0D72xZAhT71EiomNfIb4IE0z9eeVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781526692; c=relaxed/simple;
-	bh=aqDiwNZs5eJuMGYR8ONak1WQAoLzATMSXO2ACKHOdvU=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=nIsZvIaZ5PYCOJwCwdsClTHhPzWtNkxKVKiwDsG8dHJIWAYuL++lyjKJ4mRECPjlwzfAXbUsnz9v2BMBIkPJLOkIDP437kbmV7iQ4LPOxB22hSRnko9beII4Lc4eUeJn9ArNmmYvmkbSmzUo5XPqHuPBwD6r5mgKf3Gio2Gt724=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=byKvjkmP; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A624D1F0155D;
-	Mon, 15 Jun 2026 12:31:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781526682;
-	bh=DRFh8wif5rA92O2lk5+qsMfVsokHPS4Fy+fFxxl3irw=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=byKvjkmP1QujP5xtmqRJOKONWYu500YfLXd7EbipgpG4kyxrm69NCGYRI6B8/7mAW
-	 fmBZ6s2d+Lhw6HUcHYbY0UEz6rwHwBzrfs9nlEVXLa7TODkXs/F8dOWBv5MBupXbW/
-	 gXCh1dx+ID+AZmtJW9U0voMZI9w37rDQ09v/ArFTE/VHpICUD3XeeQ7/M4MFZ5pQlZ
-	 8x32k8hY7363LC0Q0g6/AN1ecXKG9KmxOCST1ccHq9FSJ8/XPqRy3T6yLRT98XXuDI
-	 Hy6vD7farUVYB+ewxLSQWLZ5nLAWszU1vAK9R0kz0vNWPdRhH/mHAHJ+ofnDPyRsir
-	 AV5efJNyTfkFw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 5/7] riscv: dts: eswin: add hsp power domain
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Pinkesh Vaghela" <pinkesh.vaghela@einfochips.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260615122016.1110206-6-pinkesh.vaghela@einfochips.com>
-References: <20260615122016.1110206-6-pinkesh.vaghela@einfochips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 12:31:22 +0000
-Message-Id: <20260615123122.A624D1F0155D@smtp.kernel.org>
+	s=arc-20240116; t=1781555414; c=relaxed/simple;
+	bh=dBfWj4G6P+0tfbU5hkEWUNc+JFLZW3OySyvS9WujEKY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X9oKZ65i/0ylL4WNqAoKywDznsaEaYQ3PpvhsmJeCywmSrZAW+2wf+1COotkU4jDFeBMroKKQ2Ln+SkDd0AuapyfV70EjfenJS3TFQGGrsXE3FyMzL7uulFuv5Lo5z2QcfrjVqpRhNiAH4xeyum6cUoetwb9PHKbikPxXdjdhig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=AjT6pfqX; arc=none smtp.client-ip=101.71.155.80
+Received: from [172.16.12.74] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 427046ead;
+	Mon, 15 Jun 2026 20:33:03 +0800 (GMT+08:00)
+Message-ID: <cd1f968a-2e1b-434f-a331-a60cd8740032@rock-chips.com>
+Date: Mon, 15 Jun 2026 20:33:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 0/3] Add eDP support for RK3576
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de
+Cc: sebastian.reichel@collabora.com, nicolas.frattaroli@collabora.com,
+ alchark@gmail.com, detlev.casanova@collabora.com,
+ cristian.ciocaltea@collabora.com, michael.riesch@collabora.com,
+ andy.yan@rock-chips.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260605022305.3058853-1-damon.ding@rock-chips.com>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20260605022305.3058853-1-damon.ding@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9ecb4565ac03a8kunm225b4a5540a1
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCHhlLVhhKSktNSE9LSxlMQlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQkxVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=AjT6pfqXKo4dJ+Iqrf0DbrK5jj/BtJhdqusaYMYOcwjxILsmplQ94LrZgAz6X+O+XgEuR8cxlrBI+0Mgm6XPZRWMTI3niqyeojNt8SNlEaIjXzJJZIeBpzEtiHXRrqqc2x7g8KWQBaCko68no61dpRfoa2kFWJ7dGXS95m9QA5k=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=hInNVk/luH61RX3DtR9xZzGpkr2Jo/fkYMCB64seK2g=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311941-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:pinkesh.vaghela@einfochips.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312182-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:heiko@sntech.de,m:sebastian.reichel@collabora.com,m:nicolas.frattaroli@collabora.com,m:alchark@gmail.com,m:detlev.casanova@collabora.com,m:cristian.ciocaltea@collabora.com,m:michael.riesch@collabora.com,m:andy.yan@rock-chips.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[collabora.com,gmail.com,rock-chips.com,vger.kernel.org,lists.infradead.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,einfochips.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3B00D686502
+X-Rspamd-Queue-Id: 97654689DC9
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] The HSP CFG clock will never be enabled, causing a hardware hang d=
-uring register access, because `simple-pm-bus` requires children to use `pm=
-_runtime` but `syscon` bypasses it.
-- [Medium] The node is labeled and described as a 'power domain' but is mod=
-eled as a simple bus without the ability to act as a power domain provider.
---
+Hi all,
 
-commit 0dad730760e600f73d118515b1907e14ac735dad
-Author: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
+Gentle ping on this patch series.
 
-riscv: dts: eswin: add hsp power domain
+Best regards,
+Damon
 
-This commit adds an HSP power domain node to manage the HSP CFG clock,
-which is required to access the HSP CSR registers. The CSR is defined
-as a syscon child node within a simple-pm-bus.
+On 6/5/2026 10:23 AM, Damon Ding wrote:
+> Picked from:
+> https://lore.kernel.org/all/20260601065100.1103873-1-damon.ding@rock-chips.com/
+> 
+> Patch 1-2 are to add missing clock "hclk" for RK3588 eDP nodes.
+> Patch 3 is to add the RK3576 eDP node.
+> 
+> Damon Ding (3):
+>    arm64: dts: rockchip: Add missing hclk for RK3588 eDP0
+>    arm64: dts: rockchip: Add missing hclk for RK3588 eDP1
+>    arm64: dts: rockchip: Add eDP node for RK3576
+> 
+>   arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 28 +++++++++++++++++++
+>   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  4 +--
+>   .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |  4 +--
+>   3 files changed, 32 insertions(+), 4 deletions(-)
+> 
+> ---
+> 
+> Changes in v2:
+> - Split out separate patches to add the "hclk" clock reference.
+> - Split out separate patches to enable the "hclk" clock.
+> - Add Reviewed-by tag.
+> 
+> Changes in v3:
+> - Add a patch to expand descriptions for clocks of the eDP node.
+> - Add Reviewed-by tag.
+> 
+> Changes in v4:
+> - Modify commit msg.
+> 
+> Changes in v5:
+> - Enforce the correct third clock name on a per-compatible basis.
+> - Modify the commit msg simultaneously.
+> - Add Acked-by tag.
+> 
+> Changes in v6:
+> - Expand more detail commit msg about using hclk instead of grf clock.
+> 
+> Changes in v7:
+> - List all valid clock names at the top level, and constrain the clock
+>    count for each platform with minItems/maxItems in allOf.
+> 
+> Changes in v8:
+> - Fix indentation to 10 for enum in clock-names property.
+> 
+> Changes in v9:
+> - Restore the explicit clock-names for RK3399 and RK3588 eDP dt-bindings.
+> 
+> Changes in v10:
+> - Use automatic cleanup to fix OF node reference leak reported by
+>    Sashiko.
+> 
+> Changes in v11:
+> - Pick and rebase DT related patches.
+> 
 
-> diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi b/arch/riscv/boot/dts=
-/eswin/eic7700.dtsi
-> --- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> +++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> @@ -252,6 +252,19 @@ plic: interrupt-controller@c000000 {
->  			#interrupt-cells =3D <1>;
->  		};
-> =20
-> +		hsp_power_domain: bus@50400000 {
-> +			compatible =3D "simple-pm-bus";
-
-[Severity: Medium]
-The commit message and node label describe this as a power domain, but the
-node uses simple-pm-bus and lacks a #power-domain-cells property. Can
-other devices actually reference this as a power domain?
-
-simple-pm-bus acts as a transparent bus for managing clocks or resets for
-its direct children, rather than a genpd provider. If this is meant to act
-as a power domain that other IP blocks depend on via power-domains =3D <...=
->,
-does it need a dedicated driver and the #power-domain-cells property?
-
-If it is strictly meant to manage the syscon clock, should the wrapper be
-removed entirely?
-
-> +			ranges =3D <0x0 0x50400000 0x0 0x50400000 0x0 0xa0000>;
-> +			clocks =3D <&clk EIC7700_CLK_GATE_HSP_CFG_CLK>;
-
-[Severity: High]
-Since the child node uses the generic syscon compatible, will this clock
-ever be enabled?
-
-The syscon framework in drivers/mfd/syscon.c does not register a platform
-driver, does not probe a device, and does not invoke pm_runtime_get_sync().
-Because the child device is never probed or runtime-resumed, the parent
-simple-pm-bus will remain suspended.
-
-Would this cause a system hang when accessing the syscon registers since
-the clock would remain disabled?
-
-Additionally, of_syscon_register() natively expects the clocks property to
-be directly in the syscon node. Should the clocks property be moved to the
-hsp_sp_csr node and the simple-pm-bus wrapper removed?
-
-> +			#address-cells =3D <2>;
-> +			#size-cells =3D <2>;
-> +
-> +			hsp_sp_csr: hsp-sp-top-csr@50440000 {
-> +				compatible =3D "eswin,eic7700-syscfg", "syscon";
-> +				reg =3D <0x0 0x50440000 0x0 0x2000>;
-> +			};
-> +		};
-> +
->  		uart0: serial@50900000 {
->  			compatible =3D "snps,dw-apb-uart";
->  			reg =3D <0x0 0x50900000 0x0 0x10000>;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615122016.1110=
-206-1-pinkesh.vaghela@einfochips.com?part=3D5
 
