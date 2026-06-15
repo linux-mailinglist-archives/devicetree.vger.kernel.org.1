@@ -1,366 +1,228 @@
-Return-Path: <devicetree+bounces-311876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311878-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FEFXAKThL2qWIQUAu9opvQ
-	(envelope-from <devicetree+bounces-311876-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 13:27:32 +0200
+	id 3DhbOzvlL2qvIgUAu9opvQ
+	(envelope-from <devicetree+bounces-311878-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 13:42:51 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4D0685BA1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 13:27:31 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62AE3685C77
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 13:42:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=BOZU25KI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311876-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311876-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b="JBluL/h5";
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=IJTW8ZiZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311878-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311878-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C68E301E6EB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:26:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 603D03017520
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 11:42:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD623E4C96;
-	Mon, 15 Jun 2026 11:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27C03E2AC8;
+	Mon, 15 Jun 2026 11:42:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8CE3E4C6C
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 11:26:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676E22F7F0F
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 11:42:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781522793; cv=none; b=CKyo/wb+DcnEiCyS6ZiNWe8wS1VZerK1JuUd9ADL1HiOYUwhWDm6lBjAxKA2XyXYTSFTXBBMFgGXoUEI1UZm2hjRqxKsUnTxk/vPuovvL7YjSBCduGBa22JcTHVXxeQ3kNBB99UWgJljRfmJXTn9866xpCMroPDTxJU2edCp/Jk=
+	t=1781523769; cv=none; b=lU+UuaNsIbCb14hPml3Z6yloq53O+XzbDr+CyfjUP0iTmresChUvkjdA5TuCfb6d/6c3QSecOQ2qFu+V2OOIYCiloOVgSHZREZ2zC+Lxfp7zUe5ldMvkebnq0dlak+iRDrhBbs893/D6qh4NgsopWR7o/5+Ixxf2t13uiMggaUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781522793; c=relaxed/simple;
-	bh=hP+2XiLIB+gTL9i+OgmpZuIqU6+CJhVBzpLc1SYZMYA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tR6B0B/LSmAXcwg8iXXBgRN7HFFqqX+0RUEft04Ia45O7tcSbnMsN8o7oBLxbsYLSIIRApk527aYnpwbw0o0tqNuxg6vLfXLVgUYPXhUo7xd9d1Yuj5m5UqkJhqOxSilMeYSXiSmLkLeQEdh86NaAl3cGL+5Ymj7DY6YjI1pMMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BOZU25KI; arc=none smtp.client-ip=209.85.214.169
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2c0c1e0d00bso28591695ad.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 04:26:32 -0700 (PDT)
+	s=arc-20240116; t=1781523769; c=relaxed/simple;
+	bh=d2A3H56c96ogqtKRqXPGR2WiKdZUuGpqLGk0A19DUtc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t6FQ5K+MlgvkIhlmH04c7OZCuryamRE7XMko6ECjmoVpmCHBB9OHEDdcgezUmEg5gI/v0IP0Ct3pg1Htx5uqD0X+AxuSA/tnL661wwNdS9rFNUyY9Q+Rl4HM2dUYB3cyGMZWwjTpjKgwLxOLcmabIdeKf2jHkgfsZhnAmC04LwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JBluL/h5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IJTW8ZiZ; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65FApNPA136469
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 11:42:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hi8mNl/OuPgOWOdFW7792tQtaj6OLx58c3c/es7HvJM=; b=JBluL/h5Dzur9H74
+	OAV3nxcc3wgep6MY2a7T4L6amzfzUo53eY727Q4xZWbljJnBnbGtuYgIfA+kfqq6
+	z46QrRn3Pi3A5TffwnVXCNrXiHkA/XGjfCrt4+fR/u6QHpXhSas70ebw/SV8nW0S
+	SnBIcX0InfPecNTX9Yng9r7EQi/pLMrQ8yaeDayj/OCO187IAGFw+uUXstaemn48
+	NJQwIdn+G+NZRPrsYGc9lATBL0Tn1IXs6M/9yjR/cvbKYLGrarQ8Bm06HFjG2Rbn
+	iJrkweRIEu4Jw3cAUtTppQ+SjFYDu74OAIMOnEwhLJ2QYvl3kuoeoVDneYG0sT+I
+	YWs3bg==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4etevx0f8g-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 11:42:47 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-8ccd9683350so13276906d6.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 04:42:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781522791; x=1782127591; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bj+KG3OVUhBoWkPimYDUROHV3nvGOOs1vbpk2ZeW3hA=;
-        b=BOZU25KI/1sPmtMWQrhMC2dOEOSL6Bn9FCRFizQ9Kaggs6S7kO9j9Ug0i8ox1/mKJk
-         BP0FhaS8SwPalhT1e6YLLROa0zmJhEkFPfwTE8LYkjVZKLhVXCgeHzV7/Bv/Rr2wONFo
-         5NIvGetO1ZaMW5G+VWd662pe3Oq/S73Rv6n6Hzi7OIcrKytd6TkHHv3EvZ6jcyKDnUPb
-         9eeqoTexuLRXzSXwxawjhV0Wv5oiIgD3tL4pDwZimzuCqVOcVTnWBpyHSwZj9kXqNLq5
-         /261YACyUDBcwrVHUiqmk+0dCqr+nl9T9llU9j9i4duVAsy0GzgxiYcOWp5bLf6hdiHx
-         J68Q==
+        d=oss.qualcomm.com; s=google; t=1781523767; x=1782128567; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hi8mNl/OuPgOWOdFW7792tQtaj6OLx58c3c/es7HvJM=;
+        b=IJTW8ZiZ7speyW1R7e2ZReOeZkl4xRbGHat7qGMYTSJtEru0g1Xt2qbqfEu74VoSzY
+         3SWyFjeS7iOXQvxGuEEH/L1QoZP0p7yhgBbwFmqtQBSt08HKrh9bUKRucDb5x/ZiUobE
+         okE0tTgAOEkk8Xo9jzk3JnBGv1671vDc1fyGsfb+l5z21etPS6fBfd1ICVF7aT5d1JEc
+         k67GSuAoafB4a3GAA1vtN19X/5onHxPwt+RVPyTyMfM5WD4ldKhG8O4fM+Lr2YMjCTrC
+         19VCo3Q5qZhiECtkTVr6SDWWnMJ4PRLcx7w9zc9yrrNurfK/IlhZ0qJ1/cqxrh1JYXv6
+         e0Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781522791; x=1782127591;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bj+KG3OVUhBoWkPimYDUROHV3nvGOOs1vbpk2ZeW3hA=;
-        b=f4MXYnVWTMTfeg8+janGUqwiCdwUEPHExSUoWReEU9MeDMsMdo/LpigSqbRMK/bkks
-         WXhnV2esur4VBV9+iE0BXV3I2p9iF9zVi5bpuVf1LzPlUEwIdDD1JAsUe735garyS1+4
-         QgxKl6DFTAdSFLhNFsX+HKNFivYd3AEy3+VTZfisK9uLxgm7d/d4XDRchxRVFT5weSgI
-         mOw44EZzRUi3ocWiPZ06tWE8q1Qrc/JDHK9a9uGFds9pmNDp0xx3iUjGEsOsbD9gsCVm
-         YTbs5shVDeEbugeA48PLtuDYtYvzuTE0lsto4upoErTV9eHli5+0c1yizxzpfnUIBid5
-         Tc5w==
-X-Gm-Message-State: AOJu0Yw7plV3ERCRr8nGlfcWFc9ilnpcsP5nxlRnVdkGZk/7wKdpZJpI
-	qbLMe5Qf4f4Bleroiw+wMJy2pEpsLQrQcTfiJUenv+xkdCf7KooGxsiY9DD80XIF
-X-Gm-Gg: Acq92OEudi/kZVEAGugyOz7llM10xQPLXQbS7zq9uFVuhmRLWfr3XAPi3e3kFSUw6wk
-	GRpF2DVC01aEm0Mz5s3FHoZf9sVB7jprAgb//o/WMS4ovoPiiqjFsf9kTkI7d15dxon+chjDvqn
-	MULBZncCj/Y1ZdQHiGksJ+f5hViourFpDWcoLdOomBBWtX8aSwFAiBNOhHtuQtX5Bd8oAcwwcRo
-	CndIc8Zql0fHcO1V+uo/duVv9lhNrwSzNn58aEb+BFpWzelhV8Nri0I/+Iy+2YSNtXUmUfGFVTo
-	F916Ob7naIwv1CsF6dt558y3tFpSwDWrN2vJ4ozzmPd2YxoxubGIpZC+9HlInYTtTAJqoZCArd5
-	XTaD9U7/6t2RWe7xtxqRiK/UJ/2Y5QWl6bM4BXyPGXpaZJTAl28gFXRzclixOJ7KfkefGI1o4Mw
-	tmx1t0RyW+mxJu6oxlyusK4ZP3fhdarb2Tk+iK
-X-Received: by 2002:a17:903:46c6:b0:2b0:6a22:5165 with SMTP id d9443c01a7336-2c41050a155mr156412165ad.7.1781522791374;
-        Mon, 15 Jun 2026 04:26:31 -0700 (PDT)
-Received: from vbox ([117.215.39.99])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c43326b085sm95644305ad.70.2026.06.15.04.26.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2026 04:26:31 -0700 (PDT)
-From: Tejas <tejasmutalikdesai@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	sstabellini@kernel.org,
-	Tejas <tejasmutalikdesai@gmail.com>
-Subject: [PATCH] dt-bindings: arm: xen: Convert xen.txt to YAML schema
-Date: Mon, 15 Jun 2026 16:56:25 +0530
-Message-ID: <20260615112625.7892-1-tejasmutalikdesai@gmail.com>
-X-Mailer: git-send-email 2.54.0
+        d=1e100.net; s=20251104; t=1781523767; x=1782128567;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hi8mNl/OuPgOWOdFW7792tQtaj6OLx58c3c/es7HvJM=;
+        b=mwI5cwc03RSYPJaoFJPF1tdjuevEvgpVCRhS3daVDba+f0CSiZli2EuVYRwNReYimx
+         5ye1QzULMBUwdKhJVW1ODXExtnGxaqDMIsEvdkZdTcC6yghhPIW/6vl4RMjr0NvIeC+A
+         IokTJ3EPfJeEc9vbT+Hs7+ZBVRmwJHPpdI7zBb7wuG6boEWoCdkXIpaPZ3I9FNZHeTan
+         OjGBFk0wO8n0Ju7yjdE35tYA+ZvLSeOWo7v+Rr8lR0bnGDOgtc6m7+aPlkVDRbU9IOhT
+         y2gOablT3h4NRsEh1JScNdnPF8ARNAYwWhclgi/Dp7mHPnl/LRGqBjjhS6Uc88P+isiX
+         rVIw==
+X-Forwarded-Encrypted: i=1; AFNElJ8V+3ke5McLE7NIKmgnF1XtnbYLwpc88nBWrK6MXQAn3v4Edj+vZrbZi6WE3bwSkIaWOgsYbS3ZT+Om@vger.kernel.org
+X-Gm-Message-State: AOJu0YytrgYNcU71OIrAujmrL9bZHVU8+4OYdag0U1tdFPFH2hooxMQ9
+	1KFWdUWLBbj1fTj3NYVjU8WISTjlM7XJCbJINxj36KEZFypPuSWCu1L2R4DjmfH6+dvOl2f4cWY
+	tjsjP+ebqYW2OSNLS3omnHJ8bQ/d8u1148sqTP/Z48ej2SnjRxeNGH3DdbxUVuZ0e8hzo4gxI
+X-Gm-Gg: Acq92OHt9hCVgr+aaURvfBViSLIg9M/a0AAvVQDbzzd7ReLHZwHTnrUjR9dNg0BQ8d8
+	WCLlcCJUfMeRac16eZJg1EGopq5Qm33z0UnWV3T5ZlpwZRvnR6zdEmJeYwjmNnV8rC18tqmoM3Z
+	w9bqswhKGMRB8Hwol67BgwhMx+EZ031ZYJ4dAdigLXgY9OHGUa47MFPk0T6Haosi3Vndnb7t81A
+	XsR+5UmZYRJGSRLiK5SNKTNzZOH4rDrc/wPo0bukBZztpeYvM9WOcG5wYiBFYgFuvvfoChKHhou
+	jr3M/9tUukagTvNJMr+uCWXyyMcj2sQ4uOWItLn67yNe567fQqP4WHizgd/8Vnx4LpAod040gVH
+	HhXkURfs+Fvr5LTSsx9/jDSSdtTbePce7U/+ceydesY8Tkg==
+X-Received: by 2002:a05:620a:2714:b0:90f:7ce2:3019 with SMTP id af79cd13be357-9161bd622a1mr1230197585a.7.1781523766787;
+        Mon, 15 Jun 2026 04:42:46 -0700 (PDT)
+X-Received: by 2002:a05:620a:2714:b0:90f:7ce2:3019 with SMTP id af79cd13be357-9161bd622a1mr1230195585a.7.1781523766398;
+        Mon, 15 Jun 2026 04:42:46 -0700 (PDT)
+Received: from [192.168.120.170] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bfdb9013575sm459444566b.59.2026.06.15.04.42.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jun 2026 04:42:45 -0700 (PDT)
+Message-ID: <3451facc-4a2e-43bf-ba13-944488bce437@oss.qualcomm.com>
+Date: Mon, 15 Jun 2026 13:42:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] spi: qcom-geni: Add property to force GSI mode
+To: Pengyu Luo <mitltlatltl@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260614083424.464132-1-mitltlatltl@gmail.com>
+ <20260614083424.464132-2-mitltlatltl@gmail.com>
+ <qwbda435on6rhsbf5o4jqijakanjmnmswnc6g6qsubuqbyvbok@fuoclv6u7tq5>
+ <CAH2e8h5Swn2mWoz+t_nrSw1=hQttwi1Hx=dg=cd9S3QRnHjpSQ@mail.gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <CAH2e8h5Swn2mWoz+t_nrSw1=hQttwi1Hx=dg=cd9S3QRnHjpSQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: Tfhi__Bq-oQ6e-V4zU386Ssa7FtMYiZ-
+X-Proofpoint-GUID: Tfhi__Bq-oQ6e-V4zU386Ssa7FtMYiZ-
+X-Authority-Analysis: v=2.4 cv=f8t4wuyM c=1 sm=1 tr=0 ts=6a2fe537 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=yIUj8aQuGlWjW2UBUNMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE1MDEyMyBTYWx0ZWRfX8V0LxrNziQ6/
+ qv/wB16xHJvFC2okOc+Q4484LcXKDTiTKCUiv3uZCsQKGWYhetS76GNB/fCwKiCPNVp4s7knd5q
+ tkeKol8taK83kAmVi5hQwrbG3CFlYSI=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE1MDEyMyBTYWx0ZWRfX1QAjJ7S1h2Jr
+ xwB6j/pOuTO90cTIDphWgHqlfTvTgT23AksPCZPU9LacKcz8+Gtsc6r3PiLoEailcFHHq9ZKoR0
+ 3sCugGrvhEbZbwcTiN89HRRArccajYMEq94FM/sd6RjA5OB90cETw6rH+mq8UwDGYAqYiQiSSgt
+ 93NdPju/qNvF+2VUQ0IfDxIRZ/XXRe7ohtX1F40d0Ni3acH9iC6vs7KcAWpZZTK/XUPOPr//xWF
+ 7m2sy1L0WWvZl5Z+6rkhWHoRxMRGR6wMGreNgIDKsUPQY9elq1TaLR2YBmnyrhVHvDGW8aRjqxA
+ aba9UrOFmLs9Y36yuSGhYvq/AaeLDPwjFEYVz1OTew1VuWGM4sTkO80eWU519vDqoZY8mhFBZ4c
+ NAkM8gPVXb3Vix185/31JXnfT6wQq8D4PvFzO1rrQBaoH3FPOedoZxff0uRRhtTLHHCVVqvBkuA
+ 6jNZwFV6faRsAM1zurg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-15_03,2026-06-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0
+ phishscore=0 adultscore=0 clxscore=1015 spamscore=0 suspectscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606040000
+ definitions=main-2606150123
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.16 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-311876-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sstabellini@kernel.org,m:tejasmutalikdesai@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[tejasmutalikdesai@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-311878-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:mitltlatltl@gmail.com,m:dmitry.baryshkov@oss.qualcomm.com,m:mukesh.savaliya@oss.qualcomm.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:agross@kernel.org,m:andersson@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_TO(0.00)[gmail.com,oss.qualcomm.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tejasmutalikdesai@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,xen.org:url]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4B4D0685BA1
+X-Rspamd-Queue-Id: 62AE3685C77
 
-Convert the Xen ARM device tree binding documentation from the legacy
-plain-text format (Documentation/devicetree/bindings/arm/xen.txt) to
-the YAML schema format, as required by the modern DT binding process.
-The old xen.txt is removed as the YAML schema is now the authoritative
-source.
+On 6/15/26 6:25 AM, Pengyu Luo wrote:
+> On Mon, Jun 15, 2026 at 5:18 AM Dmitry Baryshkov
+> <dmitry.baryshkov@oss.qualcomm.com> wrote:
+>>
+>> On Sun, Jun 14, 2026 at 04:34:24PM +0800, Pengyu Luo wrote:
+>>> Some devices (such as gaokun3) do not disable FIFO mode, causing the
+>>> driver to fallback to FIFO mode by default. However, these platforms
+>>> also support GSI mode, which is highly preferred for certain
+>>> peripherals like SPI touchscreens to improve performance.
+>>>
+>>> Introduce the "qcom,force-gsi-mode" device property to hint and force
+>>> the controller into GSI mode during initialization.
+>>
+>> Ideally, this should be decided by the SPI controller based on the
+>> requirements. Another option would be to prefer GSI for all transfers if
+>> it is available, ignoring the FIFO even if it is not disabled.
+>>
+> 
+> I have read reviews. Can we check if the compatible
+> "qcom,sm6350-gpi-dma" is in DT? If the gpi dma controller is
+> presented, then we enable GSI mode.
 
-The YAML schema:
-  - Validates compatible string format as "xen,xen-<major>.<minor>"
-    followed by the generic "xen,xen" string
-  - Documents reg as accepting 1..N regions (region 0 mandatory for
-    grant table mapping; regions 1..N optional extended regions)
-  - Documents the uefi subnode with correct types:
-      * xen,uefi-system-table:   uint64 (guest PA of UEFI System Table)
-      * xen,uefi-mmap-start:     uint64 (guest PA of UEFI memory map)
-      * xen,uefi-mmap-size:      uint32 (size of UEFI memory map)
-      * xen,uefi-mmap-desc-size: uint32 (size of each mmap entry)
-      * xen,uefi-mmap-desc-ver:  uint32 (mmap descriptor format version)
-  - 64-bit properties use /bits/ 64 <value> in the example, consistent
-    with other bindings carrying uint64 properties (e.g. opp-v2.yaml,
-    arm/mali-bifrost.yaml)
 
-The uefi subnode was originally introduced through a multi-version review
-series (v2..v7); the mistakes caught during those reviews (typos,
-duplicated UEFI spec content, insufficient description of Xen-specific
-hypercall semantics) are avoided with deliberate caution here.
+This hunk is very odd:
 
-Note: the example emits a dtc warning (unit_address_vs_reg) for the
-/hypervisor node. Both the normative text in xen.txt ("Xen ARM virtual
-platforms shall have a top-level 'hypervisor' node") and the example
-in xen.txt mandate this exact node name — the $nodename: const:
-hypervisor in the schema is a direct encoding of that pre-existing
-requirement. A unit address is therefore impossible despite the presence
-of reg. This warning is pre-existing and not introduced by this
-conversion.
+/*
+ * in case of failure to get gpi dma channel, we can still do the
+ * FIFO mode, so fallthrough
+ */
+dev_warn(mas->dev, "FIFO mode disabled, but couldn't get DMA, fall back to FIFO mode\n");
 
-Signed-off-by: Tejas Mutalikdesai <tejasmutalikdesai@gmail.com>
----
- Documentation/devicetree/bindings/arm/xen.txt |  62 ----------
- .../devicetree/bindings/arm/xen.yaml          | 113 ++++++++++++++++++
- 2 files changed, 113 insertions(+), 62 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/xen.txt
- create mode 100644 Documentation/devicetree/bindings/arm/xen.yaml
+In my understanding, GSI DMA mode is always preferable. +Mukesh, do
+you have any insights?
 
-diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
-deleted file mode 100644
-index f925290d4641..000000000000
---- a/Documentation/devicetree/bindings/arm/xen.txt
-+++ /dev/null
-@@ -1,62 +0,0 @@
--* Xen hypervisor device tree bindings
--
--Xen ARM virtual platforms shall have a top-level "hypervisor" node with
--the following properties:
--
--- compatible:
--	compatible = "xen,xen-<version>", "xen,xen";
--  where <version> is the version of the Xen ABI of the platform.
--
--- reg: specifies the base physical address and size of the regions in memory
--  where the special resources should be mapped to, using an HYPERVISOR_memory_op
--  hypercall.
--  Region 0 is reserved for mapping grant table, it must be always present.
--  The memory region is large enough to map the whole grant table (it is larger
--  or equal to gnttab_max_grant_frames()).
--  Regions 1...N are extended regions (unused address space) for mapping foreign
--  GFNs and grants, they might be absent if there is nothing to expose.
--
--- interrupts: the interrupt used by Xen to inject event notifications.
--  A GIC node is also required.
--
--To support UEFI on Xen ARM virtual platforms, Xen populates the FDT "uefi" node
--under /hypervisor with following parameters:
--
--________________________________________________________________________________
--Name                      | Size   | Description
--================================================================================
--xen,uefi-system-table     | 64-bit | Guest physical address of the UEFI System
--			  |	   | Table.
----------------------------------------------------------------------------------
--xen,uefi-mmap-start       | 64-bit | Guest physical address of the UEFI memory
--			  |	   | map.
----------------------------------------------------------------------------------
--xen,uefi-mmap-size        | 32-bit | Size in bytes of the UEFI memory map
--                          |        | pointed to in previous entry.
----------------------------------------------------------------------------------
--xen,uefi-mmap-desc-size   | 32-bit | Size in bytes of each entry in the UEFI
--                          |        | memory map.
----------------------------------------------------------------------------------
--xen,uefi-mmap-desc-ver    | 32-bit | Version of the mmap descriptor format.
----------------------------------------------------------------------------------
--
--Example (assuming #address-cells = <2> and #size-cells = <2>):
--
--hypervisor {
--	compatible = "xen,xen-4.3", "xen,xen";
--	reg = <0 0xb0000000 0 0x20000>;
--	interrupts = <1 15 0xf08>;
--	uefi {
--		xen,uefi-system-table = <0xXXXXXXXX>;
--		xen,uefi-mmap-start = <0xXXXXXXXX>;
--		xen,uefi-mmap-size = <0xXXXXXXXX>;
--		xen,uefi-mmap-desc-size = <0xXXXXXXXX>;
--		xen,uefi-mmap-desc-ver = <0xXXXXXXXX>;
--        };
--};
--
--The format and meaning of the "xen,uefi-*" parameters are similar to those in
--Documentation/arch/arm/uefi.rst, which are provided by the regular UEFI stub. However
--they differ because they are provided by the Xen hypervisor, together with a set
--of UEFI runtime services implemented via hypercalls, see
--http://xenbits.xen.org/docs/unstable/hypercall/x86_64/include,public,platform.h.html.
-diff --git a/Documentation/devicetree/bindings/arm/xen.yaml b/Documentation/devicetree/bindings/arm/xen.yaml
-new file mode 100644
-index 000000000000..3117f6d3828c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/xen.yaml
-@@ -0,0 +1,113 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/xen.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xen hypervisor
-+
-+maintainers:
-+  - Stefano Stabellini <sstabellini@kernel.org>
-+
-+description: |
-+  Xen ARM virtual platforms shall have a top-level "hypervisor" node with
-+  the properties defined below.
-+
-+properties:
-+  $nodename:
-+    const: hypervisor
-+
-+  compatible:
-+    description: |
-+      Specifies the Xen hypervisor. The version of the Xen ABI is encoded
-+      in the first item as "xen,xen-<version>", followed by the generic
-+      "xen,xen" string.
-+    items:
-+      - pattern: "^xen,xen-[0-9]+\\.[0-9]+$"
-+      - const: xen,xen
-+
-+  reg:
-+    description: |
-+      Base physical address and size of the regions in memory where special
-+      resources should be mapped to, using an HYPERVISOR_memory_op hypercall.
-+
-+      Region 0 is reserved for mapping the grant table and must always be
-+      present. The memory region must be large enough to map the whole grant
-+      table (it is larger or equal to gnttab_max_grant_frames()).
-+
-+      Regions 1...N are extended regions (unused address space) for mapping
-+      foreign GFNs and grants. They might be absent if there is nothing to
-+      expose.
-+    minItems: 1
-+
-+  interrupts:
-+    description: |
-+      The interrupt used by Xen to inject event notifications.
-+      A GIC node is also required.
-+    maxItems: 1
-+
-+  uefi:
-+    type: object
-+    description: |
-+      Node populated by Xen to support UEFI on Xen ARM virtual platforms.
-+      The format and meaning of the "xen,uefi-*" parameters are similar to
-+      those in Documentation/arch/arm/uefi.rst, but are provided by the Xen
-+      hypervisor together with a set of UEFI runtime services implemented via
-+      hypercalls.
-+    properties:
-+      xen,uefi-system-table:
-+        description: Guest physical address of the UEFI System Table.
-+        $ref: /schemas/types.yaml#/definitions/uint64
-+
-+      xen,uefi-mmap-start:
-+        description: Guest physical address of the UEFI memory map.
-+        $ref: /schemas/types.yaml#/definitions/uint64
-+
-+      xen,uefi-mmap-size:
-+        description: Size in bytes of the UEFI memory map pointed to by xen,uefi-mmap-start.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+
-+      xen,uefi-mmap-desc-size:
-+        description: Size in bytes of each entry in the UEFI memory map.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+
-+      xen,uefi-mmap-desc-ver:
-+        description: Version of the mmap descriptor format.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    / {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        gic: interrupt-controller {
-+            #interrupt-cells = <3>;
-+            interrupt-controller;
-+        };
-+
-+        hypervisor {
-+            compatible = "xen,xen-4.3", "xen,xen";
-+            reg = <0 0xb0000000 0 0x20000>;
-+            interrupt-parent = <&gic>;
-+            interrupts = <1 15 0xf08>;
-+
-+            uefi {
-+                xen,uefi-system-table = /bits/ 64 <0x1301415>;
-+                xen,uefi-mmap-start = /bits/ 64 <0x7591400>;
-+                xen,uefi-mmap-size = <0x1800>;
-+                xen,uefi-mmap-desc-size = <0x30>;
-+                xen,uefi-mmap-desc-ver = <1>;
-+            };
-+        };
-+    };
-+...
--- 
-2.54.0
-
+Konrad
 
