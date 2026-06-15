@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-312140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312139-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +/orKjU2MGokQAUAu9opvQ
-	(envelope-from <devicetree+bounces-312140-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:28:21 +0200
+	id mWHeGjM2MGohQAUAu9opvQ
+	(envelope-from <devicetree+bounces-312139-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:28:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65ED8688DC0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27B3C688DB1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:28:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="oq/iAIMq";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312140-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312140-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=SehANlFI;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312139-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312139-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 386CF303E8FF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:28:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 69E0B302DE0A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:28:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 357464183DA;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F844183C9;
 	Mon, 15 Jun 2026 17:28:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67094183AE
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 17:28:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1B2416D0A
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 17:28:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781544492; cv=none; b=oOfY7QnoH4YLNc86yP1mmpPaeaoklKcrZSVAWx1+HY4/Xvq/b+bThBJ4YzyWFZSBwIK6Y4vEcdmBSEqShuhPkAsBmczaCLY2D2gF5XPEPL74S6hjmUJHCWujybxYA6Zp2/bvMEHtFBWGCf621BJjF56qYpw5uxRt7sO/MV4DT1Y=
+	t=1781544492; cv=none; b=CPp1agswBOZyJ6gG02fk7i2JoJWumuMZt8lIn5vBeq+92GuXvsm82M/ds6TyguxZJepvdGmt1lS0R0AusSXKHQO0zX/1B+bVN3/chw5gRAHjNptk07xuhw1cL6QUaDcztNrigwBKbumEJ9TCue6mJzS/DPacPKdop/wwzKrCNs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1781544492; c=relaxed/simple;
-	bh=44wlK79p2iFBlaDNEJYYoVrsZ4V64y2DhfrkrngDWyE=;
+	bh=fMKaNCHqvdnEkQNOcz/+Evogzl4yJdpF2G3aArECXqg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=S+mWeD8G4ck/ldT5AEz8JbokJFsr0ERK8C5J7RYNzjj0BRde5YQAgocxZCNeEewRHPY4mJeeX+mYb8plKYo5x+fo1WQ8qxZN4IwOff5/8NbjcQScWj2d5Kpp22Z94Nn5TQIPMgaWzUqMYTPYwen+O5rrEVLAgE8Z0yfPNq6eYrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=oq/iAIMq; arc=none smtp.client-ip=209.85.210.46
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7e6dcad6018so3130058a34.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 10:28:09 -0700 (PDT)
+	 MIME-Version; b=mJAj5JDG5F+4qyvb/X5aMJVgxDmlH515SJxafdvuAgFq6GrMZQL/4iSiW+U2aicj/WUOpJ05v+XQaORXVpX4ByVYwew/NhSZO1EnAcDNQRDZn9zq84ZF8CIGT9xKoObpff1iaxtO9z7pof30a910fIXMoEOtF11J4lBMzon1YEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SehANlFI; arc=none smtp.client-ip=209.85.210.41
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-7e6cee520ccso2496102a34.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 10:28:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781544489; x=1782149289; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1781544490; x=1782149290; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KaUmQ9JpbnpkUCaTH5UXy4GKoNzMoHaVL3LWpQbAxts=;
-        b=oq/iAIMqQZTBJlgNKViBnr8T46zaVepKpiIOpTbXyH+S5pA4mmnJq13vgt4zk8+rU9
-         +RkJ5HxGhTBPjVcYSzj1Q03k7mWvket3zUokv4f59ECONFffleVednORbu1teR6PYXe+
-         jqZ33h+NR6Bv1n06IIk10/Xmstr0cVxGPhiPcyfs7gVlpWls0gvXEsB8qRKDGnEGIrf8
-         bhTNDelHTgxBVXZwyG3gw97LsYsRD1GPCuPWVNuEa+FiWt1xdP7+NCTE86T24Qkqwagn
-         Yh4Z5vYtB9hYdFxT6aePvogsE8QdL11FnbH0DagzjgFlizZ/4GWpE6BTlN9Y0UO4et1K
-         mWog==
+        bh=AG46e6wh0vfo+H1QfKvpne8/nrh3wipAUO48FCP+P1g=;
+        b=SehANlFItaoCd7HdIarHtkcaHfZ4Rbk/VtRRTQIpVJZOJmTqncVrsxGSQ2gKR64Xvc
+         /dirPSOHUdrk4Z73uer3MPss4VdvCnQhQ3E4uPKBYM/7pFIWbqzQPazZNURWabR553EL
+         HL0MD1v3jLkSqUiOBuMalV9VdXEqmO8BV8uryrKQjzp/FkBSg1zSfO7TFb2laKV4LP56
+         TbIktC1GVPjB655Iuh6nXsl3PR8KwBBSoIXlVO3vfwZHdwvPae1UTQJWBx0IUA1zs/Ge
+         tQ0o9UDYPFenNkOdapO3mi9DYAVQcfEk8e8vNCWnDwOAnClZro8773IKM61qPhyNPIqd
+         JPog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781544489; x=1782149289;
+        d=1e100.net; s=20251104; t=1781544490; x=1782149290;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=KaUmQ9JpbnpkUCaTH5UXy4GKoNzMoHaVL3LWpQbAxts=;
-        b=I48NhBhnS7qwzfRkP9FVcfPbK6A8crRmfhe6A05yPwtCY933Uo1DpQr8SHA86npeX/
-         c0uczwAGT4R+dY+3m8yUTBpcVpdngVuvmkOe+XkWr1MnbbdW8c1JJWg5pJcnJXkdqKIa
-         K+zO/6rnuG3g9SV2T7hCJwnmiqaOMOMl6uGCbt2BBeQOU8sHYa/4ys8Xz6+DXtDwusC2
-         EYcl2r/mGvez0daXwG76JnMNtWafqqVBl7FH0tA3PxsogNlo4PQr7gkYUj8P4w7jatBK
-         w4Z/F+zPTAGuw1amRRLgqKMFkJY8VCgGU9pAgfkDf6DFaWzU2/p1bCalxED/GW5k6RZt
-         vEeA==
-X-Forwarded-Encrypted: i=1; AFNElJ+zkYpkEL3czjrUVCKVI3FaTdF4xScwEcwtm2scB0qvYJn/Dfi8RdjuKwvBCigDmGRs+BW9pW5Rxt2O@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfYqIZ4P4KVH7K+vvyBcX1Tfr5EtKyZoqoOQG3d8lYuHT1fuHA
-	invR7RRGYc+CvS/jAq+vlVAbrcyuPOAXdoudWQw2zZ6LHFGSVS1TxC8G
-X-Gm-Gg: Acq92OHIpo4bxSNe2FsuT22O7CeJ/WgLcU/0DUlXyWZYLugHgYxCRNL/X/TibVil2E9
-	ogJgyawgzwWwuRfWzm0//Akz2SWTCgtSJ5ngtEdCk2HGPTS6HJicFnJZyIcTGpkX66Q+NrVaduY
-	0y29iSosxapNCmLSowlXQUqSo9V+QjwhlD9UDd9FgRj9RjC3wu+w6gW+7giD1L/2v6UvCHQYhXZ
-	RdFBLnR7S4LZBgO4l9FzhTdx8gvfvGR1v7j0UrrTTaeB/USvAWuXJmmySEVviv7laLYH4JEKpe7
-	q3Ewk8rs0AOxrfziTirXTVmH/iBx21SjRVyFYlvPsoJe9rThB3ubPyoOka4gtugpM+VtxkbeHD6
-	18N/Tx6lfLZoWGXZVY+h0EPULlJECQK0upFmSgFjeRXTpuW6qDpI4u9JUwvGezXs+55eTEA6TJu
-	ceRhCGWrK/Jgqi2k4YCYPW9w==
-X-Received: by 2002:a05:6830:438c:b0:7e6:ece3:80ed with SMTP id 46e09a7af769-7e78e7f3cedmr8432644a34.21.1781544488940;
-        Mon, 15 Jun 2026 10:28:08 -0700 (PDT)
+        bh=AG46e6wh0vfo+H1QfKvpne8/nrh3wipAUO48FCP+P1g=;
+        b=s35K6RRTktQTMQJBM0miKcZCaOmd5NIOeTVTfdatPlnTk66QeH4Zs1w+adiMRtZfJ9
+         8JPIQsA1NDxLp5QKRz72eDU7Sp3TqiVkJ5JXF7YKDHpkBSy8H1XoGS60I2oha50xWn3j
+         Q+5F/4N1l8krLk7lHZIq/6laLduJCk3O6PZQiGYmivv8WjfNW1YDCVwHZoEXkAwbGetU
+         +epk/ZyN+FpW0LqOAIXrNMACNQ9AE+ZLzgAKDYVWHxBUtFVu3zHmeR+QG4h9U4ifhxRe
+         K+FnxxhfauxOzPg/BB9qOleYa4PuWl5JihGOMYUTN+4FMMpzTThcWoq0Dqa+R+X2gM5O
+         jzTg==
+X-Forwarded-Encrypted: i=1; AFNElJ8colhaDk4QXsjgz12hwGfngxhoHMhwVLQ3uVB9rpH7CxMfpTS8SusQFUnNk1dFkf3giDoFKbYJhD6j@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIaEcYTZVKwC+4JOJRWRsYfUE7z2spw9Nq5h61fFEvO+i2+knZ
+	WF5tBeu8zwllov8QlPc4Q079fLre4Q3jAn1LToGGwBahJGb4cuMetUQm
+X-Gm-Gg: Acq92OHvDrSx+vvbMi5tPjqMujQRk6bkFk5eXeY4dS6r3f3ElNFlrtZOnMy6jjqIMLk
+	csm1WjoUw90HgUhHIBb/ha4Qib8MLfHUf1dBb4XBWcqRYdjR2WRFPmdSVl9Kg+6P6Jfco7L335w
+	XmilVN0zfsYZsa4wvevMjr5N/Us90WEBB9ZAqoG/9md200ir36Llspj5h4HG2qNf/JKobNIOZIG
+	67XfUwF5XGKA2UGpeCeNhLv2FspY8hi+vWlfHQgI5dlPAw1bQc6Cz8IabE6MxipkXlExTw4QthI
+	uxcPHTU0kopa2/vEqKcpobmGc/YNNvMsC6MUU4GVQUQ+IMAdsuLlIBLTgerApXESYusaJ4ecO5Y
+	LvhvxEAML9fncFT3MNCvJdHer0sknpov1BT9hkUFSjUB5LyORWcjcIR1Fl0BcrxzS0OLJ7//Ylr
+	cniDAPq7veOBmiLMT7sq9+Jg==
+X-Received: by 2002:a05:6830:3915:b0:7dc:a51c:9197 with SMTP id 46e09a7af769-7e8fc87767fmr222189a34.7.1781544489699;
+        Mon, 15 Jun 2026 10:28:09 -0700 (PDT)
 Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e79f451fe7sm4480033a34.0.2026.06.15.10.28.08
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e79f451fe7sm4480033a34.0.2026.06.15.10.28.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2026 10:28:08 -0700 (PDT)
+        Mon, 15 Jun 2026 10:28:09 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-iio@vger.kernel.org
 Cc: andy@kernel.org,
@@ -92,9 +92,9 @@ Cc: andy@kernel.org,
 	andriy.shevchenko@intel.com,
 	Chris Morgan <macromorgan@hotmail.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH V13 1/9] dt-bindings: iio: imu: icm42600: Add mount-matrix to icm42600
-Date: Mon, 15 Jun 2026 12:25:44 -0500
-Message-ID: <20260615172554.160910-2-macroalpha82@gmail.com>
+Subject: [PATCH V13 2/9] dt-bindings: iio: imu: icm42600: Add icm42607
+Date: Mon, 15 Jun 2026 12:25:45 -0500
+Message-ID: <20260615172554.160910-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260615172554.160910-1-macroalpha82@gmail.com>
 References: <20260615172554.160910-1-macroalpha82@gmail.com>
@@ -117,7 +117,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312140-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312139-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
 	FREEMAIL_CC(0.00)[kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,vger.kernel.org,sntech.de,intel.com,hotmail.com,oss.qualcomm.com];
 	FREEMAIL_FROM(0.00)[gmail.com];
@@ -142,31 +142,60 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 65ED8688DC0
+X-Rspamd-Queue-Id: 27B3C688DB1
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add mount-matrix attribute to schema. This attribute has been supported
-since the first revision of this driver, but was not documented.
+Add the ICM42607 and ICM42607P inertial measurement unit.
+
+This device is functionally very similar to the icm42600 series with a
+very different register layout. The driver does not require an
+interrupt for these specific chip revisions.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- .../devicetree/bindings/iio/imu/invensense,icm42600.yaml        | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/iio/imu/invensense,icm42600.yaml  | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-index 119e28a833fd..9b2af104f186 100644
+index 9b2af104f186..81b6e85decd5 100644
 --- a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
 +++ b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
-@@ -53,6 +53,8 @@ properties:
-   drive-open-drain:
-     type: boolean
+@@ -30,6 +30,8 @@ properties:
+       - invensense,icm42600
+       - invensense,icm42602
+       - invensense,icm42605
++      - invensense,icm42607
++      - invensense,icm42607p
+       - invensense,icm42622
+       - invensense,icm42631
+       - invensense,icm42686
+@@ -67,10 +69,24 @@ properties:
+ required:
+   - compatible
+   - reg
+-  - interrupts
  
-+  mount-matrix: true
-+
-   vdd-supply:
-     description: Regulator that provides power to the sensor
+ allOf:
+   - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - invensense,icm42600
++              - invensense,icm42602
++              - invensense,icm42605
++              - invensense,icm42622
++              - invensense,icm42631
++              - invensense,icm42686
++              - invensense,icm42688
++    then:
++      required:
++        - interrupts
+ 
+ unevaluatedProperties: false
  
 -- 
 2.43.0
