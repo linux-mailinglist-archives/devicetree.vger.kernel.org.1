@@ -1,164 +1,172 @@
-Return-Path: <devicetree+bounces-311689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311691-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hacqDBudL2oyDQUAu9opvQ
-	(envelope-from <devicetree+bounces-311689-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:35:07 +0200
+	id 5ir5DFSdL2o9DQUAu9opvQ
+	(envelope-from <devicetree+bounces-311691-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:36:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DCFD683DD0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:35:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A156F683DE8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:36:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="MfA/RG5K";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311689-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311689-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=linaro.org header.s=google header.b="Bu7gzQE/";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311691-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311691-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9CE573003EF9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:34:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 83C24301E58D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:34:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39FF130D401;
-	Mon, 15 Jun 2026 06:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81123B19D8;
+	Mon, 15 Jun 2026 06:34:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32AA826E710
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 06:34:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE003AEF44
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 06:34:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781505250; cv=none; b=hqzzQZ/uUTuOGIXwA44SvN0ADnSKRpwj5PzXp+m+KE9G6MZXfXWgkB8Zu9712VVMgR3SoiRXLrr4BE+EbPPFdQU+fvkfoIwlt0XTxD4wPKYJ6pEfBZUNT0VjJQWn+Jav9CdJQ9LRQWPlz9OiTejzAxZhAbWTEBACiel3LPLMyfQ=
+	t=1781505295; cv=none; b=us8VANtCFzGvUE4fd9VKJ1IMT73SqxprxvooAMBJN42PAVGXp5/PZ6y+hPBIUDDpyjt1qe/Nv9isNp5RAmuWZ77gHRkOCa+WikWxNkni+0zP0AxTEvF+0LFTfGGkAhqe2Cy1WGp7K86Ki5sulFSsdbmUwQJREcvp7zs2ZZy9lqY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781505250; c=relaxed/simple;
-	bh=6SLaDAqcS/OeJu4eGi6y4W6aQYcuJbmRKPaeonP7Mak=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=NO7kQczNH2FPvootsfZmTWu6joS7mj/swXvnpvGpw5usEJ0VtY6wKVBKhE32VNYv2RZWv0I/+0ttcyHRjfh8IWlxuO5iwn+1l/qK1vSrVu3dfnjzWD93gUoiv/ghAhmkRBhY4RBrmPz+oqZuQfy6/t+i3Xpq8Io8uQV5TEVlsYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MfA/RG5K; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B74C11F000E9;
-	Mon, 15 Jun 2026 06:34:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781505249;
-	bh=KJB66/+GRQlMBTLzxNiwr90NsdExgZU8pcK43avWcxQ=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=MfA/RG5K2mvRg/RcNtiyNhlKqT5OeVBX1oQsQhKWQW0ZWQ/4ynMHEVqudVH3eSN63
-	 b29hK6yJ5Lh8lsSPN92JkQTWczecArgO4vHSDNXYsvjLqBEWA/+AWJUQoUO917s8Ps
-	 JkOcluRp1SpfPzAq+pCbhyWkEM9vJQGzBrFPYl0VxxXvNQ2vbSrVNFocMrSdzPnVJf
-	 6bqdVqYXnuvEm+6ncod2NNCvNPim7O1DATUD3/GV3MZoRExkcCSU/Dt9ENFcnIpO2d
-	 VrFc/8jcl/meEY4vDCdO6mhaRngQ0d7IOTlrxY8o9Vk1WvNIkVwA/Meh4W50CNw9ai
-	 Nn7S11h2zbR/Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/7] dt-bindings: display: bridge: Document Renesas
- R-Car V4H DSC bindings
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Tomi Valkeinen" <tomi.valkeinen+renesas@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, robh@kernel.org, wsa+renesas@sang-engineering.com, conor+dt@kernel.org
-In-Reply-To: <20260615-rcar-du-dsc-v4-2-93096a1b56a3@ideasonboard.com>
-References: <20260615-rcar-du-dsc-v4-2-93096a1b56a3@ideasonboard.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 06:34:08 +0000
-Message-Id: <20260615063408.B74C11F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781505295; c=relaxed/simple;
+	bh=S1Oly4VRINHCM1QG4R4tTGNPNvyYOvpI2d0QTuC1ElI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NhP5DmHYULQUeXj43BDsqqANaJnklYJAQxn9Vf4/2nnYpNprR8SbYLueJ0VouZmXcMm1CpSNs0HxrR2gmQxna+G+hCHQXplWVmevNeeSRvDzcu0pyQbgiL5qSSKpPs+kmwu3/oRhpemdAk6cMUwTzYW5y5nLStuYjvtxGaSNR+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bu7gzQE/; arc=none smtp.client-ip=209.85.210.170
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-8423f626a65so1314240b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 14 Jun 2026 23:34:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1781505294; x=1782110094; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kpTWnKEfXWiCzl373nMMsDrR/prBlQwjYUYc6wVEFfc=;
+        b=Bu7gzQE/0pAqv46HKxrhQS+Px/CCeemm2CNiDL1UgjUoXGTNyiUHbWmK24VL4IjJhB
+         haYgjyUGWO7UnGaHWzlGaJrlk9UvQ8Xb1nlblRCEfsyzqwtQxzHpoOw8UX1xEAKGBgI9
+         7YRgCUutQPJURtWRv8djDAyG/VV5ywXQnI8n6B8/k2l3VVNgyMR+TDur7BBXflzH9uJG
+         QNOOuxsnhLo1ijo91FqWm18cDTZ0KNBr+7qA2+lhVEzff6J5+vgVtfx0k/bOBFxv8g76
+         NIYKFxeca6gtPxo8x+GYngiDHrxX3IDIdZQaCz0+CrwNtDIUv9yjECFavC4w01h/IIZ2
+         TBIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781505294; x=1782110094;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kpTWnKEfXWiCzl373nMMsDrR/prBlQwjYUYc6wVEFfc=;
+        b=RFhavEeKY5dU+kdHm6bLk++ql7vIRZ1DGSZ+emteBPGD7allGJryAdzExcOdo3vBfp
+         ZAvr+/lmX77KoOHykyBP4fTY9tqeciR20jDeTwK2k4UaSAevky98ycbKQWZBz0zTDCiV
+         CaFocdiWZsiZKniel1k/y4Uz4UKAeHhrbbS/GVvfAK+qwt3rc/jcYKwQfWXrX9Ol1b+u
+         L7xVYfTaKBpwD1cj8qAe0/OZDTJdGrW+bYouJnVM2EW37AZNxBAL7/YszzQ5cJLChJBj
+         537RddsBMYWdR64PVnGXcTnQLYWJj4KxRmb0I2golqv/tEXvioqEz5rLIeQhBwY2v+SR
+         tbXA==
+X-Forwarded-Encrypted: i=1; AFNElJ/sQKuqjlgPcrayHpFRpDHiAeoaqdKvFszx7WOwEdVsDX79nBK07wzYKi3cN/+MmXUE18vMO6Bnbd5W@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKjGqM6Sf/O7Eqe7gGcZ8IOseKH8UyqlNVzqbNIcxiH9oHrHbM
+	UamSfm7qWFW5qXnjRvt0+4GMTzEZJF88J1Gtyag9g4I3AMGXmRuxb+y7XIY9e0zRGAk=
+X-Gm-Gg: Acq92OFUNQA1rBIbM5mV6bCb+ucngJ67QtmfIb7HdDMGQ07vY/FCsdZ5QmfPgUJuKAf
+	QFVLwoUOMS+Xc8lr7IfxAxeAW6tp9sPZPngCCM+Y2K73XHtZdTDsv9Dy4V6aktfDbWbkfh80ckk
+	HDKBHMGJCUe/zdBWNJHTC74Uh2YfRMWOcT3Aoh1LmtMa/ZSMkWgJbAzFyi3Vrv/ZGPig9772C1H
+	bLy7Ui7pcnx0TljO01P9hG2NBhhnh5hs+TVdq6aHbySNO8wGGQ14COhSzbLW3iXx/dwDgpek/y8
+	3EGIN8ZqrMJUeDW/B3zxRmL8eRzYddJJgdatclmRCWIMJuX+Vr2wkelC9nBbRkxxQCVfqZceQX8
+	gen0LO/8u9z9YIfY88q/dmzgCxk79RkVLext4mmYVbtqNt1YWndKkAXCNLgLV3dnhAbq6097Ds/
+	gm5olJEfc1Wqed3Qedj25RrLkoiDxJesB7MA==
+X-Received: by 2002:a05:6a00:891:b0:842:21f0:5114 with SMTP id d2e1a72fcca58-8434ce784abmr13630133b3a.30.1781505293590;
+        Sun, 14 Jun 2026 23:34:53 -0700 (PDT)
+Received: from localhost ([122.172.82.94])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8434b040718sm9297405b3a.51.2026.06.14.23.34.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Jun 2026 23:34:52 -0700 (PDT)
+Date: Mon, 15 Jun 2026 12:04:50 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Shuwei Wu <shuwei.wu@mailbox.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@kernel.org>, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] cpufreq: spacemit: Add K1 cpufreq driver
+Message-ID: <wjwkykv555gkeqxabsqcdfn4lomcopawsv7bgm4bydc5likhjs@p3ca3p7wbri5>
+References: <20260612-shadow-deps-v3-0-2f3ba88611ff@mailbox.org>
+ <20260612-shadow-deps-v3-1-2f3ba88611ff@mailbox.org>
+ <bd4s2icqgusnuujvrpoag4cniy3g2e4bumecqxt5yffl77aqpq@kxg4dj4c2wk3>
+ <DJ9EFPG561VZ.1WGRYYHJ2W9J9@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DJ9EFPG561VZ.1WGRYYHJ2W9J9@mailbox.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-311689-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid,mailbox.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:tomi.valkeinen+renesas@ideasonboard.com,m:devicetree@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:robh@kernel.org,m:wsa+renesas@sang-engineering.com,m:conor+dt@kernel.org,m:tomi.valkeinen@ideasonboard.com,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311691-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:shuwei.wu@mailbox.org,m:rafael@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:dlan@kernel.org,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER(0.00)[viresh.kumar@linaro.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[viresh.kumar@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7DCFD683DD0
+X-Rspamd-Queue-Id: A156F683DE8
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The DT binding example fails schema validation because its `compati=
-ble` string array is incomplete and does not match the schema's requirement=
-s.
---
+Hi Shuwei,
 
-commit 0c24ed90ba663d71759d36b46777595ba20ee9c3
-Author: Marek Vasut <marek.vasut+renesas@mailbox.org>
+On 15-06-26, 14:12, Shuwei Wu wrote:
+> The clusters have separate clocks, but they share the same voltage supply.[1]
+> So two independent policies would be unsafe: one policy could lower the shared
+> voltage while the other cluster is still running at a higher frequency.
 
-dt-bindings: display: bridge: Document Renesas R-Car V4H DSC bindings
+No, both will vote for the regulator contraints using CPU device and the
+regulator core will make sure it doesn't break any of them. This is what all
+frameworks do, regulator, clk, etc.
 
-This commit adds device tree bindings for the VESA DSC Display Stream
-Compression encoder embedded in the Renesas R-Car V4H SoC. It defines the
-schema constraints, required properties, and provides an example node.
+> This means they can't use different policies.
 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsc=
-.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsc.yaml
-> new file mode 100644
-> index 0000000000000..4d2c2c6cb1f08
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsc.yaml
-[ ... ]
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r8a779g0-dsc
-> +      - const: renesas,rcar-dsc
-> +
-[ ... ]
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a779g0-cpg-mssr.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/r8a779g0-sysc.h>
-> +
-> +    bridge@feb8d000 {
-> +        compatible =3D "renesas,r8a779g0-dsc";
+This is incorrect.
 
-[Severity: Low]
-Does this example fail dt_binding_check validation? The schema requires the
-compatible property to be an array containing exactly two items: the=20
-SoC-specific string and the fallback constant (renesas,rcar-dsc). However,
-the example only provides the SoC-specific string.=20
+> From a hardware perspective, the eight cores of the K1 are homogeneous,
+> so using the same policy for them is relatively reasonable.
 
-Should the example be updated to match the schema requirements?
+Right, but this is inefficient. One cluster can be idle, or in low freq mode
+while other can be in higher. They MUST be two policies.
 
-> +        reg =3D <0xfeb8d000 0x400>;
-> +        interrupts =3D <GIC_SPI 559 IRQ_TYPE_LEVEL_HIGH>;
-[ ... ]
+> I used a K1-specific driver because cpufreq-dt only manages one CPU clock
+> through the CPU device used for the OPP transition.
+> On K1, the policy needs to control two independent cluster clocks and one shared
+> regulator, so the driver has to update the second cluster clock explicitly and
+> keep the ordering safe: raise voltage before raising either cluster, and lower
+> both cluster clocks before lowering the shared voltage.
+> 
+> [1] https://lore.kernel.org/spacemit/aeaXszeaE62rM6BJ@aurel32.net/
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615-rcar-du-ds=
-c-v4-0-93096a1b56a3@ideasonboard.com?part=3D2
+-- 
+viresh
 
