@@ -1,172 +1,151 @@
-Return-Path: <devicetree+bounces-311691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311690-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5ir5DFSdL2o9DQUAu9opvQ
-	(envelope-from <devicetree+bounces-311691-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:36:04 +0200
+	id t7B0B1KdL2o7DQUAu9opvQ
+	(envelope-from <devicetree+bounces-311690-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:36:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A156F683DE8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:36:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C4E9683DE4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:36:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b="Bu7gzQE/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311691-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311691-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linaro.org;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=M15whiB7;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311690-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311690-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 83C24301E58D
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5D761301DBAA
 	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:34:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81123B19D8;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EFF3B14C0;
 	Mon, 15 Jun 2026 06:34:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE003AEF44
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 06:34:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E633AFAF4;
+	Mon, 15 Jun 2026 06:34:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781505295; cv=none; b=us8VANtCFzGvUE4fd9VKJ1IMT73SqxprxvooAMBJN42PAVGXp5/PZ6y+hPBIUDDpyjt1qe/Nv9isNp5RAmuWZ77gHRkOCa+WikWxNkni+0zP0AxTEvF+0LFTfGGkAhqe2Cy1WGp7K86Ki5sulFSsdbmUwQJREcvp7zs2ZZy9lqY=
+	t=1781505295; cv=none; b=iEmJddhsRiXefRGgGgFHvIVtL1vVGzFFLEyjKcDWQRZDc2fus38bvi9WTezv7yW0Gp4nBdPxW3+14pduEe/PW4lV4y+kRyt0p8rNbU3K4X1F4d9mUjVguhFSMQMX1FXN+RV8PhPM36TGPENlSX91CJxaJiwD9EveizGrVdUW+rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1781505295; c=relaxed/simple;
-	bh=S1Oly4VRINHCM1QG4R4tTGNPNvyYOvpI2d0QTuC1ElI=;
+	bh=LwVwZ1OH794aFnSS7FIyTAlzmDuCdGBWxBc78g/rlcw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NhP5DmHYULQUeXj43BDsqqANaJnklYJAQxn9Vf4/2nnYpNprR8SbYLueJ0VouZmXcMm1CpSNs0HxrR2gmQxna+G+hCHQXplWVmevNeeSRvDzcu0pyQbgiL5qSSKpPs+kmwu3/oRhpemdAk6cMUwTzYW5y5nLStuYjvtxGaSNR+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bu7gzQE/; arc=none smtp.client-ip=209.85.210.170
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-8423f626a65so1314240b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 14 Jun 2026 23:34:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1781505294; x=1782110094; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=kpTWnKEfXWiCzl373nMMsDrR/prBlQwjYUYc6wVEFfc=;
-        b=Bu7gzQE/0pAqv46HKxrhQS+Px/CCeemm2CNiDL1UgjUoXGTNyiUHbWmK24VL4IjJhB
-         haYgjyUGWO7UnGaHWzlGaJrlk9UvQ8Xb1nlblRCEfsyzqwtQxzHpoOw8UX1xEAKGBgI9
-         7YRgCUutQPJURtWRv8djDAyG/VV5ywXQnI8n6B8/k2l3VVNgyMR+TDur7BBXflzH9uJG
-         QNOOuxsnhLo1ijo91FqWm18cDTZ0KNBr+7qA2+lhVEzff6J5+vgVtfx0k/bOBFxv8g76
-         NIYKFxeca6gtPxo8x+GYngiDHrxX3IDIdZQaCz0+CrwNtDIUv9yjECFavC4w01h/IIZ2
-         TBIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781505294; x=1782110094;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kpTWnKEfXWiCzl373nMMsDrR/prBlQwjYUYc6wVEFfc=;
-        b=RFhavEeKY5dU+kdHm6bLk++ql7vIRZ1DGSZ+emteBPGD7allGJryAdzExcOdo3vBfp
-         ZAvr+/lmX77KoOHykyBP4fTY9tqeciR20jDeTwK2k4UaSAevky98ycbKQWZBz0zTDCiV
-         CaFocdiWZsiZKniel1k/y4Uz4UKAeHhrbbS/GVvfAK+qwt3rc/jcYKwQfWXrX9Ol1b+u
-         L7xVYfTaKBpwD1cj8qAe0/OZDTJdGrW+bYouJnVM2EW37AZNxBAL7/YszzQ5cJLChJBj
-         537RddsBMYWdR64PVnGXcTnQLYWJj4KxRmb0I2golqv/tEXvioqEz5rLIeQhBwY2v+SR
-         tbXA==
-X-Forwarded-Encrypted: i=1; AFNElJ/sQKuqjlgPcrayHpFRpDHiAeoaqdKvFszx7WOwEdVsDX79nBK07wzYKi3cN/+MmXUE18vMO6Bnbd5W@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKjGqM6Sf/O7Eqe7gGcZ8IOseKH8UyqlNVzqbNIcxiH9oHrHbM
-	UamSfm7qWFW5qXnjRvt0+4GMTzEZJF88J1Gtyag9g4I3AMGXmRuxb+y7XIY9e0zRGAk=
-X-Gm-Gg: Acq92OFUNQA1rBIbM5mV6bCb+ucngJ67QtmfIb7HdDMGQ07vY/FCsdZ5QmfPgUJuKAf
-	QFVLwoUOMS+Xc8lr7IfxAxeAW6tp9sPZPngCCM+Y2K73XHtZdTDsv9Dy4V6aktfDbWbkfh80ckk
-	HDKBHMGJCUe/zdBWNJHTC74Uh2YfRMWOcT3Aoh1LmtMa/ZSMkWgJbAzFyi3Vrv/ZGPig9772C1H
-	bLy7Ui7pcnx0TljO01P9hG2NBhhnh5hs+TVdq6aHbySNO8wGGQ14COhSzbLW3iXx/dwDgpek/y8
-	3EGIN8ZqrMJUeDW/B3zxRmL8eRzYddJJgdatclmRCWIMJuX+Vr2wkelC9nBbRkxxQCVfqZceQX8
-	gen0LO/8u9z9YIfY88q/dmzgCxk79RkVLext4mmYVbtqNt1YWndKkAXCNLgLV3dnhAbq6097Ds/
-	gm5olJEfc1Wqed3Qedj25RrLkoiDxJesB7MA==
-X-Received: by 2002:a05:6a00:891:b0:842:21f0:5114 with SMTP id d2e1a72fcca58-8434ce784abmr13630133b3a.30.1781505293590;
-        Sun, 14 Jun 2026 23:34:53 -0700 (PDT)
-Received: from localhost ([122.172.82.94])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8434b040718sm9297405b3a.51.2026.06.14.23.34.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Jun 2026 23:34:52 -0700 (PDT)
-Date: Mon, 15 Jun 2026 12:04:50 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Shuwei Wu <shuwei.wu@mailbox.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=CybEPb2eZiMkJAOMEUhmePhGa8H9dywysKJAD4/AywbkLeVjanT4FojC8wVKelq4vbIA/PfDhzr9oHhaOKz4e6Oqzo62SAtVxppv9mbF5Cn2L2ej4V465JtN1ic46SND1adlR/BSajiWEZl1S3PmBSqtVNTgg/xb5rNHJwXnHNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M15whiB7; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id A230B1F000E9;
+	Mon, 15 Jun 2026 06:34:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781505294;
+	bh=LwVwZ1OH794aFnSS7FIyTAlzmDuCdGBWxBc78g/rlcw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=M15whiB7awNSzpgBgSLlWyrVBDSrbGMngmgj4QA5DHrS9J3frZf509O0fV2RQbd94
+	 yhpGEseCZZDlGfCAaUUrtT1CNxBkhSAzt919SG0KUMewHAfTf81TYOsS0Co1zO3JAf
+	 +HSErqQLjMyM/q+XqhcLjDCJj/KUWo4mLP4Kir/5plPOMbfOy6VfwPHTyQHil4MbyB
+	 km3LiF8oxFKGJXhKisvRoZcinCilhh2pvZb9EtZd5gkXmQbYlCe5SaIeEPW8+J248C
+	 S1QVq2vi39+IiTCtQZe4E106CR7PxvTVZkQDCT2gugxR2+wtEi//eQ81X84Rr9wMyO
+	 vt+0OsI2+CTjA==
+Date: Mon, 15 Jun 2026 08:34:51 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@kernel.org>, 
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] cpufreq: spacemit: Add K1 cpufreq driver
-Message-ID: <wjwkykv555gkeqxabsqcdfn4lomcopawsv7bgm4bydc5likhjs@p3ca3p7wbri5>
-References: <20260612-shadow-deps-v3-0-2f3ba88611ff@mailbox.org>
- <20260612-shadow-deps-v3-1-2f3ba88611ff@mailbox.org>
- <bd4s2icqgusnuujvrpoag4cniy3g2e4bumecqxt5yffl77aqpq@kxg4dj4c2wk3>
- <DJ9EFPG561VZ.1WGRYYHJ2W9J9@mailbox.org>
+	Pal Singh <ajitpal.singh@st.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: st,pwm: convert to DT schema
+Message-ID: <ai-cWP8XW0ZwBnbH@monoceros>
+References: <20260613-st-pwm-v1-1-458c2c89709a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="emncwsoh2jwmrgbx"
 Content-Disposition: inline
-In-Reply-To: <DJ9EFPG561VZ.1WGRYYHJ2W9J9@mailbox.org>
+In-Reply-To: <20260613-st-pwm-v1-1-458c2c89709a@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-6.76 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-311691-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FORGED_RECIPIENTS(0.00)[m:charan.pedumuru@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ajitpal.singh@st.com,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:charanpedumuru@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:shuwei.wu@mailbox.org,m:rafael@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:dlan@kernel.org,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[viresh.kumar@linaro.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311690-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[viresh.kumar@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ukleinek@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,monoceros:mid,sashiko.dev:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A156F683DE8
+X-Rspamd-Queue-Id: 9C4E9683DE4
 
-Hi Shuwei,
 
-On 15-06-26, 14:12, Shuwei Wu wrote:
-> The clusters have separate clocks, but they share the same voltage supply.[1]
-> So two independent policies would be unsafe: one policy could lower the shared
-> voltage while the other cluster is still running at a higher frequency.
+--emncwsoh2jwmrgbx
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] dt-bindings: pwm: st,pwm: convert to DT schema
+MIME-Version: 1.0
 
-No, both will vote for the regulator contraints using CPU device and the
-regulator core will make sure it doesn't break any of them. This is what all
-frameworks do, regulator, clk, etc.
+Hello,
 
-> This means they can't use different policies.
+On Sat, Jun 13, 2026 at 07:04:11AM +0000, Charan Pedumuru wrote:
+> Convert STMicroelectronics STiH41x PWM/Capture controller binding
+> to DT schema.
+>=20
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
 
-This is incorrect.
+FTR: sashiko found a relevant issue in this patch, sent a mail about it,
+but not to the list. It's about the old binding requiring `interrupts`
+which isn't the case in the new proposed one.
 
-> From a hardware perspective, the eight cores of the K1 are homogeneous,
-> so using the same policy for them is relatively reasonable.
+Find the full message at
+https://sashiko.dev/#/message/20260613071327.BE3101F000E9%40smtp.kernel.org.
 
-Right, but this is inefficient. One cluster can be idle, or in low freq mode
-while other can be in higher. They MUST be two policies.
+So I marked this patch as changes requested.
 
-> I used a K1-specific driver because cpufreq-dt only manages one CPU clock
-> through the CPU device used for the OPP transition.
-> On K1, the policy needs to control two independent cluster clocks and one shared
-> regulator, so the driver has to update the second cluster clock explicitly and
-> keep the ordering safe: raise voltage before raising either cluster, and lower
-> both cluster clocks before lowering the shared voltage.
-> 
-> [1] https://lore.kernel.org/spacemit/aeaXszeaE62rM6BJ@aurel32.net/
+Best reagrds
+Uwe
 
--- 
-viresh
+--emncwsoh2jwmrgbx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmovnQgACgkQj4D7WH0S
+/k40YwgAuXZImzLUX+KOPP158jbavgVEmzuiuBb//DdDlrIGgzzO6v+dBAMA9SDj
+PvuC7RBW/B5UooAcMZ1ug0XNSKEBPdmt5Y0gQ87AHDpCorEj0TT7sxnwkNsPFX7x
+HWl9G8cL27P6GutcVbCOluI0yYR7Nw1zHYQf21RyAACqbQ8Vhyhh72ob5smi9YfV
+33kT4xEB6wS6RhPxBqf4Nq+uAItquyUKzPnYPnJyA/tYFsPGidRAMDVQ67CCC59y
+b1wHuvuWgjOm7Vf43RWcIcBZflb/1IGtXsHWm2NX0LiS7MCBDIiuchqFT32NykG0
+RZvK1jwXaN14bK03WyRqvyufOjWRXA==
+=XSA6
+-----END PGP SIGNATURE-----
+
+--emncwsoh2jwmrgbx--
 
