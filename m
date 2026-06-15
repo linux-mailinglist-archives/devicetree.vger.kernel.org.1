@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-312128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312129-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id H6RrGvkwMGrYPgUAu9opvQ
-	(envelope-from <devicetree+bounces-312128-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:06:01 +0200
+	id RAv6HqgzMGpnPwUAu9opvQ
+	(envelope-from <devicetree+bounces-312129-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:17:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9893688AC8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:05:57 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7725B688C54
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:17:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HelPEy9T;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312128-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312128-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LUnaKqNE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312129-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-312129-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B1E293036F91
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:05:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 962C73024E0B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30D940E8D8;
-	Mon, 15 Jun 2026 17:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6352413609;
+	Mon, 15 Jun 2026 17:07:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE8B413240
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 17:05:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85CF341362A
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 17:07:56 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781543155; cv=none; b=Rn08Sm43vnS71y/B4yPh8nDaip21EIaRQEd6BYlUnLfb/1Q3Mbkrnq950v8XiNYgrMWMDdeQ0WpsP46UfvC+eP++iPAskB8naH4K85L86uj7FsA1E1fOwXqYzSMxWDMow31BdlIxMo4S/MsmADM/Lw2lc6cp95Kbe7Q54IvUf94=
+	t=1781543277; cv=none; b=SRXhIRhOfA/TdAw+WRUj6JYroigpqPOViVBuIFw5KOgQK/Cde/MVEHyCz/7AjRo62FJSjYngkSVxmkgvsHfM/cD3mE4ZUZ/r8zkkeor5+bGhfW14cl+zwdRrOwRtn1hKUdWkoxtgvSZtGjfBD6ryKyrA3T/EWeoDxilwWOvK5i4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781543155; c=relaxed/simple;
-	bh=t+UWavgi9au8PKXcqBDDbJvQXzcilnQYYCGknFr6PCo=;
+	s=arc-20240116; t=1781543277; c=relaxed/simple;
+	bh=8ggSGu6leRZJrIquijy3ro7hS4nfodjflQ/+FeVCCAk=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=troEnQf1ovSGR2o3jQDukgjB/7Ujlg57xi8U25PjdajGT+9i20OHIM5DAWVqf/lDG/oViVRU6jqS9u4x/Cm1ls2hE8hvpnf0N8otX7pt1/pqP+ylXwNUKKKJwJ1bNvOWobwWVicxE+ksYFt68W4U0nIWG0c1cRCEL3JRCOzptKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HelPEy9T; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4953E1F000E9;
-	Mon, 15 Jun 2026 17:05:53 +0000 (UTC)
+	 Message-Id; b=dhuu9mrttA9bak7/Nn+VTpF5wDMU4FOpCmMTrax35EhsxiuSB91l015xiaZeSVydybS4x52Y0iw4BrW54NBpVS4KNcqZguzOLhyEVpUifavTMnutJX5DUsIm0GXInDB5pwkbbAnOSGF6vuOmwgnNNMUlSWjl8xn1At47okNvSb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LUnaKqNE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BD611F000E9;
+	Mon, 15 Jun 2026 17:07:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781543154;
-	bh=T3P178cM70M36QTb5Ks/5TdMVMarXNjDqtvUsSwgD0k=;
+	s=k20260515; t=1781543276;
+	bh=8ggSGu6leRZJrIquijy3ro7hS4nfodjflQ/+FeVCCAk=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=HelPEy9T9pkvSzXjDTsqmiGGABxCQBnvd61gGoBwto/otr44nYfs2hO8t9BW9knYk
-	 GmV9uKo5cuWR+pJwu30sPuaXVPiezEa0QEt2dPs8xSva/5ZTZzo74i+qjwneIBLa+A
-	 APNULCXxLtes+jEwtoC/MIPIMLK2BLcwSh1SoH/iO8014JSPlS00iCP7G3M2mOeqQb
-	 wugYNyJB3ZajYzUCguEwjPAOpnj9Bj2/cWINeCOUYPRBiZtJrf/jUHv/SCMdqct1J/
-	 J8UMsL2BjbNsD9gMY48yqSbmQLFMnUJFpdDVcKJidV0sM10jJ9s9RvOBpe0695DrPK
-	 9uorjQzbhUvgw==
+	b=LUnaKqNEgrGOQp39pUzEjRCN6/52wKvKaV6C0uDFWquY5x6BZdK4Hwb8Qg9CQowd2
+	 Mfcg3byNtGPLyhJ+mYlzJXY3IE1d+yvrkPXoJbw1yB/cd6WnMynhUWDsrTPwGayeev
+	 AXw15sBJQE+oVrkLpwwr/La1jxHqagBmMUTYnByCerVhdlLV0caUxhKFTmeOe+cyuQ
+	 8ugreEoHD/57HeVlqDs1gMxPfkQVxRiVSZXp1zY8/M7Q3zUvsTEIoyhj0XNZs9fx5S
+	 UhXj4GfCixJZ52DWXkXhHoT9D/u5u0U96sFTbz8PI4vygTIQLQfLi/wATwynqDUawF
+	 iYBOjc44vl8ew==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sm8650: fix soundwire ports
- properties
+Subject: Re: [PATCH RFC v3 1/6] arm64: dts: qcom: add PMIC5 Gen3 macros for
+ channel numbers
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260615-topic-sm8650-upstream-cpu-props-v3-3-eeb6e9fa7581@linaro.org>
-References: <20260615-topic-sm8650-upstream-cpu-props-v3-3-eeb6e9fa7581@linaro.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260615-topic-sm8x50-adc5-gen3-v3-1-216a2b5ccb85@linaro.org>
+References: <20260615-topic-sm8x50-adc5-gen3-v3-1-216a2b5ccb85@linaro.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 17:05:52 +0000
-Message-Id: <20260615170553.4953E1F000E9@smtp.kernel.org>
+Date: Mon, 15 Jun 2026 17:07:55 +0000
+Message-Id: <20260615170756.0BD611F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,17 +71,17 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312128-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312129-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -98,88 +98,130 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:email,smtp.kernel.org:mid,sashiko.dev:url,lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sashiko.dev:url,vger.kernel.org:from_smtp,lists.linux.dev:replyto,checkpatch.pl:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,linaro.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A9893688AC8
+X-Rspamd-Queue-Id: 7725B688C54
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Prepending an element to the `qcom,ports-*` arrays for `swr2` shif=
-ts the configuration indices, corrupting the SoundWire Master Port configur=
-ations for the TX codec.
+- [Low] Incorrect include guards ('ACD5' instead of 'ADC5') in the PMIC spe=
+cific ADC headers.
+- [Low] Leading space before SPDX-License-Identifier comment.
 --
 
-commit a1c9b1d54073d838cfb9e5474d5c6e26f81803b9
+commit 3eda1039cbb8425b3c3af45f1320fc946f6b44cd
 Author: Neil Armstrong <neil.armstrong@linaro.org>
 
-arm64: dts: qcom: sm8650: fix soundwire ports properties
+arm64: dts: qcom: add PMIC5 Gen3 macros for channel numbers
 
-This commit updates the soundwire port counts and properties to match the
-actual hardware configuration, addressing deprecation warnings for din/out
-ports.
+This commit adds PMIC5 Gen3 macros to calculate ADC channel numbers based on
+SPMI bus numbers and sensor configurations. It moves the macro definitions =
+from
+dt-bindings to local includes for better DT source readability.
 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/q=
-com/sm8650.dtsi
-> index 090a4739ebc1d..b1293fdb1481c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+Link: https://lore.kernel.org/all/20250826083657.4005727-4-jishnu.prakash@o=
+ss.qualcomm.com/
+
+> diff --git a/arch/arm64/boot/dts/qcom/qcom,adc5-gen3-channels.h b/arch/ar=
+m64/boot/dts/qcom/qcom,adc5-gen3-channels.h
+> new file mode 100644
+> index 0000000000000..a8aac9ae6f404
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcom,adc5-gen3-channels.h
+> @@ -0,0 +1,88 @@
+> + /* SPDX-License-Identifier: GPL-2.0 */
+
+[Severity: Low]
+This isn't a bug, but there is a leading space before the SPDX identifier on
+the first line. Could this be removed to ensure automated scanners and
+checkpatch.pl find the tag where they expect it?
 
 [ ... ]
-
-> @@ -4831,17 +4831,17 @@ swr2: soundwire@6d30000 {
->  			pinctrl-names =3D "default";
-> =20
->  			qcom,din-ports =3D <4>;
-> -			qcom,dout-ports =3D <0>;
-> -
-> -			qcom,ports-sinterval-low =3D	/bits/ 8 <0x01 0x01 0x03 0x03>;
-> -			qcom,ports-offset1 =3D		/bits/ 8 <0x00 0x00 0x01 0x01>;
-> -			qcom,ports-offset2 =3D		/bits/ 8 <0x00 0x00 0x00 0x00>;
-> -			qcom,ports-hstart =3D		/bits/ 8 <0xff 0xff 0xff 0xff>;
-> -			qcom,ports-hstop =3D		/bits/ 8 <0xff 0xff 0xff 0xff>;
-> -			qcom,ports-word-length =3D	/bits/ 8 <0xff 0xff 0xff 0xff>;
-> -			qcom,ports-block-pack-mode =3D	/bits/ 8 <0xff 0xff 0xff 0xff>;
-> -			qcom,ports-block-group-count =3D	/bits/ 8 <0xff 0xff 0xff 0xff>;
-> -			qcom,ports-lane-control =3D	/bits/ 8 <0x01 0x02 0x00 0x00>;
-> +			qcom,dout-ports =3D <1>;
+> diff --git a/arch/arm64/boot/dts/qcom/qcom,pm8550-adc5-gen3.h b/arch/arm6=
+4/boot/dts/qcom/qcom,pm8550-adc5-gen3.h
+> new file mode 100644
+> index 0000000000000..2a6338812d4e9
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcom,pm8550-adc5-gen3.h
+> @@ -0,0 +1,46 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reser=
+ved.
+> + */
 > +
-> +			qcom,ports-sinterval-low =3D	/bits/ 8 <0x00 0x01 0x01 0x03 0x03>;
+> +#ifndef _QCOM_PM8550_ACD5_GEN3_H
+> +#define _QCOM_PM8550_ACD5_GEN3_H
 
-[Severity: High]
-Does prepending an element to the qcom,ports-* arrays in swr2 shift the
-absolute index mapping expected by the TX codec's qcom,tx-port-mapping?
+[Severity: Low]
+This isn't a bug, but should these header guards use ADC5 instead of ACD5?
 
-The soundwire driver maps these array elements sequentially to pconfig[1]
-through pconfig[nports]. Slave devices, such as the WCD9395 TX codec, rely
-on absolute Master Port indices defined in their board-level tx-port-mapping
-properties to directly index pconfig and program fixed hardware registers.
+[ ... ]
+> diff --git a/arch/arm64/boot/dts/qcom/qcom,pm8550b-adc5-gen3.h b/arch/arm=
+64/boot/dts/qcom/qcom,pm8550b-adc5-gen3.h
+> new file mode 100644
+> index 0000000000000..312daa846f798
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcom,pm8550b-adc5-gen3.h
+> @@ -0,0 +1,85 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reser=
+ved.
+> + */
+> +
+> +#ifndef _QCOM_PM8550B_ACD5_GEN3_H
+> +#define _QCOM_PM8550B_ACD5_GEN3_H
 
-By prepending a new element to account for dout-ports =3D 1, it appears all
-subsequent configurations are shifted. As a result, pconfig[2] might now
-receive data from array index 0 instead of index 1 (for example, lane_contr=
-ol
-would change from 0x02 to 0x01).
+[Severity: Low]
+This isn't a bug, but there is also a typo here using ACD5 instead of ADC5
+in the include guards.
 
-Will this misconfigure the active TX SoundWire ports and break capture audio
-functionality on SM8650 boards?
+[ ... ]
+> diff --git a/arch/arm64/boot/dts/qcom/qcom,pm8550vx-adc5-gen3.h b/arch/ar=
+m64/boot/dts/qcom/qcom,pm8550vx-adc5-gen3.h
+> new file mode 100644
+> index 0000000000000..7a261a7a9cb08
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcom,pm8550vx-adc5-gen3.h
+> @@ -0,0 +1,22 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reser=
+ved.
+> + */
+> +
+> +#ifndef _QCOM_PM8550VX_ACD5_GEN3_H
+> +#define _QCOM_PM8550VX_ACD5_GEN3_H
 
-> +			qcom,ports-offset1 =3D		/bits/ 8 <0x00 0x00 0x00 0x01 0x01>;
-> +			qcom,ports-offset2 =3D		/bits/ 8 <0x00 0x00 0x00 0x00 0x00>;
-> +			qcom,ports-hstart =3D		/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-hstop =3D		/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-word-length =3D	/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-block-pack-mode =3D	/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-block-group-count =3D	/bits/ 8 <0xff 0xff 0xff 0xff 0xff>;
-> +			qcom,ports-lane-control =3D	/bits/ 8 <0xff 0x01 0x02 0x00 0x00>;
-> =20
->  			#address-cells =3D <2>;
->  			#size-cells =3D <0>;
+[Severity: Low]
+This isn't a bug, but this guard also has the ACD5 typo.
+
+[ ... ]
+> diff --git a/arch/arm64/boot/dts/qcom/qcom,pmk8550-adc5-gen3.h b/arch/arm=
+64/boot/dts/qcom/qcom,pmk8550-adc5-gen3.h
+> new file mode 100644
+> index 0000000000000..60b3b9c60d4e2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qcom,pmk8550-adc5-gen3.h
+> @@ -0,0 +1,52 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reser=
+ved.
+> + */
+> +
+> +#ifndef _QCOM_PMK8550_ACD5_GEN3_H
+> +#define _QCOM_PMK8550_ACD5_GEN3_H
+
+[Severity: Low]
+This isn't a bug, but this guard has the same ACD5 typo as well.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615-topic-sm86=
-50-upstream-cpu-props-v3-0-eeb6e9fa7581@linaro.org?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615-topic-sm8x=
+50-adc5-gen3-v3-0-216a2b5ccb85@linaro.org?part=3D1
 
