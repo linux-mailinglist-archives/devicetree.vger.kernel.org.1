@@ -1,238 +1,182 @@
-Return-Path: <devicetree+bounces-311943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312066-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EGQgE3/zL2rXJgUAu9opvQ
-	(envelope-from <devicetree+bounces-311943-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:43:43 +0200
+	id wvolOmcjMGrnOgUAu9opvQ
+	(envelope-from <devicetree+bounces-312066-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:08:07 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9434068656F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:43:42 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89EAC6881EC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:08:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QqCFSMoY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311943-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311943-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=rock-chips.com header.s=default header.b=H2pYc5H4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312066-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312066-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=rock-chips.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CF50430C0257
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:36:39 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BECC33084322
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:04:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716673F65EC;
-	Mon, 15 Jun 2026 12:33:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 704B640759D;
+	Mon, 15 Jun 2026 16:04:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mail-m1973189.qiye.163.com (mail-m1973189.qiye.163.com [220.197.31.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73D4D3F39C9
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467F5407CCB
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 16:04:36 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781526804; cv=none; b=g/Qhv1oWe+15PIzyNkCHVNhl0o75Vx9xvgNHyYQQJ9xpbo8x063SswtzdDTc8rLkk04WxLNg1aUV3ngGha9oeh/EHj0ww6owMqb4M2sKGmjLbeValNPqCO9exZYBRz10q55stuozUMiD7247/jwTz09Kh+Do5hpk822uNtQoUGE=
+	t=1781539480; cv=none; b=OxXcPB7H41iRnehIdXVNDXb/+kP1kcxTfHeIq4VZG8p0H6ZrlCyx2eSfM1sSKcrBA9IREgqLVCaZ27NrTE17iMhSy32I8TX/B+09yQp+u51/5rcj0ReekTiw18s/pQcn3KpfhklAgt9v3e6FS6IQ3KbiY+tvvGf9X/yTePNPNOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781526804; c=relaxed/simple;
-	bh=Bz2JE69nnVWGp4Rmv+iABZq95m3jGVNoEgPKuxox8Ng=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=eK2R4BP4gy4eFHVMvf4j5cs9WKvfdjsxrVx3EKGqkPOfoYkCLHB7+oFpV4Uupe4tF+xmYuef+ZB+w7xqrui3It0Ip338d762SqJMDwtcYbBM9aY7Scpi1BNrhU37/n4ICm76RGIC3F/8/DUc5KYl2SpWOO0hDbjObJdOWJzIIDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QqCFSMoY; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABB4A1F00A3A;
-	Mon, 15 Jun 2026 12:33:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781526795;
-	bh=O2aTFB/DrFHIDNcN7rIAyBFwnTk+4PEAzhJSXzX8mnE=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=QqCFSMoYTA/aF66uDc2wzbz08gDpSxgXvtp32TSqXDI1MiVnHT5rTi/L0abgJkxpR
-	 oN80bdDNtcmYr/tNjvoSBL8cmU0wUivtO4PykQoghXELG57ZKHwNP9nf4rDFpsuUPS
-	 rRoxN2i7TZoUAlsls1bJdxbxOT4+FaHO7IAgvXUdkT6AfHbfeK676rmZYXgxs8qegG
-	 RrA7gJ+smX4vhb6mZUVtT9ptlbTJAwayU/hfT0pT/xwFVDVgrSO8Oazh5KPJB21FWd
-	 awgKuM5BWpAuHzSfxxGoI1N+qeG/g+LUDlMbxBsaNnqV9lXCEAL1D+QesSPN9i+dQH
-	 mBr3qsXe/afOg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/7] riscv: dts: eswin: eic7700: add pinctrl support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Pinkesh Vaghela" <pinkesh.vaghela@einfochips.com>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260615122016.1110206-4-pinkesh.vaghela@einfochips.com>
-References: <20260615122016.1110206-4-pinkesh.vaghela@einfochips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 12:33:15 +0000
-Message-Id: <20260615123315.ABB4A1F00A3A@smtp.kernel.org>
+	s=arc-20240116; t=1781539480; c=relaxed/simple;
+	bh=xCMEoerQr6qOpSceVTrX07b3WN8wSqvO5OwJkSDd64Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LJaV56PIgbigO/w5HR7MEh5V6XJYSFz6ZsVRTzisc7xkNUDuSH4tJ8oI6UfyqwywNIzFEbGiLTmCVvzpR/6cDv9fONnR+IF3hIx9oDAFJbloOxU8uU1Ibcy2/66DkhJGZwE43m8yBe25Jee31x8ls7Wnr6gLxAGMKX1tZriyaNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=H2pYc5H4; arc=none smtp.client-ip=220.197.31.89
+Received: from [172.16.12.74] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 427046fb6;
+	Mon, 15 Jun 2026 20:34:58 +0800 (GMT+08:00)
+Message-ID: <8da02c6f-030d-4033-935b-a44c777a14d2@rock-chips.com>
+Date: Mon, 15 Jun 2026 20:34:58 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/4] Add eDP lane mapping support
+To: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, nicolas.frattaroli@collabora.com,
+ cristian.ciocaltea@collabora.com, sebastian.reichel@collabora.com,
+ dmitry.baryshkov@oss.qualcomm.com, luca.ceresoli@bootlin.com,
+ dianders@chromium.org, m.szyprowski@samsung.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20260604085220.2862986-1-damon.ding@rock-chips.com>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20260604085220.2862986-1-damon.ding@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9ecb4725bc03a8kunmad12dd9f4325
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZShkaVhkYTxoaGEsYQhpIGVYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+	pKQk1VSktLVUpCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=H2pYc5H4U519kPcqsLXiGZSqfal7roIZHKjog0oUnFm77yfp9eZTtdfOGTPLM5/Lcsv+XL4jWuNSRzLTovnS6ukbqMHh0l4IBojJTjDT+R0HGDUMdDikxtVT4j36p8sRGDPrJFuqrwx4ZAj5tX2uj6ZkKN0BqpTpcTwOo+O86QA=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=qY5kOzqcJfORXQNkdCMcMwTxAyKHZxf9POk2wrTq/zs=;
+	h=date:mime-version:subject:message-id:from;
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-312066-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311943-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:pinkesh.vaghela@einfochips.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:nicolas.frattaroli@collabora.com,m:cristian.ciocaltea@collabora.com,m:sebastian.reichel@collabora.com,m:dmitry.baryshkov@oss.qualcomm.com,m:luca.ceresoli@bootlin.com,m:dianders@chromium.org,m:m.szyprowski@samsung.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,smtp.kernel.org:mid,eswincomputing.com:email,sashiko.dev:url]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,rock-chips.com:dkim,rock-chips.com:mid,rock-chips.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9434068656F
+X-Rspamd-Queue-Id: 89EAC6881EC
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] Dead Code / Missing Pinctrl Hogs
-- [High] Invalid Pin Mux Function / Copy-Paste Error
-- [High] Missing GPIO to Pinctrl Mapping
-- [Low] Device Tree Standard Compliance
---
+Hi all,
 
-commit 7180be18ad292ee17c6b942dc71e252ce0fdbeef
-Author: Yulin Lu <luyulin@eswincomputing.com>
+Gentle ping on this patch series.
 
-riscv: dts: eswin: eic7700: add pinctrl support
+Best regards,
+Damon
 
-Add pinctrl node and related pin configuration for EIC7700 SoC.
+On 6/4/2026 4:52 PM, Damon Ding wrote:
+> This series adds configurable eDP physical lane mapping support via
+> device tree data-lanes property.
+> 
+> Lane mapping is mainly used for below scenarios:
+> 1. Correct PCB lane swap and differential line routing crossover
+>     without hardware changes;
+> 2. Adapt mismatched lane pin definitions between SoC and eDP panel;
+> 3. Support multiple panel hardware variants on the same board
+>     by configuring data-lanes in device tree only.
+> 
+> The series includes driver implementation and device tree binding
+> updates to support custom lane mapping configuration from endpoint
+> node, and keeps default linear lane order if no configuration is given.
+> 
+> Patch 1: Add endpoint data-lanes property to analogix-dp binding
+> Patch 2: Add DRM DP helper API to validate DP lane counts
+> Patch 3: Add validation for samsung,lane-count property as preparation
+> Patch 4: Implement lane mapping in analogix_dp driver
+> 
+> Damon Ding (4):
+>    dt-bindings: display: bridge: analogix-dp: Add data-lanes support for
+>      endpoint
+>    drm/dp: Add helper to validate DP lane counts
+>    drm/bridge: analogix_dp: Add validation for samsung,lane-count
+>      property
+>    drm/bridge: analogix_dp: Add support for optional data-lanes mapping
+> 
+>   .../bindings/display/bridge/analogix,dp.yaml  | 19 ++++--
+>   .../rockchip/rockchip,analogix-dp.yaml        |  1 +
+>   .../drm/bridge/analogix/analogix_dp_core.c    | 64 ++++++++++++++++++-
+>   .../drm/bridge/analogix/analogix_dp_core.h    |  4 +-
+>   .../gpu/drm/bridge/analogix/analogix_dp_reg.c | 15 ++---
+>   .../gpu/drm/bridge/analogix/analogix_dp_reg.h |  4 ++
+>   include/drm/display/drm_dp_helper.h           |  6 ++
+>   7 files changed, 97 insertions(+), 16 deletions(-)
+> 
+> ---
+> 
+> Changes in v2:
+> - Add lane mapping application scenarios in commit message.
+> - Remove redundant deprecated property 'data-lanes' for eDP node.
+> - Update port@1 $ref to /schemas/graph.yaml#/$defs/port-base.
+> 
+> Changes in v3:
+> - Squash [PATCH v2 2/3] into [PATCH v2 1/3].
+> - Add unevaluatedProperties: false to both the port@1 and endpoint
+>    nodes.
+> 
+> Changes in v4:
+> - Add validation for samsung,lane-count property as preparation.
+> 
+> Changes in v5:
+> - Add DRM DP helper API to validate DP lane counts.
+> - Apply DRM DP helper API to check the validity of samsung,lane-count
+>    property.
+> - Add Acked-by and Reviewed-by tags.
+> 
 
-> diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/=
-arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> index 1fb92f0e7c550..e7bb96e149585 100644
-> --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> @@ -18,6 +19,15 @@ aliases {
->  	chosen {
->  		stdout-path =3D "serial0:115200n8";
->  	};
-> +
-> +	vcc_1v8: vcc1v8 {
-> +		 compatible =3D "regulator-fixed";
-
-[Severity: Low]
-Should this node be named using the generic regulator-* pattern (such as
-regulator-1v8) to avoid dtbs_check warnings for deprecated names?
-
-There is also an extra leading space on the properties within this node
-that deviates from standard spacing.
-
-> +		 regulator-name =3D "vcc1v8";
-> +		 regulator-always-on;
-> +		 regulator-boot-on;
-> +		 regulator-min-microvolt =3D <1800000>;
-> +		 regulator-max-microvolt =3D <1800000>;
-> +	 };
->  };
-
-[ ... ]
-
-> @@ -25,6 +35,105 @@ &xtal {
->  	clock-output-names =3D "xtal24m";
->  };
-> =20
-> +&gpio0_pins {
-> +	bias-disable;
-> +	input-enable;
-> +};
-
-[Severity: High]
-Will these pin configuration overrides be silently ignored by the pinctrl
-core during boot?
-
-Since these pin definitions are not referenced by a pinctrl-0 property in
-an active device node, and are not configured as pinctrl hogs in the provid=
-er,
-the intended hardware states for these pins will not be programmed.
-
-[ ... ]
-
-> diff --git a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi b/arch/riscv/=
-boot/dts/eswin/eic7700-pinctrl.dtsi
-> new file mode 100644
-> index 0000000000000..7293df146aa7b
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
-> @@ -0,0 +1,888 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-
-[ ... ]
-
-> +		hdmi_pins: hdmi-pins {
-> +			pins =3D "hdmi_scl", "hdmi_sda", "hdmi_cec";
-> +			function =3D "hdmi";
-> +		};
-> +
-> +		rgmii0_pins: rgmii0-pins {
-> +			pins =3D "rgmii0_clk_125", "rgmii0_txen", "rgmii0_txclk", "rgmii0_txd=
-0",
-> +			       "rgmii0_txd1", "rgmii0_txd2", "rgmii0_txd3", "rgmii0_rxclk",
-> +			       "rgmii0_rxdv", "rgmii0_rxd0", "rgmii0_rxd1", "rgmii0_rxd2",
-> +			       "rgmii0_rxd3", "rgmii0_mdc", "rgmii0_mdio", "rgmii0_intb";
-> +			function =3D "hdmi";
-> +		};
-
-[Severity: High]
-Is the hdmi function correct for this network pin group?
-
-It appears that rgmii0, rgmii1, and the i2s pin groups that follow all use
-the hdmi function. This will prevent the pin controller from routing these
-pins properly, likely leading to driver probe failures when peripherals
-attempt to request them.
-
-[ ... ]
-
-> diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi b/arch/riscv/boot/dts=
-/eswin/eic7700.dtsi
-> index a7ebb11159580..8798c50f7584d 100644
-> --- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> +++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> @@ -349,6 +349,11 @@ gpioD: gpio-port@3 {
->  			};
->  		};
-> =20
-> +		pinctrl: pinctrl@51600080 {
-> +			compatible =3D "eswin,eic7700-pinctrl";
-> +			reg =3D <0x0 0x51600080 0x0 0x1fff80>;
-> +		};
-> +
-
-[Severity: High]
-Should the existing gpio controller nodes (gpioA, gpioB, gpioC, and gpioD)
-be updated with a gpio-ranges property mapping to this new pinctrl provider?
-
-Without gpio-ranges, the GPIO subsystem cannot translate GPIO offsets into
-pinctrl pins. The pinctrl core's .gpio_request_enable callback will not be
-invoked when a software component requests a GPIO dynamically, preventing
-the multiplexer from automatically switching the pin to GPIO mode.
-
->  		clk: clock-controller@51828000 {
->  			compatible =3D "eswin,eic7700-clock";
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615122016.1110=
-206-1-pinkesh.vaghela@einfochips.com?part=3D3
 
