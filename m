@@ -1,1773 +1,587 @@
-Return-Path: <devicetree+bounces-311636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311977-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id plKYKBeUL2oZCwUAu9opvQ
-	(envelope-from <devicetree+bounces-311636-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 07:56:39 +0200
+	id AI8LLxwEMGpILwUAu9opvQ
+	(envelope-from <devicetree+bounces-311977-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:54:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42BC968399E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 07:56:37 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 451EB686E0B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:54:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ite.com.tw header.s=dkim header.b=XnENT16k;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311636-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311636-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=ite.com.tw;
+	dkim=pass header.d=linaro.org header.s=google header.b=wAXEhzde;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311977-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311977-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2E7B630013AA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 05:56:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AACEE3055088
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 13:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056343A3E98;
-	Mon, 15 Jun 2026 05:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590453F4128;
+	Mon, 15 Jun 2026 13:54:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ironport.ite.com.tw (hc210-202-87-179.vdslpro.static.apol.com.tw [210.202.87.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AE01A6816;
-	Mon, 15 Jun 2026 05:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D88A3F39E8
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 13:54:19 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781502992; cv=none; b=WUfU5UeSPFBFsVpoiDmqsgeKM8Gj9TOcIqTFpD5/DKKcaMlj3W4WRH5vYE1l+QqBettsurEy5B5LoIWnoDmpYsg1plVqkgavA4xLlO/99zX8kgQjE7T+KZZl+c2Hbxhcjv67JJ3JluJUMrZY0uqMHClDamyX/rRVDmxAcPtuMXk=
+	t=1781531662; cv=none; b=LgtkNyebs/OrUhYIrVCCLtxeLh0m+DQ6aAhZeNTcHCcfn5HlcLjkDZio86oCY8D6bl1zW5pFlMNFXzHU225yECuuA8n2RAqIhusW1TTcoXENzhJrzKO8q4WgSQPP1paoDRlw4UyZ9QrX6Dwfva4PaNi1+ByLeiSjXIRhhM4NpDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781502992; c=relaxed/simple;
-	bh=mVdhqFFqRvXm10ubtFX5qrKMizq+tqddEmIhJWrwwGA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=mHWIFkiaKS8fDqsfyVTw5liO2Cx9rwEypfIlGW8tUKUKsQ9UpGruSMWr6IXuuAn+efURKiLbpIUJqtLERCbKHfwQwlE3FZpZtKfnGmbWH5ssSBVvKVE4az2SdEsn0zfCG8TxYHGKDbqcAR2yam1vBxo7zjgzsT2YlhIClB4UYNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw; spf=pass smtp.mailfrom=ite.com.tw; dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b=XnENT16k; arc=none smtp.client-ip=210.202.87.179
+	s=arc-20240116; t=1781531662; c=relaxed/simple;
+	bh=WO4iKIhbi5zRveijZj8+MrF6/VoJ4oXRfm2pwjCUFao=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=YcfgHwiLX3JuOZQrcxbdZx2f34c6pzpNk4dfhsFM6i694vXPRdvWDFpsRr71ZMd1tAiuWroYJsqJ2FbfuePSv0NRULODGes8CZdx2sRw+7l3L1Jc2r0eUkcioPIPSzUYnfKIgP9G5aYwjG2kpWb4JaCrQDvTPo6fGdlyN42lNko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wAXEhzde; arc=none smtp.client-ip=209.85.128.47
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-490c0c92cffso21628705e9.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 06:54:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=ite.com.tw; s=dkim;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=X54T08r4C6bfRWAwgy1yXyT2ufbgSEdeyXDYCKs0n5I=;
-  b=XnENT16kCJWSbM1KoMo7xQV1cA5//xKG4iUVleZQlwHtg2xaJNKQ6ijd
-   qHwf+nc86Chd8YF7Xj2B9lDC+eu+Ad0GKJ2R8GAFQNQ3y8lLIFiE+l24E
-   OsjUXV5BnRrJQD+SROCiz1ZQXSJMkXLrfsz+dmPhO8II2WG/xOR3NNVI0
-   AOaMYkPZ+BVFreKr/lvqzq42+3oxyYcaQ4KTAIQmtyMBAqW3hJxGJH/3H
-   7WEt1MQoadVf9iBmDqhsBLv0MmQt/Ty1HbBELY7Mnv8sL17QcoGI8Bbl4
-   y/FnUdSghG6HUHfd8y1sFQuZUNoMMkpQeEbLYh7vBDK7jjzgHzJsahNih
-   g==;
-X-CSE-ConnectionGUID: NA5wNXEhQPu+lGjlZW010w==
-X-CSE-MsgGUID: tsFxUA4cRG+K5hiEmMRJBA==
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 15 Jun 2026 13:48:54 +0800
-Received: from hscmail1.internal.ite.com.tw (HSCMAIL1.internal.ite.com.tw [192.168.35.58])
-	by mse.ite.com.tw with ESMTP id 65F5mpMU030759;
-	Mon, 15 Jun 2026 13:48:51 +0800 (+08)
-	(envelope-from amber.kao@ite.com.tw)
-Received: from [127.0.1.1] (192.168.37.107) by HSCMAIL1.internal.ite.com.tw
- (192.168.35.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Mon, 15 Jun
- 2026 13:48:51 +0800
-From: Amber Kao <amber.kao@ite.com.tw>
-Date: Mon, 15 Jun 2026 21:47:40 +0800
-Subject: [PATCH 2/2] usb: typec: ucsi: Add ITE IT885x Type-C PD controller
- driver
+        d=linaro.org; s=google; t=1781531658; x=1782136458; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uu11zNcu46wIUWyRNavmvIySfaoC1WRINzIF9mk7y20=;
+        b=wAXEhzdeay1umb7E4j0XvZaC6INSaOjZ+bpFIG523PcBq2aiTHBwneWwNYldXDu2f1
+         eD8VnwpJTsKJ3JJGG/mhRdG7ksbUyvt/e7knLW2tjsNCWFO9wSzqSWx7eGAEPBYVIMPk
+         rCoF9xMy12yQvJrbwmVLNPBkHR1k/ts8i+Ogrdm81NEEpylJmG9aOl8qBSKUlrxKEHb9
+         op90Qh8IncqLrLtUWTY/r1HzyKdw/2sp6sSE3LqXcRvUigRTXiaQgk0EogwqrWZCsQcl
+         MN3pq10zwolR2biTgiHZ/Yij7R08fA8FQWz9/WZGoFLou8I6/Npyy2yPVzW82NSxO8We
+         OT8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781531658; x=1782136458;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uu11zNcu46wIUWyRNavmvIySfaoC1WRINzIF9mk7y20=;
+        b=j9J2fAHfOywyhl8QG9CAiGlEdSWNpJodEtfUj8dMdU1CqF0vSToCGNDHtfwr0cLfcE
+         q3RMCeCBFVFbYrRXfkky2ZVjXUibInd581SFw5N23W1QF+Mx9KJhooqM7ABTwDBiJ33N
+         NfkOI6E+ccfQfF+wYAg6AXch1uV3SOhwbbe2FpIfg3hYc0kMqOZHWQYfC5aiJ8qg/gu0
+         LejwZcUQFaTWF3aEw7Da6HobjsXEv40niMUCmMRfjiviyrLtdLusqWa+ZQ/kSp6Ft6Zj
+         vFDnO2udJDK0RX8o8uPWVKI5FoUUyzYJT60VQ6hqQJdxYSVqqBsf+kZdYp0OoU4paAvd
+         8ogg==
+X-Forwarded-Encrypted: i=1; AFNElJ9h5eirAzE/pt0eQCw0t+3E6Ul5f55CiQyA/CpHT6XXk/C3TJ4FrI218bOh9BrQ3U594eW/M5dYhOgw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7wOIM819YBqivzGPWT1rGZb7G6gRhwbtr40RCxabUWV4Gj1TE
+	wb3K2KwEKofhicEWwBsKsG0sl0zMEDLVo9F+sdhsfnWnNp/3tSiU1HxZd23DV2GJ2lA=
+X-Gm-Gg: Acq92OFdE/L37LziItfSmuOdc+hCgs2Cs5SaLgDncVz8vU4lAgoIzO30Cinr/AkHSuw
+	GFuzig3IFCfJAE4OI8VlBdQpT6Da8V0TX1JzmvGve6avSnCsx6IuHowOoDeFHyEnAn1X7c4lm/y
+	TcPqDIoZrrO0etJCbfACAJdDui4T5m9UCbGMfkSPL7k5KoZv86NW00ZOCdnPAoukJhor7f4n3vo
+	sin/U5LxvqKNc58rUAnv/O9p/LpBNE+88s9onVi/Hx8DaFt1wFslHiXosa8sCNlpCs8eKavTnSB
+	2Pj6CoLkH9y9cGmqfr/93nISQtfmwBsOPQf8HzigmC84rlPczJKJ7Yn4afnEZi7H8TEyDr706OE
+	NQD/zXLI7OdA+C46vu0y/7DxHPQvOM5f1u5MK+AyTo4sJK42kdRGunZdDNzHPpo7TdXp6Q3wADh
+	WC+mgTIXJDCxBMqkyi3IgiUg46e1Mrna0dAM8vK82Y2X5oSK33ypCNbgfegdiejDHFq8qs030N+
+	4c3MJ0=
+X-Received: by 2002:a05:600c:214b:b0:490:bd1d:472a with SMTP id 5b1f17b1804b1-490ec4d7879mr137536905e9.15.1781531657302;
+        Mon, 15 Jun 2026 06:54:17 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:8ff6:927e:47e7:5df7? ([2a01:e0a:106d:1080:8ff6:927e:47e7:5df7])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4619b9b7750sm7157811f8f.6.2026.06.15.06.54.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jun 2026 06:54:16 -0700 (PDT)
+Message-ID: <16d2e8e8-91bc-437d-8225-eb6eedb4bd8a@linaro.org>
+Date: Mon, 15 Jun 2026 15:54:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 1/4] ASoC: qcom: audioreach: compute active channel maps
+ from channel_map
+To: Srinivas Kandagatla <srini@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: kancy2333@outlook.com, linux-sound@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20260610-topic-sm8650-ayaneo-pocket-s2-wsa2-fix-v1-0-18bb19c5ca22@linaro.org>
+ <20260610-topic-sm8650-ayaneo-pocket-s2-wsa2-fix-v1-1-18bb19c5ca22@linaro.org>
+ <937aed10-9ec6-4ca4-bc60-db892121a416@kernel.org>
+ <a5a957d0-a40c-424e-9d6d-622a4f624343@linaro.org>
+ <05e15363-d49e-4a7b-82b3-0f07537b5366@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <05e15363-d49e-4a7b-82b3-0f07537b5366@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Message-ID: <20260615-ucsi-itepd-feature-v1-2-a826cfd0df6a@ite.com.tw>
-References: <20260615-ucsi-itepd-feature-v1-0-a826cfd0df6a@ite.com.tw>
-In-Reply-To: <20260615-ucsi-itepd-feature-v1-0-a826cfd0df6a@ite.com.tw>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Jeson Yang <jeson.yang@ite.com.tw>,
-        Yaode Fang
-	<Yaode.Fang@ite.com.tw>,
-        Bling Chiang <Bling.Chiang@ite.com.tw>, Eric Su
-	<Eric.Su@ite.com.tw>,
-        Doreen Lin <doreen.lin@ite.com.tw>,
-        Heikki Krogerus
-	<heikki.krogerus@linux.intel.com>
-CC: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Amber Kao <amber.kao@ite.com.tw>
-X-Mailer: b4 0.15.2
-X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
- HSCMAIL1.internal.ite.com.tw (192.168.35.58)
-X-TM-SNTS-SMTP:
-	4522D954B3C2F580384024C32FD1547ACAAA969547953ECA050B8A677F10CD4B2002:8
-X-MAIL:mse.ite.com.tw 65F5mpMU030759
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [3.34 / 15.00];
-	DATE_IN_FUTURE(4.00)[7];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ite.com.tw,quarantine];
-	R_DKIM_ALLOW(-0.20)[ite.com.tw:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311636-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-311977-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[amber.kao@ite.com.tw,devicetree@vger.kernel.org];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jeson.yang@ite.com.tw,m:Yaode.Fang@ite.com.tw,m:Bling.Chiang@ite.com.tw,m:Eric.Su@ite.com.tw,m:doreen.lin@ite.com.tw,m:heikki.krogerus@linux.intel.com,m:linux-usb@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:amber.kao@ite.com.tw,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:srini@kernel.org,m:lgirdwood@gmail.com,m:broonie@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:kancy2333@outlook.com,m:linux-sound@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[outlook.com,vger.kernel.org];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,perex.cz,suse.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:from_mime,linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:replyto,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,gitlab.com:url,qualcomm.com:email,msgid.link:url];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[amber.kao@ite.com.tw,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ite.com.tw:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,mux_state.data:url]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_EQ_FROM(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 42BC968399E
+X-Rspamd-Queue-Id: 451EB686E0B
 
-Add core, UCSI, and Alternate Mode support for the ITE IT885x
-Type-C Power Delivery controller over I2C. The driver uses the
-auxiliary bus to spawn UCSI and Alternate Mode child devices from
-the main I2C core driver.
+On 6/15/26 11:36, Srinivas Kandagatla wrote:
+> On 6/15/26 10:31 AM, Neil Armstrong wrote:
+>> On 6/15/26 10:38, Srinivas Kandagatla wrote:
+>>>
+>>>
+>>> On 6/10/26 8:41 AM, Neil Armstrong wrote:
+>>>> The Qualcom SM8650 based Ayaneo Pocket S2 gaming device has a set
+>>>> of 2 WSA speakers connected on the WSA2 lines.
+>>>>
+>>>> But the Audioreach DSP only handles WSA2 in pair with the WSA
+>>>> interface by using the upper bits of the active_channels_mask
+>>>> for WSA2 and the lower bits for WSA:
+>>>>
+>>>> /-------------------------------------------------\
+>>>> | Bits  |     3    |     2    |   1     |     0   |
+>>>> |-------------------------------------------------|
+>>>> | Line  | WSA2 Ch2 | WSA2 Ch1 | WSA Ch2 | WSA Ch1 |
+>>>> \-------------------------------------------------/
+>>>>
+>>> No, this is not totally correct, if the setup only has WSA2, then
+>>> channel 0 and 1 should be WSA2 channels.
+>>>
+>>> What is the backend dai id that is in DT, it should be
+>>>
+>>>      sound-dai = <&q6apmbedai WSA2_CODEC_DMA_RX_0>;
+>>>
+>>> I also noticed that you are using
+>>> https://github.com/linux-msm/audioreach-topology/blob/main/SM8550-HDK.m4
+>>> which has WSA as backend dai, that is not correct, you should have WSA2.
+>>
+>> So I did try that, and DSP would error out when using the
+>> LPAIF_INTF_TYPE_WSA2,
+>> but I'm retrying from scratch right now.
+> 
+> Please share the failure logs, we need to change
+> 1. dt : bedai id, codec dais with correct soundwire wsa2 instance, the
+> routes.
+> 2. tplg
+> 
 
-Cc: Yaode Fang <Yaode.Fang@ite.com.tw>
-Cc: Jeson Yang <jeson.yang@ite.com.tw>
-Cc: Bling Chiang <Bling.Chiang@ite.com.tw>
-Cc: Eric Su <Eric.Su@ite.com.tw>
-Cc: Doreen Lin <doreen.lin@ite.com.tw>
+So I did all the changes as you suggested:
 
-Signed-off-by: Amber Kao <amber.kao@ite.com.tw>
----
- MAINTAINERS                            |   4 +
- drivers/usb/typec/ucsi/Kconfig         |  15 +
- drivers/usb/typec/ucsi/Makefile        |   1 +
- drivers/usb/typec/ucsi/itepd.c         | 481 ++++++++++++++++++++++++++++
- drivers/usb/typec/ucsi/itepd.h         |  64 ++++
- drivers/usb/typec/ucsi/itepd_altmode.c | 438 ++++++++++++++++++++++++++
- drivers/usb/typec/ucsi/ucsi_itepd.c    | 558 +++++++++++++++++++++++++++++++++
- 7 files changed, 1561 insertions(+)
+Resurected Krzk's serie: https://patch.msgid.link/20231019153541.49753-1-krzysztof.kozlowski@linaro.org
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 94afe3729059..c936928a7028 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13730,6 +13730,10 @@ R:	Doreen Lin <doreen.lin@ite.com.tw>
- L:	linux-usb@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/usb/ite,itepd-it885x.yaml
-+F:	drivers/usb/typec/ucsi/itepd.c
-+F:	drivers/usb/typec/ucsi/itepd.h
-+F:	drivers/usb/typec/ucsi/itepd_altmode.c
-+F:	drivers/usb/typec/ucsi/ucsi_itepd.c
- 
- IVTV VIDEO4LINUX DRIVER
- M:	Andy Walls <awalls@md.metrocast.net>
-diff --git a/drivers/usb/typec/ucsi/Kconfig b/drivers/usb/typec/ucsi/Kconfig
-index 87dd992a4b9e..470070f7e217 100644
---- a/drivers/usb/typec/ucsi/Kconfig
-+++ b/drivers/usb/typec/ucsi/Kconfig
-@@ -104,4 +104,19 @@ config UCSI_HUAWEI_GAOKUN
- 	  To compile the driver as a module, choose M here: the module will be
- 	  called ucsi_huawei_gaokun.
- 
-+config TYPEC_UCSI_ITEPD
-+	tristate "ITE IT885x Type-C PD and UCSI Driver"
-+	depends on I2C
-+	depends on DRM
-+	select AUXILIARY_BUS
-+	help
-+	  This driver enables core, UCSI, and Alternate Mode support for
-+	  the ITE IT885x Type-C Power Delivery controller over I2C.
-+
-+	  The driver uses the auxiliary bus to spawn the UCSI and Altmode
-+	  child devices from the main I2C core driver.
-+
-+	  To compile the driver as a module, choose M here: the modules
-+	  will be called itepd, ucsi_itepd and itepd_altmode.
-+
- endif
-diff --git a/drivers/usb/typec/ucsi/Makefile b/drivers/usb/typec/ucsi/Makefile
-index c7e38bf01350..437a23f0031c 100644
---- a/drivers/usb/typec/ucsi/Makefile
-+++ b/drivers/usb/typec/ucsi/Makefile
-@@ -28,3 +28,4 @@ obj-$(CONFIG_UCSI_PMIC_GLINK)		+= ucsi_glink.o
- obj-$(CONFIG_CROS_EC_UCSI)		+= cros_ec_ucsi.o
- obj-$(CONFIG_UCSI_LENOVO_YOGA_C630)	+= ucsi_yoga_c630.o
- obj-$(CONFIG_UCSI_HUAWEI_GAOKUN)	+= ucsi_huawei_gaokun.o
-+obj-$(CONFIG_TYPEC_UCSI_ITEPD)		+= itepd.o ucsi_itepd.o itepd_altmode.o
-diff --git a/drivers/usb/typec/ucsi/itepd.c b/drivers/usb/typec/ucsi/itepd.c
-new file mode 100644
-index 000000000000..39ac1c136157
---- /dev/null
-+++ b/drivers/usb/typec/ucsi/itepd.c
-@@ -0,0 +1,481 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025-2026, ITE. All Rights Reserved
-+ */
-+#include <linux/auxiliary_bus.h>
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/gpio/consumer.h>
-+
-+#include "itepd.h"
-+
-+#define ITEPD_UCSI_VERSION_REG			(0x80)
-+#define ITEPD_UCSI_CCI_REG				(0x84)
-+#define ITEPD_UCSI_MSG_IN_REG			(0x88)
-+#define ITEPD_UCSI_CONTROL_REG			(0x98)
-+#define ITEPD_UCSI_MSG_OUT_REG			(0xA0)
-+
-+#define ITEPD_VENDOR_WC_INT				(0xBC)
-+#define ITEPD_VENDOR_INT				(0xBD)
-+	#define ITEPD_ALERT_VDM_EVENT			BIT(0)
-+	#define ITEPD_ALERT_UCSI_EVENT			BIT(1)
-+
-+struct itepd {
-+	struct device *dev;
-+	struct i2c_client *client;
-+	int irq;
-+	struct mutex i2c_lock; /* Protects I2C read/write operations */
-+	struct mutex cb_lock;  /* Protects concurrent access to callback state */
-+	unsigned long client_mask;
-+	struct auxiliary_device *ucsi_aux;
-+	struct auxiliary_device *altmode_aux;
-+	struct itepd_ucsi_cb *ucsi_cb;
-+	struct itepd_altmode_cb *altmode_cb;
-+
-+	struct itepd_altmode_data altmode_data[ITEPD_MAX_PORTS];
-+};
-+
-+/*
-+ * ITE Read/Write Function
-+ */
-+
-+static int itepd_read_reg(struct itepd *itepd, u8 reg, void *data, u32 len)
-+{
-+	struct i2c_client *client = itepd->client;
-+	struct i2c_msg msg[] = {
-+		{
-+			.addr	= client->addr,
-+			.flags	= 0x0,
-+			.len	= 1,
-+			.buf	= &reg,
-+		},
-+		{
-+			.addr	= client->addr,
-+			.flags	= I2C_M_RD,
-+			.len	= len,
-+			.buf	= (u8 *)data,
-+		}
-+	};
-+	int ret;
-+
-+	ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
-+	if (ret < 0) {
-+		dev_err(itepd->dev, "i2c_transfer read failed %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int itepd_write_reg(struct itepd *itepd, u8 reg, const void *data, u32 len)
-+{
-+	struct i2c_client *client = itepd->client;
-+	unsigned char *buf;
-+	struct i2c_msg msg[] = {
-+		{
-+			.addr	= client->addr,
-+			.flags	= 0x0,
-+		}
-+	};
-+	int ret;
-+
-+	buf = kzalloc(len + sizeof(reg), GFP_KERNEL);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	buf[0] = reg;
-+	memcpy(buf + sizeof(reg), (u8 *)data, len);
-+
-+	msg[0].len = len + sizeof(reg);
-+	msg[0].buf = buf;
-+
-+	ret = i2c_transfer(client->adapter, msg, ARRAY_SIZE(msg));
-+	if (ret < 0) {
-+		dev_err(itepd->dev, "i2c_transfer write failed %d\n", ret);
-+		kfree(buf);
-+		return ret;
-+	}
-+
-+	kfree(buf);
-+	return 0;
-+}
-+
-+/**
-+ * itepd_cmd_receive() - Receive UCSI command from ITEPD controller
-+ * @dev: Pointer to the device structure
-+ * @cmd: The command to be executed
-+ * @val: Buffer to store the received data
-+ * @val_len: Length of the buffer
-+ *
-+ * Return: 0 on success, or a negative error code on failure.
-+ */
-+
-+int itepd_cmd_receive(struct device *dev, unsigned int cmd, void *val, size_t val_len)
-+{
-+	struct itepd *itepd = i2c_get_clientdata(to_i2c_client(dev->parent));
-+	int ret;
-+
-+	if (!itepd)
-+		return -ENXIO;
-+
-+	switch (cmd) {
-+	case ITEPD_RECEIVE_UCSI_VERSION:
-+		mutex_lock(&itepd->i2c_lock);
-+		ret = itepd_read_reg(itepd, ITEPD_UCSI_VERSION_REG, val,
-+				     min_t(size_t, val_len, 0x28));
-+		mutex_unlock(&itepd->i2c_lock);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(itepd_cmd_receive);
-+
-+int itepd_cmd_send(struct device *dev, unsigned int cmd, const void *val, size_t val_len)
-+{
-+	struct itepd *itepd = i2c_get_clientdata(to_i2c_client(dev->parent));
-+	int ret;
-+
-+	if (!itepd)
-+		return -ENXIO;
-+
-+	switch (cmd) {
-+	case ITEPD_SEND_UCSI_CONTROL:
-+		mutex_lock(&itepd->i2c_lock);
-+		ret = itepd_write_reg(itepd, ITEPD_UCSI_CONTROL_REG, val,
-+				      min_t(size_t, val_len, 8));
-+		mutex_unlock(&itepd->i2c_lock);
-+		break;
-+	case ITEPD_SEND_UCSI_MESSAGE_OUT:
-+		mutex_lock(&itepd->i2c_lock);
-+		ret = itepd_write_reg(itepd, ITEPD_UCSI_MSG_OUT_REG, val, val_len);
-+		mutex_unlock(&itepd->i2c_lock);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(itepd_cmd_send);
-+
-+int itepd_register_cb(struct device *dev, u8 id, void *cb)
-+{
-+	struct itepd *itepd = i2c_get_clientdata(to_i2c_client(dev->parent));
-+
-+	if (!itepd)
-+		return -EPROBE_DEFER;
-+
-+	switch (id) {
-+	case ITEPD_CLIENT_UCSI:
-+		if (itepd->ucsi_aux && dev == &itepd->ucsi_aux->dev) {
-+			mutex_lock(&itepd->cb_lock);
-+			itepd->ucsi_cb = (struct itepd_ucsi_cb *)cb;
-+			mutex_unlock(&itepd->cb_lock);
-+		} else {
-+			return -ENODEV;
-+		}
-+		break;
-+	case ITEPD_CLIENT_ALTMODE:
-+		if (itepd->altmode_aux && dev == &itepd->altmode_aux->dev) {
-+			mutex_lock(&itepd->cb_lock);
-+			itepd->altmode_cb = (struct itepd_altmode_cb *)cb;
-+			mutex_unlock(&itepd->cb_lock);
-+		} else {
-+			return -ENODEV;
-+		}
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(itepd_register_cb);
-+
-+int itepd_mode(struct device *dev, u8 port, u8 mux, u32 config, u32 status)
-+{
-+	struct itepd *itepd = i2c_get_clientdata(to_i2c_client(dev->parent));
-+
-+	if (!itepd)
-+		return -ENXIO;
-+
-+	if (itepd->ucsi_aux && dev == &itepd->ucsi_aux->dev) {
-+		itepd->altmode_data[port].port = port;
-+		itepd->altmode_data[port].mux = mux;
-+		itepd->altmode_data[port].dp_config = config;
-+		itepd->altmode_data[port].dp_status = status;
-+		if (itepd->altmode_cb)
-+			itepd->altmode_cb->notify(itepd->altmode_cb->priv,
-+						  &itepd->altmode_data[port]);
-+	} else {
-+		return -ENODEV;
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(itepd_mode);
-+
-+int itepd_hpd(struct device *dev, u8 port, u32 status)
-+{
-+	struct itepd *itepd = i2c_get_clientdata(to_i2c_client(dev->parent));
-+
-+	if (!itepd)
-+		return -ENXIO;
-+
-+	if (itepd->ucsi_aux && dev == &itepd->ucsi_aux->dev) {
-+		itepd->altmode_data[port].dp_status = status;
-+		if (itepd->altmode_cb)
-+			itepd->altmode_cb->notify(itepd->altmode_cb->priv,
-+						  &itepd->altmode_data[port]);
-+	} else {
-+		return -ENODEV;
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(itepd_hpd);
-+
-+/*
-+ * ITE Interrupt Function
-+ */
-+
-+static irqreturn_t itepd_irq_process(struct itepd *itepd)
-+{
-+	u8 event;
-+	u8 clear = 0;
-+	u8 len;
-+	u32 cci;
-+	u8 msg_in[0x28];
-+	bool notify_ucsi = false;
-+	int ret;
-+
-+	mutex_lock(&itepd->i2c_lock);
-+
-+	ret = itepd_read_reg(itepd, ITEPD_VENDOR_INT, &event, 1);
-+	if (ret) {
-+		mutex_unlock(&itepd->i2c_lock);
-+		return IRQ_HANDLED;
-+	}
-+
-+	mutex_lock(&itepd->cb_lock);
-+	if (event & ITEPD_ALERT_VDM_EVENT)
-+		clear |= ITEPD_ALERT_VDM_EVENT;
-+
-+	if (event & ITEPD_ALERT_UCSI_EVENT) {
-+		clear |= ITEPD_ALERT_UCSI_EVENT;
-+		if (itepd->ucsi_cb) {
-+			ret = itepd_read_reg(itepd, ITEPD_UCSI_CCI_REG, &cci, sizeof(cci));
-+			if (ret)
-+				goto err_mutex_unlock_cb;
-+			len = itepd->ucsi_cb->get_len(itepd->ucsi_cb->priv, cci);
-+
-+			if (len > 0) {
-+				ret = itepd_read_reg(itepd, ITEPD_UCSI_MSG_IN_REG, msg_in,
-+						     min_t(size_t, len, 0x28));
-+				if (ret)
-+					goto err_mutex_unlock_cb;
-+			}
-+			notify_ucsi = true;
-+		}
-+	}
-+
-+	if (clear) {
-+		ret = itepd_write_reg(itepd, ITEPD_VENDOR_WC_INT, &clear, 1);
-+		if (ret)
-+			goto err_mutex_unlock_cb;
-+	}
-+
-+	if (notify_ucsi)
-+		itepd->ucsi_cb->notify(itepd->ucsi_cb->priv, cci, msg_in);
-+
-+	mutex_unlock(&itepd->cb_lock);
-+	mutex_unlock(&itepd->i2c_lock);
-+
-+	return IRQ_HANDLED;
-+
-+err_mutex_unlock_cb:
-+	mutex_unlock(&itepd->cb_lock);
-+	clear = (ITEPD_ALERT_VDM_EVENT | ITEPD_ALERT_UCSI_EVENT);
-+	itepd_write_reg(itepd, ITEPD_VENDOR_WC_INT, &clear, 1);
-+	mutex_unlock(&itepd->i2c_lock);
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t itepd_irq_thread_fn(int irq, void *data)
-+{
-+	struct itepd *itepd = data;
-+
-+	return itepd_irq_process(itepd);
-+}
-+
-+/*
-+ * ITE AUX Function
-+ */
-+static void itepd_ucsi_aux_release(struct device *dev)
-+{
-+	struct auxiliary_device *adev = container_of(dev, struct auxiliary_device, dev);
-+
-+	of_node_put(dev->of_node);
-+	kfree(adev);
-+}
-+
-+static void itepd_altmode_aux_release(struct device *dev)
-+{
-+	struct auxiliary_device *adev = container_of(dev, struct auxiliary_device, dev);
-+
-+	of_node_put(dev->of_node);
-+	kfree(adev);
-+}
-+
-+static int itepd_add_aux_device(struct itepd *itepd,
-+				struct auxiliary_device **aux_out,
-+				const char *name,
-+				void (*release)(struct device *))
-+{
-+	struct auxiliary_device *aux;
-+	int ret;
-+
-+	aux = kzalloc_obj(*aux, GFP_KERNEL);
-+	if (!aux)
-+		return -ENOMEM;
-+
-+	aux->name = name;
-+	aux->dev.parent = itepd->dev;
-+	aux->dev.release = release;
-+	device_set_of_node_from_dev(&aux->dev, itepd->dev);
-+
-+	ret = auxiliary_device_init(aux);
-+	if (ret) {
-+		of_node_put(aux->dev.of_node);
-+		kfree(aux);
-+		return ret;
-+	}
-+
-+	ret = auxiliary_device_add(aux);
-+	if (ret) {
-+		auxiliary_device_uninit(aux);
-+		return ret;
-+	}
-+
-+	*aux_out = aux;
-+	return 0;
-+}
-+
-+static void itepd_del_aux_device(struct auxiliary_device *aux)
-+{
-+	auxiliary_device_delete(aux);
-+	auxiliary_device_uninit(aux);
-+}
-+
-+/*
-+ * ITE Probe/Remove
-+ */
-+
-+static int itepd_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct itepd *itepd;
-+	const unsigned long *match_data;
-+	struct gpio_desc *desc;
-+	int ret;
-+
-+	itepd = devm_kzalloc(dev, sizeof(struct itepd), GFP_KERNEL);
-+	if (!itepd)
-+		return -ENOMEM;
-+
-+	itepd->dev = dev;
-+	itepd->client = client;
-+	itepd->irq = client->irq;
-+	mutex_init(&itepd->i2c_lock);
-+	mutex_init(&itepd->cb_lock);
-+
-+	match_data = (unsigned long *)of_device_get_match_data(dev);
-+
-+	if (!match_data)
-+		return -EINVAL;
-+	itepd->client_mask = *match_data;
-+
-+	i2c_set_clientdata(client, itepd);
-+
-+	if (itepd->irq > 0) {
-+		ret = request_threaded_irq(itepd->irq, NULL, itepd_irq_thread_fn,
-+					   IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-+					   dev_name(dev), itepd);
-+		if (ret < 0) {
-+			dev_err(dev, "request_threaded_irq failed - %d\n", ret);
-+			return ret;
-+		}
-+	}
-+
-+	desc = devm_gpiod_get(dev, NULL, GPIOD_IN);
-+
-+	if (IS_ERR(desc)) {
-+		dev_info(dev, "get gpios from DTS failed\n");
-+	} else {
-+		if (gpiod_get_value(desc))
-+			itepd_irq_process(itepd);
-+	}
-+
-+	if (itepd->client_mask & BIT(ITEPD_CLIENT_ALTMODE)) {
-+		ret = itepd_add_aux_device(itepd, &itepd->altmode_aux, "altmode",
-+					   itepd_altmode_aux_release);
-+		if (ret)
-+			goto out_free_irq;
-+	}
-+
-+	if (itepd->client_mask & BIT(ITEPD_CLIENT_UCSI)) {
-+		ret = itepd_add_aux_device(itepd, &itepd->ucsi_aux, "ucsi", itepd_ucsi_aux_release);
-+		if (ret)
-+			goto out_release_altmode_aux;
-+	}
-+
-+	return 0;
-+
-+out_release_altmode_aux:
-+	if (itepd->client_mask & BIT(ITEPD_CLIENT_ALTMODE))
-+		itepd_del_aux_device(itepd->altmode_aux);
-+out_free_irq:
-+	free_irq(itepd->irq, itepd);
-+	return ret;
-+}
-+
-+static void itepd_remove(struct i2c_client *client)
-+{
-+	struct itepd *itepd = i2c_get_clientdata(client);
-+
-+	if (itepd->client_mask & BIT(ITEPD_CLIENT_UCSI))
-+		itepd_del_aux_device(itepd->ucsi_aux);
-+	if (itepd->client_mask & BIT(ITEPD_CLIENT_ALTMODE))
-+		itepd_del_aux_device(itepd->altmode_aux);
-+	free_irq(itepd->irq, itepd);
-+}
-+
-+static const unsigned long itepd_rb3gen2_client_mask =
-+	BIT(ITEPD_CLIENT_ALTMODE) | BIT(ITEPD_CLIENT_UCSI);
-+
-+static const struct of_device_id itepd_of_match_table[] = {
-+	{ .compatible = "ite,itepd-it885x", .data = &itepd_rb3gen2_client_mask },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, itepd_of_match_table);
-+
-+static struct i2c_driver itepd_driver = {
-+	.driver = {
-+		.name = "itepd",
-+		.of_match_table = itepd_of_match_table,
-+	},
-+	.probe = itepd_probe,
-+	.remove = itepd_remove,
-+};
-+
-+module_i2c_driver(itepd_driver);
-+
-+MODULE_AUTHOR("Jeson Yang <jeson.yang@ite.com.tw>");
-+MODULE_DESCRIPTION("ITEPD driver for ITE Type-C PD controller");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/usb/typec/ucsi/itepd.h b/drivers/usb/typec/ucsi/itepd.h
-new file mode 100644
-index 000000000000..339b3ab0dc88
---- /dev/null
-+++ b/drivers/usb/typec/ucsi/itepd.h
-@@ -0,0 +1,64 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2025-2026, ITE. All Rights Reserved
-+ */
-+#ifndef __SOC_ITE_ITEPD_H__
-+#define __SOC_ITE_ITEPD_H__
-+
-+#define ITEPD_MAX_PORTS						2
-+
-+enum {
-+	ITEPD_CLIENT_UCSI,
-+	ITEPD_CLIENT_ALTMODE,
-+};
-+
-+enum {
-+	ITEPD_SEND_UCSI_CONTROL,
-+	ITEPD_SEND_UCSI_MESSAGE_OUT,
-+};
-+
-+enum {
-+	ITEPD_RECEIVE_UCSI_VERSION,
-+};
-+
-+enum {
-+	ITEPD_USBPD_MUX_USB_0 = 0,
-+	ITEPD_USBPD_MUX_USB_1,
-+	ITEPD_USBPD_MUX_DP_0,
-+	ITEPD_USBPD_MUX_DP_1,
-+	ITEPD_USBPD_MUX_USB_DP_0,
-+	ITEPD_USBPD_MUX_USB_DP_1,
-+	ITEPD_USBPD_MUX_TBT_0,
-+	ITEPD_USBPD_MUX_TBT_1,
-+	ITEPD_USBPD_MUX_USB4_0,
-+	ITEPD_USBPD_MUX_USB4_1,
-+	ITEPD_USBPD_MUX_OFF
-+};
-+
-+#define ITEPD_USBPD_MUX_FLIPPED				BIT(0)
-+
-+struct itepd_altmode_data {
-+	u8 port;
-+	u8 mux;
-+	u32 dp_config;
-+	u32 dp_status;
-+};
-+
-+struct itepd_ucsi_cb {
-+	u8 (*get_len)(void *priv, u32 cci);
-+	void (*notify)(void *priv, u32 cci, u8 *data);
-+	void *priv;
-+};
-+
-+struct itepd_altmode_cb {
-+	void (*notify)(void *priv, struct itepd_altmode_data *data);
-+	void *priv;
-+};
-+
-+int itepd_cmd_send(struct device *dev, unsigned int cmd, const void *val, size_t val_len);
-+int itepd_cmd_receive(struct device *dev, unsigned int cmd, void *val, size_t val_len);
-+int itepd_register_cb(struct device *dev, u8 id, void *cb);
-+int itepd_mode(struct device *dev, u8 port, u8 mux, u32 config, u32 status);
-+int itepd_hpd(struct device *dev, u8 port, u32 status);
-+
-+#endif
-diff --git a/drivers/usb/typec/ucsi/itepd_altmode.c b/drivers/usb/typec/ucsi/itepd_altmode.c
-new file mode 100644
-index 000000000000..a88ae2fb6e79
---- /dev/null
-+++ b/drivers/usb/typec/ucsi/itepd_altmode.c
-@@ -0,0 +1,438 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025-2026, ITE. All Rights Reserved
-+ */
-+#include <linux/auxiliary_bus.h>
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/workqueue.h>
-+#include <linux/slab.h>
-+#include <linux/usb/typec.h>
-+#include <linux/usb/typec_altmode.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/usb/typec_mux.h>
-+#include <linux/usb/typec_retimer.h>
-+
-+#include <drm/drm_bridge.h>
-+
-+#include "itepd.h"
-+
-+struct itepd_altmode;
-+
-+struct itepd_altmode_port {
-+	struct itepd_altmode *altmode;
-+	unsigned int index;
-+
-+	struct workqueue_struct *ordered_wq;
-+
-+	struct typec_switch *typec_switch;
-+	struct typec_mux *typec_mux;
-+	struct typec_retimer *typec_retimer;
-+	struct drm_bridge bridge;
-+
-+	enum typec_orientation orientation;
-+};
-+
-+struct itepd_altmode {
-+	struct device *dev;
-+
-+	struct itepd_altmode_port ports[ITEPD_MAX_PORTS];
-+};
-+
-+struct itepd_altmode_work {
-+	struct itepd_altmode_port *alt_port;
-+	struct itepd_altmode_data data;
-+	struct work_struct work;
-+
-+	/*
-+	 * DP mode state buffers kept on the heap (inside this kmalloc'd work
-+	 * item) so that itepd_altmode_dp() does not need large local variables
-+	 * and avoids triggering CONFIG_FRAME_WARN / checkstack.
-+	 */
-+	struct typec_altmode		dp_alt;
-+	struct typec_displayport_data	dp_data;
-+	struct typec_mux_state		mux_state;
-+	struct typec_retimer_state	retimer_state;
-+};
-+
-+static enum typec_orientation itepd_altmode_mux_to_orientation(u8 mux)
-+{
-+	if (mux >= ITEPD_USBPD_MUX_OFF)
-+		return TYPEC_ORIENTATION_NONE;
-+	else
-+		return (mux & ITEPD_USBPD_MUX_FLIPPED) ?
-+			TYPEC_ORIENTATION_REVERSE : TYPEC_ORIENTATION_NORMAL;
-+}
-+
-+static void itepd_altmode_safe(struct itepd_altmode_port *alt_port,
-+			       struct itepd_altmode_work *worker)
-+{
-+	struct itepd_altmode *altmode = alt_port->altmode;
-+	struct typec_mux_state mux_state = {};
-+	struct typec_retimer_state retimer_state = {};
-+	int ret;
-+
-+	mux_state.alt = NULL;
-+	mux_state.data = NULL;
-+	mux_state.mode = TYPEC_STATE_SAFE;
-+
-+	ret = typec_mux_set(alt_port->typec_mux, &mux_state);
-+	if (ret)
-+		dev_err(altmode->dev, "failed to switch mux to safe mode\n");
-+
-+	retimer_state.alt = NULL;
-+	retimer_state.data = NULL;
-+	retimer_state.mode = TYPEC_STATE_SAFE;
-+
-+	ret = typec_retimer_set(alt_port->typec_retimer, &retimer_state);
-+	if (ret)
-+		dev_err(altmode->dev, "failed to setup retimer to safe mode\n");
-+}
-+
-+static void itepd_altmode_usb(struct itepd_altmode_port *alt_port,
-+			      struct itepd_altmode_work *worker)
-+{
-+	struct itepd_altmode *altmode = alt_port->altmode;
-+	struct typec_mux_state mux_state = {};
-+	struct typec_retimer_state retimer_state = {};
-+	int ret;
-+
-+	mux_state.alt = NULL;
-+	mux_state.data = NULL;
-+	mux_state.mode = TYPEC_STATE_USB;
-+
-+	ret = typec_mux_set(alt_port->typec_mux, &mux_state);
-+	if (ret)
-+		dev_err(altmode->dev, "failed to switch mux to USB\n");
-+
-+	retimer_state.alt = NULL;
-+	retimer_state.data = NULL;
-+	retimer_state.mode = TYPEC_STATE_USB;
-+
-+	ret = typec_retimer_set(alt_port->typec_retimer, &retimer_state);
-+	if (ret)
-+		dev_err(altmode->dev, "failed to setup retimer to USB\n");
-+}
-+
-+static void itepd_altmode_dp(struct itepd_altmode_port *alt_port,
-+			     struct itepd_altmode_work *worker)
-+{
-+	struct itepd_altmode *altmode = alt_port->altmode;
-+	u32 pin_assign;
-+	unsigned int mode;
-+	int ret;
-+
-+	/* Use heap buffers in worker to avoid large stack frames. */
-+	memset(&worker->dp_alt, 0, sizeof(worker->dp_alt));
-+	memset(&worker->dp_data, 0, sizeof(worker->dp_data));
-+	memset(&worker->mux_state, 0, sizeof(worker->mux_state));
-+	memset(&worker->retimer_state, 0, sizeof(worker->retimer_state));
-+
-+	worker->dp_alt.svid   = USB_TYPEC_DP_SID;
-+	worker->dp_alt.mode   = USB_TYPEC_DP_MODE;
-+	worker->dp_alt.active = 1;
-+
-+	worker->dp_data.status = worker->data.dp_status &
-+				 (DP_STATUS_ENABLED | DP_STATUS_HPD_STATE |
-+				  DP_STATUS_IRQ_HPD);
-+	worker->dp_data.conf = worker->data.dp_config & DP_CONF_PIN_ASSIGNEMENT_MASK;
-+
-+	pin_assign = DP_CONF_GET_PIN_ASSIGN(worker->data.dp_config);
-+	if (pin_assign == BIT(DP_PIN_ASSIGN_C))
-+		mode = DP_PIN_ASSIGN_C;
-+	else if (pin_assign == BIT(DP_PIN_ASSIGN_D))
-+		mode = DP_PIN_ASSIGN_D;
-+	else
-+		mode = 0; /* unknown pin assignment — fall back to safe */
-+
-+	worker->mux_state.alt  = &worker->dp_alt;
-+	worker->mux_state.data = &worker->dp_data;
-+	worker->mux_state.mode = mode ? TYPEC_MODAL_STATE(mode) : TYPEC_STATE_SAFE;
-+
-+	ret = typec_mux_set(alt_port->typec_mux, &worker->mux_state);
-+	if (ret)
-+		dev_err(altmode->dev, "failed to switch mux to DP\n");
-+
-+	worker->retimer_state.alt  = &worker->dp_alt;
-+	worker->retimer_state.data = &worker->dp_data;
-+	worker->retimer_state.mode = worker->mux_state.mode;
-+
-+	ret = typec_retimer_set(alt_port->typec_retimer, &worker->retimer_state);
-+	if (ret)
-+		dev_err(altmode->dev, "failed to setup retimer to DP\n");
-+}
-+
-+static void itepd_altmode_worker(struct work_struct *work)
-+{
-+	struct itepd_altmode_work *worker =
-+		container_of(work, struct itepd_altmode_work, work);
-+	struct itepd_altmode_port *alt_port = worker->alt_port;
-+
-+	alt_port->orientation = itepd_altmode_mux_to_orientation(worker->data.mux);
-+	typec_switch_set(alt_port->typec_switch, alt_port->orientation);
-+
-+	switch (worker->data.mux) {
-+	case ITEPD_USBPD_MUX_OFF:
-+		itepd_altmode_safe(alt_port, worker);
-+		drm_bridge_hpd_notify(&alt_port->bridge,
-+				      connector_status_disconnected);
-+		break;
-+
-+	case ITEPD_USBPD_MUX_DP_0:
-+	case ITEPD_USBPD_MUX_DP_1:
-+	case ITEPD_USBPD_MUX_USB_DP_0:
-+	case ITEPD_USBPD_MUX_USB_DP_1:
-+		itepd_altmode_dp(alt_port, worker);
-+		if (worker->data.dp_status & DP_STATUS_HPD_STATE)
-+			drm_bridge_hpd_notify(&alt_port->bridge,
-+					      connector_status_connected);
-+		else
-+			drm_bridge_hpd_notify(&alt_port->bridge,
-+					      connector_status_disconnected);
-+		break;
-+
-+	case ITEPD_USBPD_MUX_USB_0:
-+	case ITEPD_USBPD_MUX_USB_1:
-+	case ITEPD_USBPD_MUX_TBT_0:
-+	case ITEPD_USBPD_MUX_TBT_1:
-+	case ITEPD_USBPD_MUX_USB4_0:
-+	case ITEPD_USBPD_MUX_USB4_1:
-+		itepd_altmode_usb(alt_port, worker);
-+		drm_bridge_hpd_notify(&alt_port->bridge,
-+				      connector_status_disconnected);
-+		break;
-+
-+	default:
-+		dev_err(alt_port->altmode->dev,
-+			"unknown mux state %u on port %u, forcing safe mode\n",
-+			worker->data.mux, alt_port->index);
-+		itepd_altmode_safe(alt_port, worker);
-+		drm_bridge_hpd_notify(&alt_port->bridge,
-+				      connector_status_disconnected);
-+		break;
-+	}
-+
-+	kfree(worker);
-+}
-+
-+static int itepd_altmode_attach(struct drm_bridge *bridge,
-+				struct drm_encoder *encoder,
-+				enum drm_bridge_attach_flags flags)
-+{
-+	return flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR ? 0 : -EINVAL;
-+}
-+
-+static const struct drm_bridge_funcs itepd_altmode_bridge_funcs = {
-+	.attach = itepd_altmode_attach,
-+};
-+
-+static void itepd_altmode_put_retimer(void *data)
-+{
-+	typec_retimer_put(data);
-+}
-+
-+static void itepd_altmode_put_mux(void *data)
-+{
-+	typec_mux_put(data);
-+}
-+
-+static void itepd_altmode_put_switch(void *data)
-+{
-+	typec_switch_put(data);
-+}
-+
-+static void itepd_altmode_notify(void *priv, struct itepd_altmode_data *data)
-+{
-+	struct itepd_altmode *altmode = priv;
-+	struct itepd_altmode_port *alt_port;
-+	struct itepd_altmode_work *worker;
-+
-+	if (data->port >= ARRAY_SIZE(altmode->ports)) {
-+		dev_err(altmode->dev, "invalid connector number, skip notify\n");
-+		return;
-+	}
-+
-+	alt_port = &altmode->ports[data->port];
-+	if (!alt_port->altmode)
-+		return;
-+
-+	worker = kmalloc_obj(*worker, GFP_KERNEL);
-+	if (!worker) {
-+		dev_err(altmode->dev, "out of memory, skip notify\n");
-+		return;
-+	}
-+
-+	memcpy(&worker->data, data, sizeof(struct itepd_altmode_data));
-+	worker->alt_port = alt_port;
-+
-+	INIT_WORK(&worker->work, itepd_altmode_worker);
-+	queue_work(alt_port->ordered_wq, &worker->work);
-+}
-+
-+static void itepd_altmode_destroy_wq(void *data)
-+{
-+	struct workqueue_struct *wq = data;
-+
-+	flush_workqueue(wq);
-+	destroy_workqueue(wq);
-+}
-+
-+static int itepd_altmode_probe(struct auxiliary_device *adev,
-+			       const struct auxiliary_device_id *id)
-+{
-+	struct itepd_altmode *altmode;
-+	struct itepd_altmode_port *alt_port;
-+	struct itepd_altmode_cb *cb;
-+	struct fwnode_handle *fwnode;
-+	struct device *dev = &adev->dev;
-+	u32 port;
-+	int ret;
-+
-+	altmode = devm_kzalloc(dev, sizeof(*altmode), GFP_KERNEL);
-+	if (!altmode)
-+		return -ENOMEM;
-+
-+	cb = devm_kzalloc(dev, sizeof(*cb), GFP_KERNEL);
-+	if (!cb)
-+		return -ENOMEM;
-+
-+	altmode->dev = dev;
-+
-+	device_for_each_child_node(dev, fwnode) {
-+		ret = fwnode_property_read_u32(fwnode, "reg", &port);
-+		if (ret < 0) {
-+			dev_err(dev, "missing reg property of %pOFn\n", fwnode);
-+			fwnode_handle_put(fwnode);
-+			return ret;
-+		}
-+
-+		if (port >= ARRAY_SIZE(altmode->ports)) {
-+			dev_warn(dev, "invalid connector number, ignoring\n");
-+			continue;
-+		}
-+
-+		if (altmode->ports[port].altmode) {
-+			dev_err(dev, "multiple connector definition for port %u\n", port);
-+			fwnode_handle_put(fwnode);
-+			return -EINVAL;
-+		}
-+
-+		alt_port = &altmode->ports[port];
-+		alt_port->altmode = altmode;
-+		alt_port->index = port;
-+
-+		alt_port->ordered_wq = alloc_ordered_workqueue("itepd_altmode_%u", 0, port);
-+		if (!alt_port->ordered_wq) {
-+			fwnode_handle_put(fwnode);
-+			return -ENOMEM;
-+		}
-+
-+		ret = devm_add_action_or_reset(dev, itepd_altmode_destroy_wq,
-+					       alt_port->ordered_wq);
-+		if (ret) {
-+			fwnode_handle_put(fwnode);
-+			return ret;
-+		}
-+
-+		alt_port->bridge.funcs = &itepd_altmode_bridge_funcs;
-+		alt_port->bridge.of_node = to_of_node(fwnode);
-+		alt_port->bridge.ops = DRM_BRIDGE_OP_HPD;
-+		alt_port->bridge.type = DRM_MODE_CONNECTOR_DisplayPort;
-+
-+		alt_port->typec_mux = fwnode_typec_mux_get(fwnode);
-+		if (IS_ERR(alt_port->typec_mux)) {
-+			fwnode_handle_put(fwnode);
-+			return dev_err_probe(dev, PTR_ERR(alt_port->typec_mux),
-+					     "failed to acquire mode-switch for port: %d\n",
-+					     port);
-+		}
-+
-+		ret = devm_add_action_or_reset(dev, itepd_altmode_put_mux,
-+					       alt_port->typec_mux);
-+		if (ret) {
-+			fwnode_handle_put(fwnode);
-+			return ret;
-+		}
-+
-+		alt_port->typec_retimer = fwnode_typec_retimer_get(fwnode);
-+		if (IS_ERR(alt_port->typec_retimer)) {
-+			fwnode_handle_put(fwnode);
-+			return dev_err_probe(dev, PTR_ERR(alt_port->typec_retimer),
-+					     "failed to acquire retimer-switch for port: %d\n",
-+					     port);
-+		}
-+
-+		ret = devm_add_action_or_reset(dev, itepd_altmode_put_retimer,
-+					       alt_port->typec_retimer);
-+		if (ret) {
-+			fwnode_handle_put(fwnode);
-+			return ret;
-+		}
-+
-+		alt_port->typec_switch = fwnode_typec_switch_get(fwnode);
-+		if (IS_ERR(alt_port->typec_switch)) {
-+			fwnode_handle_put(fwnode);
-+			return dev_err_probe(dev, PTR_ERR(alt_port->typec_switch),
-+					     "failed to acquire orientation-switch for port: %d\n",
-+					     port);
-+		}
-+
-+		ret = devm_add_action_or_reset(dev, itepd_altmode_put_switch,
-+					       alt_port->typec_switch);
-+		if (ret) {
-+			fwnode_handle_put(fwnode);
-+			return ret;
-+		}
-+	}
-+
-+	for (port = 0; port < ARRAY_SIZE(altmode->ports); port++) {
-+		alt_port = &altmode->ports[port];
-+		if (!alt_port->altmode)
-+			continue;
-+
-+		ret = devm_drm_bridge_add(dev, &alt_port->bridge);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	dev_set_drvdata(dev, altmode);
-+
-+	cb->notify = itepd_altmode_notify;
-+	cb->priv = altmode;
-+
-+	ret = itepd_register_cb(dev, ITEPD_CLIENT_ALTMODE, cb);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static void itepd_altmode_remove(struct auxiliary_device *adev)
-+{
-+	itepd_register_cb(&adev->dev, ITEPD_CLIENT_ALTMODE, NULL);
-+	/*
-+	 * devm unwind handles workqueue flush/destroy and typec resource
-+	 * release in reverse probe order.
-+	 */
-+}
-+
-+static const struct auxiliary_device_id itepd_altmode_id_table[] = {
-+	{ .name = "itepd.altmode", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(auxiliary, itepd_altmode_id_table);
-+
-+static struct auxiliary_driver itepd_altmode_driver = {
-+	.name = "itepd_altmode",
-+	.probe = itepd_altmode_probe,
-+	.remove = itepd_altmode_remove,
-+	.id_table = itepd_altmode_id_table,
-+};
-+
-+module_auxiliary_driver(itepd_altmode_driver);
-+
-+MODULE_AUTHOR("Jeson Yang <jeson.yang@ite.com.tw>");
-+MODULE_DESCRIPTION("USB Type-C alternate mode driver for ITE Type-C PD controller");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/usb/typec/ucsi/ucsi_itepd.c b/drivers/usb/typec/ucsi/ucsi_itepd.c
-new file mode 100644
-index 000000000000..ea55ff7b866e
---- /dev/null
-+++ b/drivers/usb/typec/ucsi/ucsi_itepd.c
-@@ -0,0 +1,558 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025-2026, ITE. All Rights Reserved
-+ */
-+#include <linux/unaligned.h>
-+#include <linux/auxiliary_bus.h>
-+#include <linux/bitfield.h>
-+#include <linux/completion.h>
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/workqueue.h>
-+#include <linux/usb/typec.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/slab.h>
-+
-+#include "itepd.h"
-+#include "ucsi.h"
-+
-+struct ucsi_itepd {
-+	struct device *dev;
-+	struct ucsi *ucsi;
-+	struct completion complete;
-+	struct mutex received_lock; /* Protects command response data:*/
-+	struct workqueue_struct *ordered_wq;
-+	bool connected[ITEPD_MAX_PORTS];
-+	bool dp_en[ITEPD_MAX_PORTS];
-+	bool con_change_processed[ITEPD_MAX_PORTS];
-+	u8 cmd_port;
-+	u8 resp_received;
-+	u8 msg_in[0x28];
-+	u8 dp_idx[ITEPD_MAX_PORTS];
-+	u8 orientation[ITEPD_MAX_PORTS];
-+	u8 mux[ITEPD_MAX_PORTS];
-+	u32 cci;
-+	u64 cmd;
-+};
-+
-+struct ucsi_itepd_work {
-+	struct ucsi_itepd *ucsi_itepd;
-+	u8 port;
-+	u32 cci;
-+	struct work_struct work;
-+};
-+
-+static struct ucsi_itepd *__ucsi_itepd;
-+
-+static void ucsi_itepd_handle_dp_altmode(struct ucsi_itepd *ucsi_itepd,
-+					 u8 port, u8 *mux, u32 *config, u32 *status)
-+{
-+	u8 orientation = ucsi_itepd->orientation[port];
-+	u8 data[10];
-+	u64 cmd;
-+	int ret;
-+
-+	cmd = UCSI_COMMAND(UCSI_GET_CURRENT_CAM) | UCSI_CONNECTOR_NUMBER(port + 1);
-+	ret = ucsi_send_command(ucsi_itepd->ucsi, cmd, data, 1);
-+	if (ret < 0)
-+		return;
-+
-+	if (data[0] != ucsi_itepd->dp_idx[port])
-+		return;
-+
-+	cmd = UCSI_COMMAND(UCSI_GET_CAM_CS) |
-+	      UCSI_CONNECTOR_NUMBER(port + 1) |
-+	      ((u64)(ucsi_itepd->dp_idx[port]) << 24);
-+	ret = ucsi_send_command(ucsi_itepd->ucsi, cmd, data, 10);
-+	if (ret < 0)
-+		return;
-+
-+	*config = get_unaligned_le32(data + 6);
-+	*status = get_unaligned_le32(data + 1);
-+
-+	if (DP_CONF_GET_PIN_ASSIGN(*config) == BIT(DP_PIN_ASSIGN_C)) {
-+		*mux = (orientation == 1) ? ITEPD_USBPD_MUX_DP_1 : ITEPD_USBPD_MUX_DP_0;
-+		ucsi_itepd->dp_en[port] = true;
-+	} else if (DP_CONF_GET_PIN_ASSIGN(*config) == BIT(DP_PIN_ASSIGN_D)) {
-+		*mux = (orientation == 1) ? ITEPD_USBPD_MUX_USB_DP_1 : ITEPD_USBPD_MUX_USB_DP_0;
-+		ucsi_itepd->dp_en[port] = true;
-+	}
-+}
-+
-+static void ucsi_itepd_connector_partner_change(struct ucsi_itepd *ucsi_itepd,
-+						u8 port, struct ucsi_connector *con)
-+{
-+	u8 orientation = ucsi_itepd->orientation[port];
-+	u8 mux = ucsi_itepd->mux[port];
-+	u32 config = 0;
-+	u32 status = 0;
-+
-+	if (!(UCSI_CONSTAT(con, CHANGE) &
-+	      (UCSI_CONSTAT_PARTNER_CHANGE | UCSI_CONSTAT_CONNECT_CHANGE)))
-+		return;
-+
-+	if (!UCSI_CONSTAT(con, CONNECTED)) {
-+		mux = ITEPD_USBPD_MUX_OFF;
-+		ucsi_itepd->dp_en[port] = false;
-+	} else if (UCSI_CONSTAT(con, PARTNER_FLAG_ALT_MODE)) {
-+		ucsi_itepd_handle_dp_altmode(ucsi_itepd, port, &mux, &config, &status);
-+	} else {
-+		mux = (orientation == 1) ? ITEPD_USBPD_MUX_USB_1 : ITEPD_USBPD_MUX_USB_0;
-+		ucsi_itepd->dp_en[port] = false;
-+	}
-+
-+	if (mux != ucsi_itepd->mux[port]) {
-+		itepd_mode(ucsi_itepd->dev, port, mux, config, status);
-+		ucsi_itepd->mux[port] = mux;
-+	}
-+}
-+
-+static void ucsi_itepd_connector_change_work(struct work_struct *work)
-+{
-+	struct ucsi_itepd_work *worker = container_of(work, struct ucsi_itepd_work, work);
-+	struct ucsi_itepd *ucsi_itepd = worker->ucsi_itepd;
-+	u8 data[11];
-+	u8 num_vdos;
-+	u32 status;
-+	u64 cmd;
-+	int ret;
-+
-+	if (ucsi_itepd->con_change_processed[worker->port])
-+		goto out;
-+
-+	ucsi_itepd->con_change_processed[worker->port] = true;
-+	if (ucsi_itepd->dp_en[worker->port]) {
-+		/* UCSI_GET_ATTENTION_VDO (0x16) */
-+		cmd = UCSI_COMMAND(UCSI_GET_ATTENTION_VDO) |
-+		      UCSI_CONNECTOR_NUMBER(worker->port + 1);
-+		ret = ucsi_send_command(ucsi_itepd->ucsi, cmd, data, 11);
-+	}
-+	if (ret < 0)
-+		goto out;
-+	num_vdos = data[2] & 0x07;
-+	status = get_unaligned_le32(data + 7);
-+
-+	if (num_vdos)
-+		itepd_hpd(ucsi_itepd->dev, worker->port, status);
-+
-+	ucsi_connector_change(ucsi_itepd->ucsi, UCSI_CCI_CONNECTOR(worker->cci));
-+out:
-+	kfree(worker);
-+}
-+
-+static void ucsi_itepd_command_hook(struct ucsi_itepd *ucsi_itepd, u64 *cmd)
-+{
-+	/* Translate UCSI 1.2 commands/fields to ITE PD controller (v2.1) */
-+	switch (UCSI_COMMAND(*cmd)) {
-+	case UCSI_SET_NOTIFICATION_ENABLE:
-+		if (*cmd & UCSI_ENABLE_NTFY_CMD_COMPLETE)
-+			/* Enable Attention Notification for alt. mode */
-+			*cmd |= FIELD_PREP(GENMASK_ULL(32, 16), BIT(3));
-+		break;
-+	case UCSI_GET_PDOS:
-+		*cmd &= ~GENMASK_ULL(38, 37);
-+		break;
-+	case UCSI_GET_ERROR_STATUS:
-+		*cmd &= ~GENMASK_ULL(22, 16);
-+		*cmd |= UCSI_CONNECTOR_NUMBER(ucsi_itepd->cmd_port + 1);
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	/* Track the connector number associated with this command */
-+	switch (UCSI_COMMAND(*cmd)) {
-+	case UCSI_PPM_RESET:
-+	case UCSI_CANCEL:
-+	case UCSI_SET_NOTIFICATION_ENABLE:
-+	case UCSI_GET_CAPABILITY:
-+		ucsi_itepd->cmd_port = 0;
-+		break;
-+	case UCSI_CONNECTOR_RESET:
-+	case UCSI_GET_CONNECTOR_CAPABILITY:
-+	case UCSI_SET_CCOM:		/* 0x08 - SET_UOM in older specs */
-+	case UCSI_SET_UOR:
-+	case UCSI_SET_PDR:
-+	case UCSI_GET_CAM_SUPPORTED:
-+	case UCSI_GET_CURRENT_CAM:
-+	case UCSI_SET_NEW_CAM:
-+	case UCSI_GET_PDOS:
-+	case UCSI_GET_CABLE_PROPERTY:
-+	case UCSI_GET_CONNECTOR_STATUS:
-+	case UCSI_SET_POWER_LEVEL:	/* 0x14 */
-+	case UCSI_GET_PD_MESSAGE:	/* 0x15 */
-+	case UCSI_GET_ATTENTION_VDO:	/* 0x16 */
-+	case UCSI_GET_CAM_CS:		/* 0x18 */
-+	case 0x19:
-+	case 0x1A:
-+	case 0x1B:
-+	case UCSI_SET_SINK_PATH:	/* 0x1C */
-+	case 0x1D:
-+	case UCSI_READ_POWER_LEVEL:	/* 0x1E */
-+	case 0x1F:
-+		ucsi_itepd->cmd_port =
-+			FIELD_GET(GENMASK(22, 16), *cmd) - 1;
-+		break;
-+	case UCSI_GET_ALTERNATE_MODES:
-+		ucsi_itepd->cmd_port =
-+			FIELD_GET(GENMASK(30, 24), *cmd) - 1;
-+		break;
-+	}
-+
-+	ucsi_itepd->cmd = *cmd;
-+}
-+
-+static void ucsi_itepd_response_hook(struct ucsi_itepd *ucsi_itepd,
-+				     u32 *cci, u8 *msg_in)
-+{
-+	u8 recipient;
-+	u8 offset;
-+	struct ucsi_itepd_work *worker;
-+
-+	if (((*cci & UCSI_CCI_COMMAND_COMPLETE) == 0) &&
-+	    UCSI_CCI_CONNECTOR(*cci)) {
-+		worker = kmalloc_obj(*worker, GFP_KERNEL);
-+		if (!worker) {
-+			dev_err(ucsi_itepd->dev,
-+				"out of memory, skip attention check\n");
-+			ucsi_connector_change(ucsi_itepd->ucsi,
-+					      UCSI_CCI_CONNECTOR(*cci));
-+		} else {
-+			worker->port = UCSI_CCI_CONNECTOR(*cci) - 1;
-+			worker->ucsi_itepd = ucsi_itepd;
-+			worker->cci = *cci;
-+
-+			INIT_WORK(&worker->work,
-+				  ucsi_itepd_connector_change_work);
-+			queue_work(ucsi_itepd->ordered_wq, &worker->work);
-+		}
-+	}
-+
-+	if ((*cci & UCSI_CCI_COMMAND_COMPLETE) &&
-+	    ((*cci & UCSI_CCI_ERROR) == 0)) {
-+		switch (UCSI_COMMAND(ucsi_itepd->cmd)) {
-+		case UCSI_GET_CONNECTOR_STATUS:
-+			ucsi_itepd->connected[ucsi_itepd->cmd_port] =
-+				!!(msg_in[2] & BIT(3));
-+			ucsi_itepd->orientation[ucsi_itepd->cmd_port] =
-+				FIELD_GET(BIT(6), msg_in[10]);
-+			break;
-+
-+		case UCSI_GET_ALTERNATE_MODES:
-+			recipient = FIELD_GET(GENMASK_ULL(18, 16),
-+					      ucsi_itepd->cmd);
-+			if (recipient == UCSI_RECIPIENT_CON) {
-+				offset = FIELD_GET(GENMASK_ULL(39, 32),
-+						   ucsi_itepd->cmd);
-+				if (((struct ucsi_altmode *)msg_in)->svid ==
-+				    USB_TYPEC_DP_SID) {
-+					ucsi_itepd->dp_idx[ucsi_itepd->cmd_port] =
-+						offset;
-+				} else if (((struct ucsi_altmode *)
-+					    (msg_in + 6))->svid ==
-+					   USB_TYPEC_DP_SID) {
-+					ucsi_itepd->dp_idx[ucsi_itepd->cmd_port] =
-+						offset + 1;
-+				}
-+			}
-+			break;
-+		default:
-+			break;
-+		}
-+	}
-+}
-+
-+/*
-+ * ITE PD notify callback
-+ */
-+static u8 ucsi_itepd_get_len(void *priv, u32 cci)
-+{
-+	if (cci & UCSI_CCI_COMMAND_COMPLETE)
-+		return UCSI_CCI_LENGTH(cci);
-+	return 0;
-+}
-+
-+static void ucsi_itepd_notify(void *priv, u32 cci, u8 *data)
-+{
-+	struct ucsi_itepd *ucsi_itepd = (struct ucsi_itepd *)priv;
-+	bool comp = false;
-+	u8 msg_in[0x28];
-+	u8 len = UCSI_CCI_LENGTH(cci);
-+
-+	memcpy(msg_in, data, min_t(u8, len, ARRAY_SIZE(msg_in)));
-+	ucsi_itepd_response_hook(ucsi_itepd, &cci, msg_in);
-+
-+	mutex_lock(&ucsi_itepd->received_lock);
-+	if (cci & UCSI_CCI_COMMAND_COMPLETE) {
-+		ucsi_itepd->resp_received = 1;
-+		ucsi_itepd->cci = cci;
-+		memset(ucsi_itepd->msg_in, 0, ARRAY_SIZE(ucsi_itepd->msg_in));
-+		if (len)
-+			memcpy(ucsi_itepd->msg_in, msg_in,
-+			       min_t(u8, len, ARRAY_SIZE(ucsi_itepd->msg_in)));
-+		comp = true;
-+	}
-+	if (cci & UCSI_CCI_RESET_COMPLETE) {
-+		ucsi_itepd->resp_received = 1;
-+		ucsi_itepd->cci = cci;
-+		memset(ucsi_itepd->msg_in, 0, ARRAY_SIZE(ucsi_itepd->msg_in));
-+		comp = true;
-+	}
-+	mutex_unlock(&ucsi_itepd->received_lock);
-+
-+	if (cci & UCSI_CCI_ACK_COMPLETE)
-+		comp = true;
-+
-+	if (comp)
-+		complete(&ucsi_itepd->complete);
-+}
-+
-+/*
-+ * New ucsi_operations implementation
-+ */
-+
-+static int ucsi_itepd_read_version(struct ucsi *ucsi, u16 *version)
-+{
-+	struct ucsi_itepd *ucsi_itepd = ucsi_get_drvdata(ucsi);
-+
-+	return itepd_cmd_receive(ucsi_itepd->dev,
-+				 ITEPD_RECEIVE_UCSI_VERSION,
-+				 version, sizeof(*version));
-+}
-+
-+static int ucsi_itepd_read_cci(struct ucsi *ucsi, u32 *cci)
-+{
-+	struct ucsi_itepd *ucsi_itepd = ucsi_get_drvdata(ucsi);
-+
-+	mutex_lock(&ucsi_itepd->received_lock);
-+	if (ucsi_itepd->resp_received) {
-+		ucsi_itepd->resp_received = 0;
-+		*cci = ucsi_itepd->cci;
-+	} else {
-+		*cci = 0;
-+	}
-+	mutex_unlock(&ucsi_itepd->received_lock);
-+
-+	return 0;
-+}
-+
-+/*
-+ * poll_cci: called when notifications are temporarily disabled (e.g. during
-+ * PPM reset).  For this hardware we can reuse read_cci — the firmware always
-+ * pushes CCI updates via the notify callback regardless.
-+ */
-+static int ucsi_itepd_poll_cci(struct ucsi *ucsi, u32 *cci)
-+{
-+	return ucsi_itepd_read_cci(ucsi, cci);
-+}
-+
-+static int ucsi_itepd_read_message_in(struct ucsi *ucsi,
-+				      void *val, size_t val_len)
-+{
-+	struct ucsi_itepd *ucsi_itepd = ucsi_get_drvdata(ucsi);
-+
-+	mutex_lock(&ucsi_itepd->received_lock);
-+	memcpy(val, ucsi_itepd->msg_in,
-+	       min(val_len, ARRAY_SIZE(ucsi_itepd->msg_in)));
-+	mutex_unlock(&ucsi_itepd->received_lock);
-+
-+	return 0;
-+}
-+
-+/*
-+ * async_control: fire a command to the PPM and return immediately.
-+ * The old async_write(UCSI_CONTROL, …) path, now receiving the raw
-+ * u64 command directly.
-+ */
-+static int ucsi_itepd_async_control(struct ucsi *ucsi, u64 command)
-+{
-+	struct ucsi_itepd *ucsi_itepd = ucsi_get_drvdata(ucsi);
-+
-+	ucsi_itepd_command_hook(ucsi_itepd, &command);
-+
-+	mutex_lock(&ucsi_itepd->received_lock);
-+	ucsi_itepd->resp_received = 0;
-+	mutex_unlock(&ucsi_itepd->received_lock);
-+
-+	return itepd_cmd_send(ucsi_itepd->dev,
-+			      ITEPD_SEND_UCSI_CONTROL,
-+			      &command, sizeof(command));
-+}
-+
-+/*
-+ * sync_control: blocking command — send and wait for completion.
-+ * On success the caller gets cci and data filled in.
-+ */
-+static int ucsi_itepd_sync_control(struct ucsi *ucsi, u64 command,
-+				   u32 *cci, void *data, size_t size)
-+{
-+	struct ucsi_itepd *ucsi_itepd = ucsi_get_drvdata(ucsi);
-+	int ret;
-+
-+	reinit_completion(&ucsi_itepd->complete);
-+
-+	ret = ucsi_itepd_async_control(ucsi, command);
-+	if (ret)
-+		return ret;
-+
-+	if (!wait_for_completion_timeout(&ucsi_itepd->complete,
-+					 msecs_to_jiffies(5000)))
-+		return -ETIMEDOUT;
-+
-+	/* Hand back CCI and (optionally) message data to the core */
-+	if (cci) {
-+		mutex_lock(&ucsi_itepd->received_lock);
-+		*cci = ucsi_itepd->cci;
-+		mutex_unlock(&ucsi_itepd->received_lock);
-+	}
-+	if (data && size)
-+		ucsi_itepd_read_message_in(ucsi, data, size);
-+
-+	return 0;
-+}
-+
-+static bool ucsi_itepd_update_altmodes(struct ucsi *ucsi, u8 recipient,
-+				       struct ucsi_altmode *orig, struct ucsi_altmode *updated)
-+{
-+	/* No altmode squashing needed for this hardware */
-+	return false;
-+}
-+
-+static void ucsi_itepd_update_connector(struct ucsi_connector *con)
-+{
-+	if (con->num > ITEPD_MAX_PORTS || con->num < 1)
-+		return;
-+
-+	con->typec_cap.orientation_aware = true;
-+}
-+
-+static void ucsi_itepd_connector_status(struct ucsi_connector *con)
-+{
-+	struct ucsi_itepd *ucsi_itepd = ucsi_get_drvdata(con->ucsi);
-+
-+	if (con->num > ITEPD_MAX_PORTS || con->num < 1)
-+		return;
-+
-+	if (ucsi_itepd->connected[con->num - 1])
-+		typec_set_orientation(con->port,
-+				      ucsi_itepd->orientation[con->num - 1] ?
-+				      TYPEC_ORIENTATION_REVERSE :
-+				      TYPEC_ORIENTATION_NORMAL);
-+	else
-+		typec_set_orientation(con->port, TYPEC_ORIENTATION_NONE);
-+
-+	/*
-+	 * Pass the ucsi_connector (which now holds the cached bitmap status)
-+	 * rather than the old struct ucsi_connector_status pointer.
-+	 */
-+	ucsi_itepd_connector_partner_change(ucsi_itepd, con->num - 1, con);
-+
-+	ucsi_itepd->con_change_processed[con->num - 1] = false;
-+}
-+
-+static const struct ucsi_operations ucsi_itepd_ops = {
-+	.read_version		= ucsi_itepd_read_version,
-+	.read_cci		    = ucsi_itepd_read_cci,
-+	.poll_cci		    = ucsi_itepd_poll_cci,
-+	.read_message_in	= ucsi_itepd_read_message_in,
-+	.sync_control		= ucsi_itepd_sync_control,
-+	.async_control		= ucsi_itepd_async_control,
-+	.update_altmodes	= ucsi_itepd_update_altmodes,
-+	.update_connector	= ucsi_itepd_update_connector,
-+	.connector_status	= ucsi_itepd_connector_status,
-+};
-+
-+static int ucsi_itepd_probe(struct auxiliary_device *adev,
-+			    const struct auxiliary_device_id *id)
-+{
-+	struct device *dev = &adev->dev;
-+	struct ucsi_itepd *ucsi_itepd;
-+	struct itepd_ucsi_cb *ucsi_itepd_cb;
-+	int ret;
-+
-+	ucsi_itepd = devm_kzalloc(dev, sizeof(*ucsi_itepd), GFP_KERNEL);
-+	if (!ucsi_itepd)
-+		return -ENOMEM;
-+
-+	ucsi_itepd_cb = devm_kzalloc(dev, sizeof(*ucsi_itepd_cb), GFP_KERNEL);
-+	if (!ucsi_itepd_cb)
-+		return -ENOMEM;
-+
-+	ucsi_itepd->dev = dev;
-+	init_completion(&ucsi_itepd->complete);
-+	mutex_init(&ucsi_itepd->received_lock);
-+
-+	ucsi_itepd->ordered_wq = alloc_ordered_workqueue("fifo_wq", 0);
-+	if (!ucsi_itepd->ordered_wq)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(dev, ucsi_itepd);
-+	__ucsi_itepd = ucsi_itepd;
-+
-+	ucsi_itepd_cb->get_len = ucsi_itepd_get_len;
-+	ucsi_itepd_cb->notify  = ucsi_itepd_notify;
-+	ucsi_itepd_cb->priv    = ucsi_itepd;
-+
-+	ret = itepd_register_cb(dev, ITEPD_CLIENT_UCSI, ucsi_itepd_cb);
-+	if (ret)
-+		goto out_destroy_wq;
-+
-+	ucsi_itepd->ucsi = ucsi_create(dev, &ucsi_itepd_ops);
-+	if (IS_ERR(ucsi_itepd->ucsi)) {
-+		ret = PTR_ERR(ucsi_itepd->ucsi);
-+		goto out_unregister_cb;
-+	}
-+
-+	ucsi_set_drvdata(ucsi_itepd->ucsi, ucsi_itepd);
-+
-+	ret = ucsi_register(ucsi_itepd->ucsi);
-+	if (ret)
-+		goto out_ucsi_destroy;
-+
-+	return 0;
-+
-+out_ucsi_destroy:
-+	ucsi_destroy(ucsi_itepd->ucsi);
-+out_unregister_cb:
-+	itepd_register_cb(dev, ITEPD_CLIENT_UCSI, NULL);
-+out_destroy_wq:
-+	destroy_workqueue(ucsi_itepd->ordered_wq);
-+
-+	return ret;
-+}
-+
-+static void ucsi_itepd_remove(struct auxiliary_device *adev)
-+{
-+	struct ucsi_itepd *ucsi_itepd = dev_get_drvdata(&adev->dev);
-+
-+	if (ucsi_itepd->ordered_wq) {
-+		flush_workqueue(ucsi_itepd->ordered_wq);
-+		destroy_workqueue(ucsi_itepd->ordered_wq);
-+	}
-+
-+	ucsi_unregister(ucsi_itepd->ucsi);
-+	ucsi_destroy(ucsi_itepd->ucsi);
-+	usleep_range(2000, 2500);
-+	itepd_register_cb(&adev->dev, ITEPD_CLIENT_UCSI, NULL);
-+}
-+
-+static const struct auxiliary_device_id ucsi_itepd_id_table[] = {
-+	{ .name = "itepd.ucsi", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(auxiliary, ucsi_itepd_id_table);
-+
-+static struct auxiliary_driver ucsi_itepd_driver = {
-+	.name     = "ucsi_itepd",
-+	.probe    = ucsi_itepd_probe,
-+	.remove   = ucsi_itepd_remove,
-+	.id_table = ucsi_itepd_id_table,
-+};
-+
-+module_auxiliary_driver(ucsi_itepd_driver);
-+
-+MODULE_AUTHOR("Jeson Yang <jeson.yang@ite.com.tw>");
-+MODULE_DESCRIPTION("UCSI driver for ITE Type-C PD controller");
-+MODULE_LICENSE("GPL");
+Adapted/Fixes it to apply on v7.1:
+https://gitlab.com/superna9999/linux/-/commit/fd8cf1922d10175c5bcd8cf2a444c5825392d994
+https://gitlab.com/superna9999/linux/-/commit/0c4e89e167b9ca9c7b500577c030e550ec2a6e73
+https://gitlab.com/superna9999/linux/-/commit/6364a0a45a3f0985b872d9f504e9ea1d1f3f2a35
 
--- 
-2.53.0
+```
++#define WSA2_CODEC_DMA_RX_0	147
++#define WSA2_CODEC_DMA_TX_0	148
++#define WSA2_CODEC_DMA_RX_1	149
++#define WSA2_CODEC_DMA_TX_1	150
++#define WSA2_CODEC_DMA_TX_2	151
+```
+
+https://gitlab.com/superna9999/linux/-/commit/9bd0ce21f73df92fb35e3db7ef570f561a106478
+
+DT:
+https://gitlab.com/superna9999/linux/-/commit/2fc270860e3b77ccae28e0c38228cba3e39ea78a
+
+```
+-                               sound-dai = <&q6apmbedai WSA_CODEC_DMA_RX_0>;
++                               sound-dai = <&q6apmbedai WSA2_CODEC_DMA_RX_0>;
+                         };
+```
+
+Topology, copied the SM8550-HDK into a new one, dropped I2S and changed all WSA to WSA
+and added the WSA defines:
+https://github.com/superna9999/audioreach-topology/commit/12adc76859cde606c67e5a95df204b8d407038df
+
+
+```
++define(`WSA2_CODEC_DMA_RX_0', `147') dnl
++define(`WSA2_CODEC_DMA_TX_0', `148') dnl
++define(`WSA2_CODEC_DMA_RX_1', `149') dnl
++define(`WSA2_CODEC_DMA_TX_1', `150') dnl
++define(`WSA2_CODEC_DMA_TX_2', `151') dnl
+```
+
+Extract of the SM8650-APS2.m4 concerning WSA2:
+```
+...
++dnl WSA Playback
++DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-playback.m4, `WSA2_CODEC_DMA_RX_0', WSA2_CODEC_DMA_RX_0,
++       `S16_LE', 48000, 48000, 2, 2,
++       LPAIF_INTF_TYPE_WSA2, CODEC_INTF_IDX_RX0, 0, DATA_FORMAT_FIXED_POINT,
++       0x00004006, 0x00004006, 0x00006050)
++dnl
+...
++STREAM_DEVICE_PLAYBACK_MIXER(WSA2_CODEC_DMA_RX_0, ``WSA2_CODEC_DMA_RX_0'', ``MultiMedia1'', ``MultiMedia2'', ``MultiMedia5'')
+...
++STREAM_DEVICE_PLAYBACK_ROUTE(WSA2_CODEC_DMA_RX_0, ``WSA2_CODEC_DMA_RX_0 Audio Mixer'', ``MultiMedia1, stream0.logger1'', ``MultiMedia2, stream1.logger1'', ``MultiMedia5, stream4.logger1'')
+...
+```
+
+On device, all sets up without errors:
+```
+[   20.710228] qcom-apm gprsvc:service:2:1: CMD timeout for [1001021] opcode
+[   20.720234] platform 6800000.remoteproc:glink-edge:gpr:service@1:dais: Adding to iommu group 30
+[   20.763797] va_macro 6d44000.codec: qcom,dmic-sample-rate dt entry missing
+[   20.791279] wsa_macro 6aa0000.codec: using zero-initialized flat cache, this may cause unexpected behavior
+[   20.912445] wcd939x_codec audio-codec: bound sdw:2:0:0217:010e:00:4 (ops wcd_sdw_component_ops [snd_soc_wcd_common])
+[   20.923343] wcd939x_codec audio-codec: bound sdw:3:0:0217:010e:00:3 (ops wcd_sdw_component_ops [snd_soc_wcd_common])
+[   20.960741] snd-sc8280xp sound: ASoC: Parent card not yet available, widget card binding deferred
+[   20.972182] va_macro 6d44000.codec: supply vdd-micb not found, using dummy regulator
+[   20.985751] ALSA: Control name 'stream0.vol_ctrl0 MultiMedia1 Playback Volume' truncated to 'stream0.vol_ctrl0 MultiMedia1 Playback Volu'
+[   20.998589] ALSA: Control name 'stream1.vol_ctrl1 MultiMedia2 Playback Volume' truncated to 'stream1.vol_ctrl1 MultiMedia2 Playback Volu'
+[   21.011536] ALSA: Control name 'stream4.vol_ctrl4 MultiMedia5 Playback Volume' truncated to 'stream4.vol_ctrl4 MultiMedia5 Playback Volu'
+[   21.026510] input: SM8650-APS2 Headset Jack as /devices/platform/sound/sound/card0/input7
+[   21.035151] input: SM8650-APS2 DP0 Jack as /devices/platform/sound/sound/card0/input8
+```
+
+Available mixer elements:
+```
+# amixer | grep WSA
+Simple mixer control 'SpkrLeft WSA MODE',0
+Simple mixer control 'SpkrRight WSA MODE',0
+Simple mixer control 'WSA RX0 MUX',0
+Simple mixer control 'WSA RX1 MUX',0
+Simple mixer control 'WSA RX_MIX EC0_MUX',0
+Simple mixer control 'WSA RX_MIX EC1_MUX',0
+Simple mixer control 'WSA RX_MIX0 MUX',0
+Simple mixer control 'WSA RX_MIX1 MUX',0
+Simple mixer control 'WSA2_CODEC_DMA_RX_0 Audio Mixer MultiMedia1',0
+Simple mixer control 'WSA2_CODEC_DMA_RX_0 Audio Mixer MultiMedia2',0
+Simple mixer control 'WSA2_CODEC_DMA_RX_0 Audio Mixer MultiMedia5',0
+Simple mixer control 'WSA_AIF_VI Mixer WSA_SPKR_VI_1',0
+Simple mixer control 'WSA_AIF_VI Mixer WSA_SPKR_VI_2',0
+Simple mixer control 'WSA_COMP1',0
+Simple mixer control 'WSA_COMP2',0
+Simple mixer control 'WSA_RX0 Digital',0
+Simple mixer control 'WSA_RX0 Digital Mute',0
+Simple mixer control 'WSA_RX0 EC_HQ',0
+Simple mixer control 'WSA_RX0 INP0',0
+Simple mixer control 'WSA_RX0 INP1',0
+Simple mixer control 'WSA_RX0 INP2',0
+Simple mixer control 'WSA_RX0 INT0 SIDETONE MIX',0
+Simple mixer control 'WSA_RX0 MIX INP',0
+Simple mixer control 'WSA_RX0_MIX Digital',0
+Simple mixer control 'WSA_RX0_MIX Digital Mute',0
+Simple mixer control 'WSA_RX1 Digital',0
+Simple mixer control 'WSA_RX1 Digital Mute',0
+Simple mixer control 'WSA_RX1 EC_HQ',0
+Simple mixer control 'WSA_RX1 INP0',0
+Simple mixer control 'WSA_RX1 INP1',0
+Simple mixer control 'WSA_RX1 INP2',0
+Simple mixer control 'WSA_RX1 MIX INP',0
+Simple mixer control 'WSA_RX1_MIX Digital',0
+Simple mixer control 'WSA_RX1_MIX Digital Mute',0
+Simple mixer control 'WSA_Softclip0 Enable',0
+Simple mixer control 'WSA_Softclip1 Enable',0
+```
+
+I setup the speaker with (no errors):
+```
+amixer -c 0 cset name='SpkrLeft PA Volume' 20
+amixer -c 0 cset name='SpkrRight PA Volume' 20
+amixer -c 0 cset name='WSA RX0 MUX' AIF1_PB
+amixer -c 0 cset name='WSA RX1 MUX' AIF1_PB
+amixer -c 0 cset name='WSA_RX0 INP0' RX0
+amixer -c 0 cset name='WSA_RX1 INP0' RX1
+amixer -c 0 cset name='SpkrLeft DAC Switch' 1
+amixer -c 0 cset name='SpkrRight DAC Switch' 1
+amixer -c 0 cset name='WSA_RX0 Digital Volume' 85
+amixer -c 0 cset name='WSA_RX1 Digital Volume' 85
+```
+
+and finally:
+```
+amixer -c 0 cset name='WSA2_CODEC_DMA_RX_0 Audio Mixer MultiMedia1' 1
+numid=216,iface=MIXER,name='WSA2_CODEC_DMA_RX_0 Audio Mixer MultiMedia1'
+   ; type=BOOLEAN,access=rw------,values=2
+   : values=on,off
+
+```
+
+When playing sound, it just timeouts, no printed errors:
+```
+# speaker-test -D plughw:0,0 -c 2
+
+speaker-test 1.2.14
+
+Playback device is plughw:0,0
+Stream parameters are 48000Hz, S16_LE, 2 channels
+Using 16 octaves of pink noise
+Rate set to 48000Hz (requested 48000Hz)
+Buffer size range from 960 to 130560
+Period size range from 480 to 16320
+Periods = 4
+was set period_size = 12000
+was set buffer_size = 48000
+  0 - Front Left
+Write error: -5,Input/output error
+xrun_recovery failed: -5,Input/output error
+Transfer failed: Input/output error
+```
+
+Neil
+
+> 
+> --srini
+>>
+>> Thanks,
+>> Neil
+>>
+>>>
+>>>
+>>>> Setting only the WSA2 upper bits is perfectly valid and
+>>>> functional but the current Audioreach code builds the bitmask
+>>>> from the channels count with:
+>>>>      active_channels_mask = (1 << num_channels) - 1;
+>>>>
+>>>> In order to enable the WSA2 bits the channel count should be 4,
+>>>> but the lower WSA bits are then also enabled and the DSP errors
+>>>> out when trying to play on the disabled WSA interface.
+>>>>
+>>>> A solution would've been to add a fake WSA2 topology element which
+>>>> would be translated into the top bits only, but it's not clean and
+>>>> add some special exceptions in the generic Audioreach code.
+>>>>
+>>>> The solution suggested by Srinivas is to use the channel mapping to
+>>>> set this bitmask.
+>>>>
+>>>> This works but makes all the other calls using the channel mapping fail
+>>>> because the DSP requires the channel_mapping table to start from index 0
+>>>> and using num_channel length in order to apply the mapping on the
+>>>> active_channels_mask bits in order.
+>>>>
+>>>> So we need to skip the empty channel mapping entries in all other
+>>>> users of the channel_map to build valid channel_mapping tables.
+>>>>
+>>>> This should not break any other usecases since the default channel
+>>>> mapping always start from index 0, and will add flexibilty to allow
+>>>> some special non linear mapping for other interfaces as well.
+>>>>
+>>>> Suggested-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>> ---
+>>>>    sound/soc/qcom/qdsp6/audioreach.c | 47 ++++++++++++++++++++++++++++
+>>>> ++---------
+>>>>    1 file changed, 37 insertions(+), 10 deletions(-)
+>>>>
+>>>> diff --git a/sound/soc/qcom/qdsp6/audioreach.c b/sound/soc/qcom/
+>>>> qdsp6/audioreach.c
+>>>> index a13f753eff98..9b80cfa56e8a 100644
+>>>> --- a/sound/soc/qcom/qdsp6/audioreach.c
+>>>> +++ b/sound/soc/qcom/qdsp6/audioreach.c
+>>>> @@ -703,6 +703,7 @@ static int
+>>>> audioreach_codec_dma_set_media_format(struct q6apm_graph *graph,
+>>>>        int pm_sz = APM_HW_EP_PMODE_CFG_PSIZE;
+>>>>        int size = ic_sz + ep_sz + fs_sz + pm_sz;
+>>>>        void *p;
+>>>> +    int i;
+>>>>          struct gpr_pkt *pkt __free(kfree) =
+>>>> audioreach_alloc_apm_cmd_pkt(size, APM_CMD_SET_CFG, 0);
+>>>>        if (IS_ERR(pkt))
+>>>> @@ -741,7 +742,12 @@ static int
+>>>> audioreach_codec_dma_set_media_format(struct q6apm_graph *graph,
+>>>>          intf_cfg->cfg.lpaif_type = module->hw_interface_type;
+>>>>        intf_cfg->cfg.intf_index = module->hw_interface_idx;
+>>>> -    intf_cfg->cfg.active_channels_mask = (1 << cfg->num_channels) - 1;
+>>>> +    intf_cfg->cfg.active_channels_mask = 0;
+>>>> +    /* Convert the physical channel mapping into a bit field */
+>>>> +    for (i = 0; i < AR_PCM_MAX_NUM_CHANNEL; i++)
+>>>> +        if (cfg->channel_map[i])
+>>>> +            intf_cfg->cfg.active_channels_mask |= BIT(i);
+>>>> +
+>>>
+>>> This one looks good, this should be a bug fix patch.
+>>>
+>>>>        p += ic_sz;
+>>>>          pm_cfg = p;
+>>>> @@ -840,7 +846,7 @@ static int audioreach_mfc_set_media_format(struct
+>>>> q6apm_graph *graph,
+>>>>        uint32_t num_channels = cfg->num_channels;
+>>>>        int payload_size = APM_MFC_CFG_PSIZE(media_format, num_channels) +
+>>>>                    APM_MODULE_PARAM_DATA_SIZE;
+>>>> -    int i;
+>>>> +    int i, j;
+>>>>        void *p;
+>>>>          struct gpr_pkt *pkt __free(kfree) =
+>>>> audioreach_alloc_apm_cmd_pkt(payload_size, APM_CMD_SET_CFG, 0);
+>>>> @@ -860,8 +866,12 @@ static int
+>>>> audioreach_mfc_set_media_format(struct q6apm_graph *graph,
+>>>>        media_format->sample_rate = cfg->sample_rate;
+>>>>        media_format->bit_width = cfg->bit_width;
+>>>>        media_format->num_channels = cfg->num_channels;
+>>>> -    for (i = 0; i < num_channels; i++)
+>>>> -        media_format->channel_mapping[i] = cfg->channel_map[i];
+>>>> +    /* Convert the physical mapping to a logical mapping of the
+>>>> channels */
+>>>> +    for (i = 0, j = 0; i < AR_PCM_MAX_NUM_CHANNEL && j < cfg-
+>>>>> num_channels; i++) {
+>>>> +        if (!cfg->channel_map[i])
+>>>> +            continue;
+>>>> +        media_format->channel_mapping[j++] = cfg->channel_map[i];
+>>> Each element i of the channel_mapping[i] array, describes the channel i
+>>> inside the buffer where i is less than num_channels.  An unused channel
+>>> is set to 0.
+>>>
+>>> For some reason I get impression that user is trying to set a 4 channels
+>>> instead of 2 channel.
+>>>
+>>> Can you fix the backend-dai id and play it directly on WSA2 instead of
+>>> WSA.
+>>> Or was there a reason for not doing it otherwise?
+>>>
+>>> --srini
+>>>
+>>>> +    }
+>>>>          return q6apm_send_cmd_sync(graph->apm, pkt, 0);
+>>>>    }
+>>>> @@ -1080,6 +1090,7 @@ static int
+>>>> audioreach_pcm_set_media_format(struct q6apm_graph *graph,
+>>>>        struct apm_pcm_module_media_fmt_cmd *cfg;
+>>>>        struct apm_module_param_data *param_data;
+>>>>        int payload_size;
+>>>> +    int i, j;
+>>>>          if (num_channels > 4) {
+>>>>            dev_err(graph->dev, "Error: Invalid channels (%d)!\n",
+>>>> num_channels);
+>>>> @@ -1113,7 +1124,12 @@ static int
+>>>> audioreach_pcm_set_media_format(struct q6apm_graph *graph,
+>>>>        media_cfg->num_channels = mcfg->num_channels;
+>>>>        media_cfg->q_factor = mcfg->bit_width - 1;
+>>>>        media_cfg->bits_per_sample = mcfg->bit_width;
+>>>> -    memcpy(media_cfg->channel_mapping, mcfg->channel_map, mcfg-
+>>>>> num_channels);
+>>>> +    /* Convert the physical mapping to a logical mapping of the
+>>>> channels */
+>>>> +    for (i = 0, j = 0; i < AR_PCM_MAX_NUM_CHANNEL && j < mcfg-
+>>>>> num_channels; i++) {
+>>>> +        if (!mcfg->channel_map[i])
+>>>> +            continue;
+>>>> +        media_cfg->channel_mapping[j++] = mcfg->channel_map[i];
+>>>> +    }
+>>>>          return q6apm_send_cmd_sync(graph->apm, pkt, 0);
+>>>>    }
+>>>> @@ -1127,6 +1143,7 @@ static int
+>>>> audioreach_shmem_set_media_format(struct q6apm_graph *graph,
+>>>>        struct payload_media_fmt_pcm *cfg;
+>>>>        struct media_format *header;
+>>>>        int rc, payload_size;
+>>>> +    int i, j;
+>>>>        void *p;
+>>>>          if (num_channels > 4) {
+>>>> @@ -1166,7 +1183,12 @@ static int
+>>>> audioreach_shmem_set_media_format(struct q6apm_graph *graph,
+>>>>            cfg->q_factor = mcfg->bit_width - 1;
+>>>>            cfg->endianness = PCM_LITTLE_ENDIAN;
+>>>>            cfg->num_channels = mcfg->num_channels;
+>>>> -        memcpy(cfg->channel_mapping, mcfg->channel_map, mcfg-
+>>>>> num_channels);
+>>>> +        /* Convert the physical mapping to a logical mapping of the
+>>>> channels */
+>>>> +        for (i = 0, j = 0; i < AR_PCM_MAX_NUM_CHANNEL && j < cfg-
+>>>>> num_channels; i++) {
+>>>> +            if (!mcfg->channel_map[i])
+>>>> +                continue;
+>>>> +            cfg->channel_mapping[j++] = mcfg->channel_map[i];
+>>>> +        }
+>>>>        } else {
+>>>>            rc = audioreach_set_compr_media_format(header, p, mcfg);
+>>>>            if (rc)
+>>>> @@ -1243,7 +1265,7 @@ static int
+>>>> audioreach_speaker_protection_vi(struct q6apm_graph *graph,
+>>>>        struct apm_module_sp_vi_ex_mode_cfg *ex_cfg;
+>>>>        int op_sz, cm_sz, ex_sz;
+>>>>        struct apm_module_param_data *param_data;
+>>>> -    int rc, i, payload_size;
+>>>> +    int rc, i, payload_size, j;
+>>>>        struct gpr_pkt *pkt;
+>>>>        void *p;
+>>>>    @@ -1284,14 +1306,19 @@ static int
+>>>> audioreach_speaker_protection_vi(struct q6apm_graph *graph,
+>>>>        param_data->param_size = cm_sz - APM_MODULE_PARAM_DATA_SIZE;
+>>>>          cm_cfg->cfg.num_channels = num_channels * 2;
+>>>> -    for (i = 0; i < num_channels; i++) {
+>>>> +    /* Convert the physical mapping to a logical mapping of the
+>>>> channels */
+>>>> +    for (i = 0, j = 0; i < AR_PCM_MAX_NUM_CHANNEL && j <
+>>>> num_channels; i++) {
+>>>> +        if (!mcfg->channel_map[i])
+>>>> +            continue;
+>>>>            /*
+>>>>             * Map speakers into Vsense and then Isense of each channel.
+>>>>             * E.g. for PCM_CHANNEL_FL and PCM_CHANNEL_FR to:
+>>>>             * [1, 2, 3, 4]
+>>>>             */
+>>>> -        cm_cfg->cfg.channel_mapping[2 * i] = (mcfg->channel_map[i] -
+>>>> 1) * 2 + 1;
+>>>> -        cm_cfg->cfg.channel_mapping[2 * i + 1] = (mcfg-
+>>>>> channel_map[i] - 1) * 2 + 2;
+>>>> +        cm_cfg->cfg.channel_mapping[2 * j] = (mcfg->channel_map[i] -
+>>>> 1) * 2 + 1;
+>>>> +        cm_cfg->cfg.channel_mapping[2 * j + 1] = (mcfg-
+>>>>> channel_map[i] - 1) * 2 + 2;
+>>>> +
+>>>> +        ++j;
+>>>>        }
+>>>>          p += cm_sz;
+>>>>
+>>>
+>>
+> 
 
 
