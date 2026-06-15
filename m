@@ -1,279 +1,263 @@
-Return-Path: <devicetree+bounces-311641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311642-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id crnlBDOVL2pxCwUAu9opvQ
-	(envelope-from <devicetree+bounces-311641-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:01:23 +0200
+	id olJ9JwOVL2pOCwUAu9opvQ
+	(envelope-from <devicetree+bounces-311642-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:00:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64E3C683A0F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:01:22 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B5156839F9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:00:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Bnc8UmTL;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311641-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311641-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=NwdzT6wV;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=KeKLWUNd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311642-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-311642-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E5C10300CBCD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 05:59:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 10A70300D14F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:00:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9BB3AEF44;
-	Mon, 15 Jun 2026 05:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EB0E3AF65A;
+	Mon, 15 Jun 2026 06:00:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E8C27E049
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F234388393
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 06:00:28 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781503184; cv=none; b=euaV3RL2O9osjjwdtLIS1hlMTQqDLVs/UkXmRhHtRRxAhRFhWAvvHhDEnIQX4HJsFF2ekGHTABtJuF+Htjtz6QeonVb2PpYml2GniJPDyts/GZP5RYAA9/ZDtnFt7yulU2XoZmnzTM4a0p+GRdTJlxwHAAfHEwPu874Rjs/meyw=
+	t=1781503230; cv=none; b=Gn4AQaIZOq9XHwSmxX+w72TOdrj+iPGeu9+faJs4nQHSeAh1JTNJswKi2UKmRZ30hfiJ1nZK06+RghvNEftzn6DuBe61gcr07tHSkCeSdCWxh2lHFz0Tm/lY02cTJuMDr/tynJjrWdw8/SbnvD4a/S6Mxn/V/9ibds1s1CY6BxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781503184; c=relaxed/simple;
-	bh=csc0pUoCgDvL3B/Dm8XBXIENIuZCDAoGPkZAJJwRulQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=WW64lEP6HKUeuisN+fkPAfO4z3gJGPto51hC/eAEB4fFftlnU6CvXWTCnJzjc2LxzujHIJXROt6ZwQbA415xaRA4X8zJgrUL/5p5EDDlgLpx0emUyuR35InbHTvq2IsCAaiQiZvBPxADTyLuqwFgjLkKxnctu3w9qfTcdyiMgUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bnc8UmTL; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A19B1F000E9;
-	Mon, 15 Jun 2026 05:59:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781503182;
-	bh=S+lqH2ziGyzPodMSHpNvr3CtKx5so0cg6Gjuioczo1g=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=Bnc8UmTLk++wiCN1G4UP+PFh5F1QSXIGsCpYNRkel1z3WQZyxR0M8fzWuOWM+sBl+
-	 EaSzb03XSbOBhgDPZs7zeDPMZlWoE6BruFZyZoeOPS1LgJv5Xe0xUeWx8cGLtZvAWZ
-	 8wmQVD26oGlSZWJZUpDfo27az/BnuctpWLFILxjN0rAjc6JkkIJ/oqoFT8VMQQuaEF
-	 qvdrTeSnJb+5kgGwqOePb2+b739KblAbQbBaNrUZuOjRSCP5EuWrmOb+eNYMzmxlw2
-	 4BPKD74MIe5y2XAZhfKUMcyQqYwVmu4xO1g/NIdUNtonrWPfE9MSKX2e3Xkb3HRPh8
-	 VnA6Gwz8BrM9w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] phy: nuvoton: phy-ma35d1-usb2: extend to dual-port
- with OTG support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Joey Lu" <a0987203069@gmail.com>
-Cc: conor+dt@kernel.org, neil.armstrong@linaro.org, devicetree@vger.kernel.org, linux-phy@lists.infradead.org, robh@kernel.org, olteanv@gmail.com, vkoul@kernel.org
-In-Reply-To: <20260615054911.48821-4-a0987203069@gmail.com>
-References: <20260615054911.48821-4-a0987203069@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 05:59:42 +0000
-Message-Id: <20260615055942.8A19B1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781503230; c=relaxed/simple;
+	bh=nGxWKW29W2AOH9Ky6bfSCGDBZeSZKncm4gB/k0IFftY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FYGxIikaADVA0g60WBM3ETiRdYQRmoN63iK9Mv15LXN/CMxIwPN5w8QxRQP1sYimN6jhiHCwyoI+LK3QnXGatHGsYa1aVjMbqMTtq5A0JviSz7YmcpRwW2yRxYV2MyhuHREuv3SK1pPfavMprvskRzfkJjMReICoyv8y5QIn5uI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NwdzT6wV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KeKLWUNd; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65F1j4M73244107
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 06:00:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7vJFgXBfX8hCngXnHeKMpasfyiLgstCWDgdNuIMGu2Y=; b=NwdzT6wVhr8wqnW0
+	iWoYkRcefGrrbfVMcfmgzXTZSv9XLheXZRPxHPa5sT9qQFnDOSYBX1ZKQex8AQhx
+	rbrlQjzHP5IOFZkQJUEo4oCwFukGnF1/3DzikNBBwrws7cJQLsZYTm0jrRoTPVEp
+	75sevAWXOgQl9vp24ggILJG0SbD5pGuHaSF/UlUoQwA4zkYEGYZ/YGHyL56ZEhpW
+	LPGpvJtC4tM5p7Ox4cUie3HGFjFH+OpQ67INlJ3EQoesU8JfIRwo/DKfioFvswHf
+	REGW7DigduKYpuiHfEvMRQHeBM0u03S+7YiEL3dptVB3kklI+OxhnNxheqVwKIVO
+	vkCTog==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ery7gwtrg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 06:00:28 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-5177f07ea82so63191531cf.3
+        for <devicetree@vger.kernel.org>; Sun, 14 Jun 2026 23:00:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1781503227; x=1782108027; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7vJFgXBfX8hCngXnHeKMpasfyiLgstCWDgdNuIMGu2Y=;
+        b=KeKLWUNduZscqlq9G87aQD1O4v8Uu0kveEJ3XiBr5FQVlBjOcvNqCyllSkuwkntNKU
+         DW+EtgFjX65kgWskKOEsj6Di8EhnWd8JFVf39kqx2RTXtG9i2ERnpFjDsA7DyclTamva
+         endkx1vUsqY1L6apOoj6T4WUL1uPg+KX9+GTwxBU1b8QCKLu4Ju4lqpdLcprU/9ZCnvX
+         XSmH8vgzJlK2Blmz0KgltCEda8juzhIvn33U/nLhWu4dL8tQ9K98lQTNUMZ+vuhsne2+
+         oBXqbzZB/07evPKfxTLmTdEwzE4RepgkuW7fnlhus/L2y9H9l8Fztoej0Aiut0DYcTpT
+         hk5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781503227; x=1782108027;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7vJFgXBfX8hCngXnHeKMpasfyiLgstCWDgdNuIMGu2Y=;
+        b=XFvS2vJ24bcxQebottvvh6NyfOm6OBonLgr8lCSXfrsOjQsIxS49wssCAdRo59TtuW
+         WzmHkZA/tJ+P+OelFNcTfOuA9CT0KnL+vbleGjXE+IAD/4ZNVznOjf5/14smuBxpdu7Z
+         PFmG5QvjTX+5SO304YjQmTbV0Eh6R8ZCUZIMAf24uDpxD9lpdvt3LpOiQcGNSDJ+uGiR
+         uSf4BTS3VVnI6IbLWSjm5dz4waN99C9mrwFovYV0ZXnIzx6I4t+o6KjhzhijFfPEsh2b
+         6i09aC4S0+aHFn/UYrPBPjt4EhzE4NTW4mAOSHKHdVxzJfVOjIb4xneZGyDtPQeoXoyH
+         2pTQ==
+X-Forwarded-Encrypted: i=1; AFNElJ9Sl6OJFLKs7q0k4m1FU8DIbSBeNUtq+z5bcYy2VMV+TcauhZMgP/ezWERgYnStbHn2vJRKmt7tDXNu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLBB3MvAp30fBUVHI19N39PAbtkX/riIteUyO/7d8QjoRmzFwB
+	f7XBSQgAliQYLvj0nj8H+hbYwlouhj4WlQCvICjR0Zd/LqwZnVYPbtkuSrMCwOoa+/e19KosxCI
+	cEtTdRxZdIFHQmZWN9jKX8Urjj+AgCsUPY8ON49Cz48yfyUY3+7RMp0DphBtufml+
+X-Gm-Gg: Acq92OFrMKR/pyz1BvoM5RZeGmz3bYT5Tj2k+YNv8/OtgrT3xr2YhnQH9La+hyo3sb+
+	gSgPWvWJwzWS2ZujiWqTvOm47MroTyWvHfCbpzLmP+vjX5ZT/fOFhObHPRjFaq7QuXZN5TzuRlI
+	ZJO8B63F1KTpVrU9sFSIXj99Z7UID9iRfb+ahjR6Z8OyptRFnv5Od7NXI/2O0c86OIKkJ7RO4KJ
+	irymK1g33fbysIGcSx0xMdtxKQN2x5E7Sg3phcqSPAa6XQezu5YW+tiCo9IHhzSGM74VLyFLU2g
+	IVVMZLT9gPCOANpgCIXa79erNIQ4DnhyPiSKO3BP+nFpP5wJ2HHJ5b/oYQ8trg+YS406ttO1RbP
+	DgWGNiK7FkU92QtVYbHlnJjIKDm8b3HQzIu1siFqtfoO62Rf+Sem8DyAz
+X-Received: by 2002:a05:620a:6312:10b0:8ef:1157:6a05 with SMTP id af79cd13be357-9161bc5a818mr1340012685a.19.1781503227071;
+        Sun, 14 Jun 2026 23:00:27 -0700 (PDT)
+X-Received: by 2002:a05:620a:6312:10b0:8ef:1157:6a05 with SMTP id af79cd13be357-9161bc5a818mr1339993585a.19.1781503225780;
+        Sun, 14 Jun 2026 23:00:25 -0700 (PDT)
+Received: from [192.168.0.172] ([49.205.249.212])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-693794aec29sm2731556a12.28.2026.06.14.23.00.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 14 Jun 2026 23:00:23 -0700 (PDT)
+Message-ID: <21bd4a12-01de-4c4c-a094-a39c330a4b1b@oss.qualcomm.com>
+Date: Mon, 15 Jun 2026 11:30:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: media: qcom,qcm2290-venus: document
+ shikra Iris compatible
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bryan O'Donoghue <bod@kernel.org>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260609-shikra_vpu-v1-0-3a32bb38b080@oss.qualcomm.com>
+ <5YTsRTMAUGw0it3GAWHhKIh77_Hk823-xRJ4WxzQ-ENpdnC9-ttUvWhJI_CqFEetmFXcRel50GK_o2UMGzwZmg==@protonmail.internalid>
+ <20260609-shikra_vpu-v1-1-3a32bb38b080@oss.qualcomm.com>
+ <f793c665-ac99-4afe-a64b-bbd6d40044e5@kernel.org>
+ <bc9a8075-db42-4de1-a3cc-4f6816681290@oss.qualcomm.com>
+ <q3sr74ncqnmzsjrd6jdbkpplxpnsnifhnvxsdplvogr2kf25p3@taadnzd2qrcu>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <q3sr74ncqnmzsjrd6jdbkpplxpnsnifhnvxsdplvogr2kf25p3@taadnzd2qrcu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE1MDA1OSBTYWx0ZWRfX9VRJnf5BWaec
+ gNGhQAfs916gBgr2Z4gndJFzf6bT0E0da67rTOpCwvdR+pHhfIApZmASpLlGbav7Qudk9VyiAIC
+ n/XFUZ7SmUwK5qNRX5CdJbEtv5h9YRY=
+X-Authority-Analysis: v=2.4 cv=fLYJG5ae c=1 sm=1 tr=0 ts=6a2f94fc cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=1BxbLvcILuCGMxPr/bnfdA==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=EUspDBNiAAAA:8 a=Qmn5Ufgt5HZSozbDxzMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE1MDA1OSBTYWx0ZWRfX4PiN51Zfx87W
+ Sjh4/q1kznnSG1lRXAcqK1pm2lU5qn6DLF3qGfh3Y5HEnWealwBpktqrsTI9n+HbrQMpFEXcyP4
+ 8G/9r6w+bxFej5LtIgt7VqwNWp+AQpzB27aXyoQFa90Cv1tvtsCCAd7gcpAtMaUF+rJhSwuMxHC
+ JBX80HGMwI4wjBDdMm3+KqjOWoHJfQZIijmoodt9xIOz5KogiC9HDUalHeNXyqeVCxLCCcxSsv9
+ X//wUijH7TXxhOAM/k8RfbxA+OZd2plYrSNs+DG8iKsqngj4WeXtXLWMEGK9FyPZowWqXhczJUW
+ hE8mQKRb0x0xNu0lztFIRDq/UraRRiZbhRvNaQA6RIadHkkopxF9Mqp9MACBYvDeaPxle1Q5USK
+ yXn2FIJNQisWksZo91a+yUqzWFMg/+6ANUOobIgXeS5D5uTmWI6QoBcDMjvrGOhxjJ6DK+pi7Rp
+ Ut32iO5AgyDBPSfHL3Q==
+X-Proofpoint-GUID: xzJ2J0B8sXKOq-AUfCuhwAw1o6Cz1fq0
+X-Proofpoint-ORIG-GUID: xzJ2J0B8sXKOq-AUfCuhwAw1o6Cz1fq0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-15_01,2026-06-12_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 bulkscore=0 suspectscore=0 priorityscore=1501 clxscore=1015
+ malwarescore=0 impostorscore=0 phishscore=0 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606150059
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311641-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:a0987203069@gmail.com,m:conor+dt@kernel.org,m:neil.armstrong@linaro.org,m:devicetree@vger.kernel.org,m:linux-phy@lists.infradead.org,m:robh@kernel.org,m:olteanv@gmail.com,m:vkoul@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-311642-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,vger.kernel.org,lists.infradead.org,gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:bod@kernel.org,m:dikshita.agarwal@oss.qualcomm.com,m:mchehab@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:jorge.ramirez@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-media@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,qualcomm.com:dkim,qualcomm.com:email];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,smtp.kernel.org:mid,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 64E3C683A0F
+X-Rspamd-Queue-Id: 0B5156839F9
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [High] Missing cleanup of the USB role switch on the probe error path lea=
-ds to a memory leak and a triggerable use-after-free vulnerability.
-- [Medium] Missing bounds check on `args_count` in `ma35_usb_phy_xlate` lea=
-ds to an uninitialized stack memory read and potential out-of-bounds access.
-- [Medium] Unchecked return values of `regmap_read()` lead to the use of un=
-initialized stack variables.
-- [Medium] Failure to explicitly clear `MISCFCR0_UHOVRCURH` when `nuvoton,o=
-c-active-high` is absent allows bootloader state to bleed over.
---
 
-commit c78d99f91b7305f8a53b899cb3cb3fa45c43c783
-Author: Joey Lu <a0987203069@gmail.com>
+On 6/12/2026 1:19 PM, Dmitry Baryshkov wrote:
+> On Wed, Jun 10, 2026 at 01:20:59PM +0530, Vikash Garodia wrote:
+>>
+>> On 6/10/2026 2:07 AM, Bryan O'Donoghue wrote:
+>>> On 09/06/2026 17:15, Vikash Garodia wrote:
+>>>> Document the iris video accelerator used on shikra platforms by adding
+>>>> the qcom,shikra-iris compatible.
+>>>>
+>>>> Although QCM2290 and shikra share the same video hardware and overall
+>>>> integration, their SMMU programming differs. QCM2290 exposes separate
+>>>> stream IDs for the video hardware and the Xtensa path, requiring two
+>>>> explicit IOMMU entries, whereas shikra uses a masked SMR to collapse
+>>>> equivalent stream IDs into a single mapping. Due to QCM2290’s SID layout
+>>>> and Xtensa isolation requirements, such SMR masking is not applicable on
+>>>> QCM2290 platforms.
+>>>> Since shikra uses the same video hardware as QCM2290 and shares the same
+>>>> programming model and capabilities, it is added as a fallback compatible
+>>>> to qcom,qcm2290-venus, with conditional handling to allow either one or
+>>>> two IOMMU entries.
+>>>>
+>>>> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+>>>> ---
+>>>>    .../bindings/media/qcom,qcm2290-venus.yaml           | 20
+>>>> ++++++++++ ++++++----
+>>>>    1 file changed, 16 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/media/qcom,qcm2290-
+>>>> venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcm2290-
+>>>> venus.yaml
+>>>> index 5977e7d0a71b4fb5681f1c2094439c251366f01f..895533b9756690d075fd7729e3f805c8e72ff0df
+>>>> 100644
+>>>> --- a/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+>>>> +++ b/Documentation/devicetree/bindings/media/qcom,qcm2290-venus.yaml
+>>>> @@ -15,12 +15,27 @@ description:
+>>>>
+>>>>    allOf:
+>>>>      - $ref: qcom,venus-common.yaml#
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            const: qcom,shikra-iris
+>>>
+>>> Should this be "iris" in a venus yaml ?
+>>
+>> given the vpu core was first enabled on venus and now it same core on a
+>> different SOC being enabled on iris. There are 2 ways to do this
+>> 1. Add the compat to existing schema which defines the binding for that core
+>> i.e existing patch
+>> 2. Write a new schema (or say duplicate it) with ...shikra-iris.yaml, but
+>> again, the shikra compat would fallback to "qcom,qcm2290-venus" compat.
+>> hence even iris yaml would then need to carry the venus *string*.
+>>
+>> I followed the first option.
+> 
+> It is a correct approach. However the block should not be called Iris.
+> If I remember correctly, the core is still named Venus.
+> 
 
-phy: nuvoton: phy-ma35d1-usb2: extend to dual-port with OTG support
+Indeed. I was wrong in associating this with the driver enabling it, but 
+it is much better to tag them to the core. Will keep it as 
+qcom,shikra-venus.
 
-The existing driver handled only PHY0 in device mode (DWC2 gadget). Extend =
-it
-to manage both PHY ports and integrate OTG support, per reviewer suggestion=
- to
-reuse the existing driver rather than add a separate one.
-
-> diff --git a/drivers/phy/nuvoton/phy-ma35d1-usb2.c b/drivers/phy/nuvoton/=
-phy-ma35d1-usb2.c
-> index 9a459b700ed48..336680161104f 100644
-> --- a/drivers/phy/nuvoton/phy-ma35d1-usb2.c
-> +++ b/drivers/phy/nuvoton/phy-ma35d1-usb2.c
-
-[ ... ]
-
-> +static int ma35_usb_phy_init(struct phy *phy)
->  {
-> -	struct ma35_usb_phy *p_phy =3D phy_get_drvdata(phy);
-> +	struct ma35_phy_port *port =3D phy_get_drvdata(phy);
-> +	struct ma35_usb_phy *p =3D container_of(port - port->idx,
-> +					      struct ma35_usb_phy, port[0]);
-> +	unsigned int n =3D port->idx;
->  	unsigned int val;
->  	int ret;
-> =20
-> -	ret =3D clk_prepare_enable(p_phy->clk);
-> -	if (ret < 0) {
-> -		dev_err(p_phy->dev, "Failed to enable PHY clock: %d\n", ret);
-> -		return ret;
-> -	}
-> +	regmap_read(p->sysreg, MA35_SYS_USBPMISCR, &val);
-
-[Severity: Medium]
-Could this leave val uninitialized if regmap_read() fails?
-
-If regmap_read() fails (e.g. due to a bus error), val remains uninitialized.
-Evaluating it in the next line could lead to skipping the PHY initialization
-incorrectly.
-
-> +	if (val & USBPMISCR_PHY_SUSPEND(n))
-> +		return 0;
-
-[ ... ]
-
-> +static enum usb_role ma35_role_sw_get(struct usb_role_switch *sw)
-> +{
-> +	struct ma35_usb_phy *p =3D usb_role_switch_get_drvdata(sw);
-> +	u32 val;
-> +
-> +	regmap_read(p->sysreg, MA35_SYS_PWRONOTP, &val);
-> +
-> +	return (val & PWRONOTP_USBP0ID) ? USB_ROLE_HOST : USB_ROLE_DEVICE;
-
-[Severity: Medium]
-Does this code return an unpredictable role if regmap_read() fails?
-
-If regmap_read() encounters an error, val will remain uninitialized, which
-could lead to nondeterministic driver behavior when evaluated for the retur=
-ned
-role.
-
-> +}
-
-[ ... ]
-
-> +static struct phy *ma35_usb_phy_xlate(struct device *dev,
-> +				      const struct of_phandle_args *args)
-> +{
-> +	struct ma35_usb_phy *p =3D dev_get_drvdata(dev);
-> +
-> +	if (args->args[0] >=3D MA35_PHY_NUM)
-
-[Severity: Medium]
-Can this code access uninitialized memory if args->args_count is 0?
-
-If the device tree incorrectly specifies #phy-cells =3D <0>, args_count will
-be 0 and the args->args array (allocated on the caller's stack) might be
-uninitialized. Could we add a bounds check for args->args_count >=3D 1 befo=
-re
-accessing args->args[0]?
-
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	return p->port[args->args[0]].phy;
-> +}
-
-[ ... ]
-
->  static int ma35_usb_phy_probe(struct platform_device *pdev)
->  {
-
-[ ... ]
-
-> +	if (of_property_read_bool(pdev->dev.of_node, "nuvoton,oc-active-high"))
-> +		regmap_update_bits(p->sysreg, MA35_SYS_MISCFCR0,
-> +				   MISCFCR0_UHOVRCURH, MISCFCR0_UHOVRCURH);
-
-[Severity: Medium]
-Does this code fail to clear MISCFCR0_UHOVRCURH when "nuvoton,oc-active-hig=
-h"
-is absent?
-
-If a bootloader previously set this bit to active-high, Linux will fail to
-clear it upon boot when active-low is expected, potentially breaking USB
-functionality.
-
-> +
-> +	for (n =3D 0; n < MA35_PHY_NUM; n++) {
-
-[ ... ]
-
-> +	ret =3D ma35_role_switch_init(pdev, p);
-> +	if (ret)
-> +		return ret;
-> =20
-> -	provider =3D devm_of_phy_provider_register(&pdev->dev, of_phy_simple_xl=
-ate);
-> +	provider =3D devm_of_phy_provider_register(&pdev->dev, ma35_usb_phy_xla=
-te);
->  	if (IS_ERR(provider))
->  		return dev_err_probe(&pdev->dev, PTR_ERR(provider),
-> -				     "Failed to register PHY provider\n");
-> +				     "failed to register PHY provider\n");
-
-[Severity: High]
-Does this error path leak the USB role switch created by
-ma35_role_switch_init()?
-
-If devm_of_phy_provider_register() fails, the function returns immediately
-without unregistering the role switch.
-
-The driver core will then free the devm-allocated memory (including the
-struct ma35_usb_phy *p passed as driver data). Since the role switch remains
-registered, any later interaction with it (e.g. from sysfs) will invoke
-ma35_role_sw_get():
-
-static enum usb_role ma35_role_sw_get(struct usb_role_switch *sw)
-{
-	struct ma35_usb_phy *p =3D usb_role_switch_get_drvdata(sw);
-	u32 val;
-
-	regmap_read(p->sysreg, MA35_SYS_PWRONOTP, &val);
-
-This dereferences the freed p pointer, causing a Use-After-Free.
-
-> +
->  	return 0;
->  }
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615054911.4882=
-1-1-a0987203069@gmail.com?part=3D3
+Regards,
+Vikash
 
