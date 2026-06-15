@@ -1,44 +1,58 @@
-Return-Path: <devicetree+bounces-311976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311973-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2ysrIK8CMGrzLgUAu9opvQ
-	(envelope-from <devicetree+bounces-311976-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:48:31 +0200
+	id 5nGBNW3/L2oXLgUAu9opvQ
+	(envelope-from <devicetree+bounces-311973-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:34:37 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97CF8686DBF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:48:29 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53194686C75
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:34:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=rock-chips.com header.s=default header.b=kQLJJ9H+;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311976-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311976-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=rock-chips.com;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=cN8CNMsq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311973-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311973-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 08CA3303BB2E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 13:48:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EF3C3304BE61
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 13:33:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CCC63F44FC;
-	Mon, 15 Jun 2026 13:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369613E5A0C;
+	Mon, 15 Jun 2026 13:33:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15595.qiye.163.com (mail-m15595.qiye.163.com [101.71.155.95])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E2B23F1ACE
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 13:47:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00A63E1D16
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 13:33:43 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781531278; cv=none; b=GqDkSwW/vJgmtD0dWmMYYHpmYwhtPnf1vvYL9Ry8kMYureWkgtBU0d/p1JYpKqSDbXptb80/q6gx4lOZTwPPuk8+USXWLRWO474QwXKcxWX9XS4/NdvBrnbHnamty1S445QT8KeNOCtVgITDMhkBduEkvG2+r2dKU2UF2gioSPE=
+	t=1781530425; cv=none; b=adjS8sMwGlGG2IMUbldK1VYddC8kv6aqiXxgN6RCwhXAcT7Gs6SGaLE5z6rt/PCBHgkyJDJfREEVhFIeBpKCLNJKR/5qKyVBF7awxX29HDXqtr7h51Y0800/VxbTABBpw8TPJNBBNCJztCLs+sJz3BzKk1nzvLE805OVxIF51hQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781531278; c=relaxed/simple;
-	bh=3KLwD7Dv6Za3eMvYy19EoEMa/3QaEc79TOSa6zxNAcU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BQI8wE24T+TRbpBNerrLyLPgKRSTpn0+FPCs52PUuYR+MAG/MA3zZIAYlft3hK0+gxqnImUUTIgjdFKjNipyZ27nCZ5dow/FwauWLbE9vc1YoS4bEdh1IxX9KhAAdvfkL0bg30MRUCQQYGQSzU+0JS/GFo8W382GR6VLNgIUKXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=kQLJJ9H+; arc=none smtp.client-ip=101.71.155.95
-Received: from [172.16.12.74] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 4271bc926;
-	Mon, 15 Jun 2026 21:32:08 +0800 (GMT+08:00)
-Message-ID: <a007b499-fbb8-4fcd-b1f2-c1ab3d6a25cb@rock-chips.com>
-Date: Mon, 15 Jun 2026 21:32:08 +0800
+	s=arc-20240116; t=1781530425; c=relaxed/simple;
+	bh=N2ntj/ynlOh+zA/3YbsZL3cEPB1z9yqFqBmhPLgjqNo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=hHxxqujLMO7p9OUxol6dt3nE/5Akx13lBGLH3/QHajBtDTaQs4Lk5hJY+tMfW4tSaMORSZWSDpkv08b6Mpv6BUWyomEc7BqsV0wNzoj9WVu6I852pLnBNvT0SCJLyZTqaY/lsGzqTpd71UdZHG1yYgr9FAVO8WZDzQUi+M1kyUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cN8CNMsq; arc=none smtp.client-ip=185.171.202.116
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id D56B3C49F5C;
+	Mon, 15 Jun 2026 13:33:46 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B16B360015;
+	Mon, 15 Jun 2026 13:33:42 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 61CB9106C94F2;
+	Mon, 15 Jun 2026 15:33:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1781530421; h=from:subject:date:message-id:to:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=dOWrt41fp9ZkdsfONhl/POwO170vOA3eDS7WRaAIv2Y=;
+	b=cN8CNMsqV3vnmukdqV8G3Kzmq5G8amSuHqLO4tp10lfiI1kRuxOzzSVIOf7+6AuuwloL9i
+	EG6SwhRzQHIXAoItTEt3q0xG5RNm3La0F1DIV0asn9qRlDZg4i6V45E0qd0ChV4jh3qjXT
+	inGsCfhmYmkyv6LTBNRDy2xV4NQjVWHZntpev9zX9XStGsTgIhLlMTMf9yoUXdQCN9YRwv
+	t/XfzKsI8HZSndynjUihh3WNXfQmnYPID0ISfu59px6MIQgnFV/lBYoPkbtdYnQ+r1vduy
+	l+wlZo1hfEKbr7/6vnPBb9a5YhLqeYxBhb/ysDmThYVw9njwNSrwJliPypg9Kw==
+Message-ID: <371a1df7-084c-4431-bd00-0045298e3212@bootlin.com>
+Date: Mon, 15 Jun 2026 15:33:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,151 +60,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 0/3] Add eDP support for RK3576
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: sebastian.reichel@collabora.com, nicolas.frattaroli@collabora.com,
- alchark@gmail.com, detlev.casanova@collabora.com,
- cristian.ciocaltea@collabora.com, michael.riesch@collabora.com,
- andy.yan@rock-chips.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20260605022305.3058853-1-damon.ding@rock-chips.com>
- <cd1f968a-2e1b-434f-a331-a60cd8740032@rock-chips.com>
- <3213683.CbtlEUcBR6@diego>
+Subject: Re: [PATCH net-next v7 01/12] net: phylink: keep and use MAC
+ supported_interfaces in phylink struct
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Lorenzo Bianconi <lorenzo@kernel.org>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ Saravana Kannan <saravanak@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Nathan Chancellor
+ <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ llvm@lists.linux.dev
+References: <20260615122950.22281-1-ansuelsmth@gmail.com>
+ <20260615122950.22281-2-ansuelsmth@gmail.com>
 Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <3213683.CbtlEUcBR6@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9ecb7b7f2103a8kunm47dcead08c7d
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaGhgaVkkfTENMHx8ZTUIZGVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQkxVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=kQLJJ9H+1CSZ65yj536jGKbv3YtDkqEYwaL8cLFzBsKAVvf5EgoKPQYIDwsH0Vluy6JvkCJCyy7vFNAbev/CCPktgYlpwkgMnRPkcB0axcRz+k/2cMGrdAq8AHfVO8QwvozLgKwDgb0CZah389/3CPr5uM2Jz8CfVXX4AwRg2Qw=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=IEDSeKt6aBa3YjGZKrTBnH10OnTxt5lTag0LZBn0RGM=;
-	h=date:mime-version:subject:message-id:from;
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+In-Reply-To: <20260615122950.22281-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311976-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_RECIPIENTS(0.00)[m:heiko@sntech.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sebastian.reichel@collabora.com,m:nicolas.frattaroli@collabora.com,m:alchark@gmail.com,m:detlev.casanova@collabora.com,m:cristian.ciocaltea@collabora.com,m:michael.riesch@collabora.com,m:andy.yan@rock-chips.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311973-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:lorenzo@kernel.org,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:p.zabel@pengutronix.de,m:nathan@kernel.org,m:nick.desaulniers+lkml@gmail.com,m:morbo@google.com,m:justinstitt@google.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:llvm@lists.linux.dev,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:nickdesaulniers@gmail.com,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,armlinux.org.uk,pengutronix.de,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	FORGED_SENDER(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[collabora.com,gmail.com,rock-chips.com,vger.kernel.org,lists.infradead.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,lkml];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 97CF8686DBF
+X-Rspamd-Queue-Id: 53194686C75
 
-On 6/15/2026 9:01 PM, Heiko Stübner wrote:
-> Hi Damon,
-> 
-> Am Montag, 15. Juni 2026, 14:33:03 Mitteleuropäische Sommerzeit schrieb Damon Ding:
->> Gentle ping on this patch series.
-> 
-> Linux 7.1 was released yesterday, so we're in the merge-window now.
-> (And the 5th of june was shortly before -rc7, so too late for 7.2)
-> 
-> So I'll pick those up after the merge window end in 2 weeks.
-> 
-> 
+Hello Christian,
 
-Thanks for the heads-up. Got it. ;-)
+On 6/15/26 14:29, Christian Marangi wrote:
+> Add in phylink struct a copy of supported_interfaces from phylink_config
+> and make use of that instead of relying on phylink_config value.
+> 
+> This in preparation for support of PCS handling internally to phylink
+> where a PCS can be removed or added after the phylink is created and we
+> need both a reference of the supported_interfaces value from
+> phylink_config and an internal value that can be updated with the new
+> PCS info.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  drivers/net/phy/phylink.c | 22 +++++++++++++++-------
+>  1 file changed, 15 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+> index 087ac63f9193..4d59c0dd78db 100644
+> --- a/drivers/net/phy/phylink.c
+> +++ b/drivers/net/phy/phylink.c
+> @@ -60,6 +60,11 @@ struct phylink {
+>  	/* The link configuration settings */
+>  	struct phylink_link_state link_config;
+>  
+> +	/* What interface are supported by the current link.
+> +	 * Can change on removal or addition of new PCS.
+> +	 */
+> +	DECLARE_PHY_INTERFACE_MASK(supported_interfaces);
 
-Best regards,
-Damon
+Can you clarify a bit what you mean here ? Is that the combination of the
+interfaces the MAC supports AND the currently in-use PCS ?
 
->>
->> On 6/5/2026 10:23 AM, Damon Ding wrote:
->>> Picked from:
->>> https://lore.kernel.org/all/20260601065100.1103873-1-damon.ding@rock-chips.com/
->>>
->>> Patch 1-2 are to add missing clock "hclk" for RK3588 eDP nodes.
->>> Patch 3 is to add the RK3576 eDP node.
->>>
->>> Damon Ding (3):
->>>     arm64: dts: rockchip: Add missing hclk for RK3588 eDP0
->>>     arm64: dts: rockchip: Add missing hclk for RK3588 eDP1
->>>     arm64: dts: rockchip: Add eDP node for RK3576
->>>
->>>    arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 28 +++++++++++++++++++
->>>    arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  4 +--
->>>    .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |  4 +--
->>>    3 files changed, 32 insertions(+), 4 deletions(-)
->>>
->>> ---
->>>
->>> Changes in v2:
->>> - Split out separate patches to add the "hclk" clock reference.
->>> - Split out separate patches to enable the "hclk" clock.
->>> - Add Reviewed-by tag.
->>>
->>> Changes in v3:
->>> - Add a patch to expand descriptions for clocks of the eDP node.
->>> - Add Reviewed-by tag.
->>>
->>> Changes in v4:
->>> - Modify commit msg.
->>>
->>> Changes in v5:
->>> - Enforce the correct third clock name on a per-compatible basis.
->>> - Modify the commit msg simultaneously.
->>> - Add Acked-by tag.
->>>
->>> Changes in v6:
->>> - Expand more detail commit msg about using hclk instead of grf clock.
->>>
->>> Changes in v7:
->>> - List all valid clock names at the top level, and constrain the clock
->>>     count for each platform with minItems/maxItems in allOf.
->>>
->>> Changes in v8:
->>> - Fix indentation to 10 for enum in clock-names property.
->>>
->>> Changes in v9:
->>> - Restore the explicit clock-names for RK3399 and RK3588 eDP dt-bindings.
->>>
->>> Changes in v10:
->>> - Use automatic cleanup to fix OF node reference leak reported by
->>>     Sashiko.
->>>
->>> Changes in v11:
->>> - Pick and rebase DT related patches.
->>>
->>
->>
-> 
-> 
-> 
-> 
-> 
-> 
+Maxime
 
 
