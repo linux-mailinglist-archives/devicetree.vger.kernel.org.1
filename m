@@ -1,244 +1,257 @@
-Return-Path: <devicetree+bounces-311948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311946-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FlnCNH/4L2qEKgUAu9opvQ
-	(envelope-from <devicetree+bounces-311948-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:05:03 +0200
+	id 6MCQIgn2L2qaKAUAu9opvQ
+	(envelope-from <devicetree+bounces-311946-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:54:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBFED686836
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:05:02 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1D8B6866E8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:54:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=herrie.org header.s=transip-a header.b=nE9KljIA;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311948-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311948-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=m1Ak06fV;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=Z5M5yOwg;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311946-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311946-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3824830095FA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:49:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 35D8F3037696
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:44:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB1A3EDE52;
-	Mon, 15 Jun 2026 12:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68DE93E832A;
+	Mon, 15 Jun 2026 12:44:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound5.mail.transip.nl (outbound5.mail.transip.nl [136.144.136.9])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83013EDE4B;
-	Mon, 15 Jun 2026 12:49:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EBEB3E9C2D
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:44:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781527747; cv=none; b=HZpoRqX1uYqnOvpiBdidImYD4u1elrQShOEDOrywLdwLC6btnZwD+s//TisBU9vAkImwV9YWRPXAau8kOMGQpgREdtA39DuuVRzvdmc3z3llUWpLYw1XG4DT/c/B3wCIDYF81DQh1Pz86NgFyl0PB35WaOfah16L/3JZvu7iUwo=
+	t=1781527483; cv=none; b=qMZS8Ju3c0/IqhQacGhMtk2HusX7bO6iDdKeu6sotxaN0OTkzb9rvAo5/b8V9a/uVMkxZM7f6gC50PIb1tz0BK/S7UEQhHzmi8WDR1d1tdzJoqxetPj7ZSGvf1QdzZ8Xw34A8pUXbZcJYWPf44LM5eORL81Fow25N5yrG1BhE5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781527747; c=relaxed/simple;
-	bh=z7GcwDh4DZnnqlV0nBIfle2WmTmZFJiKwRwMizo9nR8=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=JXnQ9ml0nXyZ4+FAf/7Be23NVz48cbgvmv49/bj4PpRO/vE1gry4puX0f9n6TkPo3CpnKyNBL+DWNrmQl1oRGQJzpSvJDqMMhUiEq2QHGX87YY6jHxZvv/Agir4NPE97uk8xJBlkan/CxT6WvpreLNE97zZgHDGdAcoYHcFGl68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=nE9KljIA; arc=none smtp.client-ip=136.144.136.9
-Received: from submission11.mail.transip.nl (unknown [10.103.8.162])
-	by outbound5.mail.transip.nl (Postfix) with ESMTP id 4gf8qv40vFzHV1G;
-	Mon, 15 Jun 2026 14:41:15 +0200 (CEST)
-Received: from transip.email (unknown [10.100.4.34])
-	by submission11.mail.transip.nl (Postfix) with ESMTPA id 4gf8qt6bLjz3R3nyv;
-	Mon, 15 Jun 2026 14:41:14 +0200 (CEST)
+	s=arc-20240116; t=1781527483; c=relaxed/simple;
+	bh=yDGdisoGHqhD2uNAQsftXw6XhtevjF9h7iWT1/+N3UU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YnKaEo3mU1cOrs9gNfI+op7gAinCAMRsrAMhUKMOfKFRIgVuhtNCw8qVqLcRVlHhrjY+ndF7ydqiDES8MARL9vyE1N8fXhv1pG5MB2RgfkgsPTPYt18xrPjuNIi+lKyBAxaaUjzq5JoM1cP1iklqzB6WTb35jpG+Rx7iEGE/Z90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m1Ak06fV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Z5M5yOwg; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65FCZj4G589904
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:44:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Vdal3zCT50UErLgg+z/Beeqo0R+ObSZJUDe+QF4nQsQ=; b=m1Ak06fViKIwFILv
+	Co/xwH7fiS9HD9OYETBUVU2iXiUojNj6MpfAkTLzWAGahzdWglPtnjrKb78TUyXv
+	ig29UFBH9D+tZTMDIamJ3BNG+I0sxxoPZRvFpWN5XRaCPxUADByKmszVXNkAbXga
+	jZaqW/1tVlfjcCIQkfV/YhyJptLmgfIWZYQ1pnlbgNULaugrcQ/+pCUimJGz/6vJ
+	Li/XTuVW/rJPQEH1+qKclKGgCWrbFjqjeyCZYJf32sYXk7msuPS//0egV8UxxjOO
+	ZljI26+U8EtDJi0LqmCKL4oty/6ms3tAllk4J5aFlsaCmdHUrXqfVkZY4yp5vIRi
+	xmbTNA==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4etd2c96mg-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:44:41 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-36e09ec696aso5533639a91.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:44:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1781527480; x=1782132280; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vdal3zCT50UErLgg+z/Beeqo0R+ObSZJUDe+QF4nQsQ=;
+        b=Z5M5yOwg3OK/+adcqmCm3S0FRH6gXMRNsmJsyGUlC3dWCJHCu0VdRWIWTWY0em0IUO
+         sMei2NNtpYo07LYXFSESIyZ7+wAYG81IGno7tqSxwNWt/FweDNna80pGE3cfxMKH+r9W
+         kxQawJ33X4B5nkUYHLrVIJ2JjZ7ZhcbcEkJ3ON29fZ7fN5fGCdrx2FNUdL9j0Z1eo1zn
+         LNC+C1QjLmqrDa4aHJSJ5VD5oRmuXGcYlbJ70CvPcbsWMxFIQbcaGECif6ynykcbZNkW
+         qBrbgtrREJg9jZDUWg2uH/m1pRPxIJBqpe7vR+B1xbW+bdgaipZR9lggeM5UcpwvOaR1
+         Yz1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781527480; x=1782132280;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Vdal3zCT50UErLgg+z/Beeqo0R+ObSZJUDe+QF4nQsQ=;
+        b=EAWibp1B13Dwz5AwAsIdOSBb/3JQT0DhXpUEZ1nQJdxb64+b83+rXNwQNV0M0qHHgo
+         1rvBz1RTqW+G2Z70PMFC/cwlP2YKu/K44kWj9vwEVJhSW9BYAsbmBo1EhkZVFra3ewWw
+         uL27Gn5dFjsbkCWIzAgkEGa46DXRl+XYmttfprkjPvFNCIDnGEGL97iIyv7Wd7GTn7HK
+         VzLY15Dk5+EsZ/4r8ZAJyrtU1RoXffL/2loPwWEG0e+FnimaVjHcYl/gyLvDv7ZZBGiN
+         7O0j0KtRJ24do9i4GMYBMtImsCX4X1hx7od3E9zW3oLGqpuQ4+eq/1eO5ylZZwuWWdCS
+         IhuA==
+X-Forwarded-Encrypted: i=1; AFNElJ/QSWBDUAnxLAJpOvUXTQDV3Nq8bcdAzIUOdQfDSKyj190aiZNZcV723u2TUdDObi2NrT5lUg0FEpKW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0bj0i2Hb0Qvb9yyRIyaKA4bAU7U7TfWBmFcy7vm8n/npQORn4
+	EneZIZVL4vdETd948jxctceyNRHUpE+ZRWXi0xw5ikFVY2JVjdGeBsXHFHSqbND3VLne49ipSIx
+	QTZgRXTBiG654xqQvQGGqyACMFyUW80m2weBOUi8GSR6ZPdnrOnB59U7qVGNXUmtz
+X-Gm-Gg: Acq92OGaLOGHbzEf5SMIdykd8Jol/GASpzPRXr6c3r46nQKGf6/J85tob/k3aVKPa6u
+	MFfazx5oykX4SotWVDR65dbW6VRnWaEiHQ1JUThs5rOFT8kmUe/+7DuGQmtd7CWIicZyM1lPRGN
+	3txT3YfvywDYQ13OTOxhxyKcfxgZVu2jtaD3uvz8f0A0HrG3KKXDC1U/wXLrI7+vujoCE2Q+QfX
+	cosL6GxMYgMl1nwHMRnEiT8IY2bVYOLUOjo65kTN+2ghnKORWRdv5hpjGnmo00gGgRh3QMhP1VN
+	54x4EEjcsnBUmlc2pg7u7vTvtLAthGr7kN+M8u+6w/3/TUb268f/AZTHPCgwcbEO5allENYwOTs
+	rxzGLe1xdxEtmSQDMVZlAVl2GQezL/LwiK2SodYx1D5KfcJ6BwREC72J/N3cG
+X-Received: by 2002:a17:90b:4ac6:b0:36b:293:68d1 with SMTP id 98e67ed59e1d1-37a036ea487mr15256782a91.16.1781527479561;
+        Mon, 15 Jun 2026 05:44:39 -0700 (PDT)
+X-Received: by 2002:a17:90b:4ac6:b0:36b:293:68d1 with SMTP id 98e67ed59e1d1-37a036ea487mr15256759a91.16.1781527479070;
+        Mon, 15 Jun 2026 05:44:39 -0700 (PDT)
+Received: from [10.218.21.154] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-37a210ad64esm10350807a91.0.2026.06.15.05.44.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jun 2026 05:44:38 -0700 (PDT)
+Message-ID: <40d9d0d9-978d-426c-b463-c05faae1fad5@oss.qualcomm.com>
+Date: Mon, 15 Jun 2026 18:14:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 15 Jun 2026 14:41:14 +0200
-From: me@herrie.org
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Herman van Hazendonk <github.com@herrie.org>, jic23@kernel.org,
- linusw@kernel.org, denis.ciocca@st.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, sanjayembeddedse@gmail.com, maudspierings@gocontroll.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] iio: common: st_sensors: honour channel endianness in
- read_axis_data
-Reply-To: github.com@herrie.org
-Mail-Reply-To: github.com@herrie.org
-In-Reply-To: <aiMLuIlRPHXuj3cH@ashevche-desk.local>
-References: <cover.1780652883.git.github.com@herrie.org>
- <0dac8e8e2872dc180b138923b5cd4fd18eee047b.1780652883.git.github.com@herrie.org>
- <aiMLuIlRPHXuj3cH@ashevche-desk.local>
-User-Agent: Webmail
-Message-ID: <58115ff8fad3f4762b7c626ce1eab1f5@herrie.org>
-X-Sender: me@herrie.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: ClueGetter at submission11.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=herrie.org; t=1781527275; h=from:reply-to:subject:to:
- cc:references:in-reply-to:date:mime-version:content-type;
- bh=tJPSx0Ef6GMUg7ussCLoZj0sQ3Fxpx9IbA8b/V+8u8k=;
- b=nE9KljIA1PIs0Y+xD5jJ1K2aiP45cZlUN2XtCZlVseMzvFnymVDetS9LpIUj5R69J1sibt
- Whq1LwmT0D8R7RXQbHhPVWdoMLOm5i9lqmTCGdFJ/htDlCy6HpUpWTRMw42rOxqO/DSuAl
- mGswyEQ9/Tg1f5t9GDW9vzPv2CRhA2jWjYt2HPJrGlHQYbRlAZ4YK/bFWU17/bkyC0kCjb
- LEytlxirP/Co0oJXx1wnqNqZer6+hn0Ci28pAaV4lt5S+r+s5MwL4WM2HuH64YbtLdZWoK
- 0Z+7LPi73SjXQJjqLtpneZP6yTzmBrnVw0MT0uL/tBwIfd6EwhYIWdye0Zg0sw==
-X-Report-Abuse-To: abuse@transip.nl
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] dt-bindings: soundwire: qcom: add
+ qcom,swr-master-ee-val property
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Bard Liao <yung-chuan.liao@linux.intel.com>,
+        Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
+References: <20260608175345.3118060-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20260608175345.3118060-2-mohammad.rafi.shaik@oss.qualcomm.com>
+ <7bcddc82-f46f-4366-a4cb-453a213f8bd4@oss.qualcomm.com>
+Content-Language: en-US
+From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+In-Reply-To: <7bcddc82-f46f-4366-a4cb-453a213f8bd4@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE1MDEzNCBTYWx0ZWRfX+ORzAOt6GB+S
+ HhnGLiL0sabbfREp4sHmU9B4kDTNXGfx/lbgH9t7gBWe1qLWCf13H+9p9nHm2XtCYjdGSg0/zXC
+ 9oDA2o4NdAMKInMRbPM8hqJowdacGVqKVKNHxw+wIWaEH92Rv3Wfo5VyYEu1YDSW66BR4CY3+F3
+ w/YFEdabAadk2EdHPRPSZcfDovbFAGfPly/RBOVH+0EPDpNkXg8CfY+uWlx78mhsDI2N5DdgHEI
+ RPP03vsO8OPZ/AGNGyMykDJW0fPgVL3EkaVdYc+AtK+NUzn+FVFH4djE7/k4z8wy+9nSkjza5Xc
+ edkwz1QG//pUMRTu4SR3hpdfKZlNtoYG6nojEh17awmqgipI0UBrhMzVLaNZ69O7VNZ0SitpKg2
+ LzBVnvYUvmlIHvg2mQtvOcFWNcrivckSkyOn5Ee39Q5592Y+NLFCgw9qWT7Sz/DTki+88zAJOhb
+ mFlByJAkp3PhHiXERJQ==
+X-Proofpoint-ORIG-GUID: PovkTPnvjNUYu1KDwJKFMCEHZPrZKHnd
+X-Proofpoint-GUID: PovkTPnvjNUYu1KDwJKFMCEHZPrZKHnd
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE1MDEzNCBTYWx0ZWRfXzhfj+5ndUlXd
+ yRf2WfwTj0zWtRi9lpi12bT/zSHtYPfpxeQHf+m+a1K4lS9Ytq6vj5UWMoFN8+NAd8y4SEFwp54
+ AssiatzdH/+2KSk9lBVNcwAfRBVjIMY=
+X-Authority-Analysis: v=2.4 cv=MsRiLWae c=1 sm=1 tr=0 ts=6a2ff3b9 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
+ a=EUspDBNiAAAA:8 a=sVLjvJnARbnZsx0J9w4A:9 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-15_03,2026-06-15_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 suspectscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0
+ clxscore=1015 adultscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606150134
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.15 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	XM_UA_NO_VERSION(0.01)[];
-	TAGGED_FROM(0.00)[bounces-311948-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311946-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	SEM_URIBL_UNKNOWN_FAIL(0.00)[herrie.org:server fail,vger.kernel.org:server fail];
-	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:github.com@herrie.org,m:jic23@kernel.org,m:linusw@kernel.org,m:denis.ciocca@st.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:sanjayembeddedse@gmail.com,m:maudspierings@gocontroll.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	DMARC_NA(0.00)[herrie.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[herrie.org,kernel.org,st.com,baylibre.com,analog.com,gmail.com,gocontroll.com,vger.kernel.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	FORGED_SENDER(0.00)[mohammad.rafi.shaik@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_RECIPIENTS(0.00)[m:srinivas.kandagatla@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:srini@kernel.org,m:vkoul@kernel.org,m:yung-chuan.liao@linux.intel.com,m:quic_srivasam@quicinc.com,m:pierre-louis.bossart@linux.dev,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-sound@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[me@herrie.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	FROM_NO_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_EQ_FROM_DOM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	SEM_URIBL_FRESH15_UNKNOWN_FAIL(0.00)[herrie.org:server fail,vger.kernel.org:server fail];
-	FROM_NEQ_ENVFROM(0.00)[me@herrie.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[herrie.org:+];
-	RBL_SEM_FAIL(0.00)[104.64.211.4:server fail];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	HAS_REPLYTO(0.00)[github.com@herrie.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mohammad.rafi.shaik@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EBFED686836
+X-Rspamd-Queue-Id: E1D8B6866E8
 
-On 2026-06-05 19:47, Andy Shevchenko wrote:
-> On Fri, Jun 05, 2026 at 12:08:41PM +0200, Herman van Hazendonk wrote:
->> st_sensors_read_axis_data() unconditionally decoded multi-byte
->> results with get_unaligned_le16() / get_unaligned_le24() regardless
->> of the channel's declared scan_type.endianness.
->> 
->> For every ST sensor that has used this helper since it was introduced
->> this happened to be fine because the ST IMU/accel/gyro/pressure
->> families publish their data registers as little-endian and the
->> channel specs in those drivers declare IIO_LE accordingly.
->> 
->> The LSM303DLH magnetometer however publishes its X/Y/Z output as a
->> pair of big-endian bytes (the H register sits at the lower address,
->> 0x03/0x05/0x07, and the L register immediately after), and its
->> channel specs in st_magn_core.c correctly declare IIO_BE -- but
->> read_axis_data() ignored that and decoded as little-endian, swapping
->> the high and low bytes of every magnetometer sample.
->> 
->> The bug is most visible on a stationary chip: in earth's field the
->> true X reading is small and the high byte sits at 0x00, so swapping
->> the bytes pins sysfs X at exactly the low byte's pattern (e.g. 0x00F0
->> = 240). Y and Z still appear "to vary" because their magnitudes are
->> larger and the noise in the low byte produces big swings in the
->> swapped high byte:
->> 
->>   before (chip flat, sysfs in_magn_*_raw):
->>       X=240 (stuck), Y= 12032..23296, Z=-16128..-9728
->> 
->>   after (direct i2c-dev big-endian decode, same chip same 
->> orientation):
->>       X≈-4096, Y≈210, Z≈80     (sensible values reflecting earth's
->>                                 ambient field at low gauss range)
->> 
->> Fix read_axis_data() to dispatch on ch->scan_type.endianness and
->> call get_unaligned_be16() / get_unaligned_be24() when the channel
->> declares IIO_BE. Existing IIO_LE consumers (st_accel, st_gyro,
->> st_pressure, st_lsm6dsx and others) are unaffected because their
->> channel specs already declare IIO_LE and the LE path is unchanged.
-> 
-> ...
-> 
->> -	if (byte_for_channel == 1)
->> +	if (byte_for_channel == 1) {
->>  		*data = (s8)*outdata;
-> 
-> Maybe for the consistency's sake use sign_extend32() everywhere?
-> 
->> +	} else if (byte_for_channel == 2) {
->> +		if (ch->scan_type.endianness == IIO_BE)
->> +			*data = (s16)get_unaligned_be16(outdata);
->> +		else
->> +			*data = (s16)get_unaligned_le16(outdata);
->> +	} else if (byte_for_channel == 3) {
->> +		if (ch->scan_type.endianness == IIO_BE)
->> +			*data = (s32)sign_extend32(get_unaligned_be24(outdata),
->> +						   23);
->> +		else
->> +			*data = (s32)sign_extend32(get_unaligned_le24(outdata),
->> +						   23);
-> 
-> Why do you need casting here? sign_extend32() should return signed 
-> type.
-> With this being addressed, you can make them one-liners.
-> 
->> +	}
-> 
-> 	u32 tmp;
-> 	...
-> 	if (byte_for_channel == 1) {
-> 		// this way is done to show the below variant
-> 		tmp = *outdata;
-> 		*data = sign_extend32(tmp, 7);
-> 	} else if (byte_for_channel == 2) {
-> 		if (ch->scan_type.endianness == IIO_BE)
-> 			tmp = get_unaligned_be16(outdata);
-> 		else
-> 			tmp = get_unaligned_le16(outdata);
-> 		*data = sign_extend32(tmp, 15);
-> 	} else if (byte_for_channel == 3) {
-> 		if (ch->scan_type.endianness == IIO_BE)
-> 			tmp = get_unaligned_be24(outdata);
-> 		else
-> 			tmp = get_unaligned_le24(outdata);
-> 		*data = sign_extend32(tmp, 23);
-> 	}
-> 
-> Or even
-> 
-> 	if (byte_for_channel == 1) {
-> 		tmp = *outdata;
-> 	} else if (byte_for_channel == 2) {
-> 		if (ch->scan_type.endianness == IIO_BE)
-> 			tmp = get_unaligned_be16(outdata);
-> 		else
-> 			tmp = get_unaligned_le16(outdata);
-> 	} else if (byte_for_channel == 3) {
-> 		if (ch->scan_type.endianness == IIO_BE)
-> 			tmp = get_unaligned_be24(outdata);
-> 		else
-> 			tmp = get_unaligned_le24(outdata);
-> 	} else {
-> 		...error...
-> 	}
-> 	*data = sign_extend32(tmp, BYTES_TO_BITS(byte_for_channel) - 1);
-Good points, both applied as you suggested in v2. Single u32 tmp 
-captures
-the per-width decode, then one sign_extend32(tmp, 
-BYTES_TO_BITS(byte_for_channel)
-  - 1) at the bottom handles all three widths. Casts are gone. I also 
-turned
-the previously-silent 0/â‰¥4 fall-through into an explicit return 
--EINVAL so
-a malformed channel spec is caught instead of leaving *data uninitialis
 
-Thanks,
-Herman
+
+On 6/9/2026 1:47 PM, Srinivas Kandagatla wrote:
+> 
+> 
+> On 6/8/26 6:53 PM, Mohammad Rafi Shaik wrote:
+>> Add documentation for the qcom,swr-master-ee-val Device Tree property
+>> used by Qualcomm SoundWire masters to describe the execution-environment
+>> value for interrupt routing.
+>>
+>> This property allows platform DTs to specify the EE value used to direct
+> 
+> this sounds wrong, this should never be platform specific, this is SoC
+> specific.
+> 
+
+Agreed, this is SoC-specific and should not be described as 
+platform-specific. I will update the description accordingly.
+
+>> SoundWire master interrupts to the appropriate CPU target.
+> 
+> Why should this come from DT, driver should be able to make a choice
+> based on SoC compatible string.
+> 
+
+Currently, the driver uses a version-specific compatible string rather 
+than a SoC-specific one, so it cannot reliably infer this information. 
+That is why the configuration is being provided through DT.
+
+This is a hardware requirement specific to the Shikra SoC. The DT entry 
+was added to retrieve the EE value required for this configuration.
+
+Thanks & Regards,
+Rafi.
+
+> 
+> 
+> --srini
+> 
+> 
+>>
+>> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+>> ---
+>>   .../devicetree/bindings/soundwire/qcom,soundwire.yaml       | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+>> index 9447a2f37..5b06cc1a5 100644
+>> --- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+>> +++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+>> @@ -215,6 +215,12 @@ properties:
+>>             maximum: 4
+>>           - const: 0xff
+>>   
+>> +  qcom,swr-master-ee-val:
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +    description:
+>> +      Execution-environment value used to route SoundWire master
+>> +      interrupts to CPU0 or CPU1.
+>> +
+>>     label:
+>>       maxItems: 1
+>>   
+> 
+
 
