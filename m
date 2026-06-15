@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-311601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311600-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2YtvEG2GL2p+BwUAu9opvQ
-	(envelope-from <devicetree+bounces-311601-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:58:21 +0200
+	id 6L37OmOGL2p2BwUAu9opvQ
+	(envelope-from <devicetree+bounces-311600-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:58:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF366835A2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:58:20 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DDD1683597
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:58:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LsU4CvZ4;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311601-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311601-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=bv3CPsBY;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311600-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311600-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B29A6300BC9B
+	by sto.lore.kernel.org (Postfix) with ESMTP id B091B30041E6
 	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 04:58:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEA8F3064B2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8B64305698;
 	Mon, 15 Jun 2026 04:58:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D6F27A462
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 04:58:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E42C3033DE
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 04:58:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781499489; cv=none; b=G71EDXgT/+tuYrZ+uJSazlk4q1dQ13KBBWUcBbipwKqyulNCRf6Q+Iw5y4UQFjqPKzcMMRaff3uFnFPHoY5RXAPls/TrZLmP2vzHPYTgmOBKk0usWYR1tHTEMrcSq17AwJmj4VL1czqyfUTZWVLOxGKx+0WgI4tQ0wFW+ViXdeQ=
+	t=1781499489; cv=none; b=OcjD98lo1T5MSF1NjZ4nReh7kC5bkr2u6FqmtxvZ8X5Tb0woGSPdcKyKSetL0aoI9E18atPP79nMMBTT3OZ+VSO87dWyotDpEs/oCzLw2NAWApoxRY+XGujHD3UDAngHqs6uCoAgxOqqSsMsfQwHw4IzGrn/2ktQV5mKP/1wCgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1781499489; c=relaxed/simple;
-	bh=a9j37ZJADBSPSq0TcTg2i782LDj1msI32R9zibYd+eM=;
+	bh=BweCUDg+TZ9HK132M2hBWt8h3uMvlIQP1RsW49On0gQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=h0/HBIUvQVAKbUwZ8OSS9i5tK3rVUGeTi5gDSZb6Uyth8r/tVk5APrfBRHKLZanIKJnFUKME0lkRSZTU0V8pwtGC+46fLUU8k0mT//st2yh7L5n7B36Yzpr5zZtOiRbvZ2bR1tZWXpa7jsVTGetSKuapSs79a9IWgm7BxOxgwPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LsU4CvZ4; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 447761F00A3A;
-	Mon, 15 Jun 2026 04:58:08 +0000 (UTC)
+	 Message-Id; b=Swwk96wPe6Z5sXVLYg6qeqBWWOKW2I4OM3ta16WTZ9fhRJdX4xiuD85WCCShSxDUt5AYrqZA+TmA+snVMt13C34+u7OUmUX6c5Bz/D4RjndCgHOUnHFRYZan6XE3CwfiHhxWJoXnUEN9o81FoZtbTcJkQG1EqOYl0Whan/IgYr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bv3CPsBY; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD8021F000E9;
+	Mon, 15 Jun 2026 04:58:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781499488;
-	bh=OrSfPoCYN8i8wkh/Qn0Vf2CURNKZ4N3kifNzxKt6Yy8=;
+	s=k20260515; t=1781499487;
+	bh=JuknTsB60LJ+rSJ+QMDyrWyHKsDMDwJQy2Ic8IyjL14=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=LsU4CvZ4ZTNUJtEMD3gj/76bqtPzZzQLsrLbxwXnZ4PvuZBgi7EfMy7V2NmVIMJt8
-	 p8LnnRo7NYtgBY/4Q4eCVNqQ5ECjgR4W2fJaoEBhlPWwK6WkjEKFwoOgmAZ/k/O+Ca
-	 E1BtKuPKaco64LodouJZ//qqsFeAVALMuaobvDzrQjZvkVW1em3CiUN1uEo42zyMXU
-	 Yl898ACZr0mpHtlfplLhBI8MpURkQTEla0Wk8j0oE/21VlVSN7C4HXcfSp9jHgNmp1
-	 q+akDcIc9aMzp+VFs1ezN54HNtOUwgosEbB2NsOZ95/u7sFHhbGmr+rN53sj/6t1Sl
-	 iDF8b5bzUqO2w==
+	b=bv3CPsBYCTubCE1lvLil1OsPpJzmwnjzobB24HLwcwJ4KKKgHx25RY4rqTuL0vHDz
+	 s+Q4gNHkBxKT7VQMPxjeRFznSPbh3Ismsd20Btv9f9rdJUqRGeFsM/zQt8iESNw7AG
+	 2YmnJu8aFD+ZCc1XdkGzcN24jY7eQhvDaiJBJlWgUc9LBCM0wImwcWFURROI+1CPEp
+	 SbH/DEPWIufx6heaz47LeAYAJ7TmE7xcHzfJ9Yo9N9j8iT6QyPGaA8uhj/Z8EfbQ6f
+	 +zo5SQC844eqyyipEk+6iTKEdzfo+OLvkoG1ktRpM1xJViEqiuuSe21mYJC5y+jGp1
+	 aRqUFuGV7U4JQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [RFC PATCH net-next 7/7] net: airoha: add SOE XFRM packet
- offload support
+Subject: Re: [RFC PATCH net-next 6/7] net: airoha: add PPE support for SOE
+ flows
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Jihong Min" <hurryman2212@gmail.com>
-Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260614040032.1567994-8-hurryman2212@gmail.com>
-References: <20260614040032.1567994-8-hurryman2212@gmail.com>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260614040032.1567994-7-hurryman2212@gmail.com>
+References: <20260614040032.1567994-7-hurryman2212@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 Date: Mon, 15 Jun 2026 04:58:07 +0000
-Message-Id: <20260615045808.447761F00A3A@smtp.kernel.org>
+Message-Id: <20260615045807.AD8021F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,19 +71,19 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311601-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311600-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:hurryman2212@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:hurryman2212@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -99,353 +99,435 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8DF366835A2
+X-Rspamd-Queue-Id: 7DDD1683597
 
-Thank you for your contribution! Sashiko AI review found 11 potential issue=
-(s) to consider:
-- [Critical] Asynchronous XFRM state GC causes a Use-After-Free of the cond=
-uit network device private data when an SA is offloaded via a DSA user port.
-- [Critical] Forcefully clearing `sa->inflight` during SA teardown prematur=
-ely signals completion, causing packet misrouting and context UAF.
-- [High] DSA proxy scan hardcodes `init_net`, causing `xfrmdev_ops` to leak=
- on interfaces moved to other network namespaces.
-- [High] Hardware-decrypted packets are injected into an Ethernet device vi=
-a `netif_rx()` without a valid MAC header.
-- [High] Out-of-place TX offload loses critical SKB metadata, breaking QoS =
-and netfilter marks.
-- [High] Cleared Security Associations remain active in hardware because `A=
-IROHA_SOE_SA_CMD_VLD` is unconditionally set.
-- [High] The `xdo_dev_state_free` callback performs sleeping operations, ca=
-using a kernel BUG when the XFRM state is released in softirq context.
-- [High] RX offload is unconditionally broken for DSA user ports due to a s=
-trict `x->xso.dev !=3D rx_dev` check and lack of DSA tag parsing.
-- [High] Unverified RX packets have their protocol unconditionally overwrit=
-ten and are irrevocably truncated, corrupting non-IPv4 traffic.
-- [High] TX offload expects `skb->data` to point to the IP header, but it p=
-oints to the MAC header, causing TX offload failure.
-- [Medium] Inefficient DSA proxy scanning causes redundant O(N^2) netdev fe=
-ature updates system-wide.
+Thank you for your contribution! Sashiko AI review found 8 potential issue(=
+s) to consider:
+
+New issues:
+- [Critical] Type confusion from blindly casting `f->cookie` allows unprivi=
+leged users to crash the kernel via TC flower.
+- [High] The driver destructively overwrites `skb->mark` with private hardw=
+are metadata, breaking user-defined firewall marks.
+- [High] Lack of IPv4 fragment validation in `airoha_ppe_soe_fill_inner_ipv=
+4_data` leads to garbage L4 port extraction.
+- [High] Lockless updates of the `soe_meta` array cause data races and torn=
+ reads, corrupting IPsec state.
+- [High] Overlapping identical memory pointers are passed to `memcpy`, trig=
+gering undefined behavior.
+- [High] Hardware polling on 16K+ table entries inside a spinlock triggers =
+CPU soft lockups.
+- [Medium] Massive contiguous memory allocations via `devm_kzalloc` risk pe=
+rsistent driver initialization failures.
+
+Pre-existing issues:
+- [High] A shadowed error variable in `airoha_ppe_flush_entries` silently m=
+asks hardware initialization failures.
 --
 
-commit c8afd29ed4385ffd75d9f77b7cea01b7c16511f3
+commit 00c38592fc258c1ad98cdbaaadb9925cf653ba43
 Author: Jihong Min <hurryman2212@gmail.com>
-Subject: net: airoha: add SOE XFRM packet offload support
 
-Add the EN7581 Secure Offload Engine provider. The provider programs ESP
-SAs, exposes NETIF_F_HW_ESP through xfrmdev_ops, submits encrypt and
-decrypt packets through the QDMA SOE path, and handles SOE completion
-delivery.
+net: airoha: add PPE support for SOE flows
+   =20
+Add PPE metadata handling for SOE flows so decrypted packets can carry
+their original FOE/SA context until the normal egress path is known, and
+so XFRM flowtable entries can be programmed with SOE SA and hop
+information.
 
-> diff --git a/drivers/net/ethernet/airoha/airoha_soe.c b/drivers/net/ether=
-net/airoha/airoha_soe.c
-> new file mode 100644
-> index 0000000000000..3a240ed44d7fc
-> --- /dev/null
-> +++ b/drivers/net/ethernet/airoha/airoha_soe.c
-[ ... ]
-> +static int airoha_soe_program_sa_locked(struct airoha_soe *soe,
-> +					unsigned int index,
-> +					const struct airoha_soe_sa_cfg *cfg)
+> diff --git a/drivers/net/ethernet/airoha/airoha_ppe.c b/drivers/net/ether=
+net/airoha/airoha_ppe.c
+> index 91bcc55a6ac67..faa5f04d4c7b3 100644
+> --- a/drivers/net/ethernet/airoha/airoha_ppe.c
+> +++ b/drivers/net/ethernet/airoha/airoha_ppe.c
+> @@ -578,6 +604,57 @@ static int airoha_ppe_foe_entry_set_ipv6_tuple(struc=
+t airoha_foe_entry *hwe,
+> +static int airoha_ppe_soe_fill_inner_ipv4_data(struct sk_buff *skb,
+> +					       struct airoha_flow_data *data,
+> +					       int *type, int *l4proto)
 > +{
-> +	void __iomem *base =3D soe->base;
+> +	unsigned int ip_offset =3D ETH_HLEN;
+> +	union {
+> +		struct tcphdr tcp;
+> +		struct udphdr udp;
+> +	} ports;
+> +	struct iphdr iph_buf, *iph;
+> +	unsigned int l4_offset;
+> +	struct udphdr *udp;
+> +	struct tcphdr *tcp;
 > +
-> +	writel(cfg->cmd | AIROHA_SOE_SA_CMD_VLD, base + AIROHA_SOE_SA_CMD);
-
-[Severity: High]
-Does the unconditional use of AIROHA_SOE_SA_CMD_VLD defeat the teardown
-zeroing?
-
-When an XFRM state is destroyed, airoha_soe_clear_sa_locked() attempts to
-invalidate the slot by passing a zero-initialized airoha_soe_sa_cfg, but
-this unconditionally applies the VLD bit before writing to the hardware
-command register.
-
-Could this leave the hardware SA slot active with an SPI of 0, allowing a
-malicious packet carrying SPI 0 to match this slot and bypass security
-checks?
-
-[ ... ]
-> +static void airoha_soe_abort_sa(struct airoha_soe_sa *sa)
-> +{
-> +	LIST_HEAD(rx_queue);
-> +	LIST_HEAD(tx_queue);
-> +
-> +	if (!sa)
-> +		return;
-> +
-> +	spin_lock_bh(&sa->lock);
-> +	sa->dead =3D true;
-> +	airoha_soe_forget_rx_ctx_list(sa);
-> +	list_splice_init(&sa->tx_queue, &tx_queue);
-> +	list_splice_init(&sa->rx_queue, &rx_queue);
-> +	sa->inflight =3D 0;
-> +	complete(&sa->idle);
-> +	spin_unlock_bh(&sa->lock);
-
-[Severity: Critical]
-Does forcefully zeroing sa->inflight and signaling sa->idle destroy the
-synchronization accounting while packets are still in hardware?
-
-During XFRM state deletion, airoha_soe_abort_sa() breaks the synchronization
-in airoha_soe_free_sa(), causing the wait timeout to return instantly. The
-SA index is then reallocated to a new XFRM state while old packets are
-still in flight.
-
-When the hardware delivers the completion, airoha_soe_rx_skb() pops a
-tracking context from the new SA's queue based solely on the reused index,
-which applies incorrect XFRM states and corrupts context accounting.
-
-[ ... ]
-> +static void airoha_soe_free_sa(struct airoha_soe_sa *sa)
-> +{
-> +	LIST_HEAD(rx_queue);
-> +	LIST_HEAD(tx_queue);
-> +	struct airoha_soe *soe;
-> +
-> +	if (!sa)
-> +		return;
-> +
-> +	soe =3D sa->soe;
-> +	airoha_soe_mark_sa_dead(sa);
-> +	if (!wait_for_completion_timeout(&sa->idle, AIROHA_SOE_SA_FREE_TIMEOUT))
-> +		dev_warn(soe->dev,
-
-[Severity: High]
-Is it safe to perform sleeping operations during XFRM state destruction?
-
-The xdo_dev_state_free callback is executed synchronously from
-__xfrm_state_destroy, which can be invoked in atomic or softirq context
-when the last reference is dropped. This often happens when a packet is
-dropped in the RX path and the network stack releases its routing entry.
-
-Since airoha_soe_free_sa() waits for a completion and calls
-synchronize_rcu(), executing these in softirq context would cause a
-scheduling while atomic BUG.
-
-[ ... ]
-> +static int airoha_soe_prepare_ip_headers(struct sk_buff *skb)
-> +{
-> +	unsigned int hdr_len;
-> +
-> +	if (!pskb_may_pull(skb, 1))
+> +	if (skb_headlen(skb) < ETH_HLEN)
 > +		return -EINVAL;
 > +
-> +	switch (skb->data[0] & 0xf0) {
-> +	case 0x40:
-> +		hdr_len =3D sizeof(struct iphdr);
+> +	memcpy(&data->eth, skb->data, ETH_HLEN);
+> +	if (data->eth.h_proto !=3D htons(ETH_P_IP))
+> +		return -EAFNOSUPPORT;
+> +
+> +	iph =3D skb_header_pointer(skb, ip_offset, sizeof(iph_buf), &iph_buf);
+> +	if (!iph || iph->ihl < 5 || iph->version !=3D 4)
+> +		return -EINVAL;
+> +
+> +	l4_offset =3D ip_offset + iph->ihl * 4;
 
 [Severity: High]
-Will this incorrectly read the first byte of the MAC header instead of the
-IP version field?
+Does this code handle IPv4 fragments safely?
 
-The airoha_soe_xmit() function serves as the xdo_dev_packet_xmit callback,
-which is invoked by the core network stack immediately before handing the
-packet to the driver's transmit routine. At this stage, the MAC header has
-been added and the data pointer points to the Ethernet MAC header.
+If iph->frag_off indicates a trailing fragment, the L4 header is not presen=
+t.
 
-Reading the first byte checks the destination MAC address instead, causing
-offload to randomly fail and drop packets unless the destination MAC
-happens to start with 0x4 or 0x6.
+Because there is no ip_is_fragment(iph) check before calculating l4_offset,
+the function will read arbitrary payload data, misinterpret it as ports,
+and program incorrect tuples into the hardware offload tables, leading to
+corrupted flows and dropped fragments.
 
 [ ... ]
-> +static bool airoha_soe_rx_parse_ipv4(struct sk_buff *skb,
-> +				     struct airoha_soe_rx_info *info)
-> +{
-[ ... ]
-> +	if (skb->protocol !=3D htons(ETH_P_IP)) {
-> +		if (!pskb_may_pull(skb, 1) || (skb->data[0] >> 4) !=3D 4)
-> +			return false;
+
+> @@ -868,16 +1096,129 @@ airoha_ppe_foe_commit_subflow_entry(struct airoha=
+_ppe *ppe,
+> +static void airoha_ppe_soe_meta_store(struct airoha_ppe_soe_meta *meta,
+> +				      u32 key_hash, u16 foe_hash, u8 sa_index,
+> +				      u8 hop)
+>  {
+> +	u8 seen =3D 1;
 > +
-> +		skb->protocol =3D htons(ETH_P_IP);
-> +	}
-[ ... ]
-> +bool airoha_soe_rx_plain_skb(struct airoha_gdm_dev *dev, struct sk_buff =
+> +	if (READ_ONCE(meta->valid) &&
+> +	    READ_ONCE(meta->key_hash) =3D=3D key_hash &&
+> +	    READ_ONCE(meta->foe_hash) =3D=3D foe_hash &&
+> +	    READ_ONCE(meta->sa_index) =3D=3D sa_index &&
+> +	    READ_ONCE(meta->hop) =3D=3D hop &&
+> +	    time_before_eq(jiffies, READ_ONCE(meta->expires)))
+> +		seen =3D min_t(u8, READ_ONCE(meta->seen) + 1, U8_MAX);
+> +
+> +	WRITE_ONCE(meta->key_hash, key_hash);
+> +	WRITE_ONCE(meta->foe_hash, foe_hash);
+> +	WRITE_ONCE(meta->sa_index, sa_index);
+> +	WRITE_ONCE(meta->hop, hop);
+> +	WRITE_ONCE(meta->seen, seen);
+> +	WRITE_ONCE(meta->expires,
+> +		   jiffies + msecs_to_jiffies(AIROHA_PPE_SOE_META_TIMEOUT_MS));
+> +	WRITE_ONCE(meta->valid, 1);
+
+[Severity: High]
+Can these lockless updates cause torn reads or data races?
+
+Because there are no CPU memory barriers (like smp_store_release) and no
+locks to prevent concurrent hash bucket collisions, writes are performed
+sequentially.
+
+Does this mean valid =3D 1 could be reordered before the data is visible to
+other CPUs?
+
+> +}
+> +
+> +void airoha_ppe_soe_mark_skb(struct airoha_ppe_dev *dev, struct sk_buff =
 *skb,
-> +			     struct net_device *rx_dev, u16 foe_hash,
-> +			     u32 foe_reason, bool foe_valid)
+> +			     u16 hash, u8 sa_index, u8 hop)
 > +{
-[ ... ]
-> +	skb_reset_network_header(skb);
-> +	if (!airoha_soe_rx_parse_ipv4(skb, &info))
-> +		return false;
+> +	struct airoha_ppe *ppe;
+> +	u32 ppe_hash_mask;
 > +
-> +	if (skb->len !=3D info.packet_len && pskb_trim(skb, info.packet_len))
-> +		return false;
-
-[Severity: High]
-Can this corrupt non-IPv4 traffic by irrevocably truncating the packet?
-
-In airoha_soe_rx_plain_skb(), the protocol is overwritten and the packet is
-truncated via pskb_trim() before verifying that the packet belongs to an
-offloaded ESP SA.
-
-If a non-IPv4 packet has 0x4 in the upper nibble of its first byte,
-airoha_soe_rx_parse_ipv4() treats it as IPv4, modifies the protocol, and
-truncates it. If xfrm_input_state_lookup() later fails, the corrupted
-packet is returned to the network stack, leading to stack confusion.
-
-[ ... ]
-> +	daddr.a4 =3D ip_hdr(skb)->daddr;
-> +	x =3D xfrm_input_state_lookup(dev_net(rx_dev), skb->mark, &daddr,
-> +				    info.spi, IPPROTO_ESP, AF_INET);
-> +	if (!x)
-> +		return false;
-> +
-> +	if (x->xso.dir !=3D XFRM_DEV_OFFLOAD_IN)
-> +		goto put_state;
-> +	if (x->xso.type !=3D XFRM_DEV_OFFLOAD_PACKET)
-> +		goto put_state;
-> +	if (x->xso.dev !=3D rx_dev)
-> +		goto put_state;
-
-[Severity: High]
-Will this strict check reject offloaded ESP packets for DSA user ports?
-
-For DSA SAs, the offload device is the DSA user port. However, inbound ESP
-packets are intercepted at the physical conduit device before DSA unpacks
-the tags, meaning the received device is the conduit. The packet is ignored
-for hardware decrypt offload because the conduit does not match the user
-port.
-
-Furthermore, intercepting right after eth_type_trans() means the data
-points to the DSA tag rather than the IP header, which would cause IPv4
-parsing to fail.
-
-[ ... ]
-> +static bool airoha_soe_complete_out(struct sk_buff *skb,
-> +				    struct airoha_soe_ctx *ctx)
-> +{
-> +	struct dst_entry *dst =3D ctx->dst;
-> +	struct net *net;
-> +	int err;
-> +
-> +	ctx->dst =3D NULL;
-[ ... ]
-> +	skb->protocol =3D htons(ETH_P_IP);
-> +	skb_dst_drop(skb);
-> +	skb_dst_set(skb, dst);
-> +	skb->ignore_df =3D 1;
-> +	net =3D dev_net(dst->dev);
-> +	kfree(ctx);
-> +	dst_output(net, NULL, skb);
-
-[Severity: High]
-Does this reinjection drop critical SKB metadata?
-
-It looks like only the routing entry is restored before calling
-dst_output(), failing to carry over metadata like the packet mark,
-priority, socket association, and VLAN TCI from the original SKB.
-
-Could this cause the transmitted outer IPsec packet to lose its QoS
-classifications and socket accounting contexts?
-
-[ ... ]
-> +static bool airoha_soe_complete_in(struct sk_buff *skb,
-> +				   struct airoha_soe_ctx *ctx)
-> +{
-[ ... ]
-> +	skb->dev =3D rx_dev;
-> +	skb->mark =3D ctx->rx.mark;
-> +	skb->ip_summed =3D CHECKSUM_NONE;
-> +	skb_reset_mac_header(skb);
-> +	skb_reset_mac_len(skb);
-> +	skb->pkt_type =3D PACKET_HOST;
-> +	skb->encapsulation =3D 0;
-> +	skb_dst_drop(skb);
-[ ... ]
-> +	kfree(ctx);
-> +	netif_rx(skb);
-
-[Severity: High]
-Will injecting a MAC-less L3 packet via netif_rx() cause issues in the
-network stack?
-
-The function strips the dummy L2 header but sets the MAC header to point
-directly to the IP header. Since the network stack expects packets arriving
-on physical Ethernet devices to possess a valid MAC header, reading the IP
-header as an Ethernet header breaks protocol semantics.
-
-Could this poison the bridge FDB with garbage MAC addresses derived from
-IP fields?
-
-[ ... ]
-> +static int airoha_soe_xfrm_state_add(struct net_device *dev,
-> +				     struct xfrm_state *x,
-> +				     struct netlink_ext_ack *extack)
-> +{
-[ ... ]
-> +	state->dev =3D gdm_dev;
-> +	state->soe =3D soe;
-
-[Severity: Critical]
-Could this lead to a Use-After-Free of the conduit network device private
-data?
-
-When an XFRM state is added to a DSA user port, the private data is
-assigned a pointer to the conduit device without taking a reference on the
-conduit netdev via dev_hold().
-
-If the conduit device is unregistered, the DSA user ports are destroyed,
-triggering an asynchronous XFRM state garbage collection. The background GC
-could then dereference the dangling state pointer in
-airoha_soe_xfrm_state_free() if the conduit device was fully freed.
-
-[ ... ]
-> +static void airoha_soe_dsa_proxy_enable(struct net_device *dev)
-> +{
-> +	struct net_device *conduit;
-> +
-> +	conduit =3D airoha_soe_dsa_conduit_get(dev);
-> +	if (!conduit)
+> +	if (!dev || !skb)
 > +		return;
 > +
-> +	if (dev->xfrmdev_ops && dev->xfrmdev_ops !=3D &airoha_soe_dsa_xfrmdev_o=
-ps)
-> +		goto out;
-
-[Severity: Medium]
-Does this condition fail to exit early if the ops are already set?
-
-Since airoha_soe_netdev_event() calls airoha_soe_dsa_proxy_scan(true) on
-every NETDEV_REGISTER event, the lack of an early return when the ops
-pointer is already equal to airoha_soe_dsa_xfrmdev_ops causes it to proceed
-and call netdev_update_features() redundantly.
-
-This means adding any unrelated interface to the system triggers feature
-recalculations on all existing DSA ports.
-
-[ ... ]
-> +static void airoha_soe_dsa_proxy_scan(bool enable)
-> +{
-> +	struct net_device *dev;
+> +	ppe =3D dev->priv;
+> +	if (!ppe || !ppe->soe_meta)
+> +		return;
 > +
-> +	for_each_netdev(&init_net, dev) {
-> +		if (enable)
-> +			airoha_soe_dsa_proxy_enable(dev);
-> +		else
-> +			airoha_soe_dsa_proxy_clear(dev);
-> +	}
-> +}
+> +	ppe_hash_mask =3D airoha_ppe_get_total_num_entries(ppe) - 1;
+> +	if (hash > ppe_hash_mask)
+> +		return;
+> +
+> +	/* SOE decrypt completion is CPU-visible before normal routing has
+> +	 * selected the plaintext egress netdev. Keep the original encrypted FOE
+> +	 * hash and SA hop briefly on the skb so airoha_dev_xmit() can finish
+> +	 * the PPE entry once the final egress descriptor is known.
+> +	 */
+> +	airoha_ppe_soe_meta_store(&ppe->soe_meta[hash], hash, hash, sa_index,
+> +				  hop);
+> +	ppe->foe_check_time[hash] =3D 0;
+> +
+> +	skb->mark &=3D ~(AIROHA_PPE_SOE_MARK_MAGIC_MASK |
+> +		       AIROHA_PPE_SOE_MARK_HASH_MASK);
+> +	skb->mark |=3D AIROHA_PPE_SOE_MARK_MAGIC |
+> +		     FIELD_PREP(AIROHA_PPE_SOE_MARK_HASH_MASK, hash);
 
 [Severity: High]
-Is it intentional to restrict this loop to init_net?
+Does this destructively overwrite the user-space visible skb->mark?
 
-If a DSA user interface is moved to a different network namespace, it
-appears this loop will permanently skip it. During module unload,
-airoha_soe_deinit() calls this scan to clear the hook pointers, but failing
-to reach interfaces outside init_net leaves dangling pointers to
-airoha_soe_dsa_xfrmdev_ops.
+Network drivers are forbidden from repurposing the global UAPI skb->mark
+field for internal cross-stack state tracking.
 
-Could this result in a Use-After-Free and kernel panic upon a subsequent
-network namespace cleanup or XFRM operation?
+Could this destroy any existing fwmark applied by userspace
+(via iptables, nftables, or tc), breaking policy routing and firewall rules?
+
+> +}
+> +
+> +bool airoha_ppe_soe_skb_marked(struct sk_buff *skb)
+> +{
+> +	return skb && ((skb->mark & AIROHA_PPE_SOE_MARK_MAGIC_MASK) =3D=3D
+> +		       AIROHA_PPE_SOE_MARK_MAGIC);
+> +}
+> +
+> +void airoha_ppe_soe_xmit_skb(struct airoha_ppe_dev *dev, struct sk_buff =
+*skb,
+> +			     struct net_device *netdev)
+> +{
+> +	struct airoha_foe_entry entry, tmpl, *hwe;
+> +	struct airoha_flow_data data =3D {};
+> +	struct airoha_ppe_soe_meta *meta;
+> +	u32 ppe_hash_mask, key_hash;
+> +	struct airoha_gdm_dev *gdm;
+> +	struct airoha_ppe *ppe;
+> +	unsigned long expires;
+> +	u16 hash;
+> +	int err, l4proto, type;
+> +	u8 sa_index, hop;
+> +	u8 seen;
+> +
+> +	if (!dev || !skb || !netdev)
+> +		return;
+> +
+> +	if ((skb->mark & AIROHA_PPE_SOE_MARK_MAGIC_MASK) !=3D
+> +	    AIROHA_PPE_SOE_MARK_MAGIC)
+> +		return;
+> +
+> +	ppe =3D dev->priv;
+> +	if (!ppe || !ppe->soe_meta)
+> +		goto clear_mark;
+> +
+> +	ppe_hash_mask =3D airoha_ppe_get_total_num_entries(ppe) - 1;
+> +	key_hash =3D FIELD_GET(AIROHA_PPE_SOE_MARK_HASH_MASK, skb->mark);
+> +	if (key_hash > ppe_hash_mask)
+> +		goto clear_mark;
+> +
+> +	meta =3D &ppe->soe_meta[key_hash];
+> +	if (!READ_ONCE(meta->valid))
+> +		goto clear_mark;
+
+[Severity: High]
+Are these reads gated by valid without acquire barriers?
+
+Without smp_load_acquire, a reading CPU can observe valid =3D=3D 1 while re=
+ading
+torn, mixed data from two racing packets. This programs the hardware with an
+incorrect SA index, breaking IPsec tunnel isolation.
+
+[ ... ]
+
+> +clear_mark:
+> +	skb->mark &=3D ~(AIROHA_PPE_SOE_MARK_MAGIC_MASK |
+> +		       AIROHA_PPE_SOE_MARK_HASH_MASK);
+
+[Severity: High]
+Is the hijacked mark consumed and zeroed out on the transmit path here?
+This finalizes the loss of the original fwmark.
+
+> +}
+> +
+> +void airoha_ppe_soe_flush_sa(struct airoha_ppe *ppe, u8 sa_index)
+> +{
+> +	u32 num_entries, hash;
+> +
+> +	if (!ppe)
+> +		return;
+> +
+> +	num_entries =3D airoha_ppe_get_total_num_entries(ppe);
+> +
+> +	spin_lock_bh(&ppe_lock);
+
+[Severity: High]
+Is it safe to hold this spinlock continuously across a massive loop that
+interacts with hardware?
+
+When flushing IPsec state, this loops over every PPE table entry (up to
+24,576 entries) while continuously holding a single spin_lock_bh(&ppe_lock).
+
+During the iteration of SRAM entries, airoha_ppe_foe_get_entry_locked()
+issues MMIO reads via read_poll_timeout_atomic(), which can delay up to
+100us per entry.
+
+Multiplying this delay by thousands of loop iterations can block the CPU for
+tens to hundreds of milliseconds. Can this trigger watchdog soft lockup
+warnings and drop unrelated network traffic?
+
+> +	for (hash =3D 0; hash < num_entries; hash++) {
+> +		struct airoha_foe_entry *hwe;
+> +		u32 state, type;
+> +
+> +		hwe =3D airoha_ppe_foe_get_entry_locked(ppe, hash);
+> +		if (!hwe)
+> +			continue;
+> +
+> +		state =3D FIELD_GET(AIROHA_FOE_IB1_BIND_STATE, hwe->ib1);
+> +		if (state !=3D AIROHA_FOE_STATE_BIND)
+> +			continue;
+> +
+> +		type =3D FIELD_GET(AIROHA_FOE_IB1_BIND_PACKET_TYPE, hwe->ib1);
+> +		if (type !=3D PPE_PKT_TYPE_IPV4_HNAPT &&
+> +		    type !=3D PPE_PKT_TYPE_IPV4_ROUTE)
+> +			continue;
+> +
+> +		if (!(hwe->ipv4.data & AIROHA_FOE_TUNNEL))
+> +			continue;
+> +
+> +		if (FIELD_GET(AIROHA_FOE_ACTDP, hwe->ipv4.data) !=3D sa_index)
+> +			continue;
+> +
+> +		/* NAT-T data and IKE control both use UDP/4500. A stale SOE
+> +		 * bound entry can otherwise keep sending later IKE_AUTH packets
+> +		 * to the SOE path after the SA has been deleted.
+> +		 */
+> +		hwe->ib1 &=3D ~AIROHA_FOE_IB1_BIND_STATE;
+> +		hwe->ib1 |=3D FIELD_PREP(AIROHA_FOE_IB1_BIND_STATE,
+> +				       AIROHA_FOE_STATE_INVALID);
+> +		airoha_ppe_foe_commit_entry(ppe, hwe, hash, false);
+
+[Severity: High]
+Does this pass overlapping identical memory pointers to memcpy(), triggering
+undefined behavior?
+
+The pointer returned by airoha_ppe_foe_get_entry_locked() points directly to
+the ppe->foe array.
+
+This exact pointer is then passed as hwe into airoha_ppe_foe_commit_entry(),
+which recalculates the destination pointing to the exact same address:
+
+    struct airoha_foe_entry *hwe =3D ppe->foe + hash * sizeof(*hwe);
+    ...
+    memcpy(&hwe->d, &e->d, sizeof(*hwe) - sizeof(hwe->ib1));
+
+The C standard forbids overlapping pointers in memcpy(), which can trigger
+fortify source panics or silent data corruption.
+
+> +	}
+> +	spin_unlock_bh(&ppe_lock);
+> +}
+
+[ ... ]
+
+> @@ -1057,6 +1551,7 @@ static int airoha_ppe_entry_idle_time(struct airoha=
+_ppe *ppe,
+>  static int airoha_ppe_flow_offload_replace(struct airoha_eth *eth,
+>  					   struct flow_cls_offload *f)
+>  {
+> +	const struct flow_offload_tuple *tuple =3D (const void *)f->cookie;
+
+[Severity: Critical]
+Could this lead to a kernel panic from a type confusion if the rule was
+added via TC flower?
+
+The driver accepts generic FLOW_CLS_REPLACE commands, which can come from t=
+he
+Netfilter flowtable or TC flower. This blindly casts f->cookie to
+struct flow_offload_tuple *.
+
+However, if the rule was added via TC flower, cookie actually points to a
+struct cls_fl_filter.
+
+The driver then passes this invalid pointer to
+airoha_ppe_foe_entry_set_soe_info(), which reads a garbage xmit_type.
+
+If it coincidentally matches FLOW_OFFLOAD_XMIT_XFRM, the code calls
+airoha_soe_xfrm_ppe_info(tuple->dst_cache), dereferencing a random garbage
+pointer. This allows any user capable of configuring TC flower rules to
+trigger an oops.
+
+>  	struct flow_rule *rule =3D flow_cls_offload_flow_rule(f);
+>  	struct airoha_flow_table_entry *e;
+
+[ ... ]
+
+> @@ -1350,16 +1851,26 @@ static int airoha_ppe_flow_offload_cmd(struct air=
+oha_eth *eth,
+>  	return -EOPNOTSUPP;
+>  }
+> =20
+> -static int airoha_ppe_flush_sram_entries(struct airoha_ppe *ppe)
+> +static int airoha_ppe_flush_entries(struct airoha_ppe *ppe)
+>  {
+> +	u32 ppe_num_entries =3D airoha_ppe_get_total_num_entries(ppe);
+>  	u32 sram_num_entries =3D airoha_ppe_get_total_sram_num_entries(ppe);
+>  	struct airoha_foe_entry *hwe =3D ppe->foe;
+>  	int i, err =3D 0;
+> =20
+> +	memset(hwe, 0, ppe_num_entries * sizeof(*hwe));
+> +	if (ppe->foe_stats) {
+> +		u32 ppe_num_stats_entries =3D
+> +			airoha_ppe_get_total_num_stats_entries(ppe);
+> +
+> +		memset(ppe->foe_stats, 0,
+> +		       ppe_num_stats_entries * sizeof(*ppe->foe_stats));
+> +	}
+> +	dma_wmb();
+> +
+>  	for (i =3D 0; i < sram_num_entries; i++) {
+>  		int err;
+> =20
+> -		memset(&hwe[i], 0, sizeof(*hwe));
+>  		err =3D airoha_ppe_foe_commit_sram_entry(ppe, i);
+>  		if (err)
+>  			break;
+>  	}
+> =20
+>  	return err;
+
+[Severity: High]
+This is a pre-existing issue, but does this shadowed error variable silently
+mask hardware initialization failures?
+
+Inside this initialization loop, a block-scoped int err; shadows the
+function-scoped err =3D 0;.
+
+If airoha_ppe_foe_commit_sram_entry() fails (e.g., due to a hardware poll
+timeout), the loop breaks, but the function returns the outer err which
+remains 0.
+
+Does this silently ignore hardware initialization errors, leaving the PPE
+table in an inconsistent state?
+
+>  }
+
+[ ... ]
+
+> @@ -1601,12 +2143,20 @@ int airoha_ppe_init(struct airoha_eth *eth)
+>  			return -ENOMEM;
+>  	}
+> =20
+> -	ppe->foe_check_time =3D devm_kzalloc(eth->dev, ppe_num_entries,
+> -					   GFP_KERNEL);
+> +	ppe->foe_check_time =3D
+> +		devm_kzalloc(eth->dev,
+> +			     ppe_num_entries * sizeof(*ppe->foe_check_time),
+> +			     GFP_KERNEL);
+>  	if (!ppe->foe_check_time)
+>  		return -ENOMEM;
+> =20
+> -	err =3D airoha_ppe_flush_sram_entries(ppe);
+> +	ppe->soe_meta =3D devm_kzalloc(eth->dev,
+> +				     ppe_num_entries * sizeof(*ppe->soe_meta),
+> +				     GFP_KERNEL);
+
+[Severity: Medium]
+Could this fail on systems with fragmented memory or high uptime?
+
+Allocating nearly 600 KB (an order-8 contiguous allocation) without a
+fallback is extremely prone to failure and will prevent the network interfa=
+ce
+from probing. Could this use devm_kvzalloc() to allow virtual memory
+fallbacks?
+
+> +	if (!ppe->soe_meta)
+> +		return -ENOMEM;
+> +
+> +	err =3D airoha_ppe_flush_entries(ppe);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260614040032.1567=
-994-1-hurryman2212@gmail.com?part=3D7
+994-1-hurryman2212@gmail.com?part=3D6
 
