@@ -1,599 +1,221 @@
-Return-Path: <devicetree+bounces-312008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312010-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BN/pFAoMMGrsMQUAu9opvQ
-	(envelope-from <devicetree+bounces-312008-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:28:26 +0200
+	id mgsgJacMMGoUMgUAu9opvQ
+	(envelope-from <devicetree+bounces-312010-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:31:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5210687299
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:28:25 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D700568730C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:31:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=TX67rxEl;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312008-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312008-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ivOvFk7v;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312010-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312010-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D2A4930C2ADE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:26:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7CBEF312030F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65A13FB060;
-	Mon, 15 Jun 2026 14:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98383F822D;
+	Mon, 15 Jun 2026 14:27:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5569F3FAE0D
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 14:26:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B5D83F7875
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 14:27:07 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781533569; cv=none; b=Est/MD0oBcwHMIK8SAGYWco++OKJgBBRWCRyC+do1lPc0HCmnrVY7CGQUya05vmig2rUbO9d7wQL5+TIJWMQpt+PyixdZEC9zHzDCsTf27QJ5TLPzcQ2gIuhHpoxvlAb25fhdAgDJ1zmEYbQuYpMfYnnhNLQab6NTnWt0vZJNu0=
+	t=1781533628; cv=none; b=uQmncb52wEL4nNawOqBnNm5xZQJKvMD6gThSesND3AkBoG8yAlq1X5SV9N/ZNXZFDDAh/oKSQV67Zj6OmxrlpHPhGfVKTEsQbNA+DYKxk8S5C8Edr7O7WUJj2crMCAaVWWm9JafaRIEE8zlQqVC+rHRhPTwCu5x1Sc1yJMqAgWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781533569; c=relaxed/simple;
-	bh=+qmr7awX/WAh5mOu5BqSNeFr20QzYg81GMhTGuJcDL0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZGbV58qecMkv+SPacbrh+Hf55Tt+D7fyZd57kibsN4++R5ITWOEkxFsdvARBKcuPPMX/4S168etiwFkZKB0DiW0eaBVS8A/sFLrSyEVr//AOewPPNYwIT6hRM6rDADYMxXulL6nc8E07gYwDwvZKnyqQjNCuZWVrO03lSsS2s1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TX67rxEl; arc=none smtp.client-ip=209.85.128.47
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-490b12270b3so21311805e9.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 07:26:05 -0700 (PDT)
+	s=arc-20240116; t=1781533628; c=relaxed/simple;
+	bh=j7+uubWqjHwfd1F7rjwIRnsarTP5b9XzajE97ofcr2w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i7UjPrF93OZP68WSU1lc+U/kaxpI+q9EJjRhecinyor74z9vH2jB0HELxYeMa88WmjxpOYgYdTlTSoh551XvcdFW5gvOIzx+X0hO7qEmv82Z9k6BWRebqr2W0I8llCUF/QpMmM3HRZOvM6KWI6NOtoC4wOrf0432qJKZGjNdG2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ivOvFk7v; arc=none smtp.client-ip=209.85.221.49
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-460662fcb4eso2291018f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 07:27:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781533563; x=1782138363; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u+sl9BErH+q28328n6lO44FfMgT3hZirp2Ce6Af1PK8=;
-        b=TX67rxElSCRb1phKFPyFdmF9G6zxII/KGPUOC+I6aGeYM7FujcbBt8s5LJ3PtdN4St
-         SQNiyLruuXDeO2aZ1Dgrfcl98HHtU4LDwdbauRQYMkIc7GjjHaVW1d6uh/tjcgopoLui
-         xDPMW1XXLBsLkW3fsxu4xqgW2SPNQqkiuvZ/GnH6iAZfCWqTpCkGoArEX0AQ/72l2ofC
-         IDFVvqZ1FElBI4pE88GUBGUI1rfaoamIFKdnJKhiYYiWryH5r97BkbR/MW0qDJGeOzh+
-         /RqHdJoVNy/Hkq7xERK4RfRcjGQqFHFNoEQXdfXE62hBt4uuqrb01ImOTqYtd1LgAQS9
-         qt3g==
+        d=gmail.com; s=20251104; t=1781533626; x=1782138426; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=m4TXTtdFs/UmLl+HYnmyNiKISILvfZx2SzEmdXfYHcQ=;
+        b=ivOvFk7vOkZBbOFiKdbZF59WTRWUON7NhJvMeWXVYQYGBAojB8h32ET3YxgwrORAIE
+         jMcOp2cBOqsWe+R7alJErluOjvefaane1lGSLQb1t+J7hdRXJgKi297mhQs/nT75OlZx
+         7Dg3cjzYHgoGWBeGrHwtfcXVFzWVzE2bhVeHQ0NUWcLNPAgjYN69OKMDwmMvIcWqy8MD
+         wpoXZho3dWV9jSAYxi7TbujpSj3l8Qr4/ObmkKcf2fubdiwhBK4eMJawiEqRhBv8YeHA
+         mdIMfhLZXMvSR9z/Nfqr0ILomuuIzmnIfWnHPqpB/oh3yf+3yL8b7h7R8hK86a1u9YX9
+         HkZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781533563; x=1782138363;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=u+sl9BErH+q28328n6lO44FfMgT3hZirp2Ce6Af1PK8=;
-        b=qwBQRBV6alJCzPHY8Vc2M4ECJOVAvkO/VIUAiuvRnWWte+IQ81BE4WuFjFTmfVbOWg
-         sLGQsx2UNKEtayj+eg5FMb/I1dOZ87+iKjo60xdGmDPewSR5PhUuoRPUpDDeGP2cAHz1
-         kvUHijjO7NkmnMtcNTP4uYeMNQE8TkCmnK11OX5EHe2oG4OaXRUfCNU57HwRmOwE4AHk
-         dvmkPoJOIT3IAIsE2zpH2jCJ36bWLOFaOvfIrN5xeq+lNH66ba92K0LMK7L6id9oh33z
-         AJxfbz/S0K58SydCu7lfpXkYW/LJANt0wHkiVQriTHZQYcUr3CjdwnqjXSKMcgjK48H7
-         k5ZQ==
-X-Forwarded-Encrypted: i=1; AFNElJ83moQBuhKStPWA6rroxA/ETsvq7FSowxp/pvpgpVURjGW/Rr8pR/28syvMdx9NkT3QlllCB/H6X/MZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVRuyePtqIidNXZ3Kdmgu5h5SHLOH2GQ2+o+QyVVvYDxFLbJVy
-	scSKk9zQ/uumfFOKC0EJHE2TDNjMEDDpPNJXGzXFeKmdi5rBKDDjeVMZ
-X-Gm-Gg: Acq92OFne/DunIOUESzb1i9l3bu3PuSTiXL3OdqSEJAXdOX4oe7n48W+kDKcwWskQtj
-	tTxAMHEaSB8yjs5m8xMETmMCUCiVqPeMsbubMp/d7XaR85Z/CUbIuSiHVRhO35fQ8MIAxrTK0Sc
-	Dg+CaqJ6rrc5b+CuRRa7r6EV3gAH5sllb8mrx3ahpfpgNbGAZStE9L3aQf9AAaZ7xi8t28nnvod
-	6ZOZmH+UrDHExBHuj0Wev+1JjR4XOizDLlxv5L/wrkHm7Gw4bOzKDYob5wJoJbJiFdV3kK1DPbL
-	koaayKOSdc/EbX7QTID8NuJ7QirrkD4qqhc0h/mQaFJHD3t3KGR52guo46byl2m9fK/HP1o3EwK
-	hYwlTbiRgWpqzqH3Fi3baZmChuErWP8lmqkyXs5bR5xUun7ykHjhUOtK0raiJ24UbHY3wLlNj3c
-	g516cABC9TOnWjAL07ti8pPGdnlGOeyN9lvw==
-X-Received: by 2002:a05:600c:3b90:b0:490:9ea0:c11f with SMTP id 5b1f17b1804b1-490ec4c5bb8mr189036805e9.5.1781533563461;
-        Mon, 15 Jun 2026 07:26:03 -0700 (PDT)
-Received: from taln60.nuvoton.co.il ([212.199.177.18])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490ea961f18sm273333205e9.2.2026.06.15.07.26.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2026 07:26:03 -0700 (PDT)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: andrew@codeconstruct.com.au,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: openbmc@lists.ozlabs.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	avifishman70@gmail.com,
-	tmaimon77@gmail.com,
-	tali.perry1@gmail.com,
-	venture@google.com,
-	yuenn@google.com,
-	benjaminfair@google.com
-Subject: [PATCH v5 4/4] arm64: dts: nuvoton: npcm845-evb: Add peripheral nodes
-Date: Mon, 15 Jun 2026 17:25:48 +0300
-Message-Id: <20260615142548.1373799-5-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260615142548.1373799-1-tmaimon77@gmail.com>
-References: <20260615142548.1373799-1-tmaimon77@gmail.com>
+        d=1e100.net; s=20251104; t=1781533626; x=1782138426;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m4TXTtdFs/UmLl+HYnmyNiKISILvfZx2SzEmdXfYHcQ=;
+        b=CZJcFXJi+2L/aHloRz9oKiJTfpVWZFQS8IeJWh0CR2V3EtQRcysJmtOGmRHiTL4zHU
+         nABf9Er3Bh2SFZrPTDNdqEsAu28Kaj/Jyml6lHde3QGDb+X6gPfYFgP3Y1kuzq4mvOF/
+         rcW3Smwy0buqDhzCw1nkT05BUQLsUXOe4MPZW4LrmAGgiuu3oFROQFWfNLSLRTphzJ4C
+         q5+ttdyDQ3MnjusfFKJxFgQ2U+z6L5Z169AdLkJ1zr7Ns4ifUsD42QOXKjl2FN7zJe3n
+         GWP4BEes+q7lWu3wDdzCQU9LwJIFhp4OIL6sU9LG68HEG4EtsDKoXNn/YF1HRK2RuSVm
+         1Oyw==
+X-Forwarded-Encrypted: i=1; AFNElJ/girZ43wHe/vtJsZfFl9CEM3w0yVBk4CNblCJRzwyxyIWNOXjY2N8egcFb3FZ5mDghTEdjucg7aEsj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw11edECBtYfhymrywSDpBNRLrJGTVuoGcaV6Yhcc2f9zrFMySk
+	gqxQZ02jzXsewxzD5DG296mG94TnANSOptbDdh2b+C+0ZGAAHhv6pZdJ
+X-Gm-Gg: Acq92OEaR8YjJ+kbb8v48/zQ8Eilpl0lfYcmU6Q/khaBsdgei/sm6a9STkF2nWfXXXd
+	8EGwwtp8NGzg1D63RZ29Cltt55Am/CpqGvqhenGtpdjGV7vno4YAgN0P+KGQrX9nIItbuM4w/wC
+	p4UyDu0hK8wo6l88bjxfTWUAuPkoOH/PDEZZsEi+RffH7CZutZmR3lbhI3cCElOWl5kvtwIQE9G
+	kZj0WVWh8UgRetiw15b6y+XaaJNjY+YOGRG15mwOzF924zDySrx7aMTQFvxS1LZqTDoMCPlRNde
+	o1rSF6FF97d9zjBdCZkvz9Q2YgnJDtxrxc5z0Vz8uS9bdywQx2gVmxAOWYB4yKo9siJXKx12Pat
+	r2uVZ57D420CetEFORG4U5CatxXG0yIz+WnkoP600RNJkPk8cr5iRFp34cbgGvkbE+8uN1vUqv/
+	sMidhvEbDstJZI0dfiglAkGHNycEbLvmtylyH+QPhv4xP9E7j3vRJitU3fRVk4xFdYa8Do10j0b
+	E8JMr2Ti3gLL7oX39Y=
+X-Received: by 2002:a05:6000:2dc2:b0:460:3234:4473 with SMTP id ffacd0b85a97d-4606dbe5c27mr19933766f8f.41.1781533625617;
+        Mon, 15 Jun 2026 07:27:05 -0700 (PDT)
+Received: from [10.128.10.215] (195-23-151-163.net.novis.pt. [195.23.151.163])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f264333sm35600275f8f.4.2026.06.15.07.27.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jun 2026 07:27:05 -0700 (PDT)
+Sender: Julian Braha <julian.braha@gmail.com>
+Message-ID: <90f84945-e83f-40a8-8d9e-a477c45579e9@gmail.com>
+Date: Mon, 15 Jun 2026 15:27:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v5 12/15] onsemi: s2500: Add driver support for
+ TS2500 MAC-PHY
+To: Selvamani.Rajagopal@onsemi.com, Andrew Lunn <andrew@lunn.ch>,
+ Piergiorgio Beruto <pier.beruto@onsemi.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
+ Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ Jerry Ray <jerry.ray@microchip.com>
+References: <20260614-s2500-mac-phy-support-v5-0-89874b72f725@onsemi.com>
+ <20260614-s2500-mac-phy-support-v5-12-89874b72f725@onsemi.com>
+Content-Language: en-US
+From: Julian Braha <julianbraha@gmail.com>
+In-Reply-To: <20260614-s2500-mac-phy-support-v5-12-89874b72f725@onsemi.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lists.ozlabs.org,vger.kernel.org,gmail.com,google.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-312010-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Selvamani.Rajagopal@onsemi.com,m:andrew@lunn.ch,m:pier.beruto@onsemi.com,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:andrew+netdev@lunn.ch,m:parthiban.veerasooran@microchip.com,m:richardcochran@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:netdev@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:jerry.ray@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312008-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tmaimon77@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[onsemi.com,lunn.ch,gmail.com,armlinux.org.uk,davemloft.net,google.com,kernel.org,redhat.com,microchip.com,lwn.net,linuxfoundation.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_NONE(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A5210687299
+X-Rspamd-Queue-Id: D700568730C
 
-Enable peripheral support for the NPCM845 evaluation board by wiring up
-the SoC controller nodes to the board design. Add board aliases,
-GPIO-backed MDIO buses for the external PHYs, a reserved-memory region
-for TIP firmware, and flash partitions for the FIU boot flash. Enable
-the Ethernet MACs, MMC controller, FIU controllers, USB device
-controllers, ADC, RNG, PWM/FAN controller, I2C buses, and PECI
-interface with the board-specific pinctrl and PHY connections they
-require.
+Hi Selvamani,
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts  | 413 ++++++++++++++++++
- 1 file changed, 413 insertions(+)
+On 6/14/26 18:00, Selvamani Rajagopal via B4 Relay wrote:
 
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-index 5edf5d13342d..28dbb865d739 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-@@ -10,6 +10,42 @@ / {
- 
- 	aliases {
- 		serial0 = &serial0;
-+		ethernet1 = &gmac1;
-+		ethernet2 = &gmac2;
-+		ethernet3 = &gmac3;
-+		mdio-gpio0 = &mdio0;
-+		mdio-gpio1 = &mdio1;
-+		fiu0 = &fiu0;
-+		fiu1 = &fiu3;
-+		fiu2 = &fiux;
-+		fiu3 = &fiu1;
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c2 = &i2c2;
-+		i2c3 = &i2c3;
-+		i2c4 = &i2c4;
-+		i2c5 = &i2c5;
-+		i2c6 = &i2c6;
-+		i2c7 = &i2c7;
-+		i2c8 = &i2c8;
-+		i2c9 = &i2c9;
-+		i2c10 = &i2c10;
-+		i2c11 = &i2c11;
-+		i2c12 = &i2c12;
-+		i2c13 = &i2c13;
-+		i2c14 = &i2c14;
-+		i2c15 = &i2c15;
-+		i2c16 = &i2c16;
-+		i2c17 = &i2c17;
-+		i2c18 = &i2c18;
-+		i2c19 = &i2c19;
-+		i2c20 = &i2c20;
-+		i2c21 = &i2c21;
-+		i2c22 = &i2c22;
-+		i2c23 = &i2c23;
-+		i2c24 = &i2c24;
-+		i2c25 = &i2c25;
-+		i2c26 = &i2c26;
- 	};
- 
- 	chosen {
-@@ -26,12 +62,389 @@ refclk: refclk-25mhz {
- 		clock-frequency = <25000000>;
- 		#clock-cells = <0>;
- 	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		tip_reserved: tip@0 {
-+			reg = <0x0 0x0 0x0 0x6200000>;
-+		};
-+	};
-+
-+	mdio0: mdio-0 {
-+		compatible = "virtual,mdio-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpios = <&gpio1 25 GPIO_ACTIVE_HIGH>,
-+			<&gpio1 26 GPIO_ACTIVE_HIGH>;
-+
-+		phy0: ethernet-phy@0 {
-+			reg = <0>;
-+		};
-+	};
-+
-+	mdio1: mdio-1 {
-+		compatible = "virtual,mdio-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpios = <&gpio2 27 GPIO_ACTIVE_HIGH>,
-+			<&gpio2 28 GPIO_ACTIVE_HIGH>;
-+
-+		phy1: ethernet-phy@0 {
-+			reg = <0>;
-+		};
-+	};
-+};
-+
-+&gmac1 {
-+	phy-mode = "rgmii-id";
-+	snps,eee-force-disable;
-+	status = "okay";
-+};
-+
-+&gmac2 {
-+	phy-mode = "rmii";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&r1_pins
-+			&r1oen_pins>;
-+	phy-handle = <&phy0>;
-+	status = "okay";
-+};
-+
-+&gmac3 {
-+	phy-mode = "rmii";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&r2_pins
-+			&r2oen_pins>;
-+	phy-handle = <&phy1>;
-+	status = "okay";
- };
- 
- &serial0 {
- 	status = "okay";
- };
- 
-+&fiu0 {
-+	status = "okay";
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		spi-rx-bus-width = <1>;
-+		reg = <0>;
-+		spi-max-frequency = <5000000>;
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			bmc@0 {
-+				label = "bmc";
-+				reg = <0x00000000 0x04000000>;
-+			};
-+			u-boot@0 {
-+				label = "u-boot";
-+				reg = <0x00000000 0x007C0000>;
-+			};
-+			u-boot-env@7c0000 {
-+				label = "u-boot-env";
-+				reg = <0x007C0000 0x00040000>;
-+			};
-+			kernel@800000 {
-+				label = "kernel";
-+				reg = <0x00800000 0x00800000>;
-+			};
-+			rofs@1000000 {
-+				label = "rofs";
-+				reg = <0x01000000 0x02C00000>;
-+			};
-+			rwfs@3c00000 {
-+				label = "rwfs";
-+				reg = <0x03C00000 0x00400000>;
-+			};
-+		};
-+	};
-+};
-+
-+&fiu1 {
-+	status = "okay";
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		spi-rx-bus-width = <2>;
-+		spi-tx-bus-width = <2>;
-+		reg = <0>;
-+		spi-max-frequency = <5000000>;
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			partition@0 {
-+				label = "spi1-system1";
-+				reg = <0x0 0x0>;
-+			};
-+		};
-+	};
-+};
-+
-+&fiu3 {
-+	pinctrl-0 = <&spi3_pins>, <&spi3quad_pins>;
-+	status = "okay";
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		spi-rx-bus-width = <1>;
-+		reg = <0>;
-+		spi-max-frequency = <5000000>;
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			partition@0 {
-+				label = "spi3-system1";
-+				reg = <0x0 0x0>;
-+			};
-+		};
-+	};
-+};
-+
-+&fiux {
-+	nuvoton,spix-mode;
-+};
-+
-+&sdhci {
-+	status = "okay";
-+};
-+
-+&udc0 {
-+	status = "okay";
-+};
-+
-+&udc1 {
-+	status = "okay";
-+};
-+
-+&udc2 {
-+	status = "okay";
-+};
-+
-+&udc3 {
-+	status = "okay";
-+};
-+
-+&udc4 {
-+	status = "okay";
-+};
-+
-+&udc5 {
-+	status = "okay";
-+};
-+
-+&udc6 {
-+	status = "okay";
-+};
-+
-+&udc7 {
-+	status = "okay";
-+};
-+
-+&mc {
-+	status = "okay";
-+};
-+
-+&peci {
-+	status = "okay";
-+};
-+
-+&rng {
-+	status = "okay";
-+};
-+
-+&adc {
-+	#io-channel-cells = <1>;
-+	status = "okay";
-+};
-+
- &watchdog1 {
- 	status = "okay";
- };
-+
-+&pwm_fan {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm0_pins &pwm1_pins
-+		&pwm2_pins &pwm3_pins
-+		&pwm4_pins &pwm5_pins
-+		&pwm6_pins &pwm7_pins
-+		&fanin0_pins &fanin1_pins
-+		&fanin2_pins &fanin3_pins
-+		&fanin4_pins &fanin5_pins
-+		&fanin6_pins &fanin7_pins>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	fan@0 {
-+		reg = <0x00>;
-+		fan-tach-ch = /bits/ 8 <0x0 0x1>;
-+		cooling-levels = <127 255>;
-+	};
-+	fan@1 {
-+		reg = <0x01>;
-+		fan-tach-ch = /bits/ 8 <0x2 0x3>;
-+		cooling-levels = <127 255>;
-+	};
-+	fan@2 {
-+		reg = <0x02>;
-+		fan-tach-ch = /bits/ 8 <0x4 0x5>;
-+		cooling-levels = <127 255>;
-+	};
-+	fan@3 {
-+		reg = <0x03>;
-+		fan-tach-ch = /bits/ 8 <0x6 0x7>;
-+		cooling-levels = <127 255>;
-+	};
-+	fan@4 {
-+		reg = <0x04>;
-+		fan-tach-ch = /bits/ 8 <0x8 0x9>;
-+		cooling-levels = <127 255>;
-+	};
-+	fan@5 {
-+		reg = <0x05>;
-+		fan-tach-ch = /bits/ 8 <0xa 0xb>;
-+		cooling-levels = <127 255>;
-+	};
-+	fan@6 {
-+		reg = <0x06>;
-+		fan-tach-ch = /bits/ 8 <0xc 0xd>;
-+		cooling-levels = <127 255>;
-+	};
-+	fan@7 {
-+		reg = <0x07>;
-+		fan-tach-ch = /bits/ 8 <0xe 0xf>;
-+		cooling-levels = <127 255>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	eeprom@50 {
-+		compatible = "atmel,24c256";
-+		reg = <0x50>;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <0x10>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	ipmb@11 {
-+		compatible = "ipmb-dev";
-+		reg = <0x11>;
-+		i2c-protocol;
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+};
-+
-+&i2c14 {
-+	status = "okay";
-+};
-+
-+&i2c15 {
-+	status = "okay";
-+};
-+
-+&i2c16 {
-+	status = "okay";
-+};
-+
-+&i2c17 {
-+	status = "okay";
-+};
-+
-+&i2c18 {
-+	status = "okay";
-+};
-+
-+&i2c19 {
-+	status = "okay";
-+};
-+
-+&i2c20 {
-+	status = "okay";
-+};
-+
-+&i2c21 {
-+	status = "okay";
-+};
-+
-+&i2c22 {
-+	status = "okay";
-+};
-+
-+&i2c23 {
-+	status = "okay";
-+};
-+
-+&i2c24 {
-+	status = "okay";
-+};
-+
-+&i2c25 {
-+	status = "okay";
-+};
-+
-+&i2c26 {
-+	status = "okay";
-+};
--- 
-2.34.1
+> diff --git a/drivers/net/ethernet/onsemi/Kconfig b/drivers/net/ethernet/onsemi/Kconfig
+> new file mode 100644
+> index 000000000000..8d72194151ea
+> --- /dev/null
+> +++ b/drivers/net/ethernet/onsemi/Kconfig
+> @@ -0,0 +1,21 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# onsemi network device configuration
+> +#
+> +
+> +config NET_VENDOR_ONSEMI
+> +	bool "onsemi network devices"
+> +	help
+> +	  If you have a network card belonging to this class, say Y.
+> +
+> +	  Note that the answer to this question doesn't directly affect the
+> +	  kernel: saying N will just cause the configurator to skip all
+> +	  the questions about onsemi ethernet devices. If you say Y, you
+> +	  will be asked for your specific card in the following questions.
+> +
+> +if NET_VENDOR_ONSEMI
+> +
+> +source "drivers/net/ethernet/onsemi/s2500/Kconfig"
+> +
+> +endif # NET_VENDOR_ONSEMI
 
+When you put the 'if NET_VENDOR_ONSEMI' around the 'source', you're
+making it a dependency on every config option in that sourced Kconfig.
+
+> diff --git a/drivers/net/ethernet/onsemi/s2500/Kconfig b/drivers/net/ethernet/onsemi/s2500/Kconfig
+> new file mode 100644
+> index 000000000000..f2e8d5d1429d
+> --- /dev/null
+> +++ b/drivers/net/ethernet/onsemi/s2500/Kconfig
+> @@ -0,0 +1,21 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# onsemi S2500 Driver Support
+> +#
+> +
+> +if NET_VENDOR_ONSEMI
+> +
+> +config S2500_MACPHY
+> +	tristate "S2500 support"
+> +	depends on SPI
+> +	select NCN26000_PHY
+> +	select OA_TC6
+> +	help
+> +	  Support for the onsemi TS2500 MACPHY Ethernet chip.
+> +	  It works under the framework that conform to OPEN Alliance
+> +	  10BASE-T1x Serial Interface specification.
+> +
+> +	  To compile this driver as a module, choose M here. The module will be
+> +	  called s2500.
+> +
+> +endif # NET_VENDOR_ONSEMI
+Which means that when you add 'if NET_VENDOR_ONSEMI' again inside the
+sourced Kconfig, it's a duplicate dependency.
+
+I think putting the if-endif in either place is fine, but it's redundant
+to do it twice. You could maybe consider using a comment for the second
+instance instead.
+
+- Julian Braha
 
