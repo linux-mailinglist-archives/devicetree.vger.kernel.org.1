@@ -1,257 +1,225 @@
-Return-Path: <devicetree+bounces-311862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311864-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Q0n0BDXaL2rFHwUAu9opvQ
-	(envelope-from <devicetree+bounces-311862-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:55:49 +0200
+	id 3vsOKufaL2raHwUAu9opvQ
+	(envelope-from <devicetree+bounces-311864-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:58:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D9CC685844
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:55:48 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52FD8685899
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:58:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=IlzXNYWl;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b="kmKg3/zR";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311862-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311862-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=microchip.com header.s=mchp header.b=BETXeWYq;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311864-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-311864-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=microchip.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3034A300693C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:55:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C65E230087ED
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:58:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 959BC36F42B;
-	Mon, 15 Jun 2026 10:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A397A36D9F9;
+	Mon, 15 Jun 2026 10:58:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A9B371D02
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 10:55:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59F0630AD1A;
+	Mon, 15 Jun 2026 10:58:44 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781520904; cv=none; b=M4b1fKWDzVIhzj8eow1VZxm/h1A6FDiJAC0PEhxJ1Ef4arZsaZYEXycfgyLgTf6DQDbkbHTCJSblzd9bTolaUAq1Az9OYfd1+KizaIBW9d8vzK2lvRIIEq1y/FkBmVXt0nTNI1wXsz53tLuWykDAIz4DbYmJl3iq0Sy9JSuxMm4=
+	t=1781521125; cv=none; b=SugVrXx3sHs5tA3cC0JeQUONnSqBKP433OZf1UcL8+1n9tyX+kjzgwHwy94wPgaJLLNej26VSfGAcD5/tb8nieCpPWLwM/zaqWFp1vXmWRdvK9Aop9vavgZfeXnRpRFv20X2MIiTIG1Y6ul0gLwUKXQtBUm3FAnqG0xUTbiVo/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781520904; c=relaxed/simple;
-	bh=aOobQK20yua6U1wDe4oqjNjdHc04iURP9CqK2Qxb0s8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PcR3SH+BwtFlfsDhCHS4dMGh5rKLzyqy5nQPkwmxBfjcdtPblrns7k+/NuuWiIbkd/RXSkAGnLZuoyPkCxeYDokpJz0r0UcAD1xVFIeGmcc8hwtCWnFR7AJ7qbOeZGAq2jgh7L0cumFcaCoCOehnO1nVhoGk1O+3RiOrNNHKVrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IlzXNYWl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kmKg3/zR; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65FAqaPc270391
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 10:55:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Io1gymftJRX223MXNKXCnss6iPbXrMIBvInvnj4sz+w=; b=IlzXNYWlmbirizL8
-	vVPYMvIoUdW72ETny3pXNfGEc7zj6xdkb5DCEkvsrAeAnJJBXJUxh2pe3gemm9XU
-	ksRqae1fgMncGsxBILgRbgkUpaluRddEPreM7VrewaZ03/dNKZBCXMORXH0JYYyB
-	Bkk910+CDlIYzmuE8aLH/LN6qhNicKTr9LcZHkncyjjmCuWlwjyqnlJYSGWO3WOU
-	x8/3yzT9azu3ADyL5DVubnJyO3CiTuExseQy2oebu63uBIs2yVGsMD7mAML7hZcm
-	tjeP7qXrntgckCOsm4otD1ZwcicWhKjKJPS3BgpxJ99EU4rALYLQxo7NWG/uOZH2
-	ICB/Jw==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4etegurdb6-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 10:55:01 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-36b7f696b40so2538279a91.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 03:55:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1781520901; x=1782125701; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Io1gymftJRX223MXNKXCnss6iPbXrMIBvInvnj4sz+w=;
-        b=kmKg3/zRHh8qcNX92rt+XDvicKlN6GnG4doPa/kTzFWfmSwA6ws2Bjp8UTcLaohehs
-         D5pjFGtux2p8Re0FyC8AoDnnQv2W7baiMsh2rrZnfWqbyHGpINucSHeGXXCP5X4uxR5v
-         7xsEwdN8NZHmChcd91dDYlbGIhGa82/dNbG+u1KuCv06WxQeit8xXSgO7psxpFkZCO4p
-         KRR9i5Hbst1McvBerUSQiCAo19b8x/tXgtcKPxKYB0LAfqPhaOrL/DGI9WS+oL5j+ZCH
-         j+57/EKJIYW4b82rZO1Nk0JD3ay8upy/KdZRfynxdK0rAaICKz4JNdIIzvKkZV7j0h3U
-         vNzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781520901; x=1782125701;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Io1gymftJRX223MXNKXCnss6iPbXrMIBvInvnj4sz+w=;
-        b=huCFdU9ODxbbgbUqg9vLPDBQbcYt8cPJ3iHK/mzthq5JL/kZFVjmw/NES+Z4+EX+wd
-         VlXVSpBnfHSBmdWbA4xe0+gwzhbfet2KyikxTySp/bHQc9Sip34S9NnsOAETVlRl2Hpf
-         /j0l65VEk38IVt77H5vT3qgz03MwMVSbNkaMSnxjY+6fSKjV+rjPhZy8sBNkyrMF7zGQ
-         ShcF+iHEBzlkvBtKDE+IcwSlIR9FYicsWW9EIf/mei8D0edJMPSyv/Twd3RIkEWQb70c
-         pOaQ7UYZSoiS5ZUNcQ3AE5jCTnO5UIL8TymjRrBCFBlV+IdkYjrgvzTaH6rPY/kyzHfy
-         MS/A==
-X-Forwarded-Encrypted: i=1; AFNElJ8MTTvf6RpFgiUNviCcY0fm6UoqCk92cnpW4GbvKhwRJDnLBNTW0oLML35o5RhsAWiURU1nZX0ilQbi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyapTLRnlGBLRp0pvI8Qp8iseqWrM7PazwO1L87Cuo29AhBDjrk
-	6Rtj5MkI3HUHhPp0aNYkxAkuNWitVkWO68G+J5hrdO/FRR/RHM66AAzxzFMLL3NOhc0Q0VjTlyG
-	5ugCcmqOjPKYM6zgpiNkemRn8AthGkyy5w+Creo/8DaLPPsCf0WWRfpILO8P6h4Ru
-X-Gm-Gg: Acq92OEvDBlPV7WiyCeGy6Kx3X0e82BPvvuwpNpW6O3KB0hdnEZS5f4m9tkK/yqNoei
-	beopAc1PEtWoLaNtdhpKivhU8J/4wMTHZIAfpigfs+03gpxSu4z8NF1mGzz8USR7iCGJ3k2Iqzy
-	gb1k+N791CeqijX8zyXw6MVp482r91zzURaJStSdyKYnqYy2f9hw2TiXpfXKbENezpWKkV7Mqur
-	SUEk+3wYgibJVDZB07/OkMEBs0T/3DP/sU8wTCpO25+BQ0WEjQSZ8mYA17tCm9dOE0HfjyNTX/m
-	llVYME5yE3gOHhSzW6u0h3Fpj8Y+i5xht6ucfd5JHIxjLICFpkxV3sl+Gxibwtsxm9ogzRRr2WI
-	M9i/SODDj1O6OJra62keDOSSg1+w5G5/c9eapvflGuHD/myOBCnVNQKw=
-X-Received: by 2002:a17:90b:48cd:b0:368:9da3:c496 with SMTP id 98e67ed59e1d1-37a0497dc45mr14457456a91.24.1781520900646;
-        Mon, 15 Jun 2026 03:55:00 -0700 (PDT)
-X-Received: by 2002:a17:90b:48cd:b0:368:9da3:c496 with SMTP id 98e67ed59e1d1-37a0497dc45mr14457432a91.24.1781520900191;
-        Mon, 15 Jun 2026 03:55:00 -0700 (PDT)
-Received: from [10.217.219.87] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-37a212ab3d0sm12470200a91.16.2026.06.15.03.54.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jun 2026 03:54:59 -0700 (PDT)
-Message-ID: <4d8d8c44-6611-4333-9906-580b70235a51@oss.qualcomm.com>
-Date: Mon, 15 Jun 2026 16:24:51 +0530
+	s=arc-20240116; t=1781521125; c=relaxed/simple;
+	bh=eX116ZmZWLRLVRGZZmaQX+HBBCwo6J3ncAuSHT4+93k=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DPNas3CE8D82g9uVkIe2yU82ZODn+9bCb0inYn1uCeBDhD5iGP2i1vIxnNFz+h6CJWB/QDzF3Dwg+1RjVPciOI9AlygNi9HF/wml+ETZeDigZLB9SzbIuTX6JDadlAimpeLwFNCy8GsjysK8ubtKMmzqO6SnPQlaAygBfkbK2fU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=BETXeWYq; arc=none smtp.client-ip=68.232.153.233
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1781521124; x=1813057124;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eX116ZmZWLRLVRGZZmaQX+HBBCwo6J3ncAuSHT4+93k=;
+  b=BETXeWYq4tDbIgOaimwHYDJi5yp//zT4OVivsdquJCfkB28GZO7SIupV
+   asgSXUmDvDoAoNvmmlqDNUbtejNLmAZP1u8EJxefMXLO45VR08fEY3JVP
+   dTF/6hX3ietgYwVagx7E2txLpQbg91OE4ObxSJlcej2X8qA8ai0ubWYtz
+   A5IRqtxBLNwpfwQz0WQA6/sMz8riWAhRt7nfDv+4JJmLHXG4BLUa/fE62
+   yzIdpgAraRL5hffEiPbfZFnAIOF2eij7z08ZyYFsrDk0/WK3aZnT3DKaB
+   Mv+v4mh1hJ002QL/o9hebla40KKlHcl6Dd5IzGIojFMh8c1+ZKLIS33sl
+   A==;
+X-CSE-ConnectionGUID: wr9h5fdqRpywT5+TOakhmg==
+X-CSE-MsgGUID: bPuuKTJJQT6Sx+X0XNqjow==
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; 
+   d="asc'?scan'208";a="68188465"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026 03:58:37 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex2.mchp-main.com (10.10.87.31) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.41; Mon, 15 Jun 2026 03:58:37 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
+ Transport; Mon, 15 Jun 2026 03:58:35 -0700
+Date: Mon, 15 Jun 2026 11:57:48 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+CC: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mark
+ Brown <broonie@kernel.org>, "linux-spi@vger.kernel.org"
+	<linux-spi@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: spi: snps,dw-apb-ssi: Add support
+ for snps,dwc-ssi-2.00a
+Message-ID: <20260615-regretful-unviable-3a6a65f48d9b@wendy>
+References: <20260612125856.8530-1-changhuang.liang@starfivetech.com>
+ <20260612125856.8530-2-changhuang.liang@starfivetech.com>
+ <20260612-mute-aqueduct-029ac227314e@spud>
+ <ZQ4PR01MB1202FA8F122134F7153D26F7F2192@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
+ <20260615-disallow-dosage-333752ccddc1@wendy>
+ <ZQ4PR01MB12028430668DE1F9AE8645A9F2E62@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/4] soc: qcom: geni-se: Keep pinctrl active for
- multi-owner controllers
-From: Mukesh Savaliya <mukesh.savaliya@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: viken.dadhaniya@oss.qualcomm.com, andi.shyti@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
-        Frank.Li@kernel.org, konradybcio@kernel.org,
-        dmitry.baryshkov@oss.qualcomm.com, linmq006@gmail.com,
-        quic_jseerapu@quicinc.com, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, krzysztof.kozlowski@oss.qualcomm.com,
-        bartosz.golaszewski@oss.qualcomm.com, bjorn.andersson@oss.qualcomm.com,
-        konrad.dybcio@oss.qualcomm.com
-References: <20260423145705.545552-1-mukesh.savaliya@oss.qualcomm.com>
- <20260423145705.545552-4-mukesh.savaliya@oss.qualcomm.com>
- <ag_HGVQjIQuMoKO6@baldur>
- <9a0a2ba2-4f1b-425d-979b-fe59192bb2cd@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <9a0a2ba2-4f1b-425d-979b-fe59192bb2cd@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE1MDExNCBTYWx0ZWRfX8xhrMuy2pOF2
- 2XMkTINGvzkrxIelPLTCxHAIcoxN70O4rlMMfdOyREjRGejuUPFGccHHvh4/ZH8wT4dGeY4mF0R
- 24FGTxRBkLXiuvtDLh57vZMnGKKFL1fIKOKZQzlU4ez292v734pth093KIOVEyiRcOUjD/Ys+Fl
- mbnJygl46lRbbXq5hOLuxD496+CluovS1p/6GIzQbXjh9xKPW5QHw+JhJAnFJNM7QuOW0YEY/g/
- Jp7n4nd5MbGbCBO5EKpW5YoETcZ2Y1Uj+pj7IHXw4FUX7TsProlVSaVaJia7DZrabQ5aG+qtGg4
- KKuP9/Ux1Gt4h7sOhLWv14kKnxu4FTFDZGOyfUAIw5z6lQaJwM+Dv0843wgKQBKFDZxjWpeWW/A
- XEL0ggTRJccDxHd1DjhSAOl0Lqw9VXAsxfjCyKtHKzZ9Yyh4y35mBatvaPRhAGnRPNTGjzBaNAr
- HqisKyT/1EQL4IVWOxQ==
-X-Proofpoint-ORIG-GUID: G_AGlz71C5LYAuE-dLqNK5HWPpyBhRxJ
-X-Authority-Analysis: v=2.4 cv=HMvz0Itv c=1 sm=1 tr=0 ts=6a2fda05 cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=EUspDBNiAAAA:8 a=LqfbpYqSe3J_4supPSgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE1MDExNCBTYWx0ZWRfXwJAy28jU4KGV
- jech4BUSmmrRtBTzQcyzXd5zph6NofQXXIt22twU4FUy4uYnXJXn+hNtmmq0AohurAIG/AOVtlM
- bW/EY14b8e+w2Xuc34gg3DjlRke0Ogg=
-X-Proofpoint-GUID: G_AGlz71C5LYAuE-dLqNK5HWPpyBhRxJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-15_03,2026-06-15_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 spamscore=0 malwarescore=0 suspectscore=0
- phishscore=0 bulkscore=0 adultscore=0 priorityscore=1501 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606150114
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/xIMeAPBUa6tS9wt"
+Content-Disposition: inline
+In-Reply-To: <ZQ4PR01MB12028430668DE1F9AE8645A9F2E62@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	TAGGED_FROM(0.00)[bounces-311862-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:andersson@kernel.org,m:viken.dadhaniya@oss.qualcomm.com,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:konradybcio@kernel.org,m:dmitry.baryshkov@oss.qualcomm.com,m:linmq006@gmail.com,m:quic_jseerapu@quicinc.com,m:agross@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-i2c@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmaengine@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:bartosz.golaszewski@oss.qualcomm.com,m:bjorn.andersson@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[mukesh.savaliya@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,gmail.com,quicinc.com,vger.kernel.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mukesh.savaliya@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-311864-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:changhuang.liang@starfivetech.com,m:conor@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:broonie@kernel.org,m:linux-spi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,microchip.com:dkim,microchip.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2D9CC685844
+X-Rspamd-Queue-Id: 52FD8685899
 
-Hi Bjorn,  Please help next with the approach, accordingly i shall 
-update next patch.
+--/xIMeAPBUa6tS9wt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Jun 15, 2026 at 10:49:07AM +0000, Changhuang Liang wrote:
+> Hi, Conor
+>=20
+> > On Sat, Jun 13, 2026 at 03:38:46AM +0000, Changhuang Liang wrote:
+> > > Hi, Conor
+> > >
+> > > Thanks for the review.
+> > >
+> > > > On Fri, Jun 12, 2026 at 05:58:55AM -0700, Changhuang Liang wrote:
+> > > > > Add a new compatible string "snps,dwc-ssi-2.00a" for the Synopsys
+> > > > > DesignWare SSI controller version 2.00a.
+> > > >
+> > > > Two things. Firstly, driver patch suggests a fallback to 1.01a is
+> > > > possible. Why haven't you added one?
+> > >
+> > > Will support fallback.
+> > >
+> > > > Secondly, I am going to expect that when your starfive user for this
+> > > > appears in my inbox that it has a device-specific compatible, so you
+> > > > may as well add that now.
+> > >
+> > > Our standard SPI control is completely based on the Synopsys DesignWa=
+re
+> > SSI controller version 2.00a.
+> > > However, for the controller that accesses the flash, a set of
+> > > modifications has been made based on the Synopsys DesignWare SSI
+> > controller version 2.00a, and the driver part also requires specific ad=
+aptation.
+> > >
+> > > Therefore, on the JHB100 SoC, the initial device tree source I have p=
+lanned
+> > looks like this:
+> > >
+> > > spi0: spi@17f20000 {
+> > >       compatible =3D "snps,dwc-ssi-2.00a";
+> > >       reg =3D <0x0 0x17f20000 0x0 0x10000>; };
+> > >
+> > > sfc0: spi@18000000 {
+> > >       compatible =3D "starfive,jhb100-spi";
+> > >       reg =3D <0x0 0x18000000 0x0 0x10000>; };
+> > >
+> > > Thus, I plan to add a new "starfive,jhb100-spi" compatible string for=
+ the
+> > controller that accesses the flash.
+> > > For now, I intend to keep these as two separate series.
+> >=20
+> > No, if you have two integrations of the designware IP with different
+> > programming models on the jhb100 I expect to see two different soc-spec=
+ific
+> > compatibles used. I don't want to see bare synopsys compatibles on the
+> > platforms I am looking after.
+>=20
+> Okay, I will change it to the following:
+>=20
+> spi0: spi@17f20000 {
+>       compatible =3D " starfive,jhb100-spi";
 
-On 5/25/2026 12:46 PM, Mukesh Savaliya wrote:
-> Hi Bjorn, Thanks for the detailed review.
-> 
-> On 5/22/2026 8:36 AM, Bjorn Andersson wrote:
->> On Thu, Apr 23, 2026 at 08:25:50PM +0530, Mukesh Kumar Savaliya wrote:
->>> On platforms where a GENI Serial Engine is shared with another system
->>> processor, selecting the "sleep" pinctrl state can disrupt ongoing
->>> transfers initiated by the other processor.
->>>
->>
->> Isn't it strange that the DeviceTree will define a sleep state for the
->> OS to select, but when this other property is set the OS should never
->> select this state?
->>
-> 
-> The intent here is that for multi-owner configurations the
-> “sleep” pinctrl state is not safe to use, since the pins may
-> still be actively driven by another execution environment.
-> Selecting the sleep state in such cases can disrupt transfers
-> initiated by the other owner.
-> 
-> You're right that this constraint is currently not described
-> in the binding, which makes the behavior non-obvious.
-> 
-> shall i update the DT binding to clarify that when
-> "qcom,qup-multi-owner" is present ? The OS must not transition
-> the pins to the "sleep" state, as the hardware is shared and
-> may be active outside of Linux control.
-> 
-> Alternatively, we can also consider relaxing the requirement
-> to define a sleep state for such nodes if that aligns better
-> with DT expectations.
-> 
->>> Teach geni_se_resources_off() to skip selecting the pinctrl sleep state
->>> when the Serial Engine is marked as shared, while still allowing the
->>> rest of the resource shutdown sequence to proceed.
->>>
->>> This is required for multi-owner configurations (described via 
->>> DeviceTree
->>> with qcom,qup-multi-owner on the protocol controller node).
->>>
->>
->> The requirement as such is reasonable, but you don't define in the
->> binding that when this property is set, the sleep state must not be
->> selected by the OS...
->>
-> 
-> Please let me know if you prefer second approach over the first, i shall 
-> update accordingly.
-> 
->> Regards,
->> Bjorn
->>
->>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>> Signed-off-by: Mukesh Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>
->>> ---
-> [...]
-> 
+This one is compatible with "snps,dwc-ssi-2.00a" and "snps,dwc-ssi-1.00a",
+so it should probably have those as fallbacks. The latter for sure, the
+former if you know there's some non-discoverable differences between 2.00a
+and 1.00a hardware.
 
+Cheers,
+Conor.
+
+>       reg =3D <0x0 0x17f20000 0x0 0x10000>;=20
+> };
+>=20
+> sfc0: spi@18000000 {
+>       compatible =3D "starfive,jhb100-sfc";
+>       reg =3D <0x0 0x18000000 0x0 0x10000>;=20
+> };
+>=20
+> Best Regards,
+> Changhuang
+>=20
+
+--/xIMeAPBUa6tS9wt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCai/arAAKCRB4tDGHoIJi
+0npmAQDsg6YBqoSXb5BlCCoIOel0O41cbZtYZDxZ2mjOoB5LvgD8CrtnPmapUBou
+h1Bii8MSHVHRua6XkJsQHOe3RJxbyAc=
+=jX7z
+-----END PGP SIGNATURE-----
+
+--/xIMeAPBUa6tS9wt--
 
