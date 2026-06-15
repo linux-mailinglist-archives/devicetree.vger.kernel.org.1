@@ -1,148 +1,253 @@
-Return-Path: <devicetree+bounces-311945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311947-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0ryqKeD1L2p7KAUAu9opvQ
-	(envelope-from <devicetree+bounces-311945-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:53:52 +0200
+	id qixTARv4L2pBKgUAu9opvQ
+	(envelope-from <devicetree+bounces-311947-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:03:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFE7F6866D0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:53:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28445686805
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:03:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mB6RCqnZ;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311945-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311945-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=herrie.org header.s=transip-a header.b=Ys0Etg92;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311947-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311947-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8BA4C301C9CD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:41:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B5E40300F619
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB193F4DD9;
-	Mon, 15 Jun 2026 12:39:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 829343EEAF0;
+	Mon, 15 Jun 2026 12:47:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from outbound4.mail.transip.nl (outbound4.mail.transip.nl [136.144.136.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB033F484A
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:39:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EB3C1FF7C5;
+	Mon, 15 Jun 2026 12:47:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781527191; cv=none; b=F9z24thO6i+Kati9V8J1yyhJNWV5Mq9wxx+kp87UwWTufHxpiUbW6ug7B0fDz8hj1yLUyTt7E7ExgByRGSvgiHgIcAXLmN+JPdbA1i4oexMd7ZabVgN219xKBRdLlPBitvM8nOT1OXYyRKVdbG4Jym31Wo7v8l+wzZ2ZxpK/ZgQ=
+	t=1781527650; cv=none; b=LqfJy43yEmO3ufp+FSzBlBzyp8CspWtxxBTa8+D8E927oo7ZMFHsbMC8in12+tVRynUd3UuiT/mUNw0IhMD51/vUktfXkyBeXa9DC0GWTPh9Tdb/AJWvcJ0c32skapoux4zpZIaR0SOxyEIFN+Zz1T89pQtZB+20jaapyPxCCH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781527191; c=relaxed/simple;
-	bh=bdVJ07nAphri25imo7nsgUcUOxQUMPVUR1ipYfK5CAM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=By/kHfWgBXYkFZa5iT/bLXRCZ9WxLF7C/tuCP3G5AJSv81Tw512kidDOlCaI27CTtYL18atvkeKSKBQrNhnd45QOQfu8ABu3GeKrAHgV17nIALFL1LsIIwouvX9zp+F/KDkU/eGeNvpRTreHPl+pd9Jj4eBjCbnFe6TXPEi1zHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mB6RCqnZ; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F8911F00ACA
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:39:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781527190;
-	bh=3HwTZQKx3R5nFnMVQD0UnmKNX6QPykatQ2QJBzWpTuA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=mB6RCqnZfoadfqstkbuB9D1ya4jx79P2NLyAKcqY+vTLunCOaY9NQk5dmAoVYTJos
-	 Jemaf1tWnPw/tXIi5yvdpBarHzXLfLJN6VRS6efYEWF+SrH/stpK/uNX6pi7AB5YMb
-	 GiK5oCaYzPRaV9uameTmnUMlA+/i76Us/dazyR21H3DG3ztnbCHszDXHVGPlJ0lNTZ
-	 CIRxjNTaCBCTfTQxPGF0HXEx5ZH770t0kwvEk7I/rAhZkStRZt3h9O1NuAMU+5vMkY
-	 wz0SVGSzvVopRGio0InHmHDU+F+q32rCiNvZPhlm9IsUlzwZTTYOrh4wSt/d/YV4mB
-	 eFeeNksEBdTTw==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5aa69131836so3073133e87.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:39:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ9AtaZA8cqp0IhOym92NSelOslZ1jTaI/sNCnM+HNF70omW5ZhhxlUU87zEvjyV/lpuIhd10c24jZYZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxmNabmsosVE4GdOzGjIfqvEy+L7uCBnOCk/dnawp94MyVGsdX
-	dkrcKOV+LFsaQNP24iuNHO0xTbFbKeBMErWA0teVR7In1N7LTIz4lEbHY04MVBFrI3gYMRtGVX6
-	ZTjuoAeSke3vv7bMhnnDqDvMI2B07iw4=
-X-Received: by 2002:a05:6512:378b:20b0:5a3:f25f:cc30 with SMTP id
- 2adb3069b0e04-5ad30dc0e51mr2166732e87.32.1781527188817; Mon, 15 Jun 2026
- 05:39:48 -0700 (PDT)
+	s=arc-20240116; t=1781527650; c=relaxed/simple;
+	bh=8SjkRrMGYCeREjwMPd90os0gKlWthgMw2Qg0oFduXC4=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=SrZbXG/oyPAolGP2fUNINmBYUvr5pkuji2wgIl6w0Z3A6gpkp0R3Y88/w+3WJFUNHTHhKf0cqSczo4AnVnZGekQs8h8xxBXMc+UMZp/1ZVGQQPsT9SwS3xMziTyVWC775Htl5M5yEy8XAtfRlhATIP6cQWSRcSbRr7QSREkALBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=Ys0Etg92; arc=none smtp.client-ip=136.144.136.2
+Received: from submission7.mail.transip.nl (unknown [10.103.8.158])
+	by outbound4.mail.transip.nl (Postfix) with ESMTP id 4gf8pX3v1fz1DG0D;
+	Mon, 15 Jun 2026 14:40:04 +0200 (CEST)
+Received: from transip.email (unknown [10.100.4.34])
+	by submission7.mail.transip.nl (Postfix) with ESMTPA id 4gf8pX08rcz3fqZNX;
+	Mon, 15 Jun 2026 14:40:04 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20260612161148epcas5p33904df90bd840d20a6db05622aaa28b8@epcas5p3.samsung.com>
- <20260612163020.411761-1-alim.akhtar@samsung.com> <20260612163020.411761-6-alim.akhtar@samsung.com>
- <CAD++jL=mQUJCqVyqK746UdkZCsO+2oeO1MCQM4F-_pSOfpuQuA@mail.gmail.com> <007a01dcfc9d$aa94dd60$ffbe9820$@samsung.com>
-In-Reply-To: <007a01dcfc9d$aa94dd60$ffbe9820$@samsung.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 15 Jun 2026 14:39:35 +0200
-X-Gmail-Original-Message-ID: <CAD++jLkX99o8B0jhU1UA8XtMPtEfJwvGHvi6fQ34HXdkN+hE+Q@mail.gmail.com>
-X-Gm-Features: AVVi8CdJ5ZyduBAkMoAW0l1uu5Q5fbJbTHlK3_-9P33lCUu398OHaVFPyVfP_0w
-Message-ID: <CAD++jLkX99o8B0jhU1UA8XtMPtEfJwvGHvi6fQ34HXdkN+hE+Q@mail.gmail.com>
-Subject: Re: [PATCH 5/5] MAINTAINERS: Add entry for Samsung Exynos8855 SoC
-To: Alim Akhtar <alim.akhtar@samsung.com>
-Cc: krzk@kernel.org, peter.griffin@linaro.org, robh@kernel.org, 
-	conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, hajun.sung@samsung.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Mon, 15 Jun 2026 14:40:03 +0200
+From: me@herrie.org
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Herman van Hazendonk <github.com@herrie.org>, jic23@kernel.org,
+ linusw@kernel.org, denis.ciocca@st.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, sanjayembeddedse@gmail.com, maudspierings@gocontroll.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] iio: magnetometer: st_magn: honour st,fullscale-mg DT
+ property
+Reply-To: github.com@herrie.org
+Mail-Reply-To: github.com@herrie.org
+In-Reply-To: <aiMMzSf8-C9fTlWW@ashevche-desk.local>
+References: <cover.1780652883.git.github.com@herrie.org>
+ <a8b63f5997700aba85883816a5d7520dcb28a96d.1780652883.git.github.com@herrie.org>
+ <aiMMzSf8-C9fTlWW@ashevche-desk.local>
+User-Agent: Webmail
+Message-ID: <75adda02cb8faf9d99953ad4fdcbf961@herrie.org>
+X-Sender: me@herrie.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: ClueGetter at submission7.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=transip-a; d=herrie.org; t=1781527204; h=from:reply-to:subject:to:
+ cc:references:in-reply-to:date:mime-version:content-type;
+ bh=gOIBt7onBO1ICRlAwrvRdvLXASFMfZuwwY223rj2jaI=;
+ b=Ys0Etg92XzTcDKfmnU9TotyubgT2mket/EdEynC5AcukDdf89S5oS20v9RZORJfSTMMfEu
+ NieIz41ouQLG8cnbNocArQcG6lwxUbeQDS0LZoCBvFvmB/FfBA5DKRNov+ukcPrP2SrvG7
+ tPUQ0PUWaD1HOEwOONznr5B/PzcQrlpM1jQyMQ+9q6p4CBy6sP+YUQEqJe1kecOOFSTMZZ
+ grt4nuNI7FxzqPiIJjTD6jvzVUIzkMKwlS0FlO7bBDZmXbv6hmCFR16jv8qx5OVzQospij
+ u4XBKI1IfaKWPvVYIXfUdwAuuIjJoqzg5K122feQe7LP2dfS8OxamWsOx/JwjA==
+X-Report-Abuse-To: abuse@transip.nl
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.15 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	XM_UA_NO_VERSION(0.01)[];
+	TAGGED_FROM(0.00)[bounces-311947-lists,devicetree=lfdr.de];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311945-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:alim.akhtar@samsung.com,m:krzk@kernel.org,m:peter.griffin@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:hajun.sung@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RBL_SEM_FAIL(0.00)[104.64.211.4:query timed out];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:github.com@herrie.org,m:jic23@kernel.org,m:linusw@kernel.org,m:denis.ciocca@st.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:sanjayembeddedse@gmail.com,m:maudspierings@gocontroll.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[herrie.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[herrie.org,kernel.org,st.com,baylibre.com,analog.com,gmail.com,gocontroll.com,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[me@herrie.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[herrie.org:+];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_EQ_FROM_DOM(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
+	SEM_URIBL_UNKNOWN_FAIL(0.00)[herrie.org:query timed out];
+	FROM_NEQ_ENVFROM(0.00)[me@herrie.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	SEM_URIBL_FRESH15_UNKNOWN_FAIL(0.00)[herrie.org:query timed out];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[github.com@herrie.org];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,mail.gmail.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,samsung.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,herrie.org:dkim,herrie.org:replyto,herrie.org:mid,herrie.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CFE7F6866D0
+X-Rspamd-Queue-Id: 28445686805
 
-Hi Alim,
+On 2026-06-05 19:52, Andy Shevchenko wrote:
+> On Fri, Jun 05, 2026 at 12:08:43PM +0200, Herman van Hazendonk wrote:
+>> The ST magnetometer core's common probe hardcodes fs_avl[0] -- the
+>> highest-sensitivity full-scale supported by the chip -- as the
+>> starting range. For the LSM303DLH that is +/-1.3 G; for the
+>> LSM303DLHC and LSM303DLM it is +/-2 G; for the LIS3MDL it is +/-4 G.
+>> 
+>> That is the right default for "minimal noise floor at a desk", but
+>> it leaves no margin for boards that pick up appreciable DC bias from
+>> nearby PCB structures. On the HP TouchPad (apq8060 / tenderloin) the
+>> LSM303DLH magnetometer is mounted close enough to the surrounding
+>> power planes that X reads back as the chip's 0xF000 overflow
+>> sentinel (== -4096 raw, the value the chip publishes when the ADC
+>> saturates) on every sample at the chip-default range, while Y and Z
+>> fall well within the +/-1.3 G window.
+>> 
+>> Parse the st,fullscale-mg device-tree property (documented separately
+>> in dt-bindings/iio/st,st-sensors.yaml) in the magnetometer common
+>> probe to select the initial fs_avl entry by its mg value. The driver
+>> tolerates an unknown / unsupported value by falling back to the chip
+>> default and warning, so the property is purely additive -- existing
+>> in-tree DTSes are unaffected.
+>> 
+>> Per-sensor mg ranges are listed in st_magn_sensors_settings[]. For
+>> LSM303DLH the valid values are 1300, 1900, 2500, 4000, 4700, 5600
+>> and 8100; for LSM303DLHC they are 1300, 1900, 2500, 4000, 4700, 5600,
+>> 8100 (same code path); for LIS3MDL they are 4000, 8000, 12000, 16000;
+>> and so on. Sensors with a fixed full-scale (fs.addr == 0) simply
+>> ignore the property.
+>> 
+>> Empirical scale sweep on the HP TouchPad confirmed that on this
+>> board any fs_avl >= 1 produces non-saturated X readings:
+>> 
+>>     scale (0.001 G/LSB)  | X raw    Y raw    Z raw
+>>     --------------------+-------------------------------
+>>             1.100        | -4096    44       46    (X saturated)
+>>             0.855        |  -547    37       37    (clean)
+>>             0.670        |  -433    94      103    (clean)
+>>             0.450        |  -266    44       71    (clean)
+>>             0.400        |  -235    34       65    (clean)
+>>             0.330        |  -196    27       56    (clean)
+>>             0.230        |  -145    15       40    (clean)
+>> 
+>> 2500 mg is the natural choice for tenderloin: comfortably outside
+>> the saturation regime while keeping useful precision for compass
+>> applications.
+> 
+> ...
+> 
+>> +	{
+> 
+> Oh, no. Use
+> 
+> 	const char *propname;
+> 	...
+> 	propname = "st,fullscale-mg";
+> 	if (device_property_present(..., propname)) {
+> 		struct st_sensor_fullscale *fs = &mdata->sensor_settings->fs;
+> 		u32 fs_mg;
+> 
+> 		ret = device_property_read_u32(parent, propname, &fs_mg);
+> 		if (ret)
+> 			return ret;
+> 
+> 		...
+> 	}
+> 
+> instead.
 
-On Mon, Jun 15, 2026 at 10:05=E2=80=AFAM Alim Akhtar <alim.akhtar@samsung.c=
-om> wrote:
-> > On Fri, Jun 12, 2026 at 6:11=E2=80=AFPM Alim Akhtar <alim.akhtar@samsun=
-g.com>
-> > wrote:
+Hi Andy,
 
-> > > +F:     arch/arm64/boot/dts/exynos/exynos8855*
+Done in v2: propname lifted to a local, presence check first, 
+device_property_read_u32()
+failure now return errs rather than silently skipping, and the dev_warn 
+format string uses
+%s, propname so the name is in exactly one place.
+> 
+>> +		u32 fs_mg;
+> 
+>> +		if (!device_property_read_u32(parent, "st,fullscale-mg",
+>> +					      &fs_mg)) {
+>> +			struct st_sensor_fullscale *fs =
+>> +				&mdata->sensor_settings->fs;
+>> +			int i;
+>> +
+>> +			for (i = 0; i < ST_SENSORS_FULLSCALE_AVL_MAX; i++) {
+>> +				if (!fs->fs_avl[i].num)
+>> +					break;
+> 
+> This is strange. What's the point to go via the whole table? Does it 
+> have gaps?
+> 
+>> +				if (fs->fs_avl[i].num == fs_mg) {
+>> +					mdata->current_fullscale =
+>> +						&fs->fs_avl[i];
+>> +					break;
+>> +				}
+>> +			}
+>> +			if (mdata->current_fullscale->num != fs_mg)
+>> +				dev_warn(parent,
+>> +					 "st,fullscale-mg=%u not supported, using %u\n",
+> 
+> Also use %s and propname.
+> 
+>> +					 fs_mg, mdata->current_fullscale->num);
+>> +		}
+>> +	}
+It's not gaps: fs_avl[] is a fixed-size array of 
+ST_SENSORS_FULLSCALE_AVL_MAX (currently 8)
+entries, but different magnetometers fill in different prefix lengths up 
+to that cap.
+LSM303DLH uses 7 entries; LSM303DLHC uses 7; LIS3MDL only uses 4.
 
-^ Actually what I am requesting...
+The if (!fs->fs_avl[i].num) break; is the existing sentinel convention 
+used elsewhere in this
+file (see st_sensors_set_fullscale_by_gain() / st_sensors_match_fs()) so 
+the loop terminates at
+the first zero .num. I kept the same convention so future sensors with 
+shorter ranges just work;
+happy to switch to a ARRAY_SIZE() + is_terminator() helper if you'd 
+prefer, but that would be a
+wider cleanup than this patch warrants.
 
-> > If you really want to single out a single platform like this (and I don=
-'t even
-> > know if that is a good idea... how do you keep the big picture in mind?=
-) you
-> > should probably want to also add a wildcard for all the
-> > 8855 device tree files.
-> >
-> I am also not sure, just followed what was done historically, other Exyno=
-s8855 file will get added once they
-> are posted for review, e.g. clock driver.
-> Let me discuss with Krzk during OSS (Mumbai) and see how do we handle thi=
-s or any other better ways.
-
-I just misread the patch, dunno why, probably too little coffee.
-
-Sorry for the fuzz.
-
-Yours,
-Linus Walleij
+Thanks,
+Herman
 
