@@ -1,50 +1,51 @@
-Return-Path: <devicetree+bounces-311894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311896-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 37d8DUfrL2oYJAUAu9opvQ
-	(envelope-from <devicetree+bounces-311894-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:08:39 +0200
+	id bKyTNkHrL2oXJAUAu9opvQ
+	(envelope-from <devicetree+bounces-311896-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:08:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3222685FEE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:08:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A6C6685FEB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:08:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=siemens.com header.s=fm2 header.b=VJIW+hB1;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311894-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311894-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=siemens.com header.s=fm2 header.b=Sdtzkth+;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311896-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311896-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=reject) header.from=siemens.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 66AA83045B24
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:04:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2936830442B8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE4533E716F;
-	Mon, 15 Jun 2026 12:04:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033C53E717B;
+	Mon, 15 Jun 2026 12:04:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-64-228.siemens.flowmailer.net (mta-64-228.siemens.flowmailer.net [185.136.64.228])
+Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D9713E5A10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D489221FB1
 	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:04:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781525055; cv=none; b=rClIHGQ0KPr8olLAdQu8h5zUjCr5oZRDCM8dSg6Gpy8JY7ON3ViUrhJqUnXu6tcBIo/8c/8pMQXQPHc+NMHBQ4ttiVj34xPmdkCAEaY6Z59Ad4A6ChiJXhL2LsyEdJuxBuvJ8s6g8Isy9lxJrPg+WPSp3+4y8RAhSz3GbNeMQ30=
+	t=1781525055; cv=none; b=kB2QG5e2dlNdHxyepLCmmybJHDMJCuQe/6fClYBHDIsikMKIEk+I5ZwjwYJPxbM2NKHMKIIaJAF/Z4D7Af7cxH7TGo3NvFiR3eaGTS1gNMT89urlHyVT3+5h6/k/ckvBFewiT4IpFo5A2va9xRVXBJFUxma+GzjTFuEfC7dRyT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1781525055; c=relaxed/simple;
-	bh=PoZENPoFpelQPToGedaF1Qw1CDV54r0klXwF9Vpvzyc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CgaodjNnyd6NEJmzzD+jNn/MqIhGWXmLUT9ExZLVjufxYcqUuSITSURp+lIDPh9OUSDrG2tg47g2DG82Z+XMVq5earZ1Cono/u3YniwMIQqegOiuvyQ/2kU/JiK2nW2MmL7sxd1nuxohTQ27Poiju1iDq6CeQRaUQfr14DLKKW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=VJIW+hB1; arc=none smtp.client-ip=185.136.64.228
-Received: by mta-64-228.siemens.flowmailer.net with ESMTPSA id 20260615120357abb87f5965000207d9
+	bh=kW2MuBzQP8piNXrIbgiOCi153JlolpWgeimcqvEypos=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=grF6jcGhZZ7xa6V4TnWsNSbQ9aKNx7zPe26bkx23hv2wxf1MiANssoVT2sAXPrM402ukvrKk++ot+sWLPXXdxy2fhWMePzCpxDHqYJI5Q5zRKmdc4QaDqTQkmxO8ugzuDobLc3vcZVF5EdU5o/kazhVGLdz3ONg6aK2rdX3bTx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=Sdtzkth+; arc=none smtp.client-ip=185.136.65.226
+Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 202606151203582a8c008eab00020716
         for <devicetree@vger.kernel.org>;
         Mon, 15 Jun 2026 14:03:58 +0200
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
  d=siemens.com; i=alexander.sverdlin@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
- bh=lCOoc1nkAj9LM105Jbsd+SDj6HDskDfhiImH70CCtpM=;
- b=VJIW+hB1r1v2BVNgjuHpz6m0c3XuTFAuC/jxb2JCOs91V5KqN1/rIudfcyLJzmwMVZcyu3
- k4kYp6CZ1PwOIxG8TelhNFFt1GTde3wxRMv4THGZFLSHEZPVkh9//BGZYZEJC8VNJAIP6Nwf
- 2UXdbonCtfumlbbYGnB9IGuA0Q3MU7iDYLL0bM1BwnLn7HZkhBsLlmKC1fg9QaSxtWhcz8lx
- S37v3jWBHhxulH3QQHqvux22KJSG5S5EokxDK3y2mDzJ1CVmuLXKEi+beE4JKcnLLynlU0IE
- STyI2qoMO+ZTrxK7VvWSSCMZ1mgkLnIetYx98tLDOYi2spHtQ8KPIelQ==;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
+ bh=Xz6nCVPweiRhv904vuI6Sdj8uMkOdjwCRi1d8097nvw=;
+ b=Sdtzkth+3PIHjyY2UXv2FeZV0gnPita2a3sykTGPaSIBNta968LbZmEaA4nmrUTcy0/wMp
+ q6t+fzXVizcDmEbSwVf2WuYZomYaAoOHYYJomCmzPwY3lQU+Ff45k9eA4QSpMOx4muTyihPY
+ Vr1RnCIaRGB+TKU3otTUbredSgsw8Rr3eOLttGbVP5XvewKRsrWtaQhayQVHpagrAMx6R+h/
+ n3R6d5LyyQvCPsenONGLWFyPErOBcf7mLZoQozffUIqmKHh7sJ0Xw3fBzeCwOfguTeOMvOX0
+ vGkxMz2CXB9sHoPepUExwKo4zV8yzyI5PoRDbn5LjMyuEhS8Az5vnyEA==;
 From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
 To: linux-leds@vger.kernel.org
 Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
@@ -61,9 +62,11 @@ Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-fbdev@vger.kernel.org
-Subject: [PATCH 0/3] Convert LP8864 LED driver to backlight class
-Date: Mon, 15 Jun 2026 14:03:46 +0200
-Message-ID: <20260615120353.3409035-1-alexander.sverdlin@siemens.com>
+Subject: [PATCH 1/3] dt-bindings: backlight: ti,lp8864: Add backlight class properties
+Date: Mon, 15 Jun 2026 14:03:47 +0200
+Message-ID: <20260615120353.3409035-2-alexander.sverdlin@siemens.com>
+In-Reply-To: <20260615120353.3409035-1-alexander.sverdlin@siemens.com>
+References: <20260615120353.3409035-1-alexander.sverdlin@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +89,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-311894-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311896-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FREEMAIL_CC(0.00)[siemens.com,kernel.org,gmail.com,gmx.de,ti.com,lists.freedesktop.org,vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
@@ -108,49 +111,93 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,siemens.com:dkim,siemens.com:email,siemens.com:mid,siemens.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ti.com:url,ti.com:email,vger.kernel.org:from_smtp,siemens.com:dkim,siemens.com:email,siemens.com:mid,siemens.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D3222685FEE
+X-Rspamd-Queue-Id: 6A6C6685FEB
 
 From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 
-This series converts the TI LP8864/LP8866 driver from a pure LED class
-driver to a backlight class driver, while preserving backward-compatible
-LED class device registration.
+Extend the TI LP8864/LP8866 device-tree binding to support backlight
+class properties alongside the existing LED class child node.
 
-The motivation is a use case on a hot-pluggable segment of an I2C bus.
-The generic led-backlight driver (drivers/video/backlight/led_bl.c) is
-a platform driver and thus inherently non-hotpluggable -- it cannot react
-to dynamic appearance/disappearance of the underlying I2C device. By
-making the LP8864 driver directly register a backlight class device, it
-becomes a self-contained I2C driver that properly supports hot-plug/unplug
-events without depending on a separate platform device for backlight
-functionality.
+This is a preparatory change for converting the LP8864 driver from a
+pure LED class driver to additionally register a backlight class device,
+motivated by a use case on a hot-pluggable segment of an I2C bus. The
+generic led-backlight driver (led_bl.c) is a platform driver and thus
+inherently non-hotpluggable, which makes it unsuitable for hardware
+topologies where the backlight controller resides on a hot-pluggable I2C
+bus segment. By making the LP8864 driver itself register a backlight
+class device, it becomes a native I2C driver that properly supports
+hot-plug/unplug events.
 
-The LED class device registration is retained for backward compatibility:
-if the "led" child node is present in the device-tree, an LED class device
-is registered in addition to the backlight device.
+The binding is updated to:
+- Reference backlight common.yaml at the top level, making
+  default-brightness and max-brightness valid optional properties
+- Make the "led" child node optional rather than required, since the
+  backlight class device is now the primary interface
+- Use unevaluatedProperties instead of additionalProperties to properly
+  allow properties inherited from the referenced common schema
 
-No in-tree device-trees reference this driver, so there is no mainline
-impact. Out-of-tree users who previously relied on the LP8864 as a backend
-for the generic led-backlight platform driver will notice a backlight class
-device appearing directly.
+The LED child node is preserved for backward compatibility with existing
+device-trees. No in-tree device-trees reference this binding, so this
+change has no impact on existing mainline users.
 
-Alexander Sverdlin (3):
-  dt-bindings: backlight: ti,lp8864: Add backlight class properties
-  leds: lp8864: Rename struct lp8864_led and local variables
-  backlight: lp8864: Convert from LED to backlight class driver
+Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+---
+ .../bindings/leds/backlight/ti,lp8864.yaml       | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
- .../bindings/leds/backlight/ti,lp8864.yaml    |  16 +-
- MAINTAINERS                                   |   2 +-
- drivers/leds/Kconfig                          |  12 --
- drivers/leds/Makefile                         |   1 -
- drivers/video/backlight/Kconfig               |  15 ++
- drivers/video/backlight/Makefile              |   1 +
- .../backlight/lp8864_bl.c}                    | 169 ++++++++++++------
- 7 files changed, 147 insertions(+), 69 deletions(-)
- rename drivers/{leds/leds-lp8864.c => video/backlight/lp8864_bl.c} (55%)
-
+diff --git a/Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml b/Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
+index d44232d462bde..11d7e3840c6fb 100644
+--- a/Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
++++ b/Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/leds/backlight/ti,lp8864.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Texas Instruments - LP8864/LP8866 4/6-Channel LED Driver family
++title: Texas Instruments - LP8864/LP8866 4/6-Channel LED Backlight Driver family
+ 
+ maintainers:
+   - Andrew Davis <afd@ti.com>
+@@ -21,6 +21,9 @@ description: |
+     https://www.ti.com/product/LP8866-Q1
+     https://www.ti.com/product/LP8866S-Q1
+ 
++allOf:
++  - $ref: common.yaml#
++
+ properties:
+   compatible:
+     const: ti,lp8864
+@@ -36,9 +39,15 @@ properties:
+   vled-supply:
+     description: LED supply
+ 
++  default-brightness:
++    maximum: 65535
++
++  max-brightness:
++    maximum: 65535
++
+   led:
+     type: object
+-    $ref: common.yaml#
++    $ref: /schemas/leds/common.yaml#
+     properties:
+       function: true
+       color: true
+@@ -50,9 +59,8 @@ properties:
+ required:
+   - compatible
+   - reg
+-  - led
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
 -- 
 2.54.0
 
