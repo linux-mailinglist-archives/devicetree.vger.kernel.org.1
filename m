@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-312131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312133-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1AUqIO4zMGp1PwUAu9opvQ
-	(envelope-from <devicetree+bounces-312131-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:18:38 +0200
+	id GWiAFiU0MGp7PwUAu9opvQ
+	(envelope-from <devicetree+bounces-312133-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:19:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A7E6688C70
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:18:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45968688C86
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:19:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nNYKejhG;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312131-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-312131-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=g56jrQHP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312133-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-312133-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 741A53032625
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:10:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4EC26300E17E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:11:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53A0A413607;
-	Mon, 15 Jun 2026 17:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BFA2413609;
+	Mon, 15 Jun 2026 17:11:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3774A3090D5
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 17:10:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AC85411667
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 17:11:47 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781543408; cv=none; b=KgLgHytgLJmq8z/MxPsamvfY4Xv24NFMJmcDrHN266eaaTboGBwnXBmAHQKWYAAh+T6j9+oU/VAUfGGyHCJyB7bc1EWIUdmo3B2O/h+I19D9zjSfta92QHOlmQkkRvKrXo64ZLtYKSEc30J3EGa6D+IWpLsq+T4ur6f1BEah7FU=
+	t=1781543509; cv=none; b=qWXF5H9kG1s2GJyMFG2NuxV2GhUwzRPYoq1p7qP7O9UZ3MkORvg/23exeIZoZpqSmmFg/y7uSkdFIi81nbF/r0jiATOxu7SoTlrwzruz9fXkJtDnfGw12ApCYtMQwdcPRHG7+IMsHqb3Jb8EzQHo1FiBHSpUPxtkr0xeCYIZFQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781543408; c=relaxed/simple;
-	bh=kysC6MdlGHLYijGiX8oILpsxu5tpjzeYnEpHiLBe74o=;
+	s=arc-20240116; t=1781543509; c=relaxed/simple;
+	bh=wUrkBOMek69ckpLqnRhFYFs462Q87FhKHH/qRLPfkLk=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Bycgma/I5HpSTXUU9MfEQqFBl0X/F5lmO4v/M0nNHsjs95JG3VasWhfqQHbEk2DLRVpabG9HdEus88FB0x262PJaqHe3iGG2YrqzWkbvD3Sln+Eh4yjmpz8AXnRv5nIlrMqNGtGLP2wcxN0G+Myew3LkcIt10aBVFfxSmjGhyb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nNYKejhG; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88CAB1F000E9;
-	Mon, 15 Jun 2026 17:10:06 +0000 (UTC)
+	 Message-Id; b=Kl8HN1t1J4px3oRKc1yk9BTFaF98R+We6VS632RwvtYj70B7X0X3fL579+IN+tNU8qwywU0ZP7ooKk+plMC7kbLgCo1/qV401KoCxNAXjkaRv0KZiqLhcDs9wkZDClciiaEtGp5orx0L/86iJZbcUOXG0GUvmCDLQ2a0XA7m+lQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g56jrQHP; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C8C21F000E9;
+	Mon, 15 Jun 2026 17:11:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781543406;
-	bh=YmwEPL+7pIwLXCHcD/ZN6exp0snAl4luxZ9swauXDTw=;
+	s=k20260515; t=1781543507;
+	bh=C9jEkPmJbdKutmby+4c+KgiA7hcPhhr1NcVd55vnbNo=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=nNYKejhGlFPujhHTyaYn7h8x46rU6plbeX1PQqUHW05yViwM7TINnFQ8JxOIdJBHg
-	 s57gi9CcLR58W/jvuKuPNOoPqLwElresQIECfNplK2HJJF2sffSMmWj6de9LOBpB/p
-	 lGT4MThGO4g1bmxd4jGRubB+ELG2uZZsLpf+HcST8X+Ub21vOm8wXXQYygGsFS4ocI
-	 q6b8LwlXx9hUS7iaks6kO3hp3Lra+nNg7hLNq6YHxfClZmx9Wnl/ZESWnYQVwW3ekI
-	 Jon2o3Lj7F/Yy0DwQImCGQIOYpjMaP47dDYyNzquCN/6okMton93LigW1pu7wLIP4H
-	 YTXEkA/KNjc4Q==
+	b=g56jrQHP3poaDI75ZhEfNmq/d5cavX1ygy/XPyybmDVAeeb4KmmolKsYt6Ni6OtE6
+	 o0ieQX3p6SfrssU8K7PaUV6TjiMNXar2KFvO19rBfegtEoDHDS9gjvCs7CnR8AXVR3
+	 wOO9oSS+rAwB968JwP4zMg4gxQlcVSffihYqq/EWCfyQGVtMjN2hmvakMmuT15zPyr
+	 doLs2MD1/hY4nk8GSBC52hDlEnW6eDHarWDeT2mpZrtj80LI1bzJDQXZ6X7wryGcLg
+	 ZiZUZ1T9tvIYPH6Gsq2zbU74K+oaMDmdq4z1jArSLf73Bsjgyfz4dfyys+mWugIroG
+	 aK5aMhLrByBZA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sm8450: Add missing CX power
- domain to GCC
+Subject: Re: [PATCH RFC v3 5/6] arm64: dts: qcom: sm8650-qrd: add SPMI ADC
+ channels and thermal nodes
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Neil Armstrong" <neil.armstrong@linaro.org>
-Cc: conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260615-topic-sm8x50-tie-gcc-to-cx-v2-4-6b5752dd4747@linaro.org>
-References: <20260615-topic-sm8x50-tie-gcc-to-cx-v2-4-6b5752dd4747@linaro.org>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260615-topic-sm8x50-adc5-gen3-v3-5-216a2b5ccb85@linaro.org>
+References: <20260615-topic-sm8x50-adc5-gen3-v3-5-216a2b5ccb85@linaro.org>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 17:10:06 +0000
-Message-Id: <20260615171006.88CAB1F000E9@smtp.kernel.org>
+Date: Mon, 15 Jun 2026 17:11:47 +0000
+Message-Id: <20260615171147.7C8C21F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,17 +71,17 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312131-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312133-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -102,94 +102,66 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,smtp.kernel.org:mid,sashiko.dev:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,lists.linux.dev:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7A7E6688C70
+X-Rspamd-Queue-Id: 45968688C86
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] Missing `pm_genpd_remove()` and error path cleanup in `gdsc_regist=
-er()` leads to use-after-free in `gpd_list` upon unbind or probe failure.
+- [Low] Device Tree unit address mismatch for PM8550VE die temperature ADC =
+channel.
 --
 
-commit e4315c043469a13f84ee75ac94f4e0790692142c
+commit 6952f92c17c33d46a9fedfb44cee4f92301811b9
 Author: Neil Armstrong <neil.armstrong@linaro.org>
 
-arm64: dts: qcom: sm8450: Add missing CX power domain to GCC
+arm64: dts: qcom: sm8650-qrd: add SPMI ADC channels and thermal nodes
 
-This commit associates the GCC with RPMHPD_CX by adding a power-domains
-property to the device tree, preventing under-voltage conditions by allowing
-votes to propagate.
+This commit adds the SPMI ADC channels on the PMK8550 SPMI5 ADC3 for the
+other PMICS on the system. It also adds thermal nodes, sorted by the
+sensor channel to be coherent with the system thermal nodes ordering.
 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/q=
-com/sm8450.dtsi
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -935,6 +935,7 @@ soc: soc@0 {
->  		gcc: clock-controller@100000 {
->  			compatible =3D "qcom,gcc-sm8450";
->  			reg =3D <0x0 0x00100000 0x0 0x1f4200>;
-> +			power-domains =3D <&rpmhpd RPMHPD_CX>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dt=
+s/qcom/sm8650-qrd.dts
+> index a3982ae229290..0f5f9e55586ad 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
 
-[Severity: High]
-This is a pre-existing issue, but since this patch configures the power
-domains for this device, it brings up a concern in the underlying Qualcomm
-GDSC driver framework.
+[ ... ]
 
-If probe fails or the module is unloaded, does the error handling in
-gdsc_register() leave dangling pointers in the core gpd_list?
+> @@ -1040,27 +1129,217 @@ led@3 {
 
-Looking at drivers/clk/qcom/gdsc.c:gdsc_register(), if a subsequent
-gdsc_init() fails, it returns directly:
+[ ... ]
 
-drivers/clk/qcom/gdsc.c:gdsc_register() {
-    for (i =3D 0; i < num; i++) {
-        if (!scs[i])
-            continue;
-        ...
-        ret =3D gdsc_init(scs[i]);
-        if (ret)
-            return ret;
-    }
-}
+> +	/* PM8550VS_E Channel nodes */
+> +	channel@403 {
+> +		reg =3D <PM8550VS_ADC5_GEN3_DIE_TEMP(4)>;
+> +		label =3D "pm8550vs_e_die_temp";
+> +		qcom,pre-scaling =3D <1 1>;
+> +	};
+> +
+> +	/* PM8550VE Channel nodes */
+> +	channel@503 {
+> +		reg =3D <PM8550VE_ADC5_GEN3_DIE_TEMP(PMK8550VE_SID)>;
 
-This seems to leak the previously initialized power domains in the global
-gpd_list because it misses calling pm_genpd_remove() for scs[0..i-1].
+[Severity: Low]
+Does this unit address match the evaluated reg property?
 
-Similarly, if of_genpd_add_provider_onecell() fails at the end of the
-function, it also returns immediately or bypasses domain removal:
+Since PMK8550VE_SID is 8 in sm8650-qrd.dts, the macro
+PM8550VE_ADC5_GEN3_DIE_TEMP(PMK8550VE_SID) evaluates to 0x803.
 
-drivers/clk/qcom/gdsc.c:gdsc_register() {
-    ...
-    return of_genpd_add_provider_onecell(dev->of_node, data);
+Would naming the node channel@803 instead of channel@503 prevent a
+unit_address_vs_reg warning from the device tree compiler?
 
-err_pm_subdomain_remove:
-    gdsc_pm_subdomain_remove(desc, i);
+> +		label =3D "pm8550ve_die_temp";
+> +		qcom,pre-scaling =3D <1 1>;
+> +	};
+> +
+> +	/* PM8550VS_G Channel nodes */
 
-    return ret;
-}
-
-Furthermore, gdsc_unregister() removes subdomains and deletes the provider,
-but entirely misses pm_genpd_remove() before the backing memory is freed
-on module unload:
-
-drivers/clk/qcom/gdsc.c:gdsc_unregister() {
-    ...
-    gdsc_pm_subdomain_remove(desc, num);
-    of_genpd_del_provider(dev->of_node);
-}
-
-Could this result in a use-after-free kernel panic if gpd_list is iterated
-(for example, by genpd_power_off_unused() or debugfs) after an unbind or
-probe failure?
-
->  			#clock-cells =3D <1>;
->  			#reset-cells =3D <1>;
->  			#power-domain-cells =3D <1>;
+[ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615-topic-sm8x=
-50-tie-gcc-to-cx-v2-0-6b5752dd4747@linaro.org?part=3D4
+50-adc5-gen3-v3-0-216a2b5ccb85@linaro.org?part=3D5
 
