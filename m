@@ -1,80 +1,52 @@
-Return-Path: <devicetree+bounces-311844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311853-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SSxSO0TUL2qtHgUAu9opvQ
-	(envelope-from <devicetree+bounces-311844-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:30:28 +0200
+	id x5SSE4nXL2opHwUAu9opvQ
+	(envelope-from <devicetree+bounces-311853-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:44:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DE6F6855B7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:30:28 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E566856C6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:44:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="f/CxWoJo";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311844-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311844-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311853-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-311853-lists+devicetree=lfdr.de@vger.kernel.org";
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E0382301FFAD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:28:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F27523020EF8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:44:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355C93DD500;
-	Mon, 15 Jun 2026 10:28:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C88D033F5A9;
+	Mon, 15 Jun 2026 10:44:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7EF63DA7FD;
-	Mon, 15 Jun 2026 10:28:35 +0000 (UTC)
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9308B33E35B;
+	Mon, 15 Jun 2026 10:44:03 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781519317; cv=none; b=rFdeBGsHJOi4nQcf6FNFKZFH4lTKZAYV1s6/ERrgnkGoAaObf4O9y3QkpXbDLWt70bYDOpq41xC/3eEYT21cxH1k2h6kWHUkkPLJbu/r/VQX9SHc0CfXZ3rIMUst286Ncs7i4hNKqiTlwN6jnhorR1pXYRVWlTFj0ZnTEVrE3qs=
+	t=1781520244; cv=none; b=amppFmIUsP2l16YXZ9QkPhm4ztxiQxNaU08hyDh5MDEXfaNfQDaNq+castPoSMYiHWldVZ5U69ihfNXGGu93uXP2D0cCXy4Jff7tsPRlblbRWl+GmEmMtsfFUA1vFNXowchoBkGPapgD4QFpQhSZg57U6uzVFyXnn35i/koxUQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781519317; c=relaxed/simple;
-	bh=cjmYWfC1zuAZ0CEHetrNd9YiohGW7mbOzZNdkkXbyUo=;
+	s=arc-20240116; t=1781520244; c=relaxed/simple;
+	bh=sSTFhO2YnsKMCD/YvKWjIpD8RLkxXQ1D4msQjuxjj3g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JlpXBXNEHzENonEm1t1YouYVuzSoOYyMhUMW1GwitQhkyo8SC0qnJ135+LB4HsVAsIaaX28Tqii0quMeZbyx0AB7b5uN63ucigj0gUaqROAJj06VTsSM22/JIDHQmd5Hcm3+P+fH1NCb0geWAdt5W3We23Ae4XfebiDaUe4umCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f/CxWoJo; arc=none smtp.client-ip=198.175.65.13
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781519315; x=1813055315;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cjmYWfC1zuAZ0CEHetrNd9YiohGW7mbOzZNdkkXbyUo=;
-  b=f/CxWoJo+ZKZcekHfx99M8qXSq3+V5tB+jakfPq8EuMYuqWFJFJMh4l1
-   Ue0MDOZ0r3rOUHLkmv4g/NoQjcaL6r+lYAFu/qbjf6i+iYeNT+dB/GjgW
-   98njBGvyq4c8hhkFpm48PAR6rMjltTUwOScR8bqFrckYqkKxrU1YJDsst
-   Fb9xU9lPyclCOwKdhw+761W0hwlfKJBqjjunAY4hzyu5eu/f6VdacocQ1
-   GHjFmle0omZ7AOVUb1vpnLnIMZ9OpR6QPOZPBPI3eAj4etcLc+7AettjG
-   o56JmwatE9M95BXfUlh4/ixagaRQZp2oj32Erw7z/zxlfRw9rSJTwCIRP
-   Q==;
-X-CSE-ConnectionGUID: zdTv42NxSES1T2ifet68WQ==
-X-CSE-MsgGUID: E5viAEppQFi4fKAv2QgKqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11817"; a="93371798"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; 
-   d="scan'208";a="93371798"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026 03:28:35 -0700
-X-CSE-ConnectionGUID: 8KEZcgDwST6M1JTXFdyAjg==
-X-CSE-MsgGUID: j6gxE4dnTQeRTw5bK8cP2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; 
-   d="scan'208";a="244527019"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.235])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026 03:28:32 -0700
-Date: Mon, 15 Jun 2026 13:28:29 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
-	dlechner@baylibre.com, jic23@kernel.org,
-	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V12 5/9] iio: imu: inv_icm42607: Add PM support for
- icm42607
-Message-ID: <ai_Tzbl3sZlyrh2M@ashevche-desk.local>
-References: <20260611202607.85376-1-macroalpha82@gmail.com>
- <20260611202607.85376-6-macroalpha82@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dw9c8n1WruZfKNhtD5f5HLWsFfNhZBqJRLSv5mTktD9n+UD8F/w1NPFes+t+M/7VN+a68/b1C1YHf/noK/IDi2wrmPuOrp7IpFqUjVeC29tlKUdaAjBXvL9hHWNADAGjr9NM8kfzd+bE/rmkadtPbbMQfGAF9/rixtD7q1kkkt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1wZ4ey-0000JX-00; Mon, 15 Jun 2026 12:35:16 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 53967C068C; Mon, 15 Jun 2026 12:28:29 +0200 (CEST)
+Date: Mon, 15 Jun 2026 12:28:29 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Rosen Penev <rosenp@gmail.com>
+Cc: linux-mips@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] mips: dts: ar9132: fix wdt node name
+Message-ID: <ai_TzYPvnOU7Pgt1@alpha.franken.de>
+References: <20260608053202.12004-1-rosenp@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,114 +55,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260611202607.85376-6-macroalpha82@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20260608053202.12004-1-rosenp@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311844-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jic23@kernel.org,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311853-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[franken.de];
+	FORGED_RECIPIENTS(0.00)[m:rosenp@gmail.com,m:linux-mips@vger.kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[tsbogend@alpha.franken.de,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tsbogend@alpha.franken.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	R_DKIM_NA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ashevche-desk.local:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,alpha.franken.de:mid,alpha.franken.de:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3DE6F6855B7
+X-Rspamd-Queue-Id: A9E566856C6
 
-On Thu, Jun 11, 2026 at 03:26:02PM -0500, Chris Morgan wrote:
+On Sun, Jun 07, 2026 at 10:32:02PM -0700, Rosen Penev wrote:
+> Fixes the following warning:
+> 
+> $nodename:0: 'wdt@18060008' does not match
+> '^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$'
+> from schema $id: http://devicetree.org/schemas/watchdog/qca,ar7130-wdt.yaml#
+> 
+> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+> ---
+>  arch/mips/boot/dts/qca/ar9132.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/mips/boot/dts/qca/ar9132.dtsi b/arch/mips/boot/dts/qca/ar9132.dtsi
+> index 4d3c48a9f9fd..77225ed459cb 100644
+> --- a/arch/mips/boot/dts/qca/ar9132.dtsi
+> +++ b/arch/mips/boot/dts/qca/ar9132.dtsi
+> @@ -98,7 +98,7 @@ pll: pll-controller@18050000 {
+>  				clock-output-names = "cpu", "ddr", "ahb";
+>  			};
+>  
+> -			wdt: wdt@18060008 {
+> +			wdt: watchdog@18060008 {
+>  				compatible = "qca,ar7130-wdt";
+>  				reg = <0x18060008 0x8>;
+>  
+> -- 
+> 2.54.0
 
-> Add power management support for the ICM42607 device driver.
+applied to mips-next
 
-...
-
-> +static int inv_icm42607_set_pwr_mgmt0(struct inv_icm42607_state *st,
-> +				      enum inv_icm42607_sensor_mode gyro,
-> +				      enum inv_icm42607_sensor_mode accel,
-> +				      bool temp, unsigned int *sleep_ms)
-> +{
-> +	enum inv_icm42607_sensor_mode oldaccel = st->conf.accel.mode;
-> +	enum inv_icm42607_sensor_mode oldgyro = st->conf.gyro.mode;
-> +	bool oldtemp = st->conf.temp_en;
-> +	unsigned int sleepval_ms;
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	if (gyro == oldgyro && accel == oldaccel && temp == oldtemp)
-> +		return 0;
-
-This validation seems weak, see below why.
-
-> +	val = FIELD_PREP(INV_ICM42607_PWR_MGMT0_GYRO_MODE_MASK, gyro);
-> +	val |= FIELD_PREP(INV_ICM42607_PWR_MGMT0_ACCEL_MODE_MASK, accel);
-> +	/*
-> +	 * Note that temp being enabled here doesn't affect PM since
-> +	 * per 10.25 of the datasheet the clock will be off by default
-> +	 * if both the gyro and accel modes are off.
-> +	 */
-> +	if (!temp)
-> +		val |= INV_ICM42607_PWR_MGMT0_ACCEL_LP_CLK_SEL;
-> +	ret = regmap_write(st->map, INV_ICM42607_REG_PWR_MGMT0, val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->conf.gyro.mode = gyro;
-> +	st->conf.accel.mode = accel;
-> +	st->conf.temp_en = temp;
-
-> +	sleepval_ms = 0;
-> +	if (temp && !oldtemp)
-> +		sleepval_ms = max(sleepval_ms, INV_ICM42607_TEMP_STARTUP_TIME_MS);
-> +
-> +	if (accel != oldaccel)
-> +		sleepval_ms = max(sleepval_ms, INV_ICM42607_ACCEL_STARTUP_TIME_MS);
-> +
-> +	if (gyro != oldgyro)
-> +		sleepval_ms = max(sleepval_ms, INV_ICM42607_GYRO_STARTUP_TIME_MS);
-
-Does it mean that it might be more than a single conditional to become true?
-If so, the last code wins, which is most likely buggy approach. Can you put
-a comment, and possible convert this to if-else-if, to clarify what's going
-on here?
-
-> +	if (sleep_ms)
-> +		*sleep_ms = sleepval_ms;
-> +	else if (sleepval_ms)
-> +		fsleep(sleepval_ms * USEC_PER_MSEC);
-> +
-> +	return 0;
-> +}
+Thomas.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
