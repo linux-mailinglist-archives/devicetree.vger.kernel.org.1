@@ -1,184 +1,210 @@
-Return-Path: <devicetree+bounces-311979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311980-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EcX1KxoIMGp7MAUAu9opvQ
-	(envelope-from <devicetree+bounces-311979-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:11:38 +0200
+	id UpihE5oHMGpKMAUAu9opvQ
+	(envelope-from <devicetree+bounces-311980-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:09:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D7AA686F80
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:11:38 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF02B686F2F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:09:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=zdj55i0X;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311979-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311979-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=bootlin.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=m0WUc4SE;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311980-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-311980-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C06743034BCC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:07:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 58A5F300C323
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07713F660B;
-	Mon, 15 Jun 2026 14:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5E503F4840;
+	Mon, 15 Jun 2026 14:09:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A9F3F4DC6;
-	Mon, 15 Jun 2026 14:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB8C621C16A
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 14:09:25 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781532438; cv=none; b=WrwWPUIHPR9dzRcFXPQUicNEZhu5dHZw8CkYbxhl2486+tha5Z7MbQZ+zeugVZxi0mtj/o1zoBMNCKFs7HQ9l7dYg8agMakJYZP0siKaIhqvxmGz6vtuN+53hOPO4Tut6kc0VhRCCGOMG+pHYGEw2sevYsWdH04SOibyV5I0vCY=
+	t=1781532566; cv=none; b=rkC3G0tvVlMcls7WosmwHwGLcgBFg4zXK9DS2Dx5xWEvsamfVIgNQRQlP7d43mN/VGHCOaZZ0DAGTdEbJiPb4XVgLFSOvs/+ugrImoH8jmG7pFawPOcXM0/Q53xsxDtzxfKgXOY/6XuQEyrHiRAh/SRk0081OGBI+DH5nziNKqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781532438; c=relaxed/simple;
-	bh=iunEIKNm11CTXyLswfX8qxc5Ol986Egd0t8gsHMmhrs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=AKVRdFYElhnkM6cK17eACzqPNlIoiiP4DWBxAqp+xYswdprVZrTAJz9l+J9ox6hmb6aWyyuowHTamVenjEOfPBSXy+c1ryzllg64ma9nTlCmmFYlzK6ReckOqguaD0rALSlbvt24/Hz4ABML0IE2MMyA9hQiqzvoRE3ItEWpoRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zdj55i0X; arc=none smtp.client-ip=185.171.202.116
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 54432C5146A;
-	Mon, 15 Jun 2026 14:07:19 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 20E3360015;
-	Mon, 15 Jun 2026 14:07:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AF69D106C96A5;
-	Mon, 15 Jun 2026 16:07:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1781532433; h=from:subject:date:message-id:to:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=12cJkgmNpZePALEcCCii3OEhCzXZc//+4qAWWEONSCc=;
-	b=zdj55i0XH3giozHt1HpWm9UfrnYusBZsrgy8BIRAXrB12gRGFYttdKWdel5vEcrpKgU3pO
-	kBhdbrbf9QdwQ+fPiu2opW/5t31ghiReeLTz6M8Y8J0kWp7gICiIuQG7YVavMSQEiI06nh
-	XvF3aocbyXTK/ga1gpylQ0kuKXc0Um1owXiC90x7Ys+HJLXRgCbneEwZiDpMT/vI957D7Q
-	/Mj+jd+MV5kLA+KI0SHns+JUCPL7eeozwOQqR9YDjvnN/Pc7ZtsNkSm9VnBjFNVavlxozq
-	mJ5t9Eg7cg97pu12QnsGmSdYOCU/VEFxF7+986tvH4yr+YZ/rUitb7n14j6Eew==
-Message-ID: <867a39de-ccc2-4dcf-be24-ab2542d20ab6@bootlin.com>
-Date: Mon, 15 Jun 2026 16:07:03 +0200
+	s=arc-20240116; t=1781532566; c=relaxed/simple;
+	bh=Frk4+Wa6ICwJO6U3L+yEDrxuRATHO+hFpYbWTfKJHG4=;
+	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=oT0J7XI5e1oQzqbNAhSBGzaTyfmM9vZkhur7ELLjGL6ACBqDxzq7YAR4jq6Yk9Dh+tJXkK45ntoqeo1IAesVxLCb43r8mNkp4so3FenyTFuy7gSkrABAGgq9pkDCpjHTYCb4wqZ1Hi79/vlauscQQDx2EQlC9veGQr855uUXpl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m0WUc4SE; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20B501F000E9;
+	Mon, 15 Jun 2026 14:09:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781532565;
+	bh=EBTaAU50xaIFvr9WTvUe1h070BZzYsK/QExc1tn70+0=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=m0WUc4SE+IgIp5ddA952cK/1g0+Eduh3HiccVHqBD5SqAVizDXQeXpY4SXAao3sTl
+	 H0BQJ4Sj8RsG9f0zq2XAOzcDuZPCV8HaVt4qx3TWf4xtdYYVa5+hFu3+TncZYgTL16
+	 TIyVeOfaVRPLS2/3a4kR9p3OtNkMvWxBIB6x2wHk/hWcOCKyTzmx0RHIkdE05mQksp
+	 LFK86/v9pKGN7Y61B2wpakJuN1tE9jCmIh++/n1ida972sHTPIwj6WV1g8nh6Aw5a5
+	 JqiUIfJQ8gto27y+260NzvFuYeRMe9yBBgBBfQF0MhHs1VZrRaAvnC0J0LyG6+ma/F
+	 YiiAW7a6Fo5Zg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 3/5] arm64: dts: renesas: r9a09g087: Add VSPD and
+ FCPVD nodes
+Reply-To: sashiko-reviews@lists.linux.dev
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: wsa+renesas@sang-engineering.com, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260615115455.1412098-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260615115455.1412098-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 15 Jun 2026 14:09:24 +0000
+Message-Id: <20260615140925.20B501F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 05/12] net: phylink: support late PCS provider
- attach
-To: Christian Marangi <ansuelsmth@gmail.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Saravana Kannan <saravanak@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Nathan Chancellor
- <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- llvm@lists.linux.dev
-References: <20260615122950.22281-1-ansuelsmth@gmail.com>
- <20260615122950.22281-6-ansuelsmth@gmail.com>
-Content-Language: en-US
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-In-Reply-To: <20260615122950.22281-6-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311979-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,armlinux.org.uk,pengutronix.de,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_SENDER(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:lorenzo@kernel.org,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:p.zabel@pengutronix.de,m:nathan@kernel.org,m:nick.desaulniers+lkml@gmail.com,m:morbo@google.com,m:justinstitt@google.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:llvm@lists.linux.dev,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:nickdesaulniers@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:wsa+renesas@sang-engineering.com,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:prabhakarcsengg@gmail.com,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311980-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,lists.linux.dev:replyto,sashiko.dev:url,renesas.com:email];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCPT_COUNT_FIVE(0.00)[5];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,lkml];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,bootlin.com:dkim,bootlin.com:mid,bootlin.com:from_mime,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4D7AA686F80
+X-Rspamd-Queue-Id: DF02B686F2F
 
-Hi Christian,
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] Missing strictly required 'resets' property in vspd and fcpvd node=
+s prevents driver probing.
+- [Low] Undeclared clock macro `R9A09G087_LCDC_CLKD` causes dtc compilation=
+ failure.
+- [Low] Undocumented compatibles 'renesas,r9a09g087-fcpvd' and 'renesas,r9a=
+09g087-vsp2' trigger cascading schema validation failures.
+--
 
-On 6/15/26 14:29, Christian Marangi wrote:
-> Add support for late PCS provider attachment to a phylink instance.
-> This works by creating a global notifier for the PCS provider and
-> making each phylink instance that makes use of fwnode subscribe to
-> this notifier.
-> 
-> The PCS notifier will emit the event FWNODE_PCS_PROVIDER_ADD every time
-> a new PCS provider is added.
-> 
-> phylink will then react to this event and will call the new function
-> fwnode_phylink_pcs_get_from_fwnode() that will check if the PCS fwnode
-> provided by the event is present in the pcs-handle property of the
-> phylink instance.
-> 
-> If a related PCS is found, then such PCS is added to the phylink
-> instance PCS list.
-> 
-> Then we link the PCS to the phylink instance and we refresh the supported
-> interfaces of the phylink instance.
-> 
-> Finally we check if we are in a major_config_failed scenario and trigger
-> an interface reconfiguration in the next phylink resolve.
-> 
-> In the example scenario where the link was previously torn down due to
-> removal of PCS, the link will be established again as the PCS came back
-> and is now available to phylink.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
+commit bbd19abf3f870d8f56a21516f41a6bb33f488901
+Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-[...]
+arm64: dts: renesas: r9a09g087: Add VSPD and FCPVD nodes
+   =20
+Add VSPD and FCPVD nodes to RZ/N2H SoC DTSI.
 
-> @@ -2151,6 +2204,10 @@ void phylink_destroy(struct phylink *pl)
->  	if (pl->link_gpio)
->  		gpiod_put(pl->link_gpio);
->  
-> +	/* Unregister notifier for late PCS attach */
-> +	if (pl->fwnode_pcs_nb.notifier_call)
-> +		unregister_fwnode_pcs_notifier(&pl->fwnode_pcs_nb);
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi b/arch/arm64/boot=
+/dts/renesas/r9a09g087.dtsi
+> index f697e9698ed39..cb2eabe3242e0 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
+> @@ -1271,6 +1271,28 @@ sdhi1_vqmmc: vqmmc-regulator {
+>  				status =3D "disabled";
+>  			};
+>  		};
+> +
+> +		fcpvd: fcp@920d0000 {
+> +			compatible =3D "renesas,r9a09g087-fcpvd", "renesas,fcpv";
 
-I wanted to try this out, but I get :
+[Severity: Low]
+Are these new compatible strings documented in the bindings?
 
-drivers/net/phy/phylink.c:2218:17: error: implicit declaration of function ‘unregister_fwnode_pcs_notifier’; did you mean ‘register_fwnode_pcs_notifier’? [-Werror=implicit-function-declaration]
- 2218 |                 unregister_fwnode_pcs_notifier(&pl->fwnode_pcs_nb);
-      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      |                 register_fwnode_pcs_notifier
+If renesas,r9a09g087-fcpvd is missing from the renesas,fcp.yaml schema,
+dtbs_check might fall back to default rules (such as enforcing a single item
+for clocks) and trigger cascading validation failures for the rest of this
+node.
 
-I guess you either need to stub this, or there's a missing Kconfig
-dependency somewhere
+> +			reg =3D <0 0x920d0000 0 0x10000>;
 
-Maxime
+[Severity: High]
+Does this hardware block require a resets property to function?
 
+The device tree binding schemas strictly require a resets property for fcpv.
+Without it, driver initialization might fail or be unable to reset the hard=
+ware.
 
+> +			clocks =3D <&cpg CPG_CORE R9A09G087_CLK_PCLKAH>,
+> +				 <&cpg CPG_MOD 1204>,
+> +				 <&cpg CPG_CORE R9A09G087_LCDC_CLKD>;
 
+[Severity: Low]
+Could this cause a compilation failure when building the device tree?
+
+The R9A09G087_LCDC_CLKD macro does not appear to be defined in the clock
+bindings header or elsewhere in the kernel tree. This usually results in a =
+dtc
+undeclared identifier error during compilation.
+
+> +			clock-names =3D "aclk", "pclk", "vclk";
+> +			power-domains =3D <&cpg>;
+> +		};
+> +
+> +		vspd: vsp@920e0000 {
+> +			compatible =3D "renesas,r9a09g087-vsp2", "renesas,r9a07g044-vsp2";
+
+[Severity: Low]
+Is renesas,r9a09g087-vsp2 documented in the renesas,vsp1.yaml schema?
+
+Like the fcpvd node, an undocumented compatible string here might cause
+dtbs_check validation failures.
+
+> +			reg =3D <0 0x920e0000 0 0x8000>;
+> +			interrupts =3D <GIC_SPI 780 IRQ_TYPE_LEVEL_HIGH>;
+
+[Severity: High]
+Will the vsp1 driver fail to probe here?
+
+Looking at drivers/media/platform/renesas/vsp1/vsp1_drv.c, vsp1_probe() cal=
+ls
+devm_reset_control_get_shared() unconditionally. This will return -ENOENT if
+the resets property is omitted from the device tree node.=20
+
+Does this node need a resets property to prevent the probe from aborting?
+
+> +			clocks =3D <&cpg CPG_CORE R9A09G087_CLK_PCLKAH>,
+> +				 <&cpg CPG_MOD 1204>,
+> +				 <&cpg CPG_CORE R9A09G087_LCDC_CLKD>;
+
+[Severity: Low]
+Will this also fail to compile due to the undeclared R9A09G087_LCDC_CLKD
+identifier?
+
+> +			clock-names =3D "aclk", "pclk", "vclk";
+> +			power-domains =3D <&cpg>;
+> +			renesas,fcp =3D <&fcpvd>;
+> +		};
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615115455.1412=
+098-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D3
 
