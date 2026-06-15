@@ -1,259 +1,177 @@
-Return-Path: <devicetree+bounces-311925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311914-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SVZ6JTzvL2o9JQUAu9opvQ
-	(envelope-from <devicetree+bounces-311925-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:25:32 +0200
+	id RwmSGLHuL2oWJQUAu9opvQ
+	(envelope-from <devicetree+bounces-311914-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:23:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2726862CC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:25:32 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08550686274
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:23:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=herrie.org header.s=transip-a header.b=lGCcWzdo;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311925-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-311925-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Yjmew9QS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311914-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311914-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F147B30098A4
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:25:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B648C30879EC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7EC3E833D;
-	Mon, 15 Jun 2026 12:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E573E834D;
+	Mon, 15 Jun 2026 12:19:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound9.mail.transip.nl (outbound9.mail.transip.nl [136.144.136.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01C0E30CD95;
-	Mon, 15 Jun 2026 12:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D992F3E7BCE
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:19:26 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781526319; cv=none; b=DRqd6oaTi49zewsHtp8AfIP1xjjGYXZUTBbXUyeA5NbTssgHgR//U8LWR/rQogLz51pdJL/6IdL/faD5COib3Kvb3NfnGA2mRD9n216iAFYE4gcsWKfjft3l2w3a/ZS3quSXoCsV2DeCNAPMeNWcVkxZsuNCTQw7ZU41sj3htK8=
+	t=1781525968; cv=none; b=tft3KsuYmJsSpk55AaujXuNpV8DrG5AyWX+qnoB4EFygyD07vvW7jb1UcmeCTCkYxgYEyEVz3tLlWK/5FVBR6f7F7rfaPXgt1jRawaD+ODrphlCbbJRk6tqORaiI+CbSqhDV18SjGFQvj3oNqZm/cdP/3eLQO+PAL7HVi/2g5Hk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781526319; c=relaxed/simple;
-	bh=Mem8gciQqp2vKKNfnFJOAeuHwmEWlsNPhLMKDD+Oq/c=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=G8wN7U3/7ur0iHHM91Wxm2xVOr2nlXCRrH0piEKKzc3e9baa31lWeyUt1CBsYhvFtubcKkTuQfWs/wTe1wSBBV5surqdCxbEZXXUcD3RWYsrw3si7WMwJqxMdFNJThYR9qWUyLaBnBr6rDg5dvKimrCUrV5YXVWIIChv5LN/G7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=lGCcWzdo; arc=none smtp.client-ip=136.144.136.11
-Received: from submission2.mail.transip.nl (unknown [10.100.4.71])
-	by outbound9.mail.transip.nl (Postfix) with ESMTP id 4gf8J52TsyzTPQNt;
-	Mon, 15 Jun 2026 14:17:09 +0200 (CEST)
-Received: from transip.email (unknown [10.100.4.34])
-	by submission2.mail.transip.nl (Postfix) with ESMTPA id 4gf8J45hnPzJjhY9;
-	Mon, 15 Jun 2026 14:17:08 +0200 (CEST)
+	s=arc-20240116; t=1781525968; c=relaxed/simple;
+	bh=fBO2hJf4+rPrkOp74SVXocT1M+hIBpxOon9pkP770BM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bgas9IF4D0P48j99Bo7Ype59TLAOVNjSiEiuVPwpg8m/eeO1CwCAv9PVvQePjJnXhoZmD7wn35pdt1OK5nuOidmDcqArAXKan4Li6SqG//FekLDmM316yVIIQS1eJBDBel7UMlrCF7MB1r2ZaSxEh4TiYh+26GhOWshjd7MOWl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yjmew9QS; arc=none smtp.client-ip=209.85.160.182
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-51780bbc560so36581911cf.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:19:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781525966; x=1782130766; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4ZBzvTGg5RXWxT981zetPvdIqY02XPOz3n0/R5VS1+w=;
+        b=Yjmew9QSovj+Gv8k1T854IGf/12+JinUw11DK6RSF7W9n4aCMc/YwA1tYGlKcItWvE
+         AbU72v7UHCxAW3snmUXOmRdayDtgTUppa7hLGOBo6bxv39Hd4aNnZu32x3+1THuwWubD
+         0jUt79H6VTs0fx9SciXc3Qi9NxSyO8YOviBF/a0T0oXHwNFkDeyi5MCG/lHIlXvqdNW2
+         /bAbqGiZqTBSBZB/EC8h+KoW3pOi6KfP90wSVoGOt3HVdY83ogkBwVJ8IYTeeNFeKJyf
+         zwtSrYrUrgSL9b9sZiQxuKn9glvOEZWtCCacxTx8A7Lm/w3E9p2tuhsOJ+J9/dPZ/Sht
+         7Dsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781525966; x=1782130766;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4ZBzvTGg5RXWxT981zetPvdIqY02XPOz3n0/R5VS1+w=;
+        b=XvDkGyej0lLB6r09QnIBP+mntATF+fKyvsUkhEClQ9Wn0gh2nv305gKTEv1q30Lo6f
+         hunZx99xiSrc0Ad65wYBcbcN/q1eRkbyOF3gFrF2Hqpf2XNQzyscGtgn0AdyD/4ifOKY
+         IoJEP0rjdCsvDhJpCHCejmA7Sux5m3TKCDCcHJqkVa61CQHuRVPwbO/3MhaLa4N/ktfU
+         uGZnduLuZRm+m0GwJ48ZtRaIlIG1a3rFSEavydV+sCxz/ns7/U6y6IOh+DZTkqBTews4
+         igydqKBiTyTR6h1ylCUqlKsuxNuBQkj9VeMgCskxuV8WCLz+nLyy+jPhmqxDJTS5gMZQ
+         jKZQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8j3ViQq8VKVAHgYf4xk1nC1+msYWYIAKoy83xD3mNEH/Abucqo/sDxJN6sEqRaAthBiFmpXqKKcCbA@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUHwJjoNzY/f633KctM4YyOufGtPbcilMNah/RKIb8Fck/gwt8
+	Xq4RrIedNbrwjE8hFseR0nFWDcKy+JV2rgN5z29RTOig3mDCYZ7LUd3a
+X-Gm-Gg: Acq92OEObiZKBCBqWDcnp0h/FdRjE/zh5xIMq8N5xEL1/VD3v5kTMcljRkHSMVaq28S
+	kKZLMBkNfB83W391Ox7GdSK1cMooF39gdPM0RsSoHD7t3gurl3voeNZC5bRpZ+1nn4B2+LOYHMp
+	E+e0eZgnIrEktiqMwFKL3f/KzzihjTC/TrTmCkM7juzI6lh70MJf1W7IaX0sTN81tLWauBxQmJ+
+	7izYWHBthlPg6sxg0NdkUEKFMl2gDqO+w9bBCiVYqrDyb87o4KjjpzVi2F62wTbjJHDbdLVSVa8
+	Xp1WRVI2I9Jsi6qRG4n2gCa7c25KZCorT2Lp8+6YAUIhXaEauIKbCJKYtB9o30c7Hu5gObJQlnY
+	j1mQk8vbcISju2yBQSmgseen8CeHavzaAD8oekZRyFvQcuiuVa8MyFDKDFO3TnZDb/Z59qy6+JN
+	rkgSRfTP0bhAE27EqcxmczkNtS/Jk=
+X-Received: by 2002:a05:622a:1819:b0:517:5bc6:b575 with SMTP id d75a77b69052e-517fbc898cfmr190512591cf.4.1781525965791;
+        Mon, 15 Jun 2026 05:19:25 -0700 (PDT)
+Received: from localhost ([43.225.189.75])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-517fb7a3c4asm106505581cf.14.2026.06.15.05.19.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jun 2026 05:19:24 -0700 (PDT)
+Date: Mon, 15 Jun 2026 15:19:18 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>
+Cc: dumitru.ceclan@analog.com,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Julien Massot <julien.massot@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	mitrutzceclan@gmail.com, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org,
+	Martin Hecht <Martin.Hecht@avnet.eu>,
+	Cosmin Tanislav <demonsingur@gmail.com>,
+	Cory Keitz <ckeitz@amazon.com>
+Subject: Re: [PATCH v13 17/22] media: i2c: maxim-serdes: add MAX96724 driver
+Message-ID: <ai_txjwLPHsSKsJI@stanley.mountain>
+References: <20260604-gmsl2-3_serdes-v13-0-9d8a4919983b@analog.com>
+ <20260604-gmsl2-3_serdes-v13-17-9d8a4919983b@analog.com>
+ <20260610144242.GF2948@ragnatech.se>
+ <ail9bHXL_NV2DZK5@stanley.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Mon, 15 Jun 2026 14:17:08 +0200
-From: me@herrie.org
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, github.com@herrie.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>, Neil Armstrong
- <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn
- Andersson <andersson@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,usb-hs-phy: add
- qcom,vendor-init-seq
-Reply-To: github.com@herrie.org
-Mail-Reply-To: github.com@herrie.org
-In-Reply-To: <tknuizddyhfcyywmm36v4ok6idgpxridgur5qbowvmwhcbve5o@bp3z46gsfvlk>
-References: <20260603054809.565723-1-github.com@herrie.org>
- <20260603054809.565723-2-github.com@herrie.org>
- <ti5p3oreibkae4pl5sn52g3ctv3ufcs6aklwgbterksrxvxrbj@b6scawz2cqmq>
- <66905f4914dc022629158ac02df1c7df@herrie.org>
- <46lrfwoahgzoudq3afnhv4kxqs4fwj3w7u2dnx6ns6soo6pxt2@qkqbelan2iwq>
- <0f6ea4d2-3865-492e-ac6b-b008843f8d56@oss.qualcomm.com>
- <tknuizddyhfcyywmm36v4ok6idgpxridgur5qbowvmwhcbve5o@bp3z46gsfvlk>
-User-Agent: Webmail
-Message-ID: <0298e09a5b4497910c226269daa2586b@herrie.org>
-X-Sender: me@herrie.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: ClueGetter at submission2.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=herrie.org; t=1781525828; h=from:reply-to:subject:to:
- cc:references:in-reply-to:date:mime-version:content-type;
- bh=DQVCzEe3UhTF/pWXL5NKxgWSmFLvB6o9KrEsG3fLoT4=;
- b=lGCcWzdoWVr/D282K6vNvjuJ30hk0kakZX+ZRnJ4yXxI5Lb3IIrS5AAjPqzvM/HxhyIrYI
- lA9VAlArFIlfgqUP1/Fmewd+5C2TNtzSlCgsKRnFbmgfiYXkv/0K2GBX03RBS4a4pxMzDG
- HlNIGj7aq4N8b9wxaYrWMfXmQByDfMjve3Y+KLxjUK+be9JpWGCTfBl/+VqTeOD6Dz6aWe
- KrSXgO+1oEonGb6OGGtRfpzCjiVAEGej7o9HY5ww7NklTxNgE2ZNZY/4raGpkP7wXtpRnI
- RNfm3ps1UvEOyssTFzqB55rZWHyeed0cRocgb37Njoc3/G2mv4egb9QhTwaf5g==
-X-Report-Abuse-To: abuse@transip.nl
+In-Reply-To: <ail9bHXL_NV2DZK5@stanley.mountain>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.15 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311925-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:github.com@herrie.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[me@herrie.org,devicetree@vger.kernel.org];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TO_DN_SOME(0.00)[];
-	DMARC_NA(0.00)[herrie.org];
-	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311914-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[error27@gmail.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:niklas.soderlund@ragnatech.se,m:dumitru.ceclan@analog.com,m:tomi.valkeinen+renesas@ideasonboard.com,m:mchehab@kernel.org,m:sakari.ailus@linux.intel.com,m:laurent.pinchart@ideasonboard.com,m:julien.massot@collabora.com,m:robh@kernel.org,m:gregkh@linuxfoundation.org,m:mitrutzceclan@gmail.com,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-gpio@vger.kernel.org,m:Martin.Hecht@avnet.eu,m:demonsingur@gmail.com,m:ckeitz@amazon.com,m:tomi.valkeinen@ideasonboard.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[me@herrie.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[analog.com,ideasonboard.com,kernel.org,linux.intel.com,collabora.com,linuxfoundation.org,gmail.com,vger.kernel.org,lists.linux.dev,avnet.eu,amazon.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	ALIAS_RESOLVED(0.00)[];
-	REPLYTO_DOM_EQ_FROM_DOM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[herrie.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[github.com@herrie.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,herrie.org:from_mime,herrie.org:dkim,herrie.org:email,herrie.org:mid,herrie.org:replyto]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0D2726862CC
+X-Rspamd-Queue-Id: 08550686274
 
-On 2026-06-12 02:25, Dmitry Baryshkov wrote:
-> On Thu, Jun 11, 2026 at 12:39:45PM +0200, Konrad Dybcio wrote:
->> On 6/4/26 1:02 AM, Dmitry Baryshkov wrote:
->> > On Wed, Jun 03, 2026 at 06:09:18PM +0200, me@herrie.org wrote:
->> >> On 2026-06-03 15:57, Dmitry Baryshkov wrote:
->> >>> On Wed, Jun 03, 2026 at 07:48:08AM +0200, Herman van Hazendonk wrote:
->> >>>> Add an optional "qcom,vendor-init-seq" property carrying raw ULPI
->> >>>> (address, value) pairs that are written after PHY reset.
->> >>>>
->> >>>> Unlike the existing "qcom,init-seq" property, the address field is
->> >>>> NOT offset by ULPI_EXT_VENDOR_SPECIFIC, so the new property can
->> >>>> reach the standard ULPI vendor register range (0x30-0x3f). MSM8x60-
->> >>>> class hardware needs this range to programme pre-emphasis, HS driver
->> >>>> slope and CDR auto-reset bits the legacy msm_otg driver used to set
->> >>>> via platform data.
->> >>>
->> >>> Are those register writes specific to the device or to the whole
->> >>> platform? In the latter case please extend the driver to write them.
->> >>
->> >> Looking at every MSM8x60 reference kernel I could find (Qualcomm's own
->> >> msm8x60 board, HP TouchPad / APQ8060, and some HTC/Saumsung MSM8660
->> >> devices), the writes split into two groups:
->> >>
->> >> Platform-level (same across all MSM8x60 hardware):
->> >>  - reg 0x36 bits 1+2: CDR auto-reset disabled, SE1 gating disabled
->> >>  - reg 0x32 bits [5:4]: pre-emphasis at 20%
->> >>
->> >> Board-specific:
->> >>  - reg 0x32 bits [3:0]: HS driver slope — HP TouchPad uses 5, HTC
->> >>    devices use 1. This clearly depends on board layout (trace length,
->> >>    connector loading, etc.).
->> >>
->> >> So the platform-level writes should move unconditionally into the driver
->> >> behind a match-data flag for the MSM8x60-class compatible, and only the
->> >> HS driver slope value belongs in DT.
->> >
->> > Looks like it. Please hardcode the value for your platform in the driver
->> > (with the comment), meanwhile we can try looking up the actual values.
->> 
->> Do we have the values for a MTP/QRD (or whatever they used to be 
->> called
->> back then..), like we would usually put in there?
+On Wed, Jun 10, 2026 at 06:06:20PM +0300, Dan Carpenter wrote:
+> On Wed, Jun 10, 2026 at 04:42:42PM +0200, Niklas S�derlund wrote:
+> > Hi,
+> > 
+> > Thanks for your work.
+> > 
+> > This patch gives me new compiler warnings, can they be avoided?
+> > 
+> >   .../max96724.c:402 max96724_log_phy_status() warn: subtract is higher precedence than shift
+> >   .../max96724.c:409 max96724_log_phy_status() warn: subtract is higher precedence than shift
+> >   .../max96724.c:588 max96724_init_phy() warn: subtract is higher precedence than shift
+> >   .../max96724.c:756 max96724_set_pipe_remap() warn: subtract is higher precedence than shift
+> >   .../max96724.c:796 max96724_set_pipe_phy() warn: subtract is higher precedence than shift
+> >   .../max96724.c:818 max96724_set_pipe_stream_id() warn: subtract is higher precedence than shift
+> >   .../max96724.c:830 max96724_set_pipe_link() warn: subtract is higher precedence than shift
+> >   .../max96724.c:942 max96724_set_link_version() warn: subtract is higher precedence than shift
+> > 
 > 
-> As far as I can understand msm-3.0 and msm-3.4 most of the boards were
-> writing 0 here (although it might have been unexpected). None of the
-> board files set the hsdrvslope value (which means 0).
-> 
-> Please correct me if I'm wrong. I see that for tenderloin kernels 
-> change
-> that to 0x5, but I can't find a sensible commit message.
-> 
-> I could not find the documentation for vendor ULPI registers for those
-> chips, so I don't think we can identify, how to make sense of those
-> values. In such a case and having different board-specific values, we
-> don't have a better option than having a qcom,hsdrvslope (or similarly
-> named) property in DT.
-Dmitry/Konrad,
+> These are Smatch warnings.  I appologize for them.  I know about them
+> but I haven't looked at them.  I'll fix them by the end of the week.
 
-The bit-level meaning *is* documented byte-for-byte across
-every MSM8x60 downstream tree I could find: Code Aurora is the
-canonical source:
+I've pushed a fix for these to the devel branch of Smatch.
 
-     arch/arm/mach-msm/include/mach/msm_hsusb_hw.h
+regards,
+dan carpenter
 
-     #define ULPI_CONFIG_REG3        0x32
-     #define ULPI_DIGOUT_CTRL        0x36          /* on MSM7x30 / 
-MSM8x60 */
-     #define ULPI_CDR_AUTORESET      (1 << 1)
-     #define ULPI_SE1_GATE           (1 << 2)
-     #define ULPI_PRE_EMPHASIS_MASK  (3 << 4)
-     #define ULPI_HSDRVSLOPE_MASK    (0x0F)
-
-   reg 0x32 [5:4]: pre-emphasis level (00 disabled, 11 = 20%, 10 = 10%)
-   reg 0x32 [3:0]: HS driver slope
-   reg 0x36 bit 1: CDR auto-reset enable
-   reg 0x36 bit 2: SE1 gating enable
-
-The legacy `msm72k_otg.c` semantics for the 0x36 bits are inverted:
-setting the bit disables the function (see set_cdr_auto_reset() and
-set_se1_gating()).  Every MSM8x60 reference board sets both bits,
-i.e. CDR auto-reset disabled + SE1 gating disabled.
-
-Surveying every MSM8x60-class board file I can reach: Qualcomm's own
-reference, Samsung, Sony, HTC, and HP: the platform-level values
-are unanimous:
-
-   pre-emphasis     = 20%
-   CDR auto-reset   = disabled
-   SE1 gating       = disabled
-
-|  Vendor / board                                 | hsdrvslope |
-|  -----------------------------------------------|------------|
-|  Qualcomm reference (SURF / FFA / Fluid /       |            |
-|    Dragon / Fusion -- board-msm8x60.c)          | unset (0)  |
-|  Samsung Galaxy S2 family (Q1 / Celox / Dali /  |            |
-|    generic 8x60 MTP)                            | unset (0)  |
-|  Sony MSM8660 (sony-kernel-msm8660)             | unset (0)  |
-|  HTC MSM8660 (shooter / holiday / pyramid /     |            |
-|    doubleshot / shooter_u / ruby)               | 1          |
-|  HP TouchPad (board-tenderloin.c)               | 5          |
-
-So Qualcomm's own MTP, the closest thing to a reference platform we
-have, leaves hsdrvslope at the silicon default (0).  Two OEMs (HTC,
-HP) override it to non-zero values that match their board layout.
-Neither override has a commit message. HTC's value is buried in an
-init_seq array, HP's appears as `.hsdrvslope = 0x05` in
-board-tenderloin.c with no comment.  I've kept TouchPad's 5 because
-that's the value the device shipped with and our HS link is happy
-with it; changing it risks regressing eye margin on the silicon we
-still have to test against.
-
-So the plan is exactly what you both already converged on:
-
-   1. Drop qcom,vendor-init-seq from the binding (this patch goes away
-      entirely).
-   2. In the driver, hardcode the three platform-level writes behind
-      the qcom,usb-hs-phy-msm8660 compatible match-data, with a
-      comment citing msm_hsusb_hw.h as the source for the bit names.
-   3. Add a single qcom,hs-drv-slope property (u8, 0..15) for the
-      board-varying value.  TouchPad DT sets 5.  Absent â‡’ leave silicon
-      default in place, matching Qualcomm/Samsung/Sony reference
-      behaviour.
-
-I'll send the new v in that shape: single dt-bindings patch
-(qcom,hs-drv-slope) plus the driver patch that hardcodes the platform
-writes and consumes the new property.
-
-Unless you have other suggestions?
-
-Thanks,
-Herman
 
