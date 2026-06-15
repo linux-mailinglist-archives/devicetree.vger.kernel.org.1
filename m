@@ -1,70 +1,67 @@
-Return-Path: <devicetree+bounces-312085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312086-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VHwNJBsrMGpvPQUAu9opvQ
-	(envelope-from <devicetree+bounces-312085-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:40:59 +0200
+	id iC5XHXYrMGqYPQUAu9opvQ
+	(envelope-from <devicetree+bounces-312086-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:42:30 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1042C68878D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:40:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD3206887C5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:42:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=NZpKoayI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312085-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312085-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iTDCEIL5;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312086-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312086-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 77D05304224C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:35:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 113B230B3913
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD04140DFC1;
-	Mon, 15 Jun 2026 16:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7520140BCD8;
+	Mon, 15 Jun 2026 16:36:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAE0C40BCDF;
-	Mon, 15 Jun 2026 16:35:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A0D1A9F87;
+	Mon, 15 Jun 2026 16:36:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781541332; cv=none; b=AgBU/pI2mt4ZqHhl6cJQhgOcbb2h/86HQw5yDPz9KyrzMcdSLLAMVDuXEL1Bm12RhRddKKBD9phf6BKxcIr+wGpZlvlX25maivDpy2mx0sI5VR9j/Edyk5A255aExpDv747Fb/TjXkTAv/vQxO2EBxHUm1uVbzE5piZezGEb6MU=
+	t=1781541403; cv=none; b=ShlJXfxiLTdqlKE8E1gV0mGCsIVn6bGVQgnmtiJvFRgbsLIlg+kTeuGOlWlHcFAtH9bZ4HKNFWxv/1yPkm8u+kpVFox89yFMvoaVRft57P5NIEf98OKqxph7I/KhpZDLiCq1oa3UfEY85No4dj+Kok5MmMvkNt1holoEwhuPqug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781541332; c=relaxed/simple;
-	bh=fKmxknIhMzbx+mpLbYpDuqYib1lZmzKg7pmtjB5Omjk=;
+	s=arc-20240116; t=1781541403; c=relaxed/simple;
+	bh=9DrcVuylEd+H/xgB14yF5cBCzN/1YAkTM3ytAG3WakA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XZmgm8g/wmx08a0LnjPGhzxjIJFoKZamUasWcNy4Fopa/VgU09H70rnJ6UEoaREPCwpjHkSB2dL5zNrm91MMBN2bu45tWY7o+I+/qY+RnLNhMxjafsAMN+18jhkBSYQvoN+Ix3xZACnRXS0o7PEFFsE7gjGgx4u9/Uj06NQCdB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NZpKoayI; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 632031F000E9;
-	Mon, 15 Jun 2026 16:35:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uAkknnDvmwkitr/DMkfSVIXqer2ERoukyNxEFMdyS3Dt19/ZwERAsAnT6hxLEM3J3j65CyjJfaZNCV9u10shjksNk3vrsAsM+UG3WjaRZXCfFTxG8R6g/An/SCMerWQv3K9Sn1ZBFMUstgO8UPd3oOF88vulfYxcOZ2DgfzCK54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iTDCEIL5; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F19A1F000E9;
+	Mon, 15 Jun 2026 16:36:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781541331;
-	bh=5znJKXLT2HaHGGTVLs4b+dODpenXWRmBFByF6rqYa/I=;
+	s=k20260515; t=1781541402;
+	bh=9DrcVuylEd+H/xgB14yF5cBCzN/1YAkTM3ytAG3WakA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=NZpKoayIaRFcklMPGhvfhL/+ecK1bfO8I1VOUwtq0vvSBZ/xqBBVXY892HVp9d/se
-	 IiFcb4olRef+vz1QHcdLfvVI2GxJME7xlZNRDjPj0p07beYY8FlrJiSBl4tmWvLxs5
-	 cgXdOJ/qNsv67TPvAsNNLNLojvEx2bnErG4nzO+lTQEWvJyujKEzX1SWOWW0msQgN5
-	 3DOv7e9fL8QJ+0pwBeZXkACWT6P3brFWI6aaLT+dayjq7r5eOZ+DkFfv6t45dhyaRt
-	 6VWUuCRL27GDFBJkGgdLA/X4O28zYWEMjYWZI/Nsll3+QvIFq/VdeKB4p8mUdiNMiV
-	 mO58vV4PGk9Mg==
-Date: Mon, 15 Jun 2026 17:35:26 +0100
+	b=iTDCEIL5V2kI/Z6uCR4CdHR0NAxvroPPThPk8YDC2MkME/6fzzh6CdTuBjtW/CJtE
+	 DSSXSHPv3d7MlhyJvVESSxga5hpS+yV8KS3+Yothw5lKWf0P6vwuDdKND/ld2ebihE
+	 vBPvOv7LJe9jMcWO6p8cIdLocW5ox1R8WwOGBsIy1P/LeP68mF0Bq77rz1nnJLAFmG
+	 yojl4E91vLNjlJbgy2gPeUAAPIcHNJp/2Awn8+g0FCocXVHVNJHMNq0L8hYmEXigcE
+	 zaKQt45AVS7bdfYPl3KrOmxN1MIK2HuabVkC51kbIlwmwRmIpGaNY55HTNPJqn+HT9
+	 l0/9/jErGKNzQ==
+Date: Mon, 15 Jun 2026 17:36:38 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Potin Lai <potin.lai.pt@gmail.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Zev Weiss <zev@bewilderbeest.net>, linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Min Lin <linmin@eswincomputing.com>,
-	Yulin Lu <luyulin@eswincomputing.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Darshan Prajapati <darshan.prajapati@einfochips.com>,
-	Pritesh Patel <pritesh.patel@einfochips.com>
-Subject: Re: [PATCH 6/7] riscv: dts: eswin: add I2C controller support
-Message-ID: <20260615-lumpiness-profusely-155422288c31@spud>
-References: <20260615122016.1110206-1-pinkesh.vaghela@einfochips.com>
- <20260615122016.1110206-7-pinkesh.vaghela@einfochips.com>
+	Cosmo Chou <cosmo.chou@quantatw.com>,
+	Mike Hsieh <Mike_Hsieh@quantatw.com>,
+	Potin Lai <potin.lai@quantatw.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: pmbus: ti,lm25066: add
+ current limit properties
+Message-ID: <20260615-cycling-striking-559d1ea5903f@spud>
+References: <20260615-lm25066-cl-config-v3-0-decb4f5b0b77@gmail.com>
+ <20260615-lm25066-cl-config-v3-1-decb4f5b0b77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,166 +69,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="TWqu2/KO2WnbtTyO"
+	protocol="application/pgp-signature"; boundary="SZBNu9KXSowoLs9u"
 Content-Disposition: inline
-In-Reply-To: <20260615122016.1110206-7-pinkesh.vaghela@einfochips.com>
+In-Reply-To: <20260615-lm25066-cl-config-v3-1-decb4f5b0b77@gmail.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-5.26 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:potin.lai.pt@gmail.com,m:linux@roeck-us.net,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:zev@bewilderbeest.net,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cosmo.chou@quantatw.com,m:Mike_Hsieh@quantatw.com,m:potin.lai@quantatw.com,m:potinlaipt@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_RECIPIENTS(0.00)[m:pinkesh.vaghela@einfochips.com,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linmin@eswincomputing.com,m:luyulin@eswincomputing.com,m:samuel.holland@sifive.com,m:darshan.prajapati@einfochips.com,m:pritesh.patel@einfochips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312085-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-312086-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[einfochips.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,spud:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,vger.kernel.org:from_smtp,microchip.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1042C68878D
+X-Rspamd-Queue-Id: BD3206887C5
 
 
---TWqu2/KO2WnbtTyO
+--SZBNu9KXSowoLs9u
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 15, 2026 at 05:50:15PM +0530, Pinkesh Vaghela wrote:
-> From: Pritesh Patel <pritesh.patel@einfochips.com>
->=20
-> Add I2C nodes for EIC7700 SoC.
-> Also add nodes for corresponding slave devices in dts file and
-> enable them for HiFive Premier P550 board
->=20
-> Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
-> Signed-off-by: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
-> ---
->  .../dts/eswin/eic7700-hifive-premier-p550.dts |  52 ++++++
->  arch/riscv/boot/dts/eswin/eic7700.dtsi        | 156 ++++++++++++++++++
->  2 files changed, 208 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/=
-arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> index e7bb96e14958..0f0c98474c62 100644
-> --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> @@ -130,6 +130,58 @@ &gpio111_pins {
->  	input-disable;
->  };
-> =20
-> +&aon_i2c0 {
-> +	status =3D "okay";
-> +
-> +	eeprom@50 {
-> +		compatible =3D "atmel,24c02";
-> +		reg =3D <0x50>;
-> +	};
-> +};
-> +
-> +&aon_i2c1 {
-> +	status =3D "okay";
-> +
-> +	pac1934@10 {
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-Generic node name here please. adc I think.
-
-> +		compatible =3D "microchip,pac1934";
-> +		reg =3D <0x10>;
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		channel@1 {
-> +			reg =3D <0x1>;
-> +			shunt-resistor-micro-ohms =3D <1000>;
-> +			label =3D "VDD_SOM";
-> +		};
-> +
-> +		channel@2 {
-> +			reg =3D <0x2>;
-> +			shunt-resistor-micro-ohms =3D <1000>;
-> +			label =3D "VDD_SOC";
-> +		};
-> +
-> +		channel@3 {
-> +			reg =3D <0x3>;
-> +			shunt-resistor-micro-ohms =3D <1000>;
-> +			label =3D "VDD_CPU";
-> +		};
-> +
-> +		channel@4 {
-> +			reg =3D <0x4>;
-> +			shunt-resistor-micro-ohms =3D <1000>;
-> +			label =3D "VDD_LPDDR";
-> +		};
-> +	};
-> +
-> +	ina226@44 {
-
-And here. power-sensor.
-
-> +		compatible =3D "ti,ina226";
-> +		reg =3D <0x44>;
-> +		#io-channel-cells =3D <1>;
-> +		label =3D "sys_power";
-> +		shunt-resistor =3D <1000>;
-> +	};
-> +};
-> +
->  &pinctrl {
->  	vrgmii-supply =3D <&vcc_1v8>;
->  };
-> diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi b/arch/riscv/boot/dts=
-/eswin/eic7700.dtsi
-> index f8caf39616b2..28706431b2c0 100644
-> --- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> +++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> @@ -315,6 +315,162 @@ uart4: serial@50940000 {
->  			status =3D "disabled";
->  		};
-> =20
-> +		i2c0: i2c@50950000 {
-> +			compatible =3D "snps,designware-i2c";
-
-Missing a soc-specific compatible here for all i2c controllers.
-
-
-Cheers,
-Conor.
-
---TWqu2/KO2WnbtTyO
+--SZBNu9KXSowoLs9u
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajApzgAKCRB4tDGHoIJi
-0ksLAP9MCm8DtOl/v4d+aaZWsWZ+XHfD7sZbR9Qo1ZuClxlm/wD/ZX6U2CqQb1ii
-RDdHwM5vMOOKNcN/xi9jYh5691NKdQ8=
-=pfvH
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajAqFgAKCRB4tDGHoIJi
+0mRmAQCf7YIo7/JjIQdRMujXbwBaJvVgW41xnxvm/FxN5oTbbQD/R2dtznhMp5Wc
+S7BGSKJDKWEdgnP9t5ZUq9cXYG5vtAc=
+=TMEw
 -----END PGP SIGNATURE-----
 
---TWqu2/KO2WnbtTyO--
+--SZBNu9KXSowoLs9u--
 
