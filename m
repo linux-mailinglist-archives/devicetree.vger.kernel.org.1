@@ -1,203 +1,237 @@
-Return-Path: <devicetree+bounces-312060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312068-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id vw2TLQkhMGoaOgUAu9opvQ
-	(envelope-from <devicetree+bounces-312060-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:58:01 +0200
+	id XD0nCl0mMGrbOwUAu9opvQ
+	(envelope-from <devicetree+bounces-312068-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:20:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56A10687FD0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:58:01 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D01768846F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:20:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oYCofIoc;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312060-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-312060-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=none;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=starfivetech.com (policy=quarantine);
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312068-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312068-lists+devicetree=lfdr.de@vger.kernel.org";
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C65E53006B78
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:58:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 092F430AE717
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5639E4071D7;
-	Mon, 15 Jun 2026 15:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE91D40B36F;
+	Mon, 15 Jun 2026 16:12:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2101.outbound.protection.partner.outlook.cn [139.219.17.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37A803AB27D
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 15:57:57 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781539079; cv=none; b=Djzz9FjtjqEWcj02yihOdAS612/Z8A2DWdeYrfgjInmlegsWXqz84QFxfRSjZkwF+bzgUARaHXRbwGRCzL/WFCJc6RKXPfH5XW+7GVobwAIZx6z4vu4PrOcztIxkUzAbDZS78/6laJrR5gFLW1gjEbRZd3DUm7yqrxx1IyN+y9Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781539079; c=relaxed/simple;
-	bh=/UZG00siKHTT8jwtIQPu6VVYGHcgEHbiZR433t8i/HQ=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=CsjDKuYxZoJ8LJ5HctISRiT6uOaKY7MyQ3w2p7Tfafb9P6Zf8x3SSdNY7AATSQV24yl89kqj0wiq9b8tgNGqTJpithcO7TAnxyaPQNXxGqeZRgwv03oZ8FnWrVs1NYgBljOJ7qlQIP1RVZEUDA55PJGfibfWDBRg2l4JtT+HtHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oYCofIoc; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98F811F000E9;
-	Mon, 15 Jun 2026 15:57:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781539077;
-	bh=2KJNyRPvTKUepdB7NhYywdPioE5Fl8BfIJqCE/Svk7E=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=oYCofIocb9Vo8Y1J2+i2kWv5LmhKSlHBeWg6uMT5lQULvND9IoP87uXO82S21wUe7
-	 KsY/KpUqzMtLoRPy2cZaWVVM7ts76juQTevQYU1/BSsO355WAUPW73GDhMIy31uE1u
-	 Y+0l+fQXEmVFaTnn6okPBWTJ7KK9MzvoM1nJYagn3/2rr58XHsIcNKi+JYEfblZvKR
-	 NCndtgg/FTZAZ+A4S7jdV6fmxCQi8Veg8wC2nJjbS/tUYvKJWW7wajwwSjyaMRmJqO
-	 e0udSu7+coaX9u77nwPdtk3jfdOUa2PDrOCVXPeJZuoGKiUME7EtTtbjSIUrfOAKD3
-	 8wshpnpQJAP2g==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 08/12] rtc: rzn1: Dynamically calculate synchronization
- delay based on clock rate
-Reply-To: sashiko-reviews@lists.linux.dev
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org, wsa+renesas@sang-engineering.com
-In-Reply-To: <20260615154805.1619693-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20260615154805.1619693-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 15:57:57 +0000
-Message-Id: <20260615155757.98F811F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845CF40910F;
+	Mon, 15 Jun 2026 16:12:33 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781539958; cv=fail; b=KdbwbwVAViW5T7D41pAphIwMxrMcY4UZISekcvHz1fuPEdnnDXUxbYVwx7FDxQ2VueY3+QDd3z+iwXOdvfQdcp8UtJwigi4/xFR8BqZqbFZG6f9QIpU/cIQ2scPmDqrFDeYfd25JoJXxRRSBgq2ZENx/Pnh3ANNOt5l72+vNOwE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781539958; c=relaxed/simple;
+	bh=0fO3KfRUVuLOSEOhBPTm/acSlbr2Rj+XF5JEoMnfAUc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=NMVVIIKKhiQpnQYPcYasLvuM/TYIHZNOBr/dFhM9n1G0e1sK0Np6xeCcV63WcdRzeSRjfj4sogSHa6J3Y3rJ5qxZ47okbvwA+If9m7CywDU8BJx2NHXpFPYMVb/qKk7BOBv40zZPruLflI6fVFkk340+eIG1yu5hesIukKS3eaA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.101
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JnrNx8PdQ8Ns4UHpTx7tjc7IPfkLr65ENiSRpLQe7WJk5n/qCNprgzfvbcoAzwjFJV3JjoULHqcI07serL6v10vUeQDbRBjW8rT+esyvNdfa/fZmg1eCS031bJCI1ex3yOmDwhxV0aZpKA+LqJHxQdLrxN2gE1l4XRvwln6P4wyz3agw/uxy1OtBx+LUn/3O2SdsuHrtFMv8zQ+gkzrwP2k0wC5uNnRgyErvNSx9Y7TKbng/gyq9Dc3KQz1V94b2MqoOhJ09dehEp30TCWhrLLY3mjgLf+Q0fdbe9cbA2O08gJNTdC/BLYsLTrzoHwTJC53L2sTyFxtDgIpcnKtnVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nnLGp4EDeyZWcAIEmKd6NEfR/2g0u4pFyM/Hghphics=;
+ b=E8xKeQzs49bJEdfdaOMkwholvB+pF9HHkBDbxIa4ei2xXnJZAPXYguv0WVI4mexYILd3IB/J9l1tVLgdpWy3ntzZiAms2bsgx6GW9zezQacSrQwpdyuajyKaXkbKmGmhofoKpIi4aY/J+uHqY0QSAmB0hxWV9mAFUKu0IQyOo6szyhZC5pEpLOlpldBxEaCsOth7k1dcdNJfoiAayLddCzmEAgKoNRSywIIO1AFwCCXU5Hr3Hd+IXvCZQgJbgOI/N792GNX2pfFyfA7v3GLzedRAF6F2cSowRpENMhTORmwvV5TXze1mVkwOrSN0GdHsU7iiWlK3YDW9RZtu+YyfNA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14) by ZQ2PR01MB1321.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:6::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Mon, 15 Jun
+ 2026 15:58:07 +0000
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::4386:5cc4:3bc4:4795]) by
+ ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn ([fe80::4386:5cc4:3bc4:4795%3])
+ with mapi id 15.21.0113.015; Mon, 15 Jun 2026 15:58:07 +0000
+From: Hal Feng <hal.feng@starfivetech.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor@kernel.org>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: Hal Feng <hal.feng@starfivetech.com>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v19 1/3] dt-bindings: pwm: opencores: Update compatibles, examples and maintainers
+Date: Mon, 15 Jun 2026 23:57:57 +0800
+Message-ID: <20260615155759.129210-2-hal.feng@starfivetech.com>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20260615155759.129210-1-hal.feng@starfivetech.com>
+References: <20260615155759.129210-1-hal.feng@starfivetech.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BJXPR01CA0065.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:12::32) To ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1321:EE_
+X-MS-Office365-Filtering-Correlation-Id: c10f85b4-d397-4958-e39b-08decaf6e45e
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|7416014|52116014|376014|23010399003|38350700014|22082099003|18002099003|3023799007|56012099006;
+X-Microsoft-Antispam-Message-Info:
+	y6xOEbkWwFbjzl4Q9gjdG1s4hySzjzClQyr8dauliZEOekylBE5cFCX7thB1FnQ/uqjpMG7vgxg3ALt3RCbF3XOnGsrCvn8v9ZY5yNTpAlwglExmnxa4w7ConlMdg68Kaml0HwyycTR1FhwXBHShbkO4u3NX+gKxr5nUt6aKPPPw8X6lvBLKCsxAI0AALnfropwW1gn4+kLu4WuZWRnZ1R2hzU+OrHsT6sMS8dMNlh4mlTpZbldmTPC0hu9kGeewCROtFF0zsksGQkpNAt1p9ZoDCU/aXmqBi4XUWkPih5fiSy0eLZPkXfqzpP2biInsFr0NBxAtN1PpuqGQVt4mR8Tv6sxzOmJXrBn7wctHbLNn04wSTp+kLKWK6NQr5rDBiD8k6oRAqsUFzlhH5vTBN8F1Kjne8J5GaJetHyCOoey7apr9xNSlTVZP8qYCJeIGs4C640Qh0a3naD8ZRj5c0fpjWrXyO9WcuU8gHkszyTZyG77hdkJv6H/h5sOdxFkmWqykwbaLjZ1NaZ1Q4qkJYvPLJLvAIDy+SUZ/R1rsuu+MBtdzj/o8IJgoj3p7pI4W
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(52116014)(376014)(23010399003)(38350700014)(22082099003)(18002099003)(3023799007)(56012099006);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?aRAYprCFV9pkfWPS6NuT+14Pc8AIVckg759bOtZHPgQfCPOqzBuuBT4wUwUq?=
+ =?us-ascii?Q?MgeJlXhuueP9Q4x87w3rXAryOo2fkPhT6FPDmjq0iyqo+9PK0g6zAowpe5nA?=
+ =?us-ascii?Q?M/GHFgfZziSuAliLpgk1FsQu0DSH0MCdxT8/TeUHnOZOQhDCq0udZObm5D6n?=
+ =?us-ascii?Q?aTUUnHk9owVf0PWtGqq5UhgASuA6GLxXPbD4w69cCmPar56GYFMSSVJ1JLDz?=
+ =?us-ascii?Q?vTm8Dz/KscjiAqsixIgNvsSZTPhoZzvxGHlMWpYS/qKC6+7eWUy89HG+6psl?=
+ =?us-ascii?Q?8Ei4fdNqQfgi63mO4jtV4zdOj2lMZiSUQS6fHEGbIQyUjj1nxiCFRi36oMcy?=
+ =?us-ascii?Q?GWJcIb0mm/aC8ZcKKv1AvqKVVZ1o6fOTvMajvkWMgI8WADhhRIwCr+DwN7d8?=
+ =?us-ascii?Q?T72Wx674Jvu9eP6LW2268HuBzsNcuW5BL83ROydaZQ3yRcNfaGoBn81rAfpv?=
+ =?us-ascii?Q?jE6by9Kd/a75llHe7gWG9eS8OrRa+nQQwfRZYPM/U6knY0HvRHTrwZfUA7zO?=
+ =?us-ascii?Q?a9Bv+7qMeQN6FV13Y1dnL7+iI1Psdu/3q4UkqLYqLAfcW6dWNKwm9Cn4SlAu?=
+ =?us-ascii?Q?CkRPSWt1m1oXUIw0kcvFM97pph/txCNqDUg7mtrGHZMduaeY5o+H8hoCR31+?=
+ =?us-ascii?Q?saBlTop8V0rnE/C6NM3EePXTsiOJ1ePGIHopxoZFiG3i0FQnWgcl6Nh+vm1D?=
+ =?us-ascii?Q?MrVOICVzE3NJEtfzFWLUzKMrqm2qLm7NdlE+zO9LFH7hXYQQk+BEqFXOz4OW?=
+ =?us-ascii?Q?4G4hp3M5N0KqPpd3FFiqyUqm8oXPxoB5pM3UOlxO7XvuwKsFYxN0PnU9dqIR?=
+ =?us-ascii?Q?tlJh3irQA6BuGtUkHSnoWgmxXMt4I9G1AJzPHDRmrE2IiFiUJbzVwjGDjFDA?=
+ =?us-ascii?Q?lgzdmwqsQZXcBbC5vooQpau0RWPz5HKIGJhicmbHRARzAhYIhGNfhRbYJxOY?=
+ =?us-ascii?Q?Ux6AiOjZdZktgQ6vswv8jYfr4t7Po2pdPph9pUeVq8kOZha3EfClvWigh1kE?=
+ =?us-ascii?Q?VqoRYSLJBx/+lWRjRXw6F9vz2+rwKdaHN6VtWhNYpMu5Ijk8e/FIEsNnGV0D?=
+ =?us-ascii?Q?INrOJttkSUEjI7R4l8bNXM0kOpLwXhjBmiAB0bwo+cQnxDo11rXufOKDzjW/?=
+ =?us-ascii?Q?Q8BividtBSGkDwLEs6xpxmKLfJlhV2RAaYiw3v4G9NSaed4+Ufv36+rZwojF?=
+ =?us-ascii?Q?GfamgPWzw1CEnb7AxIyedI7LsboU+0dk0rDS+P314vDZPgRWLx4JaIYZ90N5?=
+ =?us-ascii?Q?s//J7jAa9VMTpvCnMozrrHbSGGujxZs7l0GT8R4QX7xT8XuZfQ3Gqco1Lj1e?=
+ =?us-ascii?Q?Wh4YFfz4swbRod92TeS0Pagq/MP6rjjtH79mpDBJDg53XAeXGfPFQNugtuVu?=
+ =?us-ascii?Q?7t7XpWICav1PO3J3w0VL3bbR7s2dtrE1lBQHb5vLQ6ngxhIa4fU+jOohmnkE?=
+ =?us-ascii?Q?wGe8jBSzj+4AfJ4W56lH2ZWUMiwj09Wulis527DK5SdlM8hXkB/9isTk7C4g?=
+ =?us-ascii?Q?t3CPWcpCHs2VOafP/u95w1PgSNYlOvPFOWNeB/Pbb5rAquw9OKTriD0OGhU4?=
+ =?us-ascii?Q?5UUIbm5X1/Drc6ZnnovtsbHtJhbEd7pUQOGFRtY3gTbRi37iu7lRegewfmHp?=
+ =?us-ascii?Q?IjEYMNCmTpIGut/fjSOGfzp88LiB3Z9u/8Vh8xWgdFpJE0WrW+KgPT+6NPaT?=
+ =?us-ascii?Q?Vu38vAM7Prjk8AILAlKGAwuavOgq4hLmkDNgMemIYrzOlgNqubzFBosfXSJk?=
+ =?us-ascii?Q?bVDqDnQ4txwxILXxMSAtAhFkgroHqkw=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c10f85b4-d397-4958-e39b-08decaf6e45e
+X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2026 15:58:07.6553
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: O3SahtCM2FfddoVD6JkuC979qTWxXH9hr62dWhJiGbKmCtilGKmK0amaGLN3FDty676K42O1EObDP6F16K/oqXw3UZLi0B0IAjibjDFSKCE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1321
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+X-Spamd-Result: default: False [5.04 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[starfivetech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	GREYLIST(0.00)[pass,meta];
+	FORGED_RECIPIENTS(0.00)[m:ukleinek@kernel.org,m:p.zabel@pengutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor@kernel.org,m:emil.renner.berthing@canonical.com,m:palmer@dabbelt.com,m:pjw@kernel.org,m:aou@eecs.berkeley.edu,m:hal.feng@starfivetech.com,m:linux-pwm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:wsa+renesas@sang-engineering.com,m:prabhakarcsengg@gmail.com,m:conor@kernel.org,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312060-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,renesas.com:email,sashiko.dev:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,smtp.kernel.org:mid];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[hal.feng@starfivetech.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-312068-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hal.feng@starfivetech.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,devicetree.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 56A10687FD0
+X-Rspamd-Queue-Id: 4D01768846F
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Uninitialized `rtc->sync_time` causing infinite polling loop and m=
-issing hardware delays when optional `xtal` clock is absent.
-- [Low] Semantic unit mismatch using `NSEC_PER_MSEC` for microsecond durati=
-on calculation.
---
+Remove the jh8100 compatible since the JH8100 SoC has been canceled and
+will not be released. Add the jhb100 compatible to replace it.
+Use a oneOf construct to support the single-string opencores,pwm-v1
+compatible.
 
-commit 1c4e11a547342229c6e4a580cb676efaab170aba
-Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Change the register size in examples to 0x10, since an OpenCores PTC IP
+has only 4 32-bit registers: CNTR, HRC, LRC and CTRL.
 
-rtc: rzn1: Dynamically calculate synchronization delay based on clock rate
+I will maintain this pwm module in place of William.
 
-This commit replaces hardcoded hardware synchronization delays with a
-dynamically calculated time window derived from the runtime clock rate.
-It stores the calculated clock cycles in the driver private structure to
-adjust sleep boundaries dynamically.
+Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+---
+ .../devicetree/bindings/pwm/opencores,pwm.yaml   | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
-> diff --git a/drivers/rtc/rtc-rzn1.c b/drivers/rtc/rtc-rzn1.c
-> index 06339adae71f6..bc6af59744e48 100644
-> --- a/drivers/rtc/rtc-rzn1.c
-> +++ b/drivers/rtc/rtc-rzn1.c
-[ ... ]
-> @@ -124,8 +125,8 @@ static int rzn1_rtc_set_time(struct device *dev, stru=
-ct rtc_time *tm)
->  		/* Hold the counter if it was counting up */
->  		writel(RZN1_RTC_CTL2_WAIT, rtc->base + RZN1_RTC_CTL2);
-> =20
-> -		/* Wait for the counter to stop: two 32k clock cycles */
-> -		usleep_range(61, 100);
-> +		/* Wait for the counter to stop: two RTC_PCLK clock cycles */
-> +		usleep_range(rtc->sync_time, rtc->sync_time + 100);
+diff --git a/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml b/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
+index 52a59d245cdb..5f05606a2d3d 100644
+--- a/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/opencores,pwm.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: OpenCores PWM controller
+ 
+ maintainers:
+-  - William Qiu <william.qiu@starfivetech.com>
++  - Hal Feng <hal.feng@starfivetech.com>
+ 
+ description:
+   The OpenCores PTC ip core contains a PWM controller. When operating in PWM
+@@ -19,12 +19,14 @@ allOf:
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - starfive,jh7100-pwm
+-          - starfive,jh7110-pwm
+-          - starfive,jh8100-pwm
++    oneOf:
+       - const: opencores,pwm-v1
++      - items:
++        - enum:
++            - starfive,jh7100-pwm
++            - starfive,jh7110-pwm
++            - starfive,jhb100-pwm
++        - const: opencores,pwm-v1
+ 
+   reg:
+     maxItems: 1
+@@ -49,7 +51,7 @@ examples:
+   - |
+     pwm@12490000 {
+         compatible = "starfive,jh7110-pwm", "opencores,pwm-v1";
+-        reg = <0x12490000 0x10000>;
++        reg = <0x12490000 0x10>;
+         clocks = <&clkgen 181>;
+         resets = <&rstgen 109>;
+         #pwm-cells = <3>;
+-- 
+2.43.2
 
-[Severity: High]
-If the optional xtal clock is missing, rtc->sync_time remains 0 because the
-calculation block in rzn1_rtc_probe() is skipped.
-
-Does this evaluate to usleep_range(0, 100), bypassing the hardware's
-required minimum 2-cycle synchronization wait period?
-
-[ ... ]
-> @@ -433,17 +434,25 @@ static int rzn1_rtc_probe(struct platform_device *p=
-dev)
->  			ret =3D -EOPNOTSUPP;
->  			goto dis_runtime_pm;
->  		}
-> -
->  		if (rate !=3D 32768)
->  			scmp_val =3D RZN1_RTC_CTL0_SLSB_SCMP;
-> +
-> +		/*
-> +		 * The internal clock counter operates in synchronization with the
-> +		 * RTC_PCLK clock. Calculate the duration of two RTC_PCLK clock
-> +		 * cycles in microseconds required for operations to complete.
-> +		 */
-> +		rtc->sync_time =3D DIV_ROUND_UP(2 * NSEC_PER_MSEC, rate);
-
-[Severity: Low]
-This isn't a bug, but the calculation uses NSEC_PER_MSEC to compute
-microseconds. While mathematically equivalent to 1,000,000, could this
-use USEC_PER_SEC to clearly reflect a Hz-to-microseconds conversion?
-
-[Severity: High]
-The driver retrieves the xtal clock using devm_clk_get_optional() earlier
-in rzn1_rtc_probe(). If the clock is missing, the else if (xtal) block is
-skipped entirely.
-
-Does this leave rtc->sync_time uninitialized at 0 for the default internal
-clock?
-
-> +
->  	}
-> =20
->  	/* Disable controller during SUBU/SCMP setup */
->  	val =3D readl(rtc->base + RZN1_RTC_CTL0) & ~RZN1_RTC_CTL0_CE;
->  	writel(val, rtc->base + RZN1_RTC_CTL0);
-> -	/* Wait 2-4 32k clock cycles for the disabled controller */
-> +	/* Wait 2-4 RTC_PCLK clock cycles for the disabled controller to stop */
->  	ret =3D readl_poll_timeout(rtc->base + RZN1_RTC_CTL0, val,
-> -				 !(val & RZN1_RTC_CTL0_CEST), 62, 123);
-> +				 !(val & RZN1_RTC_CTL0_CEST), rtc->sync_time,
-> +				 rtc->sync_time * 2);
-
-[Severity: High]
-If rtc->sync_time is 0 from the missing optional clock, the timeout argument
-(rtc->sync_time * 2) evaluates to 0.
-
-Since readl_poll_timeout() treats a 0 timeout as explicitly disabling the
-timeout check, will this turn the wait into an infinite tight loop if the
-hardware fails to respond?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615154805.1619=
-693-1-prabhakar.mahadev-lad.rj@bp.renesas.com?part=3D8
 
