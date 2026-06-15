@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-312049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312051-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TODZACMgMGq8OQUAu9opvQ
-	(envelope-from <devicetree+bounces-312049-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:54:11 +0200
+	id 4stuD3cgMGrjOQUAu9opvQ
+	(envelope-from <devicetree+bounces-312051-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:55:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DA39687F0C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:54:10 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC0FE687F63
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:55:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="j/li2IzL";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312049-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312049-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=q4MnCh93;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312051-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312051-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E82A2323F364
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:48:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 81DBF30D1237
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 15:49:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9195140962A;
-	Mon, 15 Jun 2026 15:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC9A40963E;
+	Mon, 15 Jun 2026 15:48:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7A9407CF5
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 15:48:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C42140910B
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 15:48:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781538513; cv=none; b=e77kMUxKoSNyox2T7mAGGgj4maqogBvwU8aSBbzBRAAtzrwvpbNGHbtqwalQWtw7nzvpRoETKnGfjqU8he1Q0JGlrXajrfWnTMAU/EiuAcBrwyEoA2BxYSvSp0aN5gMz3umpNvQx9ivDU9G9IVih2d07iTaiXkkkW0FjG+MLqwo=
+	t=1781538513; cv=none; b=DvEAuKoPzdiGFHxtDSIPWEQK4wWcg6pcolpnnh1z6nxUHJcMUcFtU1Nbcz4nca61PpuGxEpO62b1jHy8cg02+7uaH40nAqpB7y0h4jmligXUREjhEwE0DLxIK4RtZ4y6FkotHpRD7prJ4zCA852priY8vwZVYVkn1YqM5Yk8//U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1781538513; c=relaxed/simple;
-	bh=VeFRtFE6g1dPxi2Ict2HCIeaPoo/i0XnTAR0WFi63t8=;
+	bh=Gk/cPNPTDZkAWNymipz74p7wZWq4X8OMsudl9IitgbU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tP9vEdnSdtiltrPbMTR4w5Fq2RWuinoLgzsg69BXoo99x1KWlrm628sCIw9OPCBqidwgIiI4rsSyYQToapwRgCwZSPeYRfzl32DgFYUYS53YwXH+m0noK5r1UlMstpxfPx0dzZIu0Rj6nB9t94qbEZzbF8RJjx+o/XJ0OHyWOhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j/li2IzL; arc=none smtp.client-ip=209.85.128.51
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4908b92904fso42849265e9.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:48:30 -0700 (PDT)
+	 MIME-Version; b=MuekYcuTkUrtb50ZXx4CH7PoXXA8LaLIhEliGB7kp3riR0+VUWiiM1QZqEtARmS1VMnT89BJ9pMxQRExlEZiQUp/gpOWRNWryVXZOdI2P4aZxefnrlh/UlXKAI6KiPz7hHyQw+7TQF5nbznR8up26I7Vmpx7vMX/ttBvKEk7AfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=q4MnCh93; arc=none smtp.client-ip=209.85.221.44
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-45eea68dd6fso1831433f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:48:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20251104; t=1781538509; x=1782143309; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Zi2INdyOzIzUgyLFjKy8yVa7T7k94g3Q/7heIGOkyf0=;
-        b=j/li2IzLApW3uvbsaYFe+UZPncRyKzb+wq+LpG2SSO3kNcTQuYpTgJGLP11IgoTqC9
-         8a5yAfl2hiA2P5RjxyJTzj+ZLidy0VJ9C3S5YOhr+3hYUkBCyM7wOuUJmboURW0rZ2fq
-         Ec/nJsPnTUreSZwYEAT/hfng4vE58bhD7yGqLMh+qmci8FHTiDd+BnXe/9iurhPtRcpz
-         zhx7PfcaND6VT19L/pviKRdnaVLlFPm/5xqU64a16LT9qHSFjDTcj4h3mhFIVEPPE2T0
-         Npn8jcJGPvxT3CD5t0f5O4TNuk1+oqBRrIk5oA8v6Kt5+M6hccebSxV0mzQJrzP+o8hy
-         f5cA==
+        bh=L9hQG1QLJk/k6gtdHr4QTzx1kFxzhJfLJZfPoGCSsmc=;
+        b=q4MnCh936TEEJ4mH4z7asgg18S3Zd2MzhZ/pKPKK2s8/sAD0/tMe16++9sQ2kg2lgN
+         o9QorLYaSnvFzc+7ly/g85IL8nJrKORdalExnLqYJorVhc8VTPILqRiuceQWruWKG7Tn
+         79UkSZeQif8TmXOFQeHp2DOfJsZu9FJcZV3z2VWv6JXzvaJMrvF9HkgKalitM78ZeDih
+         TbTZb9b3+RZrat9eBlNBJowcmqaMbb3zKs/Ybge2AKW90k+nO8kgCGCTUqVkpLGtKPt9
+         9VtaAJwCARTley0TdoIJmeRSDjciLZHayeTOsaItZnLRrPxS/ZTDxJDZMCwZzZh9hURA
+         aWPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20251104; t=1781538509; x=1782143309;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Zi2INdyOzIzUgyLFjKy8yVa7T7k94g3Q/7heIGOkyf0=;
-        b=c6QnUz4I25Df4vGrI8ho1hgqK6e8TDCEbosvOrni2qxUkQNwUAdT8VUw83B1sKOsvv
-         IE4pRfGOt2tlr743o3N9DDVRGbD79+VeQZctrH7HnKlkJbOHfa9D2P+hYfQ0eVEsZraj
-         Tw2BQnkEPCRPdv76CSaMu+srjeSvjc5PXRyHQdwFx1q5YEFJnt2LL/c6cxDtLKr7NQxk
-         AN8RPOu5EF2Jw+1RjRNBOei5fetucFANW6yK+RTLZQIIiXVpMAgo2ALzHP5qCh+AQv/B
-         T5LOumFgOSSOyemLspM/tbCCb5Emm9Qc7fHu58tXL6BRi45Iw8VFLLA+99DudN3SIkfW
-         vCog==
-X-Forwarded-Encrypted: i=1; AFNElJ+LPSsDJXRIh4t0Gq7O5l5fWxLKpI5JlLUhppTdmeeKLDU6CUAALhJdOHQCQ8NIneNZSjBn/FNKKPMd@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJXexhKzzrk3f3VJ2pGiGTLzk+QQ7w/dXcPXk28xprZd2f/+D+
-	l4lYwnEGuHH9XpMUrOtYz3ud4Ny+heYD0HqQCze4SMg7Z06PyCZHWq0Q
-X-Gm-Gg: Acq92OExzVPoJceFmNT/lT3k+yfEAx6Guh+aXlTp3OBwt9d78ASxT+NFSLu76PUG5KC
-	0RfJTD0l9lYym67GYGNlNFQD+UzU2GCiAQUs1dGBQ7rVPb0a9DTok+09ZLJfASUzPSKg7v+UBPo
-	taw8O/SdrKjcI1DdUYbLJ7ARTgJMbghuKxcYnSVwF1cYntA3eo6gAOlUchAbS9BiXNF28Sz+IDc
-	fdmsStXRfl/1/jaqXpnTgetr8cfMW+rPe8IOUxuU6YOSzjdmehKDF31OZz/zfbOzu7sM8pL85Ko
-	rZtp64Z4Su2fAg8oDhmf/fsp1sF77J9KUfklARNLLuLKhuThwaVbdHEkdxc05t5YQ+mhFWl2AoO
-	/K5zR44eTVIqJA+cHkByZ9hWbKmFDp4tLp0yMUKMXkQecUVwWMEGoYTxHmhEAXr1wTQ5zAkAjT/
-	+koXj4FcK+MvtOXeJnenHz0nHZQQSJl2KZAcOV84yn7vWZrdiqFEzrJHpv8VWlSa87ZdzzPMGns
-	mDYZDSYeh2510aDn56Ad23qA+VYZRTU7bsSGudF32LTrC4=
-X-Received: by 2002:a05:600c:e54a:20b0:490:e190:38f3 with SMTP id 5b1f17b1804b1-490ec504dc0mr131727005e9.21.1781538508599;
-        Mon, 15 Jun 2026 08:48:28 -0700 (PDT)
+        bh=L9hQG1QLJk/k6gtdHr4QTzx1kFxzhJfLJZfPoGCSsmc=;
+        b=VFiCFhj9ABlqgt+t4EJi+Nn7Hg9UHu1Ol1Vy3EWicI70TXDSxCSvFAAoEArHGIoEEl
+         8/hHfbw8T5Zh0byLcjQppqwbAz53EDxKYZMGRKkyNST06C4y5uQVfCoeA6On/dQ0K5nI
+         Jp1De6aDcPvvLtPTIPiYfvUNDqZeTerwaT69pntIfzlINUHHYxdvSIrLrnNa5bZsivg6
+         nDwqEbPC9u0G+zq7o1kE96x6u0BWStzBAvehjQ8SCjKBnQe+m818ZK4j/jwhVAsnZhGy
+         hJCfmQW1XF+z1Ffa6OUBXC9nnRsxCv+tcqxwOoWwCwRwwYBLg8ZqO6r297kwylHKqjzp
+         Q1uw==
+X-Forwarded-Encrypted: i=1; AFNElJ8eui7ElUSU+ldN3ZLVRM3Zvu8aMCCjWYGJXxNX3sGPTQ+yfkAqj9jrK11NGySdi/xfemH7E9O8OsLW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxP/QMvNFbtN3F4RPgt4E5vV/Xi350pqBWKvvfYF6rFPZ8lkwS3
+	lRFZ/C3vZd7cDR0JgSmKAsqOzluG1zOU37/wZXLrumHRjYxkX7Kf0EMT
+X-Gm-Gg: Acq92OEK1QDkDn/HQbpDO9JsmMW85RyH+A9oPGLJjEZeZ42COd093kPb/inja+wTxKB
+	28rFEd7pZvH1m/khWGd9nayQoUFuKVsRFRxdMSVLvx4hPdKlehXXEfuAcxTMZWV0bsU+60GsltD
+	otWK84kpBTYFU+/q8Z7va05IiHuuWhbLEodZ/HH7U82NOpYRpR5IhT/Wu+9QTfGDelwFJ747FTT
+	AVwFaDQJ+OOVsp0hZbdnrfSDXUhPiir8LgTCZM/SJdAwLpvrbv7+MWkVmCHMLlyw/nTzp1tEnY5
+	1PW+CMq2pBKKWH5gEU5sRxnGpwkIj8HoDfr1hpbaVreXYu6TfLNrycLLUd0FKzAeF+hNwFvR3R/
+	j5cSAKhYCcD+KrW4feRMpFqNoSnxXFoefO82SKaI5Nflxic7NUhiUrbg5ZDD/m/FD5FxCBQh/HF
+	bGWw7CLTAtIXeNRrx/FlnsRkbAYhEpRKggwlCjXezHe56l8La3RVAsSs/7jANpw0SNYOXqQWpvO
+	eD9WQ3xeMYPbDEdK/qa72mmeCiKXOIRR4/zOdo8i/ZzQ3U=
+X-Received: by 2002:a05:6000:2994:20b0:45e:df46:ba30 with SMTP id ffacd0b85a97d-4606dba453fmr15655433f8f.34.1781538509590;
+        Mon, 15 Jun 2026 08:48:29 -0700 (PDT)
 Received: from iku.Home ([2a06:5906:61b:2d00:1e4:992f:3ad2:4f2b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f26434dsm36010995f8f.1.2026.06.15.08.48.27
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4606f26434dsm36010995f8f.1.2026.06.15.08.48.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2026 08:48:27 -0700 (PDT)
+        Mon, 15 Jun 2026 08:48:29 -0700 (PDT)
 From: Prabhakar <prabhakar.csengg@gmail.com>
 X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 To: Miquel Raynal <miquel.raynal@bootlin.com>,
@@ -95,9 +95,9 @@ Cc: linux-rtc@vger.kernel.org,
 	Biju Das <biju.das.jz@bp.renesas.com>,
 	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 09/12] rtc: rzn1: Use temporary variable for struct device
-Date: Mon, 15 Jun 2026 16:48:02 +0100
-Message-ID: <20260615154805.1619693-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 10/12] rtc: rzn1: Consistently use dev_err_probe()
+Date: Mon, 15 Jun 2026 16:48:03 +0100
+Message-ID: <20260615154805.1619693-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 References: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
@@ -113,13 +113,13 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312049-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312051-lists,devicetree=lfdr.de];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_RECIPIENTS(0.00)[m:miquel.raynal@bootlin.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:wsa+renesas@sang-engineering.com,m:linux-rtc@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:prabhakar.csengg@gmail.com,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,m:wsa@sang-engineering.com,m:prabhakarcsengg@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[bootlin.com,kernel.org,glider.be,gmail.com,sang-engineering.com];
@@ -138,123 +138,37 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,vger.kernel.org:from_smtp,bp.renesas.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,bp.renesas.com:mid,renesas.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8DA39687F0C
+X-Rspamd-Queue-Id: DC0FE687F63
 
 From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Use a temporary variable for the struct device pointers to avoid
-dereferencing.
+Use dev_err_probe() in the IRQ request error path to make error handling
+consistent with the rest of rzn1_rtc_probe().
 
 Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- drivers/rtc/rtc-rzn1.c | 25 +++++++++++++------------
- 1 file changed, 13 insertions(+), 12 deletions(-)
+ drivers/rtc/rtc-rzn1.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/rtc/rtc-rzn1.c b/drivers/rtc/rtc-rzn1.c
-index bc6af59744e4..25cad9213147 100644
+index 25cad9213147..c7ef3c81180f 100644
 --- a/drivers/rtc/rtc-rzn1.c
 +++ b/drivers/rtc/rtc-rzn1.c
-@@ -386,13 +386,14 @@ static const struct rtc_class_ops rzn1_rtc_ops_scmp = {
+@@ -477,7 +477,7 @@ static int rzn1_rtc_probe(struct platform_device *pdev)
  
- static int rzn1_rtc_probe(struct platform_device *pdev)
- {
-+	struct device *dev = &pdev->dev;
- 	struct rzn1_rtc *rtc;
- 	u32 val, scmp_val = 0;
- 	struct clk *xtal;
- 	unsigned long rate;
- 	int irq, ret;
- 
--	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
-+	rtc = devm_kzalloc(dev, sizeof(*rtc), GFP_KERNEL);
- 	if (!rtc)
- 		return -ENOMEM;
- 
-@@ -400,14 +401,14 @@ static int rzn1_rtc_probe(struct platform_device *pdev)
- 
- 	rtc->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(rtc->base))
--		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->base), "Missing reg\n");
-+		return dev_err_probe(dev, PTR_ERR(rtc->base), "Missing reg\n");
- 
- 	irq = platform_get_irq_byname(pdev, "alarm");
- 	if (irq < 0)
- 		return irq;
- 	rtc->alarm_irq = irq;
- 
--	rtc->rtcdev = devm_rtc_allocate_device(&pdev->dev);
-+	rtc->rtcdev = devm_rtc_allocate_device(dev);
- 	if (IS_ERR(rtc->rtcdev))
- 		return PTR_ERR(rtc->rtcdev);
- 
-@@ -415,15 +416,15 @@ static int rzn1_rtc_probe(struct platform_device *pdev)
- 	rtc->rtcdev->range_max = RTC_TIMESTAMP_END_2099;
- 	rtc->rtcdev->alarm_offset_max = 7 * 86400;
- 
--	ret = devm_pm_runtime_enable(&pdev->dev);
-+	ret = devm_pm_runtime_enable(dev);
- 	if (ret < 0)
- 		return ret;
--	ret = pm_runtime_resume_and_get(&pdev->dev);
-+	ret = pm_runtime_resume_and_get(dev);
- 	if (ret < 0)
- 		return ret;
- 
- 	/* Only switch to scmp if we have an xtal clock with a valid rate and != 32768 */
--	xtal = devm_clk_get_optional(&pdev->dev, "xtal");
-+	xtal = devm_clk_get_optional(dev, "xtal");
- 	if (IS_ERR(xtal)) {
- 		ret = PTR_ERR(xtal);
- 		goto dis_runtime_pm;
-@@ -474,9 +475,9 @@ static int rzn1_rtc_probe(struct platform_device *pdev)
- 
- 	spin_lock_init(&rtc->ctl1_access_lock);
- 
--	ret = devm_request_irq(&pdev->dev, irq, rzn1_rtc_alarm_irq, 0, "RZN1 RTC Alarm", rtc);
-+	ret = devm_request_irq(dev, irq, rzn1_rtc_alarm_irq, 0, "RZN1 RTC Alarm", rtc);
+ 	ret = devm_request_irq(dev, irq, rzn1_rtc_alarm_irq, 0, "RZN1 RTC Alarm", rtc);
  	if (ret) {
--		dev_err(&pdev->dev, "RTC alarm interrupt not available\n");
-+		dev_err(dev, "RTC alarm interrupt not available\n");
+-		dev_err(dev, "RTC alarm interrupt not available\n");
++		dev_err_probe(dev, ret, "RTC alarm interrupt not available\n");
  		goto dis_runtime_pm;
  	}
  
-@@ -486,18 +487,18 @@ static int rzn1_rtc_probe(struct platform_device *pdev)
- 		goto dis_runtime_pm;
- 	}
- 	if (irq >= 0)
--		ret = devm_request_irq(&pdev->dev, irq, rzn1_rtc_1s_irq, 0, "RZN1 RTC 1s", rtc);
-+		ret = devm_request_irq(dev, irq, rzn1_rtc_1s_irq, 0, "RZN1 RTC 1s", rtc);
- 
- 	if (irq < 0 || ret) {
- 		set_bit(RTC_FEATURE_ALARM_RES_MINUTE, rtc->rtcdev->features);
- 		clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, rtc->rtcdev->features);
--		dev_warn(&pdev->dev, "RTC pps interrupt not available. Alarm has only minute accuracy\n");
-+		dev_warn(dev, "RTC pps interrupt not available. Alarm has only minute accuracy\n");
- 		rtc->sec_irq = -ENXIO;
- 	} else {
- 		rtc->sec_irq = irq;
- 	}
- 
--	device_init_wakeup(&pdev->dev, true);
-+	device_init_wakeup(dev, true);
- 
- 	ret = devm_rtc_register_device(rtc->rtcdev);
- 	if (ret)
-@@ -506,7 +507,7 @@ static int rzn1_rtc_probe(struct platform_device *pdev)
- 	return 0;
- 
- dis_runtime_pm:
--	pm_runtime_put(&pdev->dev);
-+	pm_runtime_put(dev);
- 
- 	return ret;
- }
 -- 
 2.54.0
 
