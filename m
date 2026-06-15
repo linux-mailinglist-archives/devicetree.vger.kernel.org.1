@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-311582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311583-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VqfEB2V4L2qfBAUAu9opvQ
-	(envelope-from <devicetree+bounces-311582-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 05:58:29 +0200
+	id 1BvmLHV4L2qrBAUAu9opvQ
+	(envelope-from <devicetree+bounces-311583-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 05:58:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B07436832D4
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 05:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 132966832E7
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 05:58:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gZ+t5xjL;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311582-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311582-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=lvOvEIBT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311583-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311583-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6E9C530053C1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 03:58:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DEFBC300576B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 03:58:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64732D9EDC;
-	Mon, 15 Jun 2026 03:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D692D9EDC;
+	Mon, 15 Jun 2026 03:58:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D1F2AD2C
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 03:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29EED2DC76F
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 03:58:41 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781495906; cv=none; b=YvkfSbV832HU6TtCA7NS2Q5qlD1LpXZBnmRab6zkmeihfaPgkUF19SuxkPmeygJtxE/IhnbuPPsdSmuOKJMU2hpA8ukkrPd4Q9oFmOfYycpyoVr6OxQ3m0T0aiK1IlwHLmTGTjpNI8uMLM2lmXRpmdFPd5xAo9mYlUYctqXCvsQ=
+	t=1781495922; cv=none; b=TY27FWRjmcnAlnheGbeechZ00ROaFe7ScrSgEwOh+t3lLN874fznkmMYz1REAHH6D3Ka+AAukbXCJlIISrt1h94fxOJlYMel7aWTZ2xXOckuAcoq47uXcLBo9xXLMVOqM6EytZB+e+1smmc6ISG7IbZyYL1LtpiSkrMzZ9USBJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781495906; c=relaxed/simple;
-	bh=EUsuCGYFZnZJ4qCeJxUX3bMCDtpOnvfe9m/1PyvtHAE=;
+	s=arc-20240116; t=1781495922; c=relaxed/simple;
+	bh=/kBo1xiONou1Fg1ByqINwakDFVscHfazvWeOwHDGqGQ=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Y3NgwO/ch349vieLm6xdR02/iYvGx8HD8T/apCmFxgLmdlKNdN+5kXzCfHwq1WhV1SgxLHMtjgW6MAwVhnpCAkpuyxPEEhWm3jfntmgQAwkc+hxy/0IBHrD3pNaIyKv6DRlezPtlZvIS3sQ3QgZhUTHmZEcGlwXxyAZ0puhMSPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gZ+t5xjL; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2344C1F000E9;
-	Mon, 15 Jun 2026 03:58:25 +0000 (UTC)
+	 Message-Id; b=CVRg1vf1Ml6yuHHxCq5/B2HJdGTcIhixUAKSjg0y0RzWikZlsTNqAbxPDYhnndKxgeIQcI+8KuXYNcasFo61/yPUbvFdKs9nXZWz6D6q97ppAnvx7BHyHlzlBP75+75THxdqMgDAjedVVVoilk7mVGXXnqO7HxC/kuy0Qa5GLv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lvOvEIBT; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAA1D1F000E9;
+	Mon, 15 Jun 2026 03:58:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781495905;
-	bh=EDrcdVJ0/bJfuJOVWn9BQIib318qCNEW3O16JsxzkTA=;
+	s=k20260515; t=1781495921;
+	bh=qLiwW1E4C/8RgcM2DNghzbu2w52Truti3DBiahOsBz8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=gZ+t5xjLaPVDZ3YFKofsg7IQe5lzwWhQbUuC42TNUu9hdl+Itf4MmAZxelK1wqrQ2
-	 NB1k12Haf/3krtJgoqnDyKk1HkKC7ozsqnIbE/1+4JldnptV6vP4SBD9/AN1w++OYb
-	 iVcoqGcOoyyowCa0u8jk+oQ2xXSTgdlwhS8H6hQu/ZutWaxYlXgzzzGheomNsleOVG
-	 DuO6B2IeUIA85qyyj5T/RZVNcKrxOqqJUiYHkHT0j6uBRfB2/z6Dbotdl5LG7sh5n6
-	 7mDdezvtCIIDeNK8MRy1tvKVscbtPvP0dg0lXYm2bJ+fR8d+PWiE2xtdb6BYg/UEFI
-	 VOJMiS83JgVug==
+	b=lvOvEIBT/z2pozSv3hnRRggFe0eHr27zb1mNcUFDRVVwQaia+KZu77Oak5VmVT9To
+	 Bf2pDoXL1WOr3BkP7HathqdD3R2YOHiBQSoi6/4jcXbeDVLf+l4cQ/2rdvVKZF83cQ
+	 hjVWjayuwJ+3xe42tDw1Skk9T5UdJ8e5Nz3Ov2QVfjdQAxaPGtJNYTUeF0t6n4pEHX
+	 3rLK0/lo5Juo+C1qfy+U+6ix5BLFpgMGEMeEcC2fMQphQUqb6ARMAJRU1rK1bRNPHu
+	 ORTjqmdfrhcuw2eRRM0zJjlEHmWYi405NDxI5QLrjVPbXHCtlpyOyl/mAGf7u2ZBWL
+	 cNEEle6gggiQQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 4/8] clk: clocking-wizard: Do not map the memory for
+Subject: Re: [PATCH 7/8] clk: clocking-wizard: Skip s_axi_aclk for
  static-config
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Shubhrajyoti Datta" <shubhrajyoti.datta@amd.com>
 Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260615034845.3320286-5-shubhrajyoti.datta@amd.com>
-References: <20260615034845.3320286-5-shubhrajyoti.datta@amd.com>
+In-Reply-To: <20260615034845.3320286-8-shubhrajyoti.datta@amd.com>
+References: <20260615034845.3320286-8-shubhrajyoti.datta@amd.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 03:58:24 +0000
-Message-Id: <20260615035825.2344C1F000E9@smtp.kernel.org>
+Date: Mon, 15 Jun 2026 03:58:40 +0000
+Message-Id: <20260615035840.BAA1D1F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311582-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311583-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -87,8 +87,8 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -102,83 +102,90 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,amd.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,amd.com:email,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B07436832D4
+X-Rspamd-Queue-Id: 132966832E7
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
 
 Pre-existing issues:
-- [High] Registering the same struct notifier_block to two different clock =
-notifiers corrupts the intrusive linked lists.
+- [High] The driver registers the same `struct notifier_block` instance (`c=
+lk_wzrd->nb`) to two different clock notification chains (`clk_in1` and `ax=
+i_clk`), causing notifier list corruption.
 --
 
-commit 8b915ba31e389cdcf5a743f96eb5c3695bc448c3
+commit 2cde73f9cf8529ad3e29f28db978947c4f80fd0e
 Author: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 
-clk: clocking-wizard: Do not map the memory for static-config
+clk: clocking-wizard: Skip s_axi_aclk for static-config
 
-This patch prevents the memory mapping of the AXI register block if the
-device is configured with xlnx,static-config. It achieves this by moving
-devm_platform_ioremap_resource() under the non-static-config conditional
-branch, since only the dynamic path requires the AXI register block.
+For static-config mode the AXI bus interface is not used, so there is
+no need to get and enable s_axi_aclk. Move the axi_clk setup inside
+the non-static-config branch.
 
 > diff --git a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c b/drivers/clk/xil=
 inx/clk-xlnx-clock-wizard.c
-> index 4a0136349f71a..e082051221bef 100644
+> index 5470a717fccc8..fe73ee02b54ee 100644
 > --- a/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
 > +++ b/drivers/clk/xilinx/clk-xlnx-clock-wizard.c
-
 [ ... ]
-
-> @@ -1183,6 +1179,10 @@ static int clk_wzrd_probe(struct platform_device *=
-pdev)
->  	}
+> @@ -1258,22 +1257,24 @@ static int clk_wzrd_probe(struct platform_device =
+*pdev)
+>  		return -ENOMEM;
+>  	platform_set_drvdata(pdev, clk_wzrd);
+> =20
+> -	clk_wzrd->axi_clk =3D devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
+> -	if (IS_ERR(clk_wzrd->axi_clk))
+> -		return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->axi_clk),
+> -				     "s_axi_aclk not found\n");
+> -	rate =3D clk_get_rate(clk_wzrd->axi_clk);
+> -	if (rate > WZRD_ACLK_MAX_FREQ) {
+> -		dev_err(&pdev->dev, "s_axi_aclk frequency (%lu) too high\n", rate);
+> -		return -EINVAL;
+> -	}
+> -
+>  	clk_wzrd->clk_in1 =3D devm_clk_get(&pdev->dev, "clk_in1");
+>  	if (IS_ERR(clk_wzrd->clk_in1))
+>  		return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->clk_in1),
+>  				     "failed to get clk_in1\n");
 > =20
 >  	if (!of_property_present(np, "xlnx,static-config")) {
-> +		clk_wzrd->base =3D devm_platform_ioremap_resource(pdev, 0);
-> +		if (IS_ERR(clk_wzrd->base))
-> +			return PTR_ERR(clk_wzrd->base);
+> +		unsigned long rate;
 > +
->  		ret =3D of_property_read_u32(np, "xlnx,speed-grade", &clk_wzrd->speed_=
-grade);
->  		if (!ret) {
->  			if (clk_wzrd->speed_grade < 1 || clk_wzrd->speed_grade > 3) {
-
-[ ... ]
-
-> 		if (clk_wzrd->speed_grade) {
-> 			clk_wzrd->nb.notifier_call =3D clk_wzrd_clk_notifier;
->=20
-> 			ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->clk_in1,
-> 							 &clk_wzrd->nb);
-> 			if (ret)
-> 				dev_warn(&pdev->dev,
-> 					 "unable to register clock notifier\n");
->=20
-> 			ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->axi_clk,
-> 							 &clk_wzrd->nb);
+> +		clk_wzrd->axi_clk =3D devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
+> +		if (IS_ERR(clk_wzrd->axi_clk))
+> +			return dev_err_probe(&pdev->dev, PTR_ERR(clk_wzrd->axi_clk),
+> +					     "s_axi_aclk not found\n");
+> +		rate =3D clk_get_rate(clk_wzrd->axi_clk);
+> +		if (rate > WZRD_ACLK_MAX_FREQ) {
+> +			dev_err(&pdev->dev, "s_axi_aclk frequency (%lu) too high\n", rate);
+> +			return -EINVAL;
+> +		}
+> +
 
 [Severity: High]
-This isn't a bug introduced by this patch, but it is a pre-existing issue.
+This is a pre-existing issue, but does using the same struct notifier_block
+instance for multiple clock notifiers corrupt the notification chain?
 
-Does registering the same struct notifier_block (&clk_wzrd->nb) to two
-different clocks in clk_wzrd_probe() corrupt the SRCU notifier chains?
+Looking further down in clk_wzrd_probe(), the same &clk_wzrd->nb instance
+is registered to two different clocks:
 
-The clock notifier framework uses srcu_notifier_chain_register(), which
-links the provided struct notifier_block into an intrusive linked list by
-modifying its next pointer. Because clk_in1 and axi_clk are distinct clocks
-with separate notifier chains, adding the exact same notifier_block instance
-to the second chain overwrites its next pointer.
+    ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->clk_in1,
+                                     &clk_wzrd->nb);
+    ...
+    ret =3D devm_clk_notifier_register(&pdev->dev, clk_wzrd->axi_clk,
+                                     &clk_wzrd->nb);
 
-Could this merge the two chains, causing events from the first clock to
-traverse into the second clock's chain? Furthermore, when the notifiers are
-unregistered, would the unregistration logic leave the first clock's chain
-pointing to elements from the second clock's chain, leading to a potential
-use-after-free?
+Since a struct notifier_block has a single next pointer, registering the
+same instance to a second chain overwrites its next pointer. Doesn't this
+merge the two clock notification chains and corrupt the first notifier list?
+
+>  		clk_wzrd->base =3D devm_platform_ioremap_resource(pdev, 0);
+>  		if (IS_ERR(clk_wzrd->base))
+>  			return PTR_ERR(clk_wzrd->base);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615034845.3320=
-286-1-shubhrajyoti.datta@amd.com?part=3D4
+286-1-shubhrajyoti.datta@amd.com?part=3D7
 
