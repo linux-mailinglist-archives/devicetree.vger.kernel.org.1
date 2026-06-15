@@ -1,189 +1,188 @@
-Return-Path: <devicetree+bounces-312199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312200-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TEiFNvN3MGqVTQUAu9opvQ
-	(envelope-from <devicetree+bounces-312199-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 00:08:51 +0200
+	id 8wCfN1F4MGqdTQUAu9opvQ
+	(envelope-from <devicetree+bounces-312200-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 00:10:25 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EF4268A4AF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 00:08:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F2468A4C3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 00:10:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b="Y6yKOH/w";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312199-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312199-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=l6bStSOZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312200-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312200-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 51EDA30E567F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 22:07:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 11801301E5AC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 22:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21CAA3B775E;
-	Mon, 15 Jun 2026 22:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F183B71C0;
+	Mon, 15 Jun 2026 22:10:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E28843B71C0
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 22:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8D73168EB
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 22:10:22 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781561276; cv=none; b=ihORqUlTTskIWQs9ebO/geB5GyaRV90zXiuVtEUIKVOxAduw8GAx6gmL8xu23+SLe/X0FRGma1gi1bkvxCIVxy5OP/g058Ne5ceFQRRqM8tc9RR2O6s73kthtD/EPV+zcMSFT0hIxR9llQJTbfwcI+YmD6H8rog2H4Nr4YhAFrY=
+	t=1781561423; cv=none; b=cSeJuY1gatRi0FSNPzGUX3CqBJ7M/VmV+rxh/Bv63FmWDAXH83CqLjqDHpaZwfAcq+AQLjMBl+6xg39KEF48xi/WEHuUgMzs0kiewgsxX52ZCANa6XsSFZcRlcdMNBaGyYiSlwhDLDH6BvYPGyFQQ2BKMi/BI5ho8kclqLZ4AF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781561276; c=relaxed/simple;
-	bh=YfbpY7Bc3Dqsf70uwxALqNV6kXHWLWzxXvuWJJpKc98=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DOyUvP5msEEUAyG4FuJ/sb4dLuDownjqwhAYzC0m859XjwJMGL/fELm3UBbgOtGDSIfp7TrS7DvOl8Pi7MdsGfE4N12udb4aqxQo1jCyv2OsLWeEXEOMp+b7FxtvpHDhoOoS3ulecYSGPTZL3EgTgQK2oyrF8Ay02jW3edpNC2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=Y6yKOH/w; arc=none smtp.client-ip=209.85.160.41
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-43d08bc82deso3747417fac.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 15:07:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1781561273; x=1782166073; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9qFetXIKm9GhA/aEeRCm4t+hK+zcMVI2EtnnmBeBC2Q=;
-        b=Y6yKOH/w1UQcdirdADVjMBdVSgaSdb+gAayEVACuyR/ANYCuX06CsAQZQpNO4HBoaN
-         8KfArtVNhDsX2suplO6pjqgTtfg9Cyf5jFkQ7mxY5csYxxMhQxnhdLg0SLt1x+Qw91rh
-         65IoRNAArkHn2PEPUHQ3KHd8R5VKMLZVS+8u1DtjccEYdYPLb3BqdIH79s6PVkfCNxhe
-         Xpt1CE4Dc6JqdhHndVM5D2JUzBDvf52pFGq+TOMTTlIv6uxE2XhWQ2z7MAXVpighSjOQ
-         /ikKKv+BeAJ7+Bfb86Foa04H4KWJuVHgT3n0QwU2tlf90CZfE1j6WdMwGPY8uXzU/3fl
-         5HSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781561273; x=1782166073;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9qFetXIKm9GhA/aEeRCm4t+hK+zcMVI2EtnnmBeBC2Q=;
-        b=OxTGAaiWjwZunLPtgIxWJVIgx9MCtBy6tK8cPcoBZRFcSTx2HqxnzNmSlJCBLtVHDd
-         T8uq+Q7ihtrjmftwVI9gQRcGz340IkPdsrJy+o6VH64M7aVtkTh+Vsr0pEpJ64cC3ZBt
-         /lYkowEkgkh69UcjQDx11gUGtTT7WqejNxwDkdTc8XxzKQvE7U2YLwoYNwqIBc474/eb
-         J0kfdaDfd1DVXEWciRbPP3PNxbOTmiiSlpGekmBBCfk7MJ5QmO8kidtfag63Qcrwhx+i
-         YNhzl3WLuPctAE/DOQCMq/TQMrbNYkwGFcUkU+uqwUkkqDE5TMQMyPqAuTfvMUdHk68P
-         W1/g==
-X-Forwarded-Encrypted: i=1; AFNElJ8J8tZ8wM+sZmTthohSF2lzVIVHpdYFt/OW1znU5j2ZEivWgZW1HBkI253UrBrE2KOmzL65ODYkPKdo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzm++C+mJWERy+Bd6cxp2n8a75lYXOlqX1TJaTYH6Nf7vkXoAq1
-	GUWyUXnEsTx4gTIqdg+DyVm1TDafQKSGAmcHaxFoHABefv8NPtW5QuYOqgJlbv8AdP0=
-X-Gm-Gg: Acq92OEZQ4K5lsg/Ot6mmmJXWneXlav1YrvmJZS+QRYniTghxgMkz2mMEpVic5t8WkA
-	KGW4jo/SyAcg2pRDME3lMG5Z5N837XGQnLAnSJGdgR4VrD164zuiDvOm8yjbHFwQJifkeUGuJdT
-	K3+hk4xZJR4z1fGDEKYCaHeFYT79fWnSbepdarO3FoZaXMiPTtaeIvl6iHqVJnRKCQz5N3yiKkm
-	CjgvIpjUHdpdHBQycnAtUKCWCgWpY+q0uUNMfRyxUNfS8rA5/b/642KOOSY03CZ4l65AnhFQRSd
-	W/GfP5QbCvczZx7PsF6EzsJ1q2gXQZu6UZMk2xHYnPSZBfx8z1Bk+hg4dRe3fgkyZbbicUbP+cS
-	b5JwVRQs7fMBkYZyQHIOYXpji2/G7hgpAsF2ei1sK0IQn90lv2RfR1wxzmgLL6L4fxRuEGnTLLB
-	TmFV+XZeMFaAC1z+Y0qQ6F0F/JqP9cZgSvh2WcR6Ghp6p7Dk2swCLtSxBBOJ2Cw9EMKbe9cXrvE
-	Q==
-X-Received: by 2002:a05:6820:88f:b0:69e:9a1b:5c26 with SMTP id 006d021491bc7-6a0a40ae32fmr935828eaf.45.1781561272863;
-        Mon, 15 Jun 2026 15:07:52 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:16b0:5133:47b1:a939? ([2600:8803:e7e4:500:16b0:5133:47b1:a939])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-44308f190c9sm745841fac.11.2026.06.15.15.07.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jun 2026 15:07:52 -0700 (PDT)
-Message-ID: <d25798eb-50a2-41fb-ad2b-7ac7feeabd86@baylibre.com>
-Date: Mon, 15 Jun 2026 17:07:51 -0500
+	s=arc-20240116; t=1781561423; c=relaxed/simple;
+	bh=l+NTvZwrLFVw4yUAn5OLNZaxmixZeMtDVKxvdKo6Qbc=;
+	h=From:Subject:Cc:In-Reply-To:References:Content-Type:Date:
+	 Message-Id; b=bfjqyjfdxTXldxwS9OhyOvlVQSg2ENXuob0qiHwXZfdx09t2iv4jRdl4VrBkOJtuj2338gLtpQCyHMkHcrBDw4/j/SNd17JmWHOJTngaoJYtgQE+uKHIjmkr0IYM4pA3DqNft4oSWS1ENl81SvDNXmnMVzpAQQejVYQCw72NTZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l6bStSOZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1DD21F000E9;
+	Mon, 15 Jun 2026 22:10:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781561422;
+	bh=p5FL+SzdexA0S6HPAk/0oHX63ZZ/EQqjkZHBc3Hy5T4=;
+	h=From:Subject:Reply-To:Cc:In-Reply-To:References:Date;
+	b=l6bStSOZT1HFXRolKD4JdxsuKEEXX+kVipmw+LndEKACJwmIqJcMWXI7FAq4CZbgL
+	 5/NcOAqK4APazhSioQiM7hCgPoN6b8iAqTNc7wwSVgwb8oleq8tH9YSvbePUqeg58p
+	 fcRyXB0whJAkKvPtKhnppItAL1OSD9JSGrmfS62Gqqr33lTS1NeVRhulgBVcM3do8M
+	 31aQsRRK6ZruVlimlpkH0pImttku5imw0yzP6+NqluK3my/ESGQcVWUMc/8wwiObNY
+	 yRQS+HHbilzv9w4PXSu2NcSqG8SW0SNO8RpSLqTK2OaS4BRb5XigYx72G7uH6y1Bue
+	 4HM7j9q7HDoIw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: add ti,ads122c14
+Reply-To: sashiko-reviews@lists.linux.dev
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260615-iio-adc-ti-ads122c14-v1-1-e6bdadf7cb2b@baylibre.com>
+References: <20260615-iio-adc-ti-ads122c14-v1-1-e6bdadf7cb2b@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 15 Jun 2026 22:10:21 +0000
+Message-Id: <20260615221021.F1DD21F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: ti,ads1100: add support for
- ADS1110
-To: Jakub Szczudlo <jakubszczudlo40@gmail.com>, linux-iio@vger.kernel.org
-Cc: andy@kernel.org, antoniu.miclaus@analog.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, duje@dujemihanovic.xyz, jic23@kernel.org,
- jishnu.prakash@oss.qualcomm.com, jorge.marques@analog.com,
- krzk+dt@kernel.org, linusw@kernel.org, linux-kernel@vger.kernel.org,
- marcelo.schmitt@analog.com, mazziesaccount@gmail.com,
- mike.looijmans@topic.nl, nuno.sa@analog.com, robh@kernel.org,
- sakari.ailus@linux.intel.com, wens@kernel.org, joshua.crofts1@gmail.com
-References: <20260613190957.654798-1-jakubszczudlo40@gmail.com>
- <20260613190957.654798-2-jakubszczudlo40@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20260613190957.654798-2-jakubszczudlo40@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MISSING_TO(2.00)[];
+	MISSING_MIME_VERSION(2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312199-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:jakubszczudlo40@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:antoniu.miclaus@analog.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:duje@dujemihanovic.xyz,m:jic23@kernel.org,m:jishnu.prakash@oss.qualcomm.com,m:jorge.marques@analog.com,m:krzk+dt@kernel.org,m:linusw@kernel.org,m:linux-kernel@vger.kernel.org,m:marcelo.schmitt@analog.com,m:mazziesaccount@gmail.com,m:mike.looijmans@topic.nl,m:nuno.sa@analog.com,m:robh@kernel.org,m:sakari.ailus@linux.intel.com,m:wens@kernel.org,m:joshua.crofts1@gmail.com,m:conor@kernel.org,m:krzk@kernel.org,m:joshuacrofts1@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[baylibre.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,analog.com,vger.kernel.org,dujemihanovic.xyz,oss.qualcomm.com,gmail.com,topic.nl,linux.intel.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre.com:+];
+	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312200-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7EF4268A4AF
+X-Rspamd-Queue-Id: 40F2468A4C3
 
-On 6/13/26 2:09 PM, Jakub Szczudlo wrote:
-> Register layouts are the same as for ADS1100 but ADS1110 have different
-> datarates and have internal voltage reference that is always 2.048V
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Low] Invalid schema constraint applied directly to an array property (`r=
+eg`) in the child nodes, and it contradicts the `patternProperties` regex.
+- [Low] Mismatched and inflexible constraints between `interrupts` and `int=
+errupt-names`.
+--
 
-If we do a v4, would be nice to mention here that fixing the order
-of ti,ads1100 was intentional while we are touching this.
+commit 73a67f643701ff236b57cf5c513f2db2525ad034
+Author: David Lechner (TI) <dlechner@baylibre.com>
 
-> 
-> Signed-off-by: Jakub Szczudlo <jakubszczudlo40@gmail.com>
-> ---
->  .../devicetree/bindings/iio/adc/ti,ads1100.yaml        | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
-> index 970ccab15e1e..28c5e2dd0ad6 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1100.yaml
-> @@ -4,19 +4,23 @@
->  $id: http://devicetree.org/schemas/iio/adc/ti,ads1100.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: TI ADS1100/ADS1000 single channel I2C analog to digital converter
-> +title: TI ADS1100 and similar single channel I2C Analog to Digital Converters
->  
->  maintainers:
->    - Mike Looijmans <mike.looijmans@topic.nl>
->  
->  description: |
-> -  Datasheet at: https://www.ti.com/lit/gpn/ads1100
-> +  Datasheets:
-> +    - https://www.ti.com/lit/gpn/ads1000
-> +    - https://www.ti.com/lit/gpn/ads1100
-> +    - https://www.ti.com/lit/gpn/ads1110
->  
->  properties:
->    compatible:
->      enum:
-> -      - ti,ads1100
->        - ti,ads1000
-> +      - ti,ads1100
-> +      - ti,ads1110
->  
->    reg:
->      maxItems: 1
+dt-bindings: iio: adc: add ti,ads122c14
 
+This commit adds new bindings for the Texas Instruments ADS122C14 and simil=
+ar
+ADC chips. The devices are primarily intended for temperature sensors, and =
+the
+bindings include channel-specific reference voltage and current output
+properties.
+
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads112c14.yaml =
+b/Documentation/devicetree/bindings/iio/adc/ti,ads112c14.yaml
+> new file mode 100644
+> index 0000000000000..dc7f37cad7721
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads112c14.yaml
+[ ... ]
+> +  interrupts:
+> +    minItems: 1
+> +    items:
+> +      - description: FAULT interrupt (GPIO2 pin)
+> +      - description: DRDY interrupt (GPIO3 pin)
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      enum: [fault, drdy]
+
+[Severity: Low]
+Is it possible that this unordered enum for interrupt-names allows mismatch=
+ed
+arrays like [drdy, fault] to pass validation without enforcing order?
+
+Also, the interrupts array strictly defines index 0 as FAULT and index 1 as
+DRDY. If a board only wires up the DRDY interrupt, would it be forced to pl=
+ace
+it at index 0 of the interrupts array, contradicting the description here?
+
+Could this be improved by defining valid combinations using oneOf blocks wi=
+th
+exact items arrays for both interrupts and interrupt-names?
+
+[ ... ]
+> +patternProperties:
+> +  ^channel@[0-7]$:
+> +    $ref: adc.yaml
+> +
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        maximum: 16 # arbitrary limit, channel@ can be any combination o=
+f AIN0-AIN7
+
+[Severity: Low]
+Since the reg property is an array in device tree schemas, will applying the
+JSON Schema maximum keyword directly to it be ignored by standard validator=
+s?
+Should it define the maximum limit under an items list instead, similar to =
+how
+other array constraints are specified?
+
+Additionally, does a limit of 16 contradict the regex ^channel@[0-7]$ on the
+pattern properties node? The regex restricts the unit address to 0-7, which
+prevents any reg value of 8 or higher from matching, rendering the maximum =
+of
+16 logically unreachable.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615-iio-adc-ti=
+-ads122c14-v1-0-e6bdadf7cb2b@baylibre.com?part=3D1
 
