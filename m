@@ -1,70 +1,64 @@
-Return-Path: <devicetree+bounces-312071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312072-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tj4QIoQnMGqOPAUAu9opvQ
-	(envelope-from <devicetree+bounces-312071-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:25:40 +0200
+	id z7XNG+snMGqoPAUAu9opvQ
+	(envelope-from <devicetree+bounces-312072-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:27:23 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F207688554
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 050986885B2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 18:27:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Btwp8BMl;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312071-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312071-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=JKKy2DpW;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312072-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312072-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0F1F23022DE9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:22:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2FB0A307F917
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40B340962B;
-	Mon, 15 Jun 2026 16:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91CEF409E1B;
+	Mon, 15 Jun 2026 16:24:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E010A40913D;
-	Mon, 15 Jun 2026 16:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FE340B366;
+	Mon, 15 Jun 2026 16:24:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781540567; cv=none; b=gUvo8N0jrM4uZDIF2uxvWaAkfajLYS3sp5ZyeFi8Mhlq6F4q6IdmuVmX4oWL3t/4Uts7A0+nXmKv6JR8G11dh5p5iV83GZsV2kcENfQOjAJA+1q0yry+wmJ5os6cGSyQpJ+NX1aFA+DlGPDJ0rFL68I2pxIRN5tABL0ETgrj0DA=
+	t=1781540650; cv=none; b=MFXfzq2Ok252br/M8nOw3EKuM0BnQ1/JWQYrTfCW4NamdYNGSeuKXRLabDxVCxVgapnBvXfbEyeiSUpSyjceG2Zaikrsd4j2ERrLjNJ1VMQFNgyxJ7sH34EQsRq4aqoPU9r013nSkXPPpe6zGdfAJpoGYlLrA4STr6z/jG0jwT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781540567; c=relaxed/simple;
-	bh=NNMMkyuns7W3CVSK7S6dgZm53LkcD5YuxUTaUIh8hiA=;
+	s=arc-20240116; t=1781540650; c=relaxed/simple;
+	bh=QqSUCvXakGCXOHzTYq9e16MZRtA/TXmvVJTgGSt5cvM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QTVdrtbkBfTExS2eK6QovdIqZ0hi4Jy4ZMjUnBdl3c95DU+Uf/Po+K5aPKkKtsyySsgXr3eq6ZknfWdVHK4bYh8x1/EbaM6ibW42HmNeNezFg3XWrE4sYj6QTZmdk5xr8SD38bFgz4f4ZHwJAfbcd9drckxyQynblJHh9j/Mcdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Btwp8BMl; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ADD21F000E9;
-	Mon, 15 Jun 2026 16:22:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BJo2XnqSfZUNPa/F1BqOMplZ+YNcHkzIdbmZy+dK+HodzyM7iPvZKN8qRieCsmwZlCE1wuhAihNyebAyaCdFI+ikfZbTX1B3xPZvcyQpQP6LTb9HWNjK4tejJUGbQXSP2IMehpVtPWTm6gow9SDu3nPQNX3a687GWQvIzZYblNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JKKy2DpW; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 986E81F000E9;
+	Mon, 15 Jun 2026 16:24:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781540566;
-	bh=NNMMkyuns7W3CVSK7S6dgZm53LkcD5YuxUTaUIh8hiA=;
+	s=k20260515; t=1781540649;
+	bh=QqSUCvXakGCXOHzTYq9e16MZRtA/TXmvVJTgGSt5cvM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Btwp8BMlTOkNCNl2B6fhmj7Fzd6FTFbz1ba0nYq2mFoyY5JzaghmJEn1urjWC4yJC
-	 57RLnzoOM0gt7+Jcbw1y+21PB2X7wgxvPe1+2pideJVzrMcqVALybRSiLHYKGZnEve
-	 noIxlBCXQfsxzeOafE6bMKkXh9wt1573eWKLCNFn0E4jglKpqloMEu2GjuSo7vFfVk
-	 in9na+XueRqIOTiH4OBgxb2CuY2cMnfX/CSguZYR8UKF3Au6Xglnj/9uNlM8jlvkAD
-	 MPWaJ3/2tmi+3pPeQyonqnGh3WT58AZmyaDf8XEnfN5zTXxWhDWilk7Jizom9gu0ap
-	 7wQ1ZrKuOVjzA==
-Date: Mon, 15 Jun 2026 17:22:41 +0100
+	b=JKKy2DpWNmq720pF/PB5KSr+weE5MyTL87curqIHufOINihT+mpINezPy2VePi2Nv
+	 QZYMeqSBzoeFN7ieGE5Z0X+orSJlTu7s0m0GTSeawK1YZe0zgPxUyfIMvz2xOBkwn3
+	 KUnhG6E0+5NGz1Js5AQN2J8dAUY7QUifqD3esmpw9pLGgYg9ELEsO2mVlXMXcn3lNy
+	 Md3O5ST78sg8KhQKcQAlc1+mHKGx4hn2wzJLdYvDEt0vXLgE8lYl29XSTw3RJW/QAX
+	 uEFIn5jTEb7GgtJ0MSDuFX93G//QYlSa3BvuMvOwIKpKESOzhiM0moTdgi5kPIZLVd
+	 UFAicr9H0DRdA==
+Date: Mon, 15 Jun 2026 17:24:05 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney@redhat.com>,
+To: Jun Yan <jerrysteve1101@gmail.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: renesas,r9a09g077/87: Add
- PCLKRTC clock ID
-Message-ID: <20260615-catfish-starry-189f8565f98c@spud>
-References: <20260615143943.1610095-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20260615143943.1610095-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 09/10] dt-bindings: input: microchip,cap11xx: Add
+ CAP1114 support
+Message-ID: <20260615-favorable-pagan-0e6f9f0657d8@spud>
+References: <20260615142103.352163-1-jerrysteve1101@gmail.com>
+ <20260615142103.352163-10-jerrysteve1101@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,14 +66,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="73D7qR4Epe13nmtL"
+	protocol="application/pgp-signature"; boundary="bxybJmG6AY0PhMvB"
 Content-Disposition: inline
-In-Reply-To: <20260615143943.1610095-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260615142103.352163-10-jerrysteve1101@gmail.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
+X-Spamd-Result: default: False [-6.76 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
@@ -88,52 +81,52 @@ X-Spamd-Result: default: False [-5.26 / 15.00];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:geert+renesas@glider.be,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:geert@glider.be,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-312072-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jerrysteve1101@gmail.com,m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmitrytorokhov@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312071-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[glider.be,baylibre.com,kernel.org,redhat.com,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,spud:mid,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0F207688554
+X-Rspamd-Queue-Id: 050986885B2
 
 
---73D7qR4Epe13nmtL
+--bxybJmG6AY0PhMvB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---73D7qR4Epe13nmtL
+--bxybJmG6AY0PhMvB
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajAm0QAKCRB4tDGHoIJi
-0hKnAQD78P2MtWziQZtQhxOmsGMny0RGEBF0soeyl/jJJJjw5QD/ZMMjOWbEA5+b
-NOokepVBgvG1vYOBh3YtA8cMaO95YQ4=
-=z6z3
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajAnJQAKCRB4tDGHoIJi
+0jY+AQCIVdu0SbgMnpaCBXGRzcYb8fKEa2tMg3zucXoWALMqoQEAkcT10et4BzU5
+R/S63Z6vpcV1Q0z6/sJlgwcIxZCKjAw=
+=JUsK
 -----END PGP SIGNATURE-----
 
---73D7qR4Epe13nmtL--
+--bxybJmG6AY0PhMvB--
 
