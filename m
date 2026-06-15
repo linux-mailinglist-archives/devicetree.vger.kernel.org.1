@@ -1,287 +1,538 @@
-Return-Path: <devicetree+bounces-312173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312175-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ALwSMLBRMGrlRQUAu9opvQ
-	(envelope-from <devicetree+bounces-312173-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 21:25:36 +0200
+	id m7NWEONYMGrQRwUAu9opvQ
+	(envelope-from <devicetree+bounces-312175-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 21:56:19 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 336116896C9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 21:25:36 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E836899FF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 21:56:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=PkosiJrw;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312173-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312173-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=ti.com header.s=selector1 header.b=rBMYUfAd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312175-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312175-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=ti.com;
+	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 415A6302FA07
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:25:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0CA71303648C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:51:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DDE838BF61;
-	Mon, 15 Jun 2026 19:25:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 263323B42F1;
+	Mon, 15 Jun 2026 19:51:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010037.outbound.protection.outlook.com [52.101.85.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE253ACEEB
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 19:25:33 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781551534; cv=none; b=m1RnnpKFZn2hjflStkdoTzaNubAv7BVmOt2vmqeQMzb8NpstrocAQB/cXkb32NzOOKqGIHgG3RzVnlsgKrHxbfRIvSui6Gxc3PiOHaSVUrOjr4sNo9GUckhAhxXQkRpT7kVdeXL9tZM3E4IvJp5+3hNnzox+HQjWZArgZp1eG9s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781551534; c=relaxed/simple;
-	bh=2MVI3gO2LWe3l3uEuuA2o47MtHvcfUHcjqFVp+S4hiA=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=NMWvItzUSmR4C8l1SvDq3amj19qD/AU4/ATajjQeuyeHt011SDIsBQoaUhHvnk8KAR4efOaksfxoU2FhnnHBW502u9bpJaOdLkPxjJacNTG7fim7OtzvatSYOGw4zYkD7ANwI4LXDnOjQcmVbMMPs7Lku1QJDoUMV0ITs8BzL7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PkosiJrw; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 878751F000E9;
-	Mon, 15 Jun 2026 19:25:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781551533;
-	bh=TaHZWPxypHF9VpxaVZPWXDJBJasn4wIT5ej1hWmq8do=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=PkosiJrwZ+gS0LNpfNZARiMNiLSmWnqzp1NtORfxgzji5Ag/kC01CvCJ3OFw22CGM
-	 /wHL+Tk2E+I9YzGeCesLcJdv1oGjVGsz3xp84dCFJWdMU0xHRQ0etw3A/Rzdvk+TWP
-	 WEd4GkQ8EPA5CIpYpsfE2sYOXnIq+J79lNZZmLjzyeQGmJHcDwgS2s5kCOElRqW8TT
-	 64lrl0X06tgs/i0pvmNvoIK+GYIL7tHjzi/rFA02WBp7396uu+REgr9FasShWg+fct
-	 gwx2gbZ1oMPoucsxIOasUuQkEVLps93dbkHup50AuLG8wiPL3m0e6X/YU1bakyZXir
-	 OuCiv0bYQFovQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] hw_random: timeriomem-rng: add configurable read width
- and data mask
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jad Keskes" <inasj268@gmail.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260615170922.1132642-1-inasj268@gmail.com>
-References: <20260615170922.1132642-1-inasj268@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 19:25:32 +0000
-Message-Id: <20260615192532.878751F000E9@smtp.kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F733ACEEB;
+	Mon, 15 Jun 2026 19:51:52 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781553115; cv=fail; b=lAg+R8hok8da6iUuxPR9OqtPofz3fEEpV90G8eNi0VY8mBpRzoWFWRdP1NHu9rRhhVlCub2aypTU8Ruka48wkWrgyCDlX+Hr4rL7EiJUA6WiuPIiIm4/NwI6s9DVQRlGdjkvP3Wb6YIft8gBdlHOfmGzKxXDaRsrrE7gYa/4oPo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781553115; c=relaxed/simple;
+	bh=NlnLd+ugnIzJz6azfZaiC/etuLJFSLYHy8hFp5Ixt3U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=esmvWmVhbKH/P2rptuURGumQUoTlKb3qGuTqVwGIESroHGUIYuQAYLKB8H5KZo1QS9RTyGXMa3/NPn+qwoaLwYtx7T7Qft2GvDzllQB7ZgcLMraovmiMwE1lVgR2PourgKt9TbmmfpzxLZAs/KiajKybR2a+AbO2u7NM0smhtqk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rBMYUfAd; arc=fail smtp.client-ip=52.101.85.37
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H8nTaPpkC8WzKLI6I1kHVCBGAOSnCNvGWnryB3wfv1BHX6hS+6qoFTM3R7A0ZOvfEzamxcNjZvXeL9Do9PV0YsczGnAWxH93yqNXkfE+C3A36ERRk48zQa821SOExC9BSrnOyCuFRNikv+6wR96DRMijYNBhUDtNfMi7SSwO8tPIzX1jz8FwNRnv3hicrpcLRWQlT5QAWowi3DX0/6eFbDPLAthYJDJfXXWExNPsy8Cnce30oIjHCm+dBaVnschg0UZdBNT+bQHkdVtkyM7X+VGAaO5kB2nQNlQ7IpUKokp2FBv3SYU6gudzfYO2lhj/YyLZ6s3Bqjk2cUDZB+b+kA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WDeOwpAWRdBANqjw6XgMeY5weRjy5M+3KF/WJ6hfr3U=;
+ b=Cxi1L4cFMAkdP8Ti6NZV7+SGZcXIOpwtHip6Ebdrzvf+83dTh1DPzmYRQyFfknWW3eEdWmGaiyCgLXM7B+R2y3VqbOJylHbHUZNo3ygXvG3vHbOlk0HkJ6VCbXLnLIzxAqOSlgS1Es6553bs6jXqkN/TifQ+AcO4oGvSEt9ftZSRea89xuFaaI/hvIqXjztogZxJROVFL/cPlStfEJsY6n15ysa+hDquMkZg5zT0c+/l+g40A8h77N/WwvhXIbSOd8/q3i6Jy8Ac7i7S9/z7B6+lMQ52NvjoueLzYzj5VIlwPJ5ecvijsVRBjCLpzeNeMDIWUNUOujxgx8gn8pezRg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WDeOwpAWRdBANqjw6XgMeY5weRjy5M+3KF/WJ6hfr3U=;
+ b=rBMYUfAdBt4V0nTRQ3Ywp7b+s1dVQNELBIbkfs1ZzUASKUnWPLSbXJW/r5+sQRPpIJFFyNLKJl3wANec2lvOMqS1RWXgpBvJ79bwuTyU66jSflbt1c+YGTsYRHWokL32nynQoa69jog/Z4eKukArhnjkxR8XhsoJ3xKI61gVgcI=
+Received: from IA1P220CA0001.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:461::15)
+ by PH5PR10MB997711.namprd10.prod.outlook.com (2603:10b6:510:39d::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.18; Mon, 15 Jun
+ 2026 19:51:50 +0000
+Received: from BL6PEPF00022575.namprd02.prod.outlook.com
+ (2603:10b6:208:461:cafe::2e) by IA1P220CA0001.outlook.office365.com
+ (2603:10b6:208:461::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.18 via Frontend Transport; Mon,
+ 15 Jun 2026 19:51:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ BL6PEPF00022575.mail.protection.outlook.com (10.167.249.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.139.8 via Frontend Transport; Mon, 15 Jun 2026 19:51:48 +0000
+Received: from DFLE206.ent.ti.com (10.64.6.64) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Mon, 15 Jun
+ 2026 14:51:35 -0500
+Received: from DFLE211.ent.ti.com (10.64.6.69) by DFLE206.ent.ti.com
+ (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37; Mon, 15 Jun
+ 2026 14:51:35 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.37 via Frontend
+ Transport; Mon, 15 Jun 2026 14:51:35 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 65FJpYBv2610506;
+	Mon, 15 Jun 2026 14:51:34 -0500
+Message-ID: <0b39450b-559b-43d4-a1e9-bb6684691cb5@ti.com>
+Date: Mon, 15 Jun 2026 14:51:33 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] backlight: lp8864: Convert from LED to backlight
+ class driver
+To: "A. Sverdlin" <alexander.sverdlin@siemens.com>,
+	<linux-leds@vger.kernel.org>
+CC: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, "Jingoo
+ Han" <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-fbdev@vger.kernel.org>
+References: <20260615120353.3409035-1-alexander.sverdlin@siemens.com>
+ <20260615120353.3409035-4-alexander.sverdlin@siemens.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20260615120353.3409035-4-alexander.sverdlin@siemens.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF00022575:EE_|PH5PR10MB997711:EE_
+X-MS-Office365-Filtering-Correlation-Id: f3259372-dbad-4573-5594-08decb1789cf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|23010399003|7416014|376014|36860700016|4143699003|56012099006|3023799007|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info:
+	XXHIB/caL/fq+5c9Ih3Ee5uJNiJq4RN1zpmuFptpKCQ9pYjU37JsCuPKmSOFb6zlQOnk37oG6P5wvNhwA5praXeVkNo/UXDUKRQSwIVqveKRqiA+rBm66bmJoFr/JWt8SqYl2h0PB4Wj8h8VhAODbEJii99gV5Rxpr0OIEh54duqHVmekhudvdjBwIuhQNXyh2augcqfe+WZ5cIUXp6dyRBryqPUeooSSVd4RnH6ixBGEHghpAdU64TBkFeITPLXAhNcoZwx4BCD1Nx4s2z8Tg82BbDRCie7sEwRVjogB/lnLTIntmRww9evZz04K9bTP+vizlgff2PSF4qh+iJ5F+EtiywraeqxVlY++qpJGB47U3XvxoQLV+lBST6olkCsVbbEF7h2dald544CoD1YhP/dh1ETiCub0bsteRud7mBG0Z8J5OEoYDYgj49PbocMzKrF7rV7kyFqsAsN1egphX8QbxUHVssqRWlc6szsrwRbrt8qYjnxfWD4MGVLUXKnqIplAUM3QK/sc0S7WJ8oD2omxWOJfObkgMh0EBX6poEYrNhQLnoXxbCIXzDT62dqQ3o38EhZUqjJ/Z/wW20Gzhvhg5y7D253EM772fgPWHd4lfWOq6O+gSHO9ORbWaiPl/iNozcP7u+LYSjdSTof6KPPM/iyaOyUsYDtdDyewufXSUEKaQVQilX87gOon9hU9qI8Pj7uYiEc/P/H04bBWdJB8+fah05LbMbKb8Bhvzg=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(23010399003)(7416014)(376014)(36860700016)(4143699003)(56012099006)(3023799007)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	xK3xJ+jVE6jE4CTMO/aM4pe6RyHTmr8yEDOD7Fw72dhXI54VDZV3/EUWxVQ0+Bpm25IpaIvgiNaP9Em6pGAK4NQQmO3yZ5mXq3OgqLI3G+YQ6E1kc1R7TwxhiLswjFoVBrPb3kSoQh7hzPHtSdZ4RIxD7p3zpY/cNHlJgz3tncJzA6EoYDEDIndsgW+Z8vEJnvYC55NVpSVDBNQOfWttpFJl+yuois0PgDshU5AaCDmua9BxDf1u+Z96J+obSZoLhCQjG9CgnkvhJ198t9F09tTrnSTEWSQEVwflV8jhtWIWHwfTJpu1idf5QSL+mpzO0rtALm2hNAnCWn4eksNw0hyl2nTDsyJigS7qFvs5pXMNSFJn6QbHLi1BLVXZlTpT0vhvOQPPWYk7HBrs/4i8cSdyoD77n8sXKZAMP+zj+wWV8gJmYWW9Lqx2KRuLASS3
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2026 19:51:48.8766
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f3259372-dbad-4573-5594-08decb1789cf
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF00022575.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH5PR10MB997711
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312173-lists,devicetree=lfdr.de];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312175-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[siemens.com:email,ti.com:dkim,ti.com:email,ti.com:mid,ti.com:from_mime,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
+	FORGED_SENDER(0.00)[afd@ti.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:alexander.sverdlin@siemens.com,m:linux-leds@vger.kernel.org,m:lee@kernel.org,m:danielt@kernel.org,m:jingoohan1@gmail.com,m:pavel@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:deller@gmx.de,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-fbdev@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:inasj268@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ALIAS_RESOLVED(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,gmx.de,lists.freedesktop.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[ti.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[afd@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.linux.dev:replyto,sashiko.dev:url,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,devicetree.org:url,smtp.kernel.org:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 336116896C9
+X-Rspamd-Queue-Id: A9E836899FF
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+On 6/15/26 7:03 AM, A. Sverdlin wrote:
+> From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+> 
+> Move the TI LP8864/LP8866 driver from drivers/leds/ to
+> drivers/video/backlight/
 
-New issues:
-- [Medium] The patch introduces a new device tree binding schema file but l=
-eaves the old schema intact, causing validation conflicts.
-- [Low] Using the modulo operator `%` on a `resource_size_t` variable cause=
-s an undefined reference link error on 32-bit platforms.
+Why move it? You can register a backlight device from any directory.
 
-Pre-existing issues:
-- [High] The driver cancels the timer in `remove()` but relies on `devm` cl=
-eanup to unregister the hwrng device, creating a teardown race condition th=
-at leads to use-after-free or deadlock.
---
+> and convert it to register a backlight class
+> device as its primary interface.
+> 
 
-commit 57d226c081fc616a1deb344ec82199ee7e9c1059
-Author: Jad Keskes <inasj268@gmail.com>
+What do you mean by "primary"? You should be able to register with
+both frameworks and have the driver interop between as needed.
 
-hw_random: timeriomem-rng: add configurable read width and data mask
+> The motivation is a use case on a hot-pluggable segment of an I2C bus.
+> The generic led-backlight driver (drivers/video/backlight/led_bl.c) is a
+> platform driver and as such inherently non-hotpluggable.
 
-The TODO for supporting read sizes other than 32 bits and masking has
-been sitting in this driver since 2009.  Implement it.
+That isn't strictly true, there is platform_device_{del,unregister}(), so
+whatever your mechanism for removing the I2C device would be, the same
+could be done to the led_bl device before then removing the I2C device.
 
-> diff --git a/Documentation/devicetree/bindings/rng/timeriomem-rng.yaml b/=
-Documentation/devicetree/bindings/rng/timeriomem-rng.yaml
-> new file mode 100644
-> index 0000000000000..0d8460e9f9163
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rng/timeriomem-rng.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rng/timeriomem-rng.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+We don't want to have to move every LED driver that could possibly
+be used as a backlight to the backlight framework, the led_bl.c
+handles adapting LED->backlight as needed. So what you really need
+here is to de-couple led_bl.c from DT so it can better handle dynamic
+add/remove. Then this LED driver simply could register a "led-backlight"
+platform driver to handle the backlight interface, and remove the
+backlight device when it itself (the LED device) is removed.
+
+Andrew
+
+  It cannot react
+> to dynamic appearance/disappearance of the underlying I2C device. By
+> making the LP8864 driver directly register a backlight class device, it
+> becomes a native I2C driver that properly supports hot-plug/unplug
+> events on the I2C bus.
+> 
+> Key changes:
+> - Register a backlight class device using
+>    devm_backlight_device_register() as the primary interface
+> - Implement backlight_ops (update_status, get_brightness)
+> - The hardware 16-bit brightness register (0x0000-0xFFFF) is directly
+>    exposed as the backlight brightness range
+> - Support DT properties "default-brightness" and "max-brightness"
+>    from the backlight common binding
+> - Include BL_CORE_SUSPENDRESUME for proper power management integration
+> - Preserve backward-compatible LED class device registration: if the
+>    "led" child node is present in the DT, an LED class device is also
+>    registered (same as the original driver behavior)
+> - Preserve the CONFIG_LEDS_LP8864 Kconfig symbol name so that existing
+>    kernel configurations are not affected
+> - Update MAINTAINERS to reflect the new file location
+> 
+> This will be noticeable for applications which already used the LP8864
+> as a backend for the generic led-backlight platform driver, as a
+> backlight device will now appear directly in addition to the LED class
+> device. However, no in-tree device-trees reference this driver, so
+> there is no mainline impact.
+> 
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+> ---
+>   MAINTAINERS                                   |   2 +-
+>   drivers/leds/Kconfig                          |  12 --
+>   drivers/leds/Makefile                         |   1 -
+>   drivers/video/backlight/Kconfig               |  15 +++
+>   drivers/video/backlight/Makefile              |   1 +
+>   .../backlight/lp8864_bl.c}                    | 111 ++++++++++++++----
+>   6 files changed, 106 insertions(+), 36 deletions(-)
+>   rename drivers/{leds/leds-lp8864.c => video/backlight/lp8864_bl.c} (70%)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index dbd4552236e64..250e8b1ed4bb5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -26481,7 +26481,7 @@ M:	Alexander Sverdlin <alexander.sverdlin@siemens.com>
+>   L:	linux-leds@vger.kernel.org
+>   S:	Maintained
+>   F:	Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
+> -F:	drivers/leds/leds-lp8864.c
+> +F:	drivers/video/backlight/lp8864_bl.c
+>   
+>   TEXAS INSTRUMENTS' SYSTEM CONTROL INTERFACE (TISCI) PROTOCOL DRIVER
+>   M:	Nishanth Menon <nm@ti.com>
+> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> index f4a0a3c8c8705..990cb9ef18c1e 100644
+> --- a/drivers/leds/Kconfig
+> +++ b/drivers/leds/Kconfig
+> @@ -529,18 +529,6 @@ config LEDS_LP8860
+>   	  on the LP8860 4 channel LED driver using the I2C communication
+>   	  bus.
+>   
+> -config LEDS_LP8864
+> -	tristate "LED support for the TI LP8864/LP8866 4/6 channel LED drivers"
+> -	depends on LEDS_CLASS && I2C && OF
+> -	select REGMAP_I2C
+> -	help
+> -	  If you say yes here you get support for the TI LP8864-Q1,
+> -	  LP8864S-Q1, LP8866-Q1, LP8866S-Q1 4/6 channel LED backlight
+> -	  drivers with I2C interface.
+> -
+> -	  To compile this driver as a module, choose M here: the
+> -	  module will be called leds-lp8864.
+> -
+>   config LEDS_CLEVO_MAIL
+>   	tristate "Mail LED on Clevo notebook"
+>   	depends on LEDS_CLASS && BROKEN
+> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+> index 8fdb45d5b4393..5e624a48aa2a5 100644
+> --- a/drivers/leds/Makefile
+> +++ b/drivers/leds/Makefile
+> @@ -59,7 +59,6 @@ obj-$(CONFIG_LEDS_LP55XX_COMMON)	+= leds-lp55xx-common.o
+>   obj-$(CONFIG_LEDS_LP8501)		+= leds-lp8501.o
+>   obj-$(CONFIG_LEDS_LP8788)		+= leds-lp8788.o
+>   obj-$(CONFIG_LEDS_LP8860)		+= leds-lp8860.o
+> -obj-$(CONFIG_LEDS_LP8864)		+= leds-lp8864.o
+>   obj-$(CONFIG_LEDS_LT3593)		+= leds-lt3593.o
+>   obj-$(CONFIG_LEDS_MAX5970)		+= leds-max5970.o
+>   obj-$(CONFIG_LEDS_MAX77650)		+= leds-max77650.o
+> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
+> index a7a3fbaf7c29e..82ecd7e46236d 100644
+> --- a/drivers/video/backlight/Kconfig
+> +++ b/drivers/video/backlight/Kconfig
+> @@ -514,6 +514,21 @@ config BACKLIGHT_LED
+>   	  If you have a LCD backlight adjustable by LED class driver, say Y
+>   	  to enable this driver.
+>   
+> +config LEDS_LP8864
+> +	tristate "Backlight driver for TI LP8864/LP8866 4/6 channel LED drivers"
+> +	depends on I2C && OF
+> +	select REGMAP_I2C
+> +	select NEW_LEDS
+> +	select LEDS_CLASS
+> +	help
+> +	  If you say yes here you get support for the TI LP8864-Q1,
+> +	  LP8864S-Q1, LP8866-Q1, LP8866S-Q1 4/6 channel LED backlight
+> +	  drivers with I2C interface. The driver registers a backlight
+> +	  class device and optionally an LED class device.
 > +
-> +title: Timer IOMEM Hardware Random Number Generator
-
-[Severity: Medium]
-Will this new device tree binding schema file conflict with the existing
-schema?
-
-The patch introduces this new schema but does not appear to replace or remo=
-ve
-the existing timeriomem_rng.yaml file. Since both schemas match the same
-compatible =3D "timeriomem_rng" string and the old schema specifies
-additionalProperties: false, any device tree node including the newly added
-width or mask properties might pass this new schema but fail the old schema=
-'s
-validation, which would break dt_binding_check.
-
-> diff --git a/drivers/char/hw_random/timeriomem-rng.c b/drivers/char/hw_ra=
-ndom/timeriomem-rng.c
-> index e61f063932090..9308988521473 100644
-> --- a/drivers/char/hw_random/timeriomem-rng.c
-> +++ b/drivers/char/hw_random/timeriomem-rng.c
-[ ... ]
-> @@ -71,11 +76,28 @@ static int timeriomem_rng_read(struct hwrng *hwrng, v=
-oid *data,
->  			usleep_range(period_us,
->  					period_us + max(1, period_us / 100));
-> =20
-> -		*(u32 *)data =3D readl(priv->io_base);
-> -		retval +=3D sizeof(u32);
-> -		data +=3D sizeof(u32);
-> -		max -=3D sizeof(u32);
-> -	} while (wait && max > sizeof(u32));
-> +		switch (priv->width) {
-> +		case 8: {
-> +			u8 val =3D readb(priv->io_base) & priv->mask;
-> +			*(u8 *)data =3D val;
-> +			break;
-> +		}
-> +		case 16: {
-> +			u16 val =3D readw(priv->io_base) & priv->mask;
-> +			*(u16 *)data =3D val;
-> +			break;
-> +		}
-> +		case 32: {
-> +			u32 val =3D readl(priv->io_base) & priv->mask;
-> +			*(u32 *)data =3D val;
-> +			break;
-> +		}
-> +		}
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called lp8864_bl.
 > +
-> +		retval +=3D chunk;
-> +		data +=3D chunk;
-> +		max -=3D chunk;
-> +	} while (wait && max > chunk);
-
-[Severity: High]
-This is a pre-existing issue, but does the driver have a teardown race
-condition between remove() and devres cleanup?
-
-In timeriomem_rng_remove(), hrtimer_cancel() is explicitly called to stop t=
-he
-timer. However, because the RNG device was registered with
-devm_hwrng_register() during probe, it remains accessible to userspace and =
-the
-hwrng core until the devres cleanups run strictly after remove() returns.
-
-If a concurrent read is blocked on wait_for_completion() when the timer is
-cancelled, it could hang indefinitely, deadlocking the reader thread and the
-subsequent hwrng_unregister() call in devres cleanup.
-
-Alternatively, if a reader completes its wait and unconditionally calls
-hrtimer_restart() in timeriomem_rng_read() after the cancellation, the timer
-might be re-armed:
-
-drivers/char/hw_random/timeriomem-rng.c:timeriomem_rng_read() {
-    ...
-	priv->present =3D 0;
-	reinit_completion(&priv->completion);
-	hrtimer_forward_now(&priv->timer, priv->period);
-	hrtimer_restart(&priv->timer);
-    ...
-}
-
-When the devres cleanup later unregisters the RNG and frees the priv
-structure, this re-armed timer will eventually fire, potentially dereferenc=
-ing
-a freed pointer.
-
-[ ... ]
-> @@ -145,9 +164,42 @@ static int timeriomem_rng_probe(struct platform_devi=
-ce *pdev)
->  		if (!of_property_read_u32(pdev->dev.of_node,
->  						"quality", &i))
->  			priv->rng_ops.quality =3D i;
+>   endif # BACKLIGHT_CLASS_DEVICE
+>   
+>   endmenu
+> diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
+> index 794820a98ed49..6a7287d01d81b 100644
+> --- a/drivers/video/backlight/Makefile
+> +++ b/drivers/video/backlight/Makefile
+> @@ -62,3 +62,4 @@ obj-$(CONFIG_BACKLIGHT_WM831X)		+= wm831x_bl.o
+>   obj-$(CONFIG_BACKLIGHT_ARCXCNN) 	+= arcxcnn_bl.o
+>   obj-$(CONFIG_BACKLIGHT_RAVE_SP)		+= rave-sp-backlight.o
+>   obj-$(CONFIG_BACKLIGHT_LED)		+= led_bl.o
+> +obj-$(CONFIG_LEDS_LP8864)		+= lp8864_bl.o
+> diff --git a/drivers/leds/leds-lp8864.c b/drivers/video/backlight/lp8864_bl.c
+> similarity index 70%
+> rename from drivers/leds/leds-lp8864.c
+> rename to drivers/video/backlight/lp8864_bl.c
+> index d05211b970c94..67b28f7daedd2 100644
+> --- a/drivers/leds/leds-lp8864.c
+> +++ b/drivers/video/backlight/lp8864_bl.c
+> @@ -1,12 +1,13 @@
+>   // SPDX-License-Identifier: GPL-2.0-only
+>   /*
+> - * TI LP8864/LP8866 4/6 Channel LED Driver
+> + * TI LP8864/LP8866 4/6 Channel LED Backlight Driver
+>    *
+> - * Copyright (C) 2024 Siemens AG
+> + * Copyright (C) 2024-2026 Siemens AG
+>    *
+>    * Based on LP8860 driver by Dan Murphy <dmurphy@ti.com>
+>    */
+>   
+> +#include <linux/backlight.h>
+>   #include <linux/gpio/consumer.h>
+>   #include <linux/i2c.h>
+>   #include <linux/init.h>
+> @@ -27,6 +28,8 @@
+>   #define LP8864_LED_STATUS		0x12
+>   #define   LP8864_LED_STATUS_WR_MASK	GENMASK(14, 9)	/* Writeable bits in the LED_STATUS reg */
+>   
+> +#define LP8864_MAX_BRIGHTNESS		0xffff
 > +
-> +		of_property_read_u32(pdev->dev.of_node,
-> +				     "width", &priv->width);
-> +		of_property_read_u32(pdev->dev.of_node,
-> +				     "mask", &priv->mask);
->  	} else {
->  		period =3D pdata->period;
->  		priv->rng_ops.quality =3D pdata->quality;
+>   /* Textual meaning for status bits, starting from bit 1 */
+>   static const char *const lp8864_supply_status_msg[] = {
+>   	"Vin under-voltage fault",
+> @@ -71,13 +74,15 @@ static const char *const lp8864_led_status_msg[] = {
+>   /**
+>    * struct lp8864
+>    * @client: Pointer to the I2C client
+> - * @led_dev: led class device pointer
+> + * @led_dev: optional led class device pointer
+> + * @bl: backlight device pointer
+>    * @regmap: Devices register map
+>    * @led_status_mask: Helps to report LED fault only once
+>    */
+>   struct lp8864 {
+>   	struct i2c_client *client;
+> -	struct led_classdev led_dev;
+> +	struct led_classdev *led_dev;
+> +	struct backlight_device *bl;
+>   	struct regmap *regmap;
+>   	u16 led_status_mask;
+>   };
+> @@ -157,28 +162,59 @@ static int lp8864_fault_check(struct lp8864 *priv)
+>   	return ret;
+>   }
+>   
+> -static int lp8864_brightness_set(struct led_classdev *led_cdev,
+> -				 enum led_brightness brt_val)
+> +static int lp8864_brightness_set(struct lp8864 *priv, unsigned int brightness)
+>   {
+> -	struct lp8864 *priv = container_of(led_cdev, struct lp8864, led_dev);
+> -	/* Scale 0..LED_FULL into 16-bit HW brightness */
+> -	unsigned int val = brt_val * 0xffff / LED_FULL;
+>   	int ret;
+>   
+>   	ret = lp8864_fault_check(priv);
+>   	if (ret)
+>   		return ret;
+>   
+> -	ret = regmap_write(priv->regmap, LP8864_BRT_CONTROL, val);
+> +	ret = regmap_write(priv->regmap, LP8864_BRT_CONTROL, brightness);
+>   	if (ret)
+>   		dev_err(&priv->client->dev, "Failed to write brightness value\n");
+>   
+>   	return ret;
+>   }
+>   
+> -static enum led_brightness lp8864_brightness_get(struct led_classdev *led_cdev)
+> +static int lp8864_backlight_update_status(struct backlight_device *bl)
+> +{
+> +	return lp8864_brightness_set(bl_get_data(bl), backlight_get_brightness(bl));
+> +}
 > +
-> +		if (pdata->width_set)
-> +			priv->width =3D pdata->width;
-> +		if (pdata->mask_set)
-> +			priv->mask =3D pdata->mask;
+> +static int lp8864_backlight_get_brightness(struct backlight_device *bl)
+>   {
+> -	struct lp8864 *priv = container_of(led_cdev, struct lp8864, led_dev);
+> +	struct lp8864 *priv = bl_get_data(bl);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = regmap_read(priv->regmap, LP8864_BRT_CONTROL, &val);
+> +	if (ret) {
+> +		dev_err(&priv->client->dev, "Failed to read brightness value\n");
+> +		return ret;
 > +	}
 > +
-> +	if (priv->width =3D=3D 0)
-> +		priv->width =3D 32;
+> +	return val;
+> +}
 > +
-> +	switch (priv->width) {
-> +	case 8:
-> +	case 16:
-> +	case 32:
-> +		break;
-> +	default:
-> +		dev_err(&pdev->dev, "invalid width %u, must be 8, 16, or 32\n",
-> +			priv->width);
-> +		return -EINVAL;
-> +	}
+> +static const struct backlight_ops lp8864_backlight_ops = {
+> +	.options = BL_CORE_SUSPENDRESUME,
+> +	.update_status = lp8864_backlight_update_status,
+> +	.get_brightness = lp8864_backlight_get_brightness,
+> +};
 > +
-> +	if (res->start % (priv->width / 8) !=3D 0 ||
-> +	    resource_size(res) < priv->width / 8) {
+> +static int lp8864_led_brightness_set(struct led_classdev *led_cdev,
+> +				     enum led_brightness brt_val)
+> +{
+> +	struct lp8864 *priv = dev_get_drvdata(led_cdev->dev->parent);
+> +
+> +	/* Scale 0..LED_FULL into 16-bit HW brightness */
+> +	return lp8864_brightness_set(priv, brt_val * 0xffff / LED_FULL);
+> +}
+> +
+> +static enum led_brightness lp8864_led_brightness_get(struct led_classdev *led_cdev)
+> +{
+> +	struct lp8864 *priv = dev_get_drvdata(led_cdev->dev->parent);
+>   	unsigned int val;
+>   	int ret;
+>   
+> @@ -212,18 +248,15 @@ static int lp8864_probe(struct i2c_client *client)
+>   	struct device_node *np = dev_of_node(&client->dev);
+>   	struct device_node *child_node;
+>   	struct led_init_data init_data = {};
+> +	struct backlight_device *bl;
+> +	struct backlight_properties props;
+>   	struct gpio_desc *enable_gpio;
+> +	u32 val;
+>   
+>   	priv = devm_kzalloc(&client->dev, sizeof(*priv), GFP_KERNEL);
+>   	if (!priv)
+>   		return -ENOMEM;
+>   
+> -	child_node = of_get_next_available_child(np, NULL);
+> -	if (!child_node) {
+> -		dev_err(&client->dev, "No LED function defined\n");
+> -		return -EINVAL;
+> -	}
+> -
+>   	ret = devm_regulator_get_enable_optional(&client->dev, "vled");
+>   	if (ret && ret != -ENODEV)
+>   		return dev_err_probe(&client->dev, ret, "Failed to enable vled regulator\n");
+> @@ -238,8 +271,7 @@ static int lp8864_probe(struct i2c_client *client)
+>   		return ret;
+>   
+>   	priv->client = client;
+> -	priv->led_dev.brightness_set_blocking = lp8864_brightness_set;
+> -	priv->led_dev.brightness_get = lp8864_brightness_get;
+> +	i2c_set_clientdata(client, priv);
+>   
+>   	priv->regmap = devm_regmap_init_i2c(client, &lp8864_regmap_config);
+>   	if (IS_ERR(priv->regmap))
+> @@ -258,11 +290,46 @@ static int lp8864_probe(struct i2c_client *client)
+>   	if (ret)
+>   		return ret;
+>   
+> +	/* Register backlight class device */
+> +	memset(&props, 0, sizeof(props));
+> +	props.type = BACKLIGHT_RAW;
+> +	props.max_brightness = LP8864_MAX_BRIGHTNESS;
+> +	props.brightness = LP8864_MAX_BRIGHTNESS;
+> +	props.scale = BACKLIGHT_SCALE_LINEAR;
+> +
+> +	if (!device_property_read_u32(&client->dev, "max-brightness", &val))
+> +		props.max_brightness = val;
+> +
+> +	if (!device_property_read_u32(&client->dev, "default-brightness", &val))
+> +		props.brightness = val;
+> +
+> +	bl = devm_backlight_device_register(&client->dev, "lp8864-backlight",
+> +					    &client->dev, priv,
+> +					    &lp8864_backlight_ops, &props);
+> +	if (IS_ERR(bl))
+> +		return dev_err_probe(&client->dev, PTR_ERR(bl),
+> +				     "Failed to register backlight device\n");
+> +
+> +	priv->bl = bl;
+> +	backlight_update_status(bl);
+> +
+> +	/* Register LED class device if "led" child node is present */
+> +	child_node = of_get_available_child_by_name(np, "led");
+> +	if (!child_node)
+> +		return 0;
+> +
+> +	priv->led_dev = devm_kzalloc(&client->dev, sizeof(*priv->led_dev), GFP_KERNEL);
+> +	if (!priv->led_dev)
+> +		return -ENOMEM;
+> +
+> +	priv->led_dev->brightness_set_blocking = lp8864_led_brightness_set;
+> +	priv->led_dev->brightness_get = lp8864_led_brightness_get;
+> +
+>   	init_data.fwnode = of_fwnode_handle(child_node);
+>   	init_data.devicename = "lp8864";
+>   	init_data.default_label = ":display_cluster";
+>   
+> -	ret = devm_led_classdev_register_ext(&client->dev, &priv->led_dev, &init_data);
+> +	ret = devm_led_classdev_register_ext(&client->dev, priv->led_dev, &init_data);
+>   	if (ret)
+>   		dev_err(&client->dev, "Failed to register LED device (%pe)\n", ERR_PTR(ret));
+>   
+> @@ -291,6 +358,6 @@ static struct i2c_driver lp8864_driver = {
+>   };
+>   module_i2c_driver(lp8864_driver);
+>   
+> -MODULE_DESCRIPTION("Texas Instruments LP8864/LP8866 LED driver");
+> +MODULE_DESCRIPTION("Texas Instruments LP8864/LP8866 LED Backlight driver");
+>   MODULE_AUTHOR("Alexander Sverdlin <alexander.sverdlin@siemens.com>");
+>   MODULE_LICENSE("GPL");
 
-[Severity: Low]
-Does using the modulo operator here cause an undefined reference to __umodd=
-i3
-on 32-bit platforms?
-
-The variable res->start is of type resource_size_t, which can be a 64-bit
-integer on 32-bit platforms with PAE enabled (CONFIG_PHYS_ADDR_T_64BIT=3Dy).
-
-Since the divisor (priv->width / 8) is a runtime value rather than a
-compile-time constant, the compiler might emit a call to __umoddi3 for the
-64-bit division, which leads to a linker error on 32-bit architectures.
-Could IS_ALIGNED() or div_u64() be used instead?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615170922.1132=
-642-1-inasj268@gmail.com?part=3D1
 
