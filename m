@@ -1,253 +1,181 @@
-Return-Path: <devicetree+bounces-311536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311539-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DEHvAgFCL2oY9wQAu9opvQ
-	(envelope-from <devicetree+bounces-311536-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 02:06:25 +0200
+	id PZbWCY9CL2on9wQAu9opvQ
+	(envelope-from <devicetree+bounces-311539-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 02:08:47 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6FB268291B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 02:06:23 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9DB5682935
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 02:08:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=WFpnXeA5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311536-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311536-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=postmarketos.org header.s=key1 header.b=L28GJ93b;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311539-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-311539-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=postmarketos.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C423030011AD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 00:06:20 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4CEBA3006818
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 00:08:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A4E8F7D;
-	Mon, 15 Jun 2026 00:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B32B15CD7E;
+	Mon, 15 Jun 2026 00:08:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB75D191
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 00:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D00F145B3F
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 00:08:32 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781481977; cv=none; b=lh6qjObfsB6cNSWTsdLvXGvDc5VF0hxzUbT0f9cU/P4V0lrYZpmLWsOXgwa6IBvzstW7gwYT8Eb8c6LW+ZSGhvw/ceVq0zuPO7ixSgOO2EbELkHOwaw/zvP/vR0NQJffxERiNil0kZxrVPFt8vZzqigZc0UGHtzkANuFXhXQfOk=
+	t=1781482114; cv=none; b=bFO5h+RwYpjd0BUr3yVIbQDqG4zyRKpVyquqMQOd7GRWUiZCfT4lrphvyyOxGBrDvCi2rpFO6jKgH8YEtspgUq7+zchmVbF0PboGiVjaRJC3GI1/pdQfClZ1PuguBgbqJCs40HqNNu5+HRoioe9eivUzaB/kMidqEntzWjf9/tM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781481977; c=relaxed/simple;
-	bh=wM1pmd/n2MEMAAgL+lxlk4EYzKHHmRQZ+o9slw24KHk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UsyW+YoSEdDwOccSjibnXL7GwFLhUEIqUrjWmm81nju9xA07a9mQuEO5IXHr4cGLyEOlsYH78eUcjFp9PXQJkfutMeuv0JbjBneTeB7LM0CbFXra8lWBtQqGWSf8A8SNY7pF1aQV7SkXl8WKv0CyoLiIvC3DDYjpfU3IzkLA5iE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=WFpnXeA5; arc=none smtp.client-ip=209.85.210.53
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7e6da33a561so2558260a34.3
-        for <devicetree@vger.kernel.org>; Sun, 14 Jun 2026 17:06:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1781481975; x=1782086775; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ptr+qeygHzVdWEi2AIpd32uZGos4ZXKkLuroPag1QJM=;
-        b=WFpnXeA5JmNyF1Q5c2wMM9nGPzf8+viFdlk3InFmTwqWemb8E1fi0vJY+F2IaikkO/
-         SiHsecZ17sqEatMz0895YLGcSp/UOliC74SfhAkLVRnNiScrHvtRFcOUKiJFGltODTM4
-         xCnV3Ct6/gRYjKBlFQm0NL0HRngAm0g57OuzK8QafvkVHiPE8aULonGb8HVr5hEZ9g40
-         ji8ljQpfvPL/YR4k5+cPv3N1VHRCRDGVIpHjF9jUngPKJkzqWq6ms1VHDQ0k31SSqV+L
-         D2v2Tew4hygq29cltzKOlZumQK2Df07jQUN8PU3WkklHBRAB2FeCq7fd5SDmqUcNTmLI
-         bnDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781481975; x=1782086775;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ptr+qeygHzVdWEi2AIpd32uZGos4ZXKkLuroPag1QJM=;
-        b=XSjdlz7Yrk681bqyxpPhCQ99UGONaHPGs/BJZRUErpISlMyDi2fVD1g0rHaRVNt8XB
-         AhnnlxvJTsXx/+hMC9iOq/Y3O06sIlddcMl0b2MaW32huzbMOjgwi7V/f9paVdu3NXlI
-         z6o8QhWwiiIRbd1qptFSP6aruVtCS685uaxCmMGB6+/YAYkqF2cCx+15921XY2ZddztM
-         oylw4SpiTE+y9DwthuWUzOiNcKwQAow7ltIUC5FvqxK8hZ1nDOL5xOPQA521cGXrfwBF
-         cYFj75nCGTlyCdkRbv+OA7M8ucvRL9jjYpEqvtF/HHSezETv4R/c4kfeSCZs9fq+ol7x
-         +HwQ==
-X-Forwarded-Encrypted: i=1; AFNElJ+ofPQ6IQMcnZfgla18iiGzIi82spFnK78FEbcTnfwM0qYkx+8DfY8cJdQMuLi+wGv3Tf0F6EjgHgCd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqTxGICjUu2o5JfvurL/k1CRnfyqLYEa2SE+BnJtySHLvrAhLA
-	XTYXdf3p13Oxw0NVhE1mLGCibwqKPkeI/oaQMKlHLZulddP2Jmk8IxcGeaeV+Wc+4Ho=
-X-Gm-Gg: Acq92OHp+D6D7L6Tc5XkSkK0FuaOw/UBnu2LHltihwSa2LnGA9AkrIR3C0g6BqGeCk5
-	OhHl1Ia97zQMfRwpKGj20icLC7/mBZ31bxGZQ6lG6kUnMG7g8k2DQRsNE2gWImxHAxZ//Ox1jMF
-	qQa5MkRly65Bi04kqNSgNmXcqO1/sIjFGs7dWa4IHozARl3y87IRe7H40Z1f516atB7s8czi/qX
-	b8jNfsOiAMSpNy9uq2Zoo1RA3QybA71N2EmUAWzJILvvbIszcREcMwP3dR5Wa64vLpX9x0kVcdw
-	opILyBMsfyKCknqtqlgo4B0Nf0kLu7U3Je6Ihc7W64n4XIqwSERScWb2QqLjNEHJkLg0HMXmnhh
-	jHqqUV9S9hnjtHdCD+Fm0LWRbyrZY/5Zqg7W+V/Syt4VUVJl3I3lqmwTPC5XozTwjVmx2pz8+is
-	XdxfIdyirC7DTYjA1gSjb4IuXRmaLpU18vvcLBMqHd4SpIuC3dNRw2Oj0NWXUEaXRzNhsfLzkc+
-	Q==
-X-Received: by 2002:a05:6830:6413:b0:7e7:7de:ca8a with SMTP id 46e09a7af769-7e784885b4dmr8823375a34.22.1781481974833;
-        Sun, 14 Jun 2026 17:06:14 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:38f2:457e:e670:19c7? ([2600:8803:e7e4:500:38f2:457e:e670:19c7])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7e79f5a1b22sm2723806a34.2.2026.06.14.17.06.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Jun 2026 17:06:14 -0700 (PDT)
-Message-ID: <4fb4f7c8-0a26-4d92-a3d6-ffde82ab4df3@baylibre.com>
-Date: Sun, 14 Jun 2026 19:06:13 -0500
+	s=arc-20240116; t=1781482114; c=relaxed/simple;
+	bh=rah64DAbHLiiCx0F8BwuF0wdHE1rPZTHNczqUGp4Doc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sxyMrITFs1j7VDlgU4XMWkQg2JTRberjRtlGEQKiuYMbW3qbYJP4cFLD8uzJ1l0qrPNZoof0o9zxN5SvgBydagkH5qp/d/oSj5kTMiXxVNjhTxnej7tyeB8SerApFfLrhHQWUY0waTU+71hb62VamQyW0S+HKO0ctbV58gN82H8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=L28GJ93b; arc=none smtp.client-ip=91.218.175.174
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1781482100;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Y5h9FupKCVpWVuTxDIclbr6vHMJHhiy3KbpUgOXtyEY=;
+	b=L28GJ93btzt8er3+yRsENpn28Gxmc3VlHAvlYMkEaZNfyJ3bkgtn6Mj9bbfyP7dARsc7Vg
+	8CTubhgZCxDlYlfgI9Bid9XkjkGGYLWASe5H75Apk7lu583a/QxTeW6Rz/EIfcZoQqackV
+	PDoVtAa2njSgdGCdOXBzI46PafDFptqeJLC6vWAk8pf62o6eXO8AINg1TPdmHgIDgc8moD
+	hCLFj6sxBtA31pNxQRr9OFR3bKFn6X3wNDIR37nS5S5TpYp9tzV6hasHk6N4Df7n0Z97Zq
+	z6dDg+1N7IIusopQ61jlc243q9coZtVgMEfYJo91kPXzdBknoYdRUqeC9Ag9EA==
+From: Paul Sajna <sajattack@postmarketos.org>
+Subject: [PATCH v3 0/4] Add DRM driver for LG LH609QH1 Panel with
+ SiliconWorks SW49410 DDIC
+Date: Sun, 14 Jun 2026 17:07:57 -0700
+Message-Id: <20260614-judyln-panel-v3-0-07f4134441bd@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: iio: adc: Add TI ADS126x ADC family
-To: Kurt Borja <kuurtb@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20260612-ads126x-v1-0-894c788d03ed@gmail.com>
- <20260612-ads126x-v1-1-894c788d03ed@gmail.com>
- <20260613-loyal-azure-goldfish-cf6d54@quoll>
- <DJ92JT0CPSXJ.1113K3KLSRHH4@gmail.com>
- <f13b9c55-770e-454c-9bfb-5847ff17813b@baylibre.com>
- <DJ93WSYC3HTT.3NXQW390CLQ82@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <DJ93WSYC3HTT.3NXQW390CLQ82@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XMQQ6CMBCF4auQWVvTFhqoK+9hXLQwQBVb0mIjI
+ dzdwsoYzaz+Sd63QEBvMMApW8BjNME4myI/ZFD3ynZITJMaOOWCSkbJ7dnMgyWjsjgQWVQtK8t
+ apIM0GT225rVzl2vq3oTJ+XnXI9u+f6DICCUVF3VZFDTXWp9HF6aH8necXDg638HmRf5piC+DJ
+ 4MypTmTskUlfhjrur4B1sHobvMAAAA=
+X-Change-ID: 20250910-judyln-panel-948f177c5c5c
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Jessica Zhang <jesszhan0024@gmail.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, David Heidelberg <david@ixit.cz>, 
+ phone-devel@vger.kernel.org, Amir Dahan <system64fumo@tuta.io>, 
+ Paul Sajna <sajattack@postmarketos.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781482095; l=2360;
+ i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
+ bh=rah64DAbHLiiCx0F8BwuF0wdHE1rPZTHNczqUGp4Doc=;
+ b=7P1CfylnRTCjbzuoMzQriGooHcWRfaxgRyYDPjahzuYssl1Xl6bUgC/OXqI/vPrDhtC+KvhEf
+ ACL7F5IT8bIDHbUxr/W7e4P9vhTGc8GYd3549t754sPpceBIrn2+ACk
+X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
+ pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
+X-Migadu-Flow: FLOW_OUT
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:thierry.reding@gmail.com,m:sam@ravnborg.org,m:jesszhan0024@gmail.com,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:david@ixit.cz,m:phone-devel@vger.kernel.org,m:system64fumo@tuta.io,m:sajattack@postmarketos.org,m:krzk@kernel.org,m:conor@kernel.org,m:thierryreding@gmail.com,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311539-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[linaro.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,ravnborg.org];
+	FORGED_SENDER(0.00)[sajattack@postmarketos.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:kuurtb@gmail.com,m:krzk@kernel.org,m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:brgl@kernel.org,m:nuno.sa@analog.com,m:andy@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-311536-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sajattack@postmarketos.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[postmarketos.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,baylibre.com:dkim,baylibre.com:mid,baylibre.com:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tuta.io:email,imgur.com:url,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E6FB268291B
+X-Rspamd-Queue-Id: C9DB5682935
 
-On 6/14/26 4:57 PM, Kurt Borja wrote:
-> On Sun Jun 14, 2026 at 4:37 PM -05, David Lechner wrote:
->> On 6/14/26 3:53 PM, Kurt Borja wrote:
->>
->> ...
->>
->>>> Not a separate device node. Fold into the parent... or explain in
->>>> commit msg. You have entire commit msg to explain odd things.
->>>>
->>>> In that binding description you call it "independent", so it should have
->>>> its own SPI chip select? Why "independent" and part of this binding?
->>>> Maybe not independent, so basically part of this device?
->>>
->>> It's independent in the sense that it is a proper subdevice on the same
->>> chip. It shares the serial interface but operates completely in
->>> parallel.
->>>
->>> I decided to add a subnode because other devices might request their
->>> io-channels and most importantly a different voltage reference might be
->>> connected to it.
->>>
->>> I'll clarify this in the commmit message on the next version. Although
->>> after seeing this submitted bindings [1], I wonder if it's a better
->>> approach to do something like
->>>
->>> 	spi@0 {
->>> 		mydevice@0 {
->>> 			...
->>> 			adc@0 { ... };
->>> 			adc@1 { ... };
->>> 		};
->>> 	};
->>>
->>> Any thoughts?
->>
->> I don't see how this relates to the linked patch at all. The linked
->> patch looks just like a normal DAC binding.
-> 
-> Ah, wrong link. This is the correct one [1]. The suggestion just at the
-> end.
-> 
->>
->> What is the point of the 2nd ADC in this chip? Is it just to be able
->> to do simultaneous sampling of two different measurements at the same
->> time? We have other simultaneous sampling ADC chips and just model them
->> as a single device.
-> 
-> It does simultaneous sampling of the same channel, as well as different
-> channels. Also the secondary ADC is only 24 bit instead of 32 bit, has a
-> different noise profile and has a different PGA configuration (goes up
-> to 128 gain, instead of 32).
-> 
-> Taken from the datasheet (Section 9.3.15):
-> 
-> 	Use ADC2 to perform main channel (ADC1) cross-checking
-> 	measurements (for example, diagnostics purposes and redundant
-> 	channel measurements), system background measurements, or
-> 	temperature compensation of the primary sensor (such as
-> 	thermocouple cold junction compensation). Using data rates of
-> 	10, 100, and 400 SPS for both ADCs, ADC2 performs virtual
-> 	parallel conversions with ADC1 on the same input channel.
-> 
+This patch series adds a drm panel driver for the LG SW49410 panel found
+in the LG G7 ThinQ (codename judyln).
 
-Ah, that is the kind of info I was looking for.
+The basic driver skeleton was generated by https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+from the vendor device-tree.
 
->>
->> Since everything can be muxed to either ADC at runtime, I don't see
->> any reason the devicetree should care about it. Forcing certain pins
->> to be assigned to a certain ADC seems overly restrictive.
->>
->> And unless you have an application that specifically needs it, I
->> wouldn't bother trying to implement the 2nd ADC in the IIO driver.
->> I didn't see any hints in the datasheet as to when it would actually
->> make sense to use this 2nd ADC. My first thought is that it might
->> make sense to use the 2nd ADC for a 2nd buffer so that you can do
->> 2 buffered reads at the same time. But without knowing why this chip
->> was designed this way, I don't know if that is the right idea or not.
-> 
-> I myself don't have an application for this feature. But I don't see why
-> not adding support for this feature, given that I already implemented a
-> driver (Patch 5) and is capable, as you said, of 2 buffered reads at the
-> same time.
-> 
-> I do believe I have to explain all this better in commit messages
-> though.
+There seems to still be some power supply issues, the bottom-left corner
+of the screen is dark, and the rest of the screen develops shadow-y
+burn-in-like patterns when resumed after being left off for a while.
+https://i.imgur.com/oJZSHzE.jpeg
 
-I still think we don't need anything special in the devicetree
-though. Other than #io-channels-cells = <2>; where the 2nd cell
-would be which ADC the channel is routed through when the consumer
-reads it.
+Comments were added explaining magic numbers, MAINTAINERS updated, and devicetree
+documentation added
 
-Otherwise, we would just have to duplicate all channels exactly
-in both the adc@0 and adc@1 node (otherwise we would just be
-making artificial limitations).
+Co-developed-by: Amir Dahan <system64fumo@tuta.io>
+Signed-off-by: Amir Dahan <system64fumo@tuta.io>
+Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
+---
+Changes in v3:
+- Add power supplies
+- Use full panel name including panel and DDIC
+- Update email addresses
+- Various improvements copied from other similar upstream panels
+- Switch back to not using panel-simple due to power supply properties
+- Revert incorrect merged panel-simple bindings
+- Link to v2: https://lore.kernel.org/r/20250915-judyln-panel-v2-0-01ab2199fea5@postmarketos.org
 
-> 
->>
->>
->>> Ack to the rest of comments.
->>>
->>> [1] https://lore.kernel.org/linux-iio/20260519-ad5529r-driver-v3-1-267c0731aa68@analog.com/
->>>
-> 
-> [1] https://lore.kernel.org/linux-iio/25mh6grzh7zh3b4uytcqnusyv5zjuf6ia4if3ce3oqzqz56ehi@le72iqv7ye3d/
-> 
+Changes in v2:
+- use "multi" versions of functions
+- remove DRM_DISPLAY_DP_HELPER
+- change dt-bindings to panel-simple
+- Link to v1: https://lore.kernel.org/r/20250910-judyln-panel-v1-0-825c74403bbb@postmarketos.org
+
+---
+Amir Dahan (1):
+      drm: panel: Add LG LH609QH1 Panel with SW49410 controller
+
+Paul Sajna (3):
+      dt-bindings: display: panel: Add documentation for lg,sw49410-lh609qh1
+      MAINTAINERS: add Paul Sajna as maintainer for lg,sw49410-lh609qh1
+      Revert "dt-bindings: display: panel: panel-simple: Add lg,sw49410 compatible"
+
+ .../bindings/display/panel/lg,sw49410.yaml         |  79 +++
+ .../bindings/display/panel/panel-simple.yaml       |   2 -
+ MAINTAINERS                                        |   6 +
+ drivers/gpu/drm/panel/Kconfig                      |  15 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-lg-sw49410.c           | 528 +++++++++++++++++++++
+ 6 files changed, 629 insertions(+), 2 deletions(-)
+---
+base-commit: c9b2552e124828f40d5102b146dc72b506b65de9
+change-id: 20250910-judyln-panel-948f177c5c5c
+
+Best regards,
+-- 
+Paul Sajna <sajattack@postmarketos.org>
 
 
