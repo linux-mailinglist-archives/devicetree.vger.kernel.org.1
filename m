@@ -1,442 +1,308 @@
-Return-Path: <devicetree+bounces-311940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311927-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id a3cBBtXyL2pVJgUAu9opvQ
-	(envelope-from <devicetree+bounces-311940-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:40:53 +0200
+	id ZJ7TIDHxL2qbJQUAu9opvQ
+	(envelope-from <devicetree+bounces-311927-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:33:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5CB6864CE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:40:52 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0EEC686400
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:33:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=amx5GgQu;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311940-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311940-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=baylibre.com header.s=google header.b=XpEvJ7vP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311927-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311927-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CF0263071AB0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:34:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 79ED33083026
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 615013FA5CE;
-	Mon, 15 Jun 2026 12:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11DC3EAC72;
+	Mon, 15 Jun 2026 12:29:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABFB13F58D8
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:30:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D164A3EB0FA
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:29:52 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781526670; cv=none; b=u2u81NrwTewKkIOgHEwQyGbdwMNPxT+oM0TWZa9CRu0Cm8WTEt0psPcArEg4Fen29jcPlQADEXYzOcmw6CN6+diRbfTrr3XTMzUG7ZnuXassHoBV5I1PRSLbMvVK/T7KS5m0JdzMw0L4lDL5EX0c9ik75IPO/cpf2aVkrKcjN3k=
+	t=1781526597; cv=none; b=UmFpZOwV3E/+vc4cg3kOjvHFc0pGbSbb09Tp6AMHfOQ6l24VafxSYnYA0UyeRrlcgDHmeGkRV+RPQaOHFkuKK5tlLBM9TxD4dDryEGpbCrfX5/GThZ2S7V4S2TyFK2H1JY1N3KYjmEofp40sVvBRFe42gRDqe6OF4lhA37N0qpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781526670; c=relaxed/simple;
-	bh=TmBwB1qM851xSLd5/Uf2n29l1O2i/o3KM7qp+ZilyAc=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Xh6rSaXPv0GZvqE5wDnWYiwBbVQ99mvZV+I2SMYaxoiqUwatA7jK8fMsPspPYAVdtPyO1mcxgIrW70b7EnTnZtaP4wqmdvJSnhY/toDN08EonBvwdv2xzY9shQakqwvo5u7BQ0JylqDf45hec36Umg91SRVjN5gzK4cSTWzgcLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=amx5GgQu; arc=none smtp.client-ip=209.85.128.50
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-490be03d47bso34460825e9.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:30:59 -0700 (PDT)
+	s=arc-20240116; t=1781526597; c=relaxed/simple;
+	bh=y4inj7QtuABTALkC23yJ3TUZEovMNW3xTSrhVh4k1P0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=JW+603M3corpRdELgv86RN2e0mJCYY+U5wp+xJC4j3AjCHP5CF8aD8C3OVy+9eD+wgyK7N6RtYLCGMuJdEVf5yyRS5k4GyP/0Nk3wGBExK89iWqF6nu1FF+OpR+78lMq5Id2ozMwMM3NbjLssfc4g6iLGwPvug6e7yYZhAap8K4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=XpEvJ7vP; arc=none smtp.client-ip=209.85.128.50
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-49222fb062bso22705665e9.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:29:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781526658; x=1782131458; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/geuUBQHHQNfoA9ZNxPYhlemMlwLY/TU4kdPni4zlvc=;
-        b=amx5GgQuYhUFF9sscab7ta+yLk6mz0qDVGk41fuQCG2BpdTTGPSqgKZNns5nfY0Su6
-         J/7WDl4bKi/NA6xilTzwe/rQX2lBSKfABlcDw02ZRJMx78Azx+A/g52cEBF52inB0hHs
-         V9L+sD8o0bvrdN4HZQ9SvV2xbX9efCKErgMdjpIZl8P4Jo7JA1AllV41GQKNCKoij/ne
-         c7gIdWsUEguExakMOVKkYr1jD3LjNf4pXlRn6PT9yp8XaJ/OIWNKm15K5Bwkquevpoa3
-         vmmrVh5RDWlZs3ipunJK5Hn+qOJ4SukhS0QnRukqhVab55VemqOkDOT2nJe6LZ3NzG+k
-         bPIQ==
+        d=baylibre.com; s=google; t=1781526591; x=1782131391; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j2xSbb+XBUSXol+Xw5qFRPsWuUhic/XBn3XXsaZ5Bxc=;
+        b=XpEvJ7vPdLMJLoqZLmXzxO2NG0bu/NTikdi4wx+CxWPOX9da+Cs6ntf/T1lD10T+t9
+         vVdaVBnFHkdhd1+07Dtq4wVYL9BwnGlYAKJ13k/lvYLSbnmgOwGSi6nF1zR5mV4+ppPy
+         xwj7B0iskQWdXrtP2LczwEsE7saMQdgTCpkLNUda4eKhs+yH4A10e144QknJ4YZsYoX6
+         9IKwaWdGGSxrdLUUrAAesk9ps0o/LxGmbiLoLO2Ua+vi014ZEERTvpQ/CQvmhGRalJ1d
+         tp93QM2xJtqQpwpaVtuvf2NEURR2D+7fSxe5KlBaDjtpCQ1Hu9LmvcxjtS0A2+5w2es/
+         xh0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781526658; x=1782131458;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/geuUBQHHQNfoA9ZNxPYhlemMlwLY/TU4kdPni4zlvc=;
-        b=msWuNcH0aGLtScXh7BIZzJywtrcd9MsmlLRRYhDBIYh0Be/6teyTUjkMpu3AkVoGaj
-         Z1dScxQSeVFZPlw1JHnC80wtSzRlVGR94MwvY6jCKlxCC6U2SdZxTdg90W9unqHCANaV
-         fgpyTsgeFW7YU4Q06lynw4ShDG2iONV/xMVxi8flGSrwA7oF34wncip6K5eDDFmsDW5I
-         LafogMm5OEYuqr/Ct9hPIQRVhviM1eQR+u+DE89Ni3eFKfBlnSIADBBuVhWU1GokxcWZ
-         ZWW667b1ttNCMIsK0zsvi+eoYqA/DT7s4nPGFLecaHwQhRSaB10iKG1DbSFoXQSJLzuc
-         E4/A==
-X-Forwarded-Encrypted: i=1; AFNElJ+VgIOSeJ8rMfThu+TFu7yywytqQ/uL4v5hXdGH+uByWWqGZUt0zT5LdAvznDg/jnUwT9Ko6uBR83bw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEnlnAkCH4XOejhKhwnZlPydbHBTQiOfXBrw+UcJU9t8Y12AWu
-	DBj420i1FjqRFIshiB5X41sQV6cg5Wl3K+HYKaCcHvVBIJFDdTbTToxs
-X-Gm-Gg: Acq92OF2xqga/vGvzNaXDk5+1XhxDzPbLG4V4yf+gZx+4dKU9bIRrzSHxBkrsIE+kop
-	aWDeqYJJFDgC+eymHwOZLzbd9su54t9Vn5qi078/fwdDvPJ5CVRnGUmpvpseghkSfnKlk08NrF8
-	YsNGMI769XgBkf8kpj6dErwFT5VBFrINGsq58YJltXxQ5Ey/bACwoCcCTqFUzgjg7qERQyUzSuL
-	5o4URHx0n3JV19XhcEBpP+OuKE8MpoN0uyIvrOTyZNJtt3OuekW8zGHMPkw2GefT0qS+AJ/3JU7
-	vNOCg8OfHxLUeoLUkStsGFzNCXC/ldwXAChE7ShnblnQsm9i6aLm5AVzNxBubagl+zDUy7Vfo7y
-	dpk0lfzCXHRruxGqvmjX2vg/Esl7YyL8rvdLufzPn51G5VSNectBclhcE2t/LyLmClvl80BNoZO
-	MS/9rBkZ1V9V5/CB9X7fr0mTo1sgWzh4CtW2fLDSzdW+FWIdfwXZ5ASAM=
-X-Received: by 2002:a05:600d:844f:20b0:490:bb59:63b7 with SMTP id 5b1f17b1804b1-490ec5087e9mr131511205e9.28.1781526657577;
-        Mon, 15 Jun 2026 05:30:57 -0700 (PDT)
-Received: from Ansuel-XPS24 (93-34-88-103.ip49.fastwebnet.it. [93.34.88.103])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-490ea95c512sm191426435e9.2.2026.06.15.05.30.55
+        d=1e100.net; s=20251104; t=1781526591; x=1782131391;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j2xSbb+XBUSXol+Xw5qFRPsWuUhic/XBn3XXsaZ5Bxc=;
+        b=LQHd4o/v/zIIM3ZNGzBdlVcyNCH4VPSlCGs2xXdfECoUkhdwqkMung7lZ+JCNgzrcx
+         tkZ+G4/mXfL0EkuKra4vEztYzpOfzQri+DDApMkNjr05n/ghIeyu6yGBvElENKI2YJFV
+         PxvqtoOHLUCQko/59vy/yKnlPCNvGFHbbgVYh/aRDsvlrz+r7jeg47TNW8Wwx9miS8+c
+         pCZ8CT5+BvQ2NLCC94qvBDi80VPnT+0688ajXm3jvWQajov4qnaFe/vEQW6CRiG0ksaO
+         DWBsmh9wc8oaIgjowGsxxXS0fqUOe0F3L6gGpObfBRA4fP+I1iXztn4fwWjbIYx5H+V1
+         97GA==
+X-Forwarded-Encrypted: i=1; AFNElJ812x5oC1n2BRfOz8lbaW4Nw9Y7XIuA4Sd4lQpMZh4FopulwJjzn71aKpOZ0S4ikWr9H3LMcHrv3Nk9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiaJBykzjYYifUBc46sFh+64hyFGT12mTu/CbNdldm3/HhWDVn
+	jV1eRH0oq2+mblmtx52XA3OjVMab3mypRo13zc89aaB5FZvDh1nLVXt9gyotJzeMxpQ=
+X-Gm-Gg: Acq92OH9rStkALDS6FE5S4LlU/HJDrp0BUKvFcTES8gbONAee7LQ15Sljy4g43vTEi1
+	s4Sp25k+Fcr1O0qMr+T+GH7CXjgHXINau2mKQe/ux5Ri+cbooent2q2DPs3cIvyV1A65coAHoxJ
+	lIB/bmLvuiXTiW6feAlVVFTPaTGtrsO5+s9i9JiT26hkk/qPAsYnlsCadcvoRbY6Hmm6SykCCGF
+	PjpHKXMMvSZyTGy7KHW+qCgwdfvc+S9yTiVn2pROonzGZ4Oi2F/mJK3AtlzpRl5RfsjV1BC8fmD
+	gq6Mjxu3f3XkjgCwq2sLNobfa9u4VfJmDOec/oPnwoUWlxIlrKg5q124XCjyWCx7vC9KxYRc+wb
+	PZIlAqs8kUJmIrfo2thLvnOQsa2aNVSjIW34oLVwmpoxdw/hO1uy2lebfda2zJycLfRv7sR4aw0
+	LjjF1O2YBZKCSAWJQI+8Ozjw==
+X-Received: by 2002:a05:600c:8b31:b0:490:b28d:a6f9 with SMTP id 5b1f17b1804b1-490ec4a8474mr184582905e9.8.1781526590867;
+        Mon, 15 Jun 2026 05:29:50 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:3c22:dcc2:a51d:cde2])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-49220372ed0sm223313935e9.14.2026.06.15.05.29.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2026 05:30:56 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Simon Horman <horms@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	llvm@lists.linux.dev
-Subject: [PATCH net-next v7 12/12] net: airoha: add phylink support
+        Mon, 15 Jun 2026 05:29:50 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>,  Neil
+ Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
+ <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
+  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>,  linux-amlogic@lists.infradead.org,
+  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/2] clk: amlogic: Add A9 peripherals clock
+ controller driver
+In-Reply-To: <bfe92bbe-5325-4497-b79f-10c7a6e1ed5b@amlogic.com> (Jian Hu's
+	message of "Mon, 15 Jun 2026 19:25:20 +0800")
+References: <20260610-a9_peripherals-v3-0-d07a78085f71@amlogic.com>
+	<20260610-a9_peripherals-v3-2-d07a78085f71@amlogic.com>
+	<1jecieftme.fsf@starbuckisacylon.baylibre.com>
+	<bfe92bbe-5325-4497-b79f-10c7a6e1ed5b@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
 Date: Mon, 15 Jun 2026 14:29:48 +0200
-Message-ID: <20260615122950.22281-13-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260615122950.22281-1-ansuelsmth@gmail.com>
-References: <20260615122950.22281-1-ansuelsmth@gmail.com>
+Message-ID: <1j7bo0dm0z.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311940-lists,devicetree=lfdr.de];
-	FORGED_SENDER(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:andrew+netdev@lunn.ch,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:horms@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:ansuelsmth@gmail.com,m:lorenzo@kernel.org,m:hkallweit1@gmail.com,m:linux@armlinux.org.uk,m:saravanak@kernel.org,m:p.zabel@pengutronix.de,m:nathan@kernel.org,m:nick.desaulniers+lkml@gmail.com,m:morbo@google.com,m:justinstitt@google.com,m:netdev@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:llvm@lists.linux.dev,m:andrew@lunn.ch,m:krzk@kernel.org,m:conor@kernel.org,m:nickdesaulniers@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jian.hu@amlogic.com,m:devnull+jian.hu.amlogic.com@kernel.org,m:neil.armstrong@linaro.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:xianwei.zhao@amlogic.com,m:khilman@baylibre.com,m:martin.blumenstingl@googlemail.com,m:linux-amlogic@lists.infradead.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
+	DMARC_NA(0.00)[baylibre.com];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-311927-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,lwn.net,linuxfoundation.org,gmail.com,armlinux.org.uk,pengutronix.de,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,baylibre.com,amlogic.com,googlemail.com,lists.infradead.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,lkml];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,jian.hu.amlogic.com,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,baylibre.com:dkim,baylibre.com:from_mime,starbuckisacylon.baylibre.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5D5CB6864CE
+X-Rspamd-Queue-Id: D0EEC686400
 
-Add phylink support for each GDM port. For GDM1 add the internal interface
-mode as the only supported mode. For GDM2/3/4 add the required
-configuration of the PCS to make the external PHY or attached SFP cage
-work.
+On lun. 15 juin 2026 at 19:25, Jian Hu <jian.hu@amlogic.com> wrote:
 
-These needs to be defined in the GDM port node using the pcs-handle
-property.
+> On 6/10/2026 8:49 PM, Jerome Brunet wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> On mer. 10 juin 2026 at 16:14, Jian Hu via B4 Relay <devnull+jian.hu.aml=
+ogic.com@kernel.org> wrote:
+>>
+>>> From: Jian Hu <jian.hu@amlogic.com>
+>>>
+>>> Add the peripherals clock controller driver for the Amlogic A9 SoC fami=
+ly.
+>>>
+>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>> ---
+>>>   drivers/clk/meson/Kconfig          |   15 +
+>>>   drivers/clk/meson/Makefile         |    1 +
+>>>   drivers/clk/meson/a9-peripherals.c | 1925 +++++++++++++++++++++++++++=
++++++++++
+>>>   3 files changed, 1941 insertions(+)
+>>>
+>
+> [ ... ]
+>
+>>> +
+>>> +/* Channel 6 is unconnected. */
+>>> +static u32 a9_glb_parents_val_table[] =3D { 0, 1, 2, 3, 4, 5, 7 };
+>>> +static struct clk_regmap a9_dspa;
+>> What is this ?
+>
+>
+> The peripheral clock definitions are ordered by register offset.
+>
+> dspa is one of the parents of the glb clock, while the dsp clock registers
+> are located after the GLB clock registers.
+>
+> Since glb references a9_dspa before its full definition appears, the
+> declaration
+>
+> static struct clk_regmap a9_dspa;
+>
+> is added as a forward declaration to satisfy the compiler.
+>
+>
+> Would it make sense to relax the register-offset ordering in this case?
+>
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/net/ethernet/airoha/Kconfig       |   1 +
- drivers/net/ethernet/airoha/airoha_eth.c  | 161 +++++++++++++++++++++-
- drivers/net/ethernet/airoha/airoha_eth.h  |   3 +
- drivers/net/ethernet/airoha/airoha_regs.h |  12 ++
- 4 files changed, 176 insertions(+), 1 deletion(-)
+I don't think we ever enforced such ordering (or any other ordering) in
+the clock driver, so yes please.
 
-diff --git a/drivers/net/ethernet/airoha/Kconfig b/drivers/net/ethernet/airoha/Kconfig
-index ad3ce501e7a5..38dcc76e5998 100644
---- a/drivers/net/ethernet/airoha/Kconfig
-+++ b/drivers/net/ethernet/airoha/Kconfig
-@@ -20,6 +20,7 @@ config NET_AIROHA
- 	depends on NET_DSA || !NET_DSA
- 	select NET_AIROHA_NPU
- 	select PAGE_POOL
-+	select PHYLINK
- 	help
- 	  This driver supports the gigabit ethernet MACs in the
- 	  Airoha SoC family.
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ethernet/airoha/airoha_eth.c
-index 5f1a118875fb..9a42fb991bd7 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.c
-+++ b/drivers/net/ethernet/airoha/airoha_eth.c
-@@ -8,6 +8,7 @@
- #include <linux/of_reserved_mem.h>
- #include <linux/platform_device.h>
- #include <linux/tcp.h>
-+#include <linux/pcs/pcs.h>
- #include <linux/u64_stats_sync.h>
- #include <net/dst_metadata.h>
- #include <net/page_pool/helpers.h>
-@@ -1810,6 +1811,14 @@ static int airoha_dev_open(struct net_device *netdev)
- 	u32 cur_len, pse_port = FE_PSE_PORT_PPE1;
- 	struct airoha_qdma *qdma = dev->qdma;
- 
-+	err = phylink_of_phy_connect(dev->phylink, netdev->dev.of_node, 0);
-+	if (err) {
-+		netdev_err(netdev, "could not attach PHY: %d\n", err);
-+		return err;
-+	}
-+
-+	phylink_start(dev->phylink);
-+
- 	netif_tx_start_all_queues(netdev);
- 	err = airoha_set_vip_for_gdm_port(dev, true);
- 	if (err)
-@@ -1907,6 +1916,9 @@ static int airoha_dev_stop(struct net_device *netdev)
- 		}
- 	}
- 
-+	phylink_stop(dev->phylink);
-+	phylink_disconnect_phy(dev->phylink);
-+
- 	return 0;
- }
- 
-@@ -3168,6 +3180,151 @@ bool airoha_is_valid_gdm_dev(struct airoha_eth *eth,
- 	return false;
- }
- 
-+/* Nothing to do in MAC, everything is handled in PCS */
-+static void airoha_mac_config(struct phylink_config *config, unsigned int mode,
-+			      const struct phylink_link_state *state)
-+{
-+}
-+
-+static void airoha_mac_link_up(struct phylink_config *config, struct phy_device *phy,
-+			       unsigned int mode, phy_interface_t interface,
-+			       int speed, int duplex, bool tx_pause, bool rx_pause)
-+{
-+	struct airoha_gdm_dev *dev = container_of(config, struct airoha_gdm_dev,
-+						  phylink_config);
-+	struct airoha_gdm_port *port = dev->port;
-+	struct airoha_eth *eth = dev->eth;
-+	u32 frag_size_tx, frag_size_rx;
-+	u32 mask, val;
-+
-+	/* TX/RX frag is configured only for GDM4 */
-+	if (port->id != AIROHA_GDM4_IDX)
-+		return;
-+
-+	switch (speed) {
-+	case SPEED_10000:
-+	case SPEED_5000:
-+		frag_size_tx = 8;
-+		frag_size_rx = 8;
-+		break;
-+	case SPEED_2500:
-+		frag_size_tx = 2;
-+		frag_size_rx = 1;
-+		break;
-+	default:
-+		frag_size_tx = 1;
-+		frag_size_rx = 0;
-+	}
-+
-+	/* Configure TX/RX frag based on speed */
-+	if (dev->nbq == 1) {
-+		mask = GDMA4_SGMII1_TX_FRAG_SIZE_MASK;
-+		val = FIELD_PREP(GDMA4_SGMII1_TX_FRAG_SIZE_MASK,
-+				 frag_size_tx);
-+	}  else {
-+		mask = GDMA4_SGMII0_TX_FRAG_SIZE_MASK;
-+		val = FIELD_PREP(GDMA4_SGMII0_TX_FRAG_SIZE_MASK,
-+				 frag_size_tx);
-+	}
-+	airoha_fe_rmw(eth, REG_GDMA4_TMBI_FRAG, mask, val);
-+
-+	if (dev->nbq == 1) {
-+		mask = GDMA4_SGMII1_RX_FRAG_SIZE_MASK;
-+		val = FIELD_PREP(GDMA4_SGMII1_RX_FRAG_SIZE_MASK,
-+				 frag_size_rx);
-+	} else {
-+		mask = GDMA4_SGMII0_RX_FRAG_SIZE_MASK;
-+		val = FIELD_PREP(GDMA4_SGMII0_RX_FRAG_SIZE_MASK,
-+				 frag_size_rx);
-+	}
-+	airoha_fe_rmw(eth, REG_GDMA4_RMBI_FRAG, mask, val);
-+}
-+
-+/* Nothing to do in MAC, everything is handled in PCS */
-+static void airoha_mac_link_down(struct phylink_config *config, unsigned int mode,
-+				 phy_interface_t interface)
-+{
-+}
-+
-+static const struct phylink_mac_ops airoha_phylink_ops = {
-+	.mac_config = airoha_mac_config,
-+	.mac_link_up = airoha_mac_link_up,
-+	.mac_link_down = airoha_mac_link_down,
-+};
-+
-+static int airoha_fill_available_pcs(struct phylink_config *config,
-+				     struct phylink_pcs **available_pcs,
-+				     unsigned int num_possible_pcs)
-+{
-+	struct device *dev = config->dev;
-+
-+	return fwnode_phylink_pcs_parse(dev_fwnode(dev), available_pcs,
-+					num_possible_pcs);
-+}
-+
-+static int airoha_setup_phylink(struct net_device *netdev)
-+{
-+	struct airoha_gdm_dev *dev = netdev_priv(netdev);
-+	struct device_node *np = netdev->dev.of_node;
-+	struct airoha_gdm_port *port = dev->port;
-+	struct phylink_config *config;
-+	phy_interface_t phy_mode;
-+	struct phylink *phylink;
-+	int err;
-+
-+	err = of_get_phy_mode(np, &phy_mode);
-+	if (err) {
-+		dev_err(&netdev->dev, "incorrect phy-mode\n");
-+		return err;
-+	}
-+
-+	config = &dev->phylink_config;
-+	config->dev = &netdev->dev;
-+	config->type = PHYLINK_NETDEV;
-+
-+	/*
-+	 * GDM1 only supports internal for Embedded Switch
-+	 * and doesn't require a PCS.
-+	 */
-+	if (port->id == AIROHA_GDM1_IDX) {
-+		config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-+					   MAC_10000FD;
-+
-+		__set_bit(PHY_INTERFACE_MODE_INTERNAL,
-+			  config->supported_interfaces);
-+	} else {
-+		config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-+					   MAC_10 | MAC_100 | MAC_1000 |
-+					   MAC_2500FD | MAC_5000FD | MAC_10000FD;
-+
-+		config->num_possible_pcs = fwnode_phylink_pcs_count(dev_fwnode(&netdev->dev));
-+		config->fill_available_pcs = airoha_fill_available_pcs;
-+
-+		__set_bit(PHY_INTERFACE_MODE_SGMII,
-+			  config->supported_interfaces);
-+		__set_bit(PHY_INTERFACE_MODE_1000BASEX,
-+			  config->supported_interfaces);
-+		__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-+			  config->supported_interfaces);
-+		__set_bit(PHY_INTERFACE_MODE_10GBASER,
-+			  config->supported_interfaces);
-+		__set_bit(PHY_INTERFACE_MODE_USXGMII,
-+			  config->supported_interfaces);
-+
-+		phy_interface_copy(config->pcs_interfaces,
-+				   config->supported_interfaces);
-+	}
-+
-+	phylink = phylink_create(config, of_fwnode_handle(np),
-+				 phy_mode, &airoha_phylink_ops);
-+	if (IS_ERR(phylink))
-+		return PTR_ERR(phylink);
-+
-+	dev->phylink = phylink;
-+
-+	return 0;
-+}
-+
- static int airoha_alloc_gdm_device(struct airoha_eth *eth,
- 				   struct airoha_gdm_port *port,
- 				   int nbq, struct device_node *np)
-@@ -3231,7 +3388,7 @@ static int airoha_alloc_gdm_device(struct airoha_eth *eth,
- 	dev->nbq = nbq;
- 	port->devs[index] = dev;
- 
--	return 0;
-+	return airoha_setup_phylink(netdev);
- }
- 
- static int airoha_alloc_gdm_port(struct airoha_eth *eth,
-@@ -3457,6 +3614,7 @@ static int airoha_probe(struct platform_device *pdev)
- 			netdev = netdev_from_priv(dev);
- 			if (netdev->reg_state == NETREG_REGISTERED)
- 				unregister_netdev(netdev);
-+			phylink_destroy(dev->phylink);
- 			of_node_put(netdev->dev.of_node);
- 		}
- 		airoha_metadata_dst_free(port);
-@@ -3493,6 +3651,7 @@ static void airoha_remove(struct platform_device *pdev)
- 
- 			netdev = netdev_from_priv(dev);
- 			unregister_netdev(netdev);
-+			phylink_destroy(dev->phylink);
- 			of_node_put(netdev->dev.of_node);
- 		}
- 		airoha_metadata_dst_free(port);
-diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
-index 46b1c31939de..f4488da42f81 100644
---- a/drivers/net/ethernet/airoha/airoha_eth.h
-+++ b/drivers/net/ethernet/airoha/airoha_eth.h
-@@ -554,6 +554,9 @@ struct airoha_gdm_dev {
- 	int nbq;
- 
- 	struct airoha_hw_stats stats;
-+
-+	struct phylink *phylink;
-+	struct phylink_config phylink_config;
- };
- 
- struct airoha_gdm_port {
-diff --git a/drivers/net/ethernet/airoha/airoha_regs.h b/drivers/net/ethernet/airoha/airoha_regs.h
-index 436f3c8779c1..27f2583e143a 100644
---- a/drivers/net/ethernet/airoha/airoha_regs.h
-+++ b/drivers/net/ethernet/airoha/airoha_regs.h
-@@ -358,6 +358,18 @@
- #define IP_FRAGMENT_PORT_MASK		GENMASK(8, 5)
- #define IP_FRAGMENT_NBQ_MASK		GENMASK(4, 0)
- 
-+#define REG_GDMA4_TMBI_FRAG		0x2028
-+#define GDMA4_SGMII1_TX_WEIGHT_MASK	GENMASK(31, 26)
-+#define GDMA4_SGMII1_TX_FRAG_SIZE_MASK	GENMASK(25, 16)
-+#define GDMA4_SGMII0_TX_WEIGHT_MASK	GENMASK(15, 10)
-+#define GDMA4_SGMII0_TX_FRAG_SIZE_MASK	GENMASK(9, 0)
-+
-+#define REG_GDMA4_RMBI_FRAG		0x202c
-+#define GDMA4_SGMII1_RX_WEIGHT_MASK	GENMASK(31, 26)
-+#define GDMA4_SGMII1_RX_FRAG_SIZE_MASK	GENMASK(25, 16)
-+#define GDMA4_SGMII0_RX_WEIGHT_MASK	GENMASK(15, 10)
-+#define GDMA4_SGMII0_RX_FRAG_SIZE_MASK	GENMASK(9, 0)
-+
- #define REG_MC_VLAN_EN			0x2100
- #define MC_VLAN_EN_MASK			BIT(0)
- 
--- 
-2.53.0
+
+> By defining the DSP clock before the GLB clock, we could remove the forwa=
+rd
+> declaration of a9_dspa.
+
+Unless it is absolutely necessary, please avoid forward declaration.
+
+Declare what is needed first, keep related things together and use your
+best judgement ... IOW, make it easy for me to review ;)=20
+
+>
+>>> +
+>>> +static const struct clk_parent_data a9_glb_parents[] =3D {
+>>> +};
+
+[...]
+
+>>> +
+>>> +static struct clk_regmap a9_vclk_div2_en =3D {
+>>> +     .data =3D &(struct clk_regmap_gate_data){
+>>> +             .offset =3D VID_CLK_CTRL,
+>>> +             .bit_idx =3D 1,
+>>> +     },
+>>> +     .hw.init =3D CLK_HW_INIT_HW("vclk_div2_en", &a9_vclk.hw,
+>>> +                               &clk_regmap_gate_ops, CLK_SET_RATE_PARE=
+NT),
+>>> +};
+>> Looks to me all this div_en / div repeating pattern would be easier to r=
+eview
+>> with tiny macro .
+>
+>
+> Good point.
+>
+> I tried to reduce the repeated div_en/div pattern using a helper macro.
+>
+> It keeps the relationship between gate and fixed-factor clock more compact
+> and easier to review.
+>
+> After using the helper macro, the div_en/div code can be simplified to the
+> following:
+>
+> #define A9_VCLK(_name, _reg, _bit, _div, _parent) =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0\
+> struct clk_regmap a9_##_name##_en =3D { =C2=A0 =C2=A0 =C2=A0\
+                       ^- not strictly necessary, a touch too agressive
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 .data =3D &(struct clk_regmap_gate_data){ =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .offset =3D _reg,=
+ =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .bit_idx =3D _bit=
+, =C2=A0 =C2=A0 =C2=A0 \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 }, =C2=A0 =C2=A0 =C2=A0 \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 .hw.init =3D &(struct clk_init_data) { =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .name =3D #_name =
+"_en", =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .ops =3D &clk_reg=
+map_gate_ops, =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .parent_hws =3D (=
+const struct clk_hw *[]) { _parent },=C2=A0 =C2=A0 \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .num_parents =3D =
+1, =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .flags =3D CLK_SE=
+T_RATE_PARENT, =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 }, =C2=A0 =C2=A0 =C2=A0 \
+> }; =C2=A0 =C2=A0 =C2=A0 \
+> =C2=A0 =C2=A0 =C2=A0 \
+> struct clk_fixed_factor a9_##_name =3D { =C2=A0 =C2=A0 =C2=A0 \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 .mult =3D 1, =C2=A0 =C2=A0 =C2=A0 \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 .div =3D _div, =C2=A0 =C2=A0 =C2=A0 \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 .hw.init =3D &(struct clk_init_data){ =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .name =3D #_name,=
+ =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .ops =3D &clk_fix=
+ed_factor_ops, =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .parent_hws =3D (=
+const struct clk_hw *[]) { =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 &a9_##_name##_en.hw =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }, =C2=A0 =C2=A0 =
+=C2=A0 \
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .num_parents =3D =
+1, =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .flags =3D CLK_SE=
+T_RATE_PARENT, =C2=A0 =C2=A0 =C2=A0\
+> =C2=A0 =C2=A0 =C2=A0 =C2=A0 }, =C2=A0 =C2=A0 =C2=A0 \
+> }; =C2=A0 =C2=A0 =C2=A0 \
+>
+> static A9_VCLK(vclk_div2, VID_CLK_CTRL, 1, 2, &a9_vclk.hw);
+> static A9_VCLK(vclk_div4, VID_CLK_CTRL, 2, 4, &a9_vclk.hw);
+> static A9_VCLK(vclk_div6, VID_CLK_CTRL, 3, 6, &a9_vclk.hw);
+> static A9_VCLK(vclk_div6, VID_CLK_CTRL, 4, 12, &a9_vclk.hw);
+> static A9_VCLK(vclk2_div2, VIID_CLK_CTRL, 1, 2, &a9_vclk2.hw);
+> static A9_VCLK(vclk2_div4, VIID_CLK_CTRL, 2, 4, &a9_vclk2.hw);
+> static A9_VCLK(vclk2_div6, VIID_CLK_CTRL, 3, 6, &a9_vclk2.hw);
+> static A9_VCLK(vclk2_div6, VIID_CLK_CTRL, 4, 12, &a9_vclk2.hw);
+>
+>
+> If you think splitting it further into separate helper macros would impro=
+ve
+> readability.
+
+One clock per macro please. Hidding 2 declaration is recipe for
+disaster. For ex, here the first one is static, the 2nd is not=20
+
+>
+> I can do that as well.
+>
 
 
