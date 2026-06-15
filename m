@@ -1,335 +1,187 @@
-Return-Path: <devicetree+bounces-311999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312005-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id m+gSKQEMMGrpMQUAu9opvQ
-	(envelope-from <devicetree+bounces-311999-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:28:17 +0200
+	id Bu6mApwLMGrDMQUAu9opvQ
+	(envelope-from <devicetree+bounces-312005-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:26:36 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18A0C68728E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:28:17 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9234968722A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:26:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=fYMHhU2y;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311999-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311999-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Ej6Sbxdy;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312005-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312005-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 568F9316F690
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:23:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8B9CA303FB80
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F2683FBB7D;
-	Mon, 15 Jun 2026 14:22:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B8F93F8891;
+	Mon, 15 Jun 2026 14:25:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF0A3FE665;
-	Mon, 15 Jun 2026 14:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619F53F926D
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 14:25:55 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781533339; cv=none; b=dhDh94ug9fsehj1eJGnpItE2ruvVOZv9tgRLg00T6SJoUG+LlfrSvaXIgsa7DRlRDMyLD24m6+S07M9cl1DQfgohC4kxWzlMlD+k5aRZ+J782/Tg8BIynZzh94bO7jAJgOVclck/GZcvFs2U7/Buzfn7f2lOqQC12mZ1L+kcNOc=
+	t=1781533558; cv=none; b=Na9xNpV6LUNLuqDxNhk6WeG7+DzZRGoSjRrKSpLOEnzE1ZmRahEfj4OYmRj/vOB2jeGbxSJFBmrflktdGadpEJIjjxZ76e/2ZrFZfaQnbjGmdpLc5iCNCgJxbu7y6f85XVIxDqqEa31CUASnwLDclUMLLZ4VXnA62BRNsIk0avA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781533339; c=relaxed/simple;
-	bh=rapKQfvY7BS/GheUDnjjsSgmmAhWU2d4ZbsYD3s9r5I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m/FsZgTvS6k535uEnfqUw+atwG0fPWuuV9M3is05FEsJK4XhITA4VsvUuCDI7ZuvgSIfuVdY8XOPmel7EVZ4z7catL5aB6GSJ9TilU+DpiAVamnTPGVyRnyoqhP5Q0fpnboSDJXG/VKrO8Mz/rCwUqlv7k/sVtDlDXTbhXcjs/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fYMHhU2y; arc=none smtp.client-ip=198.175.65.15
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781533336; x=1813069336;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rapKQfvY7BS/GheUDnjjsSgmmAhWU2d4ZbsYD3s9r5I=;
-  b=fYMHhU2yG4ci8jU6o6gghNB3Cd4uSaDUbgImjsUT79z25ePrgmwz+crw
-   H9OMFyVKa+14pSayJckElYuTHgMIT9oiZEGWf+V2O8aeD+6E6lQwfP1xL
-   K4RGFd+VD7eheDJ1gE8/cUUoBI7bYKo+qTu03/jW8WghYGuduTTuZjaVt
-   lfsoCHO3sZco2LG/HbERWwMPQSpIgv7uSaG1SODsHxrVhTbmMj+Gce+oq
-   eKs7GdebjVwJys8a82BamiJ1yokHFfFnSExPI51MKxuAYBvGre66dOE+K
-   O9Srw+3N45qY7y+wf6Yki/DYsoMG/RRU3LPK1odPGj2NyDdbk8Gg0nO/r
-   Q==;
-X-CSE-ConnectionGUID: Fq2HfNZOTH6NPfhnsh+RTA==
-X-CSE-MsgGUID: +uFXT2i9SAS9ko0bEFM5Bg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="85907404"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; 
-   d="scan'208";a="85907404"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026 07:22:16 -0700
-X-CSE-ConnectionGUID: O0cEpdFKRzKVoZPC2wbP1Q==
-X-CSE-MsgGUID: c9aEx9koQ3qruHpJDfxBCQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; 
-   d="scan'208";a="285596033"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.235])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026 07:22:13 -0700
-Date: Mon, 15 Jun 2026 17:22:10 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Salih Erim <salih.erim@amd.com>
-Cc: jic23@kernel.org, andy@kernel.org, dlechner@baylibre.com,
-	nuno.sa@analog.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, conall.ogriofa@amd.com, michal.simek@amd.com,
-	linux@roeck-us.net, erimsalih@gmail.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/5] iio: adc: add Versal SysMon driver
-Message-ID: <ajAKkqMO5jdQjKgS@ashevche-desk.local>
-References: <20260614233722.2603459-1-salih.erim@amd.com>
- <20260614233722.2603459-3-salih.erim@amd.com>
+	s=arc-20240116; t=1781533558; c=relaxed/simple;
+	bh=vGkYE5EbNX67cgweAxxpCRWreqIevxM1P/7Qp2YYF0I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VA0U/QHls7mXUMmV0p3KbsFB97JptfZF530G4sLkmU6ai04iSGvLnPM7SOUUQkfFvhi0SBJ+7uUGkffyGQFMkwQ2DDe81zuubEnhkfE7EfxDCux3vA9WPWAe12Nw/vxEk04Xu1aq6t2QAcPuGzKTTll2JqNAefR2v5MsIaZRegw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ej6Sbxdy; arc=none smtp.client-ip=209.85.128.46
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-490ac10e337so23710175e9.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 07:25:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781533554; x=1782138354; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IS4hKl08e5fFQM7CS+6rOZwYJSvHMZdWZRds5aVjNjQ=;
+        b=Ej6Sbxdy9Agh2wmxQ8UyI1zkQiO1hIwy1/rW+LYNqr4hNj2pPWDmKuUOlFHTTDCoU5
+         olWZLcc8dwryyHWxo1h2eINwXw+gsTsK4xP1nCJ+/dZC2Nk0GHEeniTd9oDR+A1zZhgJ
+         fvz/C0i5fvSye2JbI/RixMZ0l4VO+i52T81F775IfX+wrambfCRN2QlzzHwA4BsBcKJo
+         Qa0tc96l1DEnqkwb8mMgFJTdjB+CSfc8KFiaLgiOHGCtd6Cp++RdYF093L/a1pIRMIWc
+         tr3AtIKHrTku3Ml0bB5fAxZR8KWuCdVsy+6y2V5U6zz4a9ilndtxPI2DKTz9jEKZ5qEC
+         YR8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781533554; x=1782138354;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IS4hKl08e5fFQM7CS+6rOZwYJSvHMZdWZRds5aVjNjQ=;
+        b=lMLNiawOG2fvMzkGPH+1CJNIowN7wAOCA68UeFTRgI8mMm2LglSK5EHSYY+jBb/9OA
+         700B6r8QenDZ98pDGWRunKBVrwjBHTw4z8YOjGtCUGSns7TWFmfeh9cTFIcrkUDO7B1B
+         PjM6utAOE3+MKmaFiVAZUTrt6dAmk3DVTJB6pLJEOiRrQiFWvUaCQndqixhPIwic76QJ
+         iTTvkmamPJkF1eZQ/VaQ8RFkfE2SB8IiwDU032mzfLkg0lALfZDdojDPrTjtmpW7GLd/
+         XMOw4sVYB91nQU/85vETh0DyHJBb1W3um9Qp5ZJhGRiEkqkVkTOhKF5bOALFf1xw8jnX
+         QkHw==
+X-Forwarded-Encrypted: i=1; AFNElJ9M90fgzWFTEx6ZhZUxOyiQpY/JLrE2al4Jp/HLQSyXL5ifb9kH0lJC9Wa3W68hGfNXjGLBiFKZDaLq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7/6l7IO4rDH9k+HX7KNOyQXEvyAYzfA+oK8rvTaumW+v7S5UA
+	iJTgwaWkIg6GtWVC/JfYi++fvr/RAaXlJgWmrGzTHe9QdIzjsaiU6luZ5AMk5A==
+X-Gm-Gg: Acq92OHQZQMW+6tsOhH1lSTHgYRCMraiwD+I/yf7KXyCp2DSKmJVP7dEJO3ATHg6AMo
+	EcMpIfpJyfYE9BHPgY5Jy33G1F5xTq751V3IJRFyxY+EgfgJiKvErkGZZsMYs4WW2FUnovGB+CE
+	Y4Tt/JoQtXCIWxu5XqMLGD5ssbG4m8t4uX7khHMYSsiXs7jhos9empmAi7UbLFriZmR+9/r6GoI
+	UT/qYDZ7j+aOLFZlM5YGUeJ0PSwUEY88twdNal+Z6i2d1WM8kthnBRpQ5rUmE3BNq+1XO0tNdvq
+	nnAJZy3ZqfNC0cgyQRQfmf61M63stg9bvvzxt1ve1L6LQfqxiOj/dsO92glQOawbbiqGku4IYA8
+	J2QAlUrEtJl+/pZmZe7GMRv10TkexYXhZvox/8jUsNUbD3JhPgRcZ5kmrba6ZAjvf3lPww8fZZ1
+	0AZaofJ9mb1iAWSaHnYYlbQom1PE04GjYsng==
+X-Received: by 2002:a05:600c:c0c3:10b0:490:c024:2ec8 with SMTP id 5b1f17b1804b1-4921fcb3ffemr112530735e9.0.1781533553436;
+        Mon, 15 Jun 2026 07:25:53 -0700 (PDT)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490ea961f18sm273333205e9.2.2026.06.15.07.25.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jun 2026 07:25:52 -0700 (PDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: andrew@codeconstruct.com.au,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	avifishman70@gmail.com,
+	tmaimon77@gmail.com,
+	tali.perry1@gmail.com,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com
+Subject: [PATCH v5 0/4] arm64: dts: nuvoton: add NPCM845 SoC and EVB support
+Date: Mon, 15 Jun 2026 17:25:44 +0300
+Message-Id: <20260615142548.1373799-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260614233722.2603459-3-salih.erim@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[lists.ozlabs.org,vger.kernel.org,gmail.com,google.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-311999-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:salih.erim@amd.com,m:jic23@kernel.org,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312005-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:andrew@codeconstruct.com.au,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:openbmc@lists.ozlabs.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:avifishman70@gmail.com,m:tmaimon77@gmail.com,m:tali.perry1@gmail.com,m:venture@google.com,m:yuenn@google.com,m:benjaminfair@google.com,m:krzk@kernel.org,m:conor@kernel.org,m:taliperry1@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tmaimon77@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_NONE(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,intel.com:dkim,intel.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ashevche-desk.local:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 18A0C68728E
+X-Rspamd-Queue-Id: 9234968722A
 
-On Mon, Jun 15, 2026 at 12:37:19AM +0100, Salih Erim wrote:
-> Add the core driver and MMIO platform driver for the AMD/Xilinx Versal
-> System Monitor (SysMon) block.
-> 
-> The SysMon block resides in the platform management controller (PMC) and
-> provides on-chip voltage and temperature monitoring through a 10-bit,
-> 200 kSPS ADC. It can monitor up to 160 voltage channels and 64
-> temperature satellites distributed across the SoC, with a consistent
-> sample rate of 8 kSPS per channel regardless of how many channels are
-> enabled.
-> 
-> The hardware also provides four aggregate temperature registers that
-> are always present regardless of the device tree configuration: the
-> current max and min across all active satellites, and the peak and
-> trough values recorded since the last hardware reset.
-> 
-> The driver is split into two compilation units:
->   - versal-sysmon-core: Channel parsing, IIO registration, read_raw
->   - versal-sysmon: MMIO platform driver with custom regmap accessors
-> 
-> Voltage results are stored in a 19-bit modified floating-point format
-> and converted to millivolts. Temperature results are stored in Q8.7
-> signed fixed-point Celsius format and converted to millicelsius.
-> 
-> The MMIO regmap backend uses a custom reg_write accessor that
-> automatically unlocks the NPI (NoC programming interface) lock
-> register before each write, as required by the hardware. The regmap
-> is configured with fast_io since the underlying MMIO accessors are
-> safe to call from atomic context.
+This series fixes the remaining timer binding issue and adds device tree
+support for peripherals on the Nuvoton NPCM845 SoC and its Evaluation
+Board (EVB).
 
-...
+The first patch drops the undocumented timer0 clock-names property.
+The second patch reorders timer0 and PECI so the APB child nodes stay in
+ascending unit-address order.
+The third patch introduces peripheral nodes for Ethernet, MMC, SPI, USB,
+RNG, ADC, PWM-FAN, I2C, and OP-TEE firmware in the NPCM845 SoC device
+tree.
+The fourth patch enables these peripherals for the NPCM845-EVB, adding
+MDIO nodes, reserved memory, aliases, and board-specific configurations
+such as PHY modes and SPI flash partitions.
 
-> +static int sysmon_read_raw(struct iio_dev *indio_dev,
-> +			   struct iio_chan_spec const *chan,
-> +			   int *val, int *val2, long mask)
-> +{
-> +	struct sysmon *sysmon = iio_priv(indio_dev);
-> +	unsigned int regval;
-> +	int ret;
-> +
-> +	guard(mutex)(&sysmon->lock);
-> +
-> +	switch (chan->type) {
-> +	case IIO_TEMP:
-> +		if (mask == IIO_CHAN_INFO_SCALE) {
-> +			/* Q8.7 to millicelsius: raw * 1000 / 128 */
-> +			*val = MILLI;
+The NPCM8XX device tree was tested on NPCM845 evaluation board.
 
-Since this is about temperature, wouldn't be better to use
+This series depends on:
+https://lore.kernel.org/all/20260610121822.2524634-2-tmaimon77@gmail.com/
+https://lore.kernel.org/all/20260610121822.2524634-3-tmaimon77@gmail.com/
+https://lore.kernel.org/all/20260610121822.2524634-4-tmaimon77@gmail.com/
 
-	MILLIDEGREE_PER_DEGREE
+Addressed comments from:
+	- Rob Herring
 
-here?
+Changes since version 4:
+	- Split the timer0 clock-names cleanup into a separate first patch.
+	- Remove nuvoton,sysgcr from udc8 and udc9.
+	- Rename apb: bus@f0000000 back to apb.
+	- Add no-map to tip_reserved.
+	- Rename spix-mode to nuvoton,spix-mode.
+	- Keep cooling-levels as 32-bit cells while encoding fan-tach-ch
+	  as /bits/ 8.
 
-> +			*val2 = BIT(SYSMON_FRACTIONAL_SHIFT);
-> +			return IIO_VAL_FRACTIONAL;
-> +		}
-> +		if (mask != IIO_CHAN_INFO_RAW)
-> +			return -EINVAL;
-> +
-> +		ret = regmap_read(sysmon->regmap, chan->address, &regval);
-> +		if (ret)
-> +			return ret;
-> +
-> +		*val = sign_extend32(regval, 15);
-> +		return IIO_VAL_INT;
-> +
-> +	case IIO_VOLTAGE:
-> +		if (mask != IIO_CHAN_INFO_PROCESSED)
-> +			return -EINVAL;
-> +
-> +		ret = regmap_read(sysmon->regmap,
-> +				  chan->address * SYSMON_REG_STRIDE +
-> +				  SYSMON_SUPPLY_BASE, &regval);
-> +		if (ret)
-> +			return ret;
-> +
-> +		sysmon_supply_rawtoprocessed(regval, val);
-> +		return IIO_VAL_INT;
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
+Tomer Maimon (4):
+  arm64: dts: nuvoton: npcm845: Drop redundant timer clock-names
+  arm64: dts: nuvoton: npcm845: Reorder timer0 and PECI nodes
+  arm64: dts: nuvoton: npcm845: Add peripheral nodes
+  arm64: dts: nuvoton: npcm845-evb: Add peripheral nodes
 
-...
-
-> +static int sysmon_parse_fw(struct iio_dev *indio_dev, struct device *dev)
-> +{
-> +	unsigned int num_chan, idx, temp_chan_idx, volt_chan_idx;
-> +	unsigned int num_supply, num_temp;
-> +	struct iio_chan_spec *sysmon_channels;
-> +	const char *label;
-> +	u32 reg;
-> +	int ret;
-> +
-> +	struct fwnode_handle *supply_node __free(fwnode_handle) =
-> +		device_get_named_child_node(dev, "voltage-channels");
-> +	num_supply = fwnode_get_child_node_count(supply_node);
-> +
-> +	struct fwnode_handle *temp_node __free(fwnode_handle) =
-> +		device_get_named_child_node(dev, "temperature-channels");
-> +	num_temp = fwnode_get_child_node_count(temp_node);
-> +
-> +	num_chan = size_add(num_temp, size_add(ARRAY_SIZE(temp_channels), num_supply));
-
-+ overflow.h
-
-> +	sysmon_channels = devm_kcalloc(dev, num_chan, sizeof(*sysmon_channels), GFP_KERNEL);
-> +	if (!sysmon_channels)
-> +		return -ENOMEM;
-> +
-> +	/* Static temperature channels first */
-> +	memcpy(sysmon_channels, temp_channels, sizeof(temp_channels));
-> +	idx = ARRAY_SIZE(temp_channels);
-> +
-> +	/* Supply channels from DT */
-> +	fwnode_for_each_child_node_scoped(supply_node, child) {
-> +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "missing reg for supply channel\n");
-> +
-> +		if (reg > SYSMON_SUPPLY_IDX_MAX)
-> +			return dev_err_probe(dev, -EINVAL,
-> +					     "supply reg %u exceeds max %u\n",
-> +					     reg, SYSMON_SUPPLY_IDX_MAX);
-> +
-> +		ret = fwnode_property_read_string(child, "label", &label);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "missing label for supply channel\n");
-> +
-> +		sysmon_channels[idx++] = (struct iio_chan_spec) {
-> +			.type = IIO_VOLTAGE,
-> +			.indexed = 1,
-> +			.address = reg,
-> +			.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
-> +			.datasheet_name = label,
-> +		};
-> +	}
-> +
-> +	/* Temperature satellite channels from DT */
-> +	fwnode_for_each_child_node_scoped(temp_node, child) {
-> +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "missing reg for temp channel\n");
-> +
-> +		if (reg < 1 || reg > SYSMON_TEMP_SAT_MAX)
-> +			return dev_err_probe(dev, -EINVAL,
-> +					     "temp reg %u out of range [1..%u]\n",
-> +					     reg, SYSMON_TEMP_SAT_MAX);
-> +
-> +		ret = fwnode_property_read_string(child, "label", &label);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "missing label for temp channel\n");
-> +
-> +		sysmon_channels[idx++] = (struct iio_chan_spec) {
-> +			.type = IIO_TEMP,
-> +			.indexed = 1,
-> +			.address = SYSMON_TEMP_SAT_BASE +
-> +				   (reg - 1) * SYSMON_REG_STRIDE,
-> +			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> +			.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
-> +			.datasheet_name = label,
-> +		};
-> +	}
-> +
-> +	indio_dev->num_channels = idx;
-> +	indio_dev->info = &sysmon_iio_info;
-> +
-> +	/*
-> +	 * Assign per-type sequential channel numbers.
-> +	 * IIO sysfs uses type prefix (in_tempN, in_voltageN)
-> +	 * so numbers only need to be unique within each type.
-> +	 */
-> +	temp_chan_idx = 0;
-> +	volt_chan_idx = 0;
-> +	for (unsigned int idx = 0; idx < indio_dev->num_channels; idx++) {
-> +		if (sysmon_channels[idx].type == IIO_TEMP)
-> +			sysmon_channels[idx].channel = temp_chan_idx++;
-> +		else
-> +			sysmon_channels[idx].channel = volt_chan_idx++;
-> +	}
-> +
-> +	indio_dev->channels = sysmon_channels;
-> +
-> +	return 0;
-> +}
-
-...
-
-> +/**
-> + * sysmon_core_probe() - Initialize Versal SysMon core
-
-It is managed, please name it accordingly: devm_sysmon_core_probe().
-
-> + * @dev: Parent device
-> + * @regmap: Register map for hardware access
-> + *
-> + * Return: 0 on success, negative errno on failure.
-> + */
+ .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 721 +++++++++++++++++-
+ .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts  | 413 ++++++++++
+ .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |  11 +-
+ 3 files changed, 1126 insertions(+), 19 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+2.34.1
 
