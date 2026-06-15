@@ -1,133 +1,199 @@
-Return-Path: <devicetree+bounces-311837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311839-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MMDQE07SL2oVHgUAu9opvQ
-	(envelope-from <devicetree+bounces-311837-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:22:06 +0200
+	id FhfuDs7SL2ozHgUAu9opvQ
+	(envelope-from <devicetree+bounces-311839-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:24:14 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB548685510
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:22:05 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4872968553C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:24:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=mVCcf1ev;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311837-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311837-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=microchip.com header.s=mchp header.b=ZUqOZJE9;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311839-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311839-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=microchip.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 94C18302E7BF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:22:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 811A6300463C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:24:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0BA530C17B;
-	Mon, 15 Jun 2026 10:22:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920DD3DA5AD;
+	Mon, 15 Jun 2026 10:24:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA28B79CD;
-	Mon, 15 Jun 2026 10:22:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2556579CD;
+	Mon, 15 Jun 2026 10:24:06 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781518922; cv=none; b=k7vTK2eaDfBHIrNHLL8Xz6MBGZaA2DA1vlrKb/TJNIq1291i3qbJtGAHcnBwSqxNdq1wubjjxuNbmgMtAke9y+bR3Y+bV3ap9svxRYITOShNqVRGRUFjIEIyXm/1L3n+V+8XBFzOpkaFcigfU/SMwm9w7Q6t1PH7kEndGUsJcA0=
+	t=1781519048; cv=none; b=mSSyDvr2ZFJjcyRDLyN6ey3rWrupkZF0k9WbyHykVvtgvIUzhXlqFL02jSjGZQfRAKYxUp6+mO9BKF7fFSDC7MPFSbgLiPJ848ZKcxL8BxdGTz34EJ8++MlwwT5Lbk5Bswa1en2/2C6qR4NfB0IRYfUE9uhhkbLGmMafSv4SmAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781518922; c=relaxed/simple;
-	bh=1pgoTUa/iaFDUDl6dNuZhTQb81x2vd4ypbGHLcDcZ5Q=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=W7QMQhZSkR5UAWCrKIXuvR7mqZEMl7TXOEjRyUrhxBvp90ucagYwMihnV9xb9QZeaogeD2hYlfKOuPD7haQl6m4nY5HUC1ssUHeOc/CkBJsPcHW9FU9xctvwDD/AGJzsuDAX5m1h3xnMAH1pSy9fp2b0A2eGP/s1cbLWOMYYvgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mVCcf1ev; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E6CA1F00A3A;
-	Mon, 15 Jun 2026 10:21:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781518921;
-	bh=pOMyA4oeoJ6pkRQwgpC41H2yFFgKVKeVKbT/i84cSqo=;
-	h=From:To:In-Reply-To:References:Subject:Date;
-	b=mVCcf1evQTW1CRlsDkWOa11pBr3M+jTO96geXI/hhSQw/xbewxDoOggW3gekJp/rY
-	 ccCPoWnq7jInai6PXaa2cPOH6nlyBi2qy4usFw/Rb2B+wGffK64XrYQV47IVODSqEN
-	 XpNnaYutAopQgs4rh/JpvGBKEjZix7V04jPh7Qz4S6DVIi52kbp96jROOTc2EDRzQ4
-	 To8irBKN77urpH+XoS75K5f3oLWd3NpxaBcENxPrhP8tM6lPWhDSo/UntFZGC/PrwW
-	 81JOCUQcLqvbt8yLX2nlgja8zE+FTpplqZqgr4dCfUIGN2JEcTRvrIPaJcMt2NpGrr
-	 gIskWnSyKYCSg==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, 
- Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
- Biju Das <biju.das.jz@bp.renesas.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-In-Reply-To: <20260608115507.134969-2-krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260608115507.134969-2-krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH] dt-bindings: mfd: syscon: Revert
- renesas,r9a08g046-lvds-cmn
-Message-Id: <178151891887.278191.1501610164206818615.b4-ty@b4>
-Date: Mon, 15 Jun 2026 11:21:58 +0100
+	s=arc-20240116; t=1781519048; c=relaxed/simple;
+	bh=e6FR948efBXD1kKaijtZma5Tu9CLpRPYxviWmS/WyH4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bXbxzDkOzRbCU7Dh8TB7p7wqhB5/8EgE/Bh81z4s8JKXrWxvOkSxP/GdgP9633D5aXosxatZ33MrpUTHtTFdh0+AHNhRzBfe68iS2deBGmevEVJKOmm5v8bX5x0P8PdP+JIMZ7jxBXh7LxFhuyWrMZN9Ea5cL3FzVFL71Mhjx+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ZUqOZJE9; arc=none smtp.client-ip=68.232.154.123
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1781519047; x=1813055047;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=e6FR948efBXD1kKaijtZma5Tu9CLpRPYxviWmS/WyH4=;
+  b=ZUqOZJE96UxYSe0BerKLLGZAP+seWHtJ3AgE2SEdGlWqwuV3Gg/rB5rh
+   X3kAbA849/Iga626KPiNmDoGaSrBjp8Z7uE+2XQQYDNjqGgO047jc6KY9
+   FLO5loKosjMfBO2R3/Q5xgnpxzY4f4bMqpU15jXUEgAYv/eHw2Pabmztd
+   SWW9dL5d/cS2mlRRBbiQt7RP/rmQIW/Pg47a4bTnYSjHwQtof2km0HUM2
+   icgOi0Ak7i+jVSUc5bdE343CMix8QOWtSKRoKVRgM+KItBXimcVpUI323
+   dF2zP2ydkXJMoV2EshGfrrG+lgc44gqNLW81Pu7tCeEqUlozQbfCmoByW
+   Q==;
+X-CSE-ConnectionGUID: hfzY5t+0RsuQFcDb3BdrKw==
+X-CSE-MsgGUID: +ziSKTYtRoeQ8lTI5VSYig==
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; 
+   d="asc'?scan'208";a="58297258"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026 03:24:06 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
+ chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.41; Mon, 15 Jun 2026 03:24:06 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
+ Transport; Mon, 15 Jun 2026 03:24:04 -0700
+Date: Mon, 15 Jun 2026 11:23:17 +0100
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+CC: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mark
+ Brown <broonie@kernel.org>, "linux-spi@vger.kernel.org"
+	<linux-spi@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: spi: snps,dw-apb-ssi: Add support
+ for snps,dwc-ssi-2.00a
+Message-ID: <20260615-disallow-dosage-333752ccddc1@wendy>
+References: <20260612125856.8530-1-changhuang.liang@starfivetech.com>
+ <20260612125856.8530-2-changhuang.liang@starfivetech.com>
+ <20260612-mute-aqueduct-029ac227314e@spud>
+ <ZQ4PR01MB1202FA8F122134F7153D26F7F2192@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.16-dev-ad80c
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="91bPSu8DoDeqQSyg"
+Content-Disposition: inline
+In-Reply-To: <ZQ4PR01MB1202FA8F122134F7153D26F7F2192@ZQ4PR01MB1202.CHNPR01.prod.partner.outlook.cn>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:tommaso.merciai.xr@bp.renesas.com,m:biju.das.jz@bp.renesas.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:krzysztof.kozlowski@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com,bp.renesas.com,vger.kernel.org,oss.qualcomm.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-311839-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:changhuang.liang@starfivetech.com,m:conor@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:broonie@kernel.org,m:linux-spi@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-311837-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_NEQ_ENVFROM(0.00)[conor.dooley@microchip.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,wendy:mid,microchip.com:dkim,microchip.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DB548685510
+X-Rspamd-Queue-Id: 4872968553C
 
-On Mon, 08 Jun 2026 13:55:08 +0200, Krzysztof Kozlowski wrote:
-> Revert commit 51284d8b1dbc ("dt-bindings: mfd: syscon: Document the
-> LVDS_CMN syscon for the RZ/G3L") because it is completely not matching
-> reality and clearly incorrect in respect of renesas,r9a08g046-lvds-cmn.
-> 
-> It wasn't ever build-tested by author on their DTS, either.
-> 
-> The documented renesas,r9a08g046-lvds-cmn compatible clearly disallows
-> any children and simple-mfd fallback, however its only use in original
-> patchset is with simple-mfd and children, so this could have never
-> worked.
-> 
-> [...]
+--91bPSu8DoDeqQSyg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+On Sat, Jun 13, 2026 at 03:38:46AM +0000, Changhuang Liang wrote:
+> Hi, Conor
+>=20
+> Thanks for the review.
+>=20
+> > On Fri, Jun 12, 2026 at 05:58:55AM -0700, Changhuang Liang wrote:
+> > > Add a new compatible string "snps,dwc-ssi-2.00a" for the Synopsys
+> > > DesignWare SSI controller version 2.00a.
+> >=20
+> > Two things. Firstly, driver patch suggests a fallback to 1.01a is possi=
+ble. Why
+> > haven't you added one?
+>=20
+> Will support fallback.
+>=20
+> > Secondly, I am going to expect that when your starfive user for this ap=
+pears in
+> > my inbox that it has a device-specific compatible, so you may as well a=
+dd that
+> > now.
+>=20
+> Our standard SPI control is completely based on the Synopsys DesignWare S=
+SI controller version 2.00a.=20
+> However, for the controller that accesses the flash, a set of modificatio=
+ns has been made based on the=20
+> Synopsys DesignWare SSI controller version 2.00a, and the driver part als=
+o requires specific adaptation.
+>=20
+> Therefore, on the JHB100 SoC, the initial device tree source I have plann=
+ed looks like this:
+>=20
+> spi0: spi@17f20000 {
+>       compatible =3D "snps,dwc-ssi-2.00a";
+>       reg =3D <0x0 0x17f20000 0x0 0x10000>;
+> };
+>=20
+> sfc0: spi@18000000 {
+>       compatible =3D "starfive,jhb100-spi";
+>       reg =3D <0x0 0x18000000 0x0 0x10000>;
+> };
+>=20
+> Thus, I plan to add a new "starfive,jhb100-spi" compatible string for the=
+ controller that accesses the flash.
+> For now, I intend to keep these as two separate series.
 
-[1/1] dt-bindings: mfd: syscon: Revert renesas,r9a08g046-lvds-cmn
-      commit: 4143734f197c0065bf5fce7da22f4d0eaf404753
+No, if you have two integrations of the designware IP with different
+programming models on the jhb100 I expect to see two different
+soc-specific compatibles used. I don't want to see bare synopsys
+compatibles on the platforms I am looking after.
 
---
-Lee Jones [李琼斯]
+Cheers,
+Conor.
 
+--91bPSu8DoDeqQSyg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCai/SlAAKCRB4tDGHoIJi
+0koHAQCiPtRNw/1gwXZK/BdT6j8FL5iATsOXXHwrJLZCXolWCwEAiwpuHr/ltCBv
+LyeszfI6AUWfr17w0u0wGH7YiVPCsAo=
+=17ze
+-----END PGP SIGNATURE-----
+
+--91bPSu8DoDeqQSyg--
 
