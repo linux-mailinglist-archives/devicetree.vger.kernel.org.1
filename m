@@ -1,165 +1,260 @@
-Return-Path: <devicetree+bounces-311697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311699-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6q8eAyafL2rNDQUAu9opvQ
-	(envelope-from <devicetree+bounces-311697-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:43:50 +0200
+	id jMieGfSgL2pVDgUAu9opvQ
+	(envelope-from <devicetree+bounces-311699-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:51:32 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640B1683E73
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:43:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D54EC683EFF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:51:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=VU4DZ7yX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311697-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311697-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=BUF3aEYG;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311699-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311699-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 31A4430087AB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:43:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C230302A2D6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 06:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79F9C3B27CA;
-	Mon, 15 Jun 2026 06:43:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29CC937E304;
+	Mon, 15 Jun 2026 06:50:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com [74.125.82.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BC4B2F7F0F
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 06:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960AF39C01E
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 06:50:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781505827; cv=none; b=l9gi0aVxyjoRDScrlVGWzMVzBDjR33+vkPisrZHuYfc5dyRGBQOQsW30Eqni7bxUt4fuqfTY6so033LuuzERPCtnkeQ8EGzrLsExo8B+5pqTARjmThpBlGVJZEsZHn0AGu270Vgoatv+Gjw/koP5Z7EUucFZJCY9OHCjdLEl/1Y=
+	t=1781506213; cv=none; b=QZBQypvj8KcoRVXAjqJ7XPvh7JYwH49pHXzY9PBQaFj794tRPU0D1Sk+Ato/7maObDG0OvU0rsoM75wb3zaAUy8W8vl14Cbk2di1buYi0NTac4PZSXdwHBbULf58OIMnTESchyso1PTKmK51NN+oSvfnqXYpK6umuQULG9ifSNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781505827; c=relaxed/simple;
-	bh=28YUfSIC4IKMppuxRx7HhiBnwbvT0FMTRoo8JLtt8qo=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=lRwJ3eeSyc444MeR59alE7HzTUULlxGjFDwX8VXb1dhNfALkcAfFXi3nEQEnfXWq2EtgIbGywONyqledrs6kwC5WHdu8BHZd31m8cWQQmQ8PR3/aTeGdu4+YKhK0rrhftu9qIEZuX+pS2/ZuW+TxwvhQ7EWbDXZGnQ3PYFU7/pg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VU4DZ7yX; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF95C1F000E9;
-	Mon, 15 Jun 2026 06:43:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781505826;
-	bh=fFPnZKPmtcngFYWaaYNFE8uD5xTdMxVbULPLZpK8C1o=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=VU4DZ7yXzfsvZSfOs6RJJWAgf6QKIthFVBdm9X0yy1XFflAobcWRSfaNv9mPAWITq
-	 GBoFpguMGu8UkjrAYnpjENSFzn9hbOSBtsUStyRpIsgguMaLVCBHYzJoaURZ3cDmO0
-	 QqIpfA5sgyqe/fBfLmokbDRx6naBXsqfM1jbuxsVgN7Y/oz3XBbGU+IFhrRhv9bqR3
-	 KCRjEwoHrwJxkF7rukGcv8jq4dh+qKcioz6corcKk3cDG8N12bW548up5x//OwdRSt
-	 3qxhE/EFjsnLihYmWhjgjfDqWTvuFki+j0SWynNKoofCtHkYuYsAlPNoGvRfKDTfE/
-	 v2x1tsR/Muibw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 5/7] arm64: dts: renesas: r8a779g0: Add DSC
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Tomi Valkeinen" <tomi.valkeinen+renesas@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, wsa+renesas@sang-engineering.com, dri-devel@lists.freedesktop.org, conor+dt@kernel.org
-In-Reply-To: <20260615-rcar-du-dsc-v4-5-93096a1b56a3@ideasonboard.com>
-References: <20260615-rcar-du-dsc-v4-5-93096a1b56a3@ideasonboard.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 06:43:45 +0000
-Message-Id: <20260615064345.BF95C1F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781506213; c=relaxed/simple;
+	bh=EU5sikuSxxZQMq8VLrXi/omfwefPxQAw0HObvrsR2UI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LpbPe+CxAnxq+iYYh1ltnu99LrTMr9FFPOyF0weprrNzjnhxsr1owMoCada8YIlKx/NiiVF2sIedqiXaVCTtlQcftHiSE0XA0X+eL2TOtUGBvAWUm7Zasjb4pTYzUvEtJ1v4HkzWRYHQ9FwUzNbtPgrbmFXbcqz5YobX0K+ODdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BUF3aEYG; arc=none smtp.client-ip=74.125.82.169
+Received: by mail-dy1-f169.google.com with SMTP id 5a478bee46e88-304df7ff4c2so2271841eec.0
+        for <devicetree@vger.kernel.org>; Sun, 14 Jun 2026 23:50:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781506211; x=1782111011; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=su7U2CceZXD6mEz8ItmrZ6WCGP9Vn5IoVvW2JAEM0p0=;
+        b=BUF3aEYGYE6w4kkRAe/TWThkCgmY46XuJpzJRZUFRA+omCop0WPY23zuDTLxb2OlZZ
+         3GYNhfj49/hrQSOBwfz1GY/VgW3byArX+xFibScnEmkK/PpYNmRrH6cVTE4IErfgkIhk
+         OK8PgqqY9zy2klPr7wfMyZjYSS5wMZqMSTO4w22aNWqHM+8/csrsqMCjmQPyxvOD9wbU
+         CmN3jpd9gxlqGjWNENXhCjtQyoCbSxRXrX2lSf0BlMoWpGx5ejTYiZ2CfkDY6FqJY2fh
+         Xrs1yCFuDyqQLX7ZPaqeTtHq7xP92uUsuXxAZ3MHLyhQXWPXJssqfl3m50iWB1BqHA43
+         Wtmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781506211; x=1782111011;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=su7U2CceZXD6mEz8ItmrZ6WCGP9Vn5IoVvW2JAEM0p0=;
+        b=mdLakjy2AYcNMGVtnWsoN3uYlOr51aiRC/DAT9MniAXgh3QLYb6zW9COoTDFQDRNVr
+         J/basqC0bpewS8WHHpTeTW2sdDkQnlwG6TVLcse6Zyyspq2W9MBJkdqExbeGFinkQxoE
+         2jNfpRXU1W1noSbMUu7LiQWZlRhxI6048EqWNWJp35TGpR9cs0Se2ZPXPU4aKB6/bPcV
+         FuvBPi+2TqkvM/O+7gAxJrejRQVPQWQhb4iHHJJXoE+/wr41OudLQvf8sjQQaDUrQvjc
+         IUh+JD2qNm6k8DRy3W2VJ3aeIZu7wGczpBQvJKadSivLY8x0vqeuTmEqzxtyhlaCEHud
+         948Q==
+X-Forwarded-Encrypted: i=1; AFNElJ+PMV2MgWWAx/JxVcGZM4YxZn7jxruCazfDUimUYM018ld1SMGWQF45xvxlowoNUm0XgcVrrlU/ubb1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfDWUaMfWXZpg+sIqFaqYjVET9us8LWALHBHy5WNVuMy0m6Gfu
+	yziN8s+5Tx9Yol5UX6zOY3Y1tYVasc241Mu1cIIXh90UC4OJWka4M9ZZ
+X-Gm-Gg: Acq92OFQ2EInOrVeEmxaykYcDIKmsjWXuCiUvoO4ZroCnC8srisCZDpj34xviUpo5ko
+	zqT5fZMf3ZQANvBdAHHC0QIdzOza4beII6p3HPcx42SROTbZ/zjP+xy3cacpq0Sen0Z9zOcg9RB
+	y7HLhkYNG3dWd+8BIRXR4r+Yisib9D+ERnaukF4VYUAt2qrJADjv5cfuafcTLnRzQA59nbIlD/L
+	gkHGIZsGl3NiFuJg1nyvkf6FwC2YTYfM3EMNEeTymUg2LMQOKbK7Bx7A9BFAYP/GJkIyhYCAslX
+	JdZ+81ZAMnqlyrHC4svnyy89KjT+FgFxhQgMp67sKe9yUWGnGu4Bk5SSaM18Czc7DZV70yjLzsB
+	IQ+gZJmkxm11r/xnRwHTg2DSlrVx+6ZeGQ5sYMKeXdHexzXpLLQaN+0hMzcK4bvM6605zgTI5SA
+	cLTmlvGajJkEW6Ooa4eOveLS+b/4WJXsENJDRVtZGKr4b26cF/rnpgnxtfNx6LNClrkXzngvKhi
+	32/c9MjOa4z
+X-Received: by 2002:a05:7301:9f09:b0:304:70d0:4f03 with SMTP id 5a478bee46e88-30820c2d782mr6607439eec.6.1781506210508;
+        Sun, 14 Jun 2026 23:50:10 -0700 (PDT)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3081eb9a2e7sm13516812eec.30.2026.06.14.23.50.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Jun 2026 23:50:10 -0700 (PDT)
+From: Joey Lu <a0987203069@gmail.com>
+To: zhengxingda@iscas.ac.cn,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	yclu4@nuvoton.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Joey Lu <a0987203069@gmail.com>
+Subject: [PATCH v4 0/6] drm/verisilicon: add Nuvoton MA35D1 DCU Lite support
+Date: Mon, 15 Jun 2026 14:49:57 +0800
+Message-ID: <20260615065003.76661-1-a0987203069@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-311699-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-311697-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[smtp.kernel.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mailbox.org:email,lists.linux.dev:replyto,sashiko.dev:url,vger.kernel.org:from_smtp];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:tomi.valkeinen+renesas@ideasonboard.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:wsa+renesas@sang-engineering.com,m:dri-devel@lists.freedesktop.org,m:conor+dt@kernel.org,m:tomi.valkeinen@ideasonboard.com,m:wsa@sang-engineering.com,m:conor@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[iscas.ac.cn,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
+	FORGED_SENDER(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:zhengxingda@iscas.ac.cn,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:yclu4@nuvoton.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:a0987203069@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[nuvoton.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[a0987203069@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,iscas.ac.cn:email,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 640B1683E73
+X-Rspamd-Queue-Id: D54EC683EFF
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+This series adds support for the Verisilicon DCUltraLite display
+controller as integrated in the Nuvoton MA35D1 SoC.
 
-Pre-existing issues:
-- [High] `WARN_ON(pm_runtime_get_sync())` triggers a spurious warning and l=
-eaks the usage counter on failure.
---
+The Verisilicon DC driver and its DT binding were originally written by
+Icenowy Zheng <zhengxingda@iscas.ac.cn> for the T-Head TH1520 SoC, which
+carries a DC8200 IP block.  The present series builds on that foundation
+with gratitude to Icenowy for the original work.
 
-commit 0b204c1dc5dc2b356c39f6b89ab2b1606d6ffb6b
-Author: Marek Vasut <marek.vasut+renesas@mailbox.org>
+The DCUltraLite is a different variant in the DC IP family.  While the two
+IPs share a broadly similar register layout, a number of differences
+prevent the existing driver from working on the MA35D1 without
+modification:
 
-arm64: dts: renesas: r8a779g0: Add DSC
+  - No CONFIG_EX commit path: the DC8200 staging registers
+    (FB_CONFIG_EX, FB_TOP_LEFT, FB_BOTTOM_RIGHT, FB_BLEND_CONFIG,
+    PANEL_CONFIG_EX) are absent.  The DCUltraLite uses enable (bit 0) and
+    reset (bit 4) bits in FB_CONFIG for direct framebuffer updates, and
+    requires a per-frame VALID bit toggle (FB_CONFIG bit 3) to latch
+    configuration changes.
 
-The Renesas DSC Display Stream Compression is a bridge embedded in the
-Renesas R-Car V4H SoC. The current dtsi file does not represent the DSC at
-all, and thus the pipeline for DSI1 has not been functional.
+  - No PANEL_START register: panel output begins when
+    PANEL_CONFIG.RUNNING is set; the DC8200 multi-display sync start
+    register at 0x1CCC does not exist.
 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/=
-dts/renesas/r8a779g0.dtsi
-> index 82a7278836e57..123baaea8db45 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-> @@ -2298,6 +2298,35 @@ du_out_dsi0: endpoint {
+  - Different IRQ registers: DISP_IRQ_STA at 0x147C / DISP_IRQ_EN at
+    0x1480, versus the DC8200's TOP_IRQ_ACK at 0x0010 / TOP_IRQ_EN at
+    0x0014.
 
-[ ... ]
+  - Simpler clock topology: two clocks ("core" bus gate and "pix0" pixel
+    divider); no axi or ahb clocks required.
 
-> +		dsc: bridge@feb8d000 {
-> +			compatible =3D "renesas,r8a779g0-dsc", "renesas,rcar-dsc";
+  - Single display output: no per-output indexing beyond index 0 is
+    needed.
 
-[Severity: High]
-This isn't a bug introduced by this patch, but enabling this device node
-activates preexisting code in the driver added earlier in the series which
-has an issue in the runtime PM error path.
+  - Hardware-discoverable identity: the DCUltraLite exposes chip identity
+    registers whose model field reads 0x0 (revision 0x5560,
+    customer_id 0x305), allowing the existing vs_fill_chip_identity()
+    path to identify the variant purely through register reads.
 
-Looking at rcar_dsc_atomic_enable() in drivers/gpu/drm/renesas/rcar-du/rcar=
-_dsc.c:
+Patch 1 generalises the verisilicon,dc DT binding to accommodate the
+Nuvoton MA35D1 SoC-specific compatible and the variant's two-clock,
+one-reset, single-port topology.
 
-drivers/gpu/drm/renesas/rcar-du/rcar_dsc.c:rcar_dsc_atomic_enable() {
-	struct rcar_dsc *dsc =3D bridge_to_rcar_dsc(bridge);
+Patch 2 adds the register-level macros needed by the DC8000 ops.
 
-	WARN_ON(pm_runtime_get_sync(dsc->dev));
-}
+Patches 3-5 introduce the driver changes in three logical steps: the
+vs_dc_funcs hardware ops vtable with DC8200 ops extracted into
+vs_dc8200.c; the DC8000 ops in vs_dc8000.c with the necessary
+clock-optionality changes; and finally the DCUltraLite HWDB entry that
+gates hardware recognition once all support is in place.
 
-Since pm_runtime_get_sync() returns 1 if the device is already in the
-RPM_ACTIVE state, will evaluating WARN_ON(pm_runtime_get_sync(dsc->dev))
-trigger a spurious kernel warning stack trace on every atomic enable if the
-device is already active or if runtime PM is disabled?
+Patch 6 adds the Kconfig dependency on ARCH_MA35, placed last because it
+is only meaningful after the HWDB entry is added.
 
-Furthermore, if pm_runtime_get_sync() fails (returns < 0), the PM
-usage counter is still incremented by the subsystem. Since the error path d=
-oes
-not call pm_runtime_put_noidle(), does this leak the PM usage counter and
-prevent the device from ever suspending?
+All patches have been tested on Nuvoton MA35D1 hardware.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615-rcar-du-ds=
-c-v4-0-93096a1b56a3@ideasonboard.com?part=3D5
+Changes from v3:
+  - [dt-bindings] Reverted extra space before inline '#' comment.
+  - [dt-bindings] Moved clock/reset items descriptions from the top-level
+    clocks:/resets: into the per-variant allOf/if blocks; kept only
+    minItems/maxItems at the top level.
+  - [dt-bindings] Restored full items lists for clock-names and reset-names
+    at the top level with minItems so names are still validated.
+  - [dt-bindings] Added minItems: 1 to resets: in the nuvoton block.
+  - [dt-bindings] Added required: [resets, reset-names] inside the then:
+    block for both thead,th1520-dc8200 and nuvoton,ma35d1-dcu.
+  - [dt-bindings] Added minItems: 3 to reset-names in the thead block.
+  - [dt-bindings] Added maxItems: 1 to reset-names in the nuvoton block.
+  - [dt-bindings] Reverted unevaluatedProperties: false back to
+    additionalProperties: false.
+  - [dt-bindings] Removed the second DT example for nuvoton,ma35d1-dcu
+    since a difference in clocks/resets does not need a new example.
+  - [ops] Renamed bridge_enable/bridge_disable to panel_enable_ex/
+    panel_disable_ex.
+  - [ops] Renamed irq_handler to irq_ack.
+  - [ops] Renamed plane_enable_ex/disable_ex/update_ex to
+    primary_plane_enable_ex/disable_ex/update_ex.
+  - [ops] Renamed vs_dcu_lite.c to vs_dc8000.c, all internal functions
+    from vs_dcu_lite_* to vs_dc8000_*, exported symbol from
+    vs_dcu_lite_funcs to vs_dc8000_funcs; updated Makefile.
+  - [kconfig] Moved ARCH_MA35 Kconfig change to a separate final commit,
+    placed after the HWDB entry.
+
+Joey Lu (6):
+  dt-bindings: display: verisilicon,dc: generalize for single-output
+    variants
+  drm/verisilicon: add register-level macros for DC8000
+  drm/verisilicon: introduce per-variant hardware ops table
+  drm/verisilicon: add DC8000 (DCUltraLite) display controller support
+  drm/verisilicon: add DCUltraLite chip identity to HWDB
+  drm/verisilicon: extend Kconfig to support ARCH_MA35 platforms
+
+ .../bindings/display/verisilicon,dc.yaml      |  80 +++++++++++--
+ drivers/gpu/drm/verisilicon/Kconfig           |   2 +-
+ drivers/gpu/drm/verisilicon/Makefile          |   2 +-
+ drivers/gpu/drm/verisilicon/vs_bridge.c       |  20 +---
+ drivers/gpu/drm/verisilicon/vs_crtc.c         |  38 ++++++-
+ drivers/gpu/drm/verisilicon/vs_crtc_regs.h    |   1 +
+ drivers/gpu/drm/verisilicon/vs_dc.c           |  13 ++-
+ drivers/gpu/drm/verisilicon/vs_dc.h           |  33 ++++++
+ drivers/gpu/drm/verisilicon/vs_dc8000.c       |  78 +++++++++++++
+ drivers/gpu/drm/verisilicon/vs_dc8200.c       | 107 ++++++++++++++++++
+ drivers/gpu/drm/verisilicon/vs_hwdb.c         |  14 +++
+ drivers/gpu/drm/verisilicon/vs_hwdb.h         |   6 +
+ .../gpu/drm/verisilicon/vs_primary_plane.c    |  32 +-----
+ .../drm/verisilicon/vs_primary_plane_regs.h   |   3 +
+ 14 files changed, 368 insertions(+), 61 deletions(-)
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc8000.c
+ create mode 100644 drivers/gpu/drm/verisilicon/vs_dc8200.c
+
+-- 
+2.43.0
+
 
