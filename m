@@ -1,248 +1,204 @@
-Return-Path: <devicetree+bounces-312155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312157-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4JfgFd88MGolQQUAu9opvQ
-	(envelope-from <devicetree+bounces-312155-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:56:47 +0200
+	id E4l3MeA9MGpVQQUAu9opvQ
+	(envelope-from <devicetree+bounces-312157-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 20:01:04 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A029468902A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 19:56:46 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20DE5689063
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 20:01:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=BJ0ygtbY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312155-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-312155-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
-	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=os+ZLkda;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312157-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312157-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("subspace.kernel.org:s=arc-20240116:i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6B98C3008FCC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:56:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6B0E30078C0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 17:59:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB12E30DD2F;
-	Mon, 15 Jun 2026 17:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D2753093B5;
+	Mon, 15 Jun 2026 17:59:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com [74.125.224.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A588830BB9B
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 17:56:33 +0000 (UTC)
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781546196; cv=none; b=L+h3nQpPn2Fn/7+r7sx7aO/xRyLwLE/CwJZBtZn8fnblqsRyJUCG2nNSt4Xx9BZDM/eiW8VuZ4cdtZzlljY9W9VlfBX5Erotx0SnAcT88WZVa1XU1IgCLo2DfctLhw/sBNSCu1TSF5Dow1AuL7igYjNkLVRd9tK2c724wae7WZ0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781546196; c=relaxed/simple;
-	bh=Oj4RKJnXYk35hVFXcx5pzzIrZMT/oGdZI6oDIaOmPDM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=T3qkE3dUEVd3FrBAWkauKPFnPSfAfEJvCOXc76/b1Rmy1HRPR/rrZY3p7oMfUryWcgpS/r173j/PL6DYFf8dW/h8eNsByQ02npLlUKnIrCQtEPv2PlWykafvN4Ww7nc0AZne+bDb7kwrXRXkmooZnXEE8HQnK7b/AVEOskNA96k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=BJ0ygtbY; arc=none smtp.client-ip=209.85.221.41
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-46019b190b6so3089560f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 10:56:33 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070192EB5B8
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 17:59:45 +0000 (UTC)
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1781546387; cv=pass; b=IUnmUoVutk189ZRP6Y83e9iTredFwCvvhdZLNhpsqUpe8T5gxCo/99bWkVL4ciyvf5BEAhwXgjpOGRV2znI2wK7HKcd0PNVjgSQhCR5L7xwY8blibq1CBgrFLgcFBj5BCPY8mDeiG2PHefBMdPfhQHskNMVtMy7DqKs102L1Naw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1781546387; c=relaxed/simple;
+	bh=Z04S6VNZxBeIrKrAtYyZN/BEOkXQu+9ARQV6UFG4A1I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=P7pGItmaXR60iPTAtxhyHZREmgyR+oU7UvK/W88uBdIQOgnQoC5VKzq59Sv2j5HHL8tw1pjsISesOykv0wh6iN45KgzJr2CwEwCCoRgv5Zm8++XVIFuIqJaVYntM/ozev8XVmXCJWg0yCUKNTHOT1FuewZHZV25JhreYD7bAYhM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=os+ZLkda; arc=pass smtp.client-ip=74.125.224.44
+Received: by mail-yx1-f44.google.com with SMTP id 956f58d0204a3-660ea43107fso3712611d50.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 10:59:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781546385; cv=none;
+        d=google.com; s=arc-20240605;
+        b=cSne+eYWRrFx3/xCjfwYWIcjddXm7Igcb9ghtQum2NQko9yslOsl2MJXVpDqci9/91
+         D7Le9G7q74TtvZvbpJ+5wUxa5uvXM5tXGY+1IYPCtLCSTogPGSSoyyr4Sak160wz3fNs
+         0q8RurQSeF60Bitg9Og7CZ4DpogF0bRi973Cz/BP9LPihfx5dTEvBwGXxce41RzE+XWo
+         t0gWg+KgbrQ247wNy7CD00IiRmP/drOESy1oQLuZlk8Ro9IXLao28bkN5tfqqsAIN1Du
+         6HN68EEFHeiag1+EiCUJfjOv/aZ0ToO7s3XUdNMjWABcbWuCS04EowGch4Qc5iWaQRaa
+         RqNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=N7DCS1FhJDnbMeFiAtGx2JiLKTME+H3qz4ArR/Ptiac=;
+        fh=6SiOdMTc/qVmcak7FUizHBdx6P6mWOYPX9rKP5MrNU4=;
+        b=ULTyu2ZcnQ2Mi31ifr0tMfEcmW12Goryt/xD2VfmfSCVPAgMmQ18hPwml//TKMKDeX
+         Er+JKB9dTi9xmtsqZqVExUNrwI2/+O/3suoTW1RcHUjoTquRqyQ+jLaOw9CZE6ualgR1
+         8K+iE207Icm+fj3zC+cInogo9zyPEo8SIhmFqrXjznXlkgOPbqK2xXo4weo8ThstUX6m
+         N9V4QUgbvLkhmsUWVSKGAcoWA81oCVrtyc1bnWqHv5o7L2oC0G7BpVi6kPbWEdeSC/sA
+         gpzZkiyKOtyhYiFgaNoe1yHMkc410t9VNTlt0yWNTzhFoF6Ela1Vc4eh88CPiDCCAKXH
+         i23Q==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1781546192; x=1782150992; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20251104; t=1781546385; x=1782151185; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=V/fOCYr89rjpFF0YHfilwdeTnNExJ5rFE4DuxmsIniE=;
-        b=BJ0ygtbYSD9luAiXbLuXcyp7YnuWVVfcEtIu4oKhRzbx5TqJauKI3MhsS/CL2ywxSI
-         IZvlWcL12t3P57X3yK8xFj3+6BYNDjhs7p039hU2kZ11zM6exBAfwTguHyn3iBCFOhuR
-         NalOqPQND0J1ALUvPMIAf0foMEM/V3RqPhR5vQwCpgRbeOnjxil0dxTlFewDhv1QAz5E
-         35hUfmTLfSaPvBUH9//rK9xnOJ1uOBISZuNUkC7JVt3TVo1Q74Jtgb0+LYxo9sv+LLM/
-         QjM7eGesV+oP7ewvaYx12AZruU8eRvf9s9zZh8OOqwJCOTVIm+qW+E8Uyd3cvmsBR/QX
-         JdTw==
+        bh=N7DCS1FhJDnbMeFiAtGx2JiLKTME+H3qz4ArR/Ptiac=;
+        b=os+ZLkdaYtfa2WOgWAELkzrRBFkGa4KMATzZC5R+cx2vHZXrKrmwKUqTzshJyElwNl
+         vsFpUireuh/LqiTShXZLhi3C/ckqIvlWEd2ne6/NLOIY9AQViYrdCFh4XLU92uUWLZai
+         WJKlm6y6XGwJjA0jaFzXaquNHP3HOttNHNYp1crN3JnNzbGxMu0ra/K2RX+JDAyQZg6m
+         NoPGyI+gUTlF+jIO1Z7vuvo/ygRIVsf0IljKQqPyrZabG2PuomEYFd0Zn9Y2NZX+zVC7
+         hjYszF/Kewb2Kb1SZmBSJedfrkNip4iTRsQq+BUg9gpPRXdtwhljsBFzyKe/ONazqC4w
+         i53w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781546192; x=1782150992;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V/fOCYr89rjpFF0YHfilwdeTnNExJ5rFE4DuxmsIniE=;
-        b=GDApiFq5KBu5fAM3ThL7Jkop0m6oHSgadnqfAhYO/skHxk/emhkTlx4R8UStalZ9fD
-         ZQG+9KyeN8Q78CHkgk2FOlwCIvALCETyOdZ/9dM3FfctIRBpM2+R079N5kDX0hWA8uCN
-         DXaKvqkSzQXd2qjIpGQ5TrJvLDdu6neVxki3TZlcbPQ+4mR7DECD8927cLvVx3KzUWyZ
-         Z4Q/MTDZ9UcVDHaRJd5NNkGJMLDHjeVHti6oIeEJrZYA0SdUM4kWEg7ScvwQgjeUBX/D
-         u/bmypqL0OyYjEuGXs21ZsmO3FighiBlVSE9sZoroSNk5oChx74KhpOy1vtvmQLmHG7W
-         wjyw==
-X-Forwarded-Encrypted: i=1; AFNElJ9vXwE6LqpVbQ0ShflcwtY7py3lf0fu9b8AC7aCKcMA0aeM0hEocWTTBjcm6rLRsaaA+/kp7+Mc8NLR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVz3XfNQh6OPn7Rr1eXZgjFBznNaEUYG1FsoZqsukyUlzAiEG5
-	uHm6jQeYl+2rceWqAU4O52w0ncxkf63CVUYh47ZLdxMCBt0iBVP+wi7p8CkS4m48dFg=
-X-Gm-Gg: Acq92OHa8CgypthT1elggObp6RyaSjzYaPCHWZgJoiJFGYrhwakSxWedbOsdAKTYFA8
-	2e8+qeMKiC/ZqT73w8+Zxz/eOSI+tU/rNLj53jxgBBbf2aOimQmmcj2b32Rrjx8d7m2plmsGXoe
-	YOG3mYfRLYrJyXUB+Ny2m5ZkpjelGVNwZ0PUJh1TPCC52iKNu3ONTzurkBpBx/v2F/5zjUMgxl6
-	tcKIJ2wU3y3Bu3SNe7NApUQd2AuFoeLz5pzLZKTCxNLObAC2/EvbZy1et+5ZpzTnnczoUogayV1
-	n10+gUAEXAkioQ1FFfMsUxiG7li3uFS1F17OX1lst9lnwkRwU/M9eR1gSaVb35pG/V742eWyj6C
-	Zlb7jdkbucah9m2Ei7Y45+ZTjG0dcJnibLnkIUBpOACFY45ibe/EJhqe9Sk/t6XLS9C90r84gDP
-	RZWTc96Fid560Q236wtpcDAA==
-X-Received: by 2002:a05:6000:288f:b0:43d:50c:6f33 with SMTP id ffacd0b85a97d-46077f2a62dmr16205392f8f.26.1781546192039;
-        Mon, 15 Jun 2026 10:56:32 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:5176:ebe3:853b:8fb0])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-4606f2e6a8fsm36837329f8f.37.2026.06.15.10.56.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2026 10:56:31 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Junhui Liu <junhui.liu@pigmoral.tech>,  Michael Turquette
- <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Jernej
- Skrabec <jernej.skrabec@gmail.com>,  Samuel Holland <samuel@sholland.org>,
-  Alexandre Belloni <alexandre.belloni@bootlin.com>,  Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  Maxime Ripard <mripard@kernel.org>,
-  linux-clk@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  linux-sunxi@lists.linux.dev,  linux-kernel@vger.kernel.org,
-  linux-rtc@vger.kernel.org,  devicetree@vger.kernel.org,  =?utf-8?Q?Andr?=
- =?utf-8?Q?=C3=A9?= Przywara
- <andre.przywara@arm.com>
-Subject: Re: [PATCH 7/7] clk: sunxi-ng: Add Allwinner A733 RTC CCU support
-In-Reply-To: <CAGb2v64euL+QNXiJdTn0JygYLXg0WoguPSprKT4sKGZGVZbwug@mail.gmail.com>
-	(Chen-Yu Tsai's message of "Sat, 28 Mar 2026 22:41:20 +0800")
-References: <20260121-a733-rtc-v1-0-d359437f23a7@pigmoral.tech>
-	<20260121-a733-rtc-v1-7-d359437f23a7@pigmoral.tech>
-	<CAGb2v64euL+QNXiJdTn0JygYLXg0WoguPSprKT4sKGZGVZbwug@mail.gmail.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Mon, 15 Jun 2026 19:56:29 +0200
-Message-ID: <1jv7bjd6wi.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20251104; t=1781546385; x=1782151185;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=N7DCS1FhJDnbMeFiAtGx2JiLKTME+H3qz4ArR/Ptiac=;
+        b=rxjbWFJJM3+RHLtRxNFOZ8rn/Hcpg0i03p1vfCogF9IqENSvv1EXdspd7FRIh/78tk
+         ereDphrXgQ/aJQvFe7jCfirhxljFLteuP1yVswSVUckzty2WNV7IGKvSpWhatEhgJUJp
+         1+F+MRWHyaPocjhSkWwV0PZBaN3PFnImTZqvNw2lQzBBsqqllvmM96xNt3vXzhdXjZYp
+         cf6zDwepXkqv4O2/EEoC+P7Wpi5+zT1lK3L/IscF6uzywrytWWRPHiykqN3hTmAFQ8cf
+         jmd1eh9Fs+7XGJ3xIBJKRI66ZypuXISfE+Xyy/fGmuf6LK2pa827hN/7VnyrHL4akW7g
+         bGew==
+X-Forwarded-Encrypted: i=1; AFNElJ+v1tGKuS5Wm7k/IKYhgePnzXgDGCQGf4rHYg9IzmQzs4fmF2MWF1fnJakz5uuvjLRv2dbOBEb86Ffn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7/rC7C+twG5520RIGhlYR/ZkKgsGNG0nJhYKPKxYP1mpPBZ4G
+	jl5OT72KvwgwvwE6hoa6cQ+oA16JUU/B5f4DfRslQ9yBen7Guuj9LgNe2vqZ2YFHFES+s7gEB1H
+	SVyYUkrNg+qr5OgiLnrtCaH82Epnifds=
+X-Gm-Gg: Acq92OGUjB0vscAr0YnQK93L+77DiTEDYonaEi8WA7QLT2p80gsOy7yc8OK54NGMkS2
+	H6tM2rcD5mJO1XM3zlqJHd9V1RAARd/PdFcFg3aHZHWintZh3pukA0+TG0iKKAEBbcvzPbXxj+V
+	ub8V+YIJFjiQXIjeokrzoBh56txWXN1ZMGPmTAOkwagfhTIvPqVKvX/1q04OsqsruKk9zMJk/LV
+	2p0x3nT+ZeFkb27XLmVctRJKGPuQXGO2TZysQtLKeYqCQrUKkzIvC7K26t5zgDPOnt0SNJI3hRg
+	T8+HSLSeAsrceX8=
+X-Received: by 2002:a05:690e:124a:b0:660:5df1:f243 with SMTP id
+ 956f58d0204a3-66278346bd2mr13188710d50.50.1781546384795; Mon, 15 Jun 2026
+ 10:59:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20260510171353.1406018-1-ekffu200098@gmail.com>
+ <20260510171353.1406018-3-ekffu200098@gmail.com> <20260601220346.GB54006-robh@kernel.org>
+In-Reply-To: <20260601220346.GB54006-robh@kernel.org>
+From: Sang-Heon Jeon <ekffu200098@gmail.com>
+Date: Tue, 16 Jun 2026 02:59:32 +0900
+X-Gm-Features: AVVi8Ce3VjKsZhdbSUBBzYGD6PwF3j2b4jhtEgG1brsSGXPufZKHeAEi0A9pCcg
+Message-ID: <CABFDxMHRqNDg1TmuYSWFuF95rYgDX2SpThn-TvbTGMTen8kx2w@mail.gmail.com>
+Subject: Re: [PATCH 2/2] of/fdt: make early_init_dt_scan_chosen() return void
+To: Rob Herring <robh@kernel.org>
+Cc: maddy@linux.ibm.com, mpe@ellerman.id.au, npiggin@gmail.com, 
+	chleroy@kernel.org, saravanak@kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:wens@kernel.org,m:junhui.liu@pigmoral.tech,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:jernej.skrabec@gmail.com,m:samuel@sholland.org,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mripard@kernel.org,m:linux-clk@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-rtc@vger.kernel.org,m:devicetree@vger.kernel.org,m:andre.przywara@arm.com,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-312157-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:robh@kernel.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:npiggin@gmail.com,m:chleroy@kernel.org,m:saravanak@kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:devicetree@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[ekffu200098@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[linux.ibm.com,ellerman.id.au,gmail.com,kernel.org,lists.ozlabs.org,vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DMARC_NA(0.00)[baylibre.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-312155-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[baylibre.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[pigmoral.tech,baylibre.com,kernel.org,gmail.com,sholland.org,bootlin.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,arm.com];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:dkim,baylibre.com:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,starbuckisacylon.baylibre.com:mid,pigmoral.tech:email,vger.kernel.org:from_smtp]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ekffu200098@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[devicetree];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A029468902A
+X-Rspamd-Queue-Id: 20DE5689063
 
-On sam. 28 mars 2026 at 22:41, Chen-Yu Tsai <wens@kernel.org> wrote:
+Hello,
 
-> On Wed, Jan 21, 2026 at 7:04=E2=80=AFPM Junhui Liu <junhui.liu@pigmoral.t=
-ech> wrote:
->>
->> Add support for the internal CCU found in the RTC module of the Allwinner
->> A733 SoC. While the basic 16MHz (IOSC) and 32kHz logic remains compatible
->> with older SoCs like the sun6i, the A733 introduces several new features.
->>
->> The A733 RTC CCU supports choosing one of three external crystal
->> frequencies: 19.2MHz, 24MHz, and 26MHz. It features hardware detection
->> logic to automatically identify the frequency used on the board and
->> exports this DCXO signal as the "hosc" clock.
->>
->> Furthermore, the driver implements logic to derive a 32kHz reference
->> from the HOSC. This is achieved through a muxed clock path using fixed
->> pre-dividers to normalize the different crystal frequencies to ~32kHz.
+On Tue, Jun 2, 2026 at 7:03=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
 >
-> Have you tested whether the actually normalizes the frequency, i.e.
-> selects a different divider based on the DCXO frequency? Otherwise
-> we're just lying about the frequency.
+> On Mon, May 11, 2026 at 02:13:53AM +0900, Sang-Heon Jeon wrote:
+> > Since commit 064e32dc5b03 ("of: fdt: Honor CONFIG_CMDLINE* even
+> > without /chosen node, take 2"), early_init_dt_scan_chosen() always
+> > returns 0, so the return value checks at its callers have become
+> > dead code.
+> >
+> > Drop the return value, change the function to return void, and
+> > update its declaration and callers accordingly. No functional
+> > change.
+> >
+> > Signed-off-by: Sang-Heon Jeon <ekffu200098@gmail.com>
+> > ---
+> > dt-test result
+> >
+> > [    0.684136] ### dt-test ### start of unittest - you will see error m=
+essages
+> > [    0.685849] ### dt-test ### EXPECT \ : Duplicate name in testcase-da=
+ta, renamed to "duplicate-name#1"
+> > [    0.685870] Duplicate name in testcase-data, renamed to "duplicate-n=
+ame#1"
+> > [    0.689496] ### dt-test ### EXPECT / : Duplicate name in testcase-da=
+ta, renamed to "duplicate-name#1"
+> >
+> > ...
+> >
+> > [    1.693384] ### dt-test ### EXPECT / : OF: resolver: overlay phandle=
+ fixup failed: -22
+> > [    1.693386] ### dt-test ### EXPECT / : OF: resolver: node label 'thi=
+s_label_does_not_exist' not found in live devicetree symbols table
+> > [    1.694968] ### dt-test ### end of unittest - 405 passed, 0 failed
+> > ---
+> >  drivers/of/fdt.c       | 10 ++--------
+> >  include/linux/of_fdt.h |  2 +-
+> >  2 files changed, 3 insertions(+), 9 deletions(-)
 >
->> This path reuses the same hardware mux registers as the HOSC clock.
->>
->> Additionally, this CCU provides several gate clocks for specific
->> peripherals, including SerDes, HDMI, and UFS. The driver is implemented
->> as an auxiliary driver to be bound to the sun6i-rtc driver.
->>
->> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> ---
+> Looks like this is dependent on patch 1, so I'm assuming the PPC folks
+> will take the series.
+>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-[...]
+Thanks for reviewing, Rob :)
 
->> +};
->> +
->> +static const struct clk_parent_data hosc_parents[] =3D {
->> +       { .fw_name =3D "osc24M" },
->> +       { .fw_name =3D "osc19M" },
->> +       { .fw_name =3D "osc26M" },
->> +       { .fw_name =3D "osc24M" },
->> +};
->
-> As mentioned in my reply to the binding, this is wrong. There is only
-> one input.
->
-> The most you can do is check the rate of the parent clock against the
-> detected one, and _scream_ that the DT is wrong. And maybe override
-> the reported frequency.
->
-> If you want to do the latter, you could add a new fixed rate gated
-> clock type to our library. You would fill in the rate before the
-> clocks get registered. I probably wouldn't go that far. We want people
-> to have correct hardware descriptions.
->
-> Funnily enough Allwinner's BSP actually implements a fixed rate gate
-> for the next 24M-to-32k divider clock.
+The merge window is now open. PPC folks, could you take a look and
+pick this series up for 7.2?
 
-What about implementing the register bellow as a read-only (and
-non-cached) divider using the factors provided by Junhui ? That would be
-an accurate description of the HW I think.
-
-The oscillator gets set in DT and if the output reported past the
-divider is not 32728Hz, you know you've got a problem (bad DT or HW gone
-bad)
-
-With a fixed-rate gate, you may actually end up lying about what
-actually happen, if the HW does not behave as expected.
-
-Do you prefer a fixed-rate gate still or should I try the RO divider
-approach ?
-
->
->> +
->> +struct ccu_mux hosc_clk =3D {
->> +       .enable =3D DCXO_CTRL_DCXO_EN,
->> +       .mux    =3D _SUNXI_CCU_MUX(14, 2),
->> +       .common =3D {
->> +               .reg            =3D DCXO_CTRL_REG,
->> +               .hw.init        =3D CLK_HW_INIT_PARENTS_DATA("hosc",
->> +                                                          hosc_parents,
->> +                                                          &ccu_mux_ro_o=
-ps,
->> +                                                          0),
->> +       },
->> +};
->
-> So this is wrong.
->
->> +
->> +static const struct ccu_mux_fixed_prediv hosc_32k_predivs[] =3D {
->> +       { .index =3D 0, .div =3D 732 },
->
-> Why is it 732 instead of 750?
->
->> +       { .index =3D 1, .div =3D 586 },
->> +       { .index =3D 2, .div =3D 793 },
->> +       { .index =3D 3, .div =3D 732 },
->> +};
->> +
->> +static struct ccu_mux hosc_32k_mux_clk =3D {
->> +       .enable         =3D DCXO_CTRL_DCXO_EN,
->
+Best Regards,
+Sang-Heon Jeon
 
