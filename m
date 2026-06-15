@@ -1,116 +1,75 @@
-Return-Path: <devicetree+bounces-311792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311758-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1aHQGMi+L2qzFgUAu9opvQ
-	(envelope-from <devicetree+bounces-311792-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:58:48 +0200
+	id IcvaHDe5L2qJFAUAu9opvQ
+	(envelope-from <devicetree+bounces-311758-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:35:03 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D128E684CD2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:58:47 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D67F568493F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:35:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=TDdQABWt;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=dgqcom+H;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311792-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-311792-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=samsung.com header.s=mail20170921 header.b=XqJoLJhD;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311758-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311758-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=samsung.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E60593072447
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:53:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0B7F730156C2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D052E3D5672;
-	Mon, 15 Jun 2026 08:52:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FF63CF668;
+	Mon, 15 Jun 2026 08:34:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9D23DB338
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C4837DE83
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:34:21 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781513562; cv=none; b=kD2htrosgXI/SgvQpHDFkfYV+73dby/KDoykRpP0Cu7oii1Q5Hy4AFCL1RxGY8JoM8VkWvPl71cA7MwWt0vYrQJzZPbe5kTu82+eDBu8IW3IpXXyO2POVeoXx//bqJs4liJydV/Jf2BXzWI72q9peNdbCdIr+vR8OPrbQ8N6qGQ=
+	t=1781512467; cv=none; b=nGEdGzSzucpb+i+cUTojxqJwkM8u139TVEvjdAyljDqelyVohJnM4qKZf3j9zlgF0OCExK6XotuOvfggaIGPYHmR8crmobKbohcXNQHdJoR7BHZ/L18BYJ652ozIQ6nLmBkkaLvMbqsOminvtHHO+0JQFOVPz6F5ntN+NWI88ZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781513562; c=relaxed/simple;
-	bh=SBvcmsk6MUxbw4wpEkMR1oe86i/24eAZTR08UQLa1/k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=SMke2WnVJZy2PcyhZKiuUW9xPEvUCMDrxMqIfjR/6P4Xw2/lSVfHQWSHnIKLj+FYD8fItZikiSe6IoO4+72P7L7Ur5DPLPMmrdf/gZg+35XmwCp5Y5F5PuucWeFUugHBQhJ1HONt099bIklDyFC8XnptdQTs0qZPBia3hpemrX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TDdQABWt; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dgqcom+H; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65F6LjWg3853201
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:52:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=054f37+uxK4
-	iJVuF2KPl8I/UYB9t3kzyOe2Z4r5L9v4=; b=TDdQABWtnNhuD/bGEP5Nd+eJsxh
-	SEELaXuInMUTOYAOuFrMuNHTLlETsbUBWZ+uBMEChxRDdXe0qAjG+acZj3e/3E6W
-	jylJ4QD0soZRIUKhuidju67UWQBonFazTKbCsZeq0lJ2vN7dZ4eVtsTAiHuJDp9Y
-	Co7QLdFpfRBIH2tMBVEX9cHkXJJeC5ptBsZ1TFpvALyPl4xKCn+bUHkSSbV5r34F
-	KN/PJKSz2I/fi9hmTppl4FfEDSekEYLiLeWP/T2jqmAFlXV93OZ09/pPqSEaHrMs
-	urbOidelg45CgHqCZxq/fJpORDkKwxhyvODSRYfHHuA44k5OvzISmYa67zg==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ery7gxk57-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:52:38 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3773f1eaf91so2187836a91.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 01:52:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1781513557; x=1782118357; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=054f37+uxK4iJVuF2KPl8I/UYB9t3kzyOe2Z4r5L9v4=;
-        b=dgqcom+HoRrXo/Va+thrxm4gz782l5Owt9L1zxKPzPie41+xVyaAgnzjlKBCyD2v7+
-         GmafVa25o4qR1LjCL+0JYhOGoW5lKJlG+3AdVJnVMF6WjQTAllkh51FT3/rf43YxscjH
-         nUhAOi3bEyAqjQLurEhLRYN7v7gaEMLfucUtmTe7EM0tzZZC+glCkxPqAw7zaVRIA3uV
-         6cA6Zk3aXudCqy/p9URpfYMdvjxi+5QXAqE/UjDn8mVqMeAam/hsh/lKrPvMJy1z6UQf
-         HFV9UJbhiNkYrQQWAiU1kC6DsXOQ17Sp7e9e1JBkTvxZVWXlNqWXMtBs7vKDl0JFm62V
-         49gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781513557; x=1782118357;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=054f37+uxK4iJVuF2KPl8I/UYB9t3kzyOe2Z4r5L9v4=;
-        b=CqY/MRI5vnm6cYV3j6iH0o1RcP+eBuWDf2E0O6GSLyCDaZ94nRXSMXUPE/88Qph3NG
-         vkkZx6Y0Ar9kgv5cL/SomFYOpUplZsg46EfomSoyR72vvtFUAtcLM13RJQ1qN6neBn3K
-         7sjiGcGMmUEkbnJG6Ffy1zvQAqcfo2oXG5YJhqwe179UG4DL4eCDL43hX+AHonAwjFCL
-         KFH37n+sEGpDaL58RO2E0KDXnf+dfj3Nq5blZWzyDFv44RS0W6iqpk14Ym5V2dwQOBML
-         ZdzFHSSysFvEiCAFbftq5YfAmnRD6zcG4pC5o0/VMvBSvdkzsYwKRoBdjl117B+XV9g6
-         Rwsw==
-X-Forwarded-Encrypted: i=1; AFNElJ850smZH1/EXLC/SoIAv3ON4aNpOkJ1Bl4nuOs9v0Df0kjValjPd1zpS5zKUS4nONcgEMMRNV29yg+W@vger.kernel.org
-X-Gm-Message-State: AOJu0YynOMRBu03Em8Ma3ZoLQSAUub1JVyxUkFrXUEHJaS5xfFK3MXyB
-	elwJ2YgEOZkLuwUSbePB33palhnxg8zQuoSj5NbUx/pDvZImChHPxJc2hEstQan0GN+UYRbNHZS
-	tRf/1XtzsaT288ACHyRW1vtk1PS5fvHdsZeHcNM5duMNtq1f2iLB7NUz9IyP7ja3g
-X-Gm-Gg: Acq92OG7AFCzhkowrn7IZ80AWy/qoq5yBXx6GzJx8ey0Gdmikh4TZXcSc4YaZY/4QUl
-	ljhs200MMeT+WbvzIHgHmfZxcd7Ih0N4ZPAtQIW9/DWR1dx1gQyxGVs5/a34Fzp2FNERnrq9nJi
-	L9a5Su56iFEwwtArZjZ2w0QK2RurO+4kMO8Ks38bjCcA+Xm5QFW33Y6Mr+yPwBWg/NPV+GWDd/l
-	7gENuSMfLORjPnWyD+S2AcKXqUnKdvTa+hpXrAbvvVBuguVBU3EBxJbPmU6QOWMrsIxD4ztKd1a
-	hzI6IpbaSxvHZ8j8PkerPbwJJS/90rvfhOMs05fXTcx7b9oLO7APQnSW7/Ib54+rdgqbf66Zzj6
-	CoWfh/tNlCSK2BOWR2NZsn74RZoSRMC+H9jOE+7pWi4QikwxE+K6me+DrofLkRNSDuvTzBkKTti
-	Zgg/j+IRVXW65O3EXMycbPucgz5sjFWcrBhFdIPp557GM7i4i4e2U=
-X-Received: by 2002:a17:90b:57eb:b0:36b:ba9b:7efb with SMTP id 98e67ed59e1d1-37a01a3bfa9mr13782860a91.5.1781513557284;
-        Mon, 15 Jun 2026 01:52:37 -0700 (PDT)
-X-Received: by 2002:a17:90b:57eb:b0:36b:ba9b:7efb with SMTP id 98e67ed59e1d1-37a01a3bfa9mr13782828a91.5.1781513556812;
-        Mon, 15 Jun 2026 01:52:36 -0700 (PDT)
-Received: from hu-varada-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-37a25ecd5e9sm9539723a91.10.2026.06.15.01.52.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2026 01:52:36 -0700 (PDT)
-From: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
-To: amitk@kernel.org, thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH v4 2/2] thermal/drivers/qcom/tsens: Add support for ipq9650 tsens
-Date: Mon, 15 Jun 2026 14:22:18 +0530
-Message-Id: <20260615085218.1421347-3-varadarajan.narayanan@oss.qualcomm.com>
+	s=arc-20240116; t=1781512467; c=relaxed/simple;
+	bh=B85cMPOr49iZ1u4+mhMX5r28Vr9uQa+N5lyLQI6PLjU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=X6sH7hjshQURHa0s6vZVaIF40fPlGn+PhJtdLjwgAAAoHhE4UzBY6cuohoxXde0gORxYdG15rNZmocDwl27mFau4Nnr6TS+Nj/myleXNMj8sftOuQ7z7bO5cmEHxPEYClUqMnJujsyB5lmGcQUhaYnxJGMhOqEtYEbeXgZFyDsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=XqJoLJhD; arc=none smtp.client-ip=203.254.224.33
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20260615083412epoutp031196b934923a83f8052c02d6024c72ad~5NCMD7T_C0994609946epoutp035
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:34:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20260615083412epoutp031196b934923a83f8052c02d6024c72ad~5NCMD7T_C0994609946epoutp035
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1781512452;
+	bh=KhuMmUqphIgaaYpgdXDk7UgsJLLox2AR9vG8/O3XcIo=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=XqJoLJhDknqHNRQoxcO4cBtnqVX0xue4seMl7LGkXlPCuJp1bX6D00CZjvZRik4Ei
+	 KJOOWRof5OVoAYspgPycdwJ93TE0SdZZQqoJXQbfF6mRVK5RNhtCEAPJfXgcvEJxjl
+	 nwkwXeRE5nMto5ODNUeLTP1Lp9Xerxr0nY+9YD8g=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20260615083411epcas5p134cd104d32ea19b3d8fdc1c46732225c~5NCLeco3l2849128491epcas5p1W;
+	Mon, 15 Jun 2026 08:34:11 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.86]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4gf3Lp731sz6B9m7; Mon, 15 Jun
+	2026 08:34:10 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20260615083410epcas5p162d288f0bb2431bdd3653011d7a72688~5NCKJndSz1417414174epcas5p18;
+	Mon, 15 Jun 2026 08:34:10 +0000 (GMT)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20260615083408epsmtip17cc8b873406b8d5dd19aaedf37ea0d44~5NCIjrR770235602356epsmtip1c;
+	Mon, 15 Jun 2026 08:34:08 +0000 (GMT)
+From: Alim Akhtar <alim.akhtar@samsung.com>
+To: krzk@kernel.org, peter.griffin@linaro.org, robh@kernel.org,
+	conor+dt@kernel.org, linusw@kernel.org
+Cc: linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	hajun.sung@samsung.com, Alim Akhtar <alim.akhtar@samsung.com>
+Subject: [PATCH v2 0/5] Add minimal Exynos8855 SoC support
+Date: Mon, 15 Jun 2026 14:22:47 +0530
+Message-Id: <20260615085252.1964423-1-alim.akhtar@samsung.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260615085218.1421347-1-varadarajan.narayanan@oss.qualcomm.com>
-References: <20260615085218.1421347-1-varadarajan.narayanan@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -118,131 +77,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE1MDA5MiBTYWx0ZWRfXwlDglISMpee1
- 5DR8+Jt8ZB5XhEuFlKZQRpxtnReioY6eeluqyRiPE3Y//n6e0NtP3cvFR8JPSYododiR+sOh4Zk
- I8A1Nxg3a7yka0SNipTkRYe2Sg15AXs=
-X-Authority-Analysis: v=2.4 cv=fLYJG5ae c=1 sm=1 tr=0 ts=6a2fbd56 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8
- a=nMt2SIcdhh0IZDtwxJkA:9 a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE1MDA5MiBTYWx0ZWRfX+XJCBx+xHf7w
- BYW3bDwskJNvuGVvpPDsscYKTl5v7jZKuPMpnbC90XfxsPRqwOwM3YQGjefcn47JnlM9IqUqZ9x
- Lbvb/Re/xSvqMKRdkUERzAW0XnBni0iEcsgYMGuZhBY4o+lHihcznHhaS+uaTV4Ahay564IX4SJ
- 11LSOD3fptFs8TQ+itArdw9x8/qlt36eOIFVa/fuk99nKr+lwAN7x2j4mUkBDM5AEeBoeAomwcw
- mO3+BAsx+NVwN/Gvxy1N6wM0dmSh9MuMi16cFmLFggh2U2rhmXsYg8LloPzpalq5IXylkkAN+qF
- QMqnQDLNP6ht21GAEg3Yl07hxMHOPitGNrpeet0p7BH60pDHVKsZdtL8Nn+kz1XLDgAmWekrdx4
- PotSQ1oy7H3JpDqaq2SV+WvOD9uNRY6MITEQXePucYRvBDZJe3I5vo5BEr/YpGOqRyb4QOByP6S
- Vzq7pTm8bPUiAcAslHQ==
-X-Proofpoint-GUID: hLxupI36ztZX1GywOO1-8y5shqtifZJN
-X-Proofpoint-ORIG-GUID: hLxupI36ztZX1GywOO1-8y5shqtifZJN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-15_02,2026-06-12_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 bulkscore=0 suspectscore=0 priorityscore=1501 clxscore=1015
- malwarescore=0 impostorscore=0 phishscore=0 lowpriorityscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606150092
+X-CMS-MailID: 20260615083410epcas5p162d288f0bb2431bdd3653011d7a72688
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-543,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20260615083410epcas5p162d288f0bb2431bdd3653011d7a72688
+References: <CGME20260615083410epcas5p162d288f0bb2431bdd3653011d7a72688@epcas5p1.samsung.com>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [-4.16 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[samsung.com:d:+,kernel.org:s:+];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-311792-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,intel.com,arm.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-311758-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:amitk@kernel.org,m:thara.gopinath@gmail.com,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:varadarajan.narayanan@oss.qualcomm.com,m:konrad.dybcio@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:tharagopinath@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,samsung.com:dkim,samsung.com:mid,samsung.com:from_mime,sashiko.dev:url,vger.kernel.org:from_smtp];
+	FORGED_SENDER(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:krzk@kernel.org,m:peter.griffin@linaro.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:linux-samsung-soc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:hajun.sung@samsung.com,m:alim.akhtar@samsung.com,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[varadarajan.narayanan@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[varadarajan.narayanan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D128E684CD2
+X-Rspamd-Queue-Id: D67F568493F
 
-ipq9650's tsens is similar to ipq5332 tsens but has different number of
-sensors. Re-use the ipq5332 data for ipq9650 and modify the sensor related
-information.
+This series adds initial support for the Exynos8855 SoC and also
+initial SMDK board support. 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
----
-v4: Pick R-b Dmitry Baryshkov
----
- drivers/thermal/qcom/tsens-v2.c | 8 ++++++++
- drivers/thermal/qcom/tsens.c    | 3 +++
- drivers/thermal/qcom/tsens.h    | 2 +-
- 3 files changed, 12 insertions(+), 1 deletion(-)
+Exynos8855 is octa-core CPUs, a combination of Cortex-A720 and Cortex-A520,
+arranged in 3 clusters. And other peripheral for mobile application.
 
-diff --git a/drivers/thermal/qcom/tsens-v2.c b/drivers/thermal/qcom/tsens-v2.c
-index 2ee117aa91ba..70ee5ca4ece2 100644
---- a/drivers/thermal/qcom/tsens-v2.c
-+++ b/drivers/thermal/qcom/tsens-v2.c
-@@ -299,6 +299,14 @@ const struct tsens_plat_data data_ipq5424 = {
- 	.fields		= tsens_v2_regfields,
- };
- 
-+const struct tsens_plat_data data_ipq9650 = {
-+	.num_sensors	= 11,
-+	.ops		= &ops_ipq5332,
-+	.hw_ids		= (unsigned int []){5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15},
-+	.feat		= &ipq5332_feat,
-+	.fields		= tsens_v2_regfields,
-+};
-+
- /* Kept around for backward compatibility with old msm8996.dtsi */
- struct tsens_plat_data data_8996 = {
- 	.num_sensors	= 13,
-diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-index 6e3714ecab1d..3e09a06db06b 100644
---- a/drivers/thermal/qcom/tsens.c
-+++ b/drivers/thermal/qcom/tsens.c
-@@ -1173,6 +1173,9 @@ static const struct of_device_id tsens_table[] = {
- 	}, {
- 		.compatible = "qcom,ipq8074-tsens",
- 		.data = &data_ipq8074,
-+	}, {
-+		.compatible = "qcom,ipq9650-tsens",
-+		.data = &data_ipq9650,
- 	}, {
- 		.compatible = "qcom,mdm9607-tsens",
- 		.data = &data_9607,
-diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
-index e8376accdff3..2514f1161794 100644
---- a/drivers/thermal/qcom/tsens.h
-+++ b/drivers/thermal/qcom/tsens.h
-@@ -676,7 +676,7 @@ extern const struct tsens_plat_data data_ipq5018;
- 
- /* TSENS v2 targets */
- extern struct tsens_plat_data data_8996, data_ipq8074, data_tsens_v2;
--extern const struct tsens_plat_data data_ipq5332, data_ipq5424;
-+extern const struct tsens_plat_data data_ipq5332, data_ipq5424, data_ipq9650;
- 
- /* TSENS automotive targets */
- extern struct tsens_plat_data data_automotive_v2;
+This initial support consists of CPUs, pinctrl and related nodes
+needed for initial kernel boot.
+
+With these patches, kernel can boot using initramfs till file system mounts.
+
+More platform support will be added in near future, clock driver to go next.
+
+Chanegs since v1:
+* Fixed some of the review comments by Sashiko [1]
+* Dropped serial node, will be added once clock support is available
+* Dropped wkup interrupt for CMGP block, will be added later
+
+Link of v1:
+https://lore.kernel.org/linux-samsung-soc/20260612163020.411761-1-alim.akhtar@samsung.com/
+
+[1] https://sashiko.dev/#/patchset/20260612163020.411761-1-alim.akhtar@samsung.com?part=4
+
+Alim Akhtar (5):
+  dt-binding: ARM: samsung: Add Samsung Exynos8855
+  dt-binding: pinctrl: samsung: Add exynos8855-pinctrl compatible
+  pinctrl: samsung: Add Exynos8855 pinctrl configuration
+  arm64: dts: exynos: add initial support for Samsung Exynos8855 smdk
+  MAINTAINERS: Add entry for Samsung Exynos8855 SoC
+
+ .../bindings/arm/samsung/samsung-boards.yaml  |   6 +
+ .../bindings/pinctrl/samsung,pinctrl.yaml     |   1 +
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/exynos/Makefile           |   1 +
+ .../boot/dts/exynos/exynos8855-pinctrl.dtsi   | 581 ++++++++++++++++++
+ .../arm64/boot/dts/exynos/exynos8855-smdk.dts |  32 +
+ arch/arm64/boot/dts/exynos/exynos8855.dtsi    | 199 ++++++
+ .../pinctrl/samsung/pinctrl-exynos-arm64.c    | 123 ++++
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |   2 +
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |   1 +
+ 10 files changed, 953 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos8855-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos8855-smdk.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos8855.dtsi
+
+
+base-commit: b99ae45861eccff1e1d8c7b05a13650be805d437
 -- 
 2.34.1
 
