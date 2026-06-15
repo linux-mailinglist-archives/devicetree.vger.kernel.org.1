@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-311739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311740-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EPj4EPOrL2pxEQUAu9opvQ
-	(envelope-from <devicetree+bounces-311739-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 09:38:27 +0200
+	id DrdNEDusL2p5EQUAu9opvQ
+	(envelope-from <devicetree+bounces-311740-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 09:39:39 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F94684418
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 09:38:26 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8891768442E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 09:39:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=b4MKJuCb;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311739-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311739-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=exVyqlGl;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311740-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311740-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 03B5F3014115
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 07:38:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 82094301C882
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 07:39:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5743BBFB2;
-	Mon, 15 Jun 2026 07:38:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A9A73BED5F;
+	Mon, 15 Jun 2026 07:39:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87135145B3F;
-	Mon, 15 Jun 2026 07:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E463BBFB2;
+	Mon, 15 Jun 2026 07:39:24 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781509083; cv=none; b=LK0iYejZcwgqYmSa1KCUrf9Gu8a76XvBoFP2ytd90AH04u7F/pS9tiDuhoKLrE9/+Gm0QmhXgeKfMS5l17cnwO0vh6xOF0JLkdOp4pWxDeuUCrLtq+t66UQIaUZV2urodLsD023n5ZhmsUoqCkWP2sSLyYGNKw9RZObnnaEu+rE=
+	t=1781509165; cv=none; b=SGdV1pyBJzVKEPnEKdJuayY7WDizbRXMslTrWuPRjd6yalh0UV+FF8e2LDPGU3cx4DmIE/il9PNcjDXKtIrLOwMGL6hq06xB/S+8VZc7iKzvnnQWiEgdRgV0mbmtt9TsuMLonECU+mNp0eguP/Z8wunyYPyjEr+NKpkFhEB3P1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781509083; c=relaxed/simple;
-	bh=QMP5vqIDXJDnoGpiBkvCRUpVkzx4WOIgIktz0sfrZP8=;
+	s=arc-20240116; t=1781509165; c=relaxed/simple;
+	bh=vLAqeS6GnCpVFF68qF+U3zzI36eQxuymf+b+lcmuutI=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=oFZuT0uHOPc/kquiLiSglxrp3ZtM3d08iY5BQyYtWD9CfsysRz3LrpRwTzief2DI1lQS8qkvi82QktLGdAeYWVxa6IWPVQPJyK9pR6sjuNcBjAoE1Jh6jW3JC8IWyH/X4PQrTj2D14KK1PCuZByQUWNifAzPqw4u9Hvn0PoNsf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b4MKJuCb; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2BAA1F000E9;
-	Mon, 15 Jun 2026 07:38:01 +0000 (UTC)
+	 Message-Id; b=QLyGFy1ftFrgJEEEB8KdeylxVSJqFMTOV7wJ0waFczAj3xIRfwlWPe3wNGqjwKLHlo3M2G8r8RShb7j3sAcZNpTgJRU07uzqX2LkNeyCQDGE5eGBGScg4Pf/H5gMYGrRoUEqBbJ1KrudmgD8QwxHM9C6sUuFQ3qoXeWXBQFD7eo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=exVyqlGl; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 863751F000E9;
+	Mon, 15 Jun 2026 07:39:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781509082;
-	bh=NZV91TLd9EUUqLhnbAM8CEbm4USXInFWEkNJCurjJ04=;
+	s=k20260515; t=1781509164;
+	bh=T2zyCSl7BFOuGJsz/aHGzSdvR6M81lquHWQatFXE7PI=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=b4MKJuCbxTc82OFy5kvSb9iBcXVZ8N2h9W2XdofPAwRlybgUVVpSThFkfieRy7/a9
-	 SAIykxRBAudizgJ3zzz3PvmQVV8wwbyUXRgRbA/5xKmZ2bgxK6ZjEnQaeABQqJeAfI
-	 d+oybaZpji1nqFm7siGHat1SHmiYmwysT39eXJtE0SrxX/x5GxN57nsmi5izY/Hj11
-	 Uhw7zhKwbwaDJzHxgrdauroY6CD1PjRMbjL4+AH48eWHeIrSIA1KV64XZ6jNWB9tnz
-	 Jdzl8hLrlaJ51wQlsw7jnYGpaxz1ZdPPX7a3w3lb1joHEoYdbkoTtXxzEL6heuNtpM
-	 aT6vTlJ/fbabw==
+	b=exVyqlGl871iNEj0iStoVJiw4UOeAigm5ke8f6QMByZxTiv6K1T9IQzo6Ej5tCH5O
+	 tn3C5rIHthEkxxnmutje91AU2PeD9CZsH6xIPO9dfpwmfy44HvCOPgxjl13OaJVQ8I
+	 uPekIKWzRWij7WAhfYTRML1Np+jFRoLkj2s7z/mSwE2veBd03g6FDZn2GPMtHvgZEg
+	 TBZgElPZl0xD8WvPLyoTV9dc3ah/81smPYVbXHka8Ibyon7cYLvBg2sw2MtCgHCZ0Q
+	 e0WQiKDwESD/Agiaea14JkwCaZur7lQppWn0uhCFQ/YWGQqXXK+phjCWHTP861GsIV
+	 ZiUgsK5CP96Aw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 5/9] mfd: mt6397: Add support for MT6392 PMIC
+Subject: Re: [PATCH v7 8/9] regulator: Add MediaTek MT6392 regulator
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Luca Leonardo Scorcia" <l.scorcia@gmail.com>
-Cc: dmitry.torokhov@gmail.com, robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, linux-input@vger.kernel.org
-In-Reply-To: <20260615071836.362883-6-l.scorcia@gmail.com>
-References: <20260615071836.362883-6-l.scorcia@gmail.com>
+Cc: robh@kernel.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, dmitry.torokhov@gmail.com, conor+dt@kernel.org
+In-Reply-To: <20260615071836.362883-9-l.scorcia@gmail.com>
+References: <20260615071836.362883-9-l.scorcia@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 07:38:01 +0000
-Message-Id: <20260615073801.D2BAA1F000E9@smtp.kernel.org>
+Date: Mon, 15 Jun 2026 07:39:23 +0000
+Message-Id: <20260615073923.863751F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,23 +69,23 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:l.scorcia@gmail.com,m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:linux-input@vger.kernel.org,m:lscorcia@gmail.com,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-311739-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:l.scorcia@gmail.com,m:robh@kernel.org,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:dmitry.torokhov@gmail.com,m:conor+dt@kernel.org,m:lscorcia@gmail.com,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-311740-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,smtp.kernel.org:mid,vger.kernel.org:from_smtp,sashiko.dev:url,lists.linux.dev:replyto];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
@@ -97,150 +97,144 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCPT_COUNT_FIVE(0.00)[6]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 94F94684418
+X-Rspamd-Queue-Id: 8891768442E
 
 Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] Use-After-Free of PM notifier on device unbind or probe failure
-- [High] Use-After-Free of irq_domain in probe error path due to active IRQ=
- thread
-- [High] Concurrent hardware state writes in PM notifier
-- [High] Lost interrupts due to late Write-1-to-Clear (W1C) in the threaded=
- IRQ handler
+- [High] Data race and state corruption due to mutation of the shared globa=
+l `mt6392_regulators` array.
+- [High] Logic error in `mt6392_ldo_get_mode()` reads the wrong register to=
+ determine mode.
+- [Medium] Missing `.of_map_mode` callback breaks `regulator-initial-mode` =
+parsing.
+- [Medium] Poor error handling and unnecessary kernel log spamming in `mt63=
+92_buck_set_mode`.
 --
 
-commit cd7aa2c7d4f30c2e0b9a697283dae8066d30b344
+commit cf9cb32e08ea85698033220fad437d4b27bf421d
 Author: Fabien Parent <parent.f@gmail.com>
 
-mfd: mt6397: Add support for MT6392 PMIC
-
-This commit aligns the MT6397 PMIC driver to other MFD drivers by passing
-an identifier through mt6397_of_match and adds support for the MT6392
-PMIC variant along with its regulator, RTC, keys, and pinctrl devices.
-
-> diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
-> index ccd97d66d7f1c..f683e878543e1 100644
-> --- a/drivers/mfd/mt6397-core.c
-> +++ b/drivers/mfd/mt6397-core.c
-[ ... ]
-> @@ -327,30 +388,15 @@ static int mt6397_probe(struct platform_device *pde=
-v)
->  }
-
-[Severity: High]
-This is a pre-existing issue, but I noticed a potential use-after-free
-with the PM notifier during probe failure or device unbind.
-
-In mt6397_irq_init(), the pm_nb notifier is registered globally:
-
-mt6397_irq_init() {
-    ...
-    register_pm_notifier(&chip->pm_nb);
-    return 0;
-}
-
-However, there doesn't seem to be a corresponding unregister action if
-devm_mfd_add_devices() fails in mt6397_probe(), or when the driver is
-unbound (since mt6397_driver lacks a .remove callback). Because the chip
-struct is devm-allocated, could this leave a dangling pointer in the
-global pm_chain_head, resulting in a use-after-free during the next
-suspend/resume cycle?
-
-[Severity: High]
-This isn't a bug introduced by this patch, but is there a risk of a
-use-after-free involving the irq_domain in the probe error path?
-
-In mt6397_probe(), if devm_mfd_add_devices() fails, the domain is
-manually removed:
-
-mt6397_probe() {
-    ...
-    if (ret) {
-        irq_domain_remove(pmic->irq_domain);
-        dev_err(&pdev->dev, "failed to add child devices: %d\n", ret);
-    }
-}
-
-Since the threaded IRQ handler was requested earlier using
-devm_request_threaded_irq(), it remains active until the probe function
-returns and devres unwinds. If a pending hardware interrupt fires during
-this window, would mt6397_irq_thread() execute and call irq_find_mapping()
-on the already freed pmic->irq_domain?
-
->  static const struct of_device_id mt6397_of_match[] =3D {
-[ ... ]
-> diff --git a/drivers/mfd/mt6397-irq.c b/drivers/mfd/mt6397-irq.c
-> index 5d2e5459f7444..80ea5b92d232f 100644
-> --- a/drivers/mfd/mt6397-irq.c
-> +++ b/drivers/mfd/mt6397-irq.c
-[ ... ]
-> @@ -203,6 +205,12 @@ int mt6397_irq_init(struct mt6397_chip *chip)
->  		chip->int_status[0] =3D MT6397_INT_STATUS0;
->  		chip->int_status[1] =3D MT6397_INT_STATUS1;
->  		break;
-> +	case MT6392_CHIP_ID:
-> +		chip->int_con[0] =3D MT6392_INT_CON0;
-> +		chip->int_con[1] =3D MT6392_INT_CON1;
-> +		chip->int_status[0] =3D MT6392_INT_STATUS0;
-> +		chip->int_status[1] =3D MT6392_INT_STATUS1;
-> +		break;
-> =20
->  	default:
->  		dev_err(chip->dev, "unsupported chip: 0x%x\n", chip->chip_id);
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does the PM notifier
-need to acquire the irqlock to prevent hardware state corruption?
-
-In mt6397_irq_pm_notifier(), during PM_SUSPEND_PREPARE:
-
-mt6397_irq_pm_notifier() {
-    ...
-    case PM_SUSPEND_PREPARE:
-        regmap_write(chip->regmap,
-                     chip->int_con[0], chip->wake_mask[0]);
-}
-
-This directly accesses chip->wake_mask and writes to the regmap without
-acquiring chip->irqlock. Since PM notifiers run while userspace tasks
-are still active, could a concurrent request_irq() or free_irq()
-interleave, causing the PM notifier to read torn state or overwrite
-hardware registers with stale values?
-
-[Severity: High]
-This is a pre-existing issue, but can this interrupt handling sequence
-cause lost edge interrupts?
-
-In mt6397_irq_handle_reg(), the driver reads the status, handles the
-nested irqs, and then clears the status at the end:
-
-mt6397_irq_handle_reg() {
-    ...
-    for (i =3D 0; i < 16; i++) {
-        if (status & BIT(i)) {
-            irq =3D irq_find_mapping(mt6397->irq_domain, irqbase + i);
-            if (irq)
-                handle_nested_irq(irq);
-        }
-    }
+regulator: Add MediaTek MT6392 regulator
    =20
-    regmap_write(mt6397->regmap, reg, status);
-}
+The MT6392 is a regulator found on boards based on the MediaTek
+MT8167, MT8516, and probably other SoCs. It is a so called PMIC and
+connects as a slave to a SoC using SPI, wrapped inside PWRAP.
 
-Because these are Write-1-to-Clear registers, does writing the status
-back after handling the interrupts unintentionally clear any new edge
-interrupts that might have arrived while handle_nested_irq() was executing?
+> diff --git a/drivers/regulator/mt6392-regulator.c b/drivers/regulator/mt6=
+392-regulator.c
+> new file mode 100644
+> index 0000000000000..1f91aac3917ab
+> --- /dev/null
+> +++ b/drivers/regulator/mt6392-regulator.c
+
+[ ... ]
+
+> +static int mt6392_buck_set_mode(struct regulator_dev *rdev, unsigned int=
+ mode)
+> +{
+
+[ ... ]
+
+> +	ret =3D regmap_update_bits(rdev->regmap, info->pwm_modeset_reg,
+> +				 info->pwm_modeset_mask, val);
+> +
+> +	if (regmap_read(rdev->regmap, info->pwm_modeset_reg, &reg_value) < 0) {
+> +		dev_err(&rdev->dev, "Failed to read register value\n");
+> +		return -EIO;
+> +	}
+> +
+> +	dev_info(&rdev->dev, "%s: info->pwm_modeset_reg 0x%x =3D 0x%x\n",
+> +		 info->desc.name, info->pwm_modeset_reg, reg_value);
+> +
+> +	return ret;
+> +}
+
+[Severity: Medium]
+Does this error handling correctly propagate failures?
+
+If regmap_update_bits() fails, 'ret' contains the error code, but the
+subsequent regmap_read() might succeed, masking the original error.
+
+Also, since set_mode can be a hot path called frequently by power managemen=
+t,
+could this dev_info() spam the kernel ring buffer? Would dev_dbg() be more
+appropriate here?
+
+[ ... ]
+
+> +static unsigned int mt6392_ldo_get_mode(struct regulator_dev *rdev)
+> +{
+
+[ ... ]
+
+> +	ret =3D regmap_read(rdev->regmap, info->lp_modeset_reg, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	val &=3D info->lp_modeset_mask;
+> +	val >>=3D ffs(info->lp_modeset_mask) - 1;
+
+[Severity: High]
+Should this read from info->lp_modeget_reg instead?
+
+By reading from lp_modeset_reg, it seems this retrieves the requested mode
+rather than the actual hardware state, leaving the lp_modeget fields unused.
+
+[ ... ]
+
+> +static const struct regulator_ops mt6392_volt_range_ops =3D {
+> +	.list_voltage =3D regulator_list_voltage_linear_range,
+> +	.map_voltage =3D regulator_map_voltage_linear_range,
+> +	.set_voltage_sel =3D regulator_set_voltage_sel_regmap,
+
+[Severity: Medium]
+Is this missing the .of_map_mode callback?
+
+The driver defines custom device tree mode constants (e.g.,
+MT6392_BUCK_MODE_AUTO), but without .of_map_mode, the regulator framework
+will ignore the regulator-initial-mode DT property and log a warning.
+
+[ ... ]
+
+> +static int mt6392_set_buck_vsel_reg(struct platform_device *pdev)
+> +{
+
+[ ... ]
+
+> +			if (regval & mt6392_regulators[i].vselctrl_mask) {
+> +				// Regulator in Normal mode
+> +				mt6392_regulators[i].desc.vsel_reg =3D
+> +					mt6392_regulators[i].vsel_normal_mode_reg;
+> +				mt6392_regulators[i].desc.vsel_mask =3D
+> +					mt6392_regulators[i].vsel_normal_mode_mask;
+
+[Severity: High]
+Can this cause a data race or state corruption?
+
+mt6392_regulators is a shared global static array, and the driver modifies =
+it
+during probe based on the current hardware state.
+
+Since the driver requests PROBE_PREFER_ASYNCHRONOUS later on:
+
+> +static struct platform_driver mt6392_regulator_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "mt6392-regulator",
+> +		.probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
+> +	},
+
+Could probing multiple MT6392 instances concurrently overwrite the desc
+fields for the other instances? Does the driver need to allocate per-device
+copies of the regulator_desc?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615071836.3628=
-83-1-l.scorcia@gmail.com?part=3D5
+83-1-l.scorcia@gmail.com?part=3D8
 
