@@ -1,207 +1,160 @@
-Return-Path: <devicetree+bounces-311618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311620-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id taCBEVaPL2ocCgUAu9opvQ
-	(envelope-from <devicetree+bounces-311618-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 07:36:22 +0200
+	id BgyhIr2PL2ozCgUAu9opvQ
+	(envelope-from <devicetree+bounces-311620-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 07:38:05 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9B79683841
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 07:36:21 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4ECB683877
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 07:38:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=HZqeA4vE;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=ktLFP8h8;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311618-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311618-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=samsung.com header.s=mail20170921 header.b=BxxYHtwc;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311620-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311620-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=samsung.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E77B9300CBFE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 05:36:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1704B301A703
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 05:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55AF536D9FE;
-	Mon, 15 Jun 2026 05:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E1103AB293;
+	Mon, 15 Jun 2026 05:36:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD5F3A7F7A
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CE13A63FB
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:36:34 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781501764; cv=none; b=fY6NB0bDv4B2TaiHO4bu1BBdaTob/aLR3I0tIq1NmAn4uDp2L3VsvN583JTe/Izd5ycGWrO4r3EWmnLUmZR5BcmF7p01PkOApaJS7R/UG7as0EiKDqBC29jlieHKrSTW7mxBOfDqyPdA1TiCoW6n9lORznW2+6qPbrI/XESdiss=
+	t=1781501799; cv=none; b=TFrJFO2kurbzxaUyj/Wvp6pZ+XKvBr4odiNbsYWKdslyIGiArcZ/L4DrYXBiouS/DAVGHIych/NXRzDXdG8bbOr4WInEjzhZ4Tkxwq/cRo4ro6VVTMgLPQh6r5dhBqaNZMfFTotu7SKgSx11bYfiuQ0hnV+wxyF1XlgvQ22Qv3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781501764; c=relaxed/simple;
-	bh=7ejzRRhHDCje1fWIH3my2ejpZu+LlmMXR7YrGYw6d+E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Th+zkMKqeFAizUgX+FMALgIybfqF5ED8+EOkp7HtJhl1+IQFty5ZLBvupoqB8e5dIqdTCKmofNp2eZwQPza3k25AUq9Ueh4idP9byvua5lFuFJ3KuXhETO7lDEoPuwLjDOLYJcx2J7xxKvUWOOTPTB+gKBR/zHs0Knk/jAAj8QY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HZqeA4vE; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ktLFP8h8; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65F1kWcS3308417
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:35:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oGetSEqda/e2ie1FOipAsTCcvEQLf9TTw83Etm/9Fno=; b=HZqeA4vE+EItQks8
-	VkD/qc1JtdyMKmltIZIfXuQwB0n9+VuaGRLFwvU3queV74k9lb410RG+UM2Ftlg9
-	bYaeZxI4Gys4kSIOqHbcWzP+1gjBSvVVcuzkDQhy7wgx+tYp4zmd0DZzqiBofmQR
-	BNVnteaPhow93/k43Pc60bylPeYafh2Fgt4SV6d4y8RmHh1SeWSZB8VhxQfTgqBp
-	EGzOgXnATIvCG9M1yhLsMexCsH5i0X0CWpNv9QFo1jB3g/b0dtbavb4q1PiQ7rx8
-	exuGrddhEai2jrex2ejOK7Dr78Ch8omhdlQPM6ik9YwwO95eqsyuCKVEa/SbOWK7
-	iBsNAA==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eryc6wqyx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:35:59 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-36d985df4cfso3409596a91.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Jun 2026 22:35:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1781501759; x=1782106559; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oGetSEqda/e2ie1FOipAsTCcvEQLf9TTw83Etm/9Fno=;
-        b=ktLFP8h8TLwOYiC0dvOzrkLshN2OZXK3HwPpU/o6+34HQRRhB98ITMuZjYL3juSdDn
-         WfEmDiT6PXH2wlOMNdaR/3x9m0+aOj8lM1XvDeR86rMQx1SIroi9Tz6u4HBPM0k3klzZ
-         4P5wh943K0k0cXaj9L5E1CdZcZ3xK7n8zsTu9WNBuwQVVKBlrxzN93x/8mcLBjgqkNGY
-         Co+3aePZy/2yTBze6D/wvHxg8nv9QbSkSKfYPfP4wDnFE1Vm1+0Kz1xiHiTP5RneDlAu
-         gERkuJezRY7KXZA15IndbwVwsE9M2h1ho12d0uJL9Ganxb8oO7ES1l/5w7xnBRoGuPoa
-         U9+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781501759; x=1782106559;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oGetSEqda/e2ie1FOipAsTCcvEQLf9TTw83Etm/9Fno=;
-        b=BURyEVseOhnk9HQ9SURrFI0y0IBJev5E/AqJVgUgiF4YQ6GB0NbAjTzSg1FByT2hQb
-         Y1y9Y2hsHbov/SqcGEe0RbS65f77ne+C1LWulASEexVD2GkWA0h1Yr5s4eV9Jl/TjdcX
-         ZmtuipDWjKKnJnUgGPjN/UUIZJM17kWvKpIRJWEYF9eDKCFbj45CCcXZ+OyWkcPDt3s9
-         IHCj3QIRnijRyYIRfj7JG4YZLRMu30MjVESHt/RjmSbNl5HBgnBd33+87+/L12kuokEC
-         EpUP+eEL55Z1PWCn8bqiIFvBlB7vx/6yvSbC061YJO9Mym4Hs2ygVoOQiczdd8IgAXA0
-         vaMg==
-X-Forwarded-Encrypted: i=1; AFNElJ9w0x3C8naIb4B900B2+dZyNt4KYEgJVh32ar83ymNct2o8Meay1UVXF08bWQS14M/wrnnFvPt4XG44@vger.kernel.org
-X-Gm-Message-State: AOJu0YyynZYIjnqwiEFdY+mjg4ROUgSxVygfeW5P1lf+i6SwpjcCeUbC
-	IY2PKw8pGwIIqaGANzsuSKMWNpgNsqoUG2Stk0PINRfZA4YVV1WNhEcmJsprxzGghXN9lKO11wM
-	mTE5XsW2ZxpH2+QftDTNc/lYMnHOLDtFKnb6MpW9XIgZbalTGdHlDg4kb+/T6pMvM
-X-Gm-Gg: Acq92OEi1Vcc1Pq0/vFsLHBnOHTh0spUPawidcuQmdz3NJOIND5N4nCAdcdQ0zVt8vG
-	OPegvgnSD6UESEYlAfRWO5y+x9gVJBA14T50T2VJ5VdAGNyNyOYBL7klyagXrxJ/QcMI68siRwp
-	u+yD284PZIM3fBR0RHfHsqb6oCbOsZ4zBHU+RB2xl2QwoyuY/W90TT2/7QLLAlSmRGOs3WTj0WC
-	mY/rg10W8ypoJW4GvY8/ppcWALPhL+y+14CXM85doOhUxorjYfypHLeOrBnGgPoPinI05tY9vf7
-	THjEt4SzPGsjtKIaXbd6j9Gmy4dLniqYwmo6YTN/6/wrKiFNTeSVCmOUY3K4KHCeQUYvyHZPImM
-	boJIxLBRR2QDcWbwmHOQiLT7rKcPQeLHj35quGFBFgNtVOc32D0Q=
-X-Received: by 2002:a17:90b:2541:b0:36b:b4a1:2939 with SMTP id 98e67ed59e1d1-37a034f72efmr12639709a91.15.1781501758833;
-        Sun, 14 Jun 2026 22:35:58 -0700 (PDT)
-X-Received: by 2002:a17:90b:2541:b0:36b:b4a1:2939 with SMTP id 98e67ed59e1d1-37a034f72efmr12639683a91.15.1781501758394;
-        Sun, 14 Jun 2026 22:35:58 -0700 (PDT)
-Received: from [10.217.198.242] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-37a1f07bbfdsm11133492a91.5.2026.06.14.22.35.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Jun 2026 22:35:58 -0700 (PDT)
-Message-ID: <d5b81cfc-bfcc-4c44-a67f-8147c255c890@oss.qualcomm.com>
-Date: Mon, 15 Jun 2026 11:05:53 +0530
+	s=arc-20240116; t=1781501799; c=relaxed/simple;
+	bh=VZgiyT95X0e5PDv3s9L6rOwD+r+gbXddQ89RG2HR2b8=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=QKI4xXESEUSHM/Pnvu3qG8xBPuB2h60Sl6Iy8DA3DhY8sGpQu6mBKC6r/o38zOmCbsHaqbgGxV0ITJ5n0NgfAiNw9+zQY6AzREYiPSOulGxCljJo0EYTus89UGt9wI1qw7uiVWpFnuJcd4zjzDnA6jNvNKMFjGAB8fMKNqzYSaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=BxxYHtwc; arc=none smtp.client-ip=203.254.224.34
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20260615053631epoutp048679a27072f737dad72960545ba09906~5KnDj0w0s3013030130epoutp044
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:36:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20260615053631epoutp048679a27072f737dad72960545ba09906~5KnDj0w0s3013030130epoutp044
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1781501791;
+	bh=VZgiyT95X0e5PDv3s9L6rOwD+r+gbXddQ89RG2HR2b8=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=BxxYHtwc+QqQP+0jil49rhjXqmM4EKL0v7zlCYBd+mWYyHppaIomYtw3qu0rWIxSb
+	 PlHAIaLHK4JofhLs1HYWF0tWq93BCHRK2REhXSI//ZDR8rlISlr7j05JsLrFWLoPJ5
+	 uPeoMlrI6mJjrPsAt1Og+QbF0JljJuTXyblZQMCg=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20260615053631epcas5p4bab19141873367d2c1512c58ed8d2dc1~5KnDQwof_0683606836epcas5p4j;
+	Mon, 15 Jun 2026 05:36:31 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.92]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4gdzPp57D8z6B9mJ; Mon, 15 Jun
+	2026 05:36:30 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20260615053630epcas5p2f7154ee25cdcefc604eda766013f90ed~5KnB-II5X2123821238epcas5p2M;
+	Mon, 15 Jun 2026 05:36:30 +0000 (GMT)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20260615053629epsmtip196c4d6881af617715f6396df4b67bdc7~5KnBNz64f2068920689epsmtip1T;
+	Mon, 15 Jun 2026 05:36:29 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: <sashiko-reviews@lists.linux.dev>
+Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>
+In-Reply-To: <20260612162335.1F9361F000E9@smtp.kernel.org>
+Subject: RE: [PATCH 4/5] arm64: dts: exynos: add initial support for Samsung
+ Exynos8855 smdk
+Date: Mon, 15 Jun 2026 11:06:18 +0530
+Message-ID: <000001dcfc88$eac875f0$c05961d0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/8] irqchip/qcom-pdc: Remove pdc_enable_intr() wrapper
-To: Thomas Gleixner <tglx@kernel.org>, Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Sneh Mankad <sneh.mankad@oss.qualcomm.com>
-References: <20260526-hamoa_pdc-v2-0-f6857af1ce91@oss.qualcomm.com>
- <20260526-hamoa_pdc-v2-3-f6857af1ce91@oss.qualcomm.com> <878q8v7ij8.ffs@fw13>
-Content-Language: en-US
-From: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>
-In-Reply-To: <878q8v7ij8.ffs@fw13>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE1MDA1NiBTYWx0ZWRfX8HFBtQCfIY4H
- KhKfobMygpX5r7+WZNgzTDff5cggmPGMk5MFqvc053TbWqW3hukCJE5tLLd0VKW1du8E4A454dl
- 8eAW3soAzqSCbgd2MgGkR3lkje3LZ74=
-X-Authority-Analysis: v=2.4 cv=Oop/DS/t c=1 sm=1 tr=0 ts=6a2f8f3f cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=LOz6dEoz8Lk_-hOeqa8A:9 a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-GUID: -OMZZMEXeUv97vE6sUIsmv_-ETQV_tC2
-X-Proofpoint-ORIG-GUID: -OMZZMEXeUv97vE6sUIsmv_-ETQV_tC2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE1MDA1NiBTYWx0ZWRfX9BhJZECO9ZCp
- WPTjGOdd6ALmg9B9LhcQJam5LLeFoV7vY7+bTjn3yZeTjdlvrITwJs69yAZapaPsXqwFjpYOtfx
- Vw8jPXQmkuuSxJSnRLVrXSQxogooUwtGtCqWMw3FWgSCZ0BQWWL50g6J7X/mVICsgYVrsQFCFh1
- iYBa/BvMUFZRDbD/UOKS9x5VeSjAKp15jcbIi4KMzOskxPihR5t+ncAbAAg1tX9gqC3vwhwzgDq
- G8CwY67XMalcC/WPgBdyDYeDZ2m4jctbyDMisXSaZe7dxeD8ZKTRZhnbuItsrbfW24WHykyJ1D4
- lgY9+J5lBgFQFTN/92nIXghW8Tsu1gQw1xbsEfJiHXtiuYgvn4iIWlSR+SATFBHqVgYob8l5eID
- nwsaXYtvnLqNzigmSVpcYJb/5PZO9PBQrtFzl9L1Uft/Ld7KjZqoN5SQEcxjsfZX9xRJ/nfY+Lf
- ocm513SF/mlZga4T8uw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-15_01,2026-06-12_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 impostorscore=0 lowpriorityscore=0
- clxscore=1015 bulkscore=0 spamscore=0 malwarescore=0 suspectscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606040000
- definitions=main-2606150056
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIJF/JBY04orJGzCW+OH3XyVBjlqQMtuzB6AcrDVpm1vx2NQA==
+Content-Language: en-us
+X-CMS-MailID: 20260615053630epcas5p2f7154ee25cdcefc604eda766013f90ed
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-543,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20260612162339epcas5p402cf2406ae41ca7a3c5d4f09163ab872
+References: <20260612163020.411761-5-alim.akhtar@samsung.com>
+	<CGME20260612162339epcas5p402cf2406ae41ca7a3c5d4f09163ab872@epcas5p4.samsung.com>
+	<20260612162335.1F9361F000E9@smtp.kernel.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[samsung.com:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-311618-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:tglx@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linusw@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:sneh.mankad@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[maulik.shah@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-311620-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sashiko-reviews@lists.linux.dev,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,fireeye.com:url,samsung.com:dkim,samsung.com:email,samsung.com:mid,samsung.com:from_mime];
+	MIME_TRACE(0.00)[0:+];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maulik.shah@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[alim.akhtar@samsung.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_NONE(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B9B79683841
+X-Rspamd-Queue-Id: D4ECB683877
 
 
 
-On 6/3/2026 8:55 PM, Thomas Gleixner wrote:
-> On Tue, May 26 2026 at 16:24, Maulik Shah wrote:
-> 
+> -----Original Message-----
+> From: sashiko-bot=40kernel.org <sashiko-bot=40kernel.org>
+> Sent: Friday, June 12, 2026 9:54 PM
+> To: Alim Akhtar <alim.akhtar=40samsung.com>
+> Cc: robh=40kernel.org; conor+dt=40kernel.org; devicetree=40vger.kernel.or=
+g
+> Subject: Re: =5BPATCH 4/5=5D arm64: dts: exynos: add initial support for =
+Samsung
+> Exynos8855 smdk
+>=20
+> Thank you for your contribution=21 Sashiko AI review found 5 potential is=
+sue(s)
+> to consider:
+> - =5BHigh=5D Missing Required Property in UART node =60serial_0=60
+> - =5BMedium=5D Device Tree Topology Error: =60cluster1=60 skips =60core2=
+=60
+> - =5BLow=5D Device Tree Binding Violation in =60timer=60 node interrupts
+> - =5BLow=5D DT Binding Violation: Missing =60-gpio-bank=60 suffix on GPIO=
+ bank nodes
+> - =5BLow=5D Device Tree Syntax Error: =60gic=60 node defines =60=23size-c=
+ells =3D <1>=60
+> without =60=23address-cells =3D <1>=60
+> --
+Thanks, Will fix these in next version
 
-[...]
-
->>  
->>  	index = FIELD_GET(GENMASK(31, 5), pin_out);
->>  	mask = FIELD_GET(GENMASK(4, 0), pin_out);
->>  
->> +	raw_spin_lock_irqsave(&pdc->lock, flags);
-> 
-> guard()
-
-Ack. Will update in v3.
-
-Thanks,
-Maulik
+> Sashiko AI review =C2=B7=20https://protect2.fireeye.com/v1/url?k=3Df6873d=
+03-=0D=0A>=20970c2830-f686b64c-000babff9bb7-7861d1909a20c345&q=3D1&e=3Dc55a=
+9d49-=0D=0A>=2067b5-4ef3-896c-=0D=0A>=2048615db6c678&u=3Dhttps%3A%2F%2Fsash=
+iko.dev%2F%23%2Fpatchset%2F202=0D=0A>=2060612163020.411761-1-alim.akhtar%40=
+samsung.com%3Fpart%3D4=0D=0A=0D=0A
 
