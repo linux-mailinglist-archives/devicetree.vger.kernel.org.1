@@ -1,346 +1,209 @@
-Return-Path: <devicetree+bounces-311788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311790-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Wr0PNGi+L2qfFgUAu9opvQ
-	(envelope-from <devicetree+bounces-311788-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:57:12 +0200
+	id s2rlK5m+L2qnFgUAu9opvQ
+	(envelope-from <devicetree+bounces-311790-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:58:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43336684C8B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:57:12 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FC5F684CAE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 10:58:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311788-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-311788-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=MRd69Dk4;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=bXi18KYk;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311790-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-311790-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0963130254E9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:53:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D5BA43058E4A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 08:53:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FE3B3D6CBE;
-	Mon, 15 Jun 2026 08:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AED93D75A5;
+	Mon, 15 Jun 2026 08:52:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C85863DA5A2;
-	Mon, 15 Jun 2026 08:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C43D3DB309
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:52:29 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781513523; cv=none; b=StkIumxx7yMBVi+w0JPGrJhXtTWuF8mAiKcvFZs5sEYfstO3zZG/TOfltG7Die1Im1PnuiPupwdlrCYS3+eCxK/bqn0wLiT6yUqtCgKP7kJkhSL/Y7a2hPgs1ZLKwNwhV/eZNU/WZRZJzRwyOtB5EMDP9uSOx9R9IfzfEi+/HgQ=
+	t=1781513553; cv=none; b=IRKRVH8wq0y43kkBajGx0QoHne/WvW2DLrO0tO5CYyLanv/B6F86Avg6+OFFs4WErdGB6bIroxChsG119gIvUDAn6tWBobnjvYFk2rLlJd4syHORAMnuUdpPuj6YOrCD3ni1dMfacK7f3FOJfPpm/WFuDcyCW3CU+2V9TRWstGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781513523; c=relaxed/simple;
-	bh=R99ROx5zboKdDm6Hk3oGFOSy0Cw5W/pxYsLQvM+U8hc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=SqBmF2eA3DJluCfIltab8xmz8LPYNpHcZtu00/yKb9MqfAqj+nAVhXXoa95OTyZuk2ymoKeTlRrZVNEf4ZZrAY5N7SN1s/qxz1tWowbKsQfkFyjYPV1c0uYjpeWbU84CLMfSHcC+jg2Im+k7EVMZHUYBWtC9h81kOUOY3UfiFEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.100.167])
-	by APP-03 (Coremail) with SMTP id rQCowABXddwgvS9q0N_KFA--.599S2;
-	Mon, 15 Jun 2026 16:51:44 +0800 (CST)
-Message-ID: <d5df0e9df3a9a68aae982f2fce830a4b10468476.camel@iscas.ac.cn>
-Subject: Re: [PATCH v4 4/6] drm/verisilicon: add DC8000 (DCUltraLite)
- display controller support
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Joey Lu <a0987203069@gmail.com>, maarten.lankhorst@linux.intel.com, 
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- simona@ffwll.ch, 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: ychuang3@nuvoton.com, schung@nuvoton.com, yclu4@nuvoton.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Mon, 15 Jun 2026 16:51:43 +0800
-In-Reply-To: <20260615065003.76661-5-a0987203069@gmail.com>
-References: <20260615065003.76661-1-a0987203069@gmail.com>
-	 <20260615065003.76661-5-a0987203069@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+	s=arc-20240116; t=1781513553; c=relaxed/simple;
+	bh=mbwlfM9f8JkMFEZKo552TxUFu+q8ow/grm1fVavB8lo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bNQ/YUEAo3euRUuJOThNONhdyiQPF3UcFCSitiOZLqvzXEuNRtB3X/61EpVQB5fqQgEeIrq2hU/L2fJqGNSRpRcmk7gUKQ5IOY7/LX8y6QGJl98SygNgMRwEeJLvn/gRN3BGJnO5vwSYQCGv6Ut1B1pxCsMJrOHe4Z2GS33Tyd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MRd69Dk4; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bXi18KYk; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65F6KwtL3710267
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:52:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=V1VT0vv2A+CP8MZxDjPyML1xsjKqRELxbIn
+	3mtIHAHo=; b=MRd69Dk4YxEbyrUkk3+FZPWLSZYMli6HZYDmpjuUL/qq9v3Jb1r
+	6U+o1zCLhoF6jBQUALL/Q0PmzRKX/aX4tulsk1lvt83WpcIvUzzYG8kyQ9HO8ic7
+	4kkijf8ilFZXHUNP9d9+pwTg8UWvRuWACXdlZf5OwRrMyg5eTwnt4LiBmejonYOU
+	EePhf0kPIOAhAS2CjMrnOaAGTBAXD9oXktL5bq9yvCJW+bzLVk58LRFK/RKtsbNf
+	hKdJj1L0L4vhVCNewqazzeW5s6v7wQQj6k/SlKHRaoFqUKCEy1Qdyk+8hjM1URkg
+	PfmpnZ+4OPZaU+9E7BS7pEJbPXiY41dk5Mg==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ery956hce-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 08:52:28 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-36b808bedfaso4405286a91.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 01:52:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1781513547; x=1782118347; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=V1VT0vv2A+CP8MZxDjPyML1xsjKqRELxbIn3mtIHAHo=;
+        b=bXi18KYkpV9131CVwvIVfoYfq3KxqxKqb7cO4HKx2mtpshZQjz+xHIMSTze/ceqqph
+         K12XNHj1YC1yaZTa1v1FQd+N9gKye0bTGrkPPzN/2C08uf6yOprFHBM20aHSxbR4sjb5
+         KbhspN+ofRLjJigC7fwtiGZ2toVrFC1KHp1XX/EL4uDKlseTPIOKiPgqz/k3c2QA7n2w
+         dnfDXek8qjrtnOvDUeWswyHOwPTY75xMLpyDGlvKqt3z65Db2Z/auDgnsuy6Ea/WYqKf
+         EX3/fXDAjtrYqUyfh2JSGShSWuRfVQVVIfALlg4oBglGrcHqSre8Qe7h280AJLBXLPD2
+         EokQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781513547; x=1782118347;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=V1VT0vv2A+CP8MZxDjPyML1xsjKqRELxbIn3mtIHAHo=;
+        b=bzC9L1ZBIyB5OwVxtrLAWDLPqFrZzipG1udwQ5Djwv+r1d+hQitdXNfYeaOvtgSCyj
+         t6P79xuDgC1djZ84ljOW1Qs17vzfRVtvANEsWa21P8spyJDngSz5BWvITbJN0GTzu7cE
+         i0l0y6Ewh8brESieYYH8yPFd9M4cZqqME7hGf365kRlSkA00e/0IIZ9FFaot67lDrsmp
+         lP5l2Q3EnMqn7BOvNydE6qL0sT4xKbhnRaxP3EW9uzPiN4bwtGsufHQzyHgBldNKwC6U
+         BKT0iAliVF8A6eCiQ4uvP0IVaRRtMyUPvCTS9XQDUWcIdneKIx0vsz3APATwyGpLdQYh
+         /ilQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/1HjQyZ/MVua1KKDvwORLEv5OnO+4Qu+PthtZRNvOig00GMjskIfotq/NkvYyYLwSUg8/uZNR9LX8p@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdtBcnGh0dReMZkl4suqH/XuGCE2U5GuTR1QnPyRyogp+nboSC
+	/zoyonoLodCT1ajBq8w5H8A9lJ2shtqxCKZ7SuZBLxrMjP6Ypt8MEz01q3EFPNqJSDkt3GzAKuv
+	BZ3KUX/taWCU65p2yfYYOEm2rrqGXe6FlKCyFhsWi7pRBxQw+06V1pcUm2L7Iv4ZX
+X-Gm-Gg: Acq92OGced8fPopuJNo1w07OqSJYHqIH5Y2PdVuDpbnaMlJA9WLJg9yJx6ZN34vkN62
+	1ATfgkjqgvwvLdA3VBeI8J49QtQTKe6t0bJqcWhZOmXOLptAY05NFbgi3E2Uyj7jiGUTcaelv4/
+	VALNT2FjdUxk+4OOVN9inwk9ME3AnXxFJfOF3pk+AkJ4ECnPSYFxQvtq4menRmND5ozS7vNORih
+	Jg/3Hc92/GLwrfe0LT/jxvXpGg/OOv4vmo1CGz5PKXbsLQSmv0bjJNvc0gwT2tt2aFp8gOMo7wb
+	fV5eKIXJQbMaKpklvhdq+A3CAHFttLuL8HtbfI/TBBNGpSK86VFHY9Vj/6x9bvX28yHl8EdiW+w
+	YHOgytMSBjtFxDnOV1zE4xetm8JlEP06G12R/SlLXCymUno63KiP6fcHvW18qQZ+bn7VH2xtV0c
+	iPNm62YYrwrpHYop67pnlLzL+35TDyZaqYhLCHlvxEPMKzpWbBjPM=
+X-Received: by 2002:a17:90b:3a48:b0:368:341a:a925 with SMTP id 98e67ed59e1d1-37c2bd758d3mr11117547a91.23.1781513547224;
+        Mon, 15 Jun 2026 01:52:27 -0700 (PDT)
+X-Received: by 2002:a17:90b:3a48:b0:368:341a:a925 with SMTP id 98e67ed59e1d1-37c2bd758d3mr11117517a91.23.1781513546802;
+        Mon, 15 Jun 2026 01:52:26 -0700 (PDT)
+Received: from hu-varada-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-37a25ecd5e9sm9539723a91.10.2026.06.15.01.52.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jun 2026 01:52:26 -0700 (PDT)
+From: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+To: amitk@kernel.org, thara.gopinath@gmail.com, rafael@kernel.org,
+        daniel.lezcano@kernel.org, rui.zhang@intel.com, lukasz.luba@arm.com,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
+Subject: [PATCH v4 0/2] Add support tsens in ipq5210 & ipq9650
+Date: Mon, 15 Jun 2026 14:22:16 +0530
+Message-Id: <20260615085218.1421347-1-varadarajan.narayanan@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-CM-TRANSID:rQCowABXddwgvS9q0N_KFA--.599S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxtr18Wr1rGrW5uFW7Xr1xAFb_yoW3ArW7pF
-	4vyay8Wr4UJayI9r97tFy8KF90kw1xtayrWrZ7G34Yvrn8tFyDWFW0qFyUZayDWrZ7JF4I
-	qFsY9w47CrW2v3JanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I
-	8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8Jw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
-	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
-	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-	IFyTuYvjxUqVcEUUUUU
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: bmTys6BJt0koJdJHgzR7aHFlhPvEzsD5
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE1MDA5MiBTYWx0ZWRfXxZlShqnFbEIb
+ oBPH6fh69pxTPMChgmZtP7ay5ihU3tZ1/tb9sZqRgjzylTalB+dJXowYhKA02HlCK3+RNU29mWz
+ csNq0djcYcsaUyZ7Pn7sTHmBt4ZByNM=
+X-Proofpoint-GUID: bmTys6BJt0koJdJHgzR7aHFlhPvEzsD5
+X-Authority-Analysis: v=2.4 cv=EbP4hvmC c=1 sm=1 tr=0 ts=6a2fbd4c cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=3VMRAj0lm1uwpsZbwXoA:9 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE1MDA5MiBTYWx0ZWRfX6dRxYWXAjqHd
+ 8e8yaBjUZ3bFp1xZw7hEpEv19ysSZAD3kSoPcBFTlIHrGV6hz9pu4ck8wP7pr7UJCfTylE+rqIR
+ aMgqikDmFs5wgk9UlKiS/SmHA/SI/Jl0aDfISW15ejXszQsMk/BrJZrBERC0vfLxuMji55HMBAW
+ Na3xfYKBQaPOORGxrsYn13xyNbcTN6seIEwu4gVOI+jIEDDdaFJyEZ6i01ILBpsXYL9NghLFPAl
+ nWFtKQ+cky8NRxxC5U20BrQJhhuX/jJOLkAr6F/HCZ9S+XN0JGzM2+mnKyECS7mjY29o6+y1x/B
+ 2qxk+74XjHReNlDo8sXy8kiJhXI4+i9TnJkQtUI/85E0aaSNoYwKNixess6WaCIvqKeVg2SRbA8
+ wW8fX1NRbmVs81uATcABHZqyuSScSAMENiAuSYoyW+1FkSkbZkKTu3I+3VxHI8DvHzoHykP/KIc
+ MogZsqd8/jt1HFk92kQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-15_02,2026-06-12_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 bulkscore=0 clxscore=1015 malwarescore=0
+ suspectscore=0 spamscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606150092
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	FORGED_RECIPIENTS(0.00)[m:a0987203069@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:yclu4@nuvoton.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-311790-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,intel.com,arm.com,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:amitk@kernel.org,m:thara.gopinath@gmail.com,m:rafael@kernel.org,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:varadarajan.narayanan@oss.qualcomm.com,m:tharagopinath@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-311788-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
+	FORGED_SENDER(0.00)[varadarajan.narayanan@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[varadarajan.narayanan@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nuvoton.com:email,iscas.ac.cn:mid,iscas.ac.cn:from_mime]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 43336684C8B
+X-Rspamd-Queue-Id: 3FC5F684CAE
 
-=E5=9C=A8 2026-06-15=E4=B8=80=E7=9A=84 14:50 +0800=EF=BC=8CJoey Lu=E5=86=99=
-=E9=81=93=EF=BC=9A
-> The Nuvoton MA35D1 SoC integrates a Verisilicon DCUltraLite display
-> controller whose register layout differs from the DC8200 in several
-> important ways:
->=20
-> 1. No CONFIG_EX commit path: framebuffer updates use the enable (bit
-> 0)
-> =C2=A0=C2=A0 and reset (bit 4) bits in FB_CONFIG instead of the DC8200 st=
-aging
-> =C2=A0=C2=A0 registers (FB_CONFIG_EX, FB_TOP_LEFT, FB_BOTTOM_RIGHT,
-> =C2=A0=C2=A0 FB_BLEND_CONFIG, PANEL_CONFIG_EX).
->=20
-> 2. No PANEL_START register: panel output starts when
-> =C2=A0=C2=A0 PANEL_CONFIG.RUNNING is set; there is no multi-display sync =
-start
-> =C2=A0=C2=A0 register.
->=20
-> 3. Different IRQ registers: DCUltraLite uses DISP_IRQ_STA (0x147C) /
-> =C2=A0=C2=A0 DISP_IRQ_EN (0x1480) versus DC8200's TOP_IRQ_ACK (0x0010) /
-> =C2=A0=C2=A0 TOP_IRQ_EN (0x0014).
->=20
-> 4. Per-frame commit cycle: DCUltraLite requires the VALID bit in
-> =C2=A0=C2=A0 FB_CONFIG to be set at the start of each atomic commit
-> (crtc_begin)
-> =C2=A0=C2=A0 and cleared after (crtc_flush).
->=20
-> 5. Simpler clock topology: only 'core' (bus gate) and 'pix0' (pixel
-> =C2=A0=C2=A0 divider) clocks; no axi or ahb clocks required.=C2=A0 Make a=
-xi_clk and
-> =C2=A0=C2=A0 ahb_clk optional (devm_clk_get_optional_enabled) so DC8000 n=
-odes
-> =C2=A0=C2=A0 without those clocks are handled gracefully.
->=20
-> Add vs_dc8000.c implementing the vs_dc_funcs vtable for the above
-> differences.=C2=A0 The probe now selects vs_dc8000_funcs when the
-> identified
-> generation is VSDC_GEN_DC8000 (DCUltraLite reads model 0x0,
-> revision 0x5560, customer_id 0x305).
->=20
-> Signed-off-by: Joey Lu <a0987203069@gmail.com>
-> ---
-> =C2=A0drivers/gpu/drm/verisilicon/Makefile=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
-> =C2=A0drivers/gpu/drm/verisilicon/vs_dc.c=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
- 9 ++-
-> =C2=A0drivers/gpu/drm/verisilicon/vs_dc.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
- 1 +
-> =C2=A0drivers/gpu/drm/verisilicon/vs_dc8000.c | 78
-> +++++++++++++++++++++++++
-> =C2=A04 files changed, 86 insertions(+), 4 deletions(-)
-> =C2=A0create mode 100644 drivers/gpu/drm/verisilicon/vs_dc8000.c
->=20
-> diff --git a/drivers/gpu/drm/verisilicon/Makefile
-> b/drivers/gpu/drm/verisilicon/Makefile
-> index 9d4cd16452fa..d2fd8e4dff24 100644
-> --- a/drivers/gpu/drm/verisilicon/Makefile
-> +++ b/drivers/gpu/drm/verisilicon/Makefile
-> @@ -1,6 +1,6 @@
-> =C2=A0# SPDX-License-Identifier: GPL-2.0-only
-> =C2=A0
-> -verisilicon-dc-objs :=3D vs_bridge.o vs_crtc.o vs_dc.o vs_dc8200.o
-> vs_drm.o vs_hwdb.o \
-> +verisilicon-dc-objs :=3D vs_bridge.o vs_crtc.o vs_dc.o vs_dc8200.o
-> vs_dc8000.o vs_drm.o vs_hwdb.o \
-> =C2=A0	vs_plane.o vs_primary_plane.o vs_cursor_plane.o
-> =C2=A0
-> =C2=A0obj-$(CONFIG_DRM_VERISILICON_DC) +=3D verisilicon-dc.o
-> diff --git a/drivers/gpu/drm/verisilicon/vs_dc.c
-> b/drivers/gpu/drm/verisilicon/vs_dc.c
-> index 9729b693d360..9499fffbca58 100644
-> --- a/drivers/gpu/drm/verisilicon/vs_dc.c
-> +++ b/drivers/gpu/drm/verisilicon/vs_dc.c
-> @@ -90,13 +90,13 @@ static int vs_dc_probe(struct platform_device
-> *pdev)
-> =C2=A0		return PTR_ERR(dc->core_clk);
-> =C2=A0	}
-> =C2=A0
-> -	dc->axi_clk =3D devm_clk_get_enabled(dev, "axi");
-> +	dc->axi_clk =3D devm_clk_get_optional_enabled(dev, "axi");
-> =C2=A0	if (IS_ERR(dc->axi_clk)) {
-> =C2=A0		dev_err(dev, "can't get axi clock\n");
-> =C2=A0		return PTR_ERR(dc->axi_clk);
-> =C2=A0	}
-> =C2=A0
-> -	dc->ahb_clk =3D devm_clk_get_enabled(dev, "ahb");
-> +	dc->ahb_clk =3D devm_clk_get_optional_enabled(dev, "ahb");
+ipq5210 and ipq9560 have the Qualcomm tsens-v2 IP. The tsens framework
+in these two SoCs are similar to the one found in ipq5332. This series
+adds the sensor data to the tsens-v2 driver.
 
-Please make the clock change a separated patch for atomicity.
+v4: Fix version number
 
-BTW the MA35D1 manual's clock tree shows that DCUltra appears on AXI2
-ACLK, AHB_HCLK2, behind a mux of SYS-PLL/EPLL-DIV2 (which seems to be
-the core clock), and behind a divider (which seems to be the pixel
-clock).
+v3: (incorrect version number)
+    Add additional constraints for ipq9650
+    https://lore.kernel.org/linux-arm-msm/20260610081241.1468507-1-varadarajan.narayanan@oss.qualcomm.com/
 
-However it's weird that only one DCUltra Clock Enable Bit exists
-despite both bus clocks have "ICG" (I think it means "Integrated Clock
-Gating"). In addition the linux clk-ma35d1 driver assigns "dcu_gate" as
-a downstream of "dcu_mux", although the Figure 6.5-2 in the TRM shows
-no ICG after the "Display core CLK" mux.
+v2: Combine bindings and driver patches
+    Use fallback for ipq5210 and dropped the driver changes
+    https://lore.kernel.org/linux-arm-msm/20260609065447.4024695-1-varadarajan.narayanan@oss.qualcomm.com/
 
-Is the two bus clocks controlled by a single gate bit, and is the bit
-also gating DC core clock?
+v1: bindings - https://lore.kernel.org/linux-arm-msm/20260515-tsens-yaml-v1-1-8039c62cc249@oss.qualcomm.com/
+    driver - https://lore.kernel.org/linux-arm-msm/20260515-tsens-driver-v1-0-015ca76f1418@oss.qualcomm.com/
 
-Thanks,
-Icenowy
+Varadarajan Narayanan (2):
+  dt-bindings: thermal: tsens: add ipq5210 & ipq9650 compatible
+  thermal/drivers/qcom/tsens: Add support for ipq9650 tsens
 
-> =C2=A0	if (IS_ERR(dc->ahb_clk)) {
-> =C2=A0		dev_err(dev, "can't get ahb clock\n");
-> =C2=A0		return PTR_ERR(dc->ahb_clk);
-> @@ -134,7 +134,10 @@ static int vs_dc_probe(struct platform_device
-> *pdev)
-> =C2=A0	dev_info(dev, "Found DC%x rev %x customer %x\n", dc-
-> >identity.model,
-> =C2=A0		 dc->identity.revision, dc->identity.customer_id);
-> =C2=A0
-> -	dc->funcs =3D &vs_dc8200_funcs;
-> +	if (dc->identity.generation =3D=3D VSDC_GEN_DC8200)
-> +		dc->funcs =3D &vs_dc8200_funcs;
-> +	else
-> +		dc->funcs =3D &vs_dc8000_funcs;
-> =C2=A0
-> =C2=A0	if (port_count > dc->identity.display_count) {
-> =C2=A0		dev_err(dev, "too many downstream ports than HW
-> capability\n");
-> diff --git a/drivers/gpu/drm/verisilicon/vs_dc.h
-> b/drivers/gpu/drm/verisilicon/vs_dc.h
-> index 544e1a37065b..5218e8cf63e2 100644
-> --- a/drivers/gpu/drm/verisilicon/vs_dc.h
-> +++ b/drivers/gpu/drm/verisilicon/vs_dc.h
-> @@ -66,5 +66,6 @@ struct vs_dc {
-> =C2=A0};
-> =C2=A0
-> =C2=A0extern const struct vs_dc_funcs vs_dc8200_funcs;
-> +extern const struct vs_dc_funcs vs_dc8000_funcs;
-> =C2=A0
-> =C2=A0#endif /* _VS_DC_H_ */
-> diff --git a/drivers/gpu/drm/verisilicon/vs_dc8000.c
-> b/drivers/gpu/drm/verisilicon/vs_dc8000.c
-> new file mode 100644
-> index 000000000000..be0c0d7baf52
-> --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_dc8000.c
-> @@ -0,0 +1,78 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2026 Joey Lu <yclu4@nuvoton.com>
-> + */
-> +
-> +#include <linux/regmap.h>
-> +
-> +#include "vs_crtc_regs.h"
-> +#include "vs_dc.h"
-> +#include "vs_primary_plane_regs.h"
-> +
-> +static void vs_dc8000_panel_enable_ex(struct vs_dc *dc, unsigned int
-> output)
-> +{
-> +	regmap_set_bits(dc->regs, VSDC_FB_CONFIG(output),
-> +			VSDC_FB_CONFIG_RESET);
-> +}
-> +
-> +static void vs_dc8000_panel_disable_ex(struct vs_dc *dc, unsigned
-> int output)
-> +{
-> +	regmap_clear_bits(dc->regs, VSDC_FB_CONFIG(output),
-> +			=C2=A0 VSDC_FB_CONFIG_RESET);
-> +}
-> +
-> +static void vs_dc8000_crtc_begin(struct vs_dc *dc, unsigned int
-> output)
-> +{
-> +	regmap_set_bits(dc->regs, VSDC_FB_CONFIG(output),
-> +			VSDC_FB_CONFIG_VALID);
-> +}
-> +
-> +static void vs_dc8000_crtc_flush(struct vs_dc *dc, unsigned int
-> output)
-> +{
-> +	regmap_clear_bits(dc->regs, VSDC_FB_CONFIG(output),
-> +			=C2=A0 VSDC_FB_CONFIG_VALID);
-> +}
-> +
-> +static void vs_dc8000_crtc_enable(struct vs_dc *dc, unsigned int
-> output)
-> +{
-> +	regmap_set_bits(dc->regs, VSDC_FB_CONFIG(output),
-> +			VSDC_FB_CONFIG_ENABLE);
-> +}
-> +
-> +static void vs_dc8000_crtc_disable(struct vs_dc *dc, unsigned int
-> output)
-> +{
-> +	regmap_clear_bits(dc->regs, VSDC_FB_CONFIG(output),
-> +			=C2=A0 VSDC_FB_CONFIG_ENABLE);
-> +}
-> +
-> +static void vs_dc8000_enable_vblank(struct vs_dc *dc, unsigned int
-> output)
-> +{
-> +	regmap_set_bits(dc->regs, VSDC_DISP_IRQ_EN,
-> +			VSDC_DISP_IRQ_VSYNC(output));
-> +}
-> +
-> +static void vs_dc8000_disable_vblank(struct vs_dc *dc, unsigned int
-> output)
-> +{
-> +	regmap_clear_bits(dc->regs, VSDC_DISP_IRQ_EN,
-> +			=C2=A0 VSDC_DISP_IRQ_VSYNC(output));
-> +}
-> +
-> +static u32 vs_dc8000_irq_ack(struct vs_dc *dc)
-> +{
-> +	u32 irqs;
-> +
-> +	regmap_read(dc->regs, VSDC_DISP_IRQ_STA, &irqs);
-> +	return irqs;
-> +}
-> +
-> +const struct vs_dc_funcs vs_dc8000_funcs =3D {
-> +	.panel_enable_ex	=3D vs_dc8000_panel_enable_ex,
-> +	.panel_disable_ex	=3D vs_dc8000_panel_disable_ex,
-> +	.crtc_begin		=3D vs_dc8000_crtc_begin,
-> +	.crtc_flush		=3D vs_dc8000_crtc_flush,
-> +	.crtc_enable		=3D vs_dc8000_crtc_enable,
-> +	.crtc_disable		=3D vs_dc8000_crtc_disable,
-> +	.enable_vblank		=3D vs_dc8000_enable_vblank,
-> +	.disable_vblank		=3D vs_dc8000_disable_vblank,
-> +	.irq_ack		=3D vs_dc8000_irq_ack,
-> +};
+ .../devicetree/bindings/thermal/qcom-tsens.yaml          | 9 +++++++++
+ drivers/thermal/qcom/tsens-v2.c                          | 8 ++++++++
+ drivers/thermal/qcom/tsens.c                             | 3 +++
+ drivers/thermal/qcom/tsens.h                             | 2 +-
+ 4 files changed, 21 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
 
 
