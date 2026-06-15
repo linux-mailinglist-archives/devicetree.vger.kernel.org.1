@@ -1,308 +1,304 @@
-Return-Path: <devicetree+bounces-311927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-311938-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZJ7TIDHxL2qbJQUAu9opvQ
-	(envelope-from <devicetree+bounces-311927-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:33:53 +0200
+	id ezEDI0fyL2r/JQUAu9opvQ
+	(envelope-from <devicetree+bounces-311938-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:38:31 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0EEC686400
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:33:52 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86E6D686488
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:38:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=baylibre.com header.s=google header.b=XpEvJ7vP;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311927-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-311927-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=R51mfMBx;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=Xtfox9wT;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-311938-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-311938-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 79ED33083026
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:29:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 177483028BBA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 12:33:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11DC3EAC72;
-	Mon, 15 Jun 2026 12:29:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D06F3F8246;
+	Mon, 15 Jun 2026 12:31:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D164A3EB0FA
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B727C3F1ACA
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:30:54 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781526597; cv=none; b=UmFpZOwV3E/+vc4cg3kOjvHFc0pGbSbb09Tp6AMHfOQ6l24VafxSYnYA0UyeRrlcgDHmeGkRV+RPQaOHFkuKK5tlLBM9TxD4dDryEGpbCrfX5/GThZ2S7V4S2TyFK2H1JY1N3KYjmEofp40sVvBRFe42gRDqe6OF4lhA37N0qpI=
+	t=1781526666; cv=none; b=drFH1KpTLYB7vRlDPZDi5DmnJ+12aGhnHLGpO8S4NcHgOJe4nR3gmVpVnoiGivOdmRSZkTAaQ7LrWItYggGzYiNdijnyq8TNCEeKeGOlfF/P6ceTnjPS8EHP916MIdlI/ti3IzL0DmxsHgNwtNzpCpoNlIafYzpFzBQPvwgr9UQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781526597; c=relaxed/simple;
-	bh=y4inj7QtuABTALkC23yJ3TUZEovMNW3xTSrhVh4k1P0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=JW+603M3corpRdELgv86RN2e0mJCYY+U5wp+xJC4j3AjCHP5CF8aD8C3OVy+9eD+wgyK7N6RtYLCGMuJdEVf5yyRS5k4GyP/0Nk3wGBExK89iWqF6nu1FF+OpR+78lMq5Id2ozMwMM3NbjLssfc4g6iLGwPvug6e7yYZhAap8K4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.b=XpEvJ7vP; arc=none smtp.client-ip=209.85.128.50
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-49222fb062bso22705665e9.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:29:52 -0700 (PDT)
+	s=arc-20240116; t=1781526666; c=relaxed/simple;
+	bh=4nzEpuGwgNL0R2NblpKrggs9ml7l1I1ZGGJOsujlLzg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Iiv+IQXtqQwpb+KduiTYvI4LW7hzYyGSBRsnhqfBok4xpZAs416yOcj3VpGuVjYD74VewY649drmopwRcLmzoKV4aa6EqB9c6EJ9Tz0jReEnB5eZz5rxWYIUXf7lAsrpQDgpTCfIwwGqWuIv01VpF8puutXgsMh1qNfEUg6OdZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R51mfMBx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Xtfox9wT; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65FApOqX298268
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:30:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KiXHBkLlgkRaXk44sFimwo5t89c600tXG9f+rJEMgMI=; b=R51mfMBxrAYMYcOE
+	Xy8Kn+eR8j/pJLt7NGydvGed32wbCQAW0d8UEsEsl147osIxIdl3VrmMiA2137ag
+	rnKtpFD1XuDtDKXSv+ltL1OvXHp+7bbilNTZ155ZKPnSdfPIN5uuD1daEPctXyZf
+	U2J5OxjGpYc+5WGI0hr9WnG6LObZV+aZAt5uDaUUmoiJzG0+21PHeWOkCgfTAUPF
+	4HjLBmTP8FSWI+ugJCM8+1BXK+E5tLXiuqNanewOk1IGN7iIP/xJtrWkadwJxGQ6
+	Tzq2Tp3oLmmMt8Z++VHpFVo6QxEUuRYlbX8mb7d6m9xr6gHlyPPc+R7/5X8ChaSN
+	y+BWLA==
+Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com [209.85.210.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eter20pc8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 12:30:53 +0000 (GMT)
+Received: by mail-ot1-f70.google.com with SMTP id 46e09a7af769-7e6dcca848bso6211849a34.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 05:30:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1781526591; x=1782131391; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j2xSbb+XBUSXol+Xw5qFRPsWuUhic/XBn3XXsaZ5Bxc=;
-        b=XpEvJ7vPdLMJLoqZLmXzxO2NG0bu/NTikdi4wx+CxWPOX9da+Cs6ntf/T1lD10T+t9
-         vVdaVBnFHkdhd1+07Dtq4wVYL9BwnGlYAKJ13k/lvYLSbnmgOwGSi6nF1zR5mV4+ppPy
-         xwj7B0iskQWdXrtP2LczwEsE7saMQdgTCpkLNUda4eKhs+yH4A10e144QknJ4YZsYoX6
-         9IKwaWdGGSxrdLUUrAAesk9ps0o/LxGmbiLoLO2Ua+vi014ZEERTvpQ/CQvmhGRalJ1d
-         tp93QM2xJtqQpwpaVtuvf2NEURR2D+7fSxe5KlBaDjtpCQ1Hu9LmvcxjtS0A2+5w2es/
-         xh0Q==
+        d=oss.qualcomm.com; s=google; t=1781526652; x=1782131452; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KiXHBkLlgkRaXk44sFimwo5t89c600tXG9f+rJEMgMI=;
+        b=Xtfox9wTXyK6qyXmcZohBI8xZUiAB7i9YuVmSNSOoGgTr1eybyljf18rD9SkkMf4X2
+         3HVevz4ej+semuMJ6lHoG/K70+yKpnlxGJGQSnjQOrLH9+UGHmmiy6EFeihpzVlhJw8/
+         MWP85JJ+9wloHOqm2cBnK0SCepz90PMFI+vGR8q0XVJDg7YeSpU1fhd8+qL8rBajAL4h
+         5Qsw3/YlE+gNfc4RHEmKqqAGVD41FF5Yn2ZmS3idI/4Qe8tUc1BqBa6IkOxz0QKt+Tk7
+         f2oz4bAH6kej02wMHmizUCh+nteUGfZnwnpaGQom9gg7bE2m9ro1J1GMgiVDQoDsH/BC
+         pvCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781526591; x=1782131391;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j2xSbb+XBUSXol+Xw5qFRPsWuUhic/XBn3XXsaZ5Bxc=;
-        b=LQHd4o/v/zIIM3ZNGzBdlVcyNCH4VPSlCGs2xXdfECoUkhdwqkMung7lZ+JCNgzrcx
-         tkZ+G4/mXfL0EkuKra4vEztYzpOfzQri+DDApMkNjr05n/ghIeyu6yGBvElENKI2YJFV
-         PxvqtoOHLUCQko/59vy/yKnlPCNvGFHbbgVYh/aRDsvlrz+r7jeg47TNW8Wwx9miS8+c
-         pCZ8CT5+BvQ2NLCC94qvBDi80VPnT+0688ajXm3jvWQajov4qnaFe/vEQW6CRiG0ksaO
-         DWBsmh9wc8oaIgjowGsxxXS0fqUOe0F3L6gGpObfBRA4fP+I1iXztn4fwWjbIYx5H+V1
-         97GA==
-X-Forwarded-Encrypted: i=1; AFNElJ812x5oC1n2BRfOz8lbaW4Nw9Y7XIuA4Sd4lQpMZh4FopulwJjzn71aKpOZ0S4ikWr9H3LMcHrv3Nk9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiaJBykzjYYifUBc46sFh+64hyFGT12mTu/CbNdldm3/HhWDVn
-	jV1eRH0oq2+mblmtx52XA3OjVMab3mypRo13zc89aaB5FZvDh1nLVXt9gyotJzeMxpQ=
-X-Gm-Gg: Acq92OH9rStkALDS6FE5S4LlU/HJDrp0BUKvFcTES8gbONAee7LQ15Sljy4g43vTEi1
-	s4Sp25k+Fcr1O0qMr+T+GH7CXjgHXINau2mKQe/ux5Ri+cbooent2q2DPs3cIvyV1A65coAHoxJ
-	lIB/bmLvuiXTiW6feAlVVFTPaTGtrsO5+s9i9JiT26hkk/qPAsYnlsCadcvoRbY6Hmm6SykCCGF
-	PjpHKXMMvSZyTGy7KHW+qCgwdfvc+S9yTiVn2pROonzGZ4Oi2F/mJK3AtlzpRl5RfsjV1BC8fmD
-	gq6Mjxu3f3XkjgCwq2sLNobfa9u4VfJmDOec/oPnwoUWlxIlrKg5q124XCjyWCx7vC9KxYRc+wb
-	PZIlAqs8kUJmIrfo2thLvnOQsa2aNVSjIW34oLVwmpoxdw/hO1uy2lebfda2zJycLfRv7sR4aw0
-	LjjF1O2YBZKCSAWJQI+8Ozjw==
-X-Received: by 2002:a05:600c:8b31:b0:490:b28d:a6f9 with SMTP id 5b1f17b1804b1-490ec4a8474mr184582905e9.8.1781526590867;
-        Mon, 15 Jun 2026 05:29:50 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:3c22:dcc2:a51d:cde2])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-49220372ed0sm223313935e9.14.2026.06.15.05.29.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jun 2026 05:29:50 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Jian Hu via B4 Relay <devnull+jian.hu.amlogic.com@kernel.org>,  Neil
- Armstrong <neil.armstrong@linaro.org>,  Michael Turquette
- <mturquette@baylibre.com>,  Stephen Boyd <sboyd@kernel.org>,  Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
-  Kevin Hilman <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>,  linux-amlogic@lists.infradead.org,
-  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/2] clk: amlogic: Add A9 peripherals clock
- controller driver
-In-Reply-To: <bfe92bbe-5325-4497-b79f-10c7a6e1ed5b@amlogic.com> (Jian Hu's
-	message of "Mon, 15 Jun 2026 19:25:20 +0800")
-References: <20260610-a9_peripherals-v3-0-d07a78085f71@amlogic.com>
-	<20260610-a9_peripherals-v3-2-d07a78085f71@amlogic.com>
-	<1jecieftme.fsf@starbuckisacylon.baylibre.com>
-	<bfe92bbe-5325-4497-b79f-10c7a6e1ed5b@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Mon, 15 Jun 2026 14:29:48 +0200
-Message-ID: <1j7bo0dm0z.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20251104; t=1781526652; x=1782131452;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KiXHBkLlgkRaXk44sFimwo5t89c600tXG9f+rJEMgMI=;
+        b=UvQ//HwdOfees9YbWAymLyZCrvoSDm/sJmFgyM3xaadINUlUW3wAx60Bs1HZ02Hrtr
+         3gDGDE+TQYp/6lYBlSgXqS8+2nrdeXON0tMGQ8/Pao+uTECK5b47vIrw64YUS1p+bMBi
+         DLCvQ1tYmUldirjfJSxtwNkra/0RD1r4/KrakBHUivID2TWhjqygYpQxRmaD1vuunUd6
+         GwEkSLIDfH+C+e6MNPakrcw5MYE82hJ08fOuvXUhOfQQHzg7ZCaOEpUCy3bsF3LJanxs
+         dcRz+NqYQr0QtH9dI/XyjIoY/WQPQgEJe9n8ErL43RpaSGDu14H0gfBhakkSGiYYxPmM
+         Ms1w==
+X-Forwarded-Encrypted: i=1; AFNElJ9Vn3EkQ26Tbn/XNOARt843yjfMRvC4+BHkAc9dJHLEkF5lT13PpYqnMTruoFVZ56+ZSC0S7Ssqogl5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMyf6vj8kSNnAcpaS4yZUUsDJ4/+pzOpR2ej8xyYWrwt1NRLQM
+	b++XuegtxtzJEHpITG69EijGcwwW5F2wLPioizgztJmVKQszNnbKWoM8D457Gr7t27i2+Ky4zOS
+	eIbP5DGe8laZCO3IiZHTljROcptBkcP8azfQpm9K5VNyCjTzNttzOWC3MoSP91P8A
+X-Gm-Gg: Acq92OHqyK6N9Oy42wxmxBTJgFo/2KrLiFj00/W9RvWcFwgZXfkQctWHTwF0+xni0TM
+	vs9hJhImBfHcJ32lyKGlM8H4wb8sVihqYRz3t+BeZAoyWLVvPqr75hm+H6nLcWff/9mVhoo7M3/
+	tTOn25Q0YiPPBOvgA6AQlreqnSYL8Te67XOQBYXa1x8PKLGgkWcBl0k7bxwjNfQ3fzlIMIA0MDt
+	RS4fnrY6Ynf+fXK5HgJ0UTcYB+GKiajb0PF/uZoHyXewPrHHwja4q2FCMDVZzQnmm/VFwgiC4X5
+	XSmvoJU2OgoecGEXBCdJ+00IBZ5Dr/6nTIFkk0J+fjN6gODCIkpTEk1o7JZkJbINRjoakfqb+1v
+	zauOtolCzY24xky08ZIEke/2f+oDEO9VflKnJeVswF/EZWGg/XqL/fWMAxif4q32cIrVpBum3ad
+	uTRGRmonTH947FdQ==
+X-Received: by 2002:a05:6808:6f91:b0:486:7e34:ebac with SMTP id 5614622812f47-4872f608696mr9488781b6e.42.1781526652565;
+        Mon, 15 Jun 2026 05:30:52 -0700 (PDT)
+X-Received: by 2002:a05:6808:6f91:b0:486:7e34:ebac with SMTP id 5614622812f47-4872f608696mr9488748b6e.42.1781526652092;
+        Mon, 15 Jun 2026 05:30:52 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:b0eb:75fa:2a81:cf30? ([2a05:6e02:1041:c10:b0eb:75fa:2a81:cf30])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-490ea963cf8sm203208835e9.2.2026.06.15.05.30.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jun 2026 05:30:51 -0700 (PDT)
+Message-ID: <9a31bb29-75d7-42fa-b8a8-4155cf85cadf@oss.qualcomm.com>
+Date: Mon, 15 Jun 2026 14:30:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/8] dt-bindings: remoteproc: qcom,pas: add thermal
+ mitigation properties
+To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Amit Kucheria <amit.kucheria@oss.qualcomm.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Kees Cook <kees@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-hardening@vger.kernel.org,
+        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+References: <20260609-qmi-tmd-v3-0-291a2ff4c634@oss.qualcomm.com>
+ <20260609-qmi-tmd-v3-1-291a2ff4c634@oss.qualcomm.com>
+ <20260610-ocelot-of-stimulating-excellence-bcb0fe@quoll>
+ <03d863ee-2caa-41f2-94b5-7332fc930b42@oss.qualcomm.com>
+ <d81bc78e-2c1d-45fd-90c9-f7ec462183a0@kernel.org>
+ <7f1e46fb-15e3-4638-9930-8abc1dd5a778@oss.qualcomm.com>
+ <fcf93e0f-a2f0-4070-86ec-8a34e9344b76@kernel.org>
+ <ec65893d-873a-4a62-b0e2-5008b2130545@oss.qualcomm.com>
+ <3cbcaf8c-357e-42d2-91c1-9d1a32c55ed0@oss.qualcomm.com>
+ <ae43a691-4879-4bfa-8c7c-1be16945480c@oss.qualcomm.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+In-Reply-To: <ae43a691-4879-4bfa-8c7c-1be16945480c@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE1MDEzMiBTYWx0ZWRfX+zY8KcGBU7jJ
+ W3pV85Ew8NaSAz9nqHK6p6+Uk/i48abBRPMcpXcP+YEQuf3JIAljYN8VG0nKsFyU2euIyR2rdcZ
+ 5NZL+NRHmlglZqTodBXloR6pVUGv9hs=
+X-Proofpoint-GUID: a2E1JqawRbnXqmL6t0nv4Z_cD-F5t0t7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE1MDEzMiBTYWx0ZWRfXwJmqmyQxW7EN
+ Nc7eyBDTSsna4PnEmSFXudvZ7MuO2e3/g5dl3yJdFWDFSeoJpJZt+ft7mGf9rjg7wx3BTvyrK/z
+ JrgeiKrPj6JlMixe6gV+130/o9KnME3ru/fUss2Ql1rM0sBElBV+dXdbv7GzpKrySGN3nWvr+gt
+ Puh4gsWlWWvLPZw+Q2JwxUudUQH9ItgDySpdUiwn0K/3UW0B7j0E3NNMLka+UPn7XbaxCTap5Cw
+ cgSUDz6zyPOo92iNdUszwlypnCZoBfUg4mPvQ+kvxk1P3/kCmAS3g7bJ3dU4EUWz4ScuWErw6rT
+ ACBAIDSyOgEnfkALnGerxMWBdAu8J2uzoX9snFtCl7Or7w0Ylp2xmT125qR09JlzwcQP71JuaXk
+ /D4OxJdA5o6bsBx1XQVtjFBrGFCDy8rgdR0yp0EBbxWD3Mht/jrmAsuiK1fVdWPBLyUswii4vCZ
+ LeELPbTLB/CYpVEAmdg==
+X-Authority-Analysis: v=2.4 cv=F4tnsKhN c=1 sm=1 tr=0 ts=6a2ff07d cx=c_pps
+ a=7uPEO8VhqeOX8vTJ3z8K6Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=vdW527L6AYu-INn279QA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=EXS-LbY8YePsIyqnH6vw:22
+X-Proofpoint-ORIG-GUID: a2E1JqawRbnXqmL6t0nv4Z_cD-F5t0t7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-15_03,2026-06-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 clxscore=1015 impostorscore=0 spamscore=0
+ adultscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606040000
+ definitions=main-2606150132
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-311938-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jian.hu@amlogic.com,m:devnull+jian.hu.amlogic.com@kernel.org,m:neil.armstrong@linaro.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:xianwei.zhao@amlogic.com,m:khilman@baylibre.com,m:martin.blumenstingl@googlemail.com,m:linux-amlogic@lists.infradead.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:devnull@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[baylibre.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-311927-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
+	FORGED_SENDER(0.00)[daniel.lezcano@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FORGED_RECIPIENTS(0.00)[m:gaurav.kohli@oss.qualcomm.com,m:krzk@kernel.org,m:andersson@kernel.org,m:mathieu.poirier@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:amit.kucheria@oss.qualcomm.com,m:mani@kernel.org,m:konradybcio@kernel.org,m:kees@kernel.org,m:gustavoars@kernel.org,m:cros-qcom-dts-watchers@chromium.org,m:linux-arm-msm@vger.kernel.org,m:linux-remoteproc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:manaf.pallikunhi@oss.qualcomm.com,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,baylibre.com,amlogic.com,googlemail.com,lists.infradead.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel.lezcano@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,jian.hu.amlogic.com,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,baylibre.com:dkim,baylibre.com:from_mime,starbuckisacylon.baylibre.com:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D0EEC686400
+X-Rspamd-Queue-Id: 86E6D686488
 
-On lun. 15 juin 2026 at 19:25, Jian Hu <jian.hu@amlogic.com> wrote:
+Hi Gaurav,
 
-> On 6/10/2026 8:49 PM, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
+Le 15/06/2026 à 14:12, Gaurav Kohli a écrit :
+> 
+> 
+> On 6/15/2026 4:04 PM, Daniel Lezcano wrote:
+>> On 6/13/26 13:05, Gaurav Kohli wrote:
+>>>
+>>>
+>>> On 6/13/2026 1:11 PM, Krzysztof Kozlowski wrote:
+>>>> On 12/06/2026 15:52, Gaurav Kohli wrote:
+>>>>>
+>>>>>
+>>>>> On 6/11/2026 5:53 PM, Krzysztof Kozlowski wrote:
+>>>>>> On 11/06/2026 13:12, Gaurav Kohli wrote:
+>>>>>>>> Why? And where is this generic property defined? You cannot just
+>>>>>>>> sprinkle generic properties in random bindings.
+>>>>>>>>
+>>>>>>>
+>>>>>>> Ack, will add why part.
+>>>>>>> These names are matched with the thermal mitigation device 
+>>>>>>> identifiers
+>>>>>>> populated by remote firmware over QMI and define mitigation 
+>>>>>>> devices are
+>>>>>>> exposed as cooling devices.
+>>>>>>
+>>>>>> No, -names correspond to values passed via DT, not some remote 
+>>>>>> firmware.
+>>>>>> The remote firmware should give you interface which is explicit 
+>>>>>> and does
+>>>>>> not need such properties.
+>>>>>
+>>>>> thanks Krzysztof for review, We need tmd-names because of following 
+>>>>> reasons:
+>>>>>
+>>>>> Following Daniel's series [1], the thermal framework supports
+>>>>> mapping multiple cooling devices per remoteproc/device via indexed
+>>>>> cooling-cells.
+>>>>>
+>>>>> 1) The thermal framework's cooling-maps reference
+>>>>> cooling devices by index (for #cooling-cells = <3>). Without tmd- 
+>>>>> names,
+>>>>> there's no way to know which index corresponds to which TMD, as 
+>>>>> firmware
+>>>>> may return tmd-names in any order.
+>>>>>
+>>>>> below are the changes post new thermal mapping changes:
+>>>>> DT: tmd-names = "cdsp_sw", "xyz";
+>>>>> Firmware: ["cdsp_sw", "xyz1", "xyz2",]
+>>>>> Driver registers: Only "cdsp_sw" (index 0) and "xyz" (index 1)
+>>>>
+>>>> names property are not to instruct drivers to register or not to
+>>>> register something.
+>>>>
+>>>> I don't understand the problem and explanation in the binding is
+>>>> basically non-existing.
+>>>>
+>>>> Remember that all lists and indices ARE FIXED, so driver knows exactly
+>>>> which index means what.
+>>>>
+>>>
+>>> thanks for review, shall i use driver data, which is basically pas 
+>>> data structure like below:
+>>>
+>>> static const struct qcom_pas_data {
+>>>      .crash_reason_smem = 601,
+>>>      .firmware_name = "cdsp.mdt",
+>>>      .tmd_names = (const char *[]){"xyz", NULL},
+>>>      .num_tmds = 1,
+>>>
+>>> Is something like above acceptable? and this will also help to filter 
+>>> tmd names as well?
 >>
->> On mer. 10 juin 2026 at 16:14, Jian Hu via B4 Relay <devnull+jian.hu.aml=
-ogic.com@kernel.org> wrote:
 >>
->>> From: Jian Hu <jian.hu@amlogic.com>
->>>
->>> Add the peripherals clock controller driver for the Amlogic A9 SoC fami=
-ly.
->>>
->>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->>> ---
->>>   drivers/clk/meson/Kconfig          |   15 +
->>>   drivers/clk/meson/Makefile         |    1 +
->>>   drivers/clk/meson/a9-peripherals.c | 1925 +++++++++++++++++++++++++++=
-+++++++++
->>>   3 files changed, 1941 insertions(+)
->>>
->
-> [ ... ]
->
->>> +
->>> +/* Channel 6 is unconnected. */
->>> +static u32 a9_glb_parents_val_table[] =3D { 0, 1, 2, 3, 4, 5, 7 };
->>> +static struct clk_regmap a9_dspa;
->> What is this ?
->
->
-> The peripheral clock definitions are ordered by register offset.
->
-> dspa is one of the parents of the glb clock, while the dsp clock registers
-> are located after the GLB clock registers.
->
-> Since glb references a9_dspa before its full definition appears, the
-> declaration
->
-> static struct clk_regmap a9_dspa;
->
-> is added as a forward declaration to satisfy the compiler.
->
->
-> Would it make sense to relax the register-offset ordering in this case?
->
+>> How the thermal framework will bind the thermal zone with the TMD ? 
+>> (node pointer, id) ?
+>>
+> 
+> Hi Daniel,
+> 
+> thanks for review.
+> 
+> With id only, in this case instead of taking tmd names from device tree, 
+> qmi_tmd will take tmd name from pas_data(driver) and register with the 
+> cooling framework with id only. Please let us know if this looks fine.
+May be I'm missing something but:
 
-I don't think we ever enforced such ordering (or any other ordering) in
-the clock driver, so yes please.
+  - The QMI TMD returns a list of names, not ids
+  - The QMI TMD may return the list in different order than assumed
+  - The cooling map index points to the name of the TMD in the DT
+  - This name is used to match the name in the aformentionned list
+  - The index in the list and the id in the DT can differ
 
-
-> By defining the DSP clock before the GLB clock, we could remove the forwa=
-rd
-> declaration of a9_dspa.
-
-Unless it is absolutely necessary, please avoid forward declaration.
-
-Declare what is needed first, keep related things together and use your
-best judgement ... IOW, make it easy for me to review ;)=20
-
->
->>> +
->>> +static const struct clk_parent_data a9_glb_parents[] =3D {
->>> +};
-
-[...]
-
->>> +
->>> +static struct clk_regmap a9_vclk_div2_en =3D {
->>> +     .data =3D &(struct clk_regmap_gate_data){
->>> +             .offset =3D VID_CLK_CTRL,
->>> +             .bit_idx =3D 1,
->>> +     },
->>> +     .hw.init =3D CLK_HW_INIT_HW("vclk_div2_en", &a9_vclk.hw,
->>> +                               &clk_regmap_gate_ops, CLK_SET_RATE_PARE=
-NT),
->>> +};
->> Looks to me all this div_en / div repeating pattern would be easier to r=
-eview
->> with tiny macro .
->
->
-> Good point.
->
-> I tried to reduce the repeated div_en/div pattern using a helper macro.
->
-> It keeps the relationship between gate and fixed-factor clock more compact
-> and easier to review.
->
-> After using the helper macro, the div_en/div code can be simplified to the
-> following:
->
-> #define A9_VCLK(_name, _reg, _bit, _div, _parent) =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0\
-> struct clk_regmap a9_##_name##_en =3D { =C2=A0 =C2=A0 =C2=A0\
-                       ^- not strictly necessary, a touch too agressive
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 .data =3D &(struct clk_regmap_gate_data){ =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .offset =3D _reg,=
- =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .bit_idx =3D _bit=
-, =C2=A0 =C2=A0 =C2=A0 \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 }, =C2=A0 =C2=A0 =C2=A0 \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 .hw.init =3D &(struct clk_init_data) { =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .name =3D #_name =
-"_en", =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .ops =3D &clk_reg=
-map_gate_ops, =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .parent_hws =3D (=
-const struct clk_hw *[]) { _parent },=C2=A0 =C2=A0 \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .num_parents =3D =
-1, =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .flags =3D CLK_SE=
-T_RATE_PARENT, =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 }, =C2=A0 =C2=A0 =C2=A0 \
-> }; =C2=A0 =C2=A0 =C2=A0 \
-> =C2=A0 =C2=A0 =C2=A0 \
-> struct clk_fixed_factor a9_##_name =3D { =C2=A0 =C2=A0 =C2=A0 \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 .mult =3D 1, =C2=A0 =C2=A0 =C2=A0 \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 .div =3D _div, =C2=A0 =C2=A0 =C2=A0 \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 .hw.init =3D &(struct clk_init_data){ =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .name =3D #_name,=
- =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .ops =3D &clk_fix=
-ed_factor_ops, =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .parent_hws =3D (=
-const struct clk_hw *[]) { =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 &a9_##_name##_en.hw =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }, =C2=A0 =C2=A0 =
-=C2=A0 \
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .num_parents =3D =
-1, =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 .flags =3D CLK_SE=
-T_RATE_PARENT, =C2=A0 =C2=A0 =C2=A0\
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 }, =C2=A0 =C2=A0 =C2=A0 \
-> }; =C2=A0 =C2=A0 =C2=A0 \
->
-> static A9_VCLK(vclk_div2, VID_CLK_CTRL, 1, 2, &a9_vclk.hw);
-> static A9_VCLK(vclk_div4, VID_CLK_CTRL, 2, 4, &a9_vclk.hw);
-> static A9_VCLK(vclk_div6, VID_CLK_CTRL, 3, 6, &a9_vclk.hw);
-> static A9_VCLK(vclk_div6, VID_CLK_CTRL, 4, 12, &a9_vclk.hw);
-> static A9_VCLK(vclk2_div2, VIID_CLK_CTRL, 1, 2, &a9_vclk2.hw);
-> static A9_VCLK(vclk2_div4, VIID_CLK_CTRL, 2, 4, &a9_vclk2.hw);
-> static A9_VCLK(vclk2_div6, VIID_CLK_CTRL, 3, 6, &a9_vclk2.hw);
-> static A9_VCLK(vclk2_div6, VIID_CLK_CTRL, 4, 12, &a9_vclk2.hw);
->
->
-> If you think splitting it further into separate helper macros would impro=
-ve
-> readability.
-
-One clock per macro please. Hidding 2 declaration is recipe for
-disaster. For ex, here the first one is static, the 2nd is not=20
-
->
-> I can do that as well.
->
+Krzysztof , I don't get why having the TMD names as properties is wrong, 
+they describes the existing TMDs on the system and the cooling maps 
+index points to the one to be connected with thermal zone.
 
 
