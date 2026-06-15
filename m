@@ -1,161 +1,158 @@
-Return-Path: <devicetree+bounces-312012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312014-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4+x2HwoNMGooMgUAu9opvQ
-	(envelope-from <devicetree+bounces-312012-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:32:42 +0200
+	id zbNnMXkNMGpAMgUAu9opvQ
+	(envelope-from <devicetree+bounces-312014-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:34:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2385687346
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:32:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2571768737E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 16:34:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=kYzdBjdG;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312012-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312012-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=k7MOjS2i;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312014-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312014-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 647E73025931
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:29:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2924F3045395
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 14:30:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5A6A3F8233;
-	Mon, 15 Jun 2026 14:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E843F8715;
+	Mon, 15 Jun 2026 14:30:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB8053F410A;
-	Mon, 15 Jun 2026 14:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 798C53F88B8;
+	Mon, 15 Jun 2026 14:30:50 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781533752; cv=none; b=eJaCooAyVqvzin91PZPcLDbV1aveleawPyJdW4ptfh0G3oGmyLa8AU8XOP+s8S/Dw9for2H1p57khlMsN6DMRjZvgGzzDi1K3hfYfnsGonBO3pG1kmnY73aJYEpPjVSuxU5wgzgkXS6ihjS8wwbLfyaabcVzn9WcqS07N9k7KKY=
+	t=1781533852; cv=none; b=bZOYXj9yCS9tBKT+tCnqYR6Al+mjdT0xZ4obE7LaLt4f/wdeCc9F35CSTBcSVWJVoYxhegO3I1lMrWZqBQK5qjRCf2GobchJD2QzU6fgUYfWwzxkfto7PNPQ3T6imYMtnAeR5cAppvhD0AkZEQ1bPHh9uyER5arjxU6yhUhmacQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781533752; c=relaxed/simple;
-	bh=rayzWICmGvFb3tX2zNCX4jQZLQUpwdDIqFudedq9w38=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=AwzVilNJyXI9UEBcRiD6ndZMi4YXnlhh9GAEHyiiFWec3lnOHRnXhSI5Yziy6vnE9XCvcTsn+OEVPW/mYhD1U3W1x23Uias+4wROW2ekf8MZCILKZYxBI44BC2hneWGXxWB3d9hXXPdXcROp9QTMbR5rjCyge9JDnAjPInqoNZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kYzdBjdG; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B4061F000E9;
-	Mon, 15 Jun 2026 14:29:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781533751;
-	bh=Wgrm6nSxP4K6SAcQo8nbIqdcVusm06iSvy1X3gZt+5c=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=kYzdBjdGObA2T/W0s2lIU3AOO7p7WnacKDJxYIrh9h5uOPv9KtldoH50diypNCK9x
-	 SvU9lCJk8GfQFM58rUOBWWkI846Wx3LWXX3DPcJfGEnitQ0ChUyWNeSP61eaFkv3E3
-	 qIhaqnYv3t6Vdzud5H1qpLBt3AW+H2MXN12WW7L/nyv66Y+z10WO23mQWPSWhu7MpX
-	 U8rTq7Eb27PBNgbhmEOPrhwuj2A1RYWuOl5fnNTzvTpXxQJK8ppB7hk2nSz/rzqAXE
-	 kGkKX3rcvglJwURjQLX8GYktafR9VmnJCTzQ2IIzds2K+RMest1jo/wp69sCjJqwyg
-	 NXDcBRUlGJD1Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 06/10] Input: cap11xx - add reset gpio support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Jun Yan" <jerrysteve1101@gmail.com>
-Cc: linux-input@vger.kernel.org, robh@kernel.org, dmitry.torokhov@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260615142103.352163-7-jerrysteve1101@gmail.com>
-References: <20260615142103.352163-7-jerrysteve1101@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 15 Jun 2026 14:29:10 +0000
-Message-Id: <20260615142911.2B4061F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781533852; c=relaxed/simple;
+	bh=eeKfuNDktYjoBS3dmFiTkel/+BwxgBfVU25t5KzqhsU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mSSiSwB/J9UCXEnw3rdfeGfwPG8wNXwV+KM2JQUnGx3s/G24Gw4md+iMhQBv4GkPd3o7aR+0cvekauVW7lG8FhRyRYfQmEfxK739emFe3Phsw4Fpmy8tNAW0VfJKk3rEkTMijDzJqSG20pJtXvtKIJgalqP/HOnx4KzAddTlgYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k7MOjS2i; arc=none smtp.client-ip=192.198.163.14
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1781533850; x=1813069850;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eeKfuNDktYjoBS3dmFiTkel/+BwxgBfVU25t5KzqhsU=;
+  b=k7MOjS2iO3QQ4JdonELUcxOr+bR0mSvGa9tSoIiILGjkzon5riOF779p
+   PizU6HLQm3sWL3TAsdfA+FbY7/uWiV/dMgYUu5NB4NIlyIdKfnJB+f507
+   HySfeMMmW2ErzyGzh/gmbJ14sIl9mbGrnR+kuPFZKZYubYS3NBwQa1Uxi
+   /r7jmXOBbEnNVsYw/RrKJ06E2NUx7XhTdLuEKnckDckTQhpjAmWVpEKMa
+   PgZfWk562bH16gkTO1SAtr10hpGGleFeVfJZJ57Yy3pvuR+H22JnAO8Cp
+   WfewZB1cRKtF4hgI7GqJ71B285BjbUBJRHpM4tWSFGpybzAJRTuZ2uPMm
+   A==;
+X-CSE-ConnectionGUID: HQ+usF8kT7CZnhZxpX+RRw==
+X-CSE-MsgGUID: o7OdfnndSLaZ0IjXjf207A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82312242"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; 
+   d="scan'208";a="82312242"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026 07:30:43 -0700
+X-CSE-ConnectionGUID: 8O33OnCSSiaC1yGI5gSpng==
+X-CSE-MsgGUID: 0zr5w2RgRNOnZZ+ge9rOZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; 
+   d="scan'208";a="251410643"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.235])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026 07:30:40 -0700
+Date: Mon, 15 Jun 2026 17:30:37 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Salih Erim <salih.erim@amd.com>
+Cc: jic23@kernel.org, andy@kernel.org, dlechner@baylibre.com,
+	nuno.sa@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, conall.ogriofa@amd.com, michal.simek@amd.com,
+	linux@roeck-us.net, erimsalih@gmail.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 3/5] iio: adc: versal-sysmon: add I2C driver
+Message-ID: <ajAMjZzfTqplts_B@ashevche-desk.local>
+References: <20260614233722.2603459-1-salih.erim@amd.com>
+ <20260614233722.2603459-4-salih.erim@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260614233722.2603459-4-salih.erim@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jerrysteve1101@gmail.com,m:linux-input@vger.kernel.org,m:robh@kernel.org,m:dmitry.torokhov@gmail.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dmitrytorokhov@gmail.com,m:conor@kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312012-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sashiko.dev:url,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312014-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:salih.erim@amd.com,m:jic23@kernel.org,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ashevche-desk.local:mid,intel.com:dkim,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C2385687346
+X-Rspamd-Queue-Id: 2571768737E
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] Coding style violations: redundant 'else' after 'return' and incons=
-istent brace usage.
---
+On Mon, Jun 15, 2026 at 12:37:20AM +0100, Salih Erim wrote:
+> Add an I2C transport driver for the Versal SysMon block. The SysMon
+> provides an I2C slave interface that allows an external master to
+> read voltage and temperature measurements through the same register
+> map used by the MMIO path.
+> 
+> The I2C command frame is an 8-byte structure containing a 4-byte data
+> payload, a 2-byte register offset, and a 1-byte instruction field.
+> Read operations send the frame with a read instruction, then receive
+> a 4-byte response containing the register value.
+> 
+> Events are not supported on the I2C path because there is no
+> interrupt line and the I2C regmap backend cannot be called from
+> atomic context.
 
-commit 2a7317102372f10d4bd76864cfeaec2d7955c415
-Author: Jun Yan <jerrysteve1101@gmail.com>
+...
 
-Input: cap11xx - add reset gpio support
+> +static const struct regmap_config sysmon_i2c_regmap_config = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+> +	.reg_stride = SYSMON_REG_STRIDE,
+> +	.max_register = SYSMON_MAX_REG,
+> +	.reg_read = sysmon_i2c_reg_read,
+> +	.reg_write = sysmon_i2c_reg_write,
+> +};
 
-This commit adds support for an optional hardware reset pin on CAP11xx
-devices to improve reliability and ensure proper initialization during prob=
-e.
+No cache?
 
-> diff --git a/drivers/input/keyboard/cap11xx.c b/drivers/input/keyboard/ca=
-p11xx.c
-> --- a/drivers/input/keyboard/cap11xx.c
-> +++ b/drivers/input/keyboard/cap11xx.c
-[ ... ]
-> @@ -452,6 +457,16 @@ static int cap11xx_i2c_probe(struct i2c_client *i2c_=
-client)
->  	if (IS_ERR(priv->regmap))
->  		return PTR_ERR(priv->regmap);
-> =20
-> +	priv->reset_gpio =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HI=
-GH);
-> +	if (IS_ERR(priv->reset_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio),
-> +				     "Failed to get 'reset' GPIO\n");
-> +	else if (priv->reset_gpio) {
+-- 
+With Best Regards,
+Andy Shevchenko
 
-[Severity: Low]
-This isn't a bug, but does this follow the standard kernel coding style?
 
-Since the preceding if statement ends with a return, the else keyword here
-is redundant. Additionally, kernel style guidelines generally prefer that if
-one branch of a conditional requires braces, all branches should use them.
-
-Could this be simplified by dropping the else and just using a separate if
-statement for checking priv->reset_gpio?
-
-> +		usleep_range(CAP11XX_T_RST_FILT_MIN_US, CAP11XX_T_RST_FILT_MIN_US * 2);
-> +		gpiod_set_value_cansleep(priv->reset_gpio, 0);
-> +		msleep(CAP11XX_T_RST_ON_MIN_MS);
-> +	}
-> +
->  	error =3D regmap_read(priv->regmap, CAP11XX_REG_PRODUCT_ID, &val);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615142103.3521=
-63-1-jerrysteve1101@gmail.com?part=3D6
 
