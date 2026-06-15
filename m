@@ -1,163 +1,140 @@
-Return-Path: <devicetree+bounces-312210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312211-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id q/8NGm+GMGpzUAUAu9opvQ
-	(envelope-from <devicetree+bounces-312210-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 01:10:39 +0200
+	id HAZlNO2KMGoTUQUAu9opvQ
+	(envelope-from <devicetree+bounces-312211-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 01:29:49 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF6768A8A1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 01:10:39 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4237E68A94D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 01:29:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=protonmail.com header.s=protonmail3 header.b=ihtlWpy5;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312210-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-312210-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=protonmail.com;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=UX1Cs3Fp;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312211-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312211-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=bootlin.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5DF69300C0C3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 23:10:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4A31430254F5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jun 2026 23:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F073BED55;
-	Mon, 15 Jun 2026 23:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8403130B50F;
+	Mon, 15 Jun 2026 23:29:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-05.mail-europe.com (mail-05.mail-europe.com [85.9.206.169])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49E63BED31
-	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 23:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397BD2DF152
+	for <devicetree@vger.kernel.org>; Mon, 15 Jun 2026 23:29:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781565037; cv=none; b=gOEP77JKA5pIaUmYWjYgbNE8yT+H9h8v69VJcui0FYcyJVWobcgTt8ZhrpGolfjtlnqOqyWhtcvvUka+m2eeqY1VchrVRu/a9CHOHkBOv2wuUL3LVnz6CVPtqK+ipXxQTqtEkRchnBHLEFP+3VBx/11M7FSMyi+q9pbRAsbizOQ=
+	t=1781566173; cv=none; b=nYkZVgGCBSkH5evxpfRpO/l26VnKtqXtESrAlFaeSWrOxWbolo+u40tpNteNHkSnvXJH5bGBDDmTiITsfCsWMD9h6fR1BFgDzlp9t/6c/qshfrzICyxJtdGz2VlaDomEsGfd7xeNDu3mPSsfvg6A3PCuYjHP6VYQDqwvyOVHWOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781565037; c=relaxed/simple;
-	bh=hbHVIkwcbFkz9MPv+duQJkasWp3O14EJ/lbKHL2f1F4=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=W0+jyeXw0GsMnfXP9D2lzIhMOk+uCa7IZjligmpVikwByjhjO1vejpzCv6u+/t6MLfy2joCQMXl/NGn4abqn6IGVleGLFDJ1AGthL8Apg2HECBqZ1wpLhOkbxcX/NiIS4xcMKL1DVH1iZfcpBbfSCjMTvK4swXvH8+fWqheNy8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=ihtlWpy5; arc=none smtp.client-ip=85.9.206.169
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1781565025; x=1781824225;
-	bh=HkBQfJ5TxwQinnF2S5Nb1OwyL2FsUW+lAQB1x+AgnVc=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=ihtlWpy52uFD/PcKYtX0bwhDVrPMOQVTrn4j23/qRLTnFvUE9KEr3rvvYRkmFIBzS
-	 U5ZD8uxPvPZoogWGtS4pEY5TH60k6pe2kWDytm7X4u2Y3qfkYTV0NseUbTYiwzG/K7
-	 g4PbtS46MUk9J6kXchKsNYhOeDPb8QDXdVcqUxiGsKUqz45zU99mpOEUDNji2KNRlP
-	 g2eJAxBAMMTkoA5EhBWCppM9hIwqi5MXNHf5wTjhTuH4oWXysMPeMtxn7Iu5vyzGoJ
-	 ZuIR7HHXvovo2Dh2PCgSz8px0MFus0qO9141fKTQo6sh+OE2C1v7BUR3uRdZ+5duXO
-	 mFAA8E4dzBNXw==
-Date: Mon, 15 Jun 2026 23:10:20 +0000
-To: Lee Jones <lee@kernel.org>
-From: Roman Vivchar <rva333@protonmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, =?utf-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, Ben Grisdale <bengris32@protonmail.ch>
-Subject: Re: [PATCH 3/4] mfd: mt6397-core: add mt6323 AUXADC support
-Message-ID: <ycj3k-vV_tQv6u9OfCTP9G9kkeeE-_dbzg_oeHPXn2pb1oZe_Sa1BH6GUGuSd_gD6uPSJiTX7tz6MTlFcqGdWX-f3GMfyW2sLgAOCw6YeNE=@protonmail.com>
-In-Reply-To: <20260611163748.GB1212816@google.com>
-References: <20260602-mt6323-adc-v1-0-68ec737508ee@protonmail.com> <20260602-mt6323-adc-v1-3-68ec737508ee@protonmail.com> <20260611163748.GB1212816@google.com>
-Feedback-ID: 173184497:user:proton
-X-Pm-Message-ID: 182c5d52f74017e86f4085f21809f8879f8a1b6b
+	s=arc-20240116; t=1781566173; c=relaxed/simple;
+	bh=sHWeHro7f83t/pbIMwX302HbMjlK/IBrGWBOw0IgvHs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D9pFK7KORt1fH1N6FAsn8XVKcjfJzAS1KnMBGSUtEOiYmjg8C2yZ9/j0H6Pp56LC+KgpwzuCvT21MbdQ5Tw3BR+HsifuGF9txvyfMg3lRRbKT5ZpXEAcVpf9iHrDYEvCcRJpGz3s4J46GsxcCPFIztnanmDBbcHhL6JMj7ujkFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UX1Cs3Fp; arc=none smtp.client-ip=185.246.85.4
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id B57FA4E42F16;
+	Mon, 15 Jun 2026 23:29:23 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 668A6601A8;
+	Mon, 15 Jun 2026 23:29:23 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 164BB106C96F3;
+	Tue, 16 Jun 2026 01:29:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1781566162; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=+aFICluLxl1YQYB539NIMAyFqzwzwtH7RKM4CStfk/g=;
+	b=UX1Cs3FpiFya0xBUfd3tQH777nYyMi4aNnSLzptl/wn/o+t8d09saDwOdZHHFvMCyvlirz
+	BKrQUYF0jq4TBEwqw4yq6o/v4Hwn0qmlWJ0lcaRmlxW8/vzdTHIUbaRMmY+BU86IpTBq2J
+	0z3IdUDx3fwYg/oDWZDKTXoTqgjK9vHcPhDQaVKhU/cZo+V3exAj7AbAchKT9S8ZiovjTc
+	SrDDim5yV2kyxKNFkSOJoMY3koD2W3qsW6T7p9DEesc8daJP04z8NF7tFZ5ctWZYhj9Teo
+	KCvVUc2way8YaTZFUKdJlgshEeSYWdPtl96NSyBJN5kbadVVfhttVZEdQQE6og==
+Date: Tue, 16 Jun 2026 01:29:19 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
+	krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, broonie@kernel.org, lee@kernel.org,
+	Frank.Li@nxp.com, lgirdwood@gmail.com,
+	Lakshay Piplani <lakshay.piplani@nxp.com>
+Cc: vikash.bansal@nxp.com, priyanka.jain@nxp.com, aman.kumarpandey@nxp.com
+Subject: Re: (subset) [PATCH v11 0/9] Add support for NXP P3H2x4x I3C hub
+ driver
+Message-ID: <178156613342.628917.851293723714358205.b4-ty@b4>
+References: <20260612111816.3688240-1-lakshay.piplani@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260612111816.3688240-1-lakshay.piplani@nxp.com>
+X-Last-TLS-Session-Version: TLSv1.3
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:bengris32@protonmail.ch,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312210-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[rva333@protonmail.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[protonmail.com];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312211-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,kernel.org,nxp.com,gmail.com];
+	FORGED_SENDER(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:linux-i3c@lists.infradead.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:broonie@kernel.org,m:lee@kernel.org,m:Frank.Li@nxp.com,m:lgirdwood@gmail.com,m:lakshay.piplani@nxp.com,m:vikash.bansal@nxp.com,m:priyanka.jain@nxp.com,m:aman.kumarpandey@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[protonmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rva333@protonmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,protonmail.ch];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexandre.belloni@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,protonmail.com:dkim,protonmail.com:email,protonmail.com:mid,protonmail.com:from_mime]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:url,bootlin.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0AF6768A8A1
+X-Rspamd-Queue-Id: 4237E68A94D
 
-Hi Lee,
+On Fri, 12 Jun 2026 16:48:07 +0530, Lakshay Piplani wrote:
+> This series adds a driver for the NXP P3H2x4x family of multiport I3C hub
+> devices.
+> 
+> This is an MFD driver integrating I3C hub and on-die regulators.
+> 
+> The series introduces:
+> - Core I3C master enhancements required for hub support
+> - Generic I3C hub framework
+> - MFD driver with regulator and I3C hub child drivers for the P3H2x4x I3C hub
+> 
+> [...]
 
-On Thursday, June 11th, 2026 at 7:37 PM, Lee Jones <lee@kernel.org> wrote:
-> Interesting.  Has this been considered?
->=20
-> /* Sashiko Automation: Issues Found (1 Findings) */
->=20
-> On Tue, 02 Jun 2026, Roman Vivchar via B4 Relay wrote:
->=20
-> > From: Roman Vivchar <rva333@protonmail.com>
-> >
-> > The mt6323 PMIC includes an AUXADC. Register the AUXADC in the mt6323
-> > devices array to allow the corresponding driver to probe using compatib=
-le
-> > string.
-> >
-> > Tested-by: Ben Grisdale <bengris32@protonmail.ch> # Amazon Echo Dot (2n=
-d Generation)
-> > Signed-off-by: Roman Vivchar <rva333@protonmail.com>
-> > ---
-> >  drivers/mfd/mt6397-core.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
-> > index 3e58d0764c7e..013b0857fb54 100644
-> > --- a/drivers/mfd/mt6397-core.c
-> > +++ b/drivers/mfd/mt6397-core.c
-> > @@ -125,6 +125,9 @@ static const struct resource mt6323_pwrc_resources[=
-] =3D {
-> >
-> >  static const struct mfd_cell mt6323_devs[] =3D {
-> >  =09{
-> > +=09=09.name =3D "mt6323-auxadc",
-> > +=09=09.of_compatible =3D "mediatek,mt6323-auxadc",
->=20
-> [Severity: High]
-> Does adding this compatible string expose an unhandled edge case in the
-> auxadc driver?
->=20
-> If this device is instantiated directly from a Device Tree without an MFD
-> parent (e.g., at the DT root), dev->parent could be the platform bus
-> (which has a NULL parent) or NULL itself.
->=20
-> Looking at mt6323_auxadc_probe() in drivers/iio/adc/mt6323-auxadc.c:
->=20
->     regmap =3D dev_get_regmap(dev->parent->parent, NULL);
->=20
-> Could blindly dereferencing dev->parent->parent here, or passing a NULL
-> device to dev_get_regmap() (which calls devres_find()), result in a
-> kernel oops if probed as a root node?
+Applied, thanks!
 
-This is intended behavior, ADC always should be probed as a child of
-the mt6323 MFD because it doesn't have own MMIO space. Otherwise the
-devicetree is malformed. Recent mt6359 ADC driver has same thing with
-dev->parent->parent regmap.
+[1/9] i3c: master: rename i3c_master_reattach_i3c_dev() to *_locked
+      https://git.kernel.org/i3c/c/79c41666b397
+[2/9] i3c: master: Expose the APIs to support I3C hub
+      https://git.kernel.org/i3c/c/8d8afa428318
 
 Best regards,
-Roman
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
