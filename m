@@ -1,136 +1,256 @@
-Return-Path: <devicetree+bounces-312429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312430-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iVCaH/4fMWoNcAUAu9opvQ
-	(envelope-from <devicetree+bounces-312429-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:05:50 +0200
+	id TNhOA3EgMWo0cAUAu9opvQ
+	(envelope-from <devicetree+bounces-312430-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:07:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EC5568DDC9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:05:49 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F15868DE3E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:07:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=fK3meKxR;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312429-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312429-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ca33k5Ar;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312430-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312430-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2BA22307B103
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:04:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0E50E315C3A5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:04:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A14D041C31C;
-	Tue, 16 Jun 2026 10:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1B6E426ECF;
+	Tue, 16 Jun 2026 10:04:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B92E364E88;
-	Tue, 16 Jun 2026 10:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 995052C11F1;
+	Tue, 16 Jun 2026 10:04:42 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781604246; cv=none; b=UGbgl3vcFIGAdbPRZHcRxcUDSUmq+gGnDepSAmntEuoWCaj3YySxMSZb1ep3lAnKo/Fl6fK2VyfUE0o6NCupUpKa6r+rQ5r05NP30xlG5ZEMYXUlnxQ3k7vI4++nQnb41moVlkxvyQw0YiX5TKpSiivTo3XHsW57Sjz7W9wJ10A=
+	t=1781604285; cv=none; b=JlqAexm3lB3nN/f3uPY1fhU1HO1HFwt2qQEo0aIjmY3SXAtSbAQDSCPuWjUFJTC6dmx+pKl7cTez9Er2y3od5wV/O16q1MrPs6ETDTCKw7L4MomFBArQOAnusMVCztLgSvp36lnTTPX2+1y9Xe2bkfia0sAUMVESIm2kV13svuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781604246; c=relaxed/simple;
-	bh=HEwFa4w2a6Mj+KrVCMuA+0moVF/uSWn8wowviak+yEY=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=FcW5FbJ05m+nSgXSIcFtCFM1KuPLuCYwN/fZzUOomJ4T1zVP53N9lrSNmd9eVvUZBd5fV/5d5TEaksNfmtOZGRA76lpd8FprbVCHHB/IbC4bDh31J51xJRaYytD5Opo8C/ywR+hvKt1kbQdBnxci156htBi+1Z5AH3EKVjPyoJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fK3meKxR; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08FA61F000E9;
-	Tue, 16 Jun 2026 10:04:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781604245;
-	bh=HEwFa4w2a6Mj+KrVCMuA+0moVF/uSWn8wowviak+yEY=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=fK3meKxRlXccqFHiTx9Z3XHvQzdmjZikrv9MPYV18xiAWoyyeO7tkhTCtuF5sGmm0
-	 jrb0H2KK5COGkAzTCMf7CdFyj/ZBqQMuL3l2DuZ1RPSwWygRmBOlV6OSTxkhll2nFr
-	 nBws/ox8QVELXsYstqXeUKjr2p39oN3uFsy4wePanpnxMgDEdfGC71/IOxE+d+6NZs
-	 KQWE7s68LzcOHeHP1CnPFVCvyqaLbusxyXJ0Mid1v7dMoNv4gdwl5GTC6Z2tLmiTlL
-	 PMo4IreofWajiOSn9kuTh79B6D2V9+1oXgfeREA4OVv9+TUKvRmYm7cfHre2/VQYnI
-	 zTjB4uLtoH/dQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 01/12] dt-bindings: i3c: Add mipi-i3c-static-method
- to support SETAASA
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Akhil R" <akhilrajeev@nvidia.com>
-Cc: linux-hwmon@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org, devicetree@vger.kernel.org, Frank.Li@kernel.org, linux-i3c@lists.infradead.org
-In-Reply-To: <20260616095429.3947205-2-akhilrajeev@nvidia.com>
-References: <20260616095429.3947205-2-akhilrajeev@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 16 Jun 2026 10:04:04 +0000
-Message-Id: <20260616100405.08FA61F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781604285; c=relaxed/simple;
+	bh=3Ykr0UXG7WHwZgqC5hSi/MM9Gsz/j2L9I9r42E8jsFE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gPdFMshIwJTiM1MHcmuavfrwKl0uLXqrbw2Xb/jO7XQ/IX7k7dW8vlvmjABRYQQazGMnTvF4u6lh1o/a8DZw+dhSYGhKiZeAT3F6BSxOcYmjBpWCwdc/p/8SFzGPujREDmiw0ER9aEtc9kdJOhN+NWfkkxj39gZRFIFnQjA5BgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ca33k5Ar; arc=none smtp.client-ip=198.175.65.18
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1781604283; x=1813140283;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3Ykr0UXG7WHwZgqC5hSi/MM9Gsz/j2L9I9r42E8jsFE=;
+  b=ca33k5ArwDlI43a/UFZwZT3snWt/ORYZvgk5qNrTbbz4SU1Lv5fGRnfX
+   St3jprZ+u9fgkQH3cA9WvGDayKHcVliLNWWfiJjEpXSYq0RwP+ChVryoi
+   PFFWpDG08aGmBL202Wk58HnVhLMfcVrc4/+BU3MNYr5RECaaIzv6Mi1bY
+   hGLG9DbhD7C9ajkUGK03QeDBH+NimYVrdjmSBF8QqZwRw566sNVkh4TQd
+   yVVWdQQZwMmKjoDSCGQjlM7k0ASwPTH5pGjbgq18NTUhYiYmZ9XFDvkZv
+   +gNOmJMIJpl4MfwZnzb4111cmjNPhTzqiUybLpQFdn87ngTBL51hx21Wm
+   g==;
+X-CSE-ConnectionGUID: Z2I2naBtR3meTRSAk1En9A==
+X-CSE-MsgGUID: ZgYX44ZySm+VNgfwImVS9g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82428029"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; 
+   d="scan'208";a="82428029"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 03:04:42 -0700
+X-CSE-ConnectionGUID: vS8pse/1T+WzO7ekmQCHLw==
+X-CSE-MsgGUID: KQsZrstoQSG4L7181eZ2xQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; 
+   d="scan'208";a="271792857"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.153])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 03:04:38 -0700
+Date: Tue, 16 Jun 2026 13:04:36 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-iio@vger.kernel.org, andy@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, jic23@kernel.org,
+	jean-baptiste.maneyrol@tdk.com, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, heiko@sntech.de, conor+dt@kernel.org,
+	krzk+dt@kernel.org, robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V13 7/9] iio: imu: inv_icm42607: Add Accelerometer for
+ icm42607
+Message-ID: <ajEftPsZVtmKS6dr@ashevche-desk.local>
+References: <20260615172554.160910-1-macroalpha82@gmail.com>
+ <20260615172554.160910-8-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260615172554.160910-8-macroalpha82@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-312430-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312429-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:akhilrajeev@nvidia.com,m:linux-hwmon@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:Frank.Li@kernel.org,m:linux-i3c@lists.infradead.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:macroalpha82@gmail.com,m:linux-iio@vger.kernel.org,m:andy@kernel.org,m:nuno.sa@analog.com,m:dlechner@baylibre.com,m:jic23@kernel.org,m:jean-baptiste.maneyrol@tdk.com,m:linux-rockchip@lists.infradead.org,m:devicetree@vger.kernel.org,m:heiko@sntech.de,m:conor+dt@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:macromorgan@hotmail.com,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,analog.com,baylibre.com,tdk.com,lists.infradead.org,sntech.de,hotmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,lists.linux.dev:replyto,nvidia.com:email,sashiko.dev:url,smtp.kernel.org:mid,mipi.org:url]
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,intel.com:dkim,intel.com:from_mime,ashevche-desk.local:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8EC5568DDC9
+X-Rspamd-Queue-Id: 3F15868DE3E
 
-> Add the 'mipi-i3c-static-method' property mentioned in the MIPI I3C
-> Discovery and Configuration Specification [1] to specify which discovery
-> method an I3C device supports during bus initialization. The property is
-> a bitmap, where a bit value of 1 indicates support for that method, and 0
-> indicates lack of support.
->=20
-> Bit 0: SETDASA CCC (Direct)
-> Bit 1: SETAASA CCC (Broadcast)
-> Bit 2: Other CCC (vendor / standards extension)
-> All other bits are reserved.
->=20
-> It is specifically needed when an I3C device requires SETAASA for the
-> address assignment. SETDASA will be supported by default if this property
-> is absent, which means for now the property just serves as a flag to
-> enable SETAASA, but keep the property as a bitmap to align with the
-> specifications.
->=20
-> [1] https://www.mipi.org/mipi-disco-for-i3c-download
->=20
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+On Mon, Jun 15, 2026 at 12:25:50PM -0500, Chris Morgan wrote:
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+> Add icm42607 accelerometer sensor for icm42607.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260616095429.3947=
-205-1-akhilrajeev@nvidia.com?part=3D1
+...
+
+> +static int inv_icm42607_accel_read_odr(struct inv_icm42607_state *st,
+> +				       int *val, int *val2)
+> +{
+> +	unsigned int odr;
+> +	unsigned int i;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	odr = st->conf.accel.odr;
+> +
+> +	for (i = 5; i < ARRAY_SIZE(inv_icm42607_accel_odr); ++i) {
+
+Same comment stays. Why pre-increment?
+
+> +		if (i == odr)
+> +			break;
+> +	}
+> +	if (i >= ARRAY_SIZE(inv_icm42607_accel_odr))
+> +		return -EINVAL;
+> +
+> +	*val = inv_icm42607_accel_odr[i][0];
+> +	*val2 = inv_icm42607_accel_odr[i][1];
+> +
+> +	return IIO_VAL_INT_PLUS_MICRO;
+> +}
+
+...
+
+> +static int inv_icm42607_accel_write_odr(struct iio_dev *indio_dev,
+> +					int val, int val2)
+> +{
+> +	struct inv_icm42607_sensor_conf conf = INV_ICM42607_SENSOR_CONF_INIT;
+> +	struct inv_icm42607_state *st = iio_device_get_drvdata(indio_dev);
+> +	struct device *dev = regmap_get_device(st->map);
+> +	unsigned int idx;
+> +	int ret;
+> +
+> +	for (idx = 5; idx < ARRAY_SIZE(inv_icm42607_accel_odr); ++idx) {
+
+Ditto.
+
+> +		if (val == inv_icm42607_accel_odr[idx][0] &&
+> +		    val2 == inv_icm42607_accel_odr[idx][1])
+> +			break;
+> +	}
+> +	if (idx >= ARRAY_SIZE(inv_icm42607_accel_odr))
+> +		return -EINVAL;
+> +
+> +	conf.odr = idx;
+> +
+> +	PM_RUNTIME_ACQUIRE_AUTOSUSPEND(dev, pm);
+> +	ret = PM_RUNTIME_ACQUIRE_ERR(&pm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	return inv_icm42607_set_accel_conf(st, &conf, NULL);
+> +}
+
+...
+
+> +int inv_icm42607_set_accel_conf(struct inv_icm42607_state *st,
+> +				struct inv_icm42607_sensor_conf *conf,
+> +				unsigned int *sleep_ms)
+> +{
+> +	struct inv_icm42607_sensor_conf *oldconf = &st->conf.accel;
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	if (conf->mode < 0)
+> +		conf->mode = oldconf->mode;
+
+Also as per below.
+
+> +	if (conf->fs < 0)
+> +		conf->fs = oldconf->fs;
+> +	if (conf->odr < 0)
+> +		conf->odr = oldconf->odr;
+
+> +	if (conf->filter < 0)
+> +		conf->filter = oldconf->filter;
+
+This conditional is not immediately used below...
+
+> +	if (conf->fs != oldconf->fs || conf->odr != oldconf->odr) {
+> +		val = FIELD_PREP(INV_ICM42607_ACCEL_CONFIG0_FS_SEL_MASK, conf->fs);
+> +		val |= FIELD_PREP(INV_ICM42607_ACCEL_CONFIG0_ODR_MASK, conf->odr);
+> +		ret = regmap_write(st->map, INV_ICM42607_REG_ACCEL_CONFIG0, val);
+> +		if (ret)
+> +			return ret;
+> +		oldconf->fs = conf->fs;
+> +		oldconf->odr = conf->odr;
+> +	}
+
+...you can move it here.
+
+> +	if (conf->filter != oldconf->filter) {
+> +		if (conf->mode == INV_ICM42607_SENSOR_MODE_LOW_POWER) {
+> +			val = FIELD_PREP(INV_ICM42607_ACCEL_CONFIG1_AVG_MASK, conf->filter);
+> +			ret = regmap_update_bits(st->map, INV_ICM42607_REG_ACCEL_CONFIG1,
+> +						 INV_ICM42607_ACCEL_CONFIG1_AVG_MASK, val);
+> +		} else {
+> +			val = FIELD_PREP(INV_ICM42607_ACCEL_CONFIG1_FILTER_MASK,
+> +					 conf->filter);
+> +			ret = regmap_update_bits(st->map, INV_ICM42607_REG_ACCEL_CONFIG1,
+> +						 INV_ICM42607_ACCEL_CONFIG1_FILTER_MASK, val);
+> +		}
+> +		if (ret)
+> +			return ret;
+> +		oldconf->filter = conf->filter;
+> +	}
+> +
+> +	return inv_icm42607_set_pwr_mgmt0(st, st->conf.gyro.mode, conf->mode,
+> +					  st->conf.temp_en, sleep_ms);
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
