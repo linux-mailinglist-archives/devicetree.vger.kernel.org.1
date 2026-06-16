@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-312503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312513-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id G+G6IB86MWrWeQUAu9opvQ
-	(envelope-from <devicetree+bounces-312503-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:57:19 +0200
+	id FtHnOvc7MWpmegUAu9opvQ
+	(envelope-from <devicetree+bounces-312513-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 14:05:11 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC0AC68F037
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:57:18 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D056568F137
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 14:05:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=einfochips.com header.s=selector1 header.b="eARa5/mG";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312503-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312503-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=einfochips.com header.s=selector1 header.b=I83EydUt;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312513-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312513-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=reject) header.from=einfochips.com;
 	arc=reject ("cv is fail on i=2")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1D6F83030759
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 11:54:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D6B18302F7E2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 11:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0825743CEF7;
-	Tue, 16 Jun 2026 11:54:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC2E743CEC1;
+	Tue, 16 Jun 2026 11:57:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012068.outbound.protection.outlook.com [52.101.48.68])
+Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012067.outbound.protection.outlook.com [40.107.209.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56E4543C05D;
-	Tue, 16 Jun 2026 11:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442633A59A3;
+	Tue, 16 Jun 2026 11:57:36 +0000 (UTC)
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781610841; cv=fail; b=GdyBuCQXF/Mxbp08vrRqy6tRjWL3vV8OAL3TeOZijyV6cmHZXnu13zgAVYe/9YFja0Ui6IAj1yzioD/aLQ9BlG8hb3jaPo8PhzhqfWBh4IPf87vOds/V/iQ5dIAhGuY4tYYwKX9CMh7TuUnyjJi1EIFL3eLHfUmB8hmCv6mEkc0=
+	t=1781611057; cv=fail; b=Hto4329LG0lPr7+FS/htmceGmOR/1EIM+dROh6RQ/SCDTukCoHpLpQnIZHefBF6GHuq1A3m6GC9PLHlV3Manu/0N0xM5IfwewLOy8JsJyz0MBtESTPgCmPbVMkqC30Yc/aZK3qAOvJkFqEAgcy2l7N48WoHi1dlruyx6r7fFg6o=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781610841; c=relaxed/simple;
-	bh=tHaFyGViQHJKDxnH5tyX4Gs4F6PX9HUov72MNr0KDJc=;
+	s=arc-20240116; t=1781611057; c=relaxed/simple;
+	bh=uGGgjVHx7J6/00f2wQ71OQ9SLZQ34cWpNcq1tlz9ugc=;
 	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ECA7WqaVq933lpcs3RebXUMvGkdO5gAAG3xlKO2UNyCd1boaatBOoZnGP4ddBjBdFKBGrKFgaaURwjJUjg/cWqCF1ySzQQP/5aCymw3jrv6PbIYjow8iUfZ4tzh8BVGQ4zJ+cnt2k4NFSEUrENDOZi38s4PItLsGdjXl5+uu1EY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=einfochips.com; spf=pass smtp.mailfrom=einfochips.com; dkim=pass (1024-bit key) header.d=einfochips.com header.i=@einfochips.com header.b=eARa5/mG; arc=fail smtp.client-ip=52.101.48.68
+	 Content-Type:MIME-Version; b=jEi9Fmm11Jw/SWsNeqrHrY1vgIYT7KTTVn3y+vqWoFfMSlk6qk06dMHhtSDCi5BHrfXQw2ernEelKQblBqFcrNXYuYDxC+unGB+R7IibJaAS0e0xx41JvNPgG4sDz+RSu2lXjMJR0aVYqrqDnD1HeMcaBMQ8WG0vwqqBYnNXZpQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=einfochips.com; spf=pass smtp.mailfrom=einfochips.com; dkim=pass (1024-bit key) header.d=einfochips.com header.i=@einfochips.com header.b=I83EydUt; arc=fail smtp.client-ip=40.107.209.67
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=grWG98NopqwB5ZvLbhpgeAQdTwE07A/zPlEIZCAnRAyUEccPr+XbY21S3oMqp192KX1i/orXBB6VHE9eWuyY/NasvVKWL11TqJ9TqAJg/m99kVnxF/y5bp8YSmxa2hEe7yGmCjT7zcofJT4itsuL+HrW03+rhJz2fWfUe+HesHkgTxkUizuRa0ISB++j5zbaF8EeqgIyn9CLEzoLpcFEf14AdC4FmfqZRvKg9CCqCtXBUsh+1frDl7J7VAMR0npWmeVVzvz5ePYqHCrAlib7jxVUWZf+KkCb1edZIoVV64/2liDjylsqMZMjMFp/MC8FwAJvU3WP58oxdN4+bd8nGw==
+ b=YCvKyg1C9Ld7GQ8JNwTnNOAb3tgtCWmPWAI+vymJwmd7+cIk4dYDyql/g2X4dsTqbFRA0zzaroYh9aMd7b/pr2kzzUR6wsC0vNAXox7ILIa/AMn3JhbtENZc7n9KXoMR6ITLJkMJpfKyL4Y98EzytfbmElSE2dcDpQW9+IwFe/7pstLL46l2v4iOBSHt/uwYo1ldUTzDiU2znx+lrK99oEq6NauxDYnkxYn1c9HFsfvkPINLdIpECR2HVS/Txu/EUDKULYquP/fM94xD2pV/KXhXqyb+fG5SyEIRftxSV/hALVcjGNw6MZzoRKCwH1MbVecsN7QLZLOOGEi1USDCeg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=416uhaOTv0I/rEPoH4FC76IfyccAbDuNfgny4NbLVKY=;
- b=iU8iRIkxVnefIS5oc7Qf5PwpRKa0SRxKVuhNuQL/AtI3cR0IygIimZT3H5kSuB84HBhfsoOpJCMq2F4DqGLKHlrWs2aLYsLgoV9IyxihHMgMEvozB0U6wiw8NafJtTbBlbjnWOrW442DjfWj/Z/L1pRu9N44rbzq7HXLMsVeqbSYCnkc26xYQ+zeaH/uBFFOIIsxWndinIMgZG1Qocm90KHz0QvtIsJDzsWVvWSyu8rtO9o0et7x/5+OHA6KwdmaiM3jkKICAlZdtpxnf5cc0dTc3GRZx6KjcpDq0YgCOWlJYmjsj9QADoleou1NwJrR8tGiwyL43eRRFOyI8vamBw==
+ bh=292836OHmik6LuEWDCdPONaiyMHwydssqfLlbfuwMks=;
+ b=K/p9G6/35joRs6DSxmj3YW0NmlxnwerjaHCl+xPmaTkTAH0QXj+fyKLcqF7mJOKfh4zvvj0OoEwNklqOFD2189v57siocWQk+F+P16qp7fNya6bZ42qHKjHZAELV1REzoXRu/mvAuMUpt6yyWVoEGcGZF0Wdy+bt4b+HpTPtr4gtKIVq/M9JDRU7VDyw5x7lZ0RMaU+6bq6ZUS5qAw4VyRrIKWypdDWTzo/pU2wIH9Xh6bCsZJUTUybUzrc7ADsKAHvRu+NVP0etdgw7w4JtKnVMfmvAnvRpU0ZurjC5SZuqPpXo3M7DY1OgW564F1BRh9Q+sHa6heKCpdz54CZqQw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=einfochips.com; dmarc=pass action=none
  header.from=einfochips.com; dkim=pass header.d=einfochips.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=einfochips.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=416uhaOTv0I/rEPoH4FC76IfyccAbDuNfgny4NbLVKY=;
- b=eARa5/mGi2t31BvN3RKCXYbTLwiawJ4W/Ivbod4GlMuClVQ2asd+jMBjXBJOBnB0Ze6p23E2H850WRHqfkRlT9Zn09RsqazFuFjOztxbGqtN8Chow0UezKL809rFGk1dVZbdOwqAIWuMBa8GgTTfvP58NisoQB+gAjoecgmK2qA=
+ bh=292836OHmik6LuEWDCdPONaiyMHwydssqfLlbfuwMks=;
+ b=I83EydUtVZrbc3u4OB/z4xt3r5imvjnx/zCOH1rIjSxuSChCU4tKf84WUCXgTfgRp6H+BrLNJBK1BbVL0qf0uoSrbmpEMSf0eGsOQQGg3QywWa+ys9iCuhLldplXfjXh9/BsigWk+cukaq/IFZst5qkVSSYsZh5PsB/0AmNxxQU=
 Received: from SJ2PR04MB8896.namprd04.prod.outlook.com (2603:10b6:a03:53e::6)
- by SN7PR04MB8643.namprd04.prod.outlook.com (2603:10b6:806:2ee::5) with
+ by SJ0PR04MB8344.namprd04.prod.outlook.com (2603:10b6:a03:3db::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Tue, 16 Jun
- 2026 11:53:57 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.13; Tue, 16 Jun
+ 2026 11:57:33 +0000
 Received: from SJ2PR04MB8896.namprd04.prod.outlook.com
  ([fe80::8292:662a:4214:95e0]) by SJ2PR04MB8896.namprd04.prod.outlook.com
  ([fe80::8292:662a:4214:95e0%4]) with mapi id 15.21.0113.015; Tue, 16 Jun 2026
- 11:53:57 +0000
+ 11:57:33 +0000
 From: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
 To: Conor Dooley <conor@kernel.org>
 CC: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
@@ -71,69 +71,67 @@ CC: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
  Holland <samuel.holland@sifive.com>, Darshan Prajapati
 	<darshan.prajapati@einfochips.com>, Pritesh Patel
 	<pritesh.patel@einfochips.com>
-Subject: Re: [PATCH 2/7] riscv: dts: eswin: add clock generator for EIC7700
- SoC
-Thread-Topic: [PATCH 2/7] riscv: dts: eswin: add clock generator for EIC7700
- SoC
-Thread-Index: AQHc/YbQqZsNM49l8Eu6err0REsqvQ==
-Date: Tue, 16 Jun 2026 11:53:57 +0000
+Subject: Re: [PATCH 6/7] riscv: dts: eswin: add I2C controller support
+Thread-Topic: [PATCH 6/7] riscv: dts: eswin: add I2C controller support
+Thread-Index: AQHc/YdQVHe+ytLueEiA0BTpv+jjhg==
+Date: Tue, 16 Jun 2026 11:57:33 +0000
 Message-ID:
- <SJ2PR04MB8896D17DEC731A635C0856F383E52@SJ2PR04MB8896.namprd04.prod.outlook.com>
+ <SJ2PR04MB8896A5877CCFC177FA5D5A9583E52@SJ2PR04MB8896.namprd04.prod.outlook.com>
 References: <20260615122016.1110206-1-pinkesh.vaghela@einfochips.com>
- <20260615122016.1110206-3-pinkesh.vaghela@einfochips.com>
- <20260615-overshot-pellet-5e527a14133e@spud>
-In-Reply-To: <20260615-overshot-pellet-5e527a14133e@spud>
+ <20260615122016.1110206-7-pinkesh.vaghela@einfochips.com>
+ <20260615-lumpiness-profusely-155422288c31@spud>
+In-Reply-To: <20260615-lumpiness-profusely-155422288c31@spud>
 Accept-Language: en-US, en-GB
 Content-Language: en-US
 X-MS-Has-Attach:
 X-MS-TNEF-Correlator:
 msip_labels:
- MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_ActionId=8589abce-ecf4-41ea-b9c4-eae842c75f70;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_ContentBits=0;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Enabled=true;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Method=Standard;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Name=879e395e-e3b5-421f-8616-70a10f9451af;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_SetDate=2026-06-16T11:47:04Z;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_SiteId=0beb0c35-9cbb-4feb-99e5-589e415c7944;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Tag=10,
+ MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_ActionId=e0446bc7-b35e-43e4-b679-0cd3fa8ec4b6;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_ContentBits=0;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Enabled=true;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Method=Standard;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Name=879e395e-e3b5-421f-8616-70a10f9451af;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_SetDate=2026-06-16T11:54:30Z;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_SiteId=0beb0c35-9cbb-4feb-99e5-589e415c7944;MSIP_Label_879e395e-e3b5-421f-8616-70a10f9451af_Tag=10,
  3, 0, 1;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ2PR04MB8896:EE_|SN7PR04MB8643:EE_
-x-ms-office365-filtering-correlation-id: 8ba06bff-a01d-4e01-ca9c-08decb9df2d4
+x-ms-traffictypediagnostic: SJ2PR04MB8896:EE_|SJ0PR04MB8344:EE_
+x-ms-office365-filtering-correlation-id: e991f572-4e79-4b44-75e5-08decb9e7346
 x-ms-exchange-atpmessageproperties: SA
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam:
- BCL:0;ARA:13230040|23010399003|376014|7416014|1800799024|366016|4143699003|11063799006|56012099006|22082099003|3023799007|18002099003|55112099003|38070700021;
+ BCL:0;ARA:13230040|7416014|376014|23010399003|1800799024|366016|11063799006|55112099003|56012099006|4143699003|38070700021|22082099003|18002099003;
 x-microsoft-antispam-message-info:
- XPW4HzM+vnzqV6a84woSQ1O9ssC0xsqoYLAbDj3R9jaIARrgXWgI70YobfdzndrslxTvueo8dtuXvlTzsOPgzubH2x3hlYTFSs/b5pF7YJGkZwoyOLbG7WoYvZWQ3sOPBX3i9CGgm8ToayA/8bThuKju7fziV455H40zhwGWmT6JbREMblUyzFuPCd+FQTTxiA4tGPRiS+R1t69/9jaRQTA42Hj8iuB+pvBp6HvMpTiFlQnL0jT6Gs7zrkzNvBRcOWvNZcM0zWCemDXBfjq9TwMgLeTa0q1NbpzMB7Elyev++zGzRl8nCqz1cUmv+FuMEUJE+wJTPRIMY6pdA9uX3bLy8zc5glra+6fOshgGv1qhRCDxtg/CRk4JN0b5iLBDWRJKZ8iNehogLmZ3SP+Z7H2OGVdY4Gt7/BAuZMtxAQDI5mYRjqWue8kWU7610phG22IwDSZg5pijbYHd/iHcGKF+JXlLGB86VoNirZcl1ZFfi8HT9c9nUz710bOaHk/DWqMk2YxCDmJk9Z/VtL5OfoCd/6nDsq5110QS6gdnCVhvdMd9aPKcDcoeZjvx7wNphfEGzEIz8UkNAtQtHdGhN1M0OFNvoywlfA0kTT1N3UXrMRTKBN84A+PcK5Pvnd6saxyuwTP5fDXiL5js+BXktOl/uWy47JeDlp+M8LVwbuD+LIjN7M5MGEne2Er+hfE73ZmlnaMMGeq8fZRnRd4pwfQ4isC9w/i4aQO1H1eePhZItSNjMYgAXgNGpDk4a0m1
+ EIRCM7jaoKJ13d2k6cWEb9VSC4giDUsYGrEFXCPsOQnl2INt7LRc6aTe95UxvX/3Yscd+XJCF73no+pkGxTG7Lb4zaB+Ukod2FPxFpFVD5gQmHyYynQ7xzyAJYUykDrkJwfjNdz668vsA24cXGS1+RxZnawPOf6rs6bnWFWuf59fMVE37FSVNYeuKhHvjRvlhP3c+u3L0b1RyWN/Md9SsjKGvZ9fT2aJ1eXqIGKOwPAk0Wzh0BiXcmpckVLExhQSddEDS+Mm3SANCqZc+HbnKoNk/0cDjylMoDDLT3HQMp7iOFHAjs+8ruU/Lo3oZizjzvb2h+yYVx3OCyv584IfZCFOaycmvpneGHwrQOHie4o8PkAst1Dq4CAzm6A7jOM1vaK7uSISR77+pMXVqZ8OMmf0ZXApzfuVXpF73HfSbDO3OwjNkwKP2ygRdYlmzBvBxQlANkvobiNXLrVwm3be8rhxOkV9jkeVTWt60VOpjaEyBsesJEs3+I+Owoc3ezHxGEB/eCSbwj6dD0GA1r2TFPonLbjxmn4+WuuPMV1QoDHCNQVivKirmuLkT1VqzN2SBU9fsclUuowW1ftoq6z3E8sF1GpcsoXLfhps8q/fPC6E3EjNuVkPoIO/cxOfpk2u0tF/4z/BzLd78gVULl2sE0H1NAZLMYhSoj9L89zw5gYKurPwEBxTJeImhN5POst9mKnM5Qw1YlbaQc9j1r32iYnT/HkgfEGo/+pcJb+XKaRme/+AQCZwTVfPdldKPWSt
 x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR04MB8896.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(7416014)(1800799024)(366016)(4143699003)(11063799006)(56012099006)(22082099003)(3023799007)(18002099003)(55112099003)(38070700021);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR04MB8896.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(1800799024)(366016)(11063799006)(55112099003)(56012099006)(4143699003)(38070700021)(22082099003)(18002099003);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?tSgyPEAHU60nyMAXtBgpTaqF7opT+9jiKiJjlnVkOlfswc5PaJzmQgkyXxo1?=
- =?us-ascii?Q?D35i8QVAB+dZfSa7SigF0/27HgWxoB5bNjJqrUDG+pxwgEUGWWouMSeaVbhK?=
- =?us-ascii?Q?n0ecdEHB669lBv5COOoY8MuLq8UWlxTf+p65QgVW74JY+hvMK3CIpkUbCsGt?=
- =?us-ascii?Q?CscHGFGkXbhdehX1QVSk60ug4mwTchmlqUt5sAotWE05TqxWMCArU2uHCtrm?=
- =?us-ascii?Q?2E8E+dAhk3adasjxBytOVCWkF09lzG5IGNjf7dbuYCnv/XSp61uFGp8OT90+?=
- =?us-ascii?Q?YP0HkDiw6Pdxgb0vqbAJpqHfoEVTs9RBFl64ltiKsJp6ms/UgVPb1I1FGcdl?=
- =?us-ascii?Q?91M0Q8fq6/aj4PM1xOGlShXq911NOroSc4AAFgvo6A1lkvQ+1sIGwGlgEyJP?=
- =?us-ascii?Q?M4VQ8DeIZSxCcIh4riJaodnLK7BflklEqCnvRlj6hf3mVLdRM5veM/XcbOF6?=
- =?us-ascii?Q?yD5bp8z/KtOCJR3u8Ke0du/nBF0mPxDWYWEBDAtx0JaJAIGhRuLaQAqPfUiH?=
- =?us-ascii?Q?Rlls0vXuGz2f00IQdDzEvMFry1s2t5Fh0GHWRC6QY3rUXWLxpL9zDQ+N3hNt?=
- =?us-ascii?Q?AzX7EDoH0smAqVyPuklNsUeiL6COXzC9wLdkShQKEpXdAliRtUYQ/r3kEdC9?=
- =?us-ascii?Q?MhH/LrCQ2X1I17JqGSKo9wQ9OK8/t6u14kFyA91ODWoJQuBmhEO0EkuZ5Jf2?=
- =?us-ascii?Q?oCzfr7l/+mNu9qBI81+y/X/3tZ0C6wehO2ubOhDTRGmiWR303LCZcu2+lXDg?=
- =?us-ascii?Q?qrM8WSE+2GOw9Y3I/6rmjzFp17gnUtkl6DtNDgoxP5WbAWenzPK9Q0MC4E9t?=
- =?us-ascii?Q?mJr+3uybdd6y7PxL2p1WCtinZt+z7jgaLyY0yCyvxgyzKGHcNuqLLdG92h/z?=
- =?us-ascii?Q?AfEoO7Ik40ZUvLVU/zWLaa4j4lx5Cg20ils0fyEDYttDUpKPlc94oXi201Ky?=
- =?us-ascii?Q?5500DUOUO+qskPKdoHZ6zmLiqSao6r7ywqpZhM1r07L9QHUbaUXjcwdwSH6+?=
- =?us-ascii?Q?G5YFTBBmg85Tuqm4YowI3BSj6xyn6GyoHjo4CDBjcbWyiU3Ubtz5jwhrqq2J?=
- =?us-ascii?Q?rjBqTJzm9l6/agH5ELUd2pLDUDf/vdoACGe8gMNCeQUdNXeJIFDJ3mz6ff2A?=
- =?us-ascii?Q?uMPnCuqE5W4OSXlp0nCmwoUFS4CpOHxtjs0s9V4K2Q0IX9CmPuXKfwzKeuzU?=
- =?us-ascii?Q?Sbv/6k7zPQWxlOPbCsmG8KsfB+JfGLa3bCYPmbhM0uKTL4ZulDzpOISWj/lI?=
- =?us-ascii?Q?9HznfLmEeSfi3E0Byro+v/QvmyRgRCmu/iL7rUEIMioNEJr42Q8LOq3ANqik?=
- =?us-ascii?Q?Ygz/IGVg7wyoR31ey+aV+pR/Hf1DknwQFYEr4uuGfMlm4ESgs2BOW8k0GvrR?=
- =?us-ascii?Q?FcPlsc36I6DppLwAUFu6qMSlDiutUvPN4F+bKt6PgEMXJ8NnrlNFt+qOG31Y?=
- =?us-ascii?Q?4MQAvGz3MMe8/8GrAcp/6Zh8nlipja8p57Xn6h58TUCYKfl5bpOu+m+IXT18?=
- =?us-ascii?Q?YXHw61vSo8vYKbWblzqeyInca+w69ZlAzwGofvo7UoY9PybiPihzyzj0hjlv?=
- =?us-ascii?Q?xXm8GcNOty4DJkQg0NOm2MGkthm0qjDNrz5c/HSIKJ+nUKX2P4boO7PHa1Vd?=
- =?us-ascii?Q?IJVQu9qVASNk5bvFxloALSUmJTtBZfvI/iwB2fslYp+cyhLMVOdH/a83yYTk?=
- =?us-ascii?Q?3VgAvbhrm+oy4P3stRaboCE11unkhdCYI/cBnooH6uDvq5hIFI+rolNiJR5g?=
- =?us-ascii?Q?Tpd+fUR6fukbBsmgwBPd3bNljxacwbY=3D?=
+ =?us-ascii?Q?Dm6IuSR4rJAM9Y6yYrSKuE4Il82xsc/C0P8ipE+4h9CVNCWPST0Wdmc5JJJn?=
+ =?us-ascii?Q?2anUEYc+wD6QNL1wGMK6jfgLbgNbaxUdNE6CzcdCyEr6HfzAot4+my+he3fG?=
+ =?us-ascii?Q?DmebGS+QsKQy0QW3A6TG4BurHrX3uhunubz6WBAJ/gBqZyCU/kSz+3uLwKOJ?=
+ =?us-ascii?Q?ZVoVnFb2x3AmqD5eyujIe5Ailq/oR7LUm9kQa5gItBiqPhng9B76BVKauq8z?=
+ =?us-ascii?Q?QYzxpLRDFslusu4Qof1aJ3hLiO6Er3lo+4Q116uR8H/52wZ675XLguN3bWXF?=
+ =?us-ascii?Q?9c1AIg6BSDlI2LcjpSolxugDQc4yBmZM6VNIOq22brKy008R5qry1jLV4lQh?=
+ =?us-ascii?Q?V8yyMUghBmpqoY6rrTlruyEazEJ4uyPwA8+JtWO/aY9MhTKazkfQP2Oh41Gn?=
+ =?us-ascii?Q?tXbLDZ630hE5458CelDFPNtRz9NCbrwfITY8Py6me35zNo1/bGtKDVsW/Pwl?=
+ =?us-ascii?Q?BVmiybGXEMbyviqgKkGPnA6GixPYO/oTQk3FFMJU6d72LBrRQGXbNKKJYumg?=
+ =?us-ascii?Q?6+CjSHB4+HXs61WhZ8UOxyWA1tK5Mzcip3UyG6bIX9Ph7KotgZ00WVIxT53i?=
+ =?us-ascii?Q?oLFsdyE7i5Op1ejytL9TE9pr5tExQ292siBadh6YPelFzhSDpJi1DcPryXtQ?=
+ =?us-ascii?Q?vLApFykCJlVNV0UKUI3qV2BVJua81x+wyeLa6FVTdNlGGBaS/+murNuvYlIU?=
+ =?us-ascii?Q?MbPDWJ1l7KNAo2Ee94Tb2Yp1OWy94j4hLToxzVKelrHpUFX21uLCIYOAt32l?=
+ =?us-ascii?Q?CIn4gZz6GXRlttAfSIuhNU0g/JFwIBeAw+JStl0SfrbZfzdEWKpkMnR3IVaC?=
+ =?us-ascii?Q?N4feRcEHEX2ZRHLigj8m+i6wv3lgO6wUDE3XAUEWyW0diTmteH73fijMEoDY?=
+ =?us-ascii?Q?AbHTwoaN49S4BacebtGo41IFVn4qwbhHruBCbMGXzk+yff+K9pYGHDo8FbvR?=
+ =?us-ascii?Q?3dEljsGI9iRcrr5YFNoNbHwjOAiuIJEyKiIp2Nz5kG3TP2kCczBTMRzmyeeZ?=
+ =?us-ascii?Q?6ULYKPDLF5WtBw42krjroFn8E02+unz2d+KNKjaDNY/AjBw1f7deBKZjTMy+?=
+ =?us-ascii?Q?195uNYUzs5TVcpXm96+eZNp1RBO4AaTSs5stBNYtdCFzFq3zwbjXNDma5nPb?=
+ =?us-ascii?Q?TZJew1u9jt/PmNbkA9NIjov4H96bzVRcFGqfwVYabSO3/h1UpS/enVRNUtv0?=
+ =?us-ascii?Q?FAUGkesF1TFUNdHHQlslkK9+YMnXMSwYRn2Vp4ejGTg0/KBDz0mLZpRv76I3?=
+ =?us-ascii?Q?XfPvlazyAFsWPUHSsOFLJs3AKiQtPQdoIRlxewL4Wmw2L4dakNU+l0Gm8CiX?=
+ =?us-ascii?Q?xqfoUho0fA6fcOxrLMiDq2CuvGr1WIkr/PYdmjSNUs3AfS1Q8ehQoBw6bgn6?=
+ =?us-ascii?Q?cLfEaDuSr97svO5o5eAi3ks5Q8qNkQ/5qug0BL50w7f67PhoE4UlrPXIhQzq?=
+ =?us-ascii?Q?TIFdeqm9yJy+XZzmwXYCILcBCs5u07n9PYg3Jq7CVqv8fjrf14NMnFGXOjdL?=
+ =?us-ascii?Q?2GGcbaF/3LyyQjefkpGFG/OkuvViDl53/KXbI2qLb+y1j/viFlzYW2Cq6znA?=
+ =?us-ascii?Q?XrLihhrGnw8iE1XJyvCcwWGMZc4k5r2U14ghnaqTQ3EauFCOVk/B9QJNSgDn?=
+ =?us-ascii?Q?OwwsckLFfBBJprld+m7ld/UckphD94ZRICsFJOtjeAaCkRBb5pSQrJ3JuCoc?=
+ =?us-ascii?Q?TbGSTh++K9Zf3lYr8ofa0q6lreW0W7yipK9jj8D2HJ2ujU/weeLozD4N7s6R?=
+ =?us-ascii?Q?3Oup84rpLqYPPzE6MwDwdBV3w1FtWbc=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
@@ -145,30 +143,30 @@ MIME-Version: 1.0
 X-OriginatorOrg: einfochips.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SJ2PR04MB8896.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ba06bff-a01d-4e01-ca9c-08decb9df2d4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2026 11:53:57.7480
+X-MS-Exchange-CrossTenant-Network-Message-Id: e991f572-4e79-4b44-75e5-08decb9e7346
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2026 11:57:33.1868
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 0beb0c35-9cbb-4feb-99e5-589e415c7944
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: l9dS3+IqEEFPOWfEKn4PqQ2JKNjYrAH/+JTbwIylukK9O2c0H6Bg6I12C1hb2nvNn/OvrA9HQsBWOtg68RiiBBdT4/UmuseUyvId7d/9L38=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR04MB8643
+X-MS-Exchange-CrossTenant-userprincipalname: 5jJPaDDb7aobmaEaUJRKNqiXRFX7halypcDeQlDnlq9AxaBk/OgM1hTn1jqhz/ZJrcsH+9SQmDn6Vjdftwq32CBRk8X7w22WCbw+KOpWO8w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR04MB8344
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
 	DMARC_POLICY_ALLOW(-0.50)[einfochips.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[einfochips.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312503-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312513-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linmin@eswincomputing.com,m:luyulin@eswincomputing.com,m:samuel.holland@sifive.com,m:darshan.prajapati@einfochips.com,m:pritesh.patel@einfochips.com,m:krzk@kernel.org,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER(0.00)[pinkesh.vaghela@einfochips.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -183,100 +181,128 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,einfochips.com:dkim,einfochips.com:email,einfochips.com:from_mime,SJ2PR04MB8896.namprd04.prod.outlook.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EC0AC68F037
+X-Rspamd-Queue-Id: D056568F137
 
 Hi Conor,
 
-Thanks for your time to review the patch.
-
-On Mon, Jun 15, 2026 at 10:01 PM +0530, Conor Dooley wrote:
-> On Mon, Jun 15, 2026 at 05:50:11PM +0530, Pinkesh Vaghela wrote:
+On Mon, Jun 15, 2026 at 10:05 PM +0530, Conor Dooley wrote:
+> On Mon, Jun 15, 2026 at 05:50:15PM +0530, Pinkesh Vaghela wrote:
 > > From: Pritesh Patel <pritesh.patel@einfochips.com>
 > >
-> > Add clock generator node for EIC7700 SoC.
-> > HiFive Premier P550 boards have 24MHz crystal oscillator to provide
-> > the input clock.
+> > Add I2C nodes for EIC7700 SoC.
+> > Also add nodes for corresponding slave devices in dts file and enable
+> > them for HiFive Premier P550 board
 > >
 > > Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
 > > Signed-off-by: Pinkesh Vaghela <pinkesh.vaghela@einfochips.com>
 > > ---
-> >  .../boot/dts/eswin/eic7700-hifive-premier-p550.dts  |  5 +++++
-> >  arch/riscv/boot/dts/eswin/eic7700.dtsi              | 13 +++++++++++++
-> >  2 files changed, 18 insertions(+)
+> >  .../dts/eswin/eic7700-hifive-premier-p550.dts |  52 ++++++
+> >  arch/riscv/boot/dts/eswin/eic7700.dtsi        | 156 ++++++++++++++++++
+> >  2 files changed, 208 insertions(+)
 > >
 > > diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 > > b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> > index 131ed1fc6b2e..1fb92f0e7c55 100644
+> > index e7bb96e14958..0f0c98474c62 100644
 > > --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 > > +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-> > @@ -20,6 +20,11 @@ chosen {
-> >  	};
+> > @@ -130,6 +130,58 @@ &gpio111_pins {
+> >  	input-disable;
 > >  };
 > >
-> > +&xtal {
-> > +	clock-frequency =3D <24000000>;
-> > +	clock-output-names =3D "xtal24m";
+> > +&aon_i2c0 {
+> > +	status =3D "okay";
+> > +
+> > +	eeprom@50 {
+> > +		compatible =3D "atmel,24c02";
+> > +		reg =3D <0x50>;
+> > +	};
 > > +};
 > > +
-> >  &uart0 {
-> >  	status =3D "okay";
+> > +&aon_i2c1 {
+> > +	status =3D "okay";
+> > +
+> > +	pac1934@10 {
+>=20
+> Generic node name here please. adc I think.
+
+We will change this to "adc@10" in v2 patch
+
+>=20
+> > +		compatible =3D "microchip,pac1934";
+> > +		reg =3D <0x10>;
+> > +		#address-cells =3D <1>;
+> > +		#size-cells =3D <0>;
+> > +
+> > +		channel@1 {
+> > +			reg =3D <0x1>;
+> > +			shunt-resistor-micro-ohms =3D <1000>;
+> > +			label =3D "VDD_SOM";
+> > +		};
+> > +
+> > +		channel@2 {
+> > +			reg =3D <0x2>;
+> > +			shunt-resistor-micro-ohms =3D <1000>;
+> > +			label =3D "VDD_SOC";
+> > +		};
+> > +
+> > +		channel@3 {
+> > +			reg =3D <0x3>;
+> > +			shunt-resistor-micro-ohms =3D <1000>;
+> > +			label =3D "VDD_CPU";
+> > +		};
+> > +
+> > +		channel@4 {
+> > +			reg =3D <0x4>;
+> > +			shunt-resistor-micro-ohms =3D <1000>;
+> > +			label =3D "VDD_LPDDR";
+> > +		};
+> > +	};
+> > +
+> > +	ina226@44 {
+>=20
+> And here. power-sensor.
+
+We will change this to "power-sensor@44" in v2 patch
+
+>=20
+> > +		compatible =3D "ti,ina226";
+> > +		reg =3D <0x44>;
+> > +		#io-channel-cells =3D <1>;
+> > +		label =3D "sys_power";
+> > +		shunt-resistor =3D <1000>;
+> > +	};
+> > +};
+> > +
+> >  &pinctrl {
+> >  	vrgmii-supply =3D <&vcc_1v8>;
 > >  };
 > > diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi
 > > b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> > index 430a210f01e6..a7ebb1115958 100644
+> > index f8caf39616b2..28706431b2c0 100644
 > > --- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
 > > +++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-> > @@ -4,6 +4,7 @@
-> >   */
+> > @@ -315,6 +315,162 @@ uart4: serial@50940000 {
+> >  			status =3D "disabled";
+> >  		};
 > >
-> >  /dts-v1/;
-> > +#include <dt-bindings/clock/eswin,eic7700-clock.h>
-> >  #include <dt-bindings/reset/eswin,eic7700-reset.h>
-> >
-> >  / {
-> > @@ -203,6 +204,11 @@ pmu {
-> >  				<0x00000000 0x0000000f 0xfffffffc 0x000000ff
-> 0x00000078>;
-> >  	};
-> >
-> > +	xtal: oscillator {
+> > +		i2c0: i2c@50950000 {
+> > +			compatible =3D "snps,designware-i2c";
 >=20
-> Sashiko feedback here on making this clk-<hz> or clk-<something> should b=
-e
-> implemented.
+> Missing a soc-specific compatible here for all i2c controllers.
 
-We will change this to "clock-24m" in v2 patch
+We are using generic DesignWare I2C driver for all I2C controllers with no =
+changes required in the driver. Do we still need to add soc-specific compat=
+ible for all i2c controllers?
 
 Regards,
 Pinkesh
 
 >=20
-> > +		compatible =3D "fixed-clock";
-> > +		#clock-cells =3D <0>;
-> > +	};
-> > +
-> >  	soc {
-> >  		compatible =3D "simple-bus";
-> >  		ranges;
-> > @@ -343,6 +349,13 @@ gpioD: gpio-port@3 {
-> >  			};
-> >  		};
-> >
-> > +		clk: clock-controller@51828000 {
-> > +			compatible =3D "eswin,eic7700-clock";
-> > +			reg =3D <0x0 0x51828000 0x0 0x300>;
-> > +			clocks =3D <&xtal>;
-> > +			#clock-cells =3D <1>;
-> > +		};
-> > +
-> >  		reset: reset-controller@51828300 {
-> >  			compatible =3D "eswin,eic7700-reset";
-> >  			reg =3D <0x0 0x51828300 0x0 0x200>;
-> > --
-> > 2.34.1
-> >
+>=20
+> Cheers,
+> Conor.
 
