@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-312600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312602-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZtfcBJVfMWrpiAUAu9opvQ
-	(envelope-from <devicetree+bounces-312600-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 16:37:09 +0200
+	id FqMHO5lfMWrqiAUAu9opvQ
+	(envelope-from <devicetree+bounces-312602-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 16:37:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A6DA690908
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 16:37:08 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3993669090D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 16:37:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=OBe2MO18;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312600-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312600-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=oH2mXk0o;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312602-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-312602-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8F4B6302EF77
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 14:32:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2C51130304E8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 14:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8597836C0C8;
-	Tue, 16 Jun 2026 14:32:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD8535B631;
+	Tue, 16 Jun 2026 14:32:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CDD62868B5
-	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 14:32:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE5C361651
+	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 14:32:23 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781620343; cv=none; b=jnghUN6pNPy7zn1i2tLHhc2FCSgj1J8Pcv1P7lmovBvh6BYlPu3k9+ropfMYknhaSlAPuPqOs5TtCyZ5ii4KGVLaP46/LwpA7BrZyZ7P1ysXBJBR7FhGrW0yJDnwmiOOuoOTnVlSrcHrbRzFHQPKtZ3dXcX1H6SBEEzjC8jnFbo=
+	t=1781620344; cv=none; b=SfljSMHG8GX7PWUnnO1K7hoFYaCVw5BMVMaw82z0wqZMyKGBahrJEZ9gOILSnhYALyBHT4XbXGb+hxnbPhUsW+1ylqGNr9vG4nGjfYP1Qatbc0SIM6/1CLKFnG551HydJ1R4io6o9EtOXCTOQwjvwJ+KF1wK/YcXdg/e5KZoqU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781620343; c=relaxed/simple;
-	bh=JbVV8ts52KJmTF73lZh+x79HKH2bU7jcTE/C4dm1DC4=;
+	s=arc-20240116; t=1781620344; c=relaxed/simple;
+	bh=qWybPPyWRhyKCxgD7JJIsnR0znWXu5bVhRWiWQjlIT8=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=Sg/IdlqEXkoYxDrqVQjyirYOkL2V2Bn0YrxOsc/qNifLZbMBRjwac69wSlFUmLGv3OeFVZPSKwVz9NgL98TLFK137LEVnnrWR/z17HoMR2McTwRznAlhuzTDP3ew8KjGNsu62Cix/CtK7/dRvpTStZqS//nLp9rwoPBy3+EB/CY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OBe2MO18; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7C761F000E9;
-	Tue, 16 Jun 2026 14:32:21 +0000 (UTC)
+	 Message-Id; b=Mro80UEjkJnILxtpxSDnPQQHlr3Vek0ZPm7VQhL817m8DLKeLz0hwRCqElim+Q47TBbvoOlzTn7mIJDQVDFDPKhIfCaOcNPZNnE3//dwVFQKpwGKOyXRpKLWqjJCRzclG2xX44zoqFrim2enzyVGPyQCE3a1I0Rb6BdIkMMHnaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oH2mXk0o; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44FCE1F00A3D;
+	Tue, 16 Jun 2026 14:32:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781620342;
-	bh=1SA8Mm2FuDLjwdmZxsK19MPPGykWFb+cehwkKiT7dNs=;
+	s=k20260515; t=1781620343;
+	bh=iE0eKdJXuh0AmYYp7xpwJDnOpmsWLUcxclGeazRSTmQ=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=OBe2MO18f3pA6N4fWdG9pBQbW0P6h7japgw2TTLiNpldOtLXeCJZOetsQJFnecn6M
-	 iaLFOaaillhxc5/a90FCZL53D0KzXEddMriNGamdsrlTo70UO8vJwe4Y140cKHaruj
-	 iJ6B32Bp+JP30VexYXuQJrvA1UCdYWWEBz/B7EL26K+SDlV96qA8aPn3XHryo5bIaB
-	 9aN6oTfrWfGihJT6OPbeDD79RPU/cdE1+3gjaxaajXmrZBmP4ieXwJTfNUT2yJbu0L
-	 p6rtieKypeZUAL1kC6bzMPgJ3VeTCov8x8hd5Gy2sN1PM1Szrm7KUF3Pn+EfVYBQve
-	 MLc4hSD1IbxPA==
+	b=oH2mXk0o3pbpj1LHqnjYjDsAM+Q2g7vpHYR1bxafVE8YzxzN1stLX4Vs+dW5opDkn
+	 O5ODlguF0yq0BHg5Kg2p1dQ7TiDRfssYzWhvAqBzV8kIn6V565Oak/TPxHb+zbcs++
+	 2OZ4sMDiGiPjXPd1cQeXQSTkdXxe3eDWrfbF+O5IeKH7iwwILJTi70beHFoX5REVsy
+	 eBfM1Ykk4Sm5/yyRYOl1VSO+HyHZRoAWDRTywetu8Tta3CIv06yDAf7rZsHiLT5Tc/
+	 UjDeNpL6bOXrHxgPh+j2yYoyUzZ2lBnpjxANKGioqb9U5fOhdAvsDTkK1kErhYiFeS
+	 SfWFVobl5FYXw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH net-next v7 04/12] net: pcs: implement Firmware node
- support for PCS driver
+Subject: Re: [PATCH net-next v7 03/12] net: phylink: add
+ phylink_release_pcs() to externally release a PCS
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Christian Marangi" <ansuelsmth@gmail.com>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org
-In-Reply-To: <20260615122950.22281-5-ansuelsmth@gmail.com>
-References: <20260615122950.22281-5-ansuelsmth@gmail.com>
+Cc: robh@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org
+In-Reply-To: <20260615122950.22281-4-ansuelsmth@gmail.com>
+References: <20260615122950.22281-4-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 16 Jun 2026 14:32:21 +0000
-Message-Id: <20260616143221.C7C761F000E9@smtp.kernel.org>
+Date: Tue, 16 Jun 2026 14:32:22 +0000
+Message-Id: <20260616143223.44FCE1F00A3D@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,24 +71,24 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312600-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312602-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:ansuelsmth@gmail.com,m:robh@kernel.org,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
@@ -98,138 +98,152 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sashiko.dev:url,vger.kernel.org:from_smtp,smtp.kernel.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,smtp.kernel.org:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0A6DA690908
+X-Rspamd-Queue-Id: 3993669090D
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-- [Medium] Type mismatch in `fwnode_parse_pcsspec()` where a negative error=
- code is assigned to an unsigned integer, making the error check dead code.
-- [Medium] `fwnode_phylink_pcs_parse()` incorrectly aborts on out-of-bounds=
- instead of returning the parsed count, violating its 'up to num_pcs' contr=
-act.
-- [Low] The fallback stub for `fwnode_pcs_get()` uses an incorrect paramete=
-r type.
+- [High] Lockless modification of `pl->pcs_list` races with the `phylink_re=
+solve` workqueue, leading to list corruption and use-after-free.
+- [High] The active PCS is disabled prematurely before the MAC link is brou=
+ght down, violating the standard teardown sequence.
+- [Medium] `pl->supported` link modes are not updated when `pl->supported_i=
+nterfaces` shrinks, leading to stale ethtool capabilities.
+- [Medium] `pl->sfp_interfaces` is not updated when a PCS is released.
 --
 
-commit 5e32951da9dab6acca331c331c1e41d55a580883
+commit 0240edfdad0af399cf16b6105ab8d1a7a62254fb
 Author: Christian Marangi <ansuelsmth@gmail.com>
 
-net: pcs: implement Firmware node support for PCS driver
+net: phylink: add phylink_release_pcs() to externally release a PCS
 
-This commit implements the foundation of Firmware node support for PCS
-drivers. It introduces a simple Provider API where a PCS driver can expose
-multiple PCS and consumers can access them using fwnode_pcs_get().
+Add phylink_release_pcs() to externally release a PCS from a phylink
+instance. This can be used to handle case when a single PCS needs to be
+removed and the phylink instance needs to be refreshed.
 
-> diff --git a/drivers/net/pcs/pcs.c b/drivers/net/pcs/pcs.c
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/net/pcs/pcs.c
+> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+> index cb07184ce82f3..ca4dad4b140a0 100644
+> --- a/drivers/net/phy/phylink.c
+> +++ b/drivers/net/phy/phylink.c
 
 [ ... ]
 
-> +static int fwnode_parse_pcsspec(const struct fwnode_handle *fwnode,
-> +				unsigned int index, const char *name,
-> +				struct fwnode_reference_args *out_args)
+> @@ -918,6 +919,58 @@ static void phylink_resolve_an_pause(struct phylink_=
+link_state *state)
+>  	}
+>  }
+> =20
+> +/**
+> + * phylink_release_pcs - Removes a PCS from the phylink PCS available li=
+st
+> + * @pcs: a pointer to the phylink_pcs struct to be released
+> + *
+> + * This function release a PCS from the phylink PCS available list if
+> + * actually in use. It also refreshes the supported interfaces of the
+> + * phylink instance by copying the supported interfaces from the phylink
+> + * conf and merging the supported interfaces of the remaining available =
+PCS
+> + * in the list and trigger a resolve.
+> + */
+> +void phylink_release_pcs(struct phylink_pcs *pcs)
 > +{
-> +	int ret;
+> +	struct phylink *pl;
 > +
-> +	if (!fwnode)
-> +		return -EINVAL;
+> +	ASSERT_RTNL();
 > +
-> +	if (name) {
-> +		index =3D fwnode_property_match_string(fwnode, "pcs-names",
-> +						     name);
-> +		if (index < 0)
-> +			return index;
+> +	pl =3D pcs->phylink;
+> +	if (!pl)
+> +		return;
+> +
+> +	list_del(&pcs->list);
+> +	pcs->phylink =3D NULL;
+> +
+> +	mutex_lock(&pl->state_mutex);
 
-[Severity: Medium]
-Does this error check work as intended? fwnode_property_match_string()
-returns negative error codes like -ENODATA, but it is assigned to index
-which is an unsigned int. The check for index < 0 will be dead code,
-potentially leading to an out-of-bounds query that returns -ENOENT.
+[Severity: High]
+Does this list_del() race with the phylink_resolve() workqueue?
 
+Since phylink_resolve() does not hold rtnl_lock, it takes pl->state_mutex
+and traverses pl->pcs_list in phylink_major_config().
+
+If list_del() executes completely locklessly with respect to the
+phylink_resolve() traversal, will the iterator follow poisoned list pointer=
+s,
+resulting in a page fault and kernel panic?
+
+Also, in phylink_destroy(), does clearing the list before canceling the res=
+olve
+workqueue without state_mutex open another identical race window?
+
+> +
+> +	/* Check if we are removing the PCS currently
+> +	 * in use by phylink. If this is the case,
+> +	 * force phylink resolve to reconfigure the interface
+> +	 * mode, disable the current PCS and set the
+> +	 * phylink PCS to NULL.
+> +	 */
+> +	if (pl->pcs =3D=3D pcs) {
+> +		phylink_pcs_disable(pl->pcs);
+
+[Severity: High]
+Is it safe to disable the active PCS here before the MAC link is brought do=
+wn?
+
+At this point, the MAC link has not been brought down (i.e. netif_carrier_o=
+ff
+and MAC teardown haven't occurred) because phylink_link_down() is deferred =
+to
+run inside phylink_resolve().
+
+Could disabling the PCS while the MAC is still actively transmitting/receiv=
+ing
+violate hardware sequencing and trigger bus stalls, dropped packets, or
+hardware hangs?
+
+> +
+> +		pl->force_major_config =3D true;
+> +		pl->pcs =3D NULL;
 > +	}
 > +
-> +	ret =3D fwnode_property_get_reference_args(fwnode, "pcs-handle",
-> +						 "#pcs-cells",
-> +						 -1, index, out_args);
-
-[ ... ]
-
-> +int fwnode_phylink_pcs_parse(struct fwnode_handle *fwnode,
-> +			     struct phylink_pcs **available_pcs,
-> +			     unsigned int num_pcs)
-> +{
-> +	unsigned int i, found =3D 0;
+> +	mutex_unlock(&pl->state_mutex);
 > +
-> +	if (!available_pcs)
-> +		return -EINVAL;
-> +
-> +	if (!fwnode_property_present(fwnode, "pcs-handle"))
-> +		return -ENODEV;
-> +
-> +	for (i =3D 0; i < num_pcs; i++) {
-> +		struct phylink_pcs *pcs;
-> +
-> +		pcs =3D fwnode_pcs_get(fwnode, i);
-> +		if (IS_ERR(pcs)) {
-> +			/*
-> +			 * Ignore -ENODEV error for PCS that still
-> +			 * needs to probe.
-> +			 */
-> +			if (PTR_ERR(pcs) =3D=3D -ENODEV)
-> +				continue;
-> +
-> +			return PTR_ERR(pcs);
+> +	/* Refresh supported interfaces */
+> +	phy_interface_copy(pl->supported_interfaces,
+> +			   pl->config->supported_interfaces);
+> +	list_for_each_entry(pcs, &pl->pcs_list, list)
+> +		phy_interface_or(pl->supported_interfaces,
+> +				 pl->supported_interfaces,
+> +				 pcs->supported_interfaces);
 
 [Severity: Medium]
-If the firmware node contains fewer pcs-handle properties than num_pcs,
-won't fwnode_pcs_get() eventually return -ENOENT? Since this loop only
-ignores -ENODEV, does this cause the function to abort entirely and return
-an error instead of returning the successfully parsed count?
+Will ethtool advertise stale link modes since pl->supported is not updated?
 
-> +		}
+This code correctly shrinks pl->supported_interfaces to exclude the released
+PCS's capabilities, but fails to correspondingly re-evaluate the global
+pl->supported link mode mask.
+
+[Severity: Medium]
+Should pl->sfp_interfaces also be updated when a PCS is released?
+
+sfp_interfaces represents the intersection between the currently inserted
+SFP module's capabilities and pl->supported_interfaces. Since
+pl->supported_interfaces shrinks, not updating pl->sfp_interfaces might lead
+phylink to incorrectly validate or attempt to configure an SFP link interfa=
+ce
+mode that is now impossible to satisfy with the remaining hardware.
+
 > +
-> +		available_pcs[found] =3D pcs;
-> +		found++;
-> +	}
-> +
-> +	return found;
+> +	phylink_run_resolve(pl);
 > +}
-> +EXPORT_SYMBOL_GPL(fwnode_phylink_pcs_parse);
-
-[ ... ]
-
-> diff --git a/include/linux/pcs/pcs.h b/include/linux/pcs/pcs.h
-> new file mode 100644
-> --- /dev/null
-> +++ b/include/linux/pcs/pcs.h
-
-[ ... ]
-
-> +#else
-> +static inline struct phylink_pcs *fwnode_pcs_get(struct fwnode_handle *f=
-wnode,
-> +						 int index)
-
-[Severity: Low]
-Is this intentional? The fallback stub for fwnode_pcs_get() uses int index,
-but the active declaration and implementation use unsigned int index.
-
-> +{
-> +	return ERR_PTR(-ENOENT);
-> +}
-
-[ ... ]
+> +EXPORT_SYMBOL_GPL(phylink_release_pcs);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260615122950.2228=
-1-1-ansuelsmth@gmail.com?part=3D4
+1-1-ansuelsmth@gmail.com?part=3D3
 
