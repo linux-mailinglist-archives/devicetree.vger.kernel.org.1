@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-312286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312287-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Td7JBbjKMGqzXQUAu9opvQ
-	(envelope-from <devicetree+bounces-312286-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 06:02:00 +0200
+	id WZkIEKvNMGoCXgUAu9opvQ
+	(envelope-from <devicetree+bounces-312287-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 06:14:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 609C968BC92
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 06:01:59 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94B2B68BCEB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 06:14:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=CgsDYF3S;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312286-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312286-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="D+7fRE/2";
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312287-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312287-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2001B3044F00
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 04:01:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 60FAF306152A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 04:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E1D335A3A4;
-	Tue, 16 Jun 2026 04:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7163C6600;
+	Tue, 16 Jun 2026 04:14:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87254199FAC;
-	Tue, 16 Jun 2026 04:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5110A35F5E6;
+	Tue, 16 Jun 2026 04:14:31 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781582517; cv=none; b=D3Ui55E0wcIt/3tKugQtdym2o/DsCD5sSeWjwzHRhItGNM6bdC03ZgjuCKJTc8Lz6lUEZPTf88XlpeE7vPlILF6KYGSlZyPiuIr1APbh2m46vGvkKsERtzlCHviOrLZJw1uUDVzCXzlGbWGbgnELknGIPsy/4YAa95wMSpg12+s=
+	t=1781583272; cv=none; b=dP3c6yO3bx/m3J/ssfV95mzjk7sGA/NZSKoET3LjySMJXNK9TvRpzP1A5ainMp149vBCajkh+nVxhAM3peb4yjww6uudmGxS36eDkN2gfI2aUgSMmuW1wJkRXRE12yGdT2CpC/+XUCNYZKSpiUVUHh8eeuMyb60OUXmm4P8QGgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781582517; c=relaxed/simple;
-	bh=wmUsjk6pyP9Tl0MiDhLIxUgnzl/9Xoq5CJfQxnJ4OR0=;
+	s=arc-20240116; t=1781583272; c=relaxed/simple;
+	bh=xxdUORxWbvErtRd31xWtGb9ULllIwe+InORzOULRTYE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XhWcwXAGeDaGiROqe1NpYul9cjMBCYUFdorUJnYbZoPINeistM5RW18sXgtxVeraoz7v+IqyYiefcZnjL6ebtMR5VJmjTo+KJm2gMnOzYVHImJlioSIsqtKflP7KWs33kbX4VG5bG0hNtlVAjfL8ZSeHZXuVb4XL4imjB/Zy36s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CgsDYF3S; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BB681F000E9;
-	Tue, 16 Jun 2026 04:01:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=L3TUyvGsO+TajgG31T4OV07e3QyTuxM230qDzMEHiM0bkAg/M6KQFKrxJNZ4DxZWStlqVgBYC1iNtl/OYxQLwbPWfHaVx77ixUn4ZrQNuUQzIqeALxVyXwE3Q1JEmT/DsXhphXjYlMZRc78PirLotnZ5MV95RA6MAk7637vB25Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D+7fRE/2; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B44521F000E9;
+	Tue, 16 Jun 2026 04:14:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781582516;
-	bh=ZJfpUqSrQXaYNcIGQfl1oETFjM3wowS2khH2aNNjQIs=;
+	s=k20260515; t=1781583270;
+	bh=yF6T44Uu+Hks9wc+cjl/ajpTObo8218Q80E0x7BrTXE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=CgsDYF3SpcNIe62DrHbrp7PxNqH0K8xRo04Yu3HAvvlynNb7E7TwuXFVwstlfP48c
-	 iyGRW5rW/7FgOCMZV6HlSrQBz+8dmmMWhnPVjzCKTitEDu/ZyTRgcuEIwnAtbNBNzK
-	 55+YBh1sub8zZ8+afevvVDHMv3iNlqx6YHWcnkpflb1Y6TrFbTPpkWUUhzeX2fKwNP
-	 BjO0VSkwowDqKrctH/tJCV2R+03iDrgT7dQU9vhKa+oXf3G2aORwXu0uUSkVlcHtRr
-	 BwEuDicNp1cNZj8IblW3Gx7p+2b7p+AUli4LvE6AUdiM3E8H9HZZ+mIB7x/1HLH/T+
-	 jSc9rqmtVsRvw==
-Message-ID: <00d51781-0172-4334-986c-0701ae4c58d8@kernel.org>
-Date: Tue, 16 Jun 2026 06:01:51 +0200
+	b=D+7fRE/2RMD/gGabASwdhNLsuiOIaumvr7s7InRsZCW8TuoqHmlgIphRV5QiPByex
+	 Kuphajh+PyfU+clB52m3Olrl+tYKjejM18ongtls+kWrmRJx+Vf3BwtkWwzxM8wa3P
+	 BAjH2JLEc3b1etlSNzTLqlgC95MAaVW9k9ww7khiffqq0GQNnu+5WH6lSYbnxq2Xap
+	 4vl6qD1PPALRuZs35b45C8VLfTbLQ408M2kfyDXjkBkFuGECSI9dX7qEBtUIEOK4dm
+	 X9RaCXu2Mcfvmfg95OLC8AsET2BcNjU5cK5cZTgP1GDxOXn5Ouuat0QRfWuZA+swzz
+	 B+nUI8/ro+BkQ==
+Message-ID: <7dd8dcf3-5aec-442a-941e-7564936befa9@kernel.org>
+Date: Tue, 16 Jun 2026 06:14:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,18 +55,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] of: property: Fix of_fwnode_get_reference_args() with
- negative index
-To: Alban Bedel <alban.bedel@lht.dlh.de>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@kernel.org>, driver-core@lists.linux.dev,
- linux-kernel@vger.kernel.org,
- Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-References: <20260611102806.2643869-1-alban.bedel@lht.dlh.de>
- <20260615-obedient-axolotl-of-argument-fb55ef@quoll>
- <20260615113330.11406fbd@OMT-CWNXR4TFW5-LHT>
- <f21486ea-db76-4b71-9b68-86c861b0be53@kernel.org>
- <20260615134747.3cdb9599@OMT-CWNXR4TFW5-LHT>
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: s2mu005-pmic: reorder reg and
+ interrupts properties
+To: Kaustabh Chakraborty <kauschluss@disroot.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-leds@vger.kernel.org
+References: <20260616-s2mu005-pmic-supplement-v1-0-41e84518b711@disroot.org>
+ <20260616-s2mu005-pmic-supplement-v1-1-41e84518b711@disroot.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,82 +111,62 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20260615134747.3cdb9599@OMT-CWNXR4TFW5-LHT>
+In-Reply-To: <20260616-s2mu005-pmic-supplement-v1-1-41e84518b711@disroot.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-312287-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312286-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:alban.bedel@lht.dlh.de,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:saravanak@kernel.org,m:driver-core@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:tommaso.merciai.xr@bp.renesas.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:kauschluss@disroot.org,m:andre.draszik@linaro.org,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pavel@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-samsung-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-leds@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 609C968BC92
+X-Rspamd-Queue-Id: 94B2B68BCEB
 
-On 15/06/2026 13:47, Alban Bedel wrote:
-> On Mon, 15 Jun 2026 11:54:01 +0200
-> Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>> Indices larger than INT_MAX are valid in the fwnode API, so returning
->>> -EINVAL is not appropriate here.
->>>   
->>
->> Then neither ENOENT are.
->>
->> But really, EINVAL is correct here. This is OF implementation, so this
->> implementation decides what is EINVAL and what is right. Not fwnode API.
+On 15/06/2026 22:26, Kaustabh Chakraborty wrote:
+> As per convention, and as also reiterated by maintainers [1], the
+> properties in schema is to be ordered similar to how its done in
+> devicetree sources; starting from compatible and reg. Re-order the
+> properties in this schema accordingly.
 > 
-> I think there is a missunderstanding here. The function we are talking
-> about, of_fwnode_get_reference_args(), is the OF backed implementation
-> of fwnode_property_get_reference_args(). As such it must follow the API
-> documented by fwnode_property_get_reference_args() which list the
-> following return values:
-> 
->  * Return: %0 on success
->  *	    %-ENOENT when the index is out of bounds, the index has an empty
->  *		     reference or the property was not found
->  *	    %-EINVAL on parse error
->  *	    %-ENOTCONN when the remote firmware node exists but has not been
->  *		       registered yet
-> 
-> It is not explicitly documented what should be returned if the index is
-> not representable in the backend, but considering it out of bound seems
-> to be the most sensible thing to do.
-> 
+> Link: https://lore.kernel.org/all/0240eb13-6c56-4879-8db7-b990a220a78f@kernel.org [1]
+> Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
 
-I agree, I did not consider the docs for
-fwnode_property_get_reference_args().
+Honestly, nah... I commented on v6 so you change the patch. But you were
+posting this huge patchset faster than we can review (v6 and v7 posted
+on the same day!), so v7 got applied where you did not implement the
+comments. One small posting per 24h. One big posting per 2-3 days, not
+more often.
 
-Please send v2 fixing the comment style and with:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
+There is little benefit in fixing this single file.
 
 Best regards,
 Krzysztof
