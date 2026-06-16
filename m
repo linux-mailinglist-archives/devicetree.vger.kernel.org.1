@@ -1,204 +1,139 @@
-Return-Path: <devicetree+bounces-312466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312476-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id N21LBZsoMWqecwUAu9opvQ
-	(envelope-from <devicetree+bounces-312466-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:42:35 +0200
+	id dSlZHC8rMWpqdAUAu9opvQ
+	(envelope-from <devicetree+bounces-312476-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:53:35 +0200
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA1268E655
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:42:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B504A68E7F5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:53:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="BWil/F4A";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312466-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312466-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=fris.de header.s=mail header.b=PL91a9QS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312476-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312476-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=fris.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2BB4030086F9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:42:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B363F306B344
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D7BB3B71DA;
-	Tue, 16 Jun 2026 10:42:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FEC742883B;
+	Tue, 16 Jun 2026 10:50:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DD5A324B31;
-	Tue, 16 Jun 2026 10:42:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84B9436344;
+	Tue, 16 Jun 2026 10:50:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781606552; cv=none; b=SSgXpbTRmkvqkfvgWBYctmTW+N7WKIjfejjLiIr/slY6TqqWfokGBHpucJtCAwnAVtaY32Ea4lXeg+UI1+cmCGfDpanG1pkgKNNg/w+pO6UKltHNekWI4dKwUb/dX0lJOCqpWnxcmZuI+79Cmv94A42QopGlJk0us/ShJV6K//Q=
+	t=1781607043; cv=none; b=fqnG8pgIKzlghlZWRz41h68tAccjrAoJ3Xp09eQTPFvQ7zHZFtf+fg2HNjziPjmBNrarJnC3L1Enm/c9VMw45QnZ/Ai7T/Z6xuCFwJZAW5CTHpRqtwC09l8eLbCIEGP4OMDPf/6i/9LK8xTk62Q2Z3K8Mf8IV+wOxQWwyTIulMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781606552; c=relaxed/simple;
-	bh=ssYO1V20hdK+hsJaiyDQjbwF8nhSLuRtFNz1lPldtWM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aoO5EW2jyBxt08KNar4X9cf/A/n3hvB5oOoa0PtfZnNV9eSla7eSyLC1Pf2tDy/Hkrh/z/0r7dphMfJVSTla9m9g2mVoJRVOYshXHTdWfgBv8b6J4xIRNQEr9/dLTRaukiK0G+gyw08MOdt87cas7Ff1/IPZmrP8qdSVrLlZJGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BWil/F4A; arc=none smtp.client-ip=192.198.163.9
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781606552; x=1813142552;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ssYO1V20hdK+hsJaiyDQjbwF8nhSLuRtFNz1lPldtWM=;
-  b=BWil/F4A6Hma9caQ3gE1B6D7fUE4w3C6iKvPb9XoehEFHdlzIm8t4ggB
-   mYTeEEqEVNK1WlAoRvTIqU5/LKk+Lrwyb1rcUcueYc05aKuKz08w8vPa9
-   4+abSRKD/S1svpyQJW6twhqwhosu4v2ZrDz7qZB1czlc7CHitJ60Ux18X
-   a3PfSxtVJslWOH4Ic7FZvYJD4R49OahbXYUTLmcS+2NuYtrcP9NgyaY5M
-   u45n0DhQ3T3/EFE2Iue/GEAboJfk5RktO+5xHABLIjqMemAgng6DJtvdK
-   EF5dsP+EbLrjZwbEXZ45IHZ8CY3k4zjNE7cy1SbipNKgkXUtLaP95uD7O
-   Q==;
-X-CSE-ConnectionGUID: aY1OqcWhSfu5M8fAYvpTcA==
-X-CSE-MsgGUID: 41OAQk4WRFSAPookEKrk8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93039561"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; 
-   d="scan'208";a="93039561"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 03:42:31 -0700
-X-CSE-ConnectionGUID: ln1Hr2ySTha2mrHZQOwupA==
-X-CSE-MsgGUID: sq+pS3fERO6t7gt9mMsS/g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; 
-   d="scan'208";a="252039591"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.153])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 03:42:27 -0700
-Date: Tue, 16 Jun 2026 13:42:24 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: Michael Auchter <michael.auchter@ni.com>, linux@analog.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1781607043; c=relaxed/simple;
+	bh=b46aCoqnoLSoLadUdvsDz6SLzPSkV+jIMYvkj7+NJvM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Y5GHynBcgdJ6p+z3SlenBNhnXkZBYniSDZ5DUDZvYkaF2WRAcDG9L0UYR3/BRVDmXp4qwL2ukgcDPoo66q682ZlYMvjvhtjA28u3cnqaIKnkMDMDIbHKR0K7X+xm3lyYxBU+s/ryPSi6xFLBgBX6l9zMpWjUiq0+G6INE/8D2vU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=PL91a9QS; arc=none smtp.client-ip=116.203.77.234
+From: Frieder Schrempf <frieder@fris.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=mail;
+	t=1781606606;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=aThhbPVkViZDOYmIYsh1qACbccOEM0HdUC2kdMlFlcg=;
+	b=PL91a9QSRz3tmG5n8pe+J3lwK33NYmKe9lP8mm3WxE3siVmeHJkiEOFqjgXVZl7Vr8BMlW
+	zqQweswwx+xeGdpjya0FGfWwYtppajdQiwhk/bj/p524ExcJdhfypSHFzHx9S7qyzOITS2
+	hWJs6OYYGYAEPC1Z972NLh7xdeo5NU/3KfrpCd5j0OsettVYCC+lHZ/jbsjzF7P0IWaX+e
+	j1v5Sqk7Sorp20b4gAN96dsBOSjI9kNckLKi4IY7HpY+LKMda6/XU/VI2joEWk2lZ/ciUY
+	NXnnCQoA83ab8wgdKn5luV6OwqE5VPY5Ob4pKqET3xLishJuJr7jV3uz+xiv4Q==
+To: Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Frank Li <Frank.Li@nxp.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	imx@lists.linux.dev,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v3 10/12] iio: dac: ad5686: add triggered buffer support
-Message-ID: <ajEokMTOBX--PINl@ashevche-desk.local>
-References: <20260616-ad5686-new-features-v3-0-f829fb7e9262@analog.com>
- <20260616-ad5686-new-features-v3-10-f829fb7e9262@analog.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: [PATCH] arm64: dts: imx93-kontron: Fix memory node
+Date: Tue, 16 Jun 2026 12:43:09 +0200
+Message-ID: <20260616104311.633297-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260616-ad5686-new-features-v3-10-f829fb7e9262@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[fris.de,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[fris.de:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-312476-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312466-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:Frank.Li@nxp.com,m:frieder.schrempf@kontron.de,m:imx@lists.linux.dev,m:krzk+dt@kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:s.hauer@pengutronix.de,m:shawnguo@kernel.org,m:festevam@gmail.com,m:kernel@pengutronix.de,m:conor@kernel.org,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[frieder@fris.de,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,pengutronix.de];
+	DKIM_TRACE(0.00)[fris.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[frieder@fris.de,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:dkim,intel.com:from_mime,vger.kernel.org:from_smtp,ashevche-desk.local:mid]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,kontron.de:email,fris.de:dkim,fris.de:mid,fris.de:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5FA1268E655
+X-Rspamd-Queue-Id: B504A68E7F5
 
-On Tue, Jun 16, 2026 at 09:21:16AM +0100, Rodrigo Alencar via B4 Relay wrote:
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-> Implement trigger handler by leveraging the LDAC gpio to update all DAC
-> channels at once when it is available. Also, the multiple channel writes
-> can be flushed at once with the sync() operation.
+The start address of the DRAM area is 0x80000000. The minimal
+size of the DDR on the SoM is 1 GiB. Fix this.
 
-...
+Fixes: 2b52fd6035b7 ("arm64: dts: Add support for Kontron i.MX93 OSM-S SoM and BL carrier board")
+Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+---
+ arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> +static irqreturn_t ad5686_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf = p;
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct iio_buffer *buffer = indio_dev->buffer;
-> +	struct ad5686_state *st = iio_priv(indio_dev);
-> +	u16 val[AD5686_MAX_CHANNELS] = { };
-> +	unsigned int scan_count;
-
-> +	int ret, ch, i = 0;
-
-Decouple assignment and definition. Also do 'i' and 'ch' need to be signed?
-
-> +	bool async_update;
-> +	u8 cmd;
-> +
-> +	ret = iio_pop_from_buffer(buffer, val);
-> +	if (ret)
-> +		goto out_notify_done;
-> +
-> +	mutex_lock(&st->lock);
-> +
-> +	scan_count = bitmap_weight(indio_dev->active_scan_mask,
-> +				   iio_get_masklength(indio_dev));
-> +	async_update = st->ldac_gpio && scan_count > 1;
-> +	if (async_update) {
-> +		/* use LDAC to update all channels simultaneously */
-> +		cmd = AD5686_CMD_WRITE_INPUT_N;
-> +		gpiod_set_value_cansleep(st->ldac_gpio, 0);
-> +	} else {
-> +		cmd = AD5686_CMD_WRITE_INPUT_N_UPDATE_N;
-> +	}
-> +
-> +	iio_for_each_active_channel(indio_dev, ch) {
-> +		ret = st->ops->write(st, cmd, indio_dev->channels[ch].address, val[i++]);
-> +		if (ret)
-> +			break;
-> +	}
-> +
-> +	/*
-> +	 * If sync() is available, it is called here regardless of write
-> +	 * failure to allow bus implementation to reset. In that case, partial
-> +	 * writes are unlikely as the write operations would just queue up
-> +	 * the transfers.
-> +	 */
-> +	if (st->ops->sync)
-> +		ret = st->ops->sync(st); /* flush all pending transfers */
-
-'ret' is set but not used. Always compile your code with `make W=1` and both
-GCC and clang.
-
-> +	if (async_update)
-> +		gpiod_set_value_cansleep(st->ldac_gpio, 1);
-> +
-> +	mutex_unlock(&st->lock);
-> +out_notify_done:
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +
-> +	return IRQ_HANDLED;
-> +}
-
+diff --git a/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
+index c79b1df339db..f881912cde46 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93-kontron-osm-s.dtsi
+@@ -15,9 +15,9 @@ aliases {
+ 		rtc1 = &bbnsm_rtc;
+ 	};
+ 
+-	memory@40000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x40000000 0 0x80000000>;
++		reg = <0x0 0x80000000 0 0x40000000>;
+ 	};
+ 
+ 	chosen {
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.54.0
 
 
