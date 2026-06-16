@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-312284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312285-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6r7wJVTIMGpfXQUAu9opvQ
-	(envelope-from <devicetree+bounces-312284-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 05:51:48 +0200
+	id h0ryBQzJMGp1XQUAu9opvQ
+	(envelope-from <devicetree+bounces-312285-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 05:54:52 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9197468BC39
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 05:51:47 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6216D68BC55
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 05:54:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nVj5KS8d;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312284-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-312284-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LgLP9GYG;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312285-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312285-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A013A3007B25
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 03:51:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 24B6B302BE8B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 03:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4853C0A06;
-	Tue, 16 Jun 2026 03:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C33093C1414;
+	Tue, 16 Jun 2026 03:54:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC35123C512;
-	Tue, 16 Jun 2026 03:51:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B837B23C512;
+	Tue, 16 Jun 2026 03:54:48 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781581902; cv=none; b=VNYuPAP0V6nbOtnsjToQ0vSEG0N/3hDpcjNOlgKj4pGofQx5fAGE76JNrax1A644khk8i5BRfsfYaJYcq+/oKlw8Md1a4RFtF/spjeb0aKsL/fhcFHb6HbMozmmK78r3HxG2kjMJpODmTFq+C+yq33KDYfH7tq3Hke+FKcUqHus=
+	t=1781582089; cv=none; b=jseAAJIJtG0QnW+7kSVGEiZizcon3ivw57/eh9dhccMTYynL+PLhnIJP/NY4TduEjAujXkomrvT6jAU74RXcPTeEPdW4MsV1EgQ0EkX2ngu5oWsee9V3l4lHYo3N7VJqNa9VLA5JQnhLnwcTbmVnoQrdN8L9zJwyfKe5Qf4EfhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781581902; c=relaxed/simple;
-	bh=A1zaSC8/ttGVTC9vbcVYYzlxZTQy1+EstQ32TwbpofY=;
+	s=arc-20240116; t=1781582089; c=relaxed/simple;
+	bh=yg4Rq+cSTNIEK6m7DPyaWon6dl/EQaFfnw1dYCDVk44=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BEv9eq2aTq4GGN34p5NtV6AJn7EfnE8b9yYDQ/PPgGt23pZ4G6u9vGx3K7lvy+SWtMBZ0T86uEk1da/ZMIkNlqGMs/Zqf1+Zk0AzF9VCqrtdJjwy8epNucX/bE/k9EsC1vOiPmytmDxNQjCJ2Pbzmq596Tp9wZh6zgWO+77jIPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nVj5KS8d; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4373D1F000E9;
-	Tue, 16 Jun 2026 03:51:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hl/GcRwxbbuJpREFO2RsL8yTos5HI4vZe1tKGLZJwGSkR9imBFjcSJ5phJZKRQfqLURfuweYpeNgNEKB4sf/NVBGvRzclPooxRvdwUVHWuomAadBdmpX7xWfv4VozURfAAMcLwCng2lpUmIB9JXzYMEPRIblcadj/Jb6xWCTfBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LgLP9GYG; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22DB01F000E9;
+	Tue, 16 Jun 2026 03:54:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781581900;
-	bh=0LLj4LGa+CEorWsXFdkROPtAy/btizr8qptWeMPKmQ0=;
+	s=k20260515; t=1781582087;
+	bh=O6+MhKBljXTADXMRHGYmsysW/Fy0JHz9fMonKhiQAs8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=nVj5KS8dmM6px34g0QjZi4/1Wq1JfYLMPwSqwR8qAPVxOE4KFryFGL/NPsr77lOE9
-	 S1ZZt+Ne0GT+XH5So8VkuxbjNrbV075vkRN4kCCWXWrIX9rCGAQI1aijwuW8fGCzMv
-	 ceHkk9RDMYlMkieIcfOQimcbbQaAHVRtQUyP9vFZcyyFZwx65+nJlgqbFl0EyJ94Ch
-	 RMzeO5zFPKfqnqxpOKmHXJtXrI+fRF2Cc08uEC7RLxpzo70wRLUPkT5YztQAp+8jdm
-	 hnuqPOEbDrKh6zT+92WHog+xjOfK+cT7RoQQcZGokdjGVKsGroAQl1b0iNSaVUSKqz
-	 DOIP2VrKhkHbA==
-Message-ID: <b1f03d81-85db-4303-89ff-64440b6e1890@kernel.org>
-Date: Tue, 16 Jun 2026 05:51:32 +0200
+	b=LgLP9GYG5msyhqKX6xfKPkqjMuVIe/21XIybkoqjixezaGc7NnTHSkGR9hGjbyYJg
+	 PWIjNkqxVdufoENYBEgOfX8JZu1BYjxK1lVB/UQyNqqH/ewwVmt3bDOc0kqWhq2gXV
+	 FHIzEEVGhNyJ/HDZ9dxujdLGc537AvpsJw9OJaiZo1aPC580+hugLngJpHzqRmKFgI
+	 1CHaAPIoTabqoz80hE158sj+3xeR7tTHVRm7UEQbS6ktyJkp4w3aPQi2NocrqEVXgc
+	 Gf+/fHZQ8uKZjIl2BYMfrdbuq36V/xAzHlHoYk6HmT9Ke7dfCOwFuxp7sdaGRWOwog
+	 4xrxlBoFDBs2w==
+Message-ID: <d7130f38-2bed-48ea-b9a2-c570e6d6555e@kernel.org>
+Date: Tue, 16 Jun 2026 05:54:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,21 +55,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/8] dt-bindings: display: allwinner: Split H616 DE33
- layer reg space
-To: =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
- wens@kernel.org
-Cc: samuel@sholland.org, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, airlied@gmail.com,
- simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20260509190015.79086-1-jernej.skrabec@siol.net>
- <nIKN_benRn2Bk8SDZrkMCA@gmail.com>
- <86943057-f5b4-4fae-9172-45f13814494f@kernel.org>
- <0r4us4OeRRWtJhxvps-bZw@gmail.com>
+Subject: Re: [PATCH v9 1/2] dt-bindings: ufs: Document static TX Equalization
+ settings properties
+To: Can Guo <can.guo@oss.qualcomm.com>, bvanassche@acm.org,
+ beanhuo@micron.com, peter.wang@mediatek.com, martin.petersen@oracle.com,
+ mani@kernel.org
+Cc: linux-scsi@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>,
+ Zhaoming Luo <zhml@posteo.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20260615132834.2985346-1-can.guo@oss.qualcomm.com>
+ <20260615132834.2985346-2-can.guo@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,9 +114,9 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <0r4us4OeRRWtJhxvps-bZw@gmail.com>
+In-Reply-To: <20260615132834.2985346-2-can.guo@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -125,120 +124,70 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:jernej.skrabec@gmail.com,m:wens@kernel.org,m:samuel@sholland.org,m:mripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-clk@vger.kernel.org,m:jernejskrabec@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-312285-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	TAGGED_FROM(0.00)[bounces-312284-lists,devicetree=lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:can.guo@oss.qualcomm.com,m:bvanassche@acm.org,m:beanhuo@micron.com,m:peter.wang@mediatek.com,m:martin.petersen@oracle.com,m:mani@kernel.org,m:linux-scsi@vger.kernel.org,m:alim.akhtar@samsung.com,m:avri.altman@wdc.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:quic_rdwivedi@quicinc.com,m:zhml@posteo.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[sholland.org,kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,baylibre.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9197468BC39
+X-Rspamd-Queue-Id: 6216D68BC55
 
-On 15/06/2026 17:47, Jernej Škrabec wrote:
-> Dne ponedeljek, 15. junij 2026 ob 06:28:54 Srednjeevropski poletni čas je Krzysztof Kozlowski napisal(a):
->> On 14/06/2026 16:08, Jernej Škrabec wrote:
->>> Dne ponedeljek, 25. maj 2026 ob 14:10:38 Srednjeevropski poletni čas je Krzysztof Kozlowski napisal(a):
->>>> On 24/05/2026 23:33, Chen-Yu Tsai wrote:
->>>>> Hi,
->>>>>
->>>>> (resent from new email)
->>>>>
->>>>> On Thu, May 14, 2026 at 2:04 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>>>
->>>>>> On Sat, May 09, 2026 at 09:00:14PM +0200, Jernej Skrabec wrote:
->>>>>>> From: Jernej Skrabec <jernej.skrabec@gmail.com>
->>>>>>>
->>>>>>> As it turns out, current H616 DE33 binding was written based on
->>>>>>> incomplete understanding of DE33 design. Namely, planes are shared
->>>>>>> resource and not tied to specific mixer, which was the case for previous
->>>>>>> generations of Display Engine (DE3 and earlier).
->>>>>>>
->>>>>>> This means that current DE33 binding doesn't properly reflect HW and
->>>>>>> using it would mean that second mixer (used for second display output)
->>>>>>> can't be supported.
->>>>>>>
->>>>>>> Remove layer register space, which will be represented with additional
->>>>>>> node, and replace it with phandle, which will point to that new, shared
->>>>>>> node. That way, all mixers can share same layers.
->>>>>>>
->>>>>>> There is no user of this binding yet, so changes can be made safely,
->>>>>>> without breaking any backward compatibility.
->>>>>>
->>>>>> There is user. git grep gives me:
->>>>>> drivers/gpu/drm/sun4i/sun8i_mixer.c
->>>>>>
->>>>>> which means this is a released ABI. As I understood, the old code was
->>>>>
->>>>> We held off on merging the DT changes so that we could rework this.
->>>>> I can't find the actual request though. It was probably over IRC.
->>>>>
->>>>>> working fine but just did not support all use cases. Why this cannot be
->>>>>> kept backwards compatible?
->>>>>
->>>>> AFAIK the "planes" block is shared between two display mixers. As the
->>>>> commit message explains, this prevents using the second mixer, since
->>>>> only one of them can claim and map the register space. And on the H700
->>>>> (which is the same die as the H616 discussed here but with more exposed
->>>>> interfaces), there could actually be a use case for the second mixer.
->>>>
->>>> It explains why you want to make the changes but not why you cannot keep
->>>> it backwards compatible.
->>>
->>> I guess it can be backward compatible, but I don't think it makes sense.
->>> Yes, original driver implemented original DT bindings, but there is no node
->>> which uses that binding. If there is no user of that, why would driver
->>
->> Did you check all out of tree users of the ABI? All vendor kernels,
->> forks and all of them for which the ABI was made for?
+On 15/06/2026 15:28, Can Guo wrote:
+> UFS v5.0/UFSHCI v5.0 adds HS-G6 support (46.6 Gbps/lane) via UniPro
+> v3.0 and M-PHY v6.0. These specs define TX Equalization for all
+> High-Speed Gears (not only HS-G6) to compensate channel loss and
+> improve signal integrity at high speed.
 > 
-> Since when do we care about out of tree users? I understand that drivers
-
-Since always? That is the meaning of ABI. Otherwise there is no point to
-discuss ABI at all. Why would it exist if you had all DTS inside kernel
-always matching the code?
-
-
-> must support old device tree files. Once they work, compatibility must
-> be carried forward. But that's not the case here.
+> For HS-G6, M-PHY uses PAM4 1b1b line coding. Pre-Coding may also be
+> required depending on channel characteristics.
 > 
-> In any case, vendor kernels have completely different DT structure. This
-> was developed independently from them. Take a look at [1] how BSP DT looks
-> like, specifically Display Engine node.
+> Document vendor-neutral properties in ufs-common.yaml:
+> - txeq-preshoot-g[1-6]
+> - txeq-deemphasis-g[1-6]
+> - tx-precode-enable-g6
 > 
-> Of course there are some distros which grab WIP patches from mailing lists
-> soon after they are available. For example, I know that Armbian carried old
-> WIP patches which used old ABI. However, such distros generally don't care
-> about exact solution and ditch patches as soon as proper solution is merged
-> upstream or even when better WIP patches come around. DT files in such
-> distros get updated alongside kernel, they are not hidden in firmware. 
+> Values are per-lane Host/Device tuples (2 values for x1, 4 values for
+> x2). PreShoot/DeEmphasis range from 0..7, and Precode is 0/1.
 > 
+> These are board-specific signal-integrity tuning values. They depend on
+> channel SI/PHY characterization and validation (host PHY, device PHY,
+> package, and board routing), and are determined by HW/PHY designers.
+> 
+> Although UFSHCI v5.0 supports TX Equalization Training via UniPro v3.0,
+> which allows host software to determine optimal TX Equalization at
+> runtime, static board-specific TX Equalization settings in the Device
+> Tree are still necessary because:
+> - TX Equalization Training is not supported for HS-G3 and below
+> - TX Equalization Training is disabled on some platforms
+> 
+> Signed-off-by: Can Guo <can.guo@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/ufs/ufs-common.yaml   | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
 
-I am not talking about BSP. I am talking about out of tree users for
-which we defined the ABI and called it that way.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
