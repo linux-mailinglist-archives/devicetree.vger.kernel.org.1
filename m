@@ -1,147 +1,210 @@
-Return-Path: <devicetree+bounces-312460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312462-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VqQQNB0nMWpQcwUAu9opvQ
-	(envelope-from <devicetree+bounces-312460-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:36:13 +0200
+	id sFF7LrQmMWowcwUAu9opvQ
+	(envelope-from <devicetree+bounces-312462-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:34:28 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3016B68E5DE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:36:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56CD568E584
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:34:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=EvBe1hqa;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312460-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312460-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nvsQNyUZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312462-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312462-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B8984301464B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:30:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5BA9C3065A74
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B1842B753;
-	Tue, 16 Jun 2026 10:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2348D42E000;
+	Tue, 16 Jun 2026 10:31:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133FE41C314;
-	Tue, 16 Jun 2026 10:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDD0141C314;
+	Tue, 16 Jun 2026 10:31:02 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781605857; cv=none; b=LSblAqpcutiqjBWphQ3ZsK+Ro8aSU38BGZrr1WwFVR96vMQ7Z9zCS9yyXtzqzhKyufPeL5H6D+fqjtYfFQ11JgVOHWRMMG+DAWv4jWoW+7/hV6SFKBd9pghznJN/KSdXZYUgI9zd07/nUnPHeC/TpEjj9Y02C++qvL4UoOXpjXA=
+	t=1781605864; cv=none; b=oIONir3XbwsvNXNFl7p8dhI2q2gpQ3njJJUNQghlgyK3rrdvwLLQp9FUrGTW3lHNeZvjcJqph3F87g4sJDVdfxvuucy0R/SF/aBYJteth+xNpnoC2ZdoHXfExNp9tAFoYfCVJzzY6NGqMExxI0lSp5edwj3HAZz+3QaHGGH22zY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781605857; c=relaxed/simple;
-	bh=B7ujG2wAtwBoI8EMEA7TCT+Lnm2XPa8/9lhYLUhPF+o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mh0488y3g3qht+Gfye6GuP5VViw+XJb+hi/N+0jToeUqwPuAv8U2saYzpku+k6gMTOdp95gSN06IKyISTFFGWgP6kJhUap0jDlI5Kmk0sCyajfNVXE2waENulzucxzuA2YhqrdlyQ1GdKpBFuWGy8TZ8pBV/Gdxcftx9LBv7K/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EvBe1hqa; arc=none smtp.client-ip=192.198.163.9
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781605856; x=1813141856;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=B7ujG2wAtwBoI8EMEA7TCT+Lnm2XPa8/9lhYLUhPF+o=;
-  b=EvBe1hqa0d0IsCFD6yJ/5K+yIDwoiJ3hHfLdSNoCbJmMVYaHiGdV7sZD
-   bxreC0jsUefhYRujPu9E5n1Dpg/6PhN9YpPwsX4vbnQHTKKZfpEyQvoe3
-   e4UmXJM1AWySnrTJVfbBEkpEcIxSHCDbXQndg174Akf9cQ0gVTxJipZvd
-   oLEqj68YAlLPPvdsUd9Eryqd2aHGquu5Iummnb2r6RxuoCSjQBNEKjGwX
-   wZAWvbCkKaozL2iG6koYUaXbrzAsyUPMKVBrHLPdanRzzjcgaiEQklZW8
-   GWLAZJ2wkxicnI50aErkxnNbsrXSlhAknqd2SECzHjKlSvd9EO+3KMMdr
-   A==;
-X-CSE-ConnectionGUID: hBD60iRQT4qbavnwhzUHZw==
-X-CSE-MsgGUID: VcUkJXOSS1S2FiZKGd9NTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93038765"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; 
-   d="scan'208";a="93038765"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 03:30:55 -0700
-X-CSE-ConnectionGUID: AM4MX+q9TFW+IWr7nIj58w==
-X-CSE-MsgGUID: 8xN9SZuxRaGYSzVvxbmmLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; 
-   d="scan'208";a="252038246"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.153])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 03:30:52 -0700
-Date: Tue, 16 Jun 2026 13:30:49 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: Michael Auchter <michael.auchter@ni.com>, linux@analog.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1781605864; c=relaxed/simple;
+	bh=s0gpugqWybDqM3We3liL08vuqMKjFZd5Dgf7wGPFwC4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=FOVwzojhfGmZYbZupCdf5vqB0ODmAp25P2PJjLEmWliM0j9+y6Le9LpUCBfU4Nbfa03gHVSxJPNEsAblFpnD2a00swkFjmARD61VGIO5bPFLRYaUhDgsLNq0FH+ok16ouk7sl1FgWBd7PtPYlFNYkGVFo8zHFmum+eCyD+dDjA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nvsQNyUZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9CF51F000E9;
+	Tue, 16 Jun 2026 10:31:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781605862;
+	bh=n+GS7Vbtz2X+9so1+tuWUQjePRyW9hO0IBeWljZH954=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=nvsQNyUZajukbHE8+EKIIw/J3dB2sV9okDB5nWSa9RRUEjE9f878oTj1XJlpgfyRQ
+	 8VjuXz4uY+Lscu2YYfwCAGhVbAvH0XwS0XOQOOiJkPvkYQ0ZUssGhvD2JruxuvONyI
+	 9FCJBWBVQru3n1FGKbDQQT/r8zQmez1X4O9CJ7rMDTLUn2TKx3F2ITuzTw8cnLQuFn
+	 vNvVfSYSCvRVlRVvGU+RxYw7wMwge/NeGfREh8+KPoht7YOB8WX0ANbDwo9/Svk+TH
+	 Bw0TiSudkCg0xBh0DzWimPoKcC5uuHzTAGtBJAAhbBwKPR15VMPxJkGstnOohfFQ8s
+	 3Vsj8A0Gr62rw==
+From: William Breathitt Gray <wbg@kernel.org>
+To: Wadim Mueller <wafgo01@gmail.com>
+Cc: William Breathitt Gray <wbg@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v3 06/12] iio: dac: ad5686: consume optional reset signal
-Message-ID: <ajEl2ZHlLixttNoN@ashevche-desk.local>
-References: <20260616-ad5686-new-features-v3-0-f829fb7e9262@analog.com>
- <20260616-ad5686-new-features-v3-6-f829fb7e9262@analog.com>
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] counter: add GPIO-based quadrature encoder driver
+Date: Tue, 16 Jun 2026 19:30:51 +0900
+Message-ID: <20260616103055.253139-1-wbg@kernel.org>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <2u2lqetlfph2leoggp6d7sxqv4toxpnsts2f2zgq3pwt7ae4ol@ploty2jwm3t3>
+References: <2u2lqetlfph2leoggp6d7sxqv4toxpnsts2f2zgq3pwt7ae4ol@ploty2jwm3t3>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260616-ad5686-new-features-v3-6-f829fb7e9262@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5138; i=wbg@kernel.org; h=from:subject; bh=s0gpugqWybDqM3We3liL08vuqMKjFZd5Dgf7wGPFwC4=; b=owGbwMvMwCW21SPs1D4hZW3G02pJDFmGqktzJbYXci17wRSlayGbeslEPvuD6bktt8sn3PGtm rZz8+lpHaUsDGJcDLJiiiy95mfvPrikqvHjxfxtMHNYmUCGMHBxCsBESiUYGQ5wXr1mtdtUcpOc QJphI2d8jNPHu149OiL1H+++LnKfP5Hhn1qV/ooH6e4RBh6c6z95Caee072tyznxXrjVu39CfI0 tbAA=
+X-Developer-Key: i=wbg@kernel.org; a=openpgp; fpr=8D37CDDDE0D22528F8E89FB6B54856CABE12232B
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
-	SUSPICIOUS_RECIPS(1.50)[];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-312462-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312460-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:wafgo01@gmail.com,m:wbg@kernel.org,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[wbg@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[wbg@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,ashevche-desk.local:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:dkim,intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3016B68E5DE
+X-Rspamd-Queue-Id: 56CD568E584
 
-On Tue, Jun 16, 2026 at 09:21:12AM +0100, Rodrigo Alencar via B4 Relay wrote:
+On Sun, May 24, 2026 at 09:35:45PM +0200, Wadim Mueller wrote:
+> On 2026-05-21 09:26, William Breathitt Gray wrote:
+> > From: Wadim Mueller <wafgo01@gmail.com>
+> >
+> > On Wed, May 20, 2026 at 01:45:20PM +0900, William Breathitt Gray wrote:
+> > > On Fri, May 15, 2026 at 05:36:15PM +0200, Wadim Mueller wrote:
+> > > > +static int gpio_qenc_a_delta(struct gpio_qenc_priv *priv, int a, int b,
+> > > > +			     int prev_a, int prev_b)
+> > > > +{
+> > > > +	int state = CREATE_QE_STATE(prev_a, prev_b, a, b);
+> > > > +
+> > > > +	switch (priv->function) {
+> > > > +	case COUNTER_FUNCTION_QUADRATURE_X4:
+> > > > +		return gpio_qenc_quad_x4_table[state];
+> > > > +
+> > > > +	case COUNTER_FUNCTION_QUADRATURE_X2_A:
+> > > > +		/* Both edges of A; sign comes from current A vs B. */
+> > > > +		return (a == b) ? -1 : 1;
+> > > > +
+> > > > +	case COUNTER_FUNCTION_QUADRATURE_X1_A:
+> > > > +		/* Rising edge of A only. */
+> > > > +		if (!prev_a && a)
+> > > > +			return b ? -1 : 1;
+> > > > +		return 0;
+> > >
+> > > Quadrature X1 count modes trigger on the falling edge when the direction
+> > > is backward. This isn't simply a requirement by definition, but
+> > > necessary for the proper interpretation of the quadrature encoding.
+> > >
+> > > Let's evaluate an incremental encoder used in a positioning application
+> > > as typical use case.[^1] These are commonly implemented using a rotating
+> > > shaft with a quadrature-offset pattern; aligned sensors detect the
+> > > physical A/B pattern as the shaft rotates.[^2] As the shaft rotates a
+> > > quadrature encoding emerges whose A-B phase difference allows us to
+> > > determine direction: forward when rising edge of signal A leads B, and
+> > > backward when it trails.[^3]
+> > >
+> > > Now consider what happens to the signals when the rotation changes
+> > > direction: there is a phase change between Signals A and B.[^4] The A/B
+> > > pattern on the shaft is physically present so it has not changed; rather
+> > > the pattern is now fed backwards to the sensors due to the direction
+> > > reversal. The key point is the physical boundaries of the pattern are
+> > > located in the same shaft positions they have always been, yet the
+> > > signal edges representing those boundaries have flipped as a result of
+> > > the direction change: positions marked by rising edges now appear as
+> > > falling edges.
+> > >
+> > > In Quadrature X4 and X2, the pattern reversal doesn't affect positioning
+> > > because we count on both edges, so swapping rising and falling edges
+> > > nets the same position count. Quadrature X1 presents a problem because
+> > > we count on a single edge type, so a phase-difference in the encoding
+> > > results in a physical shift in real-life position. The way to account
+> > > for that phase shift is to swap counting to the other edge type when the
+> > > direction changes. That's how dedicated quadrature encoder devices solve
+> > > this problem.
+> > >
+> > > I'm not sure of the best way to solve the Quadrature X1 problem in this
+> > > driver. Right now we fire off interrupts on both edges, so perhaps
+> > > there's a way for us to determine whether we're firing on a rising edge
+> > > or falling edge and evaluate accordingly. Does the GPIO subsystem
+> > > provide an indication for which edge triggered the interrupt? Or would
+> > > it make sense to provide two interrupt service routines (one on rising
+> > > edge and one on falling edge) and handle it that way?
+> >
+> > The simplest method might be to evaluate the current GPIO level to
+> > determine the edge polarity. Because we trigger on both edges, we can
+> > assume a high level means a low-high transition (rising edge) and a low
+> > level means a high-low transition (falling edge).
+> >
+> > Using that assumption, we can implement the Quadrature X1 case by
+> > checking the current state and direction, and adjusting the counting
+> > accordingly when applicable: count up if rising edge and forward
+> > direction, and count down if falling edge and backward direction.
+> >
+> 
+> Implemented in following v5 as suggested in both signal-A and signal-B ISRs.
 
-> Add RESET pin GPIO support through an optional reset control, which is
-> local to the probe function. A reset pulse is manually generated after
-> the device is powered up.
+Hello Wadim,
 
-...
+I apologize again for the delays in my responses. I'm currently
+reviewing your v5 submission, but I do have a question below.
 
-> +	fsleep(1); /* reset pulse: comfortably bigger than the spec */
+> One
+> caveat I called out in the source: in pure X1 mode the driver never
+> sees both edges of both signals, so direction is whatever the last
+> X4/X2 sample produced (or whatever userspace set via sysfs).  In
+> practice X1 fits applications that already know the direction or
+> that have just calibrated in X4.
 
-What spec? Same comment basically, extend with the reference to the datasheet.
+Wouldn't the driver see both edges of both signals in X1 mode? The
+ISR callbacks (gpio_counter_a_isr and gpio_counter_b_isr) execute on
+both edges of their respective Signals (A and B). The driver can use
+GPIO_COUNTER_GET_DIRECTION() to get the current quadrature direction and
+update priv->direction accordingly during each ISR.
 
--- 
-With Best Regards,
-Andy Shevchenko
+In that way, any quadrature mode selected will always be capable of
+knowing its current direction regardless of whether it's X4, X2, or X1.
 
-
+William Breathitt Gray
 
