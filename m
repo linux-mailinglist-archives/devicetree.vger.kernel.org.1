@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-312369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312370-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 19OlJIMKMWrnagUAu9opvQ
-	(envelope-from <devicetree+bounces-312369-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:34:11 +0200
+	id LG8gBOkKMWr5agUAu9opvQ
+	(envelope-from <devicetree+bounces-312370-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:35:53 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20EA868D32A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:34:11 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74A6D68D343
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:35:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=frmIXn+y;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312369-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-312369-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RdkhJ2Ko;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312370-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312370-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 88F9A300C0F3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 08:34:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7519A301A7EE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 08:35:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16F22413D8C;
-	Tue, 16 Jun 2026 08:34:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359694183BE;
+	Tue, 16 Jun 2026 08:35:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E3E83CC310
-	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 08:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25557165F16
+	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 08:35:49 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781598848; cv=none; b=MAvhqxeIHfCPW3hGla7fHCFBQ97UxGK4U6g/XqHg1RxpOKuZVroOAT5XWZ2GHqSWEs8ua/W9kjNXi8Hy2Bwkq6glbg73VrtiN65at+YmZ/9ifYzjUpca2FQ2GgA9/jo11491XMrwbAmVGSw82hCXk1xzfKG7afUVDjFl7Fcd2KU=
+	t=1781598950; cv=none; b=NSS+/I6lQ3+/RhvsEu68u/jupmDrtTpcLsockNl+YswtWrodHH0fBo05I69rCvCwg50FAHDBKit4gx3TxqchowBkhlzkHkg5JaniC2mibKWoV08kbVhIS3AqagT4pKpH+5bl75M+1kXbm8wf/fh8ZvzNiU+MShXMroulgS26QxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781598848; c=relaxed/simple;
-	bh=Cp8S7jFDzZz381IouAyHE2JbCtE38hMVMnp8eJjj1Tw=;
+	s=arc-20240116; t=1781598950; c=relaxed/simple;
+	bh=VJGOrDnaMXIdiu0GvQdPA8BLpv9Fyzb6dfrAspKgsNE=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=O+C6HKGRm4g7TKQ7aIf7xS1LKT5CMxZbx9Xz5Kcb0PrcOqr7bD7mTkAo6R8v3WYvnTcH7dM3GfYurw+MU1shmUHZOPCwB3d3xoj0XoZgDOpyqmvGLEVm5qy+IPj25Wmngm4/ppeLF2EcGp5ERBAW9MITBCKkRNcpjuHmQLLOByQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=frmIXn+y; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 987B21F000E9;
-	Tue, 16 Jun 2026 08:34:06 +0000 (UTC)
+	 Message-Id; b=PBuWo2PVIOiAovHQovckPk6R4ZKUAuvUZVk1RcxOxMMZf4vlKCx+jcHvNcvnguxB3Gn0Nk0N0s23RQKlRn/wJ2SoNZYwRwYIy9/2k7eRb+mp/5pQzDVJsVGynGKe/FGJbH9OPiGMz046SQJmRfeSWNi/cCFz7UPL2gLz/vm7uXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RdkhJ2Ko; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFFA71F000E9;
+	Tue, 16 Jun 2026 08:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781598846;
-	bh=on8rChG0OpK7Rm5zEKjU0JvcGw6KdqHyDjTyeCfvzBU=;
+	s=k20260515; t=1781598949;
+	bh=dYt30TTrkPtDgKjv+qVuUOFRU9L/IxBEg6clWB4IiT8=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=frmIXn+y+VjVbai3SDztLTRgVi8tsPcA0JCEvHDcw+kbgjMFoOLB2k5rOFG8Mp6CZ
-	 bcFqigAC2TcIKqYDgJ6F/z0OeiSrsdCOylIkGUEgU4LDYktdQz4AG08MfbMqyuE2o/
-	 TRNHuoXUj3e0F5Yj7X60p0NW2AzHKTOT5FwgGyAOoMe+9HOP634qwSk0fhHDDPliZe
-	 O3AQkMBdXJt+aiMX4t88s8iCUou7lZCRx5sBPsEsdYYNboXRTjmItN8lV/aCBGxrLw
-	 Wgiu39b0vWIyQe2q4UnhLsJbHdUhJ9FCX/cKGCXltVIVEBwQuGNNNeevoCws59ifJw
-	 9KsSmxsszdO2w==
+	b=RdkhJ2Ko5IwujJMNZaqsJHn66OR5Or63lsG8K32ut4rw2bxuzKls3iHmPqmr1vYUN
+	 bL5LvUDo3H7/nEvc79kMSOo8dttLPLDavsbSlUWU5HzkqrZqiBTaYLcnNA7ldohm2D
+	 lNJ7uBb1Un+QPYIzJ6IKvyMZDRaL76QuVa4ygTx+JKqztxILjv5BR7E2f1e7U8ZmAC
+	 rq3Q6uDauOPxN7qlMi3TS7tccs16V5oK45zNnxbTJR6ny/SdyCV7sVWiY4v/C6Ov/u
+	 4kWEpFWqMhja6SresqkKtHNJsKip/jRlCVlQwivdvvrcqd5Srt/trZBi6a/rkQx/lg
+	 pI0QxJ82rlvIg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 12/12] iio: dac: ad5686: add gain control support
+Subject: Re: [PATCH v3 03/12] dt-bindings: iio: dac: ad5686: add
+ reset/ldac/gain support
 Reply-To: sashiko-reviews@lists.linux.dev
 To: "Rodrigo Alencar via B4 Relay" <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20260616-ad5686-new-features-v3-12-f829fb7e9262@analog.com>
-References: <20260616-ad5686-new-features-v3-12-f829fb7e9262@analog.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
+In-Reply-To: <20260616-ad5686-new-features-v3-3-f829fb7e9262@analog.com>
+References: <20260616-ad5686-new-features-v3-3-f829fb7e9262@analog.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 16 Jun 2026 08:34:06 +0000
-Message-Id: <20260616083406.987B21F000E9@smtp.kernel.org>
+Date: Tue, 16 Jun 2026 08:35:48 +0000
+Message-Id: <20260616083548.CFFA71F000E9@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,24 +70,25 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
+	URIBL_MULTI_FAIL(0.00)[vger.kernel.org:server fail,sashiko.dev:server fail,tor.lore.kernel.org:server fail,lists.linux.dev:server fail,smtp.kernel.org:server fail,analog.com:server fail];
 	FORWARDED(0.00)[lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312369-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312370-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
 	ALIAS_RESOLVED(0.00)[];
@@ -96,67 +98,71 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,analog.com:email,vger.kernel.org:from_smtp,smtp.kernel.org:mid,lists.linux.dev:replyto,sashiko.dev:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,analog.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 20EA868D32A
+X-Rspamd-Queue-Id: 74A6D68D343
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] The GAIN GPIO is unconditionally requested as driven low, causin=
-g a potential DAC output glitch during probe.
+- [Medium] The conditional block restricts `gain-gpios` for single-channel =
+variants but omits several multi-channel variants (e.g., `adi,ad5672r`, `ad=
+i,ad5676`, `adi,ad5674r`, `adi,ad5679r`) that lack a physical GAIN pin and =
+internal multiplier. It also fails to restrict the `adi,range-double` prope=
+rty for these multi-channel variants.
 --
 
-commit 2f56ef5391a1b46c707191ed6f4562758e4e5acc
+commit aa16b66ecffaca7347b3cea2e8c47bd2390db0b1
 Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
 
-iio: dac: ad5686: add gain control support
+dt-bindings: iio: dac: ad5686: add reset/ldac/gain support
 
-This commit adds gain control support to the AD5686 DAC driver. It handles
-gain multiplication either via an external hardware GAIN pin or through
-internal control register bits, initializing the default scale based on
-device properties.
+This commit adds GPIO properties for RESET, LDAC, and GAIN pins to the
+ad5686 device tree binding. It also adds an adi,range-double property to
+indicate when the GAIN pin is hardwired high.
 
-> diff --git a/drivers/iio/dac/ad5686.c b/drivers/iio/dac/ad5686.c
-> index 6ae788f665b4d..c186213a46f6d 100644
-> --- a/drivers/iio/dac/ad5686.c
-> +++ b/drivers/iio/dac/ad5686.c
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml b/=
+Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+
 [ ... ]
-> @@ -579,6 +681,14 @@ int ad5686_probe(struct device *dev,
->  		return dev_err_probe(dev, PTR_ERR(st->ldac_gpio),
->  				     "Failed to get LDAC GPIO\n");
+
+>  allOf:
+>    - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            anyOf:
+> +              - const: adi,ad5310r
+> +              - const: adi,ad5681r
+> +              - const: adi,ad5682r
+> +              - const: adi,ad5683
+> +              - const: adi,ad5683r
+> +    then:
+> +      properties:
+> +        gain-gpios: false
 > =20
-> +	st->gain_gpio =3D devm_gpiod_get_optional(dev, "gain", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->gain_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->gain_gpio),
-> +				     "Failed to get GAIN GPIO\n");
-> +
-> +	st->double_scale =3D device_property_read_bool(dev, "adi,range-double");
+>  unevaluatedProperties: false
 
 [Severity: Medium]
-Could this cause an unwanted glitch on the analog output during probe?
+Does this conditional block also need to restrict gain-gpios and
+adi,range-double for multi-channel variants that lack a physical GAIN pin?
 
-If the system is warm-booted and the DAC is already outputting voltage with
-a 2x gain, unconditionally forcing the gain pin low here will abruptly halve
-the output voltage before the device is reset or the pin is corrected later=
- in
-the probe sequence.
+Variants like adi,ad5672r, adi,ad5676, adi,ad5674r, and adi,ad5679r also
+seem to lack this hardware pin and an internal multiplier. If omitted from
+this list, the binding allows these properties to pass validation for
+incompatible hardware.
 
-Would it be safer to read the adi,range-double property before requesting t=
-he
-GPIO, so that the pin can be initialized to its correct target state without
-the temporary drop to 1x gain?
-
-> +	ad5686_init_scale_avail(st);
-> +
->  	reset_control_assert(rstc);
->  	fsleep(1); /* reset pulse: comfortably bigger than the spec */
->  	reset_control_deassert(rstc);
+Furthermore, if adi,range-double is provided for these multi-channel
+variants, the driver might initialize with double_scale =3D true and
+permanently report an incorrect 2x output voltage scale to userspace.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260616-ad5686-new=
--features-v3-0-f829fb7e9262@analog.com?part=3D12
+-features-v3-0-f829fb7e9262@analog.com?part=3D3
 
