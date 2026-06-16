@@ -1,84 +1,101 @@
-Return-Path: <devicetree+bounces-312473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312475-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Fz86CiwqMWoOdAUAu9opvQ
-	(envelope-from <devicetree+bounces-312473-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:49:16 +0200
+	id P4ekHoIqMWpAdAUAu9opvQ
+	(envelope-from <devicetree+bounces-312475-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:50:42 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943B168E778
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:49:15 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B20168E7A3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 12:50:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=gO0Ihibu;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312473-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312473-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=spRF5NW2;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312475-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312475-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F3CFF302E0F6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:47:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6512F300825F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:50:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BADD42981C;
-	Tue, 16 Jun 2026 10:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82E61426EAD;
+	Tue, 16 Jun 2026 10:50:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0AE40E8C1;
-	Tue, 16 Jun 2026 10:47:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B8642EEC7
+	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 10:50:38 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781606830; cv=none; b=IrFb4HVfrIe2JD0CAQSOnZEcIbFdlifs+a6Gehh4At735Ne0hjmU4AWe2g++UFEUnyc8GCBy3ZOzNoDS7hbCrYmTwce5E+Ie/zzuo6KjxoxTmxg+/67kAeTCPJQo48kDX0jY2X32HcPRU6JCSwwSKlts+qMfg9VpJkaDHjr2Hqs=
+	t=1781607040; cv=none; b=R8StKBi/8JMIAi6Oca/hpBgLH9roxFCLwGLhRvhx99SEqeLHgfpcT3GUlzXKEGNDRmqbGt9HFAZ2ibBCJmzRuiLVZbkNSCjQ8+AD9UhZhk3EStCSSg7jIXtjTtDQ69fkSWGBsrhHpHUs5ZKANkkCi1GEAJ5RM7v3+CwjIB/+D34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781606830; c=relaxed/simple;
-	bh=fQm2nGhwI7XtrRnZn6n7a5+l1TKxFhwaPo4+cckCwtk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aJCrNbclvqb5FDfIozlEpQrv11ZmGZzewPwEaMtkdEpTD1MnH2Ey8XaAmRbxUlo7vRuX5pwCYEQPBBeomvLojYIsG/S/r3G/PT8ep/wlwyjIPBudV1XXNsu2xJMPjjsEC+a6xRdk7q/RNVMYupiHvd2oIoo4rkmidkHJ24IOVcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gO0Ihibu; arc=none smtp.client-ip=192.198.163.10
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781606829; x=1813142829;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fQm2nGhwI7XtrRnZn6n7a5+l1TKxFhwaPo4+cckCwtk=;
-  b=gO0Ihibu6NGHZZdYYei7heXuicscGfj+1+34EyVppKhExfxVEB4Ua2/t
-   3DK1InyjEoRZsezunxVJOTe1YRHBX/q4RCIu6dk8aXC4AI7abDVOnw2s4
-   ckD0GT2VmywLR+DCuW4Oqn41SAyTXq/NaA3X7T401+f+EN2xrdnkU6+U6
-   qcOLnhWgyN4towdprWxlmJoCTAYHy51IQBjPjfIHFZkJNtfpdv9K7r2B/
-   BkMUwX03FjmlGj81Wxg91q64LTKNBYMHZLxJ+ksIDa+ez01yVXF4NFRy0
-   kObCCU3Httx8pMbsMjp+z6VOBvC5o7/DcYftOyMFpQ0XlmQ1yjx8ZCFhf
-   Q==;
-X-CSE-ConnectionGUID: 9lfh8LWdS9C8xWvqZWiabQ==
-X-CSE-MsgGUID: d74uuqPyTee+5z7wE7LE9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93749947"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; 
-   d="scan'208";a="93749947"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 03:47:09 -0700
-X-CSE-ConnectionGUID: wytDQeg2QEKqmXtolZTukQ==
-X-CSE-MsgGUID: RsxrbMx6R16/zrXEIut/9Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; 
-   d="scan'208";a="249632916"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.153])
-  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 03:47:05 -0700
-Date: Tue, 16 Jun 2026 13:47:02 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: rodrigo.alencar@analog.com
-Cc: Michael Auchter <michael.auchter@ni.com>, linux@analog.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: [PATCH v3 12/12] iio: dac: ad5686: add gain control support
-Message-ID: <ajEppnu-AWSbbihS@ashevche-desk.local>
+	s=arc-20240116; t=1781607040; c=relaxed/simple;
+	bh=AFZbwPP7w71R3vFmyUl/YWruPemeG6PUPisAo77XqH4=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GJEHEXLYDvaIYnb4/Ooq6c/Qjm1umNdU4tS0w+pdROv1Dpi9RGWx3ORgdEY5m+melOWmALxJLX1rFSMPvjiw0Y8vdpP/NBfakw4PyMqR46gzOW3N+I33UKaC0XyR9JP5C1SgP7ZohcdZxoHA8eIcerQ0pC6hTWzSfVhtg1gEGoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=spRF5NW2; arc=none smtp.client-ip=209.85.218.45
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-bed19623d6eso565624266b.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 03:50:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781607037; x=1782211837; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FSOtc80dU/otDlrUcdfBMeT1OJvI4JOzA58AylAD5gI=;
+        b=spRF5NW2xPrrildt9MVpLrGsOEQBhXsiXJaZaguRGPS2Jm6YSLqIrGpUMV41OoVwpC
+         vCSLuGuWcTyGkRCI+3BIschVF2Uhne/qc87NqnHe2e7bhfx/FjH7MvuQifMRN9HwaGsL
+         OGIVIzvkCmmyhvL8KP0ghTQNsy0AGmqu4F7fm99Rm76EIfJU2hFUHKKH6GaOzl+QMPri
+         8zkn+FN6THbpqFrb+SFFOBUCCfJh4q5w+0scYaUs4Hu+E8u3m2t/u47iyCJvTLNj+HmD
+         Y3n4cw8FXdp/Y9Q54sG7fuIoYfNkildQF0iRspxC84dIezXyRhTLPMPib1VW1SOvcf74
+         21rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781607037; x=1782211837;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FSOtc80dU/otDlrUcdfBMeT1OJvI4JOzA58AylAD5gI=;
+        b=egM6CUdsPl20+JL7WDMfc75nG0vduSZE8mvqfXBZI1zB39N9Fr5NjdrBn7VWWyRjNY
+         T6rSymDti1VZLVY57pPwrDbTlUhyN3gc65RvHbBWvPk2DJhLara8CJqXCQebbkiTHiPq
+         OzoK5wFqszss3Lg+gMwQg0ajMBleB5IKDVnRr7K47cXvpcF1diMUk35Ocd2dvdLp43TF
+         /yx5vjYvzWQe17AKUJ3F3hIPvGBs71rvIv62n6KDs8BFWhu1prnAJgeD0Qe6uNteghK2
+         8cyDqdAoVFmN9asl4nRkAk91xIcvOuvDCmYd95TBnYtH4PufT69u7CIhlOi41/UWq1Yh
+         eAIA==
+X-Forwarded-Encrypted: i=1; AFNElJ9fwV0BLSyqelZS/S23lPQzk9dmjfP7EQGgKbyxjDyRgJrztLq4HwT6Lv6L96RbkMLoogzvJJSpHvwG@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMNZcaIc9sSs0268c5twu4sq+Xe8b+YVyB2IYZUhQj1zoiWlKC
+	+YgQ9oYZDgDSKX89UYyX63EGskGBuRnI9ETECNO715keNSrCa+YRgrAN
+X-Gm-Gg: Acq92OGtT3PrN+h9dSK2Zc7cJZuzZP6+Za/DWSs6VQRozcvpCDc32t3dZtuVod+4aY0
+	nvSmB2kg4BJGosYWXyS+f+m4Akwi1BiKpILZeetVvv8GQqMYcbxHZfJYvAhhV2yMo2/aMGPRu7W
+	2NjChVy+CUWJEicQuoz4PqhdfiBbHJOM13vZOhsS1byAFG4fsqhh555z2ukXOGd9qX2EWeTeQNB
+	dqZfs0evtImQzvN1R/SZrdvnJiYonxYHAT/e2Lyz69yUc8i7i23dyGCck40Gvz7ybJFmU9PLQfo
+	T7UFVy5zIq0RiOqfdl/2tCIccAWNkPkbXKxYflzqSrG+ltomSQjanYgO6f3nAoTJ7IVHZqwI2aI
+	UWz25UYIFVuQ6/C9CLg7CsvmR/ja4DbDE+ZIP40jKuP5m8x88SrN0+xU56JTIy1XEwLM0t/RvA5
+	py6PtQLVK4ersLtlQs8oluW4gjS/Myybv8x4nWacvtpgmwSlNlKD3bxCTDF1ylJGlULJMIGB++c
+	DDmGR7WDbkgmIS5xMN9aD5KRhOlcXLwxSoGhSktW0yGZJd93A==
+X-Received: by 2002:a17:907:2d2a:b0:be2:11d7:8b05 with SMTP id a640c23a62f3a-bfe2a2194b2mr906819666b.24.1781607037132;
+        Tue, 16 Jun 2026 03:50:37 -0700 (PDT)
+Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bfdb9014501sm634114866b.60.2026.06.16.03.50.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jun 2026 03:50:36 -0700 (PDT)
+From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
+Date: Tue, 16 Jun 2026 11:50:33 +0100
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	rodrigo.alencar@analog.com
+Cc: Michael Auchter <michael.auchter@ni.com>, linux@analog.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, Maxwell Doose <m32285159@gmail.com>, 
+	Joshua Crofts <joshua.crofts1@gmail.com>
+Subject: Re: [PATCH v3 11/12] iio: dac: ad5686: read_raw/write_raw: use
+ guard(mutex)()
+Message-ID: <bguen4zngbwsnoxbis7mfrmo6q3vbccpntfzr6bsiog76kdhvp@3lcygxwlg2kv>
 References: <20260616-ad5686-new-features-v3-0-f829fb7e9262@analog.com>
- <20260616-ad5686-new-features-v3-12-f829fb7e9262@analog.com>
+ <20260616-ad5686-new-features-v3-11-f829fb7e9262@analog.com>
+ <ajEo5pOp3ElX4cP7@ashevche-desk.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,73 +104,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260616-ad5686-new-features-v3-12-f829fb7e9262@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <ajEo5pOp3ElX4cP7@ashevche-desk.local>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-312475-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312473-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@intel.com,m:rodrigo.alencar@analog.com,m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:m32285159@gmail.com,m:joshua.crofts1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:joshuacrofts1@gmail.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FORWARDED(0.00)[lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[ni.com,analog.com,vger.kernel.org,kernel.org,baylibre.com,pengutronix.de,gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,vger.kernel.org:from_smtp,intel.com:dkim,intel.com:from_mime,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,3lcygxwlg2kv:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 943B168E778
+X-Rspamd-Queue-Id: 1B20168E7A3
 
-On Tue, Jun 16, 2026 at 09:21:18AM +0100, Rodrigo Alencar via B4 Relay wrote:
+On 16/06/26 13:43, Andy Shevchenko wrote:
+> On Tue, Jun 16, 2026 at 09:21:17AM +0100, Rodrigo Alencar via B4 Relay wrote:
+> 
+> > Use guarded mutex lock to facilitate code review when adding new
+> > attributes. This will allow for early returns, avoiding error-prone
+> > locking and unlocking in error paths. This also adds missing include
+> > linux/cleanup.h. Gain-control support will allow the scale attribute
+> > to be configurable.
+> 
+> What about interrupt handler? You just added yet another mutex lock/unlock
+> there. Perhaps this patch should be done before the previous one?
 
-> Most of the supported devices rely on a GAIN pin to control a 2x
-> multiplier applied to the output voltage. Other devices, e.g. the
-> single-channel ones, provides a gain control through a bit field in
-> the control register. Some designs might have the GAIN pin hardwired
-> to VDD/VLOGIC or GND, which would have no "gain-gpios" device property,
-> being able to set "adi,range-double" if it is hardwired to VDD. The
-> vref_mv field is moved down in the struct ad5686_state, so that the
-> overall size increase is reduced.
-
-...
-
-> +static void ad5686_init_scale_avail(struct ad5686_state *st)
-> +{
-> +	int realbits = st->chip_info->channels[0].scan_type.realbits;
-> +	s64 tmp = 2ULL * st->vref_mv * NANO >> realbits;
-
-As Nuno noticed in other patch review, this can probably use mul_u64_u32_shr().
-
-> +	st->scale_avail[2] = div_s64_rem(tmp, NANO, &st->scale_avail[3]);
-> +	st->scale_avail[0] = div_s64_rem(tmp >> 1, NANO, &st->scale_avail[1]);
-> +}
+Can't add the guard(mutex)() in the trigger handler because of the goto.
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Kind regards,
 
-
+Rodrigo Alencar
 
