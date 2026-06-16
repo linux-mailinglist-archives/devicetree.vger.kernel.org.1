@@ -1,173 +1,218 @@
-Return-Path: <devicetree+bounces-312331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312334-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7mrdAc74MGrpZgUAu9opvQ
-	(envelope-from <devicetree+bounces-312331-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 09:18:38 +0200
+	id uQE+LuH5MGpqZwUAu9opvQ
+	(envelope-from <devicetree+bounces-312334-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 09:23:13 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0B9C68CC6E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 09:18:36 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BDA068CCF0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 09:23:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=kdVsy0+O;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312331-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312331-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=FtQULGei;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312334-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312334-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2913E300C7EF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 07:18:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 305F83013842
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 07:23:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A02375F82;
-	Tue, 16 Jun 2026 07:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C64397AE5;
+	Tue, 16 Jun 2026 07:23:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B5B037702A;
-	Tue, 16 Jun 2026 07:18:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A624399887
+	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 07:23:10 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781594294; cv=none; b=L5xMoQlqxwuqR0/iZKImeW/gdnBCWnjivBqVqH3LddYBkx/z2w3RkDOTlMzrKvqAUyNw7zLMt/jPE0CzWWn64442wa4ve1+Ub1jQ5gj+WJDelGRzaJlQsjn9nLHiMlCaafl8ZgeRfZroPRiZXPDMuBaPQ0DtncSnLwHTwiwMnSo=
+	t=1781594591; cv=none; b=Rf59HzX3lLQB6FnfD/gq2wDAYPGTCZ3KufjrOuJrhdqkXDndhZyKA+suqnmZqHh7YSOl0Ve0TRor3gg+2qEdcSF5jCS9GFyjjTBqx+yoWbAPEuggigxTNe/nAYiaiaqFvMwlw++FKX6xXYjqdaxlfX0XAqPtZc3RSi2px87rbOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781594294; c=relaxed/simple;
-	bh=htRrDwRMI7BFnk9AXL334KnIn2BLLC062bhjqfsj9W8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NAiBADBK0QB4PrQfITaWeGTuG67rijeQNOjLsCQ8hGf8PiVav1RfXURka89qDnVITBNenlvZjROrf4i0NwrOiAFHqv/sPVjCqgi5QSmg9iYvBFRIqMf6JbBFHq0pbNSDTGgyjt+lIQMF4E3VxtbGhCby8tINAGwPvRVMN7WVLq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kdVsy0+O; arc=none smtp.client-ip=198.175.65.11
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781594293; x=1813130293;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=htRrDwRMI7BFnk9AXL334KnIn2BLLC062bhjqfsj9W8=;
-  b=kdVsy0+Oo+qZ100iAtcRO8A0JRK1VsuFeurdk0Ac9U9IOpkiFBD3GJpH
-   Dce134yqWwl6wXAaJpQ/ZQaE0QgiIzayMFmPA4e+u7s9yruG4ZIaulCCT
-   W8XviK98buSK39OwLLJbvrwUGBVxEw7LsAHKLz8NqW5MBSPEiJwC+LQNa
-   NXNbq7L7g7dDzLTUplXTiWvGIsZyfwipj9iGBbNtxYpx1sj65B5KDDuEz
-   iIbJVakFx/+X/AdI2vjnFkBQWs0QMbiUw8AutTHv0YLcWe480c6PO0zPV
-   0olWGmwMGVe/kySm8ZPNKmOu4DmlLIkuzTu+/65nI153uh0gFF9ZERzc6
-   w==;
-X-CSE-ConnectionGUID: IObfcaR6RVOfvrgT7s66bA==
-X-CSE-MsgGUID: GzrhwiVjSeKZz9qO2l+G0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="92668521"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; 
-   d="scan'208";a="92668521"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 00:18:12 -0700
-X-CSE-ConnectionGUID: ohjXJDAJQBSmGxLxtHRHWQ==
-X-CSE-MsgGUID: najrIRwISSyv8t0/41PZgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; 
-   d="scan'208";a="245300296"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.153])
-  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 00:18:08 -0700
-Date: Tue, 16 Jun 2026 10:18:06 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Roman Vivchar <rva333@protonmail.com>
-Cc: Lee Jones <lee@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1781594591; c=relaxed/simple;
+	bh=Xoxmgm/2WljGfQ4K+kmEo1qqc24lFdHLaHJ8BZjAi6U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=A5SXVUp7mRQ/ws7mpHjg2KMAaTnM65JDLcMr6X/NfQTnuMW6onC5LluNtOzHoco5t3eioxqhygfcbk/9ugBo8HrHDynsaJclkoAaBuLdcin3xFIkGJ29WkerGNoV7E0wM0s08lcQ50LlhMcG9gbulMrAjQcPhNc6HjBO0uNl6wU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FtQULGei; arc=none smtp.client-ip=209.85.216.45
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-36da8439078so3568676a91.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 00:23:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781594590; x=1782199390; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aUXY+HD9eIceYZLxnN05/cYohFkhygsTl0/Uujw94aM=;
+        b=FtQULGeilbRm8Pkq67H7CVMsSHFwp1gW9Cs/Ez7EsvJEyaMN/FDVh2npPv0LSr9bhE
+         4aZ7LaoYe2/Yu/ow3ppYvQ324iRMrPyebpiGaAQAU101ruToynyGrK69YyFw7vibmpxx
+         ZejUesQBgiSRNejHoC3TRUEJd4juTzXNK2SK+0ABYo+6L16yTXnVetNli0fZ49jj+vdW
+         kzuiqvtOmAv1DgietDoyitAfdkFAqRa5b0IlMYVotyrDLPX46h54UtA72qIWteNnYiik
+         GxdnKGRyTfeMWgJmmq//VKiDqU4dsyGMecpDM+nAah2MwldiCZFJdpx7W6L0779hP6Rj
+         7VGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781594590; x=1782199390;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aUXY+HD9eIceYZLxnN05/cYohFkhygsTl0/Uujw94aM=;
+        b=l13MwB5sNjNfM5QDryDsL5/5Klb6Q1VK4fnU1S4BZtEUvjHrVWOqBL6RpK0jLO5SLS
+         OgKRO5ELPF55hqB1rT0Lp0X3cWzljKFcLskf3EcQ0T4FneJopXy6ozIZ4E6032B99RJ/
+         5j2om8+LdUbQGOTAHqD1Lw9XoGYGsZK5bcx4j01RXxulUZw/aULg4u3FPg5QWVqEipWg
+         ewI/4zESM8rFgIPPSOvxHL9jT3uNcbBC6bhrfK4mf6WOQ/NwJlMzfnScUqC5pPY5Cgpk
+         VA3Mm/m9na+AdyxmmJ/jU0iRjpFelym9cbXRgKqJZjUlrqddRGkg6fHt7ZiveLwVBMf4
+         m2rg==
+X-Forwarded-Encrypted: i=1; AFNElJ/yNaTaCBRs+6KHv1YnLpye3+zfNrzX+MQeYtECzhCVgi9TTmZRxqhxhADXMpBHLAPjQSMDrCcoZfuF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw78CBb5Y09Dwa8y6Rm7o9a1HUttIU0ta6gCvtUsKvoB4qSifst
+	EpSqQdZ/PynA6AJ3+YIlqzbutoD+wrCgXmSvZ8h7u/r/aOYVjsFw039Q
+X-Gm-Gg: Acq92OG2Hcti9aYv6pFu54KYs4yHIsEw44wA8tYZZp+otPcjCUyO1Z7yjj9uZyU0pCv
+	3Zx65Khd6Ivt+NaKFV4xQog3MmCxEapoXxRGdZ+IniEaIerJaEU9nfAwO1UefJtto+fGTQQ6f0Z
+	5KndSyLTH4kzVxmAM+JX9YGOPfV0kJpAL46LtGsWxff40YRl2j1bVdNe6fasn2KlAcqVog6iKvy
+	/cHH+u4kp/x/9RQd8CozS5uf+Fh34G8FmlvQY3grFqbbsCLQrFrcPPqtp140+iM3Gga7M2hjiEz
+	0/pj6lxSFx3FU/wAp1sO7xKAG8J3lcMOUjv4KZ3+NnOat0VIvsApqTpIvxf1h8D7J0zsoPXc+y7
+	I1w0gSpJz2YUaTGbmswfbCKD5bXcj8BhaMLcDf/KZ7wBGzfG92M8mB24nz/fOlFmI1jPmx7ZaZW
+	htfs+UYiC5gsON795YpZhN5ROYO8w/rJrkvzHero6uarShn2ng32tU19RaCeaqIENr1tps8kau/
+	05K9VoZHeD8fo3x25iFog1dK0mgd6uiN5SNQBEJblA4hKyFdg==
+X-Received: by 2002:a17:90b:3e86:b0:36a:a16b:5f65 with SMTP id 98e67ed59e1d1-37c5286ca76mr2681029a91.11.1781594589882;
+        Tue, 16 Jun 2026 00:23:09 -0700 (PDT)
+Received: from DESKTOP-G3E0OSP.localdomain ([112.172.255.242])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c42f1f1014sm123513435ad.16.2026.06.16.00.23.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jun 2026 00:23:09 -0700 (PDT)
+From: Jinseob Kim <kimjinseob88@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Ben Grisdale <bengris32@protonmail.ch>
-Subject: Re: [PATCH 3/4] mfd: mt6397-core: add mt6323 AUXADC support
-Message-ID: <ajD4rp1EEe-xEMm5@ashevche-desk.local>
-References: <20260602-mt6323-adc-v1-0-68ec737508ee@protonmail.com>
- <20260602-mt6323-adc-v1-3-68ec737508ee@protonmail.com>
- <20260611163748.GB1212816@google.com>
- <ycj3k-vV_tQv6u9OfCTP9G9kkeeE-_dbzg_oeHPXn2pb1oZe_Sa1BH6GUGuSd_gD6uPSJiTX7tz6MTlFcqGdWX-f3GMfyW2sLgAOCw6YeNE=@protonmail.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jinseob Kim <kimjinseob88@gmail.com>
+Subject: [PATCH RFC v5 0/6] iio: add Open Sensor Fusion IIO driver
+Date: Tue, 16 Jun 2026 16:22:36 +0900
+Message-ID: <20260616072242.3942-1-kimjinseob88@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ycj3k-vV_tQv6u9OfCTP9G9kkeeE-_dbzg_oeHPXn2pb1oZe_Sa1BH6GUGuSd_gD6uPSJiTX7tz6MTlFcqGdWX-f3GMfyW2sLgAOCw6YeNE=@protonmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.66 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312331-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312334-lists,devicetree=lfdr.de];
+	FORGED_SENDER(0.00)[kimjinseob88@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,lwn.net,linuxfoundation.org,vger.kernel.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rva333@protonmail.com,m:lee@kernel.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:bengris32@protonmail.ch,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_TO(0.00)[protonmail.com];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kimjinseob88@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org,protonmail.ch];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[kimjinseob88@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:from_mime,ashevche-desk.local:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F0B9C68CC6E
+X-Rspamd-Queue-Id: 2BDA068CCF0
 
-On Mon, Jun 15, 2026 at 11:10:20PM +0000, Roman Vivchar wrote:
-> On Thursday, June 11th, 2026 at 7:37 PM, Lee Jones <lee@kernel.org> wrote:
-> > On Tue, 02 Jun 2026, Roman Vivchar via B4 Relay wrote:
+Open Sensor Fusion is a sensor aggregation hub interface.  The Linux IIO
+driver receives OSF protocol frames from a serdev-attached device,
+discovers supported sensor streams from capability reports, and exposes
+the supported raw sensor data through IIO devices.
 
-...
+The initial driver supports protocol major version 0 and the receive path
+for accelerometer, gyroscope, magnetometer, and temperature samples.  The
+current wire magic is OSF0, but OSF0 is a wire-format detail and not the
+Linux driver identity.  Protocol compatibility is carried by the
+protocol_major and protocol_minor fields in the fixed OSF frame header.
 
-> > > +		.of_compatible = "mediatek,mt6323-auxadc",
-> > 
-> > [Severity: High]
-> > Does adding this compatible string expose an unhandled edge case in the
-> > auxadc driver?
-> > 
-> > If this device is instantiated directly from a Device Tree without an MFD
-> > parent (e.g., at the DT root), dev->parent could be the platform bus
-> > (which has a NULL parent) or NULL itself.
-> > 
-> > Looking at mt6323_auxadc_probe() in drivers/iio/adc/mt6323-auxadc.c:
-> > 
-> >     regmap = dev_get_regmap(dev->parent->parent, NULL);
-> > 
-> > Could blindly dereferencing dev->parent->parent here, or passing a NULL
-> > device to dev_get_regmap() (which calls devres_find()), result in a
-> > kernel oops if probed as a root node?
-> 
-> This is intended behavior, ADC always should be probed as a child of
-> the mt6323 MFD because it doesn't have own MMIO space. Otherwise the
-> devicetree is malformed. Recent mt6359 ADC driver has same thing with
-> dev->parent->parent regmap.
+This is still RFC because the driver-facing OSF protocol subset, the
+compatible binding, and future protocol compatibility rules are being
+reviewed.
 
-I think Sashiko is overprotective here, but if changing, the whole lot of MFD
-drivers should be changed (like Rafael recently has done for driver_override
-issue in ACPI related drivers).
+Runtime testing was done with an OSF GREEN prototype connected to a
+Raspberry Pi over UART.  The driver registered osf-accel, osf-gyro,
+osf-magn, and osf-temp IIO devices.  Direct raw reads and software kfifo
+buffer reads were tested.
+
+Changes since v4:
+- Regenerated the series as a full standalone replacement series from a
+  clean upstream base.
+- Removed previous-version add/delete churn from the generated series.
+- Clarified OSF0, protocol_major, and protocol_minor compatibility
+  handling.
+- Added required vcc-supply support to the binding.
+- Added probe-time regulator enablement with devm_regulator_get_enable().
+- Added the opensensorfusion vendor prefix.
+- Fixed checkpatch cleanup issues in commit messages and driver style.
+
+Jinseob Kim (6):
+  dt-bindings: iio: add Open Sensor Fusion device
+  Documentation: iio: add Open Sensor Fusion driver overview
+  iio: osf: add protocol decoding
+  iio: osf: add stream parser
+  iio: osf: add UART transport
+  iio: osf: register IIO devices from capabilities
+
+ .../bindings/iio/opensensorfusion,osf.yaml    |  59 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ Documentation/iio/index.rst                   |   1 +
+ Documentation/iio/open-sensor-fusion.rst      |  71 ++++
+ MAINTAINERS                                   |  13 +
+ drivers/iio/Kconfig                           |   1 +
+ drivers/iio/Makefile                          |   1 +
+ drivers/iio/opensensorfusion/Kconfig          |  14 +
+ drivers/iio/opensensorfusion/Makefile         |   6 +
+ drivers/iio/opensensorfusion/osf_core.c       | 306 ++++++++++++++++++
+ drivers/iio/opensensorfusion/osf_core.h       |  70 ++++
+ drivers/iio/opensensorfusion/osf_iio.c        | 275 ++++++++++++++++
+ drivers/iio/opensensorfusion/osf_iio.h        |  22 ++
+ drivers/iio/opensensorfusion/osf_protocol.c   | 249 ++++++++++++++
+ drivers/iio/opensensorfusion/osf_protocol.h   |  97 ++++++
+ drivers/iio/opensensorfusion/osf_serdev.c     | 117 +++++++
+ drivers/iio/opensensorfusion/osf_stream.c     | 187 +++++++++++
+ drivers/iio/opensensorfusion/osf_stream.h     |  31 ++
+ 18 files changed, 1522 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/opensensorfusion,osf.yaml
+ create mode 100644 Documentation/iio/open-sensor-fusion.rst
+ create mode 100644 drivers/iio/opensensorfusion/Kconfig
+ create mode 100644 drivers/iio/opensensorfusion/Makefile
+ create mode 100644 drivers/iio/opensensorfusion/osf_core.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_core.h
+ create mode 100644 drivers/iio/opensensorfusion/osf_iio.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_iio.h
+ create mode 100644 drivers/iio/opensensorfusion/osf_protocol.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_protocol.h
+ create mode 100644 drivers/iio/opensensorfusion/osf_serdev.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_stream.c
+ create mode 100644 drivers/iio/opensensorfusion/osf_stream.h
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
 
