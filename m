@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-312630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312631-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GjyvEit1MWpCjwUAu9opvQ
-	(envelope-from <devicetree+bounces-312630-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:09:15 +0200
+	id RVvNILx1MWqCjwUAu9opvQ
+	(envelope-from <devicetree+bounces-312631-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:11:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4E5D691BBD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:09:14 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E287691C9A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:11:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Atz5OOMX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312630-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312630-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=JA+grj0K;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312631-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312631-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=none;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 32B7230FAF2E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 15:58:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3F63632A4F37
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 16:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58FAB472794;
-	Tue, 16 Jun 2026 15:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425FE44DB6D;
+	Tue, 16 Jun 2026 15:59:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4FA466B59
-	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 15:58:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2E9244CF40
+	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 15:59:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781625490; cv=none; b=Zzwg49f6/HobTcvs7WTtaD9wh+LthU+IPmuT+GBjEGkC8FCJ9zKb86MW23RgxTY3so0BL3ejYxRr1jyyYZkXbPEv9Yz0+fPUf+U2CRaMEMWEiBlDWMYumDMlyu80J7HLU9o6ZW1uqwxoW6Dd3UOf27nQgIINOqJgbvBocd+R9eE=
+	t=1781625579; cv=none; b=SN3FkAvwbdLs92ltR+BYp2JWw25719THraZkrKJ9OaTDrMoTCfRKBIS72pi9jl2G3DdvFM/pc9DOg2ef5/LLi/JBtYvj8bDQDMTo6eDEgP7dknJg8hYKm8gKSqtV0ouaWxbYHOjTJ9iE6FIrBZZcgEZJJSTMlrSO7bDpNLCNZ3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781625490; c=relaxed/simple;
-	bh=UPUTkSUeFk9JQeZdN+9Z3ErwNhCOF6+E9sYhpJYC5LY=;
+	s=arc-20240116; t=1781625579; c=relaxed/simple;
+	bh=wfos8YW46l2Yhc+nFwbs7u+gPmq7+1EZsokr/nRJRBY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jNnynMIfd+eN4qDFdD23wOS1SWLj4LYOvN15sMsdToRwrC3BwT4Jt7fbYcdhCAS+7nio9U4xf7suKtU5H5FSF9gPv4I5ziAzzJd+ftWZUDKKiVc27BY2Gz9ThIO5zlXaGKg/BY1YXsh2csEccKYIjn0IiLsr8RodmkdyMClcy4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Atz5OOMX; arc=none smtp.client-ip=209.85.210.170
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-8419ab3a297so2142268b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 08:58:08 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Iaqbv+rPSwi7JHIXS/UQxew99NUmeQdKBQ6uzaG2ODx6FMHjOT3o30gdA+97daRN78tvxWlDrPqqxOWcx0e6/lhib+ikoNCOlH7pVbBQzAjFSudJE+vkCim1TRbc0XBmEFr00Oz04gBZtp13xm0SzCLFKPWFi4pzyn/gJBxPMZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JA+grj0K; arc=none smtp.client-ip=209.85.215.169
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-c86214eead7so7429a12.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 08:59:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781625488; x=1782230288; darn=vger.kernel.org;
+        d=gmail.com; s=20251104; t=1781625577; x=1782230377; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sNzZT7KE4X5nEh+XCCxZ3PI0TIseL8zd9TDLpDj5TUw=;
-        b=Atz5OOMXxdAcx6Bx7uPbVhhss2EraRqLAnHXCN+OD0n5pEVdctLOntmcvc5Wu3WNew
-         0/P2VsDIgz3qAf2MWG7/a0aZmqGC7XAGwolE4iLI3g7L9u7syA/6O9GOnmNsRgs4avuP
-         aeQhipJjiTDxf7vvkOk0c4iWmvFXTChJMhU8Qdi66XTDKcVskXO/xtBSLnZgojARw8w9
-         PuPx2emfZlOHse9kQCdXi4hZTtwXMeuFcGyJ8LAm5TcNNKdzFlYnmE1sIG1ohtYM5RDL
-         bJBnmp2o4qXcbqevWvGm/wK/8KtOBfSwDHJ8MbM9BKd2U69MJq+526lgThdiZlbFMF7C
-         DS0A==
+        bh=uSWVqVYBFNIaFXIOlsv9h9TEbEq9eBULKt8+LrdjY+M=;
+        b=JA+grj0KsFOooI53z4jrpYsay0ElP3YHZbQfnSWlPpPoVCjBkFN/7Q+b3qo2aLrBOh
+         bPlokCLdlmDXYdRNEcVLEw7W/cE5s86fR6PRjstY2LB132Zr/dqHEa4e04BwR+2ionsc
+         sgwdaH4jX/ZiLaM+kll2CBQSluyIA1bzSMU7By7izMNgTSmfuYENRfP9i9wUsHdvFC8n
+         OKvvwIf3asHzIyLl89Q4qW6uGpcU+drdZoZBQ6j4kQwBZNWCZlv8qlrCXg9bNAeTL6AT
+         vvsIsrEs7dr4ftuogBgpTg9YXcVoh5vrsUWrJKyGiiwsn/6wc5oJrfA/ek8YePAbZ8Z2
+         vNOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781625488; x=1782230288;
+        d=1e100.net; s=20251104; t=1781625577; x=1782230377;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=sNzZT7KE4X5nEh+XCCxZ3PI0TIseL8zd9TDLpDj5TUw=;
-        b=oCOLpcAdjmIsTjBZBxvvPNQEVVOUuW6fN0ovd5znOHJ7y8aLWkClv+pwpuC+yjFKAT
-         E1Oj8vuaoCeMWR4DOTqlaKGfQrK/qQYepXcaun+RITop8Ez6M7OyJRoIX+XrB8XxWUv6
-         5kurKhxuj2Rp5U5Gm8J9m/CHM6RuOBvrMCi2A3Nu2VlbLbAx2s7TWJjkzsQPaVbPXR7j
-         OwY7QAk7+XfWAfJgjNGSo13f5ezowrbwIineSWz1+NTcyFrC+4xr5G3KQa+WzZB8aVkW
-         6cuA8j4wRN0wwdUPMYylf8+GkGd1qQDz/TeCVSx5m8I6TB7U3RFshOvVUFk7vsDRjZfC
-         8EzQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9tUspLt/cKBihA73iWOBx0g99/zis5QzbAKSeARKzaqCpJ1HpW25IB5MbQKhSPsi/8uhxCj2ezsY9E@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQFoCB6mCVNrauiyHaR4CgOdSr589Nd2ami0EmA/9MES4404DP
-	nxdFtqaS6lBVkRwOs8l3p9qCJtJwNVihcGamzaZ3PXh2J1j1ula+NV/8
-X-Gm-Gg: Acq92OGK+W+68XWVzFS/WXFFRVVrv/1iFu0d72LtEa/lbhF7L4/3Odjx3ZAcKo9leb7
-	xR6RcIhb71IxWOh5XTWf33dle5o4tN4zMCR9Ux7KBHmG/wb/VuwhO24BWykAorRD6oxSLnpkrlT
-	q2pOXApE4hEZlHnjJ/FojonPuB3p4krNFizfAioIK/rZg7285hh3ebVaOQ0ft6uFX7KXGWWYADs
-	Rvc0JurTFDzG87TndxPyvUcrlC0V9DhWYk5zcTCA9/Bliy/jzJTdlVBHuLOU/04zyekqq3S2JrI
-	pD9VdSKBKD8EW2CcvkMwE4e/TcZoxBo1nBVRwtQnBQtJ5jgJe9dU5dmpve/6wDwDMhARpwf7ir7
-	tQv8Gc0BuWpPzdVnOy8hvA+l3PbxKaDvd5Z8oPGfKo1p2wm2T5053tz3+1/MKHYsVxQ8UtjykOd
-	V6P6vcQa3iymiq3PZjsI5+gJxnIzSL1jtXZmVj
-X-Received: by 2002:a05:6a00:1c86:b0:839:9ad:ee31 with SMTP id d2e1a72fcca58-8451539cb35mr4267441b3a.8.1781625488374;
-        Tue, 16 Jun 2026 08:58:08 -0700 (PDT)
+        bh=uSWVqVYBFNIaFXIOlsv9h9TEbEq9eBULKt8+LrdjY+M=;
+        b=KGzF3UjL2NlobcQX9A1GtTmSMKJ3j1s+kebWHdLtDoQcMPn6+sHjOT02LdgXrxLdu4
+         232tnbbcv7LhZgXZl9z5Gaar1BEbEM/fDQFxyFN6r5JWZ7V2L/0UO2pch8pdJvFNxD3y
+         kMQ8vaoiBwLrq1NtqBpj+wKil5mVCAt4MyhUM3kC7E/ylgzueih5ifezUxSqe/kn5QLn
+         xFoNNslKIgHe/IqH0RK2VG76VtzQrqhEej3KzTAJLmQix+6tSjgkLtdPF8fMMwNYfInb
+         vtMNO98GoOXeY7v6QueFNfoVmybfZupu4WQRbJhOxcf2iRk/qUDdKlBoCHYF4eMZ0pbC
+         fN/w==
+X-Forwarded-Encrypted: i=1; AFNElJ8zo5iwIin1+4ejT2Fh9c6NP+9Y41Zk/m7RhLlEBbm/bArSjvcsZqH3AGdYGPJFvPxqmExaaUltUB3H@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXs8TAG73HF7OFf2uQbzc+X6eIt0nQZLmVV69UWXIM3I0IcHEe
+	+Gzt8+lYNV1r0yuW1Y327iuGxoN8PwSMtcTdeQY1xm6Z9xt8CcJFkc1E
+X-Gm-Gg: Acq92OGCdyc53rHybrh1Zujx5MkYuXTg39JtehOazmftE/oeLqQeF8ALFdEtuaZytqW
+	H47oO0vrZR4/HwahbPSD8gMuyNew4Vke2TH6WC0ZXbpkFUEgIxE8tXLwf3Kezv+wdGX9vtGdiJ/
+	4fwJ0T90kuBcJBPvXoktmUOwnLBgEnU3gOHCU+9a6MTP9mtI/JZJ2WlSLwJLSNTtAwwp4GE6dYF
+	dA1WoXI6vs09i8qOw76/CZ8IDzoeYe0xWLGNsOJz7b4ox3cM9pJbgG6Xcnlge6UxwUtExtiwJLL
+	1v7Pyf1CucO6g4lqbDKID6KK8UmG8wKEkFkyF+RdIRSaBR99nA4u/3E3iCH17CsRTGilNO4/hVf
+	b56Xo2wTVL1uzoCz0HBNZHLw83WtUdGn/KdB2359Xy6cM6rjvlJscnjlYXcuq/dH47jIJz2Sw2B
+	aCszuu8DGf3c8JnK1KLEQdWiGtIMr7rFEGkElB
+X-Received: by 2002:a05:6a21:490d:b0:3b4:6921:5665 with SMTP id adf61e73a8af0-3b7e2242adamr3765102637.9.1781625577305;
+        Tue, 16 Jun 2026 08:59:37 -0700 (PDT)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8434ac9c474sm12423557b3a.2.2026.06.16.08.58.07
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c8665186d98sm11759708a12.16.2026.06.16.08.59.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Jun 2026 08:58:07 -0700 (PDT)
+        Tue, 16 Jun 2026 08:59:36 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Tue, 16 Jun 2026 08:58:07 -0700
+Date: Tue, 16 Jun 2026 08:59:36 -0700
 From: Guenter Roeck <linux@roeck-us.net>
 To: Loic Poulain <loic.poulain@oss.qualcomm.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -88,10 +88,10 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	Martino Facchin <m.facchin@arduino.cc>
-Subject: Re: [PATCH v2 1/3] dt-bindings: hwmon: ina2xx: add ina232 compatible
-Message-ID: <eda65f40-5f62-4719-a4b4-63fc7e462fff@roeck-us.net>
+Subject: Re: [PATCH v2 2/3] hwmon: ina2xx: support ina232
+Message-ID: <8ca66c86-c8cb-4e92-abcb-c4d68eedf0e1@roeck-us.net>
 References: <20260611-monza-ina232-v2-0-e4375ce652d0@oss.qualcomm.com>
- <20260611-monza-ina232-v2-1-e4375ce652d0@oss.qualcomm.com>
+ <20260611-monza-ina232-v2-2-e4375ce652d0@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,18 +100,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260611-monza-ina232-v2-1-e4375ce652d0@oss.qualcomm.com>
+In-Reply-To: <20260611-monza-ina232-v2-2-e4375ce652d0@oss.qualcomm.com>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312630-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312631-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:loic.poulain@oss.qualcomm.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:krzk@kernel.org,m:linux-hwmon@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:m.facchin@arduino.cc,m:conor@kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
@@ -121,7 +121,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -134,23 +134,22 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,arduino.cc:email,qualcomm.com:email,vger.kernel.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,vger.kernel.org:from_smtp,arduino.cc:email,roeck-us.net:mid,roeck-us.net:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B4E5D691BBD
+X-Rspamd-Queue-Id: 8E287691C9A
 
-On Thu, Jun 11, 2026 at 04:05:24PM +0200, Loic Poulain wrote:
+On Thu, Jun 11, 2026 at 04:05:25PM +0200, Loic Poulain wrote:
 > From: Martino Facchin <m.facchin@arduino.cc>
 > 
-> The INA232 is a current/power monitor from Texas Instruments sharing
-> the same register map as the other INA2xx.
+> The INA232 is a current/power monitor. It shares the same register
+> layout as the INA2xx and uses the INA226 default configuration, but
+> differs in its electrical characteristics:
 > 
 > Signed-off-by: Martino Facchin <m.facchin@arduino.cc>
 > Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Applied to hwmon-next. The branch will be updated after the commit window
-closes.
+Applied to hwmon-next.
 
 Thanks,
 Guenter
