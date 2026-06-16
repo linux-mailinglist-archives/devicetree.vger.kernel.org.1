@@ -1,168 +1,185 @@
-Return-Path: <devicetree+bounces-312370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312371-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LG8gBOkKMWr5agUAu9opvQ
-	(envelope-from <devicetree+bounces-312370-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:35:53 +0200
+	id BVe7HwELMWr9agUAu9opvQ
+	(envelope-from <devicetree+bounces-312371-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:36:17 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74A6D68D343
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:35:52 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E64E68D34F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:36:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=RdkhJ2Ko;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312370-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312370-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Q257ADpZ;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312371-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312371-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7519A301A7EE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 08:35:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7274630046B2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 08:36:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359694183BE;
-	Tue, 16 Jun 2026 08:35:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B664183AE;
+	Tue, 16 Jun 2026 08:36:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25557165F16
-	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 08:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29041165F16;
+	Tue, 16 Jun 2026 08:36:09 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781598950; cv=none; b=NSS+/I6lQ3+/RhvsEu68u/jupmDrtTpcLsockNl+YswtWrodHH0fBo05I69rCvCwg50FAHDBKit4gx3TxqchowBkhlzkHkg5JaniC2mibKWoV08kbVhIS3AqagT4pKpH+5bl75M+1kXbm8wf/fh8ZvzNiU+MShXMroulgS26QxU=
+	t=1781598971; cv=none; b=rHu6SbpojjHlIZmTfYSJU57MlgR/fOtDjzWm0w3WsA/+U0DJQu8AaMgp6+mlomCh8A20vk8DeTq6UuZM7EfzxVFiA2iVe9i3zv2qdXGOqwjbQfFvB0c/Un+hzFn+BcBff5biozgFxjPIEVmPAScFMq+Vj+db6Uf065D+j337HxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781598950; c=relaxed/simple;
-	bh=VJGOrDnaMXIdiu0GvQdPA8BLpv9Fyzb6dfrAspKgsNE=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=PBuWo2PVIOiAovHQovckPk6R4ZKUAuvUZVk1RcxOxMMZf4vlKCx+jcHvNcvnguxB3Gn0Nk0N0s23RQKlRn/wJ2SoNZYwRwYIy9/2k7eRb+mp/5pQzDVJsVGynGKe/FGJbH9OPiGMz046SQJmRfeSWNi/cCFz7UPL2gLz/vm7uXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RdkhJ2Ko; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFFA71F000E9;
-	Tue, 16 Jun 2026 08:35:48 +0000 (UTC)
+	s=arc-20240116; t=1781598971; c=relaxed/simple;
+	bh=boZCRrX6QeXgrOrWVTQWF4Bm6PIPot4WDoMly6Jm8rQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lx9uKPBWXBi/6qKgwVAoYeuLdIdicsL+5CeO/iCKDZvRUcrGsDbhEf4nnEbv7Queyg8+1y40lB2QAo6WIAKCGxF5XsO77GkT7ND0DV+RM4SBy2w9hJix0jZO3mSKEoZ5RGMKPzgM+3Zl57TTAQJMV19GI5bP8sBCGfCUibhO9YI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q257ADpZ; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF51D1F000E9;
+	Tue, 16 Jun 2026 08:36:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781598949;
-	bh=dYt30TTrkPtDgKjv+qVuUOFRU9L/IxBEg6clWB4IiT8=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=RdkhJ2Ko5IwujJMNZaqsJHn66OR5Or63lsG8K32ut4rw2bxuzKls3iHmPqmr1vYUN
-	 bL5LvUDo3H7/nEvc79kMSOo8dttLPLDavsbSlUWU5HzkqrZqiBTaYLcnNA7ldohm2D
-	 lNJ7uBb1Un+QPYIzJ6IKvyMZDRaL76QuVa4ygTx+JKqztxILjv5BR7E2f1e7U8ZmAC
-	 rq3Q6uDauOPxN7qlMi3TS7tccs16V5oK45zNnxbTJR6ny/SdyCV7sVWiY4v/C6Ov/u
-	 4kWEpFWqMhja6SresqkKtHNJsKip/jRlCVlQwivdvvrcqd5Srt/trZBi6a/rkQx/lg
-	 pI0QxJ82rlvIg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 03/12] dt-bindings: iio: dac: ad5686: add
- reset/ldac/gain support
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Rodrigo Alencar via B4 Relay" <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260616-ad5686-new-features-v3-3-f829fb7e9262@analog.com>
-References: <20260616-ad5686-new-features-v3-3-f829fb7e9262@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 16 Jun 2026 08:35:48 +0000
-Message-Id: <20260616083548.CFFA71F000E9@smtp.kernel.org>
+	s=k20260515; t=1781598969;
+	bh=T2WO11Yvy+joBc64YU8rn0xdejIi6A7h3daYt6wUBxs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=Q257ADpZYeMLuChuW2jSYWrd0tnjSrkqsN4PQaMhMOqInxJQTSZcFYbPyDhxh4T+T
+	 DGttlVMNygBLGqMYQNAafrIZxn0evicke0WXQvqWt0u9uxHF6YQowjMZ5A+dXMTTHu
+	 ov2EipnouHO/wHMIE9Y0pBSvOZY7EPxsEOZKNWNrI5ctW8FK6GLQUQTRGvwz//DhqM
+	 V/nznwde2Mv+KYyhV/WHF6t7cRPXBy2a24U0Vq1NDulHUepYuZUUzh0cebQLtNjT5O
+	 b6eIhOGIFZGquRq5liereztJR2O2luO4HfBvKdJQZfFVR+T510xG1LhN4fmD1CkQUM
+	 NXG9cCK+vXutg==
+Message-ID: <1d4f3e4e-ec9e-44d0-9e4a-651b6920015c@kernel.org>
+Date: Tue, 16 Jun 2026 10:36:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: clock: qcom: gcc-sm8450: Add missing
+ power-domains property
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Abel Vesa <abelvesa@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+ Brian Masney <bmasney@redhat.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260615-topic-sm8x50-tie-gcc-to-cx-v2-0-6b5752dd4747@linaro.org>
+ <20260615-topic-sm8x50-tie-gcc-to-cx-v2-1-6b5752dd4747@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <20260615-topic-sm8x50-tie-gcc-to-cx-v2-1-6b5752dd4747@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	URIBL_MULTI_FAIL(0.00)[vger.kernel.org:server fail,sashiko.dev:server fail,tor.lore.kernel.org:server fail,lists.linux.dev:server fail,smtp.kernel.org:server fail,analog.com:server fail];
-	FORWARDED(0.00)[lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312371-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312370-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:devnull+rodrigo.alencar.analog.com@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:robh@kernel.org,m:devnull@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_RECIPIENTS(0.00)[m:neil.armstrong@linaro.org,m:andersson@kernel.org,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:vkoul@kernel.org,m:abelvesa@kernel.org,m:konradybcio@kernel.org,m:quic_saipraka@quicinc.com,m:bmasney@redhat.com,m:linux-arm-msm@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
+	FORWARDED(0.00)[lists@lfdr.de];
+	URIBL_MULTI_FAIL(0.00)[vger.kernel.org:server fail,linaro.org:server fail,qualcomm.com:server fail,sin.lore.kernel.org:server fail];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,analog.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lists.linux.dev:replyto]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,linaro.org:email,qualcomm.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 74A6D68D343
+X-Rspamd-Queue-Id: 6E64E68D34F
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The conditional block restricts `gain-gpios` for single-channel =
-variants but omits several multi-channel variants (e.g., `adi,ad5672r`, `ad=
-i,ad5676`, `adi,ad5674r`, `adi,ad5679r`) that lack a physical GAIN pin and =
-internal multiplier. It also fails to restrict the `adi,range-double` prope=
-rty for these multi-channel variants.
---
+On 15/06/2026 18:57, Neil Armstrong wrote:
+> In order for the GCC votes on the GDSCs it provides to be propagated
+> to CX, CX needs to be declared as power domain of the GCC.
 
-commit aa16b66ecffaca7347b3cea2e8c47bd2390db0b1
-Author: Rodrigo Alencar <rodrigo.alencar@analog.com>
+I would be happier to see here short mentioning what is the effect of
+missing votes - do things work? - as justification why required
+property, thus ABI change, is justified.
 
-dt-bindings: iio: dac: ad5686: add reset/ldac/gain support
+The DTS patches gave me that answer, but should be here as well the best.
 
-This commit adds GPIO properties for RESET, LDAC, and GAIN pins to the
-ad5686 device tree binding. It also adds an adi,range-double property to
-indicate when the GAIN pin is hardwired high.
+Well, don't want to stall anything here, so anyway:
 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml b/=
-Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
-> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5686.yaml
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-[ ... ]
 
->  allOf:
->    - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            anyOf:
-> +              - const: adi,ad5310r
-> +              - const: adi,ad5681r
-> +              - const: adi,ad5682r
-> +              - const: adi,ad5683
-> +              - const: adi,ad5683r
-> +    then:
-> +      properties:
-> +        gain-gpios: false
-> =20
->  unevaluatedProperties: false
+> 
+> Document the missing power-domains property to that purpose.
+> 
+> Fixes: 72a0ca203ca7 ("dt-bindings: clock: Add SM8450 GCC clock bindings")
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-[Severity: Medium]
-Does this conditional block also need to restrict gain-gpios and
-adi,range-double for multi-channel variants that lack a physical GAIN pin?
 
-Variants like adi,ad5672r, adi,ad5676, adi,ad5674r, and adi,ad5679r also
-seem to lack this hardware pin and an internal multiplier. If omitted from
-this list, the binding allows these properties to pass validation for
-incompatible hardware.
 
-Furthermore, if adi,range-double is provided for these multi-channel
-variants, the driver might initialize with double_scale =3D true and
-permanently report an incorrect 2x output voltage scale to userspace.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260616-ad5686-new=
--features-v3-0-f829fb7e9262@analog.com?part=3D3
+Best regards,
+Krzysztof
 
