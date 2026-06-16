@@ -1,152 +1,195 @@
-Return-Path: <devicetree+bounces-312351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312354-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YvZ6JEUHMWo1agUAu9opvQ
-	(envelope-from <devicetree+bounces-312351-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:20:21 +0200
+	id 1R5DMJwHMWpEagUAu9opvQ
+	(envelope-from <devicetree+bounces-312354-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:21:48 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E509068D175
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:20:20 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BA7068D1A1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 10:21:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linaro.org header.s=google header.b=NmruZcyp;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312351-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312351-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=none) header.from=linaro.org;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=VvpG3pL4;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312354-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312354-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 429EA306CFE8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 08:19:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C51D3044111
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 08:21:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20C8409608;
-	Tue, 16 Jun 2026 08:19:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF4640FDB6;
+	Tue, 16 Jun 2026 08:21:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41E639B943
-	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 08:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F76D40BCB6;
+	Tue, 16 Jun 2026 08:21:12 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781597952; cv=none; b=oxj6RyRq71wVEm4qhGkVuJJi7gQmAFxVIMvTjfaisIGEqpXmfdQJG9cEAt7OAEYe0PIPHzFfq3BhT8JglSpiA/8p9ZQu8rhJ0Fg27f8Mv9R7CeL4rYHqoRxFG7nPd27NIVO0b09pADL5AjBG1UbtjQcvB+Ivh2If7R9VcOZvWwc=
+	t=1781598072; cv=none; b=okQEB5nzf/1hScp6uUFwfVH3mMqQuHtm3clOUsj6RcjJuHVabGJu0kHwMg/CRaIWm2FBM58wsyGX179IZFGPL7idxu2UZWxvjR0Y+8BQfjmtcna4gQGi/A2Ls4GA9LBtMPKH455gqsvjicD7DbaQinmQKbqD/qSrxgkRuDA7V78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781597952; c=relaxed/simple;
-	bh=xYc99uvXLsYWScO0EmNoWIRKvKiJpOTShn+ZEKrkN1Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GwXhdlKPCCuMNZgnykXdOmSW92qB/45HWNZn7HatDhR2yDY+ioRFR7KgzcneO7VkUwHK2aq5GTUkP05DYVM65wMTrA/lk3rt0TuaXy2CgCrUIUp/54o1PxKG+qwxxjDYcnhIJ+153/D8KuhdGtFzcILGjVfDXbuLdCC3YPmhsTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NmruZcyp; arc=none smtp.client-ip=209.85.214.181
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2c0c3543590so29264695ad.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 01:19:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1781597951; x=1782202751; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PhNt6MHC4AegleV/WbvHUk1ZYZMA3NIq1ay5U/dxpKQ=;
-        b=NmruZcypNSsJastH8Y2pS4jNwmS1sFI7xh8KKStePYGaHsHMlpTy6v6t5pyvxbe19E
-         o5f1t/nmgV3dIew3YjJNkQfJ6YdAMQGArhvN0Hab5K00Os1cbmNRtVvMt4jPr2nTEVHv
-         RNv2HumhiaOqDsQ1HN2Oo18kjXc8PmAtWk3PqeObcBcgAqxYB5TC/4BLKRw8RymqUs7O
-         e48kt2+42I3OboijgOcNVXJZ+dbqWSArZWmZ1xb02L1NSoLWHvdM4rNBCu011Dk8gpzx
-         yN9SQLVUXLb1U2HayVyFb09WXlIjNmScGnRL+l5w6UazerL+7e4oxMkL1/W2RIgnB1db
-         J8KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781597951; x=1782202751;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PhNt6MHC4AegleV/WbvHUk1ZYZMA3NIq1ay5U/dxpKQ=;
-        b=eQ+KuMw5ImQz6VySsEGBME+ZLKh/VbR1lGsoA0s0+8neaJ/+HcYYXYfHKg1I6gtB8Y
-         G9HqsdOs9XYpBAejSQRKeOySCLDfbJTaKRurBo+WzBnlN7x3VemgwTUwPNw7Y3yOQ7FK
-         B92eqDgzstYHO6cqprC2UijfP2gaD4bDhEnoVNSoyYMcFLPuOdC0V5Relb4bER72mEGV
-         S8pHdaG7/Mqc/tu4g4jWlj16mq+Witg8pFmU7Kzzr4DLs22qrT91p5iD8NczDt6l0U36
-         rYRI675qSPdShr0SFtOSZUEwbLF8ETLnwBjJO0Oj9LPYykzd+gslCNvXWGGAPl9TzQ9C
-         BrZg==
-X-Forwarded-Encrypted: i=1; AFNElJ+HJ1atvalkuKy0SfZVhYx0sQhHGBegjT8p9QXO86qSZW0DeS68PLIrsbRyvY3tYdlcpfKhWQV3X/HE@vger.kernel.org
-X-Gm-Message-State: AOJu0YytX3x5VqUlpGoqHCq+uvcryThjDbLN2hV5IW9A3MqdrhvQc1wg
-	SWBR/BH6cxOTx0a5j9QtQfsLdJ07nsm+ixmGVX5wERJ4XrtPlyeXELilN9DM53tIAd8=
-X-Gm-Gg: Acq92OGkgQUAW6qsTlRmEwZpg29/+zlu3hterqJIPIDAZNmoZF8ktzCeeYSf4OEUZzj
-	6+l+KEBDeyBd75b0KCC3ZUbnBDZ4ahzBT1raEwsCBeaDgdfWmlPhaiTalQGeHMeau0XhL5yPcH3
-	30GI0T5tF/9gVH5nI0xsPyViOgYq2EyY2bQNRAUnFTZVmFWDVNBQDyQb7pkoX8wi4sbhtXhIuLw
-	kKjGeEwUtKporUQdzPVtbOB6v2e9NIZ6iAerP6+3TavKXtHF3C4fSyupkc13yme13HSXxCqukDr
-	xti9u55FAw5o44kkb7GOxU+VxA5kR7sUBh8uFskD+GddxLRVY1gnYaPX7w+Yscs/05fDbk4K/S9
-	ThUdYbbL8X81MHd10ODq1xJsmJeSTBNCoA9qJFxGVKiPqHpmXaXXUk2IrIqiFMpFg9NH5kxMvrN
-	+O68Wrj+QtpKl0Yk5f84zJPcc=
-X-Received: by 2002:a17:903:3890:b0:2bc:b80f:677e with SMTP id d9443c01a7336-2c69a1965ddmr27832715ad.25.1781597950906;
-        Tue, 16 Jun 2026 01:19:10 -0700 (PDT)
-Received: from localhost ([122.172.82.94])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c4327ac631sm124267105ad.44.2026.06.16.01.19.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Jun 2026 01:19:10 -0700 (PDT)
-Date: Tue, 16 Jun 2026 13:49:07 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Shuwei Wu <shuwei.wu@mailbox.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@kernel.org>, 
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] cpufreq: spacemit: Add K1 cpufreq driver
-Message-ID: <nffvtnb765pa72xcfhmxe3wepxpld3e6265s7imvldbwounkzk@jmrrhtrwau34>
-References: <20260612-shadow-deps-v3-0-2f3ba88611ff@mailbox.org>
- <20260612-shadow-deps-v3-1-2f3ba88611ff@mailbox.org>
- <bd4s2icqgusnuujvrpoag4cniy3g2e4bumecqxt5yffl77aqpq@kxg4dj4c2wk3>
- <DJ9EFPG561VZ.1WGRYYHJ2W9J9@mailbox.org>
- <wjwkykv555gkeqxabsqcdfn4lomcopawsv7bgm4bydc5likhjs@p3ca3p7wbri5>
- <DJ9M2IDYE6XZ.20RN5AFBYNB9Y@mailbox.org>
+	s=arc-20240116; t=1781598072; c=relaxed/simple;
+	bh=0K2xAOUEUd6OJytadlo69+09JQ9vsecAOvXvGOp5mkM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uGHG7V7NN2q9bouuO9qLuQ/Hvsg3uYsI0E4UhopNvrmyDg8sz7P2dyAE0TSPgO3pF8gSX7GTsOFpfZ2BhHDPhkkwi/qsZYx0BM5ffyQ+lXFsf2uBcqTK9ws5FHSOjtF9GBOXzVDKgi4kk6GmbiuZsvw+575Iqbu8lufUhfDsA/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VvpG3pL4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0A8C9C2BCB7;
+	Tue, 16 Jun 2026 08:21:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781598072;
+	bh=0K2xAOUEUd6OJytadlo69+09JQ9vsecAOvXvGOp5mkM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=VvpG3pL4jUCFHU3txGOqhIDzqU153MIOLM3zYYnIZ6nYSvs0671uWfmuji2IYJlOg
+	 wv38gT4Ppx4/EkgXojFro8Lqa2YZlEkX1UCe3BDqD31Yc8zZaH/ebDGEklzvKrjTnb
+	 oezrK8Ax1m7I+LAIxaD2rm8+JZu2TD182wGhtmrffw/2Ukb4I+ZBfMNr9La1+3osk2
+	 v9NgIDPYtf8vcpMqjPjQ3NN8NkF4FCyxJ+NqKObVmVsBcb9QoP1R4oLIzMwLr1yghd
+	 0GyLBiyoIY0HtLcXO5IwjPnAvmRzIJdC9LkPOlCFy+T13hVxfMa083NFV5akiddiOp
+	 wM6oHk+LDQ3Og==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB9A9CD98E0;
+	Tue, 16 Jun 2026 08:21:11 +0000 (UTC)
+From: Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Subject: [PATCH v3 00/12] New features for the AD5686 IIO driver
+Date: Tue, 16 Jun 2026 09:21:06 +0100
+Message-Id: <20260616-ad5686-new-features-v3-0-f829fb7e9262@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DJ9M2IDYE6XZ.20RN5AFBYNB9Y@mailbox.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHIHMWoC/33NTQ6CMBCG4auQWVvTHyjgynsYF6UdoIm2psWqI
+ dzdwkoT4/L9knlmhojBYoRDMUPAZKP1LofYFaBH5QYk1uQGTrmkknKiTCUbSRw+SI9qugeMBBm
+ TmpadMV0L+fIWsLfPTT2dc482Tj68tieJret/LzFCiWwZUtY0wvD6qJy6+GGv/RVWMPFPpP2N8
+ IzUtCu56CtdS/OFLMvyBhZ/ni/8AAAA
+X-Change-ID: 20260602-ad5686-new-features-e116c04bddb9
+To: Michael Auchter <michael.auchter@ni.com>, linux@analog.com, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Rodrigo Alencar <rodrigo.alencar@analog.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Maxwell Doose <m32285159@gmail.com>, 
+ Joshua Crofts <joshua.crofts1@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781598070; l=2775;
+ i=rodrigo.alencar@analog.com; s=default; h=from:subject:message-id;
+ bh=0K2xAOUEUd6OJytadlo69+09JQ9vsecAOvXvGOp5mkM=;
+ b=oA8k08wG4lB9+JIFlq4UGC0rbvnpmMGTO163L/J0H8IClDcBdVWJRTIsJXVPYQwx/rof4hcpM
+ YbZ1hFsYuhYC5G0N0TRjO9NzjEGtQ4+IkTmVkgXA3z6u9NUi4JVgMTW
+X-Developer-Key: i=rodrigo.alencar@analog.com; a=ed25519;
+ pk=ULeHbgU/OYh/PG/4anHDfLgldFItQHAhOktYRVLMFRo=
+X-Endpoint-Received: by B4 Relay for rodrigo.alencar@analog.com/default
+ with auth_id=561
+X-Original-From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+Reply-To: rodrigo.alencar@analog.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-312351-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-312354-lists,devicetree=lfdr.de,rodrigo.alencar.analog.com];
+	FORGED_RECIPIENTS(0.00)[m:michael.auchter@ni.com,m:linux@analog.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:Michael.Hennerich@analog.com,m:jic23@kernel.org,m:dlechner@baylibre.com,m:andy@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:kees@kernel.org,m:gustavoars@kernel.org,m:rodrigo.alencar@analog.com,m:conor.dooley@microchip.com,m:m32285159@gmail.com,m:joshua.crofts1@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:joshuacrofts1@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:shuwei.wu@mailbox.org,m:rafael@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:pjw@kernel.org,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:dlan@kernel.org,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:spacemit@lists.linux.dev,m:devicetree@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[viresh.kumar@linaro.org,devicetree@vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[viresh.kumar@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FREEMAIL_CC(0.00)[analog.com,kernel.org,baylibre.com,pengutronix.de,microchip.com,gmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linaro.org:dkim,linaro.org:from_mime]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	HAS_REPLYTO(0.00)[rodrigo.alencar@analog.com];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:replyto,analog.com:email,analog.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E509068D175
+X-Rspamd-Queue-Id: 2BA7068D1A1
 
-On 15-06-26, 20:11, Shuwei Wu wrote:
-> With two cpufreq-dt policies (one per cluster) and these ranges, neither cluster
-> blocks the other. Tested on BPI-F3 and OrangePi Rv2 boards, works as expected.
-> 
-> Does this look good to you, or would you prefer a different approach?
+This is the second series of three on updating the AD5686 driver.
 
-Looks correct.
+Initially, a big patch series was sent:
+https://lore.kernel.org/r/20260422-ad5313r-iio-support-v1-0-ed7dca001d1b@analog.com
 
+Then, the first patch series added fixes and cleanups:
+https://lore.kernel.org/linux-iio/20260524-ad5686-fixes-v7-0-b6bf395d08bd@analog.com/
+
+This one is introducing new features:
+- Consume optional reset and correct power supplies;
+- LDAC GPIO handling (active-low, held low when unused);
+- SPI bus sync() implementation for batching multiple transfers;
+- Triggered buffer support, leveraging LDAC and sync() to flush
+  all channel writes atomically;
+- Gain control support through the scale property.
+
+Signed-off-by: Rodrigo Alencar <rodrigo.alencar@analog.com>
+---
+Changes in v3:
+- Add range-double property.
+- Acquire reset control after power-up delay.
+- Include cleanup.h and use guard(mutex)() in read_raw().
+- Link to v2: https://lore.kernel.org/r/20260609-ad5686-new-features-v2-0-70b423f5c76d@analog.com
+
+Changes in v2:
+- Get reset control deasserted.
+- Update entire spi_transfer struct rather than individual fields.
+- Replace udelay() for fsleep() in probe().
+- Minor changes addressing further feedback.
+- Link to v1: https://lore.kernel.org/r/20260602-ad5686-new-features-v1-0-691e01883d27@analog.com
+
+---
+Rodrigo Alencar (12):
+      dt-bindings: iio: dac: ad5696: add reset/ldac/gain support
+      dt-bindings: iio: dac: ad5696: rework on power supplies
+      dt-bindings: iio: dac: ad5686: add reset/ldac/gain support
+      dt-bindings: iio: dac: ad5686: rework on power supplies
+      iio: dac: ad5686: add support for missing power supplies
+      iio: dac: ad5686: consume optional reset signal
+      iio: dac: ad5686: add ldac gpio
+      iio: dac: ad5686: introduce sync operation
+      iio: dac: ad5686: implement new sync() op for the spi bus
+      iio: dac: ad5686: add triggered buffer support
+      iio: dac: ad5686: read_raw/write_raw: use guard(mutex)()
+      iio: dac: ad5686: add gain control support
+
+ .../devicetree/bindings/iio/dac/adi,ad5686.yaml    |  72 +++++-
+ .../devicetree/bindings/iio/dac/adi,ad5696.yaml    |  75 ++++++-
+ drivers/iio/dac/Kconfig                            |   2 +
+ drivers/iio/dac/ad5686-spi.c                       | 121 +++++++---
+ drivers/iio/dac/ad5686.c                           | 249 +++++++++++++++++++--
+ drivers/iio/dac/ad5686.h                           |  33 ++-
+ drivers/iio/dac/ad5696-i2c.c                       |   2 +-
+ 7 files changed, 492 insertions(+), 62 deletions(-)
+---
+base-commit: ae696dfa47c30016cd429b9db5e70b259b8f509e
+change-id: 20260602-ad5686-new-features-e116c04bddb9
+
+Best regards,
 -- 
-viresh
+Rodrigo Alencar <rodrigo.alencar@analog.com>
+
+
 
