@@ -1,133 +1,208 @@
-Return-Path: <devicetree+bounces-312632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312633-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id F4bMEmp3MWo3kAUAu9opvQ
-	(envelope-from <devicetree+bounces-312632-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:18:50 +0200
+	id z0WYDA10MWrnjgUAu9opvQ
+	(envelope-from <devicetree+bounces-312633-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:04:29 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA9B2691EC1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:18:49 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F2C691A95
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:04:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZVIlwhd6;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312632-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312632-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=VPMltQWM;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312633-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-312633-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F20253145278
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 16:01:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 46CB3303C288
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 16:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1C6046AF15;
-	Tue, 16 Jun 2026 15:59:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78554657E7;
+	Tue, 16 Jun 2026 16:03:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99BCC4657CF;
-	Tue, 16 Jun 2026 15:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3AA44534B4;
+	Tue, 16 Jun 2026 16:03:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781625599; cv=none; b=fUTAo0YpOAVhLh7DckObDfMASRpj1+a1AV07LKD1Ki7b7Fn+Cy4cJ9GF4QGAhZOzInKQOQvvWm0feCLqsEdtbzqxOdQrY/QtL1RLf/Q8+gadOnbWQJqnOAuvWcolki2RpVifADXysl+ikuhiuJV1eNXuoSSSXJVviIICmN2hPhM=
+	t=1781625820; cv=none; b=RBbYss0jONKpif3W/IfJ6Pae4+BEjgJUeQqeEAK5YxcvH2PecWuTtfrx+O/vDT0qYycRQXJ8BaY1JSycsiEva7mZMYV5WJzMi95MhLTUoM9lJ5jxo0FFgfZIpw4vspGvguMAnn7fj2jTqpTrCvxjl7kfntme5r2MQbMJrlJ5wio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781625599; c=relaxed/simple;
-	bh=RIse3iwtT2+Os5evlGt3yi2fypjT2QT8SgerPML2hCA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e7H35DusHHgJouJ0Qt9vvgLqfisn7KFGulBBrtzQaDVyU3WOmbPgHuYhND7MlM8Q8bzCbJUp8ykd6bUwFdrSDTzaGeJK4lzemz1I6ZcWEomjMQVHEuOGzJ3MG/5FvGSfFIMgG/4UNGUr+2NnShpM+h/bkMYb2HKvEoS4cLC4Uro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZVIlwhd6; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F00A31F00A3A;
-	Tue, 16 Jun 2026 15:59:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781625598;
-	bh=RIse3iwtT2+Os5evlGt3yi2fypjT2QT8SgerPML2hCA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ZVIlwhd6oD9IM9hhq5ifVe+dQbWEypsk7MvrPoQ2DIj+CRLFkMXl+uddZ/IeXoUXw
-	 Ds3gOZI6riFQezdvBQmcNg+WuPytgkqRr1OULzZqCDqHBYvdtCGQglpJI2rTDNn0ot
-	 AQDV030F2Ul9tFkcYm86ptat4zuo/XbkBo1ZuvO3iJwwgyv6V65xaGLv56N7F7fRd/
-	 GR9wT6b0BkcRKW6NDH0yz3chjaWNV4h7KAC4xQoJN84gvASWUe+wYx4F2U2pOIZGBN
-	 DFGckWFG17boMCTZdPEDRFotpe1siIgTvppyMACFl/J6znVoICieUGDYbCCq1IZI2F
-	 iK7zZ7fJOZ86w==
-Date: Tue, 16 Jun 2026 16:59:53 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: aspeed,ast2700-soc1: Add
- JTAGM1TRST group
-Message-ID: <20260616-surgery-fritter-8583b091fd6b@spud>
-References: <20260616-pinctrl-fix-v1-0-621036e45c7c@aspeedtech.com>
- <20260616-pinctrl-fix-v1-1-621036e45c7c@aspeedtech.com>
+	s=arc-20240116; t=1781625820; c=relaxed/simple;
+	bh=Lm+krQRjayssExG5JKt1/LRyEma2hsrgqQChmyPz9GQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Gco65HRVmDHUswiQgXfs6JyTxj5KYPsX5NtG4SiJqeN0b/XLm2JPh1LDYb6TpaRRYUE08P0SDiBA0Qw65fGYMpPKIPlYrlSwyBEbOrHK4WzN1p3jvZnJ8+VqnOBvJLwnM2aMfmt4ARPlhY9jvLgPfwHcMTeqhGPyBbTQOehgdAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VPMltQWM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7C364C2BCB8;
+	Tue, 16 Jun 2026 16:03:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781625820;
+	bh=Lm+krQRjayssExG5JKt1/LRyEma2hsrgqQChmyPz9GQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=VPMltQWMtWhWgtF/99+HdOMhA/QsErmgWRfCkF7CiJJNcKc/2YXL0uSgZhkEeYjEv
+	 FwG9Mu40OpHDyNhUWVlFYmgr6oKOPgw5nzB+I+eiz5B9WLOlhAHsN7sq6Sbhn/hbYM
+	 s4nu6zyF7g1meFrJmB9iNfojGC7BXEZCVNkGOgIYyD8dYBszZPcDBLcP+sZd+bZqNS
+	 WQYjUBJEkGQ/mfcN9Zpu/VZROMJomlxfb/3udyQESEYyPxST+SHudlym4+OhCGzqrb
+	 ukwxUsF/C3Mmd9aSNoM1eA5jixeZbjaS30xF8PvANazjRuFc+YQG2JxtNs83LapYAd
+	 A45hbM5SeJ4EA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B0A8CD98E3;
+	Tue, 16 Jun 2026 16:03:40 +0000 (UTC)
+From: Aleksa Paunovic via B4 Relay <devnull+aleksa.paunovic.htecgroup.com@kernel.org>
+Subject: [PATCH v9 0/3] riscv: Use GCR.U timer device as clocksource
+Date: Tue, 16 Jun 2026 18:03:36 +0200
+Message-Id: <20260616-riscv-time-mmio-v9-0-03af7bc8f2d8@htecgroup.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sLe+DVJgetvs8zz8"
-Content-Disposition: inline
-In-Reply-To: <20260616-pinctrl-fix-v1-1-621036e45c7c@aspeedtech.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANhzMWoC/23QwU7DMAwG4FeZcibIMYnrcOI9EIeQOGsOXae0V
+ KCp7042hHpoj78lf7/lm5qkFpnU6+mmqixlKuOlBf90UrEPl7PoklpWCOjAotW1THHRcxlED0M
+ ZtSNkgRwDh6za1rVKLt8P8f2j5b5M81h/HgWLvU//LGf21mI16PgJMaNHTERv/SzxXMev63McB
+ 3X3FrcZnTF7wzXDSzKZ0YXk5MigzWCgvUHNwJRBGI33no+M7t8geDm6o2sGGGLrAmSGQ4M3gwz
+ sDW5GYHIIRJ2Lu3+s6/oL21eN5MIBAAA=
+X-Change-ID: 20250424-riscv-time-mmio-5628e0fca8af
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Paul Walmsley <pjw@kernel.org>, 
+ John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, 
+ Djordje Todorovic <djordje.todorovic@htecgroup.com>, 
+ Aleksa Paunovic <aleksa.paunovic@htecgroup.com>, 
+ Chao-ying Fu <cfu@mips.com>, Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781625819; l=3478;
+ i=aleksa.paunovic@htecgroup.com; s=20250806; h=from:subject:message-id;
+ bh=Lm+krQRjayssExG5JKt1/LRyEma2hsrgqQChmyPz9GQ=;
+ b=Qhrht9GqE5dC6OTAM5Gv9kdg5UsA1In97bbogP5vzChL2CCQ/MR8qFAbsXZdIqJsGkNFN/OnU
+ 2hDRxlBvpm7CZ3PUaFE00z/48DwTYLcy1yRfzxLBtgMAJ8wtpWUl3NQ
+X-Developer-Key: i=aleksa.paunovic@htecgroup.com; a=ed25519;
+ pk=Dn4KMnDdgyhlXJNspQQrlHJ04i7/irG29p2H27Avd+8=
+X-Endpoint-Received: by B4 Relay for aleksa.paunovic@htecgroup.com/20250806
+ with auth_id=476
+X-Original-From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+Reply-To: aleksa.paunovic@htecgroup.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.26 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-312633-lists,devicetree=lfdr.de,aleksa.paunovic.htecgroup.com];
+	FORGED_RECIPIENTS(0.00)[m:daniel.lezcano@linaro.org,m:tglx@linutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:paul.walmsley@sifive.com,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:pjw@kernel.org,m:jstultz@google.com,m:sboyd@kernel.org,m:wangruikang@iscas.ac.cn,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:djordje.todorovic@htecgroup.com,m:aleksa.paunovic@htecgroup.com,m:cfu@mips.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_RECIPIENTS(0.00)[m:billy_tsai@aspeedtech.com,m:andrew@codeconstruct.com.au,m:linusw@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:joel@jms.id.au,m:linux-aspeed@lists.ozlabs.org,m:openbmc@lists.ozlabs.org,m:linux-gpio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312632-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	HAS_REPLYTO(0.00)[aleksa.paunovic@htecgroup.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[spud:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,microchip.com:email]
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,vger.kernel.org:from_smtp,htecgroup.com:replyto,htecgroup.com:email,htecgroup.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AA9B2691EC1
+X-Rspamd-Queue-Id: C8F2C691A95
+
+This series adds bindings for the GCR.U timer device and corresponding
+driver support. Accessing the memory mapped shadow of the mtime register
+in the GCR.U region should be faster
+than trapping to M mode each time the timer needs to be read.
+The timer device does not implement any interrupts, therefore the
+timer-riscv clockevent implementation should suffice.
+
+We tested the patchset both on QEMU and the Boston board with the P8700 bitfile:
+- v7, v8 testing:
+  - Coremark and timer kselftests on QEMU emulating an 8 core CPU
+  - Coremark and timer kselftests on the Boston board with a single core CPU.
+
+Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+Signed-off-by: Djordje Todorovic <djordje.todorovic@htecgroup.com>
+Signed-off-by: Chao-ying Fu <cfu@mips.com>
+---
+Changes in v9:
+- Fix timer base address in dt-bindings
+- Link to v8: https://lore.kernel.org/r/20260610-riscv-time-mmio-v8-0-a865206675c6@htecgroup.com
+
+Changes in v8:
+- Make the 64 bit timer mmio reads and the main timer driver depend on CONFIG_64BIT
+- Add timer_of_cleanup to the driver code
+- Link to v7: https://lore.kernel.org/r/20260311-riscv-time-mmio-v7-0-016845a0f808@htecgroup.com
+
+Changes in v7:
+- Replace the previous implementation with a new timer driver for mips,p8700-gcru
+- Add a patch for 64bit reads for timer mmio
+- Link to v6: https://lore.kernel.org/r/20250806-riscv-time-mmio-v6-0-2df0e8219998@htecgroup.com
+
+Changes in v6:
+- Rename mti,gcru to mips,p8700-gcru
+- Link to v5: https://lore.kernel.org/r/20250711-riscv-time-mmio-v5-0-9ed1f825ad5e@htecgroup.com
+
+Changes in v5:
+- Fixed build issues on 32-bit RISC-V and sparse warnings
+- Remove clint_time_val and clint.h, replace with riscv_time_val
+- Depend on RISCV_TIMER in Kconfig
+
+Changes in v4:
+- Remove "select" from mti,gcru.yaml.
+- Refactor the driver to use function pointers instead of static keys.
+
+Previous versions:
+v1: https://lore.kernel.org/lkml/20241227150056.191794-1-arikalo@gmail.com/#t
+v2: https://lore.kernel.org/linux-riscv/20250409143816.15802-1-aleksa.paunovic@htecgroup.com/
+v3: https://lore.kernel.org/linux-riscv/DU0PR09MB61968695A2A3146EE83B7708F6BA2@DU0PR09MB6196.eurprd09.prod.outlook.com/
+v4: https://lore.kernel.org/r/20250514-riscv-time-mmio-v4-0-cb0cf2922d66@htecgroup.com
+v5: https://lore.kernel.org/r/20250711-riscv-time-mmio-v5-0-9ed1f825ad5e@htecgroup.com
+v6: https://lore.kernel.org/r/20250806-riscv-time-mmio-v6-0-2df0e8219998@htecgroup.com
+v7: https://lore.kernel.org/r/20260311-riscv-time-mmio-v7-0-016845a0f808@htecgroup.com
+v8: https://lore.kernel.org/r/20260610-riscv-time-mmio-v8-0-a865206675c6@htecgroup.com
+
+---
+Aleksa Paunovic (3):
+      dt-bindings: timer: mips,p8700-gcru
+      riscv: clocksource: Add readq options to clocksource mmio
+      riscv: clocksource: Add p8700-gcru driver
+
+ .../devicetree/bindings/timer/mips,p8700-gcru.yaml | 38 +++++++++++++++++
+ drivers/clocksource/Kconfig                        |  9 +++++
+ drivers/clocksource/Makefile                       |  1 +
+ drivers/clocksource/mmio.c                         | 14 +++++++
+ drivers/clocksource/timer-p8700.c                  | 47 ++++++++++++++++++++++
+ include/linux/clocksource.h                        |  4 ++
+ 6 files changed, 113 insertions(+)
+---
+base-commit: ac3fd01e4c1efce8f2c054cdeb2ddd2fc0fb150d
+change-id: 20250424-riscv-time-mmio-5628e0fca8af
+
+Best regards,
+-- 
+Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
 
 
---sLe+DVJgetvs8zz8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
-
---sLe+DVJgetvs8zz8
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCajFy+QAKCRB4tDGHoIJi
-0nyzAQD/cfSEv7EyKRM044BXBjhasA9Yr52g/vKaTKlxcUnd+gD/dLz2G4ZVL2LX
-+vn4OonXgVtVBt+atEzn1pOoaRvRjAk=
-=uh/e
------END PGP SIGNATURE-----
-
---sLe+DVJgetvs8zz8--
 
