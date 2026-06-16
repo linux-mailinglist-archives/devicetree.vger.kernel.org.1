@@ -1,55 +1,54 @@
-Return-Path: <devicetree+bounces-312502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312505-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Gv5tDGA5MWqLeQUAu9opvQ
-	(envelope-from <devicetree+bounces-312502-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:54:08 +0200
+	id r1l8GyY6MWrZeQUAu9opvQ
+	(envelope-from <devicetree+bounces-312505-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:57:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF9D68EF82
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:54:07 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DF4D68F042
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:57:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=fris.de header.s=mail header.b=3X3MkwZY;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312502-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312502-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=fris.de header.s=mail header.b=Qxyzka9Z;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312505-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312505-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=fris.de;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 401E93002F59
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 11:54:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E9BBB303989E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 11:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7C5743CEED;
-	Tue, 16 Jun 2026 11:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2092B43D4EA;
+	Tue, 16 Jun 2026 11:54:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D6343C054;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78CE043C06B;
 	Tue, 16 Jun 2026 11:54:00 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781610841; cv=none; b=G1nyMR0jgsi3XBs9RsHZSHoNFWAB81yZkTjdlDYuJ8nRjlRP9LI4fXj7mWc+R4b04fOweNsshvg8eZrMY1FbroXv+bi9JnrAij7I+eSJOdodzKmAoPI6HcFTMBN5ePY38XeBayr/U9AlUoMD5P2/vMufAgCievm+KRXXGPRc/5U=
+	t=1781610842; cv=none; b=tWYMUtxPmzO9IhmmDv9j+cdYZ50bNPTZ4c1tfuYdbfN7AfB4cKRZ8wxxMr3nmbSikzh1j47kmCYIbsZkiQQs390nSaFbT9CvZdrGXXZVX2BxKmOICrogw9pBoheGnzAR0ranxmKm/t6tKNEy87MjryTCJgzxT4Ct2G85Q3iy1Ew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781610841; c=relaxed/simple;
-	bh=ZMEnSpVZGDO4LdMl3ZPXZTbyqR1nlN1yXSB75VPmTco=;
+	s=arc-20240116; t=1781610842; c=relaxed/simple;
+	bh=jqkPdWeQfFtaagx/2jGcVuuF0/sZMe0PHDnaqZc4tXk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=p5G+mqq2Es4hLigdh54XabA4YTS3/4vMjXdRE3aE5vH8/ptIg1kmth9dBTKISVh04TX2/hfO0lCs/nazoQYgxNu+YJcv//2/aOysfelIiouqPnhyuTTmIk0nLU8WawcL0YA3tN8nXLSISP+IVhiehjb9mu4Zng02+Nu5mF36qYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=3X3MkwZY; arc=none smtp.client-ip=116.203.77.234
+	 In-Reply-To:To:Cc; b=TgrhiaLovqzgBq9RWJSSAjEUtyWAs6sR4raaEhgGlaCtu9NrZvaT76Tfpi45VvQ2cEKYTzmoEvCrxWAoMZqJd4aAKnkAbKrxpsMThmT5Ue0D36HePCjKJk+Neb64wgR3ABo2tnEM4Shh5D8iddR6c5wNwTL+LKAi5APpaBWirVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=Qxyzka9Z; arc=none smtp.client-ip=116.203.77.234
 From: Frieder Schrempf <frieder@fris.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=mail;
-	t=1781610838;
+	t=1781610839;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=CC4pQBR74mo53LWq+yitH7clGdozvjJ29YJSAet9JCI=;
-	b=3X3MkwZYmEY3JDXqi91Ov31Yxx3tk6Y2gflCc/3A0XqIeUg69oEf5IRIo/O57dI+LStLVu
-	+w9dK2Mtl2t4QksPbi8Gie/qYBGVAt8P52//iENHhH6mxeIgAnkGW1Q8rt0cEkMpOCuAq2
-	ebZiCgnINDQzANBUBsAIaFdiTiy+Hl2FAZD3YK1QsozYLRyBrJM4yz+m1FcjJrKvS6zMIO
-	9XVe+msJrnlkxtTUp4qJHZLA25ZzreUXK27+O+RHjpj3obXzLekzoj0UZKPiiVLzdNmIV8
-	DCzqh8vlo/TBuHXAB+C3VC/ipDxlIMg1EKg8FyxVnvBsSRp7xWceU6V9hqWVZQ==
-Date: Tue, 16 Jun 2026 13:52:16 +0200
-Subject: [PATCH 1/9] dt-bindings: nvmem: imx-ocotp: Add support for
- secure-enclave
+	bh=dNVJXmnbo2ErI8XUBjroeAaAGQ/OI0+FqeSb9lvbJmo=;
+	b=Qxyzka9Z2/BfResNZYKxeAS+6gSafg+yztGnXQMcHZo9Dr6y0qa9ci+UVp/FK/QcoZ2UYI
+	c4u+n/DEcnVFu+P/UytMaYIdU78CxlcI9A+dbnoL1cxpQYxxCUqyrxddTvTLtwpe3kBHUK
+	RgZWBkpfg+XJLq/SCe44g9Xgqi6lzb8fTI6+QVNtMx+yzrAan8UepJV8FeCkLF+8dt2U1g
+	MsfxFvNjVvBIjrF7MGIpR2+7VhS22IVFOK6hfc8IkvoLakNiqZTHhoOQMZYJcpFryOpRzM
+	LYvxPB9EIAybY1c2oUj8IjdvNo3KtAqyCU8NjjixSd5oLLbIT2175aFxysrd4w==
+Date: Tue, 16 Jun 2026 13:52:17 +0200
+Subject: [PATCH 2/9] firmware: imx: ele: Fix indentation in ele_base_msg.h
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260616-upstreaming-next-20260609-imx-ocotp-ele-v1-1-cb7f3698c3e6@kontron.de>
+Message-Id: <20260616-upstreaming-next-20260609-imx-ocotp-ele-v1-2-cb7f3698c3e6@kontron.de>
 References: <20260616-upstreaming-next-20260609-imx-ocotp-ele-v1-0-cb7f3698c3e6@kontron.de>
 In-Reply-To: <20260616-upstreaming-next-20260609-imx-ocotp-ele-v1-0-cb7f3698c3e6@kontron.de>
 To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -70,13 +69,13 @@ To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
 Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Frieder Schrempf <frieder.schrempf@kontron.de>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=901;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1529;
  i=frieder.schrempf@kontron.de; h=from:subject:message-id;
- bh=QWE1SsXb2/HbH2oV2EUZBTZVKiDh9e7EbFlxADzOCVQ=;
- b=owGbwMvMwCWWWSatKlDTJMZ4Wi2JIcvQMmRS8H5Ble8enx50TKutvRaY3vvj154Mjb6XCnlCn
- yRSb3N2lLIwiHExyIopskjxW7y2NYv1kT9WHQUzh5UJZAgDF6cATMSigeE3+4qQw6Y7WZj3VjZ8
- k5teckRNq++CXt6E0B3TtgqVnJWNYvjvX3+V0XrTAZ83f1UPVr1fu/yMtMAGodLzj2p5wiNs5A+
- wAgA=
+ bh=9BlIi1Wa2vPpEtoll5ZFZen/fKfIAcvcQG9oPp3xYGQ=;
+ b=owGbwMvMwCWWWSatKlDTJMZ4Wi2JIcvQMnSl9XSvuvQF+jypDx44fXb3E6xwrjS8mSqq8Un8d
+ OeuprMdpSwMYlwMsmKKLFL8Fq9tzWJ95I9VR8HMYWUCGcLAxSkAEznZyMhw/2I5e9annUfSq4vM
+ zCztzzCl3A9hepe3QHjNd/9ZMk0nGP4KSSdW32C7GmpmxSp38NZZtr0/W1/uUy5nN9x+/2SyoBM
+ vAA==
 X-Developer-Key: i=frieder.schrempf@kontron.de; a=openpgp;
  fpr=1A0F38EB3D365D4C1FC67B5A69761B25107C8216
 X-Rspamd-Action: no action
@@ -84,7 +83,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[fris.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[fris.de:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -99,7 +98,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_SENDER(0.00)[frieder@fris.de,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312502-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312505-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[fris.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -110,37 +109,52 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,fris.de:dkim,fris.de:from_mime]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fris.de:dkim,fris.de:from_mime,kontron.de:mid,kontron.de:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3AF9D68EF82
+X-Rspamd-Queue-Id: 1DF4D68F042
 
 From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Some SoCs like the i.MX9 family allow full access to the fuses only
-through the secure enclave firmware API. Add a property to reference
-the secure enclave node and let the driver use the API.
+The file uses mixed indentation characters. Use tabs everywhere.
 
 Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 ---
- Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/firmware/imx/ele_base_msg.h | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml b/Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml
-index a8076d0e2737..14a6429f4a4c 100644
---- a/Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/imx-ocotp.yaml
-@@ -53,6 +53,10 @@ properties:
-   reg:
-     maxItems: 1
+diff --git a/drivers/firmware/imx/ele_base_msg.h b/drivers/firmware/imx/ele_base_msg.h
+index 75e65e279193..1c5d6791b323 100644
+--- a/drivers/firmware/imx/ele_base_msg.h
++++ b/drivers/firmware/imx/ele_base_msg.h
+@@ -27,19 +27,19 @@
+ #define ELE_GEN_KEY_BLOB_REQ		0xaf
+ #define ELE_GET_FW_STATUS_REQ		0xc5
+ #define ELE_XIP_DECRYPT_REQ		0xc6
+-#define ELE_WRITE_FUSE                  0xd6
+-#define ELE_DEV_ATTEST_REQ              0xdb
+-#define ELE_WRITE_SHADOW_FUSE_REQ       0xf2
+-#define ELE_READ_SHADOW_FUSE_REQ        0xf3
++#define ELE_WRITE_FUSE			0xd6
++#define ELE_DEV_ATTEST_REQ		0xdb
++#define ELE_WRITE_SHADOW_FUSE_REQ	0xf2
++#define ELE_READ_SHADOW_FUSE_REQ	0xf3
  
-+  secure-enclave:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: A phandle to the secure enclave node
-+
-   clocks:
-     maxItems: 1
+ #define ELE_GET_INFO_REQ		0xda
+ #define ELE_GET_INFO_REQ_MSG_SZ		0x10
+ #define ELE_GET_INFO_RSP_MSG_SZ		0x08
  
+-#define MAX_UID_SIZE                     (16)
+-#define DEV_GETINFO_ROM_PATCH_SHA_SZ     (32)
+-#define DEV_GETINFO_FW_SHA_SZ            (32)
+-#define DEV_GETINFO_OEM_SRKH_SZ          (64)
++#define MAX_UID_SIZE			(16)
++#define DEV_GETINFO_ROM_PATCH_SHA_SZ	(32)
++#define DEV_GETINFO_FW_SHA_SZ		(32)
++#define DEV_GETINFO_OEM_SRKH_SZ		(64)
+ #define DEV_GETINFO_MIN_VER_MASK	0xff
+ #define DEV_GETINFO_MAJ_VER_MASK	0xff00
+ #define ELE_DEV_INFO_EXTRA_SZ		0x60
 
 -- 
 2.54.0
