@@ -1,286 +1,235 @@
-Return-Path: <devicetree+bounces-312562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312561-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id COZMCLFSMWoygwUAu9opvQ
-	(envelope-from <devicetree+bounces-312562-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 15:42:09 +0200
+	id MruEHTJSMWoggwUAu9opvQ
+	(envelope-from <devicetree+bounces-312561-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 15:40:02 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B40690070
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 15:42:08 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C73F8690034
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 15:40:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=herrie.org header.s=transip-a header.b="jia1Tl8/";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312562-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312562-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=YW9uIb5y;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312561-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312561-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A263032E45E0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:36:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E7D8E327F4F3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFECA30C345;
-	Tue, 16 Jun 2026 13:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCDAA30B50F;
+	Tue, 16 Jun 2026 13:35:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outbound11.mail.transip.nl (outbound11.mail.transip.nl [136.144.136.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f180.google.com (mail-dy1-f180.google.com [74.125.82.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 420FF302753;
-	Tue, 16 Jun 2026 13:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9112F30569E
+	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 13:35:01 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781616973; cv=none; b=h0wZH/Nt9tkaFsveJXD/VOuPvwnS5oljuo4NwhYFCxdhT4pgiM8uGiFPwILU1NMeLNYdaCLyuQ8rGnJ99JhPjV3gyFOZeINtPNWFfx9dIuDLjcmuBhAToJzgL+vOr8h/iWxAujl7saO52GifythF0XvsyPV/lYwqk0JJrOvlN78=
+	t=1781616903; cv=none; b=VTTbbKVexktpnfWuFn+v9DjD1JX5ltTjXocrCu6rDNgx+6JF9aIJSNrTLvB6PLwqhtVn7lEEVkoCovAbrrhUSFhJhgHghGPT7pFut+M69/U+AGUqvp4VkhNIdv1edGAPR0NLQOaROAPvu4IHnyvIqaF0p+699c8wZwlIdhpjfdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781616973; c=relaxed/simple;
-	bh=alQwayR/ZWd66B+tpmSWDGPSW8rFt3k3UXDfeMFYw+E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WBwJwIMoIOKjgSSdq+VY77S6Tic8kAY4wgpioiAdlwxkqZHIEJz+JzSKKgmKP2UKOGJS/Axyb74TPBTU1nnJ6QtDI41kUcuAuQC1s22eTwJLi2B5EX6vTT3C8fIKsqtYfIMwSBCjntiLYIZypYNFwSrWctFDWewzhdZb7gtQfOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=herrie.org; spf=pass smtp.mailfrom=herrie.org; dkim=pass (2048-bit key) header.d=herrie.org header.i=@herrie.org header.b=jia1Tl8/; arc=none smtp.client-ip=136.144.136.18
-Received: from submission10.mail.transip.nl (unknown [10.103.8.161])
-	by outbound11.mail.transip.nl (Postfix) with ESMTP id 4gfnp72L2LzkQMbd;
-	Tue, 16 Jun 2026 15:26:55 +0200 (CEST)
-Received: from [127.0.1.1] (180-93-184-31.ftth.glasoperator.nl [31.184.93.180])
-	by submission10.mail.transip.nl (Postfix) with ESMTPA id 4gfnp63lDNz1g93PY;
-	Tue, 16 Jun 2026 15:26:54 +0200 (CEST)
-From: Herman van Hazendonk <github.com@herrie.org>
-Date: Tue, 16 Jun 2026 15:26:54 +0200
-Subject: [PATCH v3 2/2] phy: qcom: usb-hs: program MSM8x60 vendor ULPI
- registers on power-on
+	s=arc-20240116; t=1781616903; c=relaxed/simple;
+	bh=8SWr+8yJ64EFlEqK0VHlM86gjkBxaLAQ04nGhLaz2s0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=rBA9rvTJRv+nnKS3/Dbba1JWU3SCHJ6YnmD8slNSluhR4NkniVgARsF/PlqSWFSiUDdS8hB8Xyz/YGhDxQ2cSt62O7ZAqQTsmKUA4rKToYekpVoN3Rmkstm+5M30277cpoIJ5zPmcZC3sQv4h7frOOUBoBGlIMCuRKQcYcCB6Ic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YW9uIb5y; arc=none smtp.client-ip=74.125.82.180
+Received: by mail-dy1-f180.google.com with SMTP id 5a478bee46e88-304ec41197bso5135025eec.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 06:35:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781616901; x=1782221701; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8zqQ8rKn54gJWMFUFRv0VoaxJmxXkF0GPg+cMV+9gnA=;
+        b=YW9uIb5yI0YZYO/+twnfKfEn1QIfxtG4w9ac36/FNgLhA3P2J94euvLznpTTJ//uWw
+         TzP6ePBce9EJVeLXARWRwG43Gk3bbgXTcOSX5UTQvUyJMj/HqjL50l0yj/+giQvrneR/
+         lbIY534QeKDMgl85lL3idV1JLoHU1RbYyUFvO0VruJnME7YCmxle39AmuaMNeJnVfW0+
+         hQHzd8oLpmooW5dX1h0d1pWQR/ysvrHGeWNcMHm3F1eLeJV6lAPUMPyR3xgVziKVfFw2
+         2ADRC4a9NbKFgYZ2ceT4J9x/iqGRUts2jcXgHnFOaiFo5ekYTTcELKMxx2Cidmi2CP6X
+         ufSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781616901; x=1782221701;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=8zqQ8rKn54gJWMFUFRv0VoaxJmxXkF0GPg+cMV+9gnA=;
+        b=hBpNhaOupp09HFtorqz0QCG+CPXALLjmNbZqSMJ2rAwguiHrxroVgYRwhZEpFWj33r
+         4Qvl1M/Q334W010a7/z7vXULN2q0bgS7khf+ZZYkOfg2qS/kgfffudG4Cr0l3oxnWy81
+         iXwDbl7PgQPE9K4IxAw6mC05vybA5lGiJ9OtblEtv5Vz0LT3n4ABCU4/EkzU1iJkQ8jh
+         ml+qYMrsQ8Y1HxUTVqlD78quqf6cRjJamP2FKH/W5rroGEV8EBlkNArHvHZS94sNIhMA
+         Fl8knbYWwPm4qrJ/seqZoLyVs863jRX9Plfxid4Vfqtaq3dHP1MUK2hna4ryWIba/Br7
+         W6Zw==
+X-Forwarded-Encrypted: i=1; AFNElJ8zO8F7t4KmdbU2qDtp3FVANutV9BA/tuIMqSMoypwwRWRNxvKQb3CUYLiY0f9a5+wh/2LIl/sVeI48@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyqZIVHgEC4YtKyigtuetSCeQT8HK2LsjHRE976nbMrkqNAgvn
+	FpF8OFAzutCrEBd/o84Jz+r5Qx8LCYVJ1wYDaoSI18eFPFTOIs86klF4
+X-Gm-Gg: Acq92OEkZ9FBAw3eXUVbxKbNyVD/XJLvwAtOJ7utLc+w0OZTxezuCtAQgoBTv/NgYkn
+	ht3MqiHTbgia0Xnd0ic1P0cpXvc5L2xJRwwq20bkqrICTJ6zXzZCSsFEynRzb4M4nMPtwedhv1A
+	r0TBuEQhAdaYDW462g+Xl80Ggzx4N05gg5sTRaEFswj4Q0bBRbFD50Uut3oq+orLXD8deM2JlEx
+	cc+Tcs7p4x0nbsdWJ5ENamiMDFbfmNqSbfNDTThHOIN1Z4b0MnZotcWIYPSGUnsvOiYH40hxGZ0
+	xm9PNyaoehJWW4hc9V72pXAs/Y4yWU5nZVehkwZstN1NkPpgxlVNOnx3K8V/zFU1eMvEoaU0Ujc
+	VGR1NzAcydg3mg1xh9nrq8w5Gakc0/fODJT3TD/s821cJ7NSNe8oTzbSWl7r+Xdj/SUZHe17+PN
+	4l2Gwwp4adFWDB4vbseR+5xOeL5Lxg8gI=
+X-Received: by 2002:a05:7300:7b95:b0:2d9:6373:ad24 with SMTP id 5a478bee46e88-30ba5f7020emr2320528eec.26.1781616900579;
+        Tue, 16 Jun 2026 06:35:00 -0700 (PDT)
+Received: from arch.localdomain ([2409:8a28:a52:c491::1002])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-30bbbd636fasm1224226eec.22.2026.06.16.06.34.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Jun 2026 06:35:00 -0700 (PDT)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: conor@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dmitry.torokhov@gmail.com,
+	jerrysteve1101@gmail.com,
+	krzk+dt@kernel.org,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org
+Subject: Re: [PATCH v3 03/10] dt-bindings: input: microchip,cap11xx: Update datasheet URL and LED reg range
+Date: Tue, 16 Jun 2026 21:34:55 +0800
+Message-ID: <20260616133455.426643-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260615-splinter-subtitle-a88cf08320e8@spud>
+References: <20260615-splinter-subtitle-a88cf08320e8@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260616-submit-phy-usb-hs-vendor-init-seq-v3-2-7d21fb1d1484@herrie.org>
-References: <20260616-submit-phy-usb-hs-vendor-init-seq-v3-0-7d21fb1d1484@herrie.org>
-In-Reply-To: <20260616-submit-phy-usb-hs-vendor-init-seq-v3-0-7d21fb1d1484@herrie.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Nathan Chancellor <nathan@kernel.org>, 
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- llvm@lists.linux.dev, Herman van Hazendonk <github.com@herrie.org>, 
- konrad.dybcio@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1781616413; l=5851;
- i=github.com@herrie.org; s=20240417; h=from:subject:message-id;
- bh=alQwayR/ZWd66B+tpmSWDGPSW8rFt3k3UXDfeMFYw+E=;
- b=/b1XhJ0CbraycY+Tqc+AHHmn2cMUfL1CyJDU/KGK7BfqW5rdNmVhpiv27GH+FpI2ht5IlY55T
- c/vgAoihMeNBsD8Zz+d952QpKtoV8GdO4NTuCqvWyJJFTkX+kj69dUX
-X-Developer-Key: i=github.com@herrie.org; a=ed25519;
- pk=YYxdq8fb5O9vhkW3n2dCH044FPZZO5718v/du7fRhFw=
-X-Scanned-By: ClueGetter at submission10.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=herrie.org; t=1781616414; h=from:subject:to:cc:
- references:in-reply-to:date:mime-version:content-type;
- bh=bKwldoJ8S7M88lVIxxOm1g6Eugev8VfNz6lpMmlF2RQ=;
- b=jia1Tl8/MzuqTkDxmvHuhVokyi+UgthIAn+hD6GqloGX8LduoXH7Us2gH9l4LRtFlixNbL
- zog9GRrbcjtILjcD/uCNnGYMiYnGalEfdB6xcIofagKz0C6fchUYio8zl5fVJ7NM3PufJx
- mx9jDq5Fx76S9SVcMBTmaFqK+A1GUAu3PTUfhOQ4taeL8JVNC/kLTg/ie1IvtufYdHqA62
- 3ZaFBClEYiF3pOzL7YjmqOR20kVe1zJft+MT2scztsIav50cqHUPrpMwhJQkFlUl4ayti+
- tpTIsMG7+6QN27Dx9zhFNl8uBhGOZjgaFDF7mPOM3KPVTRGqJEnoLXLvAXDa/Q==
-X-Report-Abuse-To: abuse@transip.nl
+Content-Transfer-Encoding: 8bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[herrie.org:s=transip-a];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-312561-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vkoul@kernel.org,m:neil.armstrong@linaro.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:andersson@kernel.org,m:p.zabel@pengutronix.de,m:nathan@kernel.org,m:nick.desaulniers+lkml@gmail.com,m:morbo@google.com,m:justinstitt@google.com,m:linux-arm-msm@vger.kernel.org,m:linux-phy@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:llvm@lists.linux.dev,m:github.com@herrie.org,m:konrad.dybcio@oss.qualcomm.com,m:dmitry.baryshkov@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,m:nickdesaulniers@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,pengutronix.de,gmail.com,google.com];
-	DMARC_NA(0.00)[herrie.org];
-	FORGED_SENDER(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-312562-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:conor@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:dmitry.torokhov@gmail.com,m:jerrysteve1101@gmail.com,m:krzk+dt@kernel.org,m:linux-input@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:robh@kernel.org,m:dmitrytorokhov@gmail.com,m:krzk@kernel.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[github.com@herrie.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[herrie.org:+];
 	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,lkml];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,microchip.com:url,microchip.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 78B40690070
+X-Rspamd-Queue-Id: C73F8690034
 
-The MSM8x60-class PHY needs three vendor-register tweaks for stable
-USB operation, which the legacy msm_otg driver used to drive from
-board platform data.  A survey of every MSM8x60-class downstream tree
-(Qualcomm SURF/FFA/Fluid/Dragon, Samsung Galaxy S2 family, Sony
-Xperia, HTC MSM8660 ports and HP TouchPad) shows that two of the
-three settings are identical across every board:
+> On Mon, Jun 15, 2026 at 10:20:29PM +0800, Jun Yan wrote:
+> > - Add datasheet links for all supported CAP11xx variants.
+> > - Update LED node regex and replace enum constraints with minimum/maximum
+> >   for LED reg ranges in preparation for CAP1114 support.
+> >=20
+> > CAP1114 has 11 LED channels. minimum/maximum constraints are easier to
+> > maintain than long enum lists when expanding channel count later.
+> >=20
+> > Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+> > ---
+> >  .../bindings/input/microchip,cap11xx.yaml       | 17 ++++++++++++++---
+> >  1 file changed, 14 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.ya=
+> ml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> > index 7ade03f1b32b..9578c7c206a2 100644
+> > --- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> > +++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> > @@ -10,6 +10,15 @@ description: |
+> >    The Microchip CAP1xxx Family of RightTouchTM multiple-channel capaciti=
+> ve
+> >    touch controllers and LED drivers. The device communication via I2C on=
+> ly.
+> > =20
+> > +  For more product information please see the links below:
+> > +    CAP1106: https://ww1.microchip.com/downloads/en/DeviceDoc/00001624B.=
+> pdf
+> > +    CAP1126: https://ww1.microchip.com/downloads/en/DeviceDoc/00001623B.=
+> pdf
+> > +    CAP1188: https://ww1.microchip.com/downloads/en/DeviceDoc/00001620C.=
+> pdf
+> > +    CAP1203: https://ww1.microchip.com/downloads/en/DeviceDoc/00001572B.=
+> pdf
+> > +    CAP1206: https://ww1.microchip.com/downloads/en/DeviceDoc/00001567B.=
+> pdf
+> > +    CAP1293: https://ww1.microchip.com/downloads/en/DeviceDoc/00001566B.=
+> pdf
+> > +    CAP1298: https://ww1.microchip.com/downloads/en/DeviceDoc/00001571B.=
+> pdf
+> > +
+> >  maintainers:
+> >    - Rob Herring <robh@kernel.org>
+> > =20
+> > @@ -124,14 +133,16 @@ properties:
+> >        The number of entries must correspond to the number of channels.
+> > =20
+> >  patternProperties:
+> > -  "^led@[0-7]$":
+> > +  "^led@[0-9a-f]$":
+> 
+> This should be done alongside the cap1114 change, not here I think. The
+> constraint relaxation doesn't make sense because the user is arriving in
+> a later patch.
+> With it moved,
 
-  - reg 0x32 [5:4] = 11b: pre-emphasis level set to 20%
-  - reg 0x36 bit 1 = 1, bit 2 = 1: CDR auto-reset and SE1 gating
-    disabled (the legacy driver inverts these bits, so setting them
-    disables the function)
+Thanks for your review feedback. I'll move this constraint change into 
+the cap1114 patch and update it in v4.
 
-Hardcode those two unconditionally behind the existing
-qcom,usb-hs-phy-msm8660 compatible.  The bit-level documentation
-comes from the Code Aurora downstream header
-arch/arm/mach-msm/include/mach/msm_hsusb_hw.h, which Samsung and HP
-both shipped byte-for-byte identical.
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Although, should it not be led@[0-9a-b] if the max is 11?
+> 
 
-The third setting -- reg 0x32 [3:0] HS driver slope -- is genuinely
-board-specific (HP TouchPad uses 5, HTC MSM8660 ports use 1, every
-Qualcomm/Samsung/Sony reference board leaves the silicon default of
-0) and is consumed from the new qcom,hs-drv-slope DT property.  When
-the property is absent the silicon default is preserved.
+Agreed. I will fix this in v4.
 
-No public Qualcomm documentation describes how the 4-bit slope value
-maps to an actual slew rate, V/ns or %; the field is an opaque
-hardware control whose semantics only Qualcomm knows.  Boards must
-copy the value from their vendor / downstream kernel -- this is a
-measured / tuned-per-layout knob, not a derived one.  We program the
-4 bits verbatim and trust the silicon to do the right thing.
-
-The writes live behind a runtime flag that only matches
-"qcom,usb-hs-phy-msm8660" so the existing MSM8226/8916/8960/8974
-consumers are untouched.  They are issued *after*
-reset_control_reset() so the values survive the register restore the
-reset performs.
-
-Note: HTC MSM8660 vendor kernels additionally write 0x0C to reg 0x31.
-The HP TouchPad webOS kernel does not touch that register and USB is
-stable without it, so those bits are omitted here until documentation
-is available to explain what they control.
-
-Assisted-by: Claude:claude-opus-4-7 sparse smatch clang-analyzer coccinelle checkpatch
-Assisted-by: Sashiko:claude-opus-4-7
-Signed-off-by: Herman van Hazendonk <github.com@herrie.org>
----
- drivers/phy/qualcomm/phy-qcom-usb-hs.c | 68 ++++++++++++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
-
-diff --git a/drivers/phy/qualcomm/phy-qcom-usb-hs.c b/drivers/phy/qualcomm/phy-qcom-usb-hs.c
-index 98a18987f1be..a7649a09e82c 100644
---- a/drivers/phy/qualcomm/phy-qcom-usb-hs.c
-+++ b/drivers/phy/qualcomm/phy-qcom-usb-hs.c
-@@ -20,6 +20,14 @@
- # define ULPI_MISC_A_VBUSVLDEXTSEL	BIT(1)
- # define ULPI_MISC_A_VBUSVLDEXT		BIT(0)
- 
-+/* MSM8x60 vendor ULPI registers (raw addresses, not ULPI_EXT_VENDOR_SPECIFIC). */
-+#define ULPI_MSM_CONFIG_REG3		0x32
-+# define ULPI_MSM_HSDRVSLOPE_MASK	GENMASK(3, 0)
-+# define ULPI_MSM_PRE_EMPHASIS_MASK	GENMASK(5, 4)
-+# define ULPI_MSM_PRE_EMPHASIS_20PCT	(3 << 4)
-+#define ULPI_MSM_DIGOUT_CTRL		0x36
-+# define ULPI_MSM_CDR_AUTORESET		BIT(1)
-+# define ULPI_MSM_SE1_GATE		BIT(2)
- 
- struct ulpi_seq {
- 	u8 addr;
-@@ -37,6 +45,9 @@ struct qcom_usb_hs_phy {
- 	struct ulpi_seq *init_seq;
- 	struct extcon_dev *vbus_edev;
- 	struct notifier_block vbus_notify;
-+	bool msm8x60_init;
-+	bool hs_drv_slope_present;
-+	u8 hs_drv_slope;
- };
- 
- static int qcom_usb_hs_phy_set_mode(struct phy *phy,
-@@ -105,6 +116,41 @@ qcom_usb_hs_phy_vbus_notifier(struct notifier_block *nb, unsigned long event,
- 	return ulpi_write(uphy->ulpi, addr, ULPI_MISC_A_VBUSVLDEXT);
- }
- 
-+/*
-+ * RMW the vendor registers to preserve silicon reserved bits.
-+ * In reg 0x36 the legacy semantics are inverted: setting
-+ * CDR_AUTORESET / SE1_GATE *disables* those functions.
-+ */
-+static int qcom_usb_hs_phy_msm8x60_init(struct qcom_usb_hs_phy *uphy)
-+{
-+	struct ulpi *ulpi = uphy->ulpi;
-+	int reg32, reg36, ret;
-+
-+	reg32 = ulpi_read(ulpi, ULPI_MSM_CONFIG_REG3);
-+	if (reg32 < 0)
-+		return reg32;
-+
-+	reg32 &= ~ULPI_MSM_PRE_EMPHASIS_MASK;
-+	reg32 |= ULPI_MSM_PRE_EMPHASIS_20PCT;
-+
-+	if (uphy->hs_drv_slope_present) {
-+		reg32 &= ~ULPI_MSM_HSDRVSLOPE_MASK;
-+		reg32 |= uphy->hs_drv_slope & ULPI_MSM_HSDRVSLOPE_MASK;
-+	}
-+
-+	ret = ulpi_write(ulpi, ULPI_MSM_CONFIG_REG3, reg32);
-+	if (ret)
-+		return ret;
-+
-+	reg36 = ulpi_read(ulpi, ULPI_MSM_DIGOUT_CTRL);
-+	if (reg36 < 0)
-+		return reg36;
-+
-+	reg36 |= ULPI_MSM_CDR_AUTORESET | ULPI_MSM_SE1_GATE;
-+
-+	return ulpi_write(ulpi, ULPI_MSM_DIGOUT_CTRL, reg36);
-+}
-+
- static int qcom_usb_hs_phy_power_on(struct phy *phy)
- {
- 	struct qcom_usb_hs_phy *uphy = phy_get_drvdata(phy);
-@@ -154,6 +200,12 @@ static int qcom_usb_hs_phy_power_on(struct phy *phy)
- 			goto err_ulpi;
- 	}
- 
-+	if (uphy->msm8x60_init) {
-+		ret = qcom_usb_hs_phy_msm8x60_init(uphy);
-+		if (ret)
-+			goto err_ulpi;
-+	}
-+
- 	if (uphy->vbus_edev) {
- 		state = extcon_get_state(uphy->vbus_edev, EXTCON_USB);
- 		/* setup initial state */
-@@ -214,6 +266,22 @@ static int qcom_usb_hs_phy_probe(struct ulpi *ulpi)
- 		return -ENOMEM;
- 	ulpi_set_drvdata(ulpi, uphy);
- 	uphy->ulpi = ulpi;
-+	uphy->msm8x60_init = of_device_is_compatible(ulpi->dev.of_node,
-+						     "qcom,usb-hs-phy-msm8660");
-+
-+	if (uphy->msm8x60_init) {
-+		u32 slope;
-+
-+		if (!of_property_read_u32(ulpi->dev.of_node,
-+					  "qcom,hs-drv-slope", &slope)) {
-+			if (slope > ULPI_MSM_HSDRVSLOPE_MASK)
-+				return dev_err_probe(&ulpi->dev, -EINVAL,
-+						     "qcom,hs-drv-slope out of range (max %lu)\n",
-+						     ULPI_MSM_HSDRVSLOPE_MASK);
-+			uphy->hs_drv_slope = slope;
-+			uphy->hs_drv_slope_present = true;
-+		}
-+	}
- 
- 	size = of_property_count_u8_elems(ulpi->dev.of_node, "qcom,init-seq");
- 	if (size < 0)
-
--- 
-2.43.0
-
+> pw-bot: changes-requested
+> 
+> Cheers,
+> Conor.
+> 
+> >      type: object
+> >      description: CAP11xx LEDs
+> >      $ref: /schemas/leds/common.yaml#
+> > =20
+> >      properties:
+> >        reg:
+> > -        enum: [0, 1, 2, 3, 4, 5, 6, 7]
+> > +        description: LED channel number
+> > +        minimum: 0
+> > +        maximum: 7
+> > =20
+> >        label: true
+> > =20
+> > @@ -158,7 +169,7 @@ allOf:
+> >                - microchip,cap1298
+> >      then:
+> >        patternProperties:
+> > -        "^led@[0-7]$": false
+> > +        "^led@": false
+> > =20
+> >    - if:
+> >        properties:
+> > --=20
+> > 2.54.0
+> >=20
 
