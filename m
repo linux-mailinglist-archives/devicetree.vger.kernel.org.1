@@ -1,169 +1,289 @@
-Return-Path: <devicetree+bounces-312488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312489-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YwPtK4oxMWrWdgUAu9opvQ
-	(envelope-from <devicetree+bounces-312488-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:20:42 +0200
+	id hyusIq0wMWprdgUAu9opvQ
+	(envelope-from <devicetree+bounces-312489-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:17:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E69068EBDB
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:20:42 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F36D68EB87
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 13:17:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=gK0Mf91f;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312488-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312488-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ZF1oxy3x;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312489-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-312489-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 00B343174E21
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 11:15:45 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 73465300516F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 11:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B4FF35CB6A;
-	Tue, 16 Jun 2026 11:15:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2391736DA07;
+	Tue, 16 Jun 2026 11:16:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 680A22D8DD0;
-	Tue, 16 Jun 2026 11:15:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAE082F7EE5;
+	Tue, 16 Jun 2026 11:16:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781608543; cv=none; b=rEmF2uZixedz2cKffQEKlEfX6UeW2A6gyIuSMMewu9xPN4HIXd8XpI6xvueZAxSwELsM9KePUA4KvgeTiG/7FCXchjKWASxPdDF+SK2fXMINX+UG5g6eMaJq3UYvCG0fDwxG3tCWB19pRo77AKzFhl6dKOXYWIzIXT65fjl0qd4=
+	t=1781608608; cv=none; b=bjLAu6Ryst+3P3ji1tJEdh1FM1rJjpjUJjnD+j/GzsLhJ03Iy4tOhdyRnabnMIqis3ynZ73i24zc2694LSCNbZOkwDZyoURWF6GbsV+6bjnNe6sEixa4qIqrtwzjd+W6S4uaSuFLOTclixOfRcsURpyvMxjdXnjVYdGXozyxl+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781608543; c=relaxed/simple;
-	bh=/SQg1eSQHyDsO8CKSo+KC9PDL260Dt4CrvvH14zYOiU=;
+	s=arc-20240116; t=1781608608; c=relaxed/simple;
+	bh=oDxOtVrOzDh6MvwAYljgCU2APhYTV/mMaD2dgqtmdiY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nng4tH1E0BBux82Izk2T4Q+irHg78PRpKoyUheHAUqqkSQW83/j9k8taHYEF3gjUqQUmPdKfyUm9TH8AzWFWMou9w0jeTSeAVPceMfUSIw/IWqQce1hP/AnDejGUFsPdPRY1HOLU3N3qKuh9HdP0wPxkzawLpyEn4eQtQMYXO3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gK0Mf91f; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FD231F000E9;
-	Tue, 16 Jun 2026 11:15:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781608542;
-	bh=/SQg1eSQHyDsO8CKSo+KC9PDL260Dt4CrvvH14zYOiU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=gK0Mf91fmvjaYbm9ee7gp0kUIUbW1cpM7zGCvRJ4Vc0TjO604L7MPG2WfBAuFbEg1
-	 3tbrBzu2M/saijG6P5Dl2YYlglyIrOC8w/+lgqKL1vbHeC4ucVt3Tt21ocF+PSJfVL
-	 tqgd3q4N8nzMgzjs1Vn/vN4+sDDacQPk+REfQegu+0jzy+KRqXcnA994aD38muJ/Jq
-	 f6XtQBmxGTRkG7V7ChK2H345xaOMJ2teGRdnFm8Nzb53VN22wdGV+liwg2xEpVuFoX
-	 QC7pHGWs84D0BaGkyRH5sSRpg0sfKH/I9rZ/uF7vKxorpngF8ItTDxKzaNvVWLscoW
-	 HpcIdjuJtetug==
-Date: Tue, 16 Jun 2026 13:15:39 +0200
-From: Thierry Reding <thierry.reding@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-i2c@vger.kernel.org, Thierry Reding <treding@nvidia.com>, 
-	Peter Rosin <peda@lysator.liu.se>, Andi Shyti <andi.shyti@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: i2c-mux-pinctrl: change maintainer
-Message-ID: <ajEvCWMxniOAT1pS@arch.a226c7d-lcedt>
-References: <20260611122704.7559-2-wsa+renesas@sang-engineering.com>
- <ajBGibftf679T6P4@arch.a226c7d-lcedt>
- <ajDnbQJhfeICowkn@shikoro>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pKDw7gw1Hz7zqhyH+NqQxXFR+0dyf8tPhKrxjPThQwuKVUt0EvpsPe+G1MWTzC+H6nqLAC9FC30DZngcMgljHpTmJQLyuT4ypKP3ticlDHSrczeU+2MzqutaxTQFWIumx/++3qa+JBmEuKuCSdLj8nFtGJDYyNbiVBeOMp4x0+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZF1oxy3x; arc=none smtp.client-ip=198.175.65.14
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1781608606; x=1813144606;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oDxOtVrOzDh6MvwAYljgCU2APhYTV/mMaD2dgqtmdiY=;
+  b=ZF1oxy3xjWCUVwRbuWEfOfUoaHveC/GaU5Bum4cEHT1bw/Gop7FfT6mr
+   0Vn8dj6+VO4FXCtm3flz44Qd+lNYv30cEOJ3hhnsWJQEAPf+cGuZGStv6
+   Zgpv2eUgwhEOAcr5jWNG8C6tjc1n8cV+cc7VpTtdMwm452GmQXDYOh6CM
+   vaJ0lpNug+1lSJt5rNNLv1dfMMzbDcK8dNIEVyDN13p+BtfqJZ1c6VQX8
+   B9/0RX5e2xUxfHX1MLJ7uUBFvbciw2otMw13bYXEmU1MnxT8PQ++P8wk2
+   +W46eSr6IrAR6FiP+QklKcLfJbHi01z71ts3aXELes/Ygc0mOywbdG+6w
+   g==;
+X-CSE-ConnectionGUID: F+nZxR1VS3mk6+NRohnxBg==
+X-CSE-MsgGUID: TuObY2fpTXCcrXGY0oO17w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="86272005"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; 
+   d="scan'208";a="86272005"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 04:16:37 -0700
+X-CSE-ConnectionGUID: Ym9Sqpc4QZyxM79Wc1Oerg==
+X-CSE-MsgGUID: 6bl6RVMkTEi8oTpoqraQ4g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; 
+   d="scan'208";a="247617556"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.153])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2026 04:16:34 -0700
+Date: Tue, 16 Jun 2026 14:16:31 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jinseob Kim <kimjinseob88@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC v5 4/6] iio: osf: add stream parser
+Message-ID: <ajEwj390mBxc9tfs@ashevche-desk.local>
+References: <20260616072242.3942-1-kimjinseob88@gmail.com>
+ <20260616072242.3942-5-kimjinseob88@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="e34prxwek75i5q3w"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ajDnbQJhfeICowkn@shikoro>
+In-Reply-To: <20260616072242.3942-5-kimjinseob88@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-5.76 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-312489-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312488-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:treding@nvidia.com,m:peda@lysator.liu.se,m:andi.shyti@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:wsa@sang-engineering.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:kimjinseob88@gmail.com,m:jic23@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thierry.reding@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,nvidia.com:email,arch.a226c7d-lcedt:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,ashevche-desk.local:mid,intel.com:dkim,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0E69068EBDB
+X-Rspamd-Queue-Id: 7F36D68EB87
+
+On Tue, Jun 16, 2026 at 04:22:40PM +0900, Jinseob Kim wrote:
+> Add a byte-stream parser that resynchronizes on OSF frame magic, validates
+> complete frames, and forwards decoded frames to the OSF core.
+
+...
+
+> +static const u8 osf_stream_magic[OSF_STREAM_MAGIC_LEN] = {
+> +	'O', 'S', 'F', '0',
+> +};
+
+Why?! You have already a definition, use it instead.
+
+...
+
+> +static size_t osf_stream_discard_to_magic(struct osf_stream *stream)
+> +{
+> +	size_t old_len = stream->len;
+> +	size_t match_len;
+
+> +	size_t i;
+> +
+> +	for (i = 0; i < stream->len; i++) {
+
+In current form it's as simple as
+
+	for (size_t i = 0; i < stream->len; i++) {
+
+> +		match_len = stream->len - i;
+> +		if (match_len > OSF_STREAM_MAGIC_LEN)
+> +			match_len = OSF_STREAM_MAGIC_LEN;
+> +
+> +		if (osf_stream_magic_match(stream->buf + i, match_len)) {
+> +			if (i)
+> +				osf_stream_discard(stream, i);
+> +			return i;
+> +		}
+> +	}
+> +
+> +	stream->len = 0;
+> +	return old_len;
+> +}
+
+...
+
+> +static int osf_stream_process(struct osf_stream *stream)
+> +{
+> +	size_t discarded;
+> +	size_t frame_len;
+> +	u32 payload_len;
+> +	int first_err = 0;
+> +	int ret;
+> +
+> +	while (stream->len) {
+> +		discarded = osf_stream_discard_to_magic(stream);
+> +		if (discarded) {
+> +			stream->stats.bad_magic_resyncs++;
+> +			stream->stats.dropped_bytes += discarded;
+> +			if (!first_err)
+> +				first_err = -EPROTO;
+> +		}
+> +
+> +		if (!stream->len)
+> +			break;
+> +
+> +		if (stream->len < OSF_FRAME_HEADER_LEN)
+> +			break;
+
+> +		if (get_unaligned_le16(stream->buf + 6) !=
+> +		    OSF_FRAME_HEADER_LEN) {
+
+Make it a single line for readability.
+
+> +			stream->stats.dropped_bytes++;
+> +			osf_stream_drop_invalid_head(stream);
+> +			if (!first_err)
+> +				first_err = -EPROTO;
+> +			continue;
+> +		}
+> +
+> +		payload_len = get_unaligned_le32(stream->buf + 10);
+> +		if (payload_len > OSF_STREAM_MAX_PAYLOAD_LEN) {
+> +			stream->stats.dropped_bytes++;
+> +			osf_stream_drop_invalid_head(stream);
+> +			if (!first_err)
+> +				first_err = -EMSGSIZE;
+> +			continue;
+> +		}
+> +
+> +		frame_len = OSF_FRAME_HEADER_LEN + payload_len + OSF_FRAME_CRC_LEN;
+> +		if (stream->len < frame_len)
+> +			break;
+> +
+> +		ret = osf_core_receive_frame(stream->osf, stream->buf, frame_len);
+> +		if (ret) {
+> +			if (ret == -EBADMSG) {
+> +				stream->stats.bad_crc_frames++;
+> +				stream->stats.dropped_bytes++;
+> +				osf_stream_drop_invalid_head(stream);
+> +			} else {
+> +				osf_stream_discard(stream, frame_len);
+> +			}
+> +			if (!first_err)
+> +				first_err = ret;
+> +			continue;
+> +		}
+> +
+> +		stream->stats.valid_frames++;
+> +		osf_stream_discard(stream, frame_len);
+> +	}
+
+> +	return first_err;
+
+Why do we continue on the error and then still return an error?
+Same Q for the receive part.
+
+> +}
+
+...
+
+> +void osf_stream_init(struct osf_stream *stream, struct osf_device *osf)
+> +{
+> +	if (!stream)
+> +		return;
+> +
+> +	stream->osf = osf;
+> +	stream->len = 0;
+> +	memset(&stream->stats, 0, sizeof(stream->stats));
+> +}
+> +
+> +void osf_stream_reset(struct osf_stream *stream)
+> +{
+> +	if (stream) {
+> +		stream->len = 0;
+> +		memset(&stream->stats, 0, sizeof(stream->stats));
+> +	}
+
+As per above
+
+	if (!stream)
+		return;
+
+> +}
+
+...
+
+> +struct osf_stream_stats {
+> +	u64 valid_frames;
+> +	u64 bad_magic_resyncs;
+> +	u64 bad_crc_frames;
+> +	u64 partial_frames;
+> +	u64 dropped_bytes;
+> +};
+
+Don't you want to use linux/u64_stats_sync.h APIs?
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
---e34prxwek75i5q3w
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] dt-bindings: i2c: i2c-mux-pinctrl: change maintainer
-MIME-Version: 1.0
-
-On Tue, Jun 16, 2026 at 08:04:29AM +0200, Wolfram Sang wrote:
-> Hi Thierry,
->=20
-> > By default I used to list the subsystem maintainer as the bindings
-> > maintainer if the binding wasn't Tegra-specific, or in this case the
-> > original author wasn't active anymore.
->=20
-> I understand that. Yet, since I handed I2C over to Andi now, this entry
-> becomes kind of stale then. I wanted to drop the maintainers:-property
-> completely to avoid changing all the maintainers entry once a subsystem
-> gets handed over, but Rob disagreed to that.
->=20
-> > I'm fine being listed as the maintainer for this if you don't want to,
-> > but I prefer to use the thierry.reding@kernel.org email address for
-> > communication.
->=20
-> Ok, thank you, will fix.
->=20
-> > With that:
-> >=20
-> > Acked-by: Thierry Reding <treding@nvidia.com>
->=20
-> I will use your kernel.org address for the ack then as well, I guess.
-
-It was intended as given, but either way works fine. The corporate email
-is primarily important for authorship. On the other hand I'm always the
-same person, so at the end of the day it probably doesn't matter all
-that much either way.
-
-Thierry
-
---e34prxwek75i5q3w
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmoxMFsACgkQ3SOs138+
-s6F6JRAAwBssz5VhtPDZHvrzvcWYw4kY7h+ULIec7HkOiYHCMIB1EvxPZKVRXSqB
-U2gLnRvIfrogWmf0bgmOznFGlVf1lnAhJ4NRpzzZvG56ceV3mWso+0G/EhtrfYMM
-b2BWR6h/ib20DcmkE5WrPa5NCdmzj/SO5LK7EoZqv+k2wYC7P1Q36q4uX+JO2iDm
-ndF1iQOITRLs5/liBPDeFNtSeDklT9ImoCmeaRoyQiIxwwqn2Wq1GvYOW3NxUkZo
-qWHn+8oGQnexwHpaPOPyYP0HDVwRTtjjj77GTjqfouLdjvpJCSHHRg0/9RTA9X/0
-40Tu/YpEwjhAzvK+i6/1TBdQp3xhocWakvFL8ZWJ/ns0BuxUuYXNIkmYlscddqfk
-xbVRSKcVcAvka/U9ng0BvHfQttQQLfjsUwv4Tary+lJfvYDNKgbFWYIyXm0oxNR9
-65PBzpCogce3jvnVkx7C+8JNG7gZNW5N2dMRRwFPh2xzfy5MwWohLMhZyx8AoTu9
-Dq1pSQMPbi8YF84L3raiXSP5CSUrGD1K0Jm/mOQaPu35oFkBiSlf99MjKRjZtqs+
-ZLWiBRhUp7/k8rb5P+1v2k1Wizp9xE+99j3ETjsejrEa1lVOlRJ7crvbawLeym1p
-0Ci70FdAagB6fTLokprnWaqc4iqAogd/ybMrN17RayN/I+IBQiE=
-=/H4P
------END PGP SIGNATURE-----
-
---e34prxwek75i5q3w--
 
