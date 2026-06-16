@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-312634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312635-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pLpjOWd2MWrNjwUAu9opvQ
-	(envelope-from <devicetree+bounces-312634-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:14:31 +0200
+	id KpztIBF0MWrojgUAu9opvQ
+	(envelope-from <devicetree+bounces-312635-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:04:33 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FBC1691D82
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:14:31 +0200 (CEST)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DEBD691A9A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 18:04:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20201202 header.b=UnOUS6bs;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312634-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312634-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=igb3NArz;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312635-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-312635-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C8CA31E0F90
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 16:03:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 926C23035BAB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 16:03:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF8D4657F8;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 153B8466B4A;
 	Tue, 16 Jun 2026 16:03:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFCD44534A3;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E35464657DA;
 	Tue, 16 Jun 2026 16:03:40 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781625820; cv=none; b=C8FEw/N0DNVX37P3JUBVA5NyI1gI2D1bR784qcJtfHyOtAjiF/lOEAA9HP4uYpgmEJbDeF+WCHr6O5comf8OAfYjUymmBb4Rvud0EZ4BTFA3ycPMODYX3c56wZE4z0pTDXZySW8iHhBWhI0DIBKT4h6k0I14yYPEy7yC2ddbARU=
+	t=1781625821; cv=none; b=F4A+M8Uns0Im2CKVh2J5Yb6ipILCCQhMwCgdD2I4F4RuXGtJTxsme9Cp0wutyPwg2qDnf46iViFngcxTJHLfdK4RFNX3IDIPoUOPA/Bl3lNwyVQaP6AX7UOT7m2Q7eINtPovkYB8O4NoKh0nOVfjBvtPjtEfGWp9zfjsBdK/rmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781625820; c=relaxed/simple;
-	bh=opHizSKtej5WxlekUjhsEKnND+qQGHtp2jbJ36RXMcI=;
+	s=arc-20240116; t=1781625821; c=relaxed/simple;
+	bh=YSQJCU6UP8xSjWxbVovXreGZS/Xd6/2Gt8PJB5MgUBM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pJc/3xDEyHJeLFuNdO4MYF4ct+G+CHKeJj4k52ok51DDcw/DCCln2v/FnLJBEJVvcIRzu2idIAKVQkk2+cNljYq1dNBXGWmlJqRlTsb8154B5RHQjxUPXOoOhUhU5mcrXSSN6BvvHXswTBKFKBMKXLLvrVsBUl1WkSpcqvJXAhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UnOUS6bs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A774EC4AF10;
+	 In-Reply-To:To:Cc; b=ZEtcgIR7Z2YKoYJZJ82hkGdqFMiqCHi5VdZXTqqmwbjI6QX4CJbKxu7QbF9DQWE1xYG+49ygyd4dU+XdHU2c4nTVwED42Bj4s2HJ4XJuWB5DHik2FPbT4lQFT1/niRycJqQ9B0tT5Ysdc9fGj6/AsWVlZ85B7B3JnARoG3PUFpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=igb3NArz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BBDD4C4AF13;
 	Tue, 16 Jun 2026 16:03:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1781625820;
-	bh=opHizSKtej5WxlekUjhsEKnND+qQGHtp2jbJ36RXMcI=;
+	bh=YSQJCU6UP8xSjWxbVovXreGZS/Xd6/2Gt8PJB5MgUBM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=UnOUS6bsc13GLZ+LO5IUM2MJ91b+UHsLQ66kuNeQlh2x4NKQX2e4rejeJt4zJLBH0
-	 BI6crBPX8l/DBmHhF06qxU4Kv6PiRVQZ+PGDN01hNVhVcy/OY7x21yAQNJ3TkJnxFv
-	 D7pNt7+Oou9PkULgxSnp5miubKV005gkwvTaqqufKNukhNAD/SqkFMsut3WXQi27LF
-	 7acM9pgPIqnG2uNeMDIuGXxU7BT6yMf6joopgYOX3Smnz4nMfG6LXjmi+pMBZE0696
-	 C5PN3zpIy6gLEmeSXiB5iW81/AZK3b90rTFJUYIhX+aKBEudPrPZQE7+0douQoYPS/
-	 RsIDV0e56qHCQ==
+	b=igb3NArz2SNq99p6/eGKfm+ZwpU8vcYSeyM0Y29KmZS4J1lWke91AmPGozsGg10u6
+	 CU6siMFziuQiK/41VA6MboxtdanZaEl4SmbG37fvGsdfNBBJ7avkDad1M6PCj7x30T
+	 cpSoad3lf7dLw0EGvqk5Daq+YG/y+V80dg7/xM4k0un0JDu64vAPqr9S0snSBAPfnT
+	 pNrpqWUYXbmsprHeMdPtVvzYjgJyrcHdJ5oZso8Oys0KiRhmKW4DN5ujdMCnRBzoPI
+	 u5bkrt67ZIFVgiZijDgfQ+VQgZAdXxhSWricaqS7Ydlws4Fmw5vCBooSlmeF9TSpjt
+	 8wgYnn1eQYNhw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 90B41CD98E1;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A692DCD98E4;
 	Tue, 16 Jun 2026 16:03:40 +0000 (UTC)
 From: Aleksa Paunovic via B4 Relay <devnull+aleksa.paunovic.htecgroup.com@kernel.org>
-Date: Tue, 16 Jun 2026 18:03:37 +0200
-Subject: [PATCH v9 1/3] dt-bindings: timer: mips,p8700-gcru
+Date: Tue, 16 Jun 2026 18:03:38 +0200
+Subject: [PATCH v9 2/3] riscv: clocksource: Add readq options to
+ clocksource mmio
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,7 +61,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260616-riscv-time-mmio-v9-1-03af7bc8f2d8@htecgroup.com>
+Message-Id: <20260616-riscv-time-mmio-v9-2-03af7bc8f2d8@htecgroup.com>
 References: <20260616-riscv-time-mmio-v9-0-03af7bc8f2d8@htecgroup.com>
 In-Reply-To: <20260616-riscv-time-mmio-v9-0-03af7bc8f2d8@htecgroup.com>
 To: Daniel Lezcano <daniel.lezcano@linaro.org>, 
@@ -76,13 +77,13 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-riscv@lists.infradead.org, 
  Djordje Todorovic <djordje.todorovic@htecgroup.com>, 
  Aleksa Paunovic <aleksa.paunovic@htecgroup.com>, 
- Chao-ying Fu <cfu@mips.com>, Conor Dooley <conor.dooley@microchip.com>
+ Chao-ying Fu <cfu@mips.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1781625819; l=1839;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781625819; l=1938;
  i=aleksa.paunovic@htecgroup.com; s=20250806; h=from:subject:message-id;
- bh=3ID8Av8rSUgllKXPW8NF381c9MC7TR+0AZClpf5xwBU=;
- b=VCQiNxZXqb9FlMdtl4eIz/ets/STHbyYu7uYtL+o9NCje20gp+5RR4DMiFx4gvdOkDCXQ+FXK
- PWgzEXk0RZGAteFLOvf5X/5cVWSk+0PaH9z+Ny0fVfgXdb+ZbdQQjwO
+ bh=xJr18GUgwDimiDlbxKI0yWHxvsNJAqXLsf1ztMWXw7U=;
+ b=By06W4XK0v5RRGKaBEE57X5AIAtQGToFihzCgmHqkNKkwU+nNA/KnKJmMbbpzH+UjvOaAqS3R
+ xbe3ySTGRkXAsxhX9+Q6nB1NohkgOMtPtAr2JRaclgTb6qi86f27crI
 X-Developer-Key: i=aleksa.paunovic@htecgroup.com; a=ed25519;
  pk=Dn4KMnDdgyhlXJNspQQrlHJ04i7/irG29p2H27Avd+8=
 X-Endpoint-Received: by B4 Relay for aleksa.paunovic@htecgroup.com/20250806
@@ -95,19 +96,19 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312634-lists,devicetree=lfdr.de,aleksa.paunovic.htecgroup.com];
-	FORGED_RECIPIENTS(0.00)[m:daniel.lezcano@linaro.org,m:tglx@linutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:paul.walmsley@sifive.com,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:pjw@kernel.org,m:jstultz@google.com,m:sboyd@kernel.org,m:wangruikang@iscas.ac.cn,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:djordje.todorovic@htecgroup.com,m:aleksa.paunovic@htecgroup.com,m:cfu@mips.com,m:conor.dooley@microchip.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312635-lists,devicetree=lfdr.de,aleksa.paunovic.htecgroup.com];
+	FORGED_RECIPIENTS(0.00)[m:daniel.lezcano@linaro.org,m:tglx@linutronix.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:paul.walmsley@sifive.com,m:palmer@dabbelt.com,m:aou@eecs.berkeley.edu,m:alex@ghiti.fr,m:pjw@kernel.org,m:jstultz@google.com,m:sboyd@kernel.org,m:wangruikang@iscas.ac.cn,m:linux-kernel@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:djordje.todorovic@htecgroup.com,m:aleksa.paunovic@htecgroup.com,m:cfu@mips.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	FORWARDED(0.00)[lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -122,67 +123,62 @@ X-Spamd-Result: default: False [-3.66 / 15.00];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[htecgroup.com:replyto,htecgroup.com:email,htecgroup.com:mid,devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:email,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[htecgroup.com:replyto,htecgroup.com:email,htecgroup.com:mid,vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5FBC1691D82
+X-Rspamd-Queue-Id: 5DEBD691A9A
 
 From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
 
-Add dt-bindings for the GCR.U memory mapped timer device for RISC-V
-platforms. The GCR.U memory region contains shadow copies of the RISC-V
-mtime register and the hrtime Global Configuration Register.
+Add read functions for 64-bit register size to the generic
+mmio clocksource, covering both up and down counters.
 
 Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../devicetree/bindings/timer/mips,p8700-gcru.yaml | 38 ++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ drivers/clocksource/mmio.c  | 14 ++++++++++++++
+ include/linux/clocksource.h |  4 ++++
+ 2 files changed, 18 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/timer/mips,p8700-gcru.yaml b/Documentation/devicetree/bindings/timer/mips,p8700-gcru.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..e6f25e769f461d58c87194fba3540eee13cb322b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/mips,p8700-gcru.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/mips,p8700-gcru.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/clocksource/mmio.c b/drivers/clocksource/mmio.c
+index 9de75153183124cc8997c6ab61d0c01d9b2637bc..f3b6f7e93ffbf0ed68e56c58c3d9f711d2193caa 100644
+--- a/drivers/clocksource/mmio.c
++++ b/drivers/clocksource/mmio.c
+@@ -17,6 +17,20 @@ static inline struct clocksource_mmio *to_mmio_clksrc(struct clocksource *c)
+ 	return container_of(c, struct clocksource_mmio, clksrc);
+ }
+ 
++#if defined(CONFIG_64BIT) && defined(readq_relaxed)
 +
-+title: GCR.U timer device for the MIPS P8700 platform
++u64 clocksource_mmio_readq_up(struct clocksource *c)
++{
++	return (u64)readq_relaxed(to_mmio_clksrc(c)->reg);
++}
 +
-+maintainers:
-+  - Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
++u64 clocksource_mmio_readq_down(struct clocksource *c)
++{
++	return ~(u64)readq_relaxed(to_mmio_clksrc(c)->reg) & c->mask;
++}
 +
-+description:
-+  The GCR.U memory region contains memory mapped shadow copies of
-+  mtime and hrtime Global Configuration Registers,
-+  which software can choose to make accessible from user mode.
++#endif
 +
-+properties:
-+  compatible:
-+    const: mips,p8700-gcru
-+
-+  reg:
-+    items:
-+      - description: Read-only shadow copy of the RISC-V mtime register.
-+      - description: Read-only shadow copy of the P8700 high resolution timer register.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    timer@1617f050 {
-+        compatible = "mips,p8700-gcru";
-+        reg = <0x1617f050 0x8>,
-+              <0x1617f090 0x8>;
-+    };
+ u64 clocksource_mmio_readl_up(struct clocksource *c)
+ {
+ 	return (u64)readl_relaxed(to_mmio_clksrc(c)->reg);
+diff --git a/include/linux/clocksource.h b/include/linux/clocksource.h
+index 65b7c41471c390463770c2da13694e58e83b84ea..39e0df5a0ab52cbb7016b53a4d7500f2697e2797 100644
+--- a/include/linux/clocksource.h
++++ b/include/linux/clocksource.h
+@@ -276,6 +276,10 @@ static inline void clocksource_arch_init(struct clocksource *cs) { }
+ 
+ extern int timekeeping_notify(struct clocksource *clock);
+ 
++#if defined(CONFIG_64BIT) && defined(readq_relaxed)
++extern u64 clocksource_mmio_readq_up(struct clocksource *c);
++extern u64 clocksource_mmio_readq_down(struct clocksource *c);
++#endif
+ extern u64 clocksource_mmio_readl_up(struct clocksource *);
+ extern u64 clocksource_mmio_readl_down(struct clocksource *);
+ extern u64 clocksource_mmio_readw_up(struct clocksource *);
 
 -- 
 2.43.0
