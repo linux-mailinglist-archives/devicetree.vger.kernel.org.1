@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-312703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312704-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QSDOIDC1MWpxpQUAu9opvQ
-	(envelope-from <devicetree+bounces-312703-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 22:42:24 +0200
+	id ZZlXOny1MWp+pQUAu9opvQ
+	(envelope-from <devicetree+bounces-312704-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 22:43:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEA5B695457
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 22:42:23 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60EC1695469
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 22:43:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=BUI0AdPa;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312703-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312703-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=QfQZJAdP;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312704-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312704-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DAA663046CE8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 20:42:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 65EF3305F1A6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jun 2026 20:43:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AF93939B4;
-	Tue, 16 Jun 2026 20:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4639394461;
+	Tue, 16 Jun 2026 20:43:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 023C33914E4
-	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 20:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A3737FF6A
+	for <devicetree@vger.kernel.org>; Tue, 16 Jun 2026 20:43:37 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781642541; cv=none; b=R16okAGjU9F4MBzCH+/C6IWJF1RoqcGWMzrDblkEfiRwAsqyMPRjyuMzKJu+0c00Z67qGF3KSFD70hv3bxRojPd9dTkrPJ40GHqcVUEd5HpfU6QYBxrOgryDTVq4W5Kg+nE0onTRFSuxEqHsmjgzrflyLoakXlfZV96ENbyZkQc=
+	t=1781642618; cv=none; b=UlnR0GXIC3DMUCCguxy8KcH8ZQTAwolQF7VxSSfzFOhSxs5Yy4LmjD5mrV4cRrcRBX9ZR6clQC+q422v7/jQsf5MkLEWGLqN0X+6+/fGYSl2Z/1JIkdaDiv1Oak8MoSgeVMBfJJu+JF6psRjHwinZ6dhpQiJMJBCL586I5bGOwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781642541; c=relaxed/simple;
-	bh=Or9bAfCNwkEIuN1ANhhLmy2yIYWdepEhgD2OGOZ6fLs=;
+	s=arc-20240116; t=1781642618; c=relaxed/simple;
+	bh=watumehJ6EexMytjlX780i5ZE3ij6Ibj/p4wKNTHppY=;
 	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=EIcxwWF9PLiAYsLFFD4T4ZoWS38N+lhT3KsGV8pMFGrUzE5OCHcni1kpRKaxNj58Zgp7Nzy9TkaarcoDAbGEl91QIm/dKvod1ESZAWOcNJSe967qFTGiBNphlKBlgD5YtP4mdtRCbjV/7seNgz7eVoM/HXNyMcEBOr/0MBRWd9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BUI0AdPa; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53B6D1F000E9;
-	Tue, 16 Jun 2026 20:42:20 +0000 (UTC)
+	 Message-Id; b=c65jc6FwYMmtrDMOWWoSlg2RZ1+7Uu6R0SeAaTHuxMD4JtXfCUAkHHBJiaDsssVtFDGBqKqjWDqPqhe5Yj+eMtMOMDiTyY2+ZpesntHdR+BwSg6ppw4NRf2tRxZIoY0KrAK5vwTx2uaM48ykGLMSz90v8e4odOV1IM7OryAC6XE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QfQZJAdP; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02CAB1F00A3A;
+	Tue, 16 Jun 2026 20:43:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781642540;
-	bh=5iZpV9hLBV39baHVa+FzcvMC+lt+OAI4sywaWCGFyLc=;
+	s=k20260515; t=1781642617;
+	bh=rXgK0ID5s+weO3hNI8Y0r5eMUS0FJZUl9jje2rnotGY=;
 	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=BUI0AdPaMAwaPeRp5a5zjbSGJ5GSergoRUe6VXocVYAJvVEaVguYodEP8obcl5O7c
-	 6SWIEnVqIPWxVafWZVkllhIo2LQkcp/bfbbju6iWOqRNiy7wRCPUGBnVv7N8Lzhz/F
-	 Azp3ZmXdK++TKDNeFmETF39yOTTOiRJ76l7sN0lEpDOn4fQrZbFz3F9u/QbgJ75ENy
-	 q85s0OfBSIfOgzKA85ph8RDn6EzN4M1WOfhYNW04l6CLqb/GXGRAgqq3CdEHPt/CyB
-	 XHwCOztTJ1AX/xJxk6g9N5hg5zo65fXCPi01uInanX1aI1yNqKBaWiHaCuDxmfV5JI
-	 Kz/nrlpYV6H7A==
+	b=QfQZJAdPtEbb20Vyh6RRTE7dfbf71zjo6YZlRgeQBsphVi6PXTZClWhV1XFQuyzb1
+	 rOQXRGPIVCepdUOJ/IH9IKh+1qryM7yO+UGb85v/VEhc9weBOlCdxdeKSsISL/yM1B
+	 mqVmqASWDnvslnfBxLanhShzFrzFOdrFWCJ0mIosspMfIOODwNPut4DCB4yq0XUN9Q
+	 hAyeZ5QFdfCs52QTWxA2ANYcmhdL8DMz1eZeY5jcyvku/whhX3k93CiYtByGKcz3oD
+	 JlKGDPTfroOGWEsxFkkr/RNhOtK4+dXgvQZN4SVHmMvM5JY+guKO+OeixKXghjWnMF
+	 HmmHM/3dXZPIQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC v4 12/12] ARM: dts: zte: Add a syscon-reboot for
- zx297520v3 boards
+Subject: Re: [PATCH RFC v4 07/12] clk: zte: Introduce a driver for
+ zx297520v3 top clocks
 Reply-To: sashiko-reviews@lists.linux.dev
 To: =?utf-8?b?U3RlZmFuIETDtnNpbmdlcg==?= <stefandoesinger@gmail.com>
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, robh@kernel.org
-In-Reply-To: <20260616-zx29clk-v4-12-ca994bd22e9d@gmail.com>
-References: <20260616-zx29clk-v4-12-ca994bd22e9d@gmail.com>
+Cc: robh@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20260616-zx29clk-v4-7-ca994bd22e9d@gmail.com>
+References: <20260616-zx29clk-v4-7-ca994bd22e9d@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 16 Jun 2026 20:42:19 +0000
-Message-Id: <20260616204220.53B6D1F000E9@smtp.kernel.org>
+Date: Tue, 16 Jun 2026 20:43:36 +0000
+Message-Id: <20260616204337.02CAB1F00A3A@smtp.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,19 +71,19 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312703-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312704-lists,devicetree=lfdr.de];
 	REPLYTO_DN_EQ_FROM_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[gmail.com];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS(0.00)[m:stefandoesinger@gmail.com,m:devicetree@vger.kernel.org,m:conor+dt@kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:stefandoesinger@gmail.com,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
@@ -99,61 +99,150 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,lists.linux.dev:replyto,sashiko.dev:url,smtp.kernel.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,smtp.kernel.org:mid,lists.linux.dev:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CEA5B695457
+X-Rspamd-Queue-Id: 60EC1695469
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [Low] The `syscon-reboot` node is incorrectly defined at the root level u=
-sing the explicitly deprecated `regmap` property.
+
+New issues:
+- [High] The 'dpll' and 'unknownpll' clocks are incorrectly configured with=
+ a single parent, leading to incorrect rate calculations and potential cloc=
+k orphaning.
+
+Pre-existing issues:
+- [High] The `struct auxiliary_device` is allocated with `devm_kzalloc`, de=
+coupling its memory lifecycle from its embedded kobject reference count.
+- [High] The driver fails to properly validate the return value of `device_=
+node_to_regmap()`, resulting in an invalid pointer dereference if the regma=
+p cannot be obtained.
 --
 
-commit afa99cf55be8056135e61b54fc719550822bda85
+commit 41eccb5b69bddbf772e343c7bf76be8415a468bc
 Author: Stefan D=C3=B6singer <stefandoesinger@gmail.com>
 
-ARM: dts: zte: Add a syscon-reboot for zx297520v3 boards
+clk: zte: Introduce a driver for zx297520v3 top clocks
 
-This commit adds a syscon-reboot node to the zx297520v3 device tree. It all=
-ows
-resetting the board by writing a value to a register exposed by the topclk
-syscon.
+This commit introduces a new clock driver for the ZTE zx297520v3 SoC.
+It adds support for the top clocks, including various PLLs, AHB, timers,
+and USB controllers. The patch wires up the clock configuration structures
+and registers the driver via the zx_clk_probe framework.
 
-> diff --git a/arch/arm/boot/dts/zte/zx297520v3.dtsi b/arch/arm/boot/dts/zt=
-e/zx297520v3.dtsi
-> index a2b6909e7434d..013ece51c2a09 100644
-> --- a/arch/arm/boot/dts/zte/zx297520v3.dtsi
-> +++ b/arch/arm/boot/dts/zte/zx297520v3.dtsi
-> @@ -33,6 +33,13 @@ osc32k: osc32k {
->  		#clock-cells =3D <0>;
->  	};
-> =20
-> +	syscon-reboot {
-> +		compatible =3D "syscon-reboot";
-> +		regmap =3D <&topclk>;
+Signed-off-by: Stefan D=C3=B6singer <stefandoesinger@gmail.com>
 
-[Severity: Low]
-Does this use a deprecated property? According to the syscon-reboot device
-tree bindings, the regmap property is explicitly deprecated.
+> diff --git a/drivers/clk/zte/clk-zx297520v3.c b/drivers/clk/zte/clk-zx297=
+520v3.c
+> new file mode 100644
+> index 0000000000000..50263bca6e087
+> --- /dev/null
+> +++ b/drivers/clk/zte/clk-zx297520v3.c
 
-The documented modern requirement is to define the syscon-reboot node as a
-child of the system controller node. Introducing new nodes using deprecated
-bindings can trigger make dtbs_check warnings.
+[ ... ]
 
-To resolve this, the syscon-reboot node could be moved to be a child of top=
-clk,
-and topclk's compatible string could be updated to include "simple-mfd" to
-ensure the driver core automatically probes the child node.
+> +	/* Default value 0x4834902d. Feeds dpll. 46.08 MHz. Bit 25 can be set, =
+so two parents are
+> +	 * possible. It looks like both values select the 26 MHz oscillator tho=
+ugh.
+> +	 */
+> +	{
+> +		.id =3D 0,
+> +		.name =3D "unknownpll",
+> +		.parents =3D clk_main,
+> +		.num_parents =3D ARRAY_SIZE(clk_main),
 
-> +		offset =3D <0x0>;
-> +		mask =3D <0x1>;
-> +	};
+[Severity: High]
+The documentation block here states this PLL has two possible parents, but =
+it
+is restricted to the single parent in clk_main. Does hardcoding a single pa=
+rent
+cause an out-of-bounds index lookup if the hardware selects a parent index =
+> 0?
+
+> +		.rate =3D 0,
+> +		.postdivs =3D unknownpll_postdivs,
+> +		.num_postdivs =3D ARRAY_SIZE(unknownpll_postdivs),
+> +		.reg =3D 0x100,
+> +	},
+> +
+> +	/* The documentation says 491.52 MHz and measurement with the LSP TDM d=
+evice supports this.
+> +	 * The default value is 0x480c2011, but not all boot loaders set it up.=
+ To get to 491.52
+> +	 * with these settings it needs a 23.04 MHz reference clock, which matc=
+hes unknownpll_d2.
+> +	 * If unknownpll is disabled, dpll loses its lock. We set the frequency=
+ on this PLL if we
+> +	 * find it is not enabled by the boot loader.
+> +	 *
+> +	 * The proprietary LTE driver or coproc enables and disables it. TDM an=
+d I2S can use it.
+> +	 *
+> +	 * It accepts parent values 0, 1, 2 and 3. Parent 0 is unknownpll_d2. T=
+he others look like
+> +	 * osc26m. With a parent !=3D 0 dpll never loses its lock even when all=
+ other PLLs are off
+> +	 * and the TDM counter register increases at a rate consistent with a 2=
+6.0/23.04 clock
+> +	 * increase.
+> +	 */
+> +	{
+> +		.id =3D ZX297520V3_DPLL,
+> +		.name =3D "dpll",
+> +		.parents =3D clk_main,
+> +		.num_parents =3D ARRAY_SIZE(clk_main),
+
+[Severity: High]
+Similarly, the comment states this PLL accepts parent values 0, 1, 2, and 3,
+with parent 0 being unknownpll_d2. Since clk_main only contains osc26m, does
+restricting this to a single parent cause the clock framework to erroneously
+compute all DPLL-derived frequencies using 26 MHz instead of 23.04 MHz?
+
+> +		.rate =3D 491520000,
+> +		.postdivs =3D pll_postdivs,
+> +		.num_postdivs =3D ARRAY_SIZE(pll_postdivs),
+> +		.reg =3D 0x18,
+> +	},
+
+[ ... ]
+
+> +static struct platform_driver clk_zx297520v3 =3D {
+> +	.probe =3D zx_clk_probe,
+
+[Severity: High]
+This is a pre-existing issue, but I noticed two concerns in zx_clk_probe()
+located in clk-zx.c:
+
+First, zx_clk_probe() calls device_node_to_regmap(dev->of_node) which
+returns an ERR_PTR on failure. The code checks for failure using:
+
+    if (!map)
+        return -EINVAL;
+
+Since an error pointer is non-null, will this check evaluate to false and
+allow an invalid pointer to be dereferenced later?
+
+Second, zx_clk_probe() allocates the auxiliary device using devm_kzalloc().
+When the driver unbinds, devres executes zx_adev_unregister() to uninitiali=
+ze
+the device before freeing the devm-managed memory.
+
+If an external entity holds an active reference to the auxiliary device,
+the reference count will remain non-zero. Could this result in a
+use-after-free when the external reference is dropped and put_device() tries
+to access the already-freed memory?
+
+> +	.driver =3D {
+> +		.name =3D "clk-zx297520v3",
+> +		.of_match_table =3D of_match_zx297520v3,
+> +	},
+> +};
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260616-zx29clk-v4=
--0-ca994bd22e9d@gmail.com?part=3D12
+-0-ca994bd22e9d@gmail.com?part=3D7
 
