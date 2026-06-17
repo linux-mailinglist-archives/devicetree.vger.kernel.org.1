@@ -1,143 +1,146 @@
-Return-Path: <devicetree+bounces-313087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313088-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Pl2LA2HBMmqE5AUAu9opvQ
-	(envelope-from <devicetree+bounces-313087-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:46:41 +0200
+	id CNAZITXEMmr95AUAu9opvQ
+	(envelope-from <devicetree+bounces-313088-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:58:45 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBB2769B1DB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:46:39 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA46469B2FF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 17:58:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aUbx83mX;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313087-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313087-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ZWPG0kAd;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313088-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313088-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E49B23051ECC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 15:42:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1CD673253805
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 15:43:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66494495507;
-	Wed, 17 Jun 2026 15:41:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E079B47F2C4;
+	Wed, 17 Jun 2026 15:42:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D4149691F;
-	Wed, 17 Jun 2026 15:41:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 028ED4A2E2E;
+	Wed, 17 Jun 2026 15:42:16 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781710914; cv=none; b=MiP03u9Xu+/T9+xhHPgFosFykVFOzAfcDOCx/jAElXralqXIf/68fxb6UxJ8K98UxmFfP0TdKhwYyRD8HWG573fOlXeUd+Agf5CqJgj5UBmN/E72AI6g1gKXFIi9/JHkVjimPxVNmuib33jFw+h88zMtJxppyyGFa7uW/dfskCY=
+	t=1781710950; cv=none; b=sldNbPxwZGwfiiF0ACny09LhycgELXOujUNUmiSwPrNljUJyczh4wrs/imbXfrloskOrFXPrxJsYj8IaKIoJXeZ1mYjxMHDf6EQF8zE0Sy/wVRP5gaOVhxAUQ6NVGgRRWIYRnCswBjalKxic0ckLjvmjNBxAo3HxL1ZjBFkSTNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781710914; c=relaxed/simple;
-	bh=K96JSwwaowjEbeviUI1xlnKyD4dXQgJ11kqwaYRZRSg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=BQ2v2FJyhyM9c9fh29vE/5AWGTdKDvJjamOg+HywHNc2sOyFmX8/1TwGPr+2u0FXedE74ov1jO6npYW44TsMZ/IdpPLGKQU39l0f+12QhUtARny1KpG8tlvJCtuQp0MZ7Fy3yCyxRfOM5aChbcnbqC/ae59H5VwGmENl8CAgMww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aUbx83mX; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3B0E1F00A3E;
-	Wed, 17 Jun 2026 15:41:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781710899;
-	bh=Sv7WK0TLi0qOIuMOvJwU6mbH3yERNXs7/fEc4Hx4c8E=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=aUbx83mXCE+WKkE8VV32ftbCXH0r52gqX/y897tbK6cSBbc9oFa1CUdep0NNkVDMS
-	 u1jZqyq4K4DGwBLuqJiU7r/RAnQVDT3t/P+wcgUp6BkJnAAIix7vvwpwQ0iqLN0n6J
-	 qyPN5BkiHdYRo8lFkwnsoyQKBT5hRQ1MotmAlsK8sL877MNk4V1bv1wgCVUxZUTbdp
-	 qcWZF5PV3TnwPXfDq3bVuh+ClBEvwcJvXRfPqCkxxM068kS7C8fEWjhELds9UqdLQa
-	 prIzA40cwi5BaIv+lv0yZ6bIIA8QFvcZeSCB7ACyf7gTVDTlZrM+TxumhSTupvvnz4
-	 OKYIzZGXkiBJA==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Jacky Huang <ychuang3@nuvoton.com>, Shan-Chun Hung <schung@nuvoton.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Heiko Stuebner <heiko@sntech.de>, 
- Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>, 
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-omap@vger.kernel.org
-In-Reply-To: <20260608-n-dt-bindings-simple-bus-syscon-v3-0-4eba9ec1212a@oss.qualcomm.com>
-References: <20260608-n-dt-bindings-simple-bus-syscon-v3-0-4eba9ec1212a@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v3 0/3] dt-bindings: mfd: syscon: Tighten
- checks
-Message-Id: <178171089542.1654059.1933552286028471529.b4-ty@b4>
-Date: Wed, 17 Jun 2026 16:41:35 +0100
+	s=arc-20240116; t=1781710950; c=relaxed/simple;
+	bh=8Boq7TKXlKga3wA/+27M+gqT3gyzG2VJzHPSGDcRqy0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kwTtnJukXfrQ4qRULt1AMvv7Y2IKohS+2QhXDT9gKUBGnx7/Htnb4vcjHESTBZt58nplh5HWoiT+I9/0KR3y++/L4phMr2qJ+etkWgAd9TXRU2V4QNKh1BRmms3jXkWjH16Ckcl/8WA0wfP0EPhv8kCe69BS71fUEd3LCq2Xnc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZWPG0kAd; arc=none smtp.client-ip=198.175.65.10
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1781710937; x=1813246937;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8Boq7TKXlKga3wA/+27M+gqT3gyzG2VJzHPSGDcRqy0=;
+  b=ZWPG0kAdfJYeKnYMTTKAatoL2abrhwn+iDEYIUYU1N3hk8fA2J9YNHRL
+   /i0H7is+cTLjS/S29D25Mu3gexGtnALUI02JAxqQrKhFRZL0WVrcH7xfS
+   0obMP/XxP8pLCi7U/ZVvJ7o+iCCBU0yZo18AIDxhm1AZHXJdiAC7flJLR
+   8hT/nWswwyxdyK740gjEQekNWPn3UHkX66zwNN1lj+Rm5eZn9+08AQ0Ic
+   iArMpxg/Hj6ad2aP6XA7AXOH3qvrz6RqGpH2mIl1vLM82n+OOap/NMOLK
+   nlLzgV2f3ouEzWA6NU5GJYj8/jPAHTin7B4dg40n14s+KSDaovDxOqEMD
+   g==;
+X-CSE-ConnectionGUID: qAt/Y5onTWWsMmL9UPhbjg==
+X-CSE-MsgGUID: lGbOxAIzQR+jkJbDtewVZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="99921982"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; 
+   d="scan'208";a="99921982"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jun 2026 08:42:16 -0700
+X-CSE-ConnectionGUID: bRLLYjT8TMe0LmKMdgFj3g==
+X-CSE-MsgGUID: FzVitsAkRXiFBZHPrcnSKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; 
+   d="scan'208";a="252407703"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost) ([10.245.245.69])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jun 2026 08:42:12 -0700
+Date: Wed, 17 Jun 2026 18:42:08 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Salih Erim <salih.erim@amd.com>
+Cc: jic23@kernel.org, andy@kernel.org, dlechner@baylibre.com,
+	nuno.sa@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, conall.ogriofa@amd.com, michal.simek@amd.com,
+	linux@roeck-us.net, erimsalih@gmail.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 5/5] iio: adc: versal-sysmon: add oversampling support
+Message-ID: <ajLAUJPpdaf8lJqG@ashevche-desk.local>
+References: <20260616131559.3029543-1-salih.erim@amd.com>
+ <20260616131559.3029543-6-salih.erim@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.16-dev-ad80c
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260616131559.3029543-6-salih.erim@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:ychuang3@nuvoton.com,m:schung@nuvoton.com,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:heiko@sntech.de,m:aaro.koskinen@iki.fi,m:andreas@kemnade.info,m:khilman@baylibre.com,m:rogerq@kernel.org,m:tony@atomide.com,m:krzysztof.kozlowski@oss.qualcomm.com,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:linux-renesas-soc@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-omap@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,nuvoton.com,glider.be,sntech.de,iki.fi,kemnade.info,baylibre.com,atomide.com,oss.qualcomm.com];
-	FORWARDED(0.00)[lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-313087-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TAGGED_FROM(0.00)[bounces-313088-lists,devicetree=lfdr.de];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:salih.erim@amd.com,m:jic23@kernel.org,m:andy@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:conall.ogriofa@amd.com,m:michal.simek@amd.com,m:linux@roeck-us.net,m:erimsalih@gmail.com,m:linux-iio@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,amd.com,roeck-us.net,gmail.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp]
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,vger.kernel.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:from_mime,ashevche-desk.local:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EBB2769B1DB
+X-Rspamd-Queue-Id: DA46469B2FF
 
-On Mon, 08 Jun 2026 22:44:23 +0200, Krzysztof Kozlowski wrote:
-> Changes in v3:
-> - Drop patch #2:
->   dt-bindings: mfd: syscon: Drop unneeded case for syscon + simple-mfd
-> - Bump dtschema requirement
-> - Link to v2: https://patch.msgid.link/20260608-n-dt-bindings-simple-bus-syscon-v2-0-0203e6c249dc@oss.qualcomm.com
+On Tue, Jun 16, 2026 at 02:15:59PM +0100, Salih Erim wrote:
+> Add support for reading and writing the oversampling ratio through
+> the IIO oversampling_ratio attribute. The hardware supports averaging
+> 2, 4, 8, or 16 samples, plus a ratio of 1 (no averaging).
 > 
-> Changes in v2:
-> 1. New patches #2 and #3
-> 1. Add missing part of patch #1, thus not adding Rob's Ack.
-> https://lore.kernel.org/all/20260531110404.12768-3-krzysztof.kozlowski@oss.qualcomm.com/
+> Temperature and supply channels share oversampling configuration at
+> the type level (all temperature channels share one ratio, all supply
+> channels share another), exposed through info_mask_shared_by_type.
 > 
-> [...]
+> The hardware encoding uses sample_count / 2 in a 4-bit field within
+> the CONFIG register. Per-channel averaging enable registers must also
+> be updated to activate or deactivate averaging.
 
-Applied, thanks!
+This one LGTM now,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-[1/3] dt-bindings: mfd: syscon: Disallow simple-bus with syscon
-      commit: c11c918b40295dcb0ad2460d9534454072386f4c
-[2/3] dt-bindings: mfd: syscon: Drop custom select for older dtschema
-      commit: f78049ca80ba2e68f7f46870b0d68eb54a6ce378
+-- 
+With Best Regards,
+Andy Shevchenko
 
---
-Lee Jones [李琼斯]
 
 
