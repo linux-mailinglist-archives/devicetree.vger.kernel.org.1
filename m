@@ -1,442 +1,221 @@
-Return-Path: <devicetree+bounces-312944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312946-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ydtRK5WAMmoA1AUAu9opvQ
-	(envelope-from <devicetree+bounces-312944-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 13:10:13 +0200
+	id XybOFTaDMmoN1QUAu9opvQ
+	(envelope-from <devicetree+bounces-312946-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 13:21:26 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 059A3698D97
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 13:10:13 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E89B698FF0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 13:21:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=nxp.com (policy=none);
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312944-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312944-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=jGa+OMAW;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=ARSNzosN;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312946-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312946-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D004232030F1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 11:04:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3B5293150B33
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 11:05:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB22838237D;
-	Wed, 17 Jun 2026 11:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D21D370AD6;
+	Wed, 17 Jun 2026 11:05:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C0238AC7D;
-	Wed, 17 Jun 2026 11:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4952015E5BB
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 11:05:13 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781694280; cv=none; b=CJKoiZRw5Q4WoIK3NTZ5ZoEAaE+Qii2T8bttS0WRtqmTD5uDwiJTvysYFTJDkm9Q6+adBjiw0s+Ow+gCcyRy/MJMX/olCOQYRl/nsD6jt5VTFam01wqcSLMtur2XFmMOR5eWn7jJD4vcPz6gH857r3DLxVjUvoeMLB6uQgDXxC8=
+	t=1781694314; cv=none; b=Jcn1MQLeQ8swIIqKoGLe2k37TKWMZUZjfMLaB8lU24pdXWI5+xHqKaXV3E2uoQuJkKGgG40fIJW6l5i4JB7ge1vwHyEtrVymvEDnB1Ghs/+iv4/GewpgrK7tCKQYMLa+5YTAP3hFTGHDdUPEki/os+yOSwRipStNrbj360pqEi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781694280; c=relaxed/simple;
-	bh=iOcTQ2VMoyxgElA/HmJBcV5VlsZQzGRQgMbS9NqdJ64=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=KTpRfZNXaMi4K8YuQWFSq/nKdWvZMenfdgW1ZhWb8dFfXcEHsumdKnMLKwYWQsdcjh1IpGexi3gmesQ6ADJskDXT1Kc/F/2BkFKrTn4qq1xY8lrBNO2v5HDPA9ZaSojwezFG5Wlox5HumVq1dYhZuOw4MGd3MrU0XMd851QWVks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id CA3C2200C5E;
-	Wed, 17 Jun 2026 13:04:34 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 92FA5200B81;
-	Wed, 17 Jun 2026 13:04:34 +0200 (CEST)
-Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 8B1A11800071;
-	Wed, 17 Jun 2026 19:04:32 +0800 (+08)
-From: Lakshay Piplani <lakshay.piplani@nxp.com>
-To: linux-kernel@vger.kernel.org,
-	linux-i3c@lists.infradead.org,
-	alexandre.belloni@bootlin.com,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	broonie@kernel.org,
-	lee@kernel.org,
-	Frank.Li@nxp.com,
-	lgirdwood@gmail.com
-Cc: vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com,
-	aman.kumarpandey@nxp.com,
-	Lakshay Piplani <lakshay.piplani@nxp.com>
-Subject: [PATCH v12 7/7] i3c: hub: p3h2x4x: Add SMBus slave mode support
-Date: Wed, 17 Jun 2026 16:33:55 +0530
-Message-Id: <20260617110355.1591844-8-lakshay.piplani@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260617110355.1591844-1-lakshay.piplani@nxp.com>
-References: <20260617110355.1591844-1-lakshay.piplani@nxp.com>
+	s=arc-20240116; t=1781694314; c=relaxed/simple;
+	bh=eEiU8vMu+5O1vd1w6lRUiGs5KR7SZ5QpDvtIFlNlRTo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sMplQqxIhaz7Uu3FM/DBi+iKr9rBczce4tdspJuh3FxbVwlcWOC5p2I+D1Zhps51WndS6WtPU3K8GrINbxsV4y98F3xo5BMWzVfpoidTma2hdNTJahE1Fq5WmZmC0WSeiwo00RT9Tak+VE08pHqy19hLUXTF24cCkUAGvcTV+QM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jGa+OMAW; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ARSNzosN; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65H8UslQ2025364
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 11:05:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	qj70XiMRBk88XSknFY6Ir5XzqLm8axeDAtiCmENjOvs=; b=jGa+OMAWzW2QNASV
+	RBhcQINUjagf0ZQcla7SH4cLO/fG4+60rqMscZWpAkwf/C2OMNtmHZxWWUKTtSv7
+	/oY/yXoeIcwDjr4AfJN1m9yHnfrDpCWN73Wc/iF0/q17X3FclXRdxDSjjKgCgzRM
+	a1SnLoNeTUbyhEhMhDckcuLOZK6rA6c5SajdnW4DXcEgR84qlcSFBfhxpPkZvqp6
+	GVahBusdh/Ui43hOBMHHX4qt66W5GBK5JOI2Yzvu4mfGTh8CLWDaH+jW8NoaWHWE
+	X1Y0j1xXRuwj+n6/CHANhdCHMWwqRE0FJRODDTaVgX7ra/KtaqyDCiO/XCBVH275
+	fBNA9w==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4euees2sbs-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 11:05:12 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-915a547f4b3so69078585a.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 04:05:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1781694312; x=1782299112; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qj70XiMRBk88XSknFY6Ir5XzqLm8axeDAtiCmENjOvs=;
+        b=ARSNzosNfpOTWoCL4krVw8RuZm6MdZMMUaHYHbaywZZ79fvBMedYTzzTucqNjl/FC5
+         1sPbSGN6KtkKGz6sObPL0rXapfIyRMFESYT7dBbA11IeWvVJoGFpA8rur5K5IGjUBz3U
+         YP9FYDBDoKkyEullxp1BidaO7RcExFxgMDCBTxaTB7/omH1xKFnTxkhwgLRaO5gnh8Ax
+         7JhuIjBlSJiSrKYrIdSppUupYO/zpJkCeT/7zxckFqopfXUgBg4MBd1wdCSgAwWXS8DD
+         dJNS+d1V4F7AFpQ39zY0vsLASgH0bYzOoAx6hX9HtquM2eBO+r7wKxrKqDEHNJMOtQ70
+         iIKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781694312; x=1782299112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qj70XiMRBk88XSknFY6Ir5XzqLm8axeDAtiCmENjOvs=;
+        b=AoDmLh5BoIuWNNwbKPykd7piror5MFF2KXg27O9QsVSzHPVMHcigzto4jd11qnbGrs
+         4SrtFXuR9BVLc1mAheQJi77G+cVs8/aLzEYkOTy4vQ8tI6k1T6iTMolZ9TbXU7RzBmU8
+         ZQ6Dlyif2u0ijWk9bjJ1sBKFqxsMribhdBjz/9FYAAyKuZyjV+WJTXiczGbJjQAM171p
+         oCSwWZXgF1tWc2iuto167QlZUvJH2etoi4/QfRRWMF1HgjCzSOPbdMvOcrT975jcd7Dt
+         1yQZzvlfjV1ZPJgyCfhHISC11EUJdXXsIKLcyeImZoJmnfnJWJ9CaPtnvPUpbFDh29hG
+         1zag==
+X-Forwarded-Encrypted: i=1; AFNElJ9262caYKBtXZOXSFxO3buA9X9EMr/rPob4kd6Oso8+z6JsE8eE0j2s3V8Ux3tD2PXVKa7ipJhCNU2I@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfSFEz8+1ttriIG1vMaY1P8lqsOpTzLwKIcLNua/tTMDvoQEqW
+	Ra1BXcjB2a3vzIeUNWqEZfPCfvRuW5tHVOtVXP8PiE4d9M+UWz1ZhvqXB1NmCV6GC8/oRYklXBG
+	bJGzLTP7vDRMEG4aADr+yjrgQSuAyyfIcJH2rbBtz9SFaFtBHBzqzZoYgY8sUYSWw
+X-Gm-Gg: Acq92OHDEzYc5VKqWNJik4NDLxVAryuM62OARXopbFmU8bZfb4j6S+V2D3yGgx2vYmx
+	9MOZoTZ75kvNfzUX3ivRM0agKtIV8MoMVOqinN44qvwDSw7a771Z8MsIsJNjZmBMsIEaX8TCsiB
+	2wFIvyM8vxuRhYnpmgZ6Vsmmmrmm/DThgo/zBj0lr7AwGlhlI1JVBIjXHrWIVGQWefkSa49q0xJ
+	wLHU3Y2H0I5gSk+YUWIAo6UlVzJeKPu015q3hG+8ASNFRr0cz1/J0UJcXx+aLVQS8EL5r7Ii5AO
+	pNCGVKOaS0vYtbHchn/6T/sEpt8YYXqYa6bKKAXQsRJrCi49NgNWWkzofvyS1rOkQve0GPuYhw5
+	P5skWCLYMWTIhFPjBGAwSO+e6Ww1QuQYAuao=
+X-Received: by 2002:a05:620a:6286:b0:914:ea37:6f14 with SMTP id af79cd13be357-91d8aae2593mr337701485a.1.1781694311575;
+        Wed, 17 Jun 2026 04:05:11 -0700 (PDT)
+X-Received: by 2002:a05:620a:6286:b0:914:ea37:6f14 with SMTP id af79cd13be357-91d8aae2593mr337696685a.1.1781694311144;
+        Wed, 17 Jun 2026 04:05:11 -0700 (PDT)
+Received: from [192.168.120.170] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bfdb8b23f8fsm760459866b.53.2026.06.17.04.05.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jun 2026 04:05:10 -0700 (PDT)
+Message-ID: <d4d01a6d-4c9e-4822-b0f6-b98e8ecf34f5@oss.qualcomm.com>
+Date: Wed, 17 Jun 2026 13:05:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] spi: qcom-geni: Enable SPI on SA8255p Qualcomm
+ platforms
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>,
+        Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, bjorn.andersson@oss.qualcomm.com
+Cc: linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mukesh.savaliya@oss.qualcomm.com, aniket.randive@oss.qualcomm.com,
+        chandana.chiluveru@oss.qualcomm.com, jyothi.seerapu@oss.qualcomm.com,
+        chiluka.harish@oss.qualcomm.com
+References: <20260604-enable-spi-on-sa8255p-v3-0-43984eac4c67@oss.qualcomm.com>
+ <20260604-enable-spi-on-sa8255p-v3-4-43984eac4c67@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260604-enable-spi-on-sa8255p-v3-4-43984eac4c67@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: itV44Yu0VAB1v8QQod16pD_83doDSJRl
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE3MDEwNCBTYWx0ZWRfX0xa/2f1+EzAc
+ cCAkjXw8nCUcuZDP/h0j6Dn8ZAkttMB7oXHHzQi3wtQWUWAg7YOj7WnHblKo53Bh9/RlU2So41p
+ eJ55jPPVEA768Tq+BNavYPmjvmLku2d4LCSI/D6Ms/0DLK3P3MZLRllinC3QZ3bbH4n8bIrPN24
+ sEp+M5X2oskWeIWummD6Pj5QVCmHEaT/7CLTZHsfTR0mGbdAs2Tx6sYbU7j1x4QUst6ztWxaU1g
+ m1h2IVb1IWc19f7x86LU5TScBFTOnsrJAtCi3kYHKpWT6d1Xj0Cjhywa2PvgdkyUV0OwSBfr4IN
+ fe+n+8z67f/22aXmhQEJbwH3FYM94KKMGq/YJW8QuJQTycqM0IIgg+1BUpTHYw6M0DD4tvg6baz
+ ZpUnFye4GJrzX0ORo6rTFaBfOt4Xhy3aOLwp0fFrthTjyaTFL93YfqEPJck0X+eLfCSB4HcXn1g
+ /axWGIHrrWOWnAEsAiQ==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE3MDEwNCBTYWx0ZWRfXwZABCrvCgdmO
+ Qvk/QaRlm4TjXoaVCARLzUDiblR7bzQJE//rq9Mgq17pJl7cuP6DznSXEIzWWXbUtXoelbC7nqm
+ KCcpTMyzoMdNqD/PjiqrvavYDRQ95a0=
+X-Authority-Analysis: v=2.4 cv=KeTidwYD c=1 sm=1 tr=0 ts=6a327f68 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=Ow8ltAAN0bl1iHkyYvMA:9 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: itV44Yu0VAB1v8QQod16pD_83doDSJRl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-17_01,2026-06-16_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 spamscore=0 lowpriorityscore=0 suspectscore=0 phishscore=0
+ bulkscore=0 malwarescore=0 adultscore=0 priorityscore=1501 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606170104
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.64 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-312946-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[15];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312944-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:linux-i3c@lists.infradead.org,m:alexandre.belloni@bootlin.com,m:krzk+dt@kernel.org,m:robh@kernel.org,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:broonie@kernel.org,m:lee@kernel.org,m:Frank.Li@nxp.com,m:lgirdwood@gmail.com,m:vikash.bansal@nxp.com,m:priyanka.jain@nxp.com,m:aman.kumarpandey@nxp.com,m:lakshay.piplani@nxp.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:praveen.talari@oss.qualcomm.com,m:broonie@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:bjorn.andersson@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:linux-spi@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:mukesh.savaliya@oss.qualcomm.com,m:aniket.randive@oss.qualcomm.com,m:chandana.chiluveru@oss.qualcomm.com,m:jyothi.seerapu@oss.qualcomm.com,m:chiluka.harish@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp,qualcomm.com:dkim,qualcomm.com:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,nxp.com:mid,nxp.com:from_mime,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 059A3698D97
+X-Rspamd-Queue-Id: 0E89B698FF0
 
-Add SMBus slave mode support for the P3H2x4x hub SMBus target ports.
+On 6/4/26 8:50 AM, Praveen Talari wrote:
+> The Qualcomm automotive SA8255p SoC relies on firmware to configure
+> platform resources, including clocks, interconnects and TLMM.
+> The driver requests resources operations over SCMI using power
+> and performance protocols.
+> 
+> The SCMI power protocol enables or disables resources like clocks,
+> interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
+> such as resume/suspend, to control power states(on/off).
+> 
+> The SCMI performance protocol manages SPI frequency, with each
+> frequency rate represented by a performance level. The driver uses
+> geni_se_set_perf_opp() API to request the desired frequency rate.
+> 
+> As part of geni_se_set_perf_opp(), the OPP for the requested frequency
+> is obtained using dev_pm_opp_find_freq_floor() and the performance
+> level is set using dev_pm_opp_set_opp().
+> 
+> Signed-off-by: Praveen Talari <praveen.talari@oss.qualcomm.com>
+> ---
 
-The hub SMBus slave agent can receive downstream payloads into target
-buffers and report receive events through IBI. Add CONFIG_I2C_SLAVE
-to support the receive path and forward the received payloads to the
-registered I2C slave client through i2c_slave_event().
+[...]
 
-Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
-Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
+> -	ret = geni_se_resources_init(&mas->se);
+> +	mas->dev_data = device_get_match_data(&pdev->dev);
 
----
-Changes in v12:
- - Add devm cleanup for IBI request/enable path
- - Fix NULL pointer dereference before tp_smbus_client check
- - Clear tp_smbus_client before disabling SMBus-agent IBI in unreg_slave()
+This really needs to be null-checked
 
-Changes in v11:
- - Improve SMBus slave mode payload validation and parsing
+Perhaps also the functions within that are called unconditionally
 
-Changes in v10:
- - Split SMBus slave mode support into a separate patch
----
----
- drivers/i3c/hub/p3h2840_i3c_hub.h       |  10 ++
- drivers/i3c/hub/p3h2840_i3c_hub_i3c.c   |  40 ++++-
- drivers/i3c/hub/p3h2840_i3c_hub_smbus.c | 193 ++++++++++++++++++++++++
- 3 files changed, 242 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub.h b/drivers/i3c/hub/p3h2840_i3c_hub.h
-index d922c6b3b6be..7f8363170efe 100644
---- a/drivers/i3c/hub/p3h2840_i3c_hub.h
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub.h
-@@ -322,4 +322,14 @@ int p3h2x4x_tp_smbus_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub);
-  */
- int p3h2x4x_tp_i3c_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub);
- 
-+/**
-+ * p3h2x4x_ibi_handler - IBI handler.
-+ * @i3cdev: i3c device.
-+ * @payload: two byte IBI payload data.
-+ */
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+void p3h2x4x_ibi_handler(struct i3c_device *i3cdev,
-+			 const struct i3c_ibi_payload *payload);
-+#endif
-+
- #endif /* P3H2840_I3C_HUB_H */
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-index 8adb235b992c..88b4a76aa264 100644
---- a/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-@@ -10,6 +10,14 @@
- 
- #include "p3h2840_i3c_hub.h"
- 
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+static const struct i3c_ibi_setup p3h2x4x_ibireq = {
-+	.handler = p3h2x4x_ibi_handler,
-+	.max_payload_len = P3H2X4X_MAX_PAYLOAD_LEN,
-+	.num_slots = P3H2X4X_NUM_SLOTS,
-+};
-+#endif
-+
- static inline struct tp_bus *
- p3h2x4x_bus_from_controller(struct i3c_master_controller *controller)
- {
-@@ -54,6 +62,16 @@ static void p3h2x4x_unregister_i3c_master(void *data)
- 	i3c_master_unregister(controller);
- }
- 
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+static void p3h2x4x_free_ibi(void *data)
-+{
-+	struct i3c_device *i3cdev = data;
-+
-+	i3c_device_disable_ibi(i3cdev);
-+	i3c_device_free_ibi(i3cdev);
-+}
-+#endif
-+
- /**
-  * p3h2x4x_tp_i3c_algo - register i3c master for target port who
-  * configured as i3c.
-@@ -117,5 +135,25 @@ int p3h2x4x_tp_i3c_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_hub)
- 		p3h2x4x_hub->tp_bus[tp].is_registered = true;
- 		p3h2x4x_hub->hub_config.tp_config[tp].always_enable = true;
- 	}
--	return regmap_write(p3h2x4x_hub->regmap, P3H2X4X_TP_NET_CON_CONF, ntwk_mask);
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+	ret = i3c_device_request_ibi(p3h2x4x_hub->i3cdev, &p3h2x4x_ibireq);
-+	if (ret)
-+		return ret;
-+
-+	ret = i3c_device_enable_ibi(p3h2x4x_hub->i3cdev);
-+	if (ret) {
-+		i3c_device_free_ibi(p3h2x4x_hub->i3cdev);
-+		return ret;
-+	}
-+
-+	ret = devm_add_action_or_reset(p3h2x4x_hub->dev,
-+				       p3h2x4x_free_ibi,
-+				       p3h2x4x_hub->i3cdev);
-+	if (ret)
-+		return ret;
-+
-+#endif
-+	ret = regmap_write(p3h2x4x_hub->regmap, P3H2X4X_TP_NET_CON_CONF, ntwk_mask);
-+
-+	return ret;
- }
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-index cf664425af07..49b6d213a4a7 100644
---- a/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-@@ -15,6 +15,146 @@ enum p3h2x4x_smbus_desc_idx {
- 	P3H2X4X_DESC_READ_LEN,
- };
- 
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+static void p3h2x4x_read_smbus_agent_rx_buf(struct i3c_device *i3cdev, enum p3h2x4x_rcv_buf rfbuf,
-+					    enum p3h2x4x_tp tp, bool is_of)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = i3cdev_get_drvdata(i3cdev);
-+	u8 slave_rx_buffer[P3H2X4X_SMBUS_TARGET_PAYLOAD_SIZE] = { 0 };
-+	u8 target_buffer_page, flag_clear = 0x0f, temp = 0, i, addr;
-+	u32 packet_len, slave_address, ret;
-+	struct i2c_client *client;
-+
-+	target_buffer_page = (((rfbuf) ? P3H2X4X_TARGET_BUFF_1_PAGE : P3H2X4X_TARGET_BUFF_0_PAGE)
-+				+  (P3H2X4X_NO_PAGE_PER_TP * tp));
-+	ret = regmap_write(p3h2x4x_i3c_hub->regmap, P3H2X4X_PAGE_PTR, target_buffer_page);
-+	if (ret)
-+		goto ibi_err;
-+
-+	/* read buffer length */
-+	ret = regmap_read(p3h2x4x_i3c_hub->regmap, P3H2X4X_TARGET_BUFF_LENGTH, &packet_len);
-+	if (ret)
-+		goto ibi_err;
-+
-+	if (packet_len)
-+		packet_len = packet_len - 1;
-+
-+	if (packet_len > P3H2X4X_SMBUS_TARGET_PAYLOAD_SIZE) {
-+		dev_err(&i3cdev->dev, "Received message too big for p3h2x4x buffer\n");
-+		goto ibi_err;
-+	}
-+
-+	/* read slave  address */
-+	ret = regmap_read(p3h2x4x_i3c_hub->regmap, P3H2X4X_TARGET_BUFF_ADDRESS, &slave_address);
-+	if (ret)
-+		goto ibi_err;
-+
-+	/* read data */
-+	if (packet_len) {
-+		ret = regmap_bulk_read(p3h2x4x_i3c_hub->regmap, P3H2X4X_TARGET_BUFF_DATA,
-+				       slave_rx_buffer, packet_len);
-+		if (ret)
-+			goto ibi_err;
-+	}
-+
-+	if (is_of)
-+		flag_clear = BUF_RECEIVED_FLAG_TF_MASK;
-+	else
-+		flag_clear = (((rfbuf == RCV_BUF_0) ? P3H2X4X_TARGET_BUF_0_RECEIVE :
-+				P3H2X4X_TARGET_BUF_1_RECEIVE));
-+
-+	client = p3h2x4x_i3c_hub->tp_bus[tp].tp_smbus_client;
-+	if (!client)
-+		goto ibi_err;
-+
-+	/* notify slave driver about received data */
-+	if ((client->addr & 0x7f) == (slave_address >> 1)) {
-+		addr = slave_address >> 1;
-+		i2c_slave_event(client,
-+				I2C_SLAVE_WRITE_REQUESTED, &addr);
-+		for (i = 0; i < packet_len; i++) {
-+			temp = slave_rx_buffer[i];
-+			i2c_slave_event(client,
-+					I2C_SLAVE_WRITE_RECEIVED, &temp);
-+		}
-+		i2c_slave_event(client, I2C_SLAVE_STOP, &temp);
-+	}
-+
-+ibi_err:
-+	regmap_write(p3h2x4x_i3c_hub->regmap, P3H2X4X_PAGE_PTR, 0x00);
-+	regmap_write(p3h2x4x_i3c_hub->regmap, P3H2X4X_TP0_SMBUS_AGNT_STS + tp, flag_clear);
-+}
-+
-+/**
-+ * p3h2x4x_ibi_handler - IBI handler.
-+ * @i3cdev: i3c device.
-+ * @payload: two byte IBI payload data.
-+ *
-+ */
-+void p3h2x4x_ibi_handler(struct i3c_device *i3cdev,
-+			 const struct i3c_ibi_payload *payload)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub;
-+	u8 payload_byte_one, payload_byte_two;
-+	u32 target_port_status, ret, i;
-+	const u8 *data;
-+
-+	if (!payload || payload->len < P3H2X4X_MAX_PAYLOAD_LEN)
-+		return;
-+
-+	data = payload->data;
-+	payload_byte_one = data[0];
-+
-+	if (!(payload_byte_one & P3H2X4X_SMBUS_AGENT_EVENT_FLAG_STATUS))
-+		return;
-+
-+	p3h2x4x_i3c_hub = i3cdev_get_drvdata(i3cdev);
-+
-+	if (!p3h2x4x_i3c_hub || !p3h2x4x_i3c_hub->regmap)
-+		return;
-+
-+	payload_byte_two = data[1];
-+	guard(mutex)(&p3h2x4x_i3c_hub->etx_mutex);
-+
-+	for (i = 0; i < P3H2X4X_TP_MAX_COUNT; ++i) {
-+		if (p3h2x4x_i3c_hub->tp_bus[i].is_registered && (payload_byte_two >> i) & 0x01) {
-+			ret = regmap_read(p3h2x4x_i3c_hub->regmap, P3H2X4X_TP0_SMBUS_AGNT_STS + i,
-+					  &target_port_status);
-+			if (ret) {
-+				dev_err(&i3cdev->dev, "target port read status failed %d\n", ret);
-+				continue;
-+			}
-+
-+			/* process data receive buffer */
-+			switch (target_port_status & BUF_RECEIVED_FLAG_MASK) {
-+			case P3H2X4X_TARGET_BUF_CA_TF:
-+				break;
-+			case P3H2X4X_TARGET_BUF_0_RECEIVE:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_0, i, false);
-+				break;
-+			case P3H2X4X_TARGET_BUF_1_RECEIVE:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_1, i, false);
-+				break;
-+			case P3H2X4X_TARGET_BUF_0_1_RECEIVE:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_0, i, false);
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_1, i, false);
-+				break;
-+			case P3H2X4X_TARGET_BUF_OVRFL:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_0, i, false);
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_1, i, true);
-+				dev_err(&i3cdev->dev, "Overflow, reading buffer zero and one\n");
-+				break;
-+			default:
-+				regmap_write(p3h2x4x_i3c_hub->regmap,
-+					     P3H2X4X_TP0_SMBUS_AGNT_STS + i,
-+					     BUF_RECEIVED_FLAG_TF_MASK);
-+				break;
-+			}
-+		}
-+	}
-+}
-+#endif
-+
- static int p3h2x4x_read_smbus_transaction_status(struct p3h2x4x_i3c_hub_dev *hub,
- 						 u8 target_port_status,
- 						 u8 data_length)
-@@ -205,11 +345,64 @@ static u32 p3h2x4x_tp_smbus_funcs(struct i2c_adapter *adapter)
- 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_BLOCK_DATA;
- }
- 
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+static int p3h2x4x_tp_i2c_reg_slave(struct i2c_client *slave)
-+{
-+	struct tp_bus *bus = i2c_get_adapdata(slave->adapter);
-+	struct p3h2x4x_i3c_hub_dev *hub = bus->p3h2x4x_i3c_hub;
-+	int ret;
-+
-+	guard(mutex)(&hub->etx_mutex);
-+
-+	if (bus->tp_smbus_client)
-+		return -EBUSY;
-+
-+	ret = regmap_set_bits(hub->regmap,
-+			      P3H2X4X_TP_SMBUS_AGNT_IBI_CONFIG,
-+			      bus->tp_mask);
-+	if (ret)
-+		return ret;
-+
-+	bus->tp_smbus_client = slave;
-+	hub->hub_config.tp_config[bus->tp_port].ibi_en = true;
-+
-+	return 0;
-+}
-+
-+static int p3h2x4x_tp_i2c_unreg_slave(struct i2c_client *slave)
-+{
-+	struct tp_bus *bus = i2c_get_adapdata(slave->adapter);
-+	struct p3h2x4x_i3c_hub_dev *hub = bus->p3h2x4x_i3c_hub;
-+	int ret;
-+
-+	guard(mutex)(&hub->etx_mutex);
-+
-+	if (bus->tp_smbus_client != slave)
-+		return -EINVAL;
-+
-+	bus->tp_smbus_client = NULL;
-+	hub->hub_config.tp_config[bus->tp_port].ibi_en = false;
-+
-+	ret = regmap_clear_bits(hub->regmap,
-+				P3H2X4X_TP_SMBUS_AGNT_IBI_CONFIG,
-+				bus->tp_mask);
-+
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+#endif
-+
- /*
-  * I2C algorithm Structure
-  */
- static struct i2c_algorithm p3h2x4x_tp_i2c_algorithm = {
- 	.master_xfer    = p3h2x4x_tp_i2c_xfer,
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+	.reg_slave = p3h2x4x_tp_i2c_reg_slave,
-+	.unreg_slave = p3h2x4x_tp_i2c_unreg_slave,
-+#endif
- 	.functionality  = p3h2x4x_tp_smbus_funcs,
- };
- 
--- 
-2.25.1
-
+Konrad
 
