@@ -1,162 +1,201 @@
-Return-Path: <devicetree+bounces-312821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312819-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Qr3AFFtOMmqtyQUAu9opvQ
-	(envelope-from <devicetree+bounces-312821-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:35:55 +0200
+	id QHHsASBNMmp/yQUAu9opvQ
+	(envelope-from <devicetree+bounces-312819-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:30:40 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F1A697391
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:35:54 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF0F569732E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:30:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312821-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312821-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=linaro.org header.s=google header.b=UXHSNJoM;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312819-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-312819-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=linaro.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BB69A3010BA0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:35:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1469E3004DB8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 07:30:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386DD2EEE74;
-	Wed, 17 Jun 2026 07:35:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17EFD39934D;
+	Wed, 17 Jun 2026 07:30:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 833E13BED7F
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 07:35:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8113AFCFF
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 07:30:33 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781681750; cv=none; b=B4tYcpuMFxTaHbI2uCH8TaQBelJwOTEmjfqvAXJxlirziGePy0ROHolJOcu0W6of8ksaTHAhncNcmH2cIfzboAWgMvbN/hTopSfnfdLSv4AOXEoHU2YwCDG9HAhF44X2RD4vVqSUe6sC8pMxTtY6ojLGF9FX9MDebqlzVmdmefo=
+	t=1781681435; cv=none; b=tkd/AP2/iZ67CDlO1rSVNvNIkRmWFXbIqXZPl4CJjP4ttUE0lgPIDmiTmIRAI2YPirpE7pnOn4Xk5bQYbNjKxWeKgImqoo+bu1/6tXSO1LooAmAj5Ib9sj4e293JjM+dziTmoHn+qzLhC34o+W5vV4fChGxCLNK8LhkLlCzYSEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781681750; c=relaxed/simple;
-	bh=vNek8FjLIl8HvwiOC3xACNGcO3tpvOAaMVKzAmldG6Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LzXMqWkrdwzgF9zDE6dOSlYUaiMU3NfCpTvmbeoRy7Eh46E5VPVoTty6JzqbQkdva/AuajBTJPk5j1XJMSxPiulHuoikSV4p+xYA2O0J2Xhukl39PEEf7efsksdUhXFXXzsHYNkqWbgVKuhqL9d7gHz8pQFbF2kF+QJ29QwQzMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.178
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2c0c1e0d00bso48891815ad.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 00:35:48 -0700 (PDT)
+	s=arc-20240116; t=1781681435; c=relaxed/simple;
+	bh=ns641rOo4SmvQB02QITlRXBe7Y9sqH5VdSzYmVFmu7g=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=r2D++qRMnPULsHjJRjnv3EzHl21qHg279onNjApgIjFbg2bPfkApToXc7V/WQcARc8poDRz72oAJxyCwBPEeY/Na+scPYCxm8tq7jHa4g8wUcfD3zhTGOk/rGTF2OO35+n3a7pSlf3xQWHW4acMdvKJ234FcZJ4dXkMdOQBoSpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UXHSNJoM; arc=none smtp.client-ip=209.85.128.51
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4905529b933so53567795e9.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 00:30:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1781681432; x=1782286232; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E1Eht0yqmtyjKLK+ckWvK3e4AnkyB7fNvSVWTQiIHbk=;
+        b=UXHSNJoMvc7kVKtewuCnr7I7JVGuMUWe6TVC5zX2D4e9btoGMcbLCdeDyrb/lOQNzn
+         YUpiKjplMVzoyR6eJ6gVxcgPlUCykuIXoGQo783E6cptj4MZXGBRCutjS+nGO8Ctc2RZ
+         vGMNo2HyvqVmO/MCkLq+m2tR95DpDJWzD/oIHVt11iqk9EK9EYVbgOhqd3tIvnPpy5Aq
+         wioJAdCXHe2zMiapsHJIwM+4igHS+cqNFkT54WomZDhIydHsr3RgcjzYrJ8eBiI2T/Dw
+         Tl8B3Nj2vAYf4rd6Re8sj7AHJ2UBwTK0fnQ9oIIHg1aah4itxJfJFWzFDl0yZ87vfDL9
+         DnsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781681747; x=1782286547;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BbKfUx0yCKVUC9L3G3BTSWTRHNmPQxEcOIjC4HA7MgQ=;
-        b=SqRNSmJl6BhMD0cbJ4eX/LPINUZXBeeqLT3vd3HoJkcOMDhOJHIAOV8X+jDy1ZB2Wz
-         hTGE7Rrd9HX7wTMh4Z2kcs04IEJzxtGmltFWgYlw6OgC78lEPYPRuczOVQ8y1XcUWXfM
-         mufxZzXYhGdlsuZEQPDKdC2VAsay0KM66GXUZn4T0KxvGw1PJb37NYKKWO+qaF31IowU
-         OZ2/h65Dfwrs5gmZDLa1e2htou/kAspDti9Ykpc1puasr0G9rE3T31Q7CZTzo95JEDqZ
-         l9yHf5/Ws8sgOYfa5CFngzybB1TmzCUEshZxMMy4Tcu9FJ989trghAKNZuI9KGo4HyOh
-         ibbw==
-X-Forwarded-Encrypted: i=1; AFNElJ/aFYsxLS8KWK0ay4nSEN/E55ZUZXIUnoTR0HF/n0LG9/6UMyXcSeBWDGp4NfEyKd5QxUSDwOhZs9GA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzal6ljbeRA6sQDeRX4pYZHNMEel3fD8iEzXAc/Yc756YLN/C1s
-	Bg4vIIcyiExwuPXGXaBdBGKWuqXJ7zRj5gtYAOAZxU9EYq7td4qEm0eNG+ElZhJo
-X-Gm-Gg: AfdE7ckclLu0vzk4KTHv2giMkUmwzZ5iwNBdl99xc7Qquwjke+2NUI4BKShPkvhYhQ5
-	hFzptx50jRN13gJU+UXlaOr8E8aCzDcIZc2m4CY3vRt3WsqoGX6KWUJ4XxoRX3Q6R0GQjpd7xEw
-	6lbzhAqjg+QvGX7DJn6vmjJxcUg89d1UC4l+QJlUle3lhIwNW/tsrx98repd80jBm77Uk48h0BU
-	D5cZVAxrMuYf7VgoPwe2GthwTks/eVypogLIZOLJKQYdoMpWXyFoT+MS+6cTOe9xU5e1j7N4Zgr
-	5YCaw+BQ0/D+kDNodbqbm1RyTp2xA6+70YwPVjw1DAL5+RGpmzmFLt4OiMT9+G6VrNzT4h487FO
-	kROP0hIlLFpvkMxGli9oUarrQTFJPa45PO+vBGe6UDzDBsmGJ9hYFRk0L3wz14whbFXBnYCy3wl
-	vNywKbsWjGjmJN5KBITJe8VM0fyGJLsJUzu2VPT+TyCgfvDtpDe49sqw==
-X-Received: by 2002:a17:902:f548:b0:2c0:d4a8:85d0 with SMTP id d9443c01a7336-2c6bc24236amr26301635ad.32.1781681747395;
-        Wed, 17 Jun 2026 00:35:47 -0700 (PDT)
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com. [209.85.215.174])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2c433369c8asm157130095ad.73.2026.06.17.00.35.47
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20251104; t=1781681432; x=1782286232;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E1Eht0yqmtyjKLK+ckWvK3e4AnkyB7fNvSVWTQiIHbk=;
+        b=oQzR/3RqT+oAc2QLy6TtJTA2b0tF7z7n1q7SvQls7c2TvxdtpiWFGBdSfho2sGF3sV
+         bQNHN7iYtKk0kXYuFUMiocNdrZgAzBXiiX0tu5RNy3h9DddApZ5AeHopoVq74b28GO45
+         qLC9tNHwuKroHva/EtItA8kKK6can1HZVu3oHgb+KbQBSq3tMd/lR+my1ZOmF1plnfNA
+         VpSbVVCAcyb+JtrLmfSxIHP/hAuY6Mb1T+sbldu5Vjpdq04n7QD2h6q6m6pyZB14KVm3
+         r1b2rPnYeMQszNx0f5wg8NTSpTPp9geryqhwCN2koSkgg4BVCXKKRdXmuIUAcopdxOyy
+         pj2g==
+X-Gm-Message-State: AOJu0YwWQCKT2ANdF5cxPElJyZjN0oKT078jwd7zCleVWymN3y32xWaF
+	j/x5H3Q7wpmEC1icYZRX/TXzRh4bmOPI9y/ShjH03Yb5nWGAB8oU0sFWpvRgwxR/+eI=
+X-Gm-Gg: Acq92OEAiWJRtYWPMH7Pvkx0wKDz/5fMJtuW1RJJiK7xuuwN48MpxPchQrwzfhgyBU/
+	NuYmi7JsvsTgmkcsanSP9CZCC5boaQTOXcGru6Jbs7nDuJIurTQZbiIA8BGEay+4++FA69FhTID
+	/mGlUqVApujRmyn/u6cpNyTBxqYzOh9aA8LCiuvZLbeGcMmp7pZkI9dqN1bX1ERoPzLiGKmbNU5
+	9HY7V3NSc7HJF1qEnYWmI2fbqeu6C4+d5OxgKK8cTzZ1zuq5zeIt0Or1RcWhUl2e473W+2oqGbr
+	gF0PD4o7nwoP9YMOgWMUaaAQu42flFiEX+rPNbXTkJMI5gFhSfG8ehRld5jw95KGe3HycKnNcNF
+	UA4GvdTa834Yu1p5mNW1z4zTc58j01qn6gt9Tz6o5jzJ01iPbhUANWvgAOoQ25wniuWalW6juov
+	EFnG1c+uz6LY8s5w1ZiZTXEw==
+X-Received: by 2002:a05:600c:19cb:b0:490:bb45:79f0 with SMTP id 5b1f17b1804b1-492333ba306mr44593555e9.3.1781681431573;
+        Wed, 17 Jun 2026 00:30:31 -0700 (PDT)
+Received: from [10.12.4.106] ([212.133.41.97])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4922fa47da9sm170120445e9.5.2026.06.17.00.30.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jun 2026 00:35:47 -0700 (PDT)
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-c8583b8fd89so3315793a12.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 00:35:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ+EXpcajqSUst4W0I3jzGtVu6ui6Ez6D4Axr/7lZFGimVu9LvWaW4YS9QWIfcD08Me4JfMfg7TGSWg5@vger.kernel.org
-X-Received: by 2002:a05:6102:41ab:b0:6c8:aed:ca95 with SMTP id
- ada2fe7eead31-7246c9ac2d5mr1291045137.13.1781681369628; Wed, 17 Jun 2026
- 00:29:29 -0700 (PDT)
+        Wed, 17 Jun 2026 00:30:31 -0700 (PDT)
+Message-ID: <915e4524-d407-4b4b-9e61-e4a2274a6f6b@linaro.org>
+Date: Wed, 17 Jun 2026 09:30:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260615154805.1619693-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20260615154805.1619693-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 17 Jun 2026 09:29:18 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXatyCmWsLZuaxsjHmwvaLfuY58dFj3CFDzxWUsnV_SaA@mail.gmail.com>
-X-Gm-Features: AVVi8Cec7sdhKO6enoQpO-vFddUl_hmphx3k_Jhb6Ts9DPQNkP2qjefI912kXBY
-Message-ID: <CAMuHMdXatyCmWsLZuaxsjHmwvaLfuY58dFj3CFDzxWUsnV_SaA@mail.gmail.com>
-Subject: Re: [PATCH 07/12] rtc: rzn1: fix alarm range check truncation on
- 32-bit systems
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 4/4] arm64: dts: amlogic: meson-axg-s400: Enable
+ pcie_phy
+To: Jun Yan <jerrysteve1101@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Arseniy Krasnov <avkrasnov@salutedevices.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260617071604.635627-1-jerrysteve1101@gmail.com>
+ <20260617071604.635627-5-jerrysteve1101@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260617071604.635627-5-jerrysteve1101@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[linux-m68k.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:miquel.raynal@bootlin.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:wsa+renesas@sang-engineering.com,m:linux-rtc@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,m:wsa@sang-engineering.com,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312821-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,gmail.com,sang-engineering.com,vger.kernel.org,bp.renesas.com,renesas.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312819-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jerrysteve1101@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:avkrasnov@salutedevices.com,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-amlogic@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,linaro.org:dkim,linaro.org:replyto,linaro.org:mid,linaro.org:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
+	FORGED_SENDER(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,baylibre.com,googlemail.com,salutedevices.com];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	FORWARDED(0.00)[lists@lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:from_mime,linux-m68k.org:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,vger.kernel.org:from_smtp,mail.gmail.com:mid,glider.be:email,renesas.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_EQ_FROM(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B7F1A697391
+X-Rspamd-Queue-Id: EF0F569732E
 
-On Mon, 15 Jun 2026 at 17:48, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> alarm and farest were declared as unsigned long, but
-> rtc_tm_to_time64() returns time64_t (s64). On 32-bit systems where
-> unsigned long is 32 bits, the assignment silently truncates the upper
-> 32 bits of the timestamp.
->
-> Fix by declaring alarm and farest as time64_t and replacing
-> time_after() with a direct signed comparison, which is correct for
-> time64_t values that will never realistically overflow.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 6/17/26 09:15, Jun Yan wrote:
+> The meson-axg dtsi now disables pcie_phy by default, so enable it
+> for the s400 board to support PCIe functionality.
+> 
+> Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> index 285c6ac1dd61..7ba249cc3d56 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
+> @@ -448,6 +448,10 @@ &pcieB {
+>   	status = "okay";
+>   };
+>   
+> +&pcie_phy {
+> +	status = "okay";
+> +};
+> +
+>   &pwm_ab {
+>   	status = "okay";
+>   	pinctrl-0 = <&pwm_a_x20_pins>;
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Please squash this one with the previous patch
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Neil
 
