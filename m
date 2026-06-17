@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-313141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313143-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sdh6K/jsMmoO7wUAu9opvQ
-	(envelope-from <devicetree+bounces-313141-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 20:52:40 +0200
+	id DxwpMQjuMmox7wUAu9opvQ
+	(envelope-from <devicetree+bounces-313143-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 20:57:12 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF99369C070
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 20:52:39 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F1D669C0BA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 20:57:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=mail header.b=VRVkRt58;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313141-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c15:e001:75::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313141-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=collabora.com header.s=mail header.b=fTTDpCI0;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313143-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-313143-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4AF54302B2C1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 18:52:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 890D7306B350
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 18:52:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF2D37C91F;
-	Wed, 17 Jun 2026 18:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2BA737C110;
+	Wed, 17 Jun 2026 18:52:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CFB237EFFB;
-	Wed, 17 Jun 2026 18:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6681D37C91A;
+	Wed, 17 Jun 2026 18:52:11 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781722334; cv=none; b=bG2SJo5OUtMufXaQixPpjVdG/4BUMpGQ60VVwdRYF+YLkKGvdw5qdmiJFHEUt87ypNJKUdW7+A5S0Y9Gfz/JJa5GjC+k1z9jc16Fb6ODjawoVsQ+0IvSQOFQPNfHrxRriFMhBifLsexOQabO+zU+7F/XjRpIPp6gbEVZkmA86Dg=
+	t=1781722343; cv=none; b=OUOdwhwuD12rB1pnTOlkldoS+gDn0RDrsZU3RGvnVywOd2jW5gRzS5uICFOP/ZyAfNeTtsfctnLtmX7KZOerbpCi1W4IfiyaPRdMK5MCglmpG2Srmt6d6pGa2XtMrtXKLPiuvPfYIW9PFXYc2L7oLAr6clPpq+5PtxEybYCotYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781722334; c=relaxed/simple;
-	bh=SsYb54x0tancRWbNRMe9tudgkZipWAm8nxe1GklgbkE=;
+	s=arc-20240116; t=1781722343; c=relaxed/simple;
+	bh=+zMBc9cvNd9kN7V+U1U6o2kMwD6S1HsWu+emdfG6GtE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WG3QN729NplVZ69FCzIBWC0OE0++XIhdib6YHueAHjM4mnwk8ayBlXDIB7Rw4WY0CmUxt8x3LG3MesUAKUNHNiCPK9kYYhovfai6rUn0d+TkyHE5A+b00LoOGGYZJ4EXN0Z5YVuo+zdJjJqnkhLneIypgQhsPxq1YnbBli8QBmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VRVkRt58; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=ssyNoUYIFAoQz1jMxlT8d5niGtTxeM5owdhEtycA+PqCNlEZG7f9RGK17vxi480wQ86nhgLgxVNnqTGHaaan+Iuxgs14akhEIdvJdiZ8ksMxcMFmrbHv3uo0DQ2hI2yJmjZufojghcCq63kqUjwdEAZ1TLtc+Wmuvh3SQgZuji4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=fTTDpCI0; arc=none smtp.client-ip=148.251.105.195
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1781722325;
-	bh=SsYb54x0tancRWbNRMe9tudgkZipWAm8nxe1GklgbkE=;
+	bh=+zMBc9cvNd9kN7V+U1U6o2kMwD6S1HsWu+emdfG6GtE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=VRVkRt58jd5iw9GVAiv25VuwgZ/sVL5HEYqLUGCjzCx4HsTnqSazwV/3U38v7DrPL
-	 1woS8AcjnthCf7sOx0Gw4WrH41yftJcDRjKz1L0TtBBSiXwXTLyX+ycY/HMP4l9OoU
-	 FrqrxyWEp1hAM7p2JPKU0Yi8Sog9ayuL44dCwNAADg7cLzPvGNRtBIp/kXjV5bkPA2
-	 PQC5f6Ccw9BGQy1JcamcTsaSN0fRyLWRAi5d3JaBAkVwxDMkWiLSvVwC3yepYhx80k
-	 u3EALlTB0T5WpU0JVb3assgNQdXLTbgOKvMMoT7nUy5bjUblOLWSp8kIHPPKK1UU8N
-	 2My6o+wKlqy1A==
+	b=fTTDpCI0S6IuZnP5O7AF58qW5BWea8gyzki9trM4Qfrkonwc9O5CxyhaXb9Qb5LmD
+	 mUf7OO8LU32m/fGh1A4SEZ6qJWsFhtZH+mNIW16GUmZb6el+5/rnMNULpn6ntyvThg
+	 mVnp9VWDaoxq8xb7STmO4BsT9mnKXshMLeTVuTpgV2DMfaGKJSZyV3S80aMv082reb
+	 kriYrGVLaI5pa0Pkd06dPy+9BJSXSpengWo/MfDySt0WkOTJdghQIIriZ8dOKiBfyI
+	 6Es6Qyuuh2DJApuDjk9oqsuyMUw3SlMnlkVo+BiZpUZTScTeMu+T6vxkZtGFJLjA10
+	 oaviC2DLeQI/w==
 Received: from localhost (unknown [100.64.0.241])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D5CF817E120F;
-	Wed, 17 Jun 2026 20:52:04 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9167217E14FA;
+	Wed, 17 Jun 2026 20:52:05 +0200 (CEST)
 From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Wed, 17 Jun 2026 21:52:01 +0300
-Subject: [PATCH 8/9] drm/rockchip: dw_hdmi_qp: Enable YUV420 output format
+Date: Wed, 17 Jun 2026 21:52:02 +0300
+Subject: [PATCH 9/9] arm64: dts: rockchip: Add RK3588 VOP2 resets
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,7 +62,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260617-dw-hdmi-qp-yuv-v1-8-a665cfd06d7d@collabora.com>
+Message-Id: <20260617-dw-hdmi-qp-yuv-v1-9-a665cfd06d7d@collabora.com>
 References: <20260617-dw-hdmi-qp-yuv-v1-0-a665cfd06d7d@collabora.com>
 In-Reply-To: <20260617-dw-hdmi-qp-yuv-v1-0-a665cfd06d7d@collabora.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
@@ -89,7 +89,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -97,7 +97,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:p.zabel@pengutronix.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:kernel@collabora.com,m:andyshrk@163.com,m:dri-devel@lists.freedesktop.org,m:devicetree@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,pengutronix.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,bootlin.com];
-	TAGGED_FROM(0.00)[bounces-313141-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313143-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[26];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -116,40 +116,44 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,rock-chips.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AF99369C070
+X-Rspamd-Queue-Id: 1F1D669C0BA
 
-Both RK3576 and RK3588 SoCs are capable of driving the YUV420 output
-color format, and the required bus-format handling and VOP2 support are
-already in place.  Advertise it via the platform supported formats so
-the HDMI core can select it.
+Add the missing reset properties to VOP2 on RK3588.
 
-YUV420 halves the TMDS bandwidth compared to RGB/YUV444, which enables
-high-resolution modes such as 4K@60Hz on links that cannot otherwise
-carry the full-bandwidth signal.
-
+Co-developed-by: Andy Yan <andy.yan@rock-chips.com>
+Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 ---
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-index 3a1c027aa90b..e29522afc6f0 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-@@ -612,7 +612,8 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
- 
- 	plat_data.supported_formats = BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
- 				      BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) |
--				      BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422);
-+				      BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422) |
-+				      BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
- 
- 	encoder = &hdmi->encoder.encoder;
- 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+index 4fb8888c281c..1404cd7ecf02 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+@@ -1453,6 +1453,18 @@ vop: vop@fdd90000 {
+ 			      "pll_hdmiphy0";
+ 		iommus = <&vop_mmu>;
+ 		power-domains = <&power RK3588_PD_VOP>;
++		resets = <&cru SRST_A_VOP>,
++			 <&cru SRST_H_VOP>,
++			 <&cru SRST_D_VOP0>,
++			 <&cru SRST_D_VOP1>,
++			 <&cru SRST_D_VOP2>,
++			 <&cru SRST_D_VOP3>;
++		reset-names = "axi",
++			      "ahb",
++			      "dclk_vp0",
++			      "dclk_vp1",
++			      "dclk_vp2",
++			      "dclk_vp3";
+ 		rockchip,grf = <&sys_grf>;
+ 		rockchip,vop-grf = <&vop_grf>;
+ 		rockchip,vo1-grf = <&vo1_grf>;
 
 -- 
 2.54.0
