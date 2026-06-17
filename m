@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-312929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312930-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IPDXDNaBMmpq1AUAu9opvQ
-	(envelope-from <devicetree+bounces-312929-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 13:15:34 +0200
+	id vzj4J7l9MmoF0wUAu9opvQ
+	(envelope-from <devicetree+bounces-312930-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:58:01 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F191698E33
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 13:15:33 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CE34698BC4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:58:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=aeYLfkHI;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312929-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c04:e001:36c::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312929-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Cz2iFM52;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312930-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312930-lists+devicetree=lfdr.de@vger.kernel.org";
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F1AEE3183028
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 10:55:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 46BBC301BA4F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 10:56:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BCEF39B4BB;
-	Wed, 17 Jun 2026 10:55:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84ABB39EF34;
+	Wed, 17 Jun 2026 10:56:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BFB93803CC;
-	Wed, 17 Jun 2026 10:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753913803CC;
+	Wed, 17 Jun 2026 10:56:30 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781693751; cv=none; b=F1YVQKMXj43Co4thZhwC8soEAR6t8CFeP2X1S8wnW3UCyu6l1dMfis7lC7zGov+tOBAy057KVNOvCpOhA3loo8PZqtpwz8WgP8tu+lA8LXkPxXuCbCmwkPAAM/MR56CvwL/Am1MlK+3XI40dnF4dImGRyWfoImlqtz4vqEAA2cw=
+	t=1781693791; cv=none; b=d5+DbyldhkjdIrtaZvQwoTOyHj5k7/gDiv9wWulWF21HKCZMyAaj0Fy6/wGNmHjrn9dNISVYGWJu9ZuoWR0IYOqoY6LdXQ33EkB+OxwRNuDa5RndXZgIT0if3f9e/j+MxnTnLD8t4gCkCgQeLPHVbGtw3pK1ZYAuJWGbUEhX6gg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781693751; c=relaxed/simple;
-	bh=s8/9NbIAn+PDYjuEUhzQukO8hHAyZwvwv9o1lJ6TcLc=;
+	s=arc-20240116; t=1781693791; c=relaxed/simple;
+	bh=XOlwZzaMvyWrJewpWNS5z0GhZTpDQKyVmMhu3NfOG6g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n9iVtx1P5Pc83nqFY5ZBa7I+s1fhD9hQ8pt8sZCooGmzIW5vMOH6VOyzzhkTrIPDvXEau48tBkC+9rQWe6OphNDH/0fy5gJpLkisgqKoZ8KRl3qG13JjkuwsHmInduYhEoPyh/Z0isfDB11W7gnfQzCcjLiHpuT5sghjpjj8tKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aeYLfkHI; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A2FE1F000E9;
-	Wed, 17 Jun 2026 10:55:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lrrVhX8GJX0jTOVJsWmu1IkJljipV5z5IEBoDl6Oki8XFbzT42IxLfzpP29GMoN/N6JJtisutWa5xfDqoRk46RRmf9yVm6eg7dOervFXnsM3xWfDh8DTlHTMWu58w4HAxhCOG0vVGNHOB21UsgfuUKaQmlzszDYCR+I+MEbWKe4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cz2iFM52; arc=none smtp.client-ip=100.103.45.18
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C1631F000E9;
+	Wed, 17 Jun 2026 10:56:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781693750;
-	bh=Jd1Dq3uJKlFCrDae889n8fcid3u1wezxaIUUcFz2JSE=;
+	s=k20260515; t=1781693790;
+	bh=1pXP4cxEHLyE7XxRo4PsonDuXCdibzvY8RtS3Yi4bK4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=aeYLfkHIPDWI4FZo6IxYeiVudZZXIFmd/L3ka6Iw1XGscOakItLDpUR9d4WquAELH
-	 yXIokVSA9E8gwS4vak7agTzgTv1CTRFyfhW3r6c7qjgBBxvkUjVElU+46gb2rsSKuF
-	 63Wsm856Bj+fvM6veBMG893etX9OyMM19QgYGwKV/LCPDn8Wji33PuR5FwiMD8eVMQ
-	 CbH7NJ6aaV3D7v45rWk4QCsR3uKaWcVkQ18XKiaWJuhKD0VfjD2glz7AGORsqf1Wkz
-	 5mxiYrDup5sjuD622kwu6xnt9IGPxhwDIkuinNJ4kKpwwI9vTx72w0pSaF/dlV5bR3
-	 qQKHMVVveMBpw==
-Date: Wed, 17 Jun 2026 12:55:46 +0200
+	b=Cz2iFM520u61ioRCwPffl+mmm0Pv0J5Z/gzXCkwB5Fu40Kj3BxSkWqNms5y6yzvxJ
+	 dyHkrRmkxxBbfWHvYbRilncRrZtJptVyokJFf+qqBNafLdvBgkcmKUG7ekqe+fIjT4
+	 /0JuIVJNAl31NLbbnCopZ/swBoNWpA5Z6YiYa2sr0Nei/DnvaJ29FzVVdP5RXcLfHf
+	 abk1u+/mIKs98PTMTh3budMXVnCGEhkdwoqWa4FjC2SdB+EBCG3IVeiYK00sR48zVH
+	 xSwjzqam+A0qqSEOF9w3Wi/x4jNk4g5IJrGy7/niXe8NSV0YHmtcC5BN6HVV0AhAeD
+	 8fWVvKM2mLG3g==
+Date: Wed, 17 Jun 2026 12:56:26 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Zakariya Hadrami <zkh1@proton.me>
 Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
@@ -56,11 +56,10 @@ Cc: Matthias Brugger <matthias.bgg@gmail.com>,
 	Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
 	linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH 3/5] ARM: dts: mediatek: Add basic support for Amazon
- ford board
-Message-ID: <20260617-fat-lively-rottweiler-ef0cf1@quoll>
+Subject: Re: [PATCH 5/5] dt-bindings: watchdog: mediatek: Add MT8127
+Message-ID: <20260617-fascinating-hasty-dragon-e92b4b@quoll>
 References: <20260617-mt8127-amazon-ford-basic-v1-0-d02ad15ac359@proton.me>
- <20260617-mt8127-amazon-ford-basic-v1-3-d02ad15ac359@proton.me>
+ <20260617-mt8127-amazon-ford-basic-v1-5-d02ad15ac359@proton.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260617-mt8127-amazon-ford-basic-v1-3-d02ad15ac359@proton.me>
+In-Reply-To: <20260617-mt8127-amazon-ford-basic-v1-5-d02ad15ac359@proton.me>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.16 / 15.00];
 	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
@@ -78,7 +77,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -89,7 +88,7 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORWARDED(0.00)[lists@lfdr.de];
 	FORGED_RECIPIENTS(0.00)[m:zkh1@proton.me,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:sean.wang@mediatek.com,m:wim@linux-watchdog.org,m:linux@roeck-us.net,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:devicetree@vger.kernel.org,m:linux-watchdog@vger.kernel.org,m:matthiasbgg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-312929-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-312930-lists,devicetree=lfdr.de];
 	FORGED_SENDER(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -104,51 +103,39 @@ X-Spamd-Result: default: False [-3.16 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,proton.me:email,bootlin.com:url,vger.kernel.org:from_smtp]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[quoll:mid,vger.kernel.org:from_smtp,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,bootlin.com:url,proton.me:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8F191698E33
+X-Rspamd-Queue-Id: 0CE34698BC4
 
-On Wed, Jun 17, 2026 at 11:20:12AM +0900, Zakariya Hadrami wrote:
-> This tablet uses a MediaTek MT8127 system-on-chip with 1GB of RAM.
-> It can currently boot into initramfs with a working UART and
-> Simple Framebuffer using already initialized panel by the bootloader.
+On Wed, Jun 17, 2026 at 11:20:14AM +0900, Zakariya Hadrami wrote:
+> Add entry for MT8127 SoC's watchdog which is compatible with MT6589's
+> one.
 > 
 > Signed-off-by: Zakariya Hadrami <zkh1@proton.me>
 > ---
->  arch/arm/boot/dts/mediatek/Makefile               |  1 +
->  arch/arm/boot/dts/mediatek/mt8127-amazon-ford.dts | 46 +++++++++++++++++++++++
->  2 files changed, 47 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/mediatek/Makefile b/arch/arm/boot/dts/mediatek/Makefile
-> index 37c4cded0eae..a610bc75c7d9 100644
-> --- a/arch/arm/boot/dts/mediatek/Makefile
-> +++ b/arch/arm/boot/dts/mediatek/Makefile
-> @@ -14,5 +14,6 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
->  	mt7623n-rfb-emmc.dtb \
->  	mt7623n-bananapi-bpi-r2.dtb \
->  	mt7629-rfb.dtb \
-> +	mt8127-amazon-ford.dtb \
->  	mt8127-moose.dtb \
->  	mt8135-evbp1.dtb
-> diff --git a/arch/arm/boot/dts/mediatek/mt8127-amazon-ford.dts b/arch/arm/boot/dts/mediatek/mt8127-amazon-ford.dts
-> new file mode 100644
-> index 000000000000..21bdab0e43f8
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/mediatek/mt8127-amazon-ford.dts
-> @@ -0,0 +1,46 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +/dts-v1/;
-> +#include "mt8127.dtsi"
-> +
-> +/ {
-> +	model = "MediaTek MT8127 Amazon Ford";
-> +	compatible = "amazon,ford", "mediatek,mt8127";
+>  Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
 
-Please organize the patch documenting the compatible (DT bindings)
-before the patch using that compatible.
-See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
+<form letter>
+This is an automated instruction, just in case, because many review
+tags are being ignored. If you know the process, just skip it entirely
+(please do not feel offended by me posting it here - no bad intentions
+intended, no patronizing, I just want to avoid wasted efforts). If you
+do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here ('b4 trailers -u ...').
+However, there's no need to repost patches *only* to add the tags. The
+upstream maintainer will do that for tags received on the version they
+apply.
+
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
+</form letter>
 
 Best regards,
 Krzysztof
