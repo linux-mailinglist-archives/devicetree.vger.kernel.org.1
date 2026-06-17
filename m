@@ -1,216 +1,223 @@
-Return-Path: <devicetree+bounces-312892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312894-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id C5UPAFpyMmpx0AUAu9opvQ
-	(envelope-from <devicetree+bounces-312892-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:09:30 +0200
+	id gsq6AcB0MmoJ0QUAu9opvQ
+	(envelope-from <devicetree+bounces-312894-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:19:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FC546984CF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:09:29 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A81B6986A9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:19:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=TzyDBHuG;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=YvnwrA6w;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312892-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-312892-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=reject) header.from=qualcomm.com;
+	dkim=pass header.d=intel.com header.s=Intel header.b=XG7cpH0R;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312894-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-312894-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=none) header.from=intel.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E8E2331390A0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 10:05:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F414C308C3F6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 10:06:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140E43D890F;
-	Wed, 17 Jun 2026 10:05:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14CCB3D171B;
+	Wed, 17 Jun 2026 10:06:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 478E03A2544
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 10:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFA42EEE68;
+	Wed, 17 Jun 2026 10:05:57 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781690716; cv=none; b=VBrBYdM15XXVHHCBQfuSb6BDTpGt6+mBXw5EKknOmVVH5+MEATO1YxNTa0RVpsjjLs2bZ5TpNd/UNURbJst1Cnr9V+BHz5RQDXG6fW/hlUbPd9X0at9et4Id316DQIGnM6R1pYQCNNHQDwxhT+2gNVXXbMVkSoUvNLr2KgxUtPM=
+	t=1781690760; cv=none; b=PCFQlRfzzKiK2l5rQyvqw+Y/Yg59UI4o1KuKoNWDUrxkXGi8iKpb0mqAXpC8l7hMzpSOESHSBtWo7mv0r0gDkU5phhfltgEUbp2gcOG3yT0UYvn1KrqmFPPQnxKlNvlduGFEmNfjrmje8UIWhLMfZfh/7VeJQ4+NUqc9R4+HSbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781690716; c=relaxed/simple;
-	bh=5TxvZppIuVK4IbjAthVhCxutkqy3HZ+yhexbIYSVtPA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V9Xb7EJKzC6rI1DysUZgCqct94RL6ZBXXv3HALxY1LUaLz7yh+RIKG27xYi0JRaKqJ5bgnXUi//OZBqYqqPoezpvc6yqCOV5SDYG/1x9+vbdGBxod4DCv2ANAIgdZF0ZrPrkB7M+IImyXJ4mdR+ZzT5CO7e7MgLg36Cdu/F3DOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TzyDBHuG; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YvnwrA6w; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65H8VxRC2056617
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 10:05:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	G/3xtJbSgpRVggmVdlAhVnxw+ha4tmbu5w4Ruonole8=; b=TzyDBHuGE0f1IEdm
-	9V9NIeNbNQDb/0iqMZTyuniZC+ryNCgg1zPpFpCJCj/bTaVZhjC4IJAratuOuCJy
-	ku9yMUEKH0bBi/jozOQUqItvOty3CIJwa7uxyN0UIe06CDzjCtkTI5pRk0WS7bOh
-	ZfpvcKAaFXyPIKVs01ZjzNfp3HnlNGV9Aw7fGKr0a8Grg9L8gnmI9BWsI22e1JmD
-	aScaO19J7tLldH4liU1GeFxHsgqws5ZV8ODpQJoGDSHZcUdKn/cbF5oH6PZaXh2T
-	aP+BNQ8KBtOi7TpFmNeB9S/amPwszcJaSd1aKJdKAvdezqlkagqgaeBMc+6gYrMU
-	kvHVRg==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eueesak4f-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 10:05:12 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-5178a632a12so13580721cf.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 03:05:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1781690712; x=1782295512; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G/3xtJbSgpRVggmVdlAhVnxw+ha4tmbu5w4Ruonole8=;
-        b=YvnwrA6wN0QbP1JS6MwoZKMlQMqcuJWg9yQxBiHoeooMle6T2HRAQc37SVauKe5iG9
-         0RoPpQ1ubXcnYUYEQuOn/KX4etcMD0WOoUQfn5rF4rs+4HKJsopRNIN3VT8mVpzEe4HT
-         BkN5xBujcut5smLgsHqwfznYOglfnWAlbUnzNaSBkVEOwmMYW/r11whYxj5kZGbHNRuS
-         nMe+PVvajju9XGjW6D1s5vyHNJuSJw4e50kn5GkFNChfngQK8r7CVV0eE0SJBYg5coGI
-         mZ0pFgf/5HSIoXAMv3ua1IFEV38k/CKJTXbWTHUPQqjlIVx8MwMREt5dOfmSYcSkBw8K
-         NGWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781690712; x=1782295512;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G/3xtJbSgpRVggmVdlAhVnxw+ha4tmbu5w4Ruonole8=;
-        b=hfBYsAN2ZgB908JgIXDcptTM6e8e34Q1z8JhC3j3Ra3ZWxym/e0djA88bm89hQrdhv
-         EzHkhR0xl70gvbk1/RLcuKQxcerhSxq7EBDSWNS6PrYNpiObtAUtTQdA2SPrch6Bf1bH
-         z+9XKCOKwnBotWPnfXBy3fiti/y+V0kqv15yGO7sc+neJXqC0FIdgskz1pIT6W5K0H5V
-         CNDOyHyf7EKEPsemiYgpMuGcUWHHoFyGKa8R3CDBcK8X/AVWxUe4se/2yjPxRF4k6MTS
-         HhOVNSqMNFViJeIfLlYdLSzqwgL1VLOKTa1di8X8MD8QLan0pUEq5+h2EMM/RO82koY1
-         e2ZA==
-X-Forwarded-Encrypted: i=1; AFNElJ+AM1oOzMW1zCMMrdXMRgTn63v2K3dUXlMI97QLHvhsqKKMmxe8oqk9BGJdQzJaUI+FSlNBAvI4D1xn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy01m9igR/Z+gyaHoPSR8xjy8D4dE6LKgz586gxcGwL+K2WWTLD
-	HHhV9pEhbrmMmWtC6iSKs/e1vF1qwHUOFKViK7V3x88UIlMsLW7xuntiicXBEayEFH5xDgn0eJe
-	Dy+kNWAcFx98kSAeKcyubIlHiGUGyGuBUz+o/+3+ivjd05ShFGctJPYvl+Z5mylFo
-X-Gm-Gg: Acq92OF1JzhB7r8Vm+zPeFI2+jIM2JR8isgIAiMli7/hIPXYGFW0UtUl0cllHxbQ8AL
-	7SKYnX2N1tjfujlYXgfXPzGzHpRs8cWmKkY5cSqi3950KORk5/FFBc40guq02GYxb0WUur6+jN2
-	cnTBvARo7bUsshtS9pVtt6Z53Pr/FsE32dk0Bih9tq/5lkbKSSS81FN4Xn5L08N0QZwbGwU5FPe
-	QRaBnzuzSi6zQttvGNFGzRcUtProI3Ie2Wwj+M5DbMrxXEk3saaD/AE8lU4zkJRwPZDLP+L0PJc
-	W7Um7CpBtKoKIWa1lh2QMPqjLI8K8O8y3thTjdAfbkIx54WATou5Fqd6IxUckROe+qjKGOXdGkJ
-	wPoarguMWtvaQUZ1sNJ11uz3XSR3fPM4ZbQg=
-X-Received: by 2002:ac8:7f91:0:b0:517:5d21:9899 with SMTP id d75a77b69052e-519ac25db63mr22095951cf.5.1781690712303;
-        Wed, 17 Jun 2026 03:05:12 -0700 (PDT)
-X-Received: by 2002:ac8:7f91:0:b0:517:5d21:9899 with SMTP id d75a77b69052e-519ac25db63mr22095711cf.5.1781690711861;
-        Wed, 17 Jun 2026 03:05:11 -0700 (PDT)
-Received: from [192.168.120.170] ([178.235.128.140])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c01ee8286c9sm484557866b.5.2026.06.17.03.05.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jun 2026 03:05:11 -0700 (PDT)
-Message-ID: <b39e4b4f-c166-48e1-901c-51694cf8172b@oss.qualcomm.com>
-Date: Wed, 17 Jun 2026 12:05:08 +0200
+	s=arc-20240116; t=1781690760; c=relaxed/simple;
+	bh=OLeVBB6qlE0iZ/ufAhTpyQ+OClTsi9u7Xc5hNVrjvek=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NVcUBYWwZZ0AXLX61IEu0+9qED6zaagZHDZv0s9bifqYycYZw02YOKpGZaV4Qn9OG/6QFWNcHFh1gFjjgBQriaWXipqkSPCvFA+impOtgGda/wf9mw5pv8NoTblCAeybgDWFMt1iqXe+in79hw5klvRwntyF05IDZ3kECGh+Ti4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XG7cpH0R; arc=none smtp.client-ip=192.198.163.14
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1781690758; x=1813226758;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OLeVBB6qlE0iZ/ufAhTpyQ+OClTsi9u7Xc5hNVrjvek=;
+  b=XG7cpH0RZh9SEFjfA/j0IjvIq+VhfOda3Y+7rNP+Xlq9jMo09g+XrNcR
+   deZsj0EpaCXFR4dLqoFZZnYKbbWu1GXh88fn2UDXC0YKVLTen6CamZV8j
+   cX/FFX4VOhfI4qY1ePWl1Ak/lK3hKJy9kWnpQHkanpPVHPTEizq2WRYXE
+   GA+++yivQ1uw5rL1YJVR/raylqE3DPkRj6EX8bfY/6YRVjaIxWw5QHIP+
+   AV3+BMhb3mrk5+dUr3fuV7HtRX4ZuwJqJs2AB5W2KBV/+HKl9yeD5Xhnr
+   qkhUrd3m5qFjSJNdfQZA/GhBYomP6PkdRt+a3U+mDhiSTgHONMZurQ+H6
+   w==;
+X-CSE-ConnectionGUID: qIDIFzr9TWW0396XXP3KxA==
+X-CSE-MsgGUID: hlU4DowpSx6hw/z8W6BfCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82536029"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; 
+   d="scan'208";a="82536029"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jun 2026 03:05:58 -0700
+X-CSE-ConnectionGUID: PTAcu+LyS7iF1NphgD7NBw==
+X-CSE-MsgGUID: Z8Ar9FZWS++0ppbBrttrWQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; 
+   d="scan'208";a="252328680"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost) ([10.245.245.69])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jun 2026 03:05:53 -0700
+Date: Wed, 17 Jun 2026 13:05:50 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Herman van Hazendonk <github.com@herrie.org>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Denis Ciocca <denis.ciocca@gmail.com>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Denis Ciocca <denis.ciocca@st.com>,
+	Linus Walleij <linusw@kernel.org>, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] iio: magnetometer: st_magn: honour
+ st,fullscale-milligauss DT property
+Message-ID: <ajJxfi3V-EGz4KTF@ashevche-desk.local>
+References: <20260616-submit-iio-lsm303dlh-magn-fixes-v2-0-063edcf74e60@herrie.org>
+ <20260616-submit-iio-lsm303dlh-magn-fixes-v2-3-063edcf74e60@herrie.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: kodiak: Elite-ify LPASS macros
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260522-kodiak-elite-macros-v1-1-487661ac1270@fairphone.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260522-kodiak-elite-macros-v1-1-487661ac1270@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE3MDA5NCBTYWx0ZWRfXwy3LWDa/Ecw5
- OLybDKDWWleRRa7VI5LbqgYqC8UEYQ0zssYL6/2E/M9QsjE0CR+/YQqkYP7HZ+GC6EJWH4j1439
- CXOqJM1LY4fVJIIASuQFef289MeADHs=
-X-Proofpoint-ORIG-GUID: p2wMqYFWuzE7InggiQDOU91e1gHumony
-X-Authority-Analysis: v=2.4 cv=R6oz39RX c=1 sm=1 tr=0 ts=6a327158 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
- a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=UVdh9-GTA9LMwvOUMncA:9 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-GUID: p2wMqYFWuzE7InggiQDOU91e1gHumony
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE3MDA5NCBTYWx0ZWRfXwwiBfQxaNUOp
- HQAVVItJJ7/zA5jWln/HncWDgecwFWp/SLxrulPssZUXDy2YMPkJHiGZap5lPHZHJgCg7B+fWem
- Top3BsqeFLUupzGKIaLI1fGcpHZ5KtZRK0hgfkVMk4fXckVH2Q/b7JC4xFEk1EXEeCewUyOswXB
- CNjg0jmjKD4LOtflKzIkFHNzwikX2HePS6HBocKhS4T44Cj4BBtIjV9yQp/SLzNfRLllDxDTzeq
- 7qjcTySCHQrMGQEwu1MDi3BrvtvZoW9IWcgNevhpUDiI47cW4yZ8hbqXKBY+N9hHN1xlKwPNMYx
- Jt5PdHAV3iaITbmTCVHWvmLyfo5VzH66EH0FEYHW8tt9TnLPYNzy0lf4AdL+AjOGZgF6aKREy0N
- mJFDT/gAtl7N1L+3nM6+zD6/HcSMYZxgsOqs1WxhQyt0aIoMCZ2YIyGBP7zLjT8n5iIBYMev9Sd
- mPRJZeTPf1VY/SELdbA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-17_01,2026-06-16_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 clxscore=1015 impostorscore=0 phishscore=0
- lowpriorityscore=0 suspectscore=0 priorityscore=1501 malwarescore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2606170094
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260616-submit-iio-lsm303dlh-magn-fixes-v2-3-063edcf74e60@herrie.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-3.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[intel.com:d:+,kernel.org:s:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-312892-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:dkim,vger.kernel.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
-	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_RECIPIENTS(0.00)[m:luca.weiss@fairphone.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:cros-qcom-dts-watchers@chromium.org,m:~postmarketos/upstreaming@lists.sr.ht,m:phone-devel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-312894-lists,devicetree=lfdr.de];
 	FORWARDED(0.00)[lists@lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS(0.00)[m:github.com@herrie.org,m:jic23@kernel.org,m:dlechner@baylibre.com,m:nuno.sa@analog.com,m:andy@kernel.org,m:nathan@kernel.org,m:nick.desaulniers+lkml@gmail.com,m:morbo@google.com,m:justinstitt@google.com,m:denis.ciocca@gmail.com,m:lars@metafoo.de,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:denis.ciocca@st.com,m:linusw@kernel.org,m:linux-iio@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:llvm@lists.linux.dev,m:devicetree@vger.kernel.org,m:nickdesaulniers@gmail.com,m:denisciocca@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,gmail.com,google.com,metafoo.de,st.com,vger.kernel.org,lists.linux.dev];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,lkml,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:from_mime,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,ashevche-desk.local:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5FC546984CF
+X-Rspamd-Queue-Id: 0A81B6986A9
 
-On 5/22/26 4:46 PM, Luca Weiss wrote:
-> Due to initial kodiak/sc7280 bringup being done for Chrome platforms,
-> some Chrome-specific bits still remain in kodiak.dtsi, like the clocks
-> and power-domains for the LPASS RX/TX/WSA/VA macros.
+On Tue, Jun 16, 2026 at 03:02:06PM +0200, Herman van Hazendonk wrote:
+> The ST magnetometer core's common probe hardcodes fs_avl[0] -- the
+> highest-sensitivity full-scale supported by the chip -- as the
+> starting range. For the LSM303DLH that is +/-1.3 G; for the
+> LSM303DLHC and LSM303DLM it is +/-2 G; for the LIS3MDL it is +/-4 G.
 > 
-> Move them to sc7280-chrome-common.dtsi and put Elite (q6afecc)
-> equivalents in its place. The qcs6490-audioreach.dtsi file can also drop
-> deletion of power-domains properties then.
+> That is the right default for "minimal noise floor at a desk", but
+> it leaves no margin for boards that pick up appreciable DC bias from
+> nearby PCB structures. On the HP TouchPad (apq8060 / tenderloin) the
+> LSM303DLH magnetometer is mounted close enough to the surrounding
+> power planes that X reads back as the chip's 0xF000 overflow
+> sentinel (== -4096 raw, the value the chip publishes when the ADC
+> saturates) on every sample at the chip-default range, while Y and Z
+> fall well within the +/-1.3 G window.
 > 
-> This follows previous commits moving Chrome-specific configuration to
-> the correct file, leaving kodiak.dtsi for Elite and
-> qcs6490-audioreach.dtsi for AudioReach.
+> Parse the st,fullscale-milligauss device-tree property (documented
+> separately in dt-bindings/iio/st,st-sensors.yaml) in the
+> magnetometer common probe to select the initial fs_avl entry by its
+> mg value. The DT binding pins the accepted value set per compatible
+> via allOf/if-then enum clauses, so a malformed mg value fails
+> dt_binding_check rather than reaching the driver. Sensors with a
+> fixed full-scale (fs.addr == 0: LSM303AGR, LIS2MDL, IIS2MDC) have no
+> register to switch and the property is rejected outright for them
+> in the binding; the parse block is additionally gated on fs.addr as
+> defence in depth against stale DTBs.
 > 
-> No functional change intended. The clock-output-names property will now
-> exist for both Chrome and AudioReach devices but this shouldn't have any
-> relevant effect. And WSA macro clocks weren't added to Chrome because I
-> don't believe this would've ever worked given it already referenced
-> q6afecc and the nodes were originally added during AudioReach bringup.
+> Per-sensor mg ranges are listed in st_magn_sensors_settings[]. For
+> LSM303DLH and LSM303DLHC/DLM the valid values are 1300, 1900, 2500,
+> 4000, 4700, 5600 and 8100; for LIS3MDL, LSM9DS1-magn and LSM303C-magn
+> they are 4000, 8000, 12000, 16000.
+> 
+> Empirical scale sweep on the HP TouchPad confirmed that on this
+> board any fs_avl >= 1 produces non-saturated X readings:
+> 
+>     scale (0.001 G/LSB)  | X raw    Y raw    Z raw
+>     --------------------+-------------------------------
+>             1.100        | -4096    44       46    (X saturated)
+>             0.855        |  -547    37       37    (clean)
+>             0.670        |  -433    94      103    (clean)
+>             0.450        |  -266    44       71    (clean)
+>             0.400        |  -235    34       65    (clean)
+>             0.330        |  -196    27       56    (clean)
+>             0.230        |  -145    15       40    (clean)
+> 
+> 2500 mg is the natural choice for tenderloin: comfortably outside
+> the saturation regime while keeping useful precision for compass
+> applications.
 
-I think it's better to keep them, if only to make sure that the result
-of dtx_diff isn't outside the expectation of a commit that claims to
-only reshuffle data for these platforms
+Not sure if we need that big commit message, better to move to the point.
 
-It looks OK as-is for Elite and Audioreach platforms (for the record, I
-checked rb3gen2 and FP5)
+> +	propname = "st,fullscale-milligauss";
+> +	if (mdata->sensor_settings->fs.addr &&
+> +	    device_property_present(parent, propname)) {
+> +		struct st_sensor_fullscale *fs = &mdata->sensor_settings->fs;
+> +		u32 fs_mg;
 
-Konrad
+> +		int i;
+
+Instead...
+
+> +		err = device_property_read_u32(parent, propname, &fs_mg);
+> +		if (err)
+> +			return err;
+
+> +		for (i = 0; i < ST_SENSORS_FULLSCALE_AVL_MAX; i++) {
+
+		for (unsigned int i = 0; i < ST_SENSORS_FULLSCALE_AVL_MAX; i++) {
+
+> +			if (!fs->fs_avl[i].num)
+> +				break;
+> +			if (fs->fs_avl[i].num == fs_mg) {
+> +				mdata->current_fullscale = &fs->fs_avl[i];
+> +				break;
+> +			}
+> +		}
+> +		if (mdata->current_fullscale->num != fs_mg)
+> +			dev_warn(parent, "%s=%u not supported, using %u\n",
+> +				 propname, fs_mg,
+> +				 mdata->current_fullscale->num);
+> +	}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
