@@ -1,179 +1,244 @@
-Return-Path: <devicetree+bounces-312863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312864-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +JV2CddmMmrzzQUAu9opvQ
-	(envelope-from <devicetree+bounces-312863-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 11:20:23 +0200
+	id gB8ZG3BqMmq2zgUAu9opvQ
+	(envelope-from <devicetree+bounces-312864-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 11:35:44 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B19EA697D80
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 11:20:22 +0200 (CEST)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA6C9697FB3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 11:35:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sang-engineering.com header.s=k1 header.b="Qh+AZ//b";
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312863-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.232.135.74 as permitted sender) smtp.mailfrom="devicetree+bounces-312863-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=none;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b="ftQQj5X/";
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=EFkHxAGi;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312864-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c0a:e001:db::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-312864-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 53348303BABF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:18:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7041D31990CF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:30:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA1439E184;
-	Wed, 17 Jun 2026 09:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6CF43CA4AF;
+	Wed, 17 Jun 2026 09:30:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 059C9399899
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 09:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C6BA3CAE7F
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 09:30:45 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781687926; cv=none; b=Xepjw3mJFF4cRtz+vjOwGoXk0qY2APcYVc6QLeQUwLRz1nMv+ArH3SveycaPY2cCe1nY/1DEceIVJG/VSM9P49BFEbFagnDswKy0ZIyYi0kFwuSpyNjqvuqo8sizZZg8uKTMESPFt5VG59Xp563HKgbEQ9jYB34f/UJK9awO+8k=
+	t=1781688646; cv=none; b=Zu/2TxynmUfm0hFv9IhjuxPwNg2J/1vd+NuYb5P62roDxQv0+hv3IbHQRojnUGA3D4EkEWX0yLHhLRnr5BgEDL/PL0KLd/7QS9ltBWEnxFhP9fpTxmwup8vYO94Zfimal2+kivAG7L/xbkZRk8aSkEhpzxUCbX6/2b4gGbfKSxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781687926; c=relaxed/simple;
-	bh=u/PcLubphUScZEyBHaDZmnw+jmhYqzbxcAUrT0FPOEk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rEjTaFHeDd0dEh/+TTZfb9e6G24icdqM27NAKfjmqSvrtqRleMsUy2qWlrd4NqJQMKiTRawvyx7FZV7hS1LpG4E7yUNpLpSa+N/ogYPkxen/Prfn5BrUtTIKfbGksdM6VfbmSkEk7bj8GXQ07LHIxTDc3qMdjzUagNzGDo5PXNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Qh+AZ//b; arc=none smtp.client-ip=194.117.254.33
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=Ur2A
-	Kqttq9C1jxhZMMt3HsRHBG/YG9LFX2Iyhl4yrOI=; b=Qh+AZ//bH0G/NG/VBV2F
-	6IOC4T7Yp8U1WSc51+01gHzjXBcOO6m4SQ1pWrbkfc6v8tmaVhLpvXmOVnjvS3ON
-	46/wlwHstUkrjiLQduGCozHACdg+9ppc4aBhLRkWzjPweZ7LXHM1fMZGcJEB4Z2K
-	50vdMsswM5H8etycmGqmsbBQiIQ59ZjOTWck6aNV2WAQc7eviYk+wwvl7yP8VPWj
-	xJp4xtKYLYpKDBYsNbNQsm+MyKvz2ZKXDf9cUU3PWxb70k+UMt+w9v6Y1YQO6Ftd
-	BsMJtddJjvlBLCe4GIds2JF02tM7xW9oFMY9HRojruh2+uGQ2w/dl2cuAaQLsTbO
-	fQ==
-Received: (qmail 99205 invoked from network); 17 Jun 2026 11:18:33 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Jun 2026 11:18:33 +0200
-X-UD-Smtp-Session: l3s3148p1@XKwpi29UEJQujnvI
-Date: Wed, 17 Jun 2026 11:18:33 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-rtc@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 00/12] Add RTC support for Renesas RZ/T2H and RZ/N2H SoCs
-Message-ID: <ajJmacl9ZJtkoLyf@shikoro>
-References: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1781688646; c=relaxed/simple;
+	bh=h7NqFiL/vZAhxbDLER2nG3vWh/Se87PBLNeoY6zZN2M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g9Ue3/Br0GRttD8JSEeplq5NCwSJEPGJxEY3RWacDE0oqCAC+dPdQeDfJLuiajmyWp0WFvJfkllgIGn5SvKYR4lzJJgyUbrCYtitIH5/FzMloerlgu5hV97iKQOVx9fV5KwQcro1rGjG3YotQk30tKv7Zl2DFrlKQkO2H/EbOws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ftQQj5X/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EFkHxAGi; arc=none smtp.client-ip=205.220.168.131
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65H8UDIK1734962
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 09:30:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mbELSQCe+eLHzp84jgggoNFJ8/wasOftbLaK7oSIbpM=; b=ftQQj5X/9G9fSF45
+	Yq/2s+3OHwxxSyMTC1LXYst8SBO7fq8lJdpwgdpVGK2MXeaJTahnMhHQpZwmO6nT
+	qTC/RYWUxSFUiyCUgMLgaR9V1j11SZLi240Q9+bq765ifD1rCkPHh6Rp4Pbh0+hv
+	4/E6Sw1OEG9zdsNs5rdZWy+NZG3Q3BrB1Q4XoWVlRCz7BvivY12XYVL6q+m0zHOl
+	0VD4Inru3NRMX6h+8l3pUaWIuXWp1sUYZmT3lq5F8CMZwSgXW3THbB50DVP2tYK8
+	xKDTdjYNSPvVTuYZWxDGcK/L3KuWx4n/lXK/dPSm/CzFZlKNJWL8/gGtIhtSAXSq
+	vCti5Q==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4eueemjex1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 09:30:44 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-9160006de85so144100385a.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 02:30:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1781688643; x=1782293443; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mbELSQCe+eLHzp84jgggoNFJ8/wasOftbLaK7oSIbpM=;
+        b=EFkHxAGisHfi7MbLt37ZxGyInhwBSMyHzhvE6Y33E8uaSFC/po1Yf3Et22uZThBgWL
+         enpsbQzwvW/LfCx9ggHNigEbaBBZvgB2n3Z8Szwtt0T6KDXgvTSbVJL3LEgtQ9hzzAgJ
+         cGgTlIAl/6ihuhBE5Fmc86aJ5SNNb+aIjfngogLWJbLqHjG30FW3FTJ4ifI1sqhXcTD2
+         nCU2VsdkXGx87NKHcdyoJlHFmE14EsbmaPAKjq+ZMArbZ3Y27g2BpBOlpPhePquS48Qf
+         tlb1ccBNqwed3/XLWmMkxAJYldBUESPPyiJ6twAfO3qqvkD+uMXoD0TxRqN+gxaKc430
+         HeBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781688643; x=1782293443;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mbELSQCe+eLHzp84jgggoNFJ8/wasOftbLaK7oSIbpM=;
+        b=FA3oU+CCwdDdrq9T63Br0kZD8txcYi7UbSqA6KheilG/bCIJ/FeCNT+cNn+KHlRBei
+         pV8aJhzv8ORLcXL789J+HlPtWN0DH739QBr/AAZ8GFeWK6zq9/bMdUWJnCTrkr0M/Ff7
+         XwfPF9T76Ry4eCU4DI9rOGhcOSf0ZOj45e+BK9hH95id/3H01FWRThijrHU+WlkxMwYp
+         KLWB4I5GfR4WfyA03tf9kjd/zD3HE0sL0nPtg6X7z19SDuoH6sZyxU7Mc0hX9ZNCFRPx
+         UzcETK8reIvcChv6we0Z2ysKC0SyAhEI58uxunu/1UxgGDa00x8lgsegVABnYLwnYRb1
+         cpfQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8r7HezA+6IsIiAqyxW0pDDvLC4oTHODhaF19jAuWQCusTfNFF0XP4HzYSabdqQmg7UrRC0K7v9ZdMn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkSblL4SxeeZ61ClZ17lTweUNSGAIwDD1si1rvRsAyR/rikQ7c
+	HeyteWv7kygT59+bqagItiKeG6d5dIFTVeVCqOJoe6LX7nVL9xGkB6GlRTR9GPNRqlEcaFEkK35
+	hIbpYTCoCvNOsp9KlodGQHjHti+eisG9R4XXybaPxBy7+P/J6DLn41EHAGMmNtV+i
+X-Gm-Gg: Acq92OHPnNyeurqWUXvg3DOIIrIX7GjhVDvlo8r32YUxczi1t6oXPWuOp3UGTHN1LE0
+	6Bjp9JW7HMy/ELNjMByPQgL+ffCPAma28XKOmlFuWOpKUiamU3x3XGYWVGBBPwwgLkYWBQ1LCn8
+	eNoXBylMvFj/CJMQEajU3y0n+BwazsSlGpjZ5Hkbv8G6Mtk61qXrBASaW3vR7lSABkMQ7FKtiYl
+	vfwjlx/M3+9YMVoSP0ttFM9ONu34EpTPzhPsqkYAnFd4YOtoY9Z9rTuPPPhHqLCFwNu2UppQcO4
+	13X4IQOzYtkgZD7SbHtgxPcg11ilVvhoihA/P06G2LEHNgiMjX75MPVvsdz0D0o+FaX9UuNtexh
+	RrXYTsnJX42TjXETbyzCrzm5nSNP8iUXfhVM=
+X-Received: by 2002:a05:620a:438b:b0:8f1:9e59:2208 with SMTP id af79cd13be357-91d8acdc8f3mr299014585a.4.1781688643509;
+        Wed, 17 Jun 2026 02:30:43 -0700 (PDT)
+X-Received: by 2002:a05:620a:438b:b0:8f1:9e59:2208 with SMTP id af79cd13be357-91d8acdc8f3mr299012085a.4.1781688643022;
+        Wed, 17 Jun 2026 02:30:43 -0700 (PDT)
+Received: from [192.168.120.170] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-bfdb4b22136sm788125566b.15.2026.06.17.02.30.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jun 2026 02:30:42 -0700 (PDT)
+Message-ID: <29806448-0588-4590-8540-a689ccf1e7b0@oss.qualcomm.com>
+Date: Wed, 17 Jun 2026 11:30:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ESSLquH2XRyJzGVh"
-Content-Disposition: inline
-In-Reply-To: <20260615154805.1619693-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] input: misc: Add Qualcomm SPMI PMIC haptics driver
+To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: David Collins <david.collins@oss.qualcomm.com>,
+        Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>, kernel@oss.qualcomm.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20260616-qcom-spmi-haptics-v1-0-d24e422de6b4@oss.qualcomm.com>
+ <20260616-qcom-spmi-haptics-v1-3-d24e422de6b4@oss.qualcomm.com>
+ <eb693705-c0c3-427b-a924-5aa907fd65bb@oss.qualcomm.com>
+ <1bcf00ae-2558-4c3a-970d-aee1da0c06f9@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <1bcf00ae-2558-4c3a-970d-aee1da0c06f9@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE3MDA4OSBTYWx0ZWRfX9YidYdmTCeSU
+ f7RxLK5WQ6ZbVh+wYXgRi9z69Slvt/EbGUagwO9vqEuDMkH0iWJWnu2sntUpshvpLrIi1L0tSkT
+ c/zN4UGfOv95yKENiigSUPt0soTaXD8=
+X-Authority-Analysis: v=2.4 cv=D4d37PRj c=1 sm=1 tr=0 ts=6a326944 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=IsPFB7xf8fGKp3IZfZcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: Bx4S8GcpyZ3cWBtqXXmC3K3-K2FHqDnm
+X-Proofpoint-ORIG-GUID: Bx4S8GcpyZ3cWBtqXXmC3K3-K2FHqDnm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE3MDA4OSBTYWx0ZWRfXyKJrUwmSFIew
+ M5Pgkqiw7d6AUe9KdJqi/reSkB57Jx4peRDrvJRGHOTN/AweTzLCAWRDhwyg9N9QWzInuuevxRE
+ 1NyBQhiYxSLYhrMsvhZdW1q9v47YNrbzhnnRT2exJfvalh6RmPv5jicGX9P/ftTlB5h+IuRroUo
+ nCufcx0cmlQp8wk9lJumm0ngqKckXEjvB6PRpzEpodex5zskCp113F2bUlcFYV6tdo5lHtjciQM
+ 73NU7xn92rXtfUZcFQPG82Rysw9SQ0q1Q+q87KsDYDWMgvF0hgiCNWUKNrdxUH00YlC4XRUQzvo
+ JNAtMiwAjdCt0P586+dRdkCWZYhGN+E6VKv5czC06/VCiWjiXtB1bGXlUK0ziA/kV1ZHtUQlkN4
+ LWf7yKK+JIqFtKYWvvZfMmym9Bp/YD63pRcu8ER+vsWTqgxqo4BXpEckij9b13AfD6yhG+7AwkA
+ KvFRCfRcO4qGh0OmVVQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-17_01,2026-06-16_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0 spamscore=0 adultscore=0 clxscore=1015
+ impostorscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
+ definitions=main-2606170089
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[sang-engineering.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:miquel.raynal@bootlin.com,m:alexandre.belloni@bootlin.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:linux-rtc@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-312864-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:fenglin.wu@oss.qualcomm.com,m:linux-arm-msm@vger.kernel.org,m:dmitry.torokhov@gmail.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:lee@kernel.org,m:sboyd@kernel.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:david.collins@oss.qualcomm.com,m:subbaraman.narayanamurthy@oss.qualcomm.com,m:kamal.wadhwa@oss.qualcomm.com,m:kernel@oss.qualcomm.com,m:linux-input@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:dmitrytorokhov@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,qualcomm.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime];
+	FORGED_SENDER(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,vger.kernel.org,gmail.com,kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[lists@lfdr.de];
-	TAGGED_FROM(0.00)[bounces-312863-lists,devicetree=lfdr.de,renesas];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,glider.be,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,shikoro:mid,sang-engineering.com:dkim,sang-engineering.com:from_mime]
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B19EA697D80
+X-Rspamd-Queue-Id: EA6C9697FB3
 
+On 6/17/26 4:31 AM, Fenglin Wu wrote:
+>>> +        ret = ptn_bulk_write(h, HAP_PTN_FIFO_DIN_0_REG, &data[i], 4);
+>>> +        if (ret)
+>>> +            return ret;
+>>> +    }
+>>> +
+>>> +    for (; i < len; i++) {
+>>> +        ret = ptn_write(h, HAP_PTN_FIFO_DIN_1B_REG, (u8)data[i]);
+>>> +        if (ret)
+>>> +            return ret;
+>>> +    }
+>> So if i'm reading this right, the first loop will always write
+>> 4*(len//4) bytes and the second one will be entered at most once,
+>> to write len rem 4 bytes.. should this be an if instead?
+> 
+> I should put a comment for clarification. Here’s some background: FIFO data writing supports both 4-byte bulk writes using registers [HAP_PTN_FIFO_DIN_0_REG ... HAP_PTN_FIFO_DIN_3_REG], and 1-byte writes using the HAP_PTN_FIFO_DIN_1B_REG register. The 4-byte bulk write is more efficient, especially for waveform which has several Kb data, and it helps to reduce software latency when loading effects and reduce the delay in triggering vibration. It also helps prevent the FIFO from running dry during data refill in FIFO-empty interrupts. Typically, we use 4-byte writes for the initial 4-byte aligned data, and 1-byte writes for any trailing remainder.
+> 
+> So it still needs a 'for' loop here since the remainder could be more than 1 byte.
 
---ESSLquH2XRyJzGVh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Right, I mentioned len rem 4 but failed to notice it's a
+single-byte write.. anyway, a comment here would be good
 
-Hi,
+> 
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +/*
+>>> + * Configure the hardware FIFO memory boundary.
+>>> + * FIFO occupies addresses [0, fifo_len).
+>>> + */
+>>> +static int haptics_configure_fifo_mmap(struct qcom_haptics *h)
+>>> +{
+>>> +    u32 fifo_len, fifo_units;
+>>> +
+>>> +    /* Config all memory space for FIFO usage for now */
+>> What's the not-"for now" endgame for this?
+> 
+> The hardware supports more modes than the two currently supported in the driver. One of these, called 'PAT_MEM' mode, also shares memory space with FIFO mode. However, 'PAT_MEM' requires memory to be pre-reserved and waveform data to be pre-loaded. The entire 8K bytes of memory can be divided into partitions, and it is configurable, with FIFO mode always using the first partition [0, fifo_len], where 'fifo_len' is set via the 'MMAP_FIFO_REG' register. 'PAT_MEM' mode plays waveform using data preloaded in a memory bank defined by the registers 'PATX_MEM_START_ADDR_REG' and 'PATTERN_SPMI_PATX_LEN_REG' (they are not defined in the driver). Since PAT_MEM is mainly intended for hardware-triggered vibrations, such as a signal from a dedicated GPIO triggering a short vibration with a preloaded waveform, and although it also supports software triggers, I haven't found a suitable way to support it well into the driver under input FF framework yet. So, I am currently allocating the
+> entire 8K FIFO memory for FIFO mode only. We can adjust this later if we find a better way to incorporate 'PAT_MEM' mode into the driver.
 
-> The RTC block is closely related to the RZ/N1 implementation and can
-> reuse the existing driver infrastructure when operating in SCMP mode,
-> which is required on these SoCs due to their 195.3 kHz RTC input clock.
+Sounds like a plan.
 
-Yes, I implemented SCMP mode because the (back then) upcoming R-Car X5H
-also dropped SUBU mode. And SCMP works on my RZ/N1D board as well, so I
-could test it already.
+For the other mode, would that GPIO trigger need any OS intervention?
+Could you speak a bit more about how that works?
 
-> While the RZ/T2H and RZ/N2H variants do not implement the RTCA0SUBU and
-> RTCA0TCR registers present on RZ/N1, those registers are not accessed by
-> the driver in SCMP mode, allowing support to be added with minimal
-> changes.
-
-Note that even for RZ/N1, RTCA0TCR is marked as "not available".
-
-> The RZ/T2H RTC variant also supports a 1 Hz output signal on the
-> RTCAT1HZ pin, controlled by the RTCA0CTL1[RTCA01HZE] bit. This bit is
-> marked as reserved in the RZ/N1 hardware manual, making RZ/T2H a
-> distinct RTC variant despite its overall compatibility with the RZ/N1
-> implementation.
-
-R-Car X5H is the same for the above as well.
-
-> The series consists of:
-> dt-bindings updates to describe the RZ/T2H and RZ/N2H RTC variants,
-> driver updates to recognize the new compatible string and enable
-> support for these SoCs.
-
-I will review and test in on my N1D-board today.
-
-Thanks for your work and happy hacking,
-
-   Wolfram
-
-
---ESSLquH2XRyJzGVh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmoyZmUACgkQFA3kzBSg
-KbbAzxAAgB3BEg7c5V1u7545NG7MVNtSPrNRk8H1VT4T+L5DuGNgxnr5LVOFoLEJ
-/7qp1hGauNt1dV72FQms45UvscsIf0anF4aI9WlitN/J8cc8wR4W6zbs8OMDfz7w
-v+66/fkSDHpnZL37oOxCsdjvUr8acZG2MjiP5yuYRMGWDDj+jZ/AS5fWYQ0OA8oH
-CqBZIQT1r8Y1RbOHrHQfYC9DnUwswKcc7KUeASnc49xteDVLs55BduZclR+C4c2q
-1XB7Q71vUCGJIX0JjtwS26kM1SKRiUBx5rR78MelFYFvo++nXGtsZUKy8RcK6i2I
-COn12npVL7Z2TaaoFH0FpGLAbEGQUm8hT6zPqMTtEr/M5tQB9TY92JAv72OoGcmJ
-UuEpQ+ZEilH6OqZAGBn4FhN2ufTTHZHEM7Fv+/PlKKWql1rRvWA9HKRd3pBu6ulf
-PeM97qRU8dFY2dND/9Lk8tnolzWZU/Sh4r34acRd0A0990hf2Mu+d55Ci6XQEzmW
-SuEKUQkfDROP1TkFKeEwEIXzA11KHByUqiM9qY0wx2y9VmvNMSdFkyvudlbHfSVj
-hzdJhbDEVH5zE8Nxab1zvEuYB1bvcLdtHQp2Hrsa9E0WlZ8eaNRmti1nPz5K1SvN
-dYlLbGfvozx11Hwpc1/aWzIsvwESXq2pNQsamR8PpDTjBx2FZlM=
-=CbMX
------END PGP SIGNATURE-----
-
---ESSLquH2XRyJzGVh--
+Konrad
 
