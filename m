@@ -1,198 +1,294 @@
-Return-Path: <devicetree+bounces-312876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-312872-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VjoNL3pwMmr5zwUAu9opvQ
-	(envelope-from <devicetree+bounces-312876-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:01:30 +0200
+	id PTzGHzpuMmpyzwUAu9opvQ
+	(envelope-from <devicetree+bounces-312872-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 11:51:54 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 673A9698348
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 12:01:25 +0200 (CEST)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 715446981CF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 11:51:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312876-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.234.253.10 as permitted sender) smtp.mailfrom="devicetree+bounces-312876-lists+devicetree=lfdr.de@vger.kernel.org";
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=H0myF4CA;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-312872-lists+devicetree=lfdr.de@vger.kernel.org" designates 104.64.211.4 as permitted sender) smtp.mailfrom="devicetree+bounces-312872-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F2E4430F47FE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:49:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8C729306D72F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 09:48:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCA33D171F;
-	Wed, 17 Jun 2026 09:48:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23753CFF58;
+	Wed, 17 Jun 2026 09:48:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339783D0BEC
-	for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 09:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BE8A3C73F6;
+	Wed, 17 Jun 2026 09:48:46 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781689738; cv=none; b=ZtZrCQbqSXrUxn820jNjZB/hRyj+4a5M+dQ4MWE4h60z231H8kL6c7jZ3GBtVJPrVXqV3T6j0hQWravZYKO/B7xISW4aw7BzEbw79hL0THYD0022L9izwmKroW5rLNfCQ72m8sJC22nMozht0FH2XnmgFjIHik8bJmsmyigNNec=
+	t=1781689726; cv=none; b=mfcEJ69im9fTbJiu02zzjc87SOnNvEebxYw2ivJjYkxFiIr9yiyxu5F0c8NA1QD+nExwgh71uNY0cjToqkUS6ki70TYx2p4lE5DpCI6DR0I7OmDPHkHrBxEoXSQgvk97QK2eKYEV3Svy7ekLPRGyydEv3gUxBPNH4Fu1jqmKCm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781689738; c=relaxed/simple;
-	bh=zgmF4G180wgcf5oiYNf7MKLkwNcY83CQ6T1cSixEe7E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ezM6KmlOWP6NYWeyVN0KMQpC53gm6V4IBCbOuSVBfpaDbH9urtC4iDs43ILj9uYvaClTAx/OzmtSB3YmKSp1ZZYW642sZMq5RZl/yUx765SxLnUT3ErUpiBGqflNbXV36On44wzZ/sTpMDOIzxFMb5fO1ds8nANObeji86lqRmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-72686746814so114089137.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 02:48:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781689736; x=1782294536;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EzBIHbH3e9z5WB6Uvoc2w5PoH5awp6Q/fBEmuSHqk2M=;
-        b=FNnJYP2FJozu38aLjsyoVaf4qHZUKgUX9Qdy7e0HfXW79Wdo0PROHcKXywVqurOFco
-         DzHz+itrBR9XowwNJDMMQ4OHI8RWhqMOGR4DTafS+2XA6XzfUflAGDIJZXxrweRnTpTt
-         tCBlUDlWJtoijhrktAa1dxCGpLAm4TncMzca2SSkRDc/2p59ZAF/qrGJpddaYkK2ViEd
-         30TFvrcA4+ClCkKBK3M5oMTQNGrAZs4GFU8z+l3mdlQUqbVjA8L9JyGiParuXrGthTZ/
-         sDhjVVoRwagYDfszU5I5btpRFWh2nlNX0iqhzXBNvGDqI2aPmSSB9jkobnfhlNpUn5m7
-         W73A==
-X-Forwarded-Encrypted: i=1; AFNElJ+9syWZlleOpQjTvjHS040lHmyCQJNnByHRv50ZGsW133ROTYW3w5KM8J/exCrq22bjIcuP6dNPLmoU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yya7x8e/JmlApLpQz82vAmdvNZVhEvHz9hziec9VQOxb8zcPFuV
-	nTgHMy2KYYf7UlsHv9ZtR0wF77D/GREWcHbp33FT35Nql2r+OPQJ33QOhYS32Lo8
-X-Gm-Gg: Acq92OE1QQaqToHCbDWZxhSTqrEJeyncogmABurZKHFrsAahuXb8nDtC1g3017CTbvv
-	xyUUH4/RGVm9UHoJ9tmta+zB036N1QcWCTm/sMVQL7XIXQrJtCOlyDevHEMo5JPNxCYeK9QXPVY
-	FNTiRkBqASLjjsycWoNZQgrKC4O54req7ahAT2F89tRDGSMogOXUwrMWP7QUIi80ljB1yYWRAOg
-	40s199uX1Vz2xGYZZncuJKWDbjNye0yg6CuCcqESwI2wTxqdJb84M0FifPTDVVEOISHMuj8oh5L
-	rIxi4lH1h01Rry3zRXcpQ1LqiQz3B6P+mToi9n6y1PibEHIALkXap5w9KNW9Kd8eQ/BD+RtYfpp
-	DjbjxBJeXAnFKQlNYHuQIreOhNLyBm4hdGjn9N1h0cDTptK0s5T+UAuNCvbH5sEXlNOjmm02iOe
-	JYZrFHeAffUK1XiCzh1Hrzalz40SJM5KYWQnukgx52qeHl87fqSg==
-X-Received: by 2002:a05:6102:2907:b0:6d5:91f0:21b4 with SMTP id ada2fe7eead31-7246d74ef8dmr1458953137.29.1781689736172;
-        Wed, 17 Jun 2026 02:48:56 -0700 (PDT)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-720878866dbsm6774048137.11.2026.06.17.02.48.55
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jun 2026 02:48:55 -0700 (PDT)
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-6c3154fa47fso4243263137.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Jun 2026 02:48:55 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AFNElJ/Zjm5JsYHpqFULXpLJh+MOwRgEDkiLqfM5nnibSCHnq6XaQouJqJFECT/dwE9cxYitCeykRKQw/JHx@vger.kernel.org
-X-Received: by 2002:a05:6102:3588:b0:6e7:5c89:3fc0 with SMTP id
- ada2fe7eead31-7246d42e08cmr1649434137.25.1781689734943; Wed, 17 Jun 2026
- 02:48:54 -0700 (PDT)
+	s=arc-20240116; t=1781689726; c=relaxed/simple;
+	bh=xSeNeF3wOrI9+eSeZnBxCEX80fYkNUh8emJRohWnSWM=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=TQdHmW/uc08XqgSbmejPRd8W0dx2WH/SHe6BC+LX/bUrifXSThgHfMBuyv3XKQy04UiyCqbHvVjDSXj+MfsA7HzpfF6gT01zYi9cil4yLpkR7K34oipOdh4RPCOWYV5Dm2cVuh3jt3+Jn0605wG02/Fqwc9xRQKF10ozZQfq7Dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H0myF4CA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4BABCC2BCC7;
+	Wed, 17 Jun 2026 09:48:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1781689726;
+	bh=xSeNeF3wOrI9+eSeZnBxCEX80fYkNUh8emJRohWnSWM=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=H0myF4CAn7zYOHRwSIq48VaFGyfITSMdHRnP2e04HVHEmuk5Rnfa2YweFtmlfipEC
+	 9RVc8rTdUIB1n3xnic90oXibhwjsVsqjIW6pUt/dTwWUOcISvievwAXghQy94LXuuD
+	 0ybP4I3GX+43k4TiXzu8bgCZLbVYG2FWqSQWy5NvTks0JXzXHMp+pgybAx7wuw4iW/
+	 GlVgh5WXB/zMWfnG2NAePCuFLZed82FgKq6XQicJzPEcO10P+mdhOEDSjeE0mEgur7
+	 0Ycvm3sJEcPQV36vTDT1t1ajDuj7jh2MJr7X5Nn3UNiyd2Hn8ONWV51+wZKWmkgaQi
+	 x0odLuWSyUAYQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 38079CD98F5;
+	Wed, 17 Jun 2026 09:48:46 +0000 (UTC)
+From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
+Date: Wed, 17 Jun 2026 12:48:45 +0300
+Subject: [PATCH v2 2/4] nvmem: add mt6323 PMIC EFUSE driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260615104845.4122868-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260615104845.4122868-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20260615104845.4122868-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 17 Jun 2026 11:48:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWBeaTB4QK5vvB0CQm+yrX1ps3V2EtFu0Q4a0JG_94f7g@mail.gmail.com>
-X-Gm-Features: AVVi8CexHI6Cn-7af-3NwS7Fpca-DgZi_9j2_blKzUOte_bydlG-ZNQqhEBgXok
-Message-ID: <CAMuHMdWBeaTB4QK5vvB0CQm+yrX1ps3V2EtFu0Q4a0JG_94f7g@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] clk: renesas: rzv2h-cpg: Use per-SoC PLL reference
- frequency for calculations
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Brian Masney <bmasney@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260617-mt6323-nvmem-v2-2-4f30e36aa0f4@protonmail.com>
+References: <20260617-mt6323-nvmem-v2-0-4f30e36aa0f4@protonmail.com>
+In-Reply-To: <20260617-mt6323-nvmem-v2-0-4f30e36aa0f4@protonmail.com>
+To: Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, 
+ Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Srinivas Kandagatla <srini@kernel.org>, 
+ Roman Vivchar <rva333@protonmail.com>
+Cc: Andy Shevchenko <andy@kernel.org>, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Ben Grisdale <bengris32@protonmail.ch>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781689724; l=4979;
+ i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
+ bh=tkBAxojAoEByrsK5PQU5GP0ZOJ2PR63Ob95LjbJ70jA=;
+ b=ex0wL7M4aG72M9OCkqFihMxqsMdY3sPNbDEXcgcKPUG9x6MkG4sA+j3oMM2sIHqYRuR6IEfFY
+ 2qCp+LoV7E+BV4lEBIO67gV6X4qsVtmhd3Q1h2hLgyPqmxZjvq8/IAW
+X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
+ pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
+X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
+ auth_id=777
+X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Reply-To: rva333@protonmail.com
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	TAGGED_FROM(0.00)[bounces-312876-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:prabhakar.csengg@gmail.com,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:bmasney@redhat.com,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:magnus.damm@gmail.com,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:linux-clk@vger.kernel.org,m:devicetree@vger.kernel.org,m:biju.das.jz@bp.renesas.com,m:fabrizio.castro.jz@renesas.com,m:prabhakar.mahadev-lad.rj@bp.renesas.com,m:prabhakarcsengg@gmail.com,m:krzk@kernel.org,m:conor@kernel.org,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:sen.chu@mediatek.com,m:sean.wang@mediatek.com,m:macpaul.lin@mediatek.com,m:lee@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:srini@kernel.org,m:rva333@protonmail.com,m:andy@kernel.org,m:linux-pm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mediatek@lists.infradead.org,m:bengris32@protonmail.ch,m:krzk@kernel.org,m:conor@kernel.org,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,redhat.com,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
+	TAGGED_FROM(0.00)[bounces-312872-lists,devicetree=lfdr.de,rva333.protonmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[protonmail.com];
+	FREEMAIL_TO(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com,protonmail.com];
+	FORGED_SENDER(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FORWARDED(0.00)[lists@lfdr.de];
-	FORGED_SENDER(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RSPAMD_EMAILBL_FAIL(0.00)[devicetree@vger.kernel.org:query timed out];
-	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,vger.kernel.org:from_smtp,protonmail.ch:email,protonmail.com:replyto,protonmail.com:email,protonmail.com:mid];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[rva333@protonmail.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,renesas.com:email,linux-m68k.org:from_mime,linux-m68k.org:email,glider.be:email,mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 673A9698348
+X-Rspamd-Queue-Id: 715446981CF
 
-Hi Prabhakar,
+From: Roman Vivchar <rva333@protonmail.com>
 
-On Mon, 15 Jun 2026 at 12:48, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Introduce a per-SoC PLL reference input frequency parameter to avoid
-> relying on a hardcoded 24MHz constant during PLL configuration math.
->
-> Add an input_fref member to struct rzv2h_pll_limits. In the core
-> calculation helper rzv2h_get_pll_pars(), derive the base input clock
-> rate from limits->input_fref, utilizing the conditional ternary operator
-> to fall back to 24MHz if the struct field is left uninitialized (0), and
-> drop the obsolete macro RZ_V2H_OSC_CLK_IN_MEGA.
->
-> This abstraction permits the reuse of the common PLL divider logic on
-> newer SoC platforms like the RZ/T2H, which feature a 48 MHz PLL reference
-> clock input instead of the 24 MHz signal used by RZ/V2H(P), without
-> disrupting existing platforms.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Add support for the EFUSE controller found in the Mediatek MT6323 PMIC.
+The MT6323 EFUSE stores 24 bytes of hardware-related data, such as
+thermal sensor calibration values.
 
-Thanks for your patch!
+Tested-by: Ben Grisdale <bengris32@protonmail.ch> # Amazon Echo Dot (2nd Generation)
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
+Signed-off-by: Roman Vivchar <rva333@protonmail.com>
+---
+ MAINTAINERS                  |  5 +++
+ drivers/nvmem/Kconfig        | 11 ++++++
+ drivers/nvmem/Makefile       |  2 ++
+ drivers/nvmem/mt6323-efuse.c | 85 ++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 103 insertions(+)
 
-> --- a/include/linux/clk/renesas.h
-> +++ b/include/linux/clk/renesas.h
-> @@ -53,6 +53,9 @@ static inline void rzg2l_cpg_dsi_div_set_divider(u8 divider, int target) { }
->   * various parameters used to configure a PLL. These limits ensure
->   * the PLL operates within valid and stable ranges.
->   *
-> + * @input_fref: Reference input frequency to the PLL (in MHz). If set
-
-"in Hz", as pointed out by Sashiko.
-
-> + * to 0, a default value of 24MHz is used.
-> + *
->   * @fout: Output frequency range (in MHz)
->   * @fout.min: Minimum allowed output frequency
->   * @fout.max: Maximum allowed output frequency
-> @@ -78,6 +81,8 @@ static inline void rzg2l_cpg_dsi_div_set_divider(u8 divider, int target) { }
->   * @k.max: Maximum delta-sigma value
->   */
->  struct rzv2h_pll_limits {
-> +       u32 input_fref;
-> +
->         struct {
->                 u32 min;
->                 u32 max;
-
-The rest LGTM, so with the above fixed:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
+diff --git a/MAINTAINERS b/MAINTAINERS
+index d1cc0e12fe1f..910360f148c4 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -16256,6 +16256,11 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+ F:	drivers/mmc/host/mtk-sd.c
+ 
++MEDIATEK MT6323 PMIC NVMEM DRIVER
++M:	Roman Vivchar <rva333@protonmail.com>
++S:	Maintained
++F:	drivers/nvmem/mt6323-efuse.c
++
+ MEDIATEK MT6735 CLOCK & RESET DRIVERS
+ M:	Yassine Oudjana <y.oudjana@protonmail.com>
+ L:	linux-clk@vger.kernel.org
+diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+index 74ddbd0f79b0..db248a3c4e87 100644
+--- a/drivers/nvmem/Kconfig
++++ b/drivers/nvmem/Kconfig
+@@ -227,6 +227,17 @@ config NVMEM_MTK_EFUSE
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called efuse-mtk.
+ 
++config NVMEM_MT6323_EFUSE
++	tristate "Mediatek MT6323 PMIC EFUSE support"
++	depends on ARCH_MEDIATEK || COMPILE_TEST
++	depends on MFD_MT6397
++	help
++	  This is a driver to access hardware related data like sensor
++	  calibration, etc.
++
++	  This driver can also be built as a module. If so, the module
++	  will be called efuse-mt6323.
++
+ config NVMEM_MXS_OCOTP
+ 	tristate "Freescale MXS On-Chip OTP Memory Support"
+ 	depends on ARCH_MXS || COMPILE_TEST
+diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+index 7252b8ec88d4..0e2b73f42b25 100644
+--- a/drivers/nvmem/Makefile
++++ b/drivers/nvmem/Makefile
+@@ -48,6 +48,8 @@ obj-$(CONFIG_NVMEM_MICROCHIP_OTPC)	+= nvmem-microchip-otpc.o
+ nvmem-microchip-otpc-y			:= microchip-otpc.o
+ obj-$(CONFIG_NVMEM_MTK_EFUSE)		+= nvmem_mtk-efuse.o
+ nvmem_mtk-efuse-y			:= mtk-efuse.o
++obj-$(CONFIG_NVMEM_MT6323_EFUSE)		+= nvmem_mt6323-efuse.o
++nvmem_mt6323-efuse-y			:= mt6323-efuse.o
+ obj-$(CONFIG_NVMEM_MXS_OCOTP)		+= nvmem-mxs-ocotp.o
+ nvmem-mxs-ocotp-y			:= mxs-ocotp.o
+ obj-$(CONFIG_NVMEM_NINTENDO_OTP)	+= nvmem-nintendo-otp.o
+diff --git a/drivers/nvmem/mt6323-efuse.c b/drivers/nvmem/mt6323-efuse.c
+new file mode 100644
+index 000000000000..7a0ce4c7f565
+--- /dev/null
++++ b/drivers/nvmem/mt6323-efuse.c
+@@ -0,0 +1,85 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (c) 2026 Roman Vivchar <rva333@protonmail.com>
++ */
++
++#include <linux/err.h>
++#include <linux/mod_devicetable.h>
++#include <linux/module.h>
++#include <linux/nvmem-provider.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/types.h>
++
++#include <linux/mfd/mt6323/registers.h>
++
++#define MT6323_EFUSE_DOUT_BASE	MT6323_EFUSE_DOUT_0_15
++#define MT6323_EFUSE_SIZE	24
++
++static int mt6323_efuse_read(void *context, unsigned int offset, void *val,
++			     size_t bytes)
++{
++	struct regmap *map = context;
++	u16 *buf = val;
++	u32 tmp;
++	int ret;
++
++	/*
++	 * A manual loop using regmap_read is required because PWRAP is not
++	 * a continuous MMIO space, but rather a FSM that doesn't implement the
++	 * necessary read callback for the regmap_read_raw and regmap_read_bulk
++	 * functions.
++	 */
++	for (size_t i = 0; i < bytes; i += sizeof(*buf)) {
++		ret = regmap_read(map, MT6323_EFUSE_DOUT_BASE + offset + i, &tmp);
++		if (ret)
++			return ret;
++
++		*buf++ = tmp;
++	}
++
++	return 0;
++}
++
++static int mt6323_efuse_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct nvmem_config config = {
++		.name = "mt6323-efuse",
++		.stride = 2,
++		.word_size = 2,
++		.size = MT6323_EFUSE_SIZE,
++		.reg_read = mt6323_efuse_read,
++	};
++	struct nvmem_device *nvmem;
++	struct regmap *regmap;
++
++	/* efuse -> mfd -> pwrap */
++	regmap = dev_get_regmap(dev->parent->parent, NULL);
++	if (!regmap)
++		return dev_err_probe(dev, -ENODEV, "failed to get regmap\n");
++
++	config.dev = dev;
++	config.priv = regmap;
++
++	nvmem = devm_nvmem_register(dev, &config);
++	return PTR_ERR_OR_ZERO(nvmem);
++}
++
++static const struct of_device_id mt6323_efuse_of_match[] = {
++	{ .compatible = "mediatek,mt6323-efuse" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, mt6323_efuse_of_match);
++
++static struct platform_driver mt6323_efuse_driver = {
++	.probe = mt6323_efuse_probe,
++	.driver = {
++		.name = "mt6323-efuse",
++		.of_match_table = mt6323_efuse_of_match,
++	},
++};
++module_platform_driver(mt6323_efuse_driver);
++
++MODULE_DESCRIPTION("MediaTek MT6323 PMIC EFUSE driver");
++MODULE_LICENSE("GPL");
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.54.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
 
