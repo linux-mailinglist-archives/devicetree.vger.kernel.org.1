@@ -1,219 +1,201 @@
-Return-Path: <devicetree+bounces-313047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-313048-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sQmVB/OrMmrn3QUAu9opvQ
-	(envelope-from <devicetree+bounces-313047-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 16:15:15 +0200
+	id JKKLHzasMmr13QUAu9opvQ
+	(envelope-from <devicetree+bounces-313048-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 16:16:22 +0200
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97D669A757
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 16:15:14 +0200 (CEST)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC17B69A769
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 16:16:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=UI+ZGsDv;
-	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313047-lists+devicetree=lfdr.de@vger.kernel.org" designates 2600:3c09:e001:a7::12fc:5321 as permitted sender) smtp.mailfrom="devicetree+bounces-313047-lists+devicetree=lfdr.de@vger.kernel.org";
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=BOSJ+BmS;
+	spf=pass (mail.lfdr.de: domain of "devicetree+bounces-313048-lists+devicetree=lfdr.de@vger.kernel.org" designates 172.105.105.114 as permitted sender) smtp.mailfrom="devicetree+bounces-313048-lists+devicetree=lfdr.de@vger.kernel.org";
+	dmarc=pass (policy=reject) header.from=qualcomm.com;
 	arc=pass ("subspace.kernel.org:s=arc-20240116:i=1")
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5212E301DD14
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 14:15:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C1D853020EAA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jun 2026 14:16:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B00C11D5CFB;
-	Wed, 17 Jun 2026 14:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA0433FB7C7;
+	Wed, 17 Jun 2026 14:16:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-alma10-1.taild15c8.ts.net [100.103.45.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF7743E488;
-	Wed, 17 Jun 2026 14:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 663C9217F27;
+	Wed, 17 Jun 2026 14:16:17 +0000 (UTC)
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1781705713; cv=none; b=k9NynVQhFgbvaF6PS0QRnDQGj8+aTqxBU2akVwExisuKQtgHa6+onnPY013ZcQYKW0gDk4sdLgqd1/tEKT0/KqfOmOeY9+7HR3qpnL7BGMcMaMSQB5hQoeg+blzFu+TtJZ//cUlziT/ebUd7V8dly/CmjTYZsSunBZ+lBMpMsLo=
+	t=1781705778; cv=none; b=r3v1NCUn+pyZw6jMsMZMYb66OBnu9JlAFl2JB8ToIdkUKUwDQzQrQug+tDfVuf8Nog2n+b3sG5M5vWlT4w6+D284QMMUFFOaO4dn88jDsZ5uTDURSaWrAEvO5X8xNmLZYnho1k1/LkR/HVRtq/OMsXlKhSPvW8MUOSFGX0koR2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1781705713; c=relaxed/simple;
-	bh=aT6EsMpyN2kHvIzzfOlMkl1tsxagZKfNG322pi4LTbs=;
-	h=From:Subject:To:Cc:In-Reply-To:References:Content-Type:Date:
-	 Message-Id; b=DSpPMWDzySi8V0SiT3pAwrftQQFL9Ze6p2DclMpw+7+G6EXR3m95DnCnDsUxchyKf7Zm5KE94r7DOvOlfp0tSfXDrtR6P1iLhFId4NHvlykkdfvER/DM6yepkRP7n825o9vLbS40cfy4DiJjmsR+YwzxMK+N+1ZAbR1bmIsXHnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UI+ZGsDv; arc=none smtp.client-ip=100.103.45.18
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F13231F000E9;
-	Wed, 17 Jun 2026 14:15:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1781705712;
-	bh=l5idDmyMZHXtgRmJ3QAeMxDJzHsMw3e6bXX2hV5ODoo=;
-	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
-	b=UI+ZGsDvPiYTuVGh3UOjxOu6Nfy0nXYEra4zLomR1Z4D3I5FpP7oig20QuPvGJl1z
-	 kxv7W6GbADSPyqM7rgvcRoWwmB+Re7EzEycFhJgRNVUV1KIb6l3z9F1BgmH9LS7R23
-	 IH9jLsirvsCVL4ao5lvmloYaC91YRj0NzO9aab6RBDdH2ZQczLaKnySZH1yP9HDFgd
-	 C4TLeQqhaCKdc5VPyK0vs03C336+o3/rBY71l4tp+89QUQ6KrfMSPEvS9HQJd0NtQF
-	 YeCi3dACCoFDIKwaTTQEEwS4JkGdQnBer7SNNAu0wsrGHFRpduKxxla3trHS+pCHy6
-	 jAdUOgC57Dd+w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 02/10] ACPI: APEI: GHES: move CPER read helpers
-Reply-To: sashiko-reviews@lists.linux.dev
-To: "Ahmed Tiba" <ahmed.tiba@arm.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, linux-cxl@vger.kernel.org, robh@kernel.org
-In-Reply-To: <20260617-topics-ahmtib01-ras_ffh_arm_internal_review-v6-2-91f725174aa0@arm.com>
-References: <20260617-topics-ahmtib01-ras_ffh_arm_internal_review-v6-0-91f725174aa0@arm.com>
- <20260617-topics-ahmtib01-ras_ffh_arm_internal_review-v6-2-91f725174aa0@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 17 Jun 2026 14:15:11 +0000
-Message-Id: <20260617141511.F13231F000E9@smtp.kernel.org>
+	s=arc-20240116; t=1781705778; c=relaxed/simple;
+	bh=wlCref5/S3MP6523NuLK8FyXHlqn1tc+yFz/aolauLY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cgwurOLGKRiAwoqk/j5uKOANrODBMJVyf3ICEUBpY2QMqj3IWflFa52ha7rHn7DkOyduoWaDSr+tLtTo/jIvfJJl7wUjmWzij4iBL2XON84OkL7z3830oLc8STeSxGV8ur48hsd5xT9qdb/novlQvmL+uA/Zxob/qlX6+4KYQGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BOSJ+BmS; arc=none smtp.client-ip=205.220.180.131
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 65HEG3N62800871;
+	Wed, 17 Jun 2026 14:16:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=4qeQYmD98detR1I+Y5arYqlF
+	ppwJLv/QnariAzxjezw=; b=BOSJ+BmSOm30CeKfUg8E22HoYEO49HIu6YMf27Ln
+	WiohB6XxPDwCRllCj36z6IPin2P6Gl9VdjIMQIpUaMAdKLiLKzZTyypA/zjizL65
+	c/ECgEYzIT7vJixoR1V9CXcbT/pMGLjSbuOma+nL3F//vQ5tZOg8EtWZ6pvt27nf
+	6AsitA8umbqn/gcGRjRAxN4ATjimlFZQNuhgj4EX8YnmYRHYBXMIIGGwGmxg8wDC
+	A4bqfCBWe6+qYFAKviIo5/D+270LTkVjJx0yERRgMGhGvkWnASQfCuY3WJoQEEZ/
+	J/6zScnFLjLsANtO+Mb+ldzrxRaG3GWpAYqVhusUNpHo1Q==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4euees3gsa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Jun 2026 14:16:14 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.7/8.18.1.7) with ESMTP id 65HEGBtl001212;
+	Wed, 17 Jun 2026 14:16:11 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4es09ka8nh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Jun 2026 14:16:11 +0000 (GMT)
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.18.1.12/8.18.1.12) with ESMTP id 65HEGBlZ001187;
+	Wed, 17 Jun 2026 14:16:11 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-kotarake-hyd.qualcomm.com [10.213.97.140])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 65HEGBec001181
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Jun 2026 14:16:11 +0000 (GMT)
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 2389607)
+	id 97CFAB0C; Wed, 17 Jun 2026 19:46:10 +0530 (+0530)
+Date: Wed, 17 Jun 2026 19:46:10 +0530
+From: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: pm8005: Add temp alarm node
+Message-ID: <20260617141610.esdqxwyzcdk4qwhj@hu-kotarake-hyd.qualcomm.com>
+References: <20260613-shikra_adc_support-v1-0-57d5e6c7f47d@oss.qualcomm.com>
+ <20260613-shikra_adc_support-v1-2-57d5e6c7f47d@oss.qualcomm.com>
+ <633bh5nvxafrwnga5mdvvfdkazfgmrkt2jgn36dh7u5dlgjkgs@vewjc6tkgytq>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <633bh5nvxafrwnga5mdvvfdkazfgmrkt2jgn36dh7u5dlgjkgs@vewjc6tkgytq>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-ORIG-GUID: 1X2esk-jkqDSPK2ItUkOe-OwRi1vRXnc
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjE3MDEzNiBTYWx0ZWRfXzbYaaSgv7SF8
+ pu7tC5M1b2Yax9SC2zCUhOk3OXkn76InLfFpaUGPDTbu87UsgjQBpqxRngXup9opb503e/rr0NE
+ Df4a2IiaWoYCcrB1dxJwx5GFDw61dlWHRSH3KhTJLX/nPj9X+oThjjI0u7cztoD9vD+pputwHpU
+ 1tHIilkQLlgYzv17wtmCJPH5tZexGwVP5TlTeT2RUVrUBwb4YWPtVHl9X0ecgsOjLuDfMPMRgjO
+ P6td83iqPAySLmtNKO9z6R5EuZ3lkQeoGM+CqtiwAykBYmo5vMlPaTcjqqu6hPe6q6PDDZG50yO
+ G8ahmVGbtwuxstU8HuEnqagYVd+FaohbynipwgVsFDSLiwS4tY+OjyBPx1QkylFX1gVnLMvIDyY
+ I0JYV/Q1SMQTBZUbjx7h7O1u8oxXD+OEcRleSsXYxkgq6v9qtnI7XzGtDypXUIM9b32ZdHgImjq
+ 2c2ePSDalpbLecWYlQQ==
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjE3MDEzNiBTYWx0ZWRfX3I9ER+YReYRJ
+ s8A7sH3XLYLOc1k6pbmZ8XdIonQSdNvtpKawhrXNXgE5U1bRc/9fQRUeCwqaNN/JfuZLrFjsklx
+ IJ7EiC3rTXCfYsRj6y4P8vtqe9/LbZ4=
+X-Authority-Analysis: v=2.4 cv=KeTidwYD c=1 sm=1 tr=0 ts=6a32ac2e cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=kj9zAlcOel0A:10 a=FelO9ux0wxsA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=EUspDBNiAAAA:8
+ a=p2IqhNJQRjyiNKHNqeoA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-GUID: 1X2esk-jkqDSPK2ItUkOe-OwRi1vRXnc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
+ definitions=2026-06-17_02,2026-06-16_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 spamscore=0 lowpriorityscore=0 suspectscore=0 phishscore=0
+ bulkscore=0 malwarescore=0 adultscore=0 priorityscore=1501 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2606170136
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.16 / 15.00];
-	WHITELIST_SPF_DKIM(-3.00)[kernel.org:d:+,kernel.org:s:+];
-	MISSING_MIME_VERSION(2.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-313047-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	REPLYTO_DN_EQ_FROM_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vger.kernel.org:from_smtp,sashiko.dev:url,arm.com:email,smtp.kernel.org:mid,lists.linux.dev:replyto];
-	FORGED_SENDER(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ahmed.tiba@arm.com,m:conor+dt@kernel.org,m:devicetree@vger.kernel.org,m:linux-cxl@vger.kernel.org,m:robh@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[bounces-313048-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[hu-kotarake-hyd.qualcomm.com:mid,oss.qualcomm.com:from_mime,vger.kernel.org:from_smtp,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:jishnu.prakash@oss.qualcomm.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:robh@kernel.org,m:krzk+dt@kernel.org,m:conor+dt@kernel.org,m:linux-arm-msm@vger.kernel.org,m:devicetree@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kamal.wadhwa@oss.qualcomm.com,m:krzk@kernel.org,m:conor@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+];
 	FORWARDED(0.00)[lists@lfdr.de];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_SENDER(0.00)[rakesh.kota@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rakesh.kota@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashiko-bot@kernel.org,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	HAS_REPLYTO(0.00)[sashiko-reviews@lists.linux.dev]
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D97D669A757
+X-Rspamd-Queue-Id: BC17B69A769
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+On Mon, Jun 15, 2026 at 12:42:38AM +0300, Dmitry Baryshkov wrote:
+> On Sat, Jun 13, 2026 at 01:39:22PM +0530, Jishnu Prakash wrote:
+> > Add temperature alarm node, used for PMIC thermal mitigation.
+> > 
+> > Co-developed-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+> > Signed-off-by: Rakesh Kota <rakesh.kota@oss.qualcomm.com>
+> > Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/pm8005.dtsi | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/pm8005.dtsi b/arch/arm64/boot/dts/qcom/pm8005.dtsi
+> > index 0f0ab2da8305..180809a0ee73 100644
+> > --- a/arch/arm64/boot/dts/qcom/pm8005.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/pm8005.dtsi
+> > @@ -11,6 +11,14 @@ pm8005_lsid0: pmic@4 {
+> >  		#address-cells = <1>;
+> >  		#size-cells = <0>;
+> >  
+> > +		pm8005_tz: temp-alarm@2400 {
+> > +			compatible = "qcom,spmi-temp-alarm";
+> > +			reg = <0x2400>;
+> > +			interrupts = <0x4 0x24 0x0 IRQ_TYPE_EDGE_BOTH>;
+> > +			#thermal-sensor-cells = <0>;
+> > +			status = "disabled";
+> 
+> Missing thermal zone, also enable it by default.
+>
+we will update in upcoming patch.
 
-Pre-existing issues:
-- [High] A double fetch (TOCTOU) vulnerability when reading the CPER error =
-status block from firmware memory can lead to out-of-bounds reads.
-- [High] ghes_ack_error() incorrectly shifts read_ack_preserve and read_ack=
-_write by the register bit_offset, unconditionally clearing bits below bit_=
-offset and potentially clobbering other hardware state in the register.
---
-
-commit 6a836df1ccfeca08e11c00049d33e954958fa36f
-Author: Ahmed Tiba <ahmed.tiba@arm.com>
-
-ACPI: APEI: GHES: move CPER read helpers
-
-This commit relocates the CPER buffer mapping, peek, and clear helpers
-from ghes.c into ghes_cper.c so they can be shared with other
-firmware-first providers. It only shuffles code without changing
-behavior.
-
-Reviewed-by: Jonathan Cameron <jic23@kernel.org>
-Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
-
-> diff --git a/drivers/acpi/apei/ghes_cper.c b/drivers/acpi/apei/ghes_cper.c
-> new file mode 100644
-> index 0000000000000..b365c42efce49
-> --- /dev/null
-> +++ b/drivers/acpi/apei/ghes_cper.c
-> @@ -0,0 +1,196 @@
-[ ... ]
-> +static void ghes_ack_error(struct acpi_hest_generic_v2 *gv2)
-> +{
-> +	int rc;
-> +	u64 val =3D 0;
-> +
-> +	rc =3D apei_read(&val, &gv2->read_ack_register);
-> +	if (rc)
-> +		return;
-> +
-> +	val &=3D gv2->read_ack_preserve << gv2->read_ack_register.bit_offset;
-> +	val |=3D gv2->read_ack_write    << gv2->read_ack_register.bit_offset;
-
-[Severity: High]
-This is a pre-existing issue, but does this code unintentionally clobber the
-lower bits of the hardware register?
-
-When ghes_ack_error() masks val using:
-
-val &=3D gv2->read_ack_preserve << gv2->read_ack_register.bit_offset;
-
-Any bits in val below bit_offset are unconditionally cleared to zero.
-
-If there is hardware state in those lower bits, wouldn't writing back the
-modified val via apei_write() overwrite and destroy it?
-
-> +
-> +	apei_write(val, &gv2->read_ack_register);
-> +}
-[ ... ]
-> +int ghes_read_estatus(struct ghes *ghes,
-> +		      struct acpi_hest_generic_status *estatus,
-> +		      u64 *buf_paddr, enum fixed_addresses fixmap_idx)
-> +{
-> +	int rc;
-> +
-> +	rc =3D __ghes_peek_estatus(ghes, estatus, buf_paddr, fixmap_idx);
-> +	if (rc)
-> +		return rc;
-> +
-> +	rc =3D __ghes_check_estatus(ghes, estatus);
-> +	if (rc)
-> +		return rc;
-> +
-> +	return __ghes_read_estatus(estatus, *buf_paddr, fixmap_idx,
-> +				   cper_estatus_len(estatus));
-
-[Severity: High]
-This isn't a bug introduced by this patch, but is there a potential double
-fetch issue in the error status read path?
-
-Looking at the sequence in ghes_read_estatus(), we first fetch and validate=
- the
-header:
-
-__ghes_peek_estatus() copies the header from physical memory into estatus.
-
-__ghes_check_estatus() validates estatus->data_length.
-
-Then we call __ghes_read_estatus() which copies from the same physical memo=
-ry
-again, overwriting the previously validated estatus header:
-
-__ghes_read_estatus(...) {
-    ghes_copy_tofrom_phys(estatus, buf_paddr, buf_len, 1, fixmap_idx);
-    if (cper_estatus_check(estatus)) {
-    ...
-}
-
-If the underlying firmware memory is modified between the peek and the read,
-the local estatus will get a new, unvalidated data_length.
-
-Since cper_estatus_check() relies on data_length to iterate over the sectio=
-ns,
-could this new unvalidated length cause an out-of-bounds read?
-
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260617-topics-ahm=
-tib01-ras_ffh_arm_internal_review-v6-0-91f725174aa0@arm.com?part=3D2
+regard
+Rakesh Kota
+> > +		};
+> > +
+> >  		pm8005_gpios: gpio@c000 {
+> >  			compatible = "qcom,pm8005-gpio", "qcom,spmi-gpio";
+> >  			reg = <0xc000>;
+> > 
+> > -- 
+> > 2.43.0
+> > 
+> 
+> -- 
+> With best wishes
+> Dmitry
 
